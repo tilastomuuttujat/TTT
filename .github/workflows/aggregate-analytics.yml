@@ -1,4 +1,4 @@
-name: Aggregate JIM Analytics
+name: Aggregate TTT Analytics
 
 on:
   schedule:
