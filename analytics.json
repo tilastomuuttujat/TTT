@@ -1,14 +1,15 @@
 {
-  "generated": "2026-03-22T06:17:01.576Z",
-  "total_events": 54,
-  "total_sessions": 31,
+  "generated": "2026-03-22T07:10:16.118Z",
+  "total_events": 56,
+  "total_sessions": 32,
   "chapters": {
     "L03": 1,
     "yhteenve": 2,
     "johdanto": 1,
     "L05": 2,
     "L01": 1,
-    "P04": 1
+    "P04": 1,
+    "L02": 1
   },
   "sliders": {},
   "summary_opens": 1,
