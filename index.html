@@ -2544,6 +2544,158 @@ canvas {width:100%;display:block}
 .mek-cascade-plus { color: var(--change-mid); font-weight: 700; }
 .mek-netto-pos { color: var(--change-mid); font-weight: 700; }
 .mek-netto-neg { color: var(--drift); font-weight: 700; }
+
+/* ═══════════════════════════════════════════════
+   POLKURIIPPUVUUS VIEW
+════════════════════════════════════════════════════ */
+/* ─────────────────────────────────────────────
+   POLKURIIPPUVUUS — NARRATIVE CHAIN VIEW
+───────────────────────────────────────────── */
+.pk-page { padding: 0.5rem 0; }
+.pk-hypo {
+  border: 2px solid var(--a); border-radius: var(--r2);
+  padding: 1.2rem 1.4rem; margin-bottom: 1.5rem; background: var(--a-tint);
+}
+.pk-hypo-label {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--a); margin-bottom: 0.5rem;
+}
+.pk-hypo-text { font-size: 0.92rem; line-height: 1.6; color: var(--ink); }
+.pk-hypo-text strong { color: var(--ink); }
+
+/* Causal chain: L → P → R */
+.pk-causal-chain {
+  display: flex; align-items: stretch; gap: 0;
+  margin-bottom: 2rem; overflow-x: auto;
+}
+.pk-cn-node {
+  flex: 1; min-width: 0; border-radius: var(--r);
+  padding: 0.65rem 0.7rem; display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; overflow: hidden;
+}
+.pk-cn-node[data-lpr="L"] { background: hsl(0 45% 95%); border: 1px solid hsl(0 40% 85%); }
+.pk-cn-node[data-lpr="P"] { background: hsl(214 45% 95%); border: 1px solid hsl(214 40% 83%); }
+.pk-cn-node[data-lpr="R"] { background: hsl(150 40% 94%); border: 1px solid hsl(150 35% 80%); }
+.pk-cn-label { font-size: 0.6rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; opacity: 0.7; }
+.pk-cn-node[data-lpr="L"] .pk-cn-label { color: hsl(0 55% 42%); }
+.pk-cn-node[data-lpr="P"] .pk-cn-label { color: hsl(214 55% 42%); }
+.pk-cn-node[data-lpr="R"] .pk-cn-label { color: hsl(150 50% 32%); }
+.pk-cn-title { font-size: 0.72rem; font-weight: 600; color: var(--ink); line-height: 1.3; }
+.pk-cn-sub { font-size: 0.7rem; color: var(--ink-3); line-height: 1.3; }
+
+.pk-cn-arrow {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 0 0.5rem; color: var(--ink-4);
+  font-size: 0.7rem; text-align: center; min-width: 2.5rem; flex-shrink: 0;
+}
+.pk-cn-arrow-icon { font-size: 1.2rem; color: var(--a); line-height: 1; }
+.pk-cn-arrow-pct { font-size: 0.6rem; font-weight: 700; color: var(--a); margin-top: 2px; }
+
+/* LA breakdown */
+.pk-la-breakdown {
+  margin-bottom: 1.5rem; padding: 0.8rem 1rem;
+  background: hsl(214 20% 96%); border-radius: var(--r);
+  border-left: 3px solid var(--a);
+}
+.pk-la-title { font-size: 0.65rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.5rem; }
+.pk-la-item { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.4rem; font-size: 0.77rem; line-height: 1.4; }
+.pk-la-item:last-child { margin-bottom: 0; }
+.pk-la-pct { font-size: 0.72rem; font-weight: 700; color: var(--a); background: var(--a-tint); border-radius: 3px; padding: 1px 5px; white-space: nowrap; flex-shrink: 0; }
+.pk-la-ref { font-weight: 600; color: var(--ink-2); cursor: pointer; text-decoration: underline dotted; }
+.pk-la-desc { color: var(--ink-3); }
+
+/* Population stat */
+.pk-pop-stat { display: flex; align-items: baseline; gap: 0.5rem; margin-bottom: 0.8rem; }
+.pk-pop-num { font-size: 1.8rem; font-weight: 700; color: hsl(214 55% 42%); font-variant-numeric: tabular-nums; line-height: 1; }
+.pk-pop-label { font-size: 0.78rem; color: var(--ink-3); line-height: 1.3; }
+
+/* Allocation */
+.pk-alloc { display: flex; gap: 0.6rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+.pk-alloc-card { flex: 1; min-width: 100px; padding: 0.6rem 0.8rem; border-radius: var(--r); font-size: 0.75rem; line-height: 1.4; }
+.pk-alloc-sq { background: hsl(0 40% 96%); border: 1px solid hsl(0 30% 88%); }
+.pk-alloc-ov { background: hsl(150 40% 95%); border: 1px solid hsl(150 35% 83%); }
+.pk-alloc-label { font-weight: 700; margin-bottom: 0.2rem; color: var(--ink-2); }
+.pk-alloc-val { font-size: 0.85rem; font-weight: 600; }
+.pk-alloc-sq .pk-alloc-val { color: hsl(0 55% 42%); }
+.pk-alloc-ov .pk-alloc-val { color: hsl(150 50% 32%); }
+
+/* Section headers */
+.pk-section { margin-bottom: 2rem; }
+.pk-section-header {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.6rem 0.9rem; border-radius: var(--r); margin-bottom: 0.9rem;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+}
+.pk-section-L { background: hsl(0 45% 94%); color: hsl(0 55% 38%); }
+.pk-section-P { background: hsl(214 45% 94%); color: hsl(214 55% 38%); }
+.pk-section-R { background: hsl(150 40% 93%); color: hsl(150 50% 30%); }
+.pk-section-id-badge { font-size: 0.65rem; font-weight: 700; background: rgba(0,0,0,.08); border-radius: 3px; padding: 1px 5px; }
+.pk-section-role { opacity: 0.75; font-weight: 400; font-size: 0.68rem; margin-left: auto; text-transform: none; letter-spacing: 0; }
+
+/* Paragraphs */
+.pk-paras { font-size: 0.85rem; line-height: 1.65; color: var(--ink-2); }
+.pk-paras p { margin-bottom: 0.75rem; }
+.pk-paras p:last-child { margin-bottom: 0; }
+.pk-paras strong { color: var(--ink); font-weight: 600; }
+
+/* Falsifiability */
+.pk-falsify-box {
+  border-radius: var(--r2); padding: 1rem 1.2rem; margin-top: 1.5rem;
+  background: hsl(30 30% 97%); border: 1px solid hsl(30 25% 88%);
+}
+.pk-falsify-label { font-size: 0.65rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: hsl(30 40% 45%); margin-bottom: 0.5rem; }
+.pk-falsify-items { list-style: none; padding: 0; margin: 0; font-size: 0.8rem; line-height: 1.5; color: var(--ink-2); }
+.pk-falsify-items li { padding: 0.25rem 0 0.25rem 1.2rem; position: relative; }
+.pk-falsify-items li::before { content: '✗'; position: absolute; left: 0; color: hsl(0 50% 52%); font-size: 0.65rem; top: 0.35rem; }
+
+/* Theme grid */
+.pk-rp-wrap {
+  padding: 0.6rem 0.65rem;
+  overflow-y: auto;
+  height: 100%;
+}
+.pk-theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.4rem; margin-bottom: 1.25rem; }
+.pk-theme-card {
+  border: 1px solid var(--rule); border-radius: var(--r);
+  padding: 0.55rem 0.6rem; cursor: pointer; transition: all 150ms;
+  background: var(--paper);
+}
+.pk-theme-card:hover { border-color: var(--a); background: var(--a-tint); }
+.pk-theme-card.active { border-color: var(--a); background: var(--a-tint); box-shadow: 0 0 0 2px var(--a); }
+.pk-theme-num { font-size: 0.5rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 0.2rem; }
+.pk-theme-title { font-size: 0.74rem; font-weight: 600; color: var(--ink); line-height: 1.3; margin-bottom: 0.35rem;   word-break: break-word;
+}
+.pk-theme-lpr { display: flex; align-items: center; gap: 0.2rem; flex-wrap: wrap; }
+.pk-theme-lpr-badge { font-size: 0.6rem; font-weight: 700; border-radius: 3px; padding: 1px 4px; }
+.pk-lpr-L { background: hsl(0 45% 90%); color: hsl(0 55% 40%); }
+.pk-lpr-P { background: hsl(214 45% 90%); color: hsl(214 55% 40%); }
+.pk-lpr-R { background: hsl(150 40% 88%); color: hsl(150 50% 30%); }
+
+/* Theme navigator */
+.pk-theme-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.2rem; gap: 0.5rem; }
+.pk-theme-nav-btn {
+  background: none; border: 1px solid var(--rule); border-radius: var(--r);
+  padding: 0.35rem 0.7rem; font-size: 0.75rem; cursor: pointer;
+  color: var(--ink-3); transition: all 150ms;
+}
+.pk-theme-nav-btn:hover:not(:disabled) { border-color: var(--a); color: var(--a); }
+.pk-theme-nav-btn:disabled { opacity: 0.3; cursor: default; }
+.pk-theme-nav-title { font-size: 0.8rem; font-weight: 600; color: var(--ink); text-align: center; flex: 1; }
+
+.pk-read-more-btn {
+  background: none; border: 1px solid var(--rule); border-radius: var(--r);
+  padding: 0.3rem 0.7rem; font-size: 0.73rem; cursor: pointer;
+  color: var(--a); margin-top: 0.5rem; transition: all 150ms;
+}
+.pk-read-more-btn:hover { background: var(--a-tint); }
+
+#pk-chain { display: none; }
+#pk-chain.visible { display: block; }
+
+@media (max-width: 480px) {
+  .pk-causal-chain { flex-direction: column; }
+  .pk-cn-arrow { flex-direction: row; padding: 0.3rem 0; min-width: auto; }
+  .pk-pop-num { font-size: 1.4rem; }
+}
 </style>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,700&display=swap" rel="stylesheet">
@@ -2836,6 +2988,12 @@ canvas {width:100%;display:block}
       </div>
     </div>
 
+
+    <!-- ══ Polkuriippuvuus panel ══ -->
+    <div class="rp-panel" id="rp-pk-panel" style="padding:0">
+      <div id="rp-pk-inner"></div>
+    </div>
+
   </div><!-- /rp-body -->
 </div><!-- /rpanel -->
 
@@ -2880,6 +3038,15 @@ canvas {width:100%;display:block}
       <path d="M13 7V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h3"/>
     </svg>
     Linkki
+  </button>
+
+  <div style="width:100%;height:1px;background:var(--rule);margin:4px 0;opacity:0.4"></div>
+  <button class="side-btn" id="side-pk" onclick="sideToggle('pk')" aria-label="Analyyttinen kehikko" title="Polkuriippuvuus — Analyyttinen kehikko">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px">
+      <circle cx="10" cy="10" r="7"/>
+      <path d="M10 7v6M7 10h6"/>
+    </svg>
+    Kehikko
   </button>
 </nav>
 
@@ -3192,6 +3359,13 @@ canvas {width:100%;display:block}
 
 </div><!-- /lm-page -->
 </div><!-- /laskentamalli-view --><!-- /laskentamalli-view -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     POLKURIIPPUVUUS VIEW
+═══════════════════════════════════════════════════════════ -->
+<!-- pk content is rendered in rp-pk-panel side panel -->
+
+
 
 <script>
 /* ════════════════════════════════════════════════════
@@ -3845,16 +4019,25 @@ const initReveal = () => {
 const showView = (view) => {
   const app = document.getElementById('app');
   const lm  = document.getElementById('laskentamalli-view');
+  const pk  = document.getElementById('pk-view');
   var handle = document.getElementById('lm-resize-handle');
   if (view === 'laskentamalli') {
     app.style.display = 'none';
     lm.classList.add('active');
-    // Mark side-lm button active
+    if (pk) pk.classList.remove('active');
     var lmBtn = document.getElementById('side-lm');
     if (lmBtn) lmBtn.classList.add('active');
     setTimeout(() => jimsInit(), 80);
+  } else if (view === 'polkuriippuvuus') {
+    app.style.display = 'none';
+    lm.classList.remove('active');
+    if (pk) pk.classList.add('active');
+    var lmBtn3 = document.getElementById('side-lm');
+    if (lmBtn3) lmBtn3.classList.remove('active');
+    pkInitOnce();
   } else {
     lm.classList.remove('active');
+    if (pk) pk.classList.remove('active');
     app.style.display = 'block';
     var lmBtn2 = document.getElementById('side-lm');
     if (lmBtn2) lmBtn2.classList.remove('active');
@@ -3905,6 +4088,10 @@ const handleRoute = () => {
     setTimeout(() => sideToggle('lm'), 300);
     return;
   }
+  if (id === 'polkuriippuvuus') {
+    showView('polkuriippuvuus');
+    return;
+  }
   const data = window._jimData;
   if (id && data?.chapters.find(c => c.id === id)) { currentId = id; showView('content'); renderChapter(id); }
   else { currentId = null; showView('content'); renderTOC(); }
@@ -3929,6 +4116,10 @@ const buildSidebar = data => {
   html += `<button class="sb-item" data-id="laskentamalli" onclick="goLaskentamalli()">
     <span class="sb-iid">${ico('calc')}</span>
     <span>Laskentamalli</span>
+  </button>`;
+  html += `<button class="sb-item" data-id="polkuriippuvuus" onclick="goPolkuriippuvuus()">
+    <span class="sb-iid" style="font-size:0.7rem">⊕</span>
+    <span>Analyyttinen kehikko</span>
   </button>`;
   document.getElementById('sb-list').innerHTML = html;
 };
@@ -6037,6 +6228,7 @@ const SIDE_PANELS = {
   piv: { title: 'Pivot',        btn: 'side-piv', panel: 'rp-piv-panel' },
   lm:  { title: 'Laskentamalli',btn: 'side-lm',  panel: 'rp-lm-panel'  },
   fb:  { title: 'Palaute',      btn: 'side-fb',  panel: 'rp-fb-panel'  },
+  pk:  { title: 'Analyyttinen kehikko', btn: 'side-pk',  panel: 'rp-pk-panel'  },
 };
 
 /* ── PWA install prompt ── */
@@ -6219,6 +6411,9 @@ const sideToggle = (key) => {
   _rp.classList.toggle('wide',     key === 'lm');
   _rp.classList.toggle('wide-piv', key === 'piv');
   if (!['lm','piv'].includes(key)) { _rp.classList.remove('wide'); _rp.classList.remove('wide-piv'); }
+
+  // PK panel init
+  if (key === 'pk') { sideInitPK(); }
 
   // Panel-specific init
   if (key === 'sum') { analyticsEvent('summary_open', {}); rpUpdateSummary(); }
@@ -8451,6 +8646,282 @@ function mekQalyChange(val) {
     // Will render when tab is clicked
   });
 })();
+</script>
+
+
+<script>
+/* ════════════════════════════════════════════════════
+   POLKURIIPPUVUUS — ANALYYTTINEN KEHIKKO
+   L→P→R kausaalinen juoni / testattava hypoteesi
+════════════════════════════════════════════════════ */
+
+const PK_THEME_LABELS = {
+  '01':'Historiallinen ajautuma','02':'Rahoituksen logiikka',
+  '03':'EU-kehysvalta','04':'Mittaamisen politiikka',
+  '05':'Passiivisuuden kustannus','06':'Hallinnon hajautuminen',
+  '07':'Demografia','08':'Eriarvoisuuden kone',
+  '09':'Monikriisi','10':'Kertaluonteinen pääoma',
+  '11':'Hoivan rakennevika','12':'Muutos on mahdollinen'
+};
+const PK_ROLES = {
+  L:{label:'Leikkaus',role:'Polkuriippuvuuden lähde'},
+  P:{label:'Panostus',role:'Kustannuksen kantajat'},
+  R:{label:'Rakennemuutos',role:'Testattava ennuste'}
+};
+
+function pkMd(text) {
+  if (!text) return '';
+  return text
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/^#+\s+(.+)$/gm,'<strong>$1</strong>')
+    .replace(/^>\s+(.+)$/gm,'<em>$1</em>');
+}
+
+function pkFmtPop(n) {
+  if (!n && n !== 0) return '';
+  return n < 1000 ? n.toString() : n.toLocaleString('fi-FI');
+}
+
+function pkParseLaNote(laNote) {
+  if (!laNote) return [];
+  const items = [];
+  const re = /([LPR]\d{2})\s+(\d+)%\s*[:\-–]\s*([^.]+\.?)/g;
+  let m;
+  while ((m = re.exec(laNote)) !== null)
+    items.push({ref:m[1], pct:m[2], desc:m[3].replace(/\.$/,'').trim()});
+  return items;
+}
+
+function pkGetParas(ch, n, startFrom) {
+  startFrom = startFrom || 0;
+  const paras = (ch.paragraphs || []).slice(startFrom, startFrom + n);
+  if (!paras.length) return '<p><em>Ei sisältöä.</em></p>';
+  return paras.map(p => `<p>${pkMd(p.text || '')}</p>`).join('');
+}
+
+function pkBuildThemeGrid() {
+  const data = window._jimData;
+  if (!data) return;
+  const grid = document.getElementById('pk-theme-grid');
+  if (!grid) return;
+  const chapters = data.chapters || [];
+  const themes = {};
+  chapters.forEach(ch => {
+    const id = ch.id || '';
+    if (/^[LPR]\d{2}$/.test(id)) {
+      const num = id.substring(1), prefix = id.charAt(0);
+      if (!themes[num]) themes[num] = {};
+      themes[num][prefix] = ch;
+    }
+  });
+  const sortedNums = Object.keys(themes).filter(n => /^\d+$/.test(n)).sort();
+  grid.innerHTML = sortedNums.map(num => {
+    const theme = themes[num];
+    const label = PK_THEME_LABELS[num] || `Teema ${num}`;
+    const pop = theme['P'] && theme['P'].pop ? pkFmtPop(theme['P'].pop) : null;
+    const badges = ['L','P','R'].filter(p => theme[p])
+      .map(p => `<span class="pk-theme-lpr-badge pk-lpr-${p}">${p}</span>`).join('');
+    return `<div class="pk-theme-card" data-theme="${num}" onclick="pkSelectTheme('${num}')">
+      <div class="pk-theme-num">TEEMA ${num}</div>
+      <div class="pk-theme-title">${label}</div>
+      <div class="pk-theme-lpr">${badges}${pop ? `<span style="margin-left:auto;font-size:0.65rem;color:var(--ink-4)">${pop} hlö</span>` : ''}</div>
+    </div>`;
+  }).join('');
+}
+
+function pkSelectTheme(num) {
+  _pkCurrentTheme = num;
+  const data = window._jimData;
+  if (!data) return;
+  const numInt = parseInt(num, 10);
+  document.querySelectorAll('.pk-theme-card').forEach(c => c.classList.remove('active'));
+  const card = document.querySelector(`[data-theme="${num}"]`);
+  if (card) { card.classList.add('active'); card.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+  const chapters = data.chapters || [];
+  const chL = chapters.find(c => c.id === `L${num}`);
+  const chP = chapters.find(c => c.id === `P${num}`);
+  const chR = chapters.find(c => c.id === `R${num}`);
+  const chainEl = document.getElementById('pk-chain');
+  if (!chainEl) return;
+  chainEl.classList.add('visible');
+
+  /* Navigator */
+  const maxTheme = 12;
+  const prevNum = numInt > 1 ? String(numInt-1).padStart(2,'0') : null;
+  const nextNum = numInt < maxTheme ? String(numInt+1).padStart(2,'0') : null;
+  const navHtml = `<div class="pk-theme-nav">
+    <button class="pk-theme-nav-btn" ${!prevNum?'disabled':''} onclick="pkSelectTheme('${prevNum}')">← Edellinen</button>
+    <div class="pk-theme-nav-title">Teema ${num} / ${maxTheme} — ${PK_THEME_LABELS[num]||''}</div>
+    <button class="pk-theme-nav-btn" ${!nextNum?'disabled':''} onclick="pkSelectTheme('${nextNum}')">Seuraava →</button>
+  </div>`;
+
+  /* Hypothesis box */
+  const lTitle = chL ? chL.title.replace(/^L\d+[:\s—–-]+/,'').replace(/\s*–.+$/,'') : '?';
+  const pPop = chP && chP.pop ? pkFmtPop(chP.pop) : '?';
+  const rTitle = chR ? chR.title.replace(/^R\d+[:\s—–-]+/,'') : '?';
+  const hypoHtml = `<div class="pk-hypo">
+    <div class="pk-hypo-label">🔬 Testattava polkuriippuvuushypoteesi · Teema ${num}</div>
+    <div class="pk-hypo-text">
+      <strong>Jos</strong> ${lTitle} on rakenteellinen lukko →
+      <strong>niin</strong> ${pPop} ihmistä kantaa sen kustannuksen →
+      <strong>silloin</strong> interventio, joka murtaa lukon, tuottaisi: <em>${rTitle}</em>
+    </div>
+  </div>`;
+
+  /* Causal chain visual */
+  const laItems = pkParseLaNote(chP ? chP.la_note : '');
+  const mainLink = laItems.find(i => i.ref === `L${num}`);
+  const mainPct = mainLink ? mainLink.pct + '%' : '';
+  const chainHtml = `<div class="pk-causal-chain">
+    <div class="pk-cn-node" data-lpr="L">
+      <div class="pk-cn-label">L${num} · Leikkaus</div>
+      <div class="pk-cn-title">${lTitle}</div>
+      <div class="pk-cn-sub">Polkuriippuvuuden lähde</div>
+    </div>
+    <div class="pk-cn-arrow">
+      <div class="pk-cn-arrow-icon">→</div>
+      ${mainPct ? `<div class="pk-cn-arrow-pct">${mainPct}</div>` : ''}
+    </div>
+    <div class="pk-cn-node" data-lpr="P">
+      <div class="pk-cn-label">P${num} · Panostus</div>
+      <div class="pk-cn-title">${pPop} ihmistä</div>
+      <div class="pk-cn-sub">${chP && chP.pop_note ? chP.pop_note.substring(0,60) : 'Kustannuksen kantajat'}</div>
+    </div>
+    <div class="pk-cn-arrow">
+      <div class="pk-cn-arrow-icon">→</div>
+    </div>
+    <div class="pk-cn-node" data-lpr="R">
+      <div class="pk-cn-label">R${num} · Rakennemuutos</div>
+      <div class="pk-cn-title">${rTitle.substring(0,50)}${rTitle.length>50?'…':''}</div>
+      <div class="pk-cn-sub">Testattava ennuste</div>
+    </div>
+  </div>`;
+
+  /* LA mechanism breakdown */
+  let laHtml = '';
+  if (laItems.length) {
+    laHtml = `<div class="pk-la-breakdown">
+      <div class="pk-la-title">⚙ Mekanismilinkki: miksi juuri nämä ihmiset</div>
+      ${laItems.map(item => `<div class="pk-la-item">
+        <span class="pk-la-pct">${item.pct}%</span>
+        <span><span class="pk-la-ref" onclick="pkGoChapter('${item.ref}')">${item.ref}</span><span class="pk-la-desc"> — ${item.desc}</span></span>
+      </div>`).join('')}
+    </div>`;
+  }
+
+  /* Allocation */
+  let allocHtml = '';
+  if (chP && chP.allocation) {
+    const a = chP.allocation;
+    if (a.sq || a.ov !== undefined) {
+      const cpStr = a.cost_per ? `${Number(a.cost_per).toLocaleString('fi-FI')} €/hlö` : '';
+      allocHtml = `<div class="pk-alloc">
+        <div class="pk-alloc-card pk-alloc-sq"><div class="pk-alloc-label">Nykytila</div><div class="pk-alloc-val">${a.sq||'—'}</div></div>
+        <div class="pk-alloc-card pk-alloc-ov"><div class="pk-alloc-label">Interventio</div><div class="pk-alloc-val">${a.ov!==undefined?(a.ov<2?(a.ov*100).toFixed(0)+'% kustannus':a.ov):'—'}${cpStr?` · ${cpStr}`:''}</div></div>
+      </div>`;
+    }
+  }
+
+  /* Section builder */
+  function mkSection(prefix, ch, extraHtml) {
+    if (!ch) return '';
+    extraHtml = extraHtml || '';
+    const r = PK_ROLES[prefix];
+    const chId = ch.id || (prefix+num);
+    const cleanTitle = ch.title.replace(/^[LPR]\d+[:\s—–-]+/,'');
+    const startPara = ch.paragraphs && ch.paragraphs[0] && ch.paragraphs[0].text.includes('OSA') ? 1 : 0;
+    const preview = pkGetParas(ch, 3, startPara);
+    const hasMore = (ch.paragraphs||[]).length > startPara + 3;
+    return `<div class="pk-section">
+      <div class="pk-section-header pk-section-${prefix}">
+        <span class="pk-section-id-badge">${chId}</span>
+        ${r.label}<span class="pk-section-role">${r.role}</span>
+      </div>
+      <div style="font-size:0.85rem;font-weight:600;color:var(--ink);margin-bottom:0.6rem">${cleanTitle}</div>
+      ${extraHtml}
+      <div class="pk-paras" id="pk-paras-${prefix}${num}">${preview}</div>
+      ${hasMore?`<button class="pk-read-more-btn" onclick="pkToggleMore('${prefix}${num}',${startPara})">Näytä lisää ↓</button>`:''}
+      <div style="margin-top:0.5rem">
+        <button class="hbtn" onclick="pkGoChapter('${chId}')" style="font-size:0.72rem;padding:0.3rem 0.6rem;border:1px solid var(--rule);border-radius:var(--r)">
+          Avaa luku ${chId} →
+        </button>
+      </div>
+    </div>`;
+  }
+
+  const pExtra = chP ? `
+    ${chP.pop ? `<div class="pk-pop-stat"><div class="pk-pop-num">${pkFmtPop(chP.pop)}</div><div class="pk-pop-label">${chP.pop_note||'henkilöä'}</div></div>` : ''}
+    ${allocHtml}${laHtml}` : '';
+
+  /* Falsifiability */
+  const fi = [];
+  fi.push(`Vastaava ${chR?chR.id:'R'+num}-muutos toteutuu ilman P-interventiota`);
+  fi.push(`L${num}-mekanismi ei korreloi P${num}-väestöryhmän ongelmien kanssa`);
+  if (laItems.length > 1)
+    fi.push(`Muut selittäjät (${laItems.slice(1).map(i=>i.ref).join(', ')}) selittävät yli 80% — L${num}:n osuus marginaalinen`);
+  if (chP && chP.allocation && chP.allocation.ov !== undefined && chP.allocation.ov < 1)
+    fi.push(`Interventio ei vähennä kustannuksia — kerroin pysyy yli ${(chP.allocation.ov*100).toFixed(0)}%:n`);
+  const falsifyHtml = `<div class="pk-falsify-box">
+    <div class="pk-falsify-label">⚠ Milloin hypoteesi on väärä?</div>
+    <ul class="pk-falsify-items">${fi.map(f=>`<li>${f}</li>`).join('')}</ul>
+  </div>`;
+
+  chainEl.innerHTML = navHtml + hypoHtml + chainHtml
+    + mkSection('L', chL)
+    + mkSection('P', chP, pExtra)
+    + mkSection('R', chR)
+    + falsifyHtml;
+  chainEl.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function pkToggleMore(chId, startFrom) {
+  const data = window._jimData; if (!data) return;
+  const el = document.getElementById(`pk-paras-${chId}`); if (!el) return;
+  const btn = el.nextElementSibling;
+  const ch = (data.chapters||[]).find(c => c.id === chId); if (!ch) return;
+  if (btn && btn.textContent.includes('lisää')) {
+    el.innerHTML = pkGetParas(ch, 999, startFrom);
+    if (btn) btn.textContent = 'Näytä vähemmän ↑';
+  } else {
+    el.innerHTML = pkGetParas(ch, 3, startFrom);
+    if (btn) btn.textContent = 'Näytä lisää ↓';
+  }
+}
+
+function pkGoChapter(chId) {
+  if (typeof goChapter === 'function') goChapter(chId);
+}
+
+let _pkInited = false;
+let _pkCurrentTheme = null;
+
+/* sideInitPK — called by navigation handler when pk panel opens */
+function sideInitPK() {
+  pkInitOnce();
+}
+
+function pkInitOnce() {
+  if (_pkInited) return;
+  _pkInited = true;
+  // Inject scaffold into rpanel
+  const inner = document.getElementById('rp-pk-inner');
+  if (inner && !inner.dataset.scaffolded) {
+    inner.dataset.scaffolded = '1';
+    inner.innerHTML = `
+      <div class="pk-rp-wrap">
+        <div id="pk-theme-grid" class="pk-theme-grid"></div>
+        <div id="pk-chain"></div>
+      </div>`;
+  }
+  if (window._jimData) {
+    pkBuildThemeGrid();
+  } else {
+    const t = setInterval(() => {
+      if (window._jimData) { clearInterval(t); pkBuildThemeGrid(); }
+    }, 100);
+  }
+}
 </script>
 
 <script>
