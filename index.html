@@ -787,6 +787,32 @@ a { color: inherit; }
 .toc-print-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 .toc-print-btn:not(:disabled):hover { opacity: 0.82; }
 
+/* PDF text-only toggle */
+.toc-text-only {
+  display: flex; align-items: center; gap: 0.35rem;
+  color: var(--ink-3); cursor: pointer; user-select: none;
+  font-size: 0.68rem; white-space: nowrap;
+  padding: 0.2rem 0.6rem; border-radius: var(--r);
+  border: 1px solid var(--rule); background: var(--surface);
+  transition: all 120ms;
+}
+.toc-text-only:hover { border-color: var(--a); color: var(--a); }
+.toc-text-only:has(input:checked) {
+  background: hsl(214 55% 96%); border-color: hsl(214 55% 75%);
+  color: hsl(214 60% 35%); font-weight: 600;
+}
+.toc-text-only input { cursor: pointer; accent-color: var(--a); }
+.toc-pdf-quality {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  font-size: 0.58rem; color: var(--ink-4); font-family: var(--mono);
+  letter-spacing: 0.04em;
+}
+.toc-pdf-quality-dot {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--change);
+  display: inline-block;
+}
+
+
 /* TOC card wrapper with checkbox */
 .toc-card-wrap { display: flex; align-items: center; gap: 0; }
 .toc-chk-wrap {
@@ -2445,6 +2471,79 @@ canvas {width:100%;display:block}
 @keyframes lineIn { from{stroke-dashoffset:300} to{stroke-dashoffset:0} }
 @keyframes labelIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
 
+
+/* ═══════════════════════════════════════════════
+   MEKANISMIT & SYNERGIA PAGE
+═══════════════════════════════════════════════ */
+.mek-scenario-bar {
+  display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+.mek-sce-lbl { font-size: 0.72rem; font-weight: 600; color: var(--ink-3); letter-spacing: 0.06em; text-transform: uppercase; margin-right: 0.3rem; }
+.mek-sce-btn {
+  padding: 0.3rem 0.85rem; border-radius: 99px; border: 1.5px solid var(--rule);
+  font-size: 0.73rem; font-weight: 500; color: var(--ink-2); background: var(--bg);
+  cursor: pointer; transition: all 120ms;
+}
+.mek-sce-btn:hover { border-color: var(--a); color: var(--a); }
+.mek-sce-btn.active { background: var(--a); border-color: var(--a); color: #fff; font-weight: 600; }
+.mek-cards {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+@media (max-width: 700px) { .mek-cards { grid-template-columns: repeat(2,1fr); } }
+.mek-card { border-radius: var(--r2); padding: 0.9rem 1rem; border: 1px solid transparent; }
+.mek-card-label { font-size: 0.67rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.7; margin-bottom: 0.2rem; }
+.mek-card-val { font-size: 1.45rem; font-weight: 700; font-family: var(--mono); line-height: 1.1; margin-bottom: 0.15rem; }
+.mek-card-sub { font-size: 0.65rem; opacity: 0.65; }
+.mek-card-blue   { background: hsl(214 60% 95%); border-color: hsl(214 50% 80%); color: hsl(214 65% 30%); }
+.mek-card-green  { background: hsl(155 50% 93%); border-color: hsl(155 40% 75%); color: hsl(155 55% 25%); }
+.mek-card-purple { background: hsl(255 50% 95%); border-color: hsl(255 40% 78%); color: hsl(255 50% 30%); }
+.mek-card-amber  { background: hsl(38 70% 93%);  border-color: hsl(38 55% 75%);  color: hsl(38 65% 28%); }
+.mek-qaly-ctrl {
+  display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap;
+  padding: 0.6rem 0.9rem; background: var(--s9); border-radius: var(--r);
+  margin-bottom: 1.25rem; font-size: 0.72rem;
+}
+.mek-qaly-ctrl-lbl { font-weight: 600; color: var(--ink-2); min-width: 130px; }
+.mek-qaly-ctrl-note { color: var(--ink-4); font-size: 0.64rem; }
+.mek-sliders {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+@media (max-width: 760px) { .mek-sliders { grid-template-columns: 1fr 1fr; } }
+.mek-slider-card {
+  border-radius: var(--r2); padding: 0.85rem 0.9rem;
+  border: 1.5px solid transparent; transition: box-shadow 150ms;
+}
+.mek-slider-card:hover { box-shadow: var(--sh2); }
+.mek-slider-hdr { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 0.3rem; }
+.mek-slider-name { font-size: 0.8rem; font-weight: 700; }
+.mek-slider-pct { font-family: var(--mono); font-size: 0.8rem; font-weight: 700; }
+.mek-slider-sub { font-size: 0.62rem; color: var(--ink-3); margin-bottom: 0.55rem; line-height: 1.35; }
+.mek-slider-track { width: 100%; accent-color: currentColor; display: block; margin-bottom: 0.4rem; }
+.mek-slider-boost { font-size: 0.61rem; font-weight: 500; padding: 0.18rem 0.5rem; border-radius: 99px; background: rgba(0,0,0,0.07); display: inline-block; }
+.mek-eff-row { font-size: 0.62rem; margin-top: 0.35rem; color: var(--ink-3); }
+.mek-cascade-info { background: var(--s9); border-radius: var(--r2); padding: 0.85rem 1rem; margin-bottom: 1.25rem; }
+.mek-cascade-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-2); margin-bottom: 0.65rem; }
+.mek-cascade-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
+@media (max-width: 700px) { .mek-cascade-grid { grid-template-columns: 1fr 1fr; } }
+.mek-cascade-item { background: var(--surface); border-radius: var(--r); padding: 0.55rem 0.65rem; border: 1px solid var(--rule); }
+.mek-cascade-from { font-size: 0.65rem; font-weight: 700; margin-bottom: 0.2rem; }
+.mek-cascade-arrow { font-size: 0.6rem; color: var(--ink-4); }
+.mek-cascade-to { font-size: 0.6rem; color: var(--ink-2); line-height: 1.5; }
+.mek-table-wrap { overflow-x: auto; }
+.mek-table-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ink-2); margin-bottom: 0.6rem; }
+.mek-table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
+.mek-table th { background: var(--s9); font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.5rem 0.6rem; border-bottom: 1.5px solid var(--rule); color: var(--ink-3); white-space: nowrap; }
+.mek-table td { padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+.mek-table td.r, .mek-table th.r { text-align: right; }
+.mek-table tbody tr:hover { background: var(--a-tint); }
+.mek-table .mek-tfoot td { font-weight: 700; background: var(--s9); border-top: 2px solid var(--rule); }
+.mek-mech-badge { display: inline-block; font-size: 0.6rem; font-weight: 600; padding: 0.15rem 0.45rem; border-radius: 99px; border: 1px solid; }
+.mek-cascade-plus { color: var(--change-mid); font-weight: 700; }
+.mek-netto-pos { color: var(--change-mid); font-weight: 700; }
+.mek-netto-neg { color: var(--drift); font-weight: 700; }
 </style>
 
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,700&display=swap" rel="stylesheet">
@@ -2803,6 +2902,7 @@ canvas {width:100%;display:block}
 <div class="jims-tab-bar">
   <button class="jims-tab-btn active" onclick="jimsPage('skenaariot',this)">① Skenaariot</button>
   <button class="jims-tab-btn" onclick="jimsPage('kustannuskartta',this)">② Kustannuskartta</button>
+  <button class="jims-tab-btn" onclick="jimsPage('mekanismit',this)">③ Mekanismit &amp; Synergia</button>
 </div>
 
 <!-- Jims content -->
@@ -2980,6 +3080,115 @@ canvas {width:100%;display:block}
 
 <div class="footer">JIM · Järjestelmän interventiomallinnus · Kaikki luvut ovat suuruusluokka-arvioita
 </div>
+
+
+<!-- ==================== PAGE 3: MEKANISMIT & SYNERGIA ==================== -->
+<div class="page" id="page-mekanismit">
+<div class="section-hdr">
+  <h1>Mekanismit &amp; Synergia</h1>
+  <p>Viiden rakenteellisen mekanismin yhteisvaikutus · kaskadisäästöt euroina · QALY-hyödyt · skenaariot</p>
+</div>
+
+<!-- Scenario buttons -->
+<div class="mek-scenario-bar">
+  <span class="mek-sce-lbl">Skenaario:</span>
+  <button class="mek-sce-btn active" onclick="mekScenario('nykytila',this)">Nykytila (0%)</button>
+  <button class="mek-sce-btn" onclick="mekScenario('mittari',this)">Mittarireformi</button>
+  <button class="mek-sce-btn" onclick="mekScenario('kohdennettu',this)">Kohdennettu</button>
+  <button class="mek-sce-btn" onclick="mekScenario('taysreformi',this)">Täysreformi</button>
+</div>
+
+<!-- Summary cards -->
+<div class="mek-cards" id="mek-cards">
+  <div class="mek-card mek-card-blue">
+    <div class="mek-card-label">Suorat säästöt</div>
+    <div class="mek-card-val" id="mek-direct">—</div>
+    <div class="mek-card-sub">mrd €/v odotusarvo</div>
+  </div>
+  <div class="mek-card mek-card-green">
+    <div class="mek-card-label">Synergialisä</div>
+    <div class="mek-card-val" id="mek-synergy">—</div>
+    <div class="mek-card-sub">kaskadista syntyvä lisähyöty</div>
+  </div>
+  <div class="mek-card mek-card-purple">
+    <div class="mek-card-label">QALY-arvo</div>
+    <div class="mek-card-val" id="mek-qaly-eur">—</div>
+    <div class="mek-card-sub">mrd €/v · <span class="mek-qaly-rate-lbl" id="mek-qaly-rate-lbl">35 000 €/QALY</span></div>
+  </div>
+  <div class="mek-card mek-card-amber">
+    <div class="mek-card-label">Kokonaishyöty</div>
+    <div class="mek-card-val" id="mek-total">—</div>
+    <div class="mek-card-sub">säästöt + QALY – toteutuskustannus</div>
+  </div>
+</div>
+
+<!-- QALY rate slider -->
+<div class="mek-qaly-ctrl">
+  <label class="mek-qaly-ctrl-lbl">QALY-arvo: <strong id="mek-qaly-rate-disp">35 000 €</strong></label>
+  <input type="range" id="mek-qaly-slider" min="20000" max="80000" step="5000" value="35000"
+    oninput="mekQalyChange(this.value)" style="width:180px">
+  <span class="mek-qaly-ctrl-note">(Suomi: 30 000–50 000 €/QALY · WHO-kynnys: 50 000–100 000 €)</span>
+</div>
+
+<!-- Mechanism sliders -->
+<div class="mek-sliders" id="mek-sliders">
+  <!-- rendered by JS -->
+</div>
+
+<!-- Cascade flow explanation -->
+<div class="mek-cascade-info" id="mek-cascade-info">
+  <div class="mek-cascade-title">Kaskadivaikutus — miten mekanismit mahdollistavat toisiaan</div>
+  <div class="mek-cascade-grid" id="mek-cascade-grid">
+    <!-- rendered by JS -->
+  </div>
+</div>
+
+<!-- Intervention table -->
+<div class="mek-table-wrap">
+  <div class="mek-table-title">Interventiokohtainen erittely</div>
+  <table class="mek-table">
+    <thead>
+      <tr>
+        <th>Interventio</th>
+        <th>Mekanismi</th>
+        <th class="r">Suora €/v</th>
+        <th class="r">Kaskadi €/v</th>
+        <th class="r">+Synergia %</th>
+        <th class="r">QALY/v</th>
+        <th class="r">QALY €/v</th>
+        <th class="r">Impl. €/v</th>
+        <th class="r">Netto €/v</th>
+      </tr>
+    </thead>
+    <tbody id="mek-tbody">
+    </tbody>
+    <tfoot>
+      <tr class="mek-tfoot">
+        <td colspan="2"><strong>Yhteensä</strong></td>
+        <td class="r" id="mek-tf-direct">—</td>
+        <td class="r" id="mek-tf-cascade">—</td>
+        <td class="r">—</td>
+        <td class="r" id="mek-tf-qaly">—</td>
+        <td class="r" id="mek-tf-qalyeur">—</td>
+        <td class="r" id="mek-tf-impl">—</td>
+        <td class="r" id="mek-tf-netto">—</td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+
+<!-- Methodological note -->
+<div class="note" style="margin-top:1.5rem">
+  <strong>Laskentalogiikka.</strong>
+  Suora säästö = (lo+hi)/2 × onnistumistodennäköisyys × reformitaso (liukusäädin). 
+  Kaskadilisä = suora säästö × ∑(lähde­mekanismin reformitaso × kaskadi­kerroin). 
+  QALY-arvo = QALY/v × valittu QALY-€-kerroin. 
+  Esimerkki: Mittarireformi 80% → Rahoitusinterventiot +14,4% kaskadibonuksena. 
+  Synergia tarkoittaa, että yksittäinen reformi ei maksimoidu ilman muiden mekanismien tukea.
+  Luvut ovat suuruusluokka-arvioita — tarkoitus on osoittaa suhteelliset vaikutukset.
+</div>
+
+</div><!-- /page-mekanismit -->
 
 </div><!-- /lm-page -->
 </div><!-- /laskentamalli-view --><!-- /laskentamalli-view -->
@@ -4087,6 +4296,11 @@ const renderTOC = () => {
           <input type="checkbox" id="toc-chk-all" onchange="tocCheckAll(this.checked)">
           Valitse kaikki
         </label>
+        <label class="toc-text-only" title="Jättää pois kaikki evidenssi-, laskenta-, ketju-, sektori- ja aikajanalohkot">
+          <input type="checkbox" id="toc-text-only-chk">
+          Vain teksti
+        </label>
+        <span class="toc-pdf-quality"><span class="toc-pdf-quality-dot"></span>Korkealaatuinen PDF</span>
         <span class="toc-print-count" id="toc-print-count">0 valittu</span>
         <button type="button" class="toc-print-btn" id="toc-print-btn" onclick="tocPrint(); return false;" disabled>
           <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px">
@@ -6919,7 +7133,8 @@ const tocCheckAll = (checked) => {
 const tocPrint = async () => {
   const selected = [...document.querySelectorAll('.toc-chk:checked')].map(c => c.dataset.id);
   if (!selected.length) return;
-  analyticsEvent('chapters_printed', { chs: selected.join(','), n: selected.length });
+  const textOnly = !!(document.getElementById('toc-text-only-chk')||{}).checked;
+  analyticsEvent('chapters_printed', { chs: selected.join(','), n: selected.length, textOnly });
   const jimData = window._jimData;
   if (!jimData) return;
 
@@ -7033,37 +7248,49 @@ const tocPrint = async () => {
       const headers = parseRow(lines[0]);
       const rows    = lines.slice(2).map(parseRow).filter(r=>r.length);
       if (!headers.length) return;
-      const colW=TW/headers.length, cellH=6.5, headH=7;
+      const colW=TW/headers.length, cellH=7, headH=7.5;
       checkY(headH+rows.length*cellH+4, chLbl);
-      doc.setFillColor(...C.bg); doc.rect(ML,y,TW,headH,'F');
-      doc.setFont('helvetica','bold'); doc.setFontSize(7.5); doc.setTextColor(...C.ink3);
-      headers.forEach((hd,i)=>doc.text(hd.slice(0,24),ML+i*colW+2,y+5));
-      y+=headH; fillR(ML,y,TW,0.4,C.rule);
+      // Taulukon yläreuna — tummennettu otsikkorivi
+      doc.setFillColor(238,240,246); doc.rect(ML,y,TW,headH,'F');
+      doc.setDrawColor(...C.accent); doc.setLineWidth(0.6);
+      doc.line(ML,y,ML+TW,y);
+      doc.setFont('helvetica','bold'); doc.setFontSize(7.5); doc.setTextColor(...C.ink2);
+      const maxCellChars = Math.max(20, Math.floor(colW / 1.8));
+      headers.forEach((hd,i)=>doc.text(hd.slice(0,maxCellChars),ML+i*colW+2.5,y+5.2));
+      y+=headH; fillR(ML,y,TW,0.5,C.rule2);
       rows.forEach((row,ri)=>{
         checkY(cellH+2,chLbl);
-        if(ri%2===1){doc.setFillColor(252,252,254);doc.rect(ML,y,TW,cellH,'F');}
+        if(ri%2===0){doc.setFillColor(250,251,253);doc.rect(ML,y,TW,cellH,'F');}
         doc.setFont('times','normal'); doc.setFontSize(8.5); doc.setTextColor(...C.ink2);
         row.forEach((cell,ci)=>{
           const p=cell.replace(/\*\*(.+?)\*\*/g,'$1').replace(/\*(.+?)\*/g,'$1');
-          doc.text(p.slice(0,30),ML+ci*colW+2,y+4.5);
+          // Pidempi katkaisu ja monirivisyys
+          const cellText = p.length > maxCellChars ? p.slice(0,maxCellChars-1)+'\u2026' : p;
+          doc.text(cellText,ML+ci*colW+2.5,y+4.8);
         });
-        y+=cellH; fillR(ML,y,TW,0.25,C.rule);
+        y+=cellH; fillR(ML,y,TW,0.2,C.rule);
       });
-      doc.setDrawColor(...C.rule); doc.setLineWidth(0.4);
-      doc.rect(ML,y-rows.length*cellH-headH,TW,headH+rows.length*cellH+0.25,'S');
-      y+=4;
+      // Kehys
+      doc.setDrawColor(...C.rule2); doc.setLineWidth(0.35);
+      doc.rect(ML,y-rows.length*cellH-headH,TW,headH+rows.length*cellH+0.5,'S');
+      // Alareuna aksenttiviiva
+      doc.setDrawColor(...C.accent); doc.setLineWidth(0.6);
+      doc.line(ML,y+0.2,ML+TW,y+0.2);
+      y+=5;
     };
 
     // Lainaus blockquote
     const drawBlockquote = (text, chLbl) => {
       const clean=text.replace(/^>\s*/,'');
-      const lines=wrapWords(clean,'times','italic',10.5,TW-8);
-      const bH=lines.length*6.5+6;
+      const lines=wrapWords(clean,'times','italic',10.5,TW-10);
+      const bH=lines.length*6.8+8;
       checkY(bH,chLbl);
-      fillR(ML,y-2,1.5,bH,C.rule2);
+      // Vaalea tausta + paksu vasen viiva
+      fillR(ML,y-3,TW,bH,[246,247,252]);
+      fillR(ML,y-3,2.2,bH,C.accentLt);
       doc.setFont('times','italic'); doc.setFontSize(10.5); doc.setTextColor(...C.ink2);
-      lines.forEach(bl=>{doc.text(bl,ML+5,y);y+=6.5;});
-      y+=3;
+      lines.forEach(bl=>{doc.text(bl,ML+6.5,y);y+=6.8;});
+      y+=4;
     };
 
     // ── TTT-verkostokaavio — peilattu HTML SVG:stä ─────────────────────
@@ -7248,7 +7475,7 @@ const tocPrint = async () => {
     // Alaviivaviiva ja metadata
     doc.setDrawColor(...C.rule); doc.setLineWidth(0.3); doc.line(ML, PH-30, ML+TW, PH-30);
     doc.setFont('helvetica','normal'); doc.setFontSize(7.5); doc.setTextColor(...C.ink4);
-    doc.text(selected.length+' lukua valittu', ML, PH-22);
+    doc.text(selected.length+' lukua valittu'+(textOnly ? ' \u00B7 Vain teksti' : ''), ML, PH-22);
     doc.text(new Date().toLocaleDateString('fi-FI',{year:'numeric',month:'long',day:'numeric'}), ML+TW, PH-22, {align:'right'});
 
     // ════════════════════════════════════════════
@@ -7264,7 +7491,7 @@ const tocPrint = async () => {
       if(ch.part!==simLastPart){simPage++;simLastPart=ch.part;}
       pageStart[ch.id]=simPage;
       const pc=(ch.paragraphs||[]).filter(p=>(p.text||'').trim()&&p.text!=='---').length;
-      const bc=(blocksMap[ch.id]||[]).length;
+      const bc=textOnly ? 0 : (blocksMap[ch.id]||[]).length;
       simPage+=Math.max(1,Math.ceil((pc*5.8+bc*26)/(PH-MT-MB-14)));
     });
 
@@ -7403,10 +7630,12 @@ const tocPrint = async () => {
           doc.setDrawColor(...C.rule); doc.setLineWidth(0.4);
           doc.line(ML,y+2,mid-5,y+2); doc.line(mid+5,y+2,ML+TW,y+2);
           fillR(mid-1.2,y+0.8,2.4,2.4,C.rule2); y+=9;
-          if(blockIdx<chBlocks.length){
+          if(!textOnly && blockIdx<chBlocks.length){
             y=pdfRenderBlock(doc,chBlocks[blockIdx++],ML,y,TW,PH,MB,C,BLOCK_META,
                              checkY,fillR,parseInline,sliceRaw,wrapWords,_footerChapter,pdfNewPage);
             y+=5;
+          } else if(textOnly && blockIdx<chBlocks.length) {
+            blockIdx++; // ohita lohko mutta pidä indeksi synkassa
           }
           firstPara=true; continue;
         }
@@ -7440,17 +7669,21 @@ const tocPrint = async () => {
             const kwStr=kw[1].toUpperCase();
             const rest=clean.slice(kw[0].length).replace(/^[\s:]+/,'');
             const target=rest||clean;
-            doc.setFont('times','italic'); doc.setFontSize(13); doc.setTextColor(...C.ink);
-            const hls=wrapWords(target,'times','italic',13,TW-20);
+            // Hienovarainen viiva ennen otsikkoa
+            checkY(16,_footerChapter);
+            doc.setDrawColor(...C.rule); doc.setLineWidth(0.25);
+            doc.line(ML,y-1,ML+TW*0.4,y-1); y+=3;
+            doc.setFont('times','italic'); doc.setFontSize(13.5); doc.setTextColor(...C.ink);
+            const hls=wrapWords(target,'times','italic',13.5,TW-20);
             hls.forEach((hl,hi)=>{
               checkY(8,_footerChapter); doc.text(hl,ML,y);
               // Avainsana yläindeksinä viimeisen rivin jälkeen
               if(hi===hls.length-1){
                 const lineW=doc.getTextWidth(hl);
-                doc.setFont('helvetica','bold'); doc.setFontSize(5.5); doc.setTextColor(...C.accentDim);
-                doc.setCharSpace(1.0); doc.text(kwStr,ML+lineW+1.5,y-3.5); doc.setCharSpace(0);
+                doc.setFont('helvetica','bold'); doc.setFontSize(5.8); doc.setTextColor(...C.accentDim);
+                doc.setCharSpace(1.2); doc.text(kwStr,ML+lineW+2,y-3.5); doc.setCharSpace(0);
               }
-              y+=7;
+              y+=7.5;
             });
           } else {
             doc.setFont('times','italic'); doc.setFontSize(13); doc.setTextColor(...C.ink);
@@ -7467,7 +7700,7 @@ const tocPrint = async () => {
             checkY(12,_footerChapter);
             const isFirst = firstPara && si===0;
             const sz      = isFirst ? 11 : 10.5;
-            const lineH   = isFirst ? 6.5 : 6.0;
+            const lineH   = isFirst ? 6.8 : 6.2;
             const color   = isFirst ? C.ink : C.ink2;
             wrappedInline(subRaw,ML,TW,'times',sz,color,lineH,_footerChapter);
             y += si < subParas.length-1 ? 4.5 : 2.5; // enemmän tilaa alikappaleiden väliin
@@ -7477,11 +7710,13 @@ const tocPrint = async () => {
       }
 
       // Jäljelle jääneet lohkot
-      while(blockIdx<chBlocks.length){
-        checkY(20,_footerChapter);
-        y=pdfRenderBlock(doc,chBlocks[blockIdx++],ML,y,TW,PH,MB,C,BLOCK_META,
-                         checkY,fillR,parseInline,sliceRaw,wrapWords,_footerChapter,pdfNewPage);
-        y+=5;
+      if(!textOnly) {
+        while(blockIdx<chBlocks.length){
+          checkY(20,_footerChapter);
+          y=pdfRenderBlock(doc,chBlocks[blockIdx++],ML,y,TW,PH,MB,C,BLOCK_META,
+                           checkY,fillR,parseInline,sliceRaw,wrapWords,_footerChapter,pdfNewPage);
+          y+=5;
+        }
       }
     }
 
@@ -7493,14 +7728,23 @@ const tocPrint = async () => {
       if(pg===1) continue;
       const lbl=_footerMap[pg]||'';
       if(!lbl&&pg>2) continue;
+      // Hienostunut alatunniste: viiva + teksti + sivunro + progressbar
       doc.setDrawColor(...C.rule); doc.setLineWidth(0.3);
       doc.line(ML,PH-MB+5,ML+TW,PH-MB+5);
       doc.setFont('helvetica','normal'); doc.setFontSize(6.5); doc.setTextColor(...C.ink4);
       if(lbl) doc.text(lbl.slice(0,62),ML,PH-MB+9.5);
-      doc.text(String(pg-1),ML+TW,PH-MB+9.5,{align:'right'});
+      // Sivunumero oikealla
+      const pageLabel = String(pg-1)+' / '+String(totalPgs-1);
+      doc.text(pageLabel,ML+TW,PH-MB+9.5,{align:'right'});
+      // Progressbar-viiva (ohut sininen) 
+      const progress = (pg-1)/(totalPgs-1);
+      doc.setDrawColor(...C.accentLt); doc.setLineWidth(0.8);
+      doc.line(ML,PH-MB+12,ML+TW*progress,PH-MB+12);
+      doc.setDrawColor(...C.rule); doc.setLineWidth(0.3);
+      doc.line(ML+TW*progress,PH-MB+12,ML+TW,PH-MB+12);
     }
 
-    doc.save('TTT_'+selected.length+'luku_'+new Date().toISOString().slice(0,10)+'.pdf');
+    doc.save('TTT_'+selected.length+'luku'+(textOnly?'_teksti':'')+new Date().toISOString().slice(0,10)+'.pdf');
     if(btn){btn.innerHTML='\u2713 PDF ladattu';btn.style.background='var(--change)';setTimeout(()=>{btn.style.background='';restore();},2400);}
 
   } catch(err) {
@@ -7921,6 +8165,294 @@ const fzChange = (delta) => {
 
 bootstrap();
 </script>
+
+<script>
+/* ════════════════════════════════════════════════════
+   MEKANISMIT & SYNERGIA ENGINE
+════════════════════════════════════════════════════ */
+
+// ── 5 high-level mechanisms ──
+const MEK = {
+  rahoitus:    { label:'Rahoitus',    sub:'Budjetti katsoo taaksepäin',      color:'#185FA5', fill:'#E6F1FB', Rs:['R02','R03','R10'] },
+  mittarit:    { label:'Mittarit',    sub:'Mitataan suoritteita, ei vaikut', color:'#3B6D11', fill:'#EAF3DE', Rs:['R04','R08'] },
+  rakenne:     { label:'Rakenne',     sub:'Kukaan ei hallitse kokonaisuutta', color:'#534AB7', fill:'#EEEDFE', Rs:['R06','R11'] },
+  valta:       { label:'Valta',       sub:'Vaalikausi 4v, ongelma 40v',      color:'#854F0B', fill:'#FAEEDA', Rs:['R01','R07'] },
+  kapasiteetti:{ label:'Kapasiteetti',sub:'Ylikuormitus priorisoi vahvimpia', color:'#993556', fill:'#FBEAF0', Rs:['R05','R09'] },
+};
+
+// ── Cascade matrix: when source reformed at 1.0 → boosts target by rate
+// Based on viisi_mekanismia.html link structure, calibrated
+const CASCADE = {
+  rahoitus:    { mittarit:0.18, rakenne:0.14, valta:0.12 },
+  mittarit:    { rahoitus:0.15, rakenne:0.16, kapasiteetti:0.11 },
+  rakenne:     { rahoitus:0.12, valta:0.14,   kapasiteetti:0.18 },
+  valta:       { rahoitus:0.15, rakenne:0.12, kapasiteetti:0.10 },
+  kapasiteetti:{ mittarit:0.14, rakenne:0.10, valta:0.08 },
+};
+
+// ── R-intervention data (from ttt.json + index.html)
+// lo/hi = mrd€/v savings range, impl = implementation cost mrd€/v, p = success prob
+// qm = QALY multiplier per M€ of savings (QALY/M€/v)
+const MEK_R = {
+  R01:{ nm:'Siirtymätuki + portaikko',   mek:'valta',       lo:1.00,hi:2.00,impl:0.10,p:0.65, qm:8  },
+  R02:{ nm:'Vaikuttavuusbudjetointi',    mek:'rahoitus',    lo:0.60,hi:1.20,impl:0.15,p:0.50, qm:5  },
+  R03:{ nm:'EU-investointiklausuuli',    mek:'rahoitus',    lo:0.20,hi:0.50,impl:0.05,p:0.45, qm:3  },
+  R04:{ nm:'Toimintakykyindeksi',        mek:'mittarit',    lo:0.50,hi:1.00,impl:0.05,p:0.55, qm:12 },
+  R05:{ nm:'Lakisääteinen ennaltaehkäisy',mek:'kapasiteetti',lo:0.47,hi:0.70,impl:0.21,p:0.72, qm:25 },
+  R06:{ nm:'Koordinaatiomandaatti',      mek:'rakenne',     lo:0.40,hi:0.80,impl:0.10,p:0.68, qm:10 },
+  R07:{ nm:'Demografiasopimus',          mek:'valta',       lo:0.00,hi:0.30,impl:0.02,p:0.30, qm:4  },
+  R08:{ nm:'Universalismi + käänteinen', mek:'mittarit',    lo:0.50,hi:1.00,impl:0.15,p:0.40, qm:15 },
+  R09:{ nm:'Kriisinkestävyys + puskurit',mek:'kapasiteetti',lo:0.10,hi:0.25,impl:0.15,p:0.70, qm:6  },
+  R10:{ nm:'Luonnonvararahasto',         mek:'rahoitus',    lo:0.60,hi:1.20,impl:0.10,p:0.35, qm:2  },
+  R11:{ nm:'Hoivainvestointi',           mek:'rakenne',     lo:1.00,hi:1.75,impl:0.30,p:0.50, qm:18 },
+};
+
+// ── State ──
+var mekState = {
+  levels: { rahoitus:0, mittarit:0, rakenne:0, valta:0, kapasiteetti:0 },
+  qalyRate: 35000, // €/QALY
+};
+
+// ── Predefined scenarios ──
+const MEK_SCENARIOS = {
+  nykytila:    { rahoitus:0,    mittarit:0,    rakenne:0,    valta:0,    kapasiteetti:0    },
+  mittari:     { rahoitus:0.20, mittarit:0.80, rakenne:0.20, valta:0.10, kapasiteetti:0.15 },
+  kohdennettu: { rahoitus:0.55, mittarit:0.65, rakenne:0.60, valta:0.35, kapasiteetti:0.70 },
+  taysreformi: { rahoitus:1.00, mittarit:1.00, rakenne:1.00, valta:1.00, kapasiteetti:1.00 },
+};
+
+// ── Compute effective level of mechanism m considering cascade inflows ──
+function mekEffLevel(mechId, levels) {
+  var base = levels[mechId];
+  if (base === 0) return 0;
+  var cascadeBonus = 0;
+  for (var src in CASCADE) {
+    if (src !== mechId && CASCADE[src][mechId]) {
+      cascadeBonus += levels[src] * CASCADE[src][mechId];
+    }
+  }
+  // Cascade amplifies own reform level (not additive to 0 base)
+  return Math.min(1.0, base * (1 + cascadeBonus));
+}
+
+// ── Compute cascade bonus % for a mechanism ──
+function mekCascadePct(mechId, levels) {
+  var base = levels[mechId];
+  if (base === 0) return 0;
+  var bonus = 0;
+  for (var src in CASCADE) {
+    if (src !== mechId && CASCADE[src][mechId]) {
+      bonus += levels[src] * CASCADE[src][mechId];
+    }
+  }
+  return bonus; // as fraction, e.g. 0.18 = 18%
+}
+
+// ── Compute savings for one intervention ──
+function mekCalcR(rId, levels) {
+  var r = MEK_R[rId];
+  var base = (r.lo + r.hi) / 2; // mid-point mrd€/v
+  var effLvl = mekEffLevel(r.mek, levels);
+  var directBase = base * r.p * levels[r.mek]; // without cascade
+  var withCascade = base * r.p * effLvl;       // with cascade
+  var cascadeAdd = withCascade - directBase;
+  var qaly = withCascade * 1000 * r.qm; // QALY/v (convert mrd€ to M€ first)
+  var qalyEur = qaly * mekState.qalyRate / 1e9; // mrd€
+  var impl = r.impl;
+  var netto = withCascade + qalyEur - impl;
+  return {
+    direct: directBase,
+    cascade: cascadeAdd,
+    cascadePct: directBase > 0 ? cascadeAdd / directBase : 0,
+    total: withCascade,
+    qaly: qaly,
+    qalyEur: qalyEur,
+    impl: impl,
+    netto: netto,
+  };
+}
+
+// ── Render mechanism sliders ──
+function mekRenderSliders() {
+  var el = document.getElementById('mek-sliders');
+  if (!el) return;
+  var html = '';
+  for (var id in MEK) {
+    var m = MEK[id];
+    var lvl = mekState.levels[id];
+    var pct = Math.round(lvl * 100);
+    var effLvl = mekEffLevel(id, mekState.levels);
+    var effPct = Math.round(effLvl * 100);
+    var cascadeBonus = Math.round(mekCascadePct(id, mekState.levels) * 100);
+    html += '<div class="mek-slider-card" style="background:' + m.fill + ';border-color:' + m.color + '40;color:' + m.color + '">';
+    html += '<div class="mek-slider-hdr">';
+    html += '<span class="mek-slider-name">' + m.label + '</span>';
+    html += '<span class="mek-slider-pct">' + pct + '%</span>';
+    html += '</div>';
+    html += '<div class="mek-slider-sub" style="color:' + m.color + 'aa">' + m.sub + '</div>';
+    html += '<input type="range" class="mek-slider-track" min="0" max="100" value="' + pct + '"';
+    html += ' style="accent-color:' + m.color + '"';
+    html += ' oninput="mekSliderChange(\'' + id + '\',this.value)">';
+    if (cascadeBonus > 0) {
+      html += '<div class="mek-slider-boost" style="background:' + m.color + '18">+' + cascadeBonus + '% kaskadi → tehokkuus ' + effPct + '%</div>';
+    } else {
+      html += '<div class="mek-slider-boost" style="background:' + m.color + '18">Tehokkuus: ' + effPct + '%</div>';
+    }
+    // Show interventions in this mech
+    var rIds = m.Rs;
+    html += '<div class="mek-eff-row" style="color:' + m.color + '99">' + rIds.join(', ') + '</div>';
+    html += '</div>';
+  }
+  el.innerHTML = html;
+}
+
+// ── Render cascade grid ──
+function mekRenderCascadeGrid() {
+  var el = document.getElementById('mek-cascade-grid');
+  if (!el) return;
+  var html = '';
+  for (var src in CASCADE) {
+    var m = MEK[src];
+    var lvl = mekState.levels[src];
+    html += '<div class="mek-cascade-item">';
+    html += '<div class="mek-cascade-from" style="color:' + m.color + '">' + m.label + ' (' + Math.round(lvl*100) + '%)</div>';
+    html += '<div class="mek-cascade-arrow">↓ mahdollistaa</div>';
+    html += '<div class="mek-cascade-to">';
+    for (var tgt in CASCADE[src]) {
+      var tgtM = MEK[tgt];
+      var boost = CASCADE[src][tgt] * lvl * 100;
+      var color = boost > 0 ? tgtM.color : '#aaa';
+      html += '<span style="color:' + color + ';font-weight:' + (boost>0?'600':'400') + '">' + tgtM.label + ' +' + boost.toFixed(1) + '%</span><br>';
+    }
+    html += '</div></div>';
+  }
+  el.innerHTML = html;
+}
+
+// ── Render intervention table ──
+function mekRenderTable() {
+  var tbody = document.getElementById('mek-tbody');
+  if (!tbody) return;
+  var levels = mekState.levels;
+  var html = '';
+  var totDirect=0, totCasc=0, totQaly=0, totQalyEur=0, totImpl=0, totNetto=0;
+  for (var rId in MEK_R) {
+    var r = MEK_R[rId];
+    var c = mekCalcR(rId, levels);
+    var m = MEK[r.mek];
+    totDirect  += c.direct;
+    totCasc    += c.cascade;
+    totQaly    += c.qaly;
+    totQalyEur += c.qalyEur;
+    totImpl    += c.impl;
+    totNetto   += c.netto;
+    var pctStr = c.cascadePct > 0.001 ? '<span class="mek-cascade-plus">+' + (c.cascadePct*100).toFixed(1) + '%</span>' : '—';
+    var nettoClass = c.netto >= 0 ? 'mek-netto-pos' : 'mek-netto-neg';
+    html += '<tr>';
+    html += '<td><strong>' + rId + '</strong> ' + r.nm + '</td>';
+    html += '<td><span class="mek-mech-badge" style="color:' + m.color + ';border-color:' + m.color + '50;background:' + m.fill + '">' + m.label + '</span></td>';
+    html += '<td class="r">' + fmtMrd(c.direct) + '</td>';
+    html += '<td class="r">' + fmtMrd(c.cascade) + '</td>';
+    html += '<td class="r">' + pctStr + '</td>';
+    html += '<td class="r">' + fmtK(c.qaly) + '</td>';
+    html += '<td class="r">' + fmtMrd(c.qalyEur) + '</td>';
+    html += '<td class="r" style="color:var(--drift)">' + fmtMrd(c.impl) + '</td>';
+    html += '<td class="r ' + nettoClass + '">' + fmtMrd(c.netto) + '</td>';
+    html += '</tr>';
+  }
+  tbody.innerHTML = html;
+  // Foot
+  setText('mek-tf-direct',  fmtMrd(totDirect));
+  setText('mek-tf-cascade', fmtMrd(totCasc));
+  setText('mek-tf-qaly',    fmtK(totQaly));
+  setText('mek-tf-qalyeur', fmtMrd(totQalyEur));
+  setText('mek-tf-impl',    fmtMrd(totImpl));
+  setText('mek-tf-netto',   fmtMrd(totNetto));
+}
+
+// ── Render summary cards ──
+function mekRenderCards() {
+  var levels = mekState.levels;
+  var totDirect=0, totCasc=0, totQalyEur=0, totImpl=0;
+  for (var rId in MEK_R) {
+    var c = mekCalcR(rId, levels);
+    totDirect  += c.direct;
+    totCasc    += c.cascade;
+    totQalyEur += c.qalyEur;
+    totImpl    += c.impl;
+  }
+  var totNetto = totDirect + totCasc + totQalyEur - totImpl;
+  setText('mek-direct',   fmtMrd(totDirect));
+  setText('mek-synergy',  fmtMrd(totCasc));
+  setText('mek-qaly-eur', fmtMrd(totQalyEur));
+  setText('mek-total',    fmtMrd(totNetto));
+}
+
+// ── Helpers ──
+function fmtMrd(v) {
+  if (v === 0) return '0';
+  if (Math.abs(v) < 0.005) return '<0,01';
+  return (v >= 0 ? '' : '−') + Math.abs(v).toFixed(2).replace('.',',') + ' mrd';
+}
+function fmtK(v) {
+  if (v < 10) return v.toFixed(1).replace('.',',') + ' k';
+  return Math.round(v).toString().replace(/\B(?=(\d{3})+(?!\d))/g,'\u202f') + ' k';
+}
+function setText(id, val) {
+  var el = document.getElementById(id);
+  if (el) el.innerHTML = val;
+}
+
+// ── Render all ──
+function mekRender() {
+  mekRenderSliders();
+  mekRenderCascadeGrid();
+  mekRenderTable();
+  mekRenderCards();
+}
+
+// ── Event handlers ──
+function mekSliderChange(mechId, val) {
+  mekState.levels[mechId] = parseInt(val) / 100;
+  // Clear active scenario button
+  document.querySelectorAll('.mek-sce-btn').forEach(function(b){ b.classList.remove('active'); });
+  mekRender();
+}
+
+function mekScenario(key, btn) {
+  var s = MEK_SCENARIOS[key];
+  if (!s) return;
+  mekState.levels = Object.assign({}, s);
+  document.querySelectorAll('.mek-sce-btn').forEach(function(b){ b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  mekRender();
+}
+
+function mekQalyChange(val) {
+  mekState.qalyRate = parseInt(val);
+  var disp = document.getElementById('mek-qaly-rate-disp');
+  if (disp) disp.textContent = parseInt(val).toLocaleString('fi-FI') + ' €';
+  var lbl = document.getElementById('mek-qaly-rate-lbl');
+  if (lbl) lbl.textContent = parseInt(val).toLocaleString('fi-FI') + ' €/QALY';
+  mekRender();
+}
+
+// ── Init: hook into jimsPage ──
+(function(){
+  var origJimsPage = window.jimsPage;
+  window.jimsPage = function(id, btn) {
+    if (origJimsPage) origJimsPage(id, btn);
+    if (id === 'mekanismit') {
+      setTimeout(mekRender, 30);
+    }
+  };
+  // Also render on first load if page is active
+  document.addEventListener('DOMContentLoaded', function() {
+    // Will render when tab is clicked
+  });
+})();
+</script>
+
 <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then(regs => {
