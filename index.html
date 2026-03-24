@@ -31,7 +31,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ad4cdae06c4b414880eb6252f418b8b6"}'></script><!-- End Cloudflare Web Analytics -->
 
 <style>
 /* ═══════════════════════════════════════════════
@@ -6086,6 +6085,8 @@ let jimAnalytics = true; // always on — no PII collected, no consent needed
 
 // Analytics Worker URL — vaihda kun Worker on luotu Cloudflaressa
 const ANALYTICS_WORKER = 'https://jim-analytics.harri-kayhko.workers.dev';
+// ── TTT Analytiikka: syötä tähän Google Apps Script -julkaisun URL ──
+const TTT_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbyyMeYOjuSyDQdc4LwrlyJdOhS_HS7aCUCnFVIHLi5z6-IbSY9qzWYDtCcXzSzoGwHtZw/exec';
 
 let _analyticsQueue = [];
 let _analyticsTimer = null;
@@ -6303,7 +6304,7 @@ const pwaTriggerInstall = () => {
 };
 
 /* ── Feedback form ── */
-const FB_WEBHOOK = 'https://script.google.com/macros/s/AKfycbymZpTBcrfjNSyyovHsVqcuTmvnGmDT3EzjDdFnj-pX-qv4-IecyGhGtEGemD7VKmRN5g/exec';
+const FB_WEBHOOK = TTT_SHEETS_URL; // Palautteet samaan Apps Script -endpointiin
 const fbSubmit = async () => {
   const msg    = document.getElementById('fb-msg');
   const email  = document.getElementById('fb-email');
@@ -8931,6 +8932,157 @@ if ('serviceWorker' in navigator) {
     regs.forEach(r => r.unregister());
   });
 }
+</script>
+
+<script>
+/* ============================================================================
+   TTT Analytiikka v1.0 -- Google Sheets Tracker
+   Tallentaa: Tapahtumat | Palautteet | Laskelmat | PDF-lataukset | Yhteenveto
+   Konfiguraatio: aseta TTT_SHEETS_URL yllä olevaan vakioon.
+   ============================================================================ */
+(function () {
+  'use strict';
+  var URL = (typeof TTT_SHEETS_URL !== 'undefined') ? TTT_SHEETS_URL : '';
+  if (!URL || URL.indexOf('PLACEHOLDER') >= 0) {
+    console.log('TTT Analytiikka: aseta TTT_SHEETS_URL');
+    return;
+  }
+  var VERSION = '1.0';
+  var FLUSH_MS = 25000;
+
+  var sid = sessionStorage.getItem('ttt_sid') ||
+    'S' + Date.now().toString(36) + Math.random().toString(36).substr(2, 4);
+  sessionStorage.setItem('ttt_sid', sid);
+  var uid = localStorage.getItem('ttt_uid') ||
+    'U' + Math.random().toString(36).substr(2, 8);
+  localStorage.setItem('ttt_uid', uid);
+
+  var _q = [], _tmr = null;
+
+  function push(ev, data) {
+    var obj = { ts: new Date().toISOString(), sid: sid, uid: uid, ev: ev };
+    if (data) Object.assign(obj, data);
+    _q.push(obj);
+    clearTimeout(_tmr);
+    _tmr = setTimeout(function() { flush(false); }, FLUSH_MS);
+  }
+
+  function flush(sync) {
+    if (!_q.length) return;
+    var payload = JSON.stringify({ batch: _q.slice() });
+    _q = [];
+    if (sync && navigator.sendBeacon) {
+      navigator.sendBeacon(URL, new Blob([payload], { type: 'text/plain' }));
+    } else {
+      fetch(URL, { method: 'POST', mode: 'no-cors', body: payload }).catch(function() {});
+    }
+  }
+
+  /* --- 1. Sessio --- */
+  var _sessStart = Date.now();
+  push('session_start', {
+    device: screen.width < 768 ? 'mobile' : screen.width < 1024 ? 'tablet' : 'desktop',
+    w: screen.width, lang: navigator.language,
+    ref: document.referrer ? 'referral' : 'direct', v: VERSION
+  });
+  window.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'hidden') {
+      push('session_end', { duration_s: Math.round((Date.now() - _sessStart) / 1000) });
+      flush(true);
+    }
+  });
+
+  /* --- 2. Luvun vaihto + lukuaika --- */
+  var _chStart = 0, _chCurr = null;
+  document.addEventListener('chapterChange', function(e) {
+    var newId = e.detail && e.detail.chapterId;
+    if (!newId) return;
+    if (_chCurr && _chStart) {
+      var secs = Math.round((Date.now() - _chStart) / 1000);
+      if (secs >= 3) push('chapter_time', { ch: _chCurr, secs: secs });
+    }
+    _chCurr = newId; _chStart = Date.now();
+    push('chapter_open', { ch: newId });
+    requestAnimationFrame(function() { _setupDepth(newId); });
+  });
+
+  /* --- 3. Lukusyvyys 25/50/75/100 % --- */
+  var _depthSeen = {};
+  var _depthObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting) return;
+      var pct = +e.target.dataset.tttPct, ch = e.target.dataset.tttCh;
+      var key = ch + '_' + pct;
+      if (_depthSeen[key]) return;
+      _depthSeen[key] = 1;
+      push('reading_depth', { ch: ch, pct: pct });
+      _depthObs.unobserve(e.target);
+    });
+  }, { threshold: 0 });
+
+  function _setupDepth(ch) {
+    var art = document.getElementById('chapter-article');
+    if (!art || art.scrollHeight < 300) return;
+    var h = art.scrollHeight;
+    art.style.position = 'relative';
+    [25, 50, 75, 100].forEach(function(pct) {
+      var d = document.createElement('div');
+      d.dataset.tttPct = pct; d.dataset.tttCh = ch;
+      d.style.cssText = 'position:absolute;left:0;width:1px;height:1px;top:' +
+        (Math.floor(h * pct / 100) - 1) + 'px;pointer-events:none';
+      art.appendChild(d);
+      _depthObs.observe(d);
+    });
+  }
+
+  /* --- 4. Laskelmat (debounced) --- */
+  var _calcDb = null;
+  document.addEventListener('input', function(e) {
+    var el = e.target;
+    if (el.type !== 'range') return;
+    if (!el.id || (!el.id.startsWith('c_') && !el.classList.contains('mek-slider-track'))) return;
+    clearTimeout(_calcDb);
+    _calcDb = setTimeout(function() {
+      push('calc_input', { ch: _chCurr || '', id: el.id || '', val: +el.value });
+    }, 800);
+  }, { passive: true });
+
+  /* --- 5. Palautelomake --- */
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('[id^="ch-fb-sub-"]');
+    if (!btn) return;
+    var ch = btn.id.replace('ch-fb-sub-', '');
+    var typeEl = document.getElementById('ch-fb-type-' + ch);
+    push('feedback_sent', { ch: ch, type: typeEl ? typeEl.value : '' });
+  });
+
+  /* --- 6. PDF-lataus --- */
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('#toc-print-btn')) return;
+    var sel = Array.from(document.querySelectorAll('.toc-chk:checked')).map(function(c) { return c.dataset.id; });
+    push('pdf_export', { n: sel.length, chs: sel.join(',') });
+  }, true);
+
+  /* --- 7. Todisteblokit (IntersectionObserver) --- */
+  var _evObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (!e.isIntersecting || e.target.dataset.tttEv) return;
+      e.target.dataset.tttEv = '1';
+      push('evidence_view', { ch: _chCurr || '', bid: e.target.dataset.bid || '' });
+      _evObs.unobserve(e.target);
+    });
+  }, { threshold: 0.5 });
+  document.addEventListener('chapterChange', function() {
+    requestAnimationFrame(function() {
+      document.querySelectorAll('[data-evblock]').forEach(function(el) {
+        if (!el.dataset.tttEv) _evObs.observe(el);
+      });
+    });
+  });
+
+  window._tttAnalytics = { flush: flush, push: push, sid: sid, uid: uid, v: VERSION };
+  console.log('TTT Analytiikka v' + VERSION + ' -- sessio ' + sid);
+})();
 </script>
 </body>
 </html>
