@@ -6329,7 +6329,7 @@ const pwaTriggerInstall = () => {
 };
 
 /* ── Feedback form ── */
-const FB_WEBHOOK = 'https://script.google.com/macros/s/AKfycbymZpTBcrfjNSyyovHsVqcuTmvnGmDT3EzjDdFnj-pX-qv4-IecyGhGtEGemD7VKmRN5g/exec';
+// KORJAUS V2.0: Palaute menee samaan TTT_SHEETS_URL:iin kuin analytiikka (batch-formaatti)
 const fbSubmit = async () => {
   const msg    = document.getElementById('fb-msg');
   const email  = document.getElementById('fb-email');
@@ -6342,14 +6342,18 @@ const fbSubmit = async () => {
   submit.textContent = 'Lähetetään…';
   errEl.style.display = 'none';
   try {
-    await fetch(FB_WEBHOOK, {
+    await fetch(TTT_SHEETS_URL, {
       method: 'POST',
-      body: JSON.stringify({
-        chapter: chapter.value || rpCurrentChId || '—',
-        message: msg.value,
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ batch: [{
+        e: 'feedback',
+        t: Date.now(),
+        ch: chapter.value || rpCurrentChId || '—',
+        msg: msg.value,
         type: type.value,
         email: email.value,
-      }),
+      }] }),
     });
     submit.textContent = '✓ Kiitos palautteesta!';
     msg.value = ''; email.value = '';
@@ -6373,14 +6377,18 @@ const chFbSubmit = async (chId) => {
   submit.textContent = 'Lähetetään…';
   errEl.style.display = 'none';
   try {
-    await fetch(FB_WEBHOOK, {
+    await fetch(TTT_SHEETS_URL, {
       method: 'POST',
-      body: JSON.stringify({
-        chapter: chId,
-        message: msg.value.trim(),
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ batch: [{
+        e: 'feedback',
+        t: Date.now(),
+        ch: chId,
+        msg: msg.value.trim(),
         type: type?.value || 'Muu',
         email: email?.value || '',
-      }),
+      }] }),
     });
     analyticsEvent('feedback_sent', { ch: chId, type: type?.value || '' });
     submit.textContent = '✓ Kiitos!';
@@ -9092,25 +9100,51 @@ const BehaviorTracker = {
             logs = JSON.parse(localStorage.getItem("tulkintakone_logs") || "[]");
         } catch(e) { logs = []; }
 
-        if (logs.length === 0 || this.targetUrl.includes("SINUN_GOOGLE")) return;
+        if (logs.length === 0) return;
+        if (!TTT_SHEETS_URL || TTT_SHEETS_URL.includes('PLACEHOLDER')) return;
 
-        const dataToSend = {
-            userId: this.userId,
-            timestamp: new Date().toISOString(),
-            fullLogs: logs
-        };
-        
+        // KORJAUS V2.0: Muunnetaan localStorage-logit Apps Script V2.0 batch-formaattiin
+        // Tapahtumanimi-mäppäys: NAVIGATE → chapter_open, ETHICAL_ACTION → ethical_action
+        const batch = logs.map(entry => {
+            const base = {
+                t: new Date(entry.timestamp).getTime(),
+                uid: this.userId,
+            };
+            if (entry.type === 'NAVIGATE') {
+                return {
+                    ...base,
+                    e: 'chapter_open',
+                    ch: entry.data?.chapterId || entry.context?.chapter || '—',
+                    duration_s: entry.data?.durationSeconds || 0,
+                    view: entry.data?.currentView || entry.context?.view || 'narrative',
+                };
+            } else if (entry.type === 'ETHICAL_ACTION') {
+                return {
+                    ...base,
+                    e: 'ethical_action',
+                    ch: entry.data?.chapterId || entry.context?.chapter || '—',
+                };
+            }
+            // Muut tyypit: käännetään snake_case ja välitetään sellaisenaan
+            return {
+                ...base,
+                e: entry.type.toLowerCase(),
+                ch: entry.context?.chapter || '—',
+                ...entry.data,
+            };
+        });
+
         localStorage.setItem("tulkintakone_logs", "[]");
 
         try {
-            fetch(this.targetUrl, {
+            fetch(TTT_SHEETS_URL, {
                 method: "POST",
-                mode: "no-cors", 
-                headers: { "Content-Type": "text/plain" },
-                body: JSON.stringify(dataToSend),
+                mode: "no-cors",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ batch }),
                 keepalive: true
             });
-            console.log(`🚀 Tracker: Lähetetty ${logs.length} tapahtumaa.`);
+            console.log(`🚀 Tracker V7.1→V2.0: Lähetetty ${batch.length} tapahtumaa.`);
         } catch (e) {
             console.warn("❌ Tracker: Lähetys epäonnistui.", e);
             // Palautetaan logit puskuriin virhetilanteessa
