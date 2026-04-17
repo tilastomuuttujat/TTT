@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyvinvointiilmiöiden simulaattori</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+:root {
+  --bg: #0d0f0e;
+  --surface: #141716;
+  --surface2: #1c1f1d;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.13);
+  --text: #e8ebe8;
+  --muted: #7a8a7c;
+  --ink: #b8c8ba;
+
+  --red:    #e05c4a;
+  --amber:  #d4902a;
+  --green:  #4caf7a;
+  --blue:   #5a9fd4;
+  --purple: #9b72cf;
+
+  --data-color:  #4caf7a;
+  --lit-color:   #5a9fd4;
+  --spec-color:  #d4902a;
+
+  --mono: 'DM Mono', monospace;
+  --serif: 'DM Serif Display', serif;
+  --sans: 'DM Sans', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 13px; overflow: hidden; }
+
+/* ── LAYOUT ── */
+.app { display: grid; grid-template-rows: 52px 1fr; height: 100%; }
+.content { display: grid; grid-template-columns: 340px 1fr 300px; overflow: hidden; }
+
+/* ── HEADER ── */
+header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border2);
+  background: var(--surface);
+}
+.header-title { font-family: var(--serif); font-size: 17px; color: var(--text); letter-spacing: .01em; }
+.header-sub { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-left: 12px; text-transform: uppercase; letter-spacing: .1em; }
+.header-right { display: flex; align-items: center; gap: 12px; }
+.warning-pill {
+  font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: .1em;
+  background: rgba(208,144,42,.12); border: 1px solid rgba(208,144,42,.3);
+  color: var(--amber); padding: 4px 10px; cursor: pointer;
+}
+.reset-btn {
+  font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: .1em;
+  background: transparent; border: 1px solid var(--border2);
+  color: var(--muted); padding: 4px 10px; cursor: pointer;
+  transition: all .15s;
+}
+.reset-btn:hover { border-color: var(--text); color: var(--text); }
+
+/* ── LEFT PANEL: ILMIÖT + SLIDERIT ── */
+aside.left {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+
+/* PHENOMENA PANEL */
+.phenomena-panel { padding: 14px 16px 8px; flex-shrink: 0; }
+.panel-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: 10px; }
+.phenom-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+
+.phenom-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  padding: 8px 10px; cursor: pointer;
+  transition: border-color .15s, background .15s;
+  position: relative; overflow: hidden;
+}
+.phenom-card::before {
+  content: ''; position: absolute; inset: 0 0 0 0;
+  background: currentColor; opacity: 0;
+  transition: opacity .15s;
+}
+.phenom-card:hover::before { opacity: .04; }
+.phenom-card.active { border-color: currentColor; }
+.phenom-card.active::before { opacity: .07; }
+
+.phenom-name { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 4px; }
+.phenom-value {
+  font-family: var(--mono); font-size: 16px; font-weight: 500;
+  line-height: 1;
+}
+.phenom-delta {
+  font-family: var(--mono); font-size: 10px; margin-top: 3px;
+  display: flex; align-items: center; gap: 3px;
+}
+.phenom-bar {
+  height: 2px; margin-top: 6px; background: var(--border);
+  position: relative; overflow: hidden;
+}
+.phenom-bar-fill {
+  position: absolute; top: 0; left: 0; height: 100%;
+  transition: width .4s ease, background .4s;
+}
+.arrows { letter-spacing: -.05em; }
+
+/* DRIVERS SECTION */
+.drivers-section {
+  flex: 1; overflow-y: auto;
+  padding: 0 16px 16px;
+}
+.driver-group { margin-bottom: 16px; }
+.driver-group-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 8px; padding-top: 12px; border-top: 1px solid var(--border); }
+
+.driver-row { margin-bottom: 10px; }
+.driver-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.driver-label { font-size: 11px; color: var(--ink); }
+.driver-value { font-family: var(--mono); font-size: 11px; font-weight: 500; min-width: 40px; text-align: right; }
+.driver-conf {
+  font-family: var(--mono); font-size: 8px; text-transform: uppercase; letter-spacing: .08em;
+  padding: 1px 4px; border: 1px solid currentColor; margin-left: 6px;
+}
+.conf-data   { color: var(--data-color); }
+.conf-lit    { color: var(--lit-color); }
+.conf-spec   { color: var(--spec-color); }
+
+.slider-wrap { position: relative; }
+input[type=range] {
+  width: 100%; height: 3px; -webkit-appearance: none; appearance: none;
+  background: var(--border2); outline: none; border-radius: 0; cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%;
+  background: var(--text); border: 2px solid var(--bg); cursor: pointer;
+  transition: transform .1s;
+}
+input[type=range]:hover::-webkit-slider-thumb { transform: scale(1.3); }
+.slider-track-fill {
+  position: absolute; top: 0; left: 0; height: 3px; pointer-events: none;
+  transition: width .05s;
+}
+.driver-links { font-family: var(--mono); font-size: 9px; color: var(--muted); margin-top: 3px; }
+.driver-impact { display: inline-block; margin-right: 6px; }
+
+/* ── CENTER: CANVAS ── */
+main.canvas-area {
+  position: relative; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 30%, rgba(76,175,122,.04) 0%, transparent 70%), var(--bg);
+}
+
+#network-svg { width: 100%; height: 100%; display: block; }
+
+/* Node styles */
+.node-ring { fill: none; stroke-width: 1.5; }
+.node-circle { fill: var(--surface2); }
+.node-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: .08em; pointer-events: none; text-anchor: middle; }
+.node-value { font-family: var(--mono); font-size: 13px; font-weight: 500; pointer-events: none; text-anchor: middle; }
+.node-name  { font-family: var(--serif); font-size: 11px; pointer-events: none; text-anchor: middle; }
+
+/* Edge styles */
+.edge { fill: none; transition: stroke-width .3s, opacity .3s; }
+.edge-data { stroke-width: 1.5; }
+.edge-lit  { stroke-width: 1.5; stroke-dasharray: 6 4; }
+.edge-spec { stroke-width: 1; stroke-dasharray: 3 5; }
+.edge-glow { fill: none; stroke-width: 8; opacity: 0; }
+
+/* Flow particles */
+.flow-particle { pointer-events: none; }
+
+/* Delta overlay */
+.delta-overlay {
+  position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+  background: var(--surface); border: 1px solid var(--border2);
+  padding: 10px 16px; display: none; min-width: 300px;
+  font-family: var(--mono); font-size: 11px;
+}
+.delta-row { display: flex; justify-content: space-between; gap: 20px; padding: 3px 0; border-bottom: 1px solid var(--border); }
+.delta-row:last-child { border-bottom: none; }
+
+/* Canvas toolbar */
+.canvas-toolbar {
+  position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 6px;
+}
+.c-btn {
+  font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: .08em;
+  padding: 6px 12px; background: var(--surface); border: 1px solid var(--border2);
+  color: var(--muted); cursor: pointer; transition: all .15s;
+}
+.c-btn:hover { border-color: var(--text); color: var(--text); }
+.c-btn.active { background: var(--surface2); border-color: var(--border2); color: var(--text); }
+
+/* ── RIGHT PANEL: INSPECTOR ── */
+aside.right {
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.right-header { padding: 12px 16px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+.right-content { padding: 14px 16px; overflow-y: auto; flex: 1; }
+
+.insp-section { margin-bottom: 18px; }
+.insp-section-label { font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 8px; }
+.insp-title { font-family: var(--serif); font-size: 16px; margin-bottom: 4px; line-height: 1.2; }
+.insp-sub { font-family: var(--mono); font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px; }
+
+.stat { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid var(--border); font-size: 11px; }
+.stat .k { color: var(--muted); }
+.stat .v { font-family: var(--mono); font-weight: 500; }
+
+.risk-block { padding: 8px 12px; margin-top: 8px; font-size: 11px; line-height: 1.4; }
+.risk-high   { background: rgba(224,92,74,.08);  border-left: 3px solid var(--red);    color: var(--red); }
+.risk-medium { background: rgba(212,144,42,.08); border-left: 3px solid var(--amber);  color: var(--amber); }
+.risk-low    { background: rgba(76,175,122,.08); border-left: 3px solid var(--green);  color: var(--green); }
+
+.scenario-list { display: flex; flex-direction: column; gap: 6px; }
+.scenario-btn {
+  font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .08em;
+  padding: 8px 10px; background: var(--surface2); border: 1px solid var(--border);
+  color: var(--ink); cursor: pointer; text-align: left; transition: all .15s;
+  display: flex; flex-direction: column; gap: 2px;
+}
+.scenario-btn:hover { border-color: var(--border2); color: var(--text); }
+.scenario-btn .sc-name { font-size: 11px; }
+.scenario-btn .sc-desc { font-size: 9px; color: var(--muted); text-transform: none; letter-spacing: 0; }
+
+/* confidence legend */
+.legend-item { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 10px; color: var(--ink); }
+.legend-line { width: 24px; height: 2px; }
+.legend-dash { width: 24px; height: 2px; background: repeating-linear-gradient(to right, currentColor 0, currentColor 4px, transparent 4px, transparent 8px); }
+.legend-dot  { width: 24px; height: 2px; background: repeating-linear-gradient(to right, currentColor 0, currentColor 2px, transparent 2px, transparent 6px); }
+
+/* MODAL */
+.modal-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,.7); display: none; align-items: center; justify-content: center; z-index: 100; }
+.modal-backdrop.show { display: flex; }
+.modal { background: var(--surface); border: 1px solid var(--border2); max-width: 640px; width: 90%; max-height: 80vh; overflow-y: auto; padding: 28px 32px; }
+.modal h2 { font-family: var(--serif); font-size: 22px; margin-bottom: 16px; }
+.modal p { font-size: 12px; line-height: 1.6; color: var(--ink); margin-bottom: 10px; }
+.modal .close-btn { margin-top: 16px; font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: .1em; padding: 8px 16px; background: transparent; border: 1px solid var(--border2); color: var(--muted); cursor: pointer; }
+.modal .close-btn:hover { border-color: var(--text); color: var(--text); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+/* LOAD SCREEN */
+#load-screen {
+  position: fixed; inset: 0; background: var(--bg); z-index: 200;
+  display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 32px;
+}
+.load-box { background: var(--surface); border: 1px solid var(--border2); padding: 32px 40px; width: 480px; }
+.load-box h2 { font-family: var(--serif); font-size: 24px; margin-bottom: 6px; }
+.load-box p  { font-size: 11px; color: var(--muted); margin-bottom: 20px; line-height: 1.5; }
+.load-zone {
+  border: 1px dashed var(--border2); padding: 20px; text-align: center; cursor: pointer;
+  font-family: var(--mono); font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em;
+  margin-bottom: 10px; transition: all .15s;
+}
+.load-zone:hover { border-color: var(--text); color: var(--text); }
+.load-zone.loaded { border-style: solid; border-color: var(--green); color: var(--green); }
+.load-zone input { display: none; }
+.load-start {
+  width: 100%; padding: 12px; font-family: var(--mono); font-size: 10px;
+  text-transform: uppercase; letter-spacing: .12em; background: var(--green);
+  color: var(--bg); border: none; cursor: pointer; display: none; margin-top: 8px;
+}
+.load-start:hover { background: #5cc88a; }
+</style>
+</head>
+<body>
+
+<!-- LOAD SCREEN -->
+<div id="load-screen">
+  <div class="load-box">
+    <h2>Hyvinvointi&shy;ilmiöiden simulaattori</h2>
+    <p>Lataa master-tiedosto (finland_public_finance_master_updated_*.json) ja ttt-indikaattorit (ttt_v5.json tai uudempi). Työkalu laskee dataperustaisen pohjan automaattisesti.</p>
+    <div class="load-zone" id="lz-master">
+      <label for="lp-master">↑ Master JSON (pakollinen)</label>
+      <input type="file" id="lp-master" accept=".json">
+      <div id="lm-master" style="margin-top:6px;font-size:9px"></div>
+    </div>
+    <div class="load-zone" id="lz-ttt">
+      <label for="lp-ttt">↑ TTT JSON (pakollinen)</label>
+      <input type="file" id="lp-ttt" accept=".json">
+      <div id="lm-ttt" style="margin-top:6px;font-size:9px"></div>
+    </div>
+    <button class="load-start" id="load-start-btn">Aloita analyysi →</button>
+  </div>
+</div>
+
+<!-- MAIN APP (hidden until loaded) -->
+<div class="app" id="app" style="display:none">
+  <header>
+    <div style="display:flex;align-items:center;gap:0">
+      <span class="header-title">Hyvinvointilmiöt</span>
+      <span class="header-sub">· simulaattori · ilmiölähtöinen</span>
+    </div>
+    <div class="header-right">
+      <div id="scenario-status" style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em"></div>
+      <button class="reset-btn" id="reset-btn">Nollaa kaikki</button>
+      <button class="warning-pill" id="warning-btn">⚠ Menetelmä</button>
+    </div>
+  </header>
+
+  <div class="content">
+
+    <!-- LEFT -->
+    <aside class="left">
+      <div class="phenomena-panel">
+        <div class="panel-label">Tilannekuva · 6 ilmiötä</div>
+        <div class="phenom-grid" id="phenom-grid"></div>
+      </div>
+      <div class="drivers-section" id="drivers-section">
+        <div class="driver-group-label" style="border-top:none;padding-top:0">Valitse ilmiö ylhäältä</div>
+      </div>
+    </aside>
+
+    <!-- CENTER -->
+    <main class="canvas-area">
+      <svg id="network-svg"></svg>
+      <div class="delta-overlay" id="delta-overlay"></div>
+      <div class="canvas-toolbar">
+        <button class="c-btn active" id="btn-show-all">Kaikki linkit</button>
+        <button class="c-btn" id="btn-show-active">Aktiiviset</button>
+        <button class="c-btn" id="btn-toggle-flow">Virta animaatio</button>
+      </div>
+    </main>
+
+    <!-- RIGHT -->
+    <aside class="right">
+      <div class="right-header">
+        <div class="panel-label">Tarkastelu &amp; Skenaariot</div>
+      </div>
+      <div class="right-content" id="right-content">
+        <div class="insp-section">
+          <div class="insp-section-label">Skenaariot</div>
+          <div class="scenario-list" id="scenario-list"></div>
+        </div>
+        <div class="insp-section">
+          <div class="insp-section-label">Linkki-legenda</div>
+          <div class="legend-item"><span class="legend-line" style="background:var(--data-color)"></span><span style="color:var(--data-color)">DATA</span> — muutoskorrelaatio ≥0.30, n≥15</div>
+          <div class="legend-item"><span class="legend-dash" style="color:var(--lit-color)"></span><span style="color:var(--lit-color)">LIT</span> — kirjallisuuspohjainen paino</div>
+          <div class="legend-item"><span class="legend-dot" style="color:var(--spec-color)"></span><span style="color:var(--spec-color)">SPEK</span> — spekulatiivinen / heikko data</div>
+        </div>
+        <div class="insp-section" id="selected-info">
+          <div class="insp-section-label">Valittu solmu / linkki</div>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--muted)">Klikkaa verkon solmua tai viivaa</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<!-- WARNING MODAL -->
+<div class="modal-backdrop" id="warning-modal">
+  <div class="modal">
+    <h2>Menetelmällinen varoitus</h2>
+    <p><strong>Tämä työkalu ei ole ennustemalli.</strong> Se on hypoteesigeneroinnin ja ajattelun strukturoinnin apuväline. Kaikki "simuloinnit" ovat yksinkertaistettuja, lineaarisia likiarvoja.</p>
+    <p><strong>Painokertoimien luotettavuustasot:</strong></p>
+    <p><strong style="color:var(--data-color)">DATA</strong> — estimoitu Suomen aikasarjasta 1990–2024 muutoskorrelaatiolla. Tarkistettavissa. Pieni n (20–35) tarkoittaa isoa epävarmuutta.</p>
+    <p><strong style="color:var(--lit-color)">LIT</strong> — perustuu kansainväliseen perhepoliittiseen tutkimuskirjallisuuteen (ks. viitteet). Kontekstiriski: Suomen erityispiirteet voivat poiketa.</p>
+    <p><strong style="color:var(--spec-color)">SPEK</strong> — teoreettisesti perusteltu mutta datallinen tuki heikko tai puuttuu kokonaan. Älä pidä näitä tosiasioina.</p>
+    <p><strong>Yhteinen trendi -vaara:</strong> Jos kaksi sarjaa kasvavat molemmat 30 vuotta, ne korreloivat voimakkaasti ilman kausaalisuhdetta. Merkintä ⚠ tarkoittaa että taso- ja muutoskorrelaatio eroavat — havaittu yhteys voi johtua yhteisestä trendistä.</p>
+    <p><strong>Lineaarisuusoletus:</strong> Työkalu olettaa additiiviset, vakiopainoiset vaikutukset. Todellisuudessa yhteiskunnalliset ilmiöt ovat epälineaarisia, kontekstuaalisia ja histeriallisia. Kynnysefektejä ja palautesilmukoita ei mallinneta.</p>
+    <button class="close-btn" id="close-warning">Ymmärrän rajoitukset</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// 1. DATA & ENGINE DEFINITIONS
+// ═══════════════════════════════════════════════════════
+
+// Kuusi ilmiötä — perusarvo, polariteetti, väri, yksiköt
+const PHENOMENA = {
+  syntyvyys:  { label:'Syntyvyys (TFR)', unit:'lapsia/nainen', base:1.26, polarity:+1, good:+1, color:'#4caf7a', short:'TFR' },
+  lastensuoj: { label:'Lastensuojelu', unit:'sij. ‰', base:4.2, polarity:-1, good:-1, color:'#e05c4a', short:'Sij.' },
+  neet:       { label:'Nuoret syrjässä', unit:'NEET %', base:11.4, polarity:-1, good:-1, color:'#d4902a', short:'NEET' },
+  julktalous: { label:'Julk. talous', unit:'velka % BKT', base:82.5, polarity:-1, good:-1, color:'#9b72cf', short:'Velka' },
+  koulutus:   { label:'Erityistuki', unit:'% oppilaista', base:10.3, polarity:-1, good:-1, color:'#5a9fd4', short:'EritTuki' },
+  eriarvois:  { label:'Eriarvoisuus', unit:'Gini', base:28.4, polarity:-1, good:-1, color:'#c07a4a', short:'Gini' },
+};
+
+// Tekijät joita käyttäjä säätää
+const DRIVERS = {
+  unemp:  { label:'Työttömyysaste', unit:'%', base:7.5, min:2, max:20, step:.1, valFmt: v=>`${v.toFixed(1)}%` },
+  bkt:    { label:'BKT-kasvu', unit:'%', base:1.0, min:-8, max:8, step:.1, valFmt: v=>`${v>0?'+':''}${v.toFixed(1)}%` },
+  gini:   { label:'Tuloero (Gini)', unit:'', base:28.0, min:20, max:40, step:.1, valFmt: v=>v.toFixed(1) },
+  pdh:    { label:'Päivähoito-panostus', unit:'indeksi', base:1.0, min:.4, max:1.8, step:.02, valFmt: v=>v.toFixed(2) },
+  perus:  { label:'Perusopetus-panostus', unit:'indeksi', base:1.0, min:.4, max:1.8, step:.02, valFmt: v=>v.toFixed(2) },
+  lsk:    { label:'Lastensuojelu-panostus', unit:'indeksi', base:1.0, min:.4, max:1.8, step:.02, valFmt: v=>v.toFixed(2) },
+  nuor:   { label:'Nuorisotyö-panostus', unit:'indeksi', base:1.0, min:.4, max:1.8, step:.02, valFmt: v=>v.toFixed(2) },
+  mth:    { label:'MT-palvelut-panostus', unit:'indeksi', base:1.0, min:.4, max:1.8, step:.02, valFmt: v=>v.toFixed(2) },
+  asumiskust: { label:'Asumiskustannukset', unit:'indeksi', base:1.0, min:.4, max:2.5, step:.05, valFmt: v=>v.toFixed(2) },
+  ansios: { label:'Ansiosidonnainen', unit:'indeksi', base:1.0, min:.4, max:1.6, step:.02, valFmt: v=>v.toFixed(2) },
+  exp_gdp:{ label:'Julk. menot % BKT', unit:'%', base:77.0, min:45, max:100, step:.5, valFmt: v=>`${v.toFixed(1)}%` },
+};
+
+// ── LINKIT: {from, to, weight, lag, conf, r_data, n_data, lit_src, note}
+// conf: 'data' | 'lit' | 'spec'
+// Painot derivoitu data-analyysistä tai kirjallisuudesta
+const LINKS = [
+  // ── SYNTYVYYS ──
+  { from:'unemp',    to:'syntyvyys',  weight:-.28, lag:12, conf:'data', r:.47,  n:23,  note:'Pitkä viive: TFR reagoi hitaasti (12v). Etumerkki ristiriitainen teorian kanssa — suhdannevaikutus.' },
+  { from:'gini',     to:'syntyvyys',  weight:-.18, lag:10, conf:'data', r:.43,  n:25,  note:'Tuloero heikentää syntyvyyttä pitkällä aikavälillä (10v viive, ⚠ trendiriski).' },
+  { from:'asumiskust',to:'syntyvyys', weight:-.35, lag:2,  conf:'lit',  lit_r:.5,  lit_src:'Kulu & Vikat 2007, Mulder 2006', note:'Asumiskustannukset lyhyellä viiveellä — vahva kirjallisuusnäyttö.' },
+  { from:'ansios',   to:'syntyvyys',  weight:+.20, lag:1,  conf:'lit',  lit_r:.3,  lit_src:'Lalive & Zweimüller 2009, Dahl & Lochner 2012', note:'Ansiosidonnainen vähentää taloudellista epävarmuutta → lapsipäätös helpottuu.' },
+  { from:'pdh',      to:'syntyvyys',  weight:-.12, lag:7,  conf:'data', r:.54,  n:28,  note:'Panostus ehkäiseviin palveluihin ei selvästi tueta syntyvyyttä tässä datassa (⚠ trendi).' },
+  { from:'bkt',      to:'syntyvyys',  weight:+.15, lag:1,  conf:'spec', note:'Suhdannevaikutus: hyvä talous → enemmän lapsia. Datassa heikko (r=0.10 lag0).' },
+
+  // ── LASTENSUOJELU ──
+  { from:'unemp',    to:'lastensuoj', weight:+.22, lag:5,  conf:'data', r:.39,  n:30,  note:'Työttömyys lisää sijoituksia 5v viiveellä (muutos). Tasolla vastakkainen — käytä varoen.' },
+  { from:'gini',     to:'lastensuoj', weight:+.18, lag:0,  conf:'spec', note:'Tuloerot ja lastensuojelu — datassa trendiriski. Kirjallisuusnäyttö vaihtelee.' },
+  { from:'pdh',      to:'lastensuoj', weight:-.25, lag:6,  conf:'data', r:.67,  n:29,  note:'Päivähoidon lisäys ja sijoitusten lasku 6v viiveellä. ⚠ Trendi dominoi tasokorrelaatiossa.' },
+  { from:'lsk',      to:'lastensuoj', weight:-.15, lag:6,  conf:'data', r:.56,  n:29,  note:'Lastensuojelupanos korreloi sijoitusten kanssa — kasvava tarve vetää molempia.' },
+  { from:'mth',      to:'lastensuoj', weight:-.20, lag:6,  conf:'data', r:.67,  n:29,  note:'MT-palvelut ja sijoitukset — yhteinen kasvu (⚠ trendi). Kausaliteetti epäselvä.' },
+  { from:'nuor',     to:'lastensuoj', weight:-.15, lag:3,  conf:'data', r:.51,  n:32,  note:'Nuorisotyö ja sijoitukset korreloivat — yhteinen trendi mahdollinen.' },
+
+  // ── NEET ──
+  { from:'unemp',    to:'neet',       weight:+.55, lag:0,  conf:'data', r:.85,  n:23,  note:'Vahvin linkki koko mallissa. Työttömyys ja NEET liikkuvat lähes yhtä aikaa.' },
+  { from:'bkt',      to:'neet',       weight:-.30, lag:1,  conf:'data', r:.63,  n:23,  note:'BKT-lasku nostaa NEETiä 1v viiveellä.' },
+  { from:'nuor',     to:'neet',       weight:-.18, lag:6,  conf:'data', r:.48,  n:18,  note:'Nuorisotyöpanostus ja NEET 6v viiveellä.' },
+  { from:'gini',     to:'neet',       weight:+.15, lag:0,  conf:'spec', note:'Tuloerot ja nuorten syrjäytyminen — datassa heikko, kirjallisuudessa tuettu.' },
+
+  // ── JULKINEN TALOUS ──
+  { from:'unemp',    to:'julktalous', weight:+.45, lag:0,  conf:'data', r:.83,  n:34,  note:'Vahva: työttömyys kasvattaa menoja ja pienentää tuloja yhtäaikaisesti.' },
+  { from:'exp_gdp',  to:'julktalous', weight:+.38, lag:0,  conf:'data', r:.70,  n:35,  note:'Kokonaismenot ja velka kasvavat yhdessä.' },
+  { from:'bkt',      to:'julktalous', weight:-.30, lag:1,  conf:'data', r:.57,  n:34,  note:'BKT-kasvu pienentää velkasuhdetta viiveellä.' },
+
+  // ── KOULUTUS (erityistuki%) ──
+  { from:'perus',    to:'koulutus',   weight:+.25, lag:3,  conf:'data', r:.70,  n:26,  note:'Perusopetuspanostus ja erityistukitarve — yhteinen trendi (⚠). Tulkinta: kasvu heijastaa kasvavaa tarvetta.' },
+  { from:'gini',     to:'koulutus',   weight:+.20, lag:2,  conf:'data', r:.41,  n:29,  note:'Tuloerot ennakoivat erityistuen kasvua 2v viiveellä.' },
+  { from:'unemp',    to:'koulutus',   weight:+.15, lag:12, conf:'data', r:.39,  n:23,  note:'Pitkä viive: taloudellinen ahdinko perheissä välittyy hitaasti kouluvaikeuksiin.' },
+
+  // ── ERIARVOISUUS ──
+  { from:'unemp',    to:'eriarvois',  weight:+.25, lag:7,  conf:'data', r:.46,  n:28,  note:'Työttömyys kasvattaa eriarvoistumista 7v viiveellä.' },
+  { from:'bkt',      to:'eriarvois',  weight:-.15, lag:11, conf:'data', r:.53,  n:24,  note:'BKT-kasvu ja Gini — vaikutus hitaalla viiveellä. Jakauma-tulkinta tarvitaan.' },
+  { from:'exp_gdp',  to:'eriarvois',  weight:-.28, lag:1,  conf:'data', r:.54,  n:34,  note:'Julkiset menot tasaavat eriarvoistumista 1v viiveellä — vahvin tasaava tekijä tässä datassa.' },
+];
+
+// Skenaariot
+const SCENARIOS = [
+  {
+    name: 'Nuorten epävarmuus',
+    desc: 'Asumiskustannukset ja työttömyys nousevat, ansiosidonnainen leikkautuu',
+    changes: { unemp: +3.0, asumiskust: +0.4, ansios: -0.2, nuor: -0.1 }
+  },
+  {
+    name: 'Leikkausskenaariot',
+    desc: 'Julkisia menoja supistetaan merkittävästi',
+    changes: { pdh: -0.25, perus: -0.20, lsk: -0.15, nuor: -0.20, mth: -0.15 }
+  },
+  {
+    name: 'Lama-skenaario',
+    desc: '1990-laman tapainen sokki',
+    changes: { bkt: -7.0, unemp: +8.0, exp_gdp: -5.0 }
+  },
+  {
+    name: 'Panostus lapsipalveluihin',
+    desc: 'Ehkäisevien palvelujen reaalikasvu +25%',
+    changes: { pdh: +0.25, perus: +0.15, nuor: +0.25, lsk: +0.10 }
+  },
+];
+
+// ═══════════════════════════════════════════════════════
+// 2. TILA JA ENGINE
+// ═══════════════════════════════════════════════════════
+const state = {
+  vars: Object.fromEntries(Object.entries(DRIVERS).map(([k,v])=>[k,v.base])),
+  phenomena: Object.fromEntries(Object.entries(PHENOMENA).map(([k,v])=>[k,v.base])),
+  baseVars: null, basePhenomena: null,
+  master: null, ttt: null,
+  activePhenom: 'syntyvyys',
+  showOnlyActive: false,
+  showFlow: true,
+  selectedEl: null,
+};
+
+function computePhenomenaFromDrivers() {
+  // Nollaa lähtöarvoihin
+  for (const [k,v] of Object.entries(PHENOMENA)) state.phenomena[k] = v.base;
+
+  // Propagoi jokainen linkki
+  for (const lnk of LINKS) {
+    const drvDef = DRIVERS[lnk.from];
+    if (!drvDef) continue;
+    const base = drvDef.base;
+    const current = state.vars[lnk.from];
+    const delta = (current - base) / (drvDef.max - drvDef.min); // normalisoitu [-1,+1]
+    const impact = delta * lnk.weight;
+    if (state.phenomena[lnk.to] !== undefined) {
+      state.phenomena[lnk.to] += impact * Math.abs(PHENOMENA[lnk.to].base);
+    }
+  }
+}
+
+function deltaFromBase() {
+  const out = {};
+  for (const k of Object.keys(PHENOMENA)) {
+    out[k] = state.phenomena[k] - PHENOMENA[k].base;
+  }
+  return out;
+}
+
+function normalizedDelta(key) {
+  // Prosentuaalinen muutos lähtöarvosta
+  const d = deltaFromBase()[key];
+  const base = PHENOMENA[key].base;
+  return base !== 0 ? d / base : 0;
+}
+
+// ═══════════════════════════════════════════════════════
+// 3. LATAUS
+// ═══════════════════════════════════════════════════════
+function setupLoader(zoneId, pickerId, metaId, kind) {
+  const zone = document.getElementById(zoneId);
+  const picker = document.getElementById(pickerId);
+  const meta = document.getElementById(metaId);
+  const handle = file => {
+    const r = new FileReader();
+    r.onload = e => {
+      try {
+        const json = JSON.parse(e.target.result);
+        if (kind === 'master') {
+          if (!json.data) throw new Error('data-kenttä puuttuu');
+          state.master = json;
+          meta.textContent = `✓ ${file.name} — ${Object.keys(json.data).length} vuotta`;
+        } else {
+          if (!json.kategoriat) throw new Error('kategoriat puuttuu');
+          state.ttt = json;
+          const n = json.kategoriat.reduce((s,k)=>s+k.indikaattorit.length,0);
+          meta.textContent = `✓ ${file.name} — ${n} indikaattoria`;
+        }
+        zone.classList.add('loaded');
+        if (state.master && state.ttt) {
+          document.getElementById('load-start-btn').style.display = 'block';
+        }
+      } catch(err) { meta.textContent = `Virhe: ${err.message}`; meta.style.color='var(--red)'; }
+    };
+    r.readAsText(file);
+  };
+  zone.addEventListener('dragover', e=>{ e.preventDefault(); });
+  zone.addEventListener('drop', e=>{ e.preventDefault(); if(e.dataTransfer.files[0]) handle(e.dataTransfer.files[0]); });
+  zone.addEventListener('click', e=>{ if(!e.target.closest('label,input')) picker.click(); });
+  picker.addEventListener('change', e=>{ if(e.target.files[0]) handle(e.target.files[0]); });
+}
+setupLoader('lz-master','lp-master','lm-master','master');
+setupLoader('lz-ttt','lp-ttt','lm-ttt','ttt');
+
+document.getElementById('load-start-btn').addEventListener('click', () => {
+  document.getElementById('load-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'grid';
+  initApp();
+});
+
+// ═══════════════════════════════════════════════════════
+// 4. INIT + NETWORK
+// ═══════════════════════════════════════════════════════
+let svg, gNet, simulation, flowTimer = null;
+
+function initApp() {
+  computePhenomenaFromDrivers();
+  buildNetwork();
+  renderPhenomenaPanel();
+  renderDrivers(state.activePhenom);
+  renderScenarios();
+  renderRightContent();
+
+  document.getElementById('reset-btn').addEventListener('click', resetAll);
+  document.getElementById('warning-btn').addEventListener('click', ()=>document.getElementById('warning-modal').classList.add('show'));
+  document.getElementById('close-warning').addEventListener('click', ()=>document.getElementById('warning-modal').classList.remove('show'));
+  document.getElementById('btn-show-all').addEventListener('click', ()=>{
+    state.showOnlyActive = false;
+    document.getElementById('btn-show-all').classList.add('active');
+    document.getElementById('btn-show-active').classList.remove('active');
+    updateNetworkEdges();
+  });
+  document.getElementById('btn-show-active').addEventListener('click', ()=>{
+    state.showOnlyActive = true;
+    document.getElementById('btn-show-active').classList.add('active');
+    document.getElementById('btn-show-all').classList.remove('active');
+    updateNetworkEdges();
+  });
+  document.getElementById('btn-toggle-flow').addEventListener('click', ()=>{
+    state.showFlow = !state.showFlow;
+    document.getElementById('btn-toggle-flow').classList.toggle('active', state.showFlow);
+    if (!state.showFlow && flowTimer) { clearInterval(flowTimer); flowTimer = null; }
+    else if (state.showFlow) startFlow();
+  });
+  if (state.showFlow) startFlow();
+}
+
+// Verkko-asettelun koordinaatit
+function networkLayout() {
+  const W = document.getElementById('network-svg').clientWidth;
+  const H = document.getElementById('network-svg').clientHeight;
+  const cx = W/2, cy = H/2;
+  // Ilmiöt kehällä, tekijät sisemmässä kehässä
+  const phenomKeys = Object.keys(PHENOMENA);
+  const driverKeys = Object.keys(DRIVERS);
+  const nodes = [];
+  const R = Math.min(W,H) * .34;
+  const r = Math.min(W,H) * .17;
+
+  phenomKeys.forEach((k, i) => {
+    const a = (i / phenomKeys.length) * 2*Math.PI - Math.PI/2;
+    nodes.push({ id:k, type:'phenom', x: cx+Math.cos(a)*R, y: cy+Math.sin(a)*R, def: PHENOMENA[k] });
+  });
+  driverKeys.forEach((k, i) => {
+    const a = (i / driverKeys.length) * 2*Math.PI - Math.PI/2;
+    nodes.push({ id:k, type:'driver', x: cx+Math.cos(a)*r, y: cy+Math.sin(a)*r, def: DRIVERS[k] });
+  });
+  return nodes;
+}
+
+function buildNetwork() {
+  svg = d3.select('#network-svg');
+  svg.selectAll('*').remove();
+  const nodes = networkLayout();
+  const W = +svg.node().clientWidth, H = +svg.node().clientHeight;
+
+  // Defs: arrowheads
+  const defs = svg.append('defs');
+  ['data','lit','spec'].forEach(t => {
+    ['pos','neg'].forEach(dir => {
+      const color = t==='data'?'var(--data-color)':t==='lit'?'var(--lit-color)':'var(--spec-color)';
+      defs.append('marker').attr('id',`arrow-${t}-${dir}`)
+        .attr('viewBox','0 -4 8 8').attr('refX',22).attr('refY',0)
+        .attr('markerWidth',5).attr('markerHeight',5).attr('orient','auto')
+        .append('path').attr('d','M0,-4L8,0L0,4').attr('fill',color);
+    });
+  });
+
+  gNet = svg.append('g').attr('class','g-net');
+
+  // Zoom
+  svg.call(d3.zoom().scaleExtent([.3,2]).on('zoom',e=>gNet.attr('transform',e.transform)));
+
+  // Background grid (subtle)
+  gNet.append('g').attr('class','grid-bg').selectAll('circle')
+    .data([80,160,240,320]).enter().append('circle')
+    .attr('cx',W/2).attr('cy',H/2).attr('r',d=>d)
+    .attr('fill','none').attr('stroke','rgba(255,255,255,.025)');
+
+  // Edges
+  const edgeG = gNet.append('g').attr('class','edges');
+  const nodeById = Object.fromEntries(nodes.map(n=>[n.id,n]));
+
+  LINKS.forEach((lnk,i) => {
+    const src = nodeById[lnk.from], tgt = nodeById[lnk.to];
+    if (!src || !tgt) return;
+    const color = lnk.conf==='data'?'var(--data-color)':lnk.conf==='lit'?'var(--lit-color)':'var(--spec-color)';
+    const dashArr = lnk.conf==='data'?'none':lnk.conf==='lit'?'6 4':'3 6';
+    const strokeW = Math.max(1, Math.abs(lnk.weight) * 4);
+
+    // Glow edge (hidden, activates on impact)
+    edgeG.append('path').attr('class','edge edge-glow').attr('id',`glow-${i}`)
+      .attr('d', cubicBezier(src,tgt))
+      .attr('stroke', lnk.weight > 0 ? 'var(--green)' : 'var(--red)')
+      .attr('stroke-width', strokeW + 8).attr('opacity',0);
+
+    // Main edge
+    edgeG.append('path').attr('class',`edge edge-${lnk.conf}`).attr('id',`edge-${i}`)
+      .attr('d', cubicBezier(src,tgt))
+      .attr('stroke', color).attr('stroke-width', strokeW)
+      .attr('stroke-dasharray', dashArr)
+      .attr('marker-end', `url(#arrow-${lnk.conf}-${lnk.weight>0?'pos':'neg'})`)
+      .attr('opacity', .7)
+      .style('cursor','pointer')
+      .on('click', () => selectLink(lnk, i))
+      .on('mouseenter', function() { d3.select(this).attr('opacity',1).attr('stroke-width', strokeW+1); })
+      .on('mouseleave', function() { d3.select(this).attr('opacity',.7).attr('stroke-width', strokeW); });
+
+    // Weight label at midpoint
+    const [mx,my] = bezierMidpoint(src,tgt);
+    edgeG.append('text').attr('class','edge-label').attr('id',`elabel-${i}`)
+      .attr('x',mx).attr('y',my)
+      .attr('text-anchor','middle').attr('fill',color)
+      .attr('font-family','var(--mono)').attr('font-size',9)
+      .attr('opacity',.6)
+      .text(`${lnk.weight>0?'+':''}${lnk.weight.toFixed(2)}`);
+  });
+
+  // Nodes
+  const nodeG = gNet.append('g').attr('class','nodes');
+  nodes.forEach(n => {
+    const g = nodeG.append('g').attr('class','node').attr('id',`node-${n.id}`)
+      .attr('transform',`translate(${n.x},${n.y})`)
+      .style('cursor','pointer')
+      .on('click', () => { state.activePhenom = n.id; renderPhenomenaPanel(); renderDrivers(n.id); selectNode(n); });
+
+    const r = n.type==='phenom' ? 32 : 20;
+    const color = n.type==='phenom' ? n.def.color : 'rgba(255,255,255,.4)';
+
+    // Halo ring
+    g.append('circle').attr('class','node-ring').attr('r', r+8)
+      .attr('stroke', color).attr('stroke-width',.5).attr('fill','none').attr('opacity',.3);
+
+    // Main circle
+    g.append('circle').attr('r', r).attr('fill','var(--surface2)')
+      .attr('stroke', color).attr('stroke-width', n.type==='phenom'?1.5:1);
+
+    if (n.type==='phenom') {
+      g.append('text').attr('class','node-label').attr('y',-14).attr('fill', color)
+        .attr('font-family','var(--mono)').attr('font-size',8).attr('text-anchor','middle')
+        .attr('text-transform','uppercase').text(n.def.short);
+      g.append('text').attr('class','node-value').attr('id',`nv-${n.id}`)
+        .attr('y',4).attr('fill',color)
+        .attr('font-family','var(--mono)').attr('font-size',13).attr('font-weight',500).attr('text-anchor','middle')
+        .text(n.def.base.toFixed(2));
+    } else {
+      g.append('text').attr('class','node-label').attr('y',4).attr('fill','var(--muted)')
+        .attr('font-family','var(--mono)').attr('font-size',8).attr('text-anchor','middle')
+        .text(n.id.slice(0,6));
+    }
+  });
+
+  state.networkNodes = nodes;
+  state.nodeById = nodeById;
+}
+
+function cubicBezier(src, tgt) {
+  const dx = tgt.x-src.x, dy = tgt.y-tgt.y||tgt.y-src.y;
+  const cx1 = src.x + dx*.4 + dy*.15;
+  const cy1 = src.y + (tgt.y-src.y)*.4 - dx*.15;
+  const cx2 = src.x + dx*.6 + dy*.15;
+  const cy2 = src.y + (tgt.y-src.y)*.6 - dx*.15;
+  return `M${src.x},${src.y} C${cx1},${cy1} ${cx2},${cy2} ${tgt.x},${tgt.y}`;
+}
+
+function bezierMidpoint(src, tgt) {
+  const dx = tgt.x-src.x;
+  const cx1 = src.x + dx*.4;
+  const cy1 = src.y + (tgt.y-src.y)*.4 - dx*.15;
+  const cx2 = src.x + dx*.6;
+  const cy2 = src.y + (tgt.y-src.y)*.6 - dx*.15;
+  const t=.5;
+  const x = (1-t)**3*src.x + 3*(1-t)**2*t*cx1 + 3*(1-t)*t**2*cx2 + t**3*tgt.x;
+  const y = (1-t)**3*src.y + 3*(1-t)**2*t*cy1 + 3*(1-t)*t**2*cy2 + t**3*tgt.y;
+  return [x,y];
+}
+
+// ═══════════════════════════════════════════════════════
+// 5. UI RENDER
+// ═══════════════════════════════════════════════════════
+
+function renderPhenomenaPanel() {
+  const grid = document.getElementById('phenom-grid');
+  grid.innerHTML = '';
+  for (const [k, phenom] of Object.entries(PHENOMENA)) {
+    const val = state.phenomena[k];
+    const base = phenom.base;
+    const delta = val - base;
+    const pctDelta = base !== 0 ? delta/base : 0;
+    const isGood = phenom.good * delta >= 0;
+    const color = isGood ? 'var(--green)' : 'var(--red)';
+    const active = k === state.activePhenom;
+
+    const arrows = Math.min(3, Math.round(Math.abs(pctDelta) * 15));
+    const arrowStr = arrows === 0 ? '—' : (delta*phenom.good > 0 ? '↑' : '↓').repeat(arrows);
+    const barW = Math.min(100, Math.abs(pctDelta)*200);
+
+    const card = document.createElement('div');
+    card.className = 'phenom-card' + (active ? ' active' : '');
+    card.style.color = color;
+    card.dataset.key = k;
+    card.innerHTML = `
+      <div class="phenom-name">${phenom.short}</div>
+      <div class="phenom-value" style="color:${color}">${formatPhenomVal(k, val)}</div>
+      <div class="phenom-delta" style="color:${color}">
+        <span class="arrows">${arrowStr}</span>
+        <span>${delta>0?'+':''}${(pctDelta*100).toFixed(1)}%</span>
+      </div>
+      <div class="phenom-bar">
+        <div class="phenom-bar-fill" style="width:${barW}%;background:${color}"></div>
+      </div>
+    `;
+    card.addEventListener('click', () => {
+      state.activePhenom = k;
+      renderPhenomenaPanel();
+      renderDrivers(k);
+    });
+    grid.appendChild(card);
+
+    // Update network node value
+    const nv = document.getElementById(`nv-${k}`);
+    if (nv) nv.textContent = formatPhenomVal(k, val);
+  }
+
+  // Flash changed nodes
+  updateNetworkNodes();
+}
+
+function formatPhenomVal(k, v) {
+  if (k === 'syntyvyys') return v.toFixed(2);
+  if (k === 'lastensuoj') return v.toFixed(2);
+  if (k === 'neet') return v.toFixed(1);
+  if (k === 'julktalous') return v.toFixed(1);
+  if (k === 'koulutus') return v.toFixed(1);
+  if (k === 'eriarvois') return v.toFixed(1);
+  return v.toFixed(2);
+}
+
+function renderDrivers(phenomKey) {
+  const container = document.getElementById('drivers-section');
+  // Mitkä tekijät vaikuttavat tähän ilmiöön
+  const relevantLinks = LINKS.filter(l => l.to === phenomKey);
+  const relevantDrivers = new Set(relevantLinks.map(l=>l.from));
+  // Muut tekijät
+  const otherDrivers = Object.keys(DRIVERS).filter(k=>!relevantDrivers.has(k));
+
+  let html = `<div class="driver-group">
+    <div class="driver-group-label">${PHENOMENA[phenomKey]?.label || phenomKey} — tekijät</div>`;
+
+  for (const lnk of relevantLinks) {
+    const dk = lnk.from;
+    const d = DRIVERS[dk];
+    if (!d) continue;
+    const confClass = `conf-${lnk.conf}`;
+    const confLabel = lnk.conf.toUpperCase();
+    html += renderDriverSlider(dk, d, lnk, confClass, confLabel, true);
+  }
+  html += `</div>`;
+
+  if (otherDrivers.length > 0) {
+    html += `<div class="driver-group">
+      <div class="driver-group-label">Muut tekijät (vaikuttavat muihin ilmiöihin)</div>`;
+    for (const dk of otherDrivers) {
+      const d = DRIVERS[dk];
+      html += renderDriverSlider(dk, d, null, '', '', false);
+    }
+    html += `</div>`;
+  }
+
+  container.innerHTML = html;
+
+  // Bind slider events
+  container.querySelectorAll('input[type=range]').forEach(inp => {
+    inp.addEventListener('input', e => {
+      const key = e.target.dataset.key;
+      state.vars[key] = parseFloat(e.target.value);
+      document.getElementById(`dval-${key}`).textContent = DRIVERS[key].valFmt(state.vars[key]);
+      computePhenomenaFromDrivers();
+      renderPhenomenaPanel();
+      updateNetworkEdges();
+      updateDeltaOverlay();
+      // Highlight relevant links
+      pulseLinksFrom(key);
+    });
+  });
+}
+
+function renderDriverSlider(dk, d, lnk, confClass, confLabel, relevant) {
+  const val = state.vars[dk];
+  const pct = (val - d.min) / (d.max - d.min) * 100;
+  const linksDesc = lnk ?
+    `<span class="driver-impact">${lnk.weight>0?'+':''}${lnk.weight.toFixed(2)} viive ${lnk.lag}v</span>` : '';
+  const confBadge = confLabel ?
+    `<span class="driver-conf ${confClass}">${confLabel}</span>` : '';
+  return `
+    <div class="driver-row">
+      <div class="driver-header">
+        <span class="driver-label">${d.label}${confBadge}</span>
+        <span class="driver-value" id="dval-${dk}">${d.valFmt(val)}</span>
+      </div>
+      <div class="slider-wrap">
+        <div class="slider-track-fill" id="sfill-${dk}" style="width:${pct}%;background:${relevant?'var(--text)':'var(--border2)'}"></div>
+        <input type="range" min="${d.min}" max="${d.max}" step="${d.step}" value="${val}" data-key="${dk}">
+      </div>
+      ${lnk ? `<div class="driver-links">${linksDesc}${lnk.note ? `<span title="${lnk.note}" style="cursor:help;margin-left:4px;color:var(--amber)">ⓘ</span>` : ''}</div>` : ''}
+    </div>
+  `;
+}
+
+function updateNetworkNodes() {
+  for (const [k, phenom] of Object.entries(PHENOMENA)) {
+    const val = state.phenomena[k];
+    const base = phenom.base;
+    const delta = val - base;
+    const color = (phenom.good * delta >= 0) ? 'var(--green)' : 'var(--red)';
+    const nv = document.getElementById(`nv-${k}`);
+    if (nv) nv.style.fill = color;
+    // Ring pulse on change
+    const nodeEl = document.getElementById(`node-${k}`);
+    if (nodeEl && Math.abs(delta) > 0.001) {
+      const ring = nodeEl.querySelector('.node-ring');
+      if (ring) {
+        ring.style.opacity = Math.min(.8, Math.abs(delta/base)*5 + .3);
+        ring.style.stroke = color;
+      }
+    }
+  }
+}
+
+function updateNetworkEdges() {
+  LINKS.forEach((lnk, i) => {
+    const dv = state.vars[lnk.from];
+    const base = DRIVERS[lnk.from]?.base || 0;
+    const active = Math.abs(dv - base) > 0.001;
+    const edgeEl = document.getElementById(`edge-${i}`);
+    if (!edgeEl) return;
+    if (state.showOnlyActive) {
+      edgeEl.style.display = active ? '' : 'none';
+      document.getElementById(`elabel-${i}`)?.style.setProperty('display', active?'':'none');
+    } else {
+      edgeEl.style.display = '';
+    }
+    if (active) {
+      edgeEl.style.opacity = '1';
+    }
+  });
+}
+
+function pulseLinksFrom(driverKey) {
+  LINKS.forEach((lnk, i) => {
+    if (lnk.from !== driverKey) return;
+    const glowEl = document.getElementById(`glow-${i}`);
+    if (!glowEl) return;
+    glowEl.style.opacity = '0.5';
+    setTimeout(() => { if(glowEl) glowEl.style.opacity = '0'; }, 600);
+  });
+}
+
+// ═══════════════════════════════════════════════════════
+// 6. VIRTAAVAT PARTIKKELIT
+// ═══════════════════════════════════════════════════════
+function startFlow() {
+  if (flowTimer) clearInterval(flowTimer);
+  flowTimer = setInterval(spawnParticle, 400);
+}
+
+function spawnParticle() {
+  if (!gNet) return;
+  // Valitaan satunnainen linkki painottaen aktiivisia
+  const activeLinks = LINKS.filter(lnk => {
+    const dv = state.vars[lnk.from];
+    const base = DRIVERS[lnk.from]?.base || dv;
+    return Math.abs(dv - base) > 0.001;
+  });
+  if (activeLinks.length === 0) return;
+  const lnk = activeLinks[Math.floor(Math.random() * activeLinks.length)];
+  const i = LINKS.indexOf(lnk);
+  const src = state.nodeById?.[lnk.from];
+  const tgt = state.nodeById?.[lnk.to];
+  if (!src || !tgt) return;
+
+  const color = lnk.weight > 0 ? 'var(--green)' : 'var(--red)';
+  const p = gNet.append('circle').attr('class','flow-particle')
+    .attr('r', 3).attr('fill', color).attr('opacity', .9);
+
+  const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+  path.setAttribute('d', cubicBezier(src, tgt));
+  const len = path.getTotalLength();
+
+  let t = 0;
+  const dur = 1200 + lnk.lag * 40;
+  const step = 16;
+  const timer = setInterval(() => {
+    t += step / dur;
+    if (t >= 1) { p.remove(); clearInterval(timer); return; }
+    const pt = path.getPointAtLength(t * len);
+    p.attr('cx', pt.x).attr('cy', pt.y).attr('opacity', 1 - t*.6);
+  }, step);
+}
+
+// ═══════════════════════════════════════════════════════
+// 7. DELTA OVERLAY
+// ═══════════════════════════════════════════════════════
+function updateDeltaOverlay() {
+  const anyChanged = Object.entries(DRIVERS).some(([k,d])=>state.vars[k]!==d.base);
+  const overlay = document.getElementById('delta-overlay');
+  if (!anyChanged) { overlay.style.display='none'; return; }
+  overlay.style.display = 'block';
+  let html = `<div style="font-family:var(--mono);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px">Muutos lähtötilanteesta</div>`;
+  for (const [k, phenom] of Object.entries(PHENOMENA)) {
+    const d = state.phenomena[k] - phenom.base;
+    const pct = (d / phenom.base * 100);
+    const isGood = phenom.good * d >= 0;
+    const col = isGood ? 'var(--green)' : 'var(--red)';
+    if (Math.abs(d) < 0.001) continue;
+    html += `<div class="delta-row">
+      <span style="color:var(--ink);font-family:var(--mono);font-size:10px">${phenom.short}</span>
+      <span style="font-family:var(--mono);font-size:10px">
+        <span style="color:var(--muted)">${formatPhenomVal(k,phenom.base)}</span>
+        <span style="color:var(--muted);margin:0 6px">→</span>
+        <span style="color:${col};font-weight:500">${formatPhenomVal(k,state.phenomena[k])}</span>
+        <span style="color:${col};margin-left:6px">${d>0?'+':''}${pct.toFixed(1)}%</span>
+      </span>
+    </div>`;
+  }
+  overlay.innerHTML = html;
+}
+
+// ═══════════════════════════════════════════════════════
+// 8. SKENAARIOT
+// ═══════════════════════════════════════════════════════
+function renderScenarios() {
+  const el = document.getElementById('scenario-list');
+  el.innerHTML = SCENARIOS.map((s,i) => `
+    <button class="scenario-btn" data-i="${i}">
+      <span class="sc-name">${s.name}</span>
+      <span class="sc-desc">${s.desc}</span>
+    </button>
+  `).join('');
+  el.querySelectorAll('.scenario-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const s = SCENARIOS[+btn.dataset.i];
+      applyScenario(s);
+      document.getElementById('scenario-status').textContent = `Skenaario: ${s.name}`;
+    });
+  });
+}
+
+function applyScenario(s) {
+  // Ensin nollaa
+  for (const [k,d] of Object.entries(DRIVERS)) state.vars[k] = d.base;
+  // Sitten muutokset
+  for (const [k,delta] of Object.entries(s.changes)) {
+    if (state.vars[k] !== undefined) state.vars[k] = DRIVERS[k].base + delta;
+  }
+  computePhenomenaFromDrivers();
+  renderPhenomenaPanel();
+  renderDrivers(state.activePhenom);
+  updateNetworkEdges();
+  updateDeltaOverlay();
+}
+
+function resetAll() {
+  for (const [k,d] of Object.entries(DRIVERS)) state.vars[k] = d.base;
+  computePhenomenaFromDrivers();
+  renderPhenomenaPanel();
+  renderDrivers(state.activePhenom);
+  updateNetworkEdges();
+  document.getElementById('delta-overlay').style.display = 'none';
+  document.getElementById('scenario-status').textContent = '';
+}
+
+// ═══════════════════════════════════════════════════════
+// 9. SELECTION (node/edge inspector)
+// ═══════════════════════════════════════════════════════
+function selectNode(n) {
+  const el = document.getElementById('selected-info');
+  const phenom = PHENOMENA[n.id];
+  const driver = DRIVERS[n.id];
+  if (phenom) {
+    const val = state.phenomena[n.id];
+    const d = val - phenom.base;
+    const links = LINKS.filter(l=>l.to===n.id);
+    el.innerHTML = `
+      <div class="insp-section-label">Ilmiö</div>
+      <div class="insp-title" style="color:${phenom.color}">${phenom.label}</div>
+      <div class="insp-sub">${phenom.unit}</div>
+      <div class="stat"><span class="k">Lähtöarvo (2024)</span><span class="v">${formatPhenomVal(n.id,phenom.base)}</span></div>
+      <div class="stat"><span class="k">Nykytila</span><span class="v" style="color:${phenom.good*d>=0?'var(--green)':'var(--red)'}">${formatPhenomVal(n.id,val)}</span></div>
+      <div class="stat"><span class="k">Muutos</span><span class="v" style="color:${phenom.good*d>=0?'var(--green)':'var(--red)'}">${d>0?'+':''}${(d/phenom.base*100).toFixed(1)}%</span></div>
+      <div class="stat"><span class="k">Vaikuttavia linkkejä</span><span class="v">${links.length}</span></div>
+      ${links.map(l=>`<div class="stat"><span class="k">${DRIVERS[l.from]?.label||l.from}</span><span class="v" style="color:${l.conf==='data'?'var(--data-color)':l.conf==='lit'?'var(--lit-color)':'var(--spec-color)'}">${l.weight>0?'+':''}${l.weight.toFixed(2)} / lag ${l.lag}v</span></div>`).join('')}
+    `;
+  } else if (driver) {
+    el.innerHTML = `
+      <div class="insp-section-label">Tekijä</div>
+      <div class="insp-title">${driver.label}</div>
+      <div class="stat"><span class="k">Perusarvo</span><span class="v">${driver.valFmt(driver.base)}</span></div>
+      <div class="stat"><span class="k">Nykytila</span><span class="v">${driver.valFmt(state.vars[n.id])}</span></div>
+      <div class="stat"><span class="k">Lähtee linkkeihin</span><span class="v">${LINKS.filter(l=>l.from===n.id).length}</span></div>
+    `;
+  }
+}
+
+function selectLink(lnk, i) {
+  const el = document.getElementById('selected-info');
+  const confLabel = lnk.conf==='data'?'DATA':lnk.conf==='lit'?'KIRJALLISUUS':'SPEKULATIIVINEN';
+  const confColor = lnk.conf==='data'?'var(--data-color)':lnk.conf==='lit'?'var(--lit-color)':'var(--spec-color)';
+  const riskLevel = lnk.conf==='data'&&lnk.n>=15&&Math.abs(lnk.r||0)>=0.3 ? 'low' :
+                    lnk.conf==='data'&&lnk.n>=8 ? 'medium' : 'high';
+  el.innerHTML = `
+    <div class="insp-section-label">Linkki</div>
+    <div class="insp-title">${DRIVERS[lnk.from]?.label||lnk.from} → ${PHENOMENA[lnk.to]?.label||lnk.to}</div>
+    <div class="insp-sub">Luottamustaso: <span style="color:${confColor}">${confLabel}</span></div>
+    <div class="stat"><span class="k">Paino</span><span class="v">${lnk.weight>0?'+':''}${lnk.weight.toFixed(2)}</span></div>
+    <div class="stat"><span class="k">Viive</span><span class="v">${lnk.lag} vuotta</span></div>
+    ${lnk.r!=null?`<div class="stat"><span class="k">Datasta r</span><span class="v">${lnk.r.toFixed(2)} (n=${lnk.n})</span></div>`:''}
+    ${lnk.lit_src?`<div class="stat"><span class="k">Kirjallisuus</span><span class="v" style="font-size:9px;color:var(--muted)">${lnk.lit_src}</span></div>`:''}
+    <div class="risk-block risk-${riskLevel}" style="margin-top:10px;font-size:10px">${lnk.note || 'Ei lisätietoja.'}</div>
+    ${riskLevel==='high'?`<div class="risk-block risk-high" style="margin-top:6px;font-size:10px">⚠ Tämä linkki on spekulatiivinen. Älä tee päätöksiä sen perusteella.</div>`:''}
+  `;
+}
+
+function renderRightContent() {
+  // Skenaariot ja legenda ovat jo renderoitu
+  // Valittu solmu/linkki -osio päivittyy on-click
+}
+
+// Window resize
+window.addEventListener('resize', () => {
+  if (state.master && state.ttt) {
+    buildNetwork();
+  }
+});
+</script>
+</body>
+</html>
