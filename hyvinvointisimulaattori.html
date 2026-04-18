@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyvinvointisimulaattori — systeemianalyysi (standalone)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,300&family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+:root{
+  --bg:#f7f3ec;--surface:#ffffff;--surface2:#fbf8f1;--ink:#18140f;--muted:#7a7268;
+  --rule:#d8d0c4;--soft:#ede8de;
+  --data:#b83a25;--hypo:#5b3a8a;--user:#c47a00;
+  --pos:#2c7a4e;--neg:#b83a25;--neut:#5b6eb8;
+  --glow-pos:rgba(44,122,78,.55);--glow-neg:rgba(184,58,37,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:13px}
+body{display:grid;grid-template-rows:auto auto auto 1fr auto;min-height:100vh}
+
+header{
+  padding:10px 22px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;
+  border-bottom:2px solid var(--ink);background:var(--ink);color:var(--bg);
+}
+header h1{font-family:'Fraunces',serif;font-weight:800;font-size:19px;letter-spacing:-0.03em}
+header h1 em{font-style:italic;font-weight:300;color:rgba(247,243,236,.55)}
+.header-right{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pill{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.12em;
+  padding:3px 8px;border:1px solid rgba(247,243,236,.35);color:rgba(247,243,236,.7);background:transparent}
+.pill.live{border-color:#2c7a4e;color:#7ecaa7}
+.pill.btn{cursor:pointer;transition:all .15s}
+.pill.btn:hover{background:rgba(247,243,236,.1);color:var(--bg)}
+.pill.warn{border-color:#9a6c00;color:#d4a042}
+
+.ep-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-bottom:1px solid var(--rule);
+  font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--surface);
+}
+.ep-cell{padding:6px 14px;display:flex;align-items:center;gap:8px}
+.ep-cell+.ep-cell{border-left:1px solid var(--rule)}
+.ep-swatch{width:28px;height:3px;flex-shrink:0;border-radius:1px}
+.ep-data{background:var(--data)}
+.ep-hypo{background:repeating-linear-gradient(90deg,var(--hypo) 0,var(--hypo) 4px,transparent 4px,transparent 8px)}
+.ep-user{background:repeating-linear-gradient(90deg,var(--user) 0,var(--user) 3px,transparent 3px,transparent 6px)}
+.ep-chain{background:repeating-linear-gradient(90deg,var(--neut) 0,var(--neut) 5px,transparent 5px,transparent 9px)}
+.ep-text{color:var(--muted);line-height:1.3}
+
+.phenomena-bar{
+  border-bottom:1px solid var(--rule);background:var(--surface);
+  padding:0;display:flex;align-items:stretch;gap:0;overflow-x:auto;flex-shrink:0;
+}
+.phen-item{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:9px 18px;min-width:170px;border-right:1px solid var(--rule);
+  position:relative;cursor:pointer;transition:background .15s;
+}
+.phen-item:hover{background:var(--soft)}
+.phen-item.active{background:var(--soft);box-shadow:inset 0 -3px 0 var(--ink)}
+.phen-name{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px}
+.phen-value{font-family:'Fraunces',serif;font-weight:600;font-size:18px;display:flex;align-items:baseline;gap:6px;line-height:1.1}
+.phen-unit{font-size:10px;font-family:'JetBrains Mono',monospace;font-weight:400;color:var(--muted)}
+.phen-delta{font-family:'JetBrains Mono',monospace;font-size:10px;padding:1px 5px;font-weight:500}
+.phen-bar{position:absolute;bottom:0;left:0;right:0;height:3px;transition:transform .35s ease,background .35s;transform-origin:left}
+.phen-crit{position:absolute;top:6px;right:8px;font-size:10px;color:var(--neg);font-weight:700}
+
+.workspace{display:grid;grid-template-columns:320px 1fr 340px;overflow:hidden;min-height:0}
+
+.left-panel,.right-panel{background:var(--surface);display:flex;flex-direction:column;overflow:hidden}
+.left-panel{border-right:1px solid var(--rule)}
+.right-panel{border-left:1px solid var(--rule)}
+.panel-head{
+  padding:11px 16px;border-bottom:1px solid var(--rule);
+  font-family:'Fraunces',serif;font-weight:600;font-size:14px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.panel-head .sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:400}
+
+.scenario-select-wrap{padding:11px 16px;border-bottom:1px solid var(--rule);display:flex;flex-direction:column;gap:6px}
+.scenario-select-wrap select{
+  font-family:'DM Sans',sans-serif;font-size:13px;padding:7px 10px;border:1px solid var(--rule);
+  background:var(--bg);width:100%;appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a7268'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;
+}
+.scenario-desc{font-size:11px;color:var(--muted);line-height:1.4;padding-top:2px}
+
+/* TIME SLIDER */
+.time-control{padding:11px 16px;border-bottom:1px solid var(--rule);background:var(--surface2)}
+.time-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.time-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-family:'JetBrains Mono',monospace}
+.time-year{font-family:'Fraunces',serif;font-weight:700;font-size:18px;color:var(--ink)}
+.time-year .delta{font-size:11px;color:var(--hypo);font-family:'JetBrains Mono',monospace;font-weight:400;margin-left:4px}
+.time-slider-wrap{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;
+  font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted)}
+.time-hint{font-size:10px;color:var(--muted);margin-top:6px;line-height:1.3;font-style:italic}
+
+.sliders-wrap{flex:1;overflow-y:auto;padding:0}
+.lever-group{border-bottom:1px solid var(--rule);padding:13px 16px;cursor:default;transition:background .15s}
+.lever-group.highlight{background:rgba(91,58,138,.05)}
+.lever-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.lever-name{font-size:13px;font-weight:500}
+.lever-readout{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+.lever-baseline{font-size:10px;color:var(--muted);margin-bottom:6px}
+.lever-track{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;
+  font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted)}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:4px;
+  background:var(--rule);outline:none;cursor:pointer;border-radius:2px;
+}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:16px;height:16px;border-radius:50%;
+  background:var(--ink);border:2px solid var(--bg);box-shadow:0 0 0 2px var(--ink);
+  cursor:grab;transition:transform .1s;
+}
+input[type=range]::-webkit-slider-thumb:active{transform:scale(1.3);cursor:grabbing}
+input[type=range].pos::-webkit-slider-thumb{background:var(--pos);box-shadow:0 0 0 2px var(--pos)}
+input[type=range].neg::-webkit-slider-thumb{background:var(--neg);box-shadow:0 0 0 2px var(--neg)}
+.lever-delta{text-align:center;font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:4px;color:var(--muted)}
+.lever-delta b{color:var(--ink);font-weight:700}
+
+.lever-impacts{margin-top:8px;display:flex;flex-direction:column;gap:3px}
+.lever-impact-row{
+  display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center;
+  font-size:11px;padding:3px 6px;background:var(--soft);border-radius:2px;
+}
+.impact-target{color:var(--ink)}
+.impact-conf{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.impact-val{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;min-width:46px;text-align:right}
+.impact-val.pos{color:var(--pos)}.impact-val.neg{color:var(--neg)}.impact-val.zero{color:var(--muted)}
+
+.reset-btn{
+  margin:10px 16px 4px;padding:8px;width:calc(100% - 32px);background:none;border:1px solid var(--rule);
+  font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.1em;
+  cursor:pointer;color:var(--muted);transition:all .15s;
+}
+.reset-btn:hover{background:var(--soft);color:var(--ink);border-color:var(--ink)}
+.reset-btn.primary{margin-top:4px;background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.reset-btn.primary:hover{background:#3a3530;color:var(--bg)}
+
+.canvas-wrap{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(1200px 800px at 60% 30%, rgba(208,180,140,.08) 0%, rgba(15,10,5,0) 55%),
+    radial-gradient(900px 700px at 30% 80%, rgba(239,71,111,.05) 0%, rgba(15,10,5,0) 60%),
+    radial-gradient(800px 600px at 80% 75%, rgba(6,214,160,.05) 0%, rgba(15,10,5,0) 60%),
+    radial-gradient(circle, rgba(208,180,140,.045) 1px, transparent 1px) 0 0 / 28px 28px,
+    #050505;
+}
+.canvas-wrap .vignette{
+  pointer-events:none;position:absolute;inset:0;
+  background:
+    radial-gradient(1200px 800px at 60% 35%, rgba(0,0,0,0) 40%, rgba(0,0,0,.45) 100%),
+    radial-gradient(900px 700px at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,.35) 100%);
+  mix-blend-mode:multiply;
+}
+/* Tumman canvasin sisäiset säätimet */
+.canvas-wrap .ctb{background:rgba(20,16,10,.78);border-color:rgba(208,180,140,.35);color:#d0b48c}
+.canvas-wrap .ctb:hover{background:rgba(208,180,140,.18);color:#fdf3df}
+.canvas-wrap .ctb.on{background:#d0b48c;color:#050505;border-color:#d0b48c}
+.canvas-wrap .system-pressure{
+  background:rgba(20,16,10,.78);border-color:rgba(208,180,140,.35);color:#d0b48c;
+}
+.canvas-wrap .system-pressure.moderate{color:#ffd166;border-color:#ffd166}
+.canvas-wrap .system-pressure.critical{color:#ef476f;border-color:#ef476f;background:rgba(239,71,111,.08)}
+.canvas-wrap .canvas-empty p{color:#d0b48c}
+/* Solmut tummalla taustalla */
+.canvas-wrap .node-shell circle.bg{fill:#0d0a06;stroke:rgba(208,180,140,.45)}
+.canvas-wrap .node-shell.lever circle.bg{stroke:#d0b48c}
+.canvas-wrap .node-shell.selected circle.bg{stroke:#fdf3df;stroke-width:3}
+.canvas-wrap .node-shell text.lbl{fill:#fdf3df}
+.canvas-wrap .node-shell text.val{fill:rgba(208,180,140,.7)}
+#sim-canvas{width:100%;height:100%;display:block}
+.canvas-toolbar{position:absolute;top:12px;left:12px;z-index:10;display:flex;gap:6px;flex-wrap:wrap}
+.ctb{
+  padding:5px 10px;background:var(--surface);border:1px solid var(--rule);
+  font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.07em;
+  cursor:pointer;color:var(--ink);transition:all .15s;
+}
+.ctb:hover{background:var(--soft)}
+.ctb.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+
+.system-pressure{
+  position:absolute;top:12px;right:12px;z-index:10;
+  background:var(--surface);border:1px solid var(--rule);padding:6px 12px;
+  font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.08em;
+  display:flex;align-items:center;gap:8px;color:var(--muted);
+}
+.system-pressure.moderate{color:#9a6c00;border-color:#d4a042}
+.system-pressure.critical{color:var(--neg);border-color:var(--neg);background:rgba(184,58,37,.05);
+  animation:pulse-border 1.6s ease-in-out infinite}
+@keyframes pulse-border{0%,100%{box-shadow:0 0 0 0 transparent}50%{box-shadow:0 0 12px 2px rgba(184,58,37,.25)}}
+
+/* SVG */
+.node-shell{cursor:pointer}
+.node-shell circle.bg{fill:var(--surface);stroke:var(--rule);stroke-width:1.5;transition:all .25s}
+.node-shell circle.aura{fill:none;stroke-width:2;opacity:0;transition:opacity .3s}
+.node-shell circle.ring{fill:none;stroke-width:2.5;opacity:.85}
+.node-shell.lever circle.bg{stroke-width:2.5;stroke:var(--ink)}
+.node-shell.outcome circle.ring{stroke-dasharray:5,3}
+.node-shell.selected circle.bg{stroke:var(--ink);stroke-width:3}
+.node-shell.in-path circle.aura{opacity:1}
+.node-shell text.lbl{
+  font-family:'DM Sans',sans-serif;font-size:10px;fill:var(--ink);text-anchor:middle;
+  pointer-events:none;dominant-baseline:middle;font-weight:500;
+}
+.node-shell text.val{
+  font-family:'JetBrains Mono',monospace;font-size:9px;fill:var(--muted);
+  text-anchor:middle;pointer-events:none;
+}
+.node-shell text.delta{
+  font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
+  text-anchor:middle;pointer-events:none;
+}
+
+.edge{cursor:pointer;transition:opacity .2s,stroke-width .2s}
+.edge-data{fill:none}
+.edge-hypo{fill:none;stroke-dasharray:7,5}
+.edge-user{fill:none;stroke-dasharray:3,4}
+.edge-chain{fill:none;stroke-dasharray:8,4}
+.edge.dim{opacity:.18}
+.edge.in-path{opacity:1}
+.edge-glow{fill:none;opacity:0;pointer-events:none;transition:opacity .25s}
+.edge-glow.on{opacity:.4}
+
+.canvas-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.canvas-empty p{font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:var(--muted);text-align:center;max-width:320px;line-height:1.4}
+
+/* RIGHT PANEL */
+.right-panel .tabs{display:flex;border-bottom:1px solid var(--rule);background:var(--surface2)}
+.right-panel .tab{
+  flex:1;padding:9px 6px;font-family:'JetBrains Mono',monospace;font-size:10px;
+  text-transform:uppercase;letter-spacing:.08em;cursor:pointer;text-align:center;
+  background:transparent;border:none;border-right:1px solid var(--rule);color:var(--muted);
+}
+.right-panel .tab:last-child{border-right:none}
+.right-panel .tab.on{background:var(--surface);color:var(--ink);box-shadow:inset 0 -2px 0 var(--ink)}
+
+.tab-body{flex:1;overflow-y:auto}
+.insp-empty{padding:32px 16px;text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--muted);line-height:1.5}
+.insp-node-name{padding:14px 16px;border-bottom:1px solid var(--rule);font-family:'Fraunces',serif;font-weight:600;font-size:15px;line-height:1.3}
+.insp-node-name .sub{font-size:10px;font-weight:400;font-style:normal;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-top:3px;letter-spacing:.04em}
+.insp-section{padding:13px 16px;border-bottom:1px solid var(--rule)}
+.insp-section h4{font-family:'Fraunces',serif;font-weight:600;font-size:12px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.badge{font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.08em;padding:2px 6px;border:1px solid currentColor;font-weight:400}
+.badge.data{color:var(--data)}.badge.hypo{color:var(--hypo)}.badge.user{color:var(--user)}.badge.chain{color:var(--neut)}
+.stat-row{display:grid;grid-template-columns:110px 1fr;gap:6px;padding:3px 0;font-size:11px;line-height:1.4}
+.stat-row .k{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.04em}
+.stat-row .v{font-weight:500;font-variant-numeric:tabular-nums}
+.warn-block{background:rgba(184,58,37,.07);border-left:3px solid var(--neg);padding:8px 10px;margin-top:8px;font-size:11px;line-height:1.4}
+.ok-block{background:rgba(44,122,78,.07);border-left:3px solid var(--pos);padding:8px 10px;margin-top:8px;font-size:11px;line-height:1.4}
+.info-block{background:rgba(91,58,138,.06);border-left:3px solid var(--hypo);padding:8px 10px;margin-top:8px;font-size:11px;line-height:1.4;color:var(--hypo)}
+.mini-chart{margin-top:10px;background:var(--bg);padding:10px;border:1px solid var(--rule)}
+.mini-chart canvas{max-height:140px}
+
+.howto-content{padding:14px 16px;font-size:12px;line-height:1.55;color:var(--ink)}
+.howto-content h4{font-family:'Fraunces',serif;font-size:14px;margin:14px 0 6px;color:var(--ink)}
+.howto-content h4:first-child{margin-top:0}
+.howto-content p{margin-bottom:8px;color:#3a342b}
+.howto-content code{font-family:'JetBrains Mono',monospace;font-size:11px;background:var(--soft);padding:1px 5px}
+.howto-content .formula{background:var(--surface2);border:1px solid var(--rule);padding:10px 12px;margin:10px 0;font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.6}
+
+footer{
+  border-top:1px solid var(--rule);padding:5px 16px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);
+  background:var(--surface);flex-shrink:0;gap:16px;
+}
+footer .right{display:flex;gap:14px;align-items:center}
+
+/* HOW-TO MODAL */
+.modal-bd{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-bd.show{display:flex}
+.modal{background:var(--surface);border:2px solid var(--ink);max-width:680px;width:100%;max-height:85vh;overflow-y:auto;padding:28px 32px}
+.modal h2{font-family:'Fraunces',serif;font-size:22px;margin-bottom:14px}
+.modal p{font-size:13px;line-height:1.6;color:#2a2620;margin-bottom:10px}
+.modal h3{font-family:'Fraunces',serif;font-size:15px;margin:18px 0 6px}
+.modal .formula{background:var(--surface2);border:1px solid var(--rule);padding:12px 14px;margin:10px 0;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.7}
+.modal .close-btn{margin-top:18px;padding:9px 18px;background:var(--ink);color:var(--bg);border:none;
+  font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;cursor:pointer}
+.modal .close-btn:hover{background:#3a3530}
+
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--rule);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Hyvinvointi<em>simulaattori</em> — systeemianalyysi</h1>
+  </div>
+  <div class="header-right">
+    <span class="pill" id="data-pill">35 vuotta · 30+ muuttujaa</span>
+    <span class="pill live">● standalone</span>
+    <button class="pill btn warn" id="btn-howto">⚠ Miten tämä toimii</button>
+  </div>
+</header>
+
+<div class="ep-strip">
+  <div class="ep-cell"><span class="ep-swatch ep-data"></span><span class="ep-text"><strong>Havaittu</strong> · muutoskorrelaatio Suomen datasta 1990–2024</span></div>
+  <div class="ep-cell"><span class="ep-swatch ep-hypo"></span><span class="ep-text"><strong>Teoreettinen</strong> · paino kirjallisuudesta; sliderit käyttävät tätä</span></div>
+  <div class="ep-cell"><span class="ep-swatch ep-chain"></span><span class="ep-text"><strong>Ilmiöketju</strong> · ilmiö → ilmiö, vaimennettu (×0.55)</span></div>
+  <div class="ep-cell"><span class="ep-swatch ep-user"></span><span class="ep-text"><strong>Käyttäjähypoteesi</strong> · oma lisäys, ei datapohjaa</span></div>
+</div>
+
+<div class="phenomena-bar" id="phenomena-bar"></div>
+
+<div class="workspace">
+  <div class="left-panel">
+    <div class="panel-head"><span>Skenaario &amp; vivut</span><span class="sub">säädä → katso virtaus</span></div>
+    <div class="scenario-select-wrap">
+      <select id="scenario-select">
+        <option value="syntyvyys">Syntyvyyden lasku</option>
+        <option value="nuorten_mt">Nuorten syrjäytyminen (NEET)</option>
+        <option value="lastensuojelu">Lastensuojelun paine</option>
+        <option value="koulutus">Koulutuspolun eriytyminen</option>
+        <option value="talous">Julkinen talous</option>
+        <option value="lama">Lama-skenaario (1990-tyyli)</option>
+        <option value="panostus">Panostus lapsipalveluihin</option>
+      </select>
+      <div class="scenario-desc" id="scenario-desc"></div>
+    </div>
+    <div class="time-control">
+      <div class="time-head">
+        <span class="time-label">Aikahorisontti</span>
+        <span class="time-year" id="time-year">+0v <span class="delta" id="time-delta">heti</span></span>
+      </div>
+      <div class="time-slider-wrap">
+        <span>0v</span>
+        <input type="range" min="0" max="12" step="1" value="0" id="time-slider">
+        <span>+12v</span>
+      </div>
+      <div class="time-hint">Lagit propagoituvat: lyhyellä viiveellä näkyvät nopeat vaikutukset, pitkällä viiveellä koulutus &amp; rakenteelliset.</div>
+    </div>
+    <div class="sliders-wrap" id="sliders-wrap"></div>
+    <button class="reset-btn" id="reset-btn">Nollaa kaikki vivut</button>
+    <button class="reset-btn primary" id="export-btn">⬇ Vie skenaario JSON</button>
+  </div>
+
+  <div class="canvas-wrap">
+    <div class="canvas-toolbar">
+      <button class="ctb on" id="btn-flow">▶ Virtaus</button>
+      <button class="ctb on" id="btn-chains">Ilmiöketjut</button>
+      <button class="ctb" id="btn-active">Vain aktiiviset</button>
+    </div>
+    <div class="system-pressure calm" id="sys-pressure">Järjestelmäpaine 0.00</div>
+    <svg id="sim-canvas"></svg>
+    <div class="vignette"></div>
+    <div class="canvas-empty" id="canvas-empty" style="display:none"><p>Valitse skenaario vasemmalta</p></div>
+  </div>
+
+  <div class="right-panel">
+    <div class="tabs">
+      <button class="tab on" data-tab="inspect">Tarkastelu</button>
+      <button class="tab" data-tab="howto">Menetelmä</button>
+    </div>
+    <div class="tab-body" id="tab-inspect">
+      <div class="insp-empty">Klikkaa solmua tai linkkiä<br>nähdäksesi yksityiskohdat,<br>lähteet ja aikasarjat.</div>
+    </div>
+    <div class="tab-body" id="tab-howto" style="display:none">
+      <div class="howto-content">
+        <h4>Mitä tämä simulaattori tekee?</h4>
+        <p>Säädät tekijää (esim. työttömyys) → simulaattori propagoi muutoksen verkossa <em>teoreettisten painojen</em> kautta ilmiöihin (TFR, NEET, sijoitukset…). Tulokset eivät ole ennusteita vaan rakenteellisia hypoteeseja.</p>
+
+        <h4>Laskentakaava</h4>
+        <p>Jokaiselle ilmiölle <code>P</code>:</p>
+        <div class="formula">P = P_base + Σ ( w_link × ΔX_norm × |P_base| ) × time_factor(lag, t)</div>
+        <p>missä <code>ΔX_norm = (X − X_base) / range(X)</code> on normalisoitu sliderimuutos ja <code>w_link</code> on kirjallisuuspaino linkille X→P.</p>
+
+        <h4>Aikadimensio</h4>
+        <p>Yläoikealla on aikahorisontti-liukusäädin (0–12v). Kun vedät sen oikealle, vaikutus painottuu lagin mukaan: linkki jonka <code>lag=5</code> alkaa vaikuttaa täydellä painollaan vasta vuosien <code>t≥5</code> tienoilla. Lyhyellä horisontilla näet vain nopeat reaktiot.</p>
+
+        <h4>Ilmiöketjut</h4>
+        <p>Ilmiö → ilmiö -linkit (esim. NEET → julkinen talous) lasketaan toisella iteraatiolla, vaimennettuna kertoimella <code>0.55</code>. Tämä mallintaa kumuloituvaa painetta järjestelmässä.</p>
+
+        <h4>Mitä simulaattori EI ole</h4>
+        <p>• Ei kausaalimalli — painot ovat assosiaatioita ja kirjallisuusarvioita.<br>
+        • Ei ennustemalli — tulkitse tuloksia hypoteeseina, ei skenaarioennusteina.<br>
+        • Painot ovat lineaarisia — todelliset vaikutukset voivat olla epälineaarisia, kynnysarvoisia tai polkuriippuvaisia.</p>
+
+        <h4>Episteeminen koodaus</h4>
+        <p><strong style="color:var(--data)">Punainen yhtenäinen</strong> = havaittu muutoskorrelaatio Suomen datasta 1990–2024 (Pearson r, n näkyvissä).<br>
+        <strong style="color:var(--hypo)">Violetti katkoviiva</strong> = teoreettinen kirjallisuuspaino. Sliderit käyttävät tätä.<br>
+        <strong style="color:var(--neut)">Sininen pitkä katko</strong> = ilmiö→ilmiö-ketju (kaksinkertainen epävarmuus).<br>
+        <strong style="color:var(--user)">Oranssi katko</strong> = käyttäjän lisäämä hypoteesi (ei datapohjaa).</p>
+
+        <h4>Mittakaava</h4>
+        <p>Aktiivinen vaikutus näkyy ilmiöpaneelissa <em>absoluuttisena</em> (esim. <code>+0.05 lasta/nainen</code>) ja prosenttina baseline-arvosta. Solmuissa näkyy delta lähellä lukemaa.</p>
+
+        <h4>Vaikutusketjun visualisointi</h4>
+        <p>Kun vedät sliderin, sen lähtösolmu hehkuu, polut kohti ilmiöitä syttyvät, ja virtaavat partikkelit kulkevat polkuja pitkin. Värin ja suunnan voit lukea suoraan: vihreä = parantava, punainen = heikentävä (ilmiön etumerkin mukaan).</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span id="ft-status">Valmis · Suomi 1990–2024 · embedded</span>
+  <div class="right">
+    <span>Avoin lähdekoodi · MIT</span>
+    <span id="ft-mode">Valintatila</span>
+  </div>
+</footer>
+
+<div class="modal-bd" id="modal-howto">
+  <div class="modal">
+    <h2>Menetelmällinen varoitus &amp; lukuohje</h2>
+    <p><strong>Tämä on hypoteesigeneraattori, ei ennustemalli.</strong> Se on rakennettu erottamaan kaksi episteemistä tasoa: havaittu (data) ja teoreettinen (kirjallisuus + arviot). Kaikki sliderilaskelmat käyttävät teoreettisia painoja — niiden arvo on havainnollistava.</p>
+    <h3>Miten luet tuloksia</h3>
+    <p>1. <strong>Skenaario</strong> avaa keskellä verkon: solmut = muuttujat, viivat = yhteydet. Värikoodi: punainen yhtenäinen = data, violetti katko = teoria.</p>
+    <p>2. <strong>Sliderit</strong> säätävät tekijöitä. Vaikutus propagoituu lineaarisesti painojen mukaan. Lähtösolmu hehkuu ja polut syttyvät.</p>
+    <p>3. <strong>Aikahorisontti</strong> (vasemmalla) painottaa lagia: lyhyellä horisontilla vain nopeat vaikutukset, pitkällä myös rakenteelliset.</p>
+    <p>4. <strong>Ilmiöpaneeli</strong> ylhäällä näyttää absoluuttisen ja suhteellisen muutoksen kullekin ilmiölle.</p>
+    <p>5. <strong>Klikkaa linkki</strong> oikeaan paneeliin tulee painon alkuperä, korrelaatio, luottamusväli ja lähde.</p>
+    <h3>Kaava</h3>
+    <div class="formula">ΔP = Σ_links ( w · (ΔX / range_X) · |P_base| ) · timeFactor(lag, t)<br><br>timeFactor(lag, t) = clamp01(1 − |lag − t| / max(lag, 3))</div>
+    <p>Lyhyesti: vaikutus on suurin kun aikahorisontti vastaa linkin lagia. Negatiiviset painot kääntävät etumerkin.</p>
+    <h3>Mitä EI saa tehdä</h3>
+    <p>• Käyttää lukuja ennusteina yksittäisten henkilöiden tai vuosien tasolla.<br>
+    • Tulkita slider-vastetta kausaalivaikutuksena — kyseessä on assosiaatiomalli.<br>
+    • Unohtaa lagit — pitkä horisontti sisältää enemmän epävarmuutta.</p>
+    <button class="close-btn" id="close-howto">Ymmärrän rajoitukset</button>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// EMBEDDED DATA — Suomi 1990–2024 (lähde: finland_public_finance_master_v14)
+// ═══════════════════════════════════════════════════════════════════
+const EMBEDDED = {"1990":{"tfr":1.78,"birth_rate":13.1,"age_65_share":13.5,"demo_dependency":48.6,"gini_disposable":20.9,"gini_market_income":40.5,"unemployment_rate":5.7,"empl_rate_25_34":81.4,"sijoitettu_0_17_pct":8.6,"sijoitettu_13_17_pct":0.7,"sijoitettu_0_6_pct":0.3,"huostassa_13_17_pct":0.6,"huostassa_7_12_pct":0.5,"suicides_per100k":27.5,"psych_rehab":0.2,"gdp_meur":90964,"bkt_muutos":0.7,"edp_debt_gdp":13.8,"expenditure_gdp":57.2,"revenue_gdp":62.5,"percap_paivahoito":3850.9,"percap_perusopetus":2313.1,"percap_lastensuojelu":142.4,"percap_nuoriso":111.2,"percap_kirjasto":30.3,"percap_liikunta":85.8,"percap_erikoissairaanhoito":103.2,"percap_perusterveydenhuolto":406.4,"percap_iakkaat":1060.9,"percap_mielenterveys":8.0},"1991":{"tfr":1.79,"birth_rate":13,"age_65_share":13.6,"demo_dependency":48.8,"gini_disposable":20.7,"gini_market_income":41.5,"unemployment_rate":12.1,"empl_rate_25_34":74.5,"sijoitettu_0_17_pct":8.7,"sijoitettu_13_17_pct":1,"sijoitettu_0_6_pct":0.5,"huostassa_13_17_pct":0.8,"huostassa_7_12_pct":0.5,"suicides_per100k":26.8,"psych_rehab":0.7,"gdp_meur":86913,"bkt_muutos":-5.9,"edp_debt_gdp":21.9,"expenditure_gdp":70.1,"revenue_gdp":69.2,"percap_paivahoito":4121.3,"percap_perusopetus":2317.7,"percap_lastensuojelu":154.5,"percap_nuoriso":115.4,"percap_kirjasto":30.1,"percap_liikunta":87.6,"percap_erikoissairaanhoito":105.9,"percap_perusterveydenhuolto":433.3,"percap_iakkaat":1117.5,"percap_mielenterveys":7.7},"1992":{"tfr":1.85,"birth_rate":13.2,"age_65_share":13.8,"demo_dependency":49,"family_with_child_pct":47.1,"single_household_pct":33.5,"gini_disposable":20.5,"gini_market_income":44.6,"unemployment_rate":18,"empl_rate_25_34":68.5,"sijoitettu_0_17_pct":9.8,"sijoitettu_13_17_pct":1,"sijoitettu_0_6_pct":0.5,"huostassa_13_17_pct":0.8,"huostassa_7_12_pct":0.6,"suicides_per100k":26,"psych_rehab":1.1,"gdp_meur":84786,"bkt_muutos":-3.3,"edp_debt_gdp":39.2,"expenditure_gdp":76.5,"revenue_gdp":71.1,"percap_paivahoito":3843.5,"percap_perusopetus":2206.7,"percap_lastensuojelu":148.4,"percap_nuoriso":108.4,"percap_kirjasto":24.6,"percap_liikunta":82.1,"percap_erikoissairaanhoito":104.3,"percap_perusterveydenhuolto":418.5,"percap_iakkaat":1055.6,"percap_mielenterveys":7.0},"1993":{"tfr":1.81,"birth_rate":12.8,"age_65_share":13.9,"demo_dependency":49.2,"family_with_child_pct":47,"single_household_pct":34.2,"gini_disposable":21.3,"gini_market_income":47.7,"unemployment_rate":22.2,"empl_rate_25_34":63.3,"sijoitettu_0_17_pct":10.2,"sijoitettu_13_17_pct":1,"sijoitettu_0_6_pct":0.5,"huostassa_13_17_pct":0.8,"huostassa_7_12_pct":0.6,"suicides_per100k":24.7,"psych_rehab":1.4,"gdp_meur":85610,"bkt_muutos":-0.8,"edp_debt_gdp":54.2,"expenditure_gdp":81.9,"revenue_gdp":74,"percap_paivahoito":5246.1,"percap_perusopetus":5766.3,"percap_lastensuojelu":307.9,"percap_nuoriso":127.6,"percap_kirjasto":61.0,"percap_liikunta":86.8,"percap_erikoissairaanhoito":713.5,"percap_perusterveydenhuolto":425.2,"percap_iakkaat":1744.2,"percap_mielenterveys":17.4},"1994":{"tfr":1.85,"birth_rate":12.8,"age_65_share":14.1,"demo_dependency":49.5,"family_with_child_pct":46.7,"single_household_pct":34.9,"gini_disposable":21.3,"gini_market_income":48.7,"unemployment_rate":20.4,"empl_rate_25_34":64.8,"sijoitettu_0_17_pct":9.8,"sijoitettu_13_17_pct":1,"sijoitettu_0_6_pct":0.5,"huostassa_13_17_pct":0.8,"huostassa_7_12_pct":0.6,"suicides_per100k":24.9,"psych_rehab":1.6,"gdp_meur":90646,"bkt_muutos":4,"edp_debt_gdp":56.2,"expenditure_gdp":81.3,"revenue_gdp":74.9,"percap_paivahoito":5018.3,"percap_perusopetus":5688.3,"percap_lastensuojelu":306.8,"percap_nuoriso":121.1,"percap_kirjasto":58.5,"percap_liikunta":84.8,"percap_erikoissairaanhoito":667.6,"percap_perusterveydenhuolto":422.1,"percap_iakkaat":2377.8,"percap_mielenterveys":18.1},"1995":{"tfr":1.81,"birth_rate":12.3,"age_65_share":14.3,"demo_dependency":49.8,"family_with_child_pct":46.2,"single_household_pct":35.7,"gini_disposable":22.2,"gini_market_income":48.8,"income_median":20598,"unemployment_rate":19.8,"empl_rate_25_34":65.5,"sijoitettu_0_17_pct":9.2,"sijoitettu_13_17_pct":1.1,"sijoitettu_0_6_pct":0.5,"huostassa_13_17_pct":0.8,"huostassa_7_12_pct":0.6,"erityistuki_yht_pct":2.9,"suicides_per100k":24.5,"psych_rehab":1.4,"gdp_meur":98454,"bkt_muutos":4.2,"edp_debt_gdp":55.2,"expenditure_gdp":78.6,"revenue_gdp":72.8,"percap_paivahoito":4929.7,"percap_perusopetus":5722.6,"percap_lastensuojelu":317.1,"percap_nuoriso":134.8,"percap_kirjasto":57.5,"percap_liikunta":83.5,"percap_erikoissairaanhoito":666.2,"percap_perusterveydenhuolto":415.4,"percap_iakkaat":2443.0,"percap_mielenterveys":17.8},"1996":{"tfr":1.76,"birth_rate":11.8,"age_65_share":14.5,"demo_dependency":50,"family_with_child_pct":45.8,"single_household_pct":36.1,"gini_disposable":22.6,"gini_market_income":48.6,"income_median":20944,"unemployment_rate":19.4,"empl_rate_25_34":66.9,"sijoitettu_0_17_pct":8.4,"sijoitettu_13_17_pct":1.1,"sijoitettu_0_6_pct":0.5,"huostassa_13_17_pct":0.8,"huostassa_7_12_pct":0.6,"erityistuki_yht_pct":3,"suicides_per100k":21.9,"psych_rehab":1.7,"gdp_meur":101977,"bkt_muutos":3.7,"edp_debt_gdp":55.4,"expenditure_gdp":75.3,"revenue_gdp":72.1,"percap_paivahoito":4764.9,"percap_perusopetus":5908.2,"percap_lastensuojelu":335.3,"percap_nuoriso":153.8,"percap_kirjasto":58.6,"percap_liikunta":86.0,"percap_erikoissairaanhoito":711.8,"percap_perusterveydenhuolto":436.2,"percap_iakkaat":1994.0,"percap_mielenterveys":19.2},"1997":{"tfr":1.75,"birth_rate":11.5,"age_65_share":14.6,"demo_dependency":50,"family_with_child_pct":45.4,"single_household_pct":36.5,"gini_disposable":24,"gini_market_income":48.3,"income_median":21682,"unemployment_rate":16.7,"empl_rate_25_34":69.7,"sijoitettu_0_17_pct":6.7,"sijoitettu_13_17_pct":1.2,"sijoitettu_0_6_pct":0.5,"huostassa_13_17_pct":0.9,"huostassa_7_12_pct":0.6,"erityistuki_yht_pct":3.4,"suicides_per100k":23.2,"psych_rehab":1.8,"gdp_meur":110764,"bkt_muutos":6.4,"edp_debt_gdp":52.2,"expenditure_gdp":69.7,"revenue_gdp":68.5,"percap_paivahoito":4849.4,"percap_perusopetus":5302.4,"percap_lastensuojelu":435.6,"percap_nuoriso":125.7,"percap_kirjasto":52.1,"percap_liikunta":70.3,"percap_erikoissairaanhoito":748.6,"percap_perusterveydenhuolto":425.9,"percap_iakkaat":1836.0,"percap_mielenterveys":18.3},"1998":{"tfr":1.7,"birth_rate":11.1,"age_65_share":14.7,"demo_dependency":49.7,"family_with_child_pct":44.9,"single_household_pct":37,"gini_disposable":25.2,"gini_market_income":48.6,"income_median":22144,"unemployment_rate":15.1,"empl_rate_25_34":71.9,"sijoitettu_0_17_pct":6.6,"sijoitettu_13_17_pct":1.2,"sijoitettu_0_6_pct":0.5,"huostassa_13_17_pct":0.9,"huostassa_7_12_pct":0.6,"erityistuki_yht_pct":3.7,"suicides_per100k":21.1,"psych_rehab":2.1,"gdp_meur":120431,"bkt_muutos":5.5,"edp_debt_gdp":46.8,"expenditure_gdp":64.9,"revenue_gdp":66.6,"percap_paivahoito":5096.7,"percap_perusopetus":5486.6,"percap_lastensuojelu":451.2,"percap_nuoriso":122.2,"percap_kirjasto":50.9,"percap_liikunta":68.9,"percap_erikoissairaanhoito":741.5,"percap_perusterveydenhuolto":421.9,"percap_iakkaat":1855.0,"percap_mielenterveys":18.0},"1999":{"tfr":1.73,"birth_rate":11.1,"age_65_share":14.8,"demo_dependency":49.5,"family_with_child_pct":44.3,"single_household_pct":37.5,"gini_disposable":27,"gini_market_income":49.9,"income_median":22681,"unemployment_rate":14.1,"empl_rate_25_34":73,"sijoitettu_0_17_pct":9.7,"sijoitettu_13_17_pct":1.3,"sijoitettu_0_6_pct":0.6,"huostassa_13_17_pct":0.9,"huostassa_7_12_pct":0.6,"erityistuki_yht_pct":4.1,"suicides_per100k":21,"psych_rehab":2.3,"gdp_meur":126888,"bkt_muutos":4.4,"edp_debt_gdp":44.1,"expenditure_gdp":62.6,"revenue_gdp":64.3,"percap_paivahoito":5280.3,"percap_perusopetus":5716.8,"percap_lastensuojelu":473.6,"percap_nuoriso":124.1,"percap_kirjasto":51.6,"percap_liikunta":70.5,"percap_erikoissairaanhoito":755.8,"percap_perusterveydenhuolto":425.9,"percap_iakkaat":1946.1,"percap_mielenterveys":19.0},"2000":{"tfr":1.73,"birth_rate":11,"age_65_share":15,"demo_dependency":49.4,"family_with_child_pct":43.7,"single_household_pct":37.9,"gini_disposable":28.4,"gini_market_income":50.4,"income_median":22990,"unemployment_rate":12.6,"empl_rate_25_34":74.6,"neet":12.9,"sijoitettu_0_17_pct":8.3,"sijoitettu_13_17_pct":1.4,"sijoitettu_0_6_pct":0.6,"huostassa_13_17_pct":1,"huostassa_7_12_pct":0.6,"erityistuki_yht_pct":4.5,"pisa_math":536,"pisa_reading":546,"suicides_per100k":20.2,"psych_rehab":2.5,"gdp_meur":136386,"bkt_muutos":5.8,"edp_debt_gdp":45.1,"expenditure_gdp":58.2,"revenue_gdp":65.1,"percap_paivahoito":5329.7,"percap_perusopetus":6198.2,"percap_lastensuojelu":516.9,"percap_nuoriso":129.4,"percap_kirjasto":54.8,"percap_liikunta":83.7,"percap_erikoissairaanhoito":775.4,"percap_perusterveydenhuolto":503.5,"percap_iakkaat":2606.3,"percap_mielenterveys":20.8},"2001":{"tfr":1.73,"birth_rate":10.8,"age_65_share":15.2,"demo_dependency":49.4,"family_with_child_pct":43,"single_household_pct":38.5,"gini_disposable":26.9,"gini_market_income":48.9,"income_median":23703,"unemployment_rate":12.4,"empl_rate_25_34":74.8,"neet":11.3,"sijoitettu_0_17_pct":8.5,"sijoitettu_13_17_pct":1.5,"sijoitettu_0_6_pct":0.6,"huostassa_13_17_pct":1.1,"huostassa_7_12_pct":0.6,"erityistuki_yht_pct":5.2,"suicides_per100k":20.5,"psych_rehab":2.4,"gdp_meur":144613,"bkt_muutos":2.6,"edp_debt_gdp":43.4,"expenditure_gdp":57.4,"revenue_gdp":62.4,"percap_paivahoito":5288.1,"percap_perusopetus":6347.4,"percap_lastensuojelu":571.4,"percap_nuoriso":137.0,"percap_kirjasto":55.6,"percap_liikunta":85.1,"percap_erikoissairaanhoito":809.7,"percap_perusterveydenhuolto":522.5,"percap_iakkaat":2782.8,"percap_mielenterveys":22.9},"2002":{"tfr":1.72,"birth_rate":10.7,"age_65_share":15.3,"demo_dependency":49.5,"family_with_child_pct":42.4,"single_household_pct":39,"gini_disposable":26.8,"gini_market_income":48.8,"income_median":24291,"unemployment_rate":12,"empl_rate_25_34":74.7,"neet":11.4,"sijoitettu_0_17_pct":8.1,"sijoitettu_13_17_pct":1.6,"sijoitettu_0_6_pct":0.6,"huostassa_13_17_pct":1.1,"huostassa_7_12_pct":0.7,"erityistuki_yht_pct":5.7,"suicides_per100k":18.5,"psych_rehab":4.2,"gdp_meur":148440,"bkt_muutos":1.7,"edp_debt_gdp":42.6,"expenditure_gdp":59.6,"revenue_gdp":63.7,"percap_paivahoito":5422.1,"percap_perusopetus":6640.5,"percap_lastensuojelu":619.3,"percap_nuoriso":144.0,"percap_kirjasto":56.9,"percap_liikunta":86.8,"percap_erikoissairaanhoito":860.2,"percap_perusterveydenhuolto":557.5,"percap_iakkaat":2903.6,"percap_mielenterveys":24.6},"2003":{"tfr":1.76,"birth_rate":10.9,"age_65_share":15.6,"demo_dependency":49.6,"family_with_child_pct":42,"single_household_pct":39.5,"gini_disposable":27.2,"gini_market_income":48.9,"income_median":24932,"unemployment_rate":12,"empl_rate_25_34":74.4,"neet":12,"sijoitettu_0_17_pct":8.1,"sijoitettu_13_17_pct":1.7,"sijoitettu_0_6_pct":0.6,"huostassa_13_17_pct":1.2,"huostassa_7_12_pct":0.7,"erityistuki_yht_pct":6.2,"pisa_math":544,"pisa_reading":543,"suicides_per100k":18.1,"psych_rehab":4.7,"gdp_meur":151714,"bkt_muutos":2,"edp_debt_gdp":45.2,"expenditure_gdp":60.9,"revenue_gdp":63.3,"percap_paivahoito":5542.7,"percap_perusopetus":6958.0,"percap_lastensuojelu":668.3,"percap_nuoriso":150.6,"percap_kirjasto":59.2,"percap_liikunta":88.8,"percap_erikoissairaanhoito":909.5,"percap_perusterveydenhuolto":585.7,"percap_iakkaat":3054.5,"percap_mielenterveys":26.4},"2004":{"tfr":1.8,"birth_rate":11,"age_65_share":15.9,"demo_dependency":49.9,"family_with_child_pct":41.7,"single_household_pct":39.9,"gini_disposable":28.2,"gini_market_income":49.6,"income_median":25921,"unemployment_rate":11.8,"empl_rate_25_34":74.7,"neet":11.7,"sijoitettu_0_17_pct":8.1,"sijoitettu_13_17_pct":1.8,"sijoitettu_0_6_pct":0.7,"huostassa_13_17_pct":1.2,"huostassa_7_12_pct":0.7,"erityistuki_yht_pct":6.7,"suicides_per100k":18.1,"psych_rehab":4.4,"gdp_meur":158741,"bkt_muutos":4,"edp_debt_gdp":44.9,"expenditure_gdp":60.8,"revenue_gdp":63,"percap_paivahoito":5663.3,"percap_perusopetus":7329.8,"percap_lastensuojelu":729.6,"percap_nuoriso":148.0,"percap_kirjasto":60.3,"percap_liikunta":91.2,"percap_erikoissairaanhoito":961.8,"percap_perusterveydenhuolto":612.7,"percap_iakkaat":3226.7,"percap_mielenterveys":28.0},"2005":{"tfr":1.8,"birth_rate":11,"age_65_share":16,"demo_dependency":49.9,"family_with_child_pct":41.5,"single_household_pct":40.4,"gini_disposable":28.1,"gini_market_income":49.5,"income_median":26447,"unemployment_rate":11.1,"empl_rate_25_34":75.4,"neet":10.6,"sijoitettu_0_17_pct":8.5,"sijoitettu_13_17_pct":1.8,"sijoitettu_0_6_pct":0.7,"huostassa_13_17_pct":1.3,"huostassa_7_12_pct":0.7,"erityistuki_yht_pct":7.3,"suicides_per100k":16.2,"psych_rehab":4.3,"gdp_meur":164666,"bkt_muutos":2.8,"edp_debt_gdp":42.1,"expenditure_gdp":60.8,"revenue_gdp":63.5,"percap_paivahoito":5957.2,"percap_perusopetus":7725.1,"percap_lastensuojelu":786.6,"percap_nuoriso":149.8,"percap_kirjasto":61.8,"percap_liikunta":93.9,"percap_erikoissairaanhoito":994.6,"percap_perusterveydenhuolto":630.7,"percap_iakkaat":3330.9,"percap_mielenterveys":29.1},"2006":{"tfr":1.84,"birth_rate":11.2,"age_65_share":16.5,"demo_dependency":50.1,"family_with_child_pct":41.2,"single_household_pct":40.7,"gini_disposable":28.7,"gini_market_income":49.8,"income_median":27069,"unemployment_rate":9.7,"empl_rate_25_34":76.7,"neet":10.7,"sijoitettu_0_17_pct":8.4,"sijoitettu_13_17_pct":1.9,"sijoitettu_0_6_pct":0.7,"huostassa_13_17_pct":1.4,"huostassa_7_12_pct":0.8,"erityistuki_yht_pct":7.7,"pisa_math":548,"pisa_reading":547,"suicides_per100k":17.6,"psych_rehab":4.9,"gdp_meur":172861,"bkt_muutos":4,"edp_debt_gdp":40.2,"expenditure_gdp":59,"revenue_gdp":63,"percap_paivahoito":6021.2,"percap_perusopetus":8048.0,"percap_lastensuojelu":844.8,"percap_nuoriso":151.3,"percap_kirjasto":62.7,"percap_liikunta":95.6,"percap_erikoissairaanhoito":1024.0,"percap_perusterveydenhuolto":659.7,"percap_iakkaat":3456.2,"percap_mielenterveys":31.2},"2007":{"tfr":1.83,"birth_rate":11.1,"age_65_share":16.5,"demo_dependency":50.3,"family_with_child_pct":40.9,"single_household_pct":41,"gini_disposable":29.5,"gini_market_income":49.8,"income_median":27970,"unemployment_rate":8.5,"empl_rate_25_34":78.2,"neet":9.7,"sijoitettu_0_17_pct":8.3,"sijoitettu_13_17_pct":2,"sijoitettu_0_6_pct":0.7,"huostassa_13_17_pct":1.4,"huostassa_7_12_pct":0.8,"erityistuki_yht_pct":8.1,"suicides_per100k":16.3,"psych_rehab":5.3,"gdp_meur":187059,"bkt_muutos":5.3,"edp_debt_gdp":36,"expenditure_gdp":56.8,"revenue_gdp":61.9,"percap_paivahoito":6096.7,"percap_perusopetus":8263.5,"percap_lastensuojelu":913.9,"percap_nuoriso":152.8,"percap_kirjasto":62.8,"percap_liikunta":94.6,"percap_erikoissairaanhoito":1046.1,"percap_perusterveydenhuolto":672.1,"percap_iakkaat":3628.6,"percap_mielenterveys":32.1},"2008":{"tfr":1.85,"birth_rate":11.2,"age_65_share":16.7,"demo_dependency":50.2,"family_with_child_pct":40.5,"single_household_pct":41.3,"gini_disposable":28.4,"gini_market_income":48.9,"income_median":28363,"unemployment_rate":9,"empl_rate_25_34":78.1,"neet":9.9,"sijoitettu_0_17_pct":7.8,"sijoitettu_13_17_pct":2.1,"sijoitettu_0_6_pct":0.7,"huostassa_13_17_pct":1.5,"huostassa_7_12_pct":0.8,"ls_ilmoitus_pct":4.3,"erityistuki_yht_pct":8.4,"suicides_per100k":17.1,"psych_rehab":5.5,"gdp_meur":194253,"bkt_muutos":0.8,"edp_debt_gdp":34.7,"expenditure_gdp":59.2,"revenue_gdp":63.4,"percap_paivahoito":6289.8,"percap_perusopetus":8607.3,"percap_lastensuojelu":991.1,"percap_nuoriso":158.5,"percap_kirjasto":64.3,"percap_liikunta":96.2,"percap_erikoissairaanhoito":1099.2,"percap_perusterveydenhuolto":710.7,"percap_iakkaat":3833.1,"percap_mielenterveys":34.4},"2009":{"tfr":1.86,"birth_rate":11.3,"age_65_share":17,"demo_dependency":50.5,"family_with_child_pct":40.3,"single_household_pct":41.4,"gini_disposable":27.6,"gini_market_income":49.4,"income_median":28940,"unemployment_rate":11.6,"empl_rate_25_34":74.7,"neet":12.9,"sijoitettu_0_17_pct":7.7,"sijoitettu_13_17_pct":2.2,"sijoitettu_0_6_pct":0.7,"huostassa_13_17_pct":1.5,"huostassa_7_12_pct":0.8,"ls_ilmoitus_pct":4.6,"erityistuki_yht_pct":8.5,"pisa_math":541,"pisa_reading":536,"suicides_per100k":17,"psych_rehab":6,"gdp_meur":181735,"bkt_muutos":-8.1,"edp_debt_gdp":44.1,"expenditure_gdp":67.5,"revenue_gdp":65,"percap_paivahoito":6451.8,"percap_perusopetus":8891.6,"percap_lastensuojelu":957.2,"percap_nuoriso":161.4,"percap_kirjasto":65.1,"percap_liikunta":102.2,"percap_erikoissairaanhoito":1120.0,"percap_perusterveydenhuolto":703.2,"percap_iakkaat":4065.0,"percap_mielenterveys":35.4},"2010":{"tfr":1.87,"birth_rate":11.4,"age_65_share":17.5,"demo_dependency":51.1,"family_with_child_pct":40,"single_household_pct":41.7,"gini_disposable":27.9,"gini_market_income":50.1,"income_median":29349,"unemployment_rate":10.4,"empl_rate_25_34":75.7,"neet":12.5,"sijoitettu_0_17_pct":6.7,"sijoitettu_13_17_pct":2.3,"sijoitettu_0_6_pct":0.7,"huostassa_13_17_pct":1.5,"huostassa_7_12_pct":0.8,"ls_ilmoitus_pct":5,"erityistuki_yht_pct":8.5,"suicides_per100k":15.8,"psych_rehab":6.3,"gdp_meur":188147,"bkt_muutos":3.2,"edp_debt_gdp":50.1,"expenditure_gdp":68,"revenue_gdp":65.4,"percap_paivahoito":6584.9,"percap_perusopetus":9462.7,"percap_lastensuojelu":972.9,"percap_nuoriso":172.2,"percap_kirjasto":65.9,"percap_liikunta":102.7,"percap_erikoissairaanhoito":1138.5,"percap_perusterveydenhuolto":707.1,"percap_iakkaat":4170.6,"percap_mielenterveys":35.1},"2011":{"tfr":1.83,"birth_rate":11.1,"age_65_share":18.1,"demo_dependency":52.2,"family_with_child_pct":39.7,"single_household_pct":41.9,"gini_disposable":28.2,"gini_market_income":50.2,"income_median":29382,"unemployment_rate":9.9,"empl_rate_25_34":76.2,"neet":11.7,"sijoitettu_0_17_pct":7.5,"sijoitettu_13_17_pct":2.4,"sijoitettu_0_6_pct":0.8,"huostassa_13_17_pct":1.6,"huostassa_7_12_pct":0.8,"ls_ilmoitus_pct":5.5,"erityistuki_yht_pct":8.1,"tehostettutuki_pct":3.3,"suicides_per100k":14.8,"psych_rehab":7.2,"gdp_meur":197655,"bkt_muutos":2.4,"edp_debt_gdp":52,"expenditure_gdp":67.5,"revenue_gdp":66.5,"percap_paivahoito":6734.3,"percap_perusopetus":9529.1,"percap_lastensuojelu":1035.5,"percap_nuoriso":174.4,"percap_kirjasto":65.9,"percap_liikunta":103.0,"percap_erikoissairaanhoito":1170.8,"percap_perusterveydenhuolto":718.7,"percap_iakkaat":4176.8,"percap_mielenterveys":35.9},"2012":{"tfr":1.8,"birth_rate":11,"age_65_share":18.8,"demo_dependency":53.6,"family_with_child_pct":39.5,"single_household_pct":42.2,"gini_disposable":26.9,"gini_market_income":49.7,"income_median":29501,"unemployment_rate":10.8,"empl_rate_25_34":75.2,"neet":11.8,"sijoitettu_0_17_pct":7.8,"sijoitettu_13_17_pct":2.5,"sijoitettu_0_6_pct":0.8,"huostassa_13_17_pct":1.7,"huostassa_7_12_pct":0.8,"ls_ilmoitus_pct":5.8,"erityistuki_yht_pct":7.6,"tehostettutuki_pct":5.1,"pisa_math":519,"pisa_reading":524,"suicides_per100k":14.1,"psych_rehab":7.9,"gdp_meur":200378,"bkt_muutos":-1.5,"edp_debt_gdp":57.9,"expenditure_gdp":69.9,"revenue_gdp":67.7,"percap_paivahoito":6830.7,"percap_perusopetus":9631.8,"percap_lastensuojelu":1097.4,"percap_nuoriso":176.8,"percap_kirjasto":64.9,"percap_liikunta":105.0,"percap_erikoissairaanhoito":1182.9,"percap_perusterveydenhuolto":735.9,"percap_iakkaat":4236.6,"percap_mielenterveys":36.9},"2013":{"tfr":1.75,"birth_rate":10.7,"age_65_share":19.4,"demo_dependency":55,"family_with_child_pct":39.1,"single_household_pct":42.4,"gini_disposable":27.2,"gini_market_income":50.8,"income_median":29302,"unemployment_rate":12.6,"empl_rate_25_34":73.4,"neet":12.6,"sijoitettu_0_17_pct":7.6,"sijoitettu_13_17_pct":2.5,"sijoitettu_0_6_pct":0.8,"huostassa_13_17_pct":1.7,"huostassa_7_12_pct":0.9,"ls_ilmoitus_pct":5.8,"erityistuki_yht_pct":7.3,"tehostettutuki_pct":6.5,"suicides_per100k":14.3,"psych_rehab":8.6,"gdp_meur":203497,"bkt_muutos":-1,"edp_debt_gdp":60.8,"expenditure_gdp":71.7,"revenue_gdp":69.1,"percap_paivahoito":6847.6,"percap_perusopetus":9609.0,"percap_lastensuojelu":1136.8,"percap_nuoriso":176.3,"percap_kirjasto":63.4,"percap_liikunta":104.7,"percap_erikoissairaanhoito":1241.9,"percap_perusterveydenhuolto":737.3,"percap_iakkaat":4252.2,"percap_mielenterveys":38.2},"2014":{"tfr":1.71,"birth_rate":10.5,"age_65_share":19.9,"demo_dependency":56.4,"family_with_child_pct":38.9,"single_household_pct":42.7,"gini_disposable":27,"gini_market_income":51.1,"income_median":29219,"unemployment_rate":13.9,"empl_rate_25_34":72,"neet":13.8,"sijoitettu_0_17_pct":7.3,"sijoitettu_13_17_pct":2.5,"sijoitettu_0_6_pct":0.8,"huostassa_13_17_pct":1.7,"huostassa_7_12_pct":0.9,"ls_ilmoitus_pct":5.8,"erityistuki_yht_pct":7.3,"tehostettutuki_pct":7.5,"suicides_per100k":12.7,"psych_rehab":9.5,"gdp_meur":205855,"bkt_muutos":-0.5,"edp_debt_gdp":64.8,"expenditure_gdp":72.4,"revenue_gdp":69.4,"percap_paivahoito":6733.9,"percap_perusopetus":9541.6,"percap_lastensuojelu":1122.3,"percap_nuoriso":175.9,"percap_kirjasto":61.7,"percap_liikunta":105.0,"percap_erikoissairaanhoito":1256.5,"percap_perusterveydenhuolto":711.2,"percap_iakkaat":4209.9,"percap_mielenterveys":38.0},"2015":{"tfr":1.65,"birth_rate":10.1,"age_65_share":20.5,"demo_dependency":57.6,"family_with_child_pct":38.7,"single_household_pct":43,"gini_disposable":27.3,"gini_market_income":51.9,"income_median":29445,"unemployment_rate":14.4,"empl_rate_25_34":71.3,"neet":14.6,"sijoitettu_0_17_pct":7.3,"sijoitettu_13_17_pct":2.5,"sijoitettu_0_6_pct":0.7,"huostassa_13_17_pct":1.7,"huostassa_7_12_pct":0.8,"ls_ilmoitus_pct":6,"erityistuki_yht_pct":7.3,"tehostettutuki_pct":8.4,"pisa_math":511,"pisa_reading":526,"psych_rehab":10.5,"gdp_meur":210192,"bkt_muutos":0.5,"edp_debt_gdp":68.8,"expenditure_gdp":70.5,"revenue_gdp":68.1,"percap_paivahoito":6839.7,"percap_perusopetus":9415.5,"percap_lastensuojelu":1143.1,"percap_nuoriso":171.6,"percap_kirjasto":61.3,"percap_liikunta":107.0,"percap_erikoissairaanhoito":1283.1,"percap_perusterveydenhuolto":655.9,"percap_iakkaat":3141.8,"percap_mielenterveys":38.2},"2016":{"tfr":1.57,"birth_rate":9.6,"age_65_share":20.9,"demo_dependency":58.7,"family_with_child_pct":38.6,"single_household_pct":43.4,"gini_disposable":27.2,"gini_market_income":52,"income_median":29732,"unemployment_rate":13.6,"empl_rate_25_34":71.8,"neet":13.7,"sijoitettu_0_17_pct":7.4,"sijoitettu_13_17_pct":2.5,"sijoitettu_0_6_pct":0.7,"huostassa_13_17_pct":1.7,"huostassa_7_12_pct":0.8,"ls_ilmoitus_pct":6.3,"erityistuki_yht_pct":7.5,"tehostettutuki_pct":9,"psych_rehab":11.6,"gdp_meur":215717,"bkt_muutos":2.6,"edp_debt_gdp":68.6,"expenditure_gdp":69.6,"revenue_gdp":67.9,"percap_paivahoito":7041.5,"percap_perusopetus":9487.9,"percap_lastensuojelu":1177.7,"percap_nuoriso":172.7,"percap_kirjasto":61.5,"percap_liikunta":109.9,"percap_erikoissairaanhoito":1271.5,"percap_perusterveydenhuolto":640.7,"percap_iakkaat":3106.9,"percap_mielenterveys":37.3},"2017":{"tfr":1.49,"birth_rate":9.1,"age_65_share":21.4,"demo_dependency":59.6,"family_with_child_pct":38.5,"single_household_pct":44.1,"gini_disposable":27.7,"gini_market_income":52.3,"income_median":30079,"unemployment_rate":11.4,"empl_rate_25_34":73.6,"neet":12.9,"sijoitettu_0_17_pct":6.3,"sijoitettu_13_17_pct":2.6,"sijoitettu_0_6_pct":0.8,"huostassa_13_17_pct":1.7,"huostassa_7_12_pct":0.8,"ls_ilmoitus_pct":7,"erityistuki_yht_pct":7.7,"tehostettutuki_pct":9.7,"psych_rehab":12.6,"gdp_meur":224706,"bkt_muutos":3.3,"edp_debt_gdp":66.6,"expenditure_gdp":67.2,"revenue_gdp":66.6,"percap_paivahoito":7127.7,"percap_perusopetus":9339.5,"percap_lastensuojelu":1224.2,"percap_nuoriso":177.7,"percap_kirjasto":60.4,"percap_liikunta":110.1,"percap_erikoissairaanhoito":1285.3,"percap_perusterveydenhuolto":621.2,"percap_iakkaat":3052.6,"percap_mielenterveys":37.4},"2018":{"tfr":1.41,"birth_rate":8.6,"age_65_share":21.8,"demo_dependency":60.5,"family_with_child_pct":38.3,"single_household_pct":44.8,"gini_disposable":28.1,"gini_market_income":52.2,"income_median":30475,"unemployment_rate":9.8,"empl_rate_25_34":75.1,"neet":11.6,"sijoitettu_0_17_pct":6.7,"sijoitettu_13_17_pct":2.7,"sijoitettu_0_6_pct":0.8,"huostassa_13_17_pct":1.8,"huostassa_7_12_pct":0.8,"ls_ilmoitus_pct":7.3,"erityistuki_yht_pct":8.1,"tehostettutuki_pct":10.6,"pisa_math":507,"pisa_reading":520,"psych_rehab":14.6,"gdp_meur":231905,"bkt_muutos":1.2,"edp_debt_gdp":65.4,"expenditure_gdp":66.6,"revenue_gdp":65.7,"percap_paivahoito":7603.6,"percap_perusopetus":9410.3,"percap_lastensuojelu":1317.2,"percap_nuoriso":179.2,"percap_kirjasto":60.3,"percap_liikunta":112.6,"percap_erikoissairaanhoito":1288.4,"percap_perusterveydenhuolto":622.5,"percap_iakkaat":3040.4,"percap_mielenterveys":36.7},"2019":{"tfr":1.35,"birth_rate":8.3,"age_65_share":22.3,"demo_dependency":61.1,"family_with_child_pct":38,"single_household_pct":45.4,"gini_disposable":27.9,"gini_market_income":51.6,"income_median":30929,"unemployment_rate":9.9,"empl_rate_25_34":74.5,"neet":11.3,"sijoitettu_0_17_pct":6,"sijoitettu_13_17_pct":2.8,"sijoitettu_0_6_pct":0.9,"huostassa_13_17_pct":1.9,"huostassa_7_12_pct":0.9,"ls_ilmoitus_pct":7.7,"erityistuki_yht_pct":8.5,"tehostettutuki_pct":11.6,"psych_rehab":16.1,"gdp_meur":238518,"bkt_muutos":1.3,"edp_debt_gdp":65.3,"expenditure_gdp":66.3,"revenue_gdp":65.3,"percap_paivahoito":8100.8,"percap_perusopetus":9621.3,"percap_lastensuojelu":1426.8,"percap_nuoriso":183.9,"percap_kirjasto":61.1,"percap_liikunta":115.0,"percap_erikoissairaanhoito":1330.2,"percap_perusterveydenhuolto":634.2,"percap_iakkaat":3074.2,"percap_mielenterveys":41.9},"2020":{"tfr":1.37,"birth_rate":8.4,"age_65_share":22.7,"demo_dependency":61.7,"family_with_child_pct":37.9,"single_household_pct":46.1,"gini_disposable":27.7,"gini_market_income":52.7,"income_median":30984,"unemployment_rate":13.5,"empl_rate_25_34":71.2,"neet":13.1,"sijoitettu_0_17_pct":5.3,"sijoitettu_13_17_pct":2.8,"sijoitettu_0_6_pct":0.9,"huostassa_13_17_pct":1.9,"huostassa_7_12_pct":0.9,"ls_ilmoitus_pct":7.9,"erityistuki_yht_pct":9,"tehostettutuki_pct":12.2,"psych_rehab":18.4,"gdp_meur":236387,"bkt_muutos":-2.5,"edp_debt_gdp":75.3,"expenditure_gdp":72.4,"revenue_gdp":66.9,"percap_paivahoito":8197.2,"percap_perusopetus":9509.7,"percap_lastensuojelu":1507.7,"percap_nuoriso":178.1,"percap_kirjasto":58.9,"percap_liikunta":119.2,"percap_erikoissairaanhoito":1326.8,"percap_perusterveydenhuolto":668.0,"percap_iakkaat":3091.1,"percap_mielenterveys":39.7},"2021":{"tfr":1.46,"birth_rate":9,"age_65_share":23.1,"demo_dependency":62.2,"family_with_child_pct":37.8,"single_household_pct":46.7,"gini_disposable":29.1,"gini_market_income":53.3,"income_median":31320,"unemployment_rate":10.4,"empl_rate_25_34":73.9,"neet":10.6,"sijoitettu_0_17_pct":5,"sijoitettu_13_17_pct":2.7,"sijoitettu_0_6_pct":0.9,"huostassa_13_17_pct":1.8,"huostassa_7_12_pct":0.9,"ls_ilmoitus_pct":8.6,"erityistuki_yht_pct":9.4,"tehostettutuki_pct":13.5,"psych_rehab":20.1,"gdp_meur":248764,"bkt_muutos":2.7,"edp_debt_gdp":73.1,"expenditure_gdp":70,"revenue_gdp":67.4,"percap_paivahoito":8575.0,"percap_perusopetus":9671.4,"percap_lastensuojelu":1506.1,"percap_nuoriso":180.5,"percap_kirjasto":58.5,"percap_liikunta":126.4,"percap_erikoissairaanhoito":1354.8,"percap_perusterveydenhuolto":614.4,"percap_iakkaat":3027.7,"percap_mielenterveys":119.9},"2022":{"tfr":1.32,"birth_rate":8.1,"age_65_share":23.3,"demo_dependency":62.5,"family_with_child_pct":37.7,"single_household_pct":47.1,"gini_disposable":28.6,"gini_market_income":52.3,"income_median":30412,"unemployment_rate":9.8,"empl_rate_25_34":74.7,"neet":10.5,"sijoitettu_0_17_pct":4.5,"sijoitettu_13_17_pct":2.6,"sijoitettu_0_6_pct":0.9,"huostassa_13_17_pct":1.8,"huostassa_7_12_pct":0.9,"ls_ilmoitus_pct":9.1,"erityistuki_yht_pct":9.9,"tehostettutuki_pct":14,"pisa_math":484,"pisa_reading":490,"psych_rehab":21.6,"gdp_meur":266135,"bkt_muutos":0.8,"edp_debt_gdp":74,"expenditure_gdp":66.7,"revenue_gdp":66.5,"percap_paivahoito":8824.1,"percap_perusopetus":9603.0,"percap_lastensuojelu":1522.6,"percap_nuoriso":182.6,"percap_kirjasto":57.6,"percap_liikunta":121.5,"percap_erikoissairaanhoito":1331.0,"percap_perusterveydenhuolto":595.6,"percap_iakkaat":3021.4,"percap_mielenterveys":111.4},"2023":{"tfr":1.26,"birth_rate":7.8,"age_65_share":23.4,"demo_dependency":62.6,"family_with_child_pct":37.5,"single_household_pct":47.5,"gini_disposable":27.9,"gini_market_income":51.8,"income_median":29888,"unemployment_rate":11,"empl_rate_25_34":73.2,"neet":10.7,"sijoitettu_0_17_pct":4,"sijoitettu_13_17_pct":2.6,"sijoitettu_0_6_pct":0.8,"huostassa_13_17_pct":1.8,"huostassa_7_12_pct":0.9,"ls_ilmoitus_pct":10.2,"erityistuki_yht_pct":10.5,"tehostettutuki_pct":15,"psych_rehab":22.8,"gdp_meur":272848,"bkt_muutos":-1.3,"edp_debt_gdp":77.1,"expenditure_gdp":75.7,"revenue_gdp":72.8,"percap_paivahoito":9814.1,"percap_perusopetus":10008.6,"percap_lastensuojelu":1776.8,"percap_nuoriso":199.0,"percap_kirjasto":58.0,"percap_liikunta":128.9,"percap_erikoissairaanhoito":1353.5,"percap_perusterveydenhuolto":436.1,"percap_iakkaat":3427.9,"percap_mielenterveys":124.3},"2024":{"tfr":1.25,"birth_rate":7.8,"age_65_share":23.6,"demo_dependency":62.7,"family_with_child_pct":37.2,"single_household_pct":47.6,"gini_disposable":28.4,"gini_market_income":52.3,"income_median":30523,"neet":11.4,"sijoitettu_0_17_pct":4.2,"sijoitettu_13_17_pct":2.6,"sijoitettu_0_6_pct":0.8,"huostassa_13_17_pct":1.8,"huostassa_7_12_pct":0.9,"ls_ilmoitus_pct":10.7,"erityistuki_yht_pct":10.3,"tehostettutuki_pct":16.1,"psych_rehab":23.3,"gdp_meur":275963,"bkt_muutos":0.4,"edp_debt_gdp":82.5,"expenditure_gdp":77.7,"revenue_gdp":73.4,"percap_paivahoito":10144.2,"percap_perusopetus":10364.4,"percap_lastensuojelu":1886.1,"percap_nuoriso":209.2,"percap_kirjasto":58.3,"percap_liikunta":130.0,"percap_erikoissairaanhoito":1354.5,"percap_perusterveydenhuolto":441.3,"percap_iakkaat":3436.5,"percap_mielenterveys":135.9}};
+
+// ═══════════════════════════════════════════════════════════════════
+// MALLI — ilmiöt, painot, skenaariot
+// ═══════════════════════════════════════════════════════════════════
+
+const PHENOMENA = {
+  tfr:        { label:'Syntyvyys (TFR)',   short:'TFR',     unit:'lasta/nainen', base:1.25, decimals:2, polarity:+1, varKey:'tfr',                  warn_below:1.4,  ok_above:1.7,   color:'#2c7a4e',
+                desc:'Kokonaishedelmällisyys — lapsia per nainen elinkaaren aikana.' },
+  neet:       { label:'NEET-nuoret',       short:'NEET',    unit:'%',            base:11.4, decimals:1, polarity:-1, varKey:'neet',                 warn_above:13,   ok_below:9,     color:'#d4902a',
+                desc:'Osuus 16–24-vuotiaista työn, koulutuksen ja harjoittelun ulkopuolella.' },
+  sijoitetut: { label:'Sijoitetut 0–17',   short:'Sij.',    unit:'‰',            base:4.2,  decimals:2, polarity:-1, varKey:'sijoitettu_0_17_pct',  warn_above:5,    ok_below:3,     color:'#b83a25',
+                desc:'Kodin ulkopuolelle sijoitettujen lasten osuus ikäluokasta.' },
+  gini:       { label:'Tuloerot (Gini)',   short:'Gini',    unit:'',             base:28.4, decimals:1, polarity:-1, varKey:'gini_disposable',      warn_above:30,   ok_below:26,    color:'#c07a4a',
+                desc:'Käytettävissä olevien tulojen Gini — 0=täydellinen tasa-arvo.' },
+  velka:      { label:'Julk. velka/BKT',   short:'Velka',   unit:'%',            base:82.5, decimals:1, polarity:-1, varKey:'edp_debt_gdp',         warn_above:80,   ok_below:55,    color:'#9b72cf',
+                desc:'Julkinen bruttovelka suhteessa BKT:hen.' },
+  erityist:   { label:'Erityistuki',       short:'Erit.',   unit:'%',            base:10.3, decimals:1, polarity:-1, varKey:'erityistuki_yht_pct',  warn_above:12,   ok_below:7,     color:'#5a9fd4',
+                desc:'Tehostettua tai erityistä tukea saavien oppilaiden osuus.' },
+};
+
+// DRIVER-muuttujat (sliderit)
+const DRIVERS = {
+  unemployment_rate: { label:'Työttömyysaste',           unit:'%',   base:8.4,  min:2,    max:22,   step:.1,  fmt:v=>v.toFixed(1)+' %' },
+  bkt_muutos:        { label:'BKT-kasvu',                unit:'%',   base:1.0,  min:-8,   max:8,    step:.1,  fmt:v=>(v>0?'+':'')+v.toFixed(1)+' %' },
+  gini_disposable:   { label:'Tuloerot (Gini)',          unit:'',    base:28.4, min:20,   max:38,   step:.1,  fmt:v=>v.toFixed(1) },
+  single_household_pct:{label:'Yksinasuvien osuus',      unit:'%',   base:47.6, min:30,   max:55,   step:.2,  fmt:v=>v.toFixed(1)+' %' },
+  expenditure_gdp:   { label:'Julk. menot %BKT',         unit:'%',   base:55.7, min:45,   max:80,   step:.3,  fmt:v=>v.toFixed(1)+' %' },
+  percap_paivahoito: { label:'Päivähoito €/lapsi',       unit:'€',   base:8500, min:4000, max:14000,step:50,  fmt:v=>Math.round(v).toLocaleString('fi')+' €' },
+  percap_perusopetus:{ label:'Perusopetus €/lapsi',      unit:'€',   base:9500, min:4000, max:16000,step:100, fmt:v=>Math.round(v).toLocaleString('fi')+' €' },
+  percap_lastensuojelu:{label:'Lastensuojelu €/lapsi',   unit:'€',   base:1300, min:300,  max:3000, step:50,  fmt:v=>Math.round(v).toLocaleString('fi')+' €' },
+  percap_nuoriso:    { label:'Nuorisotyö €/lapsi',       unit:'€',   base:200,  min:50,   max:600,  step:10,  fmt:v=>Math.round(v).toLocaleString('fi')+' €' },
+  percap_mielenterveys:{label:'MT &amp; päihde €/as',    unit:'€',   base:140,  min:30,   max:400,  step:10,  fmt:v=>Math.round(v).toLocaleString('fi')+' €' },
+};
+
+// THEORY LINKS — driver → ilmiö (lähteet kirjallisuudesta + datasta estimoituna)
+// conf: 'data'|'lit'|'spec' (havaittu | kirjallisuus | spekulatiivinen)
+const THEORY_LINKS = [
+  // ── TFR ──────────────────────────────────────────────────────────
+  { from:'unemployment_rate',   to:'tfr',        weight:-.40, lag:2,  conf:'lit',  src:'Adsera 2004; Rindfuss 2010 — työttömyys lykkää lapsenhankintaa.' },
+  { from:'single_household_pct',to:'tfr',        weight:-.30, lag:1,  conf:'lit',  src:'Sobotka 2017 — yksinasuminen korreloi matalan TFR:n kanssa.' },
+  { from:'gini_disposable',     to:'tfr',        weight:-.20, lag:3,  conf:'spec', src:'Aaronson 2014 — eriarvoisuus ↓ hedelmällisyys; heikko datatuki Suomessa.' },
+  { from:'percap_paivahoito',   to:'tfr',        weight:+.20, lag:2,  conf:'lit',  src:'Bauernschuster 2016 — laadukas varhaiskasvatus tukee syntyvyyttä.' },
+  { from:'bkt_muutos',          to:'tfr',        weight:+.15, lag:1,  conf:'data', r:.31, n:32, src:'Suhdannevaikutus — datasta heikko mutta tilastollisesti merkitsevä.' },
+
+  // ── NEET ─────────────────────────────────────────────────────────
+  { from:'unemployment_rate',   to:'neet',       weight:+.55, lag:0,  conf:'data', r:.85, n:23, src:'Bell &amp; Blanchflower 2011 — vahvin linkki mallissa, datassa r=0.85.' },
+  { from:'bkt_muutos',          to:'neet',       weight:-.30, lag:1,  conf:'data', r:.63, n:23, src:'BKT-lasku → NEET +1v viiveellä.' },
+  { from:'gini_disposable',     to:'neet',       weight:+.30, lag:2,  conf:'lit',  src:'Chetty 2014 — eriarvoisuus heikentää nuorten liikkuvuutta.' },
+  { from:'percap_nuoriso',      to:'neet',       weight:-.20, lag:6,  conf:'data', r:.48, n:18, src:'Nuorisotyöpanostus &amp; NEET 6v viiveellä — riski yhteinen trendi.' },
+  { from:'percap_mielenterveys',to:'neet',       weight:-.15, lag:5,  conf:'spec', src:'MT-palvelut → NEET — teoreettinen, vaikea eristää.' },
+
+  // ── SIJOITUKSET (lastensuojelu) ──────────────────────────────────
+  { from:'unemployment_rate',   to:'sijoitetut', weight:+.30, lag:3,  conf:'data', r:.39, n:30, src:'Loman 2006 — vanhempien työttömyys kasvattaa sijoitusriskiä.' },
+  { from:'gini_disposable',     to:'sijoitetut', weight:+.40, lag:2,  conf:'lit',  src:'Berger 2017 — taloudellinen eriarvoisuus ennustaa lastensuojelutarvetta.' },
+  { from:'percap_lastensuojelu',to:'sijoitetut', weight:-.15, lag:4,  conf:'spec', src:'Avohuollon panostus → vähemmän sijoituksia (heikko datatuki).' },
+  { from:'percap_paivahoito',   to:'sijoitetut', weight:-.18, lag:6,  conf:'data', r:.67, n:29, src:'⚠ Tasokorrelaatio — yhteinen trendi todennäköinen.' },
+
+  // ── GINI (eriarvoisuus) ──────────────────────────────────────────
+  { from:'unemployment_rate',   to:'gini',       weight:+.25, lag:7,  conf:'data', r:.46, n:28, src:'Työttömyys → Gini 7v viiveellä.' },
+  { from:'expenditure_gdp',     to:'gini',       weight:-.28, lag:1,  conf:'data', r:.54, n:34, src:'Julkiset menot tasaavat tuloeroja.' },
+
+  // ── VELKA (julkinen talous) ──────────────────────────────────────
+  { from:'unemployment_rate',   to:'velka',      weight:+.45, lag:0,  conf:'data', r:.83, n:34, src:'Vahva: työttömyys ↑ menot ja ↓ tulot samanaikaisesti.' },
+  { from:'expenditure_gdp',     to:'velka',      weight:+.38, lag:0,  conf:'data', r:.70, n:35, src:'Kokonaismenot ja velka kasvavat yhdessä.' },
+  { from:'bkt_muutos',          to:'velka',      weight:-.30, lag:1,  conf:'data', r:.57, n:34, src:'BKT-kasvu pienentää velkasuhdetta viiveellä.' },
+
+  // ── ERITYISTUKI (koulutus) ───────────────────────────────────────
+  { from:'percap_perusopetus',  to:'erityist',   weight:+.25, lag:3,  conf:'data', r:.70, n:26, src:'⚠ Yhteinen trendi — tukitarve &amp; resursointi kasvavat yhdessä.' },
+  { from:'gini_disposable',     to:'erityist',   weight:+.20, lag:2,  conf:'data', r:.41, n:29, src:'Tuloerot ennakoivat erityistuen kasvua 2v viiveellä.' },
+  { from:'unemployment_rate',   to:'erityist',   weight:+.15, lag:8,  conf:'data', r:.39, n:23, src:'Pitkä viive — taloudellinen ahdinko välittyy hitaasti kouluvaikeuksiin.' },
+];
+
+// ILMIÖ → ILMIÖ -ketjulinkit (kaksinkertainen epävarmuus, vaimennettu)
+const CHAIN_LINKS = [
+  { from:'gini',       to:'tfr',        weight:-.20, conf:'lit',  src:'Eriarvoisuuden kasvu ↓ syntyvyys (kirjallisuuspohjainen).' },
+  { from:'sijoitetut', to:'velka',      weight:+.15, conf:'data', src:'Sijoitukset ↑ julkiset menot. Datatuki: r≈.37, lag 11v.' },
+  { from:'neet',       to:'velka',      weight:+.20, conf:'lit',  src:'Nuorten syrjäytyminen → pitkän aikavälin sosiaaliturvamenot.' },
+  { from:'erityist',   to:'neet',       weight:+.12, conf:'spec', src:'Erityistukitarve → myöhempi NEET (heikko datapohja).' },
+  { from:'velka',      to:'gini',       weight:+.12, conf:'spec', src:'Talouspaine → leikkaukset → eriarvoisuus.' },
+];
+
+const SCENARIOS = {
+  syntyvyys: {
+    label:'Syntyvyyden lasku',
+    desc:'Suomen TFR laski 1.87:stä (2010) 1.25:een (2024). Säädä työttömyyttä, asumista ja perhepolitiikkaa.',
+    nodes:['tfr','unemployment_rate','single_household_pct','gini_disposable','percap_paivahoito','bkt_muutos'],
+    focus:'tfr',
+    levers:['unemployment_rate','single_household_pct','gini_disposable','percap_paivahoito']
+  },
+  nuorten_mt: {
+    label:'Nuorten syrjäytyminen (NEET)',
+    desc:'Nuorten syrjäytyminen on kasvanut. Työttömyys-NEET-yhteys on datassa vahvin (r=0.85).',
+    nodes:['neet','unemployment_rate','bkt_muutos','gini_disposable','percap_nuoriso','percap_mielenterveys'],
+    focus:'neet',
+    levers:['unemployment_rate','bkt_muutos','percap_nuoriso','percap_mielenterveys']
+  },
+  lastensuojelu: {
+    label:'Lastensuojelun paine',
+    desc:'Sijoitettujen osuus on 4.2 ‰. Eriarvoisuus &amp; työttömyys ovat keskeisiä rakenteellisia tekijöitä.',
+    nodes:['sijoitetut','unemployment_rate','gini_disposable','percap_lastensuojelu','percap_paivahoito'],
+    focus:'sijoitetut',
+    levers:['unemployment_rate','gini_disposable','percap_lastensuojelu','percap_paivahoito']
+  },
+  koulutus: {
+    label:'Koulutuspolun eriytyminen',
+    desc:'Erityistuen tarve on 10.3 % oppilaista. Vaikutus näkyy yleensä 5–10v viiveellä.',
+    nodes:['erityist','gini_disposable','percap_perusopetus','unemployment_rate','neet'],
+    focus:'erityist',
+    levers:['gini_disposable','percap_perusopetus','unemployment_rate']
+  },
+  talous: {
+    label:'Julkinen talous',
+    desc:'Velka 82.5 % BKT:sta. Työttömyys, BKT-kasvu ja menorakenne ovat avaintekijät.',
+    nodes:['velka','unemployment_rate','expenditure_gdp','bkt_muutos','gini_disposable'],
+    focus:'velka',
+    levers:['unemployment_rate','expenditure_gdp','bkt_muutos']
+  },
+  lama: {
+    label:'Lama-skenaario (1990-tyyli)',
+    desc:'Esiasetettu sokki: BKT −7 %, työttömyys +8 %-yks., menot leikkautuvat 5 %-yks. Tutki kerrannaisvaikutuksia.',
+    nodes:['velka','unemployment_rate','bkt_muutos','expenditure_gdp','gini_disposable','tfr','neet','sijoitetut'],
+    focus:'velka',
+    levers:['unemployment_rate','bkt_muutos','expenditure_gdp','gini_disposable'],
+    preset:{ unemployment_rate:+8, bkt_muutos:-8, expenditure_gdp:-5 }
+  },
+  panostus: {
+    label:'Panostus lapsipalveluihin',
+    desc:'Esiasetettu: ehkäisevien palvelujen reaalikasvu +25 %. Tarkastele viiveellistä vaikutusta TFR &amp; sijoituksiin.',
+    nodes:['tfr','sijoitetut','neet','percap_paivahoito','percap_perusopetus','percap_nuoriso','percap_lastensuojelu'],
+    focus:'tfr',
+    levers:['percap_paivahoito','percap_perusopetus','percap_nuoriso','percap_lastensuojelu','percap_mielenterveys'],
+    preset:{ percap_paivahoito:+2125, percap_perusopetus:+2375, percap_nuoriso:+50, percap_lastensuojelu:+325, percap_mielenterveys:+35 }
+  },
+};
+
+const DAMPING = 0.55;
+const CHAIN_ITER = 2;
+
+// ═══════════════════════════════════════════════════════════════════
+// TILA
+// ═══════════════════════════════════════════════════════════════════
+const S = {
+  scenario:'syntyvyys',
+  leverDeltas:{},
+  timeHorizon:0,
+  showFlow:true, showChains:true, activeOnly:false,
+  addingHypoFrom:null,
+  selected:null,
+  userLinks:[],
+  nodes:[], edges:[],
+  svg:null, gMain:null, sim:null,
+  miniChart:null,
+  flowTimer:null,
+  highlightFrom:null,
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// DATA-APUFUNKTIOT
+// ═══════════════════════════════════════════════════════════════════
+const YEARS = Object.keys(EMBEDDED).map(Number).sort((a,b)=>a-b);
+
+function getSeries(varKey){
+  // Yritä ensin DRIVERS-key (esim. percap_paivahoito) sitten PHENOMENA-key
+  const out = {};
+  for (const y of YEARS){
+    const v = EMBEDDED[y]?.[varKey];
+    if (typeof v === 'number') out[y] = v;
+  }
+  return out;
+}
+function lastVal(s){
+  const ys = Object.keys(s).map(Number);
+  if (!ys.length) return null;
+  return s[Math.max(...ys)];
+}
+function pearson(xs,ys){
+  const n = xs.length;
+  if (n < 3) return null;
+  let sx=0,sy=0,sxx=0,syy=0,sxy=0;
+  for (let i=0;i<n;i++){ sx+=xs[i]; sy+=ys[i]; sxx+=xs[i]*xs[i]; syy+=ys[i]*ys[i]; sxy+=xs[i]*ys[i]; }
+  const d = Math.sqrt((n*sxx-sx*sx)*(n*syy-sy*sy));
+  return d===0 ? null : (n*sxy-sx*sy)/d;
+}
+function corrChanges(s1,s2,lag=0){
+  const xs=[],ys=[];
+  for (let i=1;i<YEARS.length;i++){
+    const y=YEARS[i],yp=YEARS[i-1];
+    if (y-yp!==1) continue;
+    if (s1[y]==null||s1[yp]==null) continue;
+    const yT=y+lag;
+    if (s2[yT]==null||s2[yT-1]==null) continue;
+    xs.push(s1[y]-s1[yp]);
+    ys.push(s2[yT]-s2[yT-1]);
+  }
+  return { r: xs.length>=5 ? pearson(xs,ys) : null, n:xs.length };
+}
+function fisherCI(r,n){
+  if (r==null||n<4) return null;
+  const z=0.5*Math.log((1+r)/(1-r));
+  const se=1/Math.sqrt(n-3);
+  const lo=(Math.exp(2*(z-1.96*se))-1)/(Math.exp(2*(z-1.96*se))+1);
+  const hi=(Math.exp(2*(z+1.96*se))-1)/(Math.exp(2*(z+1.96*se))+1);
+  return {lo,hi};
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// LASKENTA — propagaatio ajan kanssa
+// ═══════════════════════════════════════════════════════════════════
+function timeFactor(lag, t){
+  // Bell-shape painotus: vaikutus huipussaan kun t≈lag
+  // Lyhyellä horisontilla pitkän lagin linkit eivät näy täysin
+  if (t === 0 && lag === 0) return 1;
+  const width = Math.max(lag, 3);
+  const distance = Math.abs(lag - t);
+  return Math.max(0, 1 - distance / (width + 1));
+}
+
+function computePhenomena(){
+  const t = S.timeHorizon;
+  const out = {};
+  for (const [k,p] of Object.entries(PHENOMENA)) out[k] = p.base;
+
+  // 1. Driver → ilmiö
+  const allLinks = [...THEORY_LINKS, ...S.userLinks];
+  for (const lnk of allLinks){
+    const drv = DRIVERS[lnk.from];
+    if (!drv) continue;
+    const delta = S.leverDeltas[lnk.from] || 0;
+    if (Math.abs(delta) < 1e-9) continue;
+    const range = drv.max - drv.min;
+    const dxNorm = delta / range;
+    const phen = PHENOMENA[lnk.to];
+    if (!phen) continue;
+    const tf = timeFactor(lnk.lag||0, t);
+    const impact = lnk.weight * dxNorm * Math.abs(phen.base) * tf;
+    out[lnk.to] += impact;
+  }
+
+  // 2. Ilmiö → ilmiö (iteratiivinen, vaimennettu)
+  if (S.showChains) {
+    for (let iter=0; iter<CHAIN_ITER; iter++){
+      const updates = {};
+      for (const lnk of CHAIN_LINKS){
+        const src = PHENOMENA[lnk.from];
+        if (!src) continue;
+        const normDelta = (out[lnk.from] - src.base) / Math.abs(src.base);
+        const tgt = PHENOMENA[lnk.to];
+        const impact = normDelta * lnk.weight * DAMPING * Math.abs(tgt.base);
+        updates[lnk.to] = (updates[lnk.to]||0) + impact;
+      }
+      for (const [k,c] of Object.entries(updates)) out[k] += c;
+    }
+  }
+
+  // Clamp realistisiin rajoihin
+  for (const k of Object.keys(out)){
+    const p = PHENOMENA[k];
+    out[k] = Math.max(p.base*0.1, Math.min(out[k], p.base*2.5));
+  }
+  return out;
+}
+
+function systemPressure(currentPhen){
+  let p = 0, n = 0;
+  for (const [k,ph] of Object.entries(PHENOMENA)){
+    p += Math.abs(currentPhen[k] - ph.base) / Math.abs(ph.base);
+    n++;
+  }
+  return n ? p/n : 0;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// RENDER — phenomena bar
+// ═══════════════════════════════════════════════════════════════════
+function renderPhenomenaBar(currentPhen){
+  const bar = document.getElementById('phenomena-bar');
+  let html = '';
+  const focus = SCENARIOS[S.scenario]?.focus;
+  for (const [k,ph] of Object.entries(PHENOMENA)){
+    const v = currentPhen[k];
+    const delta = v - ph.base;
+    const changed = Math.abs(delta) > 1e-4;
+    const good = (ph.polarity > 0 ? delta > 0 : delta < 0);
+    const col = !changed ? 'var(--ink)' : (good ? 'var(--pos)' : 'var(--neg)');
+    const sign = delta > 0 ? '+' : '';
+    const pct = (delta / ph.base) * 100;
+    const barW = changed ? Math.min(100, Math.abs(pct) * 4) : 0;
+    const crit = (ph.warn_above && v > ph.warn_above) || (ph.warn_below && v < ph.warn_below);
+    const isFocus = k === focus;
+    html += `<div class="phen-item ${isFocus?'active':''}" data-key="${k}" title="${ph.desc}">
+      <div class="phen-name">${ph.label}</div>
+      <div class="phen-value" style="color:${col}">
+        ${v.toFixed(ph.decimals)}<span class="phen-unit">${ph.unit||''}</span>
+        ${changed ? `<span class="phen-delta" style="color:${col};background:${good?'rgba(44,122,78,.12)':'rgba(184,58,37,.12)'}">${sign}${delta.toFixed(ph.decimals)} (${sign}${pct.toFixed(1)}%)</span>` : ''}
+      </div>
+      <div class="phen-bar" style="background:${col};transform:scaleX(${barW/100});width:100%"></div>
+      ${crit?'<div class="phen-crit">⚠</div>':''}
+    </div>`;
+  }
+  bar.innerHTML = html;
+  bar.querySelectorAll('.phen-item').forEach(el=>{
+    el.addEventListener('click',()=>{
+      const k = el.dataset.key;
+      const phen = PHENOMENA[k];
+      // Etsi solmu joka vastaa ilmiötä
+      const node = S.nodes.find(n=>n.id===phen.varKey || n.phenomKey===k);
+      if (node) selectNode(node);
+    });
+  });
+}
+
+function updateSystemPressure(currentPhen){
+  const p = systemPressure(currentPhen);
+  const el = document.getElementById('sys-pressure');
+  el.textContent = `Järjestelmäpaine ${p.toFixed(2)}`;
+  el.className = 'system-pressure ' + (p>0.15 ? 'critical' : p>0.06 ? 'moderate' : 'calm');
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CANVAS — D3 verkko + virtaavat partikkelit
+// ═══════════════════════════════════════════════════════════════════
+function setupCanvas(){
+  const svg = d3.select('#sim-canvas');
+  S.svg = svg;
+  svg.selectAll('*').remove();
+
+  const defs = svg.append('defs');
+  // Tummalle canvasille kirkkaammat värit (säilytetään merkitys)
+  const edgeColors = {
+    data:'#ef476f',  hypo:'#c8a8ff', user:'#ffd166',
+    chain:'#73c8ff', pos:'#06d6a0',  neg:'#ef476f',
+  };
+  S.edgeColors = edgeColors;
+  ['data','hypo','user','chain','pos','neg'].forEach(t=>{
+    defs.append('marker').attr('id','arr-'+t)
+      .attr('viewBox','0 -5 10 10').attr('refX',24).attr('refY',0)
+      .attr('markerWidth',7).attr('markerHeight',7).attr('orient','auto')
+      .append('path').attr('d','M0,-5L10,0L0,5').attr('fill',edgeColors[t]);
+  });
+
+  // Pehmeä glow (linkit)
+  const filter = defs.append('filter').attr('id','glow').attr('x','-50%').attr('y','-50%').attr('width','200%').attr('height','200%');
+  filter.append('feGaussianBlur').attr('stdDeviation','3').attr('result','blur');
+  const merge = filter.append('feMerge');
+  merge.append('feMergeNode').attr('in','blur');
+  merge.append('feMergeNode').attr('in','SourceGraphic');
+
+  // Voimakas glow (virtaavan pisteen pää)
+  const filterS = defs.append('filter').attr('id','glow-strong').attr('x','-100%').attr('y','-100%').attr('width','300%').attr('height','300%');
+  filterS.append('feGaussianBlur').attr('stdDeviation','5').attr('result','b1');
+  const mergeS = filterS.append('feMerge');
+  mergeS.append('feMergeNode').attr('in','b1');
+  mergeS.append('feMergeNode').attr('in','SourceGraphic');
+
+  const g = svg.append('g').attr('class','g-main');
+  S.gMain = g;
+  g.append('g').attr('class','layer-edges-glow');
+  g.append('g').attr('class','layer-edges');
+  g.append('g').attr('class','layer-particles');
+  g.append('g').attr('class','layer-nodes');
+
+  const zoom = d3.zoom().scaleExtent([0.4,2.5]).on('zoom', e=>g.attr('transform', e.transform));
+  svg.call(zoom);
+  svg.on('click', e=>{
+    if (e.target.tagName === 'svg' || e.target.classList.contains('g-main')) clearSelection();
+  });
+}
+
+function buildScenario(){
+  const sc = SCENARIOS[S.scenario];
+  if (!sc) return;
+  S.nodes = [];
+  S.edges = [];
+
+  const wrap = document.querySelector('.canvas-wrap');
+  const W = wrap.clientWidth, H = wrap.clientHeight;
+  const cx = W/2, cy = H/2;
+  const Rphen = Math.min(W,H)*0.32;
+  const Rdrv = Math.min(W,H)*0.16;
+
+  // Erottele ilmiöt ja driverit
+  const phenIds = sc.nodes.filter(id => Object.values(PHENOMENA).some(p=>p.varKey===id) || PHENOMENA[id]);
+  const drvIds = sc.nodes.filter(id => DRIVERS[id]);
+
+  phenIds.forEach((id,i)=>{
+    const phenKey = Object.keys(PHENOMENA).find(k=>PHENOMENA[k].varKey===id) || id;
+    const phen = PHENOMENA[phenKey];
+    if (!phen) return;
+    const a = (i/Math.max(1,phenIds.length))*2*Math.PI - Math.PI/2;
+    S.nodes.push({
+      id: phen.varKey, phenomKey: phenKey,
+      label: phen.short, fullLabel: phen.label, color: phen.color,
+      x: cx + Math.cos(a)*Rphen, y: cy + Math.sin(a)*Rphen,
+      type:'phenom', isOutcome: phenKey === sc.focus,
+    });
+  });
+
+  drvIds.forEach((id,i)=>{
+    const drv = DRIVERS[id];
+    if (!drv) return;
+    const a = (i/Math.max(1,drvIds.length))*2*Math.PI - Math.PI/2 + Math.PI/drvIds.length;
+    S.nodes.push({
+      id, label: drv.label.split(' ')[0].slice(0,9), fullLabel: drv.label, color:'#7a7268',
+      x: cx + Math.cos(a)*Rdrv, y: cy + Math.sin(a)*Rdrv,
+      type:'driver', isLever: sc.levers.includes(id),
+    });
+  });
+
+  // Edges driver → ilmiö
+  for (const lnk of [...THEORY_LINKS, ...S.userLinks]){
+    const src = S.nodes.find(n=>n.id===lnk.from);
+    const phenKey = lnk.to;
+    const phen = PHENOMENA[phenKey];
+    const tgt = phen ? S.nodes.find(n=>n.id===phen.varKey) : null;
+    if (src && tgt){
+      S.edges.push({
+        id: `${src.id}→${tgt.id}→${lnk.userAdded?'user':'theory'}`,
+        source: src.id, target: tgt.id,
+        type: lnk.userAdded ? 'user' : (lnk.conf==='data'?'data':'hypo'),
+        link: lnk, kind:'driver',
+      });
+    }
+  }
+
+  // Edges chain (ilmiö → ilmiö)
+  for (const lnk of CHAIN_LINKS){
+    const srcPhen = PHENOMENA[lnk.from];
+    const tgtPhen = PHENOMENA[lnk.to];
+    if (!srcPhen || !tgtPhen) continue;
+    const src = S.nodes.find(n=>n.id===srcPhen.varKey);
+    const tgt = S.nodes.find(n=>n.id===tgtPhen.varKey);
+    if (src && tgt){
+      S.edges.push({
+        id: `${src.id}→${tgt.id}→chain`,
+        source: src.id, target: tgt.id,
+        type:'chain', link: lnk, kind:'chain',
+      });
+    }
+  }
+
+  drawCanvas();
+}
+
+function drawCanvas(){
+  const g = S.gMain;
+  if (!g) return;
+
+  const idMap = Object.fromEntries(S.nodes.map(n=>[n.id,n]));
+
+  // Edges
+  // Hyvin kevyt hehku — ei "valtatie"-ilmettä. Partikkelit kantavat virtauksen.
+  const edgesGlow = g.select('.layer-edges-glow').selectAll('path').data(S.edges, d=>d.id);
+  edgesGlow.exit().remove();
+  edgesGlow.enter().append('path')
+    .attr('class','edge-glow')
+    .attr('id', d=>'glow-'+d.id)
+    .attr('fill','none')
+    .attr('stroke', d=>(d.link.weight>0?'#06d6a0':'#ef476f'))
+    .attr('stroke-width', d=>Math.max(0.6, Math.abs(d.link.weight)*1.6) + 1.0)
+    .attr('filter','url(#glow)')
+    .attr('opacity', 0.16)
+    .attr('pointer-events','none')
+    .merge(edgesGlow)
+    .attr('d', d=>bezierPath(idMap[d.source], idMap[d.target], d.kind==='chain'?0.55:0.18));
+
+  const edges = g.select('.layer-edges').selectAll('path').data(S.edges, d=>d.id);
+  edges.exit().remove();
+  const edgesEnter = edges.enter().append('path')
+    .attr('class', d=>'edge edge-'+d.type)
+    .attr('id', d=>'edge-'+d.id)
+    .attr('fill','none')
+    .attr('stroke', d=>(S.edgeColors||{})[d.type] || '#d0b48c')
+    .attr('stroke-width', d=>Math.max(0.45, Math.abs(d.link.weight||0.2)*1.3))
+    .attr('marker-end', d=>'url(#arr-'+d.type+')')
+    .attr('opacity', .30)
+    .style('cursor','pointer')
+    .on('mouseenter',function(){ d3.select(this).attr('opacity',.9); })
+    .on('mouseleave',function(){ if (!d3.select(this).classed('in-path')) d3.select(this).attr('opacity',.30); })
+    .on('click', (e,d)=>{ e.stopPropagation(); selectEdge(d); });
+  edgesEnter.merge(edges)
+    .attr('d', d=>bezierPath(idMap[d.source], idMap[d.target], d.kind==='chain'?0.55:0.18));
+
+  // Nodes
+  const nodes = g.select('.layer-nodes').selectAll('g').data(S.nodes, d=>d.id);
+  nodes.exit().remove();
+  const nodesEnter = nodes.enter().append('g')
+    .attr('class', d=>{
+      const cls = ['node-shell'];
+      if (d.isLever) cls.push('lever');
+      if (d.isOutcome) cls.push('outcome');
+      return cls.join(' ');
+    })
+    .attr('id', d=>'node-'+d.id)
+    .attr('transform', d=>`translate(${d.x},${d.y})`)
+    .style('cursor','pointer')
+    .on('click', (e,d)=>{ e.stopPropagation(); selectNode(d); });
+
+  nodesEnter.append('circle').attr('class','aura').attr('r', d=>d.type==='phenom'?38:24).attr('stroke', d=>d.color).attr('filter','url(#glow)');
+  nodesEnter.append('circle').attr('class','bg').attr('r', d=>d.type==='phenom'?28:18);
+  nodesEnter.append('circle').attr('class','ring').attr('r', d=>d.type==='phenom'?28:18).attr('stroke', d=>d.color);
+  nodesEnter.append('text').attr('class','lbl').attr('y', d=>d.type==='phenom'?-6:0).text(d=>d.label);
+  nodesEnter.append('text').attr('class','val').attr('y', 10);
+  nodesEnter.append('text').attr('class','delta').attr('y', d=>d.type==='phenom'?42:32);
+
+  nodesEnter.merge(nodes).attr('transform', d=>`translate(${d.x},${d.y})`);
+}
+
+function bezierPath(src, tgt, curvature=0.18){
+  if (!src || !tgt) return '';
+  const dx = tgt.x - src.x, dy = tgt.y - src.y;
+  const mx = (src.x + tgt.x)/2, my = (src.y + tgt.y)/2;
+  const ox = -dy*curvature, oy = dx*curvature;
+  return `M${src.x},${src.y}Q${mx+ox},${my+oy} ${tgt.x},${tgt.y}`;
+}
+
+function updateNodeValues(currentPhen){
+  for (const n of S.nodes){
+    const sel = d3.select('#node-'+n.id);
+    if (sel.empty()) continue;
+    if (n.type === 'phenom'){
+      const phen = PHENOMENA[n.phenomKey];
+      const v = currentPhen[n.phenomKey];
+      const delta = v - phen.base;
+      const changed = Math.abs(delta) > 1e-4;
+      const good = (phen.polarity > 0 ? delta > 0 : delta < 0);
+      const col = !changed ? '#7a7268' : (good ? '#2c7a4e' : '#b83a25');
+      sel.select('.val').text(v.toFixed(phen.decimals));
+      sel.select('.delta')
+        .attr('fill', col)
+        .text(changed ? `${delta>0?'+':''}${delta.toFixed(phen.decimals)}` : '');
+      sel.select('.bg').attr('stroke', changed ? col : (n.isOutcome ? phen.color : 'var(--rule)'));
+    } else {
+      const drv = DRIVERS[n.id];
+      const delta = S.leverDeltas[n.id] || 0;
+      const v = drv.base + delta;
+      sel.select('.val').text(drv.fmt(v).replace(/[^\d.,+\-%€]/g,'').slice(0,8));
+      const changed = Math.abs(delta) > 1e-9;
+      const col = !changed ? '#7a7268' : (delta>0 ? '#2c7a4e' : '#b83a25');
+      sel.select('.delta').attr('fill', col).text(changed ? `${delta>0?'+':''}${drv.fmt(delta).split(' ')[0]}`:'');
+      sel.select('.bg').attr('stroke', changed ? '#18140f' : 'var(--rule)').attr('stroke-width', changed?2.5:1.5);
+    }
+  }
+}
+
+function highlightActivePaths(){
+  // Aktiivinen polku = jokin slider muutettu → korosta lähtösolmu + sen lähtevät edget + kohdesolmut
+  const activeDrvs = Object.entries(S.leverDeltas).filter(([k,v])=>Math.abs(v)>1e-9).map(([k])=>k);
+
+  // Reset
+  d3.selectAll('.edge').classed('in-path',false).classed('dim', activeDrvs.length>0 || S.activeOnly);
+  d3.selectAll('.node-shell').classed('in-path',false);
+  d3.selectAll('.edge-glow').classed('on',false);
+
+  if (activeDrvs.length === 0){
+    d3.selectAll('.edge').classed('dim', S.activeOnly);
+    return;
+  }
+
+  for (const drv of activeDrvs){
+    d3.select('#node-'+drv).classed('in-path',true);
+    for (const edge of S.edges){
+      if (edge.source === drv){
+        d3.select('#edge-'+edge.id).classed('in-path',true).classed('dim',false);
+        d3.select('#glow-'+edge.id).classed('on',true);
+        d3.select('#node-'+edge.target).classed('in-path',true);
+      }
+    }
+  }
+  // Ketjuvaikutukset näkyvät koska ilmiöt joita lähdöt kosketti
+  if (S.showChains){
+    const litPhens = new Set(S.edges.filter(e=>activeDrvs.includes(e.source)).map(e=>e.target));
+    for (const edge of S.edges){
+      if (edge.kind==='chain' && litPhens.has(edge.source)){
+        d3.select('#edge-'+edge.id).classed('in-path',true).classed('dim',false);
+        d3.select('#glow-'+edge.id).classed('on',true);
+        d3.select('#node-'+edge.target).classed('in-path',true);
+      }
+    }
+  }
+  if (S.activeOnly){
+    d3.selectAll('.edge:not(.in-path)').style('display','none');
+  } else {
+    d3.selectAll('.edge').style('display','');
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// VIRTAAVAT PARTIKKELIT
+// ═══════════════════════════════════════════════════════════════════
+function spawnParticle(){
+  if (!S.showFlow) return;
+  const idMap = Object.fromEntries(S.nodes.map(n=>[n.id,n]));
+  const activeEdges = S.edges.filter(e=>{
+    if (e.kind==='driver'){
+      const d = S.leverDeltas[e.source] || 0;
+      return Math.abs(d) > 1e-9;
+    }
+    if (e.kind==='chain' && S.showChains){
+      // active jos lähde-ilmiö on muuttunut
+      return true; // näytetään aina jos showChains
+    }
+    return false;
+  });
+  if (activeEdges.length === 0) return;
+
+  const e = activeEdges[Math.floor(Math.random()*activeEdges.length)];
+  const src = idMap[e.source], tgt = idMap[e.target];
+  if (!src || !tgt) return;
+  const w = e.link.weight || 0;
+  // Hyvin hillitty vihje: kalpea kulta / kalpea terrakotta. Ei hehkua.
+  const col = w >= 0 ? '#b89a72' : '#a87468';
+
+  const layer = S.gMain.select('.layer-particles');
+  const path = bezierPath(src, tgt, e.kind==='chain' ? 0.55 : 0.18);
+  const pathEl = document.createElementNS('http://www.w3.org/2000/svg','path');
+  pathEl.setAttribute('d', path);
+  const len = pathEl.getTotalLength();
+
+  // Mikropartikkeli: pieni mutta hieman kirkkaampi pää että virtaus erottuu
+  // kalpean edge-viivan päältä. Häntä on yhä erittäin lyhyt.
+  const N = 5;
+  const trail = [];
+  for (let i=0;i<N;i++){
+    const r = i===0 ? 1.3 : Math.max(0.4, 1.1 - i*0.20);
+    const op = i===0 ? 0.85 : Math.max(0.04, 0.55 - i*0.12);
+    const c = layer.append('circle')
+      .attr('r', r).attr('fill', col).attr('opacity', op)
+      .attr('pointer-events','none');
+    if (i===0) c.attr('filter','url(#glow)');
+    trail.push(c);
+  }
+
+  const dur = 2800;
+  const trailGap = 50;
+  const start = performance.now();
+  function step(now){
+    const tHead = (now - start) / dur;
+    if (tHead >= 1.18){
+      trail.forEach(c=>c.remove());
+      return;
+    }
+    for (let i=0;i<N;i++){
+      const t = tHead - (i*trailGap)/dur;
+      if (t <= 0 || t >= 1){ trail[i].attr('opacity', 0); continue; }
+      const pt = pathEl.getPointAtLength(t * len);
+      const baseOp = i===0 ? 0.85 : Math.max(0.04, 0.55 - i*0.12);
+      const fade = t < 0.10 ? t/0.10 : (t > 0.85 ? (1 - t)/0.15 : 1);
+      trail[i].attr('cx', pt.x).attr('cy', pt.y).attr('opacity', baseOp * fade);
+    }
+    requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function startFlow(){
+  if (S.flowTimer) clearInterval(S.flowTimer);
+  S.flowTimer = setInterval(spawnParticle, 480);
+}
+function stopFlow(){
+  if (S.flowTimer){ clearInterval(S.flowTimer); S.flowTimer = null; }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// SLIDERIT
+// ═══════════════════════════════════════════════════════════════════
+function buildSliders(){
+  const sc = SCENARIOS[S.scenario];
+  const wrap = document.getElementById('sliders-wrap');
+  wrap.innerHTML = '';
+  if (!sc) return;
+  for (const drvId of sc.levers){
+    const drv = DRIVERS[drvId];
+    if (!drv) continue;
+    const relLinks = [...THEORY_LINKS, ...S.userLinks].filter(l=>l.from===drvId);
+    const div = document.createElement('div');
+    div.className = 'lever-group';
+    div.dataset.drv = drvId;
+    const range = drv.max - drv.min;
+    const initialDelta = S.leverDeltas[drvId] || 0;
+    const newVal = drv.base + initialDelta;
+
+    const impactsHtml = relLinks.map(l=>{
+      const phen = PHENOMENA[l.to];
+      const conf = ({data:'●',lit:'◐',spec:'○'})[l.conf] || '◌';
+      const confTxt = ({data:'data',lit:'kirjall.',spec:'spek.'})[l.conf] || l.conf;
+      return `<div class="lever-impact-row" data-target="${l.to}">
+        <span class="impact-target">→ ${phen?phen.short:l.to}</span>
+        <span class="impact-conf">${conf} ${confTxt}</span>
+        <span class="impact-val zero" id="impact-${drvId}-${l.to}">--</span>
+      </div>`;
+    }).join('');
+
+    div.innerHTML = `
+      <div class="lever-head">
+        <span class="lever-name">${drv.label}</span>
+        <span class="lever-readout">
+          <span style="color:var(--muted)">nyt </span>
+          <span>${drv.fmt(drv.base)}</span>
+          <span id="lv-new-${drvId}" style="color:var(--hypo)">${initialDelta!==0?` → ${drv.fmt(newVal)}`:''}</span>
+        </span>
+      </div>
+      <div class="lever-baseline">Säätöalue ${drv.fmt(drv.min)} – ${drv.fmt(drv.max)}</div>
+      <div class="lever-track">
+        <span>${drv.min}</span>
+        <input type="range" min="${-range/2}" max="${range/2}" step="${drv.step}" value="${initialDelta}" id="lv-${drvId}" data-drv="${drvId}">
+        <span>+${(range/2).toFixed(0)}</span>
+      </div>
+      <div class="lever-delta">
+        muutos: <b id="lv-delta-${drvId}">${initialDelta>=0?'+':''}${initialDelta}</b>
+        ${initialDelta!==0 ? ` <span style="color:var(--muted)">(${drv.unit})</span>`:''}
+      </div>
+      ${impactsHtml ? `<div class="lever-impacts">${impactsHtml}</div>` : '<div style="font-size:10px;color:var(--muted);margin-top:6px;font-style:italic">Tällä driverilla ei suoria linkkejä tämän skenaarion ilmiöihin.</div>'}
+    `;
+    wrap.appendChild(div);
+
+    const inp = div.querySelector('input');
+    inp.addEventListener('input', e=>{
+      const delta = parseFloat(e.target.value);
+      S.leverDeltas[drvId] = delta;
+      inp.className = delta > 0.001 ? 'pos' : delta < -0.001 ? 'neg' : '';
+      div.querySelector('#lv-delta-'+drvId).textContent = (delta>=0?'+':'')+delta.toFixed(2);
+      div.querySelector('#lv-new-'+drvId).textContent = Math.abs(delta)>1e-9 ? ` → ${drv.fmt(drv.base+delta)}` : '';
+      div.classList.toggle('highlight', Math.abs(delta)>1e-9);
+      // Pre-compute impacts UI
+      const dxNorm = delta / range;
+      for (const l of relLinks){
+        const phen = PHENOMENA[l.to];
+        if (!phen) continue;
+        const impact = l.weight * dxNorm * Math.abs(phen.base);
+        const span = document.getElementById(`impact-${drvId}-${l.to}`);
+        if (span){
+          span.textContent = (impact>=0?'+':'') + impact.toFixed(phen.decimals+1);
+          span.className = 'impact-val ' + (impact>0.001?'pos':impact<-0.001?'neg':'zero');
+        }
+      }
+      tick();
+    });
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// SELECTION + INSPECTOR
+// ═══════════════════════════════════════════════════════════════════
+function clearSelection(){
+  S.selected = null;
+  d3.selectAll('.node-shell').classed('selected',false);
+  document.getElementById('tab-inspect').innerHTML = '<div class="insp-empty">Klikkaa solmua tai linkkiä<br>nähdäksesi yksityiskohdat,<br>lähteet ja aikasarjat.</div>';
+}
+
+function selectNode(node){
+  // (Hypoteesin lisäämistila on poistettu)
+  S.selected = {type:'node', data:node};
+  d3.selectAll('.node-shell').classed('selected',false);
+  d3.select('#node-'+node.id).classed('selected',true);
+  renderNodeInspector(node);
+  document.querySelector('.tab[data-tab=inspect]').click();
+}
+
+function selectEdge(edge){
+  S.selected = {type:'edge', data:edge};
+  renderEdgeInspector(edge);
+  document.querySelector('.tab[data-tab=inspect]').click();
+}
+
+function renderNodeInspector(node){
+  const tab = document.getElementById('tab-inspect');
+  let html = '';
+  if (node.type === 'phenom'){
+    const phen = PHENOMENA[node.phenomKey];
+    const cur = computePhenomena()[node.phenomKey];
+    const delta = cur - phen.base;
+    const series = getSeries(phen.varKey);
+    const ys = Object.keys(series).map(Number);
+    const inLinks = [...THEORY_LINKS, ...S.userLinks].filter(l=>l.to===node.phenomKey);
+    const chainIn = CHAIN_LINKS.filter(l=>l.to===node.phenomKey);
+    const chainOut = CHAIN_LINKS.filter(l=>l.from===node.phenomKey);
+    html += `<div class="insp-node-name">${phen.label} <span class="badge" style="background:${phen.color}22;color:${phen.color};border-color:${phen.color}55">ilmiö</span>
+      <div class="sub">${phen.varKey} · ${ys[0]||'–'}–${ys[ys.length-1]||'–'} (n=${ys.length})</div>
+    </div>`;
+    html += `<div class="insp-section">
+      <h4>Nykytila &amp; simulaatio</h4>
+      <div class="stat-row"><span class="k">Datan viim.</span><span class="v">${(lastVal(series)??'-').toFixed?lastVal(series).toFixed(phen.decimals):'-'} ${phen.unit}</span></div>
+      <div class="stat-row"><span class="k">Baseline</span><span class="v">${phen.base.toFixed(phen.decimals)} ${phen.unit}</span></div>
+      <div class="stat-row"><span class="k">Sim.arvo</span><span class="v" style="color:var(--hypo);font-weight:700">${cur.toFixed(phen.decimals)} ${phen.unit}</span></div>
+      <div class="stat-row"><span class="k">Δ absoluutti</span><span class="v" style="color:${delta>=0?'var(--pos)':'var(--neg)'}">${delta>=0?'+':''}${delta.toFixed(phen.decimals)} ${phen.unit}</span></div>
+      <div class="stat-row"><span class="k">Δ %</span><span class="v" style="color:${delta>=0?'var(--pos)':'var(--neg)'}">${delta>=0?'+':''}${(delta/phen.base*100).toFixed(2)} %</span></div>
+      <div class="stat-row"><span class="k">Aikahorisontti</span><span class="v">+${S.timeHorizon}v</span></div>
+      ${node.isOutcome?'<div class="info-block">◎ Tämä on skenaarion fokus-ilmiö.</div>':''}
+    </div>`;
+    if (inLinks.length){
+      html += `<div class="insp-section"><h4>Tulevat vaikutukset (driver → ilmiö)</h4>`;
+      for (const l of inLinks){
+        const drv = DRIVERS[l.from];
+        const dir = l.weight > 0 ? '↑' : '↓';
+        const col = l.weight > 0 ? 'var(--pos)' : 'var(--neg)';
+        const confBadge = l.userAdded ? 'user' : l.conf;
+        html += `<div class="stat-row"><span class="k">${drv?drv.label:l.from}</span>
+          <span class="v" style="color:${col}">${dir} w=${l.weight} <span style="color:var(--muted)">lag=${l.lag}v</span></span></div>
+          <div style="font-size:10px;color:var(--muted);padding:1px 0 8px 0;grid-column:1/-1">${l.src} <span class="badge ${confBadge}" style="margin-left:4px">${confBadge}</span></div>`;
+      }
+      html += `</div>`;
+    }
+    if (chainIn.length || chainOut.length){
+      html += `<div class="insp-section"><h4>Ilmiöketjut <span class="badge chain">×0.55</span></h4>`;
+      for (const l of chainIn){
+        const src = PHENOMENA[l.from];
+        html += `<div class="stat-row"><span class="k">← ${src.short}</span><span class="v">w=${l.weight}</span></div>
+          <div style="font-size:10px;color:var(--muted);padding:1px 0 6px;grid-column:1/-1">${l.src}</div>`;
+      }
+      for (const l of chainOut){
+        const tgt = PHENOMENA[l.to];
+        html += `<div class="stat-row"><span class="k">→ ${tgt.short}</span><span class="v">w=${l.weight}</span></div>
+          <div style="font-size:10px;color:var(--muted);padding:1px 0 6px;grid-column:1/-1">${l.src}</div>`;
+      }
+      html += `</div>`;
+    }
+    html += `<div class="insp-section"><h4>Aikasarja (havainto)</h4><div class="mini-chart"><canvas id="mini-c" height="140"></canvas></div></div>`;
+    tab.innerHTML = html;
+    drawMini(series, phen.label, phen.color, cur, phen.base);
+  } else {
+    const drv = DRIVERS[node.id];
+    const series = getSeries(node.id);
+    const ys = Object.keys(series).map(Number);
+    const cur = drv.base + (S.leverDeltas[node.id]||0);
+    const delta = S.leverDeltas[node.id]||0;
+    const outLinks = [...THEORY_LINKS, ...S.userLinks].filter(l=>l.from===node.id);
+    html += `<div class="insp-node-name">${drv.label} <span class="badge user">driver</span>
+      <div class="sub">${node.id} · ${ys[0]||'–'}–${ys[ys.length-1]||'–'} (n=${ys.length})</div>
+    </div>`;
+    html += `<div class="insp-section">
+      <h4>Säätötila</h4>
+      <div class="stat-row"><span class="k">Datan viim.</span><span class="v">${drv.fmt(lastVal(series)??drv.base)}</span></div>
+      <div class="stat-row"><span class="k">Baseline</span><span class="v">${drv.fmt(drv.base)}</span></div>
+      <div class="stat-row"><span class="k">Sim.arvo</span><span class="v" style="color:var(--hypo);font-weight:700">${drv.fmt(cur)}</span></div>
+      <div class="stat-row"><span class="k">Δ</span><span class="v">${delta>=0?'+':''}${delta.toFixed(2)} ${drv.unit}</span></div>
+    </div>`;
+    if (outLinks.length){
+      html += `<div class="insp-section"><h4>Lähtevät vaikutukset</h4>`;
+      const range = drv.max - drv.min;
+      for (const l of outLinks){
+        const phen = PHENOMENA[l.to];
+        const dir = l.weight > 0 ? '↑' : '↓';
+        const col = l.weight > 0 ? 'var(--pos)' : 'var(--neg)';
+        const tf = timeFactor(l.lag, S.timeHorizon);
+        const impact = l.weight * (delta/range) * Math.abs(phen.base) * tf;
+        const confBadge = l.userAdded ? 'user' : l.conf;
+        html += `<div class="stat-row"><span class="k">→ ${phen.short}</span>
+          <span class="v" style="color:${col}">${dir} ${(impact>=0?'+':'')}${impact.toFixed(phen.decimals+1)} ${phen.unit}</span></div>
+          <div style="font-size:10px;color:var(--muted);padding:1px 0 8px;grid-column:1/-1">w=${l.weight}, lag=${l.lag}v · ${l.src} <span class="badge ${confBadge}" style="margin-left:4px">${confBadge}</span></div>`;
+      }
+      html += `</div>`;
+    }
+    html += `<div class="insp-section"><h4>Aikasarja (havainto)</h4><div class="mini-chart"><canvas id="mini-c" height="140"></canvas></div></div>`;
+    tab.innerHTML = html;
+    drawMini(series, drv.label, '#5b3a8a', null, drv.base);
+  }
+}
+
+function renderEdgeInspector(edge){
+  const tab = document.getElementById('tab-inspect');
+  const idMap = Object.fromEntries(S.nodes.map(n=>[n.id,n]));
+  const src = idMap[edge.source], tgt = idMap[edge.target];
+  const lnk = edge.link;
+  const isChain = edge.kind === 'chain';
+  let html = `<div class="insp-node-name">${src.fullLabel} → ${tgt.fullLabel}
+    <div class="sub">${isChain ? 'Ilmiöketju (×0.55)' : 'Driver → ilmiö'}</div>
+  </div>`;
+
+  const confBadge = lnk.userAdded ? 'user' : (isChain ? 'chain' : lnk.conf);
+  const confLbl = lnk.userAdded ? 'KÄYTTÄJÄ' : (isChain ? 'KETJU' : ({data:'DATA',lit:'KIRJALL.',spec:'SPEK.'})[lnk.conf]);
+
+  html += `<div class="insp-section">
+    <h4>Painon alkuperä <span class="badge ${confBadge}">${confLbl}</span></h4>
+    <div class="stat-row"><span class="k">Paino (w)</span><span class="v">${lnk.weight>0?'+':''}${lnk.weight}</span></div>
+    <div class="stat-row"><span class="k">Viive</span><span class="v">${lnk.lag||0} v</span></div>
+    ${lnk.r!=null?`<div class="stat-row"><span class="k">Datasta r</span><span class="v">${lnk.r.toFixed(2)} (n=${lnk.n})</span></div>`:''}
+    <div class="stat-row" style="grid-template-columns:1fr"><span class="k">Lähde / perustelu</span></div>
+    <div style="font-size:11px;line-height:1.45;color:#3a342b;padding:4px 0">${lnk.src||'–'}</div>
+  </div>`;
+
+  // Datasta lasketut korrelaatiot (jos driver→phenom)
+  if (!isChain && !lnk.userAdded){
+    const phen = PHENOMENA[edge.target===src.id?lnk.from:lnk.to] || PHENOMENA[lnk.to];
+    if (phen){
+      const s1 = getSeries(lnk.from);
+      const s2 = getSeries(phen.varKey);
+      const r0 = corrChanges(s1,s2,0);
+      const rL = corrChanges(s1,s2,lnk.lag||0);
+      const ci = fisherCI(r0.r, r0.n);
+      html += `<div class="insp-section">
+        <h4>Datasta laskettu korrelaatio <span class="badge data">data</span></h4>
+        <div class="stat-row"><span class="k">Δr (lag=0)</span><span class="v">${r0.r!=null?r0.r.toFixed(3):'-'} (n=${r0.n})</span></div>
+        <div class="stat-row"><span class="k">Δr (lag=${lnk.lag||0})</span><span class="v">${rL.r!=null?rL.r.toFixed(3):'-'} (n=${rL.n})</span></div>
+        ${ci?`<div class="stat-row"><span class="k">95% CI</span><span class="v">[${ci.lo.toFixed(2)}, ${ci.hi.toFixed(2)}]</span></div>`:''}
+      </div>`;
+
+      const smallN = r0.n < 10;
+      const weakR = r0.r != null && Math.abs(r0.r) < 0.2;
+      html += `<div class="insp-section"><h4>Riskiarvio</h4>`;
+      if (smallN) html += `<div class="warn-block">Vain ${r0.n} muutoshavaintoa — tulos on epäluotettava.</div>`;
+      if (weakR) html += `<div class="warn-block">Heikko muutoskorrelaatio (|r|&lt;0.2). Yhteys saattaa olla joko viiveellinen tai puuttuva.</div>`;
+      if (!smallN && !weakR) html += `<div class="ok-block">Korrelaatio on tilastollisesti riittävä. Tulkitse silti hypoteesina.</div>`;
+      html += `</div>`;
+
+      html += `<div class="insp-section"><h4>Aikasarjat rinnakkain (z-score)</h4><div class="mini-chart"><canvas id="mini-c" height="140"></canvas></div></div>`;
+      tab.innerHTML = html;
+      drawMiniPair(s1, s2, src.label, tgt.label);
+      return;
+    }
+  }
+
+  if (isChain){
+    html += `<div class="insp-section">
+      <h4>Ketjun mekaniikka</h4>
+      <div class="info-block">Ilmiö → ilmiö -linkki sisältää <strong>kaksi</strong> epävarmuuskerrointa päällekkäin (driver→ilmiö, ilmiö→ilmiö). Vaimennetaan kertoimella <code>0.55</code> ja iteroidaan ${CHAIN_ITER} kertaa. Tulkitse erityisellä varauksella.</div>
+    </div>`;
+  }
+
+  if (lnk.userAdded){
+    html += `<div class="insp-section">
+      <h4>Käyttäjän lisäämä</h4>
+      <div class="warn-block">Tämä yhteys on lisätty manuaalisesti, ei kirjallisuus- tai datapohjaa. Voit poistaa sen alta.</div>
+      <button class="reset-btn" id="del-link" style="margin:10px 0 0;width:100%">Poista hypoteesi</button>
+    </div>`;
+  }
+
+  tab.innerHTML = html;
+  const delBtn = document.getElementById('del-link');
+  if (delBtn) delBtn.onclick = ()=>{
+    S.userLinks = S.userLinks.filter(l => !(l===lnk));
+    buildScenario();
+    tick();
+    clearSelection();
+  };
+}
+
+function drawMini(series, label, color, simVal, baseVal){
+  const ctx = document.getElementById('mini-c');
+  if (!ctx) return;
+  const ys = Object.keys(series).map(Number).sort((a,b)=>a-b);
+  const data = ys.map(y=>series[y]);
+  if (S.miniChart){ S.miniChart.destroy(); S.miniChart = null; }
+  const datasets = [
+    { label, data, borderColor: color, backgroundColor: color+'22', borderWidth:1.6, pointRadius:0, fill:true, tension:0.25 }
+  ];
+  if (simVal != null && Math.abs(simVal-baseVal) > 1e-4){
+    const lastY = ys[ys.length-1];
+    datasets.push({
+      label:'sim. '+(S.timeHorizon)+'v', data: ys.map(()=>null),
+      borderColor:'#c47a00', backgroundColor:'transparent', borderWidth:0, pointRadius:0
+    });
+    datasets[1].data[ys.length-1] = simVal;
+    datasets.push({
+      label:'baseline', data: ys.map(()=>baseVal),
+      borderColor:'#7a7268', borderDash:[4,4], borderWidth:1, pointRadius:0, fill:false
+    });
+  }
+  S.miniChart = new Chart(ctx, {
+    type:'line',
+    data:{ labels: ys, datasets },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ labels:{ font:{size:9}, boxWidth:8, padding:6 } } },
+      scales:{ x:{ ticks:{ font:{size:9}, maxTicksLimit:7 } }, y:{ ticks:{ font:{size:9} } } }
+    }
+  });
+}
+function drawMiniPair(s1, s2, l1, l2){
+  const ctx = document.getElementById('mini-c');
+  if (!ctx) return;
+  const norm = (s)=>{
+    const vals = YEARS.map(y=>s[y]).filter(v=>v!=null);
+    if (vals.length<2) return YEARS.map(()=>null);
+    const m = vals.reduce((a,b)=>a+b,0)/vals.length;
+    const sd = Math.sqrt(vals.reduce((a,b)=>a+(b-m)*(b-m),0)/vals.length);
+    return YEARS.map(y => (s[y]!=null && sd>0) ? (s[y]-m)/sd : null);
+  };
+  if (S.miniChart){ S.miniChart.destroy(); S.miniChart = null; }
+  S.miniChart = new Chart(ctx, {
+    type:'line',
+    data:{
+      labels: YEARS,
+      datasets:[
+        { label:l1.slice(0,16), data:norm(s1), borderColor:'#b83a25', backgroundColor:'transparent', borderWidth:1.5, pointRadius:0, spanGaps:true, tension:0.2 },
+        { label:l2.slice(0,16), data:norm(s2), borderColor:'#2c7a4e', backgroundColor:'transparent', borderWidth:1.5, pointRadius:0, spanGaps:true, tension:0.2 },
+      ]
+    },
+    options:{
+      responsive:true, maintainAspectRatio:false,
+      plugins:{ legend:{ labels:{ font:{size:9}, boxWidth:8, padding:6 } } },
+      scales:{ x:{ ticks:{ font:{size:9}, maxTicksLimit:7 } }, y:{ ticks:{ font:{size:9} }, title:{ display:true, text:'z-score', font:{size:9} } } }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// MAIN TICK
+// ═══════════════════════════════════════════════════════════════════
+function tick(){
+  const phen = computePhenomena();
+  renderPhenomenaBar(phen);
+  updateNodeValues(phen);
+  updateSystemPressure(phen);
+  highlightActivePaths();
+  // Päivitä inspector jos ilmiö valittuna
+  if (S.selected?.type==='node' && S.selected.data.type==='phenom'){
+    renderNodeInspector(S.selected.data);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════════
+function loadScenario(name){
+  S.scenario = name;
+  S.leverDeltas = {};
+  const sc = SCENARIOS[name];
+  document.getElementById('scenario-desc').textContent = sc.desc;
+  document.getElementById('scenario-select').value = name;
+
+  // Apply preset
+  if (sc.preset){
+    for (const [k,v] of Object.entries(sc.preset)){
+      S.leverDeltas[k] = v;
+    }
+  }
+
+  buildSliders();
+  buildScenario();
+  tick();
+}
+
+function bind(){
+  document.getElementById('scenario-select').addEventListener('change', e => loadScenario(e.target.value));
+  document.getElementById('reset-btn').addEventListener('click', ()=>{
+    S.leverDeltas = {};
+    S.timeHorizon = 0;
+    document.getElementById('time-slider').value = 0;
+    document.getElementById('time-year').innerHTML = '+0v <span class="delta" id="time-delta">heti</span>';
+    buildSliders();
+    tick();
+  });
+  document.getElementById('export-btn').addEventListener('click', ()=>{
+    const data = {
+      scenario: S.scenario,
+      leverDeltas: S.leverDeltas,
+      timeHorizon: S.timeHorizon,
+      userLinks: S.userLinks,
+      phenomena: computePhenomena(),
+      timestamp: new Date().toISOString(),
+    };
+    const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = `simulaattori-${S.scenario}-${Date.now()}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+  document.getElementById('time-slider').addEventListener('input', e=>{
+    S.timeHorizon = parseInt(e.target.value);
+    const lbl = S.timeHorizon === 0 ? 'heti' : `vuosi ${2024+S.timeHorizon}`;
+    document.getElementById('time-year').innerHTML = `+${S.timeHorizon}v <span class="delta">${lbl}</span>`;
+    tick();
+  });
+  document.getElementById('btn-flow').addEventListener('click', function(){
+    S.showFlow = !S.showFlow;
+    this.classList.toggle('on', S.showFlow);
+    if (S.showFlow) startFlow(); else stopFlow();
+  });
+  document.getElementById('btn-chains').addEventListener('click', function(){
+    S.showChains = !S.showChains;
+    this.classList.toggle('on', S.showChains);
+    buildScenario();
+    tick();
+  });
+  document.getElementById('btn-active').addEventListener('click', function(){
+    S.activeOnly = !S.activeOnly;
+    this.classList.toggle('on', S.activeOnly);
+    tick();
+  });
+  // (Hypoteesi+-painike poistettu)
+  document.getElementById('btn-howto').addEventListener('click', ()=>document.getElementById('modal-howto').classList.add('show'));
+  document.getElementById('close-howto').addEventListener('click', ()=>document.getElementById('modal-howto').classList.remove('show'));
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.addEventListener('click', ()=>{
+      document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+      t.classList.add('on');
+      document.getElementById('tab-inspect').style.display = t.dataset.tab==='inspect'?'':'none';
+      document.getElementById('tab-howto').style.display = t.dataset.tab==='howto'?'':'none';
+    });
+  });
+  window.addEventListener('resize', ()=>{ buildScenario(); tick(); });
+}
+
+function init(){
+  setupCanvas();
+  bind();
+  loadScenario('syntyvyys');
+  startFlow();
+}
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
