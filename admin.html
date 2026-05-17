@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harri Käyhkö – Hallinta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600;700&display=swap"
+    />
+    <style>
+      :root {
+        --bg: #faf8f2;
+        --fg: #3a332a;
+        --muted: #746b5f;
+        --line: #ded3c2;
+        --card: #fffdf8;
+        --soft: #f1eadf;
+        --accent: #8b7355;
+        --danger: #b42318;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Work Sans", system-ui, sans-serif; }
+      h1, h2, h3 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; line-height: 1.04; margin: 0; }
+      a { color: inherit; text-decoration: none; }
+      button, input, textarea { font: inherit; }
+      header { position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); }
+      .bar, main, footer { width: min(100% - 48px, 1080px); margin: 0 auto; }
+      .bar { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 18px; }
+      .brand { font-family: "Instrument Serif", Georgia, serif; font-size: 26px; }
+      .brand .tag { font-family: "Work Sans", sans-serif; font-size: 11px; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; margin-left: 8px; }
+      nav { display: flex; align-items: center; gap: 16px; font-size: 14px; color: var(--muted); }
+      nav a:hover { color: var(--fg); }
+      main { padding: 40px 0 76px; min-height: calc(100vh - 142px); }
+      footer { border-top: 1px solid var(--line); padding: 24px 0; text-align: center; color: var(--muted); font-size: 12px; }
+      .hero { margin-bottom: 32px; }
+      .hero h1 { font-size: clamp(40px, 7vw, 60px); }
+      .hero p { max-width: 620px; color: var(--muted); line-height: 1.7; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+      .card { display: block; border: 1px solid var(--line); border-radius: 10px; background: var(--card); padding: 22px; }
+      .card:hover { border-color: var(--accent); }
+      .card h2 { font-size: 26px; }
+      .muted { color: var(--muted); }
+      .small { font-size: 14px; }
+      .back { display: inline-block; margin-bottom: 24px; color: var(--muted); font-size: 14px; }
+      .book-title { font-size: clamp(36px, 6vw, 52px); }
+      .chapter-title { font-size: clamp(30px, 5vw, 44px); }
+      .toc { list-style: none; padding: 0; margin: 20px 0 0; }
+      .toc a { display: flex; gap: 14px; align-items: baseline; padding: 10px 8px; border-radius: 8px; }
+      .toc a:hover { background: var(--soft); }
+      .num { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); font-size: 13px; }
+      .reader { font-size: 17px; line-height: 1.7; }
+      .reader p { margin: 0 0 1em; }
+      .reader h1, .reader h2, .reader h3 { margin: 1.4em 0 .5em; }
+      .reader h1 { font-size: 32px; }
+      .reader h2 { font-size: 26px; }
+      .reader h3 { font-size: 22px; }
+      .reader blockquote { margin: 1.2em 0; padding-left: 1em; border-left: 3px solid var(--accent); color: var(--muted); font-style: italic; }
+      .form { max-width: 430px; }
+      .field { display: grid; gap: 7px; margin: 0 0 14px; }
+      label { font-size: 13px; color: var(--muted); }
+      input, textarea { width: 100%; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--fg); padding: 10px 12px; }
+      textarea { min-height: 140px; resize: vertical; }
+      button, .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--accent); border-radius: 8px; background: var(--accent); color: #fffdf8; padding: 9px 14px; cursor: pointer; font-size: 14px; }
+      button.secondary, .btn.secondary { background: transparent; color: var(--fg); border-color: var(--line); }
+      button.danger { background: var(--danger); border-color: var(--danger); }
+      button:disabled { opacity: .6; cursor: not-allowed; }
+      .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+      .panel { border: 1px solid var(--line); border-radius: 10px; background: var(--card); padding: 20px; margin-top: 22px; }
+      .panel h2 { font-size: 24px; margin-bottom: 14px; }
+      .status { color: var(--muted); padding: 24px 0; }
+      .error { color: var(--danger); }
+      [contenteditable="true"] { outline: none; }
+      [contenteditable="true"]:hover { background: color-mix(in srgb, var(--accent) 6%, transparent); border-radius: 4px; }
+      [contenteditable="true"]:focus { background: color-mix(in srgb, var(--accent) 10%, transparent); box-shadow: 0 0 0 2px var(--accent); border-radius: 4px; }
+      .edit-badge { position: fixed; bottom: 20px; right: 20px; background: var(--accent); color: #fffdf8; padding: 10px 16px; border-radius: 999px; font-size: 13px; box-shadow: 0 6px 20px rgba(0,0,0,.15); z-index: 50; opacity: 0; transition: opacity .2s; pointer-events: none; }
+      .edit-badge.show { opacity: 1; }
+      .edit-section { border-top: 1px solid var(--line); padding-top: 16px; margin-top: 22px; }
+      .section-tools { justify-content: flex-end; margin-bottom: 8px; }
+      .section-add { display: block; margin: 18px 0; padding: 10px; border: 1px dashed var(--line); background: transparent; color: var(--muted); width: 100%; }
+      .section-del { background: transparent; color: var(--danger); border-color: var(--line); padding: 4px 10px; font-size: 12px; }
+      .section-move { background: transparent; color: var(--muted); border-color: var(--line); padding: 4px 10px; font-size: 12px; }
+      .section-move[disabled] { opacity: .35; cursor: not-allowed; }
+      #fmtbar { position: absolute; display: none; background: #2a2520; color: #fffdf8; border-radius: 8px; padding: 4px; gap: 2px; z-index: 100; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+      #fmtbar.show { display: inline-flex; }
+      #fmtbar button { background: transparent; border: none; color: #fffdf8; padding: 6px 10px; font-size: 13px; border-radius: 4px; min-width: 32px; }
+      #fmtbar button:hover { background: rgba(255,255,255,.15); }
+      #fmtbar .sep { width: 1px; background: rgba(255,255,255,.2); margin: 4px 2px; }
+      .reader-link { background: var(--soft); color: var(--accent); padding: 4px 10px; border-radius: 999px; font-size: 12px; }
+      @media (max-width: 720px) {
+        .bar, main, footer { width: min(100% - 24px, 1080px); }
+        .grid { grid-template-columns: 1fr; }
+        nav { gap: 10px; font-size: 13px; }
+        .brand { font-size: 20px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="bar">
+        <a class="brand" href="#/">Harri Käyhkö<span class="tag">Hallinta</span></a>
+        <nav id="nav"></nav>
+      </div>
+    </header>
+    <main id="app"></main>
+    <footer>© <span id="year"></span> Harri Käyhkö – Hallinta</footer>
+
+    <script>
+      const SUPABASE_URL = "https://etbjymyxiekkkvqwcygp.supabase.co";
+      const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV0Ymp5bXl4aWVra2t2cXdjeWdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4NTY2OTIsImV4cCI6MjA5NDQzMjY5Mn0.3rBdjPi3lqKW1erTPm_URxDpqrjMbelqidaP69uUowM";
+      const SESSION_KEY = "kayhko_admin_session";
+      const LEGACY_SESSION_KEY = "kayhko_session_vanilla";
+
+      const app = document.getElementById("app");
+      const nav = document.getElementById("nav");
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      let session = readSession();
+      let isAdmin = false;
+      let authCheckedFor = null;
+      let statusTimer = null;
+      const selectCache = new Map();
+      const CACHE_MS = 8000;
+
+      const esc = (v) => String(v ?? "").replace(/[&<>'"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" })[c]);
+      const slugify = (v) => String(v || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "") || "luku";
+      const path = () => {
+        const h = location.hash.replace(/^#/, "");
+        return h ? (h.startsWith("/") ? h : `/${h}`) : "/";
+      };
+
+      function paint(html) { clearTimeout(statusTimer); app.innerHTML = html; }
+      function setStatus(text) {
+        clearTimeout(statusTimer);
+        const html = `<p class="status">${esc(text)}</p>`;
+        if (text === "Ladataan…") statusTimer = setTimeout(() => { app.innerHTML = html; }, 200);
+        else app.innerHTML = html;
+      }
+      const setError = (text) => paint(`<pre class="error" style="white-space:pre-wrap;font-family:inherit;margin:0">${esc(text)}</pre>`);
+
+      function withTimeout(promise, ms = 10000) {
+        let timer;
+        const timeout = new Promise((_, reject) => { timer = setTimeout(() => reject(new Error("Yhteys aikakatkaistiin. Päivitä sivu.")), ms); });
+        return Promise.race([promise, timeout]).finally(() => clearTimeout(timer));
+      }
+
+      function readerHref() {
+        const dir = location.pathname.replace(/[^/]*$/, "");
+        return `${location.origin}${dir}books.html`;
+      }
+
+      function readSession() {
+        try { return JSON.parse(localStorage.getItem(SESSION_KEY) || localStorage.getItem(LEGACY_SESSION_KEY) || "null"); }
+        catch { return null; }
+      }
+      function saveSession(next) {
+        session = next;
+        isAdmin = false;
+        authCheckedFor = null;
+        selectCache.clear();
+        if (next) localStorage.setItem(SESSION_KEY, JSON.stringify(next));
+        else {
+          localStorage.removeItem(SESSION_KEY);
+          localStorage.removeItem(LEGACY_SESSION_KEY);
+        }
+      }
+
+      function headers(prefer) {
+        const token = session?.access_token || SUPABASE_KEY;
+        return {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+          ...(prefer ? { Prefer: prefer } : {}),
+        };
+      }
+      async function request(url, options = {}) {
+        const res = await withTimeout(fetch(url, options));
+        if (!res.ok) {
+          const body = await res.text().catch(() => "");
+          throw new Error(body || res.statusText || "Pyyntö epäonnistui");
+        }
+        if (res.status === 204) return null;
+        return res.json();
+      }
+      const restUrl = (table, query = "") => `${SUPABASE_URL}/rest/v1/${table}${query}`;
+      const eq = (v) => `eq.${encodeURIComponent(v)}`;
+      const select = (table, query) => request(restUrl(table, query), { headers: headers() });
+      async function cachedSelect(table, query) {
+        const key = `${table}${query}|${session?.access_token ? session.user?.id : "anon"}`;
+        const hit = selectCache.get(key);
+        if (hit && Date.now() - hit.time < CACHE_MS) return hit.data;
+        const data = await select(table, query);
+        selectCache.set(key, { time: Date.now(), data });
+        return data;
+      }
+      const insert = (table, body) => request(restUrl(table), { method: "POST", headers: headers("return=representation"), body: JSON.stringify(body) });
+      const update = (table, query, body) => request(restUrl(table, query), { method: "PATCH", headers: headers("return=representation"), body: JSON.stringify(body) });
+      const remove = (table, query) => request(restUrl(table, query), { method: "DELETE", headers: headers() });
+      const clearDataCache = () => selectCache.clear();
+
+      async function hasAdminRole() {
+        if (!session?.user?.id) return false;
+        try {
+          const result = await request(`${SUPABASE_URL}/rest/v1/rpc/has_role`, {
+            method: "POST",
+            headers: headers(),
+            body: JSON.stringify({ _user_id: session.user.id, _role: "admin" }),
+          });
+          return !!result;
+        } catch { return false; }
+      }
+      async function refreshAuth(force = false) {
+        if (!session?.user?.id) {
+          isAdmin = false;
+          authCheckedFor = null;
+          renderNav();
+          return false;
+        }
+        if (!force && authCheckedFor === session.user.id) {
+          renderNav();
+          return isAdmin;
+        }
+        isAdmin = await hasAdminRole();
+        authCheckedFor = session.user.id;
+        renderNav();
+        return isAdmin;
+      }
+      async function requireAdmin() {
+        if (!session?.user?.id) { renderNav(); login(); return false; }
+        setStatus("Tarkistetaan oikeuksia…");
+        const ok = await refreshAuth(!authCheckedFor);
+        if (!ok) setError("Tällä tunnuksella ei ole admin-oikeuksia.");
+        return ok;
+      }
+      function renderNav() {
+        if (!session) {
+          nav.innerHTML = `<a href="${readerHref()}" class="reader-link" target="_blank" rel="noopener">Lukijaversio ↗</a><a href="#/login">Kirjaudu</a>`;
+          return;
+        }
+        nav.innerHTML = `
+          <a href="${readerHref()}" class="reader-link" target="_blank" rel="noopener">Lukijaversio ↗</a>
+          <a href="#/">Kirjat</a>
+          <span class="muted small">${esc(session.user?.email || "")}</span>
+          <button class="secondary" id="logout" type="button">Kirjaudu ulos</button>`;
+        document.getElementById("logout")?.addEventListener("click", () => {
+          saveSession(null);
+          renderNav();
+          location.hash = "#/login";
+          route();
+        });
+      }
+
+      function renderInline(nodes = []) {
+        return nodes.map((n) => {
+          if (n.type === "hardBreak") return "<br>";
+          let out = esc(n.text ?? "");
+          for (const m of n.marks ?? []) {
+            if (m.type === "bold") out = `<strong>${out}</strong>`;
+            if (m.type === "italic") out = `<em>${out}</em>`;
+            if (m.type === "code") out = `<code>${out}</code>`;
+          }
+          return out;
+        }).join("");
+      }
+      function renderDoc(doc) {
+        const nodes = doc && typeof doc === "object" ? doc.content ?? [] : [];
+        return nodes.map((n) => {
+          if (n.type === "paragraph") return `<p>${renderInline(n.content) || "<br>"}</p>`;
+          if (n.type === "heading") {
+            const level = Math.min(Math.max(Number(n.attrs?.level || 2), 1), 3);
+            return `<h${level}>${renderInline(n.content)}</h${level}>`;
+          }
+          if (n.type === "blockquote") return `<blockquote>${renderDoc({ content: n.content })}</blockquote>`;
+          if (n.type === "bulletList") return `<ul>${(n.content ?? []).map((li) => `<li>${renderDoc({ content: li.content })}</li>`).join("")}</ul>`;
+          if (n.type === "orderedList") return `<ol>${(n.content ?? []).map((li) => `<li>${renderDoc({ content: li.content })}</li>`).join("")}</ol>`;
+          return "";
+        }).join("") || "<p><br></p>";
+      }
+      function docToText(doc) {
+        const out = [];
+        const walk = (nodes = []) => nodes.forEach((n) => {
+          if (n.text) out.push(n.text);
+          if (n.type === "hardBreak") out.push("\n");
+          if (n.type === "paragraph" || n.type === "heading") out.push("\n\n");
+          if (n.content) walk(n.content);
+        });
+        walk(doc?.content ?? []);
+        return out.join("").replace(/\n{3,}/g, "\n\n").trim();
+      }
+      function textToDoc(text) {
+        const paragraphs = String(text || "").split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
+        return {
+          type: "doc",
+          content: (paragraphs.length ? paragraphs : [""]).map((p) => ({
+            type: "paragraph",
+            content: p ? [{ type: "text", text: p }] : [],
+          })),
+        };
+      }
+      function inlineFromNode(node, marks = []) {
+        if (node.nodeType === 3) {
+          const text = node.nodeValue;
+          return text ? [{ type: "text", text, ...(marks.length ? { marks: [...new Set(marks)].map((type) => ({ type })) } : {}) }] : [];
+        }
+        if (node.nodeType !== 1) return [];
+        const tag = node.tagName;
+        if (tag === "BR") return [{ type: "hardBreak" }];
+        const next = marks.slice();
+        if (tag === "STRONG" || tag === "B") next.push("bold");
+        if (tag === "EM" || tag === "I") next.push("italic");
+        if (tag === "CODE") next.push("code");
+        const out = [];
+        node.childNodes.forEach((child) => out.push(...inlineFromNode(child, next)));
+        return out;
+      }
+      function inlineFrom(el) {
+        const out = [];
+        el.childNodes.forEach((child) => out.push(...inlineFromNode(child)));
+        return out;
+      }
+      function blockFromEl(el) {
+        const tag = el.tagName;
+        if (tag === "H1") return { type: "heading", attrs: { level: 1 }, content: inlineFrom(el) };
+        if (tag === "H2") return { type: "heading", attrs: { level: 2 }, content: inlineFrom(el) };
+        if (tag === "H3") return { type: "heading", attrs: { level: 3 }, content: inlineFrom(el) };
+        if (tag === "BLOCKQUOTE") return { type: "blockquote", content: Array.from(el.children).map(blockFromEl).filter(Boolean) };
+        if (tag === "UL" || tag === "OL") {
+          const items = Array.from(el.children).filter((c) => c.tagName === "LI").map((li) => ({ type: "listItem", content: [{ type: "paragraph", content: inlineFrom(li) }] }));
+          return { type: tag === "UL" ? "bulletList" : "orderedList", content: items };
+        }
+        return { type: "paragraph", content: inlineFrom(el) };
+      }
+      function blockFromAny(node) {
+        if (node.nodeType === 3) {
+          const text = node.nodeValue.trim();
+          return text ? { type: "paragraph", content: [{ type: "text", text: node.nodeValue }] } : null;
+        }
+        if (node.nodeType !== 1) return null;
+        return blockFromEl(node);
+      }
+      function htmlToDoc(el) {
+        const content = [];
+        el.childNodes.forEach((node) => { const block = blockFromAny(node); if (block) content.push(block); });
+        return { type: "doc", content: content.length ? content : [{ type: "paragraph", content: [] }] };
+      }
+
+      async function getBookBySlug(slug) {
+        const rows = await cachedSelect("books", `?select=*&slug=${eq(slug)}&limit=1`);
+        return rows[0] || null;
+      }
+      async function getBookById(id) {
+        const rows = await cachedSelect("books", `?select=*&id=${eq(id)}&limit=1`);
+        return rows[0] || null;
+      }
+      async function getBook(id) {
+        return (await getBookBySlug(id)) || (await getBookById(id));
+      }
+      const getChapters = (bookId) => cachedSelect("chapters", `?select=*&book_id=${eq(bookId)}&order=position.asc`);
+      const getSections = (chapterId) => cachedSelect("sections", `?select=*&chapter_id=${eq(chapterId)}&order=position.asc`);
+
+      function uniqueChapterSlug(title, chapters) {
+        const base = slugify(title);
+        const used = new Set(chapters.map((c) => c.slug));
+        if (!used.has(base)) return base;
+        let i = 2;
+        while (used.has(`${base}-${i}`)) i++;
+        return `${base}-${i}`;
+      }
+      async function deleteChapter(chapterId) {
+        await remove("sections", `?chapter_id=${eq(chapterId)}`);
+        await remove("chapters", `?id=${eq(chapterId)}`);
+        clearDataCache();
+      }
+      async function deleteBook(bookId) {
+        const chapters = await getChapters(bookId);
+        for (const c of chapters) await deleteChapter(c.id);
+        await remove("books", `?id=${eq(bookId)}`);
+        clearDataCache();
+      }
+
+      async function buildBookJson(bookRow, chapters) {
+        const out = {
+          slug: bookRow.slug,
+          title: bookRow.title,
+          author: bookRow.author,
+          description: bookRow.description ?? null,
+          updated_at: new Date().toISOString(),
+          chapters: [],
+        };
+        for (const c of chapters) {
+          const sections = await getSections(c.id);
+          out.chapters.push({
+            slug: c.slug,
+            title: c.title,
+            position: c.position,
+            sections: sections.map((s) => ({
+              title: s.title ?? null,
+              position: s.position,
+              content: s.content,
+              text: docToText(s.content),
+            })),
+          });
+        }
+        return out;
+      }
+      async function buildBookText(bookRow, chapters) {
+        const parts = [bookRow.title.toUpperCase(), bookRow.author];
+        if (bookRow.description) parts.push("", bookRow.description);
+        parts.push("", "");
+        for (let i = 0; i < chapters.length; i++) {
+          const c = chapters[i];
+          const sections = await getSections(c.id);
+          parts.push(`${String(i + 1).padStart(2, "0")}. ${c.title}`, "");
+          for (const s of sections) {
+            if (s.title) parts.push(s.title, "");
+            const t = docToText(s.content);
+            if (t) parts.push(t, "");
+          }
+          parts.push("");
+        }
+        return parts.join("\n").replace(/\n{3,}/g, "\n\n").trim() + "\n";
+      }
+      const jsonFilename = (b) => `${b.slug}.json`;
+      function downloadBlob(filename, mime, content) {
+        const blob = new Blob([content], { type: `${mime};charset=utf-8` });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+      async function copyBookToClipboard(bookRow, chapters, btn) {
+        const orig = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = "Kopioidaan…";
+        try {
+          await navigator.clipboard.writeText(await buildBookText(bookRow, chapters));
+          btn.textContent = "Kopioitu ✓";
+        } catch (e) {
+          btn.textContent = "Virhe";
+          alert(e.message || "Kopiointi epäonnistui");
+        } finally {
+          setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 1600);
+        }
+      }
+      async function downloadBookJson(bookRow, chapters, btn) {
+        const orig = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = "Kootaan…";
+        try {
+          const payload = await buildBookJson(bookRow, chapters);
+          downloadBlob(jsonFilename(bookRow), "application/json", JSON.stringify(payload, null, 2));
+          btn.textContent = "Ladattu ✓";
+        } catch (e) {
+          btn.textContent = "Virhe";
+          alert(e.message || "JSON-vienti epäonnistui");
+        } finally {
+          setTimeout(() => { btn.textContent = orig; btn.disabled = false; }, 1800);
+        }
+      }
+
+      function login() {
+        renderNav();
+        paint(`
+          <section class="form">
+            <h1 style="font-size:40px">Kirjaudu sisään</h1>
+            <p class="muted">Tämä on Supabase-pohjainen hallinta. Lukijaversio toimii erillisellä JSON-pohjalla.</p>
+            <form id="loginForm" class="panel">
+              <div class="field"><label>Sähköposti</label><input id="email" type="email" autocomplete="email" required></div>
+              <div class="field"><label>Salasana</label><input id="password" type="password" autocomplete="current-password" required></div>
+              <button id="loginButton" type="submit">Kirjaudu</button>
+              <p id="loginMsg" class="error"></p>
+            </form>
+          </section>`);
+        document.getElementById("loginForm").addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const button = document.getElementById("loginButton");
+          const message = document.getElementById("loginMsg");
+          button.disabled = true;
+          message.textContent = "";
+          try {
+            const auth = await request(`${SUPABASE_URL}/auth/v1/token?grant_type=password`, {
+              method: "POST",
+              headers: { apikey: SUPABASE_KEY, "Content-Type": "application/json" },
+              body: JSON.stringify({
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+              }),
+            });
+            saveSession(auth);
+            const ok = await refreshAuth(true);
+            if (!ok) {
+              saveSession(null);
+              renderNav();
+              message.textContent = "Tämä tunnus ei ole admin.";
+              return;
+            }
+            location.hash = "#/";
+            route();
+          } catch (e) {
+            message.textContent = e.message || "Kirjautuminen epäonnistui.";
+          } finally {
+            button.disabled = false;
+          }
+        });
+      }
+
+      async function home() {
+        if (!(await requireAdmin())) return;
+        setStatus("Ladataan…");
+        const books = await cachedSelect("books", "?select=*&order=position.asc");
+        paint(`
+          <section class="hero">
+            <h1>Hallinta</h1>
+            <p>Muokkaa kirjoja, lukuja ja osioita. Lukijaversio päivittyy lataamalla JSON ja työntämällä se kansioon <code>public/books/</code>.</p>
+          </section>
+          <section class="grid">
+            ${books.map((book) => `
+              <a class="card" href="#/books/${esc(book.slug)}">
+                <h2>${esc(book.title)}</h2>
+                <p class="muted small">${esc(book.author)} · /${esc(book.slug)}</p>
+                ${book.description ? `<p>${esc(book.description)}</p>` : ""}
+              </a>`).join("") || `<p class="muted">Ei vielä kirjoja.</p>`}
+          </section>
+          <section class="panel">
+            <h2>Uusi kirja</h2>
+            <div class="field"><label>Otsikko</label><input id="newTitle"></div>
+            <div class="field"><label>Kirjoittaja</label><input id="newAuthor" value="Harri Käyhkö"></div>
+            <div class="field"><label>Kuvaus</label><textarea id="newDesc"></textarea></div>
+            <button id="createBook">Lisää kirja</button>
+            <p id="createMsg" class="error"></p>
+          </section>`);
+        document.getElementById("createBook").onclick = async () => {
+          const title = document.getElementById("newTitle").value.trim();
+          if (!title) { document.getElementById("createMsg").textContent = "Anna otsikko."; return; }
+          try {
+            await insert("books", {
+              title,
+              author: document.getElementById("newAuthor").value || "Harri Käyhkö",
+              description: document.getElementById("newDesc").value || null,
+              slug: slugify(title),
+              position: books.length,
+            });
+            clearDataCache();
+            route();
+          } catch (e) {
+            document.getElementById("createMsg").textContent = e.message;
+          }
+        };
+      }
+
+      async function book(identifier) {
+        if (!(await requireAdmin())) return;
+        setStatus("Ladataan…");
+        const bookRow = await getBook(identifier);
+        if (!bookRow) return setError("Kirjaa ei löytynyt.");
+        const chapters = await getChapters(bookRow.id);
+        paint(`
+          <a class="back" href="#/">← Kirjat</a>
+          <section class="panel">
+            <div class="row" style="justify-content:space-between;align-items:flex-start">
+              <div>
+                <h1 class="book-title">${esc(bookRow.title)}</h1>
+                <p class="muted">/${esc(bookRow.slug)}</p>
+              </div>
+              <div class="row">
+                <button class="secondary" id="copyBookBtn">Kopioi koko kirja</button>
+                <button id="jsonBookBtn">Lataa JSON lukijalle</button>
+              </div>
+            </div>
+            <div class="field" style="margin-top:18px"><label>Otsikko</label><input id="bookTitle" value="${esc(bookRow.title)}"></div>
+            <div class="field"><label>Kirjoittaja</label><input id="bookAuthor" value="${esc(bookRow.author)}"></div>
+            <div class="field"><label>Kuvaus</label><textarea id="bookDesc">${esc(bookRow.description ?? "")}</textarea></div>
+            <div class="row">
+              <button id="saveBookBtn">Tallenna kirjan tiedot</button>
+              <button class="danger" id="deleteBookBtn">Poista kirja</button>
+              <span id="bookMsg" class="muted small"></span>
+            </div>
+          </section>
+          <section class="panel">
+            <h2>Sisällysluettelo</h2>
+            <ol class="toc">
+              ${chapters.map((c, i) => `
+                <li>
+                  <a href="#/books/${esc(bookRow.slug)}/${esc(c.slug)}">
+                    <span class="num">${String(i + 1).padStart(2, "0")}</span>
+                    <span style="font-family:Instrument Serif,Georgia,serif;font-size:22px">${esc(c.title)}</span>
+                  </a>
+                </li>`).join("") || `<li class="muted">Ei vielä lukuja.</li>`}
+            </ol>
+            <div class="row" style="margin-top:18px">
+              <input id="newChapterTitle" placeholder="Uuden luvun otsikko" style="flex:1">
+              <button id="addChapterBtn">Lisää luku</button>
+            </div>
+          </section>`);
+        document.getElementById("copyBookBtn").onclick = (e) => copyBookToClipboard(bookRow, chapters, e.currentTarget);
+        document.getElementById("jsonBookBtn").onclick = (e) => downloadBookJson(bookRow, chapters, e.currentTarget);
+        document.getElementById("saveBookBtn").onclick = async () => {
+          try {
+            await update("books", `?id=${eq(bookRow.id)}`, {
+              title: document.getElementById("bookTitle").value,
+              author: document.getElementById("bookAuthor").value,
+              description: document.getElementById("bookDesc").value || null,
+            });
+            clearDataCache();
+            document.getElementById("bookMsg").textContent = "Tallennettu";
+          } catch (e) {
+            document.getElementById("bookMsg").textContent = e.message;
+          }
+        };
+        document.getElementById("deleteBookBtn").onclick = async () => {
+          if (!confirm("Poistetaanko kirja kaikkine lukuineen ja osioineen?")) return;
+          try {
+            await deleteBook(bookRow.id);
+            location.hash = "#/";
+            route();
+          } catch (e) {
+            document.getElementById("bookMsg").textContent = e.message;
+          }
+        };
+        document.getElementById("addChapterBtn").onclick = async () => {
+          const title = document.getElementById("newChapterTitle").value.trim();
+          if (!title) return;
+          try {
+            const slug = uniqueChapterSlug(title, chapters);
+            await insert("chapters", { book_id: bookRow.id, title, slug, position: chapters.length });
+            clearDataCache();
+            location.hash = `#/books/${bookRow.slug}/${slug}`;
+          } catch (e) {
+            alert(e.message);
+          }
+        };
+      }
+
+      async function chapter(bookSlug, chapterSlug) {
+        if (!(await requireAdmin())) return;
+        setStatus("Ladataan…");
+        const bookRow = await getBookBySlug(bookSlug);
+        if (!bookRow) return setError("Kirjaa ei löytynyt.");
+        const chapters = await getChapters(bookRow.id);
+        const currentChapter = chapters.find((c) => c.slug === chapterSlug);
+        if (!currentChapter) return setError("Lukua ei löytynyt.");
+        const sections = await getSections(currentChapter.id);
+
+        const sectionsHtml = sections.map((section, i) => `
+          <section class="edit-section" data-section-id="${esc(section.id)}">
+            <div class="row section-tools">
+              <button class="section-move secondary" data-move-section="${esc(section.id)}" data-dir="up" ${i === 0 ? "disabled" : ""}>↑</button>
+              <button class="section-move secondary" data-move-section="${esc(section.id)}" data-dir="down" ${i === sections.length - 1 ? "disabled" : ""}>↓</button>
+              <button class="section-del danger" data-del-section="${esc(section.id)}">Poista osio</button>
+            </div>
+            <h2 data-field="title" contenteditable="true" data-placeholder="Osion otsikko (valinnainen)">${esc(section.title ?? "")}</h2>
+            <div data-field="content" contenteditable="true">${renderDoc(section.content)}</div>
+          </section>`).join("");
+
+        paint(`
+          <div class="edit-badge" id="editBadge"></div>
+          <article id="chapterArticle">
+            <a class="back" href="#/books/${esc(bookRow.slug)}">← ${esc(bookRow.title)}</a>
+            <div class="row" style="justify-content:space-between;align-items:flex-start;gap:18px">
+              <h1 class="chapter-title" data-chapter-title contenteditable="true">${esc(currentChapter.title)}</h1>
+              <div class="row">
+                <button class="secondary" id="copyBookBtn">Kopioi koko kirja</button>
+                <button id="jsonBookBtn">Lataa JSON lukijalle</button>
+                <button class="danger" id="deleteChapterBtn">Poista luku</button>
+              </div>
+            </div>
+            <div class="reader" id="reader" style="margin-top:32px">${sectionsHtml || `<p class="muted">Ei vielä osioita.</p>`}</div>
+            <button class="section-add" id="addSectionBtn">Lisää osio</button>
+            <section class="panel">
+              <h2>Lisää uusi luku</h2>
+              <div class="row">
+                <input id="newChapterTitle" placeholder="Uuden luvun otsikko" style="flex:1">
+                <button id="addChapterBtn">Lisää luku</button>
+              </div>
+            </section>
+          </article>`);
+        bindInlineEditor(bookRow, chapters, currentChapter, sections);
+      }
+
+      function bindInlineEditor(bookRow, chapters, currentChapter, sections) {
+        const badge = document.getElementById("editBadge");
+        const flash = (text, ok = true) => {
+          if (!badge) return;
+          badge.textContent = text;
+          badge.style.background = ok ? "var(--accent)" : "var(--danger)";
+          badge.classList.add("show");
+          clearTimeout(flash._t);
+          flash._t = setTimeout(() => badge.classList.remove("show"), 1400);
+        };
+        const saveSection = async (sectionEl) => {
+          const titleEl = sectionEl.querySelector('[data-field="title"]');
+          const contentEl = sectionEl.querySelector('[data-field="content"]');
+          flash("Tallennetaan…");
+          try {
+            await update("sections", `?id=${eq(sectionEl.dataset.sectionId)}`, {
+              title: (titleEl.innerText || "").trim() || null,
+              content: htmlToDoc(contentEl),
+            });
+            clearDataCache();
+            flash("Tallennettu ✓");
+          } catch (e) {
+            flash(e.message, false);
+          }
+        };
+        document.querySelectorAll("#reader .edit-section").forEach((sectionEl) => {
+          sectionEl.querySelectorAll('[contenteditable="true"]').forEach((el) =>
+            el.addEventListener("blur", () => saveSection(sectionEl))
+          );
+        });
+        const titleEl = document.querySelector("[data-chapter-title]");
+        titleEl?.addEventListener("blur", async () => {
+          flash("Tallennetaan…");
+          try {
+            await update("chapters", `?id=${eq(currentChapter.id)}`, {
+              title: (titleEl.innerText || "").trim() || currentChapter.title,
+            });
+            clearDataCache();
+            flash("Tallennettu ✓");
+          } catch (e) {
+            flash(e.message, false);
+          }
+        });
+        document.getElementById("copyBookBtn").onclick = (e) => copyBookToClipboard(bookRow, chapters, e.currentTarget);
+        document.getElementById("jsonBookBtn").onclick = (e) => downloadBookJson(bookRow, chapters, e.currentTarget);
+        document.getElementById("deleteChapterBtn").onclick = async () => {
+          if (!confirm("Poistetaanko tämä luku ja sen kaikki osiot?")) return;
+          try {
+            const idx = chapters.indexOf(currentChapter);
+            const target = chapters[idx - 1] || chapters[idx + 1];
+            await deleteChapter(currentChapter.id);
+            location.hash = target ? `#/books/${bookRow.slug}/${target.slug}` : `#/books/${bookRow.slug}`;
+            route();
+          } catch (e) {
+            flash(e.message, false);
+          }
+        };
+        document.getElementById("addSectionBtn").onclick = async () => {
+          try {
+            const maxPosition = sections.reduce((max, s) => Math.max(max, Number(s.position ?? 0)), -1);
+            await insert("sections", {
+              chapter_id: currentChapter.id,
+              title: null,
+              content: textToDoc(""),
+              position: maxPosition + 1,
+            });
+            clearDataCache();
+            route();
+          } catch (e) {
+            flash(e.message, false);
+          }
+        };
+        document.getElementById("addChapterBtn").onclick = async () => {
+          const input = document.getElementById("newChapterTitle");
+          const title = input.value.trim();
+          if (!title) return;
+          try {
+            const slug = uniqueChapterSlug(title, chapters);
+            await insert("chapters", { book_id: bookRow.id, title, slug, position: chapters.length });
+            clearDataCache();
+            location.hash = `#/books/${bookRow.slug}/${slug}`;
+          } catch (e) {
+            flash(e.message, false);
+          }
+        };
+        document.querySelectorAll("[data-del-section]").forEach((button) => button.onclick = async () => {
+          if (!confirm("Poistetaanko osio?")) return;
+          try {
+            await remove("sections", `?id=${eq(button.dataset.delSection)}`);
+            clearDataCache();
+            route();
+          } catch (e) {
+            flash(e.message, false);
+          }
+        });
+        document.querySelectorAll("[data-move-section]").forEach((button) => button.onclick = async () => {
+          if (button.disabled) return;
+          const i = sections.findIndex((s) => s.id === button.dataset.moveSection);
+          const j = button.dataset.dir === "up" ? i - 1 : i + 1;
+          if (i < 0 || j < 0 || j >= sections.length) return;
+          const a = sections[i];
+          const b = sections[j];
+          try {
+            await update("sections", `?id=${eq(a.id)}`, { position: b.position });
+            await update("sections", `?id=${eq(b.id)}`, { position: a.position });
+            clearDataCache();
+            route();
+          } catch (e) {
+            flash(e.message, false);
+          }
+        });
+        setupFormatBar();
+      }
+
+      function setupFormatBar() {
+        let bar = document.getElementById("fmtbar");
+        if (!bar) {
+          bar = document.createElement("div");
+          bar.id = "fmtbar";
+          bar.innerHTML = `
+            <button data-cmd="bold" title="Lihavoi"><b>B</b></button>
+            <button data-cmd="italic" title="Kursivoi"><i>I</i></button>
+            <span class="sep"></span>
+            <button data-block="p" title="Kappale">P</button>
+            <button data-block="h2" title="Otsikko 2">H2</button>
+            <button data-block="h3" title="Otsikko 3">H3</button>
+            <span class="sep"></span>
+            <button data-block="blockquote" title="Sitaatti">❝</button>
+            <button data-cmd="insertUnorderedList" title="Lista">•</button>
+            <button data-cmd="insertOrderedList" title="Numeroitu lista">1.</button>`;
+          document.body.appendChild(bar);
+          bar.addEventListener("mousedown", (event) => event.preventDefault());
+          bar.querySelectorAll("button").forEach((button) => button.addEventListener("click", () => {
+            const cmd = button.dataset.cmd;
+            const block = button.dataset.block;
+            if (cmd) document.execCommand(cmd, false);
+            else if (block === "blockquote") document.execCommand("formatBlock", false, "blockquote");
+            else if (block) document.execCommand("formatBlock", false, block);
+            updateBarState();
+          }));
+        }
+        const getEditableHost = () => {
+          const sel = window.getSelection();
+          if (!sel || sel.rangeCount === 0) return null;
+          let node = sel.anchorNode;
+          while (node && node !== document.body) {
+            if (node.nodeType === 1 && node.getAttribute?.("contenteditable") === "true" && node.dataset.field === "content") return node;
+            node = node.parentNode;
+          }
+          return null;
+        };
+        const updateBarState = () => {
+          const host = getEditableHost();
+          if (!host) { bar.classList.remove("show"); return; }
+          const sel = window.getSelection();
+          if (!sel.rangeCount || sel.isCollapsed) { bar.classList.remove("show"); return; }
+          const rect = sel.getRangeAt(0).getBoundingClientRect();
+          if (!rect.width && !rect.height) { bar.classList.remove("show"); return; }
+          bar.classList.add("show");
+          const barRect = bar.getBoundingClientRect();
+          bar.style.top = `${Math.max(window.scrollY + 8, rect.top + window.scrollY - barRect.height - 8)}px`;
+          bar.style.left = `${Math.max(8, rect.left + window.scrollX + rect.width / 2 - barRect.width / 2)}px`;
+        };
+        document.removeEventListener("selectionchange", window.__fmtUpdate || (() => {}));
+        window.__fmtUpdate = updateBarState;
+        document.addEventListener("selectionchange", updateBarState);
+        window.addEventListener("scroll", updateBarState, { passive: true });
+        window.addEventListener("resize", updateBarState);
+      }
+
+      async function route() {
+        const parts = path().split("/").filter(Boolean).map(decodeURIComponent);
+        try {
+          if (!parts.length) return home();
+          if (parts[0] === "login") return login();
+          if (parts[0] === "books" && parts[1] && parts[2]) return chapter(parts[1], parts[2]);
+          if (parts[0] === "books" && parts[1]) return book(parts[1]);
+          setError("Sivua ei löytynyt.");
+        } catch (e) {
+          setError(e.message || "Tuntematon virhe");
+        }
+      }
+
+      window.addEventListener("hashchange", route);
+      renderNav();
+      route();
+    </script>
+  </body>
+</html>
