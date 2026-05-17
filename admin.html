@@ -148,7 +148,7 @@
 
       function readerHref() {
         const dir = location.pathname.replace(/[^/]*$/, "");
-        return `${location.origin}${dir}books.html`;
+        return `${location.origin}${dir}index.html`;
       }
 
       function readSession() {
@@ -799,6 +799,140 @@
       }
 
       function setupFormatBar() {
+        const getEditableHost = () => {
+          const sel = window.getSelection();
+          if (!sel || sel.rangeCount === 0) return null;
+          let node = sel.anchorNode;
+          while (node && node !== document.body) {
+            if (node.nodeType === 1 && node.getAttribute?.("contenteditable") === "true" && node.dataset.field === "content") return node;
+            node = node.parentNode;
+          }
+          return null;
+        };
+
+        // Etsii valinnan sisältävän lohkotason elementin annetun hostin sisältä.
+        // Palauttaa elementin joka on hostin SUORA lapsi (esim. P, H2, BLOCKQUOTE, UL).
+        const findTopBlock = (node, host) => {
+          let cur = node;
+          if (cur && cur.nodeType === 3) cur = cur.parentNode;
+          while (cur && cur !== host && cur.parentNode !== host) cur = cur.parentNode;
+          return cur && cur.parentNode === host ? cur : null;
+        };
+
+        // Kerää KAIKKI hostin suorat lapsilohkot, joissa valinta on edes osittain.
+        const collectSelectedBlocks = (sel, host) => {
+          if (!sel.rangeCount) return [];
+          const range = sel.getRangeAt(0);
+          const startBlock = findTopBlock(range.startContainer, host);
+          const endBlock = findTopBlock(range.endContainer, host);
+          if (!startBlock) return [];
+          if (startBlock === endBlock || !endBlock) return [startBlock];
+          const blocks = [];
+          let cur = startBlock;
+          while (cur) {
+            blocks.push(cur);
+            if (cur === endBlock) break;
+            cur = cur.nextElementSibling;
+          }
+          return blocks;
+        };
+
+        // Palauttaa BLOCKQUOTEn (tai LI:n) sisäisen lohkon — sen joka oikeasti pitää tekstin.
+        // Esim. blockquote > p tilanteessa palauttaa p:n, vaikka top-block onkin blockquote.
+        const findInnerLeaf = (block, anchorNode) => {
+          if (!block) return null;
+          // jos block on jo "lehti" (p, h1-3), se on itse
+          if (/^(P|H1|H2|H3)$/.test(block.tagName)) return block;
+          // muuten etsi anchorNoden ylin lohko blockin sisältä
+          let cur = anchorNode;
+          if (cur && cur.nodeType === 3) cur = cur.parentNode;
+          while (cur && cur !== block && cur.parentNode !== block) cur = cur.parentNode;
+          if (cur && cur.parentNode === block) return cur;
+          // fallback: ensimmäinen lapsielementti
+          return block.firstElementChild || block;
+        };
+
+        const isHeading = (el) => /^H[1-3]$/.test(el?.tagName || "");
+        const isParagraph = (el) => el?.tagName === "P";
+        const isBlockquote = (el) => el?.tagName === "BLOCKQUOTE";
+        const isList = (el) => el?.tagName === "UL" || el?.tagName === "OL";
+
+        // Muotoile valittu(t) lohko(t) annetuksi tagiksi ("P", "H2", "H3").
+        // - blockquoten sisällä → pura ulos
+        // - blockquote suorana lohkona → korvaa
+        // - listan sisällä → ei tee mitään (käsitellään erikseen)
+        const applyHeadingOrParagraph = (host, sel, tag) => {
+          const blocks = collectSelectedBlocks(sel, host);
+          if (!blocks.length) return;
+          const anchorNode = sel.anchorNode;
+
+          blocks.forEach((block) => {
+            if (isList(block)) return; // jätä listat rauhaan tällä napilla
+
+            if (isBlockquote(block)) {
+              // Korvaa blockquote sen sisältämillä lohkoilla, muunnettuna tagiksi
+              const replacements = [];
+              Array.from(block.children).forEach((child) => {
+                const fresh = document.createElement(tag);
+                fresh.innerHTML = child.innerHTML;
+                replacements.push(fresh);
+              });
+              if (!replacements.length) {
+                const fresh = document.createElement(tag);
+                fresh.innerHTML = block.innerHTML || "<br>";
+                replacements.push(fresh);
+              }
+              replacements.forEach((node) => block.parentNode.insertBefore(node, block));
+              block.remove();
+              return;
+            }
+
+            // Suora P / H1-3 / muu → korvaa
+            if (block.tagName !== tag) {
+              const fresh = document.createElement(tag);
+              fresh.innerHTML = block.innerHTML;
+              block.parentNode.replaceChild(fresh, block);
+            }
+          });
+        };
+
+        // Toggle blockquote: jos valinta on jo blockquoten sisällä → pura, muuten kääri.
+        const applyBlockquote = (host, sel) => {
+          const blocks = collectSelectedBlocks(sel, host);
+          if (!blocks.length) return;
+
+          // Onko valinta jo kokonaan blockquoten sisällä?
+          const allInQuote = blocks.every((b) => isBlockquote(b));
+          if (allInQuote) {
+            // pura: korvaa blockquote sen lapsilla
+            blocks.forEach((block) => {
+              const parent = block.parentNode;
+              while (block.firstChild) parent.insertBefore(block.firstChild, block);
+              block.remove();
+            });
+            return;
+          }
+
+          // Kääri: ota kaikki lohkot, kääri yhteen blockquoteen
+          const quote = document.createElement("blockquote");
+          blocks[0].parentNode.insertBefore(quote, blocks[0]);
+          blocks.forEach((block) => {
+            // jos block on jo blockquote, siirrä sen lapset; muuten siirrä koko block
+            if (isBlockquote(block)) {
+              while (block.firstChild) quote.appendChild(block.firstChild);
+              block.remove();
+            } else {
+              quote.appendChild(block);
+            }
+          });
+        };
+
+        // Aseta kursori takaisin järkevään paikkaan muotoilun jälkeen
+        const restoreSelection = (host) => {
+          // Käytetään selaimen omaa selectionchange-kättelyä; ei tehdä erikseen mitään.
+          host.focus();
+        };
+
         let bar = document.getElementById("fmtbar");
         if (!bar) {
           bar = document.createElement("div");
@@ -816,25 +950,34 @@
             <button data-cmd="insertOrderedList" title="Numeroitu lista">1.</button>`;
           document.body.appendChild(bar);
           bar.addEventListener("mousedown", (event) => event.preventDefault());
+
           bar.querySelectorAll("button").forEach((button) => button.addEventListener("click", () => {
+            const host = getEditableHost();
+            if (!host) return;
+            const sel = window.getSelection();
             const cmd = button.dataset.cmd;
             const block = button.dataset.block;
-            if (cmd) document.execCommand(cmd, false);
-            else if (block === "blockquote") document.execCommand("formatBlock", false, "blockquote");
-            else if (block) document.execCommand("formatBlock", false, block);
+
+            if (cmd === "bold" || cmd === "italic") {
+              document.execCommand(cmd, false);
+            } else if (cmd === "insertUnorderedList" || cmd === "insertOrderedList") {
+              document.execCommand(cmd, false);
+            } else if (block === "p") {
+              applyHeadingOrParagraph(host, sel, "P");
+            } else if (block === "h2") {
+              applyHeadingOrParagraph(host, sel, "H2");
+            } else if (block === "h3") {
+              applyHeadingOrParagraph(host, sel, "H3");
+            } else if (block === "blockquote") {
+              applyBlockquote(host, sel);
+            }
+
+            // Triggeröi blur-tallennus seuraavalla microtickillä — sisältö on muuttunut
+            host.dispatchEvent(new Event("input", { bubbles: true }));
             updateBarState();
           }));
         }
-        const getEditableHost = () => {
-          const sel = window.getSelection();
-          if (!sel || sel.rangeCount === 0) return null;
-          let node = sel.anchorNode;
-          while (node && node !== document.body) {
-            if (node.nodeType === 1 && node.getAttribute?.("contenteditable") === "true" && node.dataset.field === "content") return node;
-            node = node.parentNode;
-          }
-          return null;
-        };
+
         const updateBarState = () => {
           const host = getEditableHost();
           if (!host) { bar.classList.remove("show"); return; }
