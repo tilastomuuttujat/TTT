@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harri Käyhkö – Kirjat</title>
+    <meta name="description" content="Harri Käyhkön kirjat luettavaksi verkossa." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600;700&display=swap"
+    />
+    <style>
+      :root {
+        --bg: #faf8f2;
+        --fg: #3a332a;
+        --muted: #746b5f;
+        --line: #ded3c2;
+        --card: #fffdf8;
+        --soft: #f1eadf;
+        --accent: #8b7355;
+        --danger: #b42318;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Work Sans", system-ui, sans-serif; }
+      h1, h2, h3 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; line-height: 1.04; margin: 0; }
+      a { color: inherit; text-decoration: none; }
+      header { position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); }
+      .bar, main, footer { width: min(100% - 48px, 980px); margin: 0 auto; }
+      .bar { display: flex; align-items: center; padding: 16px 0; }
+      .brand { font-family: "Instrument Serif", Georgia, serif; font-size: 30px; }
+      main { padding: 56px 0 76px; min-height: calc(100vh - 142px); }
+      footer { border-top: 1px solid var(--line); padding: 24px 0; text-align: center; color: var(--muted); font-size: 12px; }
+      .hero { margin-bottom: 44px; }
+      .hero h1 { font-size: clamp(48px, 9vw, 76px); }
+      .hero p { max-width: 620px; color: var(--muted); line-height: 1.7; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+      .card { display: block; border: 1px solid var(--line); border-radius: 10px; background: var(--card); padding: 24px; }
+      .card:hover { border-color: var(--accent); }
+      .card h2 { font-size: 31px; }
+      .muted { color: var(--muted); }
+      .small { font-size: 14px; }
+      .back { display: inline-block; margin-bottom: 28px; color: var(--muted); font-size: 14px; }
+      .book-title { font-size: clamp(42px, 8vw, 68px); }
+      .chapter-title { font-size: clamp(36px, 7vw, 56px); }
+      .toc { list-style: none; padding: 0; margin: 28px 0 0; }
+      .toc a { display: flex; gap: 14px; align-items: baseline; padding: 12px 10px; border-radius: 8px; }
+      .toc a:hover { background: var(--soft); }
+      .num { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); font-size: 13px; }
+      .reader { max-width: 72ch; font-size: 18px; line-height: 1.78; }
+      .reader p { margin: 0 0 1.25em; }
+      .reader h1, .reader h2, .reader h3 { margin: 1.7em 0 .55em; }
+      .reader h1 { font-size: 40px; }
+      .reader h2 { font-size: 31px; }
+      .reader h3 { font-size: 25px; }
+      .reader blockquote { margin: 1.4em 0; padding-left: 1em; border-left: 3px solid var(--accent); color: var(--muted); font-style: italic; }
+      .reader ul, .reader ol { padding-left: 1.4em; }
+      .pager { display: flex; justify-content: space-between; gap: 18px; margin-top: 60px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+      .right { text-align: right; margin-left: auto; }
+      .status { color: var(--muted); padding: 24px 0; }
+      .error { color: var(--danger); }
+      .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0; z-index: 10; transition: width .12s linear; pointer-events: none; }
+      .m-pager { display: none; }
+      @media (max-width: 720px) {
+        .bar, main, footer { width: min(100% - 24px, 980px); }
+        .grid { grid-template-columns: 1fr; }
+        .brand { font-size: 22px; }
+        header .bar { padding: 12px 0; }
+        main { padding: 24px 0 100px; min-height: calc(100vh - 120px); }
+        .hero { margin-bottom: 28px; }
+        .hero h1 { font-size: clamp(40px, 11vw, 58px); }
+        .hero p { font-size: 16px; line-height: 1.6; }
+        .card { padding: 18px; }
+        .card h2 { font-size: 26px; }
+        .book-title { font-size: clamp(34px, 10vw, 48px); }
+        .chapter-title { font-size: clamp(30px, 9vw, 44px); }
+        .reader { font-size: 18.5px; line-height: 1.75; max-width: none; }
+        .reader h1 { font-size: 28px; }
+        .reader h2 { font-size: 24px; }
+        .reader h3 { font-size: 20px; }
+        .toc { margin-top: 18px; }
+        .toc a { padding: 14px 8px; gap: 12px; }
+        .toc a span:last-child { font-size: 19px !important; }
+        .pager { display: none; }
+        .m-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; position: fixed; bottom: 0; left: 0; right: 0; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(12px); border-top: 1px solid var(--line); z-index: 8; }
+        .m-pager a, .m-pager span { display: flex; flex-direction: column; align-items: stretch; justify-content: center; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--fg); font-size: 14px; min-height: 52px; overflow: hidden; }
+        .m-pager .label { font-size: 10px; color: var(--muted); margin-bottom: 2px; text-transform: uppercase; letter-spacing: .06em; }
+        .m-pager .title { font-family: "Instrument Serif", Georgia, serif; font-size: 16px; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .m-pager a.next { text-align: right; }
+        .m-pager span.empty { opacity: .45; justify-content: center; align-items: center; }
+        footer { padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="bar">
+        <a class="brand" href="#/">Harri Käyhkö</a>
+      </div>
+    </header>
+    <main id="app"></main>
+    <footer>© <span id="year"></span> Harri Käyhkö</footer>
+
+    <script>
+      const app = document.getElementById("app");
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const esc = (v) =>
+        String(v ?? "").replace(/[&<>'"]/g, (c) => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;",
+        })[c]);
+
+      const path = () => {
+        const h = location.hash.replace(/^#/, "");
+        return h ? (h.startsWith("/") ? h : `/${h}`) : "/";
+      };
+
+      const setStatus = (text) => { app.innerHTML = `<p class="status">${esc(text)}</p>`; };
+      const setError = (text) => {
+        app.innerHTML = `<pre class="error" style="white-space:pre-wrap;font-family:inherit;margin:0">${esc(text)}</pre>`;
+      };
+
+      const jsonCache = new Map();
+      const BASE_DIR = location.pathname.replace(/[^/]*$/, "");
+
+      function jsonCandidates(file) {
+        const clean = String(file).replace(/^\/+/, "");
+        const list = [
+          `${location.origin}${BASE_DIR}${clean}`,
+          `${location.origin}/book-haven/${clean}`,
+          `${location.origin}/${clean}`,
+        ];
+        return [...new Set(list)];
+      }
+
+      async function loadJson(file) {
+        if (jsonCache.has(file)) return jsonCache.get(file);
+        const tried = [];
+        for (const url of jsonCandidates(file)) {
+          try {
+            const res = await fetch(url, { cache: "default" });
+            if (!res.ok) {
+              tried.push(`${url} → ${res.status}`);
+              continue;
+            }
+            const data = await res.json();
+            jsonCache.set(file, data);
+            return data;
+          } catch (e) {
+            tried.push(`${url} → ${e.message || "fetch epäonnistui"}`);
+          }
+        }
+        throw new Error(
+          `Tiedostoa ei löytynyt: ${file}\n\nKokeillut osoitteet:\n${tried.join("\n")}`
+        );
+      }
+
+      const loadIndex = async () => {
+        const idx = await loadJson("books/index.json");
+        return Array.isArray(idx) ? idx : (idx.books || []);
+      };
+      const loadBook = (slug) => loadJson(`books/${slug}.json`);
+
+      function renderInline(nodes = []) {
+        return nodes.map((n) => {
+          if (n.type === "hardBreak") return "<br>";
+          let out = esc(n.text ?? "");
+          for (const m of n.marks ?? []) {
+            if (m.type === "bold") out = `<strong>${out}</strong>`;
+            if (m.type === "italic") out = `<em>${out}</em>`;
+            if (m.type === "code") out = `<code>${out}</code>`;
+          }
+          return out;
+        }).join("");
+      }
+
+      function renderDoc(doc) {
+        const nodes = doc && typeof doc === "object" ? doc.content ?? [] : [];
+        return nodes.map((n) => {
+          if (n.type === "paragraph") return `<p>${renderInline(n.content)}</p>`;
+          if (n.type === "heading") {
+            const level = Math.min(Math.max(Number(n.attrs?.level || 2), 1), 3);
+            return `<h${level}>${renderInline(n.content)}</h${level}>`;
+          }
+          if (n.type === "blockquote") return `<blockquote>${renderDoc({ content: n.content })}</blockquote>`;
+          if (n.type === "bulletList")
+            return `<ul>${(n.content ?? []).map((li) => `<li>${renderDoc({ content: li.content })}</li>`).join("")}</ul>`;
+          if (n.type === "orderedList")
+            return `<ol>${(n.content ?? []).map((li) => `<li>${renderDoc({ content: li.content })}</li>`).join("")}</ol>`;
+          return "";
+        }).join("");
+      }
+
+      async function home() {
+        setStatus("Ladataan…");
+        let books;
+        try { books = await loadIndex(); }
+        catch (e) {
+          return setError(
+            `${e.message}\n\nTarkista että public/books/index.json on repossa ja GitHub Actions -build on onnistunut.`
+          );
+        }
+
+        app.innerHTML = `
+          <section class="hero">
+            <h1>Kirjasto</h1>
+            <p>Harri Käyhkön julkaisemat tekstit – luettavissa verkossa.</p>
+          </section>
+          <section class="grid">
+            ${books.length
+              ? books.map((b) => `
+                <a class="card" href="#/books/${esc(b.slug)}">
+                  <h2>${esc(b.title)}</h2>
+                  <p class="muted small">${esc(b.author)}</p>
+                  ${b.description ? `<p>${esc(b.description)}</p>` : ""}
+                </a>`).join("")
+              : `<p class="muted">Ei vielä kirjoja.</p>`}
+          </section>`;
+      }
+
+      async function book(slug) {
+        setStatus("Ladataan…");
+        let data;
+        try { data = await loadBook(slug); }
+        catch (e) { return setError(e.message || "Kirjaa ei löytynyt."); }
+
+        const chapters = (data.chapters || []).slice().sort(
+          (a, b) => (a.position ?? 0) - (b.position ?? 0)
+        );
+
+        app.innerHTML = `
+          <a class="back" href="#/">← Kirjat</a>
+          <h1 class="book-title">${esc(data.title)}</h1>
+          <p class="muted">${esc(data.author)}</p>
+          ${data.description ? `<p class="reader">${esc(data.description)}</p>` : ""}
+          <h2 style="margin-top:48px;font-size:32px">Sisällysluettelo</h2>
+          <ol class="toc">
+            ${chapters.length
+              ? chapters.map((c, i) => `
+                <li>
+                  <a href="#/books/${esc(slug)}/${esc(c.slug)}">
+                    <span class="num">${String(i + 1).padStart(2, "0")}</span>
+                    <span style="font-family:Instrument Serif,Georgia,serif;font-size:22px">${esc(c.title)}</span>
+                  </a>
+                </li>`).join("")
+              : `<li class="muted">Ei vielä lukuja.</li>`}
+          </ol>`;
+      }
+
+      async function chapter(slug, chapterSlug) {
+        setStatus("Ladataan…");
+        let data;
+        try { data = await loadBook(slug); }
+        catch (e) { return setError(e.message || "Kirjaa ei löytynyt."); }
+
+        const all = (data.chapters || []).slice().sort(
+          (a, b) => (a.position ?? 0) - (b.position ?? 0)
+        );
+        const current = all.find((c) => c.slug === chapterSlug);
+        if (!current) return setError("Lukua ei löytynyt.");
+
+        const sections = (current.sections || []).slice().sort(
+          (a, b) => (a.position ?? 0) - (b.position ?? 0)
+        );
+        const idx = all.indexOf(current);
+        const prev = idx > 0 ? all[idx - 1] : null;
+        const next = idx < all.length - 1 ? all[idx + 1] : null;
+        const prevHref = prev ? `#/books/${esc(slug)}/${esc(prev.slug)}` : "";
+        const nextHref = next ? `#/books/${esc(slug)}/${esc(next.slug)}` : "";
+
+        const sectionsHtml = sections.map((s) => `
+          <section>
+            ${s.title ? `<h2>${esc(s.title)}</h2>` : ""}
+            <div>${renderDoc(s.content)}</div>
+          </section>`).join("");
+
+        const mPager = `
+          <nav class="m-pager">
+            ${prev
+              ? `<a href="${prevHref}"><span class="label">← Edellinen</span><span class="title">${esc(prev.title)}</span></a>`
+              : `<span class="empty">Alku</span>`}
+            ${next
+              ? `<a class="next" href="${nextHref}"><span class="label">Seuraava →</span><span class="title">${esc(next.title)}</span></a>`
+              : `<span class="empty">Loppu</span>`}
+          </nav>`;
+
+        app.innerHTML = `
+          <div class="progress-bar" id="progress"></div>
+          <article id="chapterArticle">
+            <a class="back" href="#/books/${esc(slug)}">← ${esc(data.title)}</a>
+            <h1 class="chapter-title">${esc(current.title)}</h1>
+            <div class="reader" style="margin-top:40px">${sectionsHtml}</div>
+            <nav class="pager">
+              ${prev ? `<a href="${prevHref}">← ${esc(prev.title)}</a>` : `<span></span>`}
+              ${next ? `<a class="right" href="${nextHref}">${esc(next.title)} →</a>` : `<span></span>`}
+            </nav>
+          </article>
+          ${mPager}`;
+
+        initChapterUx(prevHref, nextHref);
+      }
+
+      function initChapterUx(prevHref, nextHref) {
+        const bar = document.getElementById("progress");
+        const updateProgress = () => {
+          if (!bar) return;
+          const h = document.documentElement;
+          const max = h.scrollHeight - h.clientHeight;
+          const pct = max > 0 ? Math.min(100, Math.max(0, (h.scrollTop || window.scrollY) / max * 100)) : 0;
+          bar.style.width = pct + "%";
+        };
+        updateProgress();
+        window.addEventListener("scroll", updateProgress, { passive: true });
+
+        const article = document.getElementById("chapterArticle");
+        if (!article || !window.matchMedia("(max-width: 720px)").matches) return;
+
+        let sx = 0, sy = 0, tracking = false;
+        article.addEventListener("touchstart", (e) => {
+          if (e.touches.length !== 1) { tracking = false; return; }
+          sx = e.touches[0].clientX; sy = e.touches[0].clientY; tracking = true;
+        }, { passive: true });
+        article.addEventListener("touchend", (e) => {
+          if (!tracking) return;
+          tracking = false;
+          const t = e.changedTouches[0];
+          const dx = t.clientX - sx, dy = t.clientY - sy;
+          if (Math.abs(dx) < 70 || Math.abs(dy) > 50) return;
+          if (dx < 0 && nextHref) location.hash = nextHref;
+          else if (dx > 0 && prevHref) location.hash = prevHref;
+        }, { passive: true });
+      }
+
+      function route() {
+        window.scrollTo(0, 0);
+        const parts = path().split("/").filter(Boolean).map(decodeURIComponent);
+        try {
+          if (!parts.length || (parts[0] === "books" && !parts[1])) return home();
+          if (parts[0] === "books" && parts[1] && parts[2]) return chapter(parts[1], parts[2]);
+          if (parts[0] === "books" && parts[1]) return book(parts[1]);
+          setError("Sivua ei löytynyt.");
+        } catch (e) {
+          setError(e.message || "Tuntematon virhe");
+        }
+      }
+
+      window.addEventListener("hashchange", route);
+      route();
+    </script>
+  </body>
+</html>
