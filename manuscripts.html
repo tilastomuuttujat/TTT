@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Harri Käyhkö – Kirjat</title>
-    <meta name="description" content="Harri Käyhkön kirjat luettavaksi verkossa." />
+    <title>Harri Käyhkö – Käsikirjoitukset</title>
+    <meta name="description" content="Harri Käyhkön käsikirjoitukset luettavaksi verkossa." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -204,7 +204,7 @@
 
         app.innerHTML = `
           <section class="hero">
-            <h1>Kirjasto</h1>
+            <h1>Käsikirjoitukset</h1>
             <p>Harri Käyhkön julkaisemat tekstit – luettavissa verkossa.</p>
           </section>
           <section class="grid">
@@ -230,7 +230,7 @@
         );
 
         app.innerHTML = `
-          <a class="back" href="#/">← Kirjat</a>
+          <a class="back" href="#/">← Käsikirjoitukset</a>
           <h1 class="book-title">${esc(data.title)}</h1>
           <p class="muted">${esc(data.author)}</p>
           ${data.description ? `<p class="reader">${esc(data.description)}</p>` : ""}
