@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Admin — Book Editor Suite (standalone)</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --primary: #6366f1; }
+  body { font-family: ui-sans-serif, system-ui, sans-serif; }
+  .serif { font-family: ui-serif, Georgia, serif; }
+  textarea { tab-size: 2; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+<!-- LOGIN -->
+<div id="loginView" class="hidden min-h-screen flex items-center justify-center p-6">
+  <form id="loginForm" class="w-full max-w-sm space-y-3 rounded-xl border bg-white p-6 shadow-sm">
+    <h1 class="text-lg font-semibold">Kirjaudu</h1>
+    <input id="email" type="email" placeholder="Sähköposti" required class="w-full rounded-md border px-3 py-2 text-sm"/>
+    <input id="password" type="password" placeholder="Salasana" required class="w-full rounded-md border px-3 py-2 text-sm"/>
+    <button class="w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-700">Kirjaudu</button>
+    <p id="loginErr" class="text-xs text-red-600"></p>
+  </form>
+</div>
+
+<!-- ACCESS DENIED -->
+<div id="denyView" class="hidden min-h-screen flex items-center justify-center p-6">
+  <div class="max-w-md rounded-xl border bg-white p-6 text-center shadow-sm">
+    <h2 class="text-lg font-semibold">Pääsy estetty</h2>
+    <p class="mt-2 text-sm text-slate-600">Tunnuksellasi (<span id="denyEmail"></span>) ei ole admin-roolia.</p>
+    <button id="denyLogout" class="mt-4 rounded-md border px-3 py-1.5 text-sm hover:bg-slate-100">Kirjaudu ulos</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="appView" class="hidden">
+  <header class="border-b bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
+      <div class="flex items-center gap-3">
+        <span class="text-sm font-semibold">Book Editor Suite</span>
+        <span class="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-700">Admin (HTML)</span>
+      </div>
+      <div class="flex items-center gap-2 text-xs text-slate-500">
+        <button data-tab="books" class="tabBtn rounded-md px-2 py-1 hover:bg-slate-100">Kirjat</button>
+        <button data-tab="thinking" class="tabBtn rounded-md px-2 py-1 hover:bg-slate-100">Ajattele</button>
+        <span id="userEmail" class="hidden sm:inline"></span>
+        <button id="logout" class="rounded-md border px-2 py-1 hover:bg-slate-100">Kirjaudu ulos</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- BOOKS TAB -->
+  <main id="tab-books" class="mx-auto max-w-7xl px-6 py-6 grid gap-4 lg:grid-cols-[280px_1fr]">
+    <aside class="space-y-2">
+      <div class="rounded-xl border bg-white p-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-semibold">Kirjat</h3>
+          <button id="newBook" class="rounded-md p-1 hover:bg-slate-100" title="Lisää kirja">＋</button>
+        </div>
+        <div id="bookList" class="mt-2 space-y-1"></div>
+      </div>
+      <div class="rounded-xl border bg-white p-3">
+        <label class="text-xs font-medium text-slate-500">Globaali haku</label>
+        <input id="globalSearch" placeholder="Etsi kaikista kirjoista…" class="mt-1 w-full rounded-md border bg-white px-2 py-1.5 text-sm"/>
+      </div>
+    </aside>
+    <section id="bookEditor"></section>
+  </main>
+
+  <!-- THINKING TAB -->
+  <main id="tab-thinking" class="hidden h-[calc(100vh-49px)] flex">
+    <aside class="flex w-80 flex-col border-r bg-white">
+      <div class="flex gap-2 border-b p-3">
+        <input id="nodeSearch" placeholder="Hae…" class="flex-1 rounded-md border px-2 py-1.5 text-sm"/>
+        <button id="newNode" class="rounded-md border p-1.5 hover:bg-slate-100" title="Uusi solmu">＋</button>
+      </div>
+      <div id="nodeList" class="flex-1 overflow-y-auto p-2"></div>
+    </aside>
+    <div id="nodeEditor" class="flex-1 overflow-y-auto bg-slate-50 p-6"></div>
+  </main>
+</div>
+
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const SUPABASE_URL = "https://etbjymyxiekkkvqwcygp.supabase.co";
+const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV0Ymp5bXl4aWVra2t2cXdjeWdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4NTY2OTIsImV4cCI6MjA5NDQzMjY5Mn0.3rBdjPi3lqKW1erTPm_URxDpqrjMbelqidaP69uUowM";
+
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { persistSession: true, autoRefreshToken: true }});
+const $ = (id) => document.getElementById(id);
+
+// ---------- helpers ----------
+const slugify = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+  .replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"").slice(0,80);
+
+function docToText(doc){
+  if(!doc||typeof doc!=="object"||!Array.isArray(doc.content)) return "";
+  const walk = (n)=> n.type==="text" ? (n.text??"") : (Array.isArray(n.content)?n.content.map(walk).join(""):"");
+  const lines=[];
+  for(const b of doc.content){
+    if(b.type==="heading"){
+      const lvl=Math.min(6,Math.max(1,Number(b.attrs?.level??1)));
+      lines.push("#".repeat(lvl)+" "+walk(b));
+    } else if(b.type==="bulletList"||b.type==="orderedList"){
+      (b.content||[]).forEach((it,i)=>lines.push((b.type==="orderedList"?(i+1)+". ":"- ")+walk(it).trim()));
+    } else lines.push(walk(b));
+    lines.push("");
+  }
+  return lines.join("\n").replace(/\n{3,}/g,"\n\n").trim();
+}
+function textToDoc(text){
+  const blocks = text.replace(/\r\n/g,"\n").split(/\n{2,}/);
+  const content=[];
+  for(const raw of blocks){
+    const b=raw.trim(); if(!b) continue;
+    const h=/^(#{1,6})\s+(.+)$/.exec(b);
+    if(h){ content.push({type:"heading",attrs:{level:h[1].length},content:[{type:"text",text:h[2]}]}); continue; }
+    const para = b.split("\n").map(l=>l.trim()).join(" ");
+    content.push({type:"paragraph",content:[{type:"text",text:para}]});
+  }
+  return {type:"doc",content};
+}
+const esc = (s)=> String(s??"").replace(/[&<>"']/g, c=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+// ---------- state ----------
+const state = {
+  user: null, isAdmin: false,
+  books: [], chapters: [], sections: [],
+  selectedBookId: null, selectedChapterId: null, selectedSectionId: null,
+  globalSearch: "",
+  nodes: [], selectedNodeId: null, draftNode: null, nodeSearch: "",
+  tab: "books",
+};
+
+// ---------- auth ----------
+async function refreshAuth(){
+  const { data:{ session } } = await sb.auth.getSession();
+  state.user = session?.user ?? null;
+  if(!state.user){ show("login"); return; }
+  const { data: roles } = await sb.from("user_roles").select("role").eq("user_id", state.user.id);
+  state.isAdmin = !!roles?.some(r=>r.role==="admin");
+  $("userEmail").textContent = state.user.email ?? "";
+  if(!state.isAdmin){ $("denyEmail").textContent = state.user.email ?? ""; show("deny"); return; }
+  show("app");
+  await loadBooks();
+  await loadNodes();
+}
+function show(view){
+  $("loginView").classList.toggle("hidden", view!=="login");
+  $("denyView").classList.toggle("hidden", view!=="deny");
+  $("appView").classList.toggle("hidden", view!=="app");
+}
+$("loginForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  $("loginErr").textContent="";
+  const { error } = await sb.auth.signInWithPassword({ email:$("email").value, password:$("password").value });
+  if(error){ $("loginErr").textContent = error.message; return; }
+  await refreshAuth();
+});
+$("logout").addEventListener("click", async ()=>{ await sb.auth.signOut(); location.reload(); });
+$("denyLogout").addEventListener("click", async ()=>{ await sb.auth.signOut(); location.reload(); });
+
+// ---------- tabs ----------
+document.querySelectorAll(".tabBtn").forEach(b=>b.addEventListener("click",()=>{
+  state.tab = b.dataset.tab;
+  $("tab-books").classList.toggle("hidden", state.tab!=="books");
+  $("tab-thinking").classList.toggle("hidden", state.tab!=="thinking");
+  if(state.tab==="thinking") renderNodes();
+}));
+
+// ---------- BOOKS ----------
+async function loadBooks(){
+  const { data, error } = await sb.from("books").select("*").order("position");
+  if(error){ alert(error.message); return; }
+  state.books = data;
+  if(!state.selectedBookId && data.length) state.selectedBookId = data[0].id;
+  renderBookList();
+  await loadBook();
+}
+function renderBookList(){
+  $("bookList").innerHTML = state.books.map(b=>`
+    <button data-id="${b.id}" class="bookBtn flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-sm ${state.selectedBookId===b.id?"bg-indigo-600 text-white":"hover:bg-slate-100"}">
+      <span class="truncate">${esc(b.title)}</span><span class="opacity-60">›</span>
+    </button>`).join("") || `<p class="text-xs text-slate-500">Ei kirjoja vielä.</p>`;
+  document.querySelectorAll(".bookBtn").forEach(el=>el.addEventListener("click",()=>{
+    state.selectedBookId = el.dataset.id; state.selectedChapterId=null; state.selectedSectionId=null;
+    renderBookList(); loadBook();
+  }));
+}
+$("newBook").addEventListener("click", async ()=>{
+  const title = prompt("Kirjan nimi?"); if(!title) return;
+  const author = prompt("Tekijä?") ?? "";
+  const pos = state.books.length;
+  const { data, error } = await sb.from("books").insert({ title, author, slug: slugify(title), position: pos }).select("*").single();
+  if(error) return alert(error.message);
+  state.selectedBookId = data.id; state.selectedChapterId=null; state.selectedSectionId=null;
+  await loadBooks();
+});
+$("globalSearch").addEventListener("input", (e)=>{ state.globalSearch = e.target.value; renderBookEditor(); });
+
+async function loadBook(){
+  if(!state.selectedBookId){ $("bookEditor").innerHTML = `<div class="rounded-xl border bg-white p-8 text-center text-slate-500">Valitse kirja vasemmalta tai luo uusi.</div>`; return; }
+  const [chRes] = await Promise.all([
+    sb.from("chapters").select("*").eq("book_id", state.selectedBookId).order("position"),
+  ]);
+  if(chRes.error){ alert(chRes.error.message); return; }
+  state.chapters = chRes.data;
+  const ids = state.chapters.map(c=>c.id);
+  if(ids.length){
+    const { data, error } = await sb.from("sections").select("*").in("chapter_id", ids).order("position");
+    if(error){ alert(error.message); return; }
+    state.sections = data;
+  } else state.sections = [];
+  if(!state.selectedChapterId && state.chapters[0]) state.selectedChapterId = state.chapters[0].id;
+  if(!state.selectedSectionId && state.selectedChapterId){
+    const first = state.sections.find(s=>s.chapter_id===state.selectedChapterId);
+    if(first) state.selectedSectionId = first.id;
+  }
+  renderBookEditor();
+}
+
+function buildExport(){
+  const b = state.books.find(x=>x.id===state.selectedBookId); if(!b) return null;
+  const chs = [...state.chapters].sort((a,c)=>a.position-c.position);
+  return {
+    schema:"lovable-book.v1",
+    exported_at:new Date().toISOString(),
+    book:{
+      id:b.id, slug:b.slug, title:b.title, author:b.author, description:b.description, cover_url:b.cover_url,
+      chapters: chs.map(ch=>({
+        id:ch.id, slug:ch.slug, title:ch.title, position:ch.position,
+        sections: state.sections.filter(s=>s.chapter_id===ch.id).sort((a,c)=>a.position-c.position).map(s=>({
+          id:s.id, title:s.title, position:s.position, content:s.content, text: docToText(s.content),
+        })),
+      })),
+    }
+  };
+}
+function bookExportToTxt(exp){
+  const b = exp.book; const out=[];
+  out.push(b.title); out.push("=".repeat(b.title.length));
+  if(b.author) out.push(`— ${b.author}`);
+  if(b.description){ out.push(""); out.push(b.description); }
+  for(const ch of b.chapters){
+    out.push(""); out.push(""); out.push(ch.title); out.push("-".repeat(ch.title.length));
+    for(const s of ch.sections){
+      out.push("");
+      if(s.title){ out.push(`### ${s.title}`); out.push(""); }
+      out.push(s.text || docToText(s.content));
+    }
+  }
+  return out.join("\n");
+}
+
+function renderBookEditor(){
+  const b = state.books.find(x=>x.id===state.selectedBookId);
+  if(!b){ $("bookEditor").innerHTML = `<div class="rounded-xl border bg-white p-8 text-center text-slate-500">Valitse kirja.</div>`; return; }
+  const q = state.globalSearch.trim().toLowerCase();
+  const filteredChapters = !q ? state.chapters : state.chapters.filter(ch=>{
+    if(ch.title.toLowerCase().includes(q)) return true;
+    return state.sections.filter(s=>s.chapter_id===ch.id).some(s=>(s.title??"").toLowerCase().includes(q)||docToText(s.content).toLowerCase().includes(q));
+  });
+  const selectedSection = state.sections.find(s=>s.id===state.selectedSectionId) ?? null;
+  const sectionsForChapter = state.sections.filter(s=>s.chapter_id===state.selectedChapterId);
+
+  $("bookEditor").innerHTML = `
+    <div class="space-y-4">
+      <div class="rounded-xl border bg-white p-5">
+        <div class="flex flex-wrap items-start justify-between gap-4">
+          <div class="min-w-0 flex-1 space-y-2" id="bookMeta">
+            <input id="bmTitle" value="${esc(b.title)}" class="w-full text-2xl font-semibold tracking-tight outline-none bg-transparent focus:bg-slate-50 focus:px-2 rounded"/>
+            <input id="bmAuthor" value="${esc(b.author)}" placeholder="Tekijä" class="w-full text-sm text-slate-500 outline-none bg-transparent focus:bg-slate-50 focus:px-2 rounded"/>
+            <textarea id="bmDesc" rows="2" placeholder="Kuvaus…" class="w-full resize-none text-sm outline-none bg-transparent focus:bg-slate-50 focus:px-2 rounded">${esc(b.description??"")}</textarea>
+            <button id="bmSave" class="hidden rounded-md bg-indigo-600 px-3 py-1 text-xs font-medium text-white">Tallenna kirjan tiedot</button>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button id="copyTxt" class="rounded-md border px-3 py-1.5 text-sm hover:bg-slate-100">Kopioi tekstinä</button>
+            <button id="downloadJson" class="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700">Lataa JSON</button>
+            <button id="deleteBook" class="rounded-md border border-red-300 px-2 py-1.5 text-sm text-red-600 hover:bg-red-50" title="Poista kirja">🗑</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid gap-4 lg:grid-cols-[260px_1fr]">
+        <div class="space-y-2 rounded-xl border bg-white p-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-sm font-semibold">Luvut</h4>
+            <button id="newChapter" class="rounded-md p-1 hover:bg-slate-100">＋</button>
+          </div>
+          <ul id="chapterList" class="space-y-0.5">
+            ${filteredChapters.map((ch,i)=>{
+              const active = state.selectedChapterId===ch.id;
+              const secs = state.sections.filter(s=>s.chapter_id===ch.id);
+              return `
+                <li>
+                  <button data-cid="${ch.id}" class="chapterBtn flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-xs ${active?"bg-slate-100 font-medium":"hover:bg-slate-50"}">
+                    <span class="truncate"><span class="text-slate-500">${i+1}. </span>${esc(ch.title)}</span>
+                  </button>
+                  ${active?`
+                    <ul class="ml-3 mt-1 space-y-0.5 border-l pl-2">
+                      ${secs.map((s,j)=>`
+                        <li><button data-sid="${s.id}" class="sectionBtn w-full truncate rounded px-2 py-1 text-left text-xs ${state.selectedSectionId===s.id?"bg-indigo-50 font-medium text-indigo-700":"text-slate-500 hover:bg-slate-50"}">${j+1}. ${esc(s.title||"(Nimetön)")}</button></li>
+                      `).join("")}
+                      <li><button data-newsec="${ch.id}" class="newSecBtn mt-1 rounded px-2 py-1 text-xs text-slate-500 hover:bg-slate-100">＋ Uusi osio</button></li>
+                    </ul>
+                  `:""}
+                </li>`;
+            }).join("")}
+          </ul>
+        </div>
+        <div id="sectionPane">
+          ${selectedSection ? sectionEditorHtml(selectedSection) : `<div class="rounded-xl border bg-white p-8 text-center text-sm text-slate-500">Valitse osio muokattavaksi tai luo uusi.</div>`}
+        </div>
+      </div>
+    </div>
+  `;
+
+  // book meta
+  ["bmTitle","bmAuthor","bmDesc"].forEach(id=>$(id).addEventListener("input",()=>$("bmSave").classList.remove("hidden")));
+  $("bmSave").addEventListener("click", async ()=>{
+    const title=$("bmTitle").value, author=$("bmAuthor").value, description=$("bmDesc").value;
+    const { error } = await sb.from("books").update({ title, author, description: description||null, slug: slugify(title)}).eq("id", b.id);
+    if(error) return alert(error.message);
+    await loadBooks();
+  });
+  $("copyTxt").addEventListener("click", async ()=>{
+    const exp = buildExport(); if(!exp) return;
+    await navigator.clipboard.writeText(bookExportToTxt(exp));
+    alert("Kirjan teksti kopioitu leikepöydälle.");
+  });
+  $("downloadJson").addEventListener("click", ()=>{
+    const exp = buildExport(); if(!exp) return;
+    const blob = new Blob([JSON.stringify(exp,null,2)], { type:"application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a"); a.href=url; a.download=`${exp.book.slug||"book"}.json`; a.click();
+    URL.revokeObjectURL(url);
+  });
+  $("deleteBook").addEventListener("click", async ()=>{
+    if(!confirm(`Poistetaanko "${b.title}" pysyvästi?`)) return;
+    const ids = state.chapters.map(c=>c.id);
+    if(ids.length){
+      await sb.from("sections").delete().in("chapter_id", ids);
+      await sb.from("chapters").delete().eq("book_id", b.id);
+    }
+    const { error } = await sb.from("books").delete().eq("id", b.id);
+    if(error) return alert(error.message);
+    state.selectedBookId=null; state.selectedChapterId=null; state.selectedSectionId=null;
+    await loadBooks();
+  });
+  $("newChapter").addEventListener("click", async ()=>{
+    const title = prompt("Luvun otsikko?"); if(!title) return;
+    const pos = state.chapters.length;
+    const { data, error } = await sb.from("chapters").insert({ book_id: b.id, title, slug: slugify(title), position: pos }).select("*").single();
+    if(error) return alert(error.message);
+    state.selectedChapterId = data.id; state.selectedSectionId=null;
+    await loadBook();
+  });
+  document.querySelectorAll(".chapterBtn").forEach(el=>el.addEventListener("click",()=>{
+    state.selectedChapterId = el.dataset.cid; state.selectedSectionId=null; renderBookEditor();
+  }));
+  document.querySelectorAll(".sectionBtn").forEach(el=>el.addEventListener("click",()=>{
+    state.selectedSectionId = el.dataset.sid; renderBookEditor();
+  }));
+  document.querySelectorAll(".newSecBtn").forEach(el=>el.addEventListener("click", async ()=>{
+    const cid = el.dataset.newsec;
+    const title = prompt("Osion otsikko?") ?? "";
+    const pos = state.sections.filter(s=>s.chapter_id===cid).length;
+    const { data, error } = await sb.from("sections").insert({ chapter_id: cid, title: title||null, position: pos, content:{ type:"doc", content:[] }}).select("*").single();
+    if(error) return alert(error.message);
+    state.selectedSectionId = data.id;
+    await loadBook();
+  }));
+  wireSectionEditor();
+}
+
+function sectionEditorHtml(section){
+  const ch = state.chapters.find(c=>c.id===section.chapter_id);
+  const text = docToText(section.content);
+  return `
+    <div class="rounded-xl border bg-white">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b px-4 py-2">
+        <div class="text-xs text-slate-500">${esc(ch?.title??"")} › Osio #${section.position+1}</div>
+        <div class="flex items-center gap-2">
+          <button id="saveSection" class="rounded-md bg-indigo-600 px-3 py-1 text-xs font-medium text-white disabled:opacity-50" disabled>Tallenna</button>
+          <button id="deleteSection" class="rounded-md border border-red-300 p-1 text-red-600 hover:bg-red-50">🗑</button>
+          <button id="renameChapter" class="rounded-md border px-2 py-1 text-xs hover:bg-slate-100">Nimeä luku</button>
+          <button id="deleteChapter" class="rounded-md border border-red-300 px-2 py-1 text-xs text-red-600 hover:bg-red-50">Poista luku</button>
+        </div>
+      </div>
+      <div class="space-y-3 p-4">
+        <input id="secTitle" value="${esc(section.title??"")}" placeholder="Osion otsikko" class="w-full rounded-md border px-3 py-2 text-base font-semibold outline-none"/>
+        <textarea id="secText" rows="24" class="w-full resize-y rounded-md border bg-white px-3 py-2 serif text-[15px] leading-relaxed outline-none" placeholder="Kirjoita osion sisältö. Tyhjä rivi erottaa kappaleet. # ## ### otsikoita.">${esc(text)}</textarea>
+        <p class="text-xs text-slate-500">Vihje: tyhjä rivi aloittaa uuden kappaleen. Rivi joka alkaa <code>#</code> tms. tulkitaan otsikoksi.</p>
+      </div>
+    </div>
+  `;
+}
+function wireSectionEditor(){
+  const sec = state.sections.find(s=>s.id===state.selectedSectionId); if(!sec) return;
+  const titleEl = $("secTitle"), textEl = $("secText"), saveBtn = $("saveSection");
+  const markDirty = ()=> saveBtn.disabled=false;
+  titleEl?.addEventListener("input", markDirty);
+  textEl?.addEventListener("input", markDirty);
+  saveBtn?.addEventListener("click", async ()=>{
+    saveBtn.disabled = true; saveBtn.textContent="Tallennetaan…";
+    const doc = textToDoc(textEl.value);
+    const { error } = await sb.from("sections").update({ title: titleEl.value||null, content: doc }).eq("id", sec.id);
+    saveBtn.textContent="Tallenna";
+    if(error){ alert(error.message); saveBtn.disabled=false; return; }
+    await loadBook();
+  });
+  $("deleteSection")?.addEventListener("click", async ()=>{
+    if(!confirm("Poistetaanko osio?")) return;
+    const { error } = await sb.from("sections").delete().eq("id", sec.id);
+    if(error) return alert(error.message);
+    state.selectedSectionId=null; await loadBook();
+  });
+  $("renameChapter")?.addEventListener("click", async ()=>{
+    const ch = state.chapters.find(c=>c.id===sec.chapter_id); if(!ch) return;
+    const t = prompt("Luvun uusi otsikko?", ch.title); if(!t) return;
+    const { error } = await sb.from("chapters").update({ title: t, slug: slugify(t)}).eq("id", ch.id);
+    if(error) return alert(error.message);
+    await loadBook();
+  });
+  $("deleteChapter")?.addEventListener("click", async ()=>{
+    const ch = state.chapters.find(c=>c.id===sec.chapter_id); if(!ch) return;
+    if(!confirm(`Poistetaanko luku "${ch.title}" ja kaikki sen osiot?`)) return;
+    await sb.from("sections").delete().eq("chapter_id", ch.id);
+    const { error } = await sb.from("chapters").delete().eq("id", ch.id);
+    if(error) return alert(error.message);
+    state.selectedChapterId=null; state.selectedSectionId=null; await loadBook();
+  });
+}
+
+// ---------- THINKING NODES ----------
+async function loadNodes(){
+  const { data, error } = await sb.from("thinking_nodes").select("*").order("id");
+  if(error){ console.error(error); return; }
+  state.nodes = data;
+  renderNodes();
+}
+function renderNodes(){
+  const q = state.nodeSearch.trim().toLowerCase();
+  const list = !q ? state.nodes : state.nodes.filter(n=>n.id.toLowerCase().includes(q)||n.title.toLowerCase().includes(q)||n.prompt.toLowerCase().includes(q));
+  $("nodeList").innerHTML = list.map(n=>`
+    <button data-nid="${n.id}" class="nodeBtn flex w-full items-start gap-2 rounded-md px-2 py-2 text-left text-sm hover:bg-slate-100 ${state.selectedNodeId===n.id?"bg-slate-100":""}">
+      ${n.is_start?'<span class="mt-0.5 text-indigo-600">★</span>':''}
+      <div class="min-w-0 flex-1">
+        <div class="truncate font-medium">${esc(n.title)}</div>
+        <div class="truncate text-xs text-slate-500">${esc(n.id)}</div>
+      </div>
+    </button>`).join("") || `<div class="p-4 text-center text-xs text-slate-500">Ei solmuja</div>`;
+  document.querySelectorAll(".nodeBtn").forEach(el=>el.addEventListener("click",()=>{
+    state.selectedNodeId = el.dataset.nid;
+    const n = state.nodes.find(x=>x.id===state.selectedNodeId);
+    state.draftNode = n ? { ...n, choices:[...(n.choices||[])] } : null;
+    renderNodes(); renderNodeEditor();
+  }));
+  renderNodeEditor();
+}
+$("nodeSearch").addEventListener("input",(e)=>{ state.nodeSearch=e.target.value; renderNodes(); });
+$("newNode").addEventListener("click",()=>{
+  state.draftNode = { id:`node_${Date.now().toString(36)}`, title:"Uusi solmu", prompt:"", choices:[], is_start:false };
+  state.selectedNodeId = null;
+  renderNodes();
+});
+
+function renderNodeEditor(){
+  const d = state.draftNode;
+  if(!d){ $("nodeEditor").innerHTML = `<div class="text-slate-500">Valitse solmu listasta tai luo uusi.</div>`; return; }
+  const isExisting = !!state.nodes.find(n=>n.id===state.selectedNodeId);
+  $("nodeEditor").innerHTML = `
+    <div class="mx-auto max-w-2xl space-y-4">
+      <div>
+        <label class="text-xs font-medium uppercase text-slate-500">ID</label>
+        <input id="ndId" value="${esc(d.id)}" ${isExisting?"disabled":""} class="mt-1 w-full rounded-md border bg-white px-3 py-2 font-mono text-sm disabled:opacity-60"/>
+      </div>
+      <div>
+        <label class="text-xs font-medium uppercase text-slate-500">Otsikko</label>
+        <input id="ndTitle" value="${esc(d.title)}" class="mt-1 w-full rounded-md border bg-white px-3 py-2"/>
+      </div>
+      <div>
+        <label class="text-xs font-medium uppercase text-slate-500">Teksti / kysymys</label>
+        <textarea id="ndPrompt" rows="6" class="mt-1 w-full rounded-md border bg-white px-3 py-2">${esc(d.prompt)}</textarea>
+      </div>
+      <label class="flex items-center gap-2 text-sm">
+        <input id="ndStart" type="checkbox" ${d.is_start?"checked":""}/> Aloitussolmu (vain yksi voi olla aktiivinen)
+      </label>
+      <div>
+        <div class="mb-2 flex items-center justify-between">
+          <label class="text-xs font-medium uppercase text-slate-500">Valinnat</label>
+          <button id="ndAddChoice" class="rounded-md border p-1 hover:bg-slate-100">＋</button>
+        </div>
+        <div id="ndChoices" class="space-y-2">
+          ${d.choices.map((c,i)=>`
+            <div class="flex gap-2 rounded-md border bg-white p-2">
+              <div class="flex-1 space-y-1">
+                <input data-ci="${i}" data-cf="label" value="${esc(c.label)}" placeholder="Valinnan teksti" class="choiceInp w-full rounded border px-2 py-1 text-sm"/>
+                <select data-ci="${i}" data-cf="nextNode" class="choiceInp w-full rounded border px-2 py-1 text-sm">
+                  <option value="">— Päättyy tähän —</option>
+                  ${state.nodes.map(n=>`<option value="${esc(n.id)}" ${c.nextNode===n.id?"selected":""}>→ ${esc(n.title)} (${esc(n.id)})</option>`).join("")}
+                </select>
+              </div>
+              <button data-rmci="${i}" class="rmChoice rounded-md p-1 text-red-600 hover:bg-red-50">🗑</button>
+            </div>`).join("")}
+        </div>
+      </div>
+      <div class="flex justify-between pt-4">
+        <button id="ndDelete" ${!isExisting?"disabled":""} class="rounded-md border border-red-300 px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 disabled:opacity-50">🗑 Poista</button>
+        <button id="ndSave" class="rounded-md bg-indigo-600 px-4 py-1.5 text-sm text-white hover:opacity-90">💾 Tallenna</button>
+      </div>
+    </div>
+  `;
+  const upd = ()=>{
+    state.draftNode = {
+      ...d,
+      id: $("ndId").value, title: $("ndTitle").value, prompt: $("ndPrompt").value, is_start: $("ndStart").checked,
+      choices: state.draftNode.choices,
+    };
+  };
+  ["ndId","ndTitle","ndPrompt","ndStart"].forEach(id=>$(id).addEventListener("input", upd));
+  $("ndAddChoice").addEventListener("click",()=>{
+    state.draftNode.choices.push({ label:"", nextNode:null }); renderNodeEditor();
+  });
+  document.querySelectorAll(".choiceInp").forEach(el=>el.addEventListener("input",(e)=>{
+    const i = +el.dataset.ci, f = el.dataset.cf;
+    state.draftNode.choices[i] = { ...state.draftNode.choices[i], [f]: f==="nextNode" ? (el.value||null) : el.value };
+  }));
+  document.querySelectorAll(".rmChoice").forEach(el=>el.addEventListener("click",()=>{
+    const i = +el.dataset.rmci;
+    state.draftNode.choices = state.draftNode.choices.filter((_,idx)=>idx!==i);
+    renderNodeEditor();
+  }));
+  $("ndSave").addEventListener("click", async ()=>{
+    upd();
+    const d2 = state.draftNode;
+    if(!/^[a-z0-9_-]+$/.test(d2.id)){ alert("ID saa sisältää vain pieniä kirjaimia, numeroita, - ja _"); return; }
+    if(d2.is_start){
+      const { error: e1 } = await sb.from("thinking_nodes").update({ is_start:false }).neq("id", d2.id);
+      if(e1) return alert(e1.message);
+    }
+    const { error } = await sb.from("thinking_nodes").upsert(d2, { onConflict:"id" });
+    if(error) return alert(error.message);
+    state.selectedNodeId = d2.id;
+    await loadNodes();
+  });
+  $("ndDelete").addEventListener("click", async ()=>{
+    if(!isExisting) return;
+    if(!confirm(`Poista solmu "${d.title}"?`)) return;
+    const { error } = await sb.from("thinking_nodes").delete().eq("id", d.id);
+    if(error) return alert(error.message);
+    state.selectedNodeId=null; state.draftNode=null;
+    await loadNodes();
+  });
+}
+
+// ---------- boot ----------
+refreshAuth();
+sb.auth.onAuthStateChange(()=>refreshAuth());
+</script>
+</body>
+</html>
