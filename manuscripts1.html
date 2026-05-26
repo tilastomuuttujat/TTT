@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harri Käyhkö – Käsikirjoitukset (testi)</title>
+    <meta name="description" content="Harri Käyhkön käsikirjoitukset luettavaksi verkossa." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600;700&display=swap"
+    />
+    <style>
+      :root {
+        --bg: #faf8f2;
+        --fg: #3a332a;
+        --muted: #746b5f;
+        --line: #ded3c2;
+        --card: #fffdf8;
+        --soft: #f1eadf;
+        --accent: #8b7355;
+        --danger: #b42318;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Work Sans", system-ui, sans-serif; }
+      h1, h2, h3 { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; line-height: 1.04; margin: 0; }
+      a { color: inherit; text-decoration: none; }
+      header { position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--line); background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); }
+      .bar, main, footer { width: min(100% - 48px, 980px); margin: 0 auto; }
+      .bar { display: flex; align-items: center; padding: 16px 0; }
+      .brand { font-family: "Instrument Serif", Georgia, serif; font-size: 30px; }
+      main { padding: 56px 0 76px; min-height: calc(100vh - 142px); }
+      footer { border-top: 1px solid var(--line); padding: 24px 0; text-align: center; color: var(--muted); font-size: 12px; }
+      .hero { margin-bottom: 44px; }
+      .hero h1 { font-size: clamp(48px, 9vw, 76px); }
+      .hero p { max-width: 620px; color: var(--muted); line-height: 1.7; }
+      .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+      .card { display: block; border: 1px solid var(--line); border-radius: 10px; background: var(--card); padding: 24px; }
+      .card:hover { border-color: var(--accent); }
+      .card h2 { font-size: 31px; }
+      .muted { color: var(--muted); }
+      .small { font-size: 14px; }
+      .back { display: inline-block; margin-bottom: 28px; color: var(--muted); font-size: 14px; }
+      .book-title { font-size: clamp(42px, 8vw, 68px); }
+      .chapter-title { font-size: clamp(36px, 7vw, 56px); }
+      .toc { list-style: none; padding: 0; margin: 28px 0 0; }
+      .toc a { display: flex; gap: 14px; align-items: baseline; padding: 12px 10px; border-radius: 8px; }
+      .toc a:hover { background: var(--soft); }
+      .num { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--muted); font-size: 13px; }
+      .reader { max-width: 72ch; font-size: 18px; line-height: 1.78; }
+      .reader p { margin: 0 0 1.25em; }
+      .reader h1, .reader h2, .reader h3 { margin: 1.7em 0 .55em; }
+      .reader h1 { font-size: 40px; }
+      .reader h2 { font-size: 31px; }
+      .reader h3 { font-size: 25px; }
+      .reader blockquote { margin: 1.4em 0; padding-left: 1em; border-left: 3px solid var(--accent); color: var(--muted); font-style: italic; }
+      .reader ul, .reader ol { padding-left: 1.4em; }
+      .pager { display: flex; justify-content: space-between; gap: 18px; margin-top: 60px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+      .right { text-align: right; margin-left: auto; }
+      .status { color: var(--muted); padding: 24px 0; }
+      .error { color: var(--danger); }
+      .progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0; z-index: 10; transition: width .12s linear; pointer-events: none; }
+      .m-pager { display: none; }
+
+      /* ─── Inline appendices ───────────────────────────────────────────── */
+      /* Container appears after each section's content (or after the chapter
+         for chapter-level appendices). It holds: the toggle row + the open
+         appendix body inline. */
+
+      .app-inline {
+        margin-top: 2em;
+        padding-top: 1.4em;
+        border-top: 1px solid var(--line);
+        max-width: 72ch;
+      }
+      /* For chapter-level appendices, render with a heavier separation */
+      .app-inline.chapter-level {
+        margin-top: 3em;
+        padding-top: 2em;
+        border-top: 1px solid var(--line);
+      }
+      .app-inline-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-bottom: 10px;
+        font-family: "Work Sans", system-ui, sans-serif;
+      }
+      .app-inline-toggles {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .app-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 13px 7px 11px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: transparent;
+        cursor: pointer;
+        color: var(--muted);
+        font-family: "Work Sans", system-ui, sans-serif;
+        font-size: 13px;
+        line-height: 1;
+        transition: border-color .15s ease, color .15s ease, background .15s ease;
+      }
+      .app-toggle:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .app-toggle[aria-expanded="true"] {
+        border-color: var(--accent);
+        color: var(--fg);
+        background: var(--soft);
+      }
+      .app-toggle svg { width: 14px; height: 14px; flex-shrink: 0; }
+      .app-toggle .app-toggle-title {
+        white-space: nowrap;
+        max-width: 280px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .app-body {
+        margin-top: 18px;
+        padding: 22px 24px 24px;
+        background: var(--soft);
+        border-radius: 10px;
+        max-width: 64ch;
+        overflow: hidden;
+        transition: opacity .2s ease;
+      }
+      .app-body[hidden] { display: none; }
+      .app-body-head {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        margin-bottom: 14px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--line);
+      }
+      .app-body-head .kind {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+      .app-body-head h3 {
+        flex: 1;
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 22px;
+        line-height: 1.2;
+        margin: 0;
+      }
+      .app-body .lead {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 19px;
+        line-height: 1.5;
+        color: var(--fg);
+        margin: 0 0 16px;
+      }
+      .app-body .note {
+        font-size: 14px;
+        color: var(--muted);
+        background: var(--card);
+        border-left: 2px solid var(--accent);
+        padding: 10px 12px;
+        margin: 0 0 16px;
+        line-height: 1.55;
+        border-radius: 0 6px 6px 0;
+      }
+      .app-body .source {
+        font-size: 12px;
+        color: var(--muted);
+        font-style: italic;
+        margin: 16px 0 0;
+        padding-top: 12px;
+        border-top: 1px solid var(--line);
+      }
+
+      /* Timeline */
+      .app-timeline { list-style: none; padding: 0; margin: 0; }
+      .app-timeline li {
+        padding: 12px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .app-timeline li:last-child { border-bottom: none; }
+      .app-timeline .period {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        margin-bottom: 4px;
+      }
+      .app-timeline .event {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 19px;
+        line-height: 1.25;
+        margin-bottom: 6px;
+      }
+      .app-timeline .desc {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+
+      /* Chain (steps) */
+      .app-chain { list-style: none; padding: 0; margin: 0; counter-reset: chainstep; }
+      .app-chain li {
+        position: relative;
+        padding: 0 0 18px 38px;
+        counter-increment: chainstep;
+      }
+      .app-chain li::before {
+        content: counter(chainstep);
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background: var(--card);
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .app-chain li::after {
+        content: "";
+        position: absolute;
+        left: 12px;
+        top: 28px;
+        bottom: 0;
+        width: 2px;
+        background: var(--line);
+      }
+      .app-chain li:last-child::after { display: none; }
+      .app-chain .event {
+        font-weight: 500;
+        font-size: 15px;
+        margin-bottom: 4px;
+        line-height: 1.45;
+      }
+      .app-chain .consequence {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+      .app-chain-extra {
+        margin-top: 14px;
+        padding: 12px 14px;
+        background: var(--card);
+        border-radius: 6px;
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      .app-chain-extra .label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        margin-bottom: 4px;
+      }
+
+      /* Calculation (table) */
+      .app-calc-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 0; }
+      .app-calc-table th, .app-calc-table td {
+        text-align: left;
+        padding: 8px 10px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      .app-calc-table th {
+        font-weight: 500;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        background: var(--card);
+      }
+      .app-calc-table td { line-height: 1.5; }
+      .app-calc-table tr:last-child td { border-bottom: none; }
+
+      /* Evidence (generic list with sub-fields) */
+      .app-items { list-style: none; padding: 0; margin: 0; }
+      .app-items > li {
+        padding: 14px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .app-items > li:last-child { border-bottom: none; }
+      .app-item-head {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 17px;
+        line-height: 1.3;
+        margin-bottom: 6px;
+        color: var(--fg);
+      }
+      .app-item-tag {
+        display: inline-block;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+        background: var(--card);
+        padding: 2px 8px;
+        border-radius: 999px;
+        margin-bottom: 6px;
+      }
+      .app-item-body { font-size: 14px; line-height: 1.6; color: var(--muted); }
+      .app-item-body p { margin: 0 0 .6em; }
+      .app-item-body p:last-child { margin-bottom: 0; }
+
+      .app-kv {
+        display: grid;
+        grid-template-columns: max-content 1fr;
+        gap: 6px 14px;
+        font-size: 13px;
+        margin: 8px 0 0;
+      }
+      .app-kv dt {
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 11px;
+        padding-top: 2px;
+      }
+      .app-kv dd { margin: 0; line-height: 1.55; color: var(--fg); }
+
+      @media (max-width: 720px) {
+        .bar, main, footer { width: min(100% - 24px, 980px); }
+        .grid { grid-template-columns: 1fr; }
+        .brand { font-size: 22px; }
+        header .bar { padding: 12px 0; }
+        main { padding: 24px 0 100px; min-height: calc(100vh - 120px); }
+        .hero { margin-bottom: 28px; }
+        .hero h1 { font-size: clamp(40px, 11vw, 58px); }
+        .hero p { font-size: 16px; line-height: 1.6; }
+        .card { padding: 18px; }
+        .card h2 { font-size: 26px; }
+        .book-title { font-size: clamp(34px, 10vw, 48px); }
+        .chapter-title { font-size: clamp(30px, 9vw, 44px); }
+        .reader { font-size: 18.5px; line-height: 1.75; max-width: none; }
+        .reader h1 { font-size: 28px; }
+        .reader h2 { font-size: 24px; }
+        .reader h3 { font-size: 20px; }
+        .toc { margin-top: 18px; }
+        .toc a { padding: 14px 8px; gap: 12px; }
+        .toc a span:last-child { font-size: 19px !important; }
+        .pager { display: none; }
+        .m-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; position: fixed; bottom: 0; left: 0; right: 0; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: color-mix(in srgb, var(--bg) 94%, transparent); backdrop-filter: blur(12px); border-top: 1px solid var(--line); z-index: 8; }
+        .m-pager a, .m-pager span { display: flex; flex-direction: column; align-items: stretch; justify-content: center; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); color: var(--fg); font-size: 14px; min-height: 52px; overflow: hidden; }
+        .m-pager .label { font-size: 10px; color: var(--muted); margin-bottom: 2px; text-transform: uppercase; letter-spacing: .06em; }
+        .m-pager .title { font-family: "Instrument Serif", Georgia, serif; font-size: 16px; line-height: 1.1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .m-pager a.next { text-align: right; }
+        .m-pager span.empty { opacity: .45; justify-content: center; align-items: center; }
+        footer { padding-bottom: calc(24px + env(safe-area-inset-bottom)); }
+        .app-inline { max-width: none; }
+        .app-body { max-width: none; padding: 18px 18px 20px; }
+        .app-toggle .app-toggle-title { max-width: 200px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="bar">
+        <a class="brand" href="#/">Harri Käyhkö</a>
+      </div>
+    </header>
+    <main id="app"></main>
+    <footer>© <span id="year"></span> Harri Käyhkö <span class="muted small" style="margin-left:8px;font-size:11px;text-transform:uppercase;letter-spacing:.06em">testiversio</span></footer>
+
+    <script>
+      const app = document.getElementById("app");
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const esc = (v) =>
+        String(v ?? "").replace(/[&<>'"]/g, (c) => ({
+          "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;",
+        })[c]);
+
+      const path = () => {
+        const h = location.hash.replace(/^#/, "");
+        return h ? (h.startsWith("/") ? h : `/${h}`) : "/";
+      };
+
+      const setStatus = (text) => { app.innerHTML = `<p class="status">${esc(text)}</p>`; };
+      const setError = (text) => {
+        app.innerHTML = `<pre class="error" style="white-space:pre-wrap;font-family:inherit;margin:0">${esc(text)}</pre>`;
+      };
+
+      const jsonCache = new Map();
+      const BASE_DIR = location.pathname.replace(/[^/]*$/, "");
+
+      function jsonCandidates(file) {
+        const clean = String(file).replace(/^\/+/, "");
+        const list = [
+          `${location.origin}${BASE_DIR}${clean}`,
+          `${location.origin}/book-haven/${clean}`,
+          `${location.origin}/${clean}`,
+        ];
+        return [...new Set(list)];
+      }
+
+      async function loadJson(file) {
+        if (jsonCache.has(file)) return jsonCache.get(file);
+        const tried = [];
+        for (const url of jsonCandidates(file)) {
+          try {
+            const res = await fetch(url, { cache: "default" });
+            if (!res.ok) {
+              tried.push(`${url} → ${res.status}`);
+              continue;
+            }
+            const data = await res.json();
+            jsonCache.set(file, data);
+            return data;
+          } catch (e) {
+            tried.push(`${url} → ${e.message || "fetch epäonnistui"}`);
+          }
+        }
+        throw new Error(
+          `Tiedostoa ei löytynyt: ${file}\n\nKokeillut osoitteet:\n${tried.join("\n")}`
+        );
+      }
+
+      async function loadJsonOptional(file) {
+        try { return await loadJson(file); }
+        catch { return null; }
+      }
+
+      // ★ Testiversio käyttää index1.json:ia, ei index.json:ia.
+      const loadIndex = async () => {
+        const idx = await loadJson("books/index1.json");
+        return Array.isArray(idx) ? idx : (idx.books || []);
+      };
+      const loadBook = (slug) => loadJson(`books/${slug}.json`);
+      const loadAppendices = (slug) => loadJsonOptional(`books/${slug}-appendices.json`);
+
+      // Build two maps from appendix payload:
+      //   sectionMap: Map<`${chapter_pos}:${section_pos}`, Appendix[]>
+      //   chapterMap: Map<chapter_pos, Appendix[]>   (section_position is null)
+      function indexAppendices(payload) {
+        const sectionMap = new Map();
+        const chapterMap = new Map();
+        if (!payload || !Array.isArray(payload.chapters)) return { sectionMap, chapterMap };
+        for (const ch of payload.chapters) {
+          const apps = Array.isArray(ch.appendices) ? ch.appendices.slice() : [];
+          if (!apps.length) continue;
+          apps.sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
+          for (const a of apps) {
+            const cp = Number(a.chapter_position);
+            const sp = a.section_position;
+            if (sp === null || sp === undefined) {
+              if (!chapterMap.has(cp)) chapterMap.set(cp, []);
+              chapterMap.get(cp).push(a);
+            } else {
+              const key = `${cp}:${Number(sp)}`;
+              if (!sectionMap.has(key)) sectionMap.set(key, []);
+              sectionMap.get(key).push(a);
+            }
+          }
+        }
+        return { sectionMap, chapterMap };
+      }
+
+      // ─── Appendix icon SVGs ──────────────────────────────────────────────
+      const APPENDIX_ICONS = {
+        timeline: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="4" y1="12" x2="20" y2="12"/><circle cx="7" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="17" cy="12" r="1.8" fill="currentColor"/></svg>`,
+        evidence: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="17" x2="13" y2="17"/></svg>`,
+        chain: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 1 0-5.66l3-3a4 4 0 0 1 5.66 5.66l-1.5 1.5"/><path d="M14 10a4 4 0 0 1 0 5.66l-3 3a4 4 0 0 1-5.66-5.66l1.5-1.5"/></svg>`,
+        calculation: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="14" x2="20" y2="14"/><line x1="10" y1="9" x2="10" y2="20"/><line x1="15" y1="9" x2="15" y2="20"/></svg>`,
+        path: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c3-1 4-4 7-4s4 3 7 4"/><circle cx="5" cy="19" r="1.5" fill="currentColor"/><circle cx="12" cy="15" r="1.5" fill="currentColor"/><circle cx="19" cy="19" r="1.5" fill="currentColor"/><path d="M5 5c3 1 4 4 7 4s4-3 7-4" opacity=".5"/></svg>`,
+        sector: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 4v8l5.5 5.5"/></svg>`,
+      };
+      const APPENDIX_LABEL = {
+        timeline: "Aikajana",
+        evidence: "Tausta",
+        chain: "Ketju",
+        calculation: "Laskelma",
+        path: "Polku",
+        sector: "Sektori",
+      };
+      const iconFor = (t) => APPENDIX_ICONS[t] || APPENDIX_ICONS.evidence;
+      const labelFor = (t) => APPENDIX_LABEL[t] || "Liite";
+
+      // ─── ProseMirror-doc renderer ────────────────────────────────────────
+      function renderInline(nodes = []) {
+        return nodes.map((n) => {
+          if (n.type === "hardBreak") return "<br>";
+          let out = esc(n.text ?? "");
+          for (const m of n.marks ?? []) {
+            if (m.type === "bold") out = `<strong>${out}</strong>`;
+            if (m.type === "italic") out = `<em>${out}</em>`;
+            if (m.type === "code") out = `<code>${out}</code>`;
+          }
+          return out;
+        }).join("");
+      }
+
+      function renderDoc(doc) {
+        const nodes = doc && typeof doc === "object" ? doc.content ?? [] : [];
+        return nodes.map((n) => {
+          if (n.type === "paragraph") return `<p>${renderInline(n.content)}</p>`;
+          if (n.type === "heading") {
+            const level = Math.min(Math.max(Number(n.attrs?.level || 2), 1), 3);
+            return `<h${level}>${renderInline(n.content)}</h${level}>`;
+          }
+          if (n.type === "blockquote") return `<blockquote>${renderDoc({ content: n.content })}</blockquote>`;
+          if (n.type === "bulletList")
+            return `<ul>${(n.content ?? []).map((li) => `<li>${renderDoc({ content: li.content })}</li>`).join("")}</ul>`;
+          if (n.type === "orderedList")
+            return `<ol>${(n.content ?? []).map((li) => `<li>${renderDoc({ content: li.content })}</li>`).join("")}</ol>`;
+          return "";
+        }).join("");
+      }
+
+      // ─── Appendix body renderers ─────────────────────────────────────────
+      function renderAppendixBody(app) {
+        const c = app.content || {};
+        switch (app.type) {
+          case "timeline":    return renderTimeline(c);
+          case "chain":       return renderChain(c);
+          case "calculation": return renderCalculation(c);
+          case "path":        return renderChain(c);
+          case "sector":      return renderEvidence(c);
+          case "evidence":
+          default:            return renderEvidence(c);
+        }
+      }
+
+      function renderTimeline(c) {
+        const entries = Array.isArray(c.entries) ? c.entries : [];
+        return [
+          c.body ? `<p class="lead">${esc(c.body)}</p>` : "",
+          c.note ? `<div class="note">${esc(c.note)}</div>` : "",
+          entries.length ? `<ul class="app-timeline">${entries.map((e) => `
+            <li>
+              ${e.period ? `<div class="period">${esc(e.period)}</div>` : ""}
+              ${e.event ? `<div class="event">${esc(e.event)}</div>` : ""}
+              ${e.description ? `<div class="desc">${esc(e.description)}</div>` : ""}
+            </li>`).join("")}</ul>` : "",
+          c.source ? `<div class="source">${esc(c.source)}</div>` : "",
+        ].join("");
+      }
+
+      function renderChain(c) {
+        const steps = Array.isArray(c.steps) ? c.steps : [];
+        const extraKeys = [
+          "reflection", "lesson", "paradox", "open_question", "current_relevance",
+          "controversy", "relevance", "implication", "underlying_logic",
+        ];
+        const extras = extraKeys
+          .filter((k) => typeof c[k] === "string" && c[k].trim())
+          .map((k) => `
+            <div class="app-chain-extra">
+              <div class="label">${esc(k.replace(/_/g, " "))}</div>
+              <div>${esc(c[k])}</div>
+            </div>`).join("");
+
+        return [
+          c.body ? `<p class="lead">${esc(c.body)}</p>` : "",
+          c.note ? `<div class="note">${esc(c.note)}</div>` : "",
+          steps.length ? `<ol class="app-chain">${steps.map((s) => `
+            <li>
+              ${s.event ? `<div class="event">${esc(s.event)}</div>` : ""}
+              ${s.consequence ? `<div class="consequence">${esc(s.consequence)}</div>` : ""}
+            </li>`).join("")}</ol>` : "",
+          extras,
+          c.source ? `<div class="source">${esc(c.source)}</div>` : "",
+        ].join("");
+      }
+
+      function renderCalculation(c) {
+        const rows = Array.isArray(c.rows) ? c.rows : [];
+        let table = "";
+        if (rows.length) {
+          const keys = [];
+          const seen = new Set();
+          for (const row of rows) {
+            for (const k of Object.keys(row)) {
+              if (!seen.has(k)) { seen.add(k); keys.push(k); }
+            }
+          }
+          const head = keys.map((k) => `<th>${esc(k.replace(/_/g, " "))}</th>`).join("");
+          const body = rows.map((r) => `
+            <tr>${keys.map((k) => `<td>${esc(r[k] ?? "")}</td>`).join("")}</tr>
+          `).join("");
+          table = `<table class="app-calc-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+        }
+        return [
+          c.body ? `<p class="lead">${esc(c.body)}</p>` : "",
+          c.note ? `<div class="note">${esc(c.note)}</div>` : "",
+          table,
+          c.source ? `<div class="source">${esc(c.source)}</div>` : "",
+        ].join("");
+      }
+
+      function renderEvidence(c) {
+        const commentaryFields = [
+          "consensus", "honest_assessment", "pattern", "deeper_pattern",
+          "current_relevance", "controversy", "relevance", "implication",
+          "ai_question", "neuroscience_link", "open_question",
+        ];
+        const objectFields = ["distinction"];
+
+        let listVal = null;
+        for (const [, v] of Object.entries(c)) {
+          if (Array.isArray(v)) { listVal = v; break; }
+        }
+
+        const lead = c.body ? `<p class="lead">${esc(c.body)}</p>` : "";
+        const note = c.note ? `<div class="note">${esc(c.note)}</div>` : "";
+
+        const commentary = commentaryFields
+          .filter((k) => typeof c[k] === "string" && c[k].trim())
+          .map((k) => `
+            <div class="app-chain-extra">
+              <div class="label">${esc(k.replace(/_/g, " "))}</div>
+              <div>${esc(c[k])}</div>
+            </div>`).join("");
+
+        const objects = objectFields
+          .filter((k) => c[k] && typeof c[k] === "object" && !Array.isArray(c[k]))
+          .map((k) => {
+            const obj = c[k];
+            const rows = Object.entries(obj).map(([key, val]) => `
+              <dt>${esc(key.replace(/_/g, " "))}</dt>
+              <dd>${esc(val)}</dd>`).join("");
+            return `<dl class="app-kv">${rows}</dl>`;
+          }).join("");
+
+        let list = "";
+        if (listVal && listVal.length) {
+          list = `<ul class="app-items">${listVal.map((item) => renderEvidenceItem(item)).join("")}</ul>`;
+        }
+
+        return [
+          lead, note, objects, list, commentary,
+          c.source ? `<div class="source">${esc(c.source)}</div>` : "",
+        ].join("");
+      }
+
+      function renderEvidenceItem(item) {
+        if (typeof item === "string") return `<li><div class="app-item-body">${esc(item)}</div></li>`;
+        if (!item || typeof item !== "object") return "";
+
+        const titleKeys = [
+          "domain", "aihe", "tapaus", "murros", "mittari", "kanta",
+          "kyky", "lähestymistapa", "kuvaus", "taso", "aalto", "löytö",
+        ];
+        const bodyKeys = [
+          "example", "havainto", "kuvaus", "vääristymä", "tila",
+          "consequence", "tulos", "huoli", "rajoitus", "idea",
+        ];
+
+        let titleKey = titleKeys.find((k) => typeof item[k] === "string" && item[k].trim());
+        let bodyKey = bodyKeys.find((k) => k !== titleKey && typeof item[k] === "string" && item[k].trim());
+
+        const stringKeys = Object.keys(item).filter((k) => typeof item[k] === "string" && item[k].trim());
+        if (!titleKey && stringKeys.length) titleKey = stringKeys[0];
+        if (!bodyKey && stringKeys.length > 1) bodyKey = stringKeys.find((k) => k !== titleKey);
+
+        const titleHtml = titleKey ? `<div class="app-item-head">${esc(item[titleKey])}</div>` : "";
+        const bodyHtml = bodyKey ? `<div class="app-item-body"><p>${esc(item[bodyKey])}</p></div>` : "";
+
+        const restKeys = stringKeys.filter((k) => k !== titleKey && k !== bodyKey);
+        const rest = restKeys.length
+          ? `<dl class="app-kv">${restKeys.map((k) => `
+              <dt>${esc(k.replace(/_/g, " "))}</dt>
+              <dd>${esc(item[k])}</dd>`).join("")}</dl>`
+          : "";
+
+        return `<li>${titleHtml}${bodyHtml}${rest}</li>`;
+      }
+
+      // ─── Inline appendix block builder ───────────────────────────────────
+      // Builds the HTML for one inline appendix region (toggles + body slot).
+      // `appendices` is an array; `region` is "section" or "chapter" for styling.
+      function buildInlineAppendixHtml(appendices, region) {
+        if (!appendices || !appendices.length) return "";
+        const label = region === "chapter" ? "Tämän luvun liitteet" : "Liitteet";
+        const toggles = appendices.map((a, i) => `
+          <button type="button" class="app-toggle" data-app-idx="${i}"
+            aria-expanded="false"
+            aria-controls="app-body-region"
+            title="${esc(a.title || labelFor(a.type))}">
+            ${iconFor(a.type)}
+            <span class="app-toggle-title">${esc(a.title || labelFor(a.type))}</span>
+          </button>`).join("");
+        return `
+          <div class="app-inline ${region === "chapter" ? "chapter-level" : ""}">
+            <div class="app-inline-label">${esc(label)}</div>
+            <div class="app-inline-toggles">${toggles}</div>
+            <div class="app-body" hidden></div>
+          </div>`;
+      }
+
+      // Wire up toggle buttons inside a given .app-inline container.
+      function wireInlineToggles(container, appendices) {
+        const buttons = container.querySelectorAll(".app-toggle");
+        const body = container.querySelector(".app-body");
+        let openIdx = -1;
+
+        const closeBody = () => {
+          body.hidden = true;
+          body.innerHTML = "";
+          buttons.forEach((b) => b.setAttribute("aria-expanded", "false"));
+          openIdx = -1;
+        };
+
+        const openBody = (idx, btn) => {
+          const app = appendices[idx];
+          if (!app) return;
+          // Render content
+          body.innerHTML = `
+            <div class="app-body-head">
+              <span class="kind">${esc(labelFor(app.type))}</span>
+              <h3>${esc(app.title || labelFor(app.type))}</h3>
+            </div>
+            ${renderAppendixBody(app)}`;
+          body.hidden = false;
+          buttons.forEach((b, i) => b.setAttribute("aria-expanded", i === idx ? "true" : "false"));
+          openIdx = idx;
+        };
+
+        buttons.forEach((btn, i) => {
+          btn.addEventListener("click", () => {
+            if (openIdx === i) {
+              // Anchor scroll to button before closing
+              const rect = btn.getBoundingClientRect();
+              closeBody();
+              const newRect = btn.getBoundingClientRect();
+              window.scrollBy(0, newRect.top - rect.top);
+            } else {
+              openBody(i, btn);
+            }
+          });
+        });
+      }
+
+      // ─── Routes ──────────────────────────────────────────────────────────
+      async function home() {
+        setStatus("Ladataan…");
+        let books;
+        try { books = await loadIndex(); }
+        catch (e) {
+          return setError(
+            `${e.message}\n\nTarkista että public/books/index1.json on repossa ja GitHub Actions -build on onnistunut.`
+          );
+        }
+
+        app.innerHTML = `
+          <section class="hero">
+            <h1>Käsikirjoitukset</h1>
+            <p class="muted small" style="text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Testiversio · liitetiedot osioiden lopussa</p>
+            <p>Harri Käyhkön julkaisemat tekstit – luettavissa verkossa.</p>
+          </section>
+          <section class="grid">
+            ${books.length
+              ? books.map((b) => `
+                <a class="card" href="#/books/${esc(b.slug)}">
+                  <h2>${esc(b.title)}</h2>
+                  <p class="muted small">${esc(b.author)}</p>
+                  ${b.description ? `<p>${esc(b.description)}</p>` : ""}
+                </a>`).join("")
+              : `<p class="muted">Ei vielä kirjoja.</p>`}
+          </section>`;
+      }
+
+      async function book(slug) {
+        setStatus("Ladataan…");
+        let data;
+        try { data = await loadBook(slug); }
+        catch (e) { return setError(e.message || "Kirjaa ei löytynyt."); }
+
+        const chapters = (data.chapters || []).slice().sort(
+          (a, b) => (a.position ?? 0) - (b.position ?? 0)
+        );
+
+        app.innerHTML = `
+          <a class="back" href="#/">← Käsikirjoitukset</a>
+          <h1 class="book-title">${esc(data.title)}</h1>
+          <p class="muted">${esc(data.author)}</p>
+          ${data.description ? `<p class="reader">${esc(data.description)}</p>` : ""}
+          <h2 style="margin-top:48px;font-size:32px">Sisällysluettelo</h2>
+          <ol class="toc">
+            ${chapters.length
+              ? chapters.map((c, i) => `
+                <li>
+                  <a href="#/books/${esc(slug)}/${esc(c.slug)}">
+                    <span class="num">${String(i + 1).padStart(2, "0")}</span>
+                    <span style="font-family:Instrument Serif,Georgia,serif;font-size:22px">${esc(c.title)}</span>
+                  </a>
+                </li>`).join("")
+              : `<li class="muted">Ei vielä lukuja.</li>`}
+          </ol>`;
+      }
+
+      async function chapter(slug, chapterSlug) {
+        setStatus("Ladataan…");
+        let data, appendixPayload;
+        try {
+          [data, appendixPayload] = await Promise.all([
+            loadBook(slug),
+            loadAppendices(slug),
+          ]);
+        } catch (e) { return setError(e.message || "Kirjaa ei löytynyt."); }
+
+        const all = (data.chapters || []).slice().sort(
+          (a, b) => (a.position ?? 0) - (b.position ?? 0)
+        );
+        const current = all.find((c) => c.slug === chapterSlug);
+        if (!current) return setError("Lukua ei löytynyt.");
+
+        const sections = (current.sections || []).slice().sort(
+          (a, b) => (a.position ?? 0) - (b.position ?? 0)
+        );
+        const idx = all.indexOf(current);
+        const prev = idx > 0 ? all[idx - 1] : null;
+        const next = idx < all.length - 1 ? all[idx + 1] : null;
+        const prevHref = prev ? `#/books/${esc(slug)}/${esc(prev.slug)}` : "";
+        const nextHref = next ? `#/books/${esc(slug)}/${esc(next.slug)}` : "";
+
+        // Resolve appendices: section-level by `${cp}:${sp}`, chapter-level by cp.
+        const { sectionMap, chapterMap } = indexAppendices(appendixPayload);
+        const chapterPos = Number(current.position);
+        const chapterAppendices = chapterMap.get(chapterPos) || [];
+
+        // Track which sections have appendices for later wiring.
+        const sectionsWithApps = []; // [{ sectionPos, appendices }]
+
+        // Build sections HTML, each followed by its inline appendix block.
+        const sectionsHtml = sections.map((s) => {
+          const sp = Number(s.position);
+          const key = `${chapterPos}:${sp}`;
+          const apps = sectionMap.get(key) || [];
+          let appHtml = "";
+          if (apps.length) {
+            sectionsWithApps.push({ sectionPos: sp, appendices: apps });
+            appHtml = buildInlineAppendixHtml(apps, "section");
+          }
+          return `
+            <section data-section-pos="${sp}">
+              ${s.title ? `<h2>${esc(s.title)}</h2>` : ""}
+              <div>${renderDoc(s.content)}</div>
+              ${appHtml}
+            </section>`;
+        }).join("");
+
+        const chapterAppHtml = chapterAppendices.length
+          ? buildInlineAppendixHtml(chapterAppendices, "chapter")
+          : "";
+
+        const mPager = `
+          <nav class="m-pager">
+            ${prev
+              ? `<a href="${prevHref}"><span class="label">← Edellinen</span><span class="title">${esc(prev.title)}</span></a>`
+              : `<span class="empty">Alku</span>`}
+            ${next
+              ? `<a class="next" href="${nextHref}"><span class="label">Seuraava →</span><span class="title">${esc(next.title)}</span></a>`
+              : `<span class="empty">Loppu</span>`}
+          </nav>`;
+
+        app.innerHTML = `
+          <div class="progress-bar" id="progress"></div>
+          <article id="chapterArticle">
+            <a class="back" href="#/books/${esc(slug)}">← ${esc(data.title)}</a>
+            <h1 class="chapter-title">${esc(current.title)}</h1>
+            <div class="reader" style="margin-top:40px">${sectionsHtml}</div>
+            ${chapterAppHtml}
+            <nav class="pager">
+              ${prev ? `<a href="${prevHref}">← ${esc(prev.title)}</a>` : `<span></span>`}
+              ${next ? `<a class="right" href="${nextHref}">${esc(next.title)} →</a>` : `<span></span>`}
+            </nav>
+          </article>
+          ${mPager}`;
+
+        // Wire up section-level inline appendices.
+        for (const { sectionPos, appendices } of sectionsWithApps) {
+          const sectionEl = document.querySelector(`section[data-section-pos="${sectionPos}"]`);
+          if (!sectionEl) continue;
+          const container = sectionEl.querySelector(".app-inline");
+          if (container) wireInlineToggles(container, appendices);
+        }
+        // Wire up chapter-level appendix block (renders after sections, before pager).
+        if (chapterAppendices.length) {
+          const article = document.getElementById("chapterArticle");
+          // The chapter-level .app-inline is the one with .chapter-level class.
+          const chCont = article.querySelector(".app-inline.chapter-level");
+          if (chCont) wireInlineToggles(chCont, chapterAppendices);
+        }
+
+        initChapterUx(prevHref, nextHref);
+      }
+
+      function initChapterUx(prevHref, nextHref) {
+        const bar = document.getElementById("progress");
+        const updateProgress = () => {
+          if (!bar) return;
+          const h = document.documentElement;
+          const max = h.scrollHeight - h.clientHeight;
+          const pct = max > 0 ? Math.min(100, Math.max(0, (h.scrollTop || window.scrollY) / max * 100)) : 0;
+          bar.style.width = pct + "%";
+        };
+        updateProgress();
+        window.addEventListener("scroll", updateProgress, { passive: true });
+
+        const article = document.getElementById("chapterArticle");
+        if (!article || !window.matchMedia("(max-width: 720px)").matches) return;
+
+        let sx = 0, sy = 0, tracking = false;
+        article.addEventListener("touchstart", (e) => {
+          if (e.touches.length !== 1) { tracking = false; return; }
+          // Don't track swipes that start inside an open appendix body.
+          const t = e.target;
+          if (t && t.closest && t.closest(".app-body, .app-inline")) { tracking = false; return; }
+          sx = e.touches[0].clientX; sy = e.touches[0].clientY; tracking = true;
+        }, { passive: true });
+        article.addEventListener("touchend", (e) => {
+          if (!tracking) return;
+          tracking = false;
+          const t = e.changedTouches[0];
+          const dx = t.clientX - sx, dy = t.clientY - sy;
+          if (Math.abs(dx) < 70 || Math.abs(dy) > 50) return;
+          if (dx < 0 && nextHref) location.hash = nextHref;
+          else if (dx > 0 && prevHref) location.hash = prevHref;
+        }, { passive: true });
+      }
+
+      function route() {
+        window.scrollTo(0, 0);
+        const parts = path().split("/").filter(Boolean).map(decodeURIComponent);
+        try {
+          if (!parts.length || (parts[0] === "books" && !parts[1])) return home();
+          if (parts[0] === "books" && parts[1] && parts[2]) return chapter(parts[1], parts[2]);
+          if (parts[0] === "books" && parts[1]) return book(parts[1]);
+          setError("Sivua ei löytynyt.");
+        } catch (e) {
+          setError(e.message || "Tuntematon virhe");
+        }
+      }
+
+      window.addEventListener("hashchange", route);
+      route();
+    </script>
+  </body>
+</html>
