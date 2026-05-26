@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
-<title>Admin — Book Editor Suite</title>
+<title>Admin -- Book Editor Suite</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   :root { --primary: #6366f1; }
@@ -140,9 +140,43 @@
 </div>
 
 <script>
-  // Globaali virheidenkäsittely — esitetään ruudulla mikä tahansa kaatava virhe
-  window.addEventListener("error", (e) => showBootError(e.error || e.message));
-  window.addEventListener("unhandledrejection", (e) => showBootError(e.reason));
+  // Bootin tila: kun init() on onnistunut, virheitä ei enää näytetä overlayna
+  // vaan logitetaan konsoliin. Cross-origin "Script error." -viestit ohitetaan aina.
+  window.__appBooted = false;
+
+  function isIgnorableError(err, rawMessage) {
+    // Selain piilottaa cross-origin -skriptien virheet "Script error." -viestiksi
+    // ilman stackia. Nämä tulevat usein selainlaajennuksista tai 3rd party -skripteistä
+    // eivätkä kerro mitään sovelluksen tilasta -- ei näytetä käyttäjälle.
+    const msg = (err && err.message) || rawMessage || "";
+    if (!err && typeof msg === "string" && /^script error\.?$/i.test(msg.trim())) return true;
+    if (err && !err.stack && typeof err.message === "string" && /^script error\.?$/i.test(err.message.trim())) return true;
+    return false;
+  }
+
+  window.addEventListener("error", (e) => {
+    if (isIgnorableError(e.error, e.message)) {
+      console.warn("[admin] ohitetaan cross-origin -virhe:", e.message);
+      return;
+    }
+    if (window.__appBooted) {
+      console.error("[admin] runtime error:", e.error || e.message);
+      return;
+    }
+    showBootError(e.error || e.message);
+  });
+
+  window.addEventListener("unhandledrejection", (e) => {
+    if (isIgnorableError(e.reason, null)) {
+      console.warn("[admin] ohitetaan cross-origin -reject:", e.reason);
+      return;
+    }
+    if (window.__appBooted) {
+      console.error("[admin] unhandled rejection:", e.reason);
+      return;
+    }
+    showBootError(e.reason);
+  });
 
   function showBootError(err) {
     const node = document.getElementById("bootError");
@@ -156,14 +190,12 @@
 
   function clearSessionAndReload() {
     try {
-      // Tyhjennä kaikki Supabase-avaimet localStoragesta
       const keysToRemove = [];
       for (let i = 0; i < localStorage.length; i++) {
         const k = localStorage.key(i);
         if (k && (k.startsWith("sb-") || k.includes("supabase"))) keysToRemove.push(k);
       }
       keysToRemove.forEach(k => localStorage.removeItem(k));
-      // Sessio-storagen tyhjennys varmuuden vuoksi
       sessionStorage.clear();
     } catch (e) {
       console.error(e);
@@ -246,6 +278,8 @@ function show(view){
   $("loginView").classList.toggle("hidden", view!=="login");
   $("denyView").classList.toggle("hidden", view!=="deny");
   $("appView").classList.toggle("hidden", view!=="app");
+  // Sovellus on käynnistynyt -- enää virheitä ei näytetä full-screen overlayna
+  window.__appBooted = true;
 }
 
 // ---------- BOOT ----------
@@ -306,7 +340,7 @@ async function boot(){
   }
 }
 
-// Auth-kuuntelija — reagoi vain merkityksellisiin tapahtumiin, ei refreshiin
+// Auth-kuuntelija -- reagoi vain merkityksellisiin tapahtumiin, ei refreshiin
 function attachAuthListener(){
   sb.auth.onAuthStateChange((event, session) => {
     if (!state.booted) return; // odota ensilatauksen valmistumista
@@ -315,7 +349,7 @@ function attachAuthListener(){
       state.isAdmin = false;
       show("login");
     }
-    // SIGNED_IN, TOKEN_REFRESHED, USER_UPDATED — ei tehdä mitään,
+    // SIGNED_IN, TOKEN_REFRESHED, USER_UPDATED -- ei tehdä mitään,
     // koska tila on jo synkronissa. Ei kilpailevia uudelleenlatauksia.
   });
 }
@@ -716,7 +750,7 @@ async function loadAppendicesForBook(){
   if(e1){ alert(e1.message); return; }
   state.appChapters = chs || [];
 
-  // 2) Lataa kaikki kirjan osiot — itsenäisesti Kirjat-välilehden tilasta
+  // 2) Lataa kaikki kirjan osiot -- itsenäisesti Kirjat-välilehden tilasta
   const chapterIds = state.appChapters.map(c => c.id);
   if (chapterIds.length) {
     const { data: secs, error: eSec } = await sb
@@ -844,13 +878,13 @@ function appendixFormHtml(a, sectionsForCh){
   const contentJson = JSON.stringify(a.content ?? {}, null, 2);
   // Osiovalitsin: näytetään luvun kaikki osiot numeroituina, "Koko luku" -vaihtoehto ensin.
   const sectionOptions = [
-    `<option value="">— Koko luku —</option>`,
+    `<option value="">-- Koko luku --</option>`,
     ...(sectionsForCh || []).map(s =>
       `<option value="${s.position}" ${a.section_position===s.position?"selected":""}>Osio ${s.position}: ${esc(s.title || "(nimetön)")}</option>`
     )
   ].join("");
   const noSectionsHint = (!sectionsForCh || sectionsForCh.length===0)
-    ? `<p class="text-[11px] text-amber-600 mt-1">Tällä luvulla ei ole osioita — vain "Koko luku" on käytettävissä.</p>`
+    ? `<p class="text-[11px] text-amber-600 mt-1">Tällä luvulla ei ole osioita -- vain "Koko luku" on käytettävissä.</p>`
     : "";
   return `
     <div class="rounded-xl border bg-white">
