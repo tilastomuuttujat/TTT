@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
-<title>Admin -- Book Editor Suite</title>
+<title>Admin — Book Editor Suite</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   :root { --primary: #6366f1; }
@@ -140,7 +140,7 @@
 </div>
 
 <script>
-  // Globaali virheidenkäsittely -- esitetään ruudulla mikä tahansa kaatava virhe
+  // Globaali virheidenkäsittely — esitetään ruudulla mikä tahansa kaatava virhe
   window.addEventListener("error", (e) => showBootError(e.error || e.message));
   window.addEventListener("unhandledrejection", (e) => showBootError(e.reason));
 
@@ -235,7 +235,7 @@ const state = {
   globalSearch: "",
   nodes: [], selectedNodeId: null, draftNode: null, nodeSearch: "",
   tab: "books",
-  appBookId: null, appChapters: [], appSelectedChapterPos: null,
+  appBookId: null, appChapters: [], appSections: [], appSelectedChapterPos: null,
   appendices: [], selectedAppendixId: null, draftAppendix: null,
   booted: false, // estää onAuthStateChange:a tekemästä mitään ensilatauksen aikana
 };
@@ -306,7 +306,7 @@ async function boot(){
   }
 }
 
-// Auth-kuuntelija -- reagoi vain merkityksellisiin tapahtumiin, ei refreshiin
+// Auth-kuuntelija — reagoi vain merkityksellisiin tapahtumiin, ei refreshiin
 function attachAuthListener(){
   sb.auth.onAuthStateChange((event, session) => {
     if (!state.booted) return; // odota ensilatauksen valmistumista
@@ -315,7 +315,7 @@ function attachAuthListener(){
       state.isAdmin = false;
       show("login");
     }
-    // SIGNED_IN, TOKEN_REFRESHED, USER_UPDATED -- ei tehdä mitään,
+    // SIGNED_IN, TOKEN_REFRESHED, USER_UPDATED — ei tehdä mitään,
     // koska tila on jo synkronissa. Ei kilpailevia uudelleenlatauksia.
   });
 }
@@ -658,7 +658,15 @@ async function initAppendicesTab(){
   sel.innerHTML = state.books.map(b=>`<option value="${b.id}" ${b.id===state.appBookId?"selected":""}>${esc(b.title)}</option>`).join("");
   if(!state.appBookId && state.books.length) state.appBookId = state.books[0].id;
   sel.value = state.appBookId;
-  sel.onchange = ()=>{ state.appBookId = sel.value; state.appSelectedChapterPos=null; state.appendices=[]; loadAppendicesForBook(); };
+  sel.onchange = ()=>{
+    state.appBookId = sel.value;
+    state.appSelectedChapterPos=null;
+    state.appendices=[];
+    state.appSections=[];           // tyhjennetään edellisen kirjan osiot
+    state.selectedAppendixId=null;
+    state.draftAppendix=null;
+    loadAppendicesForBook();
+  };
   await loadAppendicesForBook();
 
   // Käytä yhtä event listeneriä (poista mahdolliset vanhat)
@@ -698,12 +706,17 @@ async function initAppendicesTab(){
 async function loadAppendicesForBook(){
   if(!state.appBookId) return;
   setLoading($("appChapterList"));
-  const { data: chs, error: e1 } = await sb.from("chapters").select("id,title,position,slug").eq("book_id", state.appBookId).order("position");
+
+  // 1) Lataa kirjan luvut
+  const { data: chs, error: e1 } = await sb
+    .from("chapters")
+    .select("id,title,position,slug")
+    .eq("book_id", state.appBookId)
+    .order("position");
   if(e1){ alert(e1.message); return; }
   state.appChapters = chs || [];
 
-  // Lataa myös tämän kirjan kaikki osiot, jotta Kohdistus-pudotusvalikko voi
-  // näyttää oikeat vaihtoehdot riippumatta siitä mitä Kirjat-välilehdellä on.
+  // 2) Lataa kaikki kirjan osiot — itsenäisesti Kirjat-välilehden tilasta
   const chapterIds = state.appChapters.map(c => c.id);
   if (chapterIds.length) {
     const { data: secs, error: eSec } = await sb
@@ -717,7 +730,20 @@ async function loadAppendicesForBook(){
     state.appSections = [];
   }
 
-  const { data: apps, error: e2 } = await sb.from("appendices").select("*").eq("book_id", state.appBookId).order("chapter_position").order("position");
+  // 3) Lataa kirjan liitteet
+  const { data: apps, error: e2 } = await sb
+    .from("appendices")
+    .select("*")
+    .eq("book_id", state.appBookId)
+    .order("chapter_position")
+    .order("position");
+  if(e2){ alert(e2.message); return; }
+  state.appendices = apps || [];
+
+  $("appChapterCount").textContent = `${state.appChapters.length} lukua`;
+  renderAppChapterList();
+  renderAppEditor();
+}
 
 function renderAppChapterList(){
   const list = $("appChapterList");
@@ -745,7 +771,12 @@ function renderAppEditor(){
   }
   const ch = state.appChapters.find(c=>c.position===state.appSelectedChapterPos);
   const chApps = state.appendices.filter(a=>a.chapter_position===state.appSelectedChapterPos).sort((a,b)=>a.position-b.position);
-  const currentChapterRow = state.appChapters.find(c => c.position === state.appSelectedChapterPos);
+
+  // Käytetään liitetiedot-välilehden omaa osiokokoelmaa (state.appSections),
+  // joka ladataan loadAppendicesForBook():ssa kunkin kirjan osalta.
+  const currentChapterRow = ch
+    ? state.appChapters.find(c => c.position === state.appSelectedChapterPos)
+    : null;
   const sectionsForCh = currentChapterRow
     ? (state.appSections || [])
         .filter(s => s.chapter_id === currentChapterRow.id)
@@ -758,7 +789,7 @@ function renderAppEditor(){
         <div>
           <div class="text-xs text-slate-500 uppercase tracking-wide">Luku ${state.appSelectedChapterPos}</div>
           <div class="font-semibold">${esc(ch?.title??"")}</div>
-          <div class="text-xs text-slate-400 mt-0.5">${chApps.length} liitettä</div>
+          <div class="text-xs text-slate-400 mt-0.5">${chApps.length} liitettä · ${sectionsForCh.length} osiota</div>
         </div>
         <button id="newAppendix" class="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700">＋ Uusi liite</button>
       </div>
@@ -767,7 +798,7 @@ function renderAppEditor(){
         <div class="rounded-xl border bg-white p-3 space-y-1">
           <div class="text-xs font-medium text-slate-500 mb-2">Liitteet</div>
           ${chApps.length ? chApps.map(a=>{
-            const spLabel = a.section_position===null ? "luku" : `osio ${a.section_position}`;
+            const spLabel = a.section_position===null ? "koko luku" : `osio ${a.section_position}`;
             return `
             <button data-aid="${a.id}" class="appBtn flex w-full items-start gap-2 rounded-md px-2 py-2 text-left text-xs hover:bg-slate-50 ${state.selectedAppendixId===a.id?"bg-slate-100":""}">
               <span class="mt-0.5 shrink-0 rounded px-1 py-0.5 text-[10px] font-mono bg-slate-100 text-slate-600">${esc(a.type)}</span>
@@ -811,13 +842,16 @@ function renderAppEditor(){
 function appendixFormHtml(a, sectionsForCh){
   const isNew = !a.id;
   const contentJson = JSON.stringify(a.content ?? {}, null, 2);
-  // Osiovalitsin (selkeämpi kuin vapaa numerokenttä)
+  // Osiovalitsin: näytetään luvun kaikki osiot numeroituina, "Koko luku" -vaihtoehto ensin.
   const sectionOptions = [
-    `<option value="">-- Koko luku --</option>`,
+    `<option value="">— Koko luku —</option>`,
     ...(sectionsForCh || []).map(s =>
       `<option value="${s.position}" ${a.section_position===s.position?"selected":""}>Osio ${s.position}: ${esc(s.title || "(nimetön)")}</option>`
     )
   ].join("");
+  const noSectionsHint = (!sectionsForCh || sectionsForCh.length===0)
+    ? `<p class="text-[11px] text-amber-600 mt-1">Tällä luvulla ei ole osioita — vain "Koko luku" on käytettävissä.</p>`
+    : "";
   return `
     <div class="rounded-xl border bg-white">
       <div class="flex items-center justify-between border-b px-4 py-2">
@@ -853,7 +887,8 @@ function appendixFormHtml(a, sectionsForCh){
           <select id="appSectionPos" class="mt-1 w-full rounded-md border bg-white px-2 py-1.5 text-sm">
             ${sectionOptions}
           </select>
-          <p class="text-[11px] text-slate-400 mt-1">Liite näkyy lukijassa joko valitun osion lopussa tai (jos "koko luku") luvun lopussa ennen pageria.</p>
+          <p class="text-[11px] text-slate-400 mt-1">Liite näkyy lukijassa joko valitun osion lopussa tai (jos "Koko luku") luvun lopussa.</p>
+          ${noSectionsHint}
         </div>
         <div>
           <label class="text-xs font-medium text-slate-500 flex items-center justify-between">
