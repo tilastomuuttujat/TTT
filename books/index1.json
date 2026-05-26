@@ -1,0 +1,46 @@
+{
+  "books": [
+    {
+      "slug": "laajenemisen-logiikka",
+      "title": "Laajenemisen logiikka",
+      "author": "Harri Käyhkö 2025-2026",
+      "description": "Laajenemisen logiikka tutkii universumin ja elämän kehityksen syvällisiä kysymyksiä alkaen noin 2,4 miljardia vuotta sitten syanobakteerien hapentuotannosta, joka käynnisti suuren muutoksen. Käsikirjoitus käsittelee ihmiskunnan nykyisen kriisin dynamiikkaa ja kysyy, siirtyykö inhimillinen kokemus tuleviin teknologisiin muotoihin vai katoaako se samalla. Viidessä luvussa paljastuu ajatus siitä, että edistys ja katastrofi voivat olla saman kolikon kaksi puolta — riippuen siitä, miten ymmärrämme ne.",
+      "file": "laajenemisen-logiikka.json"
+    },
+    {
+      "slug": "nakyvaksi",
+      "title": "Näkyväksi",
+      "author": "Harri Käyhkö 2025-2026",
+      "description": "Järjestelmät näkevät meidät paremmin kuin koskaan. Silti yhä useampi ihminen kysyy kysymystä, jota ei voi mitata: missä minua tarvitaan? Näkyväksi on käsikirjoitus siitä, miten optimointi tekee ihmisestä näkymättömän — ei järjestelmien ulkopuolella, vaan niiden sisällä. Ja siitä, miten se voidaan kääntää toisin. Sen keskeinen väite on yksinkertainen: toimivissa rakenteissa on logiikka. Se logiikka on tunnistettavissa. Ja se on toistettavissa. Siellä missä järjestelmä kuulee ihmistä mittaamisen sijaan — ja muuttuu sen perusteella — tapahtuu jotain jota mittarit eivät ennusta: passiivisuus muuttuu toimijuudeksi, epäluottamus yhteistyöksi, selviäminen suunnitteluksi.",
+      "file": "nakyvaksi.json"
+    },
+    {
+      "slug": "itseohjautuvuus",
+      "title": "Itseohjautuvuus",
+      "author": "Harri Käyhkö 2025-2026",
+      "description": "Kuka rakentaa rakentajat?",
+      "file": "itseohjautuvuus.json"
+    },
+    {
+      "slug": "katalyytti",
+      "title": "Katalyytti",
+      "author": "Harri Käyhkö 2025-2026",
+      "description": "Tahdosta riippumaton muutos.",
+      "file": "katalyytti.json"
+    },
+    {
+      "slug": "sukupolvi-joka-kantaa",
+      "title": "Sukupolvi joka kantaa",
+      "author": "Harri Käyhkö 2025-2026",
+      "description": "Kuusi suomalaista 25-vuotiasta sadan vuoden ajalta ja pohjoismainen vertailu.",
+      "file": "sukupolvi-joka-kantaa.json"
+    },
+    {
+      "slug": "nakymattomat-mekanismit",
+      "title": "Näkymättömät mekanismit",
+      "author": "Harri Käyhkö",
+      "description": "Laadullinen analyysi Suomen hyvinvointijärjestelmästä.",
+      "file": "nakymattomat-mekanismit.json"
+    }
+  ]
+}
