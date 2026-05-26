@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<!-- Estetään selaimen HTTP-välimuisti -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>Admin — Book Editor Suite</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root { --primary: #6366f1; }
+  body { font-family: ui-sans-serif, system-ui, sans-serif; }
+  .serif { font-family: ui-serif, Georgia, serif; }
+  textarea { tab-size: 2; }
+  /* Boot-virheen näyttö */
+  #bootError {
+    position: fixed; inset: 0; background: #fff; padding: 24px;
+    font-family: ui-monospace, monospace; font-size: 13px;
+    overflow: auto; z-index: 9999; display: none;
+  }
+  #bootError.show { display: block; }
+  #bootError h1 { font-size: 18px; color: #dc2626; margin-bottom: 12px; font-family: ui-sans-serif, system-ui, sans-serif; }
+  #bootError pre { white-space: pre-wrap; background: #fef2f2; padding: 12px; border-radius: 6px; }
+  #bootError button { margin-top: 16px; padding: 8px 16px; background: #6366f1; color: white; border: none; border-radius: 6px; cursor: pointer; font-family: ui-sans-serif, system-ui, sans-serif; }
+  /* Latausviesti */
+  #bootLoading {
+    position: fixed; inset: 0; background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 9998;
+  }
+  #bootLoading.hidden { display: none; }
+  #bootLoading .msg { color: #64748b; font-size: 14px; }
+</style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+<!-- BOOT LOADING -->
+<div id="bootLoading"><div class="msg">Ladataan…</div></div>
+
+<!-- BOOT ERROR (näytetään jos jotain menee pieleen) -->
+<div id="bootError">
+  <h1>Sovelluksen käynnistyksessä tapahtui virhe</h1>
+  <pre id="bootErrorMsg"></pre>
+  <div style="display:flex; gap:8px;">
+    <button onclick="location.reload()">Lataa uudelleen</button>
+    <button onclick="clearSessionAndReload()">Tyhjennä sessio ja lataa uudelleen</button>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="loginView" class="hidden min-h-screen flex items-center justify-center p-6">
+  <form id="loginForm" class="w-full max-w-sm space-y-3 rounded-xl border bg-white p-6 shadow-sm">
+    <h1 class="text-lg font-semibold">Kirjaudu</h1>
+    <input id="email" type="email" placeholder="Sähköposti" required class="w-full rounded-md border px-3 py-2 text-sm" autocomplete="username"/>
+    <input id="password" type="password" placeholder="Salasana" required class="w-full rounded-md border px-3 py-2 text-sm" autocomplete="current-password"/>
+    <button type="submit" id="loginSubmit" class="w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-700 disabled:opacity-60">Kirjaudu</button>
+    <p id="loginErr" class="text-xs text-red-600"></p>
+  </form>
+</div>
+
+<!-- ACCESS DENIED -->
+<div id="denyView" class="hidden min-h-screen flex items-center justify-center p-6">
+  <div class="max-w-md rounded-xl border bg-white p-6 text-center shadow-sm">
+    <h2 class="text-lg font-semibold">Pääsy estetty</h2>
+    <p class="mt-2 text-sm text-slate-600">Tunnuksellasi (<span id="denyEmail"></span>) ei ole admin-roolia.</p>
+    <button id="denyLogout" class="mt-4 rounded-md border px-3 py-1.5 text-sm hover:bg-slate-100">Kirjaudu ulos</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="appView" class="hidden">
+  <header class="border-b bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
+      <div class="flex items-center gap-3">
+        <span class="text-sm font-semibold">Book Editor Suite</span>
+        <span class="rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-700">Admin</span>
+      </div>
+      <div class="flex items-center gap-2 text-xs text-slate-500">
+        <button data-tab="books" class="tabBtn rounded-md px-2 py-1 hover:bg-slate-100">Kirjat</button>
+        <button data-tab="appendices" class="tabBtn rounded-md px-2 py-1 hover:bg-slate-100">Liitetiedot</button>
+        <button data-tab="thinking" class="tabBtn rounded-md px-2 py-1 hover:bg-slate-100">Ajattele</button>
+        <span id="userEmail" class="hidden sm:inline"></span>
+        <button id="logout" class="rounded-md border px-2 py-1 hover:bg-slate-100">Kirjaudu ulos</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- BOOKS TAB -->
+  <main id="tab-books" class="mx-auto max-w-7xl px-6 py-6 grid gap-4 lg:grid-cols-[280px_1fr]">
+    <aside class="space-y-2">
+      <div class="rounded-xl border bg-white p-3">
+        <div class="flex items-center justify-between">
+          <h3 class="text-sm font-semibold">Kirjat</h3>
+          <button id="newBook" class="rounded-md p-1 hover:bg-slate-100" title="Lisää kirja">＋</button>
+        </div>
+        <div id="bookList" class="mt-2 space-y-1"></div>
+      </div>
+      <div class="rounded-xl border bg-white p-3">
+        <label class="text-xs font-medium text-slate-500">Globaali haku</label>
+        <input id="globalSearch" placeholder="Etsi kaikista kirjoista…" class="mt-1 w-full rounded-md border bg-white px-2 py-1.5 text-sm"/>
+      </div>
+    </aside>
+    <section id="bookEditor"></section>
+  </main>
+
+  <!-- APPENDICES TAB -->
+  <main id="tab-appendices" class="hidden mx-auto max-w-7xl px-6 py-6 grid gap-4 lg:grid-cols-[300px_1fr]">
+    <aside class="space-y-2">
+      <div class="rounded-xl border bg-white p-3">
+        <h3 class="text-sm font-semibold mb-2">Kirja</h3>
+        <select id="appBookSelect" class="w-full rounded-md border bg-white px-2 py-1.5 text-sm"></select>
+        <button id="exportAppendicesBtn" class="mt-2 w-full rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700">⬇ Lataa liitetiedot JSON</button>
+      </div>
+      <div class="rounded-xl border bg-white p-3">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-sm font-semibold">Luvut</h3>
+          <span id="appChapterCount" class="text-xs text-slate-400"></span>
+        </div>
+        <div id="appChapterList" class="space-y-0.5 max-h-[60vh] overflow-y-auto"></div>
+      </div>
+    </aside>
+    <section id="appEditor">
+      <div class="rounded-xl border bg-white p-8 text-center text-slate-500 text-sm">Valitse kirja ja luku vasemmalta.</div>
+    </section>
+  </main>
+
+  <!-- THINKING TAB -->
+  <main id="tab-thinking" class="hidden h-[calc(100vh-49px)] flex">
+    <aside class="flex w-80 flex-col border-r bg-white">
+      <div class="flex gap-2 border-b p-3">
+        <input id="nodeSearch" placeholder="Hae…" class="flex-1 rounded-md border px-2 py-1.5 text-sm"/>
+        <button id="newNode" class="rounded-md border p-1.5 hover:bg-slate-100" title="Uusi solmu">＋</button>
+      </div>
+      <div id="nodeList" class="flex-1 overflow-y-auto p-2"></div>
+    </aside>
+    <div id="nodeEditor" class="flex-1 overflow-y-auto bg-slate-50 p-6"></div>
+  </main>
+</div>
+
+<script>
+  // Globaali virheidenkäsittely — esitetään ruudulla mikä tahansa kaatava virhe
+  window.addEventListener("error", (e) => showBootError(e.error || e.message));
+  window.addEventListener("unhandledrejection", (e) => showBootError(e.reason));
+
+  function showBootError(err) {
+    const node = document.getElementById("bootError");
+    const msg = document.getElementById("bootErrorMsg");
+    const text = err && err.stack ? err.stack : (err && err.message ? err.message : String(err));
+    msg.textContent = text;
+    node.classList.add("show");
+    document.getElementById("bootLoading").classList.add("hidden");
+    console.error("[admin]", err);
+  }
+
+  function clearSessionAndReload() {
+    try {
+      // Tyhjennä kaikki Supabase-avaimet localStoragesta
+      const keysToRemove = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && (k.startsWith("sb-") || k.includes("supabase"))) keysToRemove.push(k);
+      }
+      keysToRemove.forEach(k => localStorage.removeItem(k));
+      // Sessio-storagen tyhjennys varmuuden vuoksi
+      sessionStorage.clear();
+    } catch (e) {
+      console.error(e);
+    }
+    location.reload();
+  }
+</script>
+
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+
+const SUPABASE_URL = "https://etbjymyxiekkkvqwcygp.supabase.co";
+const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV0Ymp5bXl4aWVra2t2cXdjeWdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4NTY2OTIsImV4cCI6MjA5NDQzMjY5Mn0.3rBdjPi3lqKW1erTPm_URxDpqrjMbelqidaP69uUowM";
+
+// HUOM: persistSession päällä, mutta käynnistys hoidetaan kerran ja kuuntelijaa
+// käytetään vain SIGNED_OUT-tapahtumaan, ei refreshiin.
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: false, // emme käytä OAuth-redirectejä
+  }
+});
+const $ = (id) => document.getElementById(id);
+
+// ---------- helpers ----------
+const slugify = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+  .replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"").slice(0,80);
+
+function docToText(doc){
+  if(!doc||typeof doc!=="object"||!Array.isArray(doc.content)) return "";
+  const walk = (n)=> n.type==="text" ? (n.text??"") : (Array.isArray(n.content)?n.content.map(walk).join(""):"");
+  const lines=[];
+  for(const b of doc.content){
+    if(b.type==="heading"){
+      const lvl=Math.min(6,Math.max(1,Number(b.attrs?.level??1)));
+      lines.push("#".repeat(lvl)+" "+walk(b));
+    } else if(b.type==="bulletList"||b.type==="orderedList"){
+      (b.content||[]).forEach((it,i)=>lines.push((b.type==="orderedList"?(i+1)+". ":"- ")+walk(it).trim()));
+    } else lines.push(walk(b));
+    lines.push("");
+  }
+  return lines.join("\n").replace(/\n{3,}/g,"\n\n").trim();
+}
+function textToDoc(text){
+  const blocks = text.replace(/\r\n/g,"\n").split(/\n{2,}/);
+  const content=[];
+  for(const raw of blocks){
+    const b=raw.trim(); if(!b) continue;
+    const h=/^(#{1,6})\s+(.+)$/.exec(b);
+    if(h){ content.push({type:"heading",attrs:{level:h[1].length},content:[{type:"text",text:h[2]}]}); continue; }
+    const para = b.split("\n").map(l=>l.trim()).join(" ");
+    content.push({type:"paragraph",content:[{type:"text",text:para}]});
+  }
+  return {type:"doc",content};
+}
+const esc = (s)=> String(s??"").replace(/[&<>"']/g, c=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+// Pieni apuri: aseta latausviesti yksittäiseen elementtiin
+function setLoading(el, text="Ladataan…"){
+  if(el) el.innerHTML = `<p class="text-xs text-slate-500 p-4 text-center">${esc(text)}</p>`;
+}
+
+// ---------- state ----------
+const state = {
+  user: null, isAdmin: false,
+  books: [], chapters: [], sections: [],
+  selectedBookId: null, selectedChapterId: null, selectedSectionId: null,
+  globalSearch: "",
+  nodes: [], selectedNodeId: null, draftNode: null, nodeSearch: "",
+  tab: "books",
+  appBookId: null, appChapters: [], appSelectedChapterPos: null,
+  appendices: [], selectedAppendixId: null, draftAppendix: null,
+  booted: false, // estää onAuthStateChange:a tekemästä mitään ensilatauksen aikana
+};
+
+// ---------- view switching ----------
+function show(view){
+  $("bootLoading").classList.add("hidden");
+  $("loginView").classList.toggle("hidden", view!=="login");
+  $("denyView").classList.toggle("hidden", view!=="deny");
+  $("appView").classList.toggle("hidden", view!=="app");
+}
+
+// ---------- BOOT ----------
+// Yhden kerran tapahtuva käynnistys. Ei kilpajuoksua, ei kuuntelijoita ennen tätä.
+async function boot(){
+  try {
+    // getUser() validoi tokenin palvelimella, getSession() ei
+    // Jos sessio on rikki/vanhentunut, tämä epäonnistuu hallitusti
+    const { data, error } = await sb.auth.getUser();
+
+    if (error) {
+      // Vanhentunut/rikkinäinen sessio: poista hiljaisesti
+      console.warn("[admin] auth.getUser virhe:", error.message);
+      await sb.auth.signOut().catch(() => {});
+      state.user = null;
+      show("login");
+      state.booted = true;
+      attachAuthListener();
+      return;
+    }
+
+    state.user = data.user ?? null;
+
+    if (!state.user) {
+      show("login");
+      state.booted = true;
+      attachAuthListener();
+      return;
+    }
+
+    // Tarkista admin-rooli
+    const { data: roles, error: rolesErr } = await sb
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", state.user.id);
+
+    if (rolesErr) {
+      throw new Error("user_roles-kyselyn virhe: " + rolesErr.message);
+    }
+
+    state.isAdmin = !!roles?.some(r => r.role === "admin");
+    $("userEmail").textContent = state.user.email ?? "";
+
+    if (!state.isAdmin) {
+      $("denyEmail").textContent = state.user.email ?? "";
+      show("deny");
+      state.booted = true;
+      attachAuthListener();
+      return;
+    }
+
+    show("app");
+    await Promise.all([loadBooks(), loadNodes()]);
+    state.booted = true;
+    attachAuthListener();
+  } catch (err) {
+    showBootError(err);
+  }
+}
+
+// Auth-kuuntelija — reagoi vain merkityksellisiin tapahtumiin, ei refreshiin
+function attachAuthListener(){
+  sb.auth.onAuthStateChange((event, session) => {
+    if (!state.booted) return; // odota ensilatauksen valmistumista
+    if (event === "SIGNED_OUT") {
+      state.user = null;
+      state.isAdmin = false;
+      show("login");
+    }
+    // SIGNED_IN, TOKEN_REFRESHED, USER_UPDATED — ei tehdä mitään,
+    // koska tila on jo synkronissa. Ei kilpailevia uudelleenlatauksia.
+  });
+}
+
+function showBootError(err) {
+  const node = $("bootError");
+  const msg = $("bootErrorMsg");
+  const text = err && err.stack ? err.stack : (err && err.message ? err.message : String(err));
+  msg.textContent = text;
+  node.classList.add("show");
+  $("bootLoading").classList.add("hidden");
+  console.error("[admin]", err);
+}
+// Tee bootError-funktio saataville globaaliin scopeen (window.onerror käyttää sitä)
+window.showBootError = showBootError;
+
+// ---------- LOGIN ----------
+$("loginForm").addEventListener("submit", async (e)=>{
+  e.preventDefault();
+  const btn = $("loginSubmit");
+  $("loginErr").textContent="";
+  btn.disabled = true;
+  btn.textContent = "Kirjaudutaan…";
+  try {
+    const { error } = await sb.auth.signInWithPassword({
+      email: $("email").value,
+      password: $("password").value
+    });
+    if (error) {
+      $("loginErr").textContent = error.message;
+      btn.disabled = false;
+      btn.textContent = "Kirjaudu";
+      return;
+    }
+    // Käynnistä boot uudestaan kirjautumisen jälkeen
+    $("bootLoading").classList.remove("hidden");
+    state.booted = false;
+    await boot();
+  } catch (err) {
+    $("loginErr").textContent = err.message || String(err);
+    btn.disabled = false;
+    btn.textContent = "Kirjaudu";
+  }
+});
+$("logout").addEventListener("click", async ()=>{
+  await sb.auth.signOut();
+  // Suoraan login-näkymä, ei reloadia
+  state.user = null;
+  state.isAdmin = false;
+  show("login");
+});
+$("denyLogout").addEventListener("click", async ()=>{
+  await sb.auth.signOut();
+  state.user = null;
+  show("login");
+});
+
+// ---------- tabs ----------
+document.querySelectorAll(".tabBtn").forEach(b=>b.addEventListener("click",()=>{
+  state.tab = b.dataset.tab;
+  $("tab-books").classList.toggle("hidden", state.tab!=="books");
+  $("tab-appendices").classList.toggle("hidden", state.tab!=="appendices");
+  $("tab-thinking").classList.toggle("hidden", state.tab!=="thinking");
+  if(state.tab==="thinking") renderNodes();
+  if(state.tab==="appendices") initAppendicesTab();
+}));
+
+// ---------- BOOKS ----------
+async function loadBooks(){
+  setLoading($("bookList"));
+  const { data, error } = await sb.from("books").select("*").order("position");
+  if(error){ alert("Kirjojen lataus epäonnistui: " + error.message); return; }
+  state.books = data || [];
+  if(!state.selectedBookId && state.books.length) state.selectedBookId = state.books[0].id;
+  if(!state.appBookId && state.books.length) state.appBookId = state.books[0].id;
+  renderBookList();
+  await loadBook();
+}
+function renderBookList(){
+  $("bookList").innerHTML = state.books.map(b=>`
+    <button data-id="${b.id}" class="bookBtn flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-sm ${state.selectedBookId===b.id?"bg-indigo-600 text-white":"hover:bg-slate-100"}">
+      <span class="truncate">${esc(b.title)}</span><span class="opacity-60">›</span>
+    </button>`).join("") || `<p class="text-xs text-slate-500">Ei kirjoja vielä.</p>`;
+  document.querySelectorAll(".bookBtn").forEach(el=>el.addEventListener("click",()=>{
+    state.selectedBookId = el.dataset.id; state.selectedChapterId=null; state.selectedSectionId=null;
+    renderBookList(); loadBook();
+  }));
+}
+$("newBook").addEventListener("click", async ()=>{
+  const title = prompt("Kirjan nimi?"); if(!title) return;
+  const author = prompt("Tekijä?") ?? "";
+  const pos = state.books.length;
+  const { data, error } = await sb.from("books").insert({ title, author, slug: slugify(title), position: pos }).select("*").single();
+  if(error) return alert(error.message);
+  state.selectedBookId = data.id; state.selectedChapterId=null; state.selectedSectionId=null;
+  await loadBooks();
+});
+$("globalSearch").addEventListener("input", (e)=>{ state.globalSearch = e.target.value; renderBookEditor(); });
+
+async function loadBook(){
+  if(!state.selectedBookId){
+    $("bookEditor").innerHTML = `<div class="rounded-xl border bg-white p-8 text-center text-slate-500">Valitse kirja vasemmalta tai luo uusi.</div>`;
+    return;
+  }
+  setLoading($("bookEditor"));
+  const chRes = await sb.from("chapters").select("*").eq("book_id", state.selectedBookId).order("position");
+  if(chRes.error){ alert(chRes.error.message); return; }
+  state.chapters = chRes.data || [];
+  const ids = state.chapters.map(c=>c.id);
+  if(ids.length){
+    const { data, error } = await sb.from("sections").select("*").in("chapter_id", ids).order("position");
+    if(error){ alert(error.message); return; }
+    state.sections = data || [];
+  } else state.sections = [];
+  if(!state.selectedChapterId && state.chapters[0]) state.selectedChapterId = state.chapters[0].id;
+  if(!state.selectedSectionId && state.selectedChapterId){
+    const first = state.sections.find(s=>s.chapter_id===state.selectedChapterId);
+    if(first) state.selectedSectionId = first.id;
+  }
+  renderBookEditor();
+}
+
+function buildExport(){
+  const b = state.books.find(x=>x.id===state.selectedBookId); if(!b) return null;
+  const chs = [...state.chapters].sort((a,c)=>a.position-c.position);
+  return {
+    schema:"lovable-book.v1",
+    exported_at:new Date().toISOString(),
+    book:{
+      id:b.id, slug:b.slug, title:b.title, author:b.author, description:b.description, cover_url:b.cover_url,
+      chapters: chs.map(ch=>({
+        id:ch.id, slug:ch.slug, title:ch.title, position:ch.position,
+        sections: state.sections.filter(s=>s.chapter_id===ch.id).sort((a,c)=>a.position-c.position).map(s=>({
+          id:s.id, title:s.title, position:s.position, content:s.content,
+        })),
+      })),
+    }
+  };
+}
+function bookExportToTxt(exp){
+  const b = exp.book; const out=[];
+  out.push(b.title); out.push("=".repeat(b.title.length));
+  if(b.author) out.push(`-- ${b.author}`);
+  if(b.description){ out.push(""); out.push(b.description); }
+  for(const ch of b.chapters){
+    out.push(""); out.push(""); out.push(ch.title); out.push("-".repeat(ch.title.length));
+    for(const s of ch.sections){
+      out.push("");
+      if(s.title){ out.push(`### ${s.title}`); out.push(""); }
+      out.push(docToText(s.content));
+    }
+  }
+  return out.join("\n");
+}
+
+function renderBookEditor(){
+  const b = state.books.find(x=>x.id===state.selectedBookId);
+  if(!b){ $("bookEditor").innerHTML = `<div class="rounded-xl border bg-white p-8 text-center text-slate-500">Valitse kirja.</div>`; return; }
+  const q = state.globalSearch.trim().toLowerCase();
+  const filteredChapters = !q ? state.chapters : state.chapters.filter(ch=>{
+    if(ch.title.toLowerCase().includes(q)) return true;
+    return state.sections.filter(s=>s.chapter_id===ch.id).some(s=>(s.title??"").toLowerCase().includes(q)||docToText(s.content).toLowerCase().includes(q));
+  });
+  const selectedSection = state.sections.find(s=>s.id===state.selectedSectionId) ?? null;
+
+  $("bookEditor").innerHTML = `
+    <div class="space-y-4">
+      <div class="rounded-xl border bg-white p-5">
+        <div class="flex flex-wrap items-start justify-between gap-4">
+          <div class="min-w-0 flex-1 space-y-2" id="bookMeta">
+            <input id="bmTitle" value="${esc(b.title)}" class="w-full text-2xl font-semibold tracking-tight outline-none bg-transparent focus:bg-slate-50 focus:px-2 rounded"/>
+            <input id="bmAuthor" value="${esc(b.author)}" placeholder="Tekijä" class="w-full text-sm text-slate-500 outline-none bg-transparent focus:bg-slate-50 focus:px-2 rounded"/>
+            <textarea id="bmDesc" rows="2" placeholder="Kuvaus…" class="w-full resize-none text-sm outline-none bg-transparent focus:bg-slate-50 focus:px-2 rounded">${esc(b.description??"")}</textarea>
+            <button id="bmSave" class="hidden rounded-md bg-indigo-600 px-3 py-1 text-xs font-medium text-white">Tallenna kirjan tiedot</button>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button id="copyTxt" class="rounded-md border px-3 py-1.5 text-sm hover:bg-slate-100">Kopioi tekstinä</button>
+            <button id="downloadJson" class="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700">Lataa JSON</button>
+            <button id="deleteBook" class="rounded-md border border-red-300 px-2 py-1.5 text-sm text-red-600 hover:bg-red-50" title="Poista kirja">🗑</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid gap-4 lg:grid-cols-[260px_1fr]">
+        <div class="space-y-2 rounded-xl border bg-white p-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-sm font-semibold">Luvut</h4>
+            <button id="newChapter" class="rounded-md p-1 hover:bg-slate-100">＋</button>
+          </div>
+          <ul id="chapterList" class="space-y-0.5">
+            ${filteredChapters.map((ch,i)=>{
+              const active = state.selectedChapterId===ch.id;
+              const secs = state.sections.filter(s=>s.chapter_id===ch.id);
+              return `
+                <li>
+                  <button data-cid="${ch.id}" class="chapterBtn flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-xs ${active?"bg-slate-100 font-medium":"hover:bg-slate-50"}">
+                    <span class="truncate"><span class="text-slate-500">${i+1}. </span>${esc(ch.title)}</span>
+                  </button>
+                  ${active?`
+                    <ul class="ml-3 mt-1 space-y-0.5 border-l pl-2">
+                      ${secs.map((s,j)=>`
+                        <li><button data-sid="${s.id}" class="sectionBtn w-full truncate rounded px-2 py-1 text-left text-xs ${state.selectedSectionId===s.id?"bg-indigo-50 font-medium text-indigo-700":"text-slate-500 hover:bg-slate-50"}">${j+1}. ${esc(s.title||"(Nimetön)")}</button></li>
+                      `).join("")}
+                      <li><button data-newsec="${ch.id}" class="newSecBtn mt-1 rounded px-2 py-1 text-xs text-slate-500 hover:bg-slate-100">＋ Uusi osio</button></li>
+                    </ul>
+                  `:""}
+                </li>`;
+            }).join("")}
+          </ul>
+        </div>
+        <div id="sectionPane">
+          ${selectedSection ? sectionEditorHtml(selectedSection) : `<div class="rounded-xl border bg-white p-8 text-center text-sm text-slate-500">Valitse osio muokattavaksi tai luo uusi.</div>`}
+        </div>
+      </div>
+    </div>
+  `;
+
+  ["bmTitle","bmAuthor","bmDesc"].forEach(id=>$(id).addEventListener("input",()=>$("bmSave").classList.remove("hidden")));
+  $("bmSave").addEventListener("click", async ()=>{
+    const title=$("bmTitle").value, author=$("bmAuthor").value, description=$("bmDesc").value;
+    const { error } = await sb.from("books").update({ title, author, description: description||null, slug: slugify(title)}).eq("id", b.id);
+    if(error) return alert(error.message);
+    await loadBooks();
+  });
+  $("copyTxt").addEventListener("click", async ()=>{
+    const exp = buildExport(); if(!exp) return;
+    await navigator.clipboard.writeText(bookExportToTxt(exp));
+    alert("Kirjan teksti kopioitu leikepöydälle.");
+  });
+  $("downloadJson").addEventListener("click", ()=>{
+    const exp = buildExport(); if(!exp) return;
+    const blob = new Blob([JSON.stringify(exp)], { type:"application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a"); a.href=url; a.download=`${exp.book.slug||"book"}.json`; a.click();
+    URL.revokeObjectURL(url);
+  });
+  $("deleteBook").addEventListener("click", async ()=>{
+    if(!confirm(`Poistetaanko "${b.title}" pysyvästi?`)) return;
+    const ids = state.chapters.map(c=>c.id);
+    if(ids.length){
+      await sb.from("sections").delete().in("chapter_id", ids);
+      await sb.from("chapters").delete().eq("book_id", b.id);
+    }
+    await sb.from("appendices").delete().eq("book_id", b.id);
+    const { error } = await sb.from("books").delete().eq("id", b.id);
+    if(error) return alert(error.message);
+    state.selectedBookId=null; state.selectedChapterId=null; state.selectedSectionId=null;
+    await loadBooks();
+  });
+  $("newChapter").addEventListener("click", async ()=>{
+    const title = prompt("Luvun otsikko?"); if(!title) return;
+    const pos = state.chapters.length;
+    const { data, error } = await sb.from("chapters").insert({ book_id: b.id, title, slug: slugify(title), position: pos }).select("*").single();
+    if(error) return alert(error.message);
+    state.selectedChapterId = data.id; state.selectedSectionId=null;
+    await loadBook();
+  });
+  document.querySelectorAll(".chapterBtn").forEach(el=>el.addEventListener("click",()=>{
+    state.selectedChapterId = el.dataset.cid; state.selectedSectionId=null; renderBookEditor();
+  }));
+  document.querySelectorAll(".sectionBtn").forEach(el=>el.addEventListener("click",()=>{
+    state.selectedSectionId = el.dataset.sid; renderBookEditor();
+  }));
+  document.querySelectorAll(".newSecBtn").forEach(el=>el.addEventListener("click", async ()=>{
+    const cid = el.dataset.newsec;
+    const title = prompt("Osion otsikko?") ?? "";
+    const pos = state.sections.filter(s=>s.chapter_id===cid).length;
+    const { data, error } = await sb.from("sections").insert({ chapter_id: cid, title: title||null, position: pos, content:{ type:"doc", content:[] }}).select("*").single();
+    if(error) return alert(error.message);
+    state.selectedSectionId = data.id;
+    await loadBook();
+  }));
+  wireSectionEditor();
+}
+
+function sectionEditorHtml(section){
+  const ch = state.chapters.find(c=>c.id===section.chapter_id);
+  const text = docToText(section.content);
+  return `
+    <div class="rounded-xl border bg-white">
+      <div class="flex flex-wrap items-center justify-between gap-2 border-b px-4 py-2">
+        <div class="text-xs text-slate-500">${esc(ch?.title??"")} › Osio #${section.position+1}</div>
+        <div class="flex items-center gap-2">
+          <button id="saveSection" class="rounded-md bg-indigo-600 px-3 py-1 text-xs font-medium text-white disabled:opacity-50" disabled>Tallenna</button>
+          <button id="deleteSection" class="rounded-md border border-red-300 p-1 text-red-600 hover:bg-red-50">🗑</button>
+          <button id="renameChapter" class="rounded-md border px-2 py-1 text-xs hover:bg-slate-100">Nimeä luku</button>
+          <button id="deleteChapter" class="rounded-md border border-red-300 px-2 py-1 text-xs text-red-600 hover:bg-red-50">Poista luku</button>
+        </div>
+      </div>
+      <div class="space-y-3 p-4">
+        <input id="secTitle" value="${esc(section.title??"")}" placeholder="Osion otsikko" class="w-full rounded-md border px-3 py-2 text-base font-semibold outline-none"/>
+        <textarea id="secText" rows="24" class="w-full resize-y rounded-md border bg-white px-3 py-2 serif text-[15px] leading-relaxed outline-none" placeholder="Kirjoita osion sisältö. Tyhjä rivi erottaa kappaleet. # ## ### otsikoita.">${esc(text)}</textarea>
+        <p class="text-xs text-slate-500">Vihje: tyhjä rivi aloittaa uuden kappaleen. Rivi joka alkaa <code>#</code> tms. tulkitaan otsikoksi.</p>
+      </div>
+    </div>
+  `;
+}
+function wireSectionEditor(){
+  const sec = state.sections.find(s=>s.id===state.selectedSectionId); if(!sec) return;
+  const titleEl = $("secTitle"), textEl = $("secText"), saveBtn = $("saveSection");
+  const markDirty = ()=> saveBtn.disabled=false;
+  titleEl?.addEventListener("input", markDirty);
+  textEl?.addEventListener("input", markDirty);
+  saveBtn?.addEventListener("click", async ()=>{
+    saveBtn.disabled = true; saveBtn.textContent="Tallennetaan…";
+    const doc = textToDoc(textEl.value);
+    const { error } = await sb.from("sections").update({ title: titleEl.value||null, content: doc }).eq("id", sec.id);
+    saveBtn.textContent="Tallenna";
+    if(error){ alert(error.message); saveBtn.disabled=false; return; }
+    await loadBook();
+  });
+  $("deleteSection")?.addEventListener("click", async ()=>{
+    if(!confirm("Poistetaanko osio?")) return;
+    const { error } = await sb.from("sections").delete().eq("id", sec.id);
+    if(error) return alert(error.message);
+    state.selectedSectionId=null; await loadBook();
+  });
+  $("renameChapter")?.addEventListener("click", async ()=>{
+    const ch = state.chapters.find(c=>c.id===sec.chapter_id); if(!ch) return;
+    const t = prompt("Luvun uusi otsikko?", ch.title); if(!t) return;
+    const { error } = await sb.from("chapters").update({ title: t, slug: slugify(t)}).eq("id", ch.id);
+    if(error) return alert(error.message);
+    await loadBook();
+  });
+  $("deleteChapter")?.addEventListener("click", async ()=>{
+    const ch = state.chapters.find(c=>c.id===sec.chapter_id); if(!ch) return;
+    if(!confirm(`Poistetaanko luku "${ch.title}" ja kaikki sen osiot?`)) return;
+    await sb.from("sections").delete().eq("chapter_id", ch.id);
+    const { error } = await sb.from("chapters").delete().eq("id", ch.id);
+    if(error) return alert(error.message);
+    state.selectedChapterId=null; state.selectedSectionId=null; await loadBook();
+  });
+}
+
+// ---------- APPENDICES ----------
+const APP_TYPES = ["evidence","chain","calculation","sector","timeline","path","table","list","note","chart-chartjs","chart-d3","chart-three"];
+
+async function initAppendicesTab(){
+  const sel = $("appBookSelect");
+  sel.innerHTML = state.books.map(b=>`<option value="${b.id}" ${b.id===state.appBookId?"selected":""}>${esc(b.title)}</option>`).join("");
+  if(!state.appBookId && state.books.length) state.appBookId = state.books[0].id;
+  sel.value = state.appBookId;
+  sel.onchange = ()=>{ state.appBookId = sel.value; state.appSelectedChapterPos=null; state.appendices=[]; loadAppendicesForBook(); };
+  await loadAppendicesForBook();
+
+  // Käytä yhtä event listeneriä (poista mahdolliset vanhat)
+  const exportBtn = $("exportAppendicesBtn");
+  const newBtn = exportBtn.cloneNode(true);
+  exportBtn.parentNode.replaceChild(newBtn, exportBtn);
+  newBtn.addEventListener("click", ()=>{
+    const book = state.books.find(b=>b.id===state.appBookId);
+    if(!book || !state.appendices.length){ alert("Ei liitetietoja ladattavaksi."); return; }
+    const byChapter = {};
+    for(const a of state.appendices){
+      const pos = a.chapter_position;
+      if(!byChapter[pos]) byChapter[pos] = [];
+      byChapter[pos].push({
+        id: a.id, chapter_position: a.chapter_position, section_position: a.section_position,
+        type: a.type, title: a.title, source: a.source ?? null, position: a.position, content: a.content,
+      });
+    }
+    const chapters = state.appChapters.map(ch=>({
+      position: ch.position, slug: ch.slug, title: ch.title,
+      appendices: (byChapter[ch.position]||[]).sort((a,b)=>a.position-b.position),
+    }));
+    const exported = {
+      schema: "book-appendices.v1",
+      exported_at: new Date().toISOString(),
+      book: { id: book.id, slug: book.slug, title: book.title },
+      chapters,
+    };
+    const blob = new Blob([JSON.stringify(exported)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url; a.download = `${book.slug}-appendices.json`; a.click();
+    URL.revokeObjectURL(url);
+  });
+}
+
+async function loadAppendicesForBook(){
+  if(!state.appBookId) return;
+  setLoading($("appChapterList"));
+  const { data: chs, error: e1 } = await sb.from("chapters").select("id,title,position,slug").eq("book_id", state.appBookId).order("position");
+  if(e1){ alert(e1.message); return; }
+  state.appChapters = chs || [];
+  const { data: apps, error: e2 } = await sb.from("appendices").select("*").eq("book_id", state.appBookId).order("chapter_position").order("position");
+  if(e2){ alert(e2.message); return; }
+  state.appendices = apps || [];
+  $("appChapterCount").textContent = `${state.appChapters.length} lukua`;
+  renderAppChapterList();
+  renderAppEditor();
+}
+
+function renderAppChapterList(){
+  const list = $("appChapterList");
+  if(!state.appChapters.length){ list.innerHTML=`<p class="text-xs text-slate-500 p-2">Ei lukuja.</p>`; return; }
+  list.innerHTML = state.appChapters.map(ch=>{
+    const count = state.appendices.filter(a=>a.chapter_position===ch.position).length;
+    const active = state.appSelectedChapterPos===ch.position;
+    return `<button data-pos="${ch.position}" class="appChBtn flex w-full items-center justify-between rounded-md px-2 py-1.5 text-left text-xs ${active?"bg-indigo-600 text-white":"hover:bg-slate-50"}">
+      <span class="truncate flex-1">${esc(ch.title)}</span>
+      <span class="ml-1 shrink-0 rounded-full px-1.5 text-[10px] ${active?"bg-indigo-500 text-white":"bg-slate-100 text-slate-500"}">${count}</span>
+    </button>`;
+  }).join("");
+  list.querySelectorAll(".appChBtn").forEach(el=>el.addEventListener("click",()=>{
+    state.appSelectedChapterPos = +el.dataset.pos;
+    state.selectedAppendixId = null; state.draftAppendix = null;
+    renderAppChapterList(); renderAppEditor();
+  }));
+}
+
+function renderAppEditor(){
+  const editor = $("appEditor");
+  if(state.appSelectedChapterPos===null){
+    editor.innerHTML=`<div class="rounded-xl border bg-white p-8 text-center text-slate-500 text-sm">Valitse luku vasemmalta.</div>`;
+    return;
+  }
+  const ch = state.appChapters.find(c=>c.position===state.appSelectedChapterPos);
+  const chApps = state.appendices.filter(a=>a.chapter_position===state.appSelectedChapterPos).sort((a,b)=>a.position-b.position);
+  const sectionsForCh = state.sections.filter(s => {
+    const chapterRow = state.chapters.find(c => c.id === s.chapter_id);
+    return chapterRow && chapterRow.book_id === state.appBookId && chapterRow.position === state.appSelectedChapterPos;
+  }).sort((a,b)=>a.position-b.position);
+
+  editor.innerHTML = `
+    <div class="space-y-4">
+      <div class="rounded-xl border bg-white p-4 flex items-center justify-between">
+        <div>
+          <div class="text-xs text-slate-500 uppercase tracking-wide">Luku ${state.appSelectedChapterPos}</div>
+          <div class="font-semibold">${esc(ch?.title??"")}</div>
+          <div class="text-xs text-slate-400 mt-0.5">${chApps.length} liitettä</div>
+        </div>
+        <button id="newAppendix" class="rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-medium text-white hover:bg-indigo-700">＋ Uusi liite</button>
+      </div>
+
+      <div class="grid gap-4 lg:grid-cols-[220px_1fr]">
+        <div class="rounded-xl border bg-white p-3 space-y-1">
+          <div class="text-xs font-medium text-slate-500 mb-2">Liitteet</div>
+          ${chApps.length ? chApps.map(a=>{
+            const spLabel = a.section_position===null ? "luku" : `osio ${a.section_position}`;
+            return `
+            <button data-aid="${a.id}" class="appBtn flex w-full items-start gap-2 rounded-md px-2 py-2 text-left text-xs hover:bg-slate-50 ${state.selectedAppendixId===a.id?"bg-slate-100":""}">
+              <span class="mt-0.5 shrink-0 rounded px-1 py-0.5 text-[10px] font-mono bg-slate-100 text-slate-600">${esc(a.type)}</span>
+              <span class="flex-1 min-w-0">
+                <span class="block truncate">${esc(a.title)}</span>
+                <span class="text-[10px] text-slate-400">${spLabel}</span>
+              </span>
+            </button>`;
+          }).join("")
+          : `<p class="text-xs text-slate-400 p-2 text-center">Ei liitteitä tässä luvussa.</p>`}
+        </div>
+        <div id="appendixFormPane">
+          ${state.draftAppendix ? appendixFormHtml(state.draftAppendix, sectionsForCh) : `<div class="rounded-xl border bg-white p-8 text-center text-sm text-slate-500">Valitse liite tai luo uusi.</div>`}
+        </div>
+      </div>
+    </div>
+  `;
+
+  editor.querySelectorAll(".appBtn").forEach(el=>el.addEventListener("click",()=>{
+    const a = state.appendices.find(x=>x.id===el.dataset.aid);
+    state.selectedAppendixId = a?.id ?? null;
+    state.draftAppendix = a ? {...a, content:{...a.content}} : null;
+    renderAppEditor();
+    wireAppendixForm();
+  }));
+
+  $("newAppendix").addEventListener("click",()=>{
+    state.selectedAppendixId = null;
+    const nextPos = state.appendices.filter(a=>a.chapter_position===state.appSelectedChapterPos).length;
+    state.draftAppendix = {
+      id: null, book_id: state.appBookId, chapter_position: state.appSelectedChapterPos,
+      section_position: null, type: "evidence", title: "", source: "", position: nextPos, content: {}
+    };
+    renderAppEditor();
+    wireAppendixForm();
+  });
+
+  if(state.draftAppendix) wireAppendixForm();
+}
+
+function appendixFormHtml(a, sectionsForCh){
+  const isNew = !a.id;
+  const contentJson = JSON.stringify(a.content ?? {}, null, 2);
+  // Osiovalitsin (selkeämpi kuin vapaa numerokenttä)
+  const sectionOptions = [
+    `<option value="">— Koko luku —</option>`,
+    ...(sectionsForCh || []).map(s =>
+      `<option value="${s.position}" ${a.section_position===s.position?"selected":""}>Osio ${s.position}: ${esc(s.title || "(nimetön)")}</option>`
+    )
+  ].join("");
+  return `
+    <div class="rounded-xl border bg-white">
+      <div class="flex items-center justify-between border-b px-4 py-2">
+        <span class="text-xs text-slate-500">${isNew?"Uusi liite":"Muokkaa liitettä"}</span>
+        <div class="flex gap-2">
+          <button id="appSaveBtn" class="rounded-md bg-indigo-600 px-3 py-1 text-xs font-medium text-white hover:bg-indigo-700">💾 Tallenna</button>
+          ${!isNew?`<button id="appDeleteBtn" class="rounded-md border border-red-300 px-2 py-1 text-xs text-red-600 hover:bg-red-50">🗑 Poista</button>`:""}
+        </div>
+      </div>
+      <div class="space-y-3 p-4">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="text-xs font-medium text-slate-500">Tyyppi</label>
+            <select id="appType" class="mt-1 w-full rounded-md border bg-white px-2 py-1.5 text-sm">
+              ${APP_TYPES.map(t=>`<option value="${t}" ${a.type===t?"selected":""}>${t}</option>`).join("")}
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-medium text-slate-500">Järjestys</label>
+            <input id="appPosition" type="number" min="0" value="${a.position??0}" class="mt-1 w-full rounded-md border px-2 py-1.5 text-sm"/>
+          </div>
+        </div>
+        <div>
+          <label class="text-xs font-medium text-slate-500">Otsikko</label>
+          <input id="appTitle" value="${esc(a.title??"")}" class="mt-1 w-full rounded-md border px-3 py-2 text-sm font-medium"/>
+        </div>
+        <div>
+          <label class="text-xs font-medium text-slate-500">Lähde (vapaaehtoinen)</label>
+          <input id="appSource" value="${esc(a.source??"")}" class="mt-1 w-full rounded-md border px-3 py-2 text-sm"/>
+        </div>
+        <div>
+          <label class="text-xs font-medium text-slate-500">Kohdistus</label>
+          <select id="appSectionPos" class="mt-1 w-full rounded-md border bg-white px-2 py-1.5 text-sm">
+            ${sectionOptions}
+          </select>
+          <p class="text-[11px] text-slate-400 mt-1">Liite näkyy lukijassa joko valitun osion lopussa tai (jos "koko luku") luvun lopussa ennen pageria.</p>
+        </div>
+        <div>
+          <label class="text-xs font-medium text-slate-500 flex items-center justify-between">
+            <span>Sisältö (JSON)</span>
+            <span id="appJsonStatus" class="text-green-600 text-xs"></span>
+          </label>
+          <textarea id="appContent" rows="14" class="mt-1 w-full resize-y rounded-md border bg-slate-50 px-3 py-2 font-mono text-xs leading-relaxed outline-none">${esc(contentJson)}</textarea>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function wireAppendixForm(){
+  const saveBtn = $("appSaveBtn");
+  const delBtn = $("appDeleteBtn");
+  const jsonStatus = $("appJsonStatus");
+  const contentEl = $("appContent");
+  if(!saveBtn) return;
+
+  const validateJson = ()=>{
+    try { JSON.parse(contentEl.value); jsonStatus.textContent="✓ Validi JSON"; jsonStatus.className="text-green-600 text-xs"; }
+    catch(e){ jsonStatus.textContent="✗ "+e.message.slice(0,50); jsonStatus.className="text-red-600 text-xs"; }
+  };
+  contentEl?.addEventListener("input", validateJson);
+  validateJson();
+
+  saveBtn.addEventListener("click", async ()=>{
+    let parsedContent;
+    try { parsedContent = JSON.parse($("appContent").value); }
+    catch(e){ alert("Sisältö ei ole validi JSON: "+e.message); return; }
+
+    const sectionPosRaw = $("appSectionPos").value;
+    const sectionPos = sectionPosRaw==="" ? null : parseInt(sectionPosRaw,10);
+
+    const payload = {
+      book_id: state.appBookId,
+      chapter_position: state.appSelectedChapterPos,
+      section_position: sectionPos,
+      type: $("appType").value,
+      title: $("appTitle").value,
+      source: $("appSource").value || null,
+      position: parseInt($("appPosition").value,10)||0,
+      content: parsedContent,
+    };
+
+    saveBtn.disabled = true; saveBtn.textContent = "Tallennetaan…";
+    let error;
+    if(state.selectedAppendixId){
+      ({ error } = await sb.from("appendices").update(payload).eq("id", state.selectedAppendixId));
+    } else {
+      const { data, error: e } = await sb.from("appendices").insert(payload).select("*").single();
+      error = e;
+      if(!error) state.selectedAppendixId = data.id;
+    }
+    saveBtn.disabled = false; saveBtn.textContent = "💾 Tallenna";
+    if(error){ alert(error.message); return; }
+    await loadAppendicesForBook();
+  });
+
+  delBtn?.addEventListener("click", async ()=>{
+    if(!state.selectedAppendixId) return;
+    if(!confirm("Poistetaanko liite pysyvästi?")) return;
+    const { error } = await sb.from("appendices").delete().eq("id", state.selectedAppendixId);
+    if(error){ alert(error.message); return; }
+    state.selectedAppendixId = null; state.draftAppendix = null;
+    await loadAppendicesForBook();
+  });
+}
+
+// ---------- THINKING NODES ----------
+async function loadNodes(){
+  const { data, error } = await sb.from("thinking_nodes").select("*").order("id");
+  if(error){ console.error(error); return; }
+  state.nodes = data || [];
+  renderNodes();
+}
+function renderNodes(){
+  const q = state.nodeSearch.trim().toLowerCase();
+  const list = !q ? state.nodes : state.nodes.filter(n=>n.id.toLowerCase().includes(q)||n.title.toLowerCase().includes(q)||n.prompt.toLowerCase().includes(q));
+  $("nodeList").innerHTML = list.map(n=>`
+    <button data-nid="${n.id}" class="nodeBtn flex w-full items-start gap-2 rounded-md px-2 py-2 text-left text-sm hover:bg-slate-100 ${state.selectedNodeId===n.id?"bg-slate-100":""}">
+      ${n.is_start?'<span class="mt-0.5 text-indigo-600">★</span>':''}
+      <div class="min-w-0 flex-1">
+        <div class="truncate font-medium">${esc(n.title)}</div>
+        <div class="truncate text-xs text-slate-500">${esc(n.id)}</div>
+      </div>
+    </button>`).join("") || `<div class="p-4 text-center text-xs text-slate-500">Ei solmuja</div>`;
+  document.querySelectorAll(".nodeBtn").forEach(el=>el.addEventListener("click",()=>{
+    state.selectedNodeId = el.dataset.nid;
+    const n = state.nodes.find(x=>x.id===state.selectedNodeId);
+    state.draftNode = n ? { ...n, choices:[...(n.choices||[])] } : null;
+    renderNodes(); renderNodeEditor();
+  }));
+  renderNodeEditor();
+}
+$("nodeSearch").addEventListener("input",(e)=>{ state.nodeSearch=e.target.value; renderNodes(); });
+$("newNode").addEventListener("click",()=>{
+  state.draftNode = { id:`node_${Date.now().toString(36)}`, title:"Uusi solmu", prompt:"", choices:[], is_start:false };
+  state.selectedNodeId = null;
+  renderNodes();
+});
+
+function renderNodeEditor(){
+  const d = state.draftNode;
+  if(!d){ $("nodeEditor").innerHTML = `<div class="text-slate-500">Valitse solmu listasta tai luo uusi.</div>`; return; }
+  const isExisting = !!state.nodes.find(n=>n.id===state.selectedNodeId);
+  $("nodeEditor").innerHTML = `
+    <div class="mx-auto max-w-2xl space-y-4">
+      <div>
+        <label class="text-xs font-medium uppercase text-slate-500">ID</label>
+        <input id="ndId" value="${esc(d.id)}" ${isExisting?"disabled":""} class="mt-1 w-full rounded-md border bg-white px-3 py-2 font-mono text-sm disabled:opacity-60"/>
+      </div>
+      <div>
+        <label class="text-xs font-medium uppercase text-slate-500">Otsikko</label>
+        <input id="ndTitle" value="${esc(d.title)}" class="mt-1 w-full rounded-md border bg-white px-3 py-2"/>
+      </div>
+      <div>
+        <label class="text-xs font-medium uppercase text-slate-500">Teksti / kysymys</label>
+        <textarea id="ndPrompt" rows="6" class="mt-1 w-full rounded-md border bg-white px-3 py-2">${esc(d.prompt)}</textarea>
+      </div>
+      <label class="flex items-center gap-2 text-sm">
+        <input id="ndStart" type="checkbox" ${d.is_start?"checked":""}/> Aloitussolmu (vain yksi voi olla aktiivinen)
+      </label>
+      <div>
+        <div class="mb-2 flex items-center justify-between">
+          <label class="text-xs font-medium uppercase text-slate-500">Valinnat</label>
+          <button id="ndAddChoice" class="rounded-md border p-1 hover:bg-slate-100">＋</button>
+        </div>
+        <div id="ndChoices" class="space-y-2">
+          ${d.choices.map((c,i)=>`
+            <div class="flex gap-2 rounded-md border bg-white p-2">
+              <div class="flex-1 space-y-1">
+                <input data-ci="${i}" data-cf="label" value="${esc(c.label)}" placeholder="Valinnan teksti" class="choiceInp w-full rounded border px-2 py-1 text-sm"/>
+                <select data-ci="${i}" data-cf="nextNode" class="choiceInp w-full rounded border px-2 py-1 text-sm">
+                  <option value="">-- Päättyy tähän --</option>
+                  ${state.nodes.map(n=>`<option value="${esc(n.id)}" ${c.nextNode===n.id?"selected":""}>→ ${esc(n.title)} (${esc(n.id)})</option>`).join("")}
+                </select>
+              </div>
+              <button data-rmci="${i}" class="rmChoice rounded-md p-1 text-red-600 hover:bg-red-50">🗑</button>
+            </div>`).join("")}
+        </div>
+      </div>
+      <div class="flex justify-between pt-4">
+        <button id="ndDelete" ${!isExisting?"disabled":""} class="rounded-md border border-red-300 px-3 py-1.5 text-sm text-red-600 hover:bg-red-50 disabled:opacity-50">🗑 Poista</button>
+        <button id="ndSave" class="rounded-md bg-indigo-600 px-4 py-1.5 text-sm text-white hover:opacity-90">💾 Tallenna</button>
+      </div>
+    </div>
+  `;
+  const upd = ()=>{
+    state.draftNode = {
+      ...d,
+      id: $("ndId").value, title: $("ndTitle").value, prompt: $("ndPrompt").value, is_start: $("ndStart").checked,
+      choices: state.draftNode.choices,
+    };
+  };
+  ["ndId","ndTitle","ndPrompt","ndStart"].forEach(id=>$(id).addEventListener("input", upd));
+  $("ndAddChoice").addEventListener("click",()=>{
+    state.draftNode.choices.push({ label:"", nextNode:null }); renderNodeEditor();
+  });
+  document.querySelectorAll(".choiceInp").forEach(el=>el.addEventListener("input",(e)=>{
+    const i = +el.dataset.ci, f = el.dataset.cf;
+    state.draftNode.choices[i] = { ...state.draftNode.choices[i], [f]: f==="nextNode" ? (el.value||null) : el.value };
+  }));
+  document.querySelectorAll(".rmChoice").forEach(el=>el.addEventListener("click",()=>{
+    const i = +el.dataset.rmci;
+    state.draftNode.choices = state.draftNode.choices.filter((_,idx)=>idx!==i);
+    renderNodeEditor();
+  }));
+  $("ndSave").addEventListener("click", async ()=>{
+    upd();
+    const d2 = state.draftNode;
+    if(!/^[a-z0-9_-]+$/.test(d2.id)){ alert("ID saa sisältää vain pieniä kirjaimia, numeroita, - ja _"); return; }
+    if(d2.is_start){
+      const { error: e1 } = await sb.from("thinking_nodes").update({ is_start:false }).neq("id", d2.id);
+      if(e1) return alert(e1.message);
+    }
+    const { error } = await sb.from("thinking_nodes").upsert(d2, { onConflict:"id" });
+    if(error) return alert(error.message);
+    state.selectedNodeId = d2.id;
+    await loadNodes();
+  });
+  $("ndDelete").addEventListener("click", async ()=>{
+    if(!isExisting) return;
+    if(!confirm(`Poista solmu "${d.title}"?`)) return;
+    const { error } = await sb.from("thinking_nodes").delete().eq("id", d.id);
+    if(error) return alert(error.message);
+    state.selectedNodeId=null; state.draftNode=null;
+    await loadNodes();
+  });
+}
+
+// ---------- BOOT ----------
+boot();
+</script>
+</body>
+</html>
