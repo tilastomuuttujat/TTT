@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 <meta http-equiv="Pragma" content="no-cache" />
 <meta http-equiv="Expires" content="0" />
-<title>Admin — Book Editor Suite</title>
+<title>Admin -- Book Editor Suite</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   :root { --primary: #6366f1; }
@@ -140,7 +140,7 @@
 </div>
 
 <script>
-  // Globaali virheidenkäsittely — esitetään ruudulla mikä tahansa kaatava virhe
+  // Globaali virheidenkäsittely -- esitetään ruudulla mikä tahansa kaatava virhe
   window.addEventListener("error", (e) => showBootError(e.error || e.message));
   window.addEventListener("unhandledrejection", (e) => showBootError(e.reason));
 
@@ -306,7 +306,7 @@ async function boot(){
   }
 }
 
-// Auth-kuuntelija — reagoi vain merkityksellisiin tapahtumiin, ei refreshiin
+// Auth-kuuntelija -- reagoi vain merkityksellisiin tapahtumiin, ei refreshiin
 function attachAuthListener(){
   sb.auth.onAuthStateChange((event, session) => {
     if (!state.booted) return; // odota ensilatauksen valmistumista
@@ -315,7 +315,7 @@ function attachAuthListener(){
       state.isAdmin = false;
       show("login");
     }
-    // SIGNED_IN, TOKEN_REFRESHED, USER_UPDATED — ei tehdä mitään,
+    // SIGNED_IN, TOKEN_REFRESHED, USER_UPDATED -- ei tehdä mitään,
     // koska tila on jo synkronissa. Ei kilpailevia uudelleenlatauksia.
   });
 }
@@ -701,13 +701,23 @@ async function loadAppendicesForBook(){
   const { data: chs, error: e1 } = await sb.from("chapters").select("id,title,position,slug").eq("book_id", state.appBookId).order("position");
   if(e1){ alert(e1.message); return; }
   state.appChapters = chs || [];
+
+  // Lataa myös tämän kirjan kaikki osiot, jotta Kohdistus-pudotusvalikko voi
+  // näyttää oikeat vaihtoehdot riippumatta siitä mitä Kirjat-välilehdellä on.
+  const chapterIds = state.appChapters.map(c => c.id);
+  if (chapterIds.length) {
+    const { data: secs, error: eSec } = await sb
+      .from("sections")
+      .select("id,chapter_id,title,position")
+      .in("chapter_id", chapterIds)
+      .order("position");
+    if (eSec) { alert(eSec.message); return; }
+    state.appSections = secs || [];
+  } else {
+    state.appSections = [];
+  }
+
   const { data: apps, error: e2 } = await sb.from("appendices").select("*").eq("book_id", state.appBookId).order("chapter_position").order("position");
-  if(e2){ alert(e2.message); return; }
-  state.appendices = apps || [];
-  $("appChapterCount").textContent = `${state.appChapters.length} lukua`;
-  renderAppChapterList();
-  renderAppEditor();
-}
 
 function renderAppChapterList(){
   const list = $("appChapterList");
@@ -735,10 +745,12 @@ function renderAppEditor(){
   }
   const ch = state.appChapters.find(c=>c.position===state.appSelectedChapterPos);
   const chApps = state.appendices.filter(a=>a.chapter_position===state.appSelectedChapterPos).sort((a,b)=>a.position-b.position);
-  const sectionsForCh = state.sections.filter(s => {
-    const chapterRow = state.chapters.find(c => c.id === s.chapter_id);
-    return chapterRow && chapterRow.book_id === state.appBookId && chapterRow.position === state.appSelectedChapterPos;
-  }).sort((a,b)=>a.position-b.position);
+  const currentChapterRow = state.appChapters.find(c => c.position === state.appSelectedChapterPos);
+  const sectionsForCh = currentChapterRow
+    ? (state.appSections || [])
+        .filter(s => s.chapter_id === currentChapterRow.id)
+        .sort((a, b) => a.position - b.position)
+    : [];
 
   editor.innerHTML = `
     <div class="space-y-4">
@@ -801,7 +813,7 @@ function appendixFormHtml(a, sectionsForCh){
   const contentJson = JSON.stringify(a.content ?? {}, null, 2);
   // Osiovalitsin (selkeämpi kuin vapaa numerokenttä)
   const sectionOptions = [
-    `<option value="">— Koko luku —</option>`,
+    `<option value="">-- Koko luku --</option>`,
     ...(sectionsForCh || []).map(s =>
       `<option value="${s.position}" ${a.section_position===s.position?"selected":""}>Osio ${s.position}: ${esc(s.title || "(nimetön)")}</option>`
     )
