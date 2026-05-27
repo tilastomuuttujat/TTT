@@ -1381,6 +1381,7 @@
         <a class="brand" href="#/">Admin-editori</a>
         <div class="bar-actions">
           <div class="admin-toolbar">
+            <button id="copyTxtBtn" title="Kopioi koko kirjan teksti leikepöydälle">📋 Kopioi TXT</button>
             <button id="exportBookBtn" title="Lataa nykyisen kirjan teksti JSON-tiedostona">⬇ Kirja JSON</button>
             <button id="exportAppsBtn" title="Lataa nykyisen kirjan liitteet JSON-tiedostona">⬇ Liitteet JSON</button>
             <span class="user-pill" id="userPill"></span>
@@ -2645,6 +2646,71 @@
       // ═══════════════════════════════════════════════════════════════════════
       //  ADMIN: vientifunktiot
       // ═══════════════════════════════════════════════════════════════════════
+
+      // Muuntaa TipTap/ProseMirror-doc:n yksinkertaiseksi tekstiksi.
+      // Käytetään samaa logiikkaa kuin admin.html:ssä, jotta tulos on yhdenmukainen.
+      function docToText(doc) {
+        if (!doc || typeof doc !== "object" || !Array.isArray(doc.content)) return "";
+        const walk = (n) =>
+          n.type === "text" ? (n.text ?? "") :
+          (Array.isArray(n.content) ? n.content.map(walk).join("") : "");
+        const lines = [];
+        for (const b of doc.content) {
+          if (b.type === "heading") {
+            const lvl = Math.min(6, Math.max(1, Number(b.attrs?.level ?? 1)));
+            lines.push("#".repeat(lvl) + " " + walk(b));
+          } else if (b.type === "bulletList" || b.type === "orderedList") {
+            (b.content || []).forEach((it, i) =>
+              lines.push((b.type === "orderedList" ? (i + 1) + ". " : "- ") + walk(it).trim())
+            );
+          } else {
+            lines.push(walk(b));
+          }
+          lines.push("");
+        }
+        return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+      }
+
+      // Muuntaa koko kirjan ihmisluettavaksi tekstiksi (otsikot + erottimet).
+      function bookExportToTxt(book) {
+        const out = [];
+        out.push(book.title);
+        out.push("=".repeat(book.title.length));
+        if (book.author) out.push(`-- ${book.author}`);
+        if (book.description) { out.push(""); out.push(book.description); }
+        for (const ch of book.chapters) {
+          out.push(""); out.push(""); out.push(ch.title);
+          out.push("-".repeat(ch.title.length));
+          for (const s of ch.sections) {
+            out.push("");
+            if (s.title) { out.push(`### ${s.title}`); out.push(""); }
+            out.push(docToText(s.content));
+          }
+        }
+        return out.join("\n");
+      }
+
+      // Kopioi koko kirja tekstinä leikepöydälle.
+      async function copyBookAsText() {
+        const slug = adminState.currentBookSlug;
+        if (!slug) {
+          toast("Avaa ensin kirja", "error");
+          return;
+        }
+        try {
+          const data = await loadBook(slug);
+          const text = bookExportToTxt(data);
+          await navigator.clipboard.writeText(text);
+          const kb = Math.round(text.length / 1024);
+          toast(`Kirja kopioitu leikepöydälle (${kb} kt)`, "success");
+        } catch (err) {
+          // Clipboard API voi epäonnistua jos sivu ei ole HTTPS:ssä tai
+          // selain ei tue sitä. Tarjotaan fallback.
+          console.error("Clipboard write failed:", err);
+          toast("Kopiointi epäonnistui: " + (err.message || err), "error");
+        }
+      }
+
       async function exportBookJson() {
         const slug = adminState.currentBookSlug;
         if (!slug) {
@@ -2742,6 +2808,7 @@
         URL.revokeObjectURL(url);
       }
 
+      document.getElementById("copyTxtBtn").addEventListener("click", copyBookAsText);
       document.getElementById("exportBookBtn").addEventListener("click", exportBookJson);
       document.getElementById("exportAppsBtn").addEventListener("click", exportAppendicesJson);
 
