@@ -41,6 +41,13 @@
       "author": "Harri Käyhkö",
       "description": "Laadullinen analyysi Suomen hyvinvointijärjestelmästä.",
       "file": "nakymattomat-mekanismit.json"
+    },
+    {
+      "slug": "kuusi-ennustetta",
+      "title": "Kuusi ennustetta",
+      "author": "Harri Käyhkö 2025-2026",
+      "description": "Suomen hyvinvointijärjestelmä kirjojen linssien läpi. Kuusi falsifioitavaa ennustetta, joista jokainen kytkeytyy yhteen sarjan kirjoista. Tutkimusprotokolla pelkän retoriikan sijaan.",
+      "file": "kuusi-ennustetta.json"
     }
   ]
 }
