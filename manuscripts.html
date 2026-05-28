@@ -1580,6 +1580,32 @@
         return { sectionMap, chapterMap };
       }
 
+let evidenceAppendixMap = {};
+
+function buildEvidenceAppendixMap(payload) {
+  evidenceAppendixMap = {};
+
+  if (!payload || !Array.isArray(payload.chapters)) return;
+
+  for (const ch of payload.chapters) {
+    const apps = Array.isArray(ch.appendices) ? ch.appendices : [];
+
+    for (const a of apps) {
+      const key =
+        a?.content?.evidence_key ||
+        a?.evidence_key ||
+        "";
+
+      if (!key) continue;
+
+      if (!evidenceAppendixMap[key]) {
+        evidenceAppendixMap[key] = [];
+      }
+
+      evidenceAppendixMap[key].push(a);
+    }
+  }
+}
       // ═══════════════════════════════════════════════════════════════════════
       //  Appendix renderers (preserved)
       // ═══════════════════════════════════════════════════════════════════════
@@ -2078,6 +2104,77 @@
           </div>`;
       }
 
+function openEvidenceAppendicesModal(evidenceKey) {
+  const appendices = evidenceAppendixMap[evidenceKey] || [];
+  const seriesLink = seriesLinkMap[evidenceKey] || null;
+
+  if (!appendices.length) {
+    return;
+  }
+
+  const existing = document.querySelector(".ev-modal-backdrop");
+  if (existing) existing.remove();
+
+  const seriesHtml = seriesLink ? `
+    <div class="ev-data-available" style="margin: 10px 0 16px;">
+      <span class="ev-data-dot"></span>
+      <span class="ev-data-label">Data saatavilla</span>
+      <span class="ev-data-sub">
+        ${esc([
+          seriesLink.indicator_name,
+          seriesLink.year_start && seriesLink.year_end
+            ? `${seriesLink.year_start}–${seriesLink.year_end}`
+            : "",
+          Array.isArray(seriesLink.expected_j_codes)
+            ? seriesLink.expected_j_codes.join(" / ")
+            : ""
+        ].filter(Boolean).join(" · "))}
+      </span>
+    </div>
+  ` : "";
+
+  const itemsHtml = appendices.map((a) => `
+    <section class="ev-modal-item">
+      <div class="app-body-head">
+        <span class="kind">${esc(a.type || "liite")}</span>
+        <h3>${esc(a.title || "Liite")}</h3>
+      </div>
+      ${renderAppendixBody(a, seriesLinkMap)}
+    </section>
+  `).join("");
+
+  const modal = document.createElement("div");
+  modal.className = "ev-modal-backdrop show";
+  modal.innerHTML = `
+    <div class="ev-modal" role="dialog" aria-modal="true" aria-label="Evidence-liitteet">
+      <button type="button" class="ev-modal-close" aria-label="Sulje">×</button>
+      <h3>Evidence</h3>
+      <div class="ev-meta">
+        <span class="ev-key">${esc(evidenceKey)}</span>
+      </div>
+      ${seriesHtml}
+      ${itemsHtml}
+    </div>
+  `;
+
+  document.body.appendChild(modal);
+
+  const close = () => modal.remove();
+
+  modal.querySelector(".ev-modal-close")?.addEventListener("click", close);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) close();
+  });
+
+  document.addEventListener("keydown", function onEsc(e) {
+    if (e.key === "Escape") {
+      close();
+      document.removeEventListener("keydown", onEsc);
+    }
+  });
+}
+
 function renderResearchCard(c) {
   const status = c.falsification_data_available || "requires_collection";
   const statusLabel = c.data_status_fi || (
@@ -2112,15 +2209,21 @@ function renderResearchCard(c) {
     ? evidence.map((e) => {
         const key = e.evidence_key || "";
         const link = key ? seriesLinkMap[key] : null;
+        const title = e.title || key;
+        const hasSeriesLink = Boolean(link);
 
         return `
           <button
             type="button"
             class="pcard-evidence-row"
             data-evidence-key="${esc(key)}"
-            aria-label="Avaa evidence-liite: ${esc(e.title || key)}"
+            data-has-series-link="${hasSeriesLink ? "true" : "false"}"
+            aria-label="${hasSeriesLink
+              ? `Avaa evidence ja siihen liittyvä data: ${esc(title)}`
+              : `Avaa evidence-liitteet: ${esc(title)}`
+            }"
           >
-            <div class="ev-title">${esc(e.title || key)}</div>
+            <div class="ev-title">${esc(title)}</div>
             <div class="ev-meta">
               ${e.type ? `<span>${esc(e.type)}</span>` : ""}
               ${e.source ? `<span>${esc(e.source)}</span>` : ""}
@@ -2206,7 +2309,7 @@ function renderResearchCard(c) {
               <span class="kind">${esc(labelFor(a.type))}</span>
               <h3>${esc(a.title || labelFor(a.type))}</h3>
             </div>
-            ${renderAppendixBody(a)}`;
+      ${renderAppendixBody(a, seriesLinkMap)}`;
           body.hidden = false;
           buttons.forEach((b, i) => b.setAttribute("aria-expanded", i === idx ? "true" : "false"));
           openIdx = idx;
@@ -2442,6 +2545,8 @@ function renderResearchCard(c) {
         // Lukija näyttää research-cardin evidence-rivillä "Data saatavilla", jos
         // avain löytyy. Ei tietokantayhteyttä -- tieto tulee staattisesta JSON:ista.
         buildSeriesLinkMap(appendixPayload);
+        buildEvidenceAppendixMap(appendixPayload);
+        
 
         const all = (data.chapters || []).slice().sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
         const current = all.find((c) => c.slug === chapterSlug);
@@ -2689,6 +2794,16 @@ function renderResearchCard(c) {
         }
         if (e.key === "Escape") { closeSearch(); toggleSettings(false); }
       });
+      
+      document.addEventListener("click", (e) => {
+  const row = e.target.closest(".pcard-evidence-row");
+  if (!row) return;
+
+  const key = row.dataset.evidenceKey;
+  if (!key) return;
+
+  openEvidenceAppendicesModal(key);
+});
 
       window.addEventListener("hashchange", route);
       route();
