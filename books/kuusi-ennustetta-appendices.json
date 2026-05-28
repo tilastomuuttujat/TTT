@@ -1,22 +1,10 @@
 {
-  "schema": "book-appendices.v1",
-  "exported_at": "2026-05-28T07:00:09.880Z",
-  "book": {
-    "id": "9e3cd3d7-1975-4f28-8da3-7dc7d1842f0b",
-    "slug": "kuusi-ennustetta",
-    "title": "Kuusi ennustetta"
-  },
+  "book_slug": "kuusi-ennustetta",
+  "book_title": "Kuusi ennustetta",
+  "exported_at": "2026-05-28T12:39:30.832Z",
   "chapters": [
     {
-      "position": 0,
-      "slug": "johdanto",
-      "title": "Johdanto",
-      "appendices": []
-    },
-    {
-      "position": 1,
-      "slug": "ennuste-1-laajenemisen-logiikka",
-      "title": "Ennuste 1 — Laajenemisen logiikka",
+      "chapter_position": 1,
       "appendices": [
         {
           "chapter_position": 1,
@@ -59,16 +47,22 @@
           "position": 1,
           "content": {
             "lens": "Laajenemisen logiikka",
+            "evidence": [
+              {
+                "type": "evidence",
+                "title": "Optimoinnin logiikka ja sen sivuvaikutukset",
+                "source": null,
+                "evidence_key": "expansion.optimization_side_effects"
+              }
+            ],
             "prediction": "Läpivirtauksen optimointi tuottaa raskaampaa kuormaa toisaalla",
             "evidence_keys": [
-              "expansion.optimization_side_effects",
               "expansion.optimization_side_effects"
             ],
             "falsification": "Jos tehokkuuden kasvu yhdessä järjestelmän osassa ei systemaattisesti siirrä kuormaa toiseen osaan, vaan vaikutus jää eristyneeksi tai katoaa kokonaan, ennuste heikkenee.",
             "data_status_fi": "Osittain testattavissa — osa aineistosta puuttuu",
-            "evidence_count": 2,
+            "evidence_count": 1,
             "evidence_titles": [
-              "Optimoinnin logiikka ja sen sivuvaikutukset",
               "Optimoinnin logiikka ja sen sivuvaikutukset"
             ],
             "prediction_number": 1,
@@ -79,9 +73,7 @@
       ]
     },
     {
-      "position": 2,
-      "slug": "ennuste-2-nakymattomat-mekanismit",
-      "title": "Ennuste 2 — Näkymättömät mekanismit",
+      "chapter_position": 2,
       "appendices": [
         {
           "chapter_position": 2,
@@ -164,20 +156,30 @@
           "position": 2,
           "content": {
             "lens": "Näkymättömät mekanismit",
+            "evidence": [
+              {
+                "type": "chain",
+                "title": "Goodhartin laki Hayekin linssin läpi: mekanismi",
+                "source": "Goodhart C.A.E. (1975). / Strathern M. (1997). \"Improving ratings: audit in the British university system.\"",
+                "evidence_key": "optimization.goodhart_hayek_mechanism"
+              },
+              {
+                "type": "evidence",
+                "title": "Hayekin hajautetun tiedon ongelma: empiiriset sovellukset",
+                "source": "Hayek F.A. (1945). The Use of Knowledge in Society. American Economic Review, 35(4), 519–530.",
+                "evidence_key": "optimization.goodhart_metrics"
+              }
+            ],
             "prediction": "Rahoitus ja mittarit ohjaavat käyttäytymistä",
             "evidence_keys": [
               "optimization.goodhart_hayek_mechanism",
-              "optimization.goodhart_hayek_mechanism",
-              "optimization.goodhart_metrics",
               "optimization.goodhart_metrics"
             ],
             "falsification": "Jos mittaroinnin lisääminen ei tuota vääristymiä eikä osaoptimointia — eli toimijat reagoivat indikaattoreihin täsmälleen kuin niiden taustalla olevaan ilmiöön — ennuste heikkenee. Tämä on Goodhartin lain testi konkretisoituna.",
             "data_status_fi": "Osittain testattavissa — osa aineistosta puuttuu",
-            "evidence_count": 4,
+            "evidence_count": 2,
             "evidence_titles": [
               "Goodhartin laki Hayekin linssin läpi: mekanismi",
-              "Goodhartin laki Hayekin linssin läpi: mekanismi",
-              "Hayekin hajautetun tiedon ongelma: empiiriset sovellukset",
               "Hayekin hajautetun tiedon ongelma: empiiriset sovellukset"
             ],
             "prediction_number": 2,
@@ -188,9 +190,7 @@
       ]
     },
     {
-      "position": 3,
-      "slug": "ennuste-3-nakyvaksi",
-      "title": "Ennuste 3 — Näkyväksi",
+      "chapter_position": 3,
       "appendices": [
         {
           "chapter_position": 3,
@@ -294,24 +294,38 @@
           "position": 3,
           "content": {
             "lens": "Näkyväksi",
+            "evidence": [
+              {
+                "type": "calculation",
+                "title": "Näkymättömyyden kustannus: laskennallinen kehys",
+                "source": "Valtiontalouden tarkastusvirasto, Kelasto, THL hyvinvointikompassi",
+                "evidence_key": "visibility.invisibility_cost_framework"
+              },
+              {
+                "type": "chain",
+                "title": "Näkymättömyyden syntymekanismi: neljä vaihetta",
+                "source": null,
+                "evidence_key": "visibility.invisibility_mechanism"
+              },
+              {
+                "type": "evidence",
+                "title": "Neuvola kaksisuuntaisen optimoinnin mallina",
+                "source": "THL: Lastenneuvola lapsiperheiden tukena, 2004 / päivitetty 2019",
+                "evidence_key": "visibility.neuvola_model"
+              }
+            ],
             "prediction": "Nähdyksi tuleminen on rakenteellinen tarve",
             "evidence_keys": [
               "visibility.invisibility_cost_framework",
-              "visibility.invisibility_cost_framework",
               "visibility.invisibility_mechanism",
-              "visibility.invisibility_mechanism",
-              "visibility.neuvola_model",
               "visibility.neuvola_model"
             ],
             "falsification": "Jos nähdyksi tuleminen ei ennusta toimijuutta — eli ihmiset jotka kokevat tulleensa kuulluiksi eivät käytä palveluja eri tavalla kuin ne jotka eivät koe — ennuste heikkenee.",
             "data_status_fi": "Vaatii tutkimusasetelman — aineisto ei vielä saatavilla",
-            "evidence_count": 6,
+            "evidence_count": 3,
             "evidence_titles": [
               "Näkymättömyyden kustannus: laskennallinen kehys",
-              "Näkymättömyyden kustannus: laskennallinen kehys",
               "Näkymättömyyden syntymekanismi: neljä vaihetta",
-              "Näkymättömyyden syntymekanismi: neljä vaihetta",
-              "Neuvola kaksisuuntaisen optimoinnin mallina",
               "Neuvola kaksisuuntaisen optimoinnin mallina"
             ],
             "prediction_number": 3,
@@ -322,9 +336,7 @@
       ]
     },
     {
-      "position": 4,
-      "slug": "ennuste-4-itseohjautuvuus",
-      "title": "Ennuste 4 — Itseohjautuvuus",
+      "chapter_position": 4,
       "appendices": [
         {
           "chapter_position": 4,
@@ -454,24 +466,38 @@
           "position": 3,
           "content": {
             "lens": "Itseohjautuvuus",
+            "evidence": [
+              {
+                "type": "chain",
+                "title": "Läpinäkymättömyyden ketju: miksi selitettävyys on demokraattinen ongelma",
+                "source": null,
+                "evidence_key": "self_organization.opacity_chain"
+              },
+              {
+                "type": "chain",
+                "title": "Miten algoritminen järjestelmä käsittelee konfliktia: neljä vaihetta",
+                "source": null,
+                "evidence_key": "self_organization.algorithmic_conflict_chain"
+              },
+              {
+                "type": "chain",
+                "title": "Miten vastuu häviää: neljä vaihetta",
+                "source": null,
+                "evidence_key": "self_organization.responsibility_dissolution"
+              }
+            ],
             "prediction": "Tavoitefunktio ohjaa toimintaa arvojen ohi",
             "evidence_keys": [
               "self_organization.algorithmic_conflict_chain",
-              "self_organization.algorithmic_conflict_chain",
               "self_organization.opacity_chain",
-              "self_organization.opacity_chain",
-              "self_organization.responsibility_dissolution",
               "self_organization.responsibility_dissolution"
             ],
             "falsification": "Jos toimijoiden käyttäytyminen seuraa julkilausuttuja arvoja eikä kannustinrakennetta — silloinkin kun nämä ovat ristiriidassa keskenään — ennuste heikkenee. Tämä on klassinen organisaatioteoreettinen testi.",
             "data_status_fi": "Vaatii tutkimusasetelman — aineisto ei vielä saatavilla",
-            "evidence_count": 6,
+            "evidence_count": 3,
             "evidence_titles": [
               "Läpinäkymättömyyden ketju: miksi selitettävyys on demokraattinen ongelma",
-              "Läpinäkymättömyyden ketju: miksi selitettävyys on demokraattinen ongelma",
               "Miten algoritminen järjestelmä käsittelee konfliktia: neljä vaihetta",
-              "Miten algoritminen järjestelmä käsittelee konfliktia: neljä vaihetta",
-              "Miten vastuu häviää: neljä vaihetta",
               "Miten vastuu häviää: neljä vaihetta"
             ],
             "prediction_number": 4,
@@ -482,9 +508,7 @@
       ]
     },
     {
-      "position": 5,
-      "slug": "ennuste-5-katalyytti",
-      "title": "Ennuste 5 — Katalyytti",
+      "chapter_position": 5,
       "appendices": [
         {
           "chapter_position": 5,
@@ -608,24 +632,38 @@
           "position": 3,
           "content": {
             "lens": "Katalyytti",
+            "evidence": [
+              {
+                "type": "chain",
+                "title": "Kitkan lasku ja käyttäytymisen muutos: kolme toistuvaa mekanismia",
+                "source": "Kirjan argumentti; Arthur 1994",
+                "evidence_key": "catalyst.friction_behavior_change"
+              },
+              {
+                "type": "evidence",
+                "title": "Aktivaatioenergia: kemiallinen metafora ja yhteiskunnalliset vastineet",
+                "source": "Atkins & de Paula 2010",
+                "evidence_key": "catalyst.activation_energy_model"
+              },
+              {
+                "type": "evidence",
+                "title": "Katalyytti ilman suuntaa: kolme esimerkkiä haitallisesta aktivaatioenergian laskusta",
+                "source": "Vosoughi ym. 2018; Finanssivalvonta 2022",
+                "evidence_key": "catalyst.harmful_catalysts"
+              }
+            ],
             "prediction": "Pienet kitkamuutokset voivat tuottaa suuria vaikutuksia",
             "evidence_keys": [
               "catalyst.activation_energy_model",
-              "catalyst.activation_energy_model",
               "catalyst.friction_behavior_change",
-              "catalyst.friction_behavior_change",
-              "catalyst.harmful_catalysts",
               "catalyst.harmful_catalysts"
             ],
             "falsification": "Jos kitkan poistaminen ei muuta käyttäytymistä — eli prosessien yksinkertaistaminen ei lisää palveluiden käyttöä tai tuloksia ennustettavalla tavalla — ennuste heikkenee.",
             "data_status_fi": "Testattavissa nyt — aineisto on käytettävissä",
-            "evidence_count": 6,
+            "evidence_count": 3,
             "evidence_titles": [
               "Aktivaatioenergia: kemiallinen metafora ja yhteiskunnalliset vastineet",
-              "Aktivaatioenergia: kemiallinen metafora ja yhteiskunnalliset vastineet",
               "Katalyytti ilman suuntaa: kolme esimerkkiä haitallisesta aktivaatioenergian laskusta",
-              "Katalyytti ilman suuntaa: kolme esimerkkiä haitallisesta aktivaatioenergian laskusta",
-              "Kitkan lasku ja käyttäytymisen muutos: kolme toistuvaa mekanismia",
               "Kitkan lasku ja käyttäytymisen muutos: kolme toistuvaa mekanismia"
             ],
             "prediction_number": 5,
@@ -636,9 +674,7 @@
       ]
     },
     {
-      "position": 6,
-      "slug": "ennuste-6-polkuriippuvuus",
-      "title": "Ennuste 6 — Polkuriippuvuus",
+      "chapter_position": 6,
       "appendices": [
         {
           "chapter_position": 6,
@@ -1069,9 +1105,40 @@
           "position": 4,
           "content": {
             "lens": "Sukupolvi joka kantaa",
+            "evidence": [
+              {
+                "type": "chart-chartjs",
+                "title": "Hedelmällisyysluku 1995–2024 — neljä pohjoismaata",
+                "source": "NOMESCO; Suomen TTT-tutkimustietokanta",
+                "evidence_key": "path_dependency.tfr_nordics_1995_2024"
+              },
+              {
+                "type": "chart-chartjs",
+                "title": "Konsolidoitu julkinen velka 1995–2024 — neljä pohjoismaata",
+                "source": "NOMESCO; Eurostat; Suomen TTT-tutkimustietokanta",
+                "evidence_key": "path_dependency.debt_nordics_1995_2024"
+              },
+              {
+                "type": "table",
+                "title": "20 mittaria — Suomi Pohjoismaiden heikoimpana tai lähes heikoimpana",
+                "source": "NOMESCO; Eurostat; OECD; ETK; SVT — kaikki 2023–2024",
+                "evidence_key": "path_dependency.finland_outlier_20"
+              },
+              {
+                "type": "table",
+                "title": "Suomen julkinen velka suhteessa Pohjoismaihin 2000–2024",
+                "source": "Eurostat; IMF; Norges Bank",
+                "evidence_key": "path_dependency.debt_nordics_1995_2024"
+              },
+              {
+                "type": "table",
+                "title": "Suomen väestöllinen erityispolku vs. Pohjoismaat",
+                "source": "NOMESCO; SVT; kirjan analyysi",
+                "evidence_key": "path_dependency.structural_differences"
+              }
+            ],
             "prediction": "Polkuriippuvuus näkyy Suomen poikkeavana kehityspolkuna",
             "evidence_keys": [
-              "path_dependency.debt_nordics_1995_2024",
               "path_dependency.debt_nordics_1995_2024",
               "path_dependency.finland_outlier_20",
               "path_dependency.structural_differences",
@@ -1079,7 +1146,7 @@
             ],
             "falsification": "Jos Suomen erityispiirteet katoavat kun ne vakioidaan väestörakenteen, vaurauden ja muiden taustamuuttujien suhteen — eli sama reformi tuottaa Suomessa saman tuloksen kuin verrokkimaissa kontrolloidusti — ennuste heikkenee.",
             "data_status_fi": "Testattavissa nyt — aineisto on käytettävissä",
-            "evidence_count": 5,
+            "evidence_count": 4,
             "evidence_titles": [
               "20 mittaria — Suomi Pohjoismaiden heikoimpana tai lähes heikoimpana",
               "Hedelmällisyysluku 1995–2024 — neljä pohjoismaata",
@@ -1093,6 +1160,46 @@
           }
         }
       ]
+    }
+  ],
+  "series_links": [
+    {
+      "evidence_key": "path_dependency.debt_nordics_1995_2024",
+      "indicator_key": "macro.edp_debt_gdp",
+      "indicator_name": "Government debt to GDP ratio",
+      "external_project": "TTT-analyysi",
+      "external_project_ref": "yjkabgtbcgvrfqtewtna",
+      "geography": "Nordics",
+      "year_start": 1995,
+      "year_end": 2024,
+      "expected_j_codes": [
+        "FI",
+        "SE",
+        "NO",
+        "DK",
+        "IS"
+      ],
+      "data_role": "primary_series",
+      "note": "Phase 5 pilot linkage for prediction 6"
+    },
+    {
+      "evidence_key": "path_dependency.tfr_nordics_1995_2024",
+      "indicator_key": "indicator.syntyvyys_tfr",
+      "indicator_name": "Kokonaishedelmällisyysluku (TFR)",
+      "external_project": "TTT-analyysi",
+      "external_project_ref": "yjkabgtbcgvrfqtewtna",
+      "geography": "Nordics",
+      "year_start": 1995,
+      "year_end": 2024,
+      "expected_j_codes": [
+        "FI",
+        "SE",
+        "NO",
+        "DK",
+        "IS"
+      ],
+      "data_role": "primary_series",
+      "note": "Phase 5 pilot linkage for prediction 6"
     }
   ]
 }
