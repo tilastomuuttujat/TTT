@@ -2953,89 +2953,169 @@
         }
       }
 
-      async function exportAppendicesJson() {
-        const slug = adminState.currentBookSlug;
-        if (!slug) {
-          toast("Avaa ensin kirja", "error");
-          return;
-        }
-        try {
-          const payload = await loadAppendices(slug);
-          if (!payload) {
-            toast("Liitteitä ei löytynyt", "error");
-            return;
-          }
-          // Suodatetaan piilotetut liitteet pois ja poistetaan hidden-kenttä
-          // tulosteesta. Näin manu.html ei tarvitse erillistä suodatuslogiikkaa
-          // -- JSON sisältää vain ne liitteet jotka kuuluu näyttää lukijalle.
-          let hiddenCount = 0;
-          const cleaned = {
-            schema: "book-appendices.v1",
-            exported_at: new Date().toISOString(),
-            book: payload.book,
-            chapters: payload.chapters.map(ch => ({
-              position: ch.position,
-              slug: ch.slug,
-              title: ch.title,
-              appendices: ch.appendices
-                .filter(a => {
-                  if (a.hidden === true) { hiddenCount++; return false; }
-                  return true;
-                })
-                .map(a => ({
-                  chapter_position: a.chapter_position,
-                  section_position: a.section_position,
-                  type: a.type,
-                  title: a.title,
-                  source: a.source,
-                  position: a.position,
-                  content: a.content,
-                })),
-            })),
-          };
+async function exportAppendicesJson() {
+  if (!adminState.currentBookSlug) {
+    toast("Avaa ensin kirja, jonka liitteet viedään.", "error");
+    return;
+  }
 
-          // VAIHE 5: hae datalinkit (evidence_key -> indicator) ja lisää ne
-          // JSON:n juureen erilliseksi metatietokerrokseksi. Lukija käyttää
-          // tätä näyttääkseen research-cardin evidence-rivillä "Data saatavilla".
-          // Kerätään vain ne evidence_keyt jotka esiintyvät tämän kirjan
-          // research-card-liitteissä, jotta tiedosto pysyy relevanttina.
-          let seriesLinkCount = 0;
-          try {
-            const usedKeys = new Set();
-            for (const ch of payload.chapters) {
-              for (const a of ch.appendices) {
-                if (a.type === "research-card" && a.content && Array.isArray(a.content.evidence_keys)) {
-                  a.content.evidence_keys.forEach(k => usedKeys.add(k));
-                }
-              }
-            }
-            const { data: links, error: linkErr } = await sb
-              .from("v_evidence_series_links")
-              .select("evidence_key, indicator_key, indicator_name, geography, year_start, year_end, expected_j_codes, data_role");
-            if (linkErr) throw linkErr;
-            const relevant = (links || []).filter(l => usedKeys.size === 0 || usedKeys.has(l.evidence_key));
-            if (relevant.length) {
-              cleaned.series_links = relevant;
-              seriesLinkCount = relevant.length;
-            }
-          } catch (linkErr) {
-            // Datalinkit eivät ole pakollisia -- jos haku epäonnistuu, viedään
-            // liitteet silti ilman series_links-kenttää.
-            console.warn("series_links-haku epäonnistui:", linkErr);
-          }
+  try {
+    const slug = adminState.currentBookSlug;
 
-          downloadJson(`${slug}-appendices.json`, cleaned);
-          const parts = [];
-          if (hiddenCount > 0) parts.push(`${hiddenCount} piilotettua jätetty pois`);
-          if (seriesLinkCount > 0) parts.push(`${seriesLinkCount} datalinkki`);
-          const msg = parts.length
-            ? `Liite-JSON ladattu (${parts.join(", ")})`
-            : "Liite-JSON ladattu";
-          toast(msg, "success");
-        } catch (err) {
-          toast("Vienti epäonnistui: " + (err.message || err), "error");
+    // 1. Hae kirja
+    const { data: book, error: bookErr } = await sb
+      .from("books")
+      .select("id, slug, title")
+      .eq("slug", slug)
+      .single();
+
+    if (bookErr) {
+      throw new Error("Kirjan haku epäonnistui: " + bookErr.message);
+    }
+
+    if (!book) {
+      throw new Error("Kirjaa ei löytynyt: " + slug);
+    }
+
+    // 2. Hae liitteet
+    const { data: appendices, error: appsErr } = await sb
+      .from("appendices")
+      .select(`
+        id,
+        book_id,
+        chapter_position,
+        section_position,
+        type,
+        title,
+        source,
+        position,
+        content,
+        hidden
+      `)
+      .eq("book_id", book.id)
+      .order("chapter_position", { ascending: true })
+      .order("section_position", { ascending: true, nullsFirst: false })
+      .order("position", { ascending: true });
+
+    if (appsErr) {
+      throw new Error("Liitteiden haku epäonnistui: " + appsErr.message);
+    }
+
+    // 3. Hae deduplikoidut data-/sarjalinkit
+    // Tämä on vaihe 5:n export-silta:
+    // evidence_key → indicator_key → aikasarjametadatat
+    const { data: seriesLinks, error: seriesErr } = await sb
+      .schema("research")
+      .from("evidence_series_export")
+      .select(`
+        evidence_key,
+        indicator_key,
+        indicator_name,
+        external_project,
+        external_project_ref,
+        geography,
+        year_start,
+        year_end,
+        expected_j_codes,
+        data_role,
+        note
+      `)
+      .order("evidence_key", { ascending: true });
+
+    if (seriesErr) {
+      throw new Error("Series-linkkien haku epäonnistui: " + seriesErr.message);
+    }
+
+    let hiddenCount = 0;
+
+    const visibleAppendices = (appendices || [])
+      .filter((a) => {
+        if (a.hidden === true) {
+          hiddenCount++;
+          return false;
         }
+        return true;
+      })
+      .map((a) => ({
+        chapter_position: a.chapter_position,
+        section_position: a.section_position,
+        type: a.type,
+        title: a.title,
+        source: a.source,
+        position: a.position,
+        content: a.content || {},
+      }));
+
+    // 4. Ryhmittele liitteet lukujen alle lukijaversion odottamaan muotoon
+    const chaptersMap = new Map();
+
+    for (const a of visibleAppendices) {
+      const cp = Number(a.chapter_position);
+
+      if (!chaptersMap.has(cp)) {
+        chaptersMap.set(cp, {
+          chapter_position: cp,
+          appendices: [],
+        });
       }
+
+      chaptersMap.get(cp).appendices.push(a);
+    }
+
+    const chapters = [...chaptersMap.values()]
+      .sort((a, b) => a.chapter_position - b.chapter_position)
+      .map((ch) => ({
+        ...ch,
+        appendices: ch.appendices.sort((a, b) => {
+          const as = a.section_position ?? 999999;
+          const bs = b.section_position ?? 999999;
+          if (as !== bs) return as - bs;
+          return (a.position ?? 0) - (b.position ?? 0);
+        }),
+      }));
+
+    // 5. Puhdista series_links exporttiin
+    const cleanedSeriesLinks = (seriesLinks || []).map((s) => ({
+      evidence_key: s.evidence_key,
+      indicator_key: s.indicator_key,
+      indicator_name: s.indicator_name,
+      external_project: s.external_project,
+      external_project_ref: s.external_project_ref,
+      geography: s.geography,
+      year_start: s.year_start,
+      year_end: s.year_end,
+      expected_j_codes: s.expected_j_codes || [],
+      data_role: s.data_role,
+      note: s.note,
+    }));
+
+    // 6. Rakenna export-payload
+    const payload = {
+      book_slug: book.slug,
+      book_title: book.title,
+      exported_at: new Date().toISOString(),
+      chapters,
+      series_links: cleanedSeriesLinks,
+    };
+
+    // 7. Lataa JSON-tiedosto
+    downloadJson(`${book.slug}-appendices.json`, payload);
+
+    const msgParts = [
+      `Liitteet viety: ${visibleAppendices.length} kpl`,
+      `series_links: ${cleanedSeriesLinks.length} kpl`,
+    ];
+
+    if (hiddenCount > 0) {
+      msgParts.push(`piilotettuja ohitettu: ${hiddenCount} kpl`);
+    }
+
+    toast(msgParts.join(" · "), "success");
+  } catch (err) {
+    console.error("[exportAppendicesJson]", err);
+    toast(err.message || "Liitteiden vienti epäonnistui.", "error");
+  }
+}
 
       function downloadJson(filename, obj) {
         const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
