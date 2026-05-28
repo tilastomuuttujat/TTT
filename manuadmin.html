@@ -3004,23 +3004,22 @@ async function exportAppendicesJson() {
     // 3. Hae deduplikoidut data-/sarjalinkit
     // Tämä on vaihe 5:n export-silta:
     // evidence_key → indicator_key → aikasarjametadatat
-    const { data: seriesLinks, error: seriesErr } = await sb
-      .schema("research")
-      .from("evidence_series_export")
-      .select(`
-        evidence_key,
-        indicator_key,
-        indicator_name,
-        external_project,
-        external_project_ref,
-        geography,
-        year_start,
-        year_end,
-        expected_j_codes,
-        data_role,
-        note
-      `)
-      .order("evidence_key", { ascending: true });
+const { data: seriesLinks, error: seriesErr } = await sb
+  .from("v_evidence_series_export")
+  .select(`
+    evidence_key,
+    indicator_key,
+    indicator_name,
+    external_project,
+    external_project_ref,
+    geography,
+    year_start,
+    year_end,
+    expected_j_codes,
+    data_role,
+    note
+  `)
+  .order("evidence_key", { ascending: true });
 
     if (seriesErr) {
       throw new Error("Series-linkkien haku epäonnistui: " + seriesErr.message);
