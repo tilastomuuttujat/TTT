@@ -1180,6 +1180,47 @@
       .pcard-falsification-missing { border-left-color: #d99a1d; }
       .pcard-falsification-missing .label { color: #d99a1d; }
 
+      /* "Data saatavilla" -merkki evidence-rivillä */
+      .ev-data-available {
+        display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+        margin-top: 6px; font-size: 12px;
+      }
+      .ev-data-dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        background: #1d9e75; display: inline-block; flex-shrink: 0;
+      }
+      .ev-data-label {
+        color: #1d9e75; font-weight: 600; letter-spacing: 0.02em;
+      }
+      .ev-data-sub { color: var(--muted-2); }
+
+      /* Evidence-liitteen avausmodaali */
+      .ev-modal-backdrop {
+        position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+        display: flex; align-items: center; justify-content: center;
+        padding: 24px; z-index: 5000; opacity: 0; pointer-events: none;
+        transition: opacity .15s;
+      }
+      .ev-modal-backdrop.show { opacity: 1; pointer-events: auto; }
+      .ev-modal {
+        background: var(--bg); border-radius: 14px; max-width: 680px;
+        width: 100%; max-height: 85vh; overflow-y: auto;
+        padding: 28px; position: relative;
+      }
+      .ev-modal h3 { font-family: var(--font-serif, Georgia), serif; font-size: 22px; margin: 0 0 4px; }
+      .ev-modal .ev-modal-close {
+        position: absolute; top: 16px; right: 16px;
+        background: var(--bg-soft); border: none; border-radius: 8px;
+        width: 32px; height: 32px; cursor: pointer; font-size: 18px;
+        color: var(--fg);
+      }
+      .ev-modal-item { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
+      .ev-modal-item:first-of-type { border-top: none; }
+
+      /* Evidence-rivi: klikattava painike */
+      button.pcard-evidence-row { cursor: pointer; }
+      button.pcard-evidence-row:hover { background: var(--bg-soft); border-color: var(--muted-2); }
+
       /* ═══════════════════════════════════════════════════════════════════
          ADMIN-TILAN TYYLIT
          ═══════════════════════════════════════════════════════════════════ */
@@ -2032,6 +2073,29 @@
           });
         }
 
+        // Hae series_links samalla tavalla kuin export tekee, jotta admin
+        // näyttää research-cardin "Data saatavilla" -merkit identtisesti
+        // lukijan kanssa (WYSIWYG-periaate).
+        let seriesLinks = [];
+        try {
+          const usedKeys = new Set();
+          for (const arr of Object.values(byChapter)) {
+            for (const a of arr) {
+              if (a.type === "research-card" && a.content && Array.isArray(a.content.evidence_keys)) {
+                a.content.evidence_keys.forEach(k => usedKeys.add(k));
+              }
+            }
+          }
+          if (usedKeys.size > 0) {
+            const { data: links } = await sb
+              .from("v_evidence_series_links")
+              .select("evidence_key, indicator_key, indicator_name, geography, year_start, year_end, expected_j_codes, data_role");
+            seriesLinks = (links || []).filter(l => usedKeys.has(l.evidence_key));
+          }
+        } catch (e) {
+          console.warn("series_links-haku epäonnistui:", e);
+        }
+
         return {
           schema: "book-appendices.v1",
           book: { id: book.id, slug: book.slug, title: book.title },
@@ -2041,10 +2105,104 @@
             title: ch.title,
             appendices: (byChapter[ch.position] || []).sort((a, b) => a.position - b.position),
           })),
+          series_links: seriesLinks,
         };
       }
 
       // ═══════════════════════════════════════════════════════════════════════
+
+      // Mapit jotka rakennetaan kun appendix-payload ladataan. Käytetään
+      // research-card-renderöinnissä ja evidence-modalissa.
+      let seriesLinkMap = {};
+      let evidenceAppendixMap = {};
+
+      function buildSeriesLinkMap(appendixPayload) {
+        seriesLinkMap = {};
+        const links = appendixPayload && Array.isArray(appendixPayload.series_links)
+          ? appendixPayload.series_links : [];
+        for (const l of links) {
+          if (l && l.evidence_key) seriesLinkMap[l.evidence_key] = l;
+        }
+      }
+
+      function buildEvidenceAppendixMap(payload) {
+        evidenceAppendixMap = {};
+        if (!payload || !Array.isArray(payload.chapters)) return;
+        for (const ch of payload.chapters) {
+          const apps = Array.isArray(ch.appendices) ? ch.appendices : [];
+          for (const a of apps) {
+            const key = a?.content?.evidence_key || a?.evidence_key || "";
+            if (!key) continue;
+            if (!evidenceAppendixMap[key]) evidenceAppendixMap[key] = [];
+            evidenceAppendixMap[key].push(a);
+          }
+        }
+      }
+
+      // Pieni "Data saatavilla" -merkki yhdelle series-linkille
+      function renderSeriesAvailability(link) {
+        if (!link) return "";
+        const years = (link.year_start && link.year_end)
+          ? `${link.year_start}–${link.year_end}` : "";
+        const codes = Array.isArray(link.expected_j_codes) && link.expected_j_codes.length
+          ? link.expected_j_codes.join(" / ") : "";
+        const sub = [link.indicator_name, years, codes].filter(Boolean).map(esc).join(" · ");
+        return `<div class="ev-data-available">
+            <span class="ev-data-dot"></span>
+            <span class="ev-data-label">Data saatavilla</span>
+            ${sub ? `<span class="ev-data-sub">${sub}</span>` : ""}
+          </div>`;
+      }
+
+      // Modal joka näyttää kaikki evidence_key:hen kohdistetut liitteet
+      function openEvidenceAppendicesModal(evidenceKey) {
+        const appendices = evidenceAppendixMap[evidenceKey] || [];
+        const seriesLink = seriesLinkMap[evidenceKey] || null;
+        if (!appendices.length) return;
+
+        const existing = document.querySelector(".ev-modal-backdrop");
+        if (existing) existing.remove();
+
+        const seriesHtml = seriesLink ? `
+          <div class="ev-data-available" style="margin: 10px 0 16px;">
+            <span class="ev-data-dot"></span>
+            <span class="ev-data-label">Data saatavilla</span>
+            <span class="ev-data-sub">${esc([
+              seriesLink.indicator_name,
+              seriesLink.year_start && seriesLink.year_end ? `${seriesLink.year_start}–${seriesLink.year_end}` : "",
+              Array.isArray(seriesLink.expected_j_codes) ? seriesLink.expected_j_codes.join(" / ") : ""
+            ].filter(Boolean).join(" · "))}</span>
+          </div>` : "";
+
+        const itemsHtml = appendices.map((a) => `
+          <section class="ev-modal-item">
+            <div class="app-body-head">
+              <span class="kind">${esc(a.type || "liite")}</span>
+              <h3>${esc(a.title || "Liite")}</h3>
+            </div>
+            ${renderAppendixBody(a)}
+          </section>
+        `).join("");
+
+        const modal = document.createElement("div");
+        modal.className = "ev-modal-backdrop show";
+        modal.innerHTML = `
+          <div class="ev-modal" role="dialog" aria-modal="true" aria-label="Evidence-liitteet">
+            <button type="button" class="ev-modal-close" aria-label="Sulje">×</button>
+            <h3>Evidence</h3>
+            <div class="ev-meta"><span class="ev-key">${esc(evidenceKey)}</span></div>
+            ${seriesHtml}
+            ${itemsHtml}
+          </div>`;
+        document.body.appendChild(modal);
+
+        const close = () => modal.remove();
+        modal.querySelector(".ev-modal-close")?.addEventListener("click", close);
+        modal.addEventListener("click", (e) => { if (e.target === modal) close(); });
+        document.addEventListener("keydown", function onEsc(e) {
+          if (e.key === "Escape") { close(); document.removeEventListener("keydown", onEsc); }
+        });
+      }
 
       function indexAppendices(payload) {
         const sectionMap = new Map();
@@ -2540,55 +2698,108 @@
         return `${lead}<div class="note">${name}-pohjaisten kuvaajien lukijatuki on tulossa. Tiedot ovat tallessa tietokannassa.</div>`;
       }
 
-      // Tutkimuskortti: luvun loppuun sijoittuva tiivistelmä (sama kuin manu.html).
+      // Tutkimuskortti: luvun loppuun sijoittuva tiivistelmä (sama kuin manuscripts.html).
       function renderResearchCard(c) {
-        const num = c.prediction_number;
-        const lens = c.lens || "";
-        const claim = c.prediction || "";
-        const fals = c.falsification || "";
-        const falsOp = c.falsification_operationalized || "";
-        const status = c.data_status || "";
-        const statusFi = c.data_status_fi || "";
-        const evidence = Array.isArray(c.evidence) ? c.evidence : [];
+        const status = c.falsification_data_available || c.data_status || "requires_collection";
+        const statusLabel = c.data_status_fi || (
+          status === "ready"
+            ? "Testattavissa nyt"
+            : status === "partial"
+              ? "Osittain testattavissa"
+              : "Vaatii aineiston keruun"
+        );
 
-        const topLabel = (num ? `Ennuste ${num} / 6` : "Tutkimuskortti");
-        const statusDot = status
-          ? `<span class="pcard-status-dot ${esc(status)}" title="${esc(statusFi)}"></span>`
-          : "";
+        // Normalisoi evidence: ensisijaisesti c.evidence, fallback c.evidence_keys + evidence_titles
+        const evidence = Array.isArray(c.evidence) && c.evidence.length
+          ? c.evidence
+              .filter((e) => e && e.evidence_key)
+              .map((e) => ({
+                evidence_key: e.evidence_key,
+                title: e.title || e.evidence_key,
+                type: e.type || "",
+                source: e.source || "",
+              }))
+          : Array.isArray(c.evidence_keys)
+            ? c.evidence_keys.map((key, i) => ({
+                evidence_key: key,
+                title: Array.isArray(c.evidence_titles)
+                  ? (c.evidence_titles[i] || key)
+                  : key,
+                type: "",
+                source: "",
+              }))
+            : [];
 
-        const falsBlock = fals
-          ? `<div class="pcard-falsification">
-               <div class="label">Mikä heikentäisi tätä ennustetta?</div>
-               <div class="text">${esc(fals)}</div>
-               ${falsOp ? `<div class="op">${esc(falsOp)}</div>` : ""}
-               ${statusFi ? `<div class="status-line">${statusDot}${esc(statusFi)}</div>` : ""}
-             </div>`
-          : `<div class="pcard-falsification pcard-falsification-missing">
-               <div class="label">Kumoutumisehto puuttuu</div>
-               <div class="text">Tälle ennusteelle ei ole vielä määritelty ehtoa joka heikentäisi sitä.</div>
-             </div>`;
+        const evidenceHtml = evidence.length
+          ? evidence.map((e) => {
+              const key = e.evidence_key || "";
+              const link = key ? seriesLinkMap[key] : null;
+              const title = e.title || key;
+              const hasSeriesLink = Boolean(link);
 
-        const evidenceBlock = evidence.length
-          ? `<div class="pcard-evidence-label">Liitetty näyttö</div>
-             <div class="pcard-evidence-list">
-               ${evidence.map((e) => {
-                 const meta = [e.source, labelFor(e.type)].filter(Boolean).map(esc).join(" · ");
-                 return `<div class="pcard-evidence-row">
-                   <div class="ev-title">${esc(e.title || "")}</div>
-                   <div class="ev-meta">${meta ? `<span>${meta}</span>` : ""}${e.evidence_key ? `<span class="ev-key">${esc(e.evidence_key)}</span>` : ""}</div>
-                 </div>`;
-               }).join("")}
-             </div>`
-          : `<div class="pcard-evidence-empty">Tälle ennusteelle ei ole vielä liitetty näyttöaineistoa.</div>`;
+              return `
+                <button
+                  type="button"
+                  class="pcard-evidence-row"
+                  data-evidence-key="${esc(key)}"
+                  data-has-series-link="${hasSeriesLink ? "true" : "false"}"
+                  aria-label="${hasSeriesLink
+                    ? `Avaa evidence ja siihen liittyvä data: ${esc(title)}`
+                    : `Avaa evidence-liitteet: ${esc(title)}`
+                  }"
+                >
+                  <div class="ev-title">${esc(title)}</div>
+                  <div class="ev-meta">
+                    ${e.type ? `<span>${esc(e.type)}</span>` : ""}
+                    ${e.source ? `<span>${esc(e.source)}</span>` : ""}
+                    ${key ? `<span class="ev-key">${esc(key)}</span>` : ""}
+                  </div>
+                  ${renderSeriesAvailability(link)}
+                </button>
+              `;
+            }).join("")
+          : `<div class="pcard-evidence-empty">Ei evidence-linkkejä.</div>`;
 
         return `
-          <div class="pcard">
-            <div class="pcard-toplabel">${statusDot}${esc(topLabel)}</div>
-            ${lens ? `<div class="pcard-lens">${esc(lens)}</div>` : ""}
-            ${claim ? `<div class="pcard-claim">${esc(claim)}</div>` : ""}
-            ${falsBlock}
-            ${evidenceBlock}
-          </div>`;
+          <article class="pcard">
+            <div class="pcard-toplabel">
+              <span class="pcard-status-dot ${esc(status)}"></span>
+              <span>Ennuste ${esc(c.prediction_number || "")}</span>
+            </div>
+
+            <div class="pcard-lens">${esc(c.lens || "Tutkimuskortti")}</div>
+
+            ${c.prediction ? `
+              <div class="pcard-claim">${esc(c.prediction)}</div>
+            ` : ""}
+
+            <div class="pcard-falsification ${c.falsification ? "" : "pcard-falsification-missing"}">
+              <div class="label">Mikä heikentäisi tätä ennustetta?</div>
+              <div class="text">
+                ${esc(c.falsification || "Falsifiointiehto puuttuu.")}
+              </div>
+
+              ${c.falsification_operationalized ? `
+                <div class="op">
+                  ${esc(c.falsification_operationalized)}
+                </div>
+              ` : ""}
+
+              <div class="status-line">
+                <span class="pcard-status-dot ${esc(status)}"></span>
+                <span>${esc(statusLabel)}</span>
+              </div>
+            </div>
+
+            <div class="pcard-evidence-label">
+              Evidence${typeof c.evidence_count === "number" ? ` · ${esc(c.evidence_count)} kpl` : ""}
+            </div>
+
+            <div class="pcard-evidence-list">
+              ${evidenceHtml}
+            </div>
+          </article>
+        `;
       }
 
       function buildInlineAppendixHtml(appendices, region) {
@@ -3343,6 +3554,10 @@ const { data: seriesLinks, error: seriesErr } = await sb
           [data, appendixPayload] = await Promise.all([loadBook(slug), loadAppendices(slug)]);
         } catch (e) { return setError(e.message || "Kirjaa ei löytynyt."); }
 
+        // Rakenna research-card-tukirakenteet (sama kuin manuscripts.html)
+        buildSeriesLinkMap(appendixPayload);
+        buildEvidenceAppendixMap(appendixPayload);
+
         const all = (data.chapters || []).slice().sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
         const current = all.find((c) => c.slug === chapterSlug);
         if (!current) return setError("Lukua ei löytynyt.");
@@ -3604,6 +3819,15 @@ const { data: seriesLinks, error: seriesErr } = await sb
       });
 
       window.addEventListener("hashchange", route);
+
+      // Evidence-rivin klikkaus avaa modal jossa kaikki saman evidence_keyn liitteet
+      document.addEventListener("click", (e) => {
+        const row = e.target.closest(".pcard-evidence-row");
+        if (!row) return;
+        const key = row.dataset.evidenceKey;
+        if (!key) return;
+        openEvidenceAppendicesModal(key);
+      });
 
       // Käynnistä reititys vasta kun auth on ohi
       window.startReader = function() {
