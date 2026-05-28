@@ -1,6 +1,6 @@
 {
   "schema": "book-appendices.v1",
-  "exported_at": "2026-05-27T13:53:05.251Z",
+  "exported_at": "2026-05-28T07:00:09.880Z",
   "book": {
     "id": "9e3cd3d7-1975-4f28-8da3-7dc7d1842f0b",
     "slug": "kuusi-ennustetta",
@@ -15,11 +15,633 @@
     },
     {
       "position": 1,
+      "slug": "ennuste-1-laajenemisen-logiikka",
+      "title": "Ennuste 1 — Laajenemisen logiikka",
+      "appendices": [
+        {
+          "chapter_position": 1,
+          "section_position": 2,
+          "type": "evidence",
+          "title": "Optimoinnin logiikka ja sen sivuvaikutukset",
+          "source": null,
+          "position": 0,
+          "content": {
+            "body": "Luvun keskeinen väite: järjestelmät eivät ole kylmiä — ne toimivat juuri niin kuin ne on suunniteltu. Optimointi tuottaa näkymättömyyttä sivuvaikutuksena.",
+            "mechanisms": [
+              {
+                "esimerkki": "Sairaala mittaa hoitopäiviä. Tavoite on terveys. Optimointi lyhentää hoitopäiviä — potilas kotiutetaan nopeammin, mutta seuranta puuttuu. Terveys ei välttämättä parane.",
+                "mekanismi": "Mittarin ja tarkoituksen ero"
+              },
+              {
+                "esimerkki": "Mielenterveyden ensiavun 3 kuukauden jono ei näy sen yksikön budjetissa — mutta näkyy myöhemmin kriisipäivystyksessä, toimeentulotuessa, työkyvyttömyyseläkkeissä.",
+                "mekanismi": "Viive on näkymätön kustannus"
+              },
+              {
+                "esimerkki": "Koulu tunnistaa oppilaan haasteet. Tieto ei siirry lastensuojeluun — eri tietojärjestelmä, eri laki, eri budjetti. Sama lapsi on molemmille uusi asiakas.",
+                "mekanismi": "Sektoriraja katkaisee tiedon"
+              },
+              {
+                "esimerkki": "Järjestelmä ei rangaise työllistymisestä tahallaan — se on rakennettu eri aikoina eri tarpeisiin. Loukku on useiden rationaalisten päätösten summa.",
+                "mekanismi": "Kannustinloukku on laskennallinen fakta"
+              }
+            ],
+            "key_insight": "Kukaan ei suunnitellut näkymättömyyttä. Se syntyi, koska jokainen osa optimoi itseään järkevästi — ilman vastuuta kokonaisuudesta.",
+            "evidence_key": "expansion.optimization_side_effects",
+            "prediction_number": 1
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 4,
+          "type": "research-card",
+          "title": "Ennuste 1 — tutkimuskortti",
+          "source": null,
+          "position": 1,
+          "content": {
+            "lens": "Laajenemisen logiikka",
+            "prediction": "Läpivirtauksen optimointi tuottaa raskaampaa kuormaa toisaalla",
+            "evidence_keys": [
+              "expansion.optimization_side_effects",
+              "expansion.optimization_side_effects"
+            ],
+            "falsification": "Jos tehokkuuden kasvu yhdessä järjestelmän osassa ei systemaattisesti siirrä kuormaa toiseen osaan, vaan vaikutus jää eristyneeksi tai katoaa kokonaan, ennuste heikkenee.",
+            "data_status_fi": "Osittain testattavissa — osa aineistosta puuttuu",
+            "evidence_count": 2,
+            "evidence_titles": [
+              "Optimoinnin logiikka ja sen sivuvaikutukset",
+              "Optimoinnin logiikka ja sen sivuvaikutukset"
+            ],
+            "prediction_number": 1,
+            "falsification_data_available": "partial",
+            "falsification_operationalized": "Mittari: päivystyskäyntien määrä / 1000 asukasta vs. perusterveydenhuollon hoitojaksojen keskipituus, ajanjakso 2010-2024 hyvinvointialueittain. Kynnys: jos lyhentyneiden hoitojaksojen ja kohonneiden päivystyskäyntien välinen korrelaatio on alle r=0.3 vakioinnin jälkeen (ikärakenne, sairastavuus, alueellinen vauraus), ensimmäinen palaute katoaa."
+          }
+        }
+      ]
+    },
+    {
+      "position": 2,
+      "slug": "ennuste-2-nakymattomat-mekanismit",
+      "title": "Ennuste 2 — Näkymättömät mekanismit",
+      "appendices": [
+        {
+          "chapter_position": 2,
+          "section_position": 2,
+          "type": "chain",
+          "title": "Goodhartin laki Hayekin linssin läpi: mekanismi",
+          "source": "Goodhart C.A.E. (1975). / Strathern M. (1997). \"Improving ratings: audit in the British university system.\"",
+          "position": 0,
+          "content": {
+            "body": "Osio yhdistää kaksi analyysiä. Goodhartin laki kuvaa oireen — mittari korruptoi tavoitteen. Hayek selittää syyn — päätös on eriytetty tiedosta. Tässä mekanismi.",
+            "steps": [
+              {
+                "event": "Järjestelmä asettaa mittarin kuvaamaan tavoitetta",
+                "consequence": "Sosiaalityön käyntimäärä kuvaa huolenpidon intensiteettiä. Lastensuojelun kirjaamisnopeus kuvaa reagointikykyä."
+              },
+              {
+                "event": "Päätösvalta mittarista sijaitsee etäällä tiedosta",
+                "consequence": "Mittarista päätetään hallinnossa — ei niiden joukossa jotka tietävät mitä arvo todella on. Sosiaalityöntekijä tietää. Hallinnoija päättää."
+              },
+              {
+                "event": "Ammattilainen alkaa optimoida mittaria",
+                "consequence": "Ei tahallisesti — rakenteellisesti. Kun palkitseva mittari on käyntimäärä, käyntimäärä kasvaa. Syvällisempi työ joka ei näy mittarissa vähenee."
+              },
+              {
+                "event": "Paikallinen tieto katoaa järjestelmästä",
+                "consequence": "Tieto edelleen on sosiaalityöntekijällä. Mutta se ei enää ohjaa järjestelmän toimintaa. Järjestelmä näkee vain mittarin."
+              },
+              {
+                "event": "Mittari paranee, todellisuus heikkenee",
+                "consequence": "Tilastot näyttävät hyvältä. Lasten tilanne ei parane. Järjestelmä on optimoinut mittarin — ei tarkoitusta."
+              }
+            ],
+            "evidence_key": "optimization.goodhart_hayek_mechanism",
+            "open_question": "Ratkaisu ei ole parempi mittari — koska parempikin mittari eriyttää päätöksen tiedosta. Ratkaisu on rakenne jossa tieto vaikuttaa päätökseen suoraan: päätösvalta sijaitsee siellä missä on tieto.",
+            "prediction_number": 2
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 2,
+          "type": "evidence",
+          "title": "Hayekin hajautetun tiedon ongelma: empiiriset sovellukset",
+          "source": "Hayek F.A. (1945). The Use of Knowledge in Society. American Economic Review, 35(4), 519–530.",
+          "position": 1,
+          "content": {
+            "body": "Hayekin 1945-essee kuvasi tiedon hajautumisen ongelman — mutta sen laajin merkitys ulottuu kauas taloustieteen ulkopuolelle. Tässä empiirisiä vahvistuksia eri aloilta.",
+            "findings": [
+              {
+                "aihe": "Neuvostoliiton laskentaongelma",
+                "havainto": "Gosplan yritti laskea 12 miljoonan tuotteen optimaaliset hinnat ja tuotantomäärät. Taloustieteilijä Mises osoitti 1920 että tämä on laskennallisesti mahdotonta — ei tehottomana, vaan periaatteessa. Tieto ei ole olemassa yhdessä paikassa."
+              },
+              {
+                "aihe": "Sähköpörssin hajauttaminen",
+                "havainto": "Pohjoismaiset sähkömarkkinat (Nord Pool, 1996) korvasi kansalliset monopolit. Hajautettu hintamuodostus reagoi säätilaan, kulutuspiikkeihin ja tuotantohäiriöihin nopeammin kuin mikään suunniteltu järjestelmä olisi pystynyt."
+              },
+              {
+                "aihe": "Wikipedia vs. Britannica",
+                "havainto": "Nature-lehti vertasi 2005 Wikipedian ja Encyclopædia Britannican artikkeleiden tarkkuutta. Wikipedia: 162 virhettä, Britannica: 123. Eroa ei pidetty merkittävänä — mutta Wikipedian hajautettu malli tuotti vertailukelpoisen laadun ilman toimituskuntaa."
+              },
+              {
+                "aihe": "Avoimen lähdekoodin Linux",
+                "havainto": "Tuhannet kehittäjät eri puolilta maailmaa rakensivat käyttöjärjestelmän ilman että kukaan omisti kokonaistietoa sen arkkitehtuurista. Hajautettu tieto integroitui yhteisen protokollan (Git) kautta."
+              },
+              {
+                "aihe": "Ennustusmarkkinat",
+                "havainto": "Prediction markets — kuten Metaculus — aggregoivat hajautettua tietoa. Tutkimukset osoittavat niiden ennustavan tulevia tapahtumia tarkemmin kuin asiantuntijapaneelit tai mediaennusteet."
+              }
+            ],
+            "key_insight": "Hayekin havainto ei ole argumentti kaikkien markkinoiden puolesta. Se on havainto siitä, että tietyt hajautetut rakenteet ratkaisevat ongelman jonka mikään keskitetty järjestelmä ei voi ratkaista — paikallisen, hiljaisen tiedon aggregoinnin.",
+            "evidence_key": "optimization.goodhart_metrics",
+            "prediction_number": 2
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 4,
+          "type": "research-card",
+          "title": "Ennuste 2 — tutkimuskortti",
+          "source": null,
+          "position": 2,
+          "content": {
+            "lens": "Näkymättömät mekanismit",
+            "prediction": "Rahoitus ja mittarit ohjaavat käyttäytymistä",
+            "evidence_keys": [
+              "optimization.goodhart_hayek_mechanism",
+              "optimization.goodhart_hayek_mechanism",
+              "optimization.goodhart_metrics",
+              "optimization.goodhart_metrics"
+            ],
+            "falsification": "Jos mittaroinnin lisääminen ei tuota vääristymiä eikä osaoptimointia — eli toimijat reagoivat indikaattoreihin täsmälleen kuin niiden taustalla olevaan ilmiöön — ennuste heikkenee. Tämä on Goodhartin lain testi konkretisoituna.",
+            "data_status_fi": "Osittain testattavissa — osa aineistosta puuttuu",
+            "evidence_count": 4,
+            "evidence_titles": [
+              "Goodhartin laki Hayekin linssin läpi: mekanismi",
+              "Goodhartin laki Hayekin linssin läpi: mekanismi",
+              "Hayekin hajautetun tiedon ongelma: empiiriset sovellukset",
+              "Hayekin hajautetun tiedon ongelma: empiiriset sovellukset"
+            ],
+            "prediction_number": 2,
+            "falsification_data_available": "partial",
+            "falsification_operationalized": "Mittari: DRG-painokertoimien muutoksia seuraavat hoitokäytäntöjen muutokset 12-24 kk viiveellä, vertailu Saksan 2003 DRG-uudistuksen seurausanalyyseihin. Kynnys: jos DRG-painokertoimen 20 % nousu ei systemaattisesti nosta vastaavan diagnoosin koodausosuutta vähintään 10 %, mittaröinnin käytösvaikutus on heikko."
+          }
+        }
+      ]
+    },
+    {
+      "position": 3,
+      "slug": "ennuste-3-nakyvaksi",
+      "title": "Ennuste 3 — Näkyväksi",
+      "appendices": [
+        {
+          "chapter_position": 3,
+          "section_position": 2,
+          "type": "chain",
+          "title": "Näkymättömyyden syntymekanismi: neljä vaihetta",
+          "source": null,
+          "position": 0,
+          "content": {
+            "body": "Miten ihminen muuttuu näkymättömäksi järjestelmässä — ei yhden päätöksen vaan rakenteellisen ajautumisen kautta.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Järjestelmä on suunniteltu yhtä tarvetta varten",
+                "consequence": "Jokainen palvelu optimoi omaa mittariaan — hoitopäiviä, asiakkaita, suoritteita. Kokonaisuus ei ole kenenkään vastuulla."
+              },
+              {
+                "step": 2,
+                "event": "Ihminen ylittää sektorin rajan",
+                "consequence": "Tieto ei siirry — uusi toimija aloittaa alusta. Ihminen toistaa tarinaansa yhä uudelleen."
+              },
+              {
+                "step": 3,
+                "event": "Viive kasvaa",
+                "consequence": "Tilanne mutkistuu odotusaikana. Yksinkertainen ongelma muuttuu monimutkaiseksi — ja kalliimmaksi ratkaista."
+              },
+              {
+                "step": 4,
+                "event": "Ihminen väsyy järjestelmään",
+                "consequence": "Osa luovuttaa — ei haeta apua, vaikka tarve on olemassa. Tämä näkyy tilastoissa alidiagnosointina ja palveluvajeena."
+              }
+            ],
+            "reversal": "Käänteinen mekanismi on myös mahdollinen: kun tarve tulee näkyväksi ajoissa, sama ketju toimii toisin — varhainen tunnistus, tieto siirtyy, tilanne pysyy hallittavana.",
+            "evidence_key": "visibility.invisibility_mechanism",
+            "prediction_number": 3
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 2,
+          "type": "evidence",
+          "title": "Neuvola kaksisuuntaisen optimoinnin mallina",
+          "source": "THL: Lastenneuvola lapsiperheiden tukena, 2004 / päivitetty 2019",
+          "position": 1,
+          "content": {
+            "body": "Suomalainen neuvolajärjestelmä on kansainvälisesti poikkeuksellinen — ja se toimii juuri kaksisuuntaisen optimoinnin logiikalla.",
+            "results": [
+              "Suomen imeväiskuolleisuus on maailman alhaisimpia — 1,7 / 1000 elävänä syntynyttä (2022).",
+              "Rokotuskattavuus yli 95 % — saavutettu ilman pakkoa, pelkällä saavutettavuudella.",
+              "Varhainen puuttuminen kehitysviiveisiin — tunnistetaan ennen koulua, ei sen jälkeen."
+            ],
+            "evidence_key": "visibility.neuvola_model",
+            "how_it_works": {
+              "universaalisuus": "Kaikki lapsiperheet käyvät neuvolassa — ei tarvita hakemusta, diagnooseja tai lähetteitä. Kynnys on nolla.",
+              "tiedon_jatkuvuus": "Sama terveydenhoitaja seuraa lasta vuosia — kokonaiskuva syntyy ajan myötä, ei yksittäisessä käynnissä.",
+              "ohjaus_eteenpäin": "Neuvola ei ratkaise kaikkea — mutta se tietää minne ohjata, ja seuraa onko ohjaus johtanut tulokseen.",
+              "varhainen_tunnistaminen": "Terveydenhoitaja tapaa perheen säännöllisesti — ei vain akuutissa hädässä. Huoli voidaan tunnistaa ennen kriisiä."
+            },
+            "exportability": "Neuvolamalli on levinnyt useisiin maihin. Keskeinen havainto: universaalisuus + jatkuvuus + matala kynnys = varhainen tunnistaminen. Ei vaadi korkeaa teknologiaa.",
+            "prediction_number": 3
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 2,
+          "type": "calculation",
+          "title": "Näkymättömyyden kustannus: laskennallinen kehys",
+          "source": "Valtiontalouden tarkastusvirasto, Kelasto, THL hyvinvointikompassi",
+          "position": 2,
+          "content": {
+            "body": "Näkymättömyys on paitsi inhimillinen ongelma, myös laskennallisesti kallis. Tässä viitekehys kustannusten hahmottamiseen.",
+            "caveat": "Nämä luvut ovat suuntaa-antavia — tarkoitus on havainnollistaa suuruusluokkaa, ei tuottaa tarkkaa laskelmaa. Todellinen kustannus riippuu yksilöllisistä poluista.",
+            "evidence_key": "visibility.invisibility_cost_framework",
+            "cost_components": [
+              {
+                "kuvaus": "Varhainen tuki maksaa murto-osan kriisiavusta. Lastensuojelun avohuolto ~3 000 €/v vs. laitoshoito ~90 000 €/v. Ero syntyy ajoituksesta, ei hoidon laadusta.",
+                "komponentti": "Myöhästynyt interventio"
+              },
+              {
+                "kuvaus": "Sama ihminen voi olla samanaikaisesti terveyskeskuksen, mielenterveyspalvelujen, sosiaalityön ja TE-toimiston asiakkaana — ilman koordinaatiota. Hallinnollinen kokonaiskustannus voi ylittää hoidon kustannuksen.",
+                "komponentti": "Päällekkäiset palvelut"
+              },
+              {
+                "kuvaus": "Työkyvyttömyyseläkkeelle siirtyminen maksaa yhteiskunnalle keskimäärin ~600 000 € menetettyinä verotuloina ja etuuksina 40 vuoden ajanjaksolla. Ehkäisyn kustannus on murto-osa tästä.",
+                "komponentti": "Työkyvyttömyyden hinta"
+              },
+              {
+                "kuvaus": "170 000 ihmistä kannustinloukussa tarkoittaa karkeasti 1–2 miljardin euron vuotuista tuottavuusvajetta, jos edes osa heistä voisi työllistyä ilman etuuden menetystä.",
+                "komponentti": "Kannustinloukun tuottavuusvaje"
+              }
+            ],
+            "prediction_number": 3
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 4,
+          "type": "research-card",
+          "title": "Ennuste 3 — tutkimuskortti",
+          "source": null,
+          "position": 3,
+          "content": {
+            "lens": "Näkyväksi",
+            "prediction": "Nähdyksi tuleminen on rakenteellinen tarve",
+            "evidence_keys": [
+              "visibility.invisibility_cost_framework",
+              "visibility.invisibility_cost_framework",
+              "visibility.invisibility_mechanism",
+              "visibility.invisibility_mechanism",
+              "visibility.neuvola_model",
+              "visibility.neuvola_model"
+            ],
+            "falsification": "Jos nähdyksi tuleminen ei ennusta toimijuutta — eli ihmiset jotka kokevat tulleensa kuulluiksi eivät käytä palveluja eri tavalla kuin ne jotka eivät koe — ennuste heikkenee.",
+            "data_status_fi": "Vaatii tutkimusasetelman — aineisto ei vielä saatavilla",
+            "evidence_count": 6,
+            "evidence_titles": [
+              "Näkymättömyyden kustannus: laskennallinen kehys",
+              "Näkymättömyyden kustannus: laskennallinen kehys",
+              "Näkymättömyyden syntymekanismi: neljä vaihetta",
+              "Näkymättömyyden syntymekanismi: neljä vaihetta",
+              "Neuvola kaksisuuntaisen optimoinnin mallina",
+              "Neuvola kaksisuuntaisen optimoinnin mallina"
+            ],
+            "prediction_number": 3,
+            "falsification_data_available": "requires_collection",
+            "falsification_operationalized": "Mittari: asiakaskokemuskysely (kuulluksi tulemisen indeksi, 1-5) verrattuna 12 kk myöhempiin rekisterihavaintoihin (palveluiden käyttö, työllisyysstatus, kuntoutuksen läpivienti). Aineisto: neuvolat, mielenterveys, kuntoutus. Kynnys: korrelaatio nollasta poikkeava ja efektikoko Cohenin d > 0.2 ikä-, sukupuoli- ja sosioekonomisen vakioinnin jälkeen."
+          }
+        }
+      ]
+    },
+    {
+      "position": 4,
+      "slug": "ennuste-4-itseohjautuvuus",
+      "title": "Ennuste 4 — Itseohjautuvuus",
+      "appendices": [
+        {
+          "chapter_position": 4,
+          "section_position": 2,
+          "type": "chain",
+          "title": "Miten vastuu häviää: neljä vaihetta",
+          "source": null,
+          "position": 0,
+          "content": {
+            "body": "Vastuun katoaminen ei ole yksittäinen päätös — se on neljän vaiheen prosessi.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Monimutkainen tilanne ylittää yhden sektorin rajan",
+                "consequence": "Kukaan ei omista kokonaisuutta — jokainen omistaa oman osansa."
+              },
+              {
+                "step": 2,
+                "event": "Jokainen toimija toimii omien mittariensa mukaan",
+                "consequence": "Suoritteita syntyy, budjetteja käytetään, palavereja pidetään — mutta kokonaisuus ei etene."
+              },
+              {
+                "step": 3,
+                "event": "Ihminen joutuu koordinoimaan itse",
+                "consequence": "Ihminen soittaa, täyttää lomakkeita, selittää tilanteensa yhä uudelleen. Tämä kuluttaa juuri sen energian, jota tarvitaan toipumiseen tai työllistymiseen."
+              },
+              {
+                "step": 4,
+                "event": "Ihminen väsyy tai putoa pois",
+                "consequence": "Palvelujärjestelmä tulkitsee tämän haluttomuutena tai motivaation puutteena. Rakenneongelma näyttää yksilöongelmalta."
+              }
+            ],
+            "evidence_key": "self_organization.responsibility_dissolution",
+            "structural_fix": "Koordinaatiomandaatti katkaisee ketjun kolmannen vaiheen kohdalla: ihmisen ei tarvitse koordinoida itse, koska joku muu omistaa kokonaiskuvan.",
+            "prediction_number": 4
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 2,
+          "type": "chain",
+          "title": "Miten algoritminen järjestelmä käsittelee konfliktia: neljä vaihetta",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Luku V osoittaa, että algoritminen järjestelmä ei institutionalisoi konfliktia vaan muuttaa sen muotoa. Tämä ketju kuvaa mekanismin.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Erimielisyys ilmenee alustalla",
+                "consequence": "Algoritmi tunnistaa sen negatiivisena signaalina tai positiivisena sitoutumisen mukaan — riippuen siitä, pitääkö polarisoiva sisältö käyttäjän alustalla."
+              },
+              {
+                "step": 2,
+                "event": "Algoritmi optimoi sitoutumisen mukaan",
+                "consequence": "Polarisoiva sisältö saa enemmän näkyvyyttä — se pitää käyttäjän alustalla. Erimielisyys muuttuu viihteeksi."
+              },
+              {
+                "step": 3,
+                "event": "Käyttäjä ei kohtaa erimielisyyttä suoraan",
+                "consequence": "Kaikukammio: suositukset vahvistavat olemassa olevia näkemyksiä. Haastaminen vähenee — mutta erimielisyys ei katoa, se vain siirtyy toiselle alustalle tai kasvokkaiseen kohtaamiseen ilman sovittelurakenteita."
+              },
+              {
+                "step": 4,
+                "event": "Konflikti purkautuu hallitsemattomasti",
+                "consequence": "Kun järjestelmä ei institutionalisoi konfliktia, se purkautuu sen ulkopuolella: katuväkivaltana, poliittisena radikalisoitumisena, tai täydellisenä vetäytymisenä julkisesta diskurssista."
+              }
+            ],
+            "evidence_key": "self_organization.algorithmic_conflict_chain",
+            "design_question": "Voiko algoritminen järjestelmä institutionalisoida konfliktin? Ei poistaa sitä, vaan rakentaa sille kanavan — kuten demokratia tekee?",
+            "prediction_number": 4
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 2,
+          "type": "chain",
+          "title": "Läpinäkymättömyyden ketju: miksi selitettävyys on demokraattinen ongelma",
+          "source": null,
+          "position": 2,
+          "content": {
+            "body": "Osio kuvaa läpinäkymättömyyden rakenteellisena ominaisuutena — ei salaisuutena jota piilotetaan. Tässä ketju joka yhdistää teknisen ominaisuuden demokraattiseen seuraukseen.",
+            "steps": [
+              {
+                "vaihe": 1,
+                "seuraus": "Yksittäistä päätöstä ei voi palauttaa yksittäisiin parametreihin — kompleksisuus ylittää ymmärrettävyyden",
+                "tapahtuma": "Suuressa kielimallissa on satoja miljardeja parametreja"
+              },
+              {
+                "vaihe": 2,
+                "seuraus": "Käyttäjä ei voi saada perusteltua vastausta — 'algoritmi päätti' ei ole perustelu",
+                "tapahtuma": "Rakentaja ei pysty selittämään yksittäistä päätöstä"
+              },
+              {
+                "vaihe": 3,
+                "seuraus": "Sen oikeudenmukaisuutta on vaikea arvioida — onko luottopäätös, työtarjous tai hoitosuositus puolueeton?",
+                "tapahtuma": "Päätöstä ei voi perustella"
+              },
+              {
+                "vaihe": 4,
+                "seuraus": "Sitä on vaikea korjata — virheen paikantaminen vaatii selitettävyyttä",
+                "tapahtuma": "Logiikkaa ei voi selittää"
+              },
+              {
+                "vaihe": 5,
+                "seuraus": "Vastuuta on vaikea jakaa — ketä voi pitää vastuullisena päätöksestä jota kukaan ei täysin ymmärrä?",
+                "tapahtuma": "Virhettä ei voi paikantaa"
+              },
+              {
+                "vaihe": 6,
+                "seuraus": "Demokraattinen kontrolli murtuu — järjestelmä toimii, mutta ei ole kenenkään vastuulla",
+                "tapahtuma": "Vastuu häviää"
+              }
+            ],
+            "contrast": "Markkinahinta on aina ollut näkyvissä — logiikka ymmärrettävissä vaikka koko järjestelmää ei kukaan hallinnut. Byrokratian päätös on aina ollut perusteltavissa — virkamies pystyi vastaamaan 'miksi'. Algoritminen päätös rikkoo tämän perinteen.",
+            "evidence_key": "self_organization.opacity_chain",
+            "current_state": "Interpretability — tekoälyn selitettävyystutkimus — on aktiivinen tutkimusalue (Anthropic, DeepMind, akateeminen yhteisö). Mutta se on vielä varhainen vaihe, ei ratkaistu ongelma.",
+            "prediction_number": 4
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 4,
+          "type": "research-card",
+          "title": "Ennuste 4 — tutkimuskortti",
+          "source": null,
+          "position": 3,
+          "content": {
+            "lens": "Itseohjautuvuus",
+            "prediction": "Tavoitefunktio ohjaa toimintaa arvojen ohi",
+            "evidence_keys": [
+              "self_organization.algorithmic_conflict_chain",
+              "self_organization.algorithmic_conflict_chain",
+              "self_organization.opacity_chain",
+              "self_organization.opacity_chain",
+              "self_organization.responsibility_dissolution",
+              "self_organization.responsibility_dissolution"
+            ],
+            "falsification": "Jos toimijoiden käyttäytyminen seuraa julkilausuttuja arvoja eikä kannustinrakennetta — silloinkin kun nämä ovat ristiriidassa keskenään — ennuste heikkenee. Tämä on klassinen organisaatioteoreettinen testi.",
+            "data_status_fi": "Vaatii tutkimusasetelman — aineisto ei vielä saatavilla",
+            "evidence_count": 6,
+            "evidence_titles": [
+              "Läpinäkymättömyyden ketju: miksi selitettävyys on demokraattinen ongelma",
+              "Läpinäkymättömyyden ketju: miksi selitettävyys on demokraattinen ongelma",
+              "Miten algoritminen järjestelmä käsittelee konfliktia: neljä vaihetta",
+              "Miten algoritminen järjestelmä käsittelee konfliktia: neljä vaihetta",
+              "Miten vastuu häviää: neljä vaihetta",
+              "Miten vastuu häviää: neljä vaihetta"
+            ],
+            "prediction_number": 4,
+            "falsification_data_available": "requires_collection",
+            "falsification_operationalized": "Mittari: 8-12 julkisorganisaation strategia-asiakirjojen julkilausutut arvot vs. niiden henkilöstön kannustinrakenne (suorituspalkkiot, urapolut, tunnustusjärjestelmät) vs. tuotettujen palveluiden todellinen jakauma. Kvalitatiivinen sisältöanalyysi + kvantitatiivinen palvelutilastoanalyysi. Kynnys: jos käytösero arvojen ja kannustinten välillä on tilastollisesti merkitsevä yli 50 %:ssa tutkituista tapauksista."
+          }
+        }
+      ]
+    },
+    {
+      "position": 5,
+      "slug": "ennuste-5-katalyytti",
+      "title": "Ennuste 5 — Katalyytti",
+      "appendices": [
+        {
+          "chapter_position": 5,
+          "section_position": 2,
+          "type": "chain",
+          "title": "Kitkan lasku ja käyttäytymisen muutos: kolme toistuvaa mekanismia",
+          "source": "Kirjan argumentti; Arthur 1994",
+          "position": 0,
+          "content": {
+            "body": "Osio 4 tiivistää luvun keskeisen havainnon: rutto, kirjapaino ja kontti toistavat saman rakenteen. Tämä liite formalisoi kolme mekanismia jotka toistuvat kaikissa.",
+            "source": "Kirjan argumentti; vrt. Arthur 1994 verkostovaikutuksista",
+            "mechanisms": [
+              {
+                "rutto": "Talonpoika joka löysi paremmat ehdot siirtyi. Herra joka ei tarjonnut parempia ehtoja menetti työvoimansa.",
+                "kontti": "Satama joka otti kontit voitti sataman joka ei ottanut. Laivayhtiö joka siirtyi kontteihin voitti perinteisen lastauksen.",
+                "kuvaus": "Kun yksi toimija ottaa katalyytin käyttöön ja saa edun, muiden on seurattava tai jäätävä jälkeen. Muutos ei vaadi yksimielisyyttä — riittää kilpailuasetelma.",
+                "mekanismi": "Kilpailuetu pakottaa seuraamisen",
+                "kirjapaino": "Paino joka tuotti kirjoja nopeammin voitti kopisti. Kirkko joka yritti tukahduttaa painettua sanaa epäonnistui koska kilpaileva taho painoi lisää."
+              },
+              {
+                "rutto": "Kun palkat nousivat, maaorjuuden ylläpitäminen vaati yhä enemmän pakkovaltaa. Pakkovalta oli kallista.",
+                "kontti": "Kun satamat rakensivat konttinosturit, perinteinen lastaus alkoi vaikuttaa hitaalta ja kalliilta myös niille jotka eivät olleet siirtyneet.",
+                "kuvaus": "Katalyytti ei pakota — se tekee vanhan tavan vaikeammaksi. Kun riittävä osa järjestelmästä on siirtynyt, vanha tapa ei enää toimi yhtä hyvin.",
+                "mekanismi": "Vaihtoehtojen vaikeutuminen",
+                "kirjapaino": "Kun kirjoja oli kymmeniä tuhansia, sensuuri muuttui mahdottomaksi. Yhtä kirjaa voitiin polttaa — painaminen alkoi heti uudelleen."
+              },
+              {
+                "rutto": "Mitä enemmän talonpoikia pystyi liikkumaan, sitä voimakkaampi neuvotteluasema heillä oli — yhteisvoimin.",
+                "kontti": "Mitä enemmän satamia tuki kontteja, sitä hyödyllisempi kontti oli laivayhtiölle. Standardi vahvistui standardin kautta.",
+                "kuvaus": "Mitä useampi on siirtynyt, sitä arvokkaampaa siirtyminen on. Katalyytin arvo kasvaa käyttäjämäärän kasvaessa.",
+                "mekanismi": "Verkostovaikutus vahvistaa muutosta",
+                "kirjapaino": "Mitä enemmän lukijoita, sitä enemmän haluttiin painaa. Mitä enemmän painettiin, sitä halvemmaksi painaminen tuli."
+              }
+            ],
+            "evidence_key": "catalyst.friction_behavior_change",
+            "common_formula": "Kilpailuetu → vaihtoehdot vaikeutuvat → verkosto vahvistaa → muutos on peruuttamaton ennen kuin kukaan päätti siitä.",
+            "prediction_number": 5
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 2,
+          "type": "evidence",
+          "title": "Aktivaatioenergia: kemiallinen metafora ja yhteiskunnalliset vastineet",
+          "source": "Atkins & de Paula 2010",
+          "position": 1,
+          "content": {
+            "body": "Osio 2 esittelee kirjan keskeisen metaforan: aktivaatioenergian. Tämä liite avaa metaforan tarkkuuden ja sen rajat.",
+            "source": "Atkins & de Paula 2010, Physical Chemistry; sovellukset kirjoittajan",
+            "chemistry": {
+              "example": "Vedyn ja hapen yhdistyminen vedeksi vaatii normaaliolosuhteissa kipinän (korkea aktivaatioenergia). Platinakatalyytin läsnäollessa reaktio tapahtuu huoneenlämmössä.",
+              "definition": "Aktivaatioenergia on vähimmäisenergia joka tarvitaan kemiallisen reaktion käynnistämiseen. Reaktio joka on termodynaamisesti mahdollinen ei tapahdu ilman tätä energiaa.",
+              "catalyst_role": "Katalyytti alentaa aktivaatioenergian kynnystä muuttamatta reaktion lopputulosta. Se luo vaihtoehtoisen reitin jossa kynnys on matalampi."
+            },
+            "evidence_key": "catalyst.activation_energy_model",
+            "social_analogues": [
+              {
+                "ilmiö": "Vapaaehtoistoiminta",
+                "katalyytti": "Matalan kynnyksen alusta joka yhdistää tarpeen ja kyvyn ilman pitkää prosessia",
+                "aktivaatioenergia": "Tarvitaan yhteys, kohtaaminen, organisaatio, koordinaatio. Halu auttaa on olemassa — rakenne puuttuu."
+              },
+              {
+                "ilmiö": "Poliittinen osallistuminen",
+                "katalyytti": "Mikä rakenne laskisi kansalaistoiminnan aktivaatioenergiaa ilman ammattipolitiikan vaatimuksia?",
+                "aktivaatioenergia": "Vaalilippu on helppo — mutta ehdolle asettuminen, vaikuttaminen, järjestötoiminta vaativat paljon."
+              },
+              {
+                "ilmiö": "Pitkäaikaistyöttömän työllistyminen",
+                "katalyytti": "Matalan kynnyksen osaamispolku joka rakentaa luottamusta tekojen kautta ennen työsopimusta",
+                "aktivaatioenergia": "CV-aukko, luottamuspula, hakuprosessit — itsekin koettu kynnys on korkea vaikka halu on olemassa."
+              }
+            ],
+            "prediction_number": 5,
+            "limits_of_metaphor": "Kemiallinen katalyytti on passiivinen — se ei valitse mihinkä reaktioon osallistuu. Yhteiskunnallinen katalyytti on poliittinen — sen suunnittelijat tekevät arvovalintoja siitä mitä reaktioita helpotetaan. Metafora auttaa ymmärtämään mekaniikan, mutta ei korvaa eettistä harkintaa."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 2,
+          "type": "evidence",
+          "title": "Katalyytti ilman suuntaa: kolme esimerkkiä haitallisesta aktivaatioenergian laskusta",
+          "source": "Vosoughi ym. 2018; Finanssivalvonta 2022",
+          "position": 2,
+          "content": {
+            "body": "Osio 6 muistuttaa: katalyytti ei valitse puolta. Tämä liite dokumentoi kolme tapausta joissa aktivaatioenergian lasku tuotti haitallisia seurauksia — saman mekanismin kautta kuin hyödyllisetkin.",
+            "cases": [
+              {
+                "data": "Mother Jones -tietokanta: joukkoampumiset 1982–2022, korrelaatio aseiden saatavuuden kanssa",
+                "muutos": "Asekaupan sääntelyn löystyminen, internet-myynti, asemessut ilman taustatarkistuksia",
+                "tapaus": "Aseiden saatavuus Yhdysvalloissa",
+                "seuraus": "Joukkulimurhien määrä kasvoi — ei siksi että ihmiset olisivat tulleet väkivaltaisemmiksi vaan koska väkivallan toteuttamisen aktivaatioenergia laski.",
+                "aktivaatioenergia": "Aseen hankkimisen kitka laski merkittävästi 1980–2020"
+              },
+              {
+                "data": "Vosoughi, Roy & Aral 2018, Science",
+                "muutos": "Sisällön tuottaminen ja jakaminen lähes ilmaista, algoritmit maksimoivat sitoutumista",
+                "tapaus": "Sosiaalinen media ja disinformaatio",
+                "seuraus": "Disinformaatio leviää nopeammin kuin oikaisu. MIT-tutkimus (2018): valeuutiset leviävät 6x nopeammin kuin todet.",
+                "aktivaatioenergia": "Valeinformaation tuottamisen ja levittämisen kitka laski lähes nollaan"
+              },
+              {
+                "data": "Suomen Asiakastieto; Finanssivalvonta 2019–2022",
+                "muutos": "Lainan hakeminen muuttunut puhelinsovelluksessa 5 minuutiksi",
+                "tapaus": "Pikavipit ja ylivelkaantuminen",
+                "seuraus": "Maksuhäiriömerkinnät kasvoivat erityisesti nuorilla. Ei siksi että ihmiset muuttuivat vastuuttomammiksi — vaan koska harkintaa vaativa prosessi poistui.",
+                "aktivaatioenergia": "Lainanottokynnys laski dramaattisesti — harkinta-aika poistui"
+              }
+            ],
+            "source": "Vosoughi ym. 2018; Finanssivalvonta 2022",
+            "principle": "Sama mekanismi joka tekee pyöräilystä helppoa tekee myös haitallisesta helpompaa. Katalyytti on neutraali — suunnan valitsevat rakentajat.",
+            "evidence_key": "catalyst.harmful_catalysts",
+            "prediction_number": 5
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 4,
+          "type": "research-card",
+          "title": "Ennuste 5 — tutkimuskortti",
+          "source": null,
+          "position": 3,
+          "content": {
+            "lens": "Katalyytti",
+            "prediction": "Pienet kitkamuutokset voivat tuottaa suuria vaikutuksia",
+            "evidence_keys": [
+              "catalyst.activation_energy_model",
+              "catalyst.activation_energy_model",
+              "catalyst.friction_behavior_change",
+              "catalyst.friction_behavior_change",
+              "catalyst.harmful_catalysts",
+              "catalyst.harmful_catalysts"
+            ],
+            "falsification": "Jos kitkan poistaminen ei muuta käyttäytymistä — eli prosessien yksinkertaistaminen ei lisää palveluiden käyttöä tai tuloksia ennustettavalla tavalla — ennuste heikkenee.",
+            "data_status_fi": "Testattavissa nyt — aineisto on käytettävissä",
+            "evidence_count": 6,
+            "evidence_titles": [
+              "Aktivaatioenergia: kemiallinen metafora ja yhteiskunnalliset vastineet",
+              "Aktivaatioenergia: kemiallinen metafora ja yhteiskunnalliset vastineet",
+              "Katalyytti ilman suuntaa: kolme esimerkkiä haitallisesta aktivaatioenergian laskusta",
+              "Katalyytti ilman suuntaa: kolme esimerkkiä haitallisesta aktivaatioenergian laskusta",
+              "Kitkan lasku ja käyttäytymisen muutos: kolme toistuvaa mekanismia",
+              "Kitkan lasku ja käyttäytymisen muutos: kolme toistuvaa mekanismia"
+            ],
+            "prediction_number": 5,
+            "falsification_data_available": "ready",
+            "falsification_operationalized": "Mittari: TTT-tietokannan elasticities-taulun pienten interventioiden vaikutus per käyttöönotettu yksikkö, verrattuna nullhypoteesiin että vaikutus on lineaarinen panoksen kanssa. Aineisto on jo olemassa (255 elastisuusarvoa). Kynnys: jos kustannustehokkuus per euro vaihtelee alle 3-kertaisesti interventioiden välillä, kitkahypoteesi ei tuota epälineaarisuutta."
+          }
+        }
+      ]
+    },
+    {
+      "position": 6,
       "slug": "ennuste-6-polkuriippuvuus",
       "title": "Ennuste 6 — Polkuriippuvuus",
       "appendices": [
         {
-          "chapter_position": 1,
+          "chapter_position": 6,
           "section_position": 2,
           "type": "chart-chartjs",
           "title": "Hedelmällisyysluku 1995–2024 — neljä pohjoismaata",
@@ -193,11 +815,13 @@
             "crisisYears": [
               2008,
               2020
-            ]
+            ],
+            "evidence_key": "path_dependency.tfr_nordics_1995_2024",
+            "prediction_number": 6
           }
         },
         {
-          "chapter_position": 1,
+          "chapter_position": 6,
           "section_position": 2,
           "type": "chart-chartjs",
           "title": "Konsolidoitu julkinen velka 1995–2024 — neljä pohjoismaata",
@@ -361,11 +985,13 @@
             "crisisYears": [
               2008,
               2020
-            ]
+            ],
+            "evidence_key": "path_dependency.debt_nordics_1995_2024",
+            "prediction_number": 6
           }
         },
         {
-          "chapter_position": 1,
+          "chapter_position": 6,
           "section_position": 2,
           "type": "table",
           "title": "Suomi pohjoismaisena erityistapauksena — neljä rakenteellista eroa",
@@ -409,7 +1035,7 @@
           }
         },
         {
-          "chapter_position": 1,
+          "chapter_position": 6,
           "section_position": 4,
           "type": "evidence",
           "title": "Polkuriippuvuus-indeksi — kolme falsifiointiryhmää",
@@ -432,6 +1058,38 @@
                 "havainto": "Sama reformi Suomessa ja Ruotsissa tuottaa eri suuruisen vaikutuksen. Eläkereformi 1990-luvulla, sote-uudistus 2023, varhaiskasvatuksen laajennukset — kaikilla on pohjoismaiset vertailupisteet. Jos vaikutuserot ovat keskimäärin nollia tai selittyvät kokonaan vakioiduilla muuttujilla (BKT, ikärakenne, sote-rahoitus), kolmas pala kumoutuu. Jos systemaattinen ero pysyy — kuten esimerkiksi sote-uudistuksen 2023 tehokkuushyödyt jäivät selvästi alle Ruotsin 2018 vastaavan — polku vahvistuu."
               }
             ]
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 4,
+          "type": "research-card",
+          "title": "Ennuste 6 — tutkimuskortti",
+          "source": null,
+          "position": 4,
+          "content": {
+            "lens": "Sukupolvi joka kantaa",
+            "prediction": "Polkuriippuvuus näkyy Suomen poikkeavana kehityspolkuna",
+            "evidence_keys": [
+              "path_dependency.debt_nordics_1995_2024",
+              "path_dependency.debt_nordics_1995_2024",
+              "path_dependency.finland_outlier_20",
+              "path_dependency.structural_differences",
+              "path_dependency.tfr_nordics_1995_2024"
+            ],
+            "falsification": "Jos Suomen erityispiirteet katoavat kun ne vakioidaan väestörakenteen, vaurauden ja muiden taustamuuttujien suhteen — eli sama reformi tuottaa Suomessa saman tuloksen kuin verrokkimaissa kontrolloidusti — ennuste heikkenee.",
+            "data_status_fi": "Testattavissa nyt — aineisto on käytettävissä",
+            "evidence_count": 5,
+            "evidence_titles": [
+              "20 mittaria — Suomi Pohjoismaiden heikoimpana tai lähes heikoimpana",
+              "Hedelmällisyysluku 1995–2024 — neljä pohjoismaata",
+              "Konsolidoitu julkinen velka 1995–2024 — neljä pohjoismaata",
+              "Suomen julkinen velka suhteessa Pohjoismaihin 2000–2024",
+              "Suomen väestöllinen erityispolku vs. Pohjoismaat"
+            ],
+            "prediction_number": 6,
+            "falsification_data_available": "ready",
+            "falsification_operationalized": "Mittari: pohjoismaisten reformien (eläke, sote, varhaiskasvatus) vaikuttavuusarvioiden vertailu Suomen ja Ruotsin välillä, kun ikärakenne, BKT, sote-rahoituksen taso ja kuntarakenne vakioidaan. Aineisto: nordic_indicators (22 552 riviä), TTT-tietokannan elasticities ja causal_chains. Kynnys: jos systemaattinen ero vaikutusten välillä on alle 15 % vakioinnin jälkeen, polkuriippuvuus selittyy taustatekijöillä eikä rakenteella."
           }
         }
       ]

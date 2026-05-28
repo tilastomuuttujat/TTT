@@ -1,396 +1,1336 @@
 {
-  "schema": "lovable-book.v1",
-  "exported_at": "2026-05-27T13:53:01.896Z",
-  "book": {
-    "slug": "kuusi-ennustetta",
-    "title": "Kuusi ennustetta",
-    "author": "Harri Käyhkö",
-    "description": "Suomen hyvinvointijärjestelmä kirjojen linssien läpi. Kuusi falsifioitavaa ennustetta, joista jokainen kytkeytyy yhteen sarjan kirjoista. Tutkimusprotokolla pelkän retoriikan sijaan.",
-    "cover_url": null,
-    "chapters": [
-      {
-        "slug": "johdanto",
-        "title": "Johdanto",
-        "position": 0,
-        "sections": [
-          {
-            "title": "Sarjan rakenne",
-            "position": 0,
-            "content": {
-              "type": "doc",
-              "content": [
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Tämä kirja ei lue itseään yksin. Kuusi ennustetta toimii sarjan navigaatiokarttana — jokainen ennuste kytkeytyy yhteen kirjoista, ja vasta yhdessä ne muodostavat falsifioitavissa olevan kokonaisuuden.",
-                      "type": "text"
-                    }
-                  ]
+  "slug": "kuusi-ennustetta",
+  "title": "Kuusi ennustetta",
+  "author": "Harri Käyhkö",
+  "description": "Suomen hyvinvointijärjestelmä kirjojen linssien läpi. Kuusi falsifioitavaa ennustetta, joista jokainen kytkeytyy yhteen sarjan kirjoista. Tutkimusprotokolla pelkän retoriikan sijaan.",
+  "cover_url": null,
+  "chapters": [
+    {
+      "slug": "johdanto",
+      "title": "Johdanto",
+      "position": 0,
+      "sections": [
+        {
+          "title": "Sarjan rakenne",
+          "position": 0,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä kirja ei lue itseään yksin. Kuusi ennustetta toimii sarjan navigaatiokarttana — jokainen ennuste kytkeytyy yhteen kirjoista, ja vasta yhdessä ne muodostavat falsifioitavissa olevan kokonaisuuden.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ennuste eroaa väitteestä siinä, että se voidaan kumota empirialla. Jokainen näistä kuudesta on muotoiltu niin, että lukija voi nähdä mitä havaintoja heikentäisivät tai vahvistaisivat sitä. Tämä on tieteen perusrakenne — ja samalla tämän sarjan erotus tavallisesta hyvinvointivaltio-keskustelusta, jossa väitteet usein voitetaan ohittamalla vastaesimerkit.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "heading",
+                "attrs": {
+                  "level": 3
                 },
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Ennuste eroaa väitteestä siinä, että se voidaan kumota empirialla. Jokainen näistä kuudesta on muotoiltu niin, että lukija voi nähdä mitä havaintoja heikentäisivät tai vahvistaisivat sitä. Tämä on tieteen perusrakenne — ja samalla tämän sarjan erotus tavallisesta hyvinvointivaltio-keskustelusta, jossa väitteet usein voitetaan ohittamalla vastaesimerkit.",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "type": "heading",
-                  "attrs": {
-                    "level": 3
+                "content": [
+                  {
+                    "text": "Kuusi ennustetta",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "orderedList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "text": "Läpivirtauksen optimointi tuottaa raskaampaa kuormaa toisaalla (Laajenemisen logiikka)",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    ]
                   },
-                  "content": [
-                    {
-                      "text": "Kuusi ennustetta",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "type": "orderedList",
-                  "content": [
-                    {
-                      "type": "listItem",
-                      "content": [
-                        {
-                          "type": "paragraph",
-                          "content": [
-                            {
-                              "text": "Läpivirtauksen optimointi tuottaa raskaampaa kuormaa toisaalla (Laajenemisen logiikka)",
-                              "type": "text"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "listItem",
-                      "content": [
-                        {
-                          "type": "paragraph",
-                          "content": [
-                            {
-                              "text": "Rahoitus ja mittarit ohjaavat käyttäytymistä — myös silloin kun ne on suunniteltu olemaan ohjaamatta (Näkymättömät mekanismit)",
-                              "type": "text"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "listItem",
-                      "content": [
-                        {
-                          "type": "paragraph",
-                          "content": [
-                            {
-                              "text": "Nähdyksi tuleminen on rakenteellinen tarve, ei lisäpalvelu (Näkyväksi)",
-                              "type": "text"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "listItem",
-                      "content": [
-                        {
-                          "type": "paragraph",
-                          "content": [
-                            {
-                              "text": "Tavoitefunktio ratkaisee enemmän kuin julkilausutut arvot (Itseohjautuvuus)",
-                              "type": "text"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "listItem",
-                      "content": [
-                        {
-                          "type": "paragraph",
-                          "content": [
-                            {
-                              "text": "Pieni kitkan poisto voi tuottaa suhteettoman suuren muutoksen (Katalyytti)",
-                              "type": "text"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "listItem",
-                      "content": [
-                        {
-                          "type": "paragraph",
-                          "content": [
-                            {
-                              "text": "Polkuriippuvuus tekee Suomesta erilaisen koetinkentän kuin naapurit (Sukupolvi joka kantaa)",
-                              "type": "text"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Viisi ensimmäistä ovat mekanismeja: ne kuvaavat miten järjestelmä toimii. Kuudes on niiden kohtauspaikka ihmisessä. Siksi se on sarjan todellisuustesti — siellä missä optimoinnin sivuvaikutukset, näkymättömät mittarit, näkemättä jääminen, väärä tavoitefunktio ja poistamatta jätetty kitka kumuloituvat sukupolvien yli, ne näkyvät jossakussa.",
-                      "type": "text"
-                    }
-                  ]
-                }
-              ]
-            }
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "text": "Rahoitus ja mittarit ohjaavat käyttäytymistä — myös silloin kun ne on suunniteltu olemaan ohjaamatta (Näkymättömät mekanismit)",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "text": "Nähdyksi tuleminen on rakenteellinen tarve, ei lisäpalvelu (Näkyväksi)",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "text": "Tavoitefunktio ratkaisee enemmän kuin julkilausutut arvot (Itseohjautuvuus)",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "text": "Pieni kitkan poisto voi tuottaa suhteettoman suuren muutoksen (Katalyytti)",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "text": "Polkuriippuvuus tekee Suomesta erilaisen koetinkentän kuin naapurit (Sukupolvi joka kantaa)",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Viisi ensimmäistä ovat mekanismeja: ne kuvaavat miten järjestelmä toimii. Kuudes on niiden kohtauspaikka ihmisessä. Siksi se on sarjan todellisuustesti — siellä missä optimoinnin sivuvaikutukset, näkymättömät mittarit, näkemättä jääminen, väärä tavoitefunktio ja poistamatta jätetty kitka kumuloituvat sukupolvien yli, ne näkyvät jossakussa.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
           }
-        ]
-      },
-      {
-        "slug": "ennuste-6-polkuriippuvuus",
-        "title": "Ennuste 6 — Polkuriippuvuus",
-        "position": 1,
-        "sections": [
-          {
-            "title": "Väite",
-            "position": 0,
-            "content": {
-              "type": "doc",
-              "content": [
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Samat yksittäiset politiikat eivät tuota Suomessa samoja vaikutuksia kuin Ruotsissa, Tanskassa tai Norjassa — koska lähtörakenne on erilainen.",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Tämä on sarjan vahvin yksittäinen väite. Jos se pitää paikkansa, pohjoismainen vertailu on usein harhaanjohtava: sama reformi eri lähtörakenteessa tuottaa eri tuloksen. Ja vastaavasti — Suomeen sopiva ratkaisu voi näyttää naapurimaissa toimimattomalta.",
-                      "type": "text"
-                    }
-                  ]
-                }
-              ]
-            }
-          },
-          {
-            "title": "Mekanismi",
-            "position": 1,
-            "content": {
-              "type": "doc",
-              "content": [
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Polkuriippuvuus tarkoittaa että historian kulkureitti rajoittaa nykyisiä vaihtoehtoja. Suomen erityispiirteet eivät ole sattumaa: ne ovat seurausta erilaisesta historiallisesta polusta.",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Eläkejärjestelmän rahoitusmalli, kuntarakenne, väestön ikäjakauma, julkisen velan profiili ja maahanmuuton historia poikkeavat kaikki samanaikaisesti muista pohjoismaista. Yksikin näistä eroista riittäisi tekemään reformin vaikutuksen erilaiseksi. Niiden yhdistelmä tekee Suomesta omanlaisensa testipaikan.",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Polkuriippuvuus ei ole pessimismiä — se on tarkkuutta. Vertailu auttaa kun se ottaa lähtörakenteet huomioon. Naapuriaan jäljittelevä reformi joka ei tunnista omia lähtökohtia, tuottaa tuloksia jotka näyttävät yllätyksiltä mutta eivät ole sitä.",
-                      "type": "text"
-                    }
-                  ]
-                }
-              ]
-            }
-          },
-          {
-            "title": "Rakenteelliset erot",
-            "position": 2,
-            "content": {
-              "type": "doc",
-              "content": [
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Kaksi mittaria tekevät polkuriippuvuuden näkyväksi: hedelmällisyysluku ja julkinen velka. Molemmat ovat hitaita rakenteellisia muuttujia — ne eivät reagoi yhden hallituskauden päätöksiin, mutta kantavat pitkän polun jäljet.",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Hedelmällisyydessä Suomi seurasi pohjoismaisia naapureitaan vuoteen 2010 saakka. Sen jälkeen kehitys kääntyi — Suomen TFR on laskenut nopeammin ja pidemmälle kuin yhdenkään muun pohjoismaan. Vuonna 2024 Suomi oli ainoa pohjoismaa jonka TFR oli alle 1,3.",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Velkakehityksessä Suomi erkaantui 2008 finanssikriisin jälkeen. Ruotsi piti velkansa kurissa, Tanska laski sitä, Norjalla on rakenteellinen ylijäämä öljystä. Suomi on ainoa pohjoismaa jonka velka on jatkuvasti noussut vuodesta 2008 alkaen — ja kiihdyttänyt kasvuaan 2020-luvulla.",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Nämä kaksi muuttujaa eivät ole erillisiä. Alhainen syntyvyys nostaa eläke- ja hoivamenojen suhteellista painoa, mikä lisää velkapainetta. Korkea velka kaventaa fiskaalista pelivaraa, mikä vaikuttaa perhepoliittisiin investointeihin. Polku kiertää itseään.",
-                      "type": "text"
-                    }
-                  ]
-                }
-              ]
-            }
-          },
-          {
-            "title": "Milloin ennuste kumoutuu",
-            "position": 3,
-            "content": {
-              "type": "doc",
-              "content": [
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Ennuste heikkenee jos pohjoismaiset reformit (eläke, sote, työvoima, koulutus) tuottavat Suomeen siirrettyinä saman suuruisia vaikutuksia kuin alkuperäisissä maissaan — kun ikä-, sairastavuus- ja sosioekonominen rakenne vakioidaan.",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Tämä on tiukempi testi kuin ensilukemalta vaikuttaa. Vaikuttavuusarvioita on tehty satoja eri reformeista. Jos niissä ei keskimäärin näy systemaattista eroa Suomen ja verrokkimaiden välillä — tai jos ero selittyy kokonaan vakioiduilla muuttujilla — polkuriippuvuus-hypoteesi heikkenee.",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Vastaavasti vahvistuminen tapahtuu jos siirretyt reformit tuottavat järjestelmällisesti pienempiä tai erisuuntaisia vaikutuksia kuin alkuperäisissä maissa. Tämä ei tarkoita että reformeja ei kannata yrittää — se tarkoittaa että odotetut vaikutukset tulisi kalibroida lähtörakenteen mukaan, ei naapurin tulosten.",
-                      "type": "text"
-                    }
-                  ]
-                }
-              ]
-            }
-          },
-          {
-            "title": "Mitä indikaattorit kertovat",
-            "position": 4,
-            "content": {
-              "type": "doc",
-              "content": [
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Polkuriippuvuus-indeksi koostuu neljästä komponentista:",
-                      "type": "text"
-                    }
-                  ]
-                },
-                {
-                  "type": "bulletList",
-                  "content": [
-                    {
-                      "type": "listItem",
-                      "content": [
-                        {
-                          "type": "paragraph",
-                          "content": [
-                            {
-                              "text": "Ikärakenteen, eläkevastuiden ja julkisen velan yhteisprofiili",
-                              "type": "text"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "listItem",
-                      "content": [
-                        {
-                          "type": "paragraph",
-                          "content": [
-                            {
-                              "text": "Kuntarakenteen ja palveluverkon hajanaisuus suhteessa väestöpohjaan",
-                              "type": "text"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "listItem",
-                      "content": [
-                        {
-                          "type": "paragraph",
-                          "content": [
-                            {
-                              "text": "Sukupolvien välinen nettosaanto: verot, etuudet, velka ja palvelujen käyttö",
-                              "type": "text"
-                            }
-                          ]
-                        }
-                      ]
-                    },
-                    {
-                      "type": "listItem",
-                      "content": [
-                        {
-                          "type": "paragraph",
-                          "content": [
-                            {
-                              "text": "Reformin vaikutuksen ero Suomen ja verrokkimaan välillä samoin vakioinnein",
-                              "type": "text"
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "type": "paragraph",
-                  "content": [
-                    {
-                      "text": "Pidempi käsittely sukupolvien välisistä eroista ja Suomen erityispiirteistä on kirjassa Sukupolvi joka kantaa. Tämä luku on yhden ennusteen falsifiointiprotokolla — kirja itse käy läpi mekanismit ja sukupolvitarinat joiden kautta polkuriippuvuus toimii.",
-                      "type": "text"
-                    }
-                  ]
-                }
-              ]
-            }
+        }
+      ]
+    },
+    {
+      "slug": "ennuste-1-laajenemisen-logiikka",
+      "title": "Ennuste 1 — Laajenemisen logiikka",
+      "position": 1,
+      "sections": [
+        {
+          "title": "Väite",
+          "position": 0,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kun järjestelmä optimoi yhden osan läpivirtausta — nopeuttaa, tehostaa, lyhentää — kuorma ei katoa. Se siirtyy toiseen osaan, usein viiveellä ja usein näkymättömissä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä on ensimmäinen ja yleisin sarjan mekanismeista. Se ei väitä että tehostaminen olisi turhaa tai haitallista. Se väittää että tehostamisen vaikutusta ei voi arvioida katsomalla vain sitä osaa jota tehostettiin — vaan koko järjestelmää, myös sitä osaa johon kuorma valuu.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
           }
-        ]
-      }
-    ]
-  }
+        },
+        {
+          "title": "Mekanismi",
+          "position": 1,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Optimointi tarvitsee mittarin. Mittari on aina yksinkertaistus — se nappaa yhden ulottuvuuden monimutkaisesta todellisuudesta. Sairaala mittaa hoitopäiviä, koska terveyttä on vaikea mitata suoraan. Kun hoitopäiviä vähennetään, mittari paranee. Mutta jos seuranta puuttuu, potilas palaa — toiseen yksikköön, toisella budjetilla, toisella mittarilla.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kuorman siirtymä tapahtuu kolmen reitin kautta. Ensimmäinen on aika: viive katkaisee syyn ja seurauksen näkyvän yhteyden. Mielenterveyspalvelun jono ei näy sen yksikön luvuissa, vaan kuukausia myöhemmin kriisipäivystyksessä ja työkyvyttömyydessä. Toinen on sektoriraja: tieto ei kulje järjestelmästä toiseen, joten sama ihminen on jokaiselle uusi tapaus. Kolmas on kannustinrakenne: jokainen osa optimoi omaa mittariaan rationaalisesti, eikä kukaan kanna vastuuta kokonaisuudesta.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Olennaista on että kukaan ei suunnittele tätä. Näkymättömyys ei ole kenenkään tavoite — se on rakenteen sivutuote. Jokainen päätös on paikallisesti järkevä. Summa ei ole.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Näyttö",
+          "position": 2,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Neljä mekanismia toistuvat hyvinvointijärjestelmän eri osissa. Mittarin ja tarkoituksen ero: sairaala mittaa hoitopäiviä, tavoittelee terveyttä. Viive näkymättömänä kustannuksena: mielenterveyden ensiavun jono näkyy myöhemmin kriisipäivystyksessä ja toimeentulotuessa. Sektoriraja tiedon katkaisijana: koulun tunnistama huoli ei siirry lastensuojeluun. Kannustinloukku laskennallisena faktana: työllistymisestä rankaiseva rakenne on useiden eri aikoina tehtyjen päätösten summa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Liite kokoaa nämä esimerkit yhteen. Ne eivät ole anekdootteja vaan saman mekanismin ilmentymiä eri konteksteissa — siksi ne ovat näyttöä eivätkä kuvitusta.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Milloin kumoutuu",
+          "position": 3,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jos tehokkuuden kasvu yhdessä järjestelmän osassa ei systemaattisesti siirrä kuormaa toiseen osaan, vaan vaikutus jää eristyneeksi tai katoaa kokonaan, ennuste heikkenee.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "heading",
+                "attrs": {
+                  "level": 3
+                },
+                "content": [
+                  {
+                    "text": "Operationalisointi",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mittari: päivystyskäyntien määrä / 1000 asukasta vs. perusterveydenhuollon hoitojaksojen keskipituus, ajanjakso 2010-2024 hyvinvointialueittain. Kynnys: jos lyhentyneiden hoitojaksojen ja kohonneiden päivystyskäyntien välinen korrelaatio on alle r=0.3 vakioinnin jälkeen (ikärakenne, sairastavuus, alueellinen vauraus), ensimmäinen palaute katoaa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "heading",
+                "attrs": {
+                  "level": 3
+                },
+                "content": [
+                  {
+                    "text": "Datan saatavuus",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Osittain testattavissa — osa aineistosta puuttuu. Ensimmäisen ennusteen testaamiseen tarvitaan hyvinvointialueittaista aikasarjaa, joka osin on jo olemassa mutta vaatii vakioinnin sairastavuus- ja ikärakenteelle.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Mitä tämä tarkoittaa",
+          "position": 4,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jos läpivirtauksen optimointi todella siirtää kuormaa, seuraa kaksi johtopäätöstä. Ensimmäinen: yksittäisen yksikön tehostamista ei voi arvioida sen omilla mittareilla. Tarvitaan koko polun seurantaa — mihin kuorma valuu, millä viiveellä. Toinen: tehostaminen voi näyttää onnistuneelta juuri silloin kun se epäonnistuu, koska sivuvaikutus realisoituu toisaalla ja myöhemmin.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä on kirjan Laajenemisen logiikka ydinhavainto sovellettuna hyvinvointijärjestelmään. Siellä mekanismi käydään läpi kosmisesta mittakaavasta yksittäiseen organisaatioon. Tässä luvussa se on tiivistetty yhdeksi testattavaksi ennusteeksi.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "ennuste-2-nakymattomat-mekanismit",
+      "title": "Ennuste 2 — Näkymättömät mekanismit",
+      "position": 2,
+      "sections": [
+        {
+          "title": "Väite",
+          "position": 0,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Rahoitusmallit ja mittarit ohjaavat käyttäytymistä — myös silloin kun ne on suunniteltu olemaan ohjaamatta. Mittari ei ole neutraali ikkuna todellisuuteen; se on voima joka muokkaa sitä mitä mitataan.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä on toinen sarjan mekanismeista, ja se on tavallaan ensimmäisen kääntöpuoli. Ennuste 1 kuvasi miten kuorma siirtyy. Ennuste 2 kuvaa miksi: koska jokainen mittari luo kannustimen, ja kannustin muuttaa käyttäytymistä riippumatta siitä, oliko se tarkoitus.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Mekanismi",
+          "position": 1,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mekanismilla on nimi: Goodhartin laki. Kun mittarista tulee tavoite, se lakkaa olemasta hyvä mittari. Syy on yksinkertainen — ihmiset ja organisaatiot optimoivat sitä mitä mitataan, eivät sitä mitä mittari oli tarkoitettu edustamaan.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Friedrich Hayek tarjoaa toisen linssin samaan ilmiöön. Hänen havaintonsa oli että tieto on hajautunutta: jokaisella paikallisella toimijalla on tietoa jota keskus ei voi koota. Kun keskus asettaa mittarin, se korvaa hajautetun tiedon yhdellä numerolla — ja menettää juuri sen rikkaan kontekstin joka teki paikallisesta päätöksenteosta toimivaa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Yhdistettynä nämä kaksi tuottavat näkymättömän mekanismin: mittari ohjaa käyttäytymistä (Goodhart), ja samalla se hävittää tiedon siitä mitä se ohjaa pois (Hayek). Lopputulos on järjestelmä joka näyttää datansa valossa toimivalta mutta on menettänyt yhteyden siihen todellisuuteen jota sen piti palvella.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Näyttö",
+          "position": 2,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Näyttö koostuu kahdesta osasta. Ensimmäinen kuvaa Goodhartin lain mekanismin Hayekin hajautetun tiedon linssin läpi — miten mittari samanaikaisesti ohjaa ja sokaisee. Toinen kokoaa empiirisiä sovelluksia: tilanteita joissa mittarin asettaminen on muuttanut käyttäytymistä ennustettavalla, usein ei-toivotulla tavalla.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Klassinen esimerkki on terveydenhuollon DRG-luokitus: kun rahoitus sidotaan diagnoosiryhmiin, koodaus muuttuu — ei välttämättä petollisesti, vaan koska järjestelmä oppii esittämään toimintansa rahoituksen kannalta edullisimmin. Sama logiikka toistuu jonomittareissa, suoritepalkkioissa ja tulosohjauksessa.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Milloin kumoutuu",
+          "position": 3,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jos mittaroinnin lisääminen ei tuota vääristymiä eikä osaoptimointia — eli toimijat reagoivat indikaattoreihin täsmälleen kuin niiden taustalla olevaan ilmiöön — ennuste heikkenee. Tämä on Goodhartin lain testi konkretisoituna.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "heading",
+                "attrs": {
+                  "level": 3
+                },
+                "content": [
+                  {
+                    "text": "Operationalisointi",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mittari: DRG-painokertoimien muutoksia seuraavat hoitokäytäntöjen muutokset 12-24 kk viiveellä, vertailu Saksan 2003 DRG-uudistuksen seurausanalyyseihin. Kynnys: jos DRG-painokertoimen 20 % nousu ei systemaattisesti nosta vastaavan diagnoosin koodausosuutta vähintään 10 %, mittaröinnin käytösvaikutus on heikko.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "heading",
+                "attrs": {
+                  "level": 3
+                },
+                "content": [
+                  {
+                    "text": "Datan saatavuus",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Osittain testattavissa — osa aineistosta puuttuu",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Mitä tämä tarkoittaa",
+          "position": 4,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jos mittarit ohjaavat väistämättä, seuraa kaksi johtopäätöstä. Ensimmäinen: mittarin valinta on aina arvovalinta, ei tekninen kysymys. Se mitä päätät mitata, tulee kasvamaan; se mitä jätät mittaamatta, kutistuu. Toinen: mikään mittaristo ei voi olla täydellinen, joten tarvitaan jatkuvaa tietoisuutta siitä mitä mittarit jättävät varjoonsa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä on kirjan Näkymättömät mekanismit ydinhavainto. Se ei vaadi mittareista luopumista — se vaatii niiden lukemista kriittisesti, tietäen että ne sekä paljastavat että kätkevät.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "ennuste-3-nakyvaksi",
+      "title": "Ennuste 3 — Näkyväksi",
+      "position": 3,
+      "sections": [
+        {
+          "title": "Väite",
+          "position": 0,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Nähdyksi tuleminen ei ole palvelujärjestelmän lisäominaisuus vaan rakenteellinen tarve. Ihminen joka kokee tulleensa kuulluksi toimii eri tavalla kuin ihminen joka kokee olevansa tapaus numero — ja tämä ero näkyy myöhemmin palvelujen käytössä, toipumisessa ja toimijuudessa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä on sarjan ennusteista inhimillisin ja samalla vaikeimmin mitattava. Se väittää että kokemuksella nähdyksi tulemisesta on kausaalinen vaikutus, ei vain korrelaatio hyvinvoinnin kanssa.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Mekanismi",
+          "position": 1,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Näkymättömyys syntyy neljässä vaiheessa. Ensin ihminen kohdataan tapauksena, ei kokonaisuutena — järjestelmä näkee diagnoosin, hakemuksen, asiakasnumeron. Toiseksi tämä osittainen näkeminen ohjaa palvelua: vastataan siihen mikä on kirjattu, ei siihen mikä on kysymättä. Kolmanneksi ihminen oppii esittämään itsensä järjestelmän ymmärtämällä kielellä, mikä kaventaa entisestään sitä mitä hänestä nähdään. Neljänneksi se mikä jää näkymättömäksi, jää myös hoitamatta — ja palaa myöhemmin, usein vakavampana.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Vastakkainen malli on neuvola: järjestelmä joka on rakennettu näkemään koko perhe toistuvasti ja ennakoivasti, ei vain reagoimaan ongelmiin. Neuvola on esimerkki kaksisuuntaisesta optimoinnista — se sekä kerää tietoa että rakentaa luottamusta, ja nämä vahvistavat toisiaan.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Näyttö",
+          "position": 2,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Näyttö koostuu kolmesta osasta. Näkymättömyyden syntymekanismi kuvaa neljä vaihetta joiden kautta ihminen muuttuu kokonaisuudesta tapaukseksi. Neuvolamalli tarjoaa vastaesimerkin — rakenteen joka on suunniteltu näkemään. Kolmas osa on laskennallinen kehys näkymättömyyden kustannuksesta: yritys arvioida mitä maksaa kun ihmistä ei nähdä ajoissa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kustannuskehys nojaa Valtiontalouden tarkastusviraston, Kelaston ja THL:n hyvinvointikompassin aineistoihin. Se ei vielä todista ennustetta, mutta osoittaa että näkymättömyyden hinta on periaatteessa laskettavissa.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Milloin kumoutuu",
+          "position": 3,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jos nähdyksi tuleminen ei ennusta toimijuutta — eli ihmiset jotka kokevat tulleensa kuulluiksi eivät käytä palveluja eri tavalla kuin ne jotka eivät koe — ennuste heikkenee.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "heading",
+                "attrs": {
+                  "level": 3
+                },
+                "content": [
+                  {
+                    "text": "Operationalisointi",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mittari: asiakaskokemuskysely (kuulluksi tulemisen indeksi, 1-5) verrattuna 12 kk myöhempiin rekisterihavaintoihin (palveluiden käyttö, työllisyysstatus, kuntoutuksen läpivienti). Aineisto: neuvolat, mielenterveys, kuntoutus. Kynnys: korrelaatio nollasta poikkeava ja efektikoko Cohenin d > 0.2 ikä-, sukupuoli- ja sosioekonomisen vakioinnin jälkeen.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "heading",
+                "attrs": {
+                  "level": 3
+                },
+                "content": [
+                  {
+                    "text": "Datan saatavuus",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Vaatii tutkimusasetelman — aineisto ei vielä saatavilla",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Mitä tämä tarkoittaa",
+          "position": 4,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jos nähdyksi tuleminen todella ennustaa toimijuutta, palvelujärjestelmän suunnittelun painopiste siirtyy. Tehokkuus ei riitä mittariksi, jos se saavutetaan kustannuksella joka realisoituu nähdyksi tulemisen menetyksenä. Kuulluksi tulemisen kokemus ei ole pehmeä lisä vaan kova rakenteellinen muuttuja.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä on kirjan Näkyväksi keskeinen väite. Se on myös sarjan vaikeimmin testattava ennuste — siksi sen kohdalla datan saatavuus on rehellisesti merkitty puutteelliseksi.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "ennuste-4-itseohjautuvuus",
+      "title": "Ennuste 4 — Itseohjautuvuus",
+      "position": 4,
+      "sections": [
+        {
+          "title": "Väite",
+          "position": 0,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Organisaation todellinen tavoitefunktio — se mitä kannustinrakenne palkitsee — ohjaa toimintaa enemmän kuin julkilausutut arvot. Kun arvot ja kannustimet ovat ristiriidassa, käyttäytyminen seuraa kannustimia, ei arvoja.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä on organisaatioteorian klassinen havainto sovellettuna hyvinvointijärjestelmään. Se ei väitä että arvot olisivat merkityksettömiä — vaan että ne ovat voimattomia jos kannustinrakenne vetää toiseen suuntaan.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Mekanismi",
+          "position": 1,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mekanismi näkyy selvimmin kolmessa ketjussa. Ensimmäinen on vastuun katoaminen: kun päätös syntyy monen toimijan ja järjestelmän yhteisvaikutuksena, kukaan ei ole yksin vastuussa — ja vastuu joka on jaettu kaikille, ei ole kenelläkään. Toinen on algoritmisen järjestelmän tapa käsitellä konfliktia: se ei neuvottele vaan optimoi, ja optimointi piilottaa arvovalinnat tekniseksi laskennaksi. Kolmas on läpinäkymättömyyden ketju: kun päätöksenteko siirtyy järjestelmiin joiden logiikkaa ei voi selittää, demokraattinen vastuu murenee.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Yhteistä näille on että tavoitefunktio — se mitä järjestelmä todella optimoi — jää näkymättömäksi. Julkilausuttu arvo voi olla asiakkaan etu, mutta jos järjestelmä palkitsee läpivirtauksesta, se optimoi läpivirtausta.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Näyttö",
+          "position": 2,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Näyttö koostuu kolmesta ketjusta, jotka kukin kuvaavat neljä vaihetta. Vastuun katoaminen: miten hajautettu päätöksenteko hävittää vastuun. Algoritmisen konfliktin käsittely: miten järjestelmä muuttaa arvokysymykset optimointiongelmiksi. Läpinäkymättömyyden ketju: miksi selitettävyys on demokraattinen eikä vain tekninen kysymys.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Nämä ovat mekanismikuvauksia, eivät vielä empiiristä mittausta. Ennusteen varsinainen testi — organisaatioiden julkilausuttujen arvojen ja kannustinrakenteiden vertailu — vaatii tutkimusasetelman jota ei vielä ole.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Milloin kumoutuu",
+          "position": 3,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jos toimijoiden käyttäytyminen seuraa julkilausuttuja arvoja eikä kannustinrakennetta — silloinkin kun nämä ovat ristiriidassa keskenään — ennuste heikkenee. Tämä on klassinen organisaatioteoreettinen testi.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "heading",
+                "attrs": {
+                  "level": 3
+                },
+                "content": [
+                  {
+                    "text": "Operationalisointi",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mittari: 8-12 julkisorganisaation strategia-asiakirjojen julkilausutut arvot vs. niiden henkilöstön kannustinrakenne (suorituspalkkiot, urapolut, tunnustusjärjestelmät) vs. tuotettujen palveluiden todellinen jakauma. Kvalitatiivinen sisältöanalyysi + kvantitatiivinen palvelutilastoanalyysi. Kynnys: jos käytösero arvojen ja kannustinten välillä on tilastollisesti merkitsevä yli 50 %:ssa tutkituista tapauksista.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "heading",
+                "attrs": {
+                  "level": 3
+                },
+                "content": [
+                  {
+                    "text": "Datan saatavuus",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Vaatii tutkimusasetelman — aineisto ei vielä saatavilla",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Mitä tämä tarkoittaa",
+          "position": 4,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jos tavoitefunktio todella ohittaa arvot, organisaation muuttaminen vaatii kannustinrakenteen muuttamista, ei arvojulistusten kirjoittamista. Strategiapaperit ja arvolupaukset ovat voimattomia jos palkitsemis-, ura- ja tunnustusjärjestelmät vetävät toiseen suuntaan.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä on kirjan Itseohjautuvuus ydinhavainto. Se kysyy: kuka rakentaa rakentajat? — eli kuka asettaa tavoitefunktion, ja kantaako hän vastuun siitä mihin se ohjaa.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "ennuste-5-katalyytti",
+      "title": "Ennuste 5 — Katalyytti",
+      "position": 5,
+      "sections": [
+        {
+          "title": "Väite",
+          "position": 0,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Pieni kitkan poisto voi tuottaa suhteettoman suuren muutoksen käyttäytymisessä. Järjestelmissä on kynnyksiä, ja kynnyksen yli pääseminen vaatii vähemmän kuin intuitio olettaa — oikeassa kohdassa pieni interventio laukaisee suuren vaikutuksen.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä on sarjan toiveikkain ennuste. Edelliset kuvasivat miten järjestelmät tuottavat ei-toivottuja vaikutuksia. Tämä kuvaa miten pieni, tarkasti kohdistettu muutos voi kääntää suunnan.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Mekanismi",
+          "position": 1,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Metafora tulee kemiasta. Reaktio joka on termodynaamisesti mahdollinen ei silti tapahdu, jos aktivaatioenergia on liian korkea. Katalyytti laskee aktivaatioenergiaa — se ei muuta lopputulosta, mutta tekee siitä saavutettavan. Yhteiskunnallinen vastine: ihminen joka hyötyisi palvelusta ei hae sitä, jos hakeminen on liian työlästä. Poista kitka, ja käyttäytyminen muuttuu.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kitkan lasku toimii kolmen toistuvan mekanismin kautta: oletusasetuksen muuttaminen, askelten vähentäminen ja epävarmuuden poistaminen. Kukin on pieni, mutta kynnyksen lähellä ratkaiseva.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Katalyytillä ei kuitenkaan ole suuntaa. Sama mekanismi joka helpottaa hyvää, helpottaa myös haitallista: pikavipin nopea saatavuus, vedonlyönnin kitkaton käyttöliittymä, väärän tiedon vaivaton leviäminen. Aktivaatioenergian lasku on työkalu, ei hyve.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Näyttö",
+          "position": 2,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Näyttö koostuu kolmesta osasta. Aktivaatioenergian malli rakentaa kemiallisen metaforan ja sen yhteiskunnalliset vastineet. Kitkan lasku ja käyttäytymisen muutos kokoaa kolme toistuvaa mekanismia. Haitalliset katalyytit muistuttavat että sama voima toimii molempiin suuntiin.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä ennuste on sarjan parhaiten testattavissa, koska TTT-tietokannan elastisuusaineisto sisältää jo 255 interventiokohtaista vaikutusarviota. Niistä voidaan tarkastella, vaihteleeko kustannustehokkuus epälineaarisesti — mikä olisi merkki kynnysvaikutuksista.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Milloin kumoutuu",
+          "position": 3,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jos kitkan poistaminen ei muuta käyttäytymistä — eli prosessien yksinkertaistaminen ei lisää palveluiden käyttöä tai tuloksia ennustettavalla tavalla — ennuste heikkenee.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "heading",
+                "attrs": {
+                  "level": 3
+                },
+                "content": [
+                  {
+                    "text": "Operationalisointi",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mittari: TTT-tietokannan elasticities-taulun pienten interventioiden vaikutus per käyttöönotettu yksikkö, verrattuna nullhypoteesiin että vaikutus on lineaarinen panoksen kanssa. Aineisto on jo olemassa (255 elastisuusarvoa). Kynnys: jos kustannustehokkuus per euro vaihtelee alle 3-kertaisesti interventioiden välillä, kitkahypoteesi ei tuota epälineaarisuutta.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "heading",
+                "attrs": {
+                  "level": 3
+                },
+                "content": [
+                  {
+                    "text": "Datan saatavuus",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Testattavissa nyt — aineisto on käytettävissä",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Mitä tämä tarkoittaa",
+          "position": 4,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jos pieni kitkan poisto todella tuottaa suuria vaikutuksia, resurssien kohdentaminen muuttuu. Kannattaa etsiä kynnyksiä — kohtia joissa pieni interventio laukaisee suuren muutoksen — sen sijaan että jaettaisiin resursseja tasaisesti. Mutta samalla on tunnistettava haitalliset katalyytit ja lisättävä niihin kitkaa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä on kirjan Katalyytti ydinhavainto: tahdosta riippumaton muutos. Oikeassa kohdassa rakenne muuttaa käyttäytymistä ilman että ketään tarvitsee suostutella.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "slug": "ennuste-6-polkuriippuvuus",
+      "title": "Ennuste 6 — Polkuriippuvuus",
+      "position": 6,
+      "sections": [
+        {
+          "title": "Väite",
+          "position": 0,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Samat yksittäiset politiikat eivät tuota Suomessa samoja vaikutuksia kuin Ruotsissa, Tanskassa tai Norjassa — koska lähtörakenne on erilainen.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä on sarjan vahvin yksittäinen väite. Jos se pitää paikkansa, pohjoismainen vertailu on usein harhaanjohtava: sama reformi eri lähtörakenteessa tuottaa eri tuloksen. Ja vastaavasti — Suomeen sopiva ratkaisu voi näyttää naapurimaissa toimimattomalta.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Mekanismi",
+          "position": 1,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Polkuriippuvuus tarkoittaa että historian kulkureitti rajoittaa nykyisiä vaihtoehtoja. Suomen erityispiirteet eivät ole sattumaa: ne ovat seurausta erilaisesta historiallisesta polusta.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Eläkejärjestelmän rahoitusmalli, kuntarakenne, väestön ikäjakauma, julkisen velan profiili ja maahanmuuton historia poikkeavat kaikki samanaikaisesti muista pohjoismaista. Yksikin näistä eroista riittäisi tekemään reformin vaikutuksen erilaiseksi. Niiden yhdistelmä tekee Suomesta omanlaisensa testipaikan.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Polkuriippuvuus ei ole pessimismiä — se on tarkkuutta. Vertailu auttaa kun se ottaa lähtörakenteet huomioon. Naapuriaan jäljittelevä reformi joka ei tunnista omia lähtökohtia, tuottaa tuloksia jotka näyttävät yllätyksiltä mutta eivät ole sitä.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Rakenteelliset erot",
+          "position": 2,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kaksi mittaria tekevät polkuriippuvuuden näkyväksi: hedelmällisyysluku ja julkinen velka. Molemmat ovat hitaita rakenteellisia muuttujia — ne eivät reagoi yhden hallituskauden päätöksiin, mutta kantavat pitkän polun jäljet.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Hedelmällisyydessä Suomi seurasi pohjoismaisia naapureitaan vuoteen 2010 saakka. Sen jälkeen kehitys kääntyi — Suomen TFR on laskenut nopeammin ja pidemmälle kuin yhdenkään muun pohjoismaan. Vuonna 2024 Suomi oli ainoa pohjoismaa jonka TFR oli alle 1,3.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Velkakehityksessä Suomi erkaantui 2008 finanssikriisin jälkeen. Ruotsi piti velkansa kurissa, Tanska laski sitä, Norjalla on rakenteellinen ylijäämä öljystä. Suomi on ainoa pohjoismaa jonka velka on jatkuvasti noussut vuodesta 2008 alkaen — ja kiihdyttänyt kasvuaan 2020-luvulla.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Nämä kaksi muuttujaa eivät ole erillisiä. Alhainen syntyvyys nostaa eläke- ja hoivamenojen suhteellista painoa, mikä lisää velkapainetta. Korkea velka kaventaa fiskaalista pelivaraa, mikä vaikuttaa perhepoliittisiin investointeihin. Polku kiertää itseään.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Milloin ennuste kumoutuu",
+          "position": 3,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ennuste heikkenee jos pohjoismaiset reformit (eläke, sote, työvoima, koulutus) tuottavat Suomeen siirrettyinä saman suuruisia vaikutuksia kuin alkuperäisissä maissaan — kun ikä, sairastavuus- ja sosioekonominen rakenne vakioidaan.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä on tiukempi testi kuin ensilukemalta vaikuttaa. Vaikuttavuusarvioita on tehty satoja eri reformeista. Jos niissä ei keskimäärin näy systemaattista eroa Suomen ja verrokkimaiden välillä — tai jos ero selittyy kokonaan vakioiduilla muuttujilla — polkuriippuvuus-hypoteesi heikkenee.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Vastaavasti vahvistuminen tapahtuu jos siirretyt reformit tuottavat järjestelmällisesti pienempiä tai erisuuntaisia vaikutuksia kuin alkuperäisissä maissa. Tämä ei tarkoita että reformeja ei kannata yrittää — se tarkoittaa että odotetut vaikutukset tulisi kalibroida lähtörakenteen mukaan, ei naapurin tulosten.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "heading",
+                "attrs": {
+                  "level": 3
+                },
+                "content": [
+                  {
+                    "text": "Operationalisointi",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mittari: pohjoismaisten reformien (eläke, sote, varhaiskasvatus) vaikuttavuusarvioiden vertailu Suomen ja Ruotsin välillä, kun ikärakenne, BKT, sote-rahoituksen taso ja kuntarakenne vakioidaan. Aineisto: nordic_indicators (22 552 riviä), TTT-tietokannan elasticities ja causal_chains. Kynnys: jos systemaattinen ero vaikutusten välillä on alle 15 % vakioinnin jälkeen, polkuriippuvuus selittyy taustatekijöillä eikä rakenteella.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "heading",
+                "attrs": {
+                  "level": 3
+                },
+                "content": [
+                  {
+                    "text": "Datan saatavuus",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Testattavissa nyt — aineisto on käytettävissä. Tämä tarkoittaa että ennusteen kumoutuminen tai vahvistuminen on testattavissa olemassa olevalla aineistolla — ei vaadi uutta tutkimusasetelmaa eikä keräystyötä. Falsifiointityo voi alkaa nyt.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Mitä indikaattorit kertovat",
+          "position": 4,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Polkuriippuvuus-indeksi koostuu neljästä komponentista:",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "bulletList",
+                "content": [
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "text": "Ikärakenteen, eläkevastuiden ja julkisen velan yhteisprofiili",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "text": "Kuntarakenteen ja palveluverkon hajanaisuus suhteessa väestöpohjaan",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "text": "Sukupolvien välinen nettosaanto: verot, etuudet, velka ja palvelujen käyttö",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "listItem",
+                    "content": [
+                      {
+                        "type": "paragraph",
+                        "content": [
+                          {
+                            "text": "Reformin vaikutuksen ero Suomen ja verrokkimaan välillä samoin vakioinnein",
+                            "type": "text"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Pidempi käsittely sukupolvien välisistä eroista ja Suomen erityispiirteistä on kirjassa Sukupolvi joka kantaa. Tämä luku on yhden ennusteen falsifiointiprotokolla — kirja itse käy läpi mekanismit ja sukupolvitarinat joiden kautta polkuriippuvuus toimii.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
 }
