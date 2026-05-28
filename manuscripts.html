@@ -593,6 +593,19 @@
         font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
         font-size: 11px; color: var(--muted-2); opacity: 0.7;
       }
+      /* VAIHE 5: "Data saatavilla" -merkki evidence-rivillä */
+      .ev-data-available {
+        display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+        margin-top: 6px; font-size: 12px;
+      }
+      .ev-data-dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        background: #1d9e75; display: inline-block; flex-shrink: 0;
+      }
+      .ev-data-label {
+        color: #1d9e75; font-weight: 600; letter-spacing: 0.02em;
+      }
+      .ev-data-sub { color: var(--muted-2); }
       .pcard-evidence-empty {
         font-size: 13px; color: var(--muted); font-style: italic;
         padding: 8px 0;
@@ -2039,6 +2052,32 @@
       // Kokoaa väitteen, kumoutumisehdon (periaate + operationalisointi + datan tila)
       // ja näyttölistan yhteen jäsenneltyyn korttiin. Kumoutumisehto näytetään
       // yhtä näkyvästi kuin näyttö -- tutkimusprotokollan ydinperiaate.
+      // VAIHE 5: evidence_key -> series_link -mappi (täytetään latauksessa)
+      let seriesLinkMap = {};
+      function buildSeriesLinkMap(appendixPayload) {
+        seriesLinkMap = {};
+        const links = appendixPayload && Array.isArray(appendixPayload.series_links)
+          ? appendixPayload.series_links : [];
+        for (const l of links) {
+          if (l && l.evidence_key) seriesLinkMap[l.evidence_key] = l;
+        }
+      }
+
+      // Pieni "Data saatavilla" -merkki yhdelle series-linkille
+      function renderSeriesAvailability(link) {
+        if (!link) return "";
+        const years = (link.year_start && link.year_end)
+          ? `${link.year_start}–${link.year_end}` : "";
+        const codes = Array.isArray(link.expected_j_codes) && link.expected_j_codes.length
+          ? link.expected_j_codes.join(" / ") : "";
+        const sub = [link.indicator_name, years, codes].filter(Boolean).map(esc).join(" · ");
+        return `<div class="ev-data-available">
+            <span class="ev-data-dot"></span>
+            <span class="ev-data-label">Data saatavilla</span>
+            ${sub ? `<span class="ev-data-sub">${sub}</span>` : ""}
+          </div>`;
+      }
+
       function renderResearchCard(c) {
         const num = c.prediction_number;
         const lens = c.lens || "";
@@ -2047,7 +2086,17 @@
         const falsOp = c.falsification_operationalized || "";
         const status = c.data_status || "";
         const statusFi = c.data_status_fi || "";
-        const evidence = Array.isArray(c.evidence) ? c.evidence : [];
+        // Kortin näyttö voi tulla joko evidence-listana (otsikot) tai pelkkinä
+        // evidence_keys-avaimina. Normalisoidaan molemmat samaan muotoon.
+        let evidence = Array.isArray(c.evidence) ? c.evidence : [];
+        if (!evidence.length && Array.isArray(c.evidence_keys)) {
+          // Pelkät avaimet: tehdään niistä rivit, poistetaan duplikaatit
+          const seen = new Set();
+          evidence = c.evidence_keys.filter(k => {
+            if (seen.has(k)) return false;
+            seen.add(k); return true;
+          }).map(k => ({ evidence_key: k, title: null, type: null, source: null }));
+        }
 
         const topLabel = (num ? `Ennuste ${num} / 6` : "Tutkimuskortti");
         const statusDot = status
@@ -2070,10 +2119,13 @@
           ? `<div class="pcard-evidence-label">Liitetty näyttö</div>
              <div class="pcard-evidence-list">
                ${evidence.map((e) => {
-                 const meta = [e.source, labelFor(e.type)].filter(Boolean).map(esc).join(" · ");
+                 const link = e.evidence_key ? seriesLinkMap[e.evidence_key] : null;
+                 const titleText = e.title || (link ? link.indicator_name : e.evidence_key) || "";
+                 const meta = [e.source, e.type ? labelFor(e.type) : ""].filter(Boolean).map(esc).join(" · ");
                  return `<div class="pcard-evidence-row">
-                   <div class="ev-title">${esc(e.title || "")}</div>
+                   <div class="ev-title">${esc(titleText)}</div>
                    <div class="ev-meta">${meta ? `<span>${meta}</span>` : ""}${e.evidence_key ? `<span class="ev-key">${esc(e.evidence_key)}</span>` : ""}</div>
+                   ${renderSeriesAvailability(link)}
                  </div>`;
                }).join("")}
              </div>`
@@ -2189,7 +2241,7 @@
           const predLine1 = esc(predParts[0] || "");
           const predLine2 = esc(predParts.slice(1).join(" "));
           return `
-            <a class="wheel-sector" href="${href}" aria-label="${safeBook} — ennuste: ${safePred}">
+            <a class="wheel-sector" href="${href}" aria-label="${safeBook} -- ennuste: ${safePred}">
               <path class="wheel-sector-shape" d="${d}" fill="${colors[i]}"></path>
               <text class="wheel-num" x="${nx}" y="${ny}" text-anchor="middle" dominant-baseline="middle">${i + 1}</text>
               <text class="wheel-label" x="${lx}" y="${ly - 18}" text-anchor="middle">
@@ -2353,6 +2405,11 @@
         try {
           [data, appendixPayload] = await Promise.all([loadBook(slug), loadAppendices(slug)]);
         } catch (e) { return setError(e.message || "Kirjaa ei löytynyt."); }
+
+        // VAIHE 5: rakenna evidence_key -> series_link -mappi appendices-payloadista.
+        // Lukija näyttää research-cardin evidence-rivillä "Data saatavilla", jos
+        // avain löytyy. Ei tietokantayhteyttä -- tieto tulee staattisesta JSON:ista.
+        buildSeriesLinkMap(appendixPayload);
 
         const all = (data.chapters || []).slice().sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
         const current = all.find((c) => c.slug === chapterSlug);
