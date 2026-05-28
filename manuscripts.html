@@ -2078,69 +2078,101 @@
           </div>`;
       }
 
-      function renderResearchCard(c) {
-        const num = c.prediction_number;
-        const lens = c.lens || "";
-        const claim = c.prediction || "";
-        const fals = c.falsification || "";
-        const falsOp = c.falsification_operationalized || "";
-        const status = c.data_status || "";
-        const statusFi = c.data_status_fi || "";
-        // Kortin näyttö voi tulla joko evidence-listana (otsikot) tai pelkkinä
-        // evidence_keys-avaimina. Normalisoidaan molemmat samaan muotoon.
-        let evidence = Array.isArray(c.evidence) ? c.evidence : [];
-        if (!evidence.length && Array.isArray(c.evidence_keys)) {
-          // Pelkät avaimet: tehdään niistä rivit, poistetaan duplikaatit
-          const seen = new Set();
-          evidence = c.evidence_keys.filter(k => {
-            if (seen.has(k)) return false;
-            seen.add(k); return true;
-          }).map(k => ({ evidence_key: k, title: null, type: null, source: null }));
-        }
+function renderResearchCard(c) {
+  const status = c.falsification_data_available || "requires_collection";
+  const statusLabel = c.data_status_fi || (
+    status === "ready"
+      ? "Testattavissa nyt"
+      : status === "partial"
+        ? "Osittain testattavissa"
+        : "Vaatii aineiston keruun"
+  );
 
-        const topLabel = (num ? `Ennuste ${num} / 6` : "Tutkimuskortti");
-        const statusDot = status
-          ? `<span class="pcard-status-dot ${esc(status)}" title="${esc(statusFi)}"></span>`
-          : "";
+  const evidence = Array.isArray(c.evidence) && c.evidence.length
+    ? c.evidence
+        .filter((e) => e && e.evidence_key)
+        .map((e) => ({
+          evidence_key: e.evidence_key,
+          title: e.title || e.evidence_key,
+          type: e.type || "",
+          source: e.source || "",
+        }))
+    : Array.isArray(c.evidence_keys)
+      ? c.evidence_keys.map((key, i) => ({
+          evidence_key: key,
+          title: Array.isArray(c.evidence_titles)
+            ? (c.evidence_titles[i] || key)
+            : key,
+          type: "",
+          source: "",
+        }))
+      : [];
 
-        const falsBlock = fals
-          ? `<div class="pcard-falsification">
-               <div class="label">Mikä heikentäisi tätä ennustetta?</div>
-               <div class="text">${esc(fals)}</div>
-               ${falsOp ? `<div class="op">${esc(falsOp)}</div>` : ""}
-               ${statusFi ? `<div class="status-line">${statusDot}${esc(statusFi)}</div>` : ""}
-             </div>`
-          : `<div class="pcard-falsification pcard-falsification-missing">
-               <div class="label">Kumoutumisehto puuttuu</div>
-               <div class="text">Tälle ennusteelle ei ole vielä määritelty ehtoa joka heikentäisi sitä.</div>
-             </div>`;
-
-        const evidenceBlock = evidence.length
-          ? `<div class="pcard-evidence-label">Liitetty näyttö</div>
-             <div class="pcard-evidence-list">
-               ${evidence.map((e) => {
-                 const link = e.evidence_key ? seriesLinkMap[e.evidence_key] : null;
-                 const titleText = e.title || (link ? link.indicator_name : e.evidence_key) || "";
-                 const meta = [e.source, e.type ? labelFor(e.type) : ""].filter(Boolean).map(esc).join(" · ");
-                 return `<div class="pcard-evidence-row">
-                   <div class="ev-title">${esc(titleText)}</div>
-                   <div class="ev-meta">${meta ? `<span>${meta}</span>` : ""}${e.evidence_key ? `<span class="ev-key">${esc(e.evidence_key)}</span>` : ""}</div>
-                   ${renderSeriesAvailability(link)}
-                 </div>`;
-               }).join("")}
-             </div>`
-          : `<div class="pcard-evidence-empty">Tälle ennusteelle ei ole vielä liitetty näyttöaineistoa.</div>`;
+  const evidenceHtml = evidence.length
+    ? evidence.map((e) => {
+        const key = e.evidence_key || "";
+        const link = key ? seriesLinkMap[key] : null;
 
         return `
-          <div class="pcard">
-            <div class="pcard-toplabel">${statusDot}${esc(topLabel)}</div>
-            ${lens ? `<div class="pcard-lens">${esc(lens)}</div>` : ""}
-            ${claim ? `<div class="pcard-claim">${esc(claim)}</div>` : ""}
-            ${falsBlock}
-            ${evidenceBlock}
-          </div>`;
-      }
+          <button
+            type="button"
+            class="pcard-evidence-row"
+            data-evidence-key="${esc(key)}"
+            aria-label="Avaa evidence-liite: ${esc(e.title || key)}"
+          >
+            <div class="ev-title">${esc(e.title || key)}</div>
+            <div class="ev-meta">
+              ${e.type ? `<span>${esc(e.type)}</span>` : ""}
+              ${e.source ? `<span>${esc(e.source)}</span>` : ""}
+              ${key ? `<span class="ev-key">${esc(key)}</span>` : ""}
+            </div>
+            ${renderSeriesAvailability(link)}
+          </button>
+        `;
+      }).join("")
+    : `<div class="pcard-evidence-empty">Ei evidence-linkkejä.</div>`;
 
+  return `
+    <article class="pcard">
+      <div class="pcard-toplabel">
+        <span class="pcard-status-dot ${esc(status)}"></span>
+        <span>Ennuste ${esc(c.prediction_number || "")}</span>
+      </div>
+
+      <div class="pcard-lens">${esc(c.lens || "Tutkimuskortti")}</div>
+
+      ${c.prediction ? `
+        <div class="pcard-claim">${esc(c.prediction)}</div>
+      ` : ""}
+
+      <div class="pcard-falsification ${c.falsification ? "" : "pcard-falsification-missing"}">
+        <div class="label">Mikä heikentäisi tätä ennustetta?</div>
+        <div class="text">
+          ${esc(c.falsification || "Falsifiointiehto puuttuu.")}
+        </div>
+
+        ${c.falsification_operationalized ? `
+          <div class="op">
+            ${esc(c.falsification_operationalized)}
+          </div>
+        ` : ""}
+
+        <div class="status-line">
+          <span class="pcard-status-dot ${esc(status)}"></span>
+          <span>${esc(statusLabel)}</span>
+        </div>
+      </div>
+
+      <div class="pcard-evidence-label">
+        Evidence${typeof c.evidence_count === "number" ? ` · ${esc(c.evidence_count)} kpl` : ""}
+      </div>
+
+      <div class="pcard-evidence-list">
+        ${evidenceHtml}
+      </div>
+    </article>
+  `;
+}
       function buildInlineAppendixHtml(appendices, region) {
         if (!appendices || !appendices.length) return "";
         const label = region === "chapter" ? "Tämän luvun liitteet" : "Liitteet";
