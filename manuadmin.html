@@ -791,6 +791,11 @@
         color: var(--muted);
         margin-bottom: 4px;
       }
+      .app-findings { margin-top: 12px; }
+      .app-findings > li { padding: 10px 0; }
+      .app-key-insight { border-left: 3px solid var(--accent); }
+      .app-reader-shift { background: var(--bg-soft); font-style: italic; }
+      .app-reader-shift .label { font-style: normal; }
 
       /* Calculation table */
       .app-calc-table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -1579,6 +1584,7 @@
             <button id="copyTxtBtn" title="Kopioi koko kirjan teksti leikepöydälle">📋 Kopioi TXT</button>
             <button id="exportBookBtn" title="Lataa nykyisen kirjan teksti JSON-tiedostona">⬇ Kirja JSON</button>
             <button id="exportAppsBtn" title="Lataa nykyisen kirjan liitteet JSON-tiedostona">⬇ Liitteet JSON</button>
+            <button id="exportAllBtn" title="Vie kaikki kirjat, liitteet ja index1.json yhtenä zip-tiedostona">⬇⬇ Vie kaikki (zip)</button>
             <span class="user-pill" id="userPill"></span>
             <button id="logoutBtn" title="Kirjaudu ulos">Ulos</button>
           </div>
@@ -2340,6 +2346,37 @@
           c.source ? `<div class="source">${esc(c.source)}</div>` : "",
         ].join("");
       }
+      // ─── findings / key_insight / reader_shift (mm. COFOG-liitteet) ──────
+      function renderAnalysisFields(c) {
+        let out = "";
+        if (Array.isArray(c.findings) && c.findings.length) {
+          const items = c.findings.map((f) => {
+            if (typeof f === "string") return `<li><div class="app-item-body">${esc(f)}</div></li>`;
+            if (!f || typeof f !== "object") return "";
+            const head = f.aihe || f.title || f.otsikko || f.teema || null;
+            const body = f.havainto || f.body || f.kuvaus || f.finding || null;
+            const why  = f.merkitys || f.implication || f.miksi || f.significance || null;
+            const headHtml = head ? `<div class="app-item-head">${esc(head)}</div>` : "";
+            const bodyHtml = body ? `<div class="app-item-body"><p>${esc(body)}</p></div>` : "";
+            const whyHtml  = why ? `<dl class="app-kv"><dt>merkitys</dt><dd>${esc(why)}</dd></dl>` : "";
+            if (!head && !body && !why) {
+              const keys = Object.keys(f).filter((k) => typeof f[k] === "string" && f[k].trim());
+              if (!keys.length) return "";
+              return `<li><dl class="app-kv">${keys.map((k) => `<dt>${esc(k.replace(/_/g, " "))}</dt><dd>${esc(f[k])}</dd>`).join("")}</dl></li>`;
+            }
+            return `<li>${headHtml}${bodyHtml}${whyHtml}</li>`;
+          }).join("");
+          out += `<ul class="app-items app-findings">${items}</ul>`;
+        }
+        if (typeof c.key_insight === "string" && c.key_insight.trim()) {
+          out += `<div class="app-chain-extra app-key-insight"><div class="label">Keskeinen havainto</div><div>${esc(c.key_insight)}</div></div>`;
+        }
+        if (typeof c.reader_shift === "string" && c.reader_shift.trim()) {
+          out += `<div class="app-chain-extra app-reader-shift"><div class="label">Lukijan näkökulma</div><div>${esc(c.reader_shift)}</div></div>`;
+        }
+        return out;
+      }
+
       function renderCalculation(c) {
         const rows = Array.isArray(c.rows) ? c.rows : [];
         let table = "";
@@ -2355,6 +2392,7 @@
           c.body ? `<p class="lead">${esc(c.body)}</p>` : "",
           c.note ? `<div class="note">${esc(c.note)}</div>` : "",
           table,
+          renderAnalysisFields(c),
           c.source ? `<div class="source">${esc(c.source)}</div>` : "",
         ].join("");
       }
@@ -2464,7 +2502,7 @@
           table = `<div style="overflow-x:auto"><table class="app-table">${head}${body}</table></div>`;
         }
         const source = c.source ? `<div class="source">${esc(c.source)}</div>` : "";
-        return [lead, note, table, source].join("");
+        return [lead, note, table, renderAnalysisFields(c), source].join("");
       }
 
       // ─── paperdoll ────────────────────────────────────────────────────────
@@ -2656,12 +2694,57 @@
         };
       }
 
+      // Täydentää valmiin Chart.js-datan värit teemapaletista (COFOG-liitteet ym.)
+      function colorizeDatasets(config) {
+        const C = chartPalette();
+        if (!config || !config.data || !Array.isArray(config.data.datasets)) return config;
+        const nordicFallback = [C.nordic, C.replacement, '#c08a4a', '#8a6dad'];
+        let fallbackIdx = 0;
+        config.data.datasets.forEach((ds) => {
+          const label = (ds.label || "").toLowerCase();
+          const isFinland = label.includes("suomi") || label.includes("finland");
+          if (ds.borderColor === undefined) {
+            ds.borderColor = isFinland ? C.fi : nordicFallback[fallbackIdx++ % nordicFallback.length];
+          }
+          if (ds.backgroundColor === undefined) {
+            ds.backgroundColor = (config.type === "bar") ? ds.borderColor : 'transparent';
+          }
+          if (ds.borderWidth === undefined) ds.borderWidth = isFinland ? 2.0 : 1.5;
+          if (ds.pointRadius === undefined) ds.pointRadius = 0;
+          if (ds.pointHoverRadius === undefined) ds.pointHoverRadius = 3;
+          if (ds.tension === undefined && config.type !== "bar") ds.tension = 0.25;
+        });
+        return config;
+      }
+
+      function applyChartTheme(config) {
+        const C = chartPalette();
+        config.options = config.options || {};
+        const o = config.options;
+        if (o.responsive === undefined) o.responsive = true;
+        if (o.maintainAspectRatio === undefined) o.maintainAspectRatio = false;
+        o.plugins = o.plugins || {};
+        o.plugins.legend = o.plugins.legend || {};
+        o.plugins.legend.labels = Object.assign({ color: C.text, font: { size: 11 } }, o.plugins.legend.labels || {});
+        o.scales = o.scales || {};
+        ["x", "y"].forEach((ax) => {
+          o.scales[ax] = o.scales[ax] || {};
+          o.scales[ax].ticks = Object.assign({ color: C.text, font: { size: 10 } }, o.scales[ax].ticks || {});
+          o.scales[ax].grid = Object.assign({ color: C.grid }, o.scales[ax].grid || {});
+          if (o.scales[ax].title) {
+            o.scales[ax].title = Object.assign({ color: C.text, font: { size: 10 } }, o.scales[ax].title);
+          }
+        });
+        return config;
+      }
+
       function renderChartJs(app) {
         const c = app.content || {};
         const id = "chartjs_" + Math.random().toString(36).slice(2, 10);
         const lead = c.body ? `<p class="lead">${esc(c.body)}</p>` : "";
         const note = c.note ? `<div class="note">${esc(c.note)}</div>` : "";
         const source = c.source ? `<div class="source">${esc(c.source)}</div>` : "";
+        const analysis = renderAnalysisFields(c);
         const height = Number(c.height) || 360;
         const canvas = `
           <div class="app-chart-wrap" style="height:${height}px">
@@ -2676,8 +2759,9 @@
               let config;
               if (c.kind === "raw" && c.config) {
                 config = c.config;
+              } else if (c.chart && c.chart.data) {
+                config = applyChartTheme(colorizeDatasets(c.chart));
               } else {
-                // oletuksena preset-fi-nordic
                 config = buildChartPreset(c);
               }
               new Chart(canvasEl, config);
@@ -2689,7 +2773,7 @@
             if (w) w.outerHTML = `<div class="note">Chart.js-kirjastoa ei voitu ladata: ${esc(err.message)}</div>`;
           });
         }, 0);
-        return [lead, note, canvas, source].join("");
+        return [lead, note, canvas, analysis, source].join("");
       }
 
       function renderChartUnsupported(app, name) {
@@ -3129,6 +3213,28 @@
         }
       }
 
+      // Rakentaa kirja-payloadin (manu.html-yhteensopiva) lataamatta tiedostoa.
+      async function buildBookPayload(slug) {
+        const data = await loadBook(slug);
+        return {
+          slug: data.slug,
+          title: data.title,
+          author: data.author,
+          description: data.description,
+          cover_url: data.cover_url,
+          chapters: data.chapters.map(ch => ({
+            slug: ch.slug,
+            title: ch.title,
+            position: ch.position,
+            sections: ch.sections.map(s => ({
+              title: s.title,
+              position: s.position,
+              content: s.content,
+            })),
+          })),
+        };
+      }
+
       async function exportBookJson() {
         const slug = adminState.currentBookSlug;
         if (!slug) {
@@ -3136,27 +3242,7 @@
           return;
         }
         try {
-          const data = await loadBook(slug);
-          // Tuotetaan rakenne joka on suoraan yhteensopiva manu.html:n kanssa:
-          // ei "book"-kääröä -- kirjan kentät juuressa (slug, title, author, chapters).
-          // Pudotetaan admin-tunnisteet (_book_id, _id) jotka eivät kuulu vientiin.
-          const cleaned = {
-            slug: data.slug,
-            title: data.title,
-            author: data.author,
-            description: data.description,
-            cover_url: data.cover_url,
-            chapters: data.chapters.map(ch => ({
-              slug: ch.slug,
-              title: ch.title,
-              position: ch.position,
-              sections: ch.sections.map(s => ({
-                title: s.title,
-                position: s.position,
-                content: s.content,
-              })),
-            })),
-          };
+          const cleaned = await buildBookPayload(slug);
           downloadJson(`${slug}.json`, cleaned);
           toast("Kirja-JSON ladattu", "success");
         } catch (err) {
@@ -3164,88 +3250,45 @@
         }
       }
 
-async function exportAppendicesJson() {
-  if (!adminState.currentBookSlug) {
-    toast("Avaa ensin kirja, jonka liitteet viedään.", "error");
-    return;
-  }
-
-  try {
-    const slug = adminState.currentBookSlug;
-
+// Rakentaa liite-payloadin (lukija-yhteensopiva) lataamatta tiedostoa.
+// Heittää virheen jos haku epäonnistuu; kutsuja hoitaa virheet.
+async function buildAppendicesPayload(slug) {
     // 1. Hae kirja
     const { data: book, error: bookErr } = await sb
       .from("books")
       .select("id, slug, title")
       .eq("slug", slug)
       .single();
-
-    if (bookErr) {
-      throw new Error("Kirjan haku epäonnistui: " + bookErr.message);
-    }
-
-    if (!book) {
-      throw new Error("Kirjaa ei löytynyt: " + slug);
-    }
+    if (bookErr) throw new Error("Kirjan haku epäonnistui: " + bookErr.message);
+    if (!book) throw new Error("Kirjaa ei löytynyt: " + slug);
 
     // 2. Hae liitteet
     const { data: appendices, error: appsErr } = await sb
       .from("appendices")
       .select(`
-        id,
-        book_id,
-        chapter_position,
-        section_position,
-        type,
-        title,
-        source,
-        position,
-        content,
-        hidden
+        id, book_id, chapter_position, section_position,
+        type, title, source, position, content, hidden
       `)
       .eq("book_id", book.id)
       .order("chapter_position", { ascending: true })
       .order("section_position", { ascending: true, nullsFirst: false })
       .order("position", { ascending: true });
+    if (appsErr) throw new Error("Liitteiden haku epäonnistui: " + appsErr.message);
 
-    if (appsErr) {
-      throw new Error("Liitteiden haku epäonnistui: " + appsErr.message);
-    }
-
-    // 3. Hae deduplikoidut data-/sarjalinkit
-    // Tämä on vaihe 5:n export-silta:
-    // evidence_key → indicator_key → aikasarjametadatat
-const { data: seriesLinks, error: seriesErr } = await sb
-  .from("v_evidence_series_export")
-  .select(`
-    evidence_key,
-    indicator_key,
-    indicator_name,
-    external_project,
-    external_project_ref,
-    geography,
-    year_start,
-    year_end,
-    expected_j_codes,
-    data_role,
-    note
-  `)
-  .order("evidence_key", { ascending: true });
-
-    if (seriesErr) {
-      throw new Error("Series-linkkien haku epäonnistui: " + seriesErr.message);
-    }
+    // 3. Hae deduplikoidut data-/sarjalinkit (evidence_key → indicator_key → metadata)
+    const { data: seriesLinks, error: seriesErr } = await sb
+      .from("v_evidence_series_export")
+      .select(`
+        evidence_key, indicator_key, indicator_name, external_project,
+        external_project_ref, geography, year_start, year_end,
+        expected_j_codes, data_role, note
+      `)
+      .order("evidence_key", { ascending: true });
+    if (seriesErr) throw new Error("Series-linkkien haku epäonnistui: " + seriesErr.message);
 
     let hiddenCount = 0;
-
     const visibleAppendices = (appendices || [])
-      .filter((a) => {
-        if (a.hidden === true) {
-          hiddenCount++;
-          return false;
-        }
-        return true;
-      })
+      .filter((a) => { if (a.hidden === true) { hiddenCount++; return false; } return true; })
       .map((a) => ({
         chapter_position: a.chapter_position,
         section_position: a.section_position,
@@ -3256,22 +3299,13 @@ const { data: seriesLinks, error: seriesErr } = await sb
         content: a.content || {},
       }));
 
-    // 4. Ryhmittele liitteet lukujen alle lukijaversion odottamaan muotoon
+    // 4. Ryhmittele liitteet lukujen alle
     const chaptersMap = new Map();
-
     for (const a of visibleAppendices) {
       const cp = Number(a.chapter_position);
-
-      if (!chaptersMap.has(cp)) {
-        chaptersMap.set(cp, {
-          chapter_position: cp,
-          appendices: [],
-        });
-      }
-
+      if (!chaptersMap.has(cp)) chaptersMap.set(cp, { chapter_position: cp, appendices: [] });
       chaptersMap.get(cp).appendices.push(a);
     }
-
     const chapters = [...chaptersMap.values()]
       .sort((a, b) => a.chapter_position - b.chapter_position)
       .map((ch) => ({
@@ -3284,7 +3318,7 @@ const { data: seriesLinks, error: seriesErr } = await sb
         }),
       }));
 
-    // 5. Puhdista series_links exporttiin
+    // 5. Puhdista series_links
     const cleanedSeriesLinks = (seriesLinks || []).map((s) => ({
       evidence_key: s.evidence_key,
       indicator_key: s.indicator_key,
@@ -3299,27 +3333,28 @@ const { data: seriesLinks, error: seriesErr } = await sb
       note: s.note,
     }));
 
-    // 6. Rakenna export-payload
-    const payload = {
-      book_slug: book.slug,
-      book_title: book.title,
-      exported_at: new Date().toISOString(),
-      chapters,
-      series_links: cleanedSeriesLinks,
+    return {
+      payload: {
+        book_slug: book.slug,
+        book_title: book.title,
+        exported_at: new Date().toISOString(),
+        chapters,
+        series_links: cleanedSeriesLinks,
+      },
+      stats: { visible: visibleAppendices.length, links: cleanedSeriesLinks.length, hidden: hiddenCount },
     };
+}
 
-    // 7. Lataa JSON-tiedosto
-    downloadJson(`${book.slug}-appendices.json`, payload);
-
-    const msgParts = [
-      `Liitteet viety: ${visibleAppendices.length} kpl`,
-      `series_links: ${cleanedSeriesLinks.length} kpl`,
-    ];
-
-    if (hiddenCount > 0) {
-      msgParts.push(`piilotettuja ohitettu: ${hiddenCount} kpl`);
-    }
-
+async function exportAppendicesJson() {
+  if (!adminState.currentBookSlug) {
+    toast("Avaa ensin kirja, jonka liitteet viedään.", "error");
+    return;
+  }
+  try {
+    const { payload, stats } = await buildAppendicesPayload(adminState.currentBookSlug);
+    downloadJson(`${payload.book_slug}-appendices.json`, payload);
+    const msgParts = [`Liitteet viety: ${stats.visible} kpl`, `series_links: ${stats.links} kpl`];
+    if (stats.hidden > 0) msgParts.push(`piilotettuja ohitettu: ${stats.hidden} kpl`);
     toast(msgParts.join(" · "), "success");
   } catch (err) {
     console.error("[exportAppendicesJson]", err);
@@ -3337,9 +3372,97 @@ const { data: seriesLinks, error: seriesErr } = await sb
         URL.revokeObjectURL(url);
       }
 
+      // Lataa JSZip-kirjasto kerran (CDN). Palauttaa Promisen.
+      let _jszipPromise = null;
+      function loadJsZipOnce() {
+        if (window.JSZip) return Promise.resolve();
+        if (_jszipPromise) return _jszipPromise;
+        _jszipPromise = new Promise((resolve, reject) => {
+          const s = document.createElement("script");
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";
+          s.onload = () => resolve();
+          s.onerror = () => reject(new Error("JSZip-kirjastoa ei voitu ladata"));
+          document.head.appendChild(s);
+        });
+        return _jszipPromise;
+      }
+
+      // Vie KAIKKI kirjat + liitteet + index1.json yhtenä zip-tiedostona.
+      // Tiedostot menevät zipissä books/-kansioon, joten puran sen suoraan
+      // palvelimen juureen (tai books/ ylätasolle).
+      async function exportAllZip() {
+        const btn = document.getElementById("exportAllBtn");
+        const origLabel = btn ? btn.textContent : "";
+        const setLabel = (t) => { if (btn) btn.textContent = t; };
+        try {
+          if (btn) btn.disabled = true;
+          setLabel("Haetaan kirjat…");
+
+          // 1. Hae kaikki kirjat (järjestys position mukaan)
+          const { data: books, error: be } = await sb
+            .from("books")
+            .select("slug, title, author, description, position")
+            .order("position", { ascending: true });
+          if (be) throw new Error("Kirjojen haku epäonnistui: " + be.message);
+          if (!books || !books.length) throw new Error("Ei kirjoja.");
+
+          await loadJsZipOnce();
+          const zip = new JSZip();
+          const folder = zip.folder("books");
+
+          // 2. index1.json — lukijan kirjalista
+          const index = books.map(b => ({
+            slug: b.slug,
+            title: b.title,
+            author: b.author,
+            description: b.description,
+          }));
+          folder.file("index1.json", JSON.stringify(index, null, 2));
+
+          // 3. Jokainen kirja + liitteet
+          let i = 0;
+          for (const b of books) {
+            i++;
+            setLabel(`Kirja ${i}/${books.length}: ${b.slug}`);
+            try {
+              const bookPayload = await buildBookPayload(b.slug);
+              folder.file(`${b.slug}.json`, JSON.stringify(bookPayload, null, 2));
+            } catch (err) {
+              console.error(`[exportAll] kirja ${b.slug} epäonnistui:`, err);
+              toast(`Kirja ${b.slug} ei latautunut: ${err.message}`, "error");
+            }
+            try {
+              const { payload } = await buildAppendicesPayload(b.slug);
+              folder.file(`${b.slug}-appendices.json`, JSON.stringify(payload, null, 2));
+            } catch (err) {
+              console.error(`[exportAll] liitteet ${b.slug} epäonnistui:`, err);
+              toast(`Liitteet ${b.slug} ei latautunut: ${err.message}`, "error");
+            }
+          }
+
+          // 4. Pakkaa ja lataa
+          setLabel("Pakataan zip…");
+          const blob = await zip.generateAsync({ type: "blob", compression: "DEFLATE", compressionOptions: { level: 6 } });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "book-haven-books.zip";
+          a.click();
+          URL.revokeObjectURL(url);
+
+          toast(`Vie kaikki valmis: ${books.length} kirjaa + index1.json`, "success");
+        } catch (err) {
+          console.error("[exportAllZip]", err);
+          toast(err.message || "Vie kaikki epäonnistui.", "error");
+        } finally {
+          if (btn) { btn.disabled = false; btn.textContent = origLabel; }
+        }
+      }
+
       document.getElementById("copyTxtBtn").addEventListener("click", copyBookAsText);
       document.getElementById("exportBookBtn").addEventListener("click", exportBookJson);
       document.getElementById("exportAppsBtn").addEventListener("click", exportAppendicesJson);
+      document.getElementById("exportAllBtn").addEventListener("click", exportAllZip);
 
       // ═══════════════════════════════════════════════════════════════════════
       //  Routes
