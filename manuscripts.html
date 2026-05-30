@@ -3,17 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Harri Käyhkö – Käsikirjoitukset</title>
-    <meta name="description" content="Harri Käyhkön käsikirjoitukset luettavaksi verkossa: analyysi Suomen hyvinvointijärjestelmästä kirjojen esiinnostamilla linsseillä." />
+    <title>Käsikirjoitusten editori (admin)</title>
+    <meta name="description" content="Admin-näkymä käsikirjoitusten muokkaamiseen ja vientiin." />
+    <meta name="robots" content="noindex, nofollow" />
     <meta name="theme-color" content="#fdfbf7" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#14110d" media="(prefers-color-scheme: dark)" />
-
-    <!-- Open Graph / sharing -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Harri Käyhkö – Käsikirjoitukset" />
-    <meta property="og:description" content="Suomen hyvinvointijärjestelmän analyysi kirjojen linsseillä -- lukijalle ja päättäjälle." />
-    <meta property="og:locale" content="fi_FI" />
-    <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,17 +15,6 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600;700&display=swap"
     />
-
-    <!-- JSON-LD: site -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Harri Käyhkö – Käsikirjoitukset",
-        "inLanguage": "fi-FI",
-        "author": { "@type": "Person", "name": "Harri Käyhkö" }
-      }
-    </script>
 
     <style>
       /* ─── Theme tokens ─────────────────────────────────────────────────── */
@@ -369,103 +352,6 @@
         border-color: var(--fg);
       }
 
-      /* ─── Pyörä: Kuusi ennustetta ─────────────────────────────────────── */
-      .wheel-section {
-        margin: 8px 0 44px;
-        padding: 28px 20px 24px;
-        background: var(--bg-soft);
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        text-align: center;
-      }
-      .wheel-section .wheel-eyebrow {
-        font-size: 12px;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--muted);
-        margin-bottom: 6px;
-      }
-      .wheel-section h2 {
-        font-family: "Instrument Serif", Georgia, serif;
-        font-weight: 400;
-        font-size: clamp(22px, 3.4vw, 30px);
-        margin: 0 0 6px;
-      }
-      .wheel-section .wheel-lede {
-        max-width: 56ch;
-        margin: 0 auto 18px;
-        color: var(--fg-soft);
-        font-size: 15px;
-        line-height: 1.55;
-      }
-      .wheel-wrap {
-        position: relative;
-        width: min(560px, 100%);
-        aspect-ratio: 1 / 1;
-        margin: 0 auto;
-      }
-      .wheel-wrap svg { width: 100%; height: 100%; display: block; }
-      .wheel-sector { transition: opacity .18s, transform .18s; transform-origin: 300px 300px; cursor: pointer; }
-      .wheel-sector:hover { opacity: .92; }
-      .wheel-sector:hover .wheel-sector-shape { filter: brightness(1.04); }
-      .wheel-sector-shape {
-        stroke: var(--bg-soft);
-        stroke-width: 2;
-      }
-      .wheel-label {
-        font-family: "Work Sans", system-ui, sans-serif;
-        font-size: 14px;
-        font-weight: 600;
-        fill: var(--fg);
-        pointer-events: none;
-      }
-      .wheel-sublabel {
-        font-family: "Work Sans", system-ui, sans-serif;
-        font-size: 11px;
-        fill: var(--fg-soft);
-        pointer-events: none;
-      }
-      .wheel-num {
-        font-family: "Instrument Serif", Georgia, serif;
-        font-size: 18px;
-        fill: var(--fg);
-        font-style: italic;
-        pointer-events: none;
-      }
-      .wheel-center-circle {
-        fill: var(--accent);
-        cursor: pointer;
-        transition: filter .15s;
-      }
-      .wheel-center-circle:hover { filter: brightness(1.12); }
-      .wheel-center-title {
-        font-family: "Instrument Serif", Georgia, serif;
-        font-size: 26px;
-        fill: var(--bg);
-        text-anchor: middle;
-        pointer-events: none;
-      }
-      .wheel-center-sub {
-        font-family: "Work Sans", system-ui, sans-serif;
-        font-size: 11px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        fill: var(--bg);
-        opacity: .72;
-        text-anchor: middle;
-        pointer-events: none;
-      }
-      .wheel-caption {
-        margin-top: 14px;
-        font-size: 13px;
-        color: var(--muted);
-      }
-      @media (max-width: 560px) {
-        .wheel-label { font-size: 12px; }
-        .wheel-sublabel { font-size: 10px; }
-        .wheel-center-title { font-size: 22px; }
-      }
-
       .books-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -518,132 +404,6 @@
       .book-title { font-size: clamp(40px, 7vw, 64px); margin-bottom: 8px; }
       .book-author { color: var(--muted); font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 18px; }
       .book-desc { color: var(--fg-soft); line-height: 1.65; max-width: 60ch; font-size: 17px; }
-
-      /* ─── Tutkimuskortit (Kuusi ennustetta) ──────────────────────────── */
-      .research-cards { display: grid; gap: 18px; margin: 24px 0 8px; }
-      .pcard {
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        padding: 22px 22px 18px;
-        background: var(--card);
-        position: relative;
-      }
-      .pcard-toplabel {
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
-        color: var(--muted-2);
-        display: flex; align-items: center; gap: 8px;
-      }
-      .pcard-status-dot {
-        width: 9px; height: 9px; border-radius: 50%;
-        display: inline-block;
-      }
-      .pcard-status-dot.ready { background: #1d9e75; }
-      .pcard-status-dot.partial { background: #d99a1d; }
-      .pcard-status-dot.requires_collection { background: var(--muted-2); }
-      .pcard-lens {
-        font-family: var(--font-serif, Georgia), serif;
-        font-size: 26px; line-height: 1.15; margin: 4px 0 2px;
-        color: var(--fg);
-      }
-      .pcard-claim {
-        font-size: 17px; line-height: 1.5; color: var(--fg-soft);
-        margin: 8px 0 16px;
-      }
-      .pcard-falsification {
-        border-left: 3px solid var(--accent, #185fa5);
-        background: var(--bg-soft);
-        border-radius: 0 8px 8px 0;
-        padding: 12px 16px;
-        margin: 0 0 16px;
-      }
-      .pcard-falsification .label {
-        font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
-        text-transform: uppercase; color: var(--accent, #185fa5);
-        margin-bottom: 6px;
-      }
-      .pcard-falsification .text { font-size: 15px; line-height: 1.55; color: var(--fg); }
-      .pcard-falsification .op {
-        font-size: 13.5px; line-height: 1.5; color: var(--muted);
-        margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line);
-      }
-      .pcard-falsification .status-line {
-        font-size: 12px; color: var(--muted-2); margin-top: 8px;
-        display: flex; align-items: center; gap: 6px;
-      }
-      .pcard-evidence-label {
-        font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
-        text-transform: uppercase; color: var(--muted);
-        margin-bottom: 8px;
-      }
-      .pcard-evidence-list { display: flex; flex-direction: column; gap: 6px; }
-      .pcard-evidence-row {
-        text-align: left; width: 100%;
-        border: 1px solid var(--line); border-radius: 8px;
-        padding: 10px 12px; background: transparent;
-        transition: background-color .12s, border-color .12s;
-        font-family: inherit;
-      }
-      .pcard-evidence-row .ev-title { font-size: 14.5px; color: var(--fg); line-height: 1.4; }
-      .pcard-evidence-row .ev-meta {
-        font-size: 12px; color: var(--muted-2); margin-top: 3px;
-        display: flex; gap: 8px; flex-wrap: wrap;
-      }
-      .pcard-evidence-row .ev-key {
-        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-        font-size: 11px; color: var(--muted-2); opacity: 0.7;
-      }
-      /* VAIHE 5: "Data saatavilla" -merkki evidence-rivillä */
-      .ev-data-available {
-        display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
-        margin-top: 6px; font-size: 12px;
-      }
-      .ev-data-dot {
-        width: 7px; height: 7px; border-radius: 50%;
-        background: #1d9e75; display: inline-block; flex-shrink: 0;
-      }
-      .ev-data-label {
-        color: #1d9e75; font-weight: 600; letter-spacing: 0.02em;
-      }
-      .ev-data-sub { color: var(--muted-2); }
-      .pcard-evidence-empty {
-        font-size: 13px; color: var(--muted); font-style: italic;
-        padding: 8px 0;
-      }
-      .pcard-falsification-missing {
-        border-left-color: #d99a1d;
-      }
-      .pcard-falsification-missing .label { color: #d99a1d; }
-      .research-cards-intro {
-        color: var(--fg-soft); line-height: 1.65; max-width: 60ch;
-        font-size: 16px; margin: 4px 0 0;
-      }
-      /* Evidence-liitteen avausmodaali */
-      .ev-modal-backdrop {
-        position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-        display: flex; align-items: center; justify-content: center;
-        padding: 24px; z-index: 5000; opacity: 0; pointer-events: none;
-        transition: opacity .15s;
-      }
-      .ev-modal-backdrop.show { opacity: 1; pointer-events: auto; }
-      .ev-modal {
-        background: var(--bg); border-radius: 14px; max-width: 680px;
-        width: 100%; max-height: 85vh; overflow-y: auto;
-        padding: 28px; position: relative;
-      }
-      .ev-modal h3 { font-family: var(--font-serif, Georgia), serif; font-size: 22px; margin: 0 0 4px; }
-      .ev-modal .ev-modal-close {
-        position: absolute; top: 16px; right: 16px;
-        background: var(--bg-soft); border: none; border-radius: 8px;
-        width: 32px; height: 32px; cursor: pointer; font-size: 18px;
-        color: var(--fg);
-      }
-      .ev-modal-item { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
-      .ev-modal-item:first-of-type { border-top: none; }
-
-      /* Evidence-rivi: klikattava painike */
-      button.pcard-evidence-row { cursor: pointer; }
-      button.pcard-evidence-row:hover { background: var(--bg-soft); border-color: var(--muted-2); }
       .toc { list-style: none; padding: 0; margin: 18px 0 0; }
       .toc li {
         border-bottom: 1px solid var(--line);
@@ -1031,6 +791,11 @@
         color: var(--muted);
         margin-bottom: 4px;
       }
+      .app-findings { margin-top: 12px; }
+      .app-findings > li { padding: 10px 0; }
+      .app-key-insight { border-left: 3px solid var(--accent); }
+      .app-reader-shift { background: var(--bg-soft); font-style: italic; }
+      .app-reader-shift .label { font-style: normal; }
 
       /* Calculation table */
       .app-calc-table { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -1361,17 +1126,468 @@
         a { color: black; text-decoration: none; }
         .app-body { display: block !important; }
       }
+
+      /* ─── Tutkimuskortti (research-card liite) ──────────────────────────── */
+      .pcard {
+        border: 1px solid var(--line); border-radius: 14px;
+        padding: 22px 22px 18px; background: var(--card); position: relative;
+      }
+      .pcard-toplabel {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+        color: var(--muted-2); display: flex; align-items: center; gap: 8px;
+      }
+      .pcard-status-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+      .pcard-status-dot.ready { background: #1d9e75; }
+      .pcard-status-dot.partial { background: #d99a1d; }
+      .pcard-status-dot.requires_collection { background: var(--muted-2); }
+      .pcard-lens {
+        font-family: var(--font-serif, Georgia), serif;
+        font-size: 26px; line-height: 1.15; margin: 4px 0 2px; color: var(--fg);
+      }
+      .pcard-claim { font-size: 17px; line-height: 1.5; color: var(--fg-soft); margin: 8px 0 16px; }
+      .pcard-falsification {
+        border-left: 3px solid var(--accent, #185fa5); background: var(--bg-soft);
+        border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 0 0 16px;
+      }
+      .pcard-falsification .label {
+        font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+        text-transform: uppercase; color: var(--accent, #185fa5); margin-bottom: 6px;
+      }
+      .pcard-falsification .text { font-size: 15px; line-height: 1.55; color: var(--fg); }
+      .pcard-falsification .op {
+        font-size: 13.5px; line-height: 1.5; color: var(--muted);
+        margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--line);
+      }
+      .pcard-falsification .status-line {
+        font-size: 12px; color: var(--muted-2); margin-top: 8px;
+        display: flex; align-items: center; gap: 6px;
+      }
+      .pcard-evidence-label {
+        font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+        text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+      }
+      .pcard-evidence-list { display: flex; flex-direction: column; gap: 6px; }
+      .pcard-evidence-row {
+        text-align: left; width: 100%; border: 1px solid var(--line);
+        border-radius: 8px; padding: 10px 12px; background: transparent; font-family: inherit;
+      }
+      .pcard-evidence-row .ev-title { font-size: 14.5px; color: var(--fg); line-height: 1.4; }
+      .pcard-evidence-row .ev-meta {
+        font-size: 12px; color: var(--muted-2); margin-top: 3px;
+        display: flex; gap: 8px; flex-wrap: wrap;
+      }
+      .pcard-evidence-row .ev-key {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11px; color: var(--muted-2); opacity: 0.7;
+      }
+      .pcard-evidence-empty { font-size: 13px; color: var(--muted); font-style: italic; padding: 8px 0; }
+      .pcard-falsification-missing { border-left-color: #d99a1d; }
+      .pcard-falsification-missing .label { color: #d99a1d; }
+
+      /* "Data saatavilla" -merkki evidence-rivillä */
+      .ev-data-available {
+        display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+        margin-top: 6px; font-size: 12px;
+      }
+      .ev-data-dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        background: #1d9e75; display: inline-block; flex-shrink: 0;
+      }
+      .ev-data-label {
+        color: #1d9e75; font-weight: 600; letter-spacing: 0.02em;
+      }
+      .ev-data-sub { color: var(--muted-2); }
+
+      /* Evidence-liitteen avausmodaali */
+      .ev-modal-backdrop {
+        position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+        display: flex; align-items: center; justify-content: center;
+        padding: 24px; z-index: 5000; opacity: 0; pointer-events: none;
+        transition: opacity .15s;
+      }
+      .ev-modal-backdrop.show { opacity: 1; pointer-events: auto; }
+      .ev-modal {
+        background: var(--bg); border-radius: 14px; max-width: 680px;
+        width: 100%; max-height: 85vh; overflow-y: auto;
+        padding: 28px; position: relative;
+      }
+      .ev-modal h3 { font-family: var(--font-serif, Georgia), serif; font-size: 22px; margin: 0 0 4px; }
+      .ev-modal .ev-modal-close {
+        position: absolute; top: 16px; right: 16px;
+        background: var(--bg-soft); border: none; border-radius: 8px;
+        width: 32px; height: 32px; cursor: pointer; font-size: 18px;
+        color: var(--fg);
+      }
+      .ev-modal-item { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
+      .ev-modal-item:first-of-type { border-top: none; }
+
+      /* Evidence-rivi: klikattava painike */
+      button.pcard-evidence-row { cursor: pointer; }
+      button.pcard-evidence-row:hover { background: var(--bg-soft); border-color: var(--muted-2); }
+
+      /* ═══════════════════════════════════════════════════════════════════
+         ADMIN-TILAN TYYLIT
+         ═══════════════════════════════════════════════════════════════════ */
+
+      /* Boot loading / error */
+      #bootLoading {
+        position: fixed; inset: 0; background: var(--bg);
+        display: flex; align-items: center; justify-content: center;
+        z-index: 9998;
+      }
+      #bootLoading.hidden { display: none; }
+      #bootLoading .msg { color: var(--muted); font-size: 14px; }
+
+      #bootError {
+        position: fixed; inset: 0; background: var(--bg); padding: 24px;
+        font-family: ui-monospace, monospace; font-size: 13px;
+        overflow: auto; z-index: 9999; display: none;
+      }
+      #bootError.show { display: block; }
+      #bootError h1 {
+        font-size: 18px; color: #dc2626; margin-bottom: 12px;
+        font-family: var(--font-sans);
+      }
+      #bootError pre {
+        white-space: pre-wrap; background: rgba(220, 38, 38, 0.1);
+        padding: 12px; border-radius: 6px;
+      }
+      #bootError button {
+        margin-top: 16px; margin-right: 8px; padding: 8px 16px;
+        background: var(--accent); color: var(--bg);
+        border: none; border-radius: 6px; cursor: pointer;
+        font-family: var(--font-sans);
+      }
+
+      /* Login-näkymä */
+      #loginView {
+        min-height: 100vh; display: flex; align-items: center; justify-content: center;
+        padding: 24px;
+      }
+      #loginView.hidden { display: none; }
+      #loginForm {
+        width: 100%; max-width: 360px;
+        background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+        padding: 28px; display: flex; flex-direction: column; gap: 12px;
+      }
+      #loginForm h1 {
+        font-family: var(--font-serif); font-size: 24px; margin: 0 0 8px;
+      }
+      #loginForm input {
+        width: 100%; padding: 10px 12px; border: 1px solid var(--line);
+        border-radius: 6px; font-size: 14px; font-family: var(--font-sans);
+        background: var(--bg); color: var(--fg);
+      }
+      #loginForm input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+      #loginForm button {
+        width: 100%; padding: 10px; background: var(--accent); color: var(--bg);
+        border: none; border-radius: 6px; cursor: pointer;
+        font-family: var(--font-sans); font-weight: 500; font-size: 14px;
+      }
+      #loginForm button:disabled { opacity: 0.6; cursor: wait; }
+      #loginErr { color: #dc2626; font-size: 12px; min-height: 14px; margin: 0; }
+
+      /* Deny-näkymä */
+      #denyView {
+        min-height: 100vh; display: flex; align-items: center; justify-content: center;
+        padding: 24px;
+      }
+      #denyView.hidden { display: none; }
+      #denyView > div {
+        max-width: 420px; background: var(--card); border: 1px solid var(--line);
+        border-radius: 12px; padding: 28px; text-align: center;
+      }
+      #denyView h2 { font-family: var(--font-serif); margin: 0 0 8px; }
+      #denyLogout {
+        margin-top: 16px; padding: 8px 16px; background: transparent;
+        border: 1px solid var(--line); border-radius: 6px; cursor: pointer;
+        font-family: var(--font-sans); color: var(--fg);
+      }
+
+      /* App-näkymä */
+      #appView.hidden { display: none; }
+
+      /* Admin-yläpalkin sisällöt */
+      .admin-toolbar {
+        display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+      }
+      .admin-toolbar button {
+        padding: 6px 12px; font-size: 13px; font-family: var(--font-sans);
+        background: transparent; color: var(--fg);
+        border: 1px solid var(--line); border-radius: 6px; cursor: pointer;
+        white-space: nowrap;
+      }
+      .admin-toolbar button:hover { background: var(--bg-soft); }
+      .admin-toolbar button.primary {
+        background: var(--accent); color: var(--bg); border-color: var(--accent);
+      }
+      .admin-toolbar .user-pill {
+        font-size: 12px; color: var(--muted); padding: 4px 10px;
+        background: var(--bg-soft); border-radius: 12px; white-space: nowrap;
+      }
+
+      /* Editoitavat osiot */
+      .editable {
+        position: relative;
+        border-radius: 6px;
+        padding: 4px 8px;
+        margin: -4px -8px;
+        transition: background 0.15s;
+      }
+      .editable:hover {
+        background: rgba(24, 95, 165, 0.04);
+      }
+      .editable:focus {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        background: var(--card);
+      }
+      .editable[contenteditable="true"] {
+        cursor: text;
+      }
+
+      /* Tallennusvalkku osion alapuolella */
+      .section-save-bar {
+        display: none;
+        gap: 8px;
+        align-items: center;
+        margin: 8px 0 0;
+        padding: 8px 12px;
+        background: var(--bg-soft);
+        border: 1px solid var(--accent);
+        border-radius: 6px;
+        font-size: 13px;
+      }
+      .section-save-bar.dirty { display: flex; }
+      .section-save-bar .label {
+        flex: 1; color: var(--accent); font-weight: 500;
+      }
+      .section-save-bar button {
+        padding: 4px 10px; font-size: 12px;
+        background: var(--accent); color: var(--bg);
+        border: none; border-radius: 4px; cursor: pointer;
+        font-family: var(--font-sans);
+      }
+      .section-save-bar button:disabled { opacity: 0.5; cursor: wait; }
+      .section-save-bar button.secondary {
+        background: transparent; color: var(--fg);
+        border: 1px solid var(--line);
+      }
+
+      /* Liitteen näkyvyystäppä */
+      .app-admin-controls {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-top: 8px;
+        padding: 6px 10px;
+        background: var(--bg-soft);
+        border-radius: 6px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .app-admin-controls label {
+        display: flex; align-items: center; gap: 6px;
+        cursor: pointer; user-select: none;
+      }
+      .app-admin-controls input[type="checkbox"] {
+        width: 14px; height: 14px;
+        accent-color: var(--accent);
+        cursor: pointer;
+      }
+      .app-admin-controls .save-status {
+        font-size: 11px;
+        color: var(--muted-2);
+      }
+      .app-admin-controls .save-status.saved { color: #1d9e75; }
+      .app-admin-controls .save-status.saving { color: var(--accent); }
+      .app-admin-controls .save-status.error { color: #dc2626; }
+
+      /* Piilotetut liitteet näytetään silti adminille, mutta merkitään selvästi */
+      .app-card.hidden-appendix {
+        opacity: 0.6;
+        border-style: dashed;
+      }
+      .app-card.hidden-appendix::before {
+        content: "Piilotettu lukijoilta";
+        position: absolute;
+        top: 8px; right: 12px;
+        font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+        color: #dc2626;
+        background: var(--bg);
+        padding: 2px 8px; border-radius: 3px;
+        z-index: 1;
+      }
+      .app-card { position: relative; }
+
+      /* Toast-ilmoitus */
+      .toast {
+        position: fixed;
+        bottom: 24px; left: 50%; transform: translateX(-50%);
+        padding: 10px 18px; border-radius: 8px;
+        font-size: 13px; font-family: var(--font-sans);
+        background: var(--fg); color: var(--bg);
+        opacity: 0; pointer-events: none;
+        transition: opacity 0.2s, transform 0.2s;
+        z-index: 9000;
+      }
+      .toast.show {
+        opacity: 1; transform: translateX(-50%) translateY(-4px);
+      }
+      .toast.error { background: #dc2626; }
+      .toast.success { background: #1d9e75; }
+
+      /* ─── Pyörä: Kuusi ennustetta ─────────────────────────────────────── */
+      .wheel-section {
+        margin: 8px 0 44px;
+        padding: 28px 20px 24px;
+        background: var(--bg-soft);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        text-align: center;
+      }
+      .wheel-section .wheel-eyebrow {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .wheel-section h2 {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-weight: 400;
+        font-size: clamp(22px, 3.4vw, 30px);
+        margin: 0 0 6px;
+      }
+      .wheel-section .wheel-lede {
+        max-width: 56ch;
+        margin: 0 auto 18px;
+        color: var(--fg-soft);
+        font-size: 15px;
+        line-height: 1.55;
+      }
+      .wheel-wrap {
+        position: relative;
+        width: min(560px, 100%);
+        aspect-ratio: 1 / 1;
+        margin: 0 auto;
+      }
+      .wheel-wrap svg { width: 100%; height: 100%; display: block; }
+      .wheel-sector { transition: opacity .18s, transform .18s; transform-origin: 300px 300px; cursor: pointer; }
+      .wheel-sector:hover { opacity: .92; }
+      .wheel-sector:hover .wheel-sector-shape { filter: brightness(1.04); }
+      .wheel-sector-shape {
+        stroke: var(--bg-soft);
+        stroke-width: 2;
+      }
+      .wheel-label {
+        font-family: "Work Sans", system-ui, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        fill: var(--fg);
+        pointer-events: none;
+      }
+      .wheel-sublabel {
+        font-family: "Work Sans", system-ui, sans-serif;
+        font-size: 11px;
+        fill: var(--fg-soft);
+        pointer-events: none;
+      }
+      .wheel-num {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 18px;
+        fill: var(--fg);
+        font-style: italic;
+        pointer-events: none;
+      }
+      .wheel-center-circle {
+        fill: var(--accent);
+        cursor: pointer;
+        transition: filter .15s;
+      }
+      .wheel-center-circle:hover { filter: brightness(1.12); }
+      .wheel-center-title {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 26px;
+        fill: var(--bg);
+        text-anchor: middle;
+        pointer-events: none;
+      }
+      .wheel-center-sub {
+        font-family: "Work Sans", system-ui, sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        fill: var(--bg);
+        opacity: .72;
+        text-anchor: middle;
+        pointer-events: none;
+      }
+      .wheel-caption {
+        margin-top: 14px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+      @media (max-width: 560px) {
+        .wheel-label { font-size: 12px; }
+        .wheel-sublabel { font-size: 10px; }
+        .wheel-center-title { font-size: 22px; }
+      }
     </style>
   </head>
   <body>
+    <!-- BOOT LOADING -->
+    <div id="bootLoading"><div class="msg">Ladataan…</div></div>
+
+    <!-- BOOT ERROR -->
+    <div id="bootError">
+      <h1>Sovelluksen käynnistyksessä tapahtui virhe</h1>
+      <pre id="bootErrorMsg"></pre>
+      <div>
+        <button onclick="location.reload()">Lataa uudelleen</button>
+        <button onclick="clearSessionAndReload()">Tyhjennä sessio ja lataa uudelleen</button>
+      </div>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="loginView" class="hidden">
+      <form id="loginForm" autocomplete="on">
+        <h1>Kirjaudu admin-näkymään</h1>
+        <input id="email" type="email" placeholder="Sähköposti" required autocomplete="username"/>
+        <input id="password" type="password" placeholder="Salasana" required autocomplete="current-password"/>
+        <button type="submit" id="loginSubmit">Kirjaudu</button>
+        <p id="loginErr"></p>
+      </form>
+    </div>
+
+    <!-- ACCESS DENIED -->
+    <div id="denyView" class="hidden">
+      <div>
+        <h2>Pääsy estetty</h2>
+        <p>Tunnuksellasi (<span id="denyEmail"></span>) ei ole admin-roolia.</p>
+        <button id="denyLogout">Kirjaudu ulos</button>
+      </div>
+    </div>
+
+    <!-- APP VIEW -->
+    <div id="appView" class="hidden">
     <a href="#main-content" class="skip-link">Siirry sisältöön</a>
 
     <div class="progress-bar" id="progress" aria-hidden="true"></div>
 
     <header class="site">
       <div class="bar container-wide">
-        <a class="brand" href="#/">Harri Käyhkö</a>
+        <a class="brand" href="#/">Admin-editori</a>
         <div class="bar-actions">
+          <div class="admin-toolbar">
+            <button id="copyTxtBtn" title="Kopioi koko kirjan teksti leikepöydälle">📋 Kopioi TXT</button>
+            <button id="exportBookBtn" title="Lataa nykyisen kirjan teksti JSON-tiedostona">⬇ Kirja JSON</button>
+            <button id="exportAppsBtn" title="Lataa nykyisen kirjan liitteet JSON-tiedostona">⬇ Liitteet JSON</button>
+            <button id="exportAllBtn" title="Vie kaikki kirjat, liitteet ja index1.json yhtenä zip-tiedostona">⬇⬇ Vie kaikki (zip)</button>
+            <span class="user-pill" id="userPill"></span>
+            <button id="logoutBtn" title="Kirjaudu ulos">Ulos</button>
+          </div>
           <button id="searchBtn" class="icon-btn" aria-label="Hae (näppäin /)" title="Hae">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </button>
@@ -1381,6 +1597,7 @@
         </div>
       </div>
     </header>
+
 
     <div id="settingsPanel" class="settings-panel" role="dialog" aria-label="Lukuasetukset" aria-modal="false">
       <h3>Lukuasetukset</h3>
@@ -1413,10 +1630,197 @@
       </div>
     </div>
 
+    <!-- Supabase-asiakas (ESM) -->
+    <script type="module">
+      import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+      const SUPABASE_URL = "https://etbjymyxiekkkvqwcygp.supabase.co";
+      const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV0Ymp5bXl4aWVra2t2cXdjeWdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4NTY2OTIsImV4cCI6MjA5NDQzMjY5Mn0.3rBdjPi3lqKW1erTPm_URxDpqrjMbelqidaP69uUowM";
+      window.sb = createClient(SUPABASE_URL, SUPABASE_ANON, {
+        auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false }
+      });
+      window.dispatchEvent(new Event("sb-ready"));
+    </script>
+
     <script>
       // ═══════════════════════════════════════════════════════════════════════
-      //  Storage & Settings
+      //  Globaali virheidenkäsittely
       // ═══════════════════════════════════════════════════════════════════════
+      window.addEventListener("error", (e) => showBootError(e.error || e.message));
+      window.addEventListener("unhandledrejection", (e) => showBootError(e.reason));
+
+      function showBootError(err) {
+        const node = document.getElementById("bootError");
+        const msg = document.getElementById("bootErrorMsg");
+        const text = err && err.stack ? err.stack : (err && err.message ? err.message : String(err));
+        if (msg) msg.textContent = text;
+        if (node) node.classList.add("show");
+        const loading = document.getElementById("bootLoading");
+        if (loading) loading.classList.add("hidden");
+        console.error("[manuadmin]", err);
+      }
+
+      function clearSessionAndReload() {
+        try {
+          const keysToRemove = [];
+          for (let i = 0; i < localStorage.length; i++) {
+            const k = localStorage.key(i);
+            if (k && (k.startsWith("sb-") || k.includes("supabase"))) keysToRemove.push(k);
+          }
+          keysToRemove.forEach(k => localStorage.removeItem(k));
+        } catch (e) { console.error(e); }
+        location.reload();
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════
+      //  Toast-ilmoitukset
+      // ═══════════════════════════════════════════════════════════════════════
+      let toastTimer = null;
+      function toast(message, kind = "") {
+        const el = document.getElementById("toast");
+        if (!el) return;
+        el.textContent = message;
+        el.className = "toast " + (kind || "") + " show";
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => { el.className = "toast " + (kind || ""); }, 2400);
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════
+      //  Tila ja näkymäkontrolli
+      // ═══════════════════════════════════════════════════════════════════════
+      let sb = null;        // asetetaan kun ESM-moduuli on ladattu
+      const adminState = {
+        user: null,
+        isAdmin: false,
+        booted: false,
+        currentBookSlug: null,    // viimeksi katsottu kirjan slug (export-painikkeita varten)
+      };
+
+      function showView(view) {
+        document.getElementById("bootLoading").classList.add("hidden");
+        document.getElementById("loginView").classList.toggle("hidden", view !== "login");
+        document.getElementById("denyView").classList.toggle("hidden", view !== "deny");
+        document.getElementById("appView").classList.toggle("hidden", view !== "app");
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════
+      //  Boot -- auth-tarkistus ja roolin haku
+      // ═══════════════════════════════════════════════════════════════════════
+      async function boot() {
+        try {
+          if (!window.sb) {
+            // odota että ESM-moduuli on alustanut sb:n
+            await new Promise(resolve => {
+              if (window.sb) return resolve();
+              window.addEventListener("sb-ready", () => resolve(), { once: true });
+            });
+          }
+          sb = window.sb;
+
+          const { data, error } = await sb.auth.getUser();
+          if (error) {
+            console.warn("[manuadmin] auth.getUser virhe:", error.message);
+            await sb.auth.signOut().catch(() => {});
+            showView("login");
+            adminState.booted = true;
+            attachAuthListener();
+            return;
+          }
+
+          adminState.user = data.user ?? null;
+
+          if (!adminState.user) {
+            showView("login");
+            adminState.booted = true;
+            attachAuthListener();
+            return;
+          }
+
+          const { data: roles, error: rolesErr } = await sb
+            .from("user_roles")
+            .select("role")
+            .eq("user_id", adminState.user.id);
+
+          if (rolesErr) throw new Error("user_roles-kyselyn virhe: " + rolesErr.message);
+
+          adminState.isAdmin = !!roles?.some(r => r.role === "admin");
+          document.getElementById("userPill").textContent = adminState.user.email ?? "";
+
+          if (!adminState.isAdmin) {
+            document.getElementById("denyEmail").textContent = adminState.user.email ?? "";
+            showView("deny");
+            adminState.booted = true;
+            attachAuthListener();
+            return;
+          }
+
+          showView("app");
+          adminState.booted = true;
+          attachAuthListener();
+
+          // käynnistä lukijavirran reititys vasta kun auth on ohi
+          if (typeof window.startReader === "function") window.startReader();
+        } catch (err) {
+          showBootError(err);
+        }
+      }
+
+      function attachAuthListener() {
+        if (!sb) return;
+        sb.auth.onAuthStateChange((event) => {
+          if (!adminState.booted) return;
+          if (event === "SIGNED_OUT") {
+            adminState.user = null;
+            adminState.isAdmin = false;
+            showView("login");
+          }
+        });
+      }
+
+      // Login-lomake
+      document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById("loginSubmit");
+        document.getElementById("loginErr").textContent = "";
+        btn.disabled = true;
+        btn.textContent = "Kirjaudutaan…";
+        try {
+          if (!sb) sb = window.sb;
+          const { error } = await sb.auth.signInWithPassword({
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value,
+          });
+          if (error) {
+            document.getElementById("loginErr").textContent = error.message;
+            btn.disabled = false; btn.textContent = "Kirjaudu";
+            return;
+          }
+          document.getElementById("bootLoading").classList.remove("hidden");
+          adminState.booted = false;
+          await boot();
+        } catch (err) {
+          document.getElementById("loginErr").textContent = err.message || String(err);
+          btn.disabled = false; btn.textContent = "Kirjaudu";
+        }
+      });
+
+      document.getElementById("logoutBtn").addEventListener("click", async () => {
+        if (sb) await sb.auth.signOut();
+        adminState.user = null;
+        adminState.isAdmin = false;
+        showView("login");
+      });
+      document.getElementById("denyLogout").addEventListener("click", async () => {
+        if (sb) await sb.auth.signOut();
+        adminState.user = null;
+        showView("login");
+      });
+
+      // Käynnistä boot heti
+      boot();
+    </script>
+
+    <script>
+
       const STORE_KEY = "hk-settings-v1";
       const LASTREAD_KEY = "hk-last-read-v1";
       const loadSettings = () => {
@@ -1553,19 +1957,267 @@
       async function loadJsonOptional(file) {
         try { return await loadJson(file); } catch { return null; }
       }
+
+      // ═══════════════════════════════════════════════════════════════════════
+      //  ADMIN: Datan lataus Supabasesta (korvaa staattiset JSON-tiedostot)
+      // ═══════════════════════════════════════════════════════════════════════
+      // Lataa kirjojen indeksi suoraan tietokannasta.
       const loadIndex = async () => {
-        const idx = await loadJson("books/index1.json");
-        return Array.isArray(idx) ? idx : (idx.books || []);
+        const { data, error } = await sb
+          .from("books")
+          .select("id, slug, title, author, description, cover_url, position")
+          .order("position");
+        if (error) throw new Error("Books-kyselyn virhe: " + error.message);
+        return (data || []).map(b => ({
+          slug: b.slug,
+          title: b.title,
+          author: b.author,
+          description: b.description,
+          cover_url: b.cover_url,
+        }));
       };
-      const loadBook = (slug) => loadJson(`books/${slug}.json`);
-      const loadAppendices = (slug) => loadJsonOptional(`books/${slug}-appendices.json`);
+
+      // Lataa yksittäinen kirja (luvut + osiot) Supabasesta.
+      // Palauttaa samanmuotoisen rakenteen kuin staattinen JSON:
+      // { slug, title, author, chapters: [{ position, slug, title, sections: [...] }] }
+      // Lisätään mukaan _ids-objekti, jotta admin-puoli voi tallentaa muutoksia.
+      async function loadBook(slug) {
+        const { data: book, error: be } = await sb
+          .from("books")
+          .select("id, slug, title, author, description, cover_url")
+          .eq("slug", slug)
+          .maybeSingle();
+        if (be) throw new Error("Book-kyselyn virhe: " + be.message);
+        if (!book) throw new Error("Kirjaa ei löytynyt: " + slug);
+
+        const { data: chapters, error: ce } = await sb
+          .from("chapters")
+          .select("id, position, slug, title")
+          .eq("book_id", book.id)
+          .order("position");
+        if (ce) throw new Error("Chapters-kyselyn virhe: " + ce.message);
+
+        const chapterIds = (chapters || []).map(c => c.id);
+        let sections = [];
+        if (chapterIds.length) {
+          const { data: secs, error: se } = await sb
+            .from("sections")
+            .select("id, chapter_id, position, title, content")
+            .in("chapter_id", chapterIds)
+            .order("position");
+          if (se) throw new Error("Sections-kyselyn virhe: " + se.message);
+          sections = secs || [];
+        }
+
+        return {
+          _book_id: book.id,                 // admin tarvitsee tallennukseen
+          slug: book.slug,
+          title: book.title,
+          author: book.author,
+          description: book.description,
+          cover_url: book.cover_url,
+          chapters: (chapters || []).map(ch => ({
+            _id: ch.id,
+            id: ch.id,
+            slug: ch.slug,
+            title: ch.title,
+            position: ch.position,
+            sections: sections
+              .filter(s => s.chapter_id === ch.id)
+              .map(s => ({
+                _id: s.id,
+                id: s.id,
+                title: s.title,
+                position: s.position,
+                content: s.content,
+              })),
+          })),
+        };
+      }
+
+      // Lataa kirjan liitteet Supabasesta.
+      // ADMIN: tämä hakee KAIKKI liitteet (myös hidden=true), koska adminin
+      // täytyy nähdä ja hallita myös piilotettuja.
+      async function loadAppendices(slug) {
+        const { data: book, error: be } = await sb
+          .from("books")
+          .select("id, slug, title")
+          .eq("slug", slug)
+          .maybeSingle();
+        if (be || !book) return null;
+
+        const { data: chapters, error: ce } = await sb
+          .from("chapters")
+          .select("id, position, slug, title")
+          .eq("book_id", book.id)
+          .order("position");
+        if (ce) return null;
+
+        const { data: apps, error: ae } = await sb
+          .from("appendices")
+          .select("id, chapter_position, section_position, type, title, source, position, content, hidden")
+          .eq("book_id", book.id)
+          .order("chapter_position")
+          .order("position");
+        if (ae) return null;
+
+        const byChapter = {};
+        for (const a of (apps || [])) {
+          const pos = a.chapter_position;
+          if (!byChapter[pos]) byChapter[pos] = [];
+          byChapter[pos].push({
+            _id: a.id,                 // admin-tunniste tallennukseen
+            id: a.id,
+            chapter_position: a.chapter_position,
+            section_position: a.section_position,
+            type: a.type,
+            title: a.title,
+            source: a.source ?? null,
+            position: a.position,
+            content: a.content,
+            hidden: a.hidden === true, // varmistetaan booleaniksi
+          });
+        }
+
+        // Hae series_links samalla tavalla kuin export tekee, jotta admin
+        // näyttää research-cardin "Data saatavilla" -merkit identtisesti
+        // lukijan kanssa (WYSIWYG-periaate).
+        let seriesLinks = [];
+        try {
+          const usedKeys = new Set();
+          for (const arr of Object.values(byChapter)) {
+            for (const a of arr) {
+              if (a.type === "research-card" && a.content && Array.isArray(a.content.evidence_keys)) {
+                a.content.evidence_keys.forEach(k => usedKeys.add(k));
+              }
+            }
+          }
+          if (usedKeys.size > 0) {
+            const { data: links } = await sb
+              .from("v_evidence_series_links")
+              .select("evidence_key, indicator_key, indicator_name, geography, year_start, year_end, expected_j_codes, data_role");
+            seriesLinks = (links || []).filter(l => usedKeys.has(l.evidence_key));
+          }
+        } catch (e) {
+          console.warn("series_links-haku epäonnistui:", e);
+        }
+
+        return {
+          schema: "book-appendices.v1",
+          book: { id: book.id, slug: book.slug, title: book.title },
+          chapters: (chapters || []).map(ch => ({
+            position: ch.position,
+            slug: ch.slug,
+            title: ch.title,
+            appendices: (byChapter[ch.position] || []).sort((a, b) => a.position - b.position),
+          })),
+          series_links: seriesLinks,
+        };
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════
+
+      // Mapit jotka rakennetaan kun appendix-payload ladataan. Käytetään
+      // research-card-renderöinnissä ja evidence-modalissa.
+      let seriesLinkMap = {};
+      let evidenceAppendixMap = {};
+
+      function buildSeriesLinkMap(appendixPayload) {
+        seriesLinkMap = {};
+        const links = appendixPayload && Array.isArray(appendixPayload.series_links)
+          ? appendixPayload.series_links : [];
+        for (const l of links) {
+          if (l && l.evidence_key) seriesLinkMap[l.evidence_key] = l;
+        }
+      }
+
+      function buildEvidenceAppendixMap(payload) {
+        evidenceAppendixMap = {};
+        if (!payload || !Array.isArray(payload.chapters)) return;
+        for (const ch of payload.chapters) {
+          const apps = Array.isArray(ch.appendices) ? ch.appendices : [];
+          for (const a of apps) {
+            const key = a?.content?.evidence_key || a?.evidence_key || "";
+            if (!key) continue;
+            if (!evidenceAppendixMap[key]) evidenceAppendixMap[key] = [];
+            evidenceAppendixMap[key].push(a);
+          }
+        }
+      }
+
+      // Pieni "Data saatavilla" -merkki yhdelle series-linkille
+      function renderSeriesAvailability(link) {
+        if (!link) return "";
+        const years = (link.year_start && link.year_end)
+          ? `${link.year_start}–${link.year_end}` : "";
+        const codes = Array.isArray(link.expected_j_codes) && link.expected_j_codes.length
+          ? link.expected_j_codes.join(" / ") : "";
+        const sub = [link.indicator_name, years, codes].filter(Boolean).map(esc).join(" · ");
+        return `<div class="ev-data-available">
+            <span class="ev-data-dot"></span>
+            <span class="ev-data-label">Data saatavilla</span>
+            ${sub ? `<span class="ev-data-sub">${sub}</span>` : ""}
+          </div>`;
+      }
+
+      // Modal joka näyttää kaikki evidence_key:hen kohdistetut liitteet
+      function openEvidenceAppendicesModal(evidenceKey) {
+        const appendices = evidenceAppendixMap[evidenceKey] || [];
+        const seriesLink = seriesLinkMap[evidenceKey] || null;
+        if (!appendices.length) return;
+
+        const existing = document.querySelector(".ev-modal-backdrop");
+        if (existing) existing.remove();
+
+        const seriesHtml = seriesLink ? `
+          <div class="ev-data-available" style="margin: 10px 0 16px;">
+            <span class="ev-data-dot"></span>
+            <span class="ev-data-label">Data saatavilla</span>
+            <span class="ev-data-sub">${esc([
+              seriesLink.indicator_name,
+              seriesLink.year_start && seriesLink.year_end ? `${seriesLink.year_start}–${seriesLink.year_end}` : "",
+              Array.isArray(seriesLink.expected_j_codes) ? seriesLink.expected_j_codes.join(" / ") : ""
+            ].filter(Boolean).join(" · "))}</span>
+          </div>` : "";
+
+        const itemsHtml = appendices.map((a) => `
+          <section class="ev-modal-item">
+            <div class="app-body-head">
+              <span class="kind">${esc(a.type || "liite")}</span>
+              <h3>${esc(a.title || "Liite")}</h3>
+            </div>
+            ${renderAppendixBody(a)}
+          </section>
+        `).join("");
+
+        const modal = document.createElement("div");
+        modal.className = "ev-modal-backdrop show";
+        modal.innerHTML = `
+          <div class="ev-modal" role="dialog" aria-modal="true" aria-label="Evidence-liitteet">
+            <button type="button" class="ev-modal-close" aria-label="Sulje">×</button>
+            <h3>Evidence</h3>
+            <div class="ev-meta"><span class="ev-key">${esc(evidenceKey)}</span></div>
+            ${seriesHtml}
+            ${itemsHtml}
+          </div>`;
+        document.body.appendChild(modal);
+
+        const close = () => modal.remove();
+        modal.querySelector(".ev-modal-close")?.addEventListener("click", close);
+        modal.addEventListener("click", (e) => { if (e.target === modal) close(); });
+        document.addEventListener("keydown", function onEsc(e) {
+          if (e.key === "Escape") { close(); document.removeEventListener("keydown", onEsc); }
+        });
+      }
 
       function indexAppendices(payload) {
         const sectionMap = new Map();
         const chapterMap = new Map();
         if (!payload || !Array.isArray(payload.chapters)) return { sectionMap, chapterMap };
         for (const ch of payload.chapters) {
-          const apps = Array.isArray(ch.appendices) ? ch.appendices.slice() : [];
+          const apps = Array.isArray(ch.appendices)
+            ? ch.appendices.filter(a => a && a.hidden !== true)  // suodata piilotetut
+            : [];
           if (!apps.length) continue;
           apps.sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
           for (const a of apps) {
@@ -1584,32 +2236,6 @@
         return { sectionMap, chapterMap };
       }
 
-let evidenceAppendixMap = {};
-
-function buildEvidenceAppendixMap(payload) {
-  evidenceAppendixMap = {};
-
-  if (!payload || !Array.isArray(payload.chapters)) return;
-
-  for (const ch of payload.chapters) {
-    const apps = Array.isArray(ch.appendices) ? ch.appendices : [];
-
-    for (const a of apps) {
-      const key =
-        a?.content?.evidence_key ||
-        a?.evidence_key ||
-        "";
-
-      if (!key) continue;
-
-      if (!evidenceAppendixMap[key]) {
-        evidenceAppendixMap[key] = [];
-      }
-
-      evidenceAppendixMap[key].push(a);
-    }
-  }
-}
       // ═══════════════════════════════════════════════════════════════════════
       //  Appendix renderers (preserved)
       // ═══════════════════════════════════════════════════════════════════════
@@ -1720,6 +2346,37 @@ function buildEvidenceAppendixMap(payload) {
           c.source ? `<div class="source">${esc(c.source)}</div>` : "",
         ].join("");
       }
+      // ─── findings / key_insight / reader_shift (mm. COFOG-liitteet) ──────
+      function renderAnalysisFields(c) {
+        let out = "";
+        if (Array.isArray(c.findings) && c.findings.length) {
+          const items = c.findings.map((f) => {
+            if (typeof f === "string") return `<li><div class="app-item-body">${esc(f)}</div></li>`;
+            if (!f || typeof f !== "object") return "";
+            const head = f.aihe || f.title || f.otsikko || f.teema || null;
+            const body = f.havainto || f.body || f.kuvaus || f.finding || null;
+            const why  = f.merkitys || f.implication || f.miksi || f.significance || null;
+            const headHtml = head ? `<div class="app-item-head">${esc(head)}</div>` : "";
+            const bodyHtml = body ? `<div class="app-item-body"><p>${esc(body)}</p></div>` : "";
+            const whyHtml  = why ? `<dl class="app-kv"><dt>merkitys</dt><dd>${esc(why)}</dd></dl>` : "";
+            if (!head && !body && !why) {
+              const keys = Object.keys(f).filter((k) => typeof f[k] === "string" && f[k].trim());
+              if (!keys.length) return "";
+              return `<li><dl class="app-kv">${keys.map((k) => `<dt>${esc(k.replace(/_/g, " "))}</dt><dd>${esc(f[k])}</dd>`).join("")}</dl></li>`;
+            }
+            return `<li>${headHtml}${bodyHtml}${whyHtml}</li>`;
+          }).join("");
+          out += `<ul class="app-items app-findings">${items}</ul>`;
+        }
+        if (typeof c.key_insight === "string" && c.key_insight.trim()) {
+          out += `<div class="app-chain-extra app-key-insight"><div class="label">Keskeinen havainto</div><div>${esc(c.key_insight)}</div></div>`;
+        }
+        if (typeof c.reader_shift === "string" && c.reader_shift.trim()) {
+          out += `<div class="app-chain-extra app-reader-shift"><div class="label">Lukijan näkökulma</div><div>${esc(c.reader_shift)}</div></div>`;
+        }
+        return out;
+      }
+
       function renderCalculation(c) {
         const rows = Array.isArray(c.rows) ? c.rows : [];
         let table = "";
@@ -1735,6 +2392,7 @@ function buildEvidenceAppendixMap(payload) {
           c.body ? `<p class="lead">${esc(c.body)}</p>` : "",
           c.note ? `<div class="note">${esc(c.note)}</div>` : "",
           table,
+          renderAnalysisFields(c),
           c.source ? `<div class="source">${esc(c.source)}</div>` : "",
         ].join("");
       }
@@ -1844,7 +2502,7 @@ function buildEvidenceAppendixMap(payload) {
           table = `<div style="overflow-x:auto"><table class="app-table">${head}${body}</table></div>`;
         }
         const source = c.source ? `<div class="source">${esc(c.source)}</div>` : "";
-        return [lead, note, table, source].join("");
+        return [lead, note, table, renderAnalysisFields(c), source].join("");
       }
 
       // ─── paperdoll ────────────────────────────────────────────────────────
@@ -2036,12 +2694,57 @@ function buildEvidenceAppendixMap(payload) {
         };
       }
 
+      // Täydentää valmiin Chart.js-datan värit teemapaletista (COFOG-liitteet ym.)
+      function colorizeDatasets(config) {
+        const C = chartPalette();
+        if (!config || !config.data || !Array.isArray(config.data.datasets)) return config;
+        const nordicFallback = [C.nordic, C.replacement, '#c08a4a', '#8a6dad'];
+        let fallbackIdx = 0;
+        config.data.datasets.forEach((ds) => {
+          const label = (ds.label || "").toLowerCase();
+          const isFinland = label.includes("suomi") || label.includes("finland");
+          if (ds.borderColor === undefined) {
+            ds.borderColor = isFinland ? C.fi : nordicFallback[fallbackIdx++ % nordicFallback.length];
+          }
+          if (ds.backgroundColor === undefined) {
+            ds.backgroundColor = (config.type === "bar") ? ds.borderColor : 'transparent';
+          }
+          if (ds.borderWidth === undefined) ds.borderWidth = isFinland ? 2.0 : 1.5;
+          if (ds.pointRadius === undefined) ds.pointRadius = 0;
+          if (ds.pointHoverRadius === undefined) ds.pointHoverRadius = 3;
+          if (ds.tension === undefined && config.type !== "bar") ds.tension = 0.25;
+        });
+        return config;
+      }
+
+      function applyChartTheme(config) {
+        const C = chartPalette();
+        config.options = config.options || {};
+        const o = config.options;
+        if (o.responsive === undefined) o.responsive = true;
+        if (o.maintainAspectRatio === undefined) o.maintainAspectRatio = false;
+        o.plugins = o.plugins || {};
+        o.plugins.legend = o.plugins.legend || {};
+        o.plugins.legend.labels = Object.assign({ color: C.text, font: { size: 11 } }, o.plugins.legend.labels || {});
+        o.scales = o.scales || {};
+        ["x", "y"].forEach((ax) => {
+          o.scales[ax] = o.scales[ax] || {};
+          o.scales[ax].ticks = Object.assign({ color: C.text, font: { size: 10 } }, o.scales[ax].ticks || {});
+          o.scales[ax].grid = Object.assign({ color: C.grid }, o.scales[ax].grid || {});
+          if (o.scales[ax].title) {
+            o.scales[ax].title = Object.assign({ color: C.text, font: { size: 10 } }, o.scales[ax].title);
+          }
+        });
+        return config;
+      }
+
       function renderChartJs(app) {
         const c = app.content || {};
         const id = "chartjs_" + Math.random().toString(36).slice(2, 10);
         const lead = c.body ? `<p class="lead">${esc(c.body)}</p>` : "";
         const note = c.note ? `<div class="note">${esc(c.note)}</div>` : "";
         const source = c.source ? `<div class="source">${esc(c.source)}</div>` : "";
+        const analysis = renderAnalysisFields(c);
         const height = Number(c.height) || 360;
         const canvas = `
           <div class="app-chart-wrap" style="height:${height}px">
@@ -2056,8 +2759,9 @@ function buildEvidenceAppendixMap(payload) {
               let config;
               if (c.kind === "raw" && c.config) {
                 config = c.config;
+              } else if (c.chart && c.chart.data) {
+                config = applyChartTheme(colorizeDatasets(c.chart));
               } else {
-                // oletuksena preset-fi-nordic
                 config = buildChartPreset(c);
               }
               new Chart(canvasEl, config);
@@ -2069,7 +2773,7 @@ function buildEvidenceAppendixMap(payload) {
             if (w) w.outerHTML = `<div class="note">Chart.js-kirjastoa ei voitu ladata: ${esc(err.message)}</div>`;
           });
         }, 0);
-        return [lead, note, canvas, source].join("");
+        return [lead, note, canvas, analysis, source].join("");
       }
 
       function renderChartUnsupported(app, name) {
@@ -2078,217 +2782,123 @@ function buildEvidenceAppendixMap(payload) {
         return `${lead}<div class="note">${name}-pohjaisten kuvaajien lukijatuki on tulossa. Tiedot ovat tallessa tietokannassa.</div>`;
       }
 
-      // Tutkimuskortti: luvun loppuun sijoittuva tiivistelmä.
-      // Kokoaa väitteen, kumoutumisehdon (periaate + operationalisointi + datan tila)
-      // ja näyttölistan yhteen jäsenneltyyn korttiin. Kumoutumisehto näytetään
-      // yhtä näkyvästi kuin näyttö -- tutkimusprotokollan ydinperiaate.
-      // VAIHE 5: evidence_key -> series_link -mappi (täytetään latauksessa)
-      let seriesLinkMap = {};
-      function buildSeriesLinkMap(appendixPayload) {
-        seriesLinkMap = {};
-        const links = appendixPayload && Array.isArray(appendixPayload.series_links)
-          ? appendixPayload.series_links : [];
-        for (const l of links) {
-          if (l && l.evidence_key) seriesLinkMap[l.evidence_key] = l;
-        }
-      }
+      // Tutkimuskortti: luvun loppuun sijoittuva tiivistelmä (sama kuin manuscripts.html).
+      function renderResearchCard(c) {
+        const status = c.falsification_data_available || c.data_status || "requires_collection";
+        const statusLabel = c.data_status_fi || (
+          status === "ready"
+            ? "Testattavissa nyt"
+            : status === "partial"
+              ? "Osittain testattavissa"
+              : "Vaatii aineiston keruun"
+        );
 
-      // Pieni "Data saatavilla" -merkki yhdelle series-linkille
-      function renderSeriesAvailability(link) {
-        if (!link) return "";
-        const years = (link.year_start && link.year_end)
-          ? `${link.year_start}–${link.year_end}` : "";
-        const codes = Array.isArray(link.expected_j_codes) && link.expected_j_codes.length
-          ? link.expected_j_codes.join(" / ") : "";
-        const sub = [link.indicator_name, years, codes].filter(Boolean).map(esc).join(" · ");
-        return `<div class="ev-data-available">
-            <span class="ev-data-dot"></span>
-            <span class="ev-data-label">Data saatavilla</span>
-            ${sub ? `<span class="ev-data-sub">${sub}</span>` : ""}
-          </div>`;
-      }
+        // Normalisoi evidence: ensisijaisesti c.evidence, fallback c.evidence_keys + evidence_titles
+        const evidence = Array.isArray(c.evidence) && c.evidence.length
+          ? c.evidence
+              .filter((e) => e && e.evidence_key)
+              .map((e) => ({
+                evidence_key: e.evidence_key,
+                title: e.title || e.evidence_key,
+                type: e.type || "",
+                source: e.source || "",
+              }))
+          : Array.isArray(c.evidence_keys)
+            ? c.evidence_keys.map((key, i) => ({
+                evidence_key: key,
+                title: Array.isArray(c.evidence_titles)
+                  ? (c.evidence_titles[i] || key)
+                  : key,
+                type: "",
+                source: "",
+              }))
+            : [];
 
-function openEvidenceAppendicesModal(evidenceKey) {
-  const appendices = evidenceAppendixMap[evidenceKey] || [];
-  const seriesLink = seriesLinkMap[evidenceKey] || null;
+        const evidenceHtml = evidence.length
+          ? evidence.map((e) => {
+              const key = e.evidence_key || "";
+              const link = key ? seriesLinkMap[key] : null;
+              const title = e.title || key;
+              const hasSeriesLink = Boolean(link);
 
-  if (!appendices.length) {
-    return;
-  }
-
-  const existing = document.querySelector(".ev-modal-backdrop");
-  if (existing) existing.remove();
-
-  const seriesHtml = seriesLink ? `
-    <div class="ev-data-available" style="margin: 10px 0 16px;">
-      <span class="ev-data-dot"></span>
-      <span class="ev-data-label">Data saatavilla</span>
-      <span class="ev-data-sub">
-        ${esc([
-          seriesLink.indicator_name,
-          seriesLink.year_start && seriesLink.year_end
-            ? `${seriesLink.year_start}–${seriesLink.year_end}`
-            : "",
-          Array.isArray(seriesLink.expected_j_codes)
-            ? seriesLink.expected_j_codes.join(" / ")
-            : ""
-        ].filter(Boolean).join(" · "))}
-      </span>
-    </div>
-  ` : "";
-
-  const itemsHtml = appendices.map((a) => `
-    <section class="ev-modal-item">
-      <div class="app-body-head">
-        <span class="kind">${esc(a.type || "liite")}</span>
-        <h3>${esc(a.title || "Liite")}</h3>
-      </div>
-      ${renderAppendixBody(a, seriesLinkMap)}
-    </section>
-  `).join("");
-
-  const modal = document.createElement("div");
-  modal.className = "ev-modal-backdrop show";
-  modal.innerHTML = `
-    <div class="ev-modal" role="dialog" aria-modal="true" aria-label="Evidence-liitteet">
-      <button type="button" class="ev-modal-close" aria-label="Sulje">×</button>
-      <h3>Evidence</h3>
-      <div class="ev-meta">
-        <span class="ev-key">${esc(evidenceKey)}</span>
-      </div>
-      ${seriesHtml}
-      ${itemsHtml}
-    </div>
-  `;
-
-  document.body.appendChild(modal);
-
-  const close = () => modal.remove();
-
-  modal.querySelector(".ev-modal-close")?.addEventListener("click", close);
-
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) close();
-  });
-
-  document.addEventListener("keydown", function onEsc(e) {
-    if (e.key === "Escape") {
-      close();
-      document.removeEventListener("keydown", onEsc);
-    }
-  });
-}
-
-function renderResearchCard(c) {
-  const status = c.falsification_data_available || "requires_collection";
-  const statusLabel = c.data_status_fi || (
-    status === "ready"
-      ? "Testattavissa nyt"
-      : status === "partial"
-        ? "Osittain testattavissa"
-        : "Vaatii aineiston keruun"
-  );
-
-  const evidence = Array.isArray(c.evidence) && c.evidence.length
-    ? c.evidence
-        .filter((e) => e && e.evidence_key)
-        .map((e) => ({
-          evidence_key: e.evidence_key,
-          title: e.title || e.evidence_key,
-          type: e.type || "",
-          source: e.source || "",
-        }))
-    : Array.isArray(c.evidence_keys)
-      ? c.evidence_keys.map((key, i) => ({
-          evidence_key: key,
-          title: Array.isArray(c.evidence_titles)
-            ? (c.evidence_titles[i] || key)
-            : key,
-          type: "",
-          source: "",
-        }))
-      : [];
-
-  const evidenceHtml = evidence.length
-    ? evidence.map((e) => {
-        const key = e.evidence_key || "";
-        const link = key ? seriesLinkMap[key] : null;
-        const title = e.title || key;
-        const hasSeriesLink = Boolean(link);
+              return `
+                <button
+                  type="button"
+                  class="pcard-evidence-row"
+                  data-evidence-key="${esc(key)}"
+                  data-has-series-link="${hasSeriesLink ? "true" : "false"}"
+                  aria-label="${hasSeriesLink
+                    ? `Avaa evidence ja siihen liittyvä data: ${esc(title)}`
+                    : `Avaa evidence-liitteet: ${esc(title)}`
+                  }"
+                >
+                  <div class="ev-title">${esc(title)}</div>
+                  <div class="ev-meta">
+                    ${e.type ? `<span>${esc(e.type)}</span>` : ""}
+                    ${e.source ? `<span>${esc(e.source)}</span>` : ""}
+                    ${key ? `<span class="ev-key">${esc(key)}</span>` : ""}
+                  </div>
+                  ${renderSeriesAvailability(link)}
+                </button>
+              `;
+            }).join("")
+          : `<div class="pcard-evidence-empty">Ei evidence-linkkejä.</div>`;
 
         return `
-          <button
-            type="button"
-            class="pcard-evidence-row"
-            data-evidence-key="${esc(key)}"
-            data-has-series-link="${hasSeriesLink ? "true" : "false"}"
-            aria-label="${hasSeriesLink
-              ? `Avaa evidence ja siihen liittyvä data: ${esc(title)}`
-              : `Avaa evidence-liitteet: ${esc(title)}`
-            }"
-          >
-            <div class="ev-title">${esc(title)}</div>
-            <div class="ev-meta">
-              ${e.type ? `<span>${esc(e.type)}</span>` : ""}
-              ${e.source ? `<span>${esc(e.source)}</span>` : ""}
-              ${key ? `<span class="ev-key">${esc(key)}</span>` : ""}
+          <article class="pcard">
+            <div class="pcard-toplabel">
+              <span class="pcard-status-dot ${esc(status)}"></span>
+              <span>Ennuste ${esc(c.prediction_number || "")}</span>
             </div>
-            ${renderSeriesAvailability(link)}
-          </button>
+
+            <div class="pcard-lens">${esc(c.lens || "Tutkimuskortti")}</div>
+
+            ${c.prediction ? `
+              <div class="pcard-claim">${esc(c.prediction)}</div>
+            ` : ""}
+
+            <div class="pcard-falsification ${c.falsification ? "" : "pcard-falsification-missing"}">
+              <div class="label">Mikä heikentäisi tätä ennustetta?</div>
+              <div class="text">
+                ${esc(c.falsification || "Falsifiointiehto puuttuu.")}
+              </div>
+
+              ${c.falsification_operationalized ? `
+                <div class="op">
+                  ${esc(c.falsification_operationalized)}
+                </div>
+              ` : ""}
+
+              <div class="status-line">
+                <span class="pcard-status-dot ${esc(status)}"></span>
+                <span>${esc(statusLabel)}</span>
+              </div>
+            </div>
+
+            <div class="pcard-evidence-label">
+              Evidence${typeof c.evidence_count === "number" ? ` · ${esc(c.evidence_count)} kpl` : ""}
+            </div>
+
+            <div class="pcard-evidence-list">
+              ${evidenceHtml}
+            </div>
+          </article>
         `;
-      }).join("")
-    : `<div class="pcard-evidence-empty">Ei evidence-linkkejä.</div>`;
+      }
 
-  return `
-    <article class="pcard">
-      <div class="pcard-toplabel">
-        <span class="pcard-status-dot ${esc(status)}"></span>
-        <span>Ennuste ${esc(c.prediction_number || "")}</span>
-      </div>
-
-      <div class="pcard-lens">${esc(c.lens || "Tutkimuskortti")}</div>
-
-      ${c.prediction ? `
-        <div class="pcard-claim">${esc(c.prediction)}</div>
-      ` : ""}
-
-      <div class="pcard-falsification ${c.falsification ? "" : "pcard-falsification-missing"}">
-        <div class="label">Mikä heikentäisi tätä ennustetta?</div>
-        <div class="text">
-          ${esc(c.falsification || "Falsifiointiehto puuttuu.")}
-        </div>
-
-        ${c.falsification_operationalized ? `
-          <div class="op">
-            ${esc(c.falsification_operationalized)}
-          </div>
-        ` : ""}
-
-        <div class="status-line">
-          <span class="pcard-status-dot ${esc(status)}"></span>
-          <span>${esc(statusLabel)}</span>
-        </div>
-      </div>
-
-      <div class="pcard-evidence-label">
-        Evidence${typeof c.evidence_count === "number" ? ` · ${esc(c.evidence_count)} kpl` : ""}
-      </div>
-
-      <div class="pcard-evidence-list">
-        ${evidenceHtml}
-      </div>
-    </article>
-  `;
-}
       function buildInlineAppendixHtml(appendices, region) {
         if (!appendices || !appendices.length) return "";
         const label = region === "chapter" ? "Tämän luvun liitteet" : "Liitteet";
-        const toggles = appendices.map((a, i) => `
+        const toggles = appendices.map((a, i) => {
+          const hiddenMark = a.hidden ? ' style="text-decoration: line-through; opacity: 0.55;"' : '';
+          const hiddenTitle = a.hidden ? ' (piilotettu lukijoilta)' : '';
+          return `
           <button type="button" class="app-toggle" data-app-idx="${i}"
-            aria-expanded="false" title="${esc(a.title || labelFor(a.type))}">
+            aria-expanded="false" title="${esc((a.title || labelFor(a.type)) + hiddenTitle)}"${hiddenMark}>
             ${iconFor(a.type)}
             <span class="app-toggle-title">${esc(a.title || labelFor(a.type))}</span>
-          </button>`).join("");
+          </button>`;
+        }).join("");
         return `
           <div class="app-inline ${region === "chapter" ? "chapter-level" : ""}">
             <div class="app-inline-label">${esc(label)}</div>
@@ -2308,15 +2918,68 @@ function renderResearchCard(c) {
         const openBody = (idx) => {
           const a = appendices[idx];
           if (!a) return;
+          // ADMIN: kontrollirivi joka näyttää näkyvyystäpän
+          const ctrlHtml = `
+            <div class="app-admin-controls">
+              <label>
+                <input type="checkbox" class="app-hidden-check" ${a.hidden ? "checked" : ""}/>
+                Piilota lukijoilta
+              </label>
+              <span class="save-status" data-app-status></span>
+            </div>`;
+          // ADMIN: korttiin .hidden-appendix-luokka jos piilotettu
           body.innerHTML = `
             <div class="app-body-head">
               <span class="kind">${esc(labelFor(a.type))}</span>
               <h3>${esc(a.title || labelFor(a.type))}</h3>
             </div>
-      ${renderAppendixBody(a, seriesLinkMap)}`;
+            <div class="app-card ${a.hidden ? "hidden-appendix" : ""}">
+              ${renderAppendixBody(a)}
+              ${ctrlHtml}
+            </div>`;
           body.hidden = false;
           buttons.forEach((b, i) => b.setAttribute("aria-expanded", i === idx ? "true" : "false"));
           openIdx = idx;
+
+          // Liitä tallennuslogiikka checkboxiin
+          const checkbox = body.querySelector(".app-hidden-check");
+          const statusEl = body.querySelector("[data-app-status]");
+          const card = body.querySelector(".app-card");
+          if (checkbox && a._id) {
+            checkbox.addEventListener("change", async () => {
+              const newHidden = checkbox.checked;
+              statusEl.textContent = "Tallennetaan…";
+              statusEl.className = "save-status saving";
+              try {
+                const { error } = await sb
+                  .from("appendices")
+                  .update({ hidden: newHidden })
+                  .eq("id", a._id);
+                if (error) throw error;
+                a.hidden = newHidden;
+                statusEl.textContent = newHidden ? "Piilotettu" : "Näkyvissä";
+                statusEl.className = "save-status saved";
+                card.classList.toggle("hidden-appendix", newHidden);
+                // päivitä nappi-tyyli
+                const btn = container.querySelector(`.app-toggle[data-app-idx="${idx}"]`);
+                if (btn) {
+                  if (newHidden) {
+                    btn.style.textDecoration = "line-through";
+                    btn.style.opacity = "0.55";
+                  } else {
+                    btn.style.textDecoration = "";
+                    btn.style.opacity = "";
+                  }
+                }
+                toast(newHidden ? "Liite piilotettu lukijoilta" : "Liite näkyy lukijoille", "success");
+              } catch (err) {
+                statusEl.textContent = "Virhe: " + (err.message || err);
+                statusEl.className = "save-status error";
+                checkbox.checked = !newHidden; // peruuta UI
+                toast("Tallennus epäonnistui", "error");
+              }
+            });
+          }
         };
         buttons.forEach((btn, i) => {
           btn.addEventListener("click", () => {
@@ -2329,6 +2992,477 @@ function renderResearchCard(c) {
           });
         });
       }
+
+      // ═══════════════════════════════════════════════════════════════════════
+      //  ADMIN: contenteditable-tallennus
+      // ═══════════════════════════════════════════════════════════════════════
+
+      // Muunna luvut TipTap/ProseMirror-doc-rakenteeksi. Käytetään SAMAA logiikkaa
+      // kuin admin.html:n textToDoc, mutta lukulähde on contenteditable-elementti.
+      // Strategia: kuljetetaan div:n lapset järjestyksessä.
+      //   - <h1>..<h6>  -> heading-blokki (taso 1-6)
+      //   - <p>         -> paragraph
+      //   - <ul>, <ol>  -> bulletList / orderedList
+      //   - tekstilapset (text nodes) suoraan p:n alla -> paragraph
+      function htmlToDoc(rootEl) {
+        const content = [];
+        const children = Array.from(rootEl.childNodes);
+
+        const walkInlineText = (n) => {
+          if (n.nodeType === Node.TEXT_NODE) return n.nodeValue || "";
+          if (n.nodeType !== Node.ELEMENT_NODE) return "";
+          return Array.from(n.childNodes).map(walkInlineText).join("");
+        };
+
+        // Kerätään orpoja teksti-/inline-solmuja yhteen paragraafiin
+        let buffer = "";
+        const flushBuffer = () => {
+          const t = buffer.replace(/\s+/g, " ").trim();
+          if (t) content.push({ type: "paragraph", content: [{ type: "text", text: t }] });
+          buffer = "";
+        };
+
+        for (const node of children) {
+          if (node.nodeType === Node.TEXT_NODE) {
+            buffer += node.nodeValue || "";
+            continue;
+          }
+          if (node.nodeType !== Node.ELEMENT_NODE) continue;
+          const tag = node.tagName.toLowerCase();
+
+          if (/^h[1-6]$/.test(tag)) {
+            flushBuffer();
+            const level = parseInt(tag.slice(1), 10);
+            const text = walkInlineText(node).trim();
+            if (text) content.push({
+              type: "heading",
+              attrs: { level },
+              content: [{ type: "text", text }],
+            });
+            continue;
+          }
+
+          if (tag === "p") {
+            flushBuffer();
+            const text = walkInlineText(node).replace(/\s+/g, " ").trim();
+            if (text) content.push({ type: "paragraph", content: [{ type: "text", text }] });
+            continue;
+          }
+
+          if (tag === "ul" || tag === "ol") {
+            flushBuffer();
+            const items = Array.from(node.querySelectorAll(":scope > li")).map((li) => ({
+              type: "listItem",
+              content: [{
+                type: "paragraph",
+                content: [{ type: "text", text: walkInlineText(li).replace(/\s+/g, " ").trim() }],
+              }],
+            })).filter(it => it.content[0].content[0].text);
+            if (items.length) {
+              content.push({ type: tag === "ol" ? "orderedList" : "bulletList", content: items });
+            }
+            continue;
+          }
+
+          if (tag === "br") {
+            buffer += "\n";
+            continue;
+          }
+
+          // Tuntematon blokki -- kohtele tekstinä
+          buffer += " " + walkInlineText(node);
+        }
+        flushBuffer();
+
+        return { type: "doc", content };
+      }
+
+      // Kytke jokaisen osion editointi paikalleen
+      function wireSectionEditing(sectionsData) {
+        const sectionEls = document.querySelectorAll("section[data-section-id]");
+        sectionEls.forEach((sectionEl) => {
+          const sectionId = sectionEl.dataset.sectionId;
+          if (!sectionId) return;
+          const sourceData = sectionsData.find(s => (s._id || s.id) === sectionId);
+          if (!sourceData) return;
+
+          const titleEl = sectionEl.querySelector('[data-field="title"]');
+          const contentEl = sectionEl.querySelector('[data-field="content"]');
+          const saveBar = sectionEl.querySelector('[data-save-bar]');
+          if (!saveBar) return;
+          const saveBtn = saveBar.querySelector('[data-action="save"]');
+          const discardBtn = saveBar.querySelector('[data-action="discard"]');
+
+          // Tallenna alkuperäisarvot palauttamista varten
+          const originalTitle = titleEl ? titleEl.innerHTML : "";
+          const originalContent = contentEl ? contentEl.innerHTML : "";
+
+          const markDirty = () => saveBar.classList.add("dirty");
+          if (titleEl) titleEl.addEventListener("input", markDirty);
+          if (contentEl) contentEl.addEventListener("input", markDirty);
+
+          // Estä rich-text liittäminen: tee plaintext-paste contenteditableissa
+          [titleEl, contentEl].forEach(el => {
+            if (!el) return;
+            el.addEventListener("paste", (e) => {
+              e.preventDefault();
+              const text = (e.clipboardData || window.clipboardData).getData("text/plain");
+              document.execCommand("insertText", false, text);
+            });
+          });
+
+          discardBtn.addEventListener("click", () => {
+            if (titleEl) titleEl.innerHTML = originalTitle;
+            if (contentEl) contentEl.innerHTML = originalContent;
+            saveBar.classList.remove("dirty");
+          });
+
+          saveBtn.addEventListener("click", async () => {
+            saveBtn.disabled = true;
+            saveBtn.textContent = "Tallennetaan…";
+            try {
+              const update = {};
+              if (titleEl) {
+                update.title = (titleEl.textContent || "").trim() || null;
+              }
+              if (contentEl) {
+                update.content = htmlToDoc(contentEl);
+              }
+              const { error } = await sb
+                .from("sections")
+                .update(update)
+                .eq("id", sectionId);
+              if (error) throw error;
+              saveBar.classList.remove("dirty");
+              toast("Osio tallennettu", "success");
+            } catch (err) {
+              toast("Tallennus epäonnistui: " + (err.message || err), "error");
+            } finally {
+              saveBtn.disabled = false;
+              saveBtn.textContent = "Tallenna";
+            }
+          });
+        });
+      }
+
+      // ═══════════════════════════════════════════════════════════════════════
+      //  ADMIN: vientifunktiot
+      // ═══════════════════════════════════════════════════════════════════════
+
+      // Muuntaa TipTap/ProseMirror-doc:n yksinkertaiseksi tekstiksi.
+      // Käytetään samaa logiikkaa kuin admin.html:ssä, jotta tulos on yhdenmukainen.
+      function docToText(doc) {
+        if (!doc || typeof doc !== "object" || !Array.isArray(doc.content)) return "";
+        const walk = (n) =>
+          n.type === "text" ? (n.text ?? "") :
+          (Array.isArray(n.content) ? n.content.map(walk).join("") : "");
+        const lines = [];
+        for (const b of doc.content) {
+          if (b.type === "heading") {
+            const lvl = Math.min(6, Math.max(1, Number(b.attrs?.level ?? 1)));
+            lines.push("#".repeat(lvl) + " " + walk(b));
+          } else if (b.type === "bulletList" || b.type === "orderedList") {
+            (b.content || []).forEach((it, i) =>
+              lines.push((b.type === "orderedList" ? (i + 1) + ". " : "- ") + walk(it).trim())
+            );
+          } else {
+            lines.push(walk(b));
+          }
+          lines.push("");
+        }
+        return lines.join("\n").replace(/\n{3,}/g, "\n\n").trim();
+      }
+
+      // Muuntaa koko kirjan ihmisluettavaksi tekstiksi (otsikot + erottimet).
+      function bookExportToTxt(book) {
+        const out = [];
+        out.push(book.title);
+        out.push("=".repeat(book.title.length));
+        if (book.author) out.push(`-- ${book.author}`);
+        if (book.description) { out.push(""); out.push(book.description); }
+        for (const ch of book.chapters) {
+          out.push(""); out.push(""); out.push(ch.title);
+          out.push("-".repeat(ch.title.length));
+          for (const s of ch.sections) {
+            out.push("");
+            if (s.title) { out.push(`### ${s.title}`); out.push(""); }
+            out.push(docToText(s.content));
+          }
+        }
+        return out.join("\n");
+      }
+
+      // Kopioi koko kirja tekstinä leikepöydälle.
+      async function copyBookAsText() {
+        const slug = adminState.currentBookSlug;
+        if (!slug) {
+          toast("Avaa ensin kirja", "error");
+          return;
+        }
+        try {
+          const data = await loadBook(slug);
+          const text = bookExportToTxt(data);
+          await navigator.clipboard.writeText(text);
+          const kb = Math.round(text.length / 1024);
+          toast(`Kirja kopioitu leikepöydälle (${kb} kt)`, "success");
+        } catch (err) {
+          // Clipboard API voi epäonnistua jos sivu ei ole HTTPS:ssä tai
+          // selain ei tue sitä. Tarjotaan fallback.
+          console.error("Clipboard write failed:", err);
+          toast("Kopiointi epäonnistui: " + (err.message || err), "error");
+        }
+      }
+
+      // Rakentaa kirja-payloadin (manu.html-yhteensopiva) lataamatta tiedostoa.
+      async function buildBookPayload(slug) {
+        const data = await loadBook(slug);
+        return {
+          slug: data.slug,
+          title: data.title,
+          author: data.author,
+          description: data.description,
+          cover_url: data.cover_url,
+          chapters: data.chapters.map(ch => ({
+            slug: ch.slug,
+            title: ch.title,
+            position: ch.position,
+            sections: ch.sections.map(s => ({
+              title: s.title,
+              position: s.position,
+              content: s.content,
+            })),
+          })),
+        };
+      }
+
+      async function exportBookJson() {
+        const slug = adminState.currentBookSlug;
+        if (!slug) {
+          toast("Avaa ensin kirja", "error");
+          return;
+        }
+        try {
+          const cleaned = await buildBookPayload(slug);
+          downloadJson(`${slug}.json`, cleaned);
+          toast("Kirja-JSON ladattu", "success");
+        } catch (err) {
+          toast("Vienti epäonnistui: " + (err.message || err), "error");
+        }
+      }
+
+// Rakentaa liite-payloadin (lukija-yhteensopiva) lataamatta tiedostoa.
+// Heittää virheen jos haku epäonnistuu; kutsuja hoitaa virheet.
+async function buildAppendicesPayload(slug) {
+    // 1. Hae kirja
+    const { data: book, error: bookErr } = await sb
+      .from("books")
+      .select("id, slug, title")
+      .eq("slug", slug)
+      .single();
+    if (bookErr) throw new Error("Kirjan haku epäonnistui: " + bookErr.message);
+    if (!book) throw new Error("Kirjaa ei löytynyt: " + slug);
+
+    // 2. Hae liitteet
+    const { data: appendices, error: appsErr } = await sb
+      .from("appendices")
+      .select(`
+        id, book_id, chapter_position, section_position,
+        type, title, source, position, content, hidden
+      `)
+      .eq("book_id", book.id)
+      .order("chapter_position", { ascending: true })
+      .order("section_position", { ascending: true, nullsFirst: false })
+      .order("position", { ascending: true });
+    if (appsErr) throw new Error("Liitteiden haku epäonnistui: " + appsErr.message);
+
+    // 3. Hae deduplikoidut data-/sarjalinkit (evidence_key → indicator_key → metadata)
+    const { data: seriesLinks, error: seriesErr } = await sb
+      .from("v_evidence_series_export")
+      .select(`
+        evidence_key, indicator_key, indicator_name, external_project,
+        external_project_ref, geography, year_start, year_end,
+        expected_j_codes, data_role, note
+      `)
+      .order("evidence_key", { ascending: true });
+    if (seriesErr) throw new Error("Series-linkkien haku epäonnistui: " + seriesErr.message);
+
+    let hiddenCount = 0;
+    const visibleAppendices = (appendices || [])
+      .filter((a) => { if (a.hidden === true) { hiddenCount++; return false; } return true; })
+      .map((a) => ({
+        chapter_position: a.chapter_position,
+        section_position: a.section_position,
+        type: a.type,
+        title: a.title,
+        source: a.source,
+        position: a.position,
+        content: a.content || {},
+      }));
+
+    // 4. Ryhmittele liitteet lukujen alle
+    const chaptersMap = new Map();
+    for (const a of visibleAppendices) {
+      const cp = Number(a.chapter_position);
+      if (!chaptersMap.has(cp)) chaptersMap.set(cp, { chapter_position: cp, appendices: [] });
+      chaptersMap.get(cp).appendices.push(a);
+    }
+    const chapters = [...chaptersMap.values()]
+      .sort((a, b) => a.chapter_position - b.chapter_position)
+      .map((ch) => ({
+        ...ch,
+        appendices: ch.appendices.sort((a, b) => {
+          const as = a.section_position ?? 999999;
+          const bs = b.section_position ?? 999999;
+          if (as !== bs) return as - bs;
+          return (a.position ?? 0) - (b.position ?? 0);
+        }),
+      }));
+
+    // 5. Puhdista series_links
+    const cleanedSeriesLinks = (seriesLinks || []).map((s) => ({
+      evidence_key: s.evidence_key,
+      indicator_key: s.indicator_key,
+      indicator_name: s.indicator_name,
+      external_project: s.external_project,
+      external_project_ref: s.external_project_ref,
+      geography: s.geography,
+      year_start: s.year_start,
+      year_end: s.year_end,
+      expected_j_codes: s.expected_j_codes || [],
+      data_role: s.data_role,
+      note: s.note,
+    }));
+
+    return {
+      payload: {
+        book_slug: book.slug,
+        book_title: book.title,
+        exported_at: new Date().toISOString(),
+        chapters,
+        series_links: cleanedSeriesLinks,
+      },
+      stats: { visible: visibleAppendices.length, links: cleanedSeriesLinks.length, hidden: hiddenCount },
+    };
+}
+
+async function exportAppendicesJson() {
+  if (!adminState.currentBookSlug) {
+    toast("Avaa ensin kirja, jonka liitteet viedään.", "error");
+    return;
+  }
+  try {
+    const { payload, stats } = await buildAppendicesPayload(adminState.currentBookSlug);
+    downloadJson(`${payload.book_slug}-appendices.json`, payload);
+    const msgParts = [`Liitteet viety: ${stats.visible} kpl`, `series_links: ${stats.links} kpl`];
+    if (stats.hidden > 0) msgParts.push(`piilotettuja ohitettu: ${stats.hidden} kpl`);
+    toast(msgParts.join(" · "), "success");
+  } catch (err) {
+    console.error("[exportAppendicesJson]", err);
+    toast(err.message || "Liitteiden vienti epäonnistui.", "error");
+  }
+}
+
+      function downloadJson(filename, obj) {
+        const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      // Lataa JSZip-kirjasto kerran (CDN). Palauttaa Promisen.
+      let _jszipPromise = null;
+      function loadJsZipOnce() {
+        if (window.JSZip) return Promise.resolve();
+        if (_jszipPromise) return _jszipPromise;
+        _jszipPromise = new Promise((resolve, reject) => {
+          const s = document.createElement("script");
+          s.src = "https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";
+          s.onload = () => resolve();
+          s.onerror = () => reject(new Error("JSZip-kirjastoa ei voitu ladata"));
+          document.head.appendChild(s);
+        });
+        return _jszipPromise;
+      }
+
+      // Vie KAIKKI kirjat + liitteet + index1.json yhtenä zip-tiedostona.
+      // Tiedostot menevät zipissä books/-kansioon, joten puran sen suoraan
+      // palvelimen juureen (tai books/ ylätasolle).
+      async function exportAllZip() {
+        const btn = document.getElementById("exportAllBtn");
+        const origLabel = btn ? btn.textContent : "";
+        const setLabel = (t) => { if (btn) btn.textContent = t; };
+        try {
+          if (btn) btn.disabled = true;
+          setLabel("Haetaan kirjat…");
+
+          // 1. Hae kaikki kirjat (järjestys position mukaan)
+          const { data: books, error: be } = await sb
+            .from("books")
+            .select("slug, title, author, description, position")
+            .order("position", { ascending: true });
+          if (be) throw new Error("Kirjojen haku epäonnistui: " + be.message);
+          if (!books || !books.length) throw new Error("Ei kirjoja.");
+
+          await loadJsZipOnce();
+          const zip = new JSZip();
+          const folder = zip.folder("books");
+
+          // 2. index1.json — lukijan kirjalista
+          const index = books.map(b => ({
+            slug: b.slug,
+            title: b.title,
+            author: b.author,
+            description: b.description,
+          }));
+          folder.file("index1.json", JSON.stringify(index, null, 2));
+
+          // 3. Jokainen kirja + liitteet
+          let i = 0;
+          for (const b of books) {
+            i++;
+            setLabel(`Kirja ${i}/${books.length}: ${b.slug}`);
+            try {
+              const bookPayload = await buildBookPayload(b.slug);
+              folder.file(`${b.slug}.json`, JSON.stringify(bookPayload, null, 2));
+            } catch (err) {
+              console.error(`[exportAll] kirja ${b.slug} epäonnistui:`, err);
+              toast(`Kirja ${b.slug} ei latautunut: ${err.message}`, "error");
+            }
+            try {
+              const { payload } = await buildAppendicesPayload(b.slug);
+              folder.file(`${b.slug}-appendices.json`, JSON.stringify(payload, null, 2));
+            } catch (err) {
+              console.error(`[exportAll] liitteet ${b.slug} epäonnistui:`, err);
+              toast(`Liitteet ${b.slug} ei latautunut: ${err.message}`, "error");
+            }
+          }
+
+          // 4. Pakkaa ja lataa
+          setLabel("Pakataan zip…");
+          const blob = await zip.generateAsync({ type: "blob", compression: "DEFLATE", compressionOptions: { level: 6 } });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "book-haven-books.zip";
+          a.click();
+          URL.revokeObjectURL(url);
+
+          toast(`Vie kaikki valmis: ${books.length} kirjaa + index1.json`, "success");
+        } catch (err) {
+          console.error("[exportAllZip]", err);
+          toast(err.message || "Vie kaikki epäonnistui.", "error");
+        } finally {
+          if (btn) { btn.disabled = false; btn.textContent = origLabel; }
+        }
+      }
+
+      document.getElementById("copyTxtBtn").addEventListener("click", copyBookAsText);
+      document.getElementById("exportBookBtn").addEventListener("click", exportBookJson);
+      document.getElementById("exportAppsBtn").addEventListener("click", exportAppendicesJson);
+      document.getElementById("exportAllBtn").addEventListener("click", exportAllZip);
 
       // ═══════════════════════════════════════════════════════════════════════
       //  Routes
@@ -2415,14 +3549,12 @@ function renderResearchCard(c) {
           </section>`;
       }
 
-
-
       async function home() {
         setStatus("Ladataan…");
         let books;
         try { books = await loadIndex(); }
         catch (e) {
-          return setError(`${e.message}\n\nTarkista että public/books/index1.json on saatavilla.`);
+          return setError(`Kirjojen lataus tietokannasta epäonnistui:\n${e.message}`);
         }
         allBooksCache = books;
         setMeta(
@@ -2545,12 +3677,9 @@ function renderResearchCard(c) {
           [data, appendixPayload] = await Promise.all([loadBook(slug), loadAppendices(slug)]);
         } catch (e) { return setError(e.message || "Kirjaa ei löytynyt."); }
 
-        // VAIHE 5: rakenna evidence_key -> series_link -mappi appendices-payloadista.
-        // Lukija näyttää research-cardin evidence-rivillä "Data saatavilla", jos
-        // avain löytyy. Ei tietokantayhteyttä -- tieto tulee staattisesta JSON:ista.
+        // Rakenna research-card-tukirakenteet (sama kuin manuscripts.html)
         buildSeriesLinkMap(appendixPayload);
         buildEvidenceAppendixMap(appendixPayload);
-        
 
         const all = (data.chapters || []).slice().sort((a, b) => (a.position ?? 0) - (b.position ?? 0));
         const current = all.find((c) => c.slug === chapterSlug);
@@ -2626,10 +3755,17 @@ function renderResearchCard(c) {
             sectionsWithApps.push({ sectionPos: sp, appendices: apps });
             appHtml = buildInlineAppendixHtml(apps, "section");
           }
+          // ADMIN: lisää contenteditable osion otsikkoon ja sisältöön + tallennusbari
+          const sectionId = s._id || s.id || "";
           return `
-            <section data-section-pos="${sp}">
-              ${s.title ? `<h2>${esc(s.title)}</h2>` : ""}
-              <div>${renderDoc(s.content)}</div>
+            <section data-section-pos="${sp}" data-section-id="${esc(sectionId)}">
+              ${s.title !== undefined ? `<h2 class="editable section-title" contenteditable="true" data-field="title">${esc(s.title || "")}</h2>` : ""}
+              <div class="editable section-content" contenteditable="true" data-field="content">${renderDoc(s.content)}</div>
+              <div class="section-save-bar" data-save-bar>
+                <span class="label">Tallentamattomia muutoksia</span>
+                <button type="button" data-action="discard" class="secondary">Hylkää</button>
+                <button type="button" data-action="save">Tallenna</button>
+              </div>
               ${appHtml}
             </section>`;
         }).join("");
@@ -2671,6 +3807,12 @@ function renderResearchCard(c) {
           const chCont = article.querySelector(".app-inline.chapter-level");
           if (chCont) wireInlineToggles(chCont, chapterAppendices);
         }
+
+        // ADMIN: kytke contenteditable-tallennus jokaiseen osioon
+        wireSectionEditing(sections);
+
+        // ADMIN: muista valittu kirja vientipainikkeita varten
+        adminState.currentBookSlug = slug;
 
         // JSON-LD per chapter
         const ld = document.getElementById("chapter-ld");
@@ -2798,19 +3940,26 @@ function renderResearchCard(c) {
         }
         if (e.key === "Escape") { closeSearch(); toggleSettings(false); }
       });
-      
-      document.addEventListener("click", (e) => {
-  const row = e.target.closest(".pcard-evidence-row");
-  if (!row) return;
-
-  const key = row.dataset.evidenceKey;
-  if (!key) return;
-
-  openEvidenceAppendicesModal(key);
-});
 
       window.addEventListener("hashchange", route);
-      route();
+
+      // Evidence-rivin klikkaus avaa modal jossa kaikki saman evidence_keyn liitteet
+      document.addEventListener("click", (e) => {
+        const row = e.target.closest(".pcard-evidence-row");
+        if (!row) return;
+        const key = row.dataset.evidenceKey;
+        if (!key) return;
+        openEvidenceAppendicesModal(key);
+      });
+
+      // Käynnistä reititys vasta kun auth on ohi
+      window.startReader = function() {
+        if (window.__readerStarted) return;
+        window.__readerStarted = true;
+        route();
+      };
     </script>
+    </div> <!-- /#appView -->
+    <div id="toast" class="toast"></div>
   </body>
 </html>
