@@ -985,6 +985,14 @@
         text-align: right;
         white-space: nowrap;
       }
+      .paperdoll-era-context { margin: 18px 0 0; line-height: 1.6; }
+      .paperdoll-block-intro { margin: 18px 0 8px; font-style: italic; color: var(--muted); line-height: 1.5; }
+      .paperdoll-table-wrap { overflow-x: auto; margin: 8px 0; }
+      .paperdoll-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      .paperdoll-table th, .paperdoll-table td { padding: 6px 10px; border-bottom: 1px solid var(--line); }
+      .paperdoll-table thead th { color: var(--muted); font-size: 12px; font-weight: 600; text-align: left; }
+      .paperdoll-table tbody th { text-align: left; font-weight: 500; }
+      .paperdoll-table tbody td { text-align: right; white-space: nowrap; }
       .paperdoll-caption {
         margin-top: 10px;
         font-size: 13px;
@@ -1478,29 +1486,42 @@
       .wheel-sector:hover { opacity: .92; }
       .wheel-sector:hover .wheel-sector-shape { filter: brightness(1.04); }
       .wheel-sector-shape {
-        stroke: var(--bg-soft);
-        stroke-width: 2;
+        stroke: rgba(94,79,59,0.30);
+        stroke-width: 0.75;
+        stroke-linejoin: round;
       }
       .wheel-label {
-        font-family: "Work Sans", system-ui, sans-serif;
-        font-size: 14px;
-        font-weight: 600;
-        fill: var(--fg);
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 15px;
+        font-weight: 400;
+        fill: #3d3326;
         pointer-events: none;
       }
       .wheel-sublabel {
         font-family: "Work Sans", system-ui, sans-serif;
         font-size: 11px;
-        fill: var(--fg-soft);
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        fill: #7b6a52;
         pointer-events: none;
       }
-      .wheel-num {
-        font-family: "Instrument Serif", Georgia, serif;
-        font-size: 18px;
-        fill: var(--fg);
-        font-style: italic;
+      .wheel-bignum {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 74px;
+        font-style: normal;
+        font-weight: 700;
+        fill: #ffffff;
+        fill-opacity: 0.30;
         pointer-events: none;
       }
+      .wheel-claim {
+        font-family: "Work Sans", system-ui, sans-serif;
+        font-size: 12.5px;
+        fill: #4a3f31;
+        pointer-events: none;
+      }
+      .wheel-center-ring { fill: none; stroke: rgba(255,255,255,0.14); stroke-width: 0.75; pointer-events: none; }
       .wheel-center-circle {
         fill: var(--accent);
         cursor: pointer;
@@ -1530,9 +1551,196 @@
         color: var(--muted);
       }
       @media (max-width: 560px) {
-        .wheel-label { font-size: 12px; }
+        .wheel-label { font-size: 13px; }
         .wheel-sublabel { font-size: 10px; }
-        .wheel-center-title { font-size: 22px; }
+        .wheel-bignum { font-size: 60px; }
+        .wheel-claim { font-size: 11px; }
+      }
+
+      /* ─── Pyörän 3. taso: ulkokehän väitteet ─────────────────────────── */
+      .wheel-outer-text {
+        font-family: "Work Sans", system-ui, sans-serif;
+        font-size: 11.5px;
+        font-weight: 500;
+        fill: var(--fg-soft);
+        letter-spacing: 0.01em;
+        pointer-events: none;
+      }
+      .wheel-outer-arc { fill: none; stroke: none; }
+      .wheel-center-claim {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-style: italic;
+        font-size: 13.5px;
+        fill: var(--bg);
+        text-anchor: middle;
+        pointer-events: none;
+      }
+
+      /* ─── Sektorin tarkennuspaneeli ──────────────────────────────────── */
+      .wheel-detail {
+        margin: 18px auto 0;
+        max-width: 640px;
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--accent);
+        border-radius: 12px;
+        padding: 16px 20px;
+        text-align: left;
+        box-shadow: var(--shadow-sm);
+        display: none;
+      }
+      .wheel-detail.is-open { display: block; }
+      .wheel-detail .wd-eyebrow {
+        font-size: 11px; text-transform: uppercase; letter-spacing: .14em; color: var(--muted);
+      }
+      .wheel-detail h3 {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-weight: 400; font-size: 22px; margin: 4px 0 6px;
+      }
+      .wheel-detail .wd-claim {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-style: italic; font-size: 17px; color: var(--fg); margin: 0 0 8px;
+      }
+      .wheel-detail .wd-expand { color: var(--fg-soft); font-size: 14.5px; line-height: 1.6; margin: 0 0 12px; }
+      .wheel-detail .wd-actions a {
+        display: inline-block; background: var(--accent); color: var(--bg);
+        padding: 8px 14px; border-radius: 8px; font-size: 13px; text-decoration: none; font-weight: 500;
+      }
+      .wheel-detail .wd-actions a + a {
+        background: transparent; color: var(--fg);
+        border: 1px solid var(--line-strong); margin-left: 8px;
+      }
+      .wheel-detail .wd-actions a[aria-disabled="true"] {
+        background: var(--bg-soft); color: var(--muted); border: 1px solid var(--line); cursor: default;
+      }
+
+      /* ─── Valitse huolesi -osio ──────────────────────────────────────── */
+      .concern-section {
+        margin: 0 0 36px; padding: 26px 22px;
+        background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      }
+      .concern-section .ce {
+        font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); margin-bottom: 6px;
+      }
+      .concern-section h2 {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-weight: 400; font-size: clamp(20px, 3vw, 26px); margin: 0 0 14px;
+      }
+      .concern-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px;
+      }
+      .concern-card {
+        display: block; text-decoration: none; color: var(--fg);
+        background: var(--bg-soft); border: 1px solid var(--line);
+        border-radius: 12px; padding: 14px 16px;
+        transition: transform .15s, border-color .15s, background .15s;
+      }
+      .concern-card:hover {
+        transform: translateY(-2px); border-color: var(--line-strong); background: var(--card);
+      }
+      .concern-card .cq {
+        font-family: "Instrument Serif", Georgia, serif;
+        font-size: 16px; line-height: 1.35; margin-bottom: 6px;
+      }
+      .concern-card .ca {
+        font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em;
+      }
+
+      /* ─── Linssimatriisi (avattava) ──────────────────────────────────── */
+      .matrix-section {
+        margin: 0 0 44px; padding: 0;
+        background: var(--bg-soft); border: 1px solid var(--line); border-radius: 16px;
+        overflow: hidden;
+      }
+      .matrix-section > summary {
+        list-style: none; cursor: pointer; padding: 22px 22px;
+        display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+      }
+      .matrix-section > summary::-webkit-details-marker { display: none; }
+      .matrix-section > summary .ce {
+        font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted);
+      }
+      .matrix-section > summary h2 {
+        display: inline; font-family: "Instrument Serif", Georgia, serif;
+        font-weight: 400; font-size: clamp(20px, 3vw, 26px); margin: 0;
+      }
+      .matrix-section > summary .matrix-toggle {
+        margin-left: auto; font-size: 13px; color: var(--accent); white-space: nowrap;
+      }
+      .matrix-section[open] > summary .matrix-toggle-open { display: none; }
+      .matrix-section:not([open]) > summary .matrix-toggle-close { display: none; }
+      .matrix-body { padding: 0 22px 26px; }
+      .matrix-section .lede {
+        max-width: 60ch; color: var(--fg-soft); font-size: 14.5px; margin: 0 0 16px;
+      }
+      .matrix-table-wrap { overflow-x: auto; }
+      .matrix-table {
+        width: 100%; border-collapse: collapse; font-size: 14px;
+        background: var(--card); border-radius: 10px; overflow: hidden;
+      }
+      .matrix-table th, .matrix-table td {
+        padding: 12px 14px; text-align: left;
+        border-bottom: 1px solid var(--line); vertical-align: top;
+      }
+      .matrix-table thead th {
+        background: var(--summary-bg); font-size: 11px;
+        text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600;
+      }
+      .matrix-table tbody tr:last-child td { border-bottom: 0; }
+      .matrix-table td.lens-name {
+        font-family: "Instrument Serif", Georgia, serif; font-size: 16px; white-space: nowrap;
+      }
+      .matrix-table td.lens-name a {
+        color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--line-strong);
+      }
+      .matrix-table td.lens-name a:hover { border-color: var(--accent); }
+      @media (max-width: 640px) {
+        .matrix-table thead { display: none; }
+        .matrix-table, .matrix-table tbody, .matrix-table tr, .matrix-table td { display: block; width: 100%; }
+        .matrix-table tr { border-bottom: 1px solid var(--line); padding: 10px 0; }
+        .matrix-table td { border: 0; padding: 6px 14px; }
+        .matrix-table td::before {
+          content: attr(data-label); display: block;
+          font-size: 10px; text-transform: uppercase; letter-spacing: .1em;
+          color: var(--muted); margin-bottom: 2px;
+        }
+        .matrix-table td.lens-name::before { display: none; }
+      }
+
+      .books-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+      .book-card {
+        display: block;
+        padding: 22px 22px 24px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--card);
+        transition: border-color .15s, transform .15s, box-shadow .15s;
+        position: relative;
+      }
+      .book-card:hover {
+        border-color: var(--line-strong);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-md);
+      }
+      .book-card h2 {
+        font-size: 26px;
+        margin-bottom: 6px;
+      }
+      .book-card .author {
+        font-size: 12px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 12px;
+      }
+      .book-card .desc {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
       }
     </style>
   </head>
@@ -2529,6 +2737,21 @@
       //   ],
       //   "source": "Lähde"
       // }
+      function renderPaperdollBlock(b) {
+        if (!b || typeof b !== "object") return "";
+        const intro = b.intro ? `<p class="paperdoll-block-intro">${esc(b.intro)}</p>` : "";
+        const rows = Array.isArray(b.rows) ? b.rows : [];
+        let table = "";
+        if (rows.length) {
+          const head = Array.isArray(b.headers) && b.headers.length
+            ? `<thead><tr>${b.headers.map((h) => `<th>${esc(h)}</th>`).join("")}</tr></thead>` : "";
+          const body = `<tbody>${rows.map((r) => `<tr>${(Array.isArray(r) ? r : [r]).map((cell, i) => i === 0 ? `<th>${esc(cell)}</th>` : `<td>${esc(cell)}</td>`).join("")}</tr>`).join("")}</tbody>`;
+          table = `<div class="paperdoll-table-wrap"><table class="paperdoll-table">${head}${body}</table></div>`;
+        }
+        const reading = b.reading ? `<div class="note">${esc(b.reading)}</div>` : "";
+        const sources = b.sources ? `<div class="source">${esc(b.sources)}</div>` : "";
+        return intro + table + reading + sources;
+      }
       function renderPaperdoll(c) {
         const subjects = Array.isArray(c.subjects) ? c.subjects : [];
         const lead = c.body ? `<p class="lead">${esc(c.body)}</p>` : "";
@@ -2554,8 +2777,12 @@
           return `<figure class="paperdoll">${img}${head}${stats}${caption}</figure>`;
         }).join("");
         const wrap = subjects.length ? `<div class="paperdoll-set ${layoutClass}">${figures}</div>` : "";
+        const eraContext = c.era_context ? `<p class="paperdoll-era-context">${esc(c.era_context)}</p>` : "";
+        const eraStats = renderPaperdollBlock(c.era_stats);
+        const cousins = renderPaperdollBlock(c.cousins);
+        const cousinsNote = c.cousins_note ? `<div class="note">${esc(c.cousins_note)}</div>` : "";
         const source = c.source ? `<div class="source">${esc(c.source)}</div>` : "";
-        return [lead, note, wrap, source].join("");
+        return [lead, note, wrap, eraContext, eraStats, cousins, cousinsNote, source].join("");
       }
 
       // ─── chart-chartjs ────────────────────────────────────────────────────
@@ -3410,7 +3637,7 @@ async function exportAppendicesJson() {
           const zip = new JSZip();
           const folder = zip.folder("books");
 
-          // 2. index1.json — lukijan kirjalista
+          // 2. index1.json -- lukijan kirjalista
           const index = books.map(b => ({
             slug: b.slug,
             title: b.title,
@@ -3471,82 +3698,320 @@ async function exportAppendicesJson() {
       let allChaptersCache = null; // for search
 
       // ─── Pyörä: Kuusi käsikirjoitusta → kuusi ennustetta ─────────────────
-      function renderWheel(books) {
-        const PREDICTIONS = [
-          { slug: "laajenemisen-logiikka",    book: "Laajenemisen logiikka",       pred: "Tehostamis\u00ADparadoksi" },
-          { slug: "nakymattomat-mekanismit",  book: "Näkymättömät mekanismit",     pred: "Systeeminen sokeus" },
-          { slug: "nakyvaksi",                book: "Näkyväksi",                    pred: "Ihmisen näkymättömyys" },
-          { slug: "itseohjautuvuus",          book: "Itseohjautuvuus",              pred: "Itseohjautuvuus\u00ADongelma" },
-          { slug: "katalyytti",               book: "Katalyytti",                   pred: "Muutoksen kitka" },
-          { slug: "sukupolvi-joka-kantaa",    book: "Sukupolvi joka kantaa",       pred: "Sukupolvi\u00ADseuraukset" },
-        ];
-        const haveSlugs = new Set((books || []).map(b => b.slug));
-        const CX = 300, CY = 300, R_OUT = 280, R_IN = 130;
-        const N = PREDICTIONS.length;
-        const colors = ["#e8d9c4","#d4c4b0","#c9b69a","#bca684","#b0967a","#9d8467"];
-        const polar = (r, a) => [CX + r * Math.cos(a), CY + r * Math.sin(a)];
+      // ─── Linssidata: yksi datalähde pyörälle, huolivalitsimelle ja matriisille ─
+      // SUOSITUS / migraatiopolku: siirrä nämä kentät kirjojen JSON-dataan
+      // (esim. books/index1.json kohteeseen: lens, claim, expand,
+      // matrix:{sees,blind,q}, concern). Jos indeksin kirjaobjektista löytyy
+      // kenttä, sitä KÄYTETÄÄN; muuten käytetään alla olevaa oletusta. Näin
+      // sisältö voidaan siirtää dataan vähitellen ilman että etusivu hajoaa,
+      // ja kuuden linssin kehys (järjestys, numerointi) pysyy vakaana.
+      const DEFAULT_LENSES = [
+        {
+          slug: "laajenemisen-logiikka",
+          book: "Laajenemisen logiikka",
+          lens: "Optimointi",
+          claim: "Optimointi parantaa prosessia, mutta voi kadottaa tarkoituksen.",
+          expand: "Tämä käsikirjoitus näyttää, miten tehokkuutta parantavat mittarit ja virtaviivaistus voivat alkaa ohjata toimintaa niin, että varsinainen hyvinvointivaikutus jää toissijaiseksi.",
+          matrix: { sees: "Tehokkuuden mekanismin",  blind: "Tarkoituksen",         q: "Milloin järjestelmä alkaa palvella itseään?" },
+          concern: "Tehokkuus ei tunnu parantavan hyvinvointia"
+        },
+        {
+          slug: "nakymattomat-mekanismit",
+          book: "Näkymättömät mekanismit",
+          lens: "Mittarit",
+          claim: "Mittarit alkavat ohjata sitä, mitä pidetään todellisena.",
+          expand: "Kun ohjaus nojaa siihen mitä voidaan mitata, mittaamaton katoaa näkyvistä. Käsikirjoitus paljastaa, miten indikaattorit muuttuvat todellisuuden apuvälineestä todellisuuden korvikkeeksi.",
+          matrix: { sees: "Ohjauksen logiikan",      blind: "Ihmisen kokemuksen",   q: "Mitä järjestelmä pitää todellisena?" },
+          concern: "Mittarit näyttävät hyvää, arki huonoa"
+        },
+        {
+          slug: "nakyvaksi",
+          book: "Näkyväksi",
+          lens: "Asiakkuus",
+          claim: "Asiakas näkyy järjestelmälle usein vasta kustannuksena.",
+          expand: "Asiakkuuden linssi tutkii sitä hetkeä, jolloin ihminen muuttuu tapaukseksi: kun palvelupolku kohtelee häntä prosessina eikä kansalaisena, jolla on oma elämäntilanne.",
+          matrix: { sees: "Kohtaamisen rakenteen",   blind: "Kansalaisuuden",       q: "Milloin ihminen muuttuu prosessiksi?" },
+          concern: "Ihminen katoaa prosessiin"
+        },
+        {
+          slug: "itseohjautuvuus",
+          book: "Itseohjautuvuus",
+          lens: "Vastuu",
+          claim: "Vastuu hajautuu, kun vaikutukset syntyvät verkostoissa.",
+          expand: "Kun palvelut tuotetaan ammattilaisten ja organisaatioiden verkostoissa, kukaan ei enää omista kokonaisuutta. Käsikirjoitus jäljittää, mihin vastuu hajoaa ja miksi sitä on niin vaikea koota takaisin.",
+          matrix: { sees: "Vastuun hajautumisen",    blind: "Omistajuuden",         q: "Kuka vastaa kokonaisuudesta?" },
+          concern: "Kukaan ei vastaa kokonaisuudesta"
+        },
+        {
+          slug: "katalyytti",
+          book: "Katalyytti",
+          lens: "Resurssit",
+          claim: "Niukkuus ei synny sieltä, mistä se aina näyttää syntyvän.",
+          expand: "Resurssilinssi tarkastelee, miten rahan ja kapasiteetin liike kätkee taakseen syvempiä rakenteellisia valintoja. Käsikirjoitus kysyy mihin niukkuus todella syntyy ja kenen valinnoista.",
+          matrix: { sees: "Rahan ja kapasiteetin",   blind: "Vaikutusten laadun",   q: "Mihin niukkuus todella syntyy?" },
+          concern: "Rahat eivät riitä mihinkään"
+        },
+        {
+          slug: "sukupolvi-joka-kantaa",
+          book: "Sukupolvi joka kantaa",
+          lens: "Ennaltaehkäisy",
+          claim: "Ennaltaehkäisy häviää, koska sen onnistuminen on näkymätöntä.",
+          expand: "Sukupolvilinssi näyttää, miksi ennaltaehkäisy aina häviää korjaamiselle: sen tulokset näkyvät vuosikymmenten päässä, kun taas hoidon kustannukset syntyvät tällä budjettikaudella.",
+          matrix: { sees: "Tulevat kustannukset",    blind: "Onnistumisen näkymättömyyden", q: "Miksi ehkäisy häviää korjaukselle?" },
+          concern: "Ehkäisy jää aina puheeksi"
+        },
+      ];
+      const DEFAULT_CENTER = {
+        title: "Mitä järjestelmä mittaa, sitä se alkaa palvella",
+        sub: "Kuusi linssiä yhteen järjestelmäkriisiin",
+        bridge: "Kooste yhdistää kuusi havaintoa yhdeksi diagnoosiksi.",
+        slug: "kuusi-ennustetta"
+      };
 
-        const sectors = PREDICTIONS.map((p, i) => {
-          const a0 = (i / N) * Math.PI * 2 - Math.PI / 2;
-          const a1 = ((i + 1) / N) * Math.PI * 2 - Math.PI / 2;
+      // Yhdistä indeksin kirjadata oletuslinsseihin. Indeksin kentät voittavat;
+      // available kertoo, onko käsikirjoitus jo luettavissa (löytyy indeksistä).
+      function lensDataFrom(books) {
+        const bySlug = new Map((books || []).map((b) => [b.slug, b]));
+        return DEFAULT_LENSES.map((def) => {
+          const b = bySlug.get(def.slug) || {};
+          const m = b.matrix || {};
+          return {
+            slug: def.slug,
+            book: b.title || def.book,
+            lens: b.lens || def.lens,
+            claim: b.claim || def.claim,
+            expand: b.expand || def.expand,
+            matrix: {
+              sees: m.sees || def.matrix.sees,
+              blind: m.blind || def.matrix.blind,
+              q: m.q || def.matrix.q,
+            },
+            concern: b.concern || def.concern,
+            available: bySlug.has(def.slug),
+          };
+        });
+      }
+      // Keskusväite: oletus, jonka voi ohittaa antamalla indeksin kirjaobjektille
+      // center-kentän. available kertoo, onko koostekirja luettavissa.
+      function centerFrom(books) {
+        const bySlug = new Map((books || []).map((b) => [b.slug, b]));
+        const ov = (books || []).find((b) => b && b.center);
+        const c = Object.assign({}, DEFAULT_CENTER, (ov && ov.center) || {});
+        c.available = bySlug.has(c.slug);
+        return c;
+      }
+
+      // ─── Pyörä: 3-tasoinen argumenttikartta ──────────────────────────
+      function renderWheel(lenses, center) {
+        const CX = 360, CY = 360;
+        const R_OUT = 196, R_IN = 96, R_CTR = 86;
+        const R_MID = (R_OUT + R_IN) / 2;
+        const PAD = 0.03;
+        const N = lenses.length;
+        const colors = ["#ead9c0","#e0cdb0","#d3bd9d","#c6ac88","#b89a73","#a98a64"];
+        const polar = (r, a) => [CX + r * Math.cos(a), CY + r * Math.sin(a)];
+        const wrap = (text, max) => {
+          const words = text.split(" "); const out = []; let cur = "";
+          words.forEach((w) => {
+            if ((cur + " " + w).trim().length > max) { if (cur) out.push(cur.trim()); cur = w; }
+            else cur = (cur + " " + w).trim();
+          });
+          if (cur) out.push(cur.trim());
+          return out;
+        };
+
+        // Sektorit (klikattavat): muoto + numero + kirjannimi + linssi
+        const sectors = lenses.map((p, i) => {
+          const a0 = (i / N) * Math.PI * 2 - Math.PI / 2 + PAD;
+          const a1 = ((i + 1) / N) * Math.PI * 2 - Math.PI / 2 - PAD;
           const aM = (a0 + a1) / 2;
           const [x0o, y0o] = polar(R_OUT, a0);
           const [x1o, y1o] = polar(R_OUT, a1);
           const [x0i, y0i] = polar(R_IN, a0);
           const [x1i, y1i] = polar(R_IN, a1);
-          const d = [
-            `M ${x0o} ${y0o}`,
-            `A ${R_OUT} ${R_OUT} 0 0 1 ${x1o} ${y1o}`,
-            `L ${x1i} ${y1i}`,
-            `A ${R_IN} ${R_IN} 0 0 0 ${x0i} ${y0i}`,
-            "Z"
-          ].join(" ");
-          const rLabel = (R_OUT + R_IN) / 2;
-          const [lx, ly] = polar(rLabel, aM);
-          const [nx, ny] = polar(R_IN + 22, aM);
-          const href = haveSlugs.has(p.slug) ? `#/books/${p.slug}` : "#";
-          const safeBook = esc(p.book);
-          const safePred = esc(p.pred);
-          const bookParts = p.book.split(" ");
-          const bookLine1 = esc(bookParts[0] || "");
-          const bookLine2 = esc(bookParts.slice(1).join(" "));
-          const predParts = p.pred.split(" ");
-          const predLine1 = esc(predParts[0] || "");
-          const predLine2 = esc(predParts.slice(1).join(" "));
+          const d = `M ${x0o} ${y0o} A ${R_OUT} ${R_OUT} 0 0 1 ${x1o} ${y1o} L ${x1i} ${y1i} A ${R_IN} ${R_IN} 0 0 0 ${x0i} ${y0i} Z`;
+          const [lx, ly] = polar(R_MID, aM);
+          const words = p.book.split(" ");
+          let titleLines = [p.book];
+          if (p.book.length > 13 && words.length > 1) {
+            const h = Math.ceil(words.length / 2);
+            titleLines = [words.slice(0, h).join(" "), words.slice(h).join(" ")];
+          }
+          const lh = 15;
+          const topY = ly - ((titleLines.length - 1) * lh) / 2 - 5;
+          const titleSpans = titleLines.map((ln, k) =>
+            `<text class="wheel-label" x="${lx}" y="${topY + k * lh}" text-anchor="middle" dominant-baseline="middle">${esc(ln)}</text>`
+          ).join("");
+          const lensY = topY + (titleLines.length - 1) * lh + 16;
           return `
-            <a class="wheel-sector" href="${href}" aria-label="${safeBook} -- ennuste: ${safePred}">
-              <path class="wheel-sector-shape" d="${d}" fill="${colors[i]}"></path>
-              <text class="wheel-num" x="${nx}" y="${ny}" text-anchor="middle" dominant-baseline="middle">${i + 1}</text>
-              <text class="wheel-label" x="${lx}" y="${ly - 18}" text-anchor="middle">
-                <tspan x="${lx}" dy="0">${bookLine1}</tspan>${bookLine2 ? `<tspan x="${lx}" dy="16">${bookLine2}</tspan>` : ""}
-              </text>
-              <text class="wheel-sublabel" x="${lx}" y="${ly + 18}" text-anchor="middle">
-                <tspan x="${lx}" dy="0">${predLine1}</tspan>${predLine2 ? `<tspan x="${lx}" dy="13">${predLine2}</tspan>` : ""}
-              </text>
-            </a>`;
+            <g class="wheel-sector" data-idx="${i}" tabindex="0" role="button"
+               aria-label="${esc(p.book)} -- ${esc(p.lens)}: ${esc(p.claim)}">
+              <path class="wheel-sector-shape" d="${d}" fill="${colors[i % colors.length]}"></path>
+              <text class="wheel-bignum" x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle">${i + 1}</text>
+              ${titleSpans}
+              <text class="wheel-sublabel" x="${lx}" y="${lensY}" text-anchor="middle" dominant-baseline="middle">${esc(p.lens)}</text>
+            </g>`;
         }).join("");
+
+        // Ulkokehä: kunkin sektorin väite usealla kaarevalla rivillä
+        const rBase = R_OUT + 20, dr = 17;
+        let defsStr = "", claimStr = "";
+        lenses.forEach((p, i) => {
+          const a0 = (i / N) * Math.PI * 2 - Math.PI / 2;
+          const a1 = ((i + 1) / N) * Math.PI * 2 - Math.PI / 2;
+          const aM = (a0 + a1) / 2;
+          const flip = Math.sin(aM) > 0.001;
+          const lines = wrap(p.claim, 28);
+          const n = lines.length;
+          lines.forEach((ln, k) => {
+            const r = flip ? rBase + k * dr : rBase + (n - 1 - k) * dr;
+            const pad = 0.07;
+            let S = a0 + pad, E = a1 - pad, sweep = 1;
+            if (flip) { S = a1 - pad; E = a0 + pad; sweep = 0; }
+            const [sx, sy] = polar(r, S);
+            const [ex, ey] = polar(r, E);
+            const id = `wheelArc_${i}_${k}`;
+            defsStr += `<path id="${id}" d="M ${sx} ${sy} A ${r} ${r} 0 0 ${sweep} ${ex} ${ey}" fill="none"></path>`;
+            claimStr += `<text class="wheel-claim"><textPath href="#${id}" startOffset="50%" text-anchor="middle">${esc(ln)}</textPath></text>`;
+          });
+        });
+
+        // Keskusotsikko enintään 3 riville
+        const ctWords = center.title.split(" ");
+        const ctLines = [];
+        let cur = "";
+        ctWords.forEach((w) => {
+          if ((cur + " " + w).trim().length > 18) { ctLines.push(cur.trim()); cur = w; }
+          else cur = (cur + " " + w).trim();
+        });
+        if (cur) ctLines.push(cur);
+        const centerLines = ctLines.slice(0, 3);
+        const lineH = 16;
+        const startY = CY - ((centerLines.length - 1) * lineH) / 2 - 8;
+        const centerText = centerLines.map((l, i) =>
+          `<text class="wheel-center-claim" x="${CX}" y="${startY + i * lineH}" dominant-baseline="middle">${esc(l)}</text>`
+        ).join("");
 
         return `
           <section class="wheel-section" aria-labelledby="wheelHeading">
-            <div class="wheel-eyebrow">Kokonaiskuva</div>
-            <h2 id="wheelHeading">Kuusi käsikirjoitusta → kuusi ennustetta</h2>
+            <div class="wheel-eyebrow">Argumenttikartta</div>
+            <h2 id="wheelHeading">Kuusi linssiä, yksi järjestelmäkriisi</h2>
             <p class="wheel-lede">
-              Kuusi käsikirjoitusta tarkastelevat Suomen hyvinvointijärjestelmää eri linsseistä.
-              Kustakin syntyy yksi <strong>falsifioituva ennuste</strong>. Klikkaa sektoria avataksesi käsikirjoituksen,
-              tai keskustaa nähdäksesi ennusteiden kooste.
+              Aloita keskeltä tai valitse linssi. <strong>Ulkokehä tiivistää kunkin näkökulman väitteen</strong>;
+              klikkaa sektoria nähdäksesi sen tarkemmin.
             </p>
             <div class="wheel-wrap">
-              <svg viewBox="0 0 600 600" role="img" aria-label="Käsikirjoitukset ja ennusteet">
+              <svg viewBox="0 0 720 720" role="img" aria-label="Linssien argumenttikartta">
+                <defs>${defsStr}</defs>
                 ${sectors}
-                <a class="wheel-sector" href="#/books/kuusi-ennustetta" xlink:href="#/books/kuusi-ennustetta" target="_self" aria-label="Avaa kirja Kuusi ennustetta" onclick="window.location.hash='#/books/kuusi-ennustetta'; return false;">
-                  <circle class="wheel-center-circle" cx="${CX}" cy="${CY}" r="${R_IN - 8}"></circle>
-                  <text class="wheel-center-title" x="${CX}" y="${CY - 10}">6 ennustetta</text>
-                  <text class="wheel-center-sub" x="${CX}" y="${CY + 22}">→ katso kooste tästä ←</text>
-                </a>
+                ${claimStr}
+                <g class="wheel-sector" data-center="1" tabindex="0" role="button"
+                   aria-label="Avaa kooste: ${esc(center.title)}">
+                  <circle class="wheel-center-circle" cx="${CX}" cy="${CY}" r="${R_CTR}"></circle>
+                  <circle class="wheel-center-ring" cx="${CX}" cy="${CY}" r="${R_CTR - 7}"></circle>
+                  ${centerText}
+                  <text class="wheel-center-sub" x="${CX}" y="${startY + centerLines.length * lineH + 6}" dominant-baseline="middle">→ Avaa kooste ←</text>
+                </g>
               </svg>
             </div>
-            <p class="wheel-caption">Ulkokehä: käsikirjoitukset · Keskus: ennusteiden kooste</p>
+            <div class="wheel-detail" id="wheelDetail" role="region" aria-live="polite"></div>
+            <p class="wheel-caption">Keskus: kokoava väite · Sektorit: kuusi käsikirjoitusta · Ulkokehä: kunkin väite</p>
           </section>`;
+      }
+
+      // Sektorien klikkien sidonta tarkennuspaneeliin
+      function wireWheel(lenses, center) {
+        const detail = document.getElementById("wheelDetail");
+        if (!detail) return;
+        const open = (html) => { detail.innerHTML = html; detail.classList.add("is-open"); };
+        document.querySelectorAll(".wheel-section .wheel-sector").forEach((el) => {
+          const handler = (e) => {
+            e.preventDefault();
+            if (el.dataset.center) {
+              open(`
+                <div class="wd-eyebrow">Kooste</div>
+                <h3>${esc(center.title)}</h3>
+                <p class="wd-claim">${esc(center.sub)}</p>
+                <p class="wd-expand">${esc(center.bridge)} Kooste lukee kuuden käsikirjoituksen havainnot yhdessä ja kysyy, millaisen kuvan ne yhdessä piirtävät Suomen hyvinvointijärjestelmän ohjauksesta.</p>
+                <div class="wd-actions">
+                  ${center.available ? `<a href="#/books/${esc(center.slug)}">Lue kooste →</a>` : `<a href="#linssimatriisi" aria-disabled="true">Tulossa</a>`}
+                </div>`);
+            } else {
+              const i = +el.dataset.idx;
+              const p = lenses[i];
+              open(`
+                <div class="wd-eyebrow">Linssi ${i + 1} · ${esc(p.lens)}</div>
+                <h3>${esc(p.book)}</h3>
+                <p class="wd-claim">${esc(p.claim)}</p>
+                <p class="wd-expand">${esc(p.expand)}</p>
+                <div class="wd-actions">
+                  ${p.available ? `<a href="#/books/${esc(p.slug)}">Lue käsikirjoitus →</a>` : `<a href="#linssimatriisi" aria-disabled="true">Tulossa</a>`}
+                  <a href="#linssimatriisi">Vertaa linssejä</a>
+                </div>`);
+            }
+            detail.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          };
+          el.addEventListener("click", handler);
+          el.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") handler(e); });
+        });
+      }
+
+      // ─── Valitse huolesi ──────────────────────────────────────────────
+      function renderConcernPicker(lenses) {
+        const cards = lenses.map((p) => {
+          const href = p.available ? `#/books/${esc(p.slug)}` : "#linssimatriisi";
+          return `
+            <a class="concern-card" href="${href}">
+              <div class="cq">${esc(p.concern)}</div>
+              <div class="ca">→ ${esc(p.lens)}-linssi</div>
+            </a>`;
+        }).join("");
+        return `
+          <section class="concern-section" aria-labelledby="concernH">
+            <div class="ce">Mistä haluat aloittaa?</div>
+            <h2 id="concernH">Valitse huolesi -- löydä linssi.</h2>
+            <div class="concern-grid">${cards}</div>
+          </section>`;
+      }
+
+      // ─── Linssimatriisi: kuusi linssiä yhdellä silmäyksellä (avattava) ─
+      function renderLensMatrix(lenses) {
+        const rows = lenses.map((p) => {
+          const name = p.available
+            ? `<a href="#/books/${esc(p.slug)}">${esc(p.lens)}</a>`
+            : esc(p.lens);
+          return `
+            <tr>
+              <td class="lens-name">${name}</td>
+              <td data-label="Näkee erityisesti">${esc(p.matrix.sees)}</td>
+              <td data-label="Sokea piste">${esc(p.matrix.blind)}</td>
+              <td data-label="Pääkysymys"><em>${esc(p.matrix.q)}</em></td>
+            </tr>`;
+        }).join("");
+        return `
+          <details class="matrix-section" id="linssimatriisi" open>
+            <summary aria-label="Näytä tai piilota linssimatriisi">
+              <span class="ce">Vertailu</span>
+              <h2>Kuusi linssiä yhdellä silmäyksellä</h2>
+              <span class="matrix-toggle"><span class="matrix-toggle-open">Piilota ▲</span><span class="matrix-toggle-close">Näytä ▼</span></span>
+            </summary>
+            <div class="matrix-body">
+              <p class="lede">
+                Sama hyvinvointijärjestelmä, kuusi tapaa katsoa sitä. Matriisi näyttää,
+                mitä kukin linssi tuo esiin ja mitä se voi peittää.
+              </p>
+              <div class="matrix-table-wrap">
+                <table class="matrix-table">
+                  <thead>
+                    <tr>
+                      <th>Linssi</th><th>Näkee erityisesti</th><th>Sokea piste</th><th>Pääkysymys</th>
+                    </tr>
+                  </thead>
+                  <tbody>${rows}</tbody>
+                </table>
+              </div>
+            </div>
+          </details>`;
       }
 
       async function home() {
@@ -3561,6 +4026,9 @@ async function exportAppendicesJson() {
           "Harri Käyhkö – Käsikirjoitukset",
           "Suomen hyvinvointijärjestelmän analyysi kirjojen linsseillä -- lukijalle ja päättäjälle."
         );
+
+        const lenses = lensDataFrom(books);
+        const center = centerFrom(books);
 
         // Resume
         let resumeHtml = "";
@@ -3600,7 +4068,9 @@ async function exportAppendicesJson() {
             </p>
             ${resumeHtml}
           </section>
-          ${renderWheel(books)}
+          ${renderWheel(lenses, center)}
+          ${renderConcernPicker(lenses)}
+          ${renderLensMatrix(lenses)}
           ${filterHtml}
           <div class="section-label">${books.length ? "Kirjat" : ""}</div>
           <section class="books-grid" id="booksGrid">
@@ -3613,6 +4083,9 @@ async function exportAppendicesJson() {
                 </a>`).join("")
               : `<p class="status">Ei vielä kirjoja.</p>`}
           </section>`;
+
+        // Pyörän sektorit avaavat tarkennuspaneelin
+        wireWheel(lenses, center);
 
         // Theme filter behavior
         document.querySelectorAll("[data-theme-filter]").forEach((btn) => {
