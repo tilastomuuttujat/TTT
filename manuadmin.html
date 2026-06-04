@@ -2951,7 +2951,7 @@
       function chartPalette() {
         const cs = getComputedStyle(document.documentElement);
         const tok = (n, fb) => { const v = cs.getPropertyValue(n).trim(); return v || fb; };
-        // Sivun pääväreistä, erot sävyillä -- ei vieraita sävyjä.
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         return {
           fi: tok('--accent', '#1f1b15'),
           nordic: tok('--muted', '#6b6356'),
@@ -2959,7 +2959,15 @@
           peer3: tok('--line-strong', '#c9bfa9'),
           crisis: tok('--accent-soft', '#4a4034'),
           grid: tok('--line', '#e6dfd0'),
-          text: tok('--muted', '#6b6356')
+          text: tok('--muted', '#6b6356'),
+          // Tooltip-värit teeman mukaan
+          tooltipBg:     isDark ? 'rgba(28,24,20,0.96)' : 'rgba(31,27,21,0.92)',
+          tooltipFg:     isDark ? '#f1ebdd' : '#fdfbf7',
+          tooltipBorder: isDark ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.15)',
+          // Annotaatiovärit — viiva ja etiketti teeman mukaan
+          annotationLine:    isDark ? 'rgba(161,154,143,0.55)' : 'rgba(107,99,86,0.50)',
+          annotationLabelBg: isDark ? 'rgba(28,24,20,0.88)' : 'rgba(253,251,247,0.92)',
+          annotationLabelFg: isDark ? '#b4b2a9' : '#6b6356',
         };
       }
 
@@ -3002,9 +3010,21 @@
 
         const annotations = {};
         (content.crisisYears || []).forEach((y, i) => {
+          const label = Array.isArray(content.crisisLabels) ? content.crisisLabels[i] : null;
           annotations["crisis_" + i] = {
             type: 'line', xMin: y, xMax: y,
-            borderColor: C.crisis, borderWidth: 1, borderDash: [3, 3]
+            borderColor: C.annotationLine, borderWidth: 1.5, borderDash: [4, 3],
+            ...(label ? { label: {
+              display: true,
+              content: label,
+              position: 'start',
+              yAdjust: 8 + i * 20,
+              backgroundColor: C.annotationLabelBg,
+              color: C.annotationLabelFg,
+              font: { size: 10, weight: '500' },
+              padding: { x: 5, y: 3 },
+              cornerRadius: 3,
+            }} : {})
           };
         });
 
@@ -3015,6 +3035,12 @@
           plugins: {
             legend: { display: content.showLegend !== false, labels: { color: C.text, font: { size: 11 } } },
             tooltip: {
+              mode: 'index', intersect: false, position: 'nearest',
+              backgroundColor: C.tooltipBg, titleColor: C.tooltipFg, bodyColor: C.tooltipFg,
+              borderColor: C.tooltipBorder, borderWidth: 1,
+              padding: { x: 12, y: 10 },
+              titleFont: { size: 11, weight: '600' }, bodyFont: { size: 12 },
+              cornerRadius: 8, caretSize: 5,
               callbacks: {
                 title: (items) => 'Vuosi ' + items[0].label,
                 label: (item) => item.dataset.label + ': ' + yFmt(item.parsed.y)
@@ -3079,9 +3105,19 @@
         const o = config.options;
         if (o.responsive === undefined) o.responsive = true;
         if (o.maintainAspectRatio === undefined) o.maintainAspectRatio = false;
+        // Touch + hiiri: tooltip seuraa kosketusta
+        if (!o.interaction) o.interaction = { mode: 'index', intersect: false };
         o.plugins = o.plugins || {};
         o.plugins.legend = o.plugins.legend || {};
         o.plugins.legend.labels = Object.assign({ color: C.text, font: { size: 11 } }, o.plugins.legend.labels || {});
+        o.plugins.tooltip = Object.assign({
+          mode: 'index', intersect: false, position: 'nearest',
+          backgroundColor: C.tooltipBg, titleColor: C.tooltipFg, bodyColor: C.tooltipFg,
+          borderColor: C.tooltipBorder, borderWidth: 1,
+          padding: { x: 12, y: 10 },
+          titleFont: { size: 11, weight: '600' }, bodyFont: { size: 12 },
+          cornerRadius: 8, caretSize: 5,
+        }, o.plugins.tooltip || {});
         o.scales = o.scales || {};
         ["x", "y"].forEach((ax) => {
           o.scales[ax] = o.scales[ax] || {};
@@ -3091,6 +3127,25 @@
             o.scales[ax].title = Object.assign({ color: C.text, font: { size: 10 } }, o.scales[ax].title);
           }
         });
+        // Annotaatioiden teemoitus — injektoi värit jokaiseen annotaatioon
+        if (o.plugins.annotation && o.plugins.annotation.annotations) {
+          const anns = o.plugins.annotation.annotations;
+          Object.values(anns).forEach((ann) => {
+            if (!ann || typeof ann !== 'object') return;
+            // Viiva
+            if (ann.borderColor === undefined) ann.borderColor = C.annotationLine;
+            if (ann.borderWidth === undefined) ann.borderWidth = 1.5;
+            // Etiketti
+            if (ann.label && typeof ann.label === 'object') {
+              const lbl = ann.label;
+              if (lbl.backgroundColor === undefined) lbl.backgroundColor = C.annotationLabelBg;
+              if (lbl.color === undefined) lbl.color = C.annotationLabelFg;
+              if (lbl.font === undefined) lbl.font = { size: 10, weight: '500' };
+              if (lbl.padding === undefined) lbl.padding = { x: 5, y: 3 };
+              if (lbl.cornerRadius === undefined) lbl.cornerRadius = 3;
+            }
+          });
+        }
         return config;
       }
 
@@ -3120,7 +3175,34 @@
               } else {
                 config = buildChartPreset(c);
               }
-              new Chart(canvasEl, config);
+              const chartInstance = new Chart(canvasEl, config);
+              // Touch-tooltip: estä sivun skrollaus kun sormi on kuviolla,
+              // jotta Chart.js voi näyttää tooltippiä kosketusliikkeen mukaan.
+              const wrap = canvasEl.parentElement;
+              if (wrap) {
+                wrap.addEventListener('touchstart', (e) => {
+                  if (e.touches.length === 1) e.preventDefault();
+                }, { passive: false });
+                wrap.addEventListener('touchmove', (e) => {
+                  if (e.touches.length === 1) {
+                    e.preventDefault();
+                    // Välitä kosketustapahtuma Chart.js:lle manuaalisesti
+                    const touch = e.touches[0];
+                    const rect = canvasEl.getBoundingClientRect();
+                    chartInstance.canvas.dispatchEvent(new MouseEvent('mousemove', {
+                      clientX: touch.clientX,
+                      clientY: touch.clientY,
+                      bubbles: true,
+                    }));
+                  }
+                }, { passive: false });
+                wrap.addEventListener('touchend', () => {
+                  // Piirrä tooltip pois 1.8 sekunnin kuluttua
+                  setTimeout(() => {
+                    chartInstance.canvas.dispatchEvent(new MouseEvent('mouseout', { bubbles: true }));
+                  }, 1800);
+                }, { passive: true });
+              }
             } catch (err) {
               canvasEl.outerHTML = `<div class="note">Kuvaajan piirto epäonnistui: ${esc(err.message)}</div>`;
             }
