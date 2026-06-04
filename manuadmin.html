@@ -2577,7 +2577,7 @@
             const n = xs.length || ((series[0] && series[0].values && series[0].values.length) || 1);
             const stepX = n > 1 ? plotW / (n - 1) : 0;
             inner = series.map((s, si) => {
-              const pts = (Array.isArray(s.values) ? s.values : []).map((v, i) => `${(padL + stepX * i).toFixed(1)},${yFor(v).toFixed(1)}`).join(" ");
+              const pts = (Array.isArray(s.values) ? s.values : []).map((v, i) => (typeof v === "number" && isFinite(v)) ? `${(padL + stepX * i).toFixed(1)},${yFor(v).toFixed(1)}` : null).filter(Boolean).join(" ");
               return `<polyline fill="none" stroke="${colorFor(s.label, si)}" stroke-width="2" points="${pts}"></polyline>`;
             }).join("");
             if (xs.length) inner += `<text class="dash-cat" x="${padL}" y="${H - 5}" text-anchor="start">${esc(String(xs[0]))}</text><text class="dash-cat" x="${W - padR}" y="${H - 5}" text-anchor="end">${esc(String(xs[xs.length - 1]))}</text>`;
