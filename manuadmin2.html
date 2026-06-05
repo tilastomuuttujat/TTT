@@ -879,6 +879,15 @@
       .app-timeline .desc { font-size: 14px; line-height: 1.6; color: var(--muted); }
 
       /* Chain */
+      .app-path-set { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; }
+      .app-path { border: 1px solid var(--line); border-left: 3px solid var(--accent-soft); border-radius: 8px; padding: 10px 12px; background: var(--bg-soft); }
+      .app-path-cond { font-weight: 600; color: var(--accent); font-size: 0.9rem; margin-bottom: 4px; }
+      .app-path-claim { color: var(--accent-soft); margin-bottom: 8px; }
+      .app-path-facets { margin: 0; display: grid; gap: 6px; }
+      .app-path-facet { display: grid; grid-template-columns: 70px 1fr; gap: 8px; align-items: baseline; }
+      .app-path-facet dt { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin: 0; }
+      .app-path-facet dd { margin: 0; color: var(--accent-soft); }
+      .app-path-promise dt { color: var(--accent); }
       .app-chain { list-style: none; padding: 0; margin: 0; counter-reset: chainstep; }
       .app-chain li { position: relative; padding: 0 0 18px 38px; counter-increment: chainstep; }
       .app-chain li::before {
@@ -2671,7 +2680,7 @@
           case "timeline":      return renderTimeline(c);
           case "chain":         return renderChain(c);
           case "calculation":   return renderCalculation(c);
-          case "path":          return renderChain(c);
+          case "path":          return renderPath(c);
           case "sector":        return renderEvidence(c);
           case "table":         return renderTable(c);
           case "list":          return renderList(c);
@@ -2778,6 +2787,32 @@
               ${s.consequence ? `<div class="consequence">${esc(s.consequence)}</div>` : ""}
             </li>`).join("")}</ol>` : "",
           extras,
+          c.source ? `<div class="source">${esc(c.source)}</div>` : "",
+        ].join("");
+      }
+      function renderPath(c) {
+        const paths = Array.isArray(c.paths) ? c.paths : [];
+        const cards = paths.map((p) => {
+          if (!p || typeof p !== "object") return "";
+          const cond = p.condition || p.title || p.label || "";
+          const claim = p.claim || p.body || "";
+          const promise = p.promise || "";
+          const price = p.price || "";
+          const facets = [
+            promise ? `<div class="app-path-facet app-path-promise"><dt>Lupaus</dt><dd>${esc(promise)}</dd></div>` : "",
+            price ? `<div class="app-path-facet app-path-price"><dt>Hinta</dt><dd>${esc(price)}</dd></div>` : "",
+          ].join("");
+          return `<li class="app-path">
+            ${cond ? `<div class="app-path-cond">${esc(cond)}</div>` : ""}
+            ${claim ? `<div class="app-path-claim">${esc(claim)}</div>` : ""}
+            ${facets ? `<dl class="app-path-facets">${facets}</dl>` : ""}
+          </li>`;
+        }).join("");
+        return [
+          c.body ? `<p class="lead">${esc(c.body)}</p>` : "",
+          c.note ? `<div class="note">${esc(c.note)}</div>` : "",
+          paths.length ? `<ol class="app-path-set">${cards}</ol>` : "",
+          renderAnalysisFields(c),
           c.source ? `<div class="source">${esc(c.source)}</div>` : "",
         ].join("");
       }
@@ -3520,7 +3555,7 @@
         if (c.note) parts.push(`<div class="note">${esc(c.note)}</div>`);
         if (c.key_insight) parts.push(`<div class="key-insight">${esc(c.key_insight)}</div>`);
         if (c.source) parts.push(`<div class="source">${esc(c.source)}</div>`);
-        return parts.join('') || `<div class="lead">—</div>`;
+        return parts.join('') || `<div class="lead">--</div>`;
       }
 
       function initAmbientReveal() {
@@ -4213,7 +4248,7 @@
             author: b.author, description: b.description,
           }));
           downloadJson("index1.json", index);
-          toast("index1.json ladattu — " + books.length + " kirjaa", "success");
+          toast("index1.json ladattu -- " + books.length + " kirjaa", "success");
         } catch (err) {
           console.error("[exportIndexJson]", err);
           toast(err.message || "index1.json vienti epäonnistui.", "error");
