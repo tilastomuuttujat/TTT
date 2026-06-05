@@ -1357,6 +1357,7 @@
       .app-list .app-list-body { font-size: 14px; color: var(--muted); line-height: 1.55; }
 
       /* ─── table (generic) ────────────────────────────────────────────────── */
+      .app-table-title { font-weight: 600; color: var(--accent); font-size: 0.82rem; margin: 10px 0 4px; }
       .app-table { width: 100%; border-collapse: collapse; font-size: 13px; }
       .app-table th, .app-table td {
         text-align: left;
@@ -2064,8 +2065,27 @@ function buildEvidenceAppendixMap(payload) {
         const source = c.source ? `<div class="source">${esc(c.source)}</div>` : "";
         return `${lead}${legendHtml}<div class="dash-grid">${panelHtml}</div>${source}`;
       }
+      function renderTableBlock(t) {
+        if (!t || typeof t !== "object") return "";
+        const headers = Array.isArray(t.headers) ? t.headers : null;
+        const rows = Array.isArray(t.rows) ? t.rows : [];
+        if (!rows.length) return "";
+        const title = t.title ? `<div class="app-table-title">${esc(t.title)}</div>` : "";
+        const head = headers ? `<thead><tr>${headers.map((h) => `<th>${esc(String(h))}</th>`).join("")}</tr></thead>` : "";
+        const body = `<tbody>${rows.map((r) => Array.isArray(r)
+          ? `<tr>${r.map((cell) => `<td>${esc(cell ?? "")}</td>`).join("")}</tr>`
+          : "").join("")}</tbody>`;
+        const note = t.note ? `<div class="note">${esc(t.note)}</div>` : "";
+        const source = t.source ? `<div class="source">${esc(t.source)}</div>` : "";
+        return `${title}<div style="overflow-x:auto"><table class="app-table">${head}${body}</table></div>${note}${source}`;
+      }
       function renderTimeline(c) {
-        const entries = Array.isArray(c.entries) ? c.entries : [];
+        const raw = Array.isArray(c.entries) ? c.entries : (Array.isArray(c.events) ? c.events : []);
+        const entries = raw.map((e) => ({
+          period: e.period || e.year || "",
+          event: e.event || e.title || "",
+          description: e.description || e.desc || "",
+        }));
         return [
           c.body ? `<p class="lead">${esc(c.body)}</p>` : "",
           c.note ? `<div class="note">${esc(c.note)}</div>` : "",
@@ -2075,6 +2095,7 @@ function buildEvidenceAppendixMap(payload) {
               ${e.event ? `<div class="event">${esc(e.event)}</div>` : ""}
               ${e.description ? `<div class="desc">${esc(e.description)}</div>` : ""}
             </li>`).join("")}</ul>` : "",
+          c.table ? renderTableBlock(c.table) : "",
           c.source ? `<div class="source">${esc(c.source)}</div>` : "",
         ].join("");
       }
@@ -2182,7 +2203,8 @@ function buildEvidenceAppendixMap(payload) {
         const commentaryFields = ["consensus", "honest_assessment", "pattern", "deeper_pattern", "current_relevance", "controversy", "relevance", "implication", "ai_question", "neuroscience_link", "open_question"];
         const objectFields = ["distinction"];
         let listVal = null;
-        for (const [, v] of Object.entries(c)) if (Array.isArray(v)) { listVal = v; break; }
+        for (const [k, v] of Object.entries(c)) if (Array.isArray(v) && k !== "tables") { listVal = v; break; }
+        const tablesHtml = Array.isArray(c.tables) ? c.tables.map((t) => renderTableBlock(t)).join("") : "";
         const lead = c.body ? `<p class="lead">${esc(c.body)}</p>` : "";
         const note = c.note ? `<div class="note">${esc(c.note)}</div>` : "";
         const commentary = commentaryFields
@@ -2199,7 +2221,7 @@ function buildEvidenceAppendixMap(payload) {
         if (listVal && listVal.length) {
           list = `<ul class="app-items">${listVal.map((item) => renderEvidenceItem(item)).join("")}</ul>`;
         }
-        return [lead, note, objects, list, commentary, c.source ? `<div class="source">${esc(c.source)}</div>` : ""].join("");
+        return [lead, note, objects, list, tablesHtml, commentary, c.source ? `<div class="source">${esc(c.source)}</div>` : ""].join("");
       }
       function renderEvidenceItem(item) {
         if (typeof item === "string") return `<li><div class="app-item-body">${esc(item)}</div></li>`;
