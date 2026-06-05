@@ -817,13 +817,9 @@
         transition: background .12s, color .12s;
       }
       .ambient-card-toggle:hover { background: var(--bg-soft); color: var(--fg); }
-      @media (min-width: 681px) {
-        .ambient-card-toggle { display: none; }
-        .ambient-card-body { display: block !important; }
-      }
-      @media (max-width: 680px) {
-        .ambient-card-body:not(.open) { display: none; }
-      }
+      /* Adminissa toggle piilotettu — sisältö aina näkyvissä */
+      .ambient-card-toggle { display: none !important; }
+      .ambient-card-body { display: block !important; }
       .ambient-card .lead {
         font-family: "Instrument Serif", serif;
         font-size: 15px; line-height: 1.55; color: var(--fg-soft); margin: 0 0 14px;
@@ -3538,10 +3534,9 @@
               const idx = parseInt(card.dataset.ambientIdx || '0');
               setTimeout(() => card.classList.add('revealed'), idx * 80);
               obs.unobserve(card);
-              if (window.matchMedia('(max-width: 680px)').matches) {
-                const body = card.querySelector('.ambient-card-body');
-                if (body) body.classList.add('open');
-              }
+              // Adminissa avataan aina automaattisesti
+              const body = card.querySelector('.ambient-card-body');
+              if (body) body.classList.add('open');
             }
           });
         }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
@@ -4758,11 +4753,10 @@
                 <button type="button" data-action="save">Tallenna</button>
               </div>
               ${ambientHtml}
-              ${appHtml}
             </section>`;
         }).join("");
 
-        const chapterAppHtml = chapterAppendices.length ? buildInlineAppendixHtml(chapterAppendices, "chapter") : "";
+        const chapterAppHtml = ""; // ambient-kortit hoitavat chapter-tason liitteet
 
         const mPager = `
           <nav class="m-pager" aria-label="Lukunavigaatio">
