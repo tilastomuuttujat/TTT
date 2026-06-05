@@ -941,6 +941,13 @@
       }
 
       /* ─── paperdoll ──────────────────────────────────────────────────────── */
+      .paperdoll-backdrop { position: relative; overflow: hidden; min-height: 210px; align-items: stretch; text-align: left; }
+      .paperdoll-backdrop .paperdoll-bg { position: absolute; inset: 0; background-repeat: no-repeat; background-position: right center; background-size: contain; pointer-events: none; z-index: 0; }
+      .paperdoll-backdrop .paperdoll-fg { position: relative; z-index: 1; width: 100%; box-sizing: border-box; padding-right: 38%; }
+      @media (max-width: 560px) {
+        .paperdoll-backdrop .paperdoll-fg { padding-right: 0; }
+        .paperdoll-backdrop .paperdoll-bg { background-position: right top; background-size: 46% auto; opacity: 0.16 !important; }
+      }
       .paperdoll-set {
         display: grid;
         gap: 20px;
@@ -2898,10 +2905,9 @@
         const lead = c.body ? `<p class="lead">${esc(c.body)}</p>` : "";
         const note = c.note ? `<div class="note">${esc(c.note)}</div>` : "";
         const layoutClass = c.layout === "grid" ? "paperdoll-grid" : "paperdoll-row";
+        const backdrop = c.backdrop === true && subjects.length === 1;
+        const bgOpacity = (typeof c.bg_opacity === "number") ? c.bg_opacity : 0.4;
         const figures = subjects.map((s) => {
-          const img = s.image
-            ? `<div class="paperdoll-image"><img src="${esc(s.image)}" alt="${esc(s.alt || s.label || "")}" loading="lazy"></div>`
-            : `<div class="paperdoll-image paperdoll-image-empty" aria-hidden="true"></div>`;
           const head = (s.label || s.sublabel) ? `
             <div class="paperdoll-head">
               ${s.label ? `<div class="paperdoll-label">${esc(s.label)}</div>` : ""}
@@ -2915,6 +2921,15 @@
                 </div>`).join("")}</dl>`
             : "";
           const caption = s.caption ? `<div class="paperdoll-caption">${esc(s.caption)}</div>` : "";
+          if (backdrop && s.image) {
+            return `<figure class="paperdoll paperdoll-backdrop">`
+              + `<div class="paperdoll-bg" style="background-image:url('${esc(s.image)}'); opacity:${bgOpacity};" role="img" aria-label="${esc(s.alt || s.label || "")}"></div>`
+              + `<div class="paperdoll-fg">${head}${stats}${caption}</div>`
+              + `</figure>`;
+          }
+          const img = s.image
+            ? `<div class="paperdoll-image"><img src="${esc(s.image)}" alt="${esc(s.alt || s.label || "")}" loading="lazy"></div>`
+            : `<div class="paperdoll-image paperdoll-image-empty" aria-hidden="true"></div>`;
           return `<figure class="paperdoll">${img}${head}${stats}${caption}</figure>`;
         }).join("");
         const wrap = subjects.length ? `<div class="paperdoll-set ${layoutClass}">${figures}</div>` : "";
