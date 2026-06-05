@@ -1034,24 +1034,33 @@
 
       /* ─── Ambient appendices ───────────────────────────────────────────── */
 
-      /* Osion wrapper — yksinkertainen, ei gridia */
-      .section-wrap { position: relative; }
-      .section-apps { margin-top: 0; }
+      /* Osion wrapper jolla on sivumarginaali desktopilla */
+      .section-wrap {
+        position: relative;
+      }
 
-      /* Ambient card — sulautuu tekstivirtaan, paljastuu scrollatessa */
+      /* Liite kelluu oikeassa marginaalissa desktopilla */
+      @media (min-width: 1100px) {
+        .section-wrap { display: grid; grid-template-columns: 68ch 1fr; gap: 0 48px; align-items: start; }
+        .section-wrap .reader-content { grid-column: 1; }
+        .section-wrap .section-apps  { grid-column: 2; padding-top: 0.4em; }
+      }
+      @media (max-width: 1099px) {
+        .section-apps { margin-top: 2em; }
+      }
+
+      /* Ambient card -- alkaa näkymättömänä, paljastuu scrollatessa */
       .ambient-card {
         background: var(--card);
         border: 1px solid var(--line);
-        border-left: 3px solid var(--line-strong);
-        border-radius: 0 10px 10px 0;
-        padding: 16px 20px 18px;
-        margin: 2em 0;
-        box-shadow: 0 1px 0 rgba(31,27,21,0.02), 0 2px 8px rgba(31,27,21,0.04);
+        border-radius: 14px;
+        padding: 18px 20px 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 1px 0 rgba(31,27,21,0.03), 0 3px 14px rgba(31,27,21,0.04);
         opacity: 0;
-        transform: translateY(6px);
-        transition: opacity .45s ease, transform .45s ease;
+        transform: translateY(10px);
+        transition: opacity .5s ease, transform .5s ease;
         cursor: default;
-        max-width: 100%;
       }
       .ambient-card.revealed {
         opacity: 1;
@@ -1080,28 +1089,21 @@
         color: var(--fg);
         flex: 1;
       }
-      /* Toggle — mobiilissa suljettu oletuksena, desktopilla auki */
+      /* Expand/collapse -- mobiilissa ja kun marginaalissa ei ole tilaa */
       .ambient-card-toggle {
         width: 26px; height: 26px;
-        display: flex;
+        display: none;
         align-items: center; justify-content: center;
         border: none; background: none; cursor: pointer;
         color: var(--muted); border-radius: 6px;
         flex-shrink: 0;
-        transition: background .12s, color .12s;
       }
       .ambient-card-toggle:hover { background: var(--bg-soft); color: var(--fg); }
+      @media (max-width: 1099px) { .ambient-card-toggle { display: flex; } }
       .ambient-card-body { }
       .ambient-card-body[hidden] { display: none; }
-      /* Mobiililla suljettu oletuksena, toggle avaa */
-      @media (max-width: 680px) {
-        .ambient-card-body:not(.open) { display: none; }
-      }
-      /* Desktopilla aina auki */
-      @media (min-width: 681px) {
-        .ambient-card-toggle { display: none; }
-        .ambient-card-body { display: block !important; }
-      }
+      @media (max-width: 1099px) { .ambient-card-body { display: none; } }
+      .ambient-card-body.open { display: block !important; }
 
       /* Sisältö */
       .ambient-card .lead {
@@ -1173,7 +1175,7 @@
       .ambient-card td { padding: 5px 8px; border-bottom: 1px solid var(--line); color: var(--fg-soft); vertical-align: top; }
       .ambient-card tr:last-child td { border-bottom: none; }
 
-      /* Vanha toggle-rakenne — pidetään toimivana fallbackina */
+      /* Vanha toggle-rakenne -- pidetään toimivana fallbackina */
       .app-inline { margin-top: 0; }
       .app-inline.chapter-level { margin-top: 2em; }
       .app-inline-label { display: none; }
@@ -1229,6 +1231,15 @@
       .app-timeline .desc { font-size: 14px; line-height: 1.6; color: var(--muted); }
 
       /* Chain */
+      .app-path-set { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 10px; }
+      .app-path { border: 1px solid var(--line); border-left: 3px solid var(--accent-soft); border-radius: 8px; padding: 10px 12px; background: var(--bg-soft); }
+      .app-path-cond { font-weight: 600; color: var(--accent); font-size: 0.9rem; margin-bottom: 4px; }
+      .app-path-claim { color: var(--accent-soft); margin-bottom: 8px; }
+      .app-path-facets { margin: 0; display: grid; gap: 6px; }
+      .app-path-facet { display: grid; grid-template-columns: 70px 1fr; gap: 8px; align-items: baseline; }
+      .app-path-facet dt { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin: 0; }
+      .app-path-facet dd { margin: 0; color: var(--accent-soft); }
+      .app-path-promise dt { color: var(--accent); }
       .app-chain { list-style: none; padding: 0; margin: 0; counter-reset: chainstep; }
       .app-chain li { position: relative; padding: 0 0 18px 38px; counter-increment: chainstep; }
       .app-chain li::before {
@@ -1975,7 +1986,7 @@ function buildEvidenceAppendixMap(payload) {
           case "timeline":      return renderTimeline(c);
           case "chain":         return renderChain(c);
           case "calculation":   return renderCalculation(c);
-          case "path":          return renderChain(c);
+          case "path":          return renderPath(c);
           case "sector":        return renderEvidence(c);
           case "table":         return renderTable(c);
           case "list":          return renderList(c);
@@ -2082,6 +2093,32 @@ function buildEvidenceAppendixMap(payload) {
               ${s.consequence ? `<div class="consequence">${esc(s.consequence)}</div>` : ""}
             </li>`).join("")}</ol>` : "",
           extras,
+          c.source ? `<div class="source">${esc(c.source)}</div>` : "",
+        ].join("");
+      }
+      function renderPath(c) {
+        const paths = Array.isArray(c.paths) ? c.paths : [];
+        const cards = paths.map((p) => {
+          if (!p || typeof p !== "object") return "";
+          const cond = p.condition || p.title || p.label || "";
+          const claim = p.claim || p.body || "";
+          const promise = p.promise || "";
+          const price = p.price || "";
+          const facets = [
+            promise ? `<div class="app-path-facet app-path-promise"><dt>Lupaus</dt><dd>${esc(promise)}</dd></div>` : "",
+            price ? `<div class="app-path-facet app-path-price"><dt>Hinta</dt><dd>${esc(price)}</dd></div>` : "",
+          ].join("");
+          return `<li class="app-path">
+            ${cond ? `<div class="app-path-cond">${esc(cond)}</div>` : ""}
+            ${claim ? `<div class="app-path-claim">${esc(claim)}</div>` : ""}
+            ${facets ? `<dl class="app-path-facets">${facets}</dl>` : ""}
+          </li>`;
+        }).join("");
+        return [
+          c.body ? `<p class="lead">${esc(c.body)}</p>` : "",
+          c.note ? `<div class="note">${esc(c.note)}</div>` : "",
+          paths.length ? `<ol class="app-path-set">${cards}</ol>` : "",
+          renderAnalysisFields(c),
           c.source ? `<div class="source">${esc(c.source)}</div>` : "",
         ].join("");
       }
@@ -2868,7 +2905,7 @@ function renderResearchCard(c) {
         if (c.key_insight) parts.push(`<div class="key-insight">${esc(c.key_insight)}</div>`);
         if (c.source) parts.push(`<div class="source">${esc(c.source)}</div>`);
 
-        return parts.join('') || `<div class="lead">—</div>`;
+        return parts.join('') || `<div class="lead">--</div>`;
       }
 
       function initAmbientReveal() {
@@ -2884,8 +2921,8 @@ function renderResearchCard(c) {
               const idx = parseInt(card.dataset.ambientIdx || '0');
               setTimeout(() => card.classList.add('revealed'), idx * 80);
               obs.unobserve(card);
-              // Mobiililla avaa body automaattisesti kun kortti paljastuu
-              if (window.matchMedia('(max-width: 680px)').matches) {
+              // Desktopilla avaa body automaattisesti
+              if (window.matchMedia('(min-width: 1100px)').matches) {
                 const body = card.querySelector('.ambient-card-body');
                 if (body) body.classList.add('open');
               }
@@ -3489,13 +3526,15 @@ function renderResearchCard(c) {
             sectionsWithApps.push({ sectionPos: sp, appendices: apps });
             appHtml = buildInlineAppendixHtml(apps, "section");
           }
-          // Ambient: liitteet tekstin perässä, sulautuvat tekstivirtaan
+          // Ambient: liitteet menevät sivupaneeliin, ei tekstin perään
           const hasApps = apps.length > 0;
           return `
-            <section data-section-pos="${sp}">
-              ${s.title ? `<h2>${esc(s.title)}</h2>` : ""}
-              <div>${renderDoc(s.content)}</div>
-              ${hasApps ? `<div class="section-apps">${buildAmbientCards(apps)}</div>` : ""}
+            <section data-section-pos="${sp}" class="${hasApps ? 'section-wrap' : ''}">
+              <div class="reader-content">
+                ${s.title ? `<h2>${esc(s.title)}</h2>` : ""}
+                <div>${renderDoc(s.content)}</div>
+              </div>
+              ${hasApps ? `<div class="section-apps" data-apps-for="${sp}">${buildAmbientCards(apps)}</div>` : ""}
               ${appHtml}
             </section>`;
         }).join("");
