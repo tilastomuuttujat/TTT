@@ -1874,6 +1874,7 @@
             <button id="exportBookBtn" title="Lataa nykyisen kirjan teksti JSON-tiedostona">⬇ Kirja JSON</button>
             <button id="exportAppsBtn" title="Lataa nykyisen kirjan liitteet JSON-tiedostona">⬇ Liitteet JSON</button>
             <button id="exportAllBtn" title="Vie kaikki kirjat, liitteet ja index1.json yhtenä zip-tiedostona">⬇⬇ Vie kaikki (zip)</button>
+            <button id="exportIndexBtn" title="Lataa index1.json kirjalista">⬇ index1.json</button>
             <span class="user-pill" id="userPill"></span>
             <button id="logoutBtn" title="Kirjaudu ulos">Ulos</button>
           </div>
@@ -3773,115 +3774,115 @@
 
 // Rakentaa liite-payloadin (lukija-yhteensopiva) lataamatta tiedostoa.
 // Heittää virheen jos haku epäonnistuu; kutsuja hoitaa virheet.
-async function buildAppendicesPayload(slug) {
-    // 1. Hae kirja
-    const { data: book, error: bookErr } = await sb
-      .from("books")
-      .select("id, slug, title")
-      .eq("slug", slug)
-      .single();
-    if (bookErr) throw new Error("Kirjan haku epäonnistui: " + bookErr.message);
-    if (!book) throw new Error("Kirjaa ei löytynyt: " + slug);
+      async function buildAppendicesPayload(slug) {
+          // 1. Hae kirja
+          const { data: book, error: bookErr } = await sb
+            .from("books")
+            .select("id, slug, title")
+            .eq("slug", slug)
+            .single();
+          if (bookErr) throw new Error("Kirjan haku epäonnistui: " + bookErr.message);
+          if (!book) throw new Error("Kirjaa ei löytynyt: " + slug);
 
-    // 2. Hae liitteet
-    const { data: appendices, error: appsErr } = await sb
-      .from("appendices")
-      .select(`
-        id, book_id, chapter_position, section_position,
-        type, title, source, position, content, hidden
-      `)
-      .eq("book_id", book.id)
-      .order("chapter_position", { ascending: true })
-      .order("section_position", { ascending: true, nullsFirst: false })
-      .order("position", { ascending: true });
-    if (appsErr) throw new Error("Liitteiden haku epäonnistui: " + appsErr.message);
+          // 2. Hae liitteet
+          const { data: appendices, error: appsErr } = await sb
+            .from("appendices")
+            .select(`
+              id, book_id, chapter_position, section_position,
+              type, title, source, position, content, hidden
+            `)
+            .eq("book_id", book.id)
+            .order("chapter_position", { ascending: true })
+            .order("section_position", { ascending: true, nullsFirst: false })
+            .order("position", { ascending: true });
+          if (appsErr) throw new Error("Liitteiden haku epäonnistui: " + appsErr.message);
 
-    // 3. Hae deduplikoidut data-/sarjalinkit (evidence_key → indicator_key → metadata)
-    const { data: seriesLinks, error: seriesErr } = await sb
-      .from("v_evidence_series_export")
-      .select(`
-        evidence_key, indicator_key, indicator_name, external_project,
-        external_project_ref, geography, year_start, year_end,
-        expected_j_codes, data_role, note
-      `)
-      .order("evidence_key", { ascending: true });
-    if (seriesErr) throw new Error("Series-linkkien haku epäonnistui: " + seriesErr.message);
+          // 3. Hae deduplikoidut data-/sarjalinkit (evidence_key → indicator_key → metadata)
+          const { data: seriesLinks, error: seriesErr } = await sb
+            .from("v_evidence_series_export")
+            .select(`
+              evidence_key, indicator_key, indicator_name, external_project,
+              external_project_ref, geography, year_start, year_end,
+              expected_j_codes, data_role, note
+            `)
+            .order("evidence_key", { ascending: true });
+          if (seriesErr) throw new Error("Series-linkkien haku epäonnistui: " + seriesErr.message);
 
-    let hiddenCount = 0;
-    const visibleAppendices = (appendices || [])
-      .filter((a) => { if (a.hidden === true) { hiddenCount++; return false; } return true; })
-      .map((a) => ({
-        chapter_position: a.chapter_position,
-        section_position: a.section_position,
-        type: a.type,
-        title: a.title,
-        source: a.source,
-        position: a.position,
-        content: a.content || {},
-      }));
+          let hiddenCount = 0;
+          const visibleAppendices = (appendices || [])
+            .filter((a) => { if (a.hidden === true) { hiddenCount++; return false; } return true; })
+            .map((a) => ({
+              chapter_position: a.chapter_position,
+              section_position: a.section_position,
+              type: a.type,
+              title: a.title,
+              source: a.source,
+              position: a.position,
+              content: a.content || {},
+            }));
 
-    // 4. Ryhmittele liitteet lukujen alle
-    const chaptersMap = new Map();
-    for (const a of visibleAppendices) {
-      const cp = Number(a.chapter_position);
-      if (!chaptersMap.has(cp)) chaptersMap.set(cp, { chapter_position: cp, appendices: [] });
-      chaptersMap.get(cp).appendices.push(a);
-    }
-    const chapters = [...chaptersMap.values()]
-      .sort((a, b) => a.chapter_position - b.chapter_position)
-      .map((ch) => ({
-        ...ch,
-        appendices: ch.appendices.sort((a, b) => {
-          const as = a.section_position ?? 999999;
-          const bs = b.section_position ?? 999999;
-          if (as !== bs) return as - bs;
-          return (a.position ?? 0) - (b.position ?? 0);
-        }),
-      }));
+          // 4. Ryhmittele liitteet lukujen alle
+          const chaptersMap = new Map();
+          for (const a of visibleAppendices) {
+            const cp = Number(a.chapter_position);
+            if (!chaptersMap.has(cp)) chaptersMap.set(cp, { chapter_position: cp, appendices: [] });
+            chaptersMap.get(cp).appendices.push(a);
+          }
+          const chapters = [...chaptersMap.values()]
+            .sort((a, b) => a.chapter_position - b.chapter_position)
+            .map((ch) => ({
+              ...ch,
+              appendices: ch.appendices.sort((a, b) => {
+                const as = a.section_position ?? 999999;
+                const bs = b.section_position ?? 999999;
+                if (as !== bs) return as - bs;
+                return (a.position ?? 0) - (b.position ?? 0);
+              }),
+            }));
 
-    // 5. Puhdista series_links
-    const cleanedSeriesLinks = (seriesLinks || []).map((s) => ({
-      evidence_key: s.evidence_key,
-      indicator_key: s.indicator_key,
-      indicator_name: s.indicator_name,
-      external_project: s.external_project,
-      external_project_ref: s.external_project_ref,
-      geography: s.geography,
-      year_start: s.year_start,
-      year_end: s.year_end,
-      expected_j_codes: s.expected_j_codes || [],
-      data_role: s.data_role,
-      note: s.note,
-    }));
+          // 5. Puhdista series_links
+          const cleanedSeriesLinks = (seriesLinks || []).map((s) => ({
+            evidence_key: s.evidence_key,
+            indicator_key: s.indicator_key,
+            indicator_name: s.indicator_name,
+            external_project: s.external_project,
+            external_project_ref: s.external_project_ref,
+            geography: s.geography,
+            year_start: s.year_start,
+            year_end: s.year_end,
+            expected_j_codes: s.expected_j_codes || [],
+            data_role: s.data_role,
+            note: s.note,
+          }));
 
-    return {
-      payload: {
-        book_slug: book.slug,
-        book_title: book.title,
-        exported_at: new Date().toISOString(),
-        chapters,
-        series_links: cleanedSeriesLinks,
-      },
-      stats: { visible: visibleAppendices.length, links: cleanedSeriesLinks.length, hidden: hiddenCount },
-    };
-}
+          return {
+            payload: {
+              book_slug: book.slug,
+              book_title: book.title,
+              exported_at: new Date().toISOString(),
+              chapters,
+              series_links: cleanedSeriesLinks,
+            },
+            stats: { visible: visibleAppendices.length, links: cleanedSeriesLinks.length, hidden: hiddenCount },
+          };
+      }
 
-async function exportAppendicesJson() {
-  if (!adminState.currentBookSlug) {
-    toast("Avaa ensin kirja, jonka liitteet viedään.", "error");
-    return;
-  }
-  try {
-    const { payload, stats } = await buildAppendicesPayload(adminState.currentBookSlug);
-    downloadJson(`${payload.book_slug}-appendices.json`, payload);
-    const msgParts = [`Liitteet viety: ${stats.visible} kpl`, `series_links: ${stats.links} kpl`];
-    if (stats.hidden > 0) msgParts.push(`piilotettuja ohitettu: ${stats.hidden} kpl`);
-    toast(msgParts.join(" · "), "success");
-  } catch (err) {
-    console.error("[exportAppendicesJson]", err);
-    toast(err.message || "Liitteiden vienti epäonnistui.", "error");
-  }
-}
+      async function exportAppendicesJson() {
+        if (!adminState.currentBookSlug) {
+          toast("Avaa ensin kirja, jonka liitteet viedään.", "error");
+          return;
+        }
+        try {
+          const { payload, stats } = await buildAppendicesPayload(adminState.currentBookSlug);
+          downloadJson(`${payload.book_slug}-appendices.json`, payload);
+          const msgParts = [`Liitteet viety: ${stats.visible} kpl`, `series_links: ${stats.links} kpl`];
+          if (stats.hidden > 0) msgParts.push(`piilotettuja ohitettu: ${stats.hidden} kpl`);
+          toast(msgParts.join(" · "), "success");
+        } catch (err) {
+          console.error("[exportAppendicesJson]", err);
+          toast(err.message || "Liitteiden vienti epäonnistui.", "error");
+        }
+      }
 
       function downloadJson(filename, obj) {
         const blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
@@ -3911,6 +3912,26 @@ async function exportAppendicesJson() {
       // Vie KAIKKI kirjat + liitteet + index1.json yhtenä zip-tiedostona.
       // Tiedostot menevät zipissä books/-kansioon, joten puran sen suoraan
       // palvelimen juureen (tai books/ ylätasolle).
+      async function exportIndexJson() {
+        try {
+          const { data: books, error: be } = await sb
+            .from("books")
+            .select("slug, title, author, description, position")
+            .order("position", { ascending: true });
+          if (be) throw new Error("Kirjojen haku epäonnistui: " + be.message);
+          if (!books || !books.length) throw new Error("Ei kirjoja.");
+          const index = books.map(b => ({
+            slug: b.slug, title: b.title,
+            author: b.author, description: b.description,
+          }));
+          downloadJson("index1.json", index);
+          toast("index1.json ladattu — " + books.length + " kirjaa", "success");
+        } catch (err) {
+          console.error("[exportIndexJson]", err);
+          toast(err.message || "index1.json vienti epäonnistui.", "error");
+        }
+      }
+
       async function exportAllZip() {
         const btn = document.getElementById("exportAllBtn");
         const origLabel = btn ? btn.textContent : "";
@@ -3984,6 +4005,7 @@ async function exportAppendicesJson() {
       document.getElementById("exportBookBtn").addEventListener("click", exportBookJson);
       document.getElementById("exportAppsBtn").addEventListener("click", exportAppendicesJson);
       document.getElementById("exportAllBtn").addEventListener("click", exportAllZip);
+      document.getElementById("exportIndexBtn").addEventListener("click", exportIndexJson);
 
       // ═══════════════════════════════════════════════════════════════════════
       //  Routes
