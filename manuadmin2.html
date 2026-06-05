@@ -817,9 +817,13 @@
         transition: background .12s, color .12s;
       }
       .ambient-card-toggle:hover { background: var(--bg-soft); color: var(--fg); }
-      /* Adminissa toggle piilotettu — sisältö aina näkyvissä */
-      .ambient-card-toggle { display: none !important; }
-      .ambient-card-body { display: block !important; }
+      @media (min-width: 681px) {
+        .ambient-card-toggle { display: none; }
+        .ambient-card-body { display: block !important; }
+      }
+      @media (max-width: 680px) {
+        .ambient-card-body:not(.open) { display: none; }
+      }
       .ambient-card .lead {
         font-family: "Instrument Serif", serif;
         font-size: 15px; line-height: 1.55; color: var(--fg-soft); margin: 0 0 14px;
@@ -3431,17 +3435,12 @@
 
       function buildInlineAppendixHtml(appendices, region) {
         if (!appendices || !appendices.length) return "";
-        const toggles = appendices.map((a, i) => {
-          const hiddenMark = a.hidden ? ' style="opacity: 0.38;"' : '';
-          const hiddenSuffix = a.hidden ? ' ·  piilotettu' : '';
-          const tipTitle = esc((a.title || labelFor(a.type)) + hiddenSuffix);
-          return `
-          <button type="button" class="app-toggle" data-app-idx="${i}"
-            aria-expanded="false" aria-label="${tipTitle}" title="${tipTitle}"${hiddenMark}>
-            ${iconFor(a.type)}
-            <span class="app-toggle-title">${tipTitle}</span>
-          </button>`;
-        }).join("");
+        // Adminissa: ei ikoneja, placeholder-togglet joita wireInlineToggles käyttää
+        // mutta näytetään suoraan kaikki auki
+        const toggles = appendices.map((a, i) => `
+          <button type="button" class="app-toggle app-toggle-hidden" data-app-idx="${i}"
+            aria-expanded="false" style="display:none"></button>`
+        ).join("");
         return `
           <div class="app-inline ${region === "chapter" ? "chapter-level" : ""}">
             <div class="app-inline-toggles">${toggles}</div>
@@ -3534,9 +3533,10 @@
               const idx = parseInt(card.dataset.ambientIdx || '0');
               setTimeout(() => card.classList.add('revealed'), idx * 80);
               obs.unobserve(card);
-              // Adminissa avataan aina automaattisesti
-              const body = card.querySelector('.ambient-card-body');
-              if (body) body.classList.add('open');
+              if (window.matchMedia('(max-width: 680px)').matches) {
+                const body = card.querySelector('.ambient-card-body');
+                if (body) body.classList.add('open');
+              }
             }
           });
         }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
@@ -3558,6 +3558,107 @@
               btn.querySelector('svg path').setAttribute('d', 'M4 10l4-4 4 4');
             }
           });
+        });
+      }
+
+      function autoOpenAllAppendices(container, appendices) {
+        // Renderöi kaikki liitteet suoraan ilman toggle-ikoneja
+        const body = container.querySelector(".app-body");
+        if (!body || !appendices.length) return;
+        body.hidden = false;
+        body.innerHTML = appendices.map((a, idx) => {
+          const _navChapterOpts = adminNav.map((c) =>
+            `<option value="${c.position}" ${Number(a.chapter_position) === c.position ? "selected" : ""}>${esc(String(c.position).padStart(2, "0"))} · ${esc(c.title)}</option>`
+          ).join("");
+          const buildSectionOpts = (chPos, selSec) => {
+            const ch = adminNav.find((c) => c.position === Number(chPos));
+            const secs = ch ? ch.sections : [];
+            const isCl = (selSec === null || selSec === undefined || selSec === "");
+            return `<option value="" ${isCl ? "selected" : ""}>Koko luku (ei osiota)</option>` +
+              secs.map((s) => `<option value="${s.position}" ${(!isCl && Number(selSec) === s.position) ? "selected" : ""}>${esc(String(s.position).padStart(2, "0"))} · ${esc(s.title)}</option>`).join("");
+          };
+          const _published = a.hidden !== true;
+          const ctrlHtml = `
+            <div class="app-admin-controls app-admin-controls-wrap">
+              <label class="app-pub">
+                <input type="checkbox" class="app-pub-check" data-app-idx="${idx}" ${_published ? "checked" : ""}/>
+                Julkaistu lukijoille
+              </label>
+              <span class="app-loc">
+                <span class="app-loc-label">Sijainti:</span>
+                <select class="app-ch-select" data-app-idx="${idx}" aria-label="Luku">${_navChapterOpts}</select>
+                <select class="app-se-select" data-app-idx="${idx}" aria-label="Osio">${buildSectionOpts(a.chapter_position, a.section_position)}</select>
+                <button type="button" class="app-move-btn" data-app-idx="${idx}">Siirrä tähän</button>
+                <button type="button" class="app-copy-btn" data-app-idx="${idx}">Kopioi tähän</button>
+              </span>
+              <span class="save-status" data-app-status-${idx}></span>
+            </div>`;
+          return `
+            <div class="app-auto-item" data-auto-idx="${idx}" style="margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--line);">
+              <div class="app-body-head">
+                <span class="kind">${esc(labelFor(a.type))}</span>
+                <h3>${esc(a.title || labelFor(a.type))}</h3>
+              </div>
+              <div class="app-card ${a.hidden ? "hidden-appendix" : ""}">
+                ${renderAppendixBody(a)}
+                ${ctrlHtml}
+              </div>
+            </div>`;
+        }).join("");
+
+        // Kytke admin-kontrollit jokaiselle liitteelle
+        appendices.forEach((a, idx) => {
+          const item = body.querySelector(`[data-auto-idx="${idx}"]`);
+          if (!item) return;
+          const pubCheck = item.querySelector(".app-pub-check");
+          const chSel = item.querySelector(".app-ch-select");
+          const seSel = item.querySelector(".app-se-select");
+          const moveBtn = item.querySelector(".app-move-btn");
+          const copyBtn = item.querySelector(".app-copy-btn");
+          const statusEl = body.querySelector(`[data-app-status-${idx}]`);
+          const card = item.querySelector(".app-card");
+          const setSt = (txt, cls) => { if (statusEl) { statusEl.textContent = txt; statusEl.className = "save-status " + (cls || ""); } };
+          const buildSectionOpts = (chPos, selSec) => {
+            const ch = adminNav.find((c) => c.position === Number(chPos));
+            const secs = ch ? ch.sections : [];
+            const isCl = (selSec === null || selSec === undefined || selSec === "");
+            return `<option value="" ${isCl ? "selected" : ""}>Koko luku (ei osiota)</option>` +
+              secs.map((s) => `<option value="${s.position}" ${(!isCl && Number(selSec) === s.position) ? "selected" : ""}>${esc(String(s.position).padStart(2, "0"))} · ${esc(s.title)}</option>`).join("");
+          };
+          const targetLoc = () => ({ ch: Number(chSel.value), se: (seSel.value === "" ? null : Number(seSel.value)) });
+          if (chSel && seSel) {
+            chSel.addEventListener("change", () => { seSel.innerHTML = buildSectionOpts(chSel.value, ""); });
+          }
+          if (pubCheck && a._id) {
+            pubCheck.addEventListener("change", async () => {
+              const newHidden = !pubCheck.checked;
+              const { error } = await sb.from("appendices").update({ hidden: newHidden }).eq("id", a._id);
+              if (error) { setSt("Virhe: " + error.message, "error"); pubCheck.checked = !newHidden; return; }
+              a.hidden = newHidden;
+              if (card) card.classList.toggle("hidden-appendix", newHidden);
+              setSt(newHidden ? "Piilotettu lukijoilta" : "Julkaistu", "ok");
+            });
+          }
+          if (moveBtn && a._id) {
+            moveBtn.addEventListener("click", async () => {
+              const { ch, se } = targetLoc();
+              const { error } = await sb.from("appendices").update({ chapter_position: ch, section_position: se }).eq("id", a._id);
+              if (error) { setSt("Siirto epäonnistui: " + error.message, "error"); return; }
+              setSt("Siirretty ✓", "ok");
+            });
+          }
+          if (copyBtn && a._id) {
+            copyBtn.addEventListener("click", async () => {
+              const { ch, se } = targetLoc();
+              const { error } = await sb.from("appendices").insert({
+                book_id: a.book_id, chapter_position: ch, section_position: se,
+                type: a.type, title: a.title + " (kopio)", source: a.source,
+                position: (a.position || 0) + 1, content: a.content, hidden: true,
+              });
+              if (error) { setSt("Kopiointi epäonnistui: " + error.message, "error"); return; }
+              setSt("Kopioitu ✓", "ok");
+            });
+          }
         });
       }
 
@@ -4735,11 +4836,9 @@
           const key = `${chapterPos}:${sp}`;
           const apps = sectionMap.get(key) || [];
           let appHtml = "";
-          let ambientHtml = "";
           if (apps.length) {
             sectionsWithApps.push({ sectionPos: sp, appendices: apps });
             appHtml = buildInlineAppendixHtml(apps, "section");
-            ambientHtml = `<div class="section-apps">${buildAmbientCards(apps)}</div>`;
           }
           // ADMIN: lisää contenteditable osion otsikkoon ja sisältöön + tallennusbari
           const sectionId = s._id || s.id || "";
@@ -4752,11 +4851,11 @@
                 <button type="button" data-action="discard" class="secondary">Hylkää</button>
                 <button type="button" data-action="save">Tallenna</button>
               </div>
-              ${ambientHtml}
+              ${appHtml}
             </section>`;
         }).join("");
 
-        const chapterAppHtml = ""; // ambient-kortit hoitavat chapter-tason liitteet
+        const chapterAppHtml = chapterAppendices.length ? buildInlineAppendixHtml(chapterAppendices, "chapter") : "";
 
         const mPager = `
           <nav class="m-pager" aria-label="Lukunavigaatio">
@@ -4786,12 +4885,19 @@
           const sectionEl = document.querySelector(`section[data-section-pos="${sectionPos}"]`);
           if (!sectionEl) continue;
           const container = sectionEl.querySelector(".app-inline");
-          if (container) wireInlineToggles(container, appendices);
+          if (container) {
+            wireInlineToggles(container, appendices);
+            // Adminissa: avaa kaikki liitteet automaattisesti ilman ikoneja
+            autoOpenAllAppendices(container, appendices);
+          }
         }
         if (chapterAppendices.length) {
           const article = document.getElementById("chapterArticle");
           const chCont = article.querySelector(".app-inline.chapter-level");
-          if (chCont) wireInlineToggles(chCont, chapterAppendices);
+          if (chCont) {
+            wireInlineToggles(chCont, chapterAppendices);
+            autoOpenAllAppendices(chCont, chapterAppendices);
+          }
         }
         requestAnimationFrame(() => initAmbientReveal());
 
