@@ -1331,6 +1331,679 @@
           }
         }
       ]
+    },
+    {
+      "slug": "paatosluku-mita-ennusteet-oikeastaan-mittaavat",
+      "title": "Päätösluku — Mitä ennusteet oikeastaan mittaavat",
+      "position": 7,
+      "sections": [
+        {
+          "title": "Ennusteet kristallipallona",
+          "position": 0,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ennusteet näyttävät tulevaisuutta vain harvoin sellaisena kuin se lopulta tapahtuu. Useammin ne näyttävät suunnan, paineen ja logiikan, joka alkaa muuttaa maailmaa jo ennen kuin maailma itse ymmärtää muuttuneensa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Siksi tämän kirjan kuutta ennustetta ei pitäisi lukea kristallipallona. Ne eivät ole väitteitä siitä, että tulevaisuus etenisi varmasti yhdellä tavalla. Ne ovat yrityksiä nähdä mekanismeja ennen kuin ne muuttuvat itsestäänselvyyksiksi.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tulevaisuus ei synny yhdestä teknologiasta, yhdestä päätöksestä tai yhdestä kriisistä. Se syntyy siitä, miten järjestelmät reagoivat paineeseen. Juuri siksi monet historian suurimmat muutokset näyttivät aluksi pieniltä siirtymiltä: hitaalta energiamuutokselta, uudelta tiedonvälityksen välineeltä, hallinnolliselta ratkaisulta tai tavalta järjestää työtä tehokkaammin.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Vasta myöhemmin ymmärrettiin, että kyse ei ollut vain yhdestä innovaatiosta. Kyse oli uudesta tavasta nähdä maailma.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämän kirjan kuusi ennustetta yhdistyvät samaan kysymykseen.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mitä tapahtuu yhteiskunnalle, kun järjestelmät oppivat näkemään enemmän kuin ihmiset itse näkevät?",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Ennusteiden yhteinen rakenne",
+          "position": 1,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kirjan aikana olemme kulkeneet kuuden erilaisen kehityskulun läpi.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Yhdessä ennusteessa tekoäly muuttaa työn rakennetta. Toisessa hyvinvointijärjestelmä alkaa siirtyä korjaamisesta ennakointiin. Kolmannessa mittarit alkavat nähdä käyttäytymistä ennen kuin käyttäytyminen itse ehtii näkyä kriisinä. Neljännessä järjestelmät optimoivat resursseja tavalla, joka voi vahvistaa tehokkuutta mutta samalla kaventaa ihmiskokemuksen näkyvyyttä. Viidennessä ajattelu alkaa ulkoistua yhä enemmän koneellisille järjestelmille. Kuudennessa kysymys ei enää ole vain teknologiasta vaan siitä, mitä tapahtuu kokemukselle, vastuulle ja merkitykselle.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Nämä ennusteet näyttävät erilaisilta, mutta niiden alla toistuu sama rakenne.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Järjestelmät keräävät enemmän dataa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Data muuttuu ennusteiksi.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ennusteet alkavat ohjata päätöksiä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Päätökset muuttavat ihmisten käyttäytymistä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Käyttäytymisen muutos synnyttää uuden yhteiskunnallisen todellisuuden.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä ketju on tärkeä, koska se tarkoittaa, ettei teknologia jää koskaan pelkäksi teknologiaksi.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kun järjestelmä alkaa ennakoida, ihmiset alkavat myös elää ennakoinnin sisällä.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Näkymätön siirtymä",
+          "position": 2,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Monet historian murrokset tapahtuivat hitaasti ennen kuin ne näyttivät äkillisiltä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Painokone ei muuttanut Eurooppaa yhdessä vuodessa. Fossiilinen energia ei muuttanut ilmastoa yhdessä sukupolvessa. Internet ei muuttanut ihmisten välistä todellisuutta yhdessä hetkessä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Aluksi muutos näyttää paikalliselta.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Sitten siitä tulee infrastruktuuri.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Lopulta ihmiset eivät enää muista aikaa ennen sitä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä on myös tekoälyn ja ennustavien järjestelmien todellinen voima. Ne eivät ehkä mullista maailmaa yhdellä iskulla. Ne voivat muuttua vähitellen normaaliksi tavaksi tehdä päätöksiä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Aluksi järjestelmä auttaa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Sitten järjestelmään luotetaan.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Lopulta järjestelmän ulkopuolella toimiminen alkaa näyttää poikkeukselta.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä ei ole välttämättä dystopia. Monessa tilanteessa ennakointi voi aidosti vähentää kärsimystä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jos järjestelmä tunnistaa uupumuksen ennen romahdusta, lapsen tuen tarpeen ennen syrjäytymistä tai sairauden ennen kriisiä, vaikutus voi olla syvästi inhimillinen.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mutta sama logiikka sisältää myös riskin.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kun järjestelmät näkevät enemmän, ne alkavat määrittää yhä voimakkaammin sitä, mikä on näkyvää.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ja se, mikä jää näkymättömäksi, alkaa menettää merkitystään.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Optimoinnin aikakausi",
+          "position": 3,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Yksi tämän kirjan läpi kulkevista ajatuksista on ollut optimoinnin kaksijakoisuus.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Optimointi ei ole paha asia. Ilman optimointia yhteiskunnat eivät kykene käyttämään rajallisia resurssejaan järkevästi. Hyvinvointijärjestelmä ilman priorisointia voi romahtaa yhtä varmasti kuin järjestelmä, joka optimoi kaiken liian kapeasti.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ongelma syntyy silloin, kun optimointi alkaa korvata tarkoituksen.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kun mittarista tulee tavoite.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kun tehokkuus alkaa määrittää arvoa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kun järjestelmä oppii ratkaisemaan näkyvän ongelman samalla kun näkymätön ongelma kasvaa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä ei ole vain tekninen riski. Se on moraalinen riski.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Yhteiskunta voi alkaa näyttää yhä toimivammalta samalla kun ihmiset kokevat yhä vähemmän tulevansa nähdyiksi.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Juuri siksi tämän kirjan tärkein kysymys ei ehkä ole:",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kuinka älykkäiksi järjestelmät voivat tulla?",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Vaan:",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mitä järjestelmät alkavat pitää tärkeänä?",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Kuudes ennuste kaiken alla",
+          "position": 4,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kirjan viimeinen ja ehkä vaikein ennuste ei koske vain teknologiaa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Se koskee ihmistä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mitä tapahtuu, jos ulkoistamme yhä enemmän muistia, päätöksentekoa, arviointia, kirjoittamista, suunnittelua ja ajattelua järjestelmille, jotka eivät itse koe mitään?",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ehkä mitään katastrofia ei tapahdu.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ehkä ihmiset säilyttävät kykynsä ajatella, tuntea, epäillä ja nähdä toisiaan.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mutta ehkä tapahtuu hitaampi muutos.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ehkä ihmiset alkavat vähitellen mukautua järjestelmiin, jotka palkitsevat nopeuden, ennustettavuuden ja mitattavuuden.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ehkä ajattelusta tulee yhä enemmän yhteistyötä koneiden kanssa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ehkä lopulta emme enää täysin erota, mikä ajatus syntyi ihmisessä ja mikä järjestelmän ehdottamana.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä ei tarkoita, että tekoäly tekisi ihmisestä tarpeettoman.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Se voi tarkoittaa jotakin paljon hienovaraisempaa:",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "että ihminen alkaa vähitellen unohtaa, miksi hänen oma näkökulmansa oli korvaamaton.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Tulevaisuuden todellinen kysymys",
+          "position": 5,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tulevaisuuden ratkaisevin kysymys ei ehkä ole teknologinen.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Se voi olla kysymys siitä, pystyykö yhteiskunta rakentamaan järjestelmiä, jotka säilyttävät kokemuksen näkyvänä samalla kun ne kasvavat yhä älykkäämmiksi.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Voimmeko rakentaa ennustavia järjestelmiä ilman että ihmisestä tulee pelkkä datapiste?",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Voimmeko käyttää tekoälyä ilman että luovutamme sille kokonaan käsitystä siitä, mikä on merkityksellistä?",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Voimmeko optimoida yhteiskuntaa niin, ettei optimointi ala vähitellen optimoida pois juuri niitä asioita, joiden vuoksi yhteiskunta on olemassa?",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Nämä kysymykset eivät kuulu vain insinööreille, poliitikoille tai tutkijoille.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ne kuuluvat kaikille, jotka elävät järjestelmissä, joita ennusteet alkavat ohjata.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "title": "Lopuksi",
+          "position": 6,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ehkä tulevaisuutta ei ratkaise se, kuinka paljon dataa keräämme.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ehkä sitä ei ratkaise edes se, kuinka älykkäitä järjestelmät ovat.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ehkä ratkaisevaa on se, muistammeko vielä kysyä, mitä varten järjestelmät on rakennettu.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Koska yhteiskunta voi oppia ennustamaan lähes kaiken — ja silti kadottaa kyvyn nähdä, mikä tekee ihmiselämästä kokemisen arvoista.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Siksi tämän kirjan kuusi ennustetta eivät lopulta ole ennusteita teknologiasta.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ne ovat ennusteita siitä, mitä ihmisyydelle tapahtuu maailmassa, jossa järjestelmät alkavat ymmärtää meitä paremmin kuin ymmärrämme itseämme.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
     }
   ]
 }

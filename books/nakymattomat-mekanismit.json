@@ -3,7 +3,7 @@
   "title": "Näkymättömät mekanismit",
   "author": "Harri Käyhkö",
   "description": "Laadullinen analyysi Suomen hyvinvointijärjestelmästä",
-  "updated_at": "2026-05-26T08:20:55.595Z",
+  "cover_url": null,
   "chapters": [
     {
       "slug": "johdanto-viisi-mekanismia",
@@ -71,8 +71,7 @@
                 ]
               }
             ]
-          },
-          "text": "Miksi järjestelmä joka käyttää enemmän rahaa kuin koskaan tuottaa silti epätyydyttäviä tuloksia\n\nVuonna 1990 Suomi oli yksi maailman tasa-arvoisimmista yhteiskunnista. Hyvinvointivaltio oli pohjoismaisen mallin lippulaiva. Koulutuspolut olivat suhteellisen avoimia kaikille, terveyspalvelut universaaleja, työttömyys matalaa. Kansainväliset vertailut olivat tasaisen ylistäviä.\n\nKolmekymmentä vuotta myöhemmin kuva on toisenlainen. Suomessa on noin 600 000 työkyvyttömyysetuuksien saajaa. Mielenterveyspalveluiden jonoissa on kymmeniä tuhansia. Lastensuojelun avohuolto on kasvanut samalla kun ehkäisevät palvelut ovat supistuneet. Hyvinvointivaltio on yhä olemassa — se käyttää enemmän rahaa kuin koskaan — ja silti jotain on vialla.\n\nTämä on outo asetelma. Jos järjestelmä toimisi, kasvavat resurssit tuottaisivat parempia tuloksia. Jos se ei toimisi, resurssien lisääminen ei olisi tuottanut näinkin paljon. Mutta nyt on käymässä jotain kolmatta — resurssit kasvavat ja tulokset huononevat samanaikaisesti. Tämä on tämän kirjan lähtöhavainto.\n\nHelpoin selitys olisi väittää että poliitikot ovat epäonnistuneet, leikkauksista on päätetty väärin, resursseja on liian vähän. Näissä väitteissä on totuuden siemen. Mutta ne käsittelevät oireita eivätkä sairautta. Ne olettavat että järjestelmä on pohjimmiltaan toimiva ja että ongelmat johtuvat sen huonosta hoidosta. Tämä kirja esittää toisenlaisen hypoteesin. Järjestelmä toimii juuri niin kuin se on rakennettu toimimaan. Sen tulokset eivät ole virheen seurausta — ne ovat sen sisäisten mekanismien seurausta.\n\nTämä on tärkeä erottelu. Jos kyse on virheestä, ratkaisu on korjata virhe — lisätä rahaa, vaihtaa johto, tehdä parempi suunnitelma. Jos kyse on mekanismista, ratkaisu on toinen — pitää muuttaa itse mekanismia. Ja niin kauan kuin mekanismit pysyvät voimassa, yksittäiset reformit eivät ratkaise mitään. Ne siirtävät painetta järjestelmän sisällä paikasta toiseen."
+          }
         },
         {
           "title": "Mekanismi on tarkka käsite",
@@ -117,8 +116,7 @@
                 ]
               }
             ]
-          },
-          "text": "Tämän kirjan keskeinen sana on mekanismi. Sillä ei tarkoiteta epämääräistä viittausta että ”rakenteet ovat jäykkiä” tai että ”järjestelmä on monimutkainen”. Mekanismi on kuvattavissa oleva prosessi: mikä tuottaa mitä, minkä välityksellä, ja millä seurauksilla.\n\nTämä on tärkeä erottelu. Yhteiskunnalliset selitykset on tapana antaa joko liian kapeasti — yksittäisten päätösten tai henkilöiden vikana — tai liian leveästi — viittauksena epämääräisiin ”rakenteisiin” joita kukaan ei oikein hallitse. Kumpikin tapa on rajallinen. Yksittäinen päätös ei selitä järjestelmällistä tulosta, ja epämääräiset rakenteet eivät tarjoa otetta josta järjestelmää voisi muuttaa.\n\nMekanismi on jotain näiden välistä. Se on prosessi joka voidaan kuvata tarpeeksi tarkasti että sitä voidaan analysoida — ja samalla riittävän abstrakti että se selittää useita yksittäisiä tapauksia. Esimerkki: kun koulu rahoitetaan oppilasmäärän mukaan ja oppilaiden oppimistuloksia mitataan kokeiden kautta, syntyy kannustin valita oppilaat jotka todennäköisesti pärjäävät kokeissa. Tämä ei ole kenenkään suunnittelema lopputulos. Se ei ole kenenkään huonon päätöksen seurausta. Se on mekanismin seurausta. Ja siitä seuraa että koulu jonka rakenne palkitsee menestyjien valinnasta tuottaa erilaisia tuloksia kuin koulu jonka rakenne palkitsee kaikkien oppimisesta — riippumatta siitä kuinka hyvänniinen sen henkilökunta on.\n\nTämä kirja väittää että Suomen hyvinvointijärjestelmä toimii viiden tällaisen mekanismin yhteisvaikutuksesta. Mekanismit eivät ole erillisiä. Ne kytkeytyvät toisiinsa, vahvistavat toisiaan, ja tuottavat yhdessä ne tulokset jotka näemme."
+          }
         },
         {
           "title": "Ensimmäinen mekanismi on rahoituksen logiikka",
@@ -163,8 +161,7 @@
                 ]
               }
             ]
-          },
-          "text": "Järjestelmä tekee sitä mitä se rahoittaa — ei sitä mitä se tavoittelee. Tämä kuulostaa itsestäänselvältä. Mutta sen seuraukset ovat syvempiä kuin luulisi.\n\nSuomen sosiaali- ja terveysbudjetit on rakennettu kerrostuneen kehysbudjetoinnin varaan. Käytännössä tämä tarkoittaa että ensi vuoden budjetti pohjautuu viime vuoden budjettiin. Ei tämän vuoden tarpeisiin. Ei tulevaisuuden kustannuksiin. Tämä on rakenteellinen menneisyysorientoituminen. Järjestelmä katsoo taaksepäin päättäessään mihin se kohdistaa resursseja eteenpäin.\n\nJa ennaltaehkäisy ei näy budjettirivillä. Sen säästöt syntyvät vuosien päästä, usein eri organisaation lukuun kuin missä investointi tehtiin. Neuvola säästää erikoissairaanhoidon kuluja, mutta neuvolabudjetti ei kasva tästä. Koulupsykologi estää myöhemmän mielenterveyshoitojakson, mutta tämä ei näy koulutoimen tunnusluvuissa. Järjestelmä on rakennettu niin että se ei pysty oppimaan omasta tehokkuudestaan. Se voi nähdä mihin raha menee, mutta se ei voi nähdä mitä rahaa ei kulunut koska aikaisempi investointi esti kalliimman ongelman.\n\nTästä syntyy hidas, mutta sitkeä vinouma. Reaktiiviset palvelut — sairaanhoito, lastensuojelu, työttömyysturva — kasvavat orgaanisesti, koska niiden tarve näkyy budjetissa heti. Ennaltaehkäisevät palvelut näivettyvät, koska niiden hyöty näkyy vasta vuosien päästä ja vain epäsuorasti. Tämä ei ole kenenkään valinta. Se on rahoituslogiikan seurausta."
+          }
         },
         {
           "title": "Toinen mekanismi on mittaaminen",
@@ -209,8 +206,7 @@
                 ]
               }
             ]
-          },
-          "text": "Mitä mitataan, sitä johdetaan. Mitä ei mitata, se häviää. Tämäkin kuulostaa itsestäänselvältä — mutta sen seuraukset ovat samanlaisia kuin rahoituksen.\n\nJulkiset palvelut tarvitsevat mittareita. Niillä osoitetaan vastuullisuutta, jaetaan resursseja, seurataan tehokkuutta. Ongelma ei ole mittaaminen sinänsä. Ongelma on että helposti mitattavat asiat — käyntikerrat, käsittelyajat, asiakasmäärät — korvaavat vaikeasti mitattavat — elämänlaatu, toimintakyky, itsenäisyys. Kvantitatiivinen syrjäyttää kvalitatiivisen, koska kvantitatiivinen mahtuu raporttiin ja kvalitatiivinen ei.\n\nTästä seuraa ammattilaisille omituinen tilanne. Heidät on koulutettu auttamaan ihmistä. Heitä arvioidaan suoritemäärien perusteella. Nämä kaksi eivät aina ole ristiriidassa, mutta usein ne ovat. Moniongelmainen asiakas vaatii aikaa. Aika kuluu. Suoritemäärät jäävät pieniksi. Helpompi ratkaisu on siirtää tämä asiakas eteenpäin — toiselle palvelulle, toiselle ammattilaiselle, toiselle organisaatiolle — ja ottaa tilalle yksinkertaisempi tapaus jolla suoritemäärä saadaan ylös.\n\nEi kenenkään pahasta tahdosta. Mekanismista. Vaikeat tapaukset alkavat kellua palveluketjussa. Kukaan ei pidä niitä, koska kukaan ei voi pitää niitä ilman että oma suoritetilasto heikkenee. Asiakas päätyy itse koordinoimaan järjestelmää joka oli rakennettu koordinoimaan häntä."
+          }
         },
         {
           "title": "Kolmas mekanismi on rakenteen hajaantuminen",
@@ -255,8 +251,7 @@
                 ]
               }
             ]
-          },
-          "text": "Kukaan ei hallitse kokonaisuutta. Tämä on suora seuraus siitä miten Suomen hyvinvointijärjestelmä on rakennettu. Sosiaalitoimi, terveydenhuolto, koulutoimi, työvoimapalvelut, Kela. Jokaisella on oma lainsäädäntönsä, oma budjettinsa, oma tietojärjestelmänsä, oma ammattikulttuurinsa. Hyvinvointialueuudistus muutti joitakin rajoja, mutta ei poistanut perusrakennetta. Se vain siirsi siilon uusien organisaatiorajojen sisälle.\n\nTämä toimii hyvin kun ongelma on yhden sektorin sisäinen. Murtunut käsivarsi menee terveydenhuoltoon, työttömyys työvoimapalveluihin, koulunkäynnin ongelma koulutoimeen. Mutta useimmat todelliset elämänongelmat eivät kunnioita näitä rajoja. Yksinhuoltajan ongelma on samaan aikaan taloudellinen, sosiaalinen, terveydellinen ja koulutuksellinen. Iäkkään monisairaan ongelma on samaan aikaan terveydellinen, hoivallinen, sosiaalinen ja asumiseen liittyvä. Lapsen ongelma on samaan aikaan koulutuksellinen, perheen tukeen liittyvä ja mielenterveydellinen.\n\nKun ongelma ylittää sektorirajat, palveluketju katkeaa. Ei näkyvällä tavalla — ei niin että joku sanoisi ”tämä ei kuulu meille”. Vaan rakenteellisesti. Sosiaalityöntekijä tekee oman osansa, terveydenhuolto omansa, koulu omansa. Kukaan ei ole vastuussa kokonaisuudesta koska kukaan ei hallitse kokonaisuutta. Vastuu ei katoa minnekään — se jakautuu niin monelle ettei se ole kenenkään.\n\nAsiakkaalle tämä näkyy navigaatio-ongelmana. Hänen on osattava liikkua järjestelmässä joka ei ole missään kokonaisuutena olemassa. Hän on järjestelmän kokonaisuuden ainoa todellinen tarkkailija — koska kaikki muut näkevät vain oman lokeronsa."
+          }
         },
         {
           "title": "Neljäs mekanismi on valta ja politiikka",
@@ -310,8 +305,7 @@
                 ]
               }
             ]
-          },
-          "text": "Päätöksenteko suosii nykyisiä voimasuhteita. Tämä on poliittisen järjestelmän rakenteellinen ominaisuus, ei sen toimijoiden vika.\n\nVaalikausi on neljä vuotta. Investoinnin hyödyt näkyvät kahdenkymmenen vuoden päästä. Tämä kahden aikajänteen välinen epäsuhta on kaiken pitkän tähtäimen politiikan keskeinen ongelma. Päättäjä joka tekee investoinnin tänään ei istu vallassa kun sen hyödyt realisoituvat. Hänen seuraajansa korjaa sen sadon — tai ottaa kunnian leikkauksesta jolla hän kompensoi investoinnin kustannuksia.\n\nDemografinen muutos tekee tämän erityisen näkyväksi. Ikääntyvä väestö ja pienenevä veropohja ovat tiedossa. Tilastokeskuksen ennusteet ovat olleet pöydällä vuosikymmeniä. Niiden edellyttämät rakenteelliset valinnat ovat poliittisesti kalliita. Eläke-ikä, hoivapalveluiden rahoitus, sukupolvien välinen tulojen jakautuminen — näistä kysymyksistä ei voi keskustella ilman että jokin äänestäjäryhmä kokee häviävänsä. Ja äänestäjäryhmät jotka kokevat häviävänsä, äänestävät eri tavalla.\n\nNuorten ääni kuuluu äänestäjäkunnassa vain siinä suhteessa kuin heidän osuutensa tulevaisuuden kustannuksista. Heidän osuutensa kustannuksista on suurempi kuin osuutensa äänestäjäkunnasta. Tämä epäsuhta ei katoa demokratian kautta. Demokratia toimii nykyisten äänestäjien preferensseillä, ei tulevien.\n\nEU:n vakaus- ja kasvusopimus sekä kansalliset kehysbudjetointisäännöt asettavat reunaehtoja. Nämä reunaehdot esitetään julkisessa keskustelussa usein väistämättöminä. Ne eivät ole. Ne ovat poliittisia valintoja joiden tulkinnassa on liikkumavaraa. Suomi ei ole täysin käyttänyt tätä liikkumavaraa. Tämä on valinta, vaikka sitä ei aina näin esitetä."
+          }
         },
         {
           "title": "Viides mekanismi on kapasiteetti",
@@ -374,8 +368,7 @@
                 ]
               }
             ]
-          },
-          "text": "Ylikuormitettu järjestelmä priorisoi vahvimpia. Tämä on viimeinen ja ehkä raadollisin mekanismi. Sen vaikutukset kasautuvat kaikkien edellisten päälle.\n\nKun palvelujärjestelmä toimii kapasiteettinsa rajoilla, jonot kasvavat, maksukynnykset estävät hakeutumista ja palveluiden alueelliset erot syvenevät. Tämä on järjestelmän näkökulmasta automatiikkaa — ei kenenkään valitsema lopputulos. Mutta se ei kohdistu tasaisesti.\n\nVahvemmassa asemassa olevat asiakkaat — paremmin toimeentulevat, koulutetummat, sosiaalisesti verkostoituneemmat — osaavat navigoida järjestelmässä tehokkaammin. He osaavat soittaa oikealle henkilölle, kirjoittaa valituksen oikeaan paikkaan, tietävät mitkä oikeudet heille kuuluvat ja kuinka niitä vaaditaan. He myös tietävät yksityiset vaihtoehdot ja heillä on usein varaa käyttää niitä siltä osin kuin julkinen järjestelmä ei toimi.\n\nHeikommassa asemassa olevat eivät. Heille järjestelmä on monimutkainen, vieras, vaikeasti ymmärrettävä. Sen monimutkaisuus toimii portinvartijana. Hakemus joka edellyttää lääketieteellistä terminologian tuntemusta on este. Valitusprosessi joka vaatii viiden eri lomakkeen täyttämistä on este. Puhelinpalvelu joka pakottaa kuuntelemaan viidentoista valikon läpi on este.\n\nTuloksena on itseään vahvistava prosessi. Ne jotka eniten tarvitsevat palveluja, saavat niitä viimeisenä. Eivät huonon päätöksen takia, vaan rakenteellisesti. Eriarvoisuus ei ole järjestelmän sivuvaikutus. Se on ylikuormittuneen järjestelmän toimintalogiikan seurausta.\n\nJa tämä logiikka muuttuu pahemmaksi sitä mukaa kun järjestelmä joutuu enemmän paineen alle. Demografinen muutos, peräkkäiset kriisit, kasvavat hoivatarpeet — kaikki kasvattavat painetta. Mitä enemmän painetta, sitä jyrkempi vahvempien priorisointi."
+          }
         },
         {
           "title": "Mekanismit yhdessä",
@@ -429,8 +422,7 @@
                 ]
               }
             ]
-          },
-          "text": "Nämä viisi mekanismia eivät toimi erillään. Ne kytkeytyvät toisiinsa kierteenä.\n\nRahoituksen logiikka ohjaa mitä mitataan, koska mittarit on yleensä rakennettu palvelemaan rahoituspäätöksiä. Mittarit puolestaan määräävät miten rakenteet toimivat, koska organisaatiot optimoivat sitä mistä ne arvioidaan. Rakenteet jakavat valtaa, koska sektorikohtainen organisoituminen luo sektorikohtaisia eturyhmiä. Valta päättää kenelle kapasiteettia riittää, koska resurssit jakautuvat sen mukaan kuka osaa niitä vaatia. Ja kun kapasiteetti loppuu, eriarvoisuus syvenee — mikä tuo lisää paineita rahoitukseen, sulkien kierteen.\n\nTämä ei ole kausaaliketju siinä mielessä että jokainen askel väistämättä seuraisi edellistä. Se on selitysjärjestys. Rahoituksesta on hyvä aloittaa, koska se on konkreettisin ja näkyvin piste josta järjestelmää voi tarttua. Mutta yhden kohdan korjaaminen yksin ei riitä. Jos vain rahoitus muuttuu mutta mittarit pysyvät, organisaatio palaa vanhaan käyttäytymiseen. Jos vain mittarit muuttuvat mutta rakenne pysyy, paine siirtyy toiseen siiloon. Jos vain rakenne muuttuu mutta valta pysyy, uudet rakenteet alkavat toimia vanhan vallan ehdoilla.\n\nTämä on kirjan keskeinen havainto. Järjestelmän tulokset eivät synny sattumalta. Ne syntyvät näiden viiden mekanismin yhteisvaikutuksesta. Ja niin kauan kuin mekanismit toimivat yhdessä, yksittäinen reformi siirtää painetta paikasta toiseen, mutta ei muuta lopputulosta.\n\nTästä ei seuraa pessimismiä. Mekanismit ovat ihmisten rakentamia. Ihmisten rakentamat asiat voidaan rakentaa uudelleen. Mutta uudelleenrakentaminen vaatii että nämä mekanismit nähdään — yksilöllisesti ja yhdessä — eikä tyydytä yksittäisten oireiden korjaamiseen."
+          }
         },
         {
           "title": "Käsikirjoituksen kartta",
@@ -520,8 +512,7 @@
                 ]
               }
             ]
-          },
-          "text": "Tämä kirja on jaettu kuuteen lukuun ja päätöslukuun. Niiden järjestys noudattaa kysymystä mikä tuottaa mitä.\n\nEnsimmäinen luku käsittelee rahoitusta ja mittareita yhdessä. Nämä kaksi mekanismia ovat niin tiiviisti kytköksissä toisiinsa että niitä on luonnollista käsitellä rinnan. Tarkastelussa on miksi raha menee sinne minne se menee, ja miksi mittarit ohjaavat tekemään sitä mitä helposti mitataan eikä sitä mitä halutaan.\n\nToinen luku käsittelee rakennetta ja vastuuta. Suomen hyvinvointijärjestelmä on rakennettu sektorikohtaisesti. Sote-uudistus muutti rajoja mutta ei perusajatusta. Tämä luku näyttää miksi sektorirajojen yli kulkevat ongelmat — joita useimmat todelliset elämänongelmat ovat — putoavat järjestelmän väliin.\n\nKolmas luku käsittelee eriarvoisuuden mekanismia ja sen historiallista pohjaa. 1990-luvun lama jätti suomalaiseen yhteiskuntaan kerrostuman päätöksiä jotka asettuivat rakenteiksi ja muuttuivat itsestäänselvyyksiksi. Eriarvoisuus ei kasva sattumalta. Se kasvaa rakenteellisten ratkaisujen seurauksena.\n\nNeljäs luku käsittelee niitä reunaehtoja joiden sisällä järjestelmä toimii — demografista muutosta, peräkkäisiä kriisejä, luonnonvarojen kertaluonteista käyttöä. Nämä eivät ole mekanismeja samassa mielessä kuin ensimmäiset viisi. Ne ovat olosuhteita jotka tekevät mekanismien vaikutuksesta jyrkemmän.\n\nViides luku on toisenlainen kuin muut. Se ei esitä uusia argumentteja. Se näyttää, mitä neljä ensimmäistä lukua tarkoittavat ihmisten elämässä. Kuusi tilastollista edustajaa — yksinhuoltaja, krooninen sairaus, lapsi, nuori, omaishoitaja, monisairas iäkäs — joiden arjessa mekanismit eivät ole abstrakteja. Tämä luku on sen vuoksi että ei unohdettaisi mistä on kyse.\n\nKuudes luku kysyy mitä voidaan tehdä. Sen rakenne noudattaa viiden mekanismin mallia: kannustinloukkujen purku puuttuu rahoitukseen, vaikuttavuusbudjetointi mittaamiseen, koordinoidun hoivan rakenteet sektorirajoihin, EU-liikkumavara valtaan, sukupolvien välinen sopimus reunaehtoihin. Yhdessä nämä viisi vipuvartta voivat — periaatteessa — muuttaa järjestelmän toimintalogiikkaa.\n\nPäätösluku katsoo taaksepäin. Suomi on aikaisemmin tehnyt rakenteellisia muutoksia tämän kokoluokan asioihin. Mikä silloin mahdollisti muutoksen? Ja mitä siitä voi oppia tästä päivästä.\n\nKirja on kirjoitettu niin että jokainen luku toimii itsenäisenä. Lukija voi aloittaa siitä mikä häntä kiinnostaa eniten. Mutta viiden mekanismin malli avautuu vasta kun ne nähdään yhdessä. Yhden luvun lukeminen antaa palasen, kaikkien lukeminen mallin."
+          }
         },
         {
           "title": "Mitä tämä käsikirjoitus ei ole",
@@ -566,8 +557,7 @@
                 ]
               }
             ]
-          },
-          "text": "Tämä ei ole katastrofinarratiivi. Suomen hyvinvointijärjestelmässä on paljon hyvää. Se on kansainvälisesti vertaillen edelleen vahva. Se tuottaa monille ihmisille apua ja turvaa. Sen rahoituspohja on monessa mielessä terveempi kuin useimmissa muissa maissa. Väite ei ole että kaikki on pielessä. Väite on että tietyt systemaattiset mekanismit estävät järjestelmää kehittymästä vastaamaan tämän vuosikymmenen tarpeita.\n\nTämä ei myöskään ole poliittinen ohjelma. Se ei edusta puoluetta eikä ajatushautomoa. Sen ratkaisuluvut perustuvat olemassa olevaan tutkimustietoon, kansainvälisiin esimerkkeihin ja Suomessa tehtyihin selvityksiin — eivät ideologisiin sitoumuksiin. Vasemmistolainen voi lukea kirjaa nähdäkseen miten rakenteet tuottavat eriarvoisuutta. Oikeistolainen voi lukea sitä nähdäkseen miten tehottomuus syntyy. Kumpikin voi olla oikeassa omista lähtökohdistaan ja silti samaa mieltä mekanismeista.\n\nTämä on analyysi. Sen tarkoitus on tehdä näkyväksi ne rakenteet jotka tekevät tietynlaisia tuloksia väistämättömiksi niin kauan kuin ne pysyvät muuttumattomina. Näkyväksi tekeminen ei ole muutos sinänsä. Mutta se on muutoksen edellytys. Sitä mitä ei nähdä, ei voida myöskään muuttaa.\n\nJärjestelmät ovat ihmisten rakentamia. Mikä on rakennettu, voidaan rakentaa uudelleen. Tämä on kirjan punainen lanka. Mutta se vaatii että ymmärrämme ensin miksi nykyinen rakenne tuottaa juuri näitä tuloksia eikä toisia. Sen jälkeen voidaan keskustella mitä tehdä toisin."
+          }
         }
       ]
     },
@@ -576,61 +566,6 @@
       "title": "Luku I - Rahoitus ja mittarit",
       "position": 1,
       "sections": [
-        {
-          "title": "Miten raha jakautuu itsestään",
-          "position": 0,
-          "content": {
-            "type": "doc",
-            "content": [
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "text": "Suomessa julkista taloutta ohjataan menokehysjärjestelmällä. Kehys on periaatteessa hyvä idea. Se pitää budjettikurin yllä, estää populistista ylikuluttamista ja luo ennustettavuutta hallituskausien yli. Mutta sillä on sisäänrakennettu vinous jota harvoin tunnistetaan poliittiseksi valinnaksi. Se kohdellaan teknisenä välttämättömyytenä.",
-                    "type": "text"
-                  }
-                ]
-              },
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "text": "Lakisääteiset menot — eläkkeet, perusturva, hoivakustannukset — kasvavat automaattisesti ilman erillistä päätöstä. Ne periytyvät historiasta palvelulupauksina, jotka on tehty silloin kun väestörakenne oli erilainen. Näille menoille on juridinen velvoite. Ne syövät kehystä ensin.",
-                    "type": "text"
-                  }
-                ]
-              },
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "text": "Harkinnanvaraiset menot — investoinnit tulevaisuuteen, tutkimus, koulutus — mahtuvat kehykseen vasta sen jälkeen. Vuosi vuodelta ne jäävät pienemmiksi ilman että kukaan tekee asiasta erillistä päätöstä.",
-                    "type": "text"
-                  }
-                ]
-              },
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "text": "Tämä on tärkeä huomata. Suomen koulutusinvestoinnit eivät ole supistuneet siksi että joku puolue olisi äänestänyt niiden vähentämisestä. Ne ovat supistuneet siksi että lakisääteiset menot ovat kasvaneet ja kokonaiskehys on pysynyt samana. Kun matematiikka pakottaa, jokin on supistuttava. Se mikä supistuu, on se mihin ei ole juridista velvoitetta.",
-                    "type": "text"
-                  }
-                ]
-              },
-              {
-                "type": "paragraph",
-                "content": [
-                  {
-                    "text": "Lopputulos on hiljainen sukupolvipoliittinen siirto. Lakisääteiset lupaukset vanhoille ikäluokille täytetään. Investoinnit nuorten tulevaisuuteen ovat aina altavastaajia. Tämä ei ole kenenkään päätös. Se on budjettiarkkitehtuurin seurausta.",
-                    "type": "text"
-                  }
-                ]
-              }
-            ]
-          },
-          "text": "Suomessa julkista taloutta ohjataan menokehysjärjestelmällä. Kehys on periaatteessa hyvä idea. Se pitää budjettikurin yllä, estää populistista ylikuluttamista ja luo ennustettavuutta hallituskausien yli. Mutta sillä on sisäänrakennettu vinous jota harvoin tunnistetaan poliittiseksi valinnaksi. Se kohdellaan teknisenä välttämättömyytenä.\n\nLakisääteiset menot — eläkkeet, perusturva, hoivakustannukset — kasvavat automaattisesti ilman erillistä päätöstä. Ne periytyvät historiasta palvelulupauksina, jotka on tehty silloin kun väestörakenne oli erilainen. Näille menoille on juridinen velvoite. Ne syövät kehystä ensin.\n\nHarkinnanvaraiset menot — investoinnit tulevaisuuteen, tutkimus, koulutus — mahtuvat kehykseen vasta sen jälkeen. Vuosi vuodelta ne jäävät pienemmiksi ilman että kukaan tekee asiasta erillistä päätöstä.\n\nTämä on tärkeä huomata. Suomen koulutusinvestoinnit eivät ole supistuneet siksi että joku puolue olisi äänestänyt niiden vähentämisestä. Ne ovat supistuneet siksi että lakisääteiset menot ovat kasvaneet ja kokonaiskehys on pysynyt samana. Kun matematiikka pakottaa, jokin on supistuttava. Se mikä supistuu, on se mihin ei ole juridista velvoitetta.\n\nLopputulos on hiljainen sukupolvipoliittinen siirto. Lakisääteiset lupaukset vanhoille ikäluokille täytetään. Investoinnit nuorten tulevaisuuteen ovat aina altavastaajia. Tämä ei ole kenenkään päätös. Se on budjettiarkkitehtuurin seurausta."
-        },
         {
           "title": "Rakenteen logiikka",
           "position": 0,
@@ -701,8 +636,61 @@
                 ]
               }
             ]
-          },
-          "text": "Miksi raha menee sinne minne se menee, ja miksi se ei mene sinne minne se pitäisi mennä\n\nKuvitellaan perhe ja sen kotitalousbudjetti. Joka vuosi maksetaan asuntolainaa, ruokaa ja lapsen harrastusmaksuja. Samalla kylpyhuoneessa kasvaa home-ongelma, jonka remonttia on lykätty kolme vuotta. Joka vuosi se on hieman pahempi, hieman kalliimpi, hieman vaarallisempi terveydelle.\n\nSilti remonttia ei tehdä. Miksi?\n\nKoska remonttilasku on tänään. Home-ongelma on tulevaisuudessa. Asuntolaina on numerona budjettitaulukossa. Kosteusvaurio on jaettu huoli puolison kanssa, joka näkyy kuvioista joita kukaan ei kirjaa.\n\nSuomalainen julkinen talous toimii täsmälleen samalla logiikalla — vain laajemmassa mittakaavassa. Ja kun home-ongelma lopulta pahenee niin paljon että se pakottaa reagoimaan, lasku tulee budjettiin nimellä ”terveyskustannusten kasvu”. Yhteyttä alkuperäiseen lykkäykseen ei kirjata minnekään.\n\nBudjetti näyttää neutraalilta välineeltä. Siinä summataan tulot ja menot, tasapainotetaan kirjanpito ja priorisoidaan kohteet. Mutta budjetti ei ole koskaan neutraali. Se on vallan kieli, joka suosii systemaattisesti menneisyyttä tulevaisuuden kustannuksella, näkyvää näkymättömän kustannuksella, välitöntä pitkäjänteisen kustannuksella.\n\nTämä ei ole kenenkään salaliitto. Se on rakenteen logiikka."
+          }
+        },
+        {
+          "title": "Miten raha jakautuu itsestään",
+          "position": 0,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Suomessa julkista taloutta ohjataan menokehysjärjestelmällä. Kehys on periaatteessa hyvä idea. Se pitää budjettikurin yllä, estää populistista ylikuluttamista ja luo ennustettavuutta hallituskausien yli. Mutta sillä on sisäänrakennettu vinous jota harvoin tunnistetaan poliittiseksi valinnaksi. Se kohdellaan teknisenä välttämättömyytenä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Lakisääteiset menot — eläkkeet, perusturva, hoivakustannukset — kasvavat automaattisesti ilman erillistä päätöstä. Ne periytyvät historiasta palvelulupauksina, jotka on tehty silloin kun väestörakenne oli erilainen. Näille menoille on juridinen velvoite. Ne syövät kehystä ensin.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Harkinnanvaraiset menot — investoinnit tulevaisuuteen, tutkimus, koulutus — mahtuvat kehykseen vasta sen jälkeen. Vuosi vuodelta ne jäävät pienemmiksi ilman että kukaan tekee asiasta erillistä päätöstä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä on tärkeä huomata. Suomen koulutusinvestoinnit eivät ole supistuneet siksi että joku puolue olisi äänestänyt niiden vähentämisestä. Ne ovat supistuneet siksi että lakisääteiset menot ovat kasvaneet ja kokonaiskehys on pysynyt samana. Kun matematiikka pakottaa, jokin on supistuttava. Se mikä supistuu, on se mihin ei ole juridista velvoitetta.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Lopputulos on hiljainen sukupolvipoliittinen siirto. Lakisääteiset lupaukset vanhoille ikäluokille täytetään. Investoinnit nuorten tulevaisuuteen ovat aina altavastaajia. Tämä ei ole kenenkään päätös. Se on budjettiarkkitehtuurin seurausta.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "title": "Velka moraalikysymyksenä",
@@ -747,8 +735,7 @@
                 ]
               }
             ]
-          },
-          "text": "Julkinen velka on rahoitusteoreettisesti monimutkainen asia. Investointiluonteinen velka — jolla rakennetaan infrastruktuuria, koulutusta tai innovaatioita — on tunnustettu eri kategoriaksi kuin kulutusvelka. Useimmat vakavasti otettavat taloustieteilijät tekevät tämän erottelun. EU:n talouspolitiikkakin tunnistaa sen periaatteessa.\n\nSuomen julkisessa keskustelussa velka on yksinkertaistettu moraalikysymykseksi. Velka on pahasta. Säästäminen on hyveellistä. Tämä yksinkertaistus estää tekemästä erottelua investoinnin ja kulutuksen välillä.\n\nKoulutusmenojen leikkaukset vuoden 2015 jälkeen olivat OECD-vertailussa poikkeuksellisen suuria. Lähes neljätoista prosenttia opiskelijakohtaisista menoista supistui vuosina 2015–2022. Tämä oli OECD-maiden toiseksi suurin pudotus. Päätös perusteltiin ”välttämättömänä velansupistamisena”, ei investoinnista luopumisena. Lopputulos oli sama, mutta kehys oli erilainen — ja kehys määräsi siitä keskustelusta johon ratkaisua perusteltiin.\n\nTätä ei ole helppoa muuttaa. Velkapuhe on syvällä suomalaisessa poliittisessa kulttuurissa. 1990-luvun lama jätti trauman joka asettui rakenteeksi. Sen mukana tuli budjettikuridoktriini joka on muuttunut itsestäänselvyydeksi. Niin kauan kuin velka esitetään moraalikysymyksenä eikä investointikysymyksenä, harkinnanvaraiset menot ovat aina poliittisesti haavoittuvampia kuin lakisääteiset."
+          }
         },
         {
           "title": "Kompensaatiotalous",
@@ -793,8 +780,7 @@
                 ]
               }
             ]
-          },
-          "text": "Julkinen velka on rahoitusteoreettisesti monimutkainen asia. Investointiluonteinen velka — jolla rakennetaan infrastruktuuria, koulutusta tai innovaatioita — on tunnustettu eri kategoriaksi kuin kulutusvelka. Useimmat vakavasti otettavat taloustieteilijät tekevät tämän erottelun. EU:n talouspolitiikkakin tunnistaa sen periaatteessa.\n\nSuomen julkisessa keskustelussa velka on yksinkertaistettu moraalikysymykseksi. Velka on pahasta. Säästäminen on hyveellistä. Tämä yksinkertaistus estää tekemästä erottelua investoinnin ja kulutuksen välillä.\n\nKoulutusmenojen leikkaukset vuoden 2015 jälkeen olivat OECD-vertailussa poikkeuksellisen suuria. Lähes neljätoista prosenttia opiskelijakohtaisista menoista supistui vuosina 2015–2022. Tämä oli OECD-maiden toiseksi suurin pudotus. Päätös perusteltiin ”välttämättömänä velansupistamisena”, ei investoinnista luopumisena. Lopputulos oli sama, mutta kehys oli erilainen — ja kehys määräsi siitä keskustelusta johon ratkaisua perusteltiin.\n\nTätä ei ole helppoa muuttaa. Velkapuhe on syvällä suomalaisessa poliittisessa kulttuurissa. 1990-luvun lama jätti trauman joka asettui rakenteeksi. Sen mukana tuli budjettikuridoktriini joka on muuttunut itsestäänselvyydeksi. Niin kauan kuin velka esitetään moraalikysymyksenä eikä investointikysymyksenä, harkinnanvaraiset menot ovat aina poliittisesti haavoittuvampia kuin lakisääteiset."
+          }
         },
         {
           "title": "Mittarit ovat poliittinen valinta",
@@ -848,8 +834,7 @@
                 ]
               }
             ]
-          },
-          "text": "Rahoitus ohjaa mihin raha kulkee. Mittarit ohjaavat sitä mikä lasketaan onnistumiseksi. Nämä kaksi mekanismia vahvistavat toisiaan tavalla joka tekee niistä yhden ongelman, eivät kahta.\n\nAjatellaan yksinkertaista vertailua. Yhdessä Suomen kaupungissa työskentelee lääkäri julkisessa sairaalassa. Hän hoitaa satoja potilaita vuodessa ja pelastaa henkiä. Tilastoissa tämä työ näkyy menona — rivinä otsikolla ”julkinen sektori”. Toisessa rakennuksessa toimii pikavippiyritys. Se tuottaa miljoonien eurojen liikevaihtoa. Se kasvattaa bruttokansantuotetta.\n\nKumman yhteiskunnallinen arvo on suurempi? Helppo kysymys. Kumman BKT-vaikutus on suurempi? Myös helppo, mutta päinvastainen vastaus.\n\nTässä jännitteessä elää yksi hyvinvointivaltion perusongelmista. Se mittaa vääriä asioita, ja mittaaminen ohjaa käytöstä. Se mikä mitataan, saa resursseja. Se mikä ei näy mittarissa, rapautuu hiljaa — eikä kukaan näe rapautumista koska mittari ei sitä rekisteröi.\n\nMittaaminen ei ole neutraalia. Se on poliittinen valinta puettuna teknisen välttämättömyyden asuun. Ja kun poliittinen valinta piiloutuu teknisen mittariston taakse, sen muuttaminen on vaikeaa. Muuttajaa voidaan syyttää ideologisuudesta ja epätieteellisyydestä. Pysyvyys on neutraalia, muutos on poliittista."
+          }
         },
         {
           "title": "Neljä sokeaa pistettä",
@@ -921,8 +906,7 @@
                 ]
               }
             ]
-          },
-          "text": "Suomalainen julkinen ohjausjärjestelmä nojaa muutamaan päämittariin. Bruttokansantuote. Velkasuhde suhteessa BKT:hen. Työllisyysaste. Valtion menokehys. Näitä käytetään talouspolitiikan menestyksen mittareina, poliittisten lupausten arviointiperusteina ja resurssoinnin ohjausvälineinä.\n\nNämä mittarit ovat hyödyllisiä joissakin tarkoituksissa. Mutta ne tuottavat systemaattisia sokeita pisteitä siihen mitä yhteiskunnassa tapahtuu.\n\nEnsimmäinen sokea piste on laadulliset hyvinvoinnin ulottuvuudet. BKT kasvaa kun taloudellinen toimeliaisuus kasvaa — oli kyse sitten sairaanhoidon tarpeesta, ympäristövaurioiden korjaamisesta tai digiyhtiöiden voitoista. Se ei kasva kun omaishoitaja hoitaa vanhempaansa kotona, kun naapuri auttaa syrjäytymisuhan alla olevaa nuorta, kun yhteisö kokoontuu tekemään jotain yhdessä. Kaikki tämä hyvinvointia tuottava työ on BKT:lle näkymätöntä.\n\nTästä seuraa konkreettinen vinous. Kun poliittinen menestysmittari on BKT:n kasvu, päätökset optimoidaan sen mukaan. Toimet jotka kasvattavat BKT:tä mutta heikentävät hyvinvointia, näyttävät menestykseltä. Toimet jotka rakentavat hyvinvointia ilman BKT-kasvua, näyttävät tuloksettomilta.\n\nToinen sokea piste on ennaltaehkäisy. Kun lapsiperhepalveluja leikataan, lastensuojelun menot kasvavat myöhemmin. Tilastossa tämä näkyy ”kasvuna” — ja usein siitä puhutaankin: ”lastensuojeluun menee enemmän rahaa”. Mutta se ei ole panostus. Se on kompensaatio epäonnistuneesta varhaisesta tuesta.\n\nKolmas sokea piste on aikajänne. Hallituskausi on neljä vuotta. Budjetti on yksi vuosi. Hitaasti kumuloituvat ongelmat — luottamuksen rapautuminen, mielenterveyden pitkäaikainen heikkeneminen, koulutustason hidas lasku — eivät näy näissä aikaikkunoissa. Ne ovat kuin hitaasti kohoava vedenpinta. Jokainen yksittäinen mittaus näyttää normaalilta. Viidentoista vuoden kehitys on dramaattinen. Useita peräkkäisiä hallituksia ei voi syyttää siitä mitä yhdessä tapahtui, koska jokainen on toiminut omalla aikaikkunallaan.\n\nNeljäs sokea piste on sukupuoli ja valta. Mittarit on rakennettu palkkatyön ympärille aikana jolloin palkkatyöhön osallistuminen oli selvästi sukupuolittunutta. Niiden rakenne heijastaa silloista arvomaailmaa. Hoivatyötä ei tilastoida samalla tarkkuudella kuin teollisuustuotantoa. Omaishoitoa ei lasketa työvoimaan. Lapsiperheiden aikaköyhyyttä, sitä onko vanhemmilla antaa riittävästi aikaa lapsille, ei mitata samalla tarkkuudella kuin aineellista köyhyyttä. Tämä ei ole sattuma. Se on rakenteellinen valinta jonka alkuperää ei enää muisteta."
+          }
         },
         {
           "title": "Goodhartin laki",
@@ -985,8 +969,7 @@
                 ]
               }
             ]
-          },
-          "text": "On olemassa periaate jonka taloustieteilijä Charles Goodhart muotoili 1970-luvulla. Kun mittarista tulee tavoite, se lakkaa olemasta hyvä mittari.\n\nKlassinen esimerkki on sairaaloiden jonotusajat. Kun jonotusaika otettiin mittariksi, sairaalat alkoivat etsiä keinoja lyhentää tilastollista jonoa. Potilaita voidaan siirtää odottamaan ennen virallista jonokirjausta. Diagnoosi voidaan tehdä myöhemmin. Tilasto paranee. Todellisuus ei välttämättä.\n\nSama ilmiö toistuu kaikkialla. Kun sosiaalipalvelujen tehokkuutta arvioidaan asiakaskäyntien lukumäärällä, kontaktien laatu kärsii mutta lukumäärä kasvaa. Kun kouluja arvioidaan PISA-pisteiden perusteella, opetus voidaan optimoida pisteiden eikä oppimisen kannalta. Kun työvoimapalveluja arvioidaan työllistymisten määrällä, helposti työllistyvät saavat enemmän huomiota kuin vaikeasti työllistyvät.\n\nMittari ei kuvaa todellisuutta. Se muokkaa sitä.\n\nTätä ilmiötä kutsutaan myös performatiivisuudeksi. Kun mittari otetaan käyttöön, se alkaa muuttaa mitattavan ilmiön luonnetta. Terveydenhuollon laatu ei ole enää pelkästään hoidon todellista laatua. Se on myös sitä miltä se näyttää hoitopäivä- ja jonotilastoissa. Ja nämä kaksi alkavat erkaantua toisistaan sitä mukaa kun mittarin ohjausvoima kasvaa.\n\nTämä ei tarkoita ettei pitäisi mitata lainkaan. Se tarkoittaa että mittarit täytyy valita huolella, niiden rajoitukset täytyy tunnistaa, ja niitä täytyy säännöllisesti uudelleenarvioida. Erityisesti silloin kun niistä on tullut itsetarkoituksellisia."
+          }
         },
         {
           "title": "Kustannusten kiihtyminen",
@@ -1067,8 +1050,7 @@
                 ]
               }
             ]
-          },
-          "text": "Rahoituslogiikan ja mittareiden yhteisvaikutuksesta seuraa jotain joka on ehkä tämän luvun tärkein havainto. Passiivisuuden kustannukset eivät kasva tasaisesti. Ne kiihtyvät.\n\nTämä on kriittinen ero jota budjettijärjestelmä ei systemaattisesti tunnista. Otetaan esimerkiksi nuoren syrjäytymispolku.\n\nKolmen kuukauden kohdalla nuori on vielä liikkuva. Kiinnittyminen on mahdollista vähäisillä resursseilla. Etsivä nuorisotyöntekijä, yksi hyvä kohtaaminen tai oikea-aikainen ohjaus jatko-opintoihin. Kustannus on muutamia satoja euroja hyvin kohdennettuna.\n\nVuoden kohdalla syrjäytyminen on syventynyt. Sosiaalinen piiri on kaventunut. Arkirytmi on hajonnut. Alkoholinkäyttö on mahdollisesti lisääntynyt. Tarvitaan intensiivisempää tukea, kuntouttavaa toimintaa, psykologipalveluja. Kustannus on tuhansia euroja.\n\nKolmen vuoden kohdalla mielenterveysongelmat ovat usein vakiintuneet, verkostot ohentuneet, työllistyminen hankaloitunut. Tarvitaan psykiatrisia palveluita, mahdollisesti päihdetukea. Kustannus on kymmeniä tuhansia euroja vuodessa.\n\nPitkäaikaistuessa kustannus voi nousta satoihin tuhansiin euroihin elinkaarikustannuksina. Sairaanhoito, sosiaalietuudet, asunnottomuuspalvelut, mahdollisesti oikeudelliset kustannukset. Tutkimuslaitosten arvioiden mukaan yhden syrjäytyneen nuoren kokonaiselinkaarikustannukset ylittävät helposti miljoonan euron rajan.\n\nVarhainen interventio maksaa korkeintaan kymmeniä tuhansia euroja elinkaarella. Suuruusluokan ero on satakertainen. Silti varhainen interventio on vuosi vuodelta alirahoitetumpaa.\n\nSama kiihtymisdynamiikka toistuu muillakin alueilla. Lievä masennus on hoidettavissa muutamilla terapiakäynneillä. Vuosia hoitamattomana se muuttuu työkyvyttömyydeksi, sairaalahoidoksi, ennenaikaiseksi eläkkeelle siirtymiseksi. Lapsiperheen ehkäisevä perhetyö maksaa tuhansia euroja vuodessa. Huostaanotto maksaa kymmeniä tuhansia. Asunnoton ihminen maksaa yhteiskunnalle kaksikymmentätuhatta euroa vuodessa kriisimajoituksena ja terveyspalveluina. Tuettu asunto maksaa murto-osan — ja sen päälle se mahdollistaa muiden ongelmien hoitamisen."
+          }
         },
         {
           "title": "Miksi passiivisuus silti voittaa",
@@ -1131,8 +1113,7 @@
                 ]
               }
             ]
-          },
-          "text": "Jos luvut ovat näin selvät, miksi varhainen toiminta on niin systemaattisesti alirahoitettua?\n\nVastaus löytyy kolmesta rakenteellisesta tekijästä jotka palautuvat tämän luvun alkuun.\n\nEnsiksi budjettikehys palkitsee tänään. Varhaisen intervention kustannus osuu tälle vuodelle. Säästö syntyy vuosien päästä, ehkä eri hallituskauden aikana. Päätöksentekijällä ei ole henkilökohtaista kannustinta investoida tulevaisuuden säästöihin joista joku toinen saa kunnian. Itse asiassa varhainen investointi näyttää budjettitaulukossa menon kasvulta — vaikka se olisi investointi joka maksaisi itsensä takaisin moninkertaisesti.\n\nToiseksi mittarit eivät näe tekemättömyyttä. Varhainen interventio näkyy menona. Sen puuttuminen ei näy missään. Ei ole tilastoa kriisistä joka ei tapahtunut. Vertailukohtaa ei ole olemassa. Päätöksentekijä näkee leikkauksen säästönä mutta ei näe kumuloituvaa laskua joka syntyy myöhemmin. Tämä yhdistettynä siihen että hitaita muutoksia ei rekisteröidä mittareissa, tekee passiivisuuden näkymättömäksi. Aktiivinen toiminta näkyy menona. Passiivisuus ei näy yhtään missään — ennen kuin se näkyy kriisinä joka ei voida enää ohittaa.\n\nKolmanneksi passiivisuus jakautuu epätasaisesti. Kun julkinen palvelu on riittämätön tai hidas, paremmin toimeentuleva voi ostaa korvaavan palvelun yksityiseltä. Lapselleen voi hankkia terapeutin kun julkiseen jonottaa. Vanhemmalleen voi ostaa lisää kotihoidon käyntejä. Oppilaalleen voi palkata yksityisopettajan kun koulu ei tarjoa riittävää tukea. Heikommassa asemassa oleva ei voi. Hänellä ei ole rahaa, verkostoja, eikä tietoa yksityisten palvelujen ostamisesta.\n\nPassiivisuuden kustannus jakautuu eriarvoistavasti. Se osuu voimakkaimmin niihin joilla on jo vähiten. Passiivisuus ei vain kerää laskua tulevaisuuteen — se tuottaa eriarvoisuutta tässä hetkessä."
+          }
         },
         {
           "title": "Lasku tulee silti",
@@ -1213,8 +1194,7 @@
                 ]
               }
             ]
-          },
-          "text": "Tässä on rahoituksen ja mittareiden yhteinen ydinparadoksi. Passiivisuus ei ole ilmaista.\n\nJulkinen talous ei säästä silloin kun se pidättyy toimimasta varhaisen tuen tarpeessa olevalle nuorelle, mielenterveysongelmaiselle tai asunnottomalle. Se siirtää kustannuksen. Siirtää sen tulevaisuuteen, toiseen hallinnonalaan, toiseen budjettiin, tai kotitalouteen joka yrittää selvitä omin voimin.\n\nLasku tulee silti. Usein moninkertaisena.\n\nJärjestelmä joka mittaa vain näkyviä kustannuksia kuvittelee säästävänsä. Todellisuudessa se kasvattaa korkoa tulevalle laskulle — ja tekee sen epätasaisesti, raskaimmin niille joilla on vähiten kantokykyä.\n\nRahoituslogiikka ei ole neutraali koordinaatioväline. Se on vallan kieli joka suosii niitä joiden palvelulupaukset on jo kirjattu lakiin, niitä joiden ongelmat ovat jo kriisiytyneet ja näkyvät, niitä joilla on poliittinen ääni tänään. Ne joiden tulevaisuus on riippuvainen tänään tehdyistä investoinneista, ovat hiljaa budjetissa. He eivät ole vielä edes syntyneet. He eivät äänestä, eivät lobbaa. He odottavat.\n\nMittarit puolestaan ovat vallan toinen kieli. Ne sanovat mitä saa nähdä ja mitä ei. Ne määräävät mihin reagoidaan ja mihin ei. Ne ovat näkymätöntä valtaa. Kun se tehdään näkyväksi, alkaa olla mahdollista valita mitä halutaan nähdä — ja sitä kautta, mitä halutaan rakentaa.\n\nMutta nähdäkin sekä rahoituksen logiikan että mittareiden vinouman, on ymmärrettävä että ne eivät ole yksittäisiä virheitä. Ne ovat järjestelmän rakenteellisia ominaisuuksia jotka palvelevat tiettyä logiikkaa: lyhyttä aikaikkunaa, näkyvää menoa, juridista velvoitetta, mitattavaa onnistumista. Tämä logiikka oli rakennettu vastaamaan tietyn aikakauden tarpeita. Se ei vastaa tämän aikakauden tarpeita. Mutta se ei muutu itsestään, koska sen muuttaminen on aina poliittisesti kalliimpaa kuin sen ylläpitäminen.\n\nTämä on ensimmäinen mekanismi nähtynä yhdessä toisensa kanssa. Seuraava luku näyttää miten tämä logiikka kohtaa rakenteen joka hajauttaa vastuun."
+          }
         }
       ]
     },
@@ -1284,8 +1264,7 @@
                 ]
               }
             ]
-          },
-          "text": "Tampereella asuu nainen jota kutsutaan tässä Mariaksi. Hänellä on kaksi lasta. Hän käy töissä osa-aikaisesti. Hänen vanhempansa alkavat tarvita apua arjessa. Viimeisen puolen vuoden aikana hän on ollut yhteydessä kuntaan, hyvinvointialueeseen, Kelaan ja TE-palveluihin. Joskus saman asian takia, joskus eri asioissa.\n\nJoka paikasta hänelle sanotaan että palvelu kuuluu jollekin muulle.\n\nVanhempien kotihoidon tarpeen arviointi on hyvinvointialueen asia, mutta hakemukset ja päätökset viivästyvät kolme kuukautta. Omaishoidon tuki on osittain kunnan asia. Lapsilisä on Kelan asia. Tuki osa-aikatyöhön on työllisyyspalvelujen asia.\n\nMaria ei ole poikkeustapaus. Hän on normaali ihminen jolla on monta tarvetta, jotka eivät mahdu yhteenkään lokeroon.\n\nSuomalainen hyvinvointivaltio on rakennettu siiloiksi. Ratkaisu on hallintofilosofisesti perusteltu. Selkeät vastuut, tehokas erikoistuminen, lähipalvelut lähellä ihmistä. Mutta kun elämä ylittää lokeroiden rajat — mikä on oikeastaan normaalia elämää — kukaan ei omista kokonaistilannetta.\n\nMaria navigoi järjestelmää joka on suunniteltu siiloja varten, ei häntä varten."
+          }
         },
         {
           "title": "Kolmitasoinen hallinto",
@@ -1339,8 +1318,7 @@
                 ]
               }
             ]
-          },
-          "text": "Suomalainen hallinto on rakennettu kolmelle tasolle: valtio, hyvinvointialueet, kunnat. Rakenne on teoreettisesti looginen. Valtio päättää lainsäädännöstä ja kehysrahoituksesta. Hyvinvointialueet vastaavat sosiaali- ja terveyspalveluista. Kunnat vastaavat sivistyspalveluista, nuorisotyöstä, liikenneyhteyksistä.\n\nTodellisuudessa nämä tasot eivät ole erillisiä. Elämä on yhteinen.\n\nLapsi joka tarvitsee tukea koulussa on kunnan asiakas. Jos hän tarvitsee mielenterveyspalveluita, hän siirtyy hyvinvointialueen asiakkaaksi. Jos perhe tarvitsee tukea arjen hallintaan, sosiaalitoimi on hyvinvointialueella mutta ennaltaehkäisevä perhetyö voi olla kunnassa. Perheen nuori joka tarvitsee etsivää nuorisotyötä on kunnan palvelun piirissä, mutta jos hänen ongelmansa kytkeytyvät opiskelun tukeen, vastuu siirtyy opetushallintoon.\n\nRajat ovat hallinnollisia. Ne eivät ole lapsen tai perheen näkökulmasta loogisia.\n\nTätä kutsutaan vastuuvajeeksi. Kukaan ei omista kokonaisuutta. Jokainen on vastuussa omasta lokerostaan. Kukaan ei ole vastuussa siitä mitä tapahtuu lokeroiden välillä."
+          }
         },
         {
           "title": "Kolme hajautumisen kanavaa",
@@ -1457,8 +1435,7 @@
                 ]
               }
             ]
-          },
-          "text": "Vastuuvaje rakentuu kolmen mekanismin yhteisvaikutuksesta.\n\nEnsimmäinen on vertikaalinen hajautus — raha ja vastuu eri paikassa. Hyvinvointialueuudistus siirsi sosiaali- ja terveyspalvelujen järjestämisvastuun kunnilta uusille alueille vuonna 2023. Uudistus oli välttämätön. Kuntapohjainen järjestelmä tuotti liikaa eriarvoisuutta palvelutasoissa. Mutta toteutus paljasti rakenteellisen ongelman.\n\nAlueet saivat vastuun. Niiden rahoitusmallit, valtionohjauksen rakenne ja kustannuslaskelmat luotiin kiireellä. Yhdeksän aluetta kymmenestä ilmoitti vuosina 2023–2024 ettei rahoitus riitä palvelujen lakisääteiseen tasoon. Leikkaukset kohdistuivat sinne minne ne olivat juridisesti mahdollisia: ennaltaehkäiseviin palveluihin, kotihoidon käyntitiheyksiin, ryhmätoimintoihin, psykologipalveluihin.\n\nTässä toteutuu klassinen vastuuvaje. Valtio asetti velvoitteet ja rahoituskehyksen. Alueet saivat toteuttaa. Velvoitteiden ja rahoituksen väli jäi ihmisten maksettavaksi pitempinä jonotusaikoina, supistuneina palveluina, lisääntyvinä kotona pärjäämisen vaatimuksina.\n\nKukaan ei ottanut tästä vastuuta. Valtiovarainministeriö sanoi että rahoitus on riittävä. Alueet sanoivat ettei se ole. Ihmisten palvelut heikkenivät.\n\nToinen mekanismi on horisontaalinen siiloutuminen — ongelmat putoavat väliin. Ministeriöt toimivat omilla sektoreillaan. Sosiaali- ja terveysministeriö. Opetus- ja kulttuuriministeriö. Työ- ja elinkeinoministeriö. Ympäristöministeriö. Jokainen seuraa omia mittareitaan, hallinnoi omia ohjelmiaan, ohjaa omia virastojaan.\n\nMinisteriöiden budjettivaltaa ohjaavat eri kehykset, eri mittarit, eri tulostavoitteet. Koordinaatio tapahtuu pääministerin toimiston, budjettineuvotteluiden ja satunnaisten yhteistyöhankkeiden kautta. Systemaattinen kokonaisvastuumekanismi puuttuu.\n\nMonitahoinen ongelma — asunnoton nuori jolla on päihde- ja mielenterveysongelmia sekä koulutusvelkaa — jakautuu usean toimijan vastuulle samanaikaisesti. TEM vastaa työllistymisestä, STM terveydenhuollosta, OKM koulutuksesta. Asuminen kuuluu ympäristöministeriölle. Kokonaisvastuuta ei ota kukaan, koska se on kallis eikä näy yksittäisen sektorin tuloksissa.\n\nSeurauksena syntyy hallinnollisia rajavyöhykkeitä. Nuori joka ei ole riittävän sairas psykiatrisiin palveluihin mutta liian sairas työllistymispalveluihin, ei sovi mihinkään. Hän odottaa — ja odotusaikana tilanne pahenee.\n\nKolmas mekanismi on kehysvallan ja operatiivisen vallan ero. Valtiovarainministeriö päättää kehysrahoituksesta. Hyvinvointialueet ja kunnat päättävät miten käyttävät saamansa rahat lakisääteisten velvoitteiden puitteissa. Sosiaali- ja terveysministeriö asettaa velvoitteet palvelujen sisällölle.\n\nNämä kolme eivät kommunikoi koherentisti. VM katsoo lukuja, koska sen mandaatti on julkinen talous. STM katsoo palveluja, koska sen mandaatti on hyvinvointi. Alueet katsovat omaa talouttaan ja velvoitteitaan. Kukaan ei katso kokonaisuutta siitä näkökulmasta mitä ihminen todella tarvitsee.\n\nTuloksena VM:n leikkauspäätökset tuottavat STM:n palveluongelmat, jotka tuottavat alueiden alijäämiä, jotka tuottavat palveluleikkauksia, jotka tuottavat kasvavia pitkäaikaisongelmia, jotka tuottavat kasvavia VM:n menoja. Kukaan ei omista tätä ketjua."
+          }
         },
         {
           "title": "Hoivan rakennevika",
@@ -1521,8 +1498,7 @@
                 ]
               }
             ]
-          },
-          "text": "Vastuuvaje näkyy poikkeuksellisen selvästi hoivassa. Suomen hoivajärjestelmä on rakennettu 1970-luvun väestörakenteelle. Silloin huoltosuhde oli edullinen, hoivaa tarvitsevien määrä pieni suhteessa työssäkäyviin, kuntien verotulopohja kantoi. Ratkaisu oli järkevä.\n\nVäestörakenne on muuttunut peruuttamattomasti. Yli 65-vuotiaiden määrä kasvaa noin 20 000 hengellä vuodessa. Hoivaa tarvitsevia on enemmän. Hoitajia on vähemmän suhteessa hoidettaviin. Kuntien verotulopohja kutistuu juuri niillä alueilla joilla hoivatarve kasvaa nopeimmin.\n\nRatkaisu ei ole muuttunut samaa tahtia. Järjestelmä odottaa yhä laitoshoitoon asti. Kolme eri organisaatiota — kunta, hyvinvointialue, Kela — katsoo samaa ihmistä kolmena eri kulueränä. Ennaltaehkäisevä asuminen ja palveluintegraatio häviävät akuuttimenoille vuosi toisensa jälkeen.\n\nHyvinvointialue vastaa kotihoidosta, asumispalveluista, terveyspalveluista ja erikoissairaanhoidosta. Kela vastaa etuuksista, omaishoidon tuesta ja Kelan korvaamista palveluista. Kunta vastaa edelleen asuntotuotannosta, kaupunkisuunnittelusta ja varhaiskasvatuksesta — eli niistä rakenteista jotka määrittävät missä ja miten ikääntyvät ihmiset asuvat. Jokaisella on oma lainsäädäntönsä, budjettinsa, tietojärjestelmänsä, optimointikriteerinsä.\n\nKun sama ihminen tarvitsee kaikkia kolmea — kuten ikääntyessä yleensä tapahtuu — kukaan ei omista kokonaisuutta. Tieto ei kulje. Palvelut eivät koordinoidu. Sama asia tehdään kahteen kertaan tai ei kertaakaan. Omaishoitaja joka kannattelee järjestelmää näkymättömästi on kunnan asiakkaana, hyvinvointialueen asiakkaana ja Kelan asiakkaana — kolmena eri henkilönä, joista kukaan ei näe kokonaisuutta.\n\nSuomessa on noin 350 000 omaishoitajaa. Merkittävä osa hoitaa ikääntyvää vanhempaa tai puolisoa. He tekevät työn jonka virallinen hoivajärjestelmä ei pysty tekemään. Osin siksi ettei se ole rahoitettu, osin siksi ettei koordinaatio toimi. Kun omaishoitaja uupuu — ja uupuminen on todennäköistä ilman riittävää tukea — siirtymä on äkillinen ja kokonaisvaltainen. Hoidettava tehostettuun palveluasumiseen, hoitaja sairauslomalle. Molemmat julkisen rahoituksen piiriin."
+          }
         },
         {
           "title": "Sama rakenne, syvempi ulottuvuus",
@@ -1585,8 +1561,7 @@
                 ]
               }
             ]
-          },
-          "text": "Hoivan rakennevikaan kytkeytyy ennaltaehkäisyn alirahoitus. Yhteisöllinen asuminen joka siirtää laitoshoitoon siirtymää vuodella tai kahdella maksaa noin 3 miljardia euroa 25 000 asunnolle. Säästö on yli 600 miljoonaa euroa vuodessa. Takaisinmaksuaika on alle 15 vuotta.\n\nSilti investointi ei tapahdu. Syy on tuttu Luvun I rahoituslogiikasta. Säästö syntyy eri budjetissa kuin investointi. Kunta rakentaa, hyvinvointialue säästää. Yhteinen rahoitusmotiivi puuttuu rakenteellisesti.\n\nTähän liittyy kolmas ulottuvuus: kaupunkisuunnittelun sokeus. Hoiva on Suomessa sosiaalipolitiikkaa, ei kaupunkisuunnittelua. Uudet asuinalueet rakennetaan nuorille ja työikäisille. Ikääntyvän väestön tarpeet — esteettömyys, palvelujen läheisyys, yhteisöllisyys — tulevat suunnitteluun jälkikäteen, lisäyksinä, jos tulevat lainkaan.\n\nTulos on rakenteellinen. Palvelut ovat kaukana asukkaista. Liikkuminen on esteetöntä vain paperilla. Yksinäisyys on arkipäivää. Kaatuminen, aliravitsemus, masennus — ongelmat jotka ovat ehkäistävissä suunnittelulla — eskaloituvat erikoissairaanhoidon laskuiksi. Reaktiologiikan hinta maksetaan myöhemmin, kalliimpana.\n\nNämä kolme tekijää — koordinaatiovaje, ennaltaehkäisyn alirahoitus, kaupunkisuunnittelun sokeus — eivät toimi erillään. Ne muodostavat itseään vahvistavan kierteen. Koordinaatiovaje estää ennaltaehkäisyinvestoinnin, koska kukaan ei omista kokonaisuutta jonka nimissä investoida. Ennaltaehkäisyn puute tarkoittaa että ihmiset siirtyvät laitoshoitoon aiemmin kuin olisi välttämätöntä. Kasvavat laitoshoitomenot syövät kehyksestä tilan jonka ennaltaehkäisevä investointi olisi vaatinut. Kaupunkisuunnittelun sokeus varmistaa että fyysinen ympäristö tuottaa hoivatarvetta automaattisesti.\n\nDemografinen paine kiihdyttää kierrettä. Jokainen vuosi jonka järjestelmä odottaa laitoshoitoon asti on vuosi jolloin voitaisiin säästää 35 000–45 000 euroa per henkilö. Kymmenille tuhansille ihmisille laskettuna tämä on rakenteellinen valinta jonka hinta kasvaa vuosi vuodelta."
+          }
         },
         {
           "title": "Ulkoiset kehykset",
@@ -1640,8 +1615,7 @@
                 ]
               }
             ]
-          },
-          "text": "Vastuuvaje ei rajoitu Suomen rajojen sisälle. EU:n talouspolitiikan rakenne luo toisen kerroksen rakennetta jonka logiikkaa harvoin avataan suomalaisessa keskustelussa.\n\nSuomi liittyi Euroopan unioniin 1995. Kansanäänestyksessä 57 prosenttia äänesti jäsenyyden puolesta. Vakaudesta, markkinoista, yhteisestä tulevaisuudesta puhuttiin. Harvoin keskusteltiin siitä minkä talouspolitiikan logiikan Suomi omaksui liittymisen myötä.\n\nMaastrichtin sopimus johon EU:n talouspolitiikan rakenne nojaa kirjattiin vuonna 1992. Sen keskeiset vaatimukset — enintään kolmen prosentin budjettialijäämä, enintään kuudenkymmenen prosentin velka suhteessa BKT:hen — syntyivät erityisessä historiallisessa tilanteessa. Saksan pelko inflaatiosta, Etelä-Euroopan ylivelkaantuminen, tarve luottaa yhteisen valuutan vakauteen.\n\nNämä numerot eivät ole taloudellisesti johdettu optimi. Ne ovat neuvottelujen tuloksena syntynyt kompromissi jonka taustalla oli tietty aikakausi ja tietty pelko. Ne vakiintuivat EU:n talouspolitiikan kivijalaksi. Suomi omaksui ne mukisematta.\n\nTästä alkoi mallioppiluuden tie."
+          }
         },
         {
           "title": "Mallioppilas ei johda luokkaa",
@@ -1731,8 +1705,7 @@
                 ]
               }
             ]
-          },
-          "text": "Suomi on ollut EU:n mallioppilas. Se on täyttänyt vakaus- ja kasvusopimuksen kriteerit jäsenyyden alusta alkaen. Se on noudattanut budjettisääntöjä tiukemmin kuin useimmat muut. Se on maksanut laskut ajoissa, pysynyt velkarajojen sisällä, välttänyt poikkeuksia.\n\nTämä on tuottanut mainetta. Suomi nähdään EU:ssa luotettavana ja vastuullisena jäsenenä. Se on hyötynyt maineesta matalampina lainakorkoina ja poliittisena painoarvona.\n\nSilti on tärkeää erottaa sääntöjen noudattaminen ja sääntöjen muovaaminen toisistaan. Sääntöjen muodostaja on aivan eri asemassa kuin niiden noudattaja, vaikka molemmat istuisivat samassa kokoushuoneessa.\n\nRanska on muovannut EU:n maatalouspolitiikan rakennetta suvereenisti. Saksa ajoi vuoden 2012 finanssipoliittisen sopimuksen, jossa tiukat velkajarrusäännöt kirjattiin valtiosääntötasolle — ja sitten kun Saksa itse alkoi tarvita poikkeamaa, se sai sen. Italia ylittää budjettisääntöjä säännöllisesti ja neuvottelee komissiolta poikkeuksia. Ranska on ollut alijäämäinen suurimman osan jäsenyydestään.\n\nSuomi ei neuvottele. Suomi noudattaa.\n\nEU-kehysvalta toimii käytännössä kolmen kanavan kautta. Ensimmäinen on sääntöjen sisäistäminen osaksi identiteettiä. Vakaus- ja kasvusopimuksen kolmen prosentin alijäämäraja ja kuudenkymmenen prosentin velka-BKT-suhde ovat numeroita jotka ovat kiinnittyneet Suomen poliittiseen kieleen. Niistä poikkeaminen tuntuu säännön rikkomiselta — vaikka kyse on joustavista kohdetasoista joista muut maat neuvottelevat tapauskohtaisesti.\n\nSuomalaisessa poliittisessa kulttuurissa budjettikuri ei ole enää vain tekninen vaatimus jonka EU asettaa. Se on hyve. Taloudellisen vastuullisuuden merkki. Identiteetti jota puolustetaan siksi että sen menettäminen tuntuisi häpeälliseltä — ei siksi että sen pitäminen olisi aina järkevintä. Kun sääntö muuttuu identiteetiksi, sitä ei enää arvioida tavoitteiden perusteella. Siitä tulee päämäärä itsessään.\n\nToinen kanava on investoinnin ja kulutuksen sekoittuminen. Vakaus- ja kasvusopimuksen ongelmallisin piirre on ettei se erota toisistaan kulutusalijäämää ja investointialijäämää. Sillan rakentaminen, koulutuspanostus tai energiainfrastruktuuri näyttävät budjetissa samalta kuin lisätyt etuusmenot. Molemmat kasvattavat alijäämää. Tämä on saanut voimakasta kritiikkiä taloustieteilijöiltä kautta Euroopan. Suomessa erottelukeskustelu ei ole ottanut tuulta alleen, koska velka kokonaisuutena on moralisoitu. Myös hyvä velka koetaan epäilyttäväksi.\n\nKolmas kanava on mallioppiluuden ansapiste. Kun maa on rakentanut maineen sääntöjen noudattajana, poikkeavuuden hinta kasvaa. Suomi ei voi yhtäkkiä alkaa tulkita sääntöjä joustavasti ilman että se menettää luotettavan kumppanin maineen. Tämä ansapiste on osittain itse tuotettu. Suomi on valinnut mallioppiluuden identiteetin koska se sopi laman jälkeiseen vakaushaluun."
+          }
         },
         {
           "title": "Investointikapasiteetti kapenee väärään aikaan",
@@ -1795,8 +1768,7 @@
                 ]
               }
             ]
-          },
-          "text": "2020-luvun toimintaympäristö on muuttunut pysyvästi. Pandemia, Ukrainan sota, energiakriisi, ilmastonmuutos vaativat uudenlaista investointikykyä. Euroopan komissio on reagoinut. Pandemia-aikana käyttöön otettu elpymisväline — 750 miljardin euron yhteinen velkaohjelma — oli historiallinen poikkeama EU:n talouspoliittisessa doktriinissa. Se tunnusti että rakenteellinen kriisi vaatii rakenteellisen vastauksen.\n\nSuomessa elpymisväline herätti enemmän epäluuloa kuin innostusta. Poliittinen debatti keskittyi siihen mitä yhteinen velka maksaa ja mihin se velvoittaa — ei siihen mitä sillä rakennetaan ja miksi se on järkevää tässä historiallisessa tilanteessa.\n\nEU:n budjettisääntöjen uudistus 2023–2024 tarjosi Suomelle mahdollisuuden vaikuttaa aktiivisesti. Sääntöjä yksinkertaistettiin ja joustoja lisättiin. Uudistus jäi puolittaiseksi koska pohjoiset säästäjämaat — Suomi mukaan lukien — ajoivat tiukkoja kriteereitä.\n\nTässä näkyy rakenteellinen paradoksi. Suomi ajaa EU:ssa sääntöjä jotka rajoittavat omaa liikkumavaraa. Mallioppiluuden identiteetti on niin syvällä että siitä poikkeavat vaihtoehdot tuntuvat vastuuttomilta.\n\nOn tärkeää huomata ettei EU-sääntöjen muuttaminen yksin ratkaisisi Suomen ongelmaa. Ongelma ei ole vain EU:n säännöissä. Se on siinä miten Suomi on ne omaksunut. Jos EU muuttaisi sääntöjä joustavammiksi — kuten on osittain tapahtunut — Suomi voi silti jatkaa tiukemman linjan noudattamista vapaaehtoisesti. Identiteetti ei muutu sääntömuutoksen takia.\n\nMuutoksen täytyy tulla sisältä. Se edellyttää uudelleenmäärittelyä siitä haluaako Suomi olla muovaaja vai noudattaja EU:ssa."
+          }
         },
         {
           "title": "Kun koordinaatio epäonnistuu, ihmiset maksavat",
@@ -1868,8 +1840,7 @@
                 ]
               }
             ]
-          },
-          "text": "Vastuuvajeen hinta ei näy hallinnollisissa tilastoissa. Se näkyy ihmisten arjessa.\n\nSe on vanhainkodissa asuvan isän tytär joka soittaa kuudenteen numeroon saadakseen yksinkertaisen vastauksen omaishoidon tukeen. Se on nuori joka putoaa palveluverkosta kuukauden tauon aikana, kun vastuu siirtyy viranomaiselta toiselle. Se on perhe joka saa kolmelta eri viranomaiselta kolme erilaista ohjetta saman tilanteen ratkaisemiseksi.\n\nSe on myös sosiaaliohjaaja joka käyttää kolme tuntia päivässä sähköpostikirjeenvaihtoon eri viranomaisten välillä, koordinoiden asioita joilla pitäisi olla yhteinen palvelupiste.\n\nNämä ovat jokapäiväisiä kokemuksia suomalaisessa hyvinvointivaltiossa. Niitä ei kirjata mihinkään tilastoon. Mutta ne kertovat järjestelmästä joka on rakennettu hallinnollisesta logiikasta, ei ihmisen logiikasta.\n\nMonimutkaisesta palvelujärjestelmästä kärsivät erityisesti heikoimmassa asemassa olevat: iäkkäät, mielenterveysongelmaiset, maahanmuuttajat, moniongelmaiset perheet. Paremmin koulutetut osaavat navigoida tai maksaa yksityisestä. Vailla resursseja oleva putoaa siilojen väliin.\n\nOn arvioitu että sosiaali- ja terveydenhuollon kompleksisimmat asiakkaat — ne joilla on useita päällekkäisiä tarpeita — edustavat viittä prosenttia asiakkaista mutta 40–50 prosenttia kustannuksista. Tämä ryhmä kärsii koordinaatiovajeesta eniten. Koordinaation puuttuminen ei ole vain resurssien tehotonta käyttöä. Se tarkoittaa että ongelmat pahenevat siinä ajassa jona asiakkaat odottavat oikeaa palvelua, tai etsivät sitä itse usealta luukulta.\n\nJokaisella odottamisviikolla on hintansa."
+          }
         },
         {
           "title": "Kukaan ei ole vastuussa - koska kaikki ovat",
@@ -1950,8 +1921,7 @@
                 ]
               }
             ]
-          },
-          "text": "Hajautettu vastuu on paradoksi. Kun jokainen viranomainen tekee oman tehtävänsä oikein — noudattaa lainsäädäntöä, kirjaa oikein, toimii kehyksensä puitteissa — kokonaisuus voi silti epäonnistua systemaattisesti.\n\nEi siksi etteivätkö viranomaiset tekisi töitä. He tekevät. Ei siksi etteivätkö säännöt olisi itsessään järkeviä. Ne ovat. Ongelma on siinä etteivät oikein tehdyt asiat oikeissa siiloissa tuota oikeaa kokonaisuutta.\n\nTämä on systeemin diagnoosi, ei yksilön. Sen ratkaiseminen vaatii ajattelua siiloja korkeammalta tasolta. Ajattelua joka kysyy mitä ihminen tarvitsee, ei sitä minkä siilon piiriin hän kuuluu. Tämä ajattelu on rakenteellisesti vaikeaa, koska suomalainen hallintojärjestelmä on optimoitu hallinnoimaan siiloja, ei kokonaisuuksia.\n\nSama logiikka toistuu kahdella tasolla samanaikaisesti. Suomen sisällä kunta, alue ja valtio jakavat vastuun tavalla joka jättää ihmisen lokeroiden väliin. EU:n tasolla Suomi jakaa vastuun sääntöjen muotoilijan ja noudattajan välillä tavalla joka jättää Suomen kapasiteetin investoida itse asettamiensa rajojen ulkopuolelle.\n\nKummassakin tapauksessa ongelma ei ole säännöissä sinänsä. Ongelma on siinä että kukaan ei kanna vastuuta sen siirroista jotka säännöt itse tuottavat. Vastuu jakautuu niin monelle ettei se ole kenenkään.\n\nTästä seuraa kaksi tarkkaa havaintoa. Ensimmäinen: yksittäisen siilon kehittäminen ei ratkaise ongelmaa. Parempi sosiaalitoimi ei korjaa sitä että lapsi tarvitsee sekä koulutusta että terveydenhuoltoa. Parempi VM ei korjaa sitä että rahoituspäätös ja palveluvastuu ovat eri organisaatioissa.\n\nToinen: vastuuvajeen ratkaiseminen vaatii sellaisen rakenteen luomista joka pystyy katsomaan kokonaisuutta. Tämä ei ole pelkästään koordinaatiohanke. Se on rakenteellinen kysymys siitä, missä kokonaisvastuun pitäisi sijaita ja millä mandaatilla.\n\nNiin kauan kuin tätä ei ratkaista, jokainen yksittäinen reformi tuottaa saman kierteen. Uusi siilo, uusi rajavyöhyke, uusi viivästys. Marian seuraavalla soittokierroksella numerot ovat eri, mutta kokemus on sama."
+          }
         }
       ]
     },
@@ -2021,8 +1991,7 @@
                 ]
               }
             ]
-          },
-          "text": "Vuonna 1993 Suomi oli taloudellisessa vapaapudotuksessa.\n\nTehtaat sulkivat oviaan. Pankit kaatuivat toisensa perään. Perheitä häädettiin kodeistaan, kun lainojen takaisinmaksua ei kyetty enää hoitamaan. Muutamassa vuodessa työttömyysaste hypähti kolmesta prosentista lähes kuuteentoista. Bruttokansantuote romahti kolmetoista prosenttia — syvemmin kuin missään länsimaisessa taloudessa sitten 1930-luvun suuren laman.\n\nTuona aikana tehtiin pakottavia, tuskallisia ja välttämättömiä päätöksiä. Etuuksia leikattiin. Indeksit jäädytettiin. Budjettikuria kiristettiin. Tulevaisuuden investoinnit lykättiin, koska niihin ei yksinkertaisesti ollut varaa. Valtion velka kasvoi muutamassa vuodessa moninkertaiseksi suhteessa bruttokansantuotteeseen.\n\nPäätökset olivat aikanaan rationaalisia. Moni niistä oli jopa rohkea.\n\nJotain outoa kuitenkin tapahtui sen jälkeen. Talous elpyi. Nokia-buumi vei Suomen maailmankartalle uuden teknologian suurvaltana. Vienti kasvoi. Velka supistui suhteessa BKT:hen. Hyvinvointi palasi — ei kaikille, mutta monille.\n\nSilti päätökset eivät palautuneet. Jäädytykset jäivät. Leikkausten logiikka jäi. Ja tärkeimpänä: ajattelumallit juurtuivat. Ne, jotka opittiin selviytymiskeinoksi laman pohjalla, olivat kymmenen vuoden päästä muuttuneet itsestäänselvyyksiksi. Kahdenkymmenen vuoden päästä ne olivat muuttuneet sitoviksi käytännöiksi."
+          }
         },
         {
           "title": "Polkuriippuvuus",
@@ -2076,8 +2045,7 @@
                 ]
               }
             ]
-          },
-          "text": "Tutkijat kutsuvat tätä polkuriippuvuudeksi. Käsite on alun perin teknologian tutkimuksesta. Kun QWERTY-näppäimistöasettelu voitti kilpailun muita asetteluja vastaan, se jäi vallitsevaksi — ei siksi että se on paras, vaan koska se on standardi. Kaikki uudet koneet rakennetaan sen varaan. Kaikki uudet käyttäjät opettelevat sen. Vaihtaminen muuttuisi kalliimmaksi kuin jatkaminen.\n\nSama logiikka toimii yhteiskunnallisissa rakenteissa. Kun jokin ratkaisu tekee itsensä välttämättömäksi, se toisintaa olemassaoloaan. Se luo instituutioita joille se on elintärkeää. Se kasvattaa ammattilaissukupolven joka osaa toimia vain sen puitteissa. Se tuottaa poliittisia koalitioita jotka hyötyvät sen jatkumisesta — äänestäjäryhmiä jotka on opetettu pelkäämään muutosta.\n\n1990-luvun lama oli Suomelle juuri sellainen käännekohta. Se ei ollut vain taloudellinen kriisi. Se oli mielenmaiseman murros.\n\nEnnen lamaa Suomessa uskottiin laajenemisen logiikkaan. Hyvinvointivaltio kasvaa, palvelut paranevat, etuudet karttuvat sukupolvelta toiselle. Tämä oli ollut todellisuutta 1960-luvulta lähtien — kolme vuosikymmentä jatkuvaa edistystä. Laman jälkeen uskottiin supistuvaan logiikkaan. Toimitaan rajallisesti, vältetään riskejä, pidetään velka kurissa, ei luvata enemmän kuin voidaan pitää.\n\nTämä ajattelumalli ei ole huono. Monet sen elementeistä ovat edelleen järkeviä. Ongelma on siinä, että se on muuttunut ainoaksi mahdolliseksi ajattelumalliksi vaikka maailma ympärillä on muuttunut ratkaisevasti."
+          }
         },
         {
           "title": "Kuinka trauma muuttuu normiksi",
@@ -2149,8 +2117,7 @@
                 ]
               }
             ]
-          },
-          "text": "Sosiaalipsykologit ovat tutkineet sitä miten yhteisöt käsittelevät kollektiivisia traumoja. Yleinen löydös on että kriisi muokkaa käsitystä siitä mikä on mahdollista. Mahdollisuushorisontti kapenee.\n\nSuomessa tämä tapahtui poikkeuksellisen laajasti. Koska lama kosketti lähes kaikkia — perheitä, yrityksiä, kuntia, valtiota — sen jättämä oppi tunkeutui kaikkialle. Leivottiin sisään viranomaiskulttuuriin, puolueohjelmiin, budjettineuvotteluihin ja ennen kaikkea siihen hiljaiseen tietoon joka kertoo kokeneelle virkailijalle miten asiat toimivat.\n\nMekanismi toimii kolmessa vaiheessa.\n\nEnsin tulee trauma. Vuosina 1991–1994 Suomi eli läpi äärimmäisen taloudellisen shokin. Ihmisten kokemus oli konkreettinen ja henkilökohtainen. Naapurin irtisanominen. Tutun konkurssiin meneminen. Oman palkanalennuksen hyväksyminen. Kollektiivinen kokemus siitä että kaikki voi kaatua, jäi kehomuistiin.\n\nSitten tulevat ratkaisut. Lamaan vastattiin budjettikurilla, leikkauksilla, indeksijäädytyksillä. Tietyt ajattelumallit — velka on vaara, meno on riski, säästöt ovat hyve — nousivat poliittisesti legitiimeiksi. Ne jotka sovelsivat niitä menestyksellisesti kriisistä selviämiseen, nousivat vaikutusvaltaan. Heistä tuli auktoriteetteja.\n\nLopuksi seuraa vakiintuminen. Kun Suomi elpyi, laman ratkaisut saivat kunniaa elpymisestä — ansaitusti tai ei. Vuodesta toiseen näitä käytäntöjä noudattaneet viranomaiset ja poliitikot eivät enää kyseenalaistaneet niitä. Uudet virkailijat oppivat niitä edeltäjiltään. Ne muuttuivat tiedoksi siitä miten asiat tehdään, ilman että kukaan enää muisti miksi ne alun perin tehtiin niin.\n\nAsia kannattaa nähdä tässä tarkasti. Suomen 1990-luvun nousu johtui pitkälti markan kellutuksesta 1992 ja Nokian menestyksestä, ei leikkauksista. Euromaana devalvaatio ei enää ole mahdollista. Olosuhteet ovat muuttuneet ratkaisevasti. Mutta ajattelumalli ei."
+          }
         },
         {
           "title": "Polkuriippuvuuden hiljaisuus",
@@ -2204,8 +2171,7 @@
                 ]
               }
             ]
-          },
-          "text": "Polkuriippuvuudessa oleellista on miten se piilottaa itsensä. Kun jokin toimintatapa on vakiintunut riittävän syvälle, siitä tulee itsestäänselvyys. Sitä ei enää perustella, koska se on tausta-oletus. Kun siihen törmää, sitä ei kyseenalaisteta vaan osoitetaan siihen kuin luonnonlakiin: tietenkin budjetti on tasapainotettava, tietenkin velka on minimoitava, tietenkin tehokkuus on ensisijainen tavoite.\n\nSosiaalipoliittinen tutkija Paul Pierson on teoretisoinut tämän mekanismin tarkasti. Hyvinvointivaltion leikkaukset ovat hänen mukaansa helpompia toteuttaa kuin peruuttaa, koska leikkausten hyödyt — budjetin tasapainottuminen, vähenevä velka — ovat välittömiä ja näkyviä. Haitat jakautuvat laajalle ja ovat vähemmän näkyviä. Lapsilisän reaaliarvo laskee hitaasti. Kuntien palvelut supistuvat vähitellen. Nuorten mielenterveyspalvelut jäävät jälkeen asteittain.\n\nKun haitat eivät näy yhtenä selkeänä kriisitapahtumana, kukaan ei ota niistä poliittista vastuuta. Ne tapahtuvat, mutta eivät tapahdu kenenkään tekemänä.\n\nPolkuriippuvuuden vaarallisin piirre on että se ei vaadi tekijää. Kun ajattelumallit ovat vakiintuneet riittävän syvälle, järjestelmä tuottaa kriisiä automaattisesti, ilman kenenkään tietoista päätöstä. Kukaan ei ole päättänyt että mielenterveyden peruspalvelut pidetään alirahoitettuna. Kukaan ei ole päättänyt ettei ennaltaehkäisevään lastensuojeluun investoida. Kukaan ei ole päättänyt että nuorten syrjäytyminen on halvempaa hyväksyä kuin estää.\n\nNämä ovat seurauksia siitä miten budjettikehys, mittarit ja hallinnolliset käytännöt toimivat yhdessä — rakenteina jotka on rakennettu laman logiikan varaan. Itsekukin päätöksentekijä tekee järkeviä päätöksiä omassa kontekstissaan, mutta kontekstin logiikka on ajautunut."
+          }
         },
         {
           "title": "Kaksi lasta",
@@ -2268,8 +2234,7 @@
                 ]
               }
             ]
-          },
-          "text": "Polkuriippuvuus selittää miksi rakenteet pysyvät, vaikka ne eivät enää toimi. Mutta se ei yksin riitä selittämään miksi rakenteet tuottavat juuri sellaisia tuloksia kuin tuottavat. Sen vieressä toimii toinen, syvempi mekanismi.\n\nKaksi lasta syntyvät samana päivänä samassa sairaalassa.\n\nToinen syntyy perheeseen, jossa vanhemmilla on korkeakoulututkinnot. Perheessä on kirjoja. Ruokapöydässä puhutaan asioista. Harrastukset alkavat pian. Vanhemmat tuntevat ihmisiä, jotka voivat auttaa töiden haussa, opiskelupaikan valinnassa ja ensimmäisessä työpaikkahaastattelussa. Varallisuutta on sen verran että opiskeluvuosien asuminen ei ole epävarmuuden paikka.\n\nToinen syntyy perheeseen, jossa vanhemmat ovat keskeyttäneet peruskoulun tai käyneet ammattikoulun. Raha on tiukalla. Arki on kuormittavaa. Harrastukset ovat kalliita. Kaveripiiri on kapea — maantieteellisesti ja sosiaalisesti. Vanhemmilla ei ole suhteita joita voisi tarjota. Opiskeluvuosina rahan riittäminen on jatkuva huoli.\n\nSuomi on rakentanut maailman parhaimpiin kuuluvan koulujärjestelmän — ja se on aito saavutus, josta kannattaa olla ylpeä. Mutta koulujärjestelmä ei toimi tyhjiössä. Se vastaanottaa lapsia joilla on jo hyvin erilaiset lähtökohdat. Tutkimustulokset osoittavat toistuvasti että perheen sosioekonominen tausta ennustaa koulumenestystä vahvemmin kuin yksilölliset kyvyt tai koulun laatu.\n\nKyse ei ole siitä etteikö yksilö voisi nousta. Voi, mutta yksilöllisten nousijoiden tarinat eivät kerro rakenteesta. Ne kertovat poikkeuksista jotka ovat mahdollisia. Rakenne kertoo todennäköisyyksistä jotka ovat systemaattisia."
+          }
         },
         {
           "title": "Neljä mekanismia, yksi kierre",
@@ -2368,8 +2333,7 @@
                 ]
               }
             ]
-          },
-          "text": "Eriarvoisuus ei ole satunnainen ilmiö. Se ei johdu siitä että toiset ovat ahkerampia tai lahjakkaampia. Se on rakenteellinen mekanismi jossa neljä kanavaa toimivat yhdessä ja vahvistavat toisiaan.\n\nEnsimmäinen on koulutuspolkujen eriytyminen. Tasa-arvoinen peruskoulu on osittain myytti — ei kokonaan. Suomalainen peruskoulu on yhä monessa mielessä laadukas, ja se tasaa tehokkaasti eroja. Mutta varhaiskasvatuksen taso vaihtelee, ja varhaiskasvatusvuodet ovat kriittisimpiä oppimisvalmiuksien kehittymiselle. Perheet joissa lapset osallistuvat laadukkaaseen varhaiskasvatukseen antavat heille kognitiivisen ja sosiaalisen etumatkan.\n\nToisella asteella valinnat polarisoituvat. Lukioon menevät useimmiten ne joiden perheissä lukio on itsestäänselvyys. Ammatilliseen koulutukseen menevät usein ne joilla on heikompi kotitausta — ei siksi, etteivätkö ammattikoulun valinnat olisi arvokkaita, vaan siksi ettei heidän taustansa tukenut lukion valintaa. Lukiokoulutus avaa tien korkeakouluun. Korkeakoulututkinto ennustaa vahvasti elinikäisiä tuloja, sosiaalista asemaa ja terveyttä. Polku joka alkaa varhaislapsuudessa kumuloituu voimakkaasti.\n\nToinen mekanismi on alueellinen eriytyminen. Suomessa on alueet jotka kasvavat ja alueet jotka tyhjenevät. Nuoret ja koulutetut muuttavat kasvukeskuksiin. Veropohja heikkenee siellä mistä he lähtevät. Palvelut supistuvat. Uudet muuttajat lähtevät. Kierre vahvistaa itseään.\n\nAlueellinen eriytyminen tapahtuu myös kaupunkien sisällä. Kaupunginosissa joissa matalapalkkainen väestö asuu, kouluissa on suurempi oppilaskuormitus, enemmän sosiaalisia haasteita ja usein niukemmat resurssit. Segregaatiota ei tapahdu vain maakuntien välillä vaan kortteleiden välillä. Tämä on erityisen merkittävää lapsen kehitykselle. Koulun sosiaalinen ympäristö, saatavilla olevat roolimallit ja alueelliset odotukset vaikuttavat valintoihin yhtä vahvasti kuin koulun opetuksen laatu.\n\nKolmas mekanismi on periytyvä etu. Varallisuus, koulutuspääoma, sosiaaliset verkostot ja kulttuurinen pääoma siirtyvät sukupolvelta toiselle. Tämä ei ole moraalinen väite. Se on empiirisesti dokumentoitu ilmiö.\n\nPerheen varallisuus vaikuttaa suoraan mahdollisuuksiin: harrastuksiin, yksityisopetukseen, opiskeluaikaiseen toimeentuloon, ensimmäiseen asuntoon. Nämä ovat investointeja tulevaisuuteen jotka varakkaammilla perheillä on mahdollista tehdä. Verkostot ratkaisevat. Tutkimukset osoittavat että merkittävä osa työpaikoista täytetään verkostojen kautta, ei avoimen haun perusteella. Vanhempien yhteydet — kollegat, ystävät, harrastuspiirit — ovat lapselle näkymätön pääoma joka aktivoituu opiskeluvalinnoissa, harjoittelupaikoissa ja ensimmäisessä työsuhteessa.\n\nKulttuurinen pääoma on kaikkein hienovaraisinta. Sitä miten puhutaan, miten esiinnytään, minkä alan arvot tunnetaan, miten navigoidaan instituutioissa. Keskiluokkaisessa perheessä kasvanut osaa epävirallisesti pelata peliä — haastatteluissa, korkeakouluun hakeutumisessa, virallisten instituutioiden kanssa asioinnissa. Tätä ei ole opittu missään koulussa. Se on omaksuttu arjesta.\n\nNeljäs mekanismi on työmarkkinoiden polarisoituminen. Suomen palkkarakenne on eriytynyt. Korkeakoulututkintoa vaativat asiantuntijatehtävät maksavat hyvin. Alemman koulutustason hoiva-, palvelu- ja suorittavan työn tehtävät maksavat huonommin, vaikka niiden yhteiskunnallinen arvo on suuri.\n\nHoiva-ala on erityisen kuvastava esimerkki. Lähihoitajat, kodinhoitajat ja vanhustenhoitajat tekevät välttämätöntä työtä jota ilman yhteiskunta ei toimisi. Silti heidän palkkansa on merkittävästi matalampi kuin esimerkiksi rakennusalan tai teollisuuden työntekijöillä, vaikka koulutusvaatimukset ovat samankaltaiset. Selitys on historiallinen ja rakenteellinen. Hoiva-ala on naisvaltainen. Naisvaltaisilla aloilla on Suomessa systemaattisesti alhaisempi palkkataso kuin miehisillä aloilla samankaltaisilla koulutusvaatimuksilla. Tämä ei ole sattuma. Se on arvorakenne joka on vakiintunut osaksi palkkaneuvottelujärjestelmää."
+          }
         },
         {
           "title": "Kierre vahvistuu",
@@ -2432,8 +2396,7 @@
                 ]
               }
             ]
-          },
-          "text": "Neljä mekanismia eivät vain ole olemassa rinnakkain. Ne vahvistavat toisiaan systemaattisesti.\n\nHeikommasta lähtökohdasta tulevalla lapsella on suurempi riski päätyä matalapalkka-alalle. Matalapalkka-alalla ei kartu varallisuutta. Varallisuuden puuttuminen tarkoittaa etteivät omat lapset voi saada samanlaisia lähtökohtia kuin parempiosaisissa perheissä. Kierre toistuu.\n\nMyös alueellinen dimensio vahvistaa. Jos perheen kotialue on muuttotappiollinen, koulujen laatu heikkenee ylikuormituksen ja resurssipulan takia. Suhteiden puute alueella tarkoittaa että töitä ei löydy verkostojen kautta. Muuttaminen kasvukeskukseen on teoriassa mahdollista, mutta käytännössä se vaatii resursseja ja riskinsietokykyä joita heikommassa asemassa olevilla on vähemmän.\n\nSosiaaliset verkostot periytyvät. Jos vanhempien piirissä ei ole korkeakoulutettuja, ei ole mallia siitä miten korkeakouluun hakeudutaan, minkä alan valitsee tai miten opiskeluyhteisöissä toimitaan. Kulttuurinen pääoma ei siirry hakemuskirjeissä. Se siirtyy arjessa, pöytäkeskusteluissa, kesätöissä ja harrastuksissa.\n\nTyömarkkinoiden polarisaatio sulkee kierteen. Hyviin töihin tarvitaan pääomia joita heikommasta taustasta tulevalla on vähemmän. Hyvästä taustasta tulevan lapsen verkosto tarjoaa harjoittelupaikan jonka kautta pysyvä työ löytyy.\n\nSosiologit kutsuvat tätä itseään toteuttavaksi ennusteeksi. Rakenne tuottaa sen mitä se odottaa, koska mekanismit toimivat automaattisesti."
+          }
         },
         {
           "title": "Kaksi mekanismia yhdessä",
@@ -2487,8 +2450,7 @@
                 ]
               }
             ]
-          },
-          "text": "Tässä luvussa käsitellyt kaksi mekanismia — polkuriippuvuus ja eriarvoisuuden kierre — eivät ole erillisiä. Ne ovat saman ilmiön kaksi puolta.\n\nPolkuriippuvuus selittää miksi 1990-luvun valintoja ei ole purettu. Ne ovat asettuneet rakenteiksi. Niistä on tullut tausta-oletuksia. Niiden muuttaminen vaatisi aktiivista valintaa jota kukaan ei tee, koska kukaan ei myöskään ota niitä koskaan vastatakseen.\n\nEriarvoisuuden kierre selittää mitä nämä asettuneet rakenteet käytännössä tekevät. Ne tuottavat tuloksia jotka ovat ennustettavissa. Jos koulutuspolut, alueellinen kehitys, periytyvä etu ja työmarkkinarakenne kaikki suosivat samaa ryhmää, lopputulos on systemaattinen. Eriarvoisuus ei kasva sattumalta. Se kasvaa rakenteellisten valintojen seurauksena.\n\n1990-luvun lama oli käännekohta jolloin nämä rakenteet muotoutuivat. Lapsilisien reaaliarvo laski peräti kolmekymmentä prosenttia. Indeksijäädytyksiä ei purettu. Kuntien valtionosuuksia leikattiin vuosina 2012–2019 yli 1,3 miljardia euroa kumulatiivisesti. Jokainen näistä yksittäisistä päätöksistä perusteltiin omilla syillään — milloin velka, milloin kilpailukyky, milloin sopeutus. Mutta yhdessä ne muodostavat kuvion. Jokaisesta leikkauksesta kärsivät eniten ne joilla oli jo vähiten.\n\nTämä ei ole vahinkoa. Se ei ole pahantahtoisuutta. Se on rakenteen logiikkaa."
+          }
         },
         {
           "title": "Tasa-arvomyytti",
@@ -2560,8 +2522,7 @@
                 ]
               }
             ]
-          },
-          "text": "Suomi on rakentanut osan identiteettiään tasa-arvomaana — pohjoismaisen mallin edustajana jossa jokaisella on mahdollisuus. Tämä identiteetti on ollut paitsi kulttuurinen itsearvostus myös poliittinen resurssi.\n\nIdentiteetti ja todellisuus ovat silti eriytyneet.\n\nKun suomalaiset arvioivat omaa yhteiskuntaansa, he kokevat edelleen elävänsä tasa-arvoisessa maassa. Asenteet ovat tasa-arvoisia. Rakenteet ovat eriytymässä. Tämä kognitiivinen aukko on poliittisesti tärkeä. Se vaikeuttaa eriarvoisuuden tunnistamista ongelmaksi, koska ”meidän järjestelmässämme ei voisi olla niin vakavaa eriarvoisuutta.”\n\nEriarvoisuuden kasvaminen ei siis kohtaa poliittista vastarintaa siksi että se hyväksyttäisiin arvona. Se ei kohtaa vastarintaa siksi että sitä ei nähdä. Mittarit eivät sitä rekisteröi. Hallinnolliset siilot eivät sitä kommunikoi ylöspäin. Poliittinen identiteetti suojelee itseään epämukavalta tiedolta.\n\nTämä on eriarvoisuuden mekanismin hienovaraisin ulottuvuus. Se kasvaa näkymättömissä, suojattuna kansallisella identiteetillä joka vakuuttaa sen mahdottomuudesta.\n\nTuloerot ovat kasvaneet 1990-luvun laman jälkeen tasaisesti. Varakkain kymmenes on kasvattanut varallisuusosuuttaan enemmän kuin muut ryhmät. Matalatuloiset ovat jääneet jälkeen erityisesti varallisuuden — ei niinkään tulojen — osalta. PISA-tulosten taustalla näkyy entistä selvemmin perheen sosioekonomisen taustan vaikutus koulumenestykseen. Alueellinen eriytyminen on kiihtynyt. Pohjoisen ja itäisen Suomen kuntien väestöennusteet ovat huolestuttavia. Monessa pienessä kunnassa kouluikäisten lasten määrä on puolittunut kahdessa vuosikymmenessä.\n\nNämä eivät ole yksittäisiä tilastohavaintoja. Ne ovat systemaattinen suuntaus joka kertoo eriarvoisuusmekanismin toiminnasta käytännössä."
+          }
         },
         {
           "title": "Kun rakenne ei ole kenenkään vika",
@@ -2642,8 +2603,7 @@
                 ]
               }
             ]
-          },
-          "text": "Eriarvoisuuden mekanismin ehkä vaarallisin piirre on se, ettei se vaadi pahantahtoisuutta.\n\nYksittäinen työnantaja joka palkitsee enemmän korkeatuloisia seuraa markkinalogiikkaa. Yksittäinen perhe joka muuttaa parempaan koulupiiriin toimii rationaalisesti. Yksittäinen kunta joka leikkaa lapsiperheiden palveluista kun budjetti kiristyy, tekee sen vastentahtoisesti välttämättömyyden edessä.\n\nKukaan ei ole päättänyt rakentaa eriarvoisuuden konetta, mutta koneen osat toimivat. Ne toimivat päivittäin, kaikkialla ja automaattisesti.\n\nTämä on samalla lohdullista ja vaikeaa.\n\nLohdullista siksi että jos rakenne on ihmisten rakentama, se on myös ihmisten purettavissa. Vaikeaa siksi että purkaminen vaatii rakenteellisia ratkaisuja — ei vain hyvää tahtoa tai yksilöitä jotka yrittävät enemmän — vaan järjestelmien muuttamista. Koulutuspolkujen tasaamista. Alueellisen eriytymisen jarruttamista. Palkkaerojen kaventamista. Periytyvän edun heikentämistä.\n\nMikä tahansa yksittäinen näistä tehtävistä on poliittisesti vaativa. Yhdessä ne ovat sukupolven mittainen projekti. Mutta niiden mahdottomuus ei ole rakenteellinen ominaisuus. Se on poliittinen valinta — sama valinta jonka edellisten lukujen mekanismit tekevät joka päivä uudestaan, ilman että kukaan päättää.\n\nTämä on tämän luvun ydinajatus. 1990-luvun lama ei tuottanut suoraan eriarvoisuutta. Se tuotti rakenteet joista eriarvoisuus syntyi sukupolvien yli. Trauma muuttui käytännöiksi, käytännöt asettuiksi, asetukset toimintalogiikaksi joka tuottaa juuri näitä tuloksia eikä toisia.\n\nJa niin kauan kuin rakenteita ei nähdä mekanismina vaan luonnonlakina, ne jatkavat tuottamistaan."
+          }
         }
       ]
     },
@@ -2713,8 +2673,7 @@
                 ]
               }
             ]
-          },
-          "text": "Suomi syntyi kahdesti.\n\nEnsimmäisen kerran vuonna 1917, kun itsenäisyys julistettiin. Toisen kerran 1940–1960-luvuilla, kun sotien jälkeen syntyi poikkeuksellisen suuri sukupolvi — suuret ikäluokat. He rakensivat hyvinvointivaltion, uuden teollisuuden ja koulutetun Suomen. Heitä oli paljon. Kun he olivat nuoria ja työelämässä, Suomi kasvoi.\n\nNyt he eläköityvät. Joka vuosi tulee lisää eläkeläisiä. Eläke- ja hoivakulut kasvavat. Samaan aikaan joka vuosi syntyy vähemmän lapsia kuin edellisellä vuosikymmenellä.\n\nTämä ei ole yllätys. Demografit ovat ennustaneet tämän kymmeniä vuosia. Väestöennusteet ovat poikkeuksellisen luotettavia, koska jo syntyneiden ihmisten ikääntyminen on matematiikkaa, ei spekulaatiota. Vuonna 2040 kuusikymppisten määrä Suomessa on lähes yhtä suuri kuin kolmekymppisten — koska nyt kuusikymppinen on jo syntynyt. Hän on jo olemassa. Hän tulee eläkkeelle. Hän tarvitsee hoivaa.\n\nSilti poliittinen järjestelmä kohtelee demografiaa ennusteena, johon reagoidaan myöhemmin. Ei faktana johon on jo vastattu.\n\nTässä on Suomen demografinen ongelma tiivistettynä: ei siinä, etteikö tiedettäisi, vaan siinä, ettei toimita."
+          }
         },
         {
           "title": "Matematiikka ei neuvottele",
@@ -2786,8 +2745,7 @@
                 ]
               }
             ]
-          },
-          "text": "Väestörakenne on harvinainen asia politiikassa. Se on suurelta osin ennustettava tosiasia, ei arvovalinta.\n\nSuomen syntyvyys laski dramaattisesti 2010-luvulla. Kokonaishedelmällisyysluku — se numero joka kertoo kuinka monta lasta nainen tilastollisesti synnyttää — on laskenut alle 1,4:n. Väestön uusintamistasoon tarvittaisiin noin 2,1. Vielä 2000-luvun alussa luku oli lähellä 1,8. Lasku on ollut nopea ja syvä.\n\nHuoltosuhde — kuinka monta ei-työllistä henkeä yhtä työllistä kohti — heikkenee väistämättömästi seuraavat kaksikymmentä vuotta. Se on jo heikentynyt. Vielä vuonna 2010 sataa työllistä kohti oli noin 126 ei-työllistä. 2020-luvun puolivälissä luku on jo yli 140. Arvioiden mukaan 2040-luvulle tultaessa se on lähestymässä 160:tä — ellei työvoimaan osallistuminen kasva tai maahanmuutto lisäänny.\n\nTämä ei ole pelottelu. Se on aritmetiikkaa.\n\nOngelma toimii kolmella tavalla samanaikaisesti. Ensiksi kustannukset kasvavat automaattisesti. Eläkemenot kasvavat kun enemmän ihmisiä eläköityy ja elinajanodote pidentyy. Hoivamenot kasvavat kun ikääntynyt väestö tarvitsee enemmän palveluja. Nämä ovat lakisääteisiä menoja jotka kasvavat budjettikehyksessä ilman erillistä päätöstä. Ne syövät tilaa investoinneilta.\n\nToiseksi veropohja kaventuu. Kun työssäkäyvien suhteellinen osuus väestöstä pienenee, verotulojen pitäminen samalla tasolla vaatii joko korkeampaa tuottavuutta tai korkeampaa veroastetta — tai molempia. Tätä aritmeettista ongelmaa ei ole ratkaistu. Se on siirretty eteenpäin.\n\nKolmanneksi eriytyminen syvenee. Demografinen muutos ei tapahdu tasaisesti. Nuoret muuttavat kasvukeskuksiin — Helsinkiin, Tampereelle, Turkuun, Ouluun. Maaseudulla ja pienissä kaupungeissa väestö ikääntyy nopeammin kuin koko maan keskiarvo. Palveluntarve kasvaa siellä missä verotulojen pohja supistuu."
+          }
         },
         {
           "title": "Tietämisen ja toiminnan välinen kuilu",
@@ -2841,8 +2799,7 @@
                 ]
               }
             ]
-          },
-          "text": "Demografian tunnistaminen ei ole ongelma. Kaikki tietävät luvut. Eläketurvakeskuksen, Tilastokeskuksen, THL:n ja Kelan raportit ovat yleisesti saatavilla. Jokainen budjettijulkaisu mainitsee ikärakenteen muutoksen.\n\nOngelma on siinä, ettei demografiaan ole vastattu rakenteellisella politiikalla. Tähän on kolme syytä.\n\nEnsimmäinen on aikavälin ongelma. Demografinen muutos on hidas. Sen täydet vaikutukset näkyvät kahdenkymmenen tai kolmenkymmenen vuoden päästä. Mikään yksittäinen hallituskausi ei pysty omistamaan ongelmaa kokonaan. Jokainen hallitus voi sanoa että seuraava hoitaa sen, ja sekin sanoo samoin.\n\nToinen on poliittinen myrkyllisyys. Demografinen ongelma sivuaa kolmea poliittisesti erittäin vaikeaa aihetta. Maahanmuutto on nopein demografinen ratkaisu lisätä työvoimaan osallistuvia. Se edellyttää maahanmuuton kasvattamista ja kotoutumisen parantamista. Molemmissa on äänestäjiä pelottavia elementtejä, joita populistiset liikkeet ovat systemaattisesti kärjistäneet. Syntyvyyden kasvattaminen edellyttää rakenteellisia muutoksia perhearkeen — osa-aikatyömahdollisuuksia, asuntopolitiikkaa, päivähoitoa, taloudellista turvaa. Se on hidasta, kallista, ja tulokset näkyvät vasta vuosikymmenten päästä. Eläkejärjestelmän kestävyys edellyttää pidempää työuraa, mutta eläkeiän nostaminen koskee suoraan merkittäviä äänestäjäryhmiä joilla on vahva poliittinen ääni.\n\nKolmas on retorisen tunnustamisen ja toiminnan välinen kuilu. Jokainen hallitusohjelma viittaa väestönmuutokseen. Jokainen talouskomitea tietää luvut. Mutta tieto ei muutu toiminnaksi automaattisesti. Järjestelmä on oppinut puhumaan demografiasta vakavana haasteena — ilman että se on rakentanut konkreettisia institutionaalisia vastauksia."
+          }
         },
         {
           "title": "Syntyvyyden lasku on signaali",
@@ -2890,14 +2847,22 @@
                 "type": "paragraph",
                 "content": [
                   {
+                    "text": "Suomi on tässä kansainvälinen poikkeustapaus. Useimmissa kehittyneissä maissa syntyvyyden lasku selittyy pääosin sillä, että lapsia jo saavat perheet saavat aiempaa vähemmän lapsia. Suomessa tilanne on toinen: lähes neljä viidestä syntymän vähentyneestä selittyy sillä, että yhä useampi ei saa ensimmäistäkään lasta. Perheellistyminen lykkääntyy tai jää kokonaan tapahtumatta. Tämä ei kumoa rakenteellista selitystä – se tarkentaa sitä: esteet osuvat erityisesti siihen hetkeen, jolloin ensimmäinen lapsi pitäisi syntyä",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
                     "text": "Jos syntyvyyttä halutaan tukea, se tarkoittaa näiden rakenteiden korjaamista. Ei kampanjoita.",
                     "type": "text"
                   }
                 ]
               }
             ]
-          },
-          "text": "On kiusaus käsitellä syntyvyyden laskua puhtaasti demografisena numerona. Se on myös signaali.\n\nSe kertoo siitä miten ihmiset arvioivat omaa tulevaisuuttaan ja lapsen tulevaisuutta. Kun syntyvyys laskee nopeasti, kuten Suomessa tapahtui 2010-luvulla, se ei ole pelkästään yksilöllisten mieltymysten muutos. Se kertoo elinkustannusten kasvusta suhteessa tuloihin, asumisen kalleudesta, työn epävarmuudesta ja palvelujen riittämättömyydestä.\n\nTutkijat ovat osoittaneet että syntyvyys korreloi vahvasti sosiaalisen turvan kanssa. Kun ihmiset kokevat olevansa riittävän turvassa, he saavat lapsia. Kun epävarmuus kasvaa, he lykkäävät tai luopuvat.\n\nTässä valossa syntyvyyden lasku ei ole ongelma joka ratkaistaan syntyvyyspolitiikalla erikseen. Se on oire laajemmasta rakenteellisesta ongelmasta. Järjestelmä ei tue riittävästi niitä jotka haluaisivat perustaa perheen. Asuntohinnat ovat nousseet. Määräaikaiset työsopimukset ovat yleistyneet erityisesti nuorilla aikuisilla. Päivähoitopaikkojen saatavuus vaihtelee. Opintovelka rasittaa alkuvuosia.\n\nJos syntyvyyttä halutaan tukea, se tarkoittaa näiden rakenteiden korjaamista. Ei kampanjoita."
+          }
         },
         {
           "title": "Kolme shokkia, kolme vuotta",
@@ -2978,8 +2943,7 @@
                 ]
               }
             ]
-          },
-          "text": "Demografinen paine ei toimi tyhjiössä. Se kohtaa järjestelmän joka on samanaikaisesti vasta toipumassa monikriisistä.\n\nHelmikuussa 2020 Suomen uutisissa oli yksi aihe ylitse muiden. Uusi koronavirus eteni kohti Eurooppaa. Kaikki muistavat sen hetken jolloin ymmärsi, ettei tästä tulisi viikkojen asia. Koulujen sulkeminen. Kahviloiden tyhjeneminen. Yritysten konkurssiaalto. Hoivakodit suljettuna läheisiltä. Maskit. Rajoitukset. Rokotteet.\n\nSamana vuonna Suomen julkinen talous joutui kestämään poikkeuksellisen shokin — nopeimman menolisäyksen sitten sotien. Suomi velkaantui enemmän kahdessa vuodessa kuin koko edellisellä vuosikymmenellä.\n\nElpyminen näytti alkavan 2021. Rajoitukset purkautuivat. Talous reipastui ikään kuin normaalius olisi palaamassa.\n\nSitten helmikuussa 2022 Venäjä hyökkäsi Ukrainaan.\n\nSuomi muutti turvallisuuspoliittisen linjansa perusteellisesti ja haki NATO-jäsenyyttä. Puolustusmenoja päätettiin kasvattaa merkittävästi. Energia- ja huoltovarmuusriskit nousivat agendalle viiveellä, mutta voimakkaina. Pakolaisvirta kasvoi. Itäkauppa romahti — Suomella oli ollut suurin suhteellinen riippuvuus länsimaiden joukossa.\n\nSitten tuli korkokierros. Inflaatiopiikki. Energiahintojen räjähdys joka kuristi erityisesti pienituloisia kotitalouksia.\n\nSama järjestelmä ja kolme erillistä shokkia kolmen vuoden sisällä. Järjestelmä joka on suunniteltu käsittelemään yhtä haastetta kerrallaan vakaassa maailmassa."
+          }
         },
         {
           "title": "Vakausjärjestelmä epävakaassa maailmassa",
@@ -3042,8 +3006,7 @@
                 ]
               }
             ]
-          },
-          "text": "Suomalainen hyvinvointivaltio on rakennettu vakaaseen maailmaan. Se on kehittynyt pitkällä aikavälillä jona olosuhteet olivat suhteellisen vakaat. Rauha Euroopassa. Avoimet markkinat. Kasvava talous. Ennustettava demografinen kehitys.\n\nVakauteen rakennettu järjestelmä on tehokas vakaus-olosuhteissa. Siilot toimivat kun ongelmat ovat siiloutettavissa. Budjettikehys toimii kun menot kasvavat ennakoitavasti. Pitkät prosessit toimivat kun aika ei ole kriittinen resurssi.\n\nVakauteen optimoitu järjestelmä on haavoittuva epävakaissa olosuhteissa, koska sen kaikki rakenteet on kalibroitu vakautta varten.\n\nKolme keskeistä haavoittuvuutta. Budjettikehys on jäykkä. Se on suunniteltu pitämään kulut kurissa normaalitilanteessa. Kriisitilanteessa se hidastaa reagointia. Poikkeukset ovat mahdollisia mutta hankalasti perusteltavissa, koska mallioppiluuden identiteetti tekee joustoista poliittisesti kiusallisia.\n\nMittarit ovat lyhytnäköisiä. Ne katsovat tähän vuoteen. Ne eivät näe kumuloituvia häiriöitä joita syntyy kun useampi shokki osuu peräkkäin. Hoitovelan rakentuminen, oppimisvajevaikutukset, mielenterveyskriisin syveneminen — kaikki rakentuvat vuosien mittaan, eikä yksittäinen budjettivuosi rekisteröi niitä.\n\nHallinto on hajautettu. Se on tehokas kun ongelmat ovat siilokohtaisia. Mutta kun shokki on poikkileikkaava — pandemia koskee kaikkia, energiahinta koskee kaikkia, geopoliittinen murros koskee kaikkia — koordinaatio pettää."
+          }
         },
         {
           "title": "Kolme viivästynyttä räjähdystä",
@@ -3115,8 +3078,7 @@
                 ]
               }
             ]
-          },
-          "text": "Pandemia ei ole ohi. Tämä ei tarkoita etteikö virustilanne olisi hallinnassa. Se tarkoittaa että pandemian rakenteelliset seuraukset ovat vasta purkautumassa 2020-luvun loppupuolella.\n\nHoitovelka on ensimmäinen. Pandemia-aikana lykättiin ei-kiireellistä hoitoa massiivisesti. Hoitojonot kasvoivat ennätystasoille — sydänleikkauksista tekoniveloperaatioihin, mielenterveyspalveluista suun terveydenhuoltoon. Jonot eivät purkaudu automaattisesti, koska kapasiteetti ei kasva. Hoivahenkilökunnan rekrytointiongelmat ovat pahimmat vuosikymmeniin, ja hyvinvointialueet leikkaavat budjettivajeidensa takia.\n\nOppimisvaje on toinen. Kouluikäisten oppimistulokset heikkenivät etäopetuksen aikana, erityisesti heikommista lähtökohdista tulevilla lapsilla. Etäopetuksen vaikutus oli epätasainen. Jo valmiiksi hyvässä asemassa olevat lapset selviytyivät kohtuullisesti. Ne joilla oli jo valmiiksi haasteita — kielitaito, kotiolosuhteet, tuen tarve — jäivät systemaattisesti jälkeen. Vaje ei korjaudu automaattisesti. Se näkyy seuraavan vuosikymmenen työmarkkinoilla.\n\nMielenterveysvelka on kolmas. Pandemia kuormitti mielenterveyttä erityisesti nuorilla aikuisilla. Yksinäisyys, epävarmuus, opiskelun haasteet ja työtilanteiden muuttuminen yhdistyivät poikkeukselliseen kuormitukseen. Mielenterveyspalvelujen jonotusajat ovat venyneet, ja ongelmat kroonistuvat siinä ajassa jonka hoitoon pääsy kestää.\n\nNämä kolme eivät ole sulkeutuneet pandemian loppumiseen. Ne ovat ajastettuja pommeja, jotka räjähtävät vuosina 2025–2035. Juuri silloin kun ikääntymiskustannukset kasvavat eniten.\n\nGeopolitiikka muutti pysyvästi. Suomen puolustusmenot kasvavat NATO-sitoumuksen myötä. Kyse ei ole väliaikaisesta piikistä vaan rakenteellisesta muutoksesta: 1,5–2 miljardia euroa vuodessa lisää pysyvästi. Tämä raha kilpailee samasta kiinteästä kehyksestä koulutuksen, sosiaaliturvan ja terveydenhuollon kanssa. Vaihtoehtoja on kaksi: kasvattaa veroja tai leikata muualta. Molemmilla on seurauksia. Veronkorotukset heikentävät ostovoimaa. Leikkaukset muualta kiihdyttävät jo kuvattuja mekanismeja.\n\nEnergiamurros on investointiongelma. Vihreä siirtymä vaatii massiivisia investointeja. Suomi on asettanut kunnianhimoiset ilmastotavoitteet. Niiden toteuttaminen vaatii sekä julkisia investointeja infrastruktuuriin että yksityisiä investointeja uudelleenrakenteistumiseen. Samanaikaisesti korkotaso on noussut. Investointiympäristö on vaativampi kuin vuosiin."
+          }
         },
         {
           "title": "Suomen erityinen pääoma",
@@ -3170,8 +3132,7 @@
                 ]
               }
             ]
-          },
-          "text": "Demografinen paine ja monikriisi kohtaavat järjestelmän jossa on myös toinen, erityislaatuinen reunaehto. Suomella on luonnonvaroja joiden arvo kasvaa.\n\nSuomessa on litiumia. Sitä on Keski-Pohjanmaalla ja Etelä-Savossa, ehkä enemmän kuin missään muualla Euroopassa. Litium on akkuteollisuuden raaka-aine, ja akkuteollisuus on sähköistyvän maailmantalouden ydin. Kysyntä kasvaa kymmenillä prosenteilla vuodessa.\n\nSuomessa on myös nikkeliä, kobolttia ja kuparia. Makeaa vettä enemmän kuin suurimmassa osassa maailmaa. Metsää jonka korkean jalostusasteen tuotteet — massiivipuinen rakentaminen, lääketeollisuuden raaka-aineet, biomateriaali — tuottavat moninkertaisesti enemmän arvoa kuin raakapuun vienti.\n\nNämä ovat kertaluonteisia. Litium käytetään kerran. Kaivos tyhjenee. Metsä voidaan kasvattaa uudelleen mutta hitaasti. Makeaa vettä on, mutta ei rajattomasti. Kertaluonteinen pääoma on eri asia kuin toistuva tulo. Se on yhteisön peritty omaisuus, ei vuosibudjettirivi.\n\nSuomen budjettiarkkitehtuuri ei tee tätä eroa. Kaivosrojaltti käsitellään kuten ansiotuloverotulo. Se tulee sisään, se jaetaan, se kulutetaan. Vuosi loppuu. Pääoma on poissa. Jäljellä on tyhjä kaivos ja kunta joka odotti muutakin."
+          }
         },
         {
           "title": "Pääoma joka katoaa vuosibudjettiin",
@@ -3252,8 +3213,7 @@
                 ]
               }
             ]
-          },
-          "text": "Julkisen talouden kirjanpidossa on kaksi kategoriaa: tulot ja menot. Investoinnit ovat menoja. Luonnonvarojen tuotot ovat tuloja. Tämä on yksinkertaista — ja siinä on ongelma.\n\nYritysmaailmassa asia ymmärretään eri tavalla. Yritys erottaa tuloslaskelman ja taseen. Tuloslaskelma kertoo vuoden tulot ja menot. Tase kertoo omaisuuden — sen mitä yrityksellä on, mukaan lukien se mitä on kulutettu eikä enää ole. Kun yritys myy tonttinsa, se ei kirjaa sitä pelkäksi tuloksi. Se kirjaa omaisuuden vähenemisen.\n\nValtio ei tee näin. Kun Suomi myöntää kaivosluvan ja perii siltä rojalteja, se kirjaa tuloa. Ei omaisuuden vähenemistä. Litium jota ei enää ole, ei näy missään. Se on kadonnut hiljaa kirjanpitokategorioiden välistä.\n\nTämä ei ole vain tekninen kirjanpito-ongelma. Se on rakenteellinen vääristymä joka tuottaa vääriä kannustimia. Kun luonnonvararikkaus näyttää vuosibudjetissa samalta kuin palkkatulovero, poliittinen paine on käyttää se samalla tavalla — tänä vuonna, tähän tarpeeseen, tällä hallituskaudella.\n\nKansainvälinen valuuttarahasto on dokumentoinut tämän rakenteen toistuvasti luonnonvaramaissa. Kun kertaluonteinen pääoma käsitellään toistuvana tulona, maa elää yli varojensa tietämättään. Kaivos tyhjenee, metsä ohenee, vesivarat vähenevät. Budjetti ei näytä muutosta, koska se ei mittaa omaisuutta.\n\nRakenteellinen ongelma pahenee sillä että Suomi perii luonnonvaroistaan kansainvälisesti poikkeuksellisen alhaista korvausta. Suomen kaivoslaki ei sisällä prosenttipohjaista louhintarojaltia, eli maksua joka perustuisi kaivetun mineraalin arvoon. Useimmissa kaivosmaissa tällainen rojaltti on 2–8 prosenttia louhitun mineraalin arvosta. Suomessa yhtiö maksaa kaivosluvan käsittelymaksun ja kiinteistöveroa. Kun litiumin arvo globaaleilla markkinoilla on kymmeniä euroja kilolta, ero on merkittävä.\n\nSama koskee vesivoimalupia ja merituulivoimaa. Merituulivoiman lisenssit on Suomessa myönnetty pitkäaikaisina sopimuksina kiinteään hintaan, kun muissa Pohjoismaissa ne on siirretty markkinahintoihin perustuvaan huutokauppaan, jolloin tuotto valtiolle moninkertaistuu.\n\nSuomi luovuttaa kansallista pääomaa kansainvälisille yhtiöille markkinahintaa alemmalla korvauksella. Ja se osa korvauksesta joka saadaan, sulautuu vuosibudjettiin kuten mikä tahansa muu tulo."
+          }
         },
         {
           "title": "Norjan valinta",
@@ -3307,8 +3267,7 @@
                 ]
               }
             ]
-          },
-          "text": "Norja löysi öljyä 1960-luvun lopulla. Poliittinen paine käyttää tuotot välittömästi oli valtava — köyhä maa jolla yhtäkkiä oli rahaa. Norja teki silti toisin.\n\nVuonna 1990 perustettiin Valtion öljyrahasto. Nykyinen Norjan öljyrahasto on maailman suurin valtiollinen sijoitusrahasto. Perusperiaate on yksinkertainen. Öljytulojen pääomaa ei käytetä lainkaan. Julkiseen talouteen ohjataan vain sijoitusten reaalituotto. Pääoma on koskematon.\n\nNorjan valinta ei perustunut erityiseen viisauteen tai paremmuuteen. Se perustui yhteen rakenteelliseen oivallukseen. Öljy on kertaluonteista pääomaa, ei toistuvaa tuloa. Jos se käsitellään toistuvana tulona, se katoaa. Jos se irrotetaan vuosibudjettipolitiikasta, se kasvaa.\n\nTänään Norjan rahasto on yli 1 700 miljardia dollaria — yli kolme kertaa maan vuotuinen BKT. Se rahoittaa osan julkisista menoista joka vuosi ilman että pääomaa koskaan vähenee. Norja ei ole rikkaampi siksi että sillä on öljyä. Se on rikkaampi siksi että se päätti kohdella öljyä pääomana eikä tulona.\n\nSuomella ei ole öljyä, mutta sillä on litiumia, nikkeliä, vesivoimaa, metsää ja tuulivoimakapasiteettia jonka arvo kasvaa. Valinta on sama kuin Norjalla oli 1990. Käytetäänkö se tänä vuonna vai rakennetaanko siitä instituutio?"
+          }
         },
         {
           "title": "Kolme reunaehtoa, yksi järjestelmä",
@@ -3371,8 +3330,7 @@
                 ]
               }
             ]
-          },
-          "text": "Tässä luvussa käsitellyt kolme reunaehtoa — demografinen paine, monikriisi ja kertaluonteinen pääoma — eivät ole erillisiä haasteita. Ne kohtaavat saman järjestelmän samaan aikaan ja paljastavat saman rakenteellisen vajeen.\n\nDemografinen paine kasvattaa lakisääteisiä menoja jotka syövät kehyksestä tilan jolla tulevaisuuteen voitaisiin investoida. Monikriisi pakottaa kompensaatiomenoihin jotka kasvavat samasta kehyksestä. Luonnonvarapääoma joka voisi rakentaa puskuria, katoaa vuosibudjettiin.\n\nYhteinen nimittäjä on järjestelmä joka on rakennettu yhtä vuotta varten. Se mittaa tätä vuotta, optimoi tätä vuotta, jakaa tätä vuotta. Se ei tunnista pääomaa, ei kerro kerrostuvasta riskistä, ei rakenna joustavuutta. Se on suunniteltu maailmaan joka on lakannut olemasta.\n\nDemografinen paine on rakenteellinen ja pitkäaikainen. Monikriisi on uusi normaali. Luonnonvarat ovat kertaluonteisia. Mikään näistä reunaehdoista ei muutu sen mukaan, mitä budjetissa lukee. Mutta järjestelmän tapa vastata niihin voi muuttua.\n\nTämän vastauksen mahdollisuus on muotoiltava ennen kuin se voidaan toteuttaa. Sitä varten ovat tarkoitetut Luku V, joka näyttää mitä mekanismit konkreettisesti tekevät ihmisten arjessa, ja Luku VI, joka esittää viisi vipuvartta joiden avulla rakenteet voidaan rakentaa toisin.\n\nReunaehdot eivät neuvottele. Mutta rakenteet ovat ihmisten rakentamia. Sen muistaminen on ainoa lähtökohta josta voidaan jatkaa."
+          }
         }
       ]
     },
@@ -3415,8 +3373,7 @@
                 ]
               }
             ]
-          },
-          "text": "Tähän asti tässä kirjassa on puhuttu rakenteista. Budjettikehyksistä, mittareista, koordinaatiovajeista, polkuriippuvuudesta, demografisesta paineesta. Nämä ovat oikeita käsitteitä — ne kuvaavat, miksi järjestelmä toimii niin kuin toimii. Mutta käsitteet ovat aina vain puolet asiasta. Toinen puoli on se elämä, jota mekanismit muokkaavat.\n\nTässä luvussa ei esitetä uusia argumentteja. Tässä luvussa kuusi tilastollista edustajaa saavat kasvot. He eivät ole oikeita ihmisiä — heidän tilanteensa on koottu tutkimusaineistosta, tilastoista, dokumentoiduista tyyppitilanteista. Mutta jokaisen heistä takana on tuhansia tai satojatuhansia konkreettisia ihmisiä, joiden arki noudattaa samaa logiikkaa.\n\nTämä luku on sen vuoksi, että ei unohdettaisi mistä on kyse."
+          }
         },
         {
           "title": "Maija - 130 000 yksinhuoltajaa",
@@ -3515,8 +3472,7 @@
                 ]
               }
             ]
-          },
-          "text": "Maija on 43-vuotias lähihoitaja. Hän asuu samassa kerrostalossa kuin kymmenen vuotta sitten. Vuokrasopimus on vuodelta 2014 — se on ainoa asia hänen elämässään, johon hän luottaa täysin. Asumistuki on laskettu sen mukaan. Toimeentulotuki täydentää aukon. Elämä on tasapainossa niin kauan kuin mikään ei muutu.\n\nHänellä on kaksi lasta, yhdeksän ja kaksitoistavuotiaat. Maija hoitaa heitä yksin.\n\nMaija ei ole laiska. Hänellä on ammattitutkinto lähihoitajana, kymmenen vuotta kokemusta kotihoidosta, ja hän kykenee organisoimaan arjen kahden lapsen kanssa tiukan budjetin puitteissa niin, että ruoka on päivittäin pöydässä ja laskut maksetaan ajoissa. Se ei ole laiskuutta — se on suurta resurssitehokkuutta olosuhteissa joissa puskuria ei ole.\n\nKolme kuukautta sitten paikallisessa hoivakodissa oli avoimia paikkoja. Kuusi tuntia päivässä, kolme päivää viikossa. Bruttopalkka olisi ollut noin 970 euroa kuukaudessa.\n\nMaija laski. Toimeentulotuki olisi laskenut lähes kokonaan pois — se on tulosidonnainen etuus joka pienenee kymmenellä sentillä jokaista nettotuloon jäävää euroa kohti. Asumistuki olisi pienentynyt. Lastenhoito olisi pitänyt järjestää kahdelle iltapäivälle viikossa. Nettovaikutus parhaimmillaan: noin sata euroa enemmän käteen kuukaudessa.\n\nTämä on optimistinen versio. Pessimistisessä versiossa — joka ei ole edes epätodennäköinen — tukien uudelleenlaskennan viiveen kanssa ensimmäinen kuukausi töissä voisi tuottaa vähemmän kuin toimeentulotuki olisi tuottanut. Etuuksien laskenta vie aikaa. Tuki ei seuraa perässä välittömästi. Jos työsuhde loppuisi koeajan jälkeen, koko prosessi alkaisi alusta.\n\nViikon tulottomuus tarkoittaisi laskujen jättämistä maksamatta tai rahaa lainaamista paikasta josta lainaaminen ei ole mahdollista.\n\nMaija ei ottanut työtä.\n\nHän ei ole järjestelmän epäonnistuminen. Hän on sen logiikan täydellinen tuote — rationaalinen ihminen joka on oppinut lukemaan järjestelmänsä. Hänelle on opetettu että paikallaan pysyminen on turvallisempaa kuin liikkuminen.\n\nVATT:n tutkimusten mukaan noin 300 000 suomalaista on tilanteessa jossa efektiivinen marginaalivero ylittää 80 prosenttia. Heistä suuri osa on yksinhuoltajia ja pienipalkkaisia. Maijan tarina ei ole poikkeuksellinen. Hän on tilastollinen edustaja."
+          }
         },
         {
           "title": "Jukka - 400 000 kroonisesti sairasta",
@@ -3606,8 +3562,7 @@
                 ]
               }
             ]
-          },
-          "text": "Jukalla on tyypin 2 diabetes. Hän on 58-vuotias entinen kuljetustyöntekijä, nyt sairauseläkkeellä selkävaivan takia. Kuukausituloja on noin 1 350 euroa. Hänellä on yksi kaksio Itä-Helsingissä, lainan jäljellä 35 000 euroa, ja huoli että lainan kuoletus pidentää aikaa jonka hän vielä jaksaa elää.\n\nDiabetes vaatii säännöllistä seurantaa. Verensokeri, verenpaine, silmänpohjakuvaukset, jalkahoitajan käynnit, hammashoito. Jokainen näistä on maksullinen. 45 euron jalkahoitajakäynti on Jukan budjetissa noin 3,5 prosenttia kuukauden tuloista. Korkeapalkkaiselle se on alle prosentti. Sama maksu, eri merkitys.\n\nKun joulukuu oli kallis — sähkö nousi, vuokra kerran kolmessa vuodessa korotettiin, kotihoidon ylimääräinen lasku vanhemman äitiään varten — Jukka teki valinnan. Hän siirsi jalkahoitajan käyntiä eteenpäin. Kuukaudella tai kahdella. Sitten kolmella.\n\nJalkahaava ilmestyi maaliskuussa. Pieni rikkoutuminen ihossa kantapään alueella. Diabetes hidastaa paranemista. Tunnottomuus jalkapohjissa hidastaa havaitsemista. Kun Jukka huomasi sen, infektio oli jo syvällä.\n\nSairaalahoito kesti kolme viikkoa. Suonensisäinen antibioottihoito. Pelättiin amputaatiota — onneksi ei tarvinnut. Kustannus järjestelmälle: noin 12 000 euroa.\n\n45 euron säästö kotona tarkoitti 12 000 euron laskua sairaalassa. Kerroin on 267-kertainen.\n\nTämä ei ole Jukan virhe. Hän teki kuukauden budjetissaan järkevän priorisoinnin. Järjestelmä, joka mittaa asiakasmaksutuloja erillään hoitokustannuksista, ei nähnyt että 45 euron asiakasmaksun korottaminen tuotti 12 000 euron lisäkustannuksen myöhemmin.\n\nTHL:n datassa tämä toistuu massassa: alimmassa tulokymmenyksessä ennaltaehkäisevien käyntien vähenemä on 15–20 prosenttia suhteessa ylimpään tulokymmenykseen. Sama laki toimii päinvastoin akuuttihoidossa — pienituloiset käyttävät enemmän päivystystä, koska ennaltaehkäisy on jäänyt väliin. Noin 400 000 pienituloista kroonisesti sairasta tekee Jukan kaltaisia lykkäyspäätöksiä vuosittain.\n\nSäästö näkyy budjetissa heti. Lasku tulee myöhemmin, eri momentilta, eri vuonna. Yhteyttä ei kirjata mihinkään."
+          }
         },
         {
           "title": "Aleksi - 150 000 erityistä tukea tarvitsevaa lasta",
@@ -3688,8 +3643,7 @@
                 ]
               }
             ]
-          },
-          "text": "Aleksi on 9-vuotias. Hänellä on luku- ja kirjoitushäiriö ja keskittymisvaikeuksia, jotka diagnoosin mukaan vaativat erityistä tukea peruskoulussa. Hänellä on virallinen oppimissuunnitelma. Suunnitelmaan on kirjattu: erityisopettajan tukea viisi tuntia viikossa, koulupsykologin arvio kerran lukukaudessa, henkilökohtainen oppimisohjelma matematiikassa ja äidinkielessä.\n\nKäytännössä Aleksi saa erityisopettajan tukea noin tunnin viikossa. Erityisopettajia on koulussa kaksi, oppilaita joilla on tuen tarve, noin 70. Matematiikka on lukuvuoden alusta ilman erityistä tukea, koska erityisopettajan sijaisuus on jäänyt täyttämättä.\n\nAleksin äiti on opettaja. Hän tietää mitä Aleksilla on oikeus saada. Hän on kirjoittanut kolme valitusta lukuvuoden aikana — rehtorille, opetuspäällikölle ja viimeksi aluehallintovirastolle. Vastauksia tulee. Tilanne on monimutkainen, resurssit ovat tiukat, asia otetaan huomioon ensi lukuvuoden suunnittelussa. Tukitunteja ei tule lisää.\n\nAleksin äiti on alkanut käyttää iltansa Aleksin kanssa. Hän opettaa lukutekniikkaa, joka olisi pitänyt opettaa koulussa. Hän etsii työkaluja keskittymisvaikeuksiin. Kun se ei riitä, hän alkaa miettiä yksityistä lukivalmennusta. Se maksaa 80 euroa tunnilta. Hän voi maksaa sen, koska hän on opettaja ja perheessä on toinen tulonsaaja.\n\nLähitalossa asuu Sini, samanikäinen tyttö. Sinilläkin on lukivaikeuksia. Sinin äiti tekee siivousta ja kuljettaa ihmisiä Wolt-kuljetuksina. Hän ei ole kirjoittanut yhtään valitusta — ei siksi ettei välittäisi, vaan siksi että hänellä ei ole aikaa eikä energiaa, eikä hän tiedä mihin valitus pitäisi lähettää. Yksityistä lukivalmennusta hän ei voi ostaa.\n\nSini ja Aleksi käyvät samaa koulua. Heillä on sama diagnoosi ja sama lakisääteinen oikeus. Viiden vuoden päästä Aleksi on luultavasti normaalissa yläkoulussa selviävän tasolla. Sini on todennäköisesti jäänyt jälkeen, eikä sitä enää kuro umpeen.\n\nErityisopettajan vuosikustannus kunnalle on noin 55 000 euroa. Yksi opettaja palvelisi noin 80 oppilasta. Hinta oppilasta kohden on 688 euroa vuodessa. Yhden NEET-nuoren elinikäinen yhteiskunnallinen kustannus on noin 140 000 euroa. Jos varhainen tuki estäisi yhdenkin syrjäytymisen sadasta oppilaasta, investointi maksaisi itsensä takaisin yli kaksisataa kertaa.\n\nTätä laskelmaa ei tehdä kuntien budjettiprosessissa. Budjetti katsoo ensi vuotta, ei seuraavaa vuosikymmentä. Leikkaus näkyy heti säästönä. Kustannus näkyy vasta sitten kun lapset ovat aikuisia — toisessa kunnassa, toisen viranomaisen asiakkaina, toisen hallinnon laskulla."
+          }
         },
         {
           "title": "Niko - 800 000 nuorta asuntomarkkinoiden ulkopuolella",
@@ -3788,8 +3742,7 @@
                 ]
               }
             ]
-          },
-          "text": "Niko on 28-vuotias. Hänellä on tradenomin tutkinto ja viiden vuoden työkokemus markkinointiassistenttina. Hän tienaa 2 700 euroa kuukaudessa, mikä on hänen alallaan tyypillistä. Hän asuu Helsingin Vallilassa kaksiossa josta maksaa vuokraa 950 euroa kuukaudessa.\n\nHän haluaisi oman asunnon. Pankki sanoo: ensimmäisen asunnon ostajalta vaaditaan 15 prosenttia omarahoitusosuutta. Helsingin kaksio maksaa 380 000 euroa, omarahoitus 57 000 euroa.\n\nNiko säästää 250 euroa kuukaudessa. Vuokrasta, ruoasta, opintolainan lyhennyksestä ja elämisestä yli jäävä summa. Hän laskee. 57 000 euroa jaettuna 250 eurolla kuukaudessa on 19 vuotta. Hän olisi 47-vuotias kun omarahoitus olisi kasassa.\n\nVertaa. Hänen isänsä osti ensiasunnon vuonna 1995, 26-vuotiaana. Kaksio maksoi silloin noin 60 000 markkaa, joka oli noin 10 000 euroa. Hänen isänsä palkka oli noin 8 000 markkaa kuukaudessa. Asunnon hinta vastasi noin seitsemää kuukauden palkkaa.\n\nNikon kaksio maksaa 140 kertaa hänen kuukauden palkkansa. Suhde on hänen isäänsä verrattuna kaksikymmenkertainen.\n\nNiko ei elä huonosti. Hän käy ravintoloissa, matkustaa kerran vuodessa, hänellä on harrastuksia. Mutta hän tietää, että hän ei ehkä koskaan omista asuntoa ilman vanhempien tukea. Hänen vanhempansa eivät pysty auttamaan — eläkkeellä eivät ole varakkaita. Niko on luokkansa yksin, ja luokassa on 800 000 muuta hänen kaltaistaan.\n\nTämä vaikuttaa muihin valintoihin. Lapsen hankkiminen taloudessa, jossa molemmilla on määräaikaisia työsuhteita tai jossa vain toinen tienaa, on rationaalisesti hankalaa. Helsingin päivähoito kuukaudessa, asuntolaina kaksiosta jossa lapsen mahduttaa, ansiosidonnaisen vanhempainvapaan ehdot — kaikki on rakennettu olettamukseen vakaasta työsuhteesta ja perityneestä varallisuudesta.\n\nFLUX-tutkimuksen mukaan 82 prosenttia Suomen syntyvyyden laskusta liittyy esikoisten vähenemiseen. Kynnys ensimmäiseen lapseen on noussut. Tämä ei ole arvojen muutos. Se on rationaalinen vastaus taloudelliseen rakenteeseen.\n\nSukupolvinen sopimus on sitä, että jokainen sukupolvi rahoittaa edellisen eläkkeet ja saa vastineeksi oman aikansa turvan. Nikon sukupolvi maksaa enemmän — koska heitä on suhteessa vähemmän kuin eläkkeellä olevia. Heillä on vähemmän omistusta — koska asuntomarkkinat ovat sulkeutuneet. Heitä äänestää vähemmän — koska luottamus järjestelmän kykyyn muuttaa heidän tilannettaan on alhaisempi.\n\nJokainen näistä on yksittäinen rationaalinen vastaus. Yhdessä ne tuottavat sukupolvea joka maksaa enemmän kuin saa, eikä kukaan ole päättänyt tätä erikseen."
+          }
         },
         {
           "title": "Hanna - 350 000 omaishoitajaa",
@@ -3906,8 +3859,7 @@
                 ]
               }
             ]
-          },
-          "text": "Hanna on 56-vuotias. Hän tekee osa-aikatyötä toimistosihteerinä, 25 tuntia viikossa. Loput hänen viikostaan menee 84-vuotiaan isänsä hoitamiseen.\n\nIsä asuu omassa kerrostaloasunnossaan. Hänellä on muistisairaus, joka eteni keskivaikeaksi viime vuonna. Hän tarvitsee apua aamutoimissa, lääkityksessä, ruokailussa ja iltatoimissa. Kotihoito käy aamulla ja illalla — yhteensä noin tunti vuorokaudessa. Loput tunneista, eli noin 22 tuntia päivässä, hoitaa Hanna tai isä yksin.\n\nHanna saa virallisen omaishoidon tuen. Se on 450 euroa kuukaudessa. Hän on laskenut sen suhteessa todelliseen aikaan: noin 3,50 euroa tunnilta.\n\nHanna yöpyy useimpina öinä isän luona. Isä heräilee, sekoittaa yön ja päivän, lähtee toisinaan yön aikana ulos. Hanna nukkuu kerran tunnissa heräileen.\n\nHannan oma terveys on heikentynyt viimeisen kahden vuoden aikana. Verenpaine on noussut. Hän on lykännyt omaa lääkärikäyntiään kolme kertaa, koska aika ei sovi isän hoitoon. Hän on jäänyt pois ystäväpiiristä, koska ei ehdi tai jaksa. Hän on yhä useammin yksin.\n\nHannan tyttäri asuu Tampereella ja yrittää auttaa etänä. Hän hoitaa Kelan paperit, soittelee hyvinvointialueelle, järjestää terveyskeskuksen aikoja, koordinoi kotihoitoa. Tämä työ on satoja tunteja vuodessa, eikä sitä tilastoida eikä korvata.\n\nJaksohoitopaikkaa Hanna olisi saanut viime keväänä. Kahdesta hänen toivomastaan viikosta hän olisi saanut yhden. Mutta jaksohoitopaikkojen jono oli kuusi kuukautta — eikä Hannalla ollut kapasiteettia odottaa kuutta kuukautta.\n\nHannan uupuminen ei tapahdu kerralla — se kumuloituu. THL on arvioinut omaishoitajien vakavassa uupumisvaarassa olevien osuudeksi noin 15 prosenttia vuosittain — noin 52 000 henkilöä.\n\nKun uupuminen tapahtuu, muutos on nopea. Hoidettava siirtyy tehostettuun palveluasumiseen — usein 1–3 vuotta aiemmin kuin muuten olisi tapahtunut. Kustannus yhteiskunnalle kasvaa kerralla 70 000 euroon vuodessa. Hanna jää sairauslomalle, ehkä työkyvyttömyyseläkkeelle.\n\nEnnaltaehkäisy maksaisi noin 7 500 euroa vuodessa — jaksohoito, koordinoitu palvelusuunnitelma, lisätty kotihoito. Tehostettu palveluasuminen maksaa 50 000–80 000 euroa vuodessa. Kerroin on kahdeksankertainen.\n\nInvestointi ei tapahdu, koska säästö syntyy eri budjetissa kuin kustannus. Kunta maksaisi jaksohoitopaikan, hyvinvointialue säästäisi laitoshoitopaikan. Yhteinen rahoitusmotiivi puuttuu rakenteellisesti.\n\nHanna ja kolmesataaviisikymmentätuhatta hänen kaltaistaan kantavat järjestelmää, jonka eivät tunnista heitä. THL:n arvion mukaan omaishoitajat tekevät 60–70 prosenttia kaikesta ikääntyvien hoidosta Suomessa. Ilman heitä järjestelmä romahtaisi muutamassa kuukaudessa. Heille maksetaan 3,50 euroa tunnilta — niille jotka saavat virallista tukea. Suurin osa ei saa mitään."
+          }
         },
         {
           "title": "Leena - 200 000 monisairasta ikäkästä",
@@ -4015,8 +3967,7 @@
                 ]
               }
             ]
-          },
-          "text": "Leena on 82-vuotias. Hänellä on diabetes, eteisvärinä, alkava muistisairaus ja krooninen sydämen vajaatoiminta. Hän asuu omassa kerrostaloasunnossaan Itä-Helsingissä. Mies kuoli neljä vuotta sitten. Lapsia on kaksi, toinen Oulussa, toinen Tampereella.\n\nLeena käyttää säännöllisesti viiden eri organisaation palveluja.\n\nPerusterveydenhuolto seuraa diabeteksen perushoitoa. Erikoissairaanhoidossa hän käy sydänpoliklinikalla kerran puoli vuodessa. Muistipoliklinikka tutkii muistisairauden etenemistä kahdesti vuodessa. Kotihoito käy kahdesti päivässä — aamulla ja illalla. Apteekki toimittaa lääkkeet, joita on yksitoista erilaista.\n\nViime tammikuussa sydänpoliklinikan lääkäri muutti yhden lääkkeen annosta. Tieto kirjattiin sairaalan tietojärjestelmään. Sieltä se kulki paperikirjeellä terveyskeskukseen — kahden viikon viiveellä. Muistipoliklinikalle tieto ei mennyt lainkaan, koska sillä ei ole virallista vastaanottoa lääkitysmuutoksiin sydänpotilailta. Apteekille tieto tuli, koska resepti on sähköinen.\n\nKotihoidon hoitaja, joka käy Leenan luona kahdesti päivässä, ei tiennyt muutoksesta kahteen viikkoon. Hän jakoi lääkkeitä viikoittaiseen dosettiin entisten annosten mukaan. Leena otti väärän annoksen kaksi viikkoa.\n\nOnneksi muutos oli pieni. Mitään dramaattista ei tapahtunut. Mutta Leenan tyttäri Oulussa huomasi muutoksen äidin terveydentilassa, soitti kotihoidolle, kotihoito soitti terveyskeskukseen, terveyskeskus tarkasti Kanta-arkistosta, sieltä löytyi sydänpoliklinikan muutos. Tyttären viisi puhelua kolmen päivän aikana.\n\nTHL:n potilasturvallisuusraportin mukaan noin 7 prosenttia yli 75-vuotiaista potilaista kohtaa vuosittain lääkitysvirheitä, jotka johtuvat koordinaatiopuutteesta — noin 14 000 henkilöä vuodessa. Suurin osa virheistä on korjattavissa. Osa johtaa sairaalahoitoon. Yhteinen nimittäjä on rakenteellinen: tieto ei kulje organisaatiorajojen yli.\n\nLeenan kohdalla tiedonkulku tapahtuu hänen tyttärensä kautta. Tyttärellä on yliopistotutkinto, hän tietää miten kysyä ja keneltä, hänellä on omaa aikaa puhelinten varassa. Naapurissa asuu Anneli, samanikäinen, samoja sairauksia, mutta ilman lapsia tai sukulaisia lähellä. Annelin koordinointi ei tapahdu kenenkään kautta — se yksinkertaisesti ei tapahdu.\n\nKoordinaatiovaje jakautuu eriarvoisesti. Sama järjestelmä, sama palvelukokonaisuus, eri tulos. Kuka selviää riippuu siitä, kuka koordinoi.\n\nRuotsin Tukholman alueella otettiin käyttöön samordnad individuell plan — lakisääteinen velvoite koordinoida monisairaiden iäkkäiden hoito yhdelle vastuuhenkilölle. Tulokset: 32 prosenttia vähemmän päivystyskäyntejä, 18 prosenttia vähemmän sairaalahoitojaksoja. Suomessa tällaista lakisääteistä koordinointivelvoitetta ei ole. Hyvinvointialueuudistus loi rakenteen, jossa koordinointi olisi periaatteessa mahdollista — mutta yhden vastuuhenkilön mallia ei ole toteutettu.\n\nLeenan tytär jatkaa puhelimitse. Annelin kohdalla kukaan ei soita."
+          }
         },
         {
           "title": "Kuvio joka toistuu",
@@ -4079,8 +4030,7 @@
                 ]
               }
             ]
-          },
-          "text": "Kuusi tarinaa, kuusi elämäntilannetta, kuusi väestöryhmää. Pinta on hyvin erilainen — yksinhuoltaja ei muistuta monisairasta iäkästä, lapsen erityistuen vaje ei muistuta nuoren asuntomarkkinaongelmaa.\n\nMutta jos katsoo niiden alle, sama kuvio toistuu jokaisessa.\n\nJokainen kuudesta tekee yksilönä rationaalisen päätöksen. Maija pysyy paikallaan, koska liikkuminen tuottaa pienemmän nettotulon kuin pysyminen. Jukka lykkää jalkahoitoa, koska kuukauden budjetti ei kestä sitä. Aleksin äiti maksaa yksityistä lukivalmennusta. Niko lykkää lapsen hankkimista. Hanna kantaa isäänsä yksin, koska jaksohoitojono on kuusi kuukautta. Leenan tytär koordinoi äidin lääkityksen organisaatioiden välillä.\n\nJokainen näistä on järkevä yksilövalinta annetussa tilanteessa. Yksikään ei ole virhe. Mutta jokainen näistä on samalla seurausta järjestelmästä joka mittaa väärää, optimoi väärää, koordinoi puutteellisesti.\n\nMaija ja Jukka törmäävät rahoituksen logiikkaan, joka näkee tämän vuoden ja optimoi sen. Aleksi ja Sini törmäävät mittareihin, jotka eivät rekisteröi 15 vuoden päässä syntyvää kustannusta. Aleksi, Niko, Hanna ja Leena törmäävät rakenteeseen, jossa kukaan ei omista kokonaisuutta. Aleksin ja Sinin ero, Annelin ja Leenan ero, näyttävät miten kapasiteettivaje jakautuu vahvojen ja heikkojen välillä. Niko on demografisen reunaehdon kasvot. Hanna on luonnonvarana — hoivakapasiteettina — jonka järjestelmä käyttää tietämättä että käyttää.\n\nViisi mekanismia. Kuusi kasvoa. Sama kuvio."
+          }
         },
         {
           "title": "Mitä kasvot eivät kerro",
@@ -4152,8 +4102,7 @@
                 ]
               }
             ]
-          },
-          "text": "On myös tärkeää huomata mitä kasvot eivät yksin kerro.\n\nNe eivät kerro siitä työstä, jota tehdään päivittäin järjestelmän sisällä auttaakseen Maijaa, Jukkaa, Aleksia, Nikoa, Hannaa ja Leenaa. Sosiaalityöntekijät, sairaanhoitajat, opettajat, kotihoidon työntekijät, kuntoutusohjaajat, kuraattorit — kymmeniä tuhansia ammattilaisia, jotka tekevät parhaansa rakenteissa joita he eivät ole rakentaneet. Heidän työnsä on enimmäkseen näkymätöntä juuri siksi, että se toimii. Kun se ei toimi, näkyy vain rakenteen vika.\n\nKasvot eivät kerro myöskään siitä, että suuressa osassa elämäntilanteita Suomi tuottaa erinomaisia tuloksia. Pohjoismainen hyvinvointivaltio on edelleen kansainvälisessä vertailussa vahva. Suomalaiset elävät keskimäärin pidempään, terveempinä ja paremmin koulutettuina kuin useimmat maailman ihmiset. Suuressa osassa tilanteita järjestelmä toimii — niin hyvin että sen toiminta on muuttunut näkymättömäksi.\n\nMutta tämän luvun kuusi tilastollista edustajaa eivät ole reunailmiöitä. Heitä on yhteensä yli kaksi miljoonaa ihmistä — kun lasketaan päällekkäisyydet pois, suurempi joukko kuin Suomen aikuisväestöstä kolmasosa. He eivät ole järjestelmän epäonnistumisia. He ovat sen logiikan ennakoitavia tuotteita.\n\nHeidän tilanteensa ei muutu, ellei muuteta mekanismeja jotka tuottavat sen.\n\nTämä on tämän luvun tarkoitus. Mekanismit eivät ole abstraktioita. Niillä on kasvot. Ja niiden muuttamatta jättäminen tarkoittaa että jokaisen kuuden tarinan toistaminen sukupolvi sukupolvelta, ihminen ihmiseltä, päivä päivältä.\n\nMitä siis voitaisiin tehdä? Sitä käsittelee seuraava luku."
+          }
         }
       ]
     },
@@ -4205,8 +4154,7 @@
                 ]
               }
             ]
-          },
-          "text": "Viidessä edellisessä luvussa on käsitelty viittä mekanismia ja sitä mitä ne tarkoittavat ihmisten elämässä. Tässä luvussa kysytään mitä voidaan tehdä toisin.\n\nYksi asia on huomattava heti. Tämä luku ei esitä kymmentä erillistä politiikkaehdotusta tai listaa hallitusohjelmaan kopioitavissa olevia kohtia. Sellaiset listat ovat olemassa, ja tutkimuslaitokset, ajatushautomot ja eturyhmät tuottavat niitä jatkuvasti. Listoja ei ole pulaa. Pula on rakenteellisesta ajattelusta — siitä miten mekanismeja muutetaan, ei siitä mitä yksittäisiä asioita tehdään.\n\nLuku järjestyy siksi viideksi vipuvarreksi. Jokainen vipuvarsi puuttuu yhteen mekanismeista. Yhdessä ne muodostavat sen, mitä Suomi voi tehdä — ei utopia, ei minimalismi, vaan kokonaisuus joka kunnioittaa sekä reunaehtoja että mahdollisuuksia.\n\nKaikki esimerkit, joita esitellään, ovat olemassa jossakin maassa. Mikään niistä ei ole keksimäni. Tämä on tarkoituksellista. Suomi ei tarvitse uutta utopiaa. Se tarvitsee opin niistä, joka ovat jo rakentaneet toisin."
+          }
         },
         {
           "title": "Ensimmäinen vipuvarsi: Rahoituslogiikka",
@@ -4287,8 +4235,7 @@
                 ]
               }
             ]
-          },
-          "text": "Rahoituslogiikka, joka palkitsee liikkumista ja erottaa investoinnin kulutuksesta.\n\nMaija laski ja ei ottanut työtä. Hän teki rationaalisen päätöksen järjestelmässä joka rankaisi liikkumista. Vuonna 2017 Suomi teki jotain mitä yksikään EU-maa ei ollut kansallisessa mittakaavassa uskaltanut. Se maksoi kahdelle tuhannelle pitkäaikaistyöttömälle perustuloa 560 euroa kuukaudessa, ehdoitta, riippumatta siitä ottiko työtä vai ei.\n\nTulokset olivat kiistanalaisia, mutta yksi asia oli selvä. Perustuloa saaneet voivat paremmin — vähemmän stressiä, parempia terveysmittareita, enemmän luottamusta tulevaisuuteen. Eivätkä he lopettaneet työnhakua. Itse asiassa he työskentelivät marginaalisesti enemmän kuin verrokkiryhmä, erityisesti itsenäisinä yrittäjinä ja osa-aikatyöntekijöinä. Tanska on rakentanut koko työvoimajärjestelmänsä samalle oivallukselle: kun polku ei rankaise muutoksesta, ihminen liikkuu.\n\nKonkreettinen muutos on yksinkertainen periaate. Ensimmäiset 400–500 euroa kuukaudessa ansaittua palkkaa eivät leikkaa perusturvaa lainkaan. Sen jälkeen leikkautuminen alkaa loivasti. Maijalla olisi varmuus siitä että työ kannattaa.\n\nTämän rinnalla tarvitaan toinen, syvempi muutos: investoinnin ja kulutuksen erottaminen budjetissa. Tällä hetkellä neuvola, erityisopetus, koulupsykologi ja perhetyöntekijä näyttäytyvät budjetissa kuluna — samalla rivillä kuin akuuttihoidon kasvavat menot, jotka näiden palvelujen alirahoitus tuottaa. Tämä on kirjanpitovirhe, jolla on rakenteelliset seuraukset.\n\nEnnaltaehkäisevät palvelut ovat investointeja. Niiden tuotto on dokumentoitu — Britanniassa Early Intervention Foundationin laskelmien mukaan jokaisesta punnasta varhainen puuttuminen tuottaa 3–10 punnan säästön myöhemmissä kriisikuluissa. Suomessa Oulun perhepalvelukeskuksissa raskaan lastensuojelun tarpeen kasvu hidastui mitattavasti vertailukaupunkeihin nähden 2010-luvulla.\n\nKonkreettinen muutos on luokitusmuutos. Investointiluonteiset menot — varhaiskasvatus, oppimissuunnitelmien toteuttaminen, neuvolakäynnit, mielenterveyden peruspalvelut — luokitellaan investoinneiksi joiden leikkaaminen vaatii elinkaarivaikutusarvion. Tämä ei estä leikkauksia. Se pakottaa kysymään niiden hinnan ennen päätöstä.\n\nEU:n uudistetut budjettisäännöt 2023–2024 tunnustavat tämän periaatteen. Investointiklausuuli antaa jäsenmaille liikkumavaraa dokumentoituihin pitkän aikavälin investointeihin. Espanja käyttää sitä. Saksa käyttää sitä omiin tarkoituksiinsa. Suomi on toistaiseksi käyttänyt sitä vain rajallisesti. Kyse ei ole sääntöjen rikkomisesta. Kyse on sallitun liikkumavaran käyttämisestä."
+          }
         },
         {
           "title": "Toinen vipuvarsi: Mittarit, jotka näkevät mitä merkitsee",
@@ -4369,8 +4316,7 @@
                 ]
               }
             ]
-          },
-          "text": "Henna mittasi tapauksia. Järjestelmä opetti hänet mittaamaan tapauksia — ei siksi että kukaan ajatteli sen olevan hyvä idea, vaan siksi että tapaukset ovat helpommin laskettavia kuin se, onko lapsi turvassa.\n\nUudessa-Seelannissa hallitus julkisti 2019 ensimmäisen hyvinvointibudjetin. Treasury kehitti ”Living Standards Framework” -mallin, jossa hyvinvointi jaettiin neljään ulottuvuuteen: nykyinen hyvinvointi, tulevaisuuden hyvinvointi, luonnonpääoma ja sosiaalinen pääoma. Jokainen budjettipäätös arvioidaan tätä vasten ennen hyväksymistä. BKT:n kasvu on yksi mittari muiden joukossa, ei enää ylin tavoite.\n\nMuutos näkyi konkreettisissa päätöksissä. Mielenterveyspalveluihin ohjattiin 1,9 miljardia Uuden-Seelannin dollaria neljälle vuodelle — ennätyksellisen suuri investointi, koska hyvinvointimittarit osoittivat selkeän aukon. Hollanti on rakentanut ”brede welvaart” -mittariston, joka mittaa nykyistä elintasoa, tulevaisuuden kapasiteettia ja Hollannin vaikutusta muihin maihin. Tilastokeskus tuottaa siitä vuosittaisen raportin, joka on toimitettu eduskunnan käsittelyyn budjettikeskustelun yhteydessä.\n\nSuomessa THL:llä, Tilastokeskuksella ja Sitralla on jo mittariston perusta. Kuntien hyvinvointikertomukset laaditaan lakisääteisesti. Sitra on tehnyt arvokasta työtä kansallisen hyvinvointimittariston rakentamisessa. Mikään näistä ei kuitenkaan kytkeydy budjettiprosessiin eikä ohjaa rahankäyttöä.\n\nKonkreettinen muutos on kytkennän luominen. Hallituksen budjettiesityksessä jokainen yli 50 miljoonan euron menomuutos arvioidaan suhteessa keskeisiin hyvinvointimittareihin. Mitä päätös tekee lapsiperheiden taloudelliselle turvallisuudelle, nuorten mielenterveydelle, ikääntyneiden toimintakyvylle, alueiden väliselle tasa-arvolle. Päätöstä ei pakoteta muuttamaan arvioinnin perusteella, mutta arviointi tehdään ja julkaistaan. Tieto muuttaa päätösprosessia pelkällä läpinäkyvyydellään.\n\nTähän kytkeytyy toimintakykyindeksi. Mittariston rakenteellinen oivallus on yksinkertainen mutta vaikuttava. Ikääntyminen ei ole sama asia kuin toimintakyvyn menetys. Tilastokeskuksen data osoittaa että 35 prosentilla 60–64-vuotiaista työsuhteen ulkopuolelle jäämisen syy on terveysrajoite — ei haluttomuus. Toimintakykyindeksi mittaa sitä mitä todella tarvitsee mittaamista: kuka kykenee jatkamaan, ja kenellä on tukea tarvittaessa. Ilman tätä mittausta jokainen eläkeuudistus on kustannussiirtymä, jossa työkyvyttömät siirtyvät yhdestä etuusbudjetista toiseen.\n\nEräs mittariston ongelma on aika-askel. Hyvinvointimittarit kerätään usein joka neljäs vuosi. Iso-Britanniassa henkilökohtainen hyvinvointikysely tehdään neljännesvuosittain osana kansallista tilastointia. Tämä mahdollistaa reagoinnin myös silloin kun suunta kääntyy väärään ennen kuin se on kriisi.\n\nMitä mitataan, se ohjaa päätöksiä. Jos mittarit ovat väärät, päätökset menevät väärään suuntaan."
+          }
         },
         {
           "title": "Kolmas vipuvarsi: Rakenteet, joissa joku omistaa kokonaisuuden",
@@ -4451,8 +4397,7 @@
                 ]
               }
             ]
-          },
-          "text": "Leena soittaa neljään eri numeroon. Tieto ei kulje sydänpoliklinikalta muistipoliklinikalle, ei muistipoliklinikalta kotihoitoon, ei kotihoidolta apteekkiin. Hänen tyttärensä Oulussa koordinoi puhelimitse. Naapurin Annelilla ei ole tytärtä. Koordinointi ei tapahdu kenenkään kautta — se yksinkertaisesti ei tapahdu.\n\nRuotsissa on vuodesta 2010 ollut lakisääteinen velvoite koordinoituun yksilölliseen suunnitelmaan — samordnad individuell plan — kaikissa tilanteissa, joissa asiakas tarvitsee sekä sosiaalitoimen että terveydenhuollon palveluita samanaikaisesti. Nämä kaksi tahoa kokoontuvat yhteen, laativat yhteisen suunnitelman ja nimeävät vastuuhenkilön — yhden ihmisen, johon asiakas voi soittaa.\n\nSuomi teki vuonna 2023 historiallisen päätöksen. Hyvinvointialueuudistuksessa sosiaalipalvelut ja terveydenhuolto yhdistettiin saman organisaation alle. Tämä on rakenteellisesti oikea siirto. Mutta pelkkä organisaatiofuusio ei riitä. Kahden vuoden jälkeen toimintakulttuurit, omat budjetit, omat johtamisrakenteet ja omat ammatilliset koulutuspolut ovat säilyneet erillisinä.\n\nKonkreettinen muutos on lakisääteinen koordinointivelvoite, joka tunnistaa monipalveluasiakkaat ja nimittää heille vastuuhenkilön. Yksi ihminen pitää kokonaiskuvaa, varmistaa tiedonkulun, ja on vastuussa siitä että eri palvelut toimivat yhteen.\n\nKoordinaation suurin rakenteellinen este ei kuitenkaan ole tahto. Se on talous. Jos kunta investoi varhaiseen perhetyöhön ja säästö syntyy hyvinvointialueen lastensuojelumenoissa, investoinnin tekijällä ei ole taloudellista kannustinta. Sama logiikka toistuu kaikkialla: säästäjä ei hyödy säästöistään, ja vastuullinen toimija ei kontrolloi rahaa.\n\nTämän kierteen ydinratkaisu on säästönjakomekanismi. Britanniassa pooled budgets -malli ja Hollannin integraatiojärjestelyt ovat osoittaneet, että kun eri rahoittajien — kunnan, hyvinvointialueen, Kelan — osuudet pooltautuvat yhteen rahoituskehykseen niiden asiakkaiden osalta joilla on monisektorinen palvelutarve, koordinaatio muuttuu rationaaliseksi. Suomessa vastaava pilotti kolmella hyvinvointialueella 2027–2029 tuottaisi tarvittavan näytön.\n\nHoivassa sama logiikka näkyy konkreettisimmin. Sirpan äiti on samanaikaisesti kunnan, hyvinvointialueen ja Kelan asiakas — kolmena eri kulueränä, kolmella eri suunnitelmalla. Yhteisöllinen hoiva-asuminen — Hollannin Humanitas-malli, Tanskan seniorikortteli, Ruotsin trygghetsboende — on ratkaisu, joka on dokumentoidusti halvempi kuin laitoshoito. 25 000 uuden hoiva-asunnon investointi maksaa noin 3 miljardia euroa kymmenessä vuodessa. Säästö on yli 600 miljoonaa euroa vuodessa kun kaikki asunnot ovat käytössä. Takaisinmaksuaika on alle 15 vuotta — ja sen jälkeen järjestelmä tuottaa nettosäästöä pysyvästi.\n\nInvestointi ei tapahdu nykyisellä rakenteella, koska säästö syntyy eri budjetissa kuin kustannus. Säästönjakomekanismi muuttaa kannustinrakenteen niin, että ennaltaehkäisystä tulee taloudellisesti rationaalista."
+          }
         },
         {
           "title": "Neljäs vipuvarsi: Politiikka, joka näkee sukupolvet ja käyttää liikkumavaran",
@@ -4542,8 +4487,7 @@
                 ]
               }
             ]
-          },
-          "text": "Vuonna 1993 Suomessa otettiin käyttöön varhaiseläke. Se oli inhimillinen vastaus lamaan — keino pehmentää iskua niille, jotka olivat rakentaneet elämänsä työn varaan ja joiden oli pakko lähteä ilman varoitusaikaa. Järjestelmä oli suunniteltu kestämään laman yli, tilapäiseksi puskuriksi. Se jäi pysyväksi rakenteeksi.\n\nPöydässä istui kaksi sukupolvea. Ne, jotka tekivät päätöksen. Ne, jotka hyötyivät välittömästi. Kolmas sukupolvi ei ollut pöydässä lainkaan. He olivat silloin lapsia ja teini-ikäisiä. Heitä ei kuultu, koska he eivät vielä äänestäneet.\n\nTämä ei ollut pahantahtoinen teko. Se oli rakenteellinen sokeus. Järjestelmässä ei ollut mekanismia joka olisi pakottanut kysymään: kuka maksaa tämän kahdenkymmenen vuoden päästä?\n\nRuotsi kohtasi saman ongelman 1990-luvun alussa. Eläkejärjestelmä oli kestämätön, väestö vanhenee, poliittinen tahtotila uudistukseen puuttui. Ratkaisu ei löytynyt vaalikampanjoista vaan rakenteesta. Kaikki eduskuntapuolueet sopivat yhdessä uudesta eläkejärjestelmästä, joka automatisoitiin demografisten muutosten mukaan. Sopimus tehtiin niin, ettei yksikään hallitus pystyisi purkamaan sitä yksin.\n\nKonkreettinen muutos on parlamentaarinen demografiasopimus, joka sisältää kolme komponenttia. Sukupolvittainen kustannuslaskenta — mitä kukin ikäryhmä maksaa järjestelmään ja mitä se saa, läpinäkyvästi, vuosittain päivitettynä. Sitova nuorisoinvestointiohjelma — tietty osuus julkisista investoinneista kohdistetaan alle 18-vuotiaiden palveluihin, riippumatta hallitusohjelman painotuksista. Sukupolvivaikutusarviointi — kaikki merkittävät budjettipäätökset vaativat arvion siitä, miten ne jakavat kustannukset ja hyödyt eri sukupolvien välillä. Sopimus tarkistetaan joka kahdeksas vuosi — ei joka neljäs. Tarkistusrytmi katkaisee vaalikausilogiikan.\n\nTähän kytkeytyy toinen kysymys: EU:n liikkumavaran käyttö. Sarin poika Eetu odottaa luokassa erityisopettajaa jota ei tule tarpeeksi. Ketju johtaa valtionosuusleikkauksiin, kansalliseen kehysmenettelyyn ja EU-sääntöjen tulkintaan. Mutta ketjun viimeinen lenkki ei ole Bryssel. Se on kansallinen valinta siitä, miten liikkumavaraa käytetään.\n\nRanska on ylittänyt EU:n finanssipoliittisia tavoitteita säännöllisesti — tietoisesti vedoten kansalliseen investointitarpeeseen. Ranska on saanut virallisia muistutuksia mutta ei kertaakaan konkreettisia taloudellisia sanktioita. Sanktiomenettelyä ei ole kertaakaan viety loppuun yhtäkään suurta euroalueen jäsenmaata vastaan. Espanja investoi voimakkaasti uusiutuvaan energiaan ja sosiaalisiin ohjelmiin tulkitsemalla investointiklausuulia aktiivisesti. Saksa ajoi vuoden 2012 finanssipoliittisen sopimuksen tiukat säännöt — ja sai sitten itse poikkeuksen kun tarvitsi.\n\nSuomi on valinnut tiukimman mahdollisen tulkinnan. Tämä on tietoinen valinta, ei EU:n pakottama välttämättömyys. Mallioppilaan asema on tuottanut hyötyjä — Suomen luottokelpoisuus on erinomainen, velkakirjoilla on matalat korot. Mallin hinta on kasvanut. Kun muut investoivat ja Suomi leikkaa, kuilu kasvaa — ei vain taloudellisena kuiluna, vaan hyvinvoinnissa, osaamisessa ja tulevaisuuden kapasiteetissa.\n\nKonkreettinen muutos on investointiklausuulin aktiivinen käyttö. Tämä ei vaadi EU:n sääntöjen muuttamista. Se vaatii poliittisen päätöksen tulkita olemassa olevia sääntöjä aktiivisemmin — kuten Ranska, Saksa ja Espanja tekevät. Kansallinen koordinaatiorakenne EU-rahoitukselle on toinen askel. Suomi hyödyntää EU:n rakennerahastoja, InvestEU:ta ja Horisontti Eurooppaa selvästi vähemmän kuin monet muut jäsenmaat. Jokainen EU-euro, jonka Suomi jättää hyödyntämättä, on jaettu muille."
+          }
         },
         {
           "title": "Viides vipuvarsi: Kantokyvyn rakentaminen - puskurit ja pysyvä pääoma",
@@ -4642,8 +4586,7 @@
                 ]
               }
             ]
-          },
-          "text": "Suomi vanhenee laskettavalla nopeudella. Maailman epävakaus on uusi normaali. Pandemia, geopoliittinen murros ja energiakriisi kuluttivat samanaikaisesti samaa järjestelmää. Tehokkuusparadigma — just-in-time, optimointi, ylimääräisen kapasiteetin pois leikkaaminen — toimii vakaissa oloissa. Se hajoaa, kun normaalitilanne poikkeaa odotuksesta.\n\nViro menetti valtionsa 50 vuodeksi. Kun se itsenäistyi uudelleen 1991, sillä ei ollut vanhaa hallintoa purettavana. Se rakensi kaiken alusta. Tehtiin tietoinen päätös digitaalisen hallinnon rakentamisesta hajautetusti — niin ettei mikään yksittäinen järjestelmän osa ole korvaamaton. Vuonna 2007, kun Venäjä hyökkäsi Viroon massiivisella kyberhyökkäyksellä, järjestelmä kesti. Ei täydellisesti — mutta se ei romahtanut, ja hyökkäyksestä opittiin.\n\nSuomella on pitkä perinne kriisinkestävyydessä. Huoltovarmuus on maailmanluokan tasoa. Sosiaalinen kriisinkestävyys — järjestelmän kyky selvitä ihmisten kriiseistä ilman että rakenne itse romahtaa — on ohuempi. Pandemia osoitti tämän konkreettisesti. Sosiaaliturvajärjestelmä ei pystynyt käsittelemään ennennäkemätöntä hakijamäärää ilman merkittäviä viiveitä. Hoiva-alan henkilöstövaje kärjistyi nopeasti kriisiksi.\n\nKonkreettinen muutos on puskurirakenteiden rakentaminen. Henkilöstöpuskuri — sosiaali- ja terveyspalveluiden henkilöstömitoitus suunnitellaan niin että normaalioloissa on hieman ylimääräistä kapasiteettia. Tietojärjestelmien resilienssi — hyvinvointialueiden tietojärjestelmät rakennetaan tavalla joka kestää häiriöt, hajautetusti, niin ettei yksi solmupisteen kaatuminen kaada koko rakennelmaa. Säännölliset kriisiharjoitukset sosiaali- ja terveysjärjestelmässä, samaan tapaan kuin maanpuolustusharjoitukset.\n\nPuskureiden rinnalla tarvitaan pysyvä rahoituslähde investoinneille jotka eivät mahdu vuosibudjettiin. Tähän tarjoaa vastauksen luonnonvararahasto.\n\nNorja löysi öljyä 1960-luvun lopulla. Vuonna 1990 perustettiin Valtion öljyrahasto. Perusperiaate on yksinkertainen. Öljytulojen pääomaa ei käytetä lainkaan. Julkiseen talouteen ohjataan vain sijoitusten reaalituotto. Pääoma on koskematon. Tänään rahasto on yli 1 700 miljardia dollaria.\n\nSuomella ei ole öljyä mutta sillä on litiumia, nikkeliä, kobolttia ja kuparia joiden kysyntä kasvaa kiihtyvällä tahdilla maailman sähköistyessä. Vesivoimaa, makeaa vettä, metsää jonka korkean jalostusasteen tuotteet tuottavat moninkertaisesti enemmän kuin raakapuun vienti. Nämä ovat kertaluonteisia. Kun litium käytetään, se on käytetty. Kun metsä hakataan, sen uudelleen kasvattaminen kestää.\n\nSuomen budjettiarkkitehtuuri ei tee tätä eroa. Kaivosrojaltti käsitellään kuten ansiotuloverotulo — se tulee sisään, jaetaan, kulutetaan, vuosi loppuu, pääoma on poissa. Jäljellä on tyhjä kaivos ja kunta joka odotti muutakin. Asiaa pahentaa se että Suomi perii luonnonvaroistaan kansainvälisesti poikkeuksellisen alhaista korvausta. Suomen kaivoslaki ei sisällä prosenttipohjaista louhintarojaltia. Useimmissa kaivosmaissa tällainen rojaltti on 2–8 prosenttia louhitun mineraalin arvosta.\n\nKonkreettinen muutos on Suomen luonnonvararahasto Norjan periaatteella. Pääomaa ei käytetä, vain sijoitusten reaalituotto. Tuoton korvamerkintä kahteen kohteeseen jotka ovat juuri niitä menoja joihin vuosibudjetti ei pysty: kaksi kolmasosaa lakisääteiseen ennaltaehkäisyrahastoon — neuvolatoiminta, koulupsykologi, varhainen lastensuojelu, mielenterveyden peruspalvelut. Yksi kolmasosa palautuu laskennallisena osuutena niille alueille joista luonnonvara on peräisin. Ei harkinnanvaraisesti — automaattisesti, prosenttiosuutena tuotosta.\n\nRahaston ratkaisevin yksityiskohta on sen perustuslaillinen suoja. Yksikään yksittäinen hallitus ei pysty käyttämään pääomaa kriisirahana tai jakamaan sitä vaalilupauksina. Norja ei rakentanut pelkästään rahastoa. Se rakensi instituution joka teki pitkäjänteisyydestä ainoan mahdollisen politiikan."
+          }
         },
         {
           "title": "Viisi vipuvartta yhdessä",
@@ -4679,8 +4622,7 @@
                 ]
               }
             ]
-          },
-          "text": "Yhdistettynä nämä viisi vipuvartta puuttuvat järjestelmän viiteen mekanismiin. Rahoituslogiikka, joka erottaa investoinnin kulutuksesta ja palkitsee liikkumista. Mittarit, jotka näkevät mitä merkitsee. Rakenteet, joissa joku omistaa kokonaisuuden ja säästönjakomekanismi muuttaa kannustimet. Politiikka, joka käyttää sukupolvien välisen sopimuksen ja EU-liikkumavaran. Kantokyky, jossa puskurit suojaavat kriiseiltä ja luonnonvararahasto luo pysyvän pääoman.\n\nNämä eivät ole erillisiä reformeja. Ne ovat yksi rakenteellinen uudelleenajattelu, joka jakautuu viideksi vipuvarteksi. Jokainen niistä yksin on riittämätön. Yhdessä ne muodostavat sen, mitä järjestelmä tarvitsee ollakseen valmis tämän vuosikymmenen tarpeisiin.\n\nNe eivät tee tämä tehtävää helpoksi. Jokainen niistä on poliittisesti vaativa — vaatii rahaa, hallinnollista työtä, kompromisseja, vaikutuksen jakamista. Kukin niistä kohtaa vastustusta niiltä joiden nykyiset edut ovat järjestelmän tuottamia. Niillä on kuitenkin yksi yhteinen piirre. Ne ovat mahdollisia. Ne ovat olemassa jossakin maassa, jossain muodossa, jollain tasolla. Ne eivät vaadi keksintöä — ne vaativat oppimista."
+          }
         },
         {
           "title": "Muutos ei tapahdu vaalikampanjoissa",
@@ -4779,8 +4721,7 @@
                 ]
               }
             ]
-          },
-          "text": "On vielä yksi asia johon tämä luku ei voi olla puuttumatta. Se kuinka muutos oikeasti tapahtuu.\n\nVuosi 1972. Eduskunta äänestää peruskoulusta. Vastustus on voimakasta. Uudistus tehdään silti — ei kerralla, vaan asteittain, alueelta alueelle. Kymmenen vuotta myöhemmin peruskoulu on itsestäänselvyys.\n\nRuotsissa 1994. Viisi puoluetta sopii eläkeuudistuksesta laman pohjalla. Sopimus tehdään niin, ettei yksikään hallitus pysty purkamaan sitä yksin.\n\nVirossa 1991. Digitaalinen hallinto rakennetaan tyhjältä pöydältä. Pakko muuttuu mahdollisuudeksi.\n\nIslannissa 2000. Data ohjaa nuorisotyötä. Kymmenen vuotta myöhemmin nuorisorikollisuus on puolittunut.\n\nNorjassa 1990. Öljyrahasto rakennetaan rakenteeksi joka tekee pitkäjänteisyydestä ainoan mahdollisen politiikan.\n\nHelsingissä 2000-luvun alku. Positiivinen diskriminaatio kouluissa. Koulu jonka oppilailla on enemmän haasteita saa enemmän resursseja.\n\nOulussa 2010-luku. Perhepalvelukeskukset. Raskaan lastensuojelun tarpeen kasvu hidastuu mitattavasti vertailukaupunkeihin nähden.\n\nNämä eivät ole utopioita. Ne ovat oikeita paikkoja, oikeita päätöksiä, oikeita ihmisiä, jotka päättivät rakentaa toisin.\n\nNiissä toistuu kolme mekanismia. Reformiikkuna — muutos on helpompi tehdä kriisin tai suuren rakenteellisen siirtymän yhteydessä. Suomen lama 1990-luvulla, hyvinvointialueuudistus 2023, sosiaaliturvan kokonaisuudistus joka on edessä. Koalitio joka ylittää puoluerajat — ei ideologisella yhtenäisyydellä vaan yhteisillä intresseillä. Ennaltaehkäisyn talouslogiikka kiinnostaa sekä hyvinvointiajattelijaa että budjettikuria arvostavaa. Pienet askeleet, nopea oppiminen, skaalaus — Islannin nuorisoohjelma aloitti yhdestä kaupungista. Pilotointi on parempi lähestymistapa kuin suuri kertaratkaisu."
+          }
         },
         {
           "title": "Investointi ihmisiin on säästö",
@@ -4834,8 +4775,7 @@
                 ]
               }
             ]
-          },
-          "text": "Maija, Jukka, Aleksi, Niko, Hanna, Leena — he eivät ole järjestelmän epäonnistumisia. He ovat sen tuotteita. Järjestelmän joka on rakennettu niin kuin se on rakennettu, ei kenenkään yksittäisen tahdon, vaan päätösten kerrostumisen tuloksena vuosikymmenien kuluessa.\n\nHeidän tilanteensa ei muutu ellei muuteta mekanismeja jotka tuottavat sen. Vipuvarsi vipuvarrelta, askel askeleelta, koko järjestelmä rakennetaan toisin tai jätetään rakentamatta. Edellinen on vaikeaa. Jälkimmäinen on kalliimpaa.\n\nSuomalaiset rakensivat Kelan, neuvolan ja peruskoulun. He rakensivat huoltovarmuuden, jota maailma ihailee. He rakensivat luottamuksen, joka on yksi yhteiskunnan tärkeimmistä perustoista.\n\nJärjestelmät ovat ihmisten rakentamia. Mikä on rakennettu, voidaan rakentaa uudelleen.\n\nMutta milloin järjestelmät todella muuttuvat? Sitä käsittelee päätösluku."
+          }
         }
       ]
     },
@@ -4914,8 +4854,7 @@
                 ]
               }
             ]
-          },
-          "text": "Tasapainot eivät murru kun ne pitäisi murtua, vaan kun niitä on kalliimpi ylläpitää kuin korvata.\n\nSyyskuun 16. päivänä 1992 Iso-Britannia joutui hylkäämään punnan kiinteän vaihtokurssin. Tapahtuma tunnetaan mustana keskiviikkona. Sitä ennen Englannin pankki oli käyttänyt miljardeja punnan puolustamiseen. Silti punta romahti.\n\nEi siksi ettei järjestelmässä olisi ollut älyä tai sitoutumista. Järjestelmässä oli molempia. Vaan siksi että kiinteän kurssin ylläpitämisen kustannus kasvoi suuremmaksi kuin sen hylkäämisen kustannus, ja kun se raja ylittyi, koko rakennelma purkautui viikonlopussa.\n\nSama logiikka toistuu läpi lähihistorian. Neuvostoliitto oli länsitutkijoiden enemmistön mielestä vakaa vielä vuonna 1987. Suomen pankkijärjestelmä oli hyvällä pohjalla vielä vuonna 1989. Berliinin muuri seisoi neljäkymmentäkahdeksan tuntia ennen kuin se kaatui.\n\nJärjestelmät jotka näyttävät muuttumattomilta eivät ole muuttumattomia. Ne ovat tasapainossa — tasapainossa joka voi murtua nopeasti, kun riittävän moni sen ylläpitäjä laskee, että ylläpitäminen on kalliimpaa kuin luopuminen.\n\nSuomalainen hyvinvointijärjestelmä on tasapainossa. Tässä kirjassa on kuvattu sen mekanismit, sen inhimilliset kustannukset ja sen rakenteelliset epälogiisuudet. Kuvaus ei ole väite muutoksen väistämättömyydestä. Se on kuvaus siitä, miksi tasapaino on hauras.\n\nTämä päätösluku kysyy yhden ainoan kysymyksen. Milloin se murtuu — ja miksi juuri nyt?"
+          }
         },
         {
           "title": "Miksi rationaaliset toimijat ylläpitävät irrationaalista järjestelmää",
@@ -4996,8 +4935,7 @@
                 ]
               }
             ]
-          },
-          "text": "Ennen kuin puhutaan muutoksesta, on ymmärrettävä pysyvyys.\n\nSuomalainen hyvinvointijärjestelmä on jumissa siksi, että jokainen sen keskeinen toimija käyttäytyy järkevästi omassa kannustinrakenteessaan, vaikka kokonaisuus on epäoptimaalinen.\n\nPuolueet optimoivat vaalimenestystä neljän vuoden sykleissä. Rakenneuudistus tuottaa siirtymäkustannuksia ennen kuin tuottaa hyötyjä. Hyödyt näkyvät usein vasta seuraavalla hallituskaudella tai sen jälkeen. Rationaalinen puolue välttää muutosta jolla on selvä poliittinen hinta ja epäselvä poliittinen hyöty.\n\nViranomaiset optimoivat omia budjettejaan ja mandaattiaan. Koordinaatio muiden sektoreiden kanssa vie resursseja omalta sektorilta ilman selkeää vastinetta oman organisaation mittareissa. Rationaalinen virasto rakentaa siiloja suojakseen.\n\nMinisteriöt optimoivat sektoriaan. Poikkihallinnollinen yhteistyö lisää epävarmuutta, vähentää kontrollia ja hämärtää vastuita. Rationaalinen ministeriö suojaa omaa reviiriään.\n\nÄänestäjät reagoivat konkreettisiin leikkauksiin paljon voimakkaammin kuin epämääräisiin rakenteellisiin hyötyihin. Jos hallitus ajaa reformin joka lyhyellä aikavälillä näyttää säästöiltä mutta pitkällä aikavälillä parantaa palveluita, äänestäjät rankaisevat ensin ja palkitsevat myöhemmin. Rationaalinen äänestäjä suojaa nykyetujaan.\n\nTätä ei tule lukea moraalisena syyttelynä. Nämä toimijat tekevät juuri sitä mitä järjestelmä heiltä odottaa. Ongelma ei ole toimijoissa. Se on kannustinrakenteessa joka maksimoi lyhyen aikavälin poliittista vakautta tuottamalla pitkän aikavälin hyvinvointitappioita.\n\nMuutos tulee vasta kun tämä laskelmointi muuttuu."
+          }
         },
         {
           "title": "Kolme painetta",
@@ -5087,8 +5025,7 @@
                 ]
               }
             ]
-          },
-          "text": "Suomessa laskelmointi on muuttumassa kolmesta suunnasta samanaikaisesti.\n\nDemografia on ensimmäinen. Huoltosuhteen heikkeneminen ei ole ennuste vaan laskutoimitus, koska väestö- ja ikärakenne tiedetään. Nykyinen rahoitusmalli rakentuu työssäkäyvän väestön veropohjalle joka kutistuu automaattisesti ja ennustettavasti. Vuoteen 2040 mennessä nykyisellä mallilla ei ole aritmeettista ratkaisua ilman palveluleikkauksia, verojen merkittävää korottamista tai rahoituslogiikan muutosta.\n\nJokainen näistä kolmesta vaihtoehdosta on poliittisesti tuskallinen. Nykyinen malli kuitenkin leikkaa, korottaa veroja ja on silti rakenteellisesti kestämätön. Siksi rahoituslogiikan muutos ei ole idealismia. Se on realistisin — ja vähiten tuskallinen — vaihtoehto.\n\nJulkisen talouden kapasiteetti on toinen. Suomi velkaantuu. Pandemia, puolustusmenojen kasvu ja ikääntymisen kustannukset kilpailevat samoista euroista samaan aikaan. Tässä tilanteessa kallis reaktiojärjestelmä joka odottaa ongelmien eskaloitumista ennen kuin puuttuu niihin, ei enää ole poliittisesti kestävä.\n\nEnnaltaehkäisy on jo pitkään ollut järkevää. Euro ennaltaehkäisyssä tuottaa moninkertaisena takaisin. Se ei ole riittänyt. Nyt ennaltaehkäisyn logiikka muuttuu pakolliseksi rahoituksen paineessa. Kun rahaa on vähemmän, kalliita kriisejä ei yksinkertaisesti enää ole varaa tuottaa.\n\nPalvelujärjestelmän ylikuormitus on kolmas. Hoitajapula, lääkäripula, sosiaalityöntekijöiden uupuminen ja vaihtuvuus eivät ole tilapäisiä häiriöitä. Ne ovat järjestelmän rakenteellisen ylikuormituksen oireita. Kun kapasiteetti romahtaa riittävän alas, järjestelmä ei enää pysty edes reaktiiviseen tehtäväänsä.\n\nSiinä vaiheessa koordinaatio, palveluintegraatio ja ennaltaehkäisy eivät enää ole idealistisia kehittämiskohteita. Ne ovat ainoa keino jatkaa toimintaa.\n\nNämä kolme painetta eivät toimi erillisinä vektoreina. Ne ruokkivat toisiaan. Demografinen paine lisää julkisen talouden kuormaa. Julkisen talouden paine pakottaa leikkaamaan kapasiteettia. Kapasiteettivaje pahentaa palvelukriisin, joka lisää pitkän aikavälin kustannuksia, jotka pahentavat julkisen talouden tilannetta. Yhdessä ne rakentavat reformipakon — tilanteen jossa järjestelmätason muutos tulee rationaaliseksi jopa lyhytjänteiselle politiikalle.\n\nTasapainon ylläpitäminen kallistuu. Jossain vaiheessa luopuminen on halvempaa."
+          }
         },
         {
           "title": "Kolme tapaa, joilla järjestelmät muuttuvat",
@@ -5142,8 +5079,7 @@
                 ]
               }
             ]
-          },
-          "text": "Järjestelmät muuttuvat tyypillisesti kolmella tavalla.\n\nInkrementaalisessa muutoksessa järjestelmä kehittyy hitaasti, pienin askelin, kun uudet toimijat omaksuvat uusia käytäntöjä. Tämä on yleisin muutoksen muoto, mutta se on hidas. Kun muutospaine on kiihtynyt ja aikaa on vähän, inkrementaalinen muutos ei riitä.\n\nKriisilähtöisessä muutoksessa järjestelmä muuttuu kun kriisi pakottaa. 1990-luvun lama pakotti taloudellisen sopeutumisen. Ukrainan sota pakotti turvallisuuspolitiikan muutoksen. Pandemia pakotti poikkeuksellisia toimia. Kriisilähtöinen muutos on reaktiivista. Se tapahtuu myöhässä ja usein epätäydellisesti. Sen hinta on aina suurempi kuin ennakoivan muutoksen hinta olisi ollut.\n\nEnnakoivassa muutoksessa järjestelmä muuttuu ennen kuin kriisi pakottaa, koska on rakennettu kyky tunnistaa tulevat haasteet ajoissa ja tehdä muutoksia ennen kuin kokonaislaskusta tulee sietämätön. Tämä on harvinaisinta — ja arvokkainta — tapaa muutokseen.\n\nSuomi on toiminut enimmäkseen kriisilähtöisellä logiikalla. Se on selvinnyt. Mutta selviytyä ei ole sama kuin kukoistaa. Tulevien haasteiden mittakaava tekee kriisireaktion entistä kalliimmaksi vaihtoehdoksi."
+          }
         },
         {
           "title": "Suomi on tehnyt tämän ennenkin",
@@ -5233,8 +5169,7 @@
                 ]
               }
             ]
-          },
-          "text": "On syytä muistaa mitä Suomi on jo osannut.\n\n1960-luvulla rakennettiin kattava peruskoulujärjestelmä. Se oli radikaali muutos. Aiemmin koulutus jakautui selkeästi luokkalinjojen mukaan, ja oppikouluun pääsy oli harvojen etuoikeus. Muutos vaati poliittista tahtoa, pitkäaikaista valmistelua ja voimakasta vastustuksen voittamista. Sen tulokset näkyvät edelleen Suomen koulutustasossa.\n\nKela rakennettiin epäilyjen keskellä. Universaali sosiaaliturva oli tuolloin radikaali ajatus, mutta se toimi ja muutti maan rakennetta sukupolviksi.\n\n1990-luvun lama oli shokki jollaista Suomi ei ollut kokenut. Silti Suomi nousi lamasta nopeammin kuin lähes mikään muu OECD-maa. Yksi syy oli kyky koordinoida rakenteellisia muutoksia akuutin kriisin keskellä — leikkauksia, mutta myös strategisia investointeja: TKI-rahoitus kolminkertaistui laman aikana. Koulutuspanostuksista pidettiin kiinni silloinkin kun muualta leikattiin. Tämä oli investointipäätös, jonka tulokset näkyivät vuosituhannen vaihteen teknologisessa kasvussa.\n\n2020-luvun alussa Suomi muutti ulko- ja turvallisuuspoliittisen linjansa nopeammin kuin kukaan olisi uskonut mahdolliseksi kymmenen vuotta aiemmin. NATO-jäsenyys oli vuosikymmeniä poliittinen tabu. Kolmessa kuukaudessa siitä tuli kansallinen konsensus.\n\nNämä esimerkit osoittavat kolme asiaa.\n\nVakiintuneet käsitykset siitä mikä on poliittisesti mahdollista voivat muuttua nopeasti. Mahdollisuushorisontti jonka oletettiin olevan kiinteä voi laajeta äkillisesti.\n\nMuutos vaatii aina jotain. Selkeän diagnoosin joka saa tarpeeksi monen ymmärtämään muutoksen välttämättömyyden, tai kriisin joka tekee status quon kestämättömäksi. Mieluummin edellinen kuin jälkimmäinen.\n\nMuutos on usein helpointa silloin kun sitä ei odoteta. 1960-luvun koulureformi tehtiin vastustuksen keskellä. 1990-luvun TKI-investointi tehtiin laman keskellä. NATO-jäsenyys tehtiin sotatilanteen paineessa. Vaikeus ei ole este kun tarve on selvä."
+          }
         },
         {
           "title": "Mitä järjestelmäpolitiikka tarkoittaa",
@@ -5306,8 +5241,7 @@
                 ]
               }
             ]
-          },
-          "text": "Viimeisten kolmen vuosikymmenen suomalainen politiikka on ollut interventionistista. Ongelma → toimenpide. Leikkaus → korjaus. Budjettivaje → säästöohjelma.\n\nTämä malli on ymmärrettävä. Se on reagoinut todellisiin kriiseihin todellisilla toimenpiteillä ja pitänyt järjestelmän toiminnassa olosuhteissa joissa monet muut maat ovat ajautuneet pahempaan tilaan.\n\nInterventionistinen malli rakentuu kuitenkin oletukselle että ongelmat ovat erillisiä ja korjattavissa yksi kerrallaan. Se oletus ei enää pidä paikkaansa. Demografian, julkisen talouden ja kapasiteettivajeen yhteisvaikutus tarkoittaa että ongelmat ovat samanaikaisia, rakenteellisia ja toisiinsa kytkeytyneitä. Yksittäiset toimenpiteet eivät enää skaalaudu tilanteessa jossa kolme rakenteellista painetta toimivat samanaikaisesti.\n\nSeuraava politiikan aalto kysyy eri kysymyksiä. Mitkä rakenteet tuottavat ongelmia systemaattisesti? Missä järjestelmän vipupisteissä pieni muutos tuottaa suuren vaikutuksen? Miten kannustinrakenteet pitää muuttaa niin että rationaaliset toimijat haluavat toimia oikein?\n\nTämä on järjestelmäpolitiikkaa. Se tarkoittaa älykkäämpää rakennetta, vähemmän toimenpiteitä oikeissa kohdissa, ja siirtymistä reaktiivisesta rakenteesta ennakoivaan.\n\nEdellinen luku kuvasi viisi vipuvartta. Rahoituslogiikka joka erottaa investoinnin kulutuksesta. Mittarit jotka näkevät mitä merkitsee. Rakenteet joissa joku omistaa kokonaisuuden. Politiikka joka näkee sukupolvet ja käyttää liikkumavaran. Kantokyky joka rakentaa puskurit ja pysyvän pääoman.\n\nNämä vipuvarret eivät ole utopia. Ne ovat välttämättömyys. Kysymys ei ole tarvitseeko Suomi niitä. Kysymys on tehdäänkö ne ennakoivasti vai pakotettuina."
+          }
         },
         {
           "title": "Kolme ehtoa",
@@ -5370,8 +5304,7 @@
                 ]
               }
             ]
-          },
-          "text": "Suomen aikaisemmat suuret rakenteelliset muutokset tapahtuivat kun kolme ehtoa täyttyivät samanaikaisesti.\n\nOlosuhteet pakottivat. Tieto muutoksen sisällöstä oli olemassa. Riittävä koalitio piti muutosta poliittisesti mahdollisena.\n\nKaikki kolme ehtoa ovat nyt olemassa uudelleen.\n\nOlosuhteet pakottavat. Demografia, julkinen talous ja kapasiteettivaje eivät anna muuta vaihtoehtoa kuin muuttua tai heikentyä. Kolme painetta toimivat samanaikaisesti, ja niiden yhteisvaikutus kiihtyy joka vuosi.\n\nTieto on olemassa paremmin kuin koskaan. Tiedämme mitkä interventiot toimivat. Tiedämme missä vipupisteet ovat. Tiedämme miten muut maat ovat onnistuneet palveluintegraatiossa, ennaltaehkäisyssä ja rahoitusuudistuksessa. Norja, Ruotsi, Tanska, Viro, Uusi-Seelanti, Islanti, Britannia, Hollanti — jokainen kirjassa kuvattu vipuvarsi on olemassa jossakin maassa, jossain muodossa, jollain tasolla. Suomi ei tarvitse keksintöä. Se tarvitsee oppimista.\n\nKoalitio on rakennettavissa. Puolueet jotka haluavat säästää rahaa, puolueet jotka haluavat parempia palveluja, ja kansalaiset jotka haluavat molemmat. Ne kaikki voivat löytää yhteisen kiinnostuksen järjestelmän vipupisteiden muuttamiseen. Tämä ei ole kompromissi jossa kaikki luopuvat jostain. Se on rakenne jossa kaikki saavat enemmän tekemällä asiat eri tavalla."
+          }
         },
         {
           "title": "Lopuksi",
@@ -5470,8 +5403,7 @@
                 ]
               }
             ]
-          },
-          "text": "Tässä kirjassa on kuvattu järjestelmä joka tuottaa ongelmia automaattisesti — rakenteista jotka on rakennettu toiseen aikaan toisiin olosuhteisiin.\n\nOn myös kuvattu kuusi tilastollista edustajaa joiden elämässä mekanismit ovat konkreettisia. Maija, Jukka, Aleksi, Niko, Hanna, Leena. He eivät ole järjestelmän epäonnistumisia. He ovat sen logiikan ennakoitavia tuotteita.\n\nJa on kuvattu viisi vipuvartta joiden avulla rakenteet voidaan rakentaa toisin. Yksikään niistä ei ole utopia. Ne on dokumentoitu eri maissa toimiviksi.\n\nDiagnoosi on raskasta luettavaa. Se on tarkoitettu sellaiseksi. Jos kaikki olisi hyvin, tätä kirjaa ei tarvittaisi.\n\nDiagnoosi on myös vapautus. Kun ymmärtää mistä ongelma johtuu, voi alkaa puhua siitä mitä pitäisi tehdä toisin. Ei syyttelyn kautta, ei häpeän kautta, vaan rakenteiden kautta — niiden rakenteiden jotka on rakennettu, ja jotka voidaan rakentaa uudelleen.\n\nJärjestelmät muuttuvat kun niiden ylläpitäminen käy kalliimmaksi kuin niiden uudistaminen.\n\nSuomi on lähestymässä sitä pistettä.\n\nSuomalaiset rakensivat Kelan, neuvolan ja peruskoulun. He rakensivat huoltovarmuuden jota maailma ihailee. He rakensivat luottamuksen joka on yksi yhteiskunnan tärkeimmistä perustoista.\n\nTässä kirjassa on kuvattu miltä seuraava muutos voi näyttää. Historia kertoo että Suomi osaa tehdä sen.\n\nJärjestelmät ovat ihmisten rakentamia. Mikä on rakennettu, voidaan rakentaa uudelleen."
+          }
         }
       ]
     }

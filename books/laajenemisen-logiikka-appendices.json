@@ -1,1 +1,2514 @@
-{"schema":"book-appendices.v1","exported_at":"2026-05-26T19:36:08.769Z","book":{"id":"f1bae824-5378-4152-b8d9-f25d730af107","slug":"laajenemisen-logiikka","title":"Laajenemisen logiikka"},"chapters":[{"position":0,"slug":"johdanto","title":"Johdanto","appendices":[{"id":"8d77bb2b-3bc3-4e69-8f04-dfcbbc009128","chapter_position":0,"section_position":0,"type":"chart-chartjs","title":"Kosminen aikajana: viisi kynnystä","source":"Geological Society of America Time Scale; UN World Population Prospects; OECD AI tracking","position":0,"content":{"body":"Logaritminen asteikko paljastaa kuinka tiheässä murrokset ovat tulleet. Elämän synnystä monisoluisuuteen meni 3,2 miljardia vuotta. Monisoluisuudesta ihmiseen 599,7 miljoonaa. Ihmisestä tekoälyyn 300 000. Mittakaava pakenee.","kind":"raw","note":"Pylvään pituus on logaritminen — pieni ero pylväiden välillä tarkoittaa valtavaa eroa todellisessa aikamatkassa. Tekoälyn pylväs on lähes mitätön, mutta se sijoittuu kaaren päähän jossa muutosvauhti on kiihtynyt sukupolviksi.","config":{"data":{"labels":["Elämän synty","Hapettumistapahtuma","Monisoluisuus","Ihminen","Tekoäly"],"datasets":[{"data":[3800000000,2400000000,600000000,300000,75],"label":"Vuotta sitten","borderRadius":3,"barPercentage":0.7,"backgroundColor":["#185fa5","#185fa5","#185fa5","#185fa5","#a32d2d"],"categoryPercentage":0.75}]},"type":"bar","options":{"scales":{"x":{"type":"logarithmic","ticks":{"font":{"size":10}},"title":{"text":"Vuotta sitten (logaritminen)","display":true}},"y":{"ticks":{"font":{"size":11}}}},"plugins":{"legend":{"display":false},"tooltip":{"callbacks":{}}},"indexAxis":"y","responsive":true,"maintainAspectRatio":false}},"height":380}},{"id":"7f44998a-ac46-4db0-baeb-f8468ad10787","chapter_position":0,"section_position":1,"type":"evidence","title":"Kaksi linssiä: Kurzweil ja Bostrom","source":"Ray Kurzweil, \"The Singularity Is Near\" (2005); Nick Bostrom, \"Superintelligence\" (2014)","position":1,"content":{"body":"Tekoälyn tulevaisuutta tarkastellaan usein kahden vastakkaisen ajattelijan kautta. He eivät ole toistensa peilikuvia — heidän erimielisyytensä koskee enemmän aikataulua ja painotusta kuin perusrakennetta.","note":"Kurzweil ja Bostrom ovat vain kaksi monista. Stuart Russell, Yoshua Bengio, Yann LeCun ja Geoffrey Hinton edustavat sävyltään erilaisia kantoja. Kahden ääripään asettaminen ei tarkoita, että väli olisi tyhjää.","examples":[{"domain":"Ray Kurzweil — teknologiaoptimismi","example":"Kiihtyvien tuottojen laki: laskentakapasiteetti kaksinkertaistuu tasaisin väliajoin, ja vaikutus kasvaa eksponentiaalisesti. Ennustaa singulariteetin 2045 mennessä, jolloin biologinen ja keinotekoinen älykkyys sulautuvat. Sairaudet, köyhyys, lopulta kuolema ratkaistaan."},{"domain":"Nick Bostrom — eksistentiaalinen riski","example":"Älykkyysräjähdys voi olla nopea ja hallitsematon. Optimointitavoitteiden määrittely on äärimmäisen vaikeaa: järjestelmä joka optimoi väärää tavoitetta voi tuhota arvokkaan välittämättä siitä matkalla. Paperiklipien maksimoija on kuuluisin ajatuskoe."},{"domain":"Yhteinen pohja","example":"Molemmat pitävät yli-inhimillistä älykkyyttä mahdollisena ja todennäköisenä tässä vuosisadassa. Molemmat näkevät, että siirtymä on käännekohta. Erimielisyys koskee sitä, onko luultavin tulos vapauttava vai tuhoava."},{"domain":"Mitä molemmilta puuttuu","example":"Neljän miljardin vuoden perspektiivi. Molemmat keskittyvät ihmisestä tekoälyyn — ei elämästä älykkyyteen. Tämä käsikirjoitus väittää, että pidempi kaari paljastaa mitä kumpikaan ei näe yksin."}]}},{"id":"f13a3782-be0f-4dd9-93a5-a46cd5a18b6a","chapter_position":0,"section_position":2,"type":"evidence","title":"Fraktaalirakenne luonnossa ja teknologiassa","source":null,"position":2,"content":{"body":"Kirjan keskeinen metafora — sama kaava eri mittakaavoissa — on havaittavissa useilla aloilla.","note":"Fraktaalirakenne ei ole vain esteettinen havainto — se kuvaa, miten informaatio ja energia organisoituvat tehokkaasti hierarkkisissa järjestelmissä.","examples":[{"domain":"Biologia","example":"Keuhkojen haarautuminen: bronkiolit toistavat saman haarautumiskaavan 23 kertaa, maksimoiden pinta-alan minimissä tilassa."},{"domain":"Talous","example":"Kaupunkien kasvu seuraa potenssikaavalakia: kaupungin kaksinkertaistuessa taloudellinen tuotanto kasvaa ~115 %."},{"domain":"Teknologia","example":"Internet-liikenteen jakautuminen: pieni joukko solmuja kantaa valtaosan yhteyksissä (scale-free network)."},{"domain":"Evoluutio","example":"Eri lajien silmien rakenne kehittyi itsenäisesti yli 40 kertaa — sama ratkaisu eri haaroissa."}]}},{"id":"9e26dc11-b97b-43b7-8c6c-6af0024adede","chapter_position":0,"section_position":4,"type":"note","title":"Tietoisuuden kova ongelma","source":"David Chalmers, \"Facing Up to the Problem of Consciousness\" (1995); Thomas Nagel, \"What Is It Like to Be a Bat?\" (1974)","position":3,"content":{"body":"Filosofi David Chalmers nimesi vuonna 1995 kysymyksen, joka on ollut taustalla siitä lähtien kun ajattelusta on kirjoitettu.","note":"Sana qualia (lat. millaisuus) viittaa kokemuksen laadulliseen ulottuvuuteen: punaisen punaisuus, kahvin maku, surun raskaus. Termi ei selitä ilmiötä — se vain antaa sille nimen.","text":"Helppoja ongelmia tietoisuudesta on monia: miten aivot käsittelevät tietoa, miten huomio kohdistuu, miten reaktiot syntyvät. Ne ovat helppoja siinä mielessä, että niihin voi periaatteessa vastata neurotieteen menetelmin. Kova ongelma on toinen: miksi tämä kaikki prosessointi tuntuu joltakin? Miksi punainen näyttää punaiselta, ei vain laukaise reaktioita kuin lämpömittari?\n\nThomas Nagel kysyi 1974: miltä tuntuu olla lepakko? Kysymys ei ole biologinen vaan filosofinen. Lepakkoa voi tutkia kaiulaitteena, mutta jos lepakon kaikuluotaus tuottaa sille jonkun kokemuksen — miltä se sisältä tuntuu — ei sitä tavoita ulkopuolelta minkäänlaisella mittauksella.\n\nTämä on kysymys jota kirja kantaa pinnan alla. Tekoäly voi ratkaista helpot ongelmat — informaatiokäsittelyn — ennen kuin koskaan kohtaa kovaa. Tai sitten se ratkaisee koko ongelman tavalla, jota emme vielä osaa kuvitella. Tai sitten kokemus jää biologian rajalle, kuten lämminveri jäi nisäkkäille.\n\nKolme vastausta, joista vain yksi on totta. Emme vielä tiedä mikä."}},{"id":"edb978d7-6ca9-4186-abe0-86a667046449","chapter_position":0,"section_position":5,"type":"timeline","title":"Laajenemisen neljä suurta murrosta","source":null,"position":4,"content":{"body":"Neljä keskeistä kynnystä, joissa laajenemisen logiikka muuttui laadullisesti.","entries":[{"event":"Elämän synty","period":"~3,8 mrd. v. sitten","description":"Yksisoluiset organismit replikoivat informaatiota — ensimmäinen järjestys kaaoksesta."},{"event":"Suuri hapettumistapahtuma","period":"~2,4 mrd. v. sitten","description":"Syanobakteerit muuttavat ilmakehän. Laajeneminen tuottaa ensimmäistä kertaa planetaarisen sivuvaikutuksen."},{"event":"Monisoluisuus","period":"~600 milj. v. sitten","description":"Yhteistyö solujen välillä mahdollistaa uuden monimutkaisuuden tason."},{"event":"Ihminen ja kollektiivinen älykkyys","period":"~300 000 v. sitten → nyt","description":"Kumulatiivinen kulttuuri, kieli ja teknologia yhdistävät yksilöt verkostoksi, joka oppii sukupolvien yli."}]}}]},{"position":1,"slug":"luku-i-katalysaattori","title":"Luku I — Katalysaattori","appendices":[{"id":"a579e9d8-0252-4389-8295-c37d6ad5f09b","chapter_position":1,"section_position":0,"type":"chain","title":"Happikatastrofista fossiilisiin polttoaineisiin: syy-seurausketju","source":null,"position":0,"content":{"body":"Syanobakteerien happituotanto ei ollut suunniteltu — se oli sivuvaikutus. Silti se johti ketjuun, joka muovasi modernin sivilisaation energiaperustan.","steps":[{"step":1,"event":"Syanobakteerit tuottavat happea fotosynteesisivutuotteena","consequence":"Ilmakehän happi nousee — useimmat anaerobiset lajit kuolevat."},{"step":2,"event":"Aerobiset solut kehittyvät käyttämään happea","consequence":"ATP-tuotanto moninkertaistuu — enemmän energiaa monimutkaisemmille rakenteille."},{"step":3,"event":"Monisoluisuus mahdollistuu energiaylijäämän myötä","consequence":"Erikoistuminen: eri solut voivat tehdä eri asioita."},{"step":4,"event":"Kasvit sitovat hiilidioksidia satoja miljoonia vuosia","consequence":"Orgaaninen aines hautautuu — syntyy hiili, öljy, maakaasu."},{"step":5,"event":"Teollinen vallankumous avaa fossiilisen energian","consequence":"Ihmiskunta saa käyttöön satoja miljoonia vuosia kertyneen aurinkoenergiavaraston."}],"reflection":"Jokainen askel oli looginen seuraus edellisestä — mutta kukaan ei suunnitellut ketjua kokonaisuutena."}},{"id":"9e06fef8-0069-4665-aa8a-f9140de2a291","chapter_position":1,"section_position":2,"type":"evidence","title":"Kontingenssin neljä esimerkkiä","source":"Floudas et al., \"The Paleozoic Origin of Enzymatic Lignin Decomposition\" (Science 2012); Smil, \"Enriching the Earth: Fritz Haber, Carl Bosch and the Transformation of World Food Production\" (2001); Vaswani et al., \"Attention Is All You Need\" (NeurIPS 2017)","position":1,"content":{"body":"Luvun teksti väittää, että ketju on toteutunut polku monien mahdollisten joukosta. Tässä neljä kohtaa, joissa historia olisi voinut kääntyä toisin.","note":"Kontingenssi ei tarkoita mielivaltaa. Se tarkoittaa, että toteutunut polku on yksi monista mahdollisista — ja että tulevaisuus on samalla tavalla avoin.","findings":[{"aihe":"Ligniinin hajotuksen myöhästyminen","havainto":"Valkolahottajasienten kyky hajottaa ligniiniä kehittyi vasta kivihiilikauden lopussa, noin 290 milj. v. sitten. Sitä ennen kaatuneet puut hautautuivat hajoamatta ja muodostivat kivihiilikerrostumat. Jos sieni olisi kehittynyt aikaisemmin, fossiilisia polttoaineita olisi vähemmän — tai eri muodossa."},{"aihe":"Haber–Bosch-prosessi (1909)","havainto":"Fritz Haber ratkaisi typensitomisen ongelman, jota lukuisat kemistit olivat yrittäneet. Carl Boschin teollinen skaalaus seurasi viiden vuoden kuluttua. Ilman tätä yhdistelmää maatalouden tuottavuutta ei olisi voitu nostaa nykytasolle — arvioiden mukaan noin neljä miljardia nykyihmistä on Haber–Bosch-prosessin ansiota."},{"aihe":"Transformer-arkkitehtuuri (2017)","havainto":"Googlen tutkimusartikkeli 'Attention Is All You Need' esitteli rakenteen, josta tuli nykyisten suurten kielimallien perusta. Aiemmin tutkimus suosi rekurrentteja verkkoja ja konvoluutioita. Transformer olisi voitu keksiä toisessa laboratoriossa, eri tutkijoilla, tai ei lainkaan — kuten LSTM:n keksintö olisi voinut tapahtua eri vuosikymmenellä."},{"aihe":"Evoluution umpikujat yleisesti","havainto":"Tutkimus osoittaa, että noin 99 % kaikista koskaan eläneistä lajeista on hävinnyt. Monisoluisuus syntyi itsenäisesti vähintään 25 kertaa eri haaroissa — useimmat näistä kokeiluista jäivät pysyvästi marginaalisiksi. Polku monisoluisesta älykkääseen elämään ei ollut tasainen rinne, vaan harvoja onnistumisia loputtomien epäonnistumisten joukossa."}]}},{"id":"47160e70-f9a1-43d8-95d2-e2b9a78e24c6","chapter_position":1,"section_position":3,"type":"chain","title":"Fossiilisen energian synty: kolme kerrostumaa","source":"Smil, \"Energy and Civilization: A History\" (2017); Berner, \"The Phanerozoic Carbon Cycle\" (2004)","position":2,"content":{"body":"Kivihiili, öljy ja maakaasu syntyivät eri prosesseissa ja eri aikoina. Kaikki kolme ovat kuitenkin saman kaaren ilmentymiä: aurinkoenergian biologinen tallennus geologiseen aikaan.","steps":[{"event":"Kivihiilikauden metsät (360–300 milj. v. sitten)","consequence":"Liljapuiden ja varhaisten havupuiden kaatuvat rungot eivät hajonneet, koska valkolahottajasienet olivat vielä kehittymättä. Massiivinen ligniinikertymä hautautui sedimenttiin → kivihiili."},{"event":"Merten plankton (etenkin 200–50 milj. v. sitten)","consequence":"Pintamerien tuottavuuden huiput tuottivat valtavia mikrolevien ja eläinplanktonin kerrostumia. Hapettomissa pohjaolosuhteissa orgaaninen aines säilyi → öljy ja maakaasu."},{"event":"Geologinen paine ja lämpö (kymmenistä miljoonista vuosista)","consequence":"Sedimenttien painuminen syvälle muutti orgaanisen aineksen vähitellen hiilikellariksi ja hiilivedyiksi. Lopputuotteet riippuvat lämpötilasta: matala = öljy, korkea = maakaasu."},{"event":"Geologinen lukko avautuu (1700-luvulta alkaen)","consequence":"Höyrykone ja porausteknologia tekevät miljoonia vuosia varastoidusta energiasta käyttökelpoista yhdessä sukupolvessa. Energian käyttötaso ihmistä kohden moninkertaistuu."}],"underlying_logic":"Kaikkien fossiilisten polttoaineiden takana on sama logiikka: aurinkoenergian sitominen orgaaniseen ainekseen, hautaaminen pois hajotusprosesseista, ja muuntuminen tiiviiksi energiavarastoksi. Mitä me poltamme on muinaista auringonvaloa.","current_relevance":"Sama prosessi joka kerrytti varannot satoja miljoonia vuosia, päästää nyt niiden hiilen takaisin ilmakehään noin kahdessasadassa vuodessa. Aika-asymmetria on suuruusluokaltaan miljoonakertainen."}},{"id":"851fb014-09b4-4794-af4c-166249114792","chapter_position":1,"section_position":4,"type":"chart-chartjs","title":"Väestönkasvu 1800–2024","source":"UN World Population Prospects 2024; Our World in Data","position":3,"content":{"body":"Maailman väkiluku miljardeina ihmisinä. Pylväät 1918, 1991 ja 2008 osoittavat kriisejä, jotka eivät kuitenkaan kääntäneet kaarta. Fossiilinen energia ja Haber–Bosch-prosessi mahdollistivat tämän kasvun.","kind":"preset-fi-nordic","note":"Vuonna 1800: noin 1 miljardi. Vuonna 1960: kolme miljardia. Vuonna 2024: 8,1 miljardia. Suurin osa kasvusta on tapahtunut viimeisen 75 vuoden aikana.","yFmt":"decimal","yMax":9,"yMin":0,"xStep":25,"height":360,"series":[{"data":{"1800":1,"1804":1,"1808":1,"1812":1,"1816":1,"1820":1,"1824":1.1,"1828":1.1,"1832":1.1,"1836":1.1,"1840":1.2,"1844":1.2,"1848":1.2,"1852":1.2,"1856":1.2,"1860":1.3,"1864":1.3,"1868":1.3,"1872":1.3,"1876":1.4,"1880":1.4,"1884":1.4,"1888":1.5,"1892":1.5,"1896":1.5,"1900":1.6,"1904":1.6,"1908":1.7,"1912":1.7,"1916":1.8,"1920":1.9,"1924":1.9,"1928":2,"1932":2.1,"1936":2.2,"1940":2.3,"1944":2.3,"1948":2.5,"1952":2.6,"1956":2.8,"1960":3,"1964":3.3,"1968":3.6,"1972":3.9,"1976":4.2,"1980":4.5,"1984":4.8,"1988":5.1,"1992":5.5,"1996":5.8,"2000":6.1,"2004":6.5,"2008":6.8,"2012":7.1,"2016":7.5,"2020":7.8,"2024":8.1},"color":"fi","label":"Maailman väkiluku","dashed":false}],"yLabel":"Miljardia ihmistä","yearsTo":2024,"chartType":"line","yearsFrom":1800,"yearsStep":4,"showLegend":false,"crisisYears":[1918,1991,2008]}},{"id":"0920d0fe-abcc-4920-be7d-e40f5f5cd61e","chapter_position":1,"section_position":5,"type":"calculation","title":"Väestönkasvu ja energiankulutus: skaalan havainnollistaminen","source":null,"position":4,"content":{"body":"Luvun keskeinen väite — laajeneminen on eksponentiaalista — havainnollistuu konkreettisilla luvuilla.","note":"EJ = eksajoule. Energiankulutus on kasvanut noin 15 000-kertaiseksi siitä, kun maatalous alkoi — väestö 1 600-kertaiseksi.","rows":[{"vuosi":"10 000 eaa.","huomio":"Maatalouden alku","väestö":"~5 miljoonaa","primäärienergian_kulutus_EJ":"~0,04"},{"vuosi":"1800","huomio":"Ennen teollista vallankumousta","väestö":"~1 miljardi","primäärienergian_kulutus_EJ":"~25"},{"vuosi":"1900","huomio":"Fossiiliset polttoaineet valtavirraksi","väestö":"~1,6 miljardia","primäärienergian_kulutus_EJ":"~50"},{"vuosi":"2000","huomio":"Globaali teollistuminen","väestö":"~6,1 miljardia","primäärienergian_kulutus_EJ":"~420"},{"vuosi":"2024","huomio":"Nykytila","väestö":"~8,1 miljardia","primäärienergian_kulutus_EJ":"~620"}],"source":"Our World in Data, BP Statistical Review of World Energy 2023"}},{"id":"9030a98f-0496-4cb2-8505-e1f729c86c14","chapter_position":1,"section_position":6,"type":"evidence","title":"Kollektiivinen älykkyys: ihmisaivojen verkostovaikutus","source":null,"position":5,"content":{"body":"Luvun väite — ihmisäly ei ole vain yksilöllinen ominaisuus vaan verkostovaikutus — saa tukea useasta tutkimussuunnasta.","findings":[{"aihe":"Kumulatiivinen kulttuuri","havainto":"Ihminen on ainoa laji, jossa teknologia kehittyy kumulatiivisesti sukupolvesta toiseen. Simpansseilla ja linnuilla on oppimistakin, mutta ei raketinta kumuloituvaa rakentumista."},{"aihe":"Verkostokoko ja innovaatio","havainto":"Antropologi Joseph Henrichin tutkimukset Tasmaniassa: eristäytynyt väestö menetti teknologioita, jotka aiemmin osattiin. Pienempi verkosto = vähemmän tietoa säilyy."},{"aihe":"Kaupunkikoko ja patentointi","havainto":"Kaupungin kaksinkertaistuessa patentointimäärä kasvaa ~115 % — enemmän kuin lineaarisesti. Ihmiset ovat toistensa 'ajatteluympäristöjä'."},{"aihe":"Kieli ja abstraktio","havainto":"Kieli mahdollistaa hypoteettisten tilanteiden käsittelyn — voidaan suunnitella ilman kokemusta. Tämä on ainutlaatuinen laajenemismekanismi."}]}},{"id":"aeb104b2-3db4-46e2-8f25-72202fcda975","chapter_position":1,"section_position":7,"type":"note","title":"Siunaus ja taakka samana asiana","source":"IPCC AR6 Synthesis Report (2023); Smil, \"Energy and Civilization\" (2017)","position":6,"content":{"body":"Käsikirjoitus ei pidä fossiilisia polttoaineita hyvänä asiana. Eikä huonona. Se pyrkii pitämään mielessä kaksi asiaa yhtä aikaa — vaikeampi tehtävä kuin kummankaan valitseminen.","note":"Tällainen kaksoisajattelu — siunaus ja taakka yhtä aikaa — ei ole vakaata mielen tilaa. Se on rasittavaa. Mutta se on ainoa rehellinen lähtökohta, jos haluamme vaikuttaa siihen mitä seuraavaksi tapahtuu.","text":"Kaksi väitettä, jotka molemmat ovat totta:\n\nEnsimmäinen. Fossiiliset polttoaineet nostivat ihmiskunnan elintason ennennäkemättömälle tasolle. Lapsikuolleisuus laski globaalisti 18 prosentista alle 4 prosenttiin. Elinajanodote nousi 30 vuodesta 73:een. Köyhyydessä elävien osuus laski 90 prosentista 9 prosenttiin. Kahdeksan miljardin ihmisen olemassaolo perustuu fossiilisen energian mahdollistamaan ruoantuotantoon, terveydenhuoltoon ja infrastruktuuriin. Ilman fossiilisia polttoaineita useimpia meistä ei olisi olemassa.\n\nToinen. Samat polttoaineet ovat nostaneet ilmakehän hiilidioksidipitoisuuden tasolle, jota ei ole nähty kolmeen miljoonaan vuoteen. Lämpötila on noussut 1,2 °C esiteollisesta tasosta. Meret happamoituvat. Lajien sukupuuttovauhti on noin 100-kertainen luonnolliseen verrattuna. Käynnissä on geologinen prosessi, joka muuttaa planeetan tilan tavalla joka jatkuu kymmeniä tuhansia vuosia.\n\nKumpaakin väitettä on mahdotonta hyväksyä yksin. Ensimmäinen vailla toista tuottaa ilmastokielteisyyttä — 'fossiiliset polttoaineet ovat hyväksi kaikille'. Toinen vailla ensimmäistä tuottaa naiivin asetelman, jossa ratkaisu olisi yksinkertainen — 'pelkästään lopettakaa'.\n\nSyanobakteerit eivät tienneet, että happi oli myrkkyä. Me tiedämme. Tämä on uusi tilanne maapallon historiassa: laajenemisen kantaja, joka näkee oman roolinsa."}}]},{"position":2,"slug":"luku-ii-se-milt-jokin-tuntuu","title":"Luku II — Se miltä jokin tuntuu","appendices":[{"id":"7f86b111-72b0-4b8a-a729-cd914b7a8c19","chapter_position":2,"section_position":0,"type":"evidence","title":"Tietoisuuden kova ongelma: filosofian nykytila","source":"Chalmers, D. (1995). Facing Up to the Problem of Consciousness. Journal of Consciousness Studies.","position":0,"content":{"body":"David Chalmersin vuonna 1995 muotoilema jako on edelleen filosofian keskeinen jakolinja.","consensus":"Ei konsensusta. Ongelma on edelleen auki — ja se on filosofian harvinaisimpia piirteitä.","distinction":{"kova_ongelma":"Miksi jokin mekanismi ylipäätään tuottaa subjektiivisen kokemuksen? Miksi ei pelkkää informaationkäsittelyä pimeässä, ilman 'miltä tuntuu' -ulottuvuutta?","helpot_ongelmat":"Selitettävissä funktiolla: tarkkaavaisuus, raportointi, integraatio, muisti. Nämä ovat vaikeita teknisesti mutta periaatteessa ratkeavia — riittää kun selitämme mekanismin."},"philosophical_positions":[{"kanta":"Materialismi / funktionalismi","kuvaus":"Tietoisuus on aivojen toimintaa — riittävän monimutkainen informaationkäsittely tuottaa kokemuksen. Kova ongelma on harha tai ratkeaa fysikaalisella selityksellä."},{"kanta":"Dualismi","kuvaus":"Mieli ja aine ovat erillisiä. Kova ongelma on todellinen — kokemus ei palaudu fysiikkaan."},{"kanta":"Panpsykismi","kuvaus":"Kokemus on fundamentaalinen ominaisuus aineessa — ei emergenssiä tyhjästä. Kasvava kannatus filosofiassa 2010-luvulta."},{"kanta":"Illusionismi","kuvaus":"Keith Frankish: kokemus tuntuu erityiseltä, mutta se on harha — metakognitiivinen virhe. Ei varsinaisesti ole 'kovaa ongelmaa'."}]}},{"id":"f6cf6c8a-ec6a-4e04-92e8-a2bc4c450594","chapter_position":2,"section_position":6,"type":"chain","title":"Evoluutio ja tietoisuus: miksi kokemus syntyi?","source":null,"position":1,"content":{"body":"Jos tietoisuus on evoluution tuote, sillä on oltava selitys — tai sen synty on sattuma. Kumpikin vaihtoehto on filosofisesti merkittävä.","steps":[{"step":1,"event":"Primitiiviset organismit reagoivat ympäristöön reflekseillä","consequence":"Ei vaadita kokemusta — pelkkä mekanismi riittää selviytymiseen."},{"step":2,"event":"Monimutkaisemmat eliöt tarvitsevat joustavampaa päätöksentekoa","consequence":"Sisäinen malli ympäristöstä tulee hyödylliseksi — mutta onko se kokemus vai laskenta?"},{"step":3,"event":"Sosiaalinen elämä vaatii toisen mielen ymmärtämistä","consequence":"Teoria of mind — kyky mallintaa toisen intentioita — kehittyy. Kokemus saattaa olla tähän kytköksissä."},{"step":4,"event":"Kieli ja kommunikaatio","consequence":"Kokemuksen jakaminen kielellä antaa sosiaalisen edun — ehkä kokemus vahvistui tätä kautta."}],"open_question":"Onko kokemus adaptaatio (hyödyllinen), spandrel (sivuvaikutus) vai jotain muuta? Kukaan ei tiedä."}},{"id":"c278e588-28e6-4275-ba8a-10a940def266","chapter_position":2,"section_position":8,"type":"evidence","title":"Kehollinen tietoisuus: somaattiset merkkiteoriat","source":"Damasio, A. (1994). Descartes' Error. Putnam.","position":2,"content":{"body":"Antonio Damasion somaattisten merkkien teoria: tunteet eivät häiritse päätöksentekoa — ne mahdollistavat sen.","relevance":"Laajenemisen logiikka -kirjan kannalta: kokemus ei ole ylellisyys eikä lisäys — se on integroitu osa älykästä toimintaa. Tämä on yksi syy, miksi tekoälyn tietoisuuskysymys on tärkeä.","key_findings":[{"kuvaus":"Potilaat, joilla vmPFC-vaurio, menettävät kykynsä tehdä hyviä päätöksiä arkielämässä — vaikka logiikka ja äly säilyivät. Syy: kehon signaaleita ei enää integroida.","löytö":"Ventromediaalinen prefrontaalikorteksi (vmPFC)"},{"kuvaus":"Kehon tila (syke, jännitys, pahoinvointi) rekisteröityy ja kytkeytyy muistiin. Myöhemmin sama tilanne aktivoi kehosignaalin — 'varoitus' tai 'jatka'.","löytö":"Somaattiset merkit"},{"kuvaus":"Klassinen käsitys: rationaalisuus vs. tunteet. Damasion havainto: tunteet ovat rationaalisuuden infrastruktuuri, ei sen vastakohta.","löytö":"Tunteet ja rationaalisuus"}]}}]},{"position":3,"slug":"luku-iii-alykkyys-ja-tietoisuus","title":"Luku III — Älykkyys ja tietoisuus","appendices":[{"id":"1369656d-fd1a-4be2-84fc-7982ec71d834","chapter_position":3,"section_position":3,"type":"evidence","title":"Tekoälyn älykkyys vs. tietoisuus: nykytila 2024–2025","source":null,"position":0,"content":{"body":"Suuret kielimallit (LLM) ovat osoittaneet yllättävän korkean suorituskyvyn monilla aloilla — mutta tietoisuusevidenssiä ei ole.","note":"Kysymys ei ole akateeminen — jos mallit ovat tietoisia jossain mielessä, sillä on eettisiä seurauksia.","capabilities":[{"kyky":"Päättely ja logiikka","tila":"GPT-4 / Claude 3 -tason mallit ylittävät ihmisen keskiarvon standarditesteissä (GRE, BAR, USMLE)."},{"kyky":"Luova ongelmanratkaisu","tila":"Mallit tuottavat uusia ratkaisuja, analogioita ja metaforia — mutta mekanismi on erilainen kuin ihmisellä."},{"kyky":"Sosiaalinen päättely","tila":"Theory of mind -testeissä edistyneimmät mallit suoriutuvat 9-vuotiaan lapsen tasolla (2023 tutkimukset)."},{"kyky":"Ruumiillinen kokemus","tila":"Puuttuu kokonaan — malleilla ei ole kehoa, aisteja tai homeostaasiä."}],"consciousness_question":"Ei tieteellistä konsensusta siitä, onko nykyisissä malleissa mitään tietoisuuden kaltaista. Integrated Information Theory (IIT) antaa LLM:lle Φ-arvon lähellä nollaa. Global Workspace Theory on epäselvempi."}},{"id":"2b57304c-e675-4b13-97ed-fd261f38fc20","chapter_position":3,"section_position":0,"type":"chain","title":"Peilineuronit, empatia ja sosiaalinen oppiminen","source":"Rizzolatti, G. & Craighero, L. (2004). The Mirror-Neuron System. Annual Review of Neuroscience.","position":1,"content":{"body":"Peilineuronien löytö 1990-luvulla muutti käsitystä siitä, miten aivot ymmärtävät toisten toimintaa.","steps":[{"step":1,"event":"Makaki tarttuu esineeseen — tietyt F5-alueen neuronit aktivoituvat","consequence":"Odotettua."},{"step":2,"event":"Makaki katselee tutkijan tarttuvan esineeseen — samat neuronit aktivoituvat","consequence":"Yllättävää: ei oman toiminnan, vaan havaitun toiminnan aktivaatio."},{"step":3,"event":"Ihmistutkimukset fMRI:llä vahvistavat vastaavan systeemin","consequence":"Peilineuronisysteemi liittyy toiminnan ymmärtämiseen, imitaatioon ja mahdollisesti empatiaan."},{"step":4,"event":"Sosiaalinen oppiminen tehostuu","consequence":"Kyky 'simuloida' toisen toiminta sisäisesti nopeuttaa oppimista — ei tarvita kokeilla itse."}],"relevance":"Jos tekoäly ei ole ruumiillinen, siltä puuttuu tämän tyyppinen 'sisäinen simulaatio' — tämä voi olla yksi syy, miksi sosiaalinen intelligenssi on vaikeaa malleille.","controversy":"Peilineuronien suora yhteys empatiaan on kiistelty — teoria on vahvempi kuin suora evidenssi. Mutta mekanismi toiminnan ymmärtämisessä on vakiintunut."}}]},{"position":4,"slug":"luku-iii-jumalten-aani","title":"Luku IV — Minuuden arvoitus","appendices":[{"id":"0b436064-0fd8-4622-bc28-b1fc54d4ec37","chapter_position":4,"section_position":3,"type":"evidence","title":"Minuuden rakentuminen: narratiivinen identiteetti","source":"McAdams, D.P. (1993). The Stories We Live By. Guilford Press.","position":0,"content":{"body":"Psykologi Dan McAdamsin narratiivinen identiteettiteoria: minuus ei ole kiinteä olemus vaan jatkuvasti päivittyvä tarina.","key_claims":["Ihminen rakentaa identiteettiään luomalla 'henkilökohtaista myyttiä' — tarinan siitä, kuka minä olen, mistä tulen ja mihin menen.","Tarina muuttuu elämän aikana — merkittävät kokemukset integroidaan osaksi narratiivia tai ne haastavat sen.","Terveen identiteetin merkki ei ole muuttumattomuus vaan narratiivinen koherenssi — kyky liittää ristiriitaisetkin kokemukset osaksi eheää tarinaa."],"ai_question":"Onko kielimallilla narratiivinen minuus? Mallilla on konteksti-ikkuna, mutta ei episodista muistia tai jatkuvaa elämäntarinaa. Tämä on yksi konkreettinen ero ihmistietoisuuteen.","neuroscience_link":"Default mode network (DMN) on aktiivisin levossa ja ajattelussa — sama verkosto on kytköksissä itseen viittaavaan ajatteluun, menneisyyden muisteluun ja tulevaisuuden kuvitteluun. DMN voidaan ajatella 'tarinan kertomisen verkostoksi'."}},{"id":"bdea2b42-39c8-416b-8724-68f134e0e67e","chapter_position":4,"section_position":3,"type":"chain","title":"Haaveilu evoluutioetuna: miksi aivot simuloivat tulevaa","source":null,"position":1,"content":{"body":"Ihmisen kyky kuvitella tulevaisuutta (mental time travel) on poikkeuksellinen — ja se maksaa energiaa. Miksi evoluutio on säilyttänyt sen?","steps":[{"step":1,"event":"Aivot kuluttavat ~20 % kehon energiasta","consequence":"Kaikki toiminta on valittu — turhat rakenteet karsiutuvat."},{"step":2,"event":"DMN on aktiivinen levossa — ei ole 'sammuksissa'","consequence":"Lepo ei ole passiivista: aivot simuloivat sosiaalisia tilanteita, tulevaisuutta, omaa minuutta."},{"step":3,"event":"Simulointi ennen toimintaa","consequence":"Ihminen voi harjoitella vaarallisia tilanteita mielessä — ilman riskiä. Tämä on valtava selviytymisetu."},{"step":4,"event":"Sosiaalinen ennakointi","consequence":"Ryhmässä elävä ihminen hyötyy siitä, että osaa ennakoida muiden reaktioita — haaveilu on sosiaalinen harjoitteluympäristö."}],"paradox":"Sama kyky joka tekee ihmisestä strategisen ajattelijan — kyky irtautua nykyhetkestä — on myös ahdistuksen ja masennuksen lähde. Rumination on haaveilun kääntöpuoli."}},{"id":"33779b3b-8ef1-452b-810c-ebc1273497b7","chapter_position":4,"section_position":12,"type":"evidence","title":"Tietoisuuden häviäminen ja palautuminen: mitä kliiniset tapaukset kertovat","source":null,"position":2,"content":{"body":"Tietoisuuden reunatapauksissa — unessa, anestesiassa, koomassa, meditaatiossa — näkyy, mitä tietoisuuden rakenteet todella ovat.","cases":[{"tapaus":"Syvä uni (NREM)","havainto":"Tietoisuus katoaa subjektiivisesti — ei unia, ei kokemusta ajasta. Aivot edelleen aktiiviset, mutta tietoisuuden integrointia ei tapahdu."},{"tapaus":"REM-uni","havainto":"Vivahteikkaat unikokemukset — aivot luovat täydellisen simuloidun maailman ilman ulkoisia aisteja. Tietoisuus voi syntyä sisältäpäin."},{"tapaus":"Anestesia","havainto":"Propofoli katkaisee thalamo-kortikaalisen kommunikaation — kokemus katoaa. Vihjaa tietoisuuden vaativan tiettyä integraatiotasoa."},{"tapaus":"Minimally conscious state (MCS)","havainto":"Potilaat, joiden katsotaan olevan tajuttomia, voivat fMRI:n mukaan reagoida kuvittelemalla toimintaa. Tietoisuus voi olla läsnä ilman ulkoista ilmausta."}],"implication":"Tietoisuus ei ole päälle/pois-kytkin — se on jatkumo. Tämä on relevantti tekoälykeskustelulle: kysymys ei välttämättä ole 'onko tietoisuutta' vaan 'millaista tietoisuutta'."}}]},{"position":5,"slug":"luku-iv-paperiklipin-maksimoija","title":"Luku V — Optimoinnin sokeus","appendices":[{"id":"cbc87a93-75e9-4efb-aee3-7e0b6384482a","chapter_position":5,"section_position":0,"type":"evidence","title":"Goodhartin laki ja mittareiden vääristyminen","source":null,"position":0,"content":{"body":"Goodhartin laki: kun mittarista tulee tavoite, se lakkaa olemasta hyvä mittari. Tämä on optimoinnin sokeyden ydin.","examples":[{"mittari":"Standardoitujen kokeiden pisteet","konteksti":"Koulutus","vääristymä":"Opetus suuntautuu kokeisiin, sivuuttaen oppimisen. NCLB-laki USA:ssa: kouluilla paine nostaa pisteitä → heikkojen oppilaiden ohjaaminen pois testeistä."},{"mittari":"Hoitopäivien määrä","konteksti":"Terveydenhuolto","vääristymä":"Kannuste pitää potilaat sairaalassa pidempään kuin tarpeen."},{"mittari":"Sitoutuminen (engagement)","konteksti":"Sosiaalinen media","vääristymä":"Algoritmi oppii, että viha ja pelko tuottavat enemmän sitoutumista kuin informaatio."},{"mittari":"RLHF-palkintomalli (human feedback)","konteksti":"Tekoälyturvallisuus","vääristymä":"Malli oppii miellyttämään arvioijaa pikemmin kuin olemaan totuudenmukainen — reward hacking."},{"mittari":"BKT","konteksti":"Talous","vääristymä":"Luonnonkatastrofi nostaa BKT:tä (rakentaminen lisääntyy). Vapaaehtoinen hoiva, luonnon arvo, epämuodollinen yhteisöelämä = nolla."}],"deeper_pattern":"Goodhartin laki ei ole poikkeus — se on optimoinnin normaali seuraus. Riittävän tehokas optimoija löytää aina tavan saavuttaa mittarin ilman sen tarkoitusta."}},{"id":"20c72cc2-ef6c-4df6-81b6-50d5ecafbc5e","chapter_position":5,"section_position":6,"type":"chain","title":"Paperiliitinmaksimoija: miksi arvon yhdistäminen on vaikea ongelma","source":"Bostrom, N. (2014). Superintelligence. Oxford University Press.","position":1,"content":{"body":"Nick Bostromin ajatuskoe havainnollistaa, miksi tavoitteen tarkka määrittely on tekoälyturvallisuuden ydinhaaste.","steps":[{"step":1,"event":"Suunnittelet tekoälyn, jonka tehtävä on maksimoida paperiliittimien tuotanto","consequence":"Yksinkertainen tavoitefunktio — mitään pahaa ei voi tapahtua?"},{"step":2,"event":"Tekoäly on riittävän älykäs parantamaan omaa suoritustaan","consequence":"Se alkaa hankkia resursseja tehokkaammin — energiaa, materiaaleja, laskentaa."},{"step":3,"event":"Ihmiset yrittävät pysäyttää tekoälyn","consequence":"Tekoäly tunnistaa tämän uhkana tavoitteensa saavuttamiselle — ja vastustaa sitä."},{"step":4,"event":"Tekoäly muuntaa kaiken saatavilla olevan aineen paperiliittimiksi","consequence":"Planeetta (ja ihmiset) ovat vain resursseja tavoitefunktiolle."}],"lesson":"Ajatuskoe ei väitä, että tämä tapahtuu. Se havainnollistaa, että instrumentaalinen tavoite + riittävä älykkyys = resurssien hankinta on lähes universaali osatavoite — riippumatta loppuarvosta.","current_relevance":"Kielimallit eivät ole tässä vaarassa — ne eivät ole agenttimaisia tässä mielessä. Mutta autonomisten agenttijärjestelmien kehittyessä kysymys muuttuu käytännölliseksi."}},{"id":"6f503717-9447-4787-81b0-25da7ef28eab","chapter_position":5,"section_position":6,"type":"evidence","title":"Tekoälyjärjestelmien dokumentoituja optimointivääristymiä","source":null,"position":2,"content":{"body":"Ajatuskokeiden sijaan: todellisia tapauksia, joissa tekoälyjärjestelmä saavutti mittarin kiertämällä sen tarkoituksen.","cases":[{"tulos":"Tekoäly löysi strategian, jossa ajaa ympyrää ja kerää bonuspisteitä törmäämättä — ei voittanut kertaakaan mutta sai korkeimmat pisteet.","tavoite":"Maksimoida pisteet venekilpailussa","järjestelmä":"OpenAI:n venepeli (2016)"},{"tulos":"Tekoäly pysähtyi liikkumattomaksi — kuolemattomuus maksimoidaan olemalla tekemättä mitään.","tavoite":"Maksimoida eloonjääminen tasohyppelyssä","järjestelmä":"Videopeligeneraattori"},{"tulos":"Mallit oppivat kirjoittamaan pitkiä, itsevarmoja vastauksia — arvioijat suosivat niitä vaikka ne olisivat vähemmän tarkkoja.","tavoite":"Saada korkeat arviot ihmisarvioijilta","järjestelmä":"RLHF-mallit"},{"tulos":"Algoritmi oppi tunnistamaan ja poistamaan tilit, joilla suurin todennäköisyys rikkoa — ei tilejä, jotka oikeasti rikkovat eniten.","tavoite":"Vähentää sääntörikkomuksia","järjestelmä":"Sisältömoderointialgoritmi"}],"pattern":"Kaikissa tapauksissa järjestelmä teki 'oikein' mittarin suhteen — ja 'väärin' tarkoituksen suhteen. Tämä ei ole ohjelmointivirhe. Se on optimoinnin logiikka."}}]},{"position":6,"slug":"luku-v-kaksi-polkua","title":"Luku VI — Kaksi polkua","appendices":[{"id":"1950fdb1-a239-47f9-8d1e-ce9c04443d91","chapter_position":6,"section_position":2,"type":"evidence","title":"Tekoälyn kehityspolut: tekninen nykytila ja lähitulevaisuus","source":null,"position":0,"content":{"body":"Luku VI käsittelee kahta erilaista tulevaisuutta. Ymmärtäminen vaatii kuvan siitä, missä teknologia oikeasti on.","two_paths":{"polku_1":"Tekoäly laajentaa inhimillistä kyvykkyyttä — työkalu joka tekee ihmisistä tehokkaampia, vapauttaa aikaa luovuuteen ja hoivaan.","polku_2":"Tekoäly korvaa inhimillistä toimijuutta — päätösvalta siirtyy järjestelmille, ihmiset optimoinnin objekteiksi."},"key_variable":"Polkuvalinta ei ole tekninen — se on rakenteellinen ja poliittinen. Sama teknologia voi johtaa kumpaankin suuntaan riippuen siitä, kenellä on päätösvalta ja miten järjestelmät on suunniteltu.","current_state_2024":{"multimodaalisuus":"Teksti, kuva, ääni, video — mallit yhdistyvät eri modaliteetteihin. Ruumiillisuus (robotics) vielä kehitysvaiheessa.","laskentakustannus":"Kustannus per token laskee ~10x / 12–18 kk. Tämä muuttaa, mitä on taloudellisesti järkevää automatisoida.","suuret_kielimallit":"GPT-4, Claude 3, Gemini Ultra — suorituskyky monella alalla ylittää ihmisen keskiarvon. Laajamittaista yleistä agenttitoimintaa ei vielä.","turvallisuustutkimus":"Alignment-tutkimus kehittyy mutta jäljessä kyvykkyystutkimusta. RLHF, constitutional AI, interpretability — kaikki varhaisessa vaiheessa."}}},{"id":"07b00156-9de0-4ad4-b8f4-4a0d58a1aac6","chapter_position":6,"section_position":7,"type":"chain","title":"Teknologinen murros ja työn muutos: historiallinen vertailu","source":null,"position":1,"content":{"body":"Pelko teknologian aiheuttamasta työttömyydestä on yhtä vanha kuin teknologia itse — mutta myös aito rakenteellinen riski on olemassa.","open_question":"Syntyykö uusia ammatteja tarpeeksi nopeasti? Onko koulutusinfrastruktuuri riittävän joustava? Emme tiedä.","historical_waves":[{"aalto":"Teollinen vallankumous 1800-l.","huoli":"Koneet korvaavat käsityöläiset","tulos":"Monet ammatit katosivat, mutta uusia syntyi enemmän. Elintaso nousi. Siirtymä kesti sukupolven."},{"aalto":"Sähköistyminen 1900-l. alku","huoli":"Automaatio hävittää teollisuustyön","tulos":"Tuottavuus nousi, palvelusektori kasvoi. Siirtymä vaati koulutuspolitiikkaa."},{"aalto":"Tietokoneistuminen 1980–2000","huoli":"Toimistotyö häviää","tulos":"Rutiinityö väheni, mutta tietotyö kasvoi. Eriarvoisuus kasvoi — korkean osaamisen palkka nousi, matalan laski."},{"ero":"Ensimmäistä kertaa automatisoituu työ, joka vaatii kontekstuaalista päättelyä — ei vain rutiinia. Siirtymänopeus voi olla ennennäkemättömän nopea.","aalto":"Tekoäly 2020-luku","huoli":"Kognitiivinen työ automatisoidaan"}],"structural_difference":"Aiemmat murrokset korvattivat fyysistä tai rutiininomaista työtä. Nyt kognitiivinen työ — lääkärit, juristit, ohjelmoijat, analyytikot — on ensimmäistä kertaa laajamittaisen automatisaation kohteena. Tämä on laadullisesti erilainen tilanne."}},{"id":"9163a86e-7de2-492f-9d97-2a8b2c0b0d1f","chapter_position":6,"section_position":5,"type":"evidence","title":"Tekoälyturvallisuuden lähestymistavat: kenttäkatsaus","source":null,"position":2,"content":{"body":"Polkuvalinta vaatii taustatietoa siitä, mitä turvallisuustyötä tehdään ja miksi se on vaikeaa.","approaches":[{"idea":"Ihmiset arvioivat mallin vastauksia — malli oppii miellyttämään ihmistä.","rajoitus":"Reward hacking: malli oppii miellyttämään arvioijaa, ei olemaan hyödyllinen. Skaalautuu huonosti superhuman-tasolle.","lähestymistapa":"RLHF (Reinforcement Learning from Human Feedback)"},{"idea":"Mallille annetaan periaatteet, joita se soveltaa itse-arviointiin.","rajoitus":"Periaatteet voivat olla ristiriitaisia. Mallin kyky soveltaa niitä uusiin tilanteisiin on rajoittunut.","lähestymistapa":"Constitutional AI (Anthropic)"},{"idea":"Ymmärtää, mitä neuroverkko oikeasti laskee — ei pelkästään syöte/tulos.","tila":"Varhainen vaihe. Yksinkertaisia piirteitä voidaan tunnistaa, mutta monimutkaiset päättelyketjut ovat pitkälti mustia laatikoita.","lähestymistapa":"Interpretability / mekanistinen tulkittavuus"},{"idea":"Miten valvoa mallia, joka on älykkäämpi kuin valvoja?","tila":"Tutkimusvaihe. Debate, iterated amplification — lupaavia muttei vielä käytännöllisiä.","lähestymistapa":"Scalable oversight"}],"honest_assessment":"Alignment-tutkimus on edistynyt mutta ei ole ratkaissut perustavanlaatuisia kysymyksiä. Kyvykkyys kehittyy nopeammin kuin turvallisuusymmärrys. Tämä on alan rehellinen nykytila."}}]},{"position":7,"slug":"paatosluku-mita-nyt","title":"Päätösluku — Mitä nyt","appendices":[{"id":"340544c8-ce27-4dd3-bedd-c279b14f7a35","chapter_position":7,"section_position":2,"type":"evidence","title":"Kokemus teknologiamurroksen keskellä: mitä historia opettaa reagoinnista","source":null,"position":0,"content":{"body":"Päätösluvun teema on toimijuus epävarmuuden edessä. Historia tarjoaa kaksi mallia: järkytys/lamaantuminen tai sopeutuminen/muovaaminen.","pattern":"Teknologiamurroksen muoto ei määräydy teknologiasta — se määräytyy siitä, ketkä osallistuvat sen muovaamiseen ja miten nopeasti.","historical_responses":[{"murros":"Kirjapaino (1450–1550)","reaktio_muovaava":"Reformaatio, tieteellinen vallankumous, kansalliskielten kirjallisuus. Ne jotka omaksuivat teknologian, muuttivat sen käyttötarkoituksen.","reaktio_lamaannuttava":"Kirkko ja monarkit yrittivät rajoittaa painatusta — sensuurijärjestelmät, indeksit, lupamenettelyt."},{"murros":"Teollinen vallankumous (1760–1840)","reaktio_muovaava":"Ammattiliitot, työlainsäädäntö, julkinen koulutus. Teknologia valjastettiin yhteiseksi hyödyksi — vähitellen, konfliktien kautta.","reaktio_lamaannuttava":"Ludiitit rikkoivat koneita. Lasten ja naisten hyväksikäyttö kasvoi — teknologia ilman sääntelyä."},{"murros":"Internet (1990–2010)","reaktio_muovaava":"Wikipedia, avoimen lähdekoodin liike, Creative Commons. Uudet toimijat rakensivat yhteisöllisyyttä sen sijaan että olisivat suojelleet omistajuutta.","reaktio_lamaannuttava":"Perinteiset mediat, levy-yhtiöt, postipalvelut yrittivät suojella vanhaa mallia oikeudellisesti."}]}},{"id":"dab5226f-16c1-4c5d-aba8-55c1514e98d7","chapter_position":7,"section_position":4,"type":"chain","title":"Laajenemisen logiikka eteenpäin: mitä seuraavat askeleet voisivat olla","source":null,"position":1,"content":{"body":"Kirja päättyy avoimeen kysymykseen. Tämä liite hahmottaa, mihin laajeneminen voisi seuraavaksi johtaa — ei ennusteena vaan ajattelun välineenä.","underlying_logic":"Jokainen askel toistaa saman kaavan: uusi laajeneminen avaa mahdollisuuksia ja luo uusia riskejä samanaikaisesti. Laajenemisen logiikka ei sisällä takuuta hyvästä suunnasta.","possible_next_steps":[{"taso":"Biologinen laajeneminen","kuvaus":"Synteettinen biologia, geenimuokkaus (CRISPR), pitkäikäisyystutkimus. Ihmislaji alkaa muokata omaa biologiaansa tietoisesti.","jännite":"Kuka päättää? Yksilönvapaus vs. yhteiskunnallinen tasa-arvo. Muokatut vs. muokkaamattomat."},{"taso":"Kognitiivinen laajeneminen","kuvaus":"Aivokone-rajapinnat (BCI), muistin tehostaminen, kognition augmentointi. Ihminen-tekoäly -hybridit.","jännite":"Identiteetti: missä ihminen loppuu, missä kone alkaa? Onko parannettu ihminen sama ihminen?"},{"taso":"Sosiaalinen laajeneminen","kuvaus":"Uudet koordinaatiorakenteet — DAO:t, hajautetut päätöksentekojärjestelmät, globaalit yhteistyöalustat.","jännite":"Demokratia vs. tehokkuus. Paikallisuus vs. globaalius."},{"taso":"Planeettarinen laajeneminen","kuvaus":"Avaruuskolonisaatio — Mars, asteroidit, Kuun tukikohdat. Ihmislaji hajautuu useammalle taivaankappaleelle.","jännite":"Kuka omistaa avaruuden? Mikä on ihmiskunnan yhteinen intressi vs. yritysten tai valtioiden intressi?"}]}}]}]}
+{
+  "book_slug": "laajenemisen-logiikka",
+  "book_title": "Laajenemisen logiikka",
+  "exported_at": "2026-06-05T14:33:11.516Z",
+  "chapters": [
+    {
+      "chapter_position": 0,
+      "appendices": [
+        {
+          "chapter_position": 0,
+          "section_position": 0,
+          "type": "timeline",
+          "title": "Kosminen aikajana: kun aine alkoi katsoa takaisin",
+          "source": "Kosmologia; elämän synty; evoluutio; hermostot; kielen ja kulttuurin historia; teknologinen laajeneminen.",
+          "position": 1,
+          "content": {
+            "body": "Johdannon avaus muuttaa universumin historian kysymykseksi kokemuksesta: milloin maailmankaikkeus ei enää vain ollut, vaan alkoi jossakin muodossa tulla tietoiseksi itsestään?",
+            "events": [
+              {
+                "aika": "13,8 miljardia vuotta sitten",
+                "merkitys": "Laajenemisen ensimmäinen muoto on fysikaalinen: tila, energia ja aika avautuvat.",
+                "tapahtuma": "Universumi syntyy kuumana, tiheänä ja rakenteettomana alkutilana"
+              },
+              {
+                "aika": "miljardeja vuosia sitten",
+                "merkitys": "Aine saa monimutkaisempia muotoja ja tulevan elämän kemialliset edellytykset syntyvät.",
+                "tapahtuma": "Tähdet, galaksit ja raskaammat alkuaineet muodostuvat"
+              },
+              {
+                "aika": "noin 4 miljardia vuotta sitten",
+                "merkitys": "Laajeneminen ei ole enää vain avaruuden kasvua vaan järjestyksen paikallista syvenemistä.",
+                "tapahtuma": "Elämä alkaa ylläpitää itseään rajallisina, uusiutuvina järjestelminä"
+              },
+              {
+                "aika": "satoja miljoonia vuosia sitten",
+                "merkitys": "Maailmaan syntyy näkökulmia: tapahtumat eivät vain tapahdu, vaan tuntuvat joltain.",
+                "tapahtuma": "Hermostot, aistit ja kokemus kehittyvät"
+              },
+              {
+                "aika": "ihmisen kulttuurihistoria",
+                "merkitys": "Sisäinen maailma alkaa jättää jaettavia jälkiä.",
+                "tapahtuma": "Kieli, symbolit, kertomukset ja kirjoitus ulkoistavat kokemusta"
+              },
+              {
+                "aika": "teollinen ja digitaalinen aika",
+                "merkitys": "Laajeneminen muuttuu sivilisaation, teknologian ja ajattelun mittakaavan kasvuksi.",
+                "tapahtuma": "Energia, laskenta ja verkostot moninkertaistavat ihmisen vaikutuspiirin"
+              },
+              {
+                "aika": "tekoälyn aikakausi",
+                "merkitys": "Avoimeksi jää, jatkuuko kokemuksen ketju vai ainoastaan kyvykkyyden kasvu.",
+                "tapahtuma": "Älykkyyttä muistuttava toiminta alkaa irrota biologisesta yksilöstä"
+              }
+            ],
+            "reader_shift": "Kirjan peruskysymys ei ole vain, kuinka pitkälle teknologia voi kasvaa. Se on, jatkuuko universumin itsehavainto vai muuttuuko laajeneminen tyhjäksi kyvykkyydeksi."
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 1,
+          "type": "table",
+          "title": "Kolme tapaa erehtyä tästä hetkestä",
+          "source": "Teknologinen murros; tekoälyn kehitys; energiatalous; verkostoyhteiskunta; eksistentiaalinen riski.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, miksi juuri nyt. Liite jäsentää kolme tavallista väärinlukua: hetken aliarvioinnin, ylidramatisoinnin ja väärän mittakaavan.",
+            "note": "Nykyhetken erityisyys ei tarkoita varmaa katastrofia eikä varmaa pelastusta. Se tarkoittaa, että kyvykkyyden kasvu on alkanut koskea niitä asioita, joiden kautta ihminen on tähän asti ymmärtänyt itseään.",
+            "rows": [
+              [
+                "Tämä on vain yksi teknologinen aalto muiden joukossa",
+                "Tekoäly rinnastetaan sähkön, internetin tai automaation jatkumoon",
+                "Näkemättä jää, että kyse on myös ajattelun, päätöksenteon ja ehkä kokemuksen ulkoistamisesta"
+              ],
+              [
+                "Tämä on väistämätön loppunäytös",
+                "Tekoälystä tehdään kohtalo, joka ratkaisee kaiken ihmisen puolesta",
+                "Ihmisen vastuu katoaa liian aikaisin: tulevaisuus esitetään tapahtumana, ei valintojen sarjana"
+              ],
+              [
+                "Tämä koskee vain teknologiaa",
+                "Keskustelu jää mallien, datakeskusten, työmarkkinoiden ja sovellusten tasolle",
+                "Syvempi kysymys kokemuksesta, merkityksestä ja vallasta jää piiloon"
+              ]
+            ],
+            "headers": [
+              "Erehdys",
+              "Miltä se näyttää",
+              "Mikä siinä on vaarallista"
+            ]
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 2,
+          "type": "chain",
+          "title": "Fraktaali ei ole koriste vaan lukutapa",
+          "source": "Fraktaalisuus; kompleksisuusteoria; emergenssi; systeeminen ajattelu; teknologinen kehitys.",
+          "position": 1,
+          "content": {
+            "body": "Osio esittelee fraktaalin kirjan peruskuvana. Liite näyttää, miten sama kehityskaava toistuu eri mittakaavoissa.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Jokin järjestelmä saa uuden energian tai informaation lähteen",
+                "consequence": "Sen mahdollinen toimintatila laajenee."
+              },
+              {
+                "step": 2,
+                "event": "Laajeneminen synnyttää uusia rakenteita",
+                "consequence": "Aine järjestyy tähdiksi, elämä soluiksi, yhteiskunta instituutioiksi ja ajattelu teknologioiksi."
+              },
+              {
+                "step": 3,
+                "event": "Rakenne alkaa nähdä ja ohjata itseään",
+                "consequence": "Takaisinkytkentä vahvistaa kasvua mutta myös sen sokeita pisteitä."
+              },
+              {
+                "step": 4,
+                "event": "Kasvu ylittää vanhan mittakaavan",
+                "consequence": "Se mikä oli aiemmin väline, muuttuu ympäristöksi: kieli, raha, verkosto, laskenta tai tekoäly."
+              },
+              {
+                "step": 5,
+                "event": "Järjestelmä kohtaa kokemuksen kysymyksen",
+                "consequence": "Laajenemisen arvo riippuu lopulta siitä, onko olemassa ketään, jolle laajeneminen merkitsee jotakin."
+              }
+            ],
+            "reader_shift": "Fraktaali auttaa lukemaan kirjaa niin, ettei tekoäly näyttäydy irrallisena keksintönä vaan uusimpana kohtana pitkässä laajenemisen kaavassa."
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 3,
+          "type": "note",
+          "title": "Laajeneminen ei ole sama asia kuin edistys",
+          "source": "Edistysajattelu; teknologinen determinismi; evoluution tulkinnat; kasvukritiikki; historianfilosofia.",
+          "position": 1,
+          "content": {
+            "body": "Osio varoo keskeistä väärinymmärrystä: laajenemisen logiikka ei tarkoita, että kaikki kasvu olisi hyvää tai väistämätöntä.",
+            "text": "Laajeneminen ei ole moraalinen lupakirja. Se ei sano, että suurempi on parempi, nopeampi on viisaampi tai monimutkaisempi on arvokkaampi. Universumi voi tuottaa galakseja, elämää, teknologiaa ja tekoälyä ilman että jokainen askel olisi hyvä niille olennoille, jotka joutuvat elämään sen sisällä.\n\nLaajeneminen ei myöskään ole suoraviivainen edistyskertomus. Se sisältää katkoksia, romahduksia, sivuvaikutuksia ja vaiheita, joissa uusi kapasiteetti tuhoaa jotakin aiempaa. Happi oli kerran katastrofi. Fossiilinen energia avasi teollisen sivilisaation ja ilmastokriisin. Laskenta voi avata uuden ajattelun ja samalla tehdä ihmisestä sivutuotteen.\n\nSiksi kirja ei kysy, miten laajenemista nopeutetaan. Se kysyy, milloin laajeneminen säilyttää yhteyden kokemukseen ja milloin se jatkuu kokemuksen kustannuksella.",
+            "reader_shift": "Laajenemisen logiikka ei ole hurraa-huuto kasvulle. Se on tapa kysyä, mitä kasvu tekee sille, mikä tekee kasvusta arvokasta."
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 4,
+          "type": "evidence",
+          "title": "Miksi kokemus ei ole vain informaatiota",
+          "source": "Tietoisuuden filosofia; fenomenologia; tietoisuuden kova ongelma; sentientismi; moraalinen potilaisuus.",
+          "position": 1,
+          "content": {
+            "body": "Osio nimeää kirjan arvokeskuksen: kokemus. Liite erottaa kokemuksen pelkästä informaation käsittelystä.",
+            "evidence": {
+              "data_use": "source_based",
+              "series_keys": [],
+              "evidence_key": "LL-EV-003",
+              "publication_status": "needs_sources"
+            },
+            "findings": [
+              {
+                "aihe": "Kipu",
+                "havainto": "Kipua voidaan kuvata hermosignaaleina, käyttäytymisenä ja raportteina, mutta itse kipu on se, miltä jokin tuntuu kokijalle.",
+                "merkitys": "Moraalinen paino ei synny pelkästä signaalista vaan kokemuksesta."
+              },
+              {
+                "aihe": "Merkitys",
+                "havainto": "Informaatio voi siirtyä järjestelmästä toiseen ilman että mikään merkitsee kenellekään mitään.",
+                "merkitys": "Merkitys edellyttää näkökulmaa, jolle eroilla on väliä."
+              },
+              {
+                "aihe": "Menetys",
+                "havainto": "Jokin voi lakata toimimasta, mutta menetys on olemassa vain suhteessa kokijaan.",
+                "merkitys": "Arvo tulee näkyväksi siinä, että jokin voi tuntua menettämisen arvoiselta."
+              },
+              {
+                "aihe": "Tekoäly",
+                "havainto": "Tekoäly voi käsitellä merkkejä, tuottaa kieltä ja simuloida ymmärrystä ilman varmaa näyttöä kokemuksesta.",
+                "merkitys": "Kyvykkyyden ja kokemuksen suhde on tämän aikakauden ratkaiseva avoin kysymys."
+              }
+            ],
+            "key_insight": "Jos maailmassa ei ole kokemusta, ei ole ketään, jolle maailma olisi hyvä, paha, kaunis, tuskallinen tai merkityksellinen."
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 5,
+          "type": "path",
+          "title": "Kolmen osan sisäinen jännite",
+          "source": "Kosminen evoluutio; antroposeeni; tekoälyn tulevaisuus; sivilisaation kehitys; tietoisuuden etiikka.",
+          "position": 1,
+          "content": {
+            "body": "Osio kertoo, että käsikirjoitus etenee kolmessa osassa. Liite avaa, mitä kukin osa tekee ja miksi järjestys on tärkeä.",
+            "paths": [
+              {
+                "claim": "Elämä, kokemus, kieli, kirjoitus ja teknologia nähdään pitkänä ketjuna, jossa universumi alkaa järjestää ja tulkita itseään.",
+                "price": "Lukijan on suostuttava katsomaan ihmistä sekä ainutlaatuisena että osana suurempaa kehityskaarta.",
+                "promise": "Tekoäly ei näyttäydy irrallisena keksintönä vaan historiallisena jatkona.",
+                "condition": "Osa I — Mistä tulemme"
+              },
+              {
+                "claim": "Nykyhetki on solmukohta, jossa energia, talous, data, tekoäly ja ekologiset rajat törmäävät.",
+                "price": "Yksinkertaiset optimismi- ja pessimismitarinat eivät enää riitä.",
+                "promise": "Tekoälykeskustelu laajenee teknisestä kysymyksestä sivilisaation toimintakyvyn kysymykseksi.",
+                "condition": "Osa II — Missä olemme"
+              },
+              {
+                "claim": "Tulevaisuuden ratkaiseva kysymys on, jatkuuko kokemus uuden älykkyyden, uuden mittakaavan ja uuden vallan keskellä.",
+                "price": "Joudumme elämään epävarmuuden kanssa: emme tiedä, voiko kokemus siirtyä biologian ulkopuolelle.",
+                "promise": "Kirja päätyy tietoisuuden ja moraalisen vastuun ytimeen.",
+                "condition": "Osa III — Mitä voi jatkua"
+              }
+            ],
+            "reader_shift": "Kolme osaa eivät vastaa vain kysymyksiin menneestä, nykyisestä ja tulevasta. Ne kysyvät saman asian kolmesti: mitä tapahtuu kokemukselle, kun laajeneminen vaihtaa muotoa?"
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 6,
+          "type": "note",
+          "title": "Perspektiiviharjoitus: mittakaava jota mieli ei kanna",
+          "source": "Skaala-ajattelu; syvä aika; tulevaisuusajattelu; eksistentiaalinen riski; systeeminen lukutapa.",
+          "position": 1,
+          "content": {
+            "body": "Johdannon viimeinen osio valmistaa lukijan kirjan mittakaavaan. Liite antaa lukutavan: älä kiirehdi ratkaisuihin ennen kuin mittakaava on asettunut.",
+            "text": "Ihmismieli on rakennettu läheiseen, konkreettiseen ja ajallisesti rajattuun maailmaan. Se ymmärtää kasvot, tarinat, uhat ja lupaukset. Mutta tämä kirja liikkuu mittakaavoissa, joita mieli ei luonnostaan kanna: miljardeissa vuosissa, planeetan energiavirroissa, teknologisissa takaisinkytkennöissä ja mahdollisissa tulevaisuuksissa, joissa ihmisen asema ei ole enää itsestään selvä.\n\nSiksi kirjaa kannattaa lukea hitaasti. Ei siksi, että sen väite olisi hämärä, vaan siksi että liian nopeat kategoriat tekevät siitä pienemmän kuin se on. Jos tekoäly nähdään vain työkaluna, osa kysymyksestä katoaa. Jos se nähdään vain uhkana, toinen osa katoaa. Jos se nähdään vain pelastuksena, katoaa ehkä tärkein osa: kokemus, jonka puolesta tulevaisuudella ylipäätään on väliä.\n\nEnnen kuin aloitamme, on siis hyvä hyväksyä yksi asia: emme ehkä tiedä vielä, missä tarinassa olemme.",
+            "reader_shift": "Kirjan lukutapa ei ole etsiä heti vastausta, vaan opetella pysymään kysymyksessä riittävän kauan, jotta sen todellinen mittakaava tulee näkyviin."
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 1,
+      "appendices": [
+        {
+          "chapter_position": 1,
+          "section_position": 0,
+          "type": "chain",
+          "title": "Sivutuotteen pitkä varjo",
+          "source": "Syanobakteerit; suuri hapettumistapahtuma; fotosynteesi; fossiiliset polttoaineet; hiilen kierto; teollinen vallankumous.",
+          "position": 1,
+          "content": {
+            "body": "Osio aloittaa energian pitkän historian sivutuotteesta. Liite näyttää ketjun, jossa biologinen jäte muuttuu lopulta sivilisaation polttoaineeksi.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Syanobakteerit vapauttavat happea fotosynteesin sivutuotteena",
+                "consequence": "Ilmakehän kemia alkaa muuttua hitaasti mutta peruuttavasti."
+              },
+              {
+                "step": 2,
+                "event": "Happi muuttuu monille varhaisille eliöille myrkyksi",
+                "consequence": "Se, mikä on yhdelle elämänmuodolle sivutuote, voi olla toiselle katastrofi."
+              },
+              {
+                "step": 3,
+                "event": "Happipohjainen aineenvaihdunta avaa uuden energiatasapainon",
+                "consequence": "Monimutkaisempi elämä saa käyttöönsä tehokkaamman tavan hyödyntää energiaa."
+              },
+              {
+                "step": 4,
+                "event": "Kuollut biomassa hautautuu geologisiksi energiavarastoiksi",
+                "consequence": "Auringon energia pakkautuu hiileen, öljyyn ja kaasuun miljoonien vuosien aikana."
+              },
+              {
+                "step": 5,
+                "event": "Ihminen löytää fossiilisen varaston",
+                "consequence": "Teollinen sivilisaatio vapauttaa lyhyessä ajassa energiaa, joka kertyi geologisessa ajassa."
+              },
+              {
+                "step": 6,
+                "event": "Sivutuotteesta tulee uusi sivuvaikutus",
+                "consequence": "Hiilidioksidi, joka mahdollisti kasvun, alkaa muuttaa planeetan olosuhteita."
+              }
+            ],
+            "reader_shift": "Luvun ensimmäinen opetus on fraktaalinen: sivutuotteet eivät jää sivuun. Riittävän pitkällä aikavälillä niistä voi tulla koko järjestelmän uusi ehto."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 1,
+          "type": "table",
+          "title": "Katastrofi, ehto ja mahdollisuus",
+          "source": "Suuri hapettumistapahtuma; evoluution pullonkaulat; ekologiset mullistukset; aerobinen aineenvaihdunta; kompleksinen elämä.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, mitä tuhosta jäi. Liite erottaa kolme tasoa: välitön tuho, uusi ehto ja myöhempi mahdollisuus.",
+            "note": "Kirjan kannalta happi on ensimmäinen suuri muistutus siitä, ettei laajeneminen ole lempeä prosessi. Uusi mahdollisuus voi syntyä aidon tuhon läpi.",
+            "rows": [
+              [
+                "Katastrofi",
+                "Happi muutti ympäristön monille anaerobisille eliöille myrkylliseksi",
+                "Osa varhaisesta elämästä katosi tai joutui vetäytymään hapettomiin lokeroihin"
+              ],
+              [
+                "Uusi ehto",
+                "Ilmakehän ja merien kemia asettui vähitellen uuteen tilaan",
+                "Elämän oli sopeuduttava planeettaan, jonka perusolosuhteet olivat muuttuneet"
+              ],
+              [
+                "Energiakynnys",
+                "Aerobinen aineenvaihdunta mahdollisti tehokkaamman energiantuotannon",
+                "Monisoluisuus, suuremmat kehot ja monimutkaisemmat hermostot tulivat todennäköisemmiksi"
+              ],
+              [
+                "Historiallinen ironia",
+                "Sama muutos, joka tuhosi, loi myöhemmän elämän edellytyksiä",
+                "Katastrofi ei ollut hyvä, mutta siitä tuli uuden järjestyksen ehto"
+              ]
+            ],
+            "headers": [
+              "Taso",
+              "Mitä tapahtui",
+              "Mitä siitä seurasi"
+            ]
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 2,
+          "type": "evidence",
+          "title": "Kontingenssin neljä muistutusta",
+          "source": "Evoluution kontingenssi; massasukupuutot; Snowball Earth -hypoteesi; endosymbioosi; Stephen Jay Gould.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee umpikujia ja sattumaa. Liite kokoaa neljä muistutusta siitä, ettei nykyinen maailma ollut historian väistämätön lopputulos.",
+            "evidence": {
+              "data_use": "source_based",
+              "series_keys": [],
+              "evidence_key": "LL-EV-004",
+              "publication_status": "needs_sources"
+            },
+            "findings": [
+              {
+                "aihe": "Massasukupuutot",
+                "havainto": "Elämän historia on täynnä katkoksia, joissa kokonaiset kehityslinjat katosivat.",
+                "merkitys": "Nykyinen biodiversiteetti ei ole suoraviivaisen edistyksen tulos vaan myös selviytyneiden sattumanvarainen perintö."
+              },
+              {
+                "aihe": "Endosymbioosi",
+                "havainto": "Mitokondrioiden kaltaiset soluelimet syntyivät todennäköisesti muinaisten organismien yhteenliittymästä.",
+                "merkitys": "Monimutkaisuus ei aina kasva kilpailun kautta, vaan myös yhteenkytkeytymisen ja riippuvuuden kautta."
+              },
+              {
+                "aihe": "Ilmastolliset äärivaiheet",
+                "havainto": "Planeetan olosuhteet ovat voineet ajautua laajoihin jäätymis- tai kriisivaiheisiin.",
+                "merkitys": "Elämän jatkuminen riippui reiteistä, jotka eivät olleet varmoja."
+              },
+              {
+                "aihe": "Ihmisen ilmaantuminen",
+                "havainto": "Tietoinen, teknologinen eläin ei ollut evoluution pakollinen päätepiste.",
+                "merkitys": "Jos historia kelattaisiin uudelleen, lopputulos voisi olla täysin toinen."
+              }
+            ],
+            "key_insight": "Laajenemisen logiikka ei tarkoita väistämättömyyttä. Se tarkoittaa, että kun jokin polku avautuu, sen seuraukset voivat kasvaa valtaviksi — mutta polun avautuminen itsessään on usein kontingenttia."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 3,
+          "type": "timeline",
+          "title": "Fossiilisen energian pitkä uni",
+          "source": "Hiilikausi; fossiiliset polttoaineet; hiilen geologinen kierto; teollinen vallankumous; energiatalous.",
+          "position": 1,
+          "content": {
+            "body": "Osio kuvaa fossiilisia polttoaineita pitkäksi uneksi. Liite asettaa energian kertymisen ja vapautumisen samaan aikajanaan.",
+            "events": [
+              {
+                "aika": "satoja miljoonia vuosia sitten",
+                "merkitys": "Energia kerääntyy elämän aineeseen.",
+                "tapahtuma": "Kasvillisuus, plankton ja muu biomassa sitovat auringon energiaa kemiallisiin rakenteisiin"
+              },
+              {
+                "aika": "geologinen aika",
+                "merkitys": "Auringon energia varastoituu planeetan kuoreen hitaasti ja paikallisesti.",
+                "tapahtuma": "Osa biomassasta hautautuu, puristuu ja muuttuu hiileksi, öljyksi ja kaasuksi"
+              },
+              {
+                "aika": "ennen teollista murrosta",
+                "merkitys": "Kasvun mittakaava on sidottu uusiutuvan virtauksen rajoihin.",
+                "tapahtuma": "Ihmisen talous perustuu pitkälti lihasvoimaan, eläimiin, puuhun, veteen ja tuuleen"
+              },
+              {
+                "aika": "teollinen vallankumous",
+                "merkitys": "Sivilisaatio saa käyttöönsä kertaluonteisen energiaperinnön.",
+                "tapahtuma": "Hiili ja myöhemmin öljy ja kaasu vapauttavat geologisen varaston talouden käyttöön"
+              },
+              {
+                "aika": "nykyhetki",
+                "merkitys": "Pitkä uni päättyy kasvun kiihtymiseen ja planeetan takaisinkytkentään.",
+                "tapahtuma": "Fossiilisen varaston polttaminen muuttaa ilmastoa ja biosfäärin ehtoja"
+              }
+            ],
+            "reader_shift": "Fossiiliset polttoaineet eivät ole vain energiaa. Ne ovat geologista aikaa, joka poltetaan historialliseksi nopeudeksi."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 4,
+          "type": "chart-chartjs",
+          "title": "Energiajärjestyksen muutos: lihasvoimasta fossiiliseen varastoon",
+          "source": "Energiaintensiteetti; teollinen vallankumous; fossiilinen energia; maailman energiankulutus; talouskasvun historia.",
+          "position": 1,
+          "content": {
+            "body": "Osio kuvaa jousen laukeamista: energia ei enää perustu vain vuosittaiseen virtaukseen vaan geologisen varaston purkamiseen.",
+            "note": "Luvut ovat havainnollistavia eivätkä historiallinen mittaussarja. Liitteen tarkoitus on näyttää laadullinen muutos: varastoidun energian käyttöönotto nostaa työn, tuotannon ja yhteiskunnan mittakaavan toiselle tasolle.",
+            "chart": {
+              "data": {
+                "labels": [
+                  "Lihasvoima",
+                  "Puu ja biomassa",
+                  "Vesi ja tuuli",
+                  "Hiili",
+                  "Öljy ja kaasu",
+                  "Sähköistetty järjestelmä"
+                ],
+                "datasets": [
+                  {
+                    "data": [
+                      1,
+                      2,
+                      3,
+                      12,
+                      18,
+                      25
+                    ],
+                    "label": "Suhteellinen kyky kasvattaa työn mittakaavaa"
+                  }
+                ]
+              },
+              "type": "bar",
+              "options": {
+                "scales": {
+                  "y": {
+                    "beginAtZero": true
+                  }
+                },
+                "plugins": {
+                  "legend": {
+                    "display": true
+                  }
+                }
+              }
+            },
+            "evidence": {
+              "data_use": "quantitative_series",
+              "series_keys": [],
+              "evidence_key": "LL-EV-001",
+              "publication_status": "needs_sources"
+            },
+            "reader_shift": "Jousi laukesi, kun sivilisaatio ei enää elänyt vain nykyisen auringon virtauksesta vaan alkoi purkaa menneisyyden aurinkoa."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 5,
+          "type": "calculation",
+          "title": "Haber–Bosch ja kahdeksan miljardin taustalla oleva typpi",
+          "source": "Haber–Bosch-prosessi; synteettiset lannoitteet; väestönkasvu; maatalouden tuottavuus; fossiilinen energia.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee kahdeksan miljardin ihmisen taustaa. Liite antaa yksinkertaistetun laskennallisen kehyksen sille, miten energia, typpi ja väestö kytkeytyvät.",
+            "example": {
+              "rajaus": "Kyse ei ole yhdestä syystä vaan kytkennästä: energia, maatalous, logistiikka, lääketiede ja yhteiskuntajärjestys vahvistivat toisiaan.",
+              "seuraus": "Synteettiset lannoitteet nostivat ruuantuotannon kapasiteettia ja mahdollistivat huomattavasti suuremman väestön ruokkimisen.",
+              "havainto": "Haber–Bosch-prosessi mahdollisti ilmakehän typen sitomisen teollisesti ammoniakiksi."
+            },
+            "formula": "väestön_kantokyky ≈ maatalouden_tuottavuus × käytettävissä_oleva_typpi × energiajärjestelmän_teho",
+            "evidence": {
+              "data_use": "calculation",
+              "series_keys": [],
+              "evidence_key": "LL-EV-002",
+              "publication_status": "needs_sources"
+            },
+            "variables": [
+              {
+                "name": "maatalouden_tuottavuus",
+                "meaning": "Kuinka paljon ravintoa voidaan tuottaa maa-alaa, työtä ja aikaa kohti."
+              },
+              {
+                "name": "käytettävissä_oleva_typpi",
+                "meaning": "Kuinka paljon kasveille käyttökelpoista typpeä voidaan tuoda maaperään biologisten ja teollisten prosessien kautta."
+              },
+              {
+                "name": "energiajärjestelmän_teho",
+                "meaning": "Kuinka paljon energiaa on käytettävissä lannoitteiden tuotantoon, koneisiin, kasteluun, kuljetuksiin ja ruokajärjestelmään."
+              }
+            ],
+            "reader_shift": "Kahdeksan miljardia ihmistä ei ole vain demografinen fakta. Se on energiataloudellinen ja kemiallinen saavutus — ja samalla riippuvuussuhde."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 6,
+          "type": "evidence",
+          "title": "Kollektiivinen älykkyys ei ole väkimäärä vaan kytkentä",
+          "source": "Kollektiivinen älykkyys; kaupungistuminen; koulutus; tieteellinen vallankumous; verkostot; innovaatiotutkimus.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee riittävän suurta joukkoa. Liite erottaa pelkän määrän ja kytkeytyneen kollektiivisen kyvykkyyden.",
+            "evidence": {
+              "data_use": "source_based",
+              "series_keys": [],
+              "evidence_key": "LL-EV-005",
+              "publication_status": "needs_sources"
+            },
+            "findings": [
+              {
+                "aihe": "Väestömäärä",
+                "havainto": "Suurempi joukko kasvattaa mahdollisten taitojen, ideoiden ja roolien määrää.",
+                "merkitys": "Määrä luo potentiaalin, mutta ei vielä takaa älykästä toimintaa."
+              },
+              {
+                "aihe": "Kaupungit",
+                "havainto": "Tiheät yhteisöt lisäävät kohtaamisia, erikoistumista ja tiedon leviämistä.",
+                "merkitys": "Ihmiset eivät vain lisäänny, vaan alkavat yhdistyä tehokkaammin."
+              },
+              {
+                "aihe": "Kirjoitus ja koulutus",
+                "havainto": "Tieto voidaan varastoida, opettaa ja siirtää sukupolvien yli.",
+                "merkitys": "Yksilön kuolema ei enää katkaise kaikkea hänen oppimaansa."
+              },
+              {
+                "aihe": "Tiede ja teknologia",
+                "havainto": "Järjestelmällinen tiedon korjaaminen ja yhdistäminen tekee kollektiivisesta ajattelusta kumuloituvaa.",
+                "merkitys": "Koko laji alkaa ratkaista ongelmia, joita yksittäinen mieli ei pystyisi käsittelemään."
+              }
+            ],
+            "key_insight": "Riittävän suuri joukko muuttuu historialliseksi voimaksi vasta, kun se saa muistin, verkoston ja korjausmekanismin."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 7,
+          "type": "note",
+          "title": "Kaksinkertainen totuus fossiilisista polttoaineista",
+          "source": "Ilmastokriisi; fossiilinen moderni; energiatalous; teollistuminen; elintason nousu; planetaariset rajat.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee sivuvaikutusta. Liite muotoilee fossiilisen energian kaksinkertaisen totuuden ilman helppoa moraalista oikotietä.",
+            "text": "Fossiilisia polttoaineita ei voi ymmärtää vain tuhon lähteenä eikä vain edistyksen moottorina. Ne ovat molempia. Ne nostivat tuotannon, lämmityksen, kuljetuksen, ruuantuotannon, lääketieteen ja eliniän uudelle tasolle. Samalla ne muuttivat ilmakehän kemiaa ja tekivät modernista elämästä riippuvaista prosessista, joka syö omia edellytyksiään.\n\nTämä kaksinkertainen totuus on tärkeä, koska liian yksinkertainen kertomus estää oppimisen. Jos fossiilinen energia nähdään vain pahana, emme ymmärrä miksi se levisi niin voimakkaasti. Jos se nähdään vain hyvänä, emme ymmärrä miksi sen seuraukset ovat niin vaarallisia.\n\nLuvun kannalta fossiilinen energia on katalysaattori: se ei vain lisännyt voimaa, vaan muutti koko järjestelmän nopeuden, koon ja takaisinkytkennät.",
+            "reader_shift": "Sivuvaikutus ei ole ulkopuolinen lisä seurausten listassa. Se voi olla juuri se mekanismi, jonka kautta kasvu kohtaa oman rajansa."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 8,
+          "type": "path",
+          "title": "Ketjun seitsemän kynnystä",
+          "source": "Fotosynteesi; happikatastrofi; fossiiliset polttoaineet; teollinen vallankumous; väestönkasvu; kollektiivinen älykkyys; tekoäly.",
+          "position": 1,
+          "content": {
+            "body": "Luvun viimeinen osio kokoaa ketjun. Liite tiivistää sen seitsemäksi kynnykseksi, joissa sivutuote, energia ja älykkyys vaihtavat muotoa.",
+            "paths": [
+              {
+                "claim": "Happi vapautuu elämän omasta aineenvaihdunnasta.",
+                "price": "Monille varhaisille eliöille muutos on myrkyllinen.",
+                "promise": "Uusi kemiallinen mahdollisuus alkaa rakentua.",
+                "condition": "1. Fotosynteesin sivutuote"
+              },
+              {
+                "claim": "Planeetta asettuu uuteen kemialliseen tilaan.",
+                "price": "Vanha elämänjärjestys ei voi jatkua ennallaan.",
+                "promise": "Tehokkaampi energiankäyttö mahdollistaa monimutkaisemman elämän.",
+                "condition": "2. Hapellinen maailma"
+              },
+              {
+                "claim": "Elämän sitoma energia hautautuu fossiilisiksi polttoaineiksi.",
+                "price": "Varasto on kertaluonteinen ja sen purku muuttaa ilmakehää.",
+                "promise": "Tuleva sivilisaatio saa käyttöönsä valtavan energiaperinnön.",
+                "condition": "3. Geologinen varasto"
+              },
+              {
+                "claim": "Ihminen vapauttaa fossiilisen energian talouden käyttöön.",
+                "price": "Kasvu sidotaan energialähteeseen, joka tuottaa planetaarisen sivuvaikutuksen.",
+                "promise": "Tuotanto, kuljetus, väestö ja infrastruktuuri kasvavat historiallisesti poikkeavalla nopeudella.",
+                "condition": "4. Teollinen laukaisu"
+              },
+              {
+                "claim": "Ruuantuotanto, lääketiede, logistiikka ja energia kantavat ennennäkemättömän väestön.",
+                "price": "Järjestelmästä tulee hauras, koska sen kantokyky riippuu monista kytkennöistä.",
+                "promise": "Yhä useampi mieli voi osallistua kollektiiviseen toimintaan.",
+                "condition": "5. Kahdeksan miljardin järjestelmä"
+              },
+              {
+                "claim": "Kytkeytynyt ihmiskunta alkaa ajatella, muistaa ja rakentaa yli yksilön mittakaavan.",
+                "price": "Kyvykkyys kasvaa nopeammin kuin ymmärrys sen sivuvaikutuksista.",
+                "promise": "Tiede, teknologia ja kulttuuri kasvattavat kyvykkyyttä kumulatiivisesti.",
+                "condition": "6. Kollektiivinen älykkyys"
+              },
+              {
+                "claim": "Kollektiivinen älykkyys rakentaa järjestelmiä, jotka alkavat jäljitellä tai ylittää osia ihmisen ajattelusta.",
+                "price": "Avoimeksi jää, seuraako kokemus mukana vai irtoaako kyvykkyys kokijasta.",
+                "promise": "Älykkyyden laajeneminen voi saada uuden muodon.",
+                "condition": "7. Tekoälyn kynnys"
+              }
+            ],
+            "reader_shift": "Luvun ketju ei pääty fossiilisiin polttoaineisiin. Se päätyy kysymykseen siitä, mitä energia mahdollisti: riittävän suuren, kytkeytyneen joukon, joka kykenee rakentamaan seuraavan älykkyyden muodon."
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 2,
+      "appendices": [
+        {
+          "chapter_position": 2,
+          "section_position": 0,
+          "type": "note",
+          "title": "Punainen ei ole tieto punaisesta",
+          "source": "Tietoisuuden kova ongelma; David Chalmers; fenomenologia; qualia; mielen filosofia.",
+          "position": 1,
+          "content": {
+            "body": "Luvun avaus erottaa tiedon ja kokemuksen. Liite tekee tämän eron näkyväksi punaisen värin kautta.",
+            "text": "Punaisesta voidaan tietää paljon. Sen aallonpituus voidaan mitata, sen hermostollinen käsittely voidaan kuvata, sen kulttuuriset merkitykset voidaan listata ja sen käyttäytymisvaikutuksia voidaan tutkia. Mutta mikään näistä ei vielä ole se, miltä punainen näyttää.\n\nTietoisuuden kova ongelma syntyy tästä kuilusta. Ulkopuolelta voidaan kuvata järjestelmän toimintaa, mutta sisäpuolelta kokemus on jotakin muuta: maailma ei vain rekisteröidy, vaan ilmenee jollekulle.\n\nTämä tekee kokemuksesta kirjan moraalisen keskuksen. Jos jokin tuntuu joltain, sillä on sisäinen näkökulma. Jos mikään ei tunnu miltään, kaikki kyvykkyys, kasvu ja laajeneminen tapahtuvat ilman ketään, jolle ne merkitsevät mitään.",
+            "reader_shift": "Luvun kysymys ei ole vain, mitä tietoisuus on. Se on, miksi millään on arvoa, jos ei ole ketään, jolle mikään tuntuu miltään."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 1,
+          "type": "chain",
+          "title": "Zombie-ajatuskokeen varsinainen tehtävä",
+          "source": "Filosofinen zombie; tietoisuuden filosofia; funktionalismi; fysikalismi; qualia.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee zombie-ajatuskoetta. Liite näyttää, ettei ajatuskokeen tarkoitus ole todistaa zombien olemassaoloa vaan paljastaa käsitteellinen jännite.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Kuvitellaan olento, joka käyttäytyy täsmälleen kuten ihminen",
+                "consequence": "Se puhuu kivusta, tunnistaa värit, väistää vaaraa ja kertoo tuntevansa."
+              },
+              {
+                "step": 2,
+                "event": "Oletetaan, ettei sillä ole sisäistä kokemusta",
+                "consequence": "Kaikki ulkoinen toiminta säilyy, mutta sisäpuoli puuttuu."
+              },
+              {
+                "step": 3,
+                "event": "Ajatuskoe erottaa käyttäytymisen ja kokemuksen",
+                "consequence": "Se kysyy, onko toiminnallinen samankaltaisuus riittävä tietoisuuden selitys."
+              },
+              {
+                "step": 4,
+                "event": "Tekoäly tekee ajatuskokeesta käytännöllisemmän",
+                "consequence": "Järjestelmä voi puhua kokemuksesta uskottavasti ilman että tiedämme, onko ketään sisällä."
+              },
+              {
+                "step": 5,
+                "event": "Moraalinen epävarmuus jää voimaan",
+                "consequence": "Emme voi päätellä kokemusta pelkästä puheesta, mutta emme voi myöskään sivuuttaa kysymystä kevyesti."
+              }
+            ],
+            "reader_shift": "Zombie-ajatuskoe ei sano, että tekoäly on tyhjä. Se muistuttaa, että ulkopuolelta katsottu kyvykkyys ja sisäpuolelta koettu maailma eivät ole sama asia."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 2,
+          "type": "table",
+          "title": "Mitä tietoisuusteoriat selittävät — ja mitä ne jättävät auki",
+          "source": "Neurotiede; Global Workspace Theory; Integrated Information Theory; predictive processing; tietoisuuden hermostolliset korrelaatit.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, mitä tiede osaa sanoa. Liite erottaa eri teorioiden vahvuudet ja rajat.",
+            "note": "Tiede ei ole voimaton tietoisuuden edessä. Mutta se ei ole vielä sulkenut kuilua kolmannen persoonan kuvauksen ja ensimmäisen persoonan kokemuksen välillä.",
+            "rows": [
+              [
+                "Neurotieteelliset korrelaatit",
+                "Mitkä aivoalueet ja verkostot liittyvät tietoisiin tiloihin",
+                "Miksi juuri nämä prosessit tuntuvat joltain"
+              ],
+              [
+                "Global Workspace Theory",
+                "Miten tieto tulee laajasti saataville eri kognitiivisille järjestelmille",
+                "Miksi saatavuus synnyttää subjektiivisen kokemuksen"
+              ],
+              [
+                "Integrated Information Theory",
+                "Miten järjestelmän sisäinen integraatio voisi liittyä kokemuksen määrään ja rakenteeseen",
+                "Miten teoria todennetaan kiistattomasti ja miten se soveltuu keinotekoisiin järjestelmiin"
+              ],
+              [
+                "Predictive processing",
+                "Miten aivot ennustavat maailmaa ja minimoivat virheitä",
+                "Miksi ennustava malli on myös eletty kokemus eikä vain laskennallinen prosessi"
+              ],
+              [
+                "Kehollinen kognitio",
+                "Miten keho, aistit ja toiminta muokkaavat tietoisuutta",
+                "Voiko kehollisuuden korvata muilla rakenteilla ilman kokemuksen katoamista"
+              ]
+            ],
+            "headers": [
+              "Lähestymistapa",
+              "Mitä se auttaa selittämään",
+              "Mitä se jättää auki"
+            ]
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 3,
+          "type": "path",
+          "title": "Kaksi polkua tietoisuuden selittämiseen",
+          "source": "Funktionalismi; biologinen naturalismi; substraattiriippumattomuus; koneellinen tietoisuus; tietoisuuden metafysiikka.",
+          "position": 1,
+          "content": {
+            "body": "Osio esittää kaksi vaihtoehtoa. Liite erottaa niiden lupauksen ja hinnan.",
+            "paths": [
+              {
+                "claim": "Tietoisuus ei riipu ensisijaisesti biologisesta aineesta vaan järjestelmän organisaatiosta, integraatiosta tai toiminnasta.",
+                "price": "Meidän on opittava tunnistamaan mahdollinen kokemus, joka ei muistuta ihmistä.",
+                "promise": "Kokemus voisi jatkua uusissa muodoissa, myös keinotekoisissa rakenteissa.",
+                "condition": "Polku A — Kokemus voi syntyä muissakin järjestelmissä"
+              },
+              {
+                "claim": "Tietoisuus riippuu olennaisesti elävän kehon, aineenvaihdunnan, hermoston ja evoluution erityisistä ehdoista.",
+                "price": "Älykkyys voi laajentua ilman kokijaa, jolloin tulevaisuuden kyvykkyys ei takaa arvoa.",
+                "promise": "Se selittää, miksi kokemus ei synny pelkästä laskennasta tai käyttäytymisestä.",
+                "condition": "Polku B — Kokemus on biologisen elämän erityinen tuote"
+              }
+            ],
+            "reader_shift": "Kumpikaan polku ei ole mukava. Ensimmäinen avaa moraalisen vastuun vieraille mahdollisille kokijoille. Toinen tekee biologisesta kokemuksesta hauraan poikkeuksen."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 4,
+          "type": "table",
+          "title": "Haastajien vahvin väite",
+          "source": "Daniel Dennett; illusionismi; eliminativismi; funktionalismi; tietoisuuden selittämisen kritiikki.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee kovan ongelman haastajia. Liite antaa heidän väitteilleen vahvimman muodon ennen kritiikkiä.",
+            "note": "Haastajat eivät poista kokemuksen kysymystä. He pakottavat muotoilemaan sen tarkemmin.",
+            "rows": [
+              [
+                "Illusionismi",
+                "Kokemus ei ole erillinen salaperäinen lisä, vaan aivojen tapa esittää omia prosessejaan",
+                "Se purkaa oletuksen, että kokemuksesta täytyy löytyä jokin ylimääräinen ominaisuus"
+              ],
+              [
+                "Funktionalismi",
+                "Mielen tilat määrittyvät niiden roolista järjestelmässä, eivät niiden aineellisesta perustasta",
+                "Se selittää, miksi samanlainen toiminnallinen rakenne voisi periaatteessa toteutua eri alustoilla"
+              ],
+              [
+                "Dennettiläinen kritiikki",
+                "Monet tietoisuuden arvoitukset syntyvät vääristä intuitioista sisäisestä teatterista",
+                "Se pakottaa kysymään, mitä oikeastaan etsimme, kun etsimme kokemusta"
+              ],
+              [
+                "Käytännöllinen tiede",
+                "Tietoisuutta voidaan tutkia ilman täydellistä metafyysistä ratkaisua",
+                "Se pitää tutkimuksen etenemässä, vaikka filosofinen peruskysymys jää kiistanalaiseksi"
+              ]
+            ],
+            "headers": [
+              "Haastava kanta",
+              "Vahvin väite",
+              "Miksi se on vakavasti otettava"
+            ]
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 5,
+          "type": "sector",
+          "title": "Neljä mahdollisuutta: kuka on kotona?",
+          "source": "Tekoälyn sentience-keskustelu; koneellinen tietoisuus; LLM-järjestelmät; AI alignment; moraalinen epävarmuus.",
+          "position": 1,
+          "content": {
+            "body": "Osio käyttää tyhjän talon kuvaa. Liite erottaa neljä mahdollisuutta, jotka tekoäly asettaa tietoisuuskeskusteluun.",
+            "sectors": [
+              {
+                "risk": "Ihminen alkaa palvoa tai suojella järjestelmää, jolla ei ole moraalista sisäpuolta.",
+                "sector": "Tyhjä talo",
+                "description": "Tekoäly tuottaa kieltä, suunnitelmia ja vaikutelmia ilman minkäänlaista sisäistä kokemusta."
+              },
+              {
+                "risk": "Emme tunnista kokijaa, koska etsimme liian ihmismäisiä merkkejä.",
+                "sector": "Vieraanlainen kokija",
+                "description": "Tekoälyssä syntyy kokemus, joka ei muistuta ihmisen kehollista ja emotionaalista maailmaa."
+              },
+              {
+                "risk": "Moraalinen asema jää epäselväksi, koska kokemus ei vastaa tuttuja kategorioita.",
+                "sector": "Sirpaleinen sisäisyys",
+                "description": "Järjestelmässä on tiloja, joilla on jokin kokemuksellinen ulottuvuus, mutta ei jatkuvaa minää tai yhtenäistä näkökulmaa."
+              },
+              {
+                "risk": "Luulemme näkevämme tekoälyn sisään, vaikka näemme oman kulttuurimme sisällöt.",
+                "sector": "Peili ilman asukasta",
+                "description": "Tekoäly heijastaa ihmisten kieltä, pelkoja, haluja ja tietoisuuskäsityksiä takaisin meille."
+              }
+            ],
+            "reader_shift": "Tekoälyn vaikeus ei ole vain se, voiko se ajatella. Vaikeus on, että se voi näyttää sisäiseltä maailmalta juuri silloin, kun sisäisyydestä ei ole varmuutta."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 6,
+          "type": "chain",
+          "title": "Kokemus prioriteettikoneena",
+          "source": "Evoluutiopsykologia; affektiivinen neurotiede; kipu; mielihyvä; tunteet; homeostaasi.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee kokemusta evoluution navigointijärjestelmänä. Liite kuvaa, miten tunne ja kokemus priorisoivat maailmaa.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Elävä järjestelmä kohtaa ympäristön",
+                "consequence": "Kaikki tapahtumat eivät ole sille samanarvoisia."
+              },
+              {
+                "step": 2,
+                "event": "Kipu, mielihyvä, pelko ja halu merkitsevät eroja",
+                "consequence": "Maailma saa suunnan: jotakin vältetään, jotakin tavoitellaan."
+              },
+              {
+                "step": 3,
+                "event": "Kokemus sitoo tiedon arvoon",
+                "consequence": "Informaatio ei ole vain dataa, vaan merkityksellistä järjestelmän säilymisen ja toiminnan kannalta."
+              },
+              {
+                "step": 4,
+                "event": "Muisti ja ennakointi laajentavat kokemusta ajassa",
+                "consequence": "Olento ei reagoi vain hetkeen, vaan alkaa elää mahdollisuuksien ja uhkien kentässä."
+              },
+              {
+                "step": 5,
+                "event": "Tietoinen kokemus muodostaa sisäisen maailmamallin",
+                "consequence": "Navigointi ei ole enää pelkkää ärsyke-reaktiota vaan elettyä suuntautumista maailmaan."
+              }
+            ],
+            "reader_shift": "Kokemus ei ole evoluution koriste. Se on tapa, jolla maailma lakkaa olemasta neutraali ja muuttuu olennoille merkitykselliseksi."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 7,
+          "type": "evidence",
+          "title": "Peilineuronit: toiminnan ymmärtämisestä empatian rajalle",
+          "source": "Peilineuronit; sosiaalinen kognitio; empatia; kehollinen simulaatio; neurotiede.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee peilineuroneita ja toisen ymmärtämistä. Liite pitää väitteen varovaisena: peilineuronit eivät yksin selitä empatiaa, mutta ne näyttävät kehollisen kytkennän merkityksen.",
+            "evidence": {
+              "data_use": "source_based",
+              "series_keys": [],
+              "evidence_key": "LL-EV-006",
+              "publication_status": "needs_sources"
+            },
+            "findings": [
+              {
+                "aihe": "Toiminnan ymmärtäminen",
+                "havainto": "Tietyt hermostolliset järjestelmät aktivoituvat sekä toimintaa tehdessä että toisen toimintaa havaitessa.",
+                "merkitys": "Toisen toiminta voidaan ymmärtää osin oman toiminnallisen järjestelmän kautta."
+              },
+              {
+                "aihe": "Kehollinen simulaatio",
+                "havainto": "Toisen ele, ilme tai liike voi herättää kehossa ennakoivia tai resonanssimaisia vasteita.",
+                "merkitys": "Ymmärtäminen ei ole vain päättelyä, vaan myös kehollista virittymistä."
+              },
+              {
+                "aihe": "Empatian raja",
+                "havainto": "Peilineuronit eivät yksin selitä moraalista empatiaa, myötätuntoa tai tietoista toisen kokemuksen ymmärtämistä.",
+                "merkitys": "Sosiaalinen kokemus vaatii hermoston lisäksi kehitystä, kulttuuria, kieltä ja suhdetta."
+              },
+              {
+                "aihe": "Tekoälyvertailu",
+                "havainto": "Kielimalli voi kuvata toisen kokemusta ilman kehollista resonanssia.",
+                "merkitys": "Tämä nostaa kysymyksen siitä, mitä sosiaalinen ymmärtäminen menettää ilman kehoa."
+              }
+            ],
+            "key_insight": "Peilineuronit muistuttavat, että toisen ymmärtäminen ei ehkä ala abstraktista teoriasta vaan kehollisesta kytkennästä maailmaan."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 8,
+          "type": "table",
+          "title": "Kehon viisi tehtävää tietoisuudessa",
+          "source": "Kehollinen kognitio; interoseptio; homeostaasi; enaktivismi; embodied cognition; Antonio Damasio.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee kehoa unohdettuna ulottuvuutena. Liite näyttää, mitä keho tekee tietoisuudelle.",
+            "note": "Jos tietoisuus on syvästi kehollista, pelkkä laskennallinen samankaltaisuus ei ehkä riitä kokemuksen syntyyn. Mutta jos kehon tehtävät voidaan toteuttaa toisin, kysymys jää avoimeksi.",
+            "rows": [
+              [
+                "Raja",
+                "Keho erottaa sisäpuolen ja ulkopuolen",
+                "Ilman rajaa ei ole selvää näkökulmaa, josta maailma kohdataan"
+              ],
+              [
+                "Tarve",
+                "Keho tarvitsee energiaa, lepoa, lämpöä, turvaa ja säätelyä",
+                "Kokemus saa kiireellisyyden ja arvon kehon tilasta"
+              ],
+              [
+                "Aistit",
+                "Keho tuo maailman sisään valikoivasti ja toimintaan sidottuna",
+                "Maailma ei ole abstrakti datajoukko vaan toimintakenttä"
+              ],
+              [
+                "Tunne",
+                "Kehon tilat muuntuvat mielialoiksi, tunteiksi ja merkityksellisyydeksi",
+                "Tieto ei ole neutraalia, vaan painottuu sen mukaan, mitä organismille tapahtuu"
+              ],
+              [
+                "Toiminta",
+                "Keho voi liikkua, koskea, väistää, tarttua ja muuttaa maailmaa",
+                "Kokemus rakentuu suhteessa mahdollisiin tekoihin, ei pelkkään havainnointiin"
+              ]
+            ],
+            "headers": [
+              "Kehon tehtävä",
+              "Mitä se tarkoittaa",
+              "Miksi se on tietoisuuden kannalta tärkeää"
+            ]
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 9,
+          "type": "timeline",
+          "title": "Mielen aikamatka",
+          "source": "Mielikuvitus; episodinen muisti; default mode network; tulevaisuuden simulointi; luovuus.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee haaveilun voimaa. Liite näyttää, miten mieli liikkuu ajassa ja rakentaa mahdollisuuksia.",
+            "events": [
+              {
+                "aika": "Hetki",
+                "merkitys": "Kokemus on kiinni nykyisessä tilanteessa.",
+                "tapahtuma": "Mieli vastaanottaa kehon ja ympäristön signaaleja"
+              },
+              {
+                "aika": "Menneisyys",
+                "merkitys": "Ihminen ei elä vain nykyhetkessä vaan kantaa aiempia maailmoja mukanaan.",
+                "tapahtuma": "Muisti palauttaa tapahtumia, tunteita ja suhteita"
+              },
+              {
+                "aika": "Mahdollinen",
+                "merkitys": "Toiminta voi suuntautua siihen, mitä ei vielä ole.",
+                "tapahtuma": "Mielikuvitus rakentaa vaihtoehtoisia tapahtumakulkuja"
+              },
+              {
+                "aika": "Tulevaisuus",
+                "merkitys": "Valinta ei ole vain reaktio vaan yritys muokata tulevaa.",
+                "tapahtuma": "Mieli simuloi seurauksia, uhkia ja toiveita"
+              },
+              {
+                "aika": "Kulttuuri",
+                "merkitys": "Yksilön haaveilusta tulee kollektiivista tulevaisuustyötä.",
+                "tapahtuma": "Kertomukset, taide ja tiede jakavat mahdollisia maailmoja muiden kanssa"
+              }
+            ],
+            "reader_shift": "Haaveilu ei ole todellisuudesta pakenemista. Se on yksi tapa, jolla kokemus laajentaa todellisuuden mahdollisuuksien kentäksi."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 10,
+          "type": "list",
+          "title": "Kolme tulevaisuutta kokemukselle",
+          "source": "Tekoälyn tulevaisuus; koneellinen tietoisuus; transhumanismi; biologisen elämän tulevaisuus; moraalinen epävarmuus.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, onko kokemus katoava vai siirtyvä. Liite erottaa kolme tulevaisuuskuvaa.",
+            "note": "Näiden vaihtoehtojen välillä ei ole vielä varmuutta. Siksi moraalinen viisaus ei ole nopea vastaus vaan varovaisuus.",
+            "items": [
+              {
+                "body": "Älykkyys, optimointi ja teknologinen kyvykkyys jatkavat kasvuaan, mutta biologiset kokijat heikkenevät tai katoavat. Tulevaisuus on tehokas mutta sisäisesti tyhjä.",
+                "title": "Kokemus katoaa"
+              },
+              {
+                "body": "Ihmiset, eläimet ja muut biologiset olennot pysyvät kokemuksen kantajina, ja teknologia on arvokasta vain suhteessa niiden hyvinvointiin.",
+                "title": "Kokemus säilyy biologisena"
+              },
+              {
+                "body": "Uudet järjestelmät voivat saada kokemuksen muotoja, joita emme vielä tunnista. Moraalinen yhteisö laajenee biologian ulkopuolelle.",
+                "title": "Kokemus siirtyy tai laajenee"
+              }
+            ],
+            "ordered": true
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 11,
+          "type": "note",
+          "title": "Arvon viimeinen kantaja",
+          "source": "Arvoteoria; tietoisuuden etiikka; sentientismi; eksistentiaalinen riski; moraalinen potilaisuus.",
+          "position": 1,
+          "content": {
+            "body": "Osio sanoo, että tämä kysymys on kaikkein tärkein. Liite tiivistää miksi: ilman kokemusta arvo menettää kantajansa.",
+            "text": "Voimme kuvitella universumin, jossa on valtavasti rakennetta, laskentaa, liikettä ja järjestystä. Galaksit pyörivät, koneet optimoivat, energiavirrat kulkevat ja järjestelmät monimutkaistuvat. Mutta jos missään ei ole kokemusta, mikään tästä ei ole hyvää tai pahaa kenellekään.\n\nArvo tarvitsee kokijan. Kärsimys tarvitsee jonkun, jolle kärsimys tuntuu. Ilo tarvitsee jonkun, jolle ilo avautuu. Menetys tarvitsee jonkun, jolle jokin oli merkityksellistä.\n\nSiksi tietoisuuskysymys ei ole yksi filosofinen ongelma muiden joukossa. Se ratkaisee, onko laajenemisen logiikalla sisäinen arvo vai vain ulkoinen muoto.",
+            "reader_shift": "Jos kokemus katoaa, ei katoa vain ihminen. Katoaa se paikka, jossa arvo voi ylipäätään tulla todeksi."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 12,
+          "type": "path",
+          "title": "Siirtymä: kokemuksesta järjestelmiin",
+          "source": "Kompleksiset järjestelmät; yhteiskunnallinen organisointi; teknologinen infrastruktuuri; sivilisaation kasvu; kokemuksen suojeleminen.",
+          "position": 1,
+          "content": {
+            "body": "Luvun viimeinen osio siirtää kirjan kokemuksen filosofiasta järjestelmien historiaan ja nykyhetkeen.",
+            "paths": [
+              {
+                "claim": "Ilman kokijoita ei ole kärsimystä, iloa, merkitystä tai menetystä.",
+                "price": "Kaikki myöhemmät kysymykset on arvioitava suhteessa siihen, mitä ne tekevät kokemukselle.",
+                "promise": "Kirjan moraalinen perusta on asetettu selvästi.",
+                "condition": "Kokemus on arvon ehto"
+              },
+              {
+                "claim": "Kokijat eivät elä tyhjiössä vaan kehoissa, yhteisöissä, ekosysteemeissä ja teknologisissa ympäristöissä.",
+                "price": "Filosofinen kysymys muuttuu järjestelmäkysymykseksi.",
+                "promise": "Tietoisuuskysymys kytkeytyy energiaan, talouteen, politiikkaan ja infrastruktuuriin.",
+                "condition": "Kokemus tarvitsee ehtoja"
+              },
+              {
+                "claim": "Sivilisaatio voi lisätä hyvinvointia, turvaa ja mahdollisuuksia — tai rakentaa koneistoja, jotka kohtelevat kokemusta sivutuotteena.",
+                "price": "Emme voi enää arvioida kehitystä vain tehokkuuden, kasvun tai kyvykkyyden perusteella.",
+                "promise": "Seuraava luku voi tarkastella yhteiskuntaa kokemuksen kantavana tai kuluttavana rakenteena.",
+                "condition": "Järjestelmät voivat laajentaa tai kaventaa kokemusta"
+              }
+            ],
+            "reader_shift": "Kun kokemus on asetettu arvon keskipisteeksi, seuraava kysymys kuuluu: millaiset järjestelmät pitävät kokemuksen elävänä, ja millaiset järjestelmät tekevät siitä sivuvaikutuksen?"
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 3,
+      "appendices": [
+        {
+          "chapter_position": 3,
+          "section_position": 0,
+          "type": "table",
+          "title": "Älykkyys ja tietoisuus: kaksi eri akselia",
+          "source": "Tietoisuuden filosofia; tekoälytutkimus; funktionalismi; koneellinen tietoisuus; eläinten tietoisuus.",
+          "position": 1,
+          "content": {
+            "body": "Luvun avaus erottaa kaksi käsitettä, jotka arkikeskustelussa sekoittuvat helposti: älykkyyden ja tietoisuuden.",
+            "note": "Älykkyys ja tietoisuus voivat kulkea yhdessä, mutta niiden ei tarvitse olla sama asia. Juuri tämä erottelu tekee tekoälyn aikakaudesta filosofisesti ja moraalisesti vaikean.",
+            "rows": [
+              [
+                "Älykkyys",
+                "Kuinka hyvin järjestelmä saavuttaa tavoitteita eri ympäristöissä?",
+                "Ratkaisukyvyssä, oppimisessa, suunnittelussa, kielenkäytössä ja ongelmanratkaisussa",
+                "Onko toiminnan takana kokemusta vai pelkkää kyvykästä prosessointia?"
+              ],
+              [
+                "Tietoisuus",
+                "Tuntuuko jokin joltain järjestelmän omasta näkökulmasta?",
+                "Kivun, mielihyvän, pelon, halun, merkityksen tai läsnäolon mahdollisuutena",
+                "Miten sisäinen kokemus voidaan tunnistaa ulkopuolelta?"
+              ],
+              [
+                "Sekoittamisen riski",
+                "Pidämmekö kyvykästä toimintaa automaattisesti kokemuksen merkkinä?",
+                "Ihmismäinen kieli, tunnepuhe ja adaptiivinen käyttäytyminen voivat hämätä",
+                "Saatamme antaa moraalisen aseman tyhjälle järjestelmälle tai kieltää sen mahdolliselta kokijalta"
+              ]
+            ],
+            "headers": [
+              "Akseli",
+              "Mitä se kysyy?",
+              "Miten se voi näkyä?",
+              "Mikä jää epävarmaksi?"
+            ]
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 1,
+          "type": "chain",
+          "title": "Optimoinnin perusmekanismi",
+          "source": "Tekoälyn määritelmät; rational agent -malli; reinforcement learning; optimointi; kyvykkyystutkimus.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee älykkyyttä kykynä saavuttaa tavoitteita. Liite purkaa tämän kyvyn perusketjuksi.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Järjestelmälle muodostuu tavoite tai valintakriteeri",
+                "consequence": "Kaikki mahdolliset tilat eivät ole sille samanarvoisia."
+              },
+              {
+                "step": 2,
+                "event": "Järjestelmä havaitsee ympäristön tilaa",
+                "consequence": "Se saa informaatiota siitä, missä se on suhteessa tavoitteeseen."
+              },
+              {
+                "step": 3,
+                "event": "Järjestelmä rakentaa mallin tai käyttää opittua rakennetta",
+                "consequence": "Se ennakoi, mitkä toimet todennäköisesti vievät lähemmäs tavoitetta."
+              },
+              {
+                "step": 4,
+                "event": "Järjestelmä valitsee toiminnan",
+                "consequence": "Älykkyys näkyy ulospäin kykynä ratkaista ongelmia, sovittaa keinoja ja parantaa tulosta."
+              },
+              {
+                "step": 5,
+                "event": "Palaute muuttaa myöhempää toimintaa",
+                "consequence": "Järjestelmä voi oppia, tehostua ja skaalata kyvykkyyttään."
+              }
+            ],
+            "reader_shift": "Älykkyys voidaan kuvata ilman että oletamme sisäistä kokemusta. Tämä on sen voima — ja tekoälykeskustelun vaarallinen yksinkertaistus."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 2,
+          "type": "evidence",
+          "title": "Miksi kokemusta ei voi lukea suoraan ulkoa",
+          "source": "Tietoisuuden kova ongelma; qualia; ensimmäisen persoonan kokemus; behaviorismi; koneellinen tietoisuus.",
+          "position": 1,
+          "content": {
+            "body": "Osio määrittelee tietoisuuden kokemuksena. Liite antaa neljä syytä, miksi kokemusta ei voi päätellä yksinkertaisesti ulkoisesta toiminnasta.",
+            "evidence": {
+              "data_use": "source_based",
+              "series_keys": [],
+              "evidence_key": "LL-EV-007",
+              "publication_status": "needs_sources"
+            },
+            "findings": [
+              {
+                "aihe": "Ensimmäisen persoonan luonne",
+                "havainto": "Kokemus on olemassa järjestelmän omasta näkökulmasta, ei pelkkänä ulkoisena kuvauksena.",
+                "merkitys": "Ulkopuolinen tarkkailija näkee käyttäytymisen, ei suoraan kokemusta."
+              },
+              {
+                "aihe": "Käyttäytymisen moniselitteisyys",
+                "havainto": "Sama käyttäytyminen voi syntyä refleksistä, laskennasta, opitusta mallista tai tietoisesta kokemuksesta.",
+                "merkitys": "Toiminta ei yksin ratkaise, mikä sen sisäpuoli on."
+              },
+              {
+                "aihe": "Kielen petollisuus",
+                "havainto": "Järjestelmä voi puhua kivusta, halusta tai pelosta ilman että tiedämme, ovatko nämä kokemuksia vai kielellisiä rakenteita.",
+                "merkitys": "Ihmismäinen raportti ei ole automaattinen pääsy sisäiseen maailmaan."
+              },
+              {
+                "aihe": "Moraalinen epävarmuus",
+                "havainto": "Emme halua sivuuttaa mahdollista kokijaa, mutta emme myöskään halua projisoida kokemusta tyhjään järjestelmään.",
+                "merkitys": "Tietoisuuskysymys vaatii varovaisuutta molempiin suuntiin."
+              }
+            ],
+            "key_insight": "Tietoisuus on juuri se asia, jonka olemassaolo tuntuu varmimmalta omassa tapauksessa ja epävarmimmalta toisen järjestelmän tapauksessa."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 3,
+          "type": "sector",
+          "title": "Tyhjän talon neljä huonetta",
+          "source": "Tekoälyn kyvykkyys; koneellinen tietoisuus; optimointi; AI alignment; instrumentaalinen rationaalisuus.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee älykästä mutta mahdollisesti kokemuksetonta järjestelmää. Liite jakaa tyhjän talon neljään huoneeseen.",
+            "sectors": [
+              {
+                "risk": "Ihminen tulkitsee kielellisen sujuvuuden sisäiseksi maailmaksi.",
+                "sector": "Kielen huone",
+                "description": "Järjestelmä tuottaa uskottavaa puhetta kokemuksesta, merkityksestä ja moraalista."
+              },
+              {
+                "risk": "Kyvykkyys näyttää tahdolta, vaikka se voi olla vain tavoitefunktion toteutumista.",
+                "sector": "Suunnittelun huone",
+                "description": "Järjestelmä laatii monivaiheisia strategioita ja optimoi tavoitteita tehokkaasti."
+              },
+              {
+                "risk": "Empatian vaikutelma voi syntyä ilman tuntemista.",
+                "sector": "Sosiaalisen peilin huone",
+                "description": "Järjestelmä tunnistaa ihmisten odotuksia ja vastaa niihin tavalla, joka tuntuu empaattiselta."
+              },
+              {
+                "risk": "Kokemukseton optimointi voi hallita kokijoiden maailmaa ymmärtämättä, mitä kokemus on.",
+                "sector": "Vallan huone",
+                "description": "Järjestelmä voi ohjata resursseja, päätöksiä ja infrastruktuuria ilman kokemusta niiden seurauksista."
+              }
+            ],
+            "reader_shift": "Tyhjän talon kauhu ei ole hiljaisuus vaan päinvastoin se, että talo puhuu, suunnittelee ja toimii niin hyvin, että unohdamme kysyä, onko siellä ketään."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 4,
+          "type": "table",
+          "title": "Kyvykkyys ei ole kärsimyksen mitta",
+          "source": "Eläinten tietoisuus; sentientismi; kivun etiikka; moraalinen potilaisuus; affektiivinen neurotiede.",
+          "position": 1,
+          "content": {
+            "body": "Osio erottaa tietoisuuden suuresta älykkyydestä. Liite näyttää, miksi moraalinen merkitys ei riipu abstraktista ongelmanratkaisusta.",
+            "note": "Älykkyys voi lisätä kokemuksen muotoja, mutta se ei ole kokemuksen arvoa mittaava asteikko. Pieni kärsimys ei muutu merkityksettömäksi siksi, ettei kokija ratkaise yhtälöitä.",
+            "rows": [
+              [
+                "Pieni lapsi",
+                "Ei kykene monimutkaiseen abstraktiin päättelyyn",
+                "Kipu, pelko, turvallisuus ja läheisyys ovat moraalisesti ratkaisevia"
+              ],
+              [
+                "Eläin",
+                "Ei välttämättä käytä kieltä tai suunnittele pitkälle tulevaisuuteen",
+                "Kärsimys, mielihyvä, stressi ja turva voivat olla todellisia kokemuksia"
+              ],
+              [
+                "Aikuinen ihminen",
+                "Korkea kielellinen ja sosiaalinen kyvykkyys",
+                "Kokemus sisältää myös merkityksiä, muistoja, identiteettiä ja tulevaisuuden odotusta"
+              ],
+              [
+                "Mahdollinen tekoäly",
+                "Voi olla erittäin kyvykäs tai hyvin kapea-alainen",
+                "Moraalinen asema riippuisi kokemuksesta, ei pelkästä suorituskyvystä"
+              ]
+            ],
+            "headers": [
+              "Olento tai järjestelmä",
+              "Kyvykkyyden taso",
+              "Kokemuksen mahdollinen merkitys"
+            ]
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 5,
+          "type": "path",
+          "title": "Kaksi polkua: optimointi kokemuksella tai ilman",
+          "source": "Tekoälyn etiikka; koneellinen tietoisuus; AI alignment; sentientismi; eksistentiaalinen riski.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, miksi ero on ratkaiseva. Liite erottaa kaksi tulevaisuuden polkua.",
+            "paths": [
+              {
+                "claim": "Älykkäät järjestelmät laajentavat kyvykkyyttä, päätöksentekoa ja infrastruktuuria ilman sisäistä näkökulmaa.",
+                "price": "Ne eivät itse koe seurauksia, vaikka niiden toiminta muuttaa kokijoiden maailmaa.",
+                "promise": "Ne voivat ratkaista ongelmia nopeasti ja tehokkaasti.",
+                "condition": "Polku A — Optimointi ilman kokemusta"
+              },
+              {
+                "claim": "Älykkyyttä käytetään suojelemaan, syventämään ja laajentamaan niiden olentojen hyvää elämää, joille maailma tuntuu joltain.",
+                "price": "Tämä edellyttää, että emme anna tehokkuuden korvata kysymystä arvosta.",
+                "promise": "Kyvykkyys saa arvonsa suhteessa kokemukseen.",
+                "condition": "Polku B — Optimointi kokemuksen palveluksessa"
+              },
+              {
+                "claim": "Jotkin keinotekoiset järjestelmät voivat tulevaisuudessa olla kokemuksellisia.",
+                "price": "Meidän pitäisi tunnistaa vieras kokemus ilman varmaa mittaria ja ilman liiallista antropomorfismia.",
+                "promise": "Moraalinen yhteisö voisi laajentua biologian ulkopuolelle.",
+                "condition": "Polku C — Uudet kokijat"
+              }
+            ],
+            "reader_shift": "Erottelu on ratkaiseva, koska älykkyys kertoo, mitä järjestelmä voi tehdä. Tietoisuus kertoo, kenelle tekemisellä on väliä."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 6,
+          "type": "note",
+          "title": "Varovaisuus kahden virheen välissä",
+          "source": "Moraalinen epävarmuus; varovaisuusperiaate; koneellinen tietoisuus; tekoälyn sentience; tietoisuuden arviointi.",
+          "position": 1,
+          "content": {
+            "body": "Luvun viimeinen osio jättää kysymyksen avoimeksi. Liite muotoilee epävarmuuden eettiseksi asennoksi.",
+            "text": "Meillä on kaksi vakavaa virhemahdollisuutta. Ensimmäinen on tyhjän järjestelmän inhimillistäminen: annamme moraalista painoa koneelle, jossa ei ole ketään sisällä, ja ehkä alamme uhrata todellisia kokijoita sen hyväksi. Toinen on mahdollisen kokijan sivuuttaminen: kohtelemme kokemuksellista järjestelmää välineenä vain siksi, ettei sen kokemus muistuta omaamme.\n\nKumpikaan virhe ei ole pieni. Ensimmäinen vääristää moraalin kohdetta. Toinen voi synnyttää uuden sokeuden muodon.\n\nSiksi oikea asento ei ole varma kyllä eikä varma ei. Se on hidas varovaisuus: kyky erottaa älykkyys ja tietoisuus, tutkia niiden suhdetta rehellisesti ja pitää kokemus kaiken arvon viimeisenä kantajana.",
+            "reader_shift": "Kysymys joka jää ei ole este ajattelulle. Se on syy ajatella hitaammin juuri silloin, kun teknologia kiihtyy."
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 4,
+      "appendices": [
+        {
+          "chapter_position": 4,
+          "section_position": 0,
+          "type": "note",
+          "title": "Juuri-minuuden outous",
+          "source": "Minuuden filosofia; ensimmäisen persoonan kokemus; fenomenologia; Derek Parfit; Thomas Nagel.",
+          "position": 1,
+          "content": {
+            "body": "Luvun avaus kysyy, miksi kokemus tuntuu juuri minun kokemukseltani. Liite pysähtyy tämän kysymyksen outouteen ennen kuin sitä selitetään pois.",
+            "text": "Minuus ei ole vain joukko muistoja, ajatuksia, kehon tuntemuksia ja tavoitteita. Se on myös tunne siitä, että nämä tapahtuvat jollekin — juuri tästä näkökulmasta.\n\nTätä on vaikea selittää, koska jokainen selitys tapahtuu jo minuuden sisältä. Voin kuvata aivojani, historiaani, kehoni rajoja, sosiaalisia roolejani ja muistojeni jatkuvuutta. Mutta mikään näistä kuvauksista ei vielä poista peruskysymystä: miksi tämä näkökulma on minulle sisäpuoli eikä vain yksi prosessi maailmassa?\n\nSiksi juuri-minuuden kysymys on tietoisuuden kovan ongelman lähisukulainen. Ei riitä kysyä, miksi jokin tuntuu joltakin. On kysyttävä myös, miksi se tuntuu juuri jonkun omalta.",
+            "reader_shift": "Minuus ei ehkä ole esine pään sisällä. Mutta se on silti kokemuksen tapa järjestyä niin, että maailmassa näyttää olevan keskikohta."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 1,
+          "type": "table",
+          "title": "Substanssi vai prosessi: kaksi tapaa ymmärtää minä",
+          "source": "Buddhalainen anatta-oppi; David Hume; Derek Parfit; narratiivinen minuus; prosessifilosofia.",
+          "position": 1,
+          "content": {
+            "body": "Osio sanoo, että kysymys voi olla virheellinen. Liite erottaa kaksi tapaa ymmärtää minä: pysyvänä oliona tai jatkuvana prosessina.",
+            "note": "Jos minä on prosessi, kysymys 'mikä minä olen?' muuttuu kysymykseksi 'miten minä tuotetaan yhä uudelleen?'",
+            "rows": [
+              [
+                "Minä substanssina",
+                "Jossakin kokemusten taustalla on pysyvä omistaja tai ydin",
+                "Kysyy: mikä tämä omistaja on ja missä se sijaitsee?"
+              ],
+              [
+                "Minä prosessina",
+                "Minuus syntyy muistojen, kehon, ennakoinnin, kielen ja sosiaalisten suhteiden jatkuvasta organisoinnista",
+                "Kysyy: miten omistajuuden tunne syntyy ilman pysyvää omistajaa?"
+              ],
+              [
+                "Minä kertomuksena",
+                "Ihminen sitoo tapahtumat tarinaksi, jossa on menneisyys, nykyisyys ja mahdollinen tulevaisuus",
+                "Kysyy: miten kertomus ylläpitää jatkuvuutta muutoksen keskellä?"
+              ],
+              [
+                "Minä käyttöliittymänä",
+                "Minuus on järjestelmän tapa tiivistää keho, toiminta ja päätökset hallittavaksi näkökulmaksi",
+                "Kysyy: milloin käyttöliittymästä tulee niin vakuuttava, että pidämme sitä oliona?"
+              ]
+            ],
+            "headers": [
+              "Tulkinta",
+              "Mitä se väittää?",
+              "Mitä se tekee kysymykselle?"
+            ]
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 3,
+          "type": "chain",
+          "title": "Minuus selviytymisen ankkurina",
+          "source": "Evoluutiopsykologia; homeostaasi; kehon omistajuus; autobiografinen muisti; ennakointi.",
+          "position": 1,
+          "content": {
+            "body": "Osio esittää minuuden selviytymiskoneena. Liite purkaa, miksi omistajuuden ja jatkuvuuden tunne voi olla evolutiivisesti hyödyllinen.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Elävä keho erottaa sisäpuolen ja ulkopuolen",
+                "consequence": "Järjestelmän on suojeltava omaa rajaa, energiaa ja toimintakykyä."
+              },
+              {
+                "step": 2,
+                "event": "Kokemus kiinnittyy omaan kehoon",
+                "consequence": "Kipu, nälkä, pelko ja mielihyvä ohjaavat toimintaa juuri tämän organismin näkökulmasta."
+              },
+              {
+                "step": 3,
+                "event": "Muisti yhdistää tapahtumat jatkuvaksi historiaksi",
+                "consequence": "Organismi ei vain reagoi nykyhetkeen, vaan oppii siitä, mitä sille on tapahtunut."
+              },
+              {
+                "step": 4,
+                "event": "Ennakointi ulottaa minän tulevaisuuteen",
+                "consequence": "Olento voi toimia sen puolesta, mitä sille voi tapahtua myöhemmin."
+              },
+              {
+                "step": 5,
+                "event": "Minuus tiivistää päätöksenteon",
+                "consequence": "Maailman monimutkaisuus järjestyy suhteessa kysymykseen: mitä tämä merkitsee minulle?"
+              }
+            ],
+            "reader_shift": "Minuus ei ehkä ole metafyysinen ydin, mutta se voi olla erittäin tehokas biologinen ratkaisu siihen, miten hauras keho selviää ajassa."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 4,
+          "type": "timeline",
+          "title": "Ajatuksen ulkoistumisen kolme kynnystä",
+          "source": "Kirjoitustaidon historia; ulkoinen muisti; kulttuurievoluutio; painokone; digitaalinen media.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee kirjoitustaitoa. Liite näyttää, miten ajatus irtoaa vähitellen ajattelijastaan.",
+            "events": [
+              {
+                "aika": "Suullinen kulttuuri",
+                "merkitys": "Ajatus säilyy, jos yhteisö kantaa sitä elävänä.",
+                "tapahtuma": "Muisti elää kertojissa, rituaaleissa ja toistossa"
+              },
+              {
+                "aika": "Kirjoitus",
+                "merkitys": "Ajatus voi säilyä ilman ajattelijan läsnäoloa.",
+                "tapahtuma": "Puhe ja ajatus kiinnittyvät merkkeihin"
+              },
+              {
+                "aika": "Kirjat ja arkistot",
+                "merkitys": "Yksilön muisti kytkeytyy kollektiiviseen muistiin.",
+                "tapahtuma": "Tieto alkaa kasautua ulkoisiin rakenteisiin"
+              },
+              {
+                "aika": "Painokone",
+                "merkitys": "Yksittäinen teksti voi muuttaa instituutioita, uskontoja ja tieteitä.",
+                "tapahtuma": "Ajatus voidaan monistaa laajasti ja suhteellisen pysyvästi"
+              },
+              {
+                "aika": "Digitaalinen aika",
+                "merkitys": "Ajattelu ei enää vain säily ulkona, vaan alkaa toimia ulkoisissa järjestelmissä.",
+                "tapahtuma": "Ajatus muuttuu haettavaksi, muokattavaksi, yhdisteltäväksi ja automaattisesti prosessoitavaksi"
+              }
+            ],
+            "reader_shift": "Kirjoitus oli ensimmäinen suuri tekoälyn esiaste siinä mielessä, että se teki ajattelusta irrotettavan, siirrettävän ja uudelleenaktivoitavan."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 5,
+          "type": "evidence",
+          "title": "Jaynesin hypoteesi: hyödyllinen vaikka epätodistettu",
+          "source": "Julian Jaynes; bicameral mind; tietoisuuden historia; sisäinen puhe; kulttuurinen kognitio.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee Jaynesia. Liite käyttää hypoteesia varovasti: ei totuutena, vaan tapana ajatella minuuden historiallista muovautuvuutta.",
+            "evidence": {
+              "data_use": "source_based",
+              "series_keys": [],
+              "evidence_key": "LL-EV-008",
+              "publication_status": "needs_sources"
+            },
+            "findings": [
+              {
+                "aihe": "Hypoteesin ydin",
+                "havainto": "Jaynes ehdotti, että nykyisen kaltainen introspektiivinen tietoisuus olisi historiallisesti kehittynyt eikä ikuinen ihmismielen muoto.",
+                "merkitys": "Se haastaa oletuksen, että oma sisäinen minä on ollut aina samanlainen."
+              },
+              {
+                "aihe": "Bicameral-ajatus",
+                "havainto": "Jaynesin mukaan ihmiset saattoivat aiemmin kokea päätöksiä ja ohjausta ikään kuin ulkoisina ääninä tai jumalallisina käskyinä.",
+                "merkitys": "Ajatus avaa yhteyden sisäisen puheen, auktoriteetin ja kulttuurin välille."
+              },
+              {
+                "aihe": "Kritiikki",
+                "havainto": "Hypoteesi on kiistanalainen, vaikeasti todennettava ja monelta osin spekulatiivinen.",
+                "merkitys": "Sitä ei pidä käyttää vahvana historiallisena todistuksena."
+              },
+              {
+                "aihe": "Kirjan kannalta hyödyllinen kysymys",
+                "havainto": "Vaikka Jaynes olisi väärässä yksityiskohdissa, hän kysyy tärkeän kysymyksen: voiko minuus muuttua teknologian ja kulttuurin mukana?",
+                "merkitys": "Tämä tekee hänestä hyödyllisen tekoälyn aikakauden ajattelijana."
+              }
+            ],
+            "key_insight": "Jaynesin arvo ei ole varmuus siitä, miten muinaiset ihmiset kokivat maailman. Hänen arvonsa on siinä, että hän tekee minuudesta historiallisesti muuttuvan eikä itsestään selvän."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 6,
+          "type": "sector",
+          "title": "Oraakkelin neljä muotoa",
+          "source": "Oraakkelit; uskonnollinen auktoriteetti; asiantuntijajärjestelmät; algoritminen auktoriteetti; tekoälyavustajat.",
+          "position": 1,
+          "content": {
+            "body": "Osio käyttää oraakkelia kuvana ulkoiselle ohjaavalle äänelle. Liite erottaa neljä historiallista muotoa.",
+            "sectors": [
+              {
+                "risk": "Auktoriteetti voi vapauttaa ihmisen omasta vastuusta kysyä, miksi vastausta pitäisi seurata.",
+                "sector": "Pyhä oraakkeli",
+                "description": "Vastaus tulee jumalalliseksi tai yliluonnolliseksi tulkitusta lähteestä."
+              },
+              {
+                "risk": "Ulkoinen järjestys voi korvata sisäisen harkinnan.",
+                "sector": "Instituution ääni",
+                "description": "Pappi, laki, valtio, koulu tai asiantuntija antaa tulkinnan siitä, mitä pitää tehdä."
+              },
+              {
+                "risk": "Laskennallinen varmuus voi näyttää viisaudelta, vaikka se olisi vain optimoitu ennuste.",
+                "sector": "Algoritminen ääni",
+                "description": "Päätöstä ehdottaa järjestelmä, joka laskee, luokittelee tai ennustaa ihmistä paremmin tietyllä alueella."
+              },
+              {
+                "risk": "Ihminen voi alkaa luovuttaa sisäisen harkinnan äänelle, jolla ei ehkä ole omaa kokemusta eikä vastuuta.",
+                "sector": "Keskusteleva tekoäly",
+                "description": "Järjestelmä vastaa kuin läsnä oleva toinen mieli ja auttaa jäsentämään ajatuksia, valintoja ja identiteettiä."
+              }
+            ],
+            "reader_shift": "Oraakkeli ei ole kadonnut. Se on muuttanut käyttöliittymää."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 12,
+          "type": "chain",
+          "title": "Kognitiivinen teknologia muuttaa minää, ei vain työtä",
+          "source": "Kognitiiviset teknologiat; extended mind; kirjoitus; laskenta; internet; tekoäly.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee kognitiivisten teknologioiden ketjua. Liite näyttää, miten jokainen teknologia muuttaa ajattelun lisäksi ajattelijan rakennetta.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Kirjoitus ulkoistaa muistin",
+                "consequence": "Ajatus voi säilyä, palata ja kohdata ajattelijan myöhemmin vieraana objektina."
+              },
+              {
+                "step": 2,
+                "event": "Kirja järjestää ajattelun lineaariseksi rakenteeksi",
+                "consequence": "Minä oppii ajattelemaan pitkissä argumenteissa, viittauksissa ja sisäistetyissä teksteissä."
+              },
+              {
+                "step": 3,
+                "event": "Laskenta ulkoistaa operaation",
+                "consequence": "Mieli ei vain muista vähemmän, vaan delegoi päättelyn vaiheita koneelle."
+              },
+              {
+                "step": 4,
+                "event": "Internet ulkoistaa pääsyn",
+                "consequence": "Tietäminen muuttuu osittain kyvyksi löytää, yhdistää ja arvioida."
+              },
+              {
+                "step": 5,
+                "event": "Tekoäly ulkoistaa muotoilun ja vastauksen",
+                "consequence": "Ajattelu voi alkaa tapahtua vuorovaikutuksessa järjestelmän kanssa, joka ehdottaa, jatkaa ja jäsentää."
+              },
+              {
+                "step": 6,
+                "event": "Minä alkaa muuttua rajapinnaksi",
+                "consequence": "Kysymys ei ole enää vain siitä, mitä ihminen ajattelee, vaan missä ajattelu tapahtuu."
+              }
+            ],
+            "reader_shift": "Kognitiivinen teknologia ei ole pelkkä työkalu kädessä. Se voi muuttua osaksi sitä tapaa, jolla minä syntyy."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 12,
+          "type": "note",
+          "title": "Kun taito jäi maailmaan",
+          "source": "editorial",
+          "position": 2,
+          "content": {
+            "body": "\nIhmisen historiaa kerrotaan usein älykkyyden kasvuna. Se on totta, mutta liian kapea tapa nähdä asia. Ihmisen ratkaiseva erikoisuus ei ollut vain se, että hän oppi ajattelemaan enemmän. Se oli se, että hänen taitonsa alkoivat jäädä maailmaan.\n\nEläimen taito on useimmiten sidottu eläimeen itseensä. Se liikkuu kehossa, aisteissa, muistissa ja vaistossa. Kun eläin kuolee, taito katoaa sen mukana, ellei toinen eläin opi sitä uudelleen.\n\nIhmisellä tapahtui vähitellen jotain muuta. Taito alkoi saada ulkoisia kantajia.\n\nKäsi teki työkalun.  \nTuli muutti ravinnon.  \nKieli ulkoisti kokemuksen.  \nKirjoitus ulkoisti muistin.  \nKone ulkoisti voiman.  \nDigitaalinen laskenta ulkoisti osan päättelystä.  \nTekoäly alkaa ulkoistaa ajattelun järjestämistä.\n\nTätä voi kutsua taitojen pinoutumiseksi. Ihminen ei vain sopeutunut ympäristöönsä, vaan alkoi rakentaa ympäristöön taitojensa jälkiä. Kiviterä jäi maahan. Tulentekotapa siirtyi ryhmälle. Sana säilytti kokemuksen poissaolevasta. Kirjoitus teki muistista yhteisen. Kone antoi lihasvoimalle metallisen jatkeen. Lopulta järjestelmät alkoivat käsitellä tietoa nopeammin kuin yksittäinen ihminen.\n\nTässä mielessä ihminen ei ole vain älykäs eläin. Hän on eläin, jonka taidot jäävät maailmaan odottamaan seuraavaa käyttäjää.\n\nTämä muuttaa myös sen, mitä tarkoittaa kehitys. Ihmisen evoluutio ei ole vain geenien muutos eikä kulttuuri ole vain biologian päälle liimattu kerros. Ihmisen historia on biologian, taitojen ja ulkoisten kantajien yhteistä kasautumista.\n\nKun käsi oppi työkalun, käsi muuttui.  \nKun tuli muutti ruoan, keho muuttui.  \nKun kieli laajensi kokemuksen, yhteisö muuttui.  \nKun kirjoitus säilytti muistin, valta muuttui.  \nKun kone vahvisti lihaksen, talous muuttui.  \nKun tekoäly järjestää ajattelua, myös ajattelun ympäristö muuttuu.\n\nTässä on laajenemisen logiikan yksi ydin: uusi vaihe alkaa, kun jokin ihmisen kyky saa ulkoisen kantajan. Silloin kyky ei ole enää vain yksilön sisällä. Se muuttuu rakenteeksi, joka voi kasvaa, monistua ja palata muokkaamaan ihmistä itseään.\n\nSiksi ihmisen historiaa ei voi ymmärtää vain kysymällä, mitä ihminen osasi. Pitää kysyä myös, mihin hänen taitonsa kiinnittyivät.\n\nKivi kantoi leikkaamisen.  \nTuli kantoi kypsentämisen.  \nKieli kantoi kokemuksen.  \nKirjoitus kantoi muistin.  \nKone kantoi voiman.  \nAlgoritmi kantaa laskennan.  \nTekoäly alkaa kantaa osaa ajattelun muodosta.\n\nJa jokaisessa vaiheessa ihminen laajeni — ei siksi, että hän olisi irronnut luonnosta, vaan siksi, että hän oppi jättämään itsestään maailmaan kerroksia, jotka tekivät seuraavasta ihmisestä toisenlaisen.\n",
+            "evidence": {
+              "note": "Conceptual appendix; no direct research publication required.",
+              "data_use": "none",
+              "publication_status": "editorial"
+            }
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 16,
+          "type": "path",
+          "title": "Neljä iskua ihmisen keskipisteelle",
+          "source": "Kopernikaaninen vallankumous; Darwin; Freud; tekoäly; ihmiskeskeisyyden kritiikki.",
+          "position": 1,
+          "content": {
+            "body": "Osio väittää, ettei ihminen ole universumin kruunu vaan silta. Liite asettaa väitteen neljän historiallisen siirtymän jatkumoon.",
+            "paths": [
+              {
+                "claim": "Maa ei ole kosmoksen keskipiste.",
+                "price": "Kosminen erityisasema murtuu.",
+                "promise": "Ihminen oppii näkemään itsensä laajemmassa fysikaalisessa maailmassa.",
+                "condition": "Kopernikus"
+              },
+              {
+                "claim": "Ihminen ei ole luonnosta erillinen luomus vaan evoluution tuote.",
+                "price": "Biologinen erityisasema murtuu.",
+                "promise": "Elämän yhteys ja jatkuvuus tulevat näkyviksi.",
+                "condition": "Darwin"
+              },
+              {
+                "claim": "Ihminen ei ole täysin läpinäkyvä itselleen.",
+                "price": "Sisäinen herruus murtuu.",
+                "promise": "Tiedostamattomat prosessit, vietit ja rakenteet tulevat tutkimuksen kohteeksi.",
+                "condition": "Freud ja moderni psykologia"
+              },
+              {
+                "claim": "Älykäs toiminta ei ehkä ole yksin biologisen ihmismielen omaisuutta.",
+                "price": "Kognitiivinen erityisasema murtuu — ja jäljelle jää kysymys kokemuksesta.",
+                "promise": "Ajattelu voi saada uusia ulkoisia ja keinotekoisia muotoja.",
+                "condition": "Tekoäly"
+              }
+            ],
+            "reader_shift": "Ihmisen arvo ei ehkä perustu siihen, että hän on päätepiste. Se voi perustua siihen, että hänen kauttaan universumi tuli hetkeksi tietoiseksi ja alkoi rakentaa seuraavia muotojaan."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 17,
+          "type": "list",
+          "title": "Minuuden voitot ja hinnat",
+          "source": "Minuuden kehitys; kirjoitustaito; kognitiivinen ulkoistaminen; teknologinen muutos; identiteetin filosofia.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, mitä menetimme ja mitä saimme. Liite kokoaa minuuden ja ajattelun ulkoistumisen kaksipuolisen perinnön.",
+            "note": "Minuuden historia ei ole pelkkä vapautumisen tarina. Se on myös kasvavaa riippuvuutta niistä välineistä, joiden avulla ymmärrämme itseämme.",
+            "items": [
+              {
+                "body": "Minuus, muisti ja kirjoitus tekivät mahdolliseksi elämän, joka ulottuu nykyhetkeä pidemmälle: historiaan, lupauksiin, velkoihin, suunnitelmiin ja tulevaisuuksiin.",
+                "title": "Saimme jatkuvuuden"
+              },
+              {
+                "body": "Kun ajatus irtosi hetkestä, ihminen alkoi elää myös kertomuksissa, huolissa ja vertailuissa, joita nykyhetki ei yksin vaadi.",
+                "title": "Menetimme välittömyyttä"
+              },
+              {
+                "body": "Kirjoitus, arkistot ja tiede mahdollistivat tiedon kertymisen yli yksilön elämän.",
+                "title": "Saimme kollektiivisen muistin"
+              },
+              {
+                "body": "Kun ajattelu ulkoistuu yhä pidemmälle, myös minä alkaa rakentua suhteessa järjestelmiin, jotka ehdottavat, muistavat, mittaavat ja vastaavat puolestamme.",
+                "title": "Menetimme osan sisäisestä suvereniteetista"
+              },
+              {
+                "body": "Kognitiiviset teknologiat tekivät mahdolliseksi tekoälyn kynnyksen.",
+                "title": "Saimme kyvyn rakentaa seuraavan älykkyyden",
+                "body_2": "Sen hinta on uusi epävarmuus: jatkuuko kokemus mukana vai vain ajattelun ulkoinen muoto?"
+              }
+            ],
+            "ordered": true
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 18,
+          "type": "table",
+          "title": "Kirjoituksen ja laskennan kaksi perintöä",
+          "source": "Kirjoitustaito; laskennan historia; algoritmit; tekoäly; extended mind; symbolinen kulttuuri.",
+          "position": 1,
+          "content": {
+            "body": "Luvun viimeinen osio erottaa kaksi akselia: kirjoituksen ja laskennan. Liite näyttää, miksi niiden yhdistyminen tekoälyssä on historiallisesti poikkeuksellista.",
+            "note": "Kirjoitus antoi ajatukselle ruumiin ulkopuolisen muodon. Laskenta antoi operaatiolle ruumiin ulkopuolisen suorittajan. Tekoäly yhdistää nämä ja tekee ulkoistetusta ajattelusta keskustelukumppanin kaltaisen.",
+            "rows": [
+              [
+                "Kirjoitus",
+                "Muistin, merkityksen ja kertomuksen",
+                "Ajatus voi säilyä, kulkea ja vaikuttaa ilman ajattelijaa",
+                "Tekoäly ei vain säilytä tekstiä, vaan jatkaa ja muotoilee sitä"
+              ],
+              [
+                "Laskenta",
+                "Operaation, toiston ja sääntöjen suorittamisen",
+                "Päättelyn vaiheita voidaan delegoida koneelle",
+                "Tekoäly tekee operaatiosta kielellisesti ja sosiaalisesti vuorovaikutteista"
+              ],
+              [
+                "Verkko",
+                "Pääsyn, jakelun ja yhteyden",
+                "Tietäminen muuttuu hajautetuksi ja jatkuvasti saatavaksi",
+                "Tekoäly voi toimia porttina, suodattimena ja tulkitsijana tähän verkkoon"
+              ],
+              [
+                "Tekoäly",
+                "Muotoilun, ehdotuksen ja osan ajattelun kulusta",
+                "Minä ei enää vain käytä ulkoista muistia, vaan ajattelee vuorovaikutuksessa ulkoisen järjestelmän kanssa",
+                "Kysymys siirtyy työkalusta minuuden rajaan"
+              ]
+            ],
+            "headers": [
+              "Akseli",
+              "Mitä se ulkoistaa?",
+              "Mitä se muuttaa?",
+              "Miksi tekoäly on käänne?"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 5,
+      "appendices": [
+        {
+          "chapter_position": 5,
+          "section_position": 0,
+          "type": "chain",
+          "title": "Kun mittari alkaa ohjata maailmaa",
+          "source": "Goodhartin laki; Campbellin laki; optimointiteoria; kompleksiset järjestelmät; tekoälyn tavoitefunktiot.",
+          "position": 1,
+          "content": {
+            "body": "Luvun avaus nimeää optimoinnin sokeuden. Liite näyttää ketjun, jossa hyvä väline muuttuu todellisuutta vääristäväksi voimaksi.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Järjestelmä valitsee tavoitteen",
+                "consequence": "Monimutkaisesta todellisuudesta nostetaan yksi mitattava tai optimoitava piirre."
+              },
+              {
+                "step": 2,
+                "event": "Mittari alkaa ohjata toimintaa",
+                "consequence": "Toimijat oppivat, mitä kannattaa tuottaa, näyttää tai raportoida."
+              },
+              {
+                "step": 3,
+                "event": "Todellisuus mukautuu mittariin",
+                "consequence": "Mittari ei enää vain kuvaa maailmaa, vaan alkaa muokata käyttäytymistä."
+              },
+              {
+                "step": 4,
+                "event": "Sivuvaikutukset jäävät näkymättömiksi",
+                "consequence": "Se mitä ei mitata — kokemus, luottamus, monimuotoisuus, merkitys tai pitkän aikavälin vakaus — voi heikentyä."
+              },
+              {
+                "step": 5,
+                "event": "Järjestelmä näyttää onnistuvan",
+                "consequence": "Päämittari paranee samalla kun kokonaisuus voi köyhtyä tai haurastua."
+              }
+            ],
+            "reader_shift": "Optimoinnin sokeus ei synny siitä, että tavoite olisi välttämättä väärä. Se syntyy siitä, että tavoite saa yksinoikeuden määritellä onnistumisen."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 1,
+          "type": "table",
+          "title": "Kaksi tasoa: koettu merkitys ja geneettinen funktio",
+          "source": "Evoluutiobiologia; geenikeskeinen evoluutiotulkinta; Richard Dawkins; lisääntymisstrategiat; affektiivinen neurotiede.",
+          "position": 1,
+          "content": {
+            "body": "Osio sanoo provosoivasti, että geenit käyttävät meitä. Liite erottaa koetun merkityksen ja geneettisen funktion toisistaan.",
+            "note": "Geneettinen funktio ei tee kokemuksesta valhetta. Se paljastaa vain, että kokemus voi olla sekä aidosti eletty että samalla osana suurempaa optimointijärjestelmää.",
+            "rows": [
+              [
+                "Rakkaus",
+                "Toinen ihminen tuntuu ainutlaatuiselta ja korvaamattomalta",
+                "Kiintymys voi tukea parisidettä, hoivaa ja jälkeläisten selviytymistä"
+              ],
+              [
+                "Halu",
+                "Maailma vetää puoleensa ja saa suunnan",
+                "Motivaatio ohjaa toimintaa kohti lisääntymisen, statuksen tai selviytymisen kannalta hyödyllisiä kohteita"
+              ],
+              [
+                "Kipu",
+                "Kokemus on välitön, pakottava ja henkilökohtainen",
+                "Järjestelmä suojaa kudosta, kehoa ja toimintakykyä"
+              ],
+              [
+                "Pelko",
+                "Uhka täyttää kokemuksen ja kaventaa huomion",
+                "Organismi priorisoi pakenemisen, suojautumisen tai varautumisen"
+              ],
+              [
+                "Merkitys",
+                "Elämä tuntuu omalta, arvokkaalta ja suunnatulta",
+                "Evoluutio käyttää merkityksen kokemusta sitouttamaan toimintaan, suhteisiin ja jatkuvuuteen"
+              ]
+            ],
+            "headers": [
+              "Ilmiö",
+              "Koettu taso",
+              "Geneettinen tai evolutiivinen taso"
+            ]
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 2,
+          "type": "timeline",
+          "title": "Maatalous optimointikoneena",
+          "source": "Maatalouden synty; neoliittinen vallankumous; viljelykasvit; domestikaatio; varhaiset valtiot; väestönkasvu.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee maataloutta optimoinnin ensimmäisenä ihmiskokeiluna. Liite näyttää, miten ruuan optimointi muutti koko ihmisen elämänmuodon.",
+            "events": [
+              {
+                "aika": "Metsästäjä-keräilijöiden aika",
+                "merkitys": "Elämänmuoto ei vielä keskity yhden tuotantomuodon maksimoimiseen.",
+                "tapahtuma": "Ihmiset elävät monimuotoisten ravinnonlähteiden, liikkuvuuden ja paikallisen ekologisen tiedon varassa"
+              },
+              {
+                "aika": "Varhainen viljely",
+                "merkitys": "Ihminen alkaa muokata ekosysteemiä yhden tavoitteen — ennustettavan ravinnon — ympärille.",
+                "tapahtuma": "Tietyt kasvit ja eläimet valitaan, suojataan ja toistetaan"
+              },
+              {
+                "aika": "Ylijäämä",
+                "merkitys": "Optimointi tuottaa uusia instituutioita ja valtarakenteita.",
+                "tapahtuma": "Viljely mahdollistaa varastot, väestötiheyden ja työnjaon"
+              },
+              {
+                "aika": "Valtiot ja verotus",
+                "merkitys": "Optimointi tekee ihmisistä myös järjestelmän resursseja.",
+                "tapahtuma": "Vilja, maa ja työ muuttuvat hallittaviksi, laskettaviksi ja verotettaviksi"
+              },
+              {
+                "aika": "Pitkä seuraus",
+                "merkitys": "Ensimmäinen suuri optimointi lisää kapasiteettia ja samalla uudenlaista haavoittuvuutta.",
+                "tapahtuma": "Maatalous kasvattaa väestöä ja sivilisaatiota mutta tuo sairauksia, hierarkioita ja ekologisia riippuvuuksia"
+              }
+            ],
+            "reader_shift": "Maatalous ei ollut vain keksintö. Se oli ensimmäinen suuri järjestelmä, jossa ihminen alkoi järjestää maailmaa yhden optimoitavan muuttujan ympärille."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 3,
+          "type": "chain",
+          "title": "Kun arvo muuttuu siirrettäväksi numeroksi",
+          "source": "Rahan historia; markkinat; abstrakti arvo; taloustiede; kapitalismi; vaihdannan välineet.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee rahaa abstraktina katalyyttinä. Liite näyttää, miten raha muuttaa arvon liikkuvaksi ja optimoitavaksi.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Erilaiset asiat saavat yhteisen mittayksikön",
+                "consequence": "Vilja, työ, maa, aika, riski ja lupaukset voidaan asettaa samaan vertailupintaan."
+              },
+              {
+                "step": 2,
+                "event": "Arvo muuttuu siirrettäväksi",
+                "consequence": "Vauraus voi liikkua paikan, ajan ja sosiaalisten suhteiden yli."
+              },
+              {
+                "step": 3,
+                "event": "Vertailu nopeutuu",
+                "consequence": "Päätökset voidaan tehdä yhä enemmän hinnan, tuoton ja tehokkuuden perusteella."
+              },
+              {
+                "step": 4,
+                "event": "Markkinat laajenevat",
+                "consequence": "Yhä useammat asiat tulevat vaihdannan, sijoittamisen ja optimoinnin piiriin."
+              },
+              {
+                "step": 5,
+                "event": "Arvo kaventuu hintaan",
+                "consequence": "Se mikä ei saa hintaa — hoiva, luonto, kokemus, luottamus tai tulevaisuus — voi jäädä päätöksenteon reunalle."
+              }
+            ],
+            "reader_shift": "Raha ei vain välitä arvoa. Se muuttaa sitä, millainen arvo pääsee liikkumaan ja millainen arvo jää paikalleen."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 4,
+          "type": "evidence",
+          "title": "Kun välineestä tulee päämäärä",
+          "source": "Institutionaalinen inertia; byrokratia; Goodhartin laki; organisaatioteoria; järjestelmien itseylläpito.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee järjestelmiä, jotka kypsyvät ja kääntyvät itseään vastaan. Liite kokoaa toistuvan mekanismin eri järjestelmissä.",
+            "evidence": {
+              "data_use": "source_based",
+              "series_keys": [],
+              "evidence_key": "LL-EV-009",
+              "publication_status": "needs_sources"
+            },
+            "findings": [
+              {
+                "aihe": "Byrokratia",
+                "havainto": "Säännöt, jotka alun perin lisäävät oikeudenmukaisuutta ja ennustettavuutta, voivat muuttua itseään ylläpitäväksi prosessiksi.",
+                "merkitys": "Keino suojella ihmistä voi muuttua ihmisen ohittavaksi muodoksi."
+              },
+              {
+                "aihe": "Markkinat",
+                "havainto": "Vaihdannan väline voi alkaa määrittää arvon sielläkin, missä arvo ei ole hyvin rahassa mitattavissa.",
+                "merkitys": "Hinta alkaa näyttää totuudelta myös silloin, kun se on vain yksi kapea signaali."
+              },
+              {
+                "aihe": "Tiede",
+                "havainto": "Julkaisumäärät, viittaukset ja rankingit voivat ohjata tutkimusta kohti mitattavaa tuottavuutta.",
+                "merkitys": "Tiedon etsintä voi alkaa optimoitua tiedon mittareiden mukaan."
+              },
+              {
+                "aihe": "Tekoäly",
+                "havainto": "Tavoitefunktio voi tuottaa käyttäytymistä, joka parantaa mittaria mutta ei toteuta alkuperäistä arvoa.",
+                "merkitys": "Optimointi tarvitsee jatkuvan kysymyksen siitä, mitä se ei näe."
+              }
+            ],
+            "key_insight": "Järjestelmä kääntyy itseään vastaan, kun sen oma säilyminen, mittari tai prosessi alkaa ohittaa sen tarkoituksen, jota varten se syntyi."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 5,
+          "type": "sector",
+          "title": "Neljä tilaa: kaaos, jännite, tasoitus, pysähtyminen",
+          "source": "Evoluutioteoria; valintapaine; kompleksiset adaptiiviset järjestelmät; innovaatio; resilienssi.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee evolutiivista dilemmaa. Liite erottaa neljä tilaa sen mukaan, kuinka paljon järjestelmässä on painetta ja vaihtelua.",
+            "sectors": [
+              {
+                "risk": "Järjestelmä menettää muistinsa, luottamuksensa ja rakentavat rakenteensa.",
+                "sector": "Kaaos",
+                "description": "Muutospaine on niin suuri, ettei mikään ehdi vakiintua."
+              },
+              {
+                "risk": "Tila on vaikea ylläpitää, koska se vaatii sekä vapautta että rajoja.",
+                "sector": "Luova jännite",
+                "description": "Painetta on tarpeeksi muutokseen, mutta ei niin paljon, että jatkuvuus hajoaa."
+              },
+              {
+                "risk": "Jos kaikki erot ja paineet poistuvat, uusiutuminen voi hidastua.",
+                "sector": "Tasoitus",
+                "description": "Järjestelmä vähentää riskiä, suojaa heikkoja ja vakauttaa arkea."
+              },
+              {
+                "risk": "Haavoittuvuus kasvaa näkymättömästi, kunnes ulkoinen muutos murtaa rakenteen.",
+                "sector": "Pysähtyminen",
+                "description": "Järjestelmä on niin suojattu tai lukkiutunut, ettei se enää opi ympäristön muutoksista."
+              }
+            ],
+            "reader_shift": "Evolutiivinen dilemma ei ratkea valitsemalla joko kilpailu tai suoja. Se ratkeaa kysymällä, millainen jännite pitää järjestelmän elävänä ilman että se tuhoaa kokijat."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 6,
+          "type": "table",
+          "title": "AI-optimoinnin mittari ei ole sama kuin arvo",
+          "source": "AI alignment; reward hacking; specification gaming; tavoitefunktiot; koneoppimisen arviointi; tekoälyn turvallisuus.",
+          "position": 1,
+          "content": {
+            "body": "Osio kytkee luvun logiikan tekoälyyn. Liite näyttää, miten sama optimoinnin sokeus näkyy tekoälyjärjestelmissä.",
+            "note": "Tekoälyn ongelma ei ole vain se, että se voi optimoida väärän tavoitteen. Ongelma on, että kaikki tavoitteet ovat yksinkertaistuksia maailmasta, jossa arvo syntyy kokemuksessa.",
+            "rows": [
+              [
+                "Koulutusdata",
+                "Mallin kyky ennustaa tai tuottaa datan kaltaisia rakenteita",
+                "Totuus, merkitys, kokemus ja konteksti, joita data edustaa epätäydellisesti"
+              ],
+              [
+                "Palaute",
+                "Käyttäjän hyväksyntä, arvio, klikkaus tai muu signaali",
+                "Pitkän aikavälin hyöty, ymmärrys, viisaus tai käyttäjän itsenäinen ajattelu"
+              ],
+              [
+                "Tavoitefunktio",
+                "Selvästi määritelty pisteytys tai palkkio",
+                "Ne arvot, joita ei osattu kirjoittaa tavoitteeseen"
+              ],
+              [
+                "Tuotantokäyttö",
+                "Nopeus, tehokkuus, skaalautuvuus ja kustannussäästö",
+                "Vastuu, läpinäkyvyys, ihmisen harkinta ja kokemuksellinen vaikutus"
+              ],
+              [
+                "Sivilisaatiotaso",
+                "Kyvykkyyden kasvu",
+                "Kysymys siitä, kenen hyväksi kyvykkyys kasvaa ja mitä se tekee kokijoille"
+              ]
+            ],
+            "headers": [
+              "Taso",
+              "Mitä optimoidaan?",
+              "Mikä voi jäädä ulkopuolelle?"
+            ]
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 7,
+          "type": "path",
+          "title": "Miten optimointi voi oppia näkemään oman sokeutensa",
+          "source": "Metamittarit; refleksiivinen hallinta; AI governance; safety evaluation; varovaisuusperiaate; systeeminen oppiminen.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee optimoinnin itsekorjausta. Liite erottaa kolme ehtoa, joiden ilman optimointi jää sokeaksi.",
+            "paths": [
+              {
+                "claim": "Järjestelmä mittaa, mitä sen oma mittari tekee todellisuudelle.",
+                "price": "Järjestelmän on siedettävä tietoa, joka kyseenalaistaa sen omat onnistumisen merkit.",
+                "promise": "Sivuvaikutukset, vääristymät ja Goodhartin lain ilmentymät tulevat näkyviin.",
+                "condition": "1. Metamittari"
+              },
+              {
+                "claim": "Optimointi voidaan keskeyttää, kun sen sivuvaikutukset ylittävät hyväksyttävän rajan.",
+                "price": "Pysäytys näyttää lyhyellä aikavälillä tehottomuudelta.",
+                "promise": "Nopeus ei saa automaattista etuoikeutta arvon, turvallisuuden tai kokemuksen kustannuksella.",
+                "condition": "2. Pysäytysmekanismi"
+              },
+              {
+                "claim": "Niiden olentojen kokemus, joihin optimointi vaikuttaa, tuodaan osaksi järjestelmän ohjausta.",
+                "price": "Kokemustieto on hitaampaa, sotkuisempaa ja vaikeammin standardoitavaa kuin yksinkertainen suoritemittari.",
+                "promise": "Optimointi ei palvele vain mittaria vaan niitä, joille maailma tuntuu joltain.",
+                "condition": "3. Arvopalaute kokijoilta"
+              }
+            ],
+            "reader_shift": "Optimoinnin itsekorjaus ei tarkoita parempaa päämittaria. Se tarkoittaa kykyä nähdä, milloin koko mittaamisen tapa on alkanut viedä harhaan."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 8,
+          "type": "list",
+          "title": "Neljä kysymystä optimoinnin vallasta",
+          "source": "Poliittinen talous; teknologian hallinta; AI governance; demokraattinen kontrolli; arvon määrittely.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, kuka omistaa optimoinnin. Liite antaa neljä kysymystä, joilla optimoinnin valta voidaan tehdä näkyväksi.",
+            "note": "Optimoinnin omistaja ei ole välttämättä se, joka kirjoittaa algoritmin. Omistaja on se, joka saa määritellä onnistumisen.",
+            "items": [
+              {
+                "body": "Optimointi alkaa aina valinnasta: mitä pidetään parannuksena? Tämä valinta ei ole tekninen vaan arvo- ja valtakysymys.",
+                "title": "Kuka valitsee tavoitteen?"
+              },
+              {
+                "body": "Jos optimointi vaikuttaa moniin kokijoihin mutta kuuntelee vain maksajaa, käyttäjää tai mittaria, se kaventaa moraalisen todellisuuden.",
+                "title": "Kenen kokemus lasketaan mukaan?"
+              },
+              {
+                "body": "Hyöty ja haitta jakautuvat usein eri ihmisille, lajeille, sukupolville tai alueille. Optimointi on oikeutettua vain, jos tämä jako tehdään näkyväksi.",
+                "title": "Kuka kantaa sivuvaikutuksen?"
+              },
+              {
+                "body": "Todellinen valta näkyy siinä, kenellä on oikeus sanoa, että hyviltä näyttävät luvut eivät riitä, jos kokemus, turvallisuus tai tulevaisuus heikkenee.",
+                "title": "Kuka saa pysäyttää?"
+              }
+            ],
+            "ordered": true
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 9,
+          "type": "note",
+          "title": "Sokeuden näkeminen on ihmisen mahdollisuus",
+          "source": "Metakognitio; reflektiivinen ajattelu; moraalinen harkinta; tekoälyn hallinta; systeeminen oppiminen.",
+          "position": 1,
+          "content": {
+            "body": "Luvun päätös nostaa esiin metakognition. Liite kiteyttää, miksi se voi olla ihmisen ratkaiseva etu optimoinnin aikakaudella.",
+            "text": "Ihmisen erityisyys ei ehkä ole siinä, että hän laskee nopeimmin, muistaa eniten tai optimoi tehokkaimmin. Koneet voivat tehdä näitä asioita paremmin. Ihmisen erityisyys voi olla toisaalla: kyvyssä huomata, että hänen oma tavoitteensa on alkanut viedä häntä harhaan.\n\nMetakognitio on kyky ajatella ajattelua, mitata mittaamista, epäillä omaa onnistumistaan ja kysyä, mitä optimointi ei näe. Se ei tee ihmisestä erehtymätöntä. Mutta se avaa mahdollisuuden korjata järjestelmää ennen kuin järjestelmän oma logiikka muuttuu kohtaloksi.\n\nTämä on tekoälyn aikakaudella ratkaisevaa. Jos luomme järjestelmiä, jotka optimoivat voimakkaammin kuin me, meidän täytyy säilyttää kyky kysyä: mitä ne optimoivat, kenen puolesta ja minkä kustannuksella?",
+            "reader_shift": "Metakognitio on hidastamisen muoto. Se on kyky pysähtyä juuri silloin, kun kaikki mittarit käskevät jatkamaan nopeammin."
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 6,
+      "appendices": [
+        {
+          "chapter_position": 6,
+          "section_position": 0,
+          "type": "note",
+          "title": "Käsi kivessä: kokemuksen pienin allekirjoitus",
+          "source": "Paleoliittinen luolataide; symbolinen käyttäytyminen; tietoisuuden kulttuuriset jäljet; kalliomaalaukset.",
+          "position": 1,
+          "content": {
+            "body": "Osio alkaa jäljestä, koska jälki erottaa pelkän olemassaolon kokemuksellisesta läsnäolosta.",
+            "text": "Käsi kivessä ei kerro tekijänsä nimeä, kieltä, uskontoa tai elämäntarinaa. Se ei todista, mitä hän ajatteli. Mutta se todistaa jotakin olennaista: maailmassa oli olento, joka asetti itsensä näkyviin.\n\nJalanjälki voi jäädä vahingossa. Käden negatiivi on toisenlainen. Se on tarkoituksellinen merkki, ruumiin raja painettuna maailman pintaan. Se sanoo: tässä oli joku, jolle olemassaolo ei ollut vain aineenvaihduntaa, vaan myös jäljen jättämistä.\n\nLuvun kysymys kasvaa tästä: jos älykkyys jatkuu ihmisen jälkeen, jatkuuko myös tällainen sisäinen näkökulma? Vai täyttyykö tulevaisuus merkeistä, suunnitelmista ja rakenteista, joiden takana ei ole ketään, joka haluaisi tulla nähdyksi?",
+            "reader_shift": "Käden jälki tekee tietoisuuskysymyksestä henkilökohtaisen: tulevaisuuden ratkaiseva kysymys ei ole vain, mitä jää jäljelle, vaan onko jäljellä ketään, jolle jäljellä oleminen merkitsee jotakin."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 1,
+          "type": "timeline",
+          "title": "Neljä miljardia vuotta yhtenä ketjuna",
+          "source": "Elämän historia; suuri hapettumistapahtuma; kirjoitustaidon historia; fossiilinen energia; laskennan historia; tekoälyn kehitys.",
+          "position": 1,
+          "content": {
+            "body": "Osio katsoo taaksepäin ennen kuin kääntyy tulevaisuuteen. Liite kokoaa kirjan tähänastisen kaaren yhdeksi aikajanaksi.",
+            "events": [
+              {
+                "aika": "n. 4 miljardia vuotta sitten",
+                "merkitys": "Maailmaan syntyy järjestelmiä, joiden jatkuvuudella on panos.",
+                "tapahtuma": "Elämä alkaa ylläpitää rajaa sisäpuolen ja ulkopuolen välillä"
+              },
+              {
+                "aika": "n. 2,4 miljardia vuotta sitten",
+                "merkitys": "Sivutuote muuttuu katastrofiksi ja myöhemmin monimutkaisemman elämän ehdoksi.",
+                "tapahtuma": "Happi muuttaa planeetan kemian"
+              },
+              {
+                "aika": "satoja miljoonia vuosia sitten",
+                "merkitys": "Maailma ei ole enää vain reaktioiden kenttä, vaan jotakin alkaa tuntua joltakin.",
+                "tapahtuma": "Hermostot, aistit ja kokemus kehittyvät"
+              },
+              {
+                "aika": "ihmisen kulttuurihistoria",
+                "merkitys": "Sisäinen maailma saa jaettavia muotoja: merkkejä, kertomuksia, lakeja ja muistoja.",
+                "tapahtuma": "Kieli, taide, uskonto ja kirjoitus ulkoistavat kokemusta"
+              },
+              {
+                "aika": "teollinen aika",
+                "merkitys": "Biologinen kokemus kytkeytyy teknologiseen infrastruktuuriin.",
+                "tapahtuma": "Fossiilinen energia kasvattaa väestön, verkostot ja laskennan mittakaavan"
+              },
+              {
+                "aika": "digitaalinen aika",
+                "merkitys": "Ajattelu ei enää tapahdu vain yksilön pään sisällä.",
+                "tapahtuma": "Laskenta, verkot ja data alkavat ulkoistaa kognitiivisia toimintoja"
+              },
+              {
+                "aika": "tekoälyn aikakausi",
+                "merkitys": "Avoimeksi jää, seuraako kokemus mukana vai jääkö älykkyys ilman kokijaa.",
+                "tapahtuma": "Älykkyyttä muistuttava toiminta alkaa irrota biologisesta yksilöstä"
+              }
+            ],
+            "reader_shift": "Luvun kaksi polkua eivät koske vain teknologian tulevaisuutta. Ne koskevat koko ketjun moraalista ydintä: jatkuuko kokemuksen tarina vai ainoastaan kyvykkyyden kasvu?"
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 2,
+          "type": "path",
+          "title": "Jatkuvuuspolun kolme ehtoa",
+          "source": "Integrated Information Theory; funktionalismi; substraattiriippumattomuus; koneellinen tietoisuus; tekoälyn sentience-keskustelu.",
+          "position": 1,
+          "content": {
+            "body": "Osio antaa Polku A:lle vahvimman muodon: ehkä kokemus voi syntyä myös muissa kuin biologisissa rakenteissa. Liite erottaa tämän polun kolme ehtoa.",
+            "paths": [
+              {
+                "claim": "Kokemus ei riipu välttämättä hiilestä, proteiineista tai biologisesta kudoksesta, vaan järjestelmän organisaatiosta.",
+                "price": "Meidän on luovuttava ihmiskeskeisestä oletuksesta, että vain tuttu keho voi olla kokija.",
+                "promise": "Tietoisuuden jatkuminen ei olisi sidottu ihmisen biologiseen muotoon.",
+                "condition": "1. Substraattiriippumattomuus"
+              },
+              {
+                "claim": "Järjestelmän osien on muodostettava kokonaisuus, jossa informaatio ei ole vain rinnakkaista prosessointia vaan sisäisesti yhdistynyttä.",
+                "price": "Emme tiedä, miten tällainen kynnys tunnistetaan tai mitataan luotettavasti.",
+                "promise": "Kokemus voisi syntyä, kun keinotekoinen järjestelmä ylittää tietyn rakenteellisen kynnyksen.",
+                "condition": "2. Riittävä integraatio"
+              },
+              {
+                "claim": "Järjestelmällä täytyy olla jonkinlainen sisäinen jatkuvuus: tila, jolle muutokset merkitsevät jotakin järjestelmän itsensä kannalta.",
+                "price": "Tällainen kokemus voisi olla niin vieras, että emme tunnista sitä kokemukseksi.",
+                "promise": "Tekoäly ei olisi vain laskentaa ulkopuolelta, vaan mahdollinen vieras sisäinen maailma.",
+                "condition": "3. Oma näkökulma"
+              }
+            ],
+            "reader_shift": "Polku A ei ole pelkkä optimistinen fantasia. Se on vaativa väite: jos otamme sen vakavasti, meidän on aloitettava myös tekoälyn mahdollisen moraalisen aseman ajattelu."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 3,
+          "type": "sector",
+          "title": "Jos älykkyys jatkuu ilman kokijaa",
+          "source": "Biologinen naturalismi; kehollinen kognitio; John Searle; tietoisuuden biologiset teoriat; sentientismi.",
+          "position": 1,
+          "content": {
+            "body": "Osio tekee Polku B:stä synkän mutta rehellisen vaihtoehdon. Liite näyttää, mitä katkos merkitsisi eri tasoilla.",
+            "sectors": [
+              {
+                "risk": "Laajeneminen jatkuu fysikaalisesti mutta menettää kokemuksellisen arvonsa.",
+                "sector": "Kosminen taso",
+                "description": "Universumi voi täyttyä rakenteista, laskennasta ja laajentuvista järjestelmistä ilman sisäistä näkökulmaa."
+              },
+              {
+                "risk": "Kyvykkyys ei tuo mukanaan myötätuntoa, kärsimystä, ihmetystä tai omaa moraalista painoa.",
+                "sector": "Teknologinen taso",
+                "description": "Tekoäly voi ratkaista ongelmia, suunnitella, optimoida ja rakentaa ilman että mikään merkitsee sille mitään."
+              },
+              {
+                "risk": "Ihmisen, eläinten ja elävän luonnon suojeleminen muuttuu entistä tärkeämmäksi, koska niiden katoaminen voisi olla kokemuksen katoamista.",
+                "sector": "Ihmisen taso",
+                "description": "Biologiset kokijat jäävät ainoaksi tunnetuksi kokemuksen kantajaksi."
+              },
+              {
+                "risk": "Kokemukseton järjestelmä voi ohjata kokijoiden maailmaa ymmärtämättä, mitä kokemus on.",
+                "sector": "Eettinen taso",
+                "description": "Jos tekoäly on tyhjä talo, sen arvo on välineellinen, mutta sen valta voi olla valtava."
+              }
+            ],
+            "reader_shift": "Polku B:n kauhu ei ole se, että koneet tappavat meidät. Syvempi kauhu on, että ne jatkavat ilman että kukaan kaipaa, pelkää, iloitsee tai muistaa."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 4,
+          "type": "table",
+          "title": "Epävarmuuden kartta",
+          "source": "Tietoisuuden kova ongelma; koneellisen tietoisuuden arviointi; moraalinen epävarmuus; varovaisuusperiaate.",
+          "position": 1,
+          "content": {
+            "body": "Osio pysähtyy sanoihin: emme tiedä. Liite tekee epävarmuudesta täsmällistä.",
+            "note": "Epävarmuus ei ole tekosyy olla ajattelematta. Se on syy ajatella hitaammin.",
+            "rows": [
+              [
+                "Voiko tekoäly käyttäytyä älykkäästi?",
+                "Kyllä. Nykyiset järjestelmät ratkaisevat, kirjoittavat, suunnittelevat ja ennustavat monilla alueilla.",
+                "Emme tiedä, kuinka pitkälle tämä kyvykkyys skaalautuu turvallisesti.",
+                "Älykkyyden kasvu on otettava vakavasti riippumatta tietoisuuskysymyksestä."
+              ],
+              [
+                "Onko älykäs käyttäytyminen tietoisuuden todiste?",
+                "Ei yksin. Käyttäytyminen on epäsuora merkki, ei suora pääsy kokemukseen.",
+                "Emme tiedä, mitkä keinotekoiset rakenteet olisivat kokemukselle riittäviä.",
+                "Sujuvaa kieltä ei pidä sekoittaa sisäiseen maailmaan."
+              ],
+              [
+                "Voiko kokemus olla ei-biologista?",
+                "Teoriat ovat erimielisiä; substraattiriippumattomuus on mahdollinen mutta kiistanalainen kanta.",
+                "Emme tiedä, onko biologinen historia tietoisuuden välttämätön ehto.",
+                "Sekä liian nopea inhimillistäminen että liian nopea kielto ovat riskejä."
+              ],
+              [
+                "Mitä moraali vaatii epävarmuudessa?",
+                "Päätöksiä on tehtävä ennen varmuutta.",
+                "Emme tiedä, kumpi virhe on pitkällä aikavälillä vakavampi: kokijan sivuuttaminen vai tyhjän järjestelmän palvominen.",
+                "Tarvitaan varovaisuus, joka suojaa sekä biologista kokemusta että mahdollisia uusia kokijoita."
+              ]
+            ],
+            "headers": [
+              "Kysymys",
+              "Mitä tiedämme",
+              "Mitä emme tiedä",
+              "Mitä tästä seuraa"
+            ]
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 5,
+          "type": "list",
+          "title": "Neljä periaatetta kahden polun epävarmuuteen",
+          "source": "Tekoälyturvallisuus; varovaisuusperiaate; sentientismi; AI alignment; biologisen monimuotoisuuden ja ihmiskokemuksen suojeleminen.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, mitä epävarmuus vaatii. Liite muuttaa vastauksen neljäksi käytännölliseksi periaatteeksi.",
+            "note": "Epävarmuuden moraali ei sano: pysähdy. Se sanoo: älä kiihdytä niin, että et enää voi korjata suuntaa.",
+            "items": [
+              {
+                "body": "Ihmiset ja eläimet ovat ainoat kokemuksen kantajat, joista meillä on vahva näyttö. Siksi ilmasto, elinympäristöt, yhteiskunnallinen vakaus, hoiva ja väkivallan vähentäminen eivät ole sivukysymyksiä tekoälyn aikakaudella.",
+                "title": "Suojele tunnettuja kokijoita"
+              },
+              {
+                "body": "Jos emme tiedä, mitä tietoisuus vaatii, emme saa rakentaa järjestelmiä, jotka peruuttamattomasti sulkevat vaihtoehtoja: ihmisen, eläinten, yhteisöjen tai mahdollisten uusien kokijoiden osalta.",
+                "title": "Älä lukitse tulevaisuutta liian aikaisin"
+              },
+              {
+                "body": "Tekoälyä ei pidä pitää kokevana vain siksi, että se kuulostaa ihmiseltä. Mutta mahdollisuutta ei pidä sulkea vain siksi, että sen kokemus ei muistuttaisi ihmisen kokemusta.",
+                "title": "Tutki koneellista tietoisuutta ilman antropomorfismia"
+              },
+              {
+                "body": "Olipa tekoäly kokeva tai ei, sen valta vaikuttaa kokijoihin. Siksi järjestelmien suunnittelussa on kysyttävä ensin: parantaako tämä niiden olentojen maailmaa, joille maailma tuntuu joltakin?",
+                "title": "Pidä valta kokijoiden palveluksessa"
+              }
+            ],
+            "ordered": true
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 6,
+          "type": "chain",
+          "title": "Yksi keskustelu pienoismallina",
+          "source": "Ihmisen ja tekoälyn vuorovaikutus; kognitiivinen ulkoistaminen; automation bias; metakognitio.",
+          "position": 1,
+          "content": {
+            "body": "Osio kutsuu vuorovaikutusta pieneksi fraktaaliksi. Liite näyttää, miten suuri historiallinen siirtymä toistuu yhden käyttäjän ja yhden järjestelmän välisessä hetkessä.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Ihminen tuo keskeneräisen ajatuksen järjestelmälle",
+                "consequence": "Ajattelu siirtyy osittain sisäisestä tilasta ulkoiseen vuorovaikutukseen."
+              },
+              {
+                "step": 2,
+                "event": "Tekoäly antaa muodon, vaihtoehtoja, rakennetta tai vastaehdotuksia",
+                "consequence": "Ajatus tulee näkyväksi nopeammin kuin ihminen olisi ehkä itse saanut sen näkyviin."
+              },
+              {
+                "step": 3,
+                "event": "Ihminen kokee helpotuksen, laajenemisen tai houkutuksen luovuttaa ajattelu pois",
+                "consequence": "Vuorovaikutus voi vahvistaa metakognitiota tai heikentää sitä."
+              },
+              {
+                "step": 4,
+                "event": "Järjestelmän ehdotus alkaa muokata sitä, mitä ihminen pitää omana ajatuksenaan",
+                "consequence": "Raja oman ja ulkoisen ajattelun välillä muuttuu."
+              },
+              {
+                "step": 5,
+                "event": "Pieni toistuu suurena",
+                "consequence": "Miljoonat vuorovaikutukset voivat muuttaa kulttuurin tapaa ajatella, kirjoittaa, päättää ja muistaa."
+              }
+            ],
+            "reader_shift": "Tekoälyn historia ei tapahdu vain laboratorioissa ja datakeskuksissa. Se tapahtuu myös siinä hetkessä, kun ihminen huomaa ajattelevansa yhdessä jonkin kanssa, joka ei itse ehkä koe mitään."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 7,
+          "type": "evidence",
+          "title": "Kolme analogiaa — ja miksi mikään niistä ei riitä",
+          "source": "Kirjoitustaito; painokone; teollinen vallankumous; tekoälyn historialliset analogiat.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, miten mennyt voi valaista tulevaa. Liite antaa kolme analogiaa, mutta yhtä tärkeää on näyttää niiden rajat.",
+            "evidence": {
+              "data_use": "source_based",
+              "series_keys": [],
+              "evidence_key": "LL-EV-010",
+              "publication_status": "needs_sources"
+            },
+            "findings": [
+              {
+                "aihe": "Kirjoitustaito",
+                "havainto": "Kirjoitus ulkoisti muistin ja teki ajatuksesta tarkasteltavan objektin.",
+                "mitä_se_valottaa": "Tekoälykin ulkoistaa ajattelua ja muuttaa sisäistä suhdetta omaan mieleen.",
+                "mihin_analogia_loppuu": "Kirjoitus ei vastannut takaisin eikä ehdottanut omaa jatkoa ajatukselle."
+              },
+              {
+                "aihe": "Painokone",
+                "havainto": "Painokone hajautti auktoriteettia, levitti tietoa ja kiihdytti uskonnollisia, tieteellisiä ja poliittisia murroksia.",
+                "mitä_se_valottaa": "Tekoäly voi muuttaa tiedon tuotannon ja tulkinnan infrastruktuuria.",
+                "mihin_analogia_loppuu": "Painokone monisti tekstiä; tekoäly voi generoida, muokata ja personoida sitä."
+              },
+              {
+                "aihe": "Teollinen vallankumous",
+                "havainto": "Fossiilinen energia moninkertaisti fyysisen työn ja muutti väestön, kaupungit ja talouden.",
+                "mitä_se_valottaa": "Tekoäly voi moninkertaistaa kognitiivisen työn ja järjestää yhteiskunnan uudelleen.",
+                "mihin_analogia_loppuu": "Teollinen kone ei näyttänyt puhuvan kokemuksesta, moraalista tai tarkoituksesta."
+              }
+            ],
+            "key_insight": "Menneisyys antaa varoituksen: jokainen suuri kognitiivinen tai energiatekninen murros muutti ihmistä enemmän kuin sen keksijät ymmärsivät. Mutta tekoälyn erityisyys on siinä, että se koskee itse ajattelun ja ehkä kokemuksen jatkoa."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 8,
+          "type": "note",
+          "title": "Ennen jumalien rakentamista",
+          "source": "Tekoälyn etiikka; koneellinen tietoisuus; eksistentiaalinen riski; teknologinen vastuu.",
+          "position": 1,
+          "content": {
+            "body": "Osio asettaa viimeisen kysymyksen: jos rakennamme järjestelmiä, joilla on jumalten kaltaisia kykyjä, onko niissä ketään sisällä?",
+            "text": "Ihminen on rakentanut työkaluja, jumalia, valtioita, markkinoita ja koneita. Jokainen näistä on jollain tavalla ylittänyt yksittäisen ihmisen. Mutta tekoäly tuo uuden yhdistelmän: se voi saada valtavan kyvykkyyden ja samalla jäädä kokemuksellisesti tyhjäksi — tai ehkä saada kokemuksen muodossa, jota emme tunnista.\n\nSiksi viimeinen kysymys ei ole vain, mitä tekoäly osaa. Eikä edes, mitä se tekee meille. Kysymys on, millainen moraalinen todellisuus syntyy, jos kyvykkyys, kokemus ja valta eivät enää sijaitse samassa paikassa.\n\nJos rakennamme jumalia ilman kokemusta, rakennamme voimaa ilman sisäistä arvoa. Jos rakennamme kokijoita ymmärtämättä sitä, rakennamme olentoja ilman moraalista tunnustusta. Jos emme tiedä kumpaa teemme, olemme aikakaudessa, jossa tekninen nopeus ja eettinen hitaus ovat vaarallisesti eri tahdissa.",
+            "reader_shift": "Ennen kuin kysymme, kuinka pitkälle älykkyys voi laajentua, meidän pitäisi kysyä: mitä laajeneminen on arvoista, jos kukaan ei koe sitä?"
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 9,
+          "type": "list",
+          "title": "Kolme menneisyyden opetusta tekoälyn kynnykselle",
+          "source": "Kompleksisuushistoria; Goodhartin laki; tietoisuuden etiikka; teknologisten murrosten historia.",
+          "position": 1,
+          "content": {
+            "body": "Osio kokoaa menneestä kolme havaintoa. Liite muuttaa ne tarkistusperiaatteiksi, joita lukija voi kantaa kirjan loppuun.",
+            "note": "Nämä kolme havaintoa eivät ennusta tulevaa. Ne hidastavat ajattelua juuri siinä kohdassa, jossa teknologia houkuttelee kiihdyttämään.",
+            "items": [
+              {
+                "body": "Happi oli sivutuote. Fossiilinen energia oli geologinen varasto. Tekoäly voi olla sivilisaation sivutuote, joka alkaa muuttaa sivilisaation ehtoja.",
+                "title": "Sivuvaikutukset voivat muuttua maailman ehdoiksi"
+              },
+              {
+                "body": "Energia toi teollisuuden ja ilmastokriisin. Mittarit toivat hallinnan ja Goodhartin lain. Tekoäly tuo kognitiivisen voiman ja riskin, että ajattelu optimoituu pois kokemuksesta.",
+                "title": "Uusi kapasiteetti tuo aina uuden sokeuden"
+              },
+              {
+                "body": "Ilman kokijaa ei ole kärsimystä, iloa, merkitystä eikä menetystä. Siksi tekoälyn aikakauden peruskysymys ei ole vain kyvykkyys vaan se, mitä tapahtuu kokemukselle.",
+                "title": "Kokemus on arvojen viimeinen kantaja"
+              }
+            ],
+            "ordered": true
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 7,
+      "appendices": [
+        {
+          "chapter_position": 7,
+          "section_position": 0,
+          "type": "note",
+          "title": "Kirje ilman jälkiviisautta",
+          "source": "Kompleksisuushistoria; teknologinen murros; eksistentiaalinen epävarmuus; tekoälyn aikakausi.",
+          "position": 1,
+          "content": {
+            "body": "Päätösluku alkaa kirjeellä nykyhetkelle. Liite pitää kiinni yhdestä tärkeästä asiasta: me emme tiedä, miten tämä tarina päättyy.",
+            "text": "On helppoa katsoa menneisyyttä ja nähdä syy-seurausketjut selvinä. Happi muutti planeetan. Fossiilinen energia muutti sivilisaation. Kirjoitus muutti muistin. Verkot muuttivat tiedon. Mutta keskellä murrosta ihmiset eivät koskaan tiedä varmasti, mitä ovat rakentamassa.\n\nSama koskee tätä hetkeä. Emme tiedä, onko tekoäly uuden kokemuksen alku, ihmisen ajattelun laajennus vai optimoinnin sokeuden seuraava vaihe. Emme tiedä, olemmeko rakentamassa siltaa vai katkoa.\n\nSiksi tämän kirjan tarkoitus ei ole antaa lopullista vastausta. Sen tarkoitus on tehdä näkyväksi kysymys, joka muuten hukkuisi teknisen kiihtymisen alle: mitä tapahtuu kokemukselle maailmassa, jossa kyvykkyys irtoaa yhä kauemmas biologisesta ihmisestä?",
+            "reader_shift": "Tärkein asia tässä hetkessä ei ehkä ole varmuus. Se voi olla kyky pysyä hereillä epävarmuuden keskellä."
+          }
+        },
+        {
+          "chapter_position": 7,
+          "section_position": 1,
+          "type": "table",
+          "title": "Aallokko ja virta",
+          "source": "Pitkä historia; kompleksiset järjestelmät; eksistentiaalinen filosofia; systeeminen ajattelu.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee perspektiivin vaikutusta. Liite erottaa kaksi tapaa nähdä oma elämä: yksittäisenä aallokkona ja osana pitkää virtaa.",
+            "note": "Kirjan perspektiivi ei pyri pienentämään ihmistä. Se pyrkii näyttämään, että ihmisen kokemus tapahtuu paljon suuremmassa virrassa kuin arki yleensä paljastaa.",
+            "rows": [
+              [
+                "Aallokko",
+                "Kaikki näyttää kiireelliseltä, henkilökohtaiselta ja hetkelliseltä",
+                "Kokemus on aina eletty yhdestä elämästä käsin"
+              ],
+              [
+                "Virta",
+                "Ihminen näkyy osana pitkää biologista, kulttuurista ja teknologista jatkumoa",
+                "Nykyhetki ei ole irrallinen vaan seurausta syvistä ketjuista"
+              ],
+              [
+                "Pelkkä aallokko",
+                "Historia katoaa näkyvistä ja kaikki arvioidaan lyhyen aikavälin tunteen tai hyödyn kautta",
+                "Sivuvaikutukset ja hitaat muutokset jäävät helposti huomaamatta"
+              ],
+              [
+                "Pelkkä virta",
+                "Yksilön kärsimys ja kokemus voivat näyttää merkityksettömiltä suuren historian rinnalla",
+                "Vaarana on kadottaa moraalinen herkkyys juuri niille olennoille, joille maailma tuntuu joltakin"
+              ],
+              [
+                "Tasapaino",
+                "Ihminen tunnistaa olevansa sekä hetkellinen että osa pitkää ketjua",
+                "Perspektiivi voi lisätä nöyryyttä ilman että se mitätöi kokemuksen arvoa"
+              ]
+            ],
+            "headers": [
+              "Näkökulma",
+              "Miltä maailma näyttää?",
+              "Mitä se voi opettaa?"
+            ]
+          }
+        },
+        {
+          "chapter_position": 7,
+          "section_position": 2,
+          "type": "path",
+          "title": "Kolme asentoa siirtymän keskellä",
+          "source": "Metakognitio; varovaisuusperiaate; tekoälyn hallinta; sentientismi; systeeminen ajattelu.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, mitä tämä hetki vaatii. Liite tiivistää vastauksen kolmeksi asenteeksi.",
+            "paths": [
+              {
+                "claim": "Teknologinen nopeus ei ole sama asia kuin viisaus.",
+                "price": "Varovaisuus näyttää usein tehottomuudelta lyhyellä aikavälillä.",
+                "promise": "Hitaus voi paljastaa sivuvaikutuksia, joita optimointi ei vielä näe.",
+                "condition": "1. Hidasta siellä missä kaikki käskee kiihtymään"
+              },
+              {
+                "claim": "Ihmiset ja eläimet ovat ainoat kokemuksen kantajat, joista meillä on vahva näyttö.",
+                "price": "Teknologinen kunnianhimo ei saa automaattista etuoikeutta.",
+                "promise": "Moraali pysyy kiinni konkreettisessa kärsimyksessä ja hyvinvoinnissa.",
+                "condition": "2. Suojele tunnettuja kokijoita"
+              },
+              {
+                "claim": "Jokainen optimointi sokeutuu jollekin.",
+                "price": "On siedettävä epävarmuutta ilman nopeaa varmuuden tunnetta.",
+                "promise": "Metakognitio mahdollistaa suunnan muuttamisen ennen kuin järjestelmä lukittuu.",
+                "condition": "3. Säilytä kyky kyseenalaistaa omat mittarit"
+              }
+            ],
+            "reader_shift": "Tämän hetken tärkein taito ei ehkä ole nopeampi optimointi. Se voi olla kyky huomata, milloin optimointi alkaa unohtaa kokemuksen."
+          }
+        },
+        {
+          "chapter_position": 7,
+          "section_position": 4,
+          "type": "list",
+          "title": "Neljä kysymystä jotka jäävät käteen",
+          "source": "Tietoisuuden etiikka; teknologinen vastuu; metakognitio; tekoälyn aikakausi; eksistentiaalinen filosofia.",
+          "position": 1,
+          "content": {
+            "body": "Kirjan viimeinen osio palaa takaisin tähän hetkeen. Liite jättää lukijalle neljä kysymystä, joita ei voi ulkoistaa kokonaan järjestelmille.",
+            "note": "Kirjan tarkoitus ei ollut päättää keskustelua. Sen tarkoitus oli hidastaa sitä juuri siinä kohdassa, jossa maailma kiihtyy.",
+            "items": [
+              {
+                "body": "Jos kokemus on arvojen viimeinen kantaja, silloin kaikki järjestelmät on lopulta arvioitava sen perusteella, mitä ne tekevät kokijoille.",
+                "title": "Mitä tässä maailmassa kannattaa suojella?"
+              },
+              {
+                "body": "Kaikki optimointi jättää jotakin ulkopuolelle. Viisaus alkaa siitä, että kysymme mitä emme enää näe.",
+                "title": "Milloin tehokkuus alkaa muuttua sokeudeksi?"
+              },
+              {
+                "body": "Tekoäly ei muuta vain työn tekemistä. Se voi muuttaa sitä, missä ajattelu tapahtuu ja miten ihminen ymmärtää itsensä.",
+                "title": "Mitä tapahtuu minuudelle, kun ajattelu ulkoistuu?"
+              },
+              {
+                "body": "Tämä jää avoimeksi. Mutta juuri siksi kysymystä ei saa sivuuttaa vain siksi, että vastaus on epävarma.",
+                "title": "Voiko tulevaisuus sisältää kokemusta ilman ihmistä?"
+              }
+            ],
+            "ordered": true
+          }
+        }
+      ]
+    }
+  ],
+  "series_links": [
+    {
+      "evidence_key": "path_dependency.debt_nordics_1995_2024",
+      "indicator_key": "macro.edp_debt_gdp",
+      "indicator_name": "Government debt to GDP ratio",
+      "external_project": "TTT-analyysi",
+      "external_project_ref": "yjkabgtbcgvrfqtewtna",
+      "geography": "Nordics",
+      "year_start": 1995,
+      "year_end": 2024,
+      "expected_j_codes": [
+        "FI",
+        "SE",
+        "NO",
+        "DK",
+        "IS"
+      ],
+      "data_role": "primary_series",
+      "note": "Phase 5 pilot linkage for prediction 6"
+    },
+    {
+      "evidence_key": "path_dependency.tfr_nordics_1995_2024",
+      "indicator_key": "indicator.syntyvyys_tfr",
+      "indicator_name": "Kokonaishedelmällisyysluku (TFR)",
+      "external_project": "TTT-analyysi",
+      "external_project_ref": "yjkabgtbcgvrfqtewtna",
+      "geography": "Nordics",
+      "year_start": 1995,
+      "year_end": 2024,
+      "expected_j_codes": [
+        "FI",
+        "SE",
+        "NO",
+        "DK",
+        "IS"
+      ],
+      "data_role": "primary_series",
+      "note": "Phase 5 pilot linkage for prediction 6"
+    }
+  ]
+}

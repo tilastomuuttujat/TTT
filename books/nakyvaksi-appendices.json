@@ -1,1 +1,2390 @@
-{"schema":"book-appendices.v1","exported_at":"2026-05-26T14:40:33.328Z","book":{"id":"66524d8f-73e6-4161-8c7b-3b335901c043","slug":"nakyvaksi","title":"Näkyväksi"},"chapters":[{"position":0,"slug":"johdanto","title":"Johdanto","appendices":[{"id":"ef1cf270-4aab-4892-b3d0-f4d3b6e2fc5f","chapter_position":0,"section_position":1,"type":"evidence","title":"Näkymättömyys järjestelmissä: mitä tutkimus osoittaa","source":null,"position":0,"content":{"body":"Johdannon väite — ihmiset katoavat järjestelmien sisällä — on dokumentoitu useista suunnista.","note":"Nämä luvut eivät kuvaa yksilöiden heikkoutta — ne kuvaavat rakenteellista näkymättömyyttä. Sama ihminen eri järjestelmässä voisi olla täysin näkyvä.","findings":[{"aihe":"Byrokraattinen näkymättömyys","havainto":"Suomessa noin 400 000 ihmistä on samanaikaisesti usean palvelun asiakkaana ilman että kukaan omistaa kokonaiskuvaa heidän tilanteestaan. Terveyden ja hyvinvoinnin laitos, 2022."},{"aihe":"Viive palveluun pääsyssä","havainto":"Mielenterveyden ensiavussa mediaaniodotusaika hoitoon pääsyyn on 3–6 kuukautta. Tuona aikana tilanne usein pahenee — palvelujärjestelmä reagoi kriisiin, ei sen ehkäisyyn."},{"aihe":"Kannustinloukku","havainto":"Noin 170 000 suomalaista on kannustinloukussa, jossa lisätulot eivät kasvata nettotuloja merkittävästi etuuksien leikkautuessa. Valtiovarainministeriön laskelma 2023."},{"aihe":"Kokemus osallisuudesta","havainto":"THL:n hyvinvointikompassi: joka viides suomalainen kokee, ettei kuulu mihinkään yhteisöön. Yksinäisyys on yleisintä 25–34-vuotiaiden ja yli 75-vuotiaiden ikäryhmissä."}]}},{"id":"1670d68b-84e1-4659-b0d6-69f491a4cc60","chapter_position":0,"section_position":2,"type":"chain","title":"Näkymättömyyden syntymekanismi: neljä vaihetta","source":null,"position":1,"content":{"body":"Miten ihminen muuttuu näkymättömäksi järjestelmässä — ei yhden päätöksen vaan rakenteellisen ajautumisen kautta.","steps":[{"step":1,"event":"Järjestelmä on suunniteltu yhtä tarvetta varten","consequence":"Jokainen palvelu optimoi omaa mittariaan — hoitopäiviä, asiakkaita, suoritteita. Kokonaisuus ei ole kenenkään vastuulla."},{"step":2,"event":"Ihminen ylittää sektorin rajan","consequence":"Tieto ei siirry — uusi toimija aloittaa alusta. Ihminen toistaa tarinaansa yhä uudelleen."},{"step":3,"event":"Viive kasvaa","consequence":"Tilanne mutkistuu odotusaikana. Yksinkertainen ongelma muuttuu monimutkaiseksi — ja kalliimmaksi ratkaista."},{"step":4,"event":"Ihminen väsyy järjestelmään","consequence":"Osa luovuttaa — ei haeta apua, vaikka tarve on olemassa. Tämä näkyy tilastoissa alidiagnosointina ja palveluvajeena."}],"reversal":"Käänteinen mekanismi on myös mahdollinen: kun tarve tulee näkyväksi ajoissa, sama ketju toimii toisin — varhainen tunnistus, tieto siirtyy, tilanne pysyy hallittavana."}}]},{"position":1,"slug":"luku-i-kun-ihminen-muuttui-nakymattomaksi","title":"Luku I — Kun ihminen muuttui näkymättömäksi","appendices":[{"id":"22114900-48eb-49ae-8422-1730a6976cc4","chapter_position":1,"section_position":3,"type":"evidence","title":"Optimoinnin logiikka ja sen sivuvaikutukset","source":null,"position":0,"content":{"body":"Luvun keskeinen väite: järjestelmät eivät ole kylmiä — ne toimivat juuri niin kuin ne on suunniteltu. Optimointi tuottaa näkymättömyyttä sivuvaikutuksena.","mechanisms":[{"esimerkki":"Sairaala mittaa hoitopäiviä. Tavoite on terveys. Optimointi lyhentää hoitopäiviä — potilas kotiutetaan nopeammin, mutta seuranta puuttuu. Terveys ei välttämättä parane.","mekanismi":"Mittarin ja tarkoituksen ero"},{"esimerkki":"Mielenterveyden ensiavun 3 kuukauden jono ei näy sen yksikön budjetissa — mutta näkyy myöhemmin kriisipäivystyksessä, toimeentulotuessa, työkyvyttömyyseläkkeissä.","mekanismi":"Viive on näkymätön kustannus"},{"esimerkki":"Koulu tunnistaa oppilaan haasteet. Tieto ei siirry lastensuojeluun — eri tietojärjestelmä, eri laki, eri budjetti. Sama lapsi on molemmille uusi asiakas.","mekanismi":"Sektoriraja katkaisee tiedon"},{"esimerkki":"Järjestelmä ei rangaise työllistymisestä tahallaan — se on rakennettu eri aikoina eri tarpeisiin. Loukku on useiden rationaalisten päätösten summa.","mekanismi":"Kannustinloukku on laskennallinen fakta"}],"key_insight":"Kukaan ei suunnitellut näkymättömyyttä. Se syntyi, koska jokainen osa optimoi itseään järkevästi — ilman vastuuta kokonaisuudesta."}},{"id":"7e62423c-2b37-4bda-baf2-2ca1be661021","chapter_position":1,"section_position":6,"type":"evidence","title":"Kaksisuuntainen optimointi: mitä se tarkoittaa käytännössä","source":null,"position":1,"content":{"body":"Luvun loppu esittelee kaksisuuntaisen optimoinnin käsitteen. Tämä liite avaa sen rakennetta.","examples":[{"yksisuuntainen":"Neuvola mittaa käyntimääriä","kaksisuuntainen":"Neuvola mittaa käyntimääriä JA seurantaa siitä, ohjautuivatko huolta herättävät tapaukset oikeaan paikkaan ajoissa."},{"yksisuuntainen":"TE-toimisto mittaa aktivointiasteita","kaksisuuntainen":"TE-toimisto mittaa aktivointiastetta JA sitä, onko aktivointi johtanut todelliseen työllistymiseen 12 kuukauden sisällä."},{"yksisuuntainen":"Koulu mittaa oppimistuloksia standarditesteissä","kaksisuuntainen":"Koulu mittaa oppimistuloksia JA sitä, jatkuuko oppiminen — onko oppilas kiinnostunut, osallistuuko, kokeeko olevansa osa yhteisöä."}],"definition":"Yksisuuntainen optimointi: järjestelmä optimoi omaa mittariaan. Kaksisuuntainen optimointi: järjestelmä optimoi sekä omaa mittariaan että sitä, mitä ihmiselle tapahtuu sen jälkeen.","structural_requirement":"Kaksisuuntainen optimointi vaatii kolme asiaa: tiedon siirtymisen sektorin yli, nimetyn vastuun kokonaiskuvasta, ja mittarin joka kattaa molemmat suunnat."}},{"id":"8c35a200-990b-4bc5-b1ac-7034b3c0603f","chapter_position":1,"section_position":2,"type":"calculation","title":"Näkymättömyyden kustannus: laskennallinen kehys","source":"Valtiontalouden tarkastusvirasto, Kelasto, THL hyvinvointikompassi","position":2,"content":{"body":"Näkymättömyys on paitsi inhimillinen ongelma, myös laskennallisesti kallis. Tässä viitekehys kustannusten hahmottamiseen.","caveat":"Nämä luvut ovat suuntaa-antavia — tarkoitus on havainnollistaa suuruusluokkaa, ei tuottaa tarkkaa laskelmaa. Todellinen kustannus riippuu yksilöllisistä poluista.","cost_components":[{"kuvaus":"Varhainen tuki maksaa murto-osan kriisiavusta. Lastensuojelun avohuolto ~3 000 €/v vs. laitoshoito ~90 000 €/v. Ero syntyy ajoituksesta, ei hoidon laadusta.","komponentti":"Myöhästynyt interventio"},{"kuvaus":"Sama ihminen voi olla samanaikaisesti terveyskeskuksen, mielenterveyspalvelujen, sosiaalityön ja TE-toimiston asiakkaana — ilman koordinaatiota. Hallinnollinen kokonaiskustannus voi ylittää hoidon kustannuksen.","komponentti":"Päällekkäiset palvelut"},{"kuvaus":"Työkyvyttömyyseläkkeelle siirtyminen maksaa yhteiskunnalle keskimäärin ~600 000 € menetettyinä verotuloina ja etuuksina 40 vuoden ajanjaksolla. Ehkäisyn kustannus on murto-osa tästä.","komponentti":"Työkyvyttömyyden hinta"},{"kuvaus":"170 000 ihmistä kannustinloukussa tarkoittaa karkeasti 1–2 miljardin euron vuotuista tuottavuusvajetta, jos edes osa heistä voisi työllistyä ilman etuuden menetystä.","komponentti":"Kannustinloukun tuottavuusvaje"}]}}]},{"position":2,"slug":"luku-ii-logiikka-joka-jo-toimii","title":"Luku II — Logiikka joka jo toimii","appendices":[{"id":"8672847a-17d5-49e8-af12-5d93dc14a790","chapter_position":2,"section_position":5,"type":"evidence","title":"Neuvola kaksisuuntaisen optimoinnin mallina","source":"THL: Lastenneuvola lapsiperheiden tukena, 2004 / päivitetty 2019","position":0,"content":{"body":"Suomalainen neuvolajärjestelmä on kansainvälisesti poikkeuksellinen — ja se toimii juuri kaksisuuntaisen optimoinnin logiikalla.","results":["Suomen imeväiskuolleisuus on maailman alhaisimpia — 1,7 / 1000 elävänä syntynyttä (2022).","Rokotuskattavuus yli 95 % — saavutettu ilman pakkoa, pelkällä saavutettavuudella.","Varhainen puuttuminen kehitysviiveisiin — tunnistetaan ennen koulua, ei sen jälkeen."],"how_it_works":{"universaalisuus":"Kaikki lapsiperheet käyvät neuvolassa — ei tarvita hakemusta, diagnooseja tai lähetteitä. Kynnys on nolla.","tiedon_jatkuvuus":"Sama terveydenhoitaja seuraa lasta vuosia — kokonaiskuva syntyy ajan myötä, ei yksittäisessä käynnissä.","ohjaus_eteenpäin":"Neuvola ei ratkaise kaikkea — mutta se tietää minne ohjata, ja seuraa onko ohjaus johtanut tulokseen.","varhainen_tunnistaminen":"Terveydenhoitaja tapaa perheen säännöllisesti — ei vain akuutissa hädässä. Huoli voidaan tunnistaa ennen kriisiä."},"exportability":"Neuvolamalli on levinnyt useisiin maihin. Keskeinen havainto: universaalisuus + jatkuvuus + matala kynnys = varhainen tunnistaminen. Ei vaadi korkeaa teknologiaa."}},{"id":"9fd6df9c-6391-426a-b278-f809bca3a08e","chapter_position":2,"section_position":6,"type":"evidence","title":"Peruskoulu tasa-arvon rakenteena: Suomen malli","source":"PISA 2022, OKM, Sahlberg P.: Finnish Lessons","position":1,"content":{"body":"Suomalainen peruskoulu on toinen esimerkki järjestelmästä, joka on rakennettu kaksisuuntaisesti — se ei vain opeta, se seuraa.","tension":"2010-luvulta alkaen resurssileikkaukset ovat heikentäneet erityisopetusta ja oppilashuoltoa. Rakenne on yhä olemassa — mutta sen kapasiteetti on pienentynyt.","outcomes":"Suomessa koulutuksen sosioekonominen periytyvyys on OECD:n matalin — perheen tulotaso selittää oppimistuloksia vähemmän kuin missään muussa vertailumaassa. Tämä on kaksisuuntaisen optimoinnin tulos.","structural_features":[{"kuvaus":"Tukea tarvitseva oppilas ei siirry erityiskouluun — tuki tuodaan oppilaan luo. Erityisopettaja on osa normaalia koulua.","piirre":"Erityisopetus osana koulua"},{"kuvaus":"Psykologi, kuraattori ja terveydenhoitaja samassa rakennuksessa. Huolen heräämisestä tukeen matka on fyysisesti lyhyt.","piirre":"Oppilashuolto"},{"kuvaus":"Peruskoulussa ei julkaista koulujen ranking-listoja. Kilpailu ei ohjaa resursseja parhaille — tasaisuus on tavoite.","piirre":"Arviointi ilman rankingeja"},{"kuvaus":"Opettajalla on vapaus mukauttaa opetusta oppilaan mukaan. Standardoitu testi ei ohjaa jokaista oppituntia.","piirre":"Opettajien autonomia"}]}},{"id":"c47a0a57-edb0-474b-b801-e2ea6f816cd2","chapter_position":2,"section_position":9,"type":"chain","title":"Miksi toimiva logiikka ei leviä: viisi estettä","source":null,"position":2,"content":{"body":"Neuvola ja peruskoulu toimivat. Silti sama logiikka ei ole levinnyt kaikkialle. Miksi?","barriers":[{"este":"1. Budjettirajan ylitys","selitys":"Varhainen tunnistaminen hyödyttää eri budjettikohtaa kuin missä kustannus syntyy. Neuvolan varhainen puuttuminen säästää lastensuojelun rahaa — mutta nämä ovat eri budjetteja, usein eri hallintokunnissa."},{"este":"2. Mittarin puuttuminen","selitys":"Ehkäisy on vaikea mitata — ei ole olemassa rekisteriä asioista jotka eivät tapahtuneet. Kriisin hoito on helppo mitata. Siksi kriisi saa rahoitusta ja ehkäisy ei."},{"este":"3. Poliittinen aikaväli","selitys":"Varhaisen tuen hyöty näkyy 5–15 vuoden viiveellä. Poliittinen sykli on 4 vuotta. Investointi jonka hyöty näkyy seuraavan hallituksen aikana on rationaalisesti vaikea perustella."},{"este":"4. Ammatillinen identiteetti","selitys":"Koordinaatio vaatii rajojen ylittämistä. Lääkäri, sosiaalityöntekijä ja opettaja ovat koulutettuja toimimaan oman alansa sisällä — rajapinnat ovat epämukavia."},{"este":"5. Näkymättömyys on normi","selitys":"Järjestelmässä katoaminen tuntuu poikkeukselta, mutta se on rakenteellinen normi. Normia ei nähdä ongelmana ennen kuin se nimetään."}],"implication":"Esteet eivät ole satunnaisia — ne ovat rakenteellisia. Siksi yksittäiset hankkeet eivät riitä. Tarvitaan rakenne joka tekee kaksisuuntaisesta optimoinnista helpompaa kuin yksisuuntaisesta."}}]},{"position":3,"slug":"luku-iii-mittari-joka-mittaa-mittaria","title":"Luku III — Mittari joka mittaa mittaria","appendices":[{"id":"012f4f3a-32b4-40ce-9cf9-f2f28bda78e3","chapter_position":3,"section_position":2,"type":"evidence","title":"Metamittari: esimerkkejä toimivista rakenteista","source":null,"position":0,"content":{"body":"Metamittari mittaa mittarin toimivuutta — ei vain suoritetta vaan sitä, ohjautuiko ihminen oikeaan paikkaan oikeaan aikaan.","examples":[{"mittari":"Hoitopäivät, käynnit, jonotusaika","konteksti":"Terveydenhuolto — hoitoketjun seuranta","käytössä":"NHS Englannissa: 30 päivän uusintahoitoprosentti on pakollinen raportoitava mittari.","metamittari":"Onko potilas 30 päivän kuluttua kotiutuksesta voinut palata normaaliin elämään? Onko uusintakäyntejä enemmän kuin vertailuryhmässä?"},{"mittari":"Kokeiden pisteet, läpäisyprosentti","konteksti":"Koulutus — oppimisen laatu","käytössä":"PISA mittaa erikseen motivaatiota ja oppimiskäsityksiä — ei pelkästään suoritusta.","metamittari":"Opiskellaanko myös koetilanteiden ulkopuolella? Kokeeko oppilas oppimisen merkitykselliseksi?"},{"mittari":"Aktivointiaste, toimenpiteisiin osallistuminen","konteksti":"Työllistymispalvelut","käytössä":"Tanskan flexicurity-malli: työllistymispalvelujen rahoitus osittain sidottu 12 kk työllistymisasteeseen.","metamittari":"Onko henkilö töissä 12 kuukauden kuluttua palvelusta? Onko työ linjassa henkilön osaamisen kanssa?"}],"design_principles":["Metamittari mittaa vaikutusta, ei toimintaa.","Mittaushetki on riittävän myöhään — 30 päivää, 6 kuukautta, 12 kuukautta.","Tieto palautuu sille, joka voi vaikuttaa — ei vain tilastokeskukseen."]}},{"id":"90ae80f2-39cb-475d-8e3d-66a8980915b1","chapter_position":3,"section_position":6,"type":"evidence","title":"Tekoäly metamittarin mahdollistajana: nykytila ja rajat","source":null,"position":1,"content":{"body":"Luku III käsittelee tekoälyn roolia metamittarissa. Tässä realistinen kuva mahdollisuuksista ja rajoista.","limits":[{"raja":"Tietosuoja","kuvaus":"Rekisterien yhdistäminen vaatii lainsäädännöllisen pohjan. GDPR asettaa tiukat vaatimukset — ei voida yhdistää tietoja ilman oikeusperustaa."},{"raja":"Algoritmin sokeus","kuvaus":"Tekoäly tunnistaa mallipoikkeamia — mutta ei ymmärrä kontekstia. Poikkeama voi olla normaali elämänmuutos (muutto, suru) tai se voi olla vakava signaali. Ihminen tarvitaan tulkitsemaan."},{"raja":"Vastuun hämärtyminen","kuvaus":"Jos algoritmi tunnistaa riskin, kenen vastuulla on toimia? Teknologia ei korvaa vastuunjakoa — se voi jopa hämärtää sen."}],"conclusion":"Tekoäly on väline, ei ratkaisu. Se voi tehdä kokonaiskuvan näkyväksi — mutta toimijuus ja vastuu pysyvät ihmisellä.","possibilities":[{"kuvaus":"Tekoäly voi tunnistaa poikkeaman normaalipolusta — esim. lapsi joka on käynyt neuvolassa, mutta jonka kasvukäyrä poikkeaa merkittävästi. Ihminen ei ehdi katsoa jokaista käyrää, algoritmi voi nostaa poikkeaman esiin.","mahdollisuus":"Poikkeamien tunnistaminen"},{"kuvaus":"Jos eri rekisterit voidaan yhdistää (tietosuoja huomioiden), tekoäly voi rakentaa kokonaiskuvan ihmisen palvelupolusta — ilman että ihminen toistaa tarinaansa joka kerta.","mahdollisuus":"Palvelupolun kokoaminen"},{"kuvaus":"Yhdistämällä useita heikkoja signaaleja (poissaolot, suoriutuminen, sosiaaliset muutokset) voidaan tunnistaa tuen tarve ennen kriisiä.","mahdollisuus":"Varhainen riskitunnistus"}]}}]},{"position":4,"slug":"luku-iv-kuka-vastaa","title":"Luku IV — Kuka vastaa?","appendices":[{"id":"70e54586-df86-4304-afa3-20d84936fe77","chapter_position":4,"section_position":4,"type":"evidence","title":"Koordinaatiomandaatti: kansainvälisiä malleja","source":null,"position":0,"content":{"body":"Luku IV esittelee koordinaatiomandaatin käsitteen — nimetty taho, joka omistaa kokonaiskuvan. Tässä kansainvälisiä malleja.","models":[{"maa":"Ruotsi","tulos":"Kokeilut osoittaneet vähentyneitä hoitoaukkoja ja nopeampia siirtymiä palveluiden välillä. Skaalaaminen vielä kesken.","kuvaus":"Ruotsissa on kokeiltu nimettyä koordinaattoria moniammatillisissa tilanteissa (erityisesti nuorten pitkittyneissä tilanteissa). Koordinaattori ei korvaa ammattilaisia — hän omistaa kokonaiskuvan ja vastaa siitä, että osat kommunikoivat.","rakenne":"Samordnare — koordinaattori"},{"maa":"Tanska","tulos":"Työkyvyttömyyseläkkeelle siirtyminen vähentynyt niissä ryhmissä, jotka saaneet koordinoitua tukea.","kuvaus":"Monimutkaisia tilanteita varten laaditaan yhteinen kuntoutussuunnitelma, johon kaikki toimijat sitoutuvat. Yksi vastuutaho koordinoi suunnitelman toteutumista.","rakenne":"Rehabiliteringsplan"},{"maa":"Skotlanti","tulos":"Lainsäädäntöpohja hyväksyttiin, mutta toimeenpano viivästyi tietosuojakiistojen vuoksi. Arvokas oppimistapaus sekä mahdollisuuksista että juridisista esteistä.","kuvaus":"Jokaisella lapsella nimetty yhteyshenkilö (named person) joka koordinoi eri toimijoiden tiedon. Ei terapeutti — koordinaattori.","rakenne":"Named Person"}],"common_features":"Kaikissa malleissa: yksi nimetty vastuu, kokonaiskuvan omistajuus, toimivalta ylittää sektoriraja. Kukaan ei ratkaise kaikkea — mutta joku tietää, missä mennään."}},{"id":"f5e663df-c8de-416b-b5cc-ce6e4016198a","chapter_position":4,"section_position":3,"type":"chain","title":"Miten vastuu häviää: neljä vaihetta","source":null,"position":1,"content":{"body":"Vastuun katoaminen ei ole yksittäinen päätös — se on neljän vaiheen prosessi.","steps":[{"step":1,"event":"Monimutkainen tilanne ylittää yhden sektorin rajan","consequence":"Kukaan ei omista kokonaisuutta — jokainen omistaa oman osansa."},{"step":2,"event":"Jokainen toimija toimii omien mittariensa mukaan","consequence":"Suoritteita syntyy, budjetteja käytetään, palavereja pidetään — mutta kokonaisuus ei etene."},{"step":3,"event":"Ihminen joutuu koordinoimaan itse","consequence":"Ihminen soittaa, täyttää lomakkeita, selittää tilanteensa yhä uudelleen. Tämä kuluttaa juuri sen energian, jota tarvitaan toipumiseen tai työllistymiseen."},{"step":4,"event":"Ihminen väsyy tai putoa pois","consequence":"Palvelujärjestelmä tulkitsee tämän haluttomuutena tai motivaation puutteena. Rakenneongelma näyttää yksilöongelmalta."}],"structural_fix":"Koordinaatiomandaatti katkaisee ketjun kolmannen vaiheen kohdalla: ihmisen ei tarvitse koordinoida itse, koska joku muu omistaa kokonaiskuvan."}}]},{"position":5,"slug":"luku-v-kun-rakenteet-toimivat-yhdessa","title":"Luku V — Kun rakenteet toimivat yhdessä","appendices":[{"id":"f2507c7b-0681-4a5c-afd6-768e5d25d214","chapter_position":5,"section_position":3,"type":"evidence","title":"Maria, Väinö ja Emmi: kolme rakenteellista siirtymää","source":null,"position":0,"content":{"body":"Luvun kolme henkilöä edustavat erilaisia rakenteellisia ongelmia. Tässä niiden rakenteellinen analyysi.","cases":[{"ongelma":"Kannustinloukku","henkilö":"Maria","rakenteellinen_syy":"Etuusjärjestelmä on rakennettu eri aikoina eri logiikalla — asumistuki, toimeentulotuki, lapsilisä, ansiotulovero leikkaavat yhdessä niin, että lisätulo ei lisää nettotuloa.","rakenteellinen_avain":"Tieto siitä, milloin lisätyö kannattaa, on tällä hetkellä hajallaan useassa järjestelmässä. Yksi laskuri, joka näyttää nettovaikutuksen, tekisi valinnan näkyväksi.","kaksisuuntainen_ratkaisu":"Porrastettu etuuden väheneminen — kun tulo kasvaa, etuus vähenee vähitellen, ei yhtäkkiä. Tämä on teknisesti mahdollista, poliittisesti vaikea koska se näyttää kalliilta lyhyellä aikavälillä."},{"ongelma":"Kukaan ei omista kokonaiskuvaa","henkilö":"Väinö","rakenteellinen_syy":"Väinön tilanne ylittää terveys-, sosiaali- ja työllistymispalvelujen rajat. Jokainen omistaa osan — kukaan ei omista kokonaisuutta.","rakenteellinen_avain":"Ei vaadi uutta palvelua — vaatii uuden vastuun. Joku saa tehtäväksi pitää kokonaiskuvan näkyvänä.","kaksisuuntainen_ratkaisu":"Koordinaatiomandaatti: yksi nimetty taho joka seuraa kokonaiskuvaa ja varmistaa, että osat kommunikoivat."},{"ongelma":"Polku puuttuu siirtymävaiheessa","henkilö":"Emmi","rakenteellinen_syy":"Siirtymät (koulu → työ, kuntoutus → työ) ovat hallinnollisia tyhjiöitä — kukaan ei vastaa siirtymän onnistumisesta.","rakenteellinen_avain":"Seurantavastuun puuttuminen on rakenne, ei sattuma. Sen korjaaminen vaatii yhden lisäyksen prosessiin — ei uutta järjestelmää.","kaksisuuntainen_ratkaisu":"Siirtymävastuun nimeäminen: ennen siirtymää sovitaan, kuka seuraa onnistumista 6 ja 12 kuukauden kuluttua."}]}},{"id":"ea3d4a8e-1304-4614-aaf0-a5ecf4c69a5a","chapter_position":5,"section_position":5,"type":"evidence","title":"Viisi mekanismia käännettyinä: mitä muutos vaatii","source":null,"position":1,"content":{"body":"Luku V kääntää viisi näkymättömyyden mekanismia — tässä niiden rakenne ja käännetty versio.","mechanisms":[{"numero":1,"vaatii":"Seurantajärjestelmä joka ulottuu palvelusuoritteen yli","ongelma":"Mittari ja tarkoitus eroavat","käännetty":"Metamittari: mittaa mitä mittarille tapahtuu palvelun jälkeen"},{"numero":2,"vaatii":"Tiedonsiirto sektorirajat ylittäen, tietosuoja huomioiden","ongelma":"Viive on näkymätön kustannus","käännetty":"Varhainen tunnistaminen: tieto huolesta siirtyy ennen kriisiä"},{"numero":3,"vaatii":"Nimetty vastuu ja toimivalta ylittää raja","ongelma":"Sektoriraja katkaisee tiedon","käännetty":"Koordinaatiomandaatti: yksi taho omistaa kokonaiskuvan"},{"numero":4,"vaatii":"Laskentainfrastruktuuri joka yhdistää eri etuuksien vaikutukset","ongelma":"Kannustinloukku on laskennallinen fakta","käännetty":"Näkyvä nettovaikutus: ihminen näkee mitä valinta tarkoittaa"},{"numero":5,"vaatii":"Prosessi jossa vastuu koordinoinnista on kirjattu, ei oletettu","ongelma":"Ihminen koordinoi itse väsyneenä","käännetty":"Koordinointi siirretään rakenteelle, ei ihmiselle"}]}}]},{"position":6,"slug":"luku-vi-kuka-aloittaa","title":"Luku VI — Kuka aloittaa?","appendices":[{"id":"eb91aa2a-4fc5-44b6-bf2c-cf8b5f677ee4","chapter_position":6,"section_position":3,"type":"chain","title":"Muutos kolmella tasolla: ammattilainen, johtaja, päätöksentekijä","source":null,"position":0,"content":{"body":"Luku VI jäsentää muutoksen kolmeen tasoon. Tässä jokaisen tason mekanismi ja konkreettinen ensimmäinen askel.","levels":[{"taso":"Taso 1: Ammattilainen","kuvaus":"Ammattilainen näkee arjessa, milloin rakenne ei toimi — milloin tieto ei siirry, milloin ihminen putoaa väliin.","vaikutus":"Yksittäinen nimeäminen ei muuta järjestelmää. Toistuva, dokumentoitu nimeäminen tekee rakenneongelmasta näkyvän johdolle.","ensimmainen_askel":"Nimeä poikkeama ääneen. Kun sektorirajaa ei voida ylittää, sano se — älä ohita. Dokumentoitu poikkeama on palaute järjestelmälle."},{"taso":"Taso 2: Johtaja","kuvaus":"Johtaja omistaa rajapinnan — hän voi sopia naapuriorganisaation kanssa käytännöistä, joita laki ei kiellä mutta ohjeistukset eivät vaadi.","vaikutus":"Onnistunut pieni sopimus rakentaa luottamusta ja osoittaa, että yhteistyö on mahdollista. Se voi laajentua.","ensimmainen_askel":"Sovi yksi konkreettinen tiedonsiirtokäytäntö toisen organisaation johtajan kanssa. Ei projekti, ei hanke — yksi sopimus."},{"taso":"Taso 3: Päätöksentekijä","kuvaus":"Päätöksentekijä omistaa rakenteen — hän voi muuttaa budjettirajan, lakipykälän, tiedonsiirto-oikeuden.","vaikutus":"Kun luku on olemassa, näkymätön ongelma muuttuu näkyväksi. Luku on poliittinen väline.","ensimmainen_askel":"Pyydä yksi rekisteripohjainen analyysi: montako ihmistä on yhtä aikaa kolmen tai useamman palvelun asiakkaana ilman koordinoitua suunnitelmaa?"}],"common_principle":"Kaikilla tasoilla sama logiikka: tee näkymätön näkyväksi. Nimeä poikkeama, dokumentoi, tee siitä palaute. Muutos alkaa nimeämisestä."}},{"id":"d7d72a9a-82f6-47fc-a12a-99a538833e5e","chapter_position":6,"section_position":4,"type":"evidence","title":"Reformi-ikkuna: milloin rakenne muuttuu","source":"Kingdon, J.W.: Agendas, Alternatives and Public Policies (1984)","position":1,"content":{"body":"John Kingdonin kolmen virran malli selittää, miksi jotkut muutokset tapahtuvat nopeasti ja toiset eivät tapahdu lainkaan.","application":{"ongelmavirta":"Näkymättömyys on dokumentoitu — luvut ovat olemassa (THL, Kela, VM). Ongelma ei ole tiedon puute.","ratkaisuvirta":"Koordinaatiomandaatti, metamittari, kaksisuuntainen optimointi — ratkaisut ovat olemassa. Neuvolan malli on olemassa.","politiikkavirta":"Tämä on se virta, jota ei voi ennakoida. Mutta se voi muuttua nopeasti — sote-uudistus, talouskriisi, väestön ikääntyminen voivat kaikki avata ikkunan."},"implication":"Muutosta ei voi pakottaa ikkuna kiinni. Mutta valmistautuminen on mahdollista: rakenteet, luvut, kokeilut ja yhteistyösuhteet valmiina — niin että kun ikkuna aukeaa, toiminta on mahdollista.","policy_window":"Reformi-ikkuna aukeaa, kun kaikki kolme virtaa kohtaavat samanaikaisesti. Ikkuna on lyhyt — tyypillisesti kuukausia, harvoin vuosia.","three_streams":{"ongelmavirta":"Ongelma tulee näkyväksi — indikaattori, kriisi tai symbolinen tapaus nostaa ongelman agendalle.","ratkaisuvirta":"Ratkaisuvaihtoehtoja on olemassa — ne on kehitetty, testattu, ovat valmiina.","politiikkavirta":"Poliittinen tahto on olemassa — hallituksen ohjelma, vaalivoitto, uusi johtaja tuo muutoshalukkuuden."}}},{"id":"d4c82f27-35f1-4abd-8275-5373ae7dd23f","chapter_position":6,"section_position":7,"type":"chain","title":"Projektista rakenteeksi: kolme vaihetta","source":null,"position":2,"content":{"body":"Suurin rakennemuutos alkaa usein pienenä kokeiluna. Miten projekti muuttuu pysyväksi rakenteeksi?","steps":[{"vaihe":"Vaihe 1: Kokeilu","kuvaus":"Rajattu, nopea, mitattava. Yksi alue, yksi kohderyhmä, yksi yhteinen mittari. Ei tarvitse onnistua täydellisesti — tarvitsee opettaa.","esimerkki":"Yksi kunta sopii koulun, neuvolan ja lastensuojelun kesken yhteisen tiedonsiirtokäytännön huolellisia tapauksia varten.","kriittinen_tekijä":"Kokeilu on hyödytön ilman palautemekanismia. Tulokset dokumentoidaan ja jaetaan — myös epäonnistumiset."},{"vaihe":"Vaihe 2: Institutionalisointi","kuvaus":"Kokeilusta tulee käytäntö — se kirjataan prosessiin, sille nimetään vastuu, se saa resurssit.","esimerkki":"Yhteinen tiedonsiirtokäytäntö kirjataan kolmen organisaation yhteiseen toimintaohjeeseen. Nimetään vastuuhenkilö seurannasta.","kriittinen_tekijä":"Institutionalisointi vaatii johtajan tuen. Ilman johtajan nimenomaista valintaa kokeilu jää yksittäisten ammattilaisten harteille."},{"vaihe":"Vaihe 3: Skaalaus","kuvaus":"Toimiva malli leviää — ei pakolla vaan siksi, että se on helpompi kuin vanha tapa.","esimerkki":"Kansallinen toimintaohje, joka mahdollistaa saman käytännön kaikissa kunnissa ilman että jokainen keksii pyörää uudelleen.","kriittinen_tekijä":"Skaalaus vaatii infrastruktuuria: tietojärjestelmät jotka tukevat uutta käytäntöä, koulutusta, selkeää mallia kopioida."}],"time_estimate":"Vaihe 1: 6–18 kuukautta. Vaihe 2: 1–3 vuotta. Vaihe 3: 5–10 vuotta. Rakennemuutos on hidasta — mutta se on pysyvää."}}]},{"position":7,"slug":"paatosluku-nakyvaksi","title":"Päätösluku — Näkyväksi","appendices":[{"id":"083ea335-a015-40f0-8b8f-6d341a167ec4","chapter_position":7,"section_position":3,"type":"evidence","title":"Näkyväksi-kirjan ydinväitteet tiivistettynä","source":null,"position":0,"content":{"body":"Päätösluvulle keskeinen synteesi — mitä kirja on sanonut ja mitä se ei ole sanonut.","core_claims":["Ihmiset eivät katoa järjestelmistä pahuuden tai välinpitämättömyyden vuoksi. He katoavat rakenteellisten mekanismien vuoksi — optimointi, viive, sektoriraja, vastuun puute.","Sama rakenne joka tuottaa näkymättömyyttä, voidaan kääntää. Kaksisuuntainen optimointi, metamittari ja koordinaatiomandaatti eivät ole uusia instituutioita — ne ovat uusia vastuita ja mittareita olemassa olevissa rakenteissa.","Toimivia malleja on olemassa. Neuvola, peruskoulu, Ruotsin koordinaattorikokeilu. Ongelma ei ole tiedon puute — ongelma on leviämislogiikan puute.","Muutos alkaa nimeämisestä. Rakenneongelmaa ei voi korjata, ennen kuin se on näkyvissä. Näkyväksi tekeminen on poliittinen teko."],"what_book_did_not_say":["Kirja ei väitä, että rahaa on riittävästi — se väittää, että sama raha käytettynä kaksisuuntaisesti tuottaa enemmän.","Kirja ei väitä, että muutos on helppo — se väittää, että muutos on mahdollinen ja että se on alkanut.","Kirja ei väitä, että teknologia ratkaisee — se väittää, että teknologia voi tehdä kokonaiskuvan näkyväksi, mutta vastuu pysyy ihmisellä."]}},{"id":"f247cb4b-8372-4301-b1ba-836978b3c427","chapter_position":7,"section_position":6,"type":"chain","title":"Sivilisaation toimintakyky: kirjan syvin väite auki kirjoitettuna","source":null,"position":1,"content":{"body":"Päätösluvun syvin väite on, että näkymättömyys on paitsi yksilöllinen ongelma, myös sivilisatorinen riski. Tässä sen rakenne.","argument":[{"askel":1,"väite":"Yhteiskunnat rakentuvat koordinaation varaan","selitys":"Hyvinvointivaltio, demokratia, markkinatalous — kaikki perustuvat siihen, että eri osat toimivat yhdessä. Koordinaatio on sivilisaation perusinfrastruktuuri."},{"askel":2,"väite":"Koordinaatio rakentuu ihmisille, jotka kokevat olevansa osa jotakin","selitys":"Järjestelmä, jossa riittävän moni ihminen on näkymätön, alkaa menettää jotakin vaikeasti mitattavaa: luottamusta, osallistumishalukkuutta, tunnetta siitä että yhteinen asia on yhteinen."},{"askel":3,"väite":"Näkymättömyys heikentää korjauskykyä","selitys":"Järjestelmä, joka ei näe omia sivuvaikutuksiaan, ei voi korjata niitä. Näkymättömyys ei ole vain inhimillinen tragedia — se on järjestelmän sokeus omaan tilaan."},{"askel":4,"väite":"Näkyväksi tekeminen on sivilisatorinen investointi","selitys":"Kun ihmiset ovat näkyvissä — kun tarve löytää tekijänsä, kun kokonaiskuva on jonkun vastuulla — järjestelmä saa palautetta. Ja palaute on korjauskyvyn edellytys."}],"connection_to_series":"Tämä väite kytkee kirjan sarjaan: Laajenemisen logiikka kysyi mistä tulemme, Näkyväksi kysyy miksi järjestelmät sokeutuvat. Seuraava kirja voi kysyä: kuka rakentaa rakentajat?"}}]}]}
+{
+  "book_slug": "nakyvaksi",
+  "book_title": "Näkyväksi",
+  "exported_at": "2026-06-05T14:33:12.454Z",
+  "chapters": [
+    {
+      "chapter_position": 0,
+      "appendices": [
+        {
+          "chapter_position": 0,
+          "section_position": 0,
+          "type": "note",
+          "title": "Tarve tulla nähdyksi ei ole heikkous",
+          "source": "Sosiaalinen tunnustus; osallisuuden tutkimus; näkymättömyyden psykologia; institutionaalinen tunnistaminen.",
+          "position": 1,
+          "content": {
+            "body": "Johdannon ensimmäinen osio kysyy yksinkertaisen mutta raskaan kysymyksen: missä minua tarvitaan? Liite avaa kysymyksen inhimillisen painon.",
+            "text": "Ihminen kestää usein kuormitusta, epävarmuutta ja keskeneräisyyttä paremmin kuin kokemusta siitä, ettei hänen olemassaolollaan ole vaikutusta. Näkymättömyys ei synny vain yksinäisyydestä. Se syntyy hetkellä, jolloin järjestelmä ei enää vastaa ihmisen kokemukseen omasta merkityksestään.\n\nTyössä tämä voi näkyä tehtävinä ilman vaikutusvaltaa. Hoivassa tilanteena, jossa ihminen muuttuu aikatauluksi. Yhteiskunnassa kokemuksena, että osallistuminen ei muuta mitään.\n\nSiksi näkyväksi tuleminen ei ole vain huomion saamista. Se on kokemus siitä, että oma olemassaolo muuttaa jotakin ympäröivässä maailmassa.",
+            "reader_shift": "Kysymys ei ole vain siitä, näkeekö joku minut. Kysymys on siitä, onko olemassa järjestelmä, jossa läsnäolollani on todellinen vaikutus."
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 1,
+          "type": "evidence",
+          "title": "Kuusi järjestelmää, sama kokemus",
+          "source": "Hyvinvointijärjestelmät; työelämätutkimus; nuorten mielenterveys; byrokratiatutkimus; palvelujärjestelmien optimointi.",
+          "position": 1,
+          "content": {
+            "body": "Osio kokoaa kuusi tarinaa. Liite näyttää niiden yhteisen rakenteen: ihminen katoaa eri tavoin eri järjestelmissä.",
+            "findings": [
+              {
+                "aihe": "Työelämä",
+                "havainto": "Ihminen voi olla jatkuvasti mitattu mutta silti kokemuksellisesti näkymätön.",
+                "merkitys": "Mittarit seuraavat suoritusta paremmin kuin merkitystä."
+              },
+              {
+                "aihe": "Koulutus",
+                "havainto": "Nuori voi täyttää järjestelmän ehdot ilman kokemusta siitä, että joku todella näkee hänet.",
+                "merkitys": "Oppiminen ja kuuluminen eivät ole sama asia."
+              },
+              {
+                "aihe": "Hoiva",
+                "havainto": "Kiire optimoi prosessia mutta voi heikentää kohtaamista.",
+                "merkitys": "Hoivan laatu ei palaudu pelkkiin suoritteisiin."
+              },
+              {
+                "aihe": "Hallinto",
+                "havainto": "Järjestelmät käsittelevät tapauksia, vaikka ihmiset kokevat elämiä.",
+                "merkitys": "Abstraktio suojaa järjestelmää mutta voi etäännyttää ihmisen kokemuksesta."
+              }
+            ],
+            "reader_shift": "Tarinoiden voima ei ole niiden yksityiskohdissa vaan siinä, että ne alkavat muistuttaa toisiaan."
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 2,
+          "type": "chain",
+          "title": "Kun järjestelmä alkaa nähdä mittarit paremmin kuin ihmiset",
+          "source": "Goodhartin laki; kompleksisuusteoria; hallinnon mittarointi; julkisen sektorin optimointi.",
+          "position": 1,
+          "content": {
+            "body": "Osio väittää, ettei ennen ollut yksinkertaisesti paremmin. Liite näyttää, miten kompleksisuus muuttaa järjestelmien havaintokykyä.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Järjestelmä kasvaa",
+                "consequence": "Suora inhimillinen havainto ei enää riitä hallintaan."
+              },
+              {
+                "step": 2,
+                "event": "Tilalle rakennetaan mittareita",
+                "consequence": "Todellisuus alkaa näkyä numeroina, kategorioina ja raportteina."
+              },
+              {
+                "step": 3,
+                "event": "Mittareista tulee päätöksenteon kieli",
+                "consequence": "Se mikä voidaan mitata alkaa määrittää sitä, mikä on tärkeää."
+              },
+              {
+                "step": 4,
+                "event": "Ihmisen kokemus irtoaa järjestelmän havainnosta",
+                "consequence": "Järjestelmä toimii tehokkaasti mutta ei enää tunnista kaikkea olennaista."
+              }
+            ],
+            "reader_shift": "Näkymättömyys ei välttämättä synny pahantahtoisuudesta. Se voi syntyä siitä, että järjestelmä menettää kykynsä nähdä muuta kuin sen, mitä se osaa mitata."
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 3,
+          "type": "path",
+          "title": "Kolme kirjaa samasta siirtymästä",
+          "source": "Kompleksiset järjestelmät; tekoälyn yhteiskunnalliset vaikutukset; metakognitio; teknologinen murros.",
+          "position": 1,
+          "content": {
+            "body": "Osio esittelee trilogian. Liite näyttää, miten kirjat rakentuvat saman ilmiön eri tasoiksi.",
+            "paths": [
+              {
+                "claim": "Mitä tapahtuu ihmiselle, kun järjestelmät lakkaavat tunnistamasta kokemusta?",
+                "price": "Lukija joutuu kohtaamaan myös omat sokeat pisteensä.",
+                "promise": "Kirja tekee näkyväksi näkymättömyyden rakenteita.",
+                "condition": "Näkyväksi"
+              },
+              {
+                "claim": "Mitä tapahtuu, kun vastuu siirtyy yksilölle ilman todellista vaikutusvaltaa?",
+                "price": "Vapaus ilman rakenteita voi muuttua yksinäiseksi selviytymiseksi.",
+                "promise": "Kirja avaa autonomian ja kontrollin ristiriidan.",
+                "condition": "Itseohjautuvuus"
+              },
+              {
+                "claim": "Mitä tapahtuu, kun älykkyys ja optimointi ylittävät inhimillisen mittakaavan?",
+                "price": "Joudumme kysymään, mikä ihmisessä on korvaamatonta.",
+                "promise": "Kirja yhdistää teknologisen ja eksistentiaalisen kysymyksen.",
+                "condition": "Laajenemisen logiikka"
+              }
+            ],
+            "reader_shift": "Trilogia ei kuvaa kolmea erillistä ongelmaa vaan yhtä siirtymää kolmesta näkökulmasta."
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 4,
+          "type": "table",
+          "title": "Miksi näkymättömyys jää helposti tunnistamatta",
+          "source": "Kognitiiviset vinoumat; järjestelmätutkimus; organisaatiopsykologia; institutionaalinen inertia.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, onko väite liian suuri ollakseen tosi. Liite näyttää, miksi hitaasti rakentuvat rakenteelliset muutokset jäävät usein huomaamatta.",
+            "note": "Rakenteellinen muutos tuntuu usein normaalilta juuri siksi, että se tapahtuu hitaasti.",
+            "rows": [
+              [
+                "Ihmiset kokevat kasvavaa irrallisuutta",
+                "Kokemus tulkitaan yksilölliseksi ongelmaksi",
+                "Taustalla voi olla rakenteellinen muutos siinä, miten järjestelmät kohtaavat ihmisiä"
+              ],
+              [
+                "Mittarit lisääntyvät",
+                "Mittarointi nähdään neutraalina tehokkuutena",
+                "Mittarit alkavat vähitellen määrittää todellisuutta"
+              ],
+              [
+                "Päätöksenteko etääntyy kokemuksesta",
+                "Monimutkaisuutta pidetään väistämättömänä",
+                "Ihmisen näkökulma katoaa helposti abstraktioiden alle"
+              ],
+              [
+                "Teknologinen optimointi kiihtyy",
+                "Nopeus näyttäytyy kehityksenä",
+                "Kaikki mikä lisää tehokkuutta ei lisää merkitystä"
+              ]
+            ],
+            "headers": [
+              "Havainto",
+              "Miksi sitä vähätellään",
+              "Mitä todella tapahtuu"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 1,
+      "appendices": [
+        {
+          "chapter_position": 1,
+          "section_position": 0,
+          "type": "note",
+          "title": "Kun ihminen muuttuu dataksi",
+          "source": "Goodhartin laki; julkisen sektorin mittarointi; suorituskykymittarit; hallinnon indikaattorit; kokemustiedon tutkimus.",
+          "position": 1,
+          "content": {
+            "body": "Luvun ensimmäinen osio asettaa näyttämön: ihminen ei katoa siksi, ettei hänestä olisi tietoa, vaan siksi että tieto muuttuu järjestelmän kannalta hallittavaksi mutta kokemuksen kannalta vajaaksi.",
+            "text": "Mittari ei ole vale. Se voi kuvata jotakin todellista: aikaa, määrää, kustannusta, läpimenoa, kuormitusta tai tulosta. Ongelma alkaa, kun mittarista tulee ihmisen korvike.\n\nIhminen näkyy silloin järjestelmälle vain siinä muodossa, jossa hänet voidaan kirjata. Hänen odotuksensa muuttuu jonoksi, uupumuksensa poissaoloksi, oppimisensa arvosanaksi, hoivan tarpeensa resurssipisteeksi ja merkityksen kaipuunsa asiakastyytyväisyydeksi.\n\nTämä ei tee mittareista turhia. Päinvastoin: suuret järjestelmät tarvitsevat niitä. Mutta kun mittari alkaa määrittää, mitä pidetään todellisena, ihminen voi tulla täydellisesti mitatuksi ja silti jäädä näkymättömäksi.",
+            "reader_shift": "Näkymättömyys ei tarkoita tiedon puutetta. Se voi tarkoittaa vääränlaista näkyvyyttä: ihminen näkyy järjestelmälle, mutta ei siinä muodossa, jossa hänen elämänsä todella tapahtuu."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 1,
+          "type": "evidence",
+          "title": "Kolme näkymättömyyden muotoa",
+          "source": "Sosiaalipolitiikka; palvelujärjestelmien pirstaleisuus; työelämän kuormitus; nuorten hyvinvointi; hoivajärjestelmät.",
+          "position": 1,
+          "content": {
+            "body": "Osio käyttää kolmea ihmistä näyttämään, miten sama rakenne voi ilmetä eri elämänvaiheissa ja eri järjestelmissä.",
+            "findings": [
+              {
+                "aihe": "Ihminen palvelujärjestelmässä",
+                "havainto": "Järjestelmä tunnistaa hakemuksen, diagnoosin, päätöksen tai palvelutarpeen, mutta ei aina kokonaisuutta, jossa ihminen elää.",
+                "merkitys": "Näkymättömyys syntyy, kun elämä pilkotaan järjestelmän käsiteltäviksi osiksi."
+              },
+              {
+                "aihe": "Ihminen työelämässä",
+                "havainto": "Työntekijä voi näkyä tuottavuutena, vasteaikana ja tavoitteiden täyttymisenä, vaikka hänen toimintakykynsä ja merkityksensä ohenevat.",
+                "merkitys": "Suoritus voi näyttää hyvältä juuri siihen asti, kun ihminen ei enää jaksa."
+              },
+              {
+                "aihe": "Ihminen arjen verkostoissa",
+                "havainto": "Perhe, koulu, hoiva ja yhteisö voivat kaikki nähdä oman osansa, mutta kukaan ei välttämättä näe koko kuormaa.",
+                "merkitys": "Näkymättömyys on usein kokonaiskuvan katoamista, ei yksittäisen tiedon puuttumista."
+              }
+            ],
+            "key_insight": "Kolmen ihmisen tarinat eivät ole poikkeuksia järjestelmästä. Ne näyttävät, mitä tapahtuu, kun järjestelmä toimii omilla ehdoillaan mutta ihminen elää ehtojen välissä."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 2,
+          "type": "chain",
+          "title": "Näkymättömyyden syntyketju",
+          "source": "Kompleksiset järjestelmät; byrokratisoituminen; palveluiden erikoistuminen; datavetoinen hallinta; Goodhartin laki.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, miten tästä tuli näin. Liite tiivistää kehityksen ketjuksi, jossa jokainen vaihe on ymmärrettävä mutta kokonaisvaikutus ongelmallinen.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Yhteiskunnan järjestelmät kasvavat",
+                "consequence": "Yksittäiset toimijat eivät enää näe kokonaisuutta suoraan."
+              },
+              {
+                "step": 2,
+                "event": "Kasvu vaatii hallintaa",
+                "consequence": "Tarvitaan sääntöjä, luokitteluja, mittareita ja vastuunjakoa."
+              },
+              {
+                "step": 3,
+                "event": "Hallinta erikoistuu",
+                "consequence": "Jokainen osa optimoi omaa tehtäväänsä, mutta ihmisen elämä ei noudata organisaatiorajoja."
+              },
+              {
+                "step": 4,
+                "event": "Tehokkuuspaine kiristyy",
+                "consequence": "Se mikä on nopeaa, mitattavaa ja raportoitavaa alkaa syrjäyttää sen, mikä on hidasta mutta olennaista."
+              },
+              {
+                "step": 5,
+                "event": "Ihminen näkyy osina",
+                "consequence": "Järjestelmä voi käsitellä tapauksen oikein mutta kohdata ihmisen väärin."
+              }
+            ],
+            "reader_shift": "Näkymättömyys ei edellytä epäonnistunutta järjestelmää. Se voi syntyä järjestelmästä, joka onnistuu liian kapeasti määritellyssä tehtävässään."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 3,
+          "type": "table",
+          "title": "Mitä optimointi näkee — ja mitä se ohittaa",
+          "source": "Goodhartin laki; Campbellin laki; julkishallinnon mittarointi; organisaatioiden suorituskykyjohtaminen; hyvinvointipalveluiden arviointi.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee optimoinnin logiikkaa. Liite tekee näkyväksi sen kaksoisluonteen: optimointi voi parantaa järjestelmää, mutta myös kaventaa todellisuutta.",
+            "note": "Optimointi ei ole ongelma itsessään. Ongelma syntyy, kun optimoinnin kohde alkaa korvata sen todellisuuden, jota sen piti palvella.",
+            "rows": [
+              [
+                "Läpimenoaika",
+                "Nopeuttaa prosessia ja vähentää jonoja",
+                "Kohtaamisen laadun ja tilanteen monimutkaisuuden",
+                "Kaikki viive ei ole hukkaa; joskus aika on ymmärtämisen ehto"
+              ],
+              [
+                "Kustannus",
+                "Auttaa jakamaan rajallisia resursseja",
+                "Pitkän aikavälin seuraukset ja ennaltaehkäisyn arvon",
+                "Halvin ratkaisu voi siirtää kustannuksen toiseen paikkaan"
+              ],
+              [
+                "Suorite",
+                "Tekee työn määrän näkyväksi",
+                "Työn merkityksen, vaikeuden ja vaikutuksen",
+                "Kaikki tärkeä työ ei näy määränä"
+              ],
+              [
+                "Tyytyväisyys",
+                "Antaa palautetta kokemuksesta",
+                "Hiljaiset, väsyneet tai järjestelmästä pudonneet ihmiset",
+                "Kysely ei tavoita niitä, jotka eivät enää jaksa vastata"
+              ]
+            ],
+            "headers": [
+              "Optimoinnin kohde",
+              "Mitä se parantaa",
+              "Mitä se voi ohittaa",
+              "Miksi se matters"
+            ]
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 4,
+          "type": "calculation",
+          "title": "Viiveen kasautuva hinta",
+          "source": "Sosiaalinen eriarvoisuus; palvelujärjestelmien jonot; taloudelliset puskurit; hoitoon pääsyn viive; hallinnollinen taakka.",
+          "position": 1,
+          "content": {
+            "body": "Osio väittää, että viive on eriarvoisuuden mekanismi. Liite antaa laskennallisen kehyksen sille, miksi sama viive ei ole kaikille sama viive.",
+            "example": {
+              "ero": "Toisella on säästöjä, verkostoja ja joustava työ. Toisella ei ole taloudellista puskuria eikä ketään, joka voi kannatella arkea.",
+              "tilanne": "Kaksi ihmistä odottaa samaa palvelua saman ajan.",
+              "johtopaatos": "Kalenterissa viive näyttää samalta. Elämässä se ei ole sama."
+            },
+            "formula": "viiveen_kustannus = odotusaika × haavoittuvuus × vaihtoehtojen_puute",
+            "variables": [
+              {
+                "name": "odotusaika",
+                "meaning": "Kuinka kauan ihminen joutuu odottamaan ratkaisua, palvelua, päätöstä tai tukea."
+              },
+              {
+                "name": "haavoittuvuus",
+                "meaning": "Kuinka nopeasti odottaminen heikentää terveyttä, taloutta, toimintakykyä tai turvallisuutta."
+              },
+              {
+                "name": "vaihtoehtojen_puute",
+                "meaning": "Kuinka vähän ihmisellä on mahdollisuuksia ostaa, järjestää, neuvotella tai korvata puuttuva apu muulla tavalla."
+              }
+            ],
+            "reader_shift": "Viive ei ole vain palvelujärjestelmän tekninen ongelma. Se on mekanismi, joka muuttaa ennestään pienen eron suuremmaksi."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 5,
+          "type": "list",
+          "title": "Miksi jotkin kohtaamiset toimivat",
+          "source": "Integroitu palveluohjaus; matalan kynnyksen palvelut; moniammatillinen työ; relationaalinen hyvinvointityö; luottamuksen rakentuminen.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, mitä jo toimii. Liite kokoaa toimivien käytäntöjen yhteiset piirteet, jotta ratkaisu ei jää hyväntahtoisuuden varaan.",
+            "note": "Toimiva järjestelmä ei välttämättä ole pehmeämpi. Se on tarkempi siinä, mitä sen täytyy nähdä.",
+            "items": [
+              {
+                "body": "Toimivissa tilanteissa ihminen ei joudu itse yhdistämään kaikkia järjestelmän osia. Jollakin on vastuu nähdä elämäntilanne kokonaisena.",
+                "title": "Joku kantaa kokonaiskuvaa"
+              },
+              {
+                "body": "Tarve ei tule näkyväksi vasta silloin, kun se sopii oikeaan kategoriaan. Ihmistä kuunnellaan ennen kuin hänet luokitellaan.",
+                "title": "Kohtaaminen alkaa ennen lomaketta"
+              },
+              {
+                "body": "Järjestelmä ei odota, että ongelma muuttuu riittävän vakavaksi ollakseen käsiteltävä.",
+                "title": "Apu tulee ennen romahdusta"
+              },
+              {
+                "body": "Kun ihminen kokee tulevansa nähdyksi, hänen ei tarvitse käyttää kaikkea energiaansa todistaakseen, että hänen tilanteensa on todellinen.",
+                "title": "Luottamus vähentää kitkaa"
+              }
+            ],
+            "ordered": true
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 6,
+          "type": "path",
+          "title": "Kaksisuuntainen optimointi käytännössä",
+          "source": "Ihmiskeskeinen suunnittelu; systeeminen palvelumuotoilu; vaikuttavuusperusteinen ohjaus; osallistava päätöksenteko; kompleksisuusteoria.",
+          "position": 1,
+          "content": {
+            "body": "Osio esittelee kaksisuuntaisen optimoinnin. Liite jäsentää sen käytännölliseksi malliksi: järjestelmän tarpeita ei kielletä, mutta niitä ei aseteta ainoaksi todellisuudeksi.",
+            "paths": [
+              {
+                "claim": "Resurssit, jonot, kustannukset ja vaikuttavuus on nähtävä, koska ilman niitä kokonaisuus hajoaa.",
+                "price": "Mittarit voivat alkaa kaventaa todellisuutta, jos niihin luotetaan yksin.",
+                "promise": "Järjestelmä säilyy ohjattavana eikä päätöksenteko muutu pelkäksi tapauskohtaiseksi improvisaatioksi.",
+                "condition": "1. Järjestelmän näkökulma"
+              },
+              {
+                "claim": "Kokemus, toimintakyky, luottamus ja arjen kokonaisuus on nähtävä, koska juuri niissä järjestelmän vaikutus tapahtuu.",
+                "price": "Tätä tietoa on hitaampi kerätä ja vaikeampi standardoida.",
+                "promise": "Ratkaisut vastaavat paremmin siihen, mikä ihmisen elämässä todella muuttuu.",
+                "condition": "2. Ihmisen näkökulma"
+              },
+              {
+                "claim": "Järjestelmän mittarit ja ihmisten kokemukset on asetettava jatkuvaan keskusteluun.",
+                "price": "Se vaatii organisaatioilta kykyä muuttaa toimintaa myös silloin, kun numerot näyttävät hyviltä mutta ihmiset eivät voi hyvin.",
+                "promise": "Optimointi ei jää sokeaksi omille sivuvaikutuksilleen.",
+                "condition": "3. Takaisinkytkentä"
+              }
+            ],
+            "reader_shift": "Kaksisuuntainen optimointi ei tarkoita, että mittareista luovutaan. Se tarkoittaa, että mittareilta viedään yksinoikeus määritellä, mitä todellisuudesta nähdään."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 7,
+          "type": "note",
+          "title": "Tarpeellisuus on suhde, ei suorite",
+          "source": "Sosiaalinen tunnustus; merkityksellisyyden tutkimus; osallisuus; yhteisöllisyys; relationaalinen hyvinvointi.",
+          "position": 1,
+          "content": {
+            "body": "Luvun viimeinen osio palaa kysymykseen: missä minua tarvitaan? Liite kiteyttää, miten kysymys on muuttunut luvun aikana.",
+            "text": "Luvun alussa kysymys kuulosti henkilökohtaiselta: missä minua tarvitaan? Luvun lopussa se paljastuu järjestelmäkysymykseksi. Ihminen ei tule näkyväksi vain sillä, että hänet rekisteröidään, arvioidaan tai palvellaan. Hän tulee näkyväksi, kun hänen olemassaolonsa vaikuttaa siihen, miten yhteinen todellisuus järjestyy.\n\nTarpeellisuus ei siis ole sama asia kuin tuottavuus. Ihminen voi olla tarpeellinen silloinkin, kun hän ei tuota mitattavaa arvoa. Hän voi olla tarpeellinen muistona, suhteena, vastuuna, kysymyksenä, hoivan kohteena, toisen ihmisen maailmaa ylläpitävänä läsnäolona.\n\nKun järjestelmä näkee tarpeellisuuden vain suoritteen kautta, se menettää paljon siitä, mikä tekee ihmisestä ihmiselle merkityksellisen.",
+            "reader_shift": "Näkyväksi tuleminen ei tarkoita, että ihminen todistaa hyödyllisyytensä järjestelmälle. Se tarkoittaa, että järjestelmä oppii näkemään myös sellaista arvoa, joka ei mahdu suoritteeseen."
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 2,
+      "appendices": [
+        {
+          "chapter_position": 2,
+          "section_position": 0,
+          "type": "note",
+          "title": "Toimiva rakenne ei odota romahdusta",
+          "source": "Ennaltaehkäisevä hyvinvointipolitiikka; systeeminen palvelumuotoilu; relationaalinen hyvinvointi; kompleksisuusteoria.",
+          "position": 1,
+          "content": {
+            "body": "Luvun alku erottaa toimivan logiikan korjaavasta logiikasta. Liite tekee ydinteorian näkyväksi ennen esimerkkejä.",
+            "text": "Toimiva rakenne ei tunnista ihmistä vasta silloin, kun ongelma on jo muuttunut kalliiksi, näkyväksi ja hallinnollisesti käsiteltäväksi. Sen peruslogiikka on toinen: se kantaa ennen kuin romahdus tekee kantamisen välttämättömäksi.\n\nTämä ei tarkoita pehmeää hyväntahtoisuutta eikä rajatonta resurssien käyttöä. Päinvastoin: varhainen tuki on usein täsmällisempää, halvempaa ja inhimillisesti kevyempää kuin myöhäinen korjaaminen.\n\nLuvun ydinteoria on, että hyvin toimiva järjestelmä ei pelkästään ratkaise ongelmia. Se muotoilee olosuhteita niin, että osa ongelmista ei kasva täyteen mittaansa.",
+            "reader_shift": "Kysymys ei ole vain siitä, miten autetaan paremmin. Kysymys on siitä, miksi auttaminen aloitetaan usein vasta sitten, kun järjestelmä on jo epäonnistunut näkemään ajoissa."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 1,
+          "type": "table",
+          "title": "Korjaava logiikka ja kantava logiikka",
+          "source": "Julkiset palvelujärjestelmät; ennaltaehkäisy; palveluintegraatio; vaikuttavuus; hallinnollinen taakka.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, mitä toimiva rakenne tekee toisin. Liite vertaa kahta toimintalogiikkaa.",
+            "note": "Toimiva rakenne ei ole vain tehokkaampi palvelu. Se on erilainen tapa määritellä, milloin ihminen tulee näkyväksi.",
+            "rows": [
+              [
+                "Ajoitus",
+                "Reagoi, kun ongelma on jo näkyvä",
+                "Tunnistaa riskin ennen kuin se muuttuu kriisiksi"
+              ],
+              [
+                "Ihmiskuva",
+                "Näkee tapauksen, hakemuksen tai poikkeaman",
+                "Näkee ihmisen suhteissa, arjessa ja ajassa"
+              ],
+              [
+                "Tieto",
+                "Luottaa siihen, mikä on kirjattu ja luokiteltu",
+                "Yhdistää mittarit, kokemuksen ja paikallisen ymmärryksen"
+              ],
+              [
+                "Vastuu",
+                "Siirtää ihmistä toimijalta toiselle",
+                "Nimeää jonkun kantamaan kokonaiskuvaa"
+              ],
+              [
+                "Onnistuminen",
+                "Ratkaisee käsiteltävän ongelman",
+                "Vähentää tarvetta raskaammalle korjaamiselle"
+              ]
+            ],
+            "headers": [
+              "Ulottuvuus",
+              "Korjaava logiikka",
+              "Kantava logiikka"
+            ]
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 3,
+          "type": "list",
+          "title": "Kolme ehtoa, joiden varassa ihmiset kantavat",
+          "source": "Työhyvinvointi; autonomia; psykologinen turvallisuus; kuormituksen säätely; organisaatiotutkimus.",
+          "position": 1,
+          "content": {
+            "body": "Osio nimeää kolme ehtoa. Liite muuttaa ne tarkistuslistaksi, jonka avulla voi arvioida, tuottaako rakenne todella kantokykyä.",
+            "note": "Jos merkitys, vaikutusvalta tai tuki puuttuu, kantaminen muuttuu vähitellen selviytymiseksi.",
+            "items": [
+              {
+                "body": "Ihminen jaksaa kantaa paremmin, kun hän ymmärtää, miksi hänen panoksellaan on väliä. Merkitys ei ole iskulause vaan kokemus yhteydestä vaikutukseen.",
+                "title": "Merkitys"
+              },
+              {
+                "body": "Kantaminen muuttuu kuluttavaksi, jos vastuu kasvaa mutta mahdollisuus vaikuttaa ei. Toimiva rakenne yhdistää vastuun ja toimivallan.",
+                "title": "Vaikutusvalta"
+              },
+              {
+                "body": "Kukaan ei kanna pitkään yksin. Tarvitaan yhteisö, selkänoja, osaaminen ja mahdollisuus pyytää apua ilman että avun tarve tulkitaan epäonnistumiseksi.",
+                "title": "Tuki"
+              }
+            ],
+            "ordered": true
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 4,
+          "type": "chain",
+          "title": "Termostaatti yhteiskunnallisena mallina",
+          "source": "Takaisinkytkentä; kybernetiikka; systeeminen ohjaus; kaksisuuntainen optimointi; palvelujärjestelmien adaptiivisuus.",
+          "position": 1,
+          "content": {
+            "body": "Osio käyttää termostaattia kuvana kaksisuuntaiselle optimoinnille. Liite tekee metaforasta toimintamallin.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Järjestelmä mittaa omaa tilaansa",
+                "consequence": "Se näkee kuormituksen, jonot, kustannukset, läpimenoajat ja muut hallinnan kannalta tärkeät signaalit."
+              },
+              {
+                "step": 2,
+                "event": "Järjestelmä kuuntelee kokemussignaalia",
+                "consequence": "Se näkee, miltä järjestelmän toiminta tuntuu ihmisille, joiden arjessa vaikutukset tapahtuvat."
+              },
+              {
+                "step": 3,
+                "event": "Mittari ja kokemus asetetaan samaan palautesilmukkaan",
+                "consequence": "Hyvä tulos ei tarkoita vain tehokasta prosessia, vaan myös sitä, ettei prosessi siirrä kuormaa ihmiselle."
+              },
+              {
+                "step": 4,
+                "event": "Järjestelmä säätää toimintaansa ennen ääripäitä",
+                "consequence": "Resursointia, priorisointia, työnjakoa tai toimintatapaa muutetaan ennen kuin kriisi pakottaa muutoksen."
+              },
+              {
+                "step": 5,
+                "event": "Takaisinkytkentä tarkistaa vaikutuksen",
+                "consequence": "Järjestelmä oppii, vähensikö muutos todellista kuormaa vai siirsikö se ongelman toiseen paikkaan."
+              }
+            ],
+            "reader_shift": "Termostaatin idea ei ole lämpömittari vaan säätö. Samalla tavalla hyvinvointijärjestelmä ei tarvitse vain lisää havaintoja, vaan kyvyn muuttaa toimintaansa havaintojen perusteella."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 5,
+          "type": "evidence",
+          "title": "Neuvola: varhaisen näkemisen infrastruktuuri",
+          "source": "Suomalainen neuvolajärjestelmä; äitiys- ja lastenneuvolat; ennaltaehkäisevä terveydenhuolto; perheiden varhainen tuki.",
+          "position": 1,
+          "content": {
+            "body": "Osio käyttää neuvolaa ensimmäisenä esimerkkinä toimivasta logiikasta. Liite nostaa esiin, mikä neuvolassa on rakenteellisesti olennaista.",
+            "findings": [
+              {
+                "aihe": "Universaalius",
+                "havainto": "Neuvola ei tavoita vain jo valmiiksi ongelmallisiksi määriteltyjä perheitä, vaan lähes koko ikäluokan.",
+                "merkitys": "Apu ei ala leimasta, vaan normaalista suhteesta järjestelmään."
+              },
+              {
+                "aihe": "Ajoitus",
+                "havainto": "Kohtaaminen alkaa ennen kuin suurin osa ongelmista on näkyviä.",
+                "merkitys": "Varhainen havainto mahdollistaa kevyemmän tuen."
+              },
+              {
+                "aihe": "Jatkuvuus",
+                "havainto": "Sama rakenne seuraa perhettä ajan yli eikä pelkästään yksittäisessä kriisissä.",
+                "merkitys": "Muutos ja kuormitus tulevat näkyviksi suhteessa aiempaan."
+              },
+              {
+                "aihe": "Kokonaisuus",
+                "havainto": "Neuvola voi nähdä lapsen, vanhemman, perheen ja arjen samassa kuvassa.",
+                "merkitys": "Tuki kohdistuu tilanteeseen, ei vain yksittäiseen oireeseen."
+              }
+            ],
+            "key_insight": "Neuvolan vahvuus ei ole vain palvelu vaan suhde: järjestelmä tulee perheen elämään ennen kuin ongelma pakottaa perheen järjestelmän luo."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 6,
+          "type": "evidence",
+          "title": "Peruskoulu: paikka jossa ero voidaan nähdä ajoissa",
+          "source": "Suomalainen peruskoulu; koulutuksellinen tasa-arvo; oppimisen tuki; oppilashuolto; varhainen puuttuminen.",
+          "position": 1,
+          "content": {
+            "body": "Osio nostaa peruskoulun toiseksi esimerkiksi toimivasta logiikasta. Liite tekee näkyväksi, miksi koulu ei ole vain opetuksen vaan yhteiskunnallisen näkemisen rakenne.",
+            "findings": [
+              {
+                "aihe": "Yhteinen instituutio",
+                "havainto": "Peruskoulu kokoaa eri taustoista tulevat lapset samaan järjestelmään.",
+                "merkitys": "Eroja voidaan havaita ennen kuin ne muuttuvat pysyviksi poluiksi."
+              },
+              {
+                "aihe": "Arjen jatkuvuus",
+                "havainto": "Opettajat ja kouluyhteisö näkevät lapsen toistuvasti, eivät vain yksittäisessä arviointitilanteessa.",
+                "merkitys": "Hidas muutos, vetäytyminen tai kuormitus voi tulla näkyväksi."
+              },
+              {
+                "aihe": "Tuen mahdollisuus",
+                "havainto": "Oppimisen ja hyvinvoinnin tukea voidaan tuoda osaksi arkea.",
+                "merkitys": "Tuki ei välttämättä vaadi erillistä kriisiytymistä."
+              },
+              {
+                "aihe": "Sosiaalinen merkitys",
+                "havainto": "Koulu on myös paikka, jossa lapsi tulee nähdyksi ryhmän jäsenenä.",
+                "merkitys": "Oppiminen, kuuluminen ja tulevaisuususko kietoutuvat yhteen."
+              }
+            ],
+            "key_insight": "Peruskoulu toimii parhaiten silloin, kun se ei näe lasta vain oppimistuloksena vaan ihmisenä, jonka tulevaisuus rakentuu arjen suhteissa."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 7,
+          "type": "path",
+          "title": "Kokonaiskuvan omistaminen ei ole lisäpalvelu",
+          "source": "Case management; palveluohjaus; integroidut palvelut; moniammatillinen työ; vastuun sirpaloituminen.",
+          "position": 1,
+          "content": {
+            "body": "Osio nostaa kolmanneksi esimerkiksi koordinaatiomandaatin. Liite jäsentää, mitä kokonaiskuvan omistaminen käytännössä edellyttää.",
+            "paths": [
+              {
+                "claim": "Jollakin täytyy olla lupa ja velvollisuus katsoa yli organisaatiorajojen.",
+                "price": "Se vaatii järjestelmältä vallan ja vastuun uudelleenjakoa.",
+                "promise": "Ihminen ei joudu itse toimimaan oman elämänsä projektipäällikkönä keskellä kriisiä.",
+                "condition": "1. Nimetty vastuu"
+              },
+              {
+                "claim": "Kokonaiskuva ei synny, jos tieto pysyy siiloissa tai kulkee vain asiakkaan muistissa.",
+                "price": "Tietosuoja, luottamus ja tiedon käyttö on rakennettava huolellisesti.",
+                "promise": "Päätökset voivat perustua tilanteeseen eikä vain yksittäiseen kirjaukseen.",
+                "condition": "2. Yhteinen tieto"
+              },
+              {
+                "claim": "Koordinaatio ei riitä, jos kukaan ei voi muuttaa aikatauluja, prioriteetteja tai palveluiden järjestystä.",
+                "price": "Se häiritsee vakiintuneita prosesseja, mutta juuri siksi se voi ehkäistä raskaampia ongelmia.",
+                "promise": "Apua voidaan sovittaa ihmisen tilanteeseen eikä vain järjestelmän prosessiin.",
+                "condition": "3. Toimivalta muuttaa polkua"
+              }
+            ],
+            "reader_shift": "Kokonaiskuvan omistaminen ei ole hallinnollinen ylellisyys. Se on usein ehto sille, että ihminen ei katoa järjestelmän osien väliin."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 8,
+          "type": "table",
+          "title": "Kolmen esimerkin yhteinen rakenne",
+          "source": "Ennaltaehkäisy; universaalit palvelut; palveluintegraatio; luottamus; varhainen tuki.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, mitä neuvolalla, peruskoululla ja koordinaatiomandaatilla on yhteistä. Liite tiivistää niiden rakenteellisen logiikan.",
+            "note": "Yhteinen logiikka ei ole yksi palvelumalli. Se on tapa järjestää havainto, vastuu ja aika niin, että ihminen näkyy ennen kriisiä.",
+            "rows": [
+              [
+                "Ajoitus",
+                "Tulee mukaan ennen kriisiä",
+                "Näkee lapsen kehityksen ajan yli",
+                "Kytkeytyy ennen kuin kokonaisuus hajoaa"
+              ],
+              [
+                "Näkyvyys",
+                "Näkee perheen ja lapsen yhdessä",
+                "Näkee oppimisen, arjen ja ryhmän",
+                "Näkee palveluiden väliin jäävän elämän"
+              ],
+              [
+                "Luottamus",
+                "Perustuu normaaliin suhteeseen eikä poikkeavuuteen",
+                "Rakentuu toistuvassa arjessa",
+                "Vaatii, että ihminen ei joudu selittämään kaikkea alusta"
+              ],
+              [
+                "Vaikutus",
+                "Voi ehkäistä ongelman kasvua",
+                "Voi tasata eroja ennen lukkiutumista",
+                "Voi estää vastuun katoamisen siiloihin"
+              ]
+            ],
+            "headers": [
+              "Piirre",
+              "Neuvola",
+              "Peruskoulu",
+              "Koordinaatiomandaatti"
+            ]
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 9,
+          "type": "chain",
+          "title": "Miksi toimiva logiikka ei leviä: viisi estettä",
+          "source": "Julkishallinnon siilot; budjettirakenteet; vaikuttavuuden mittaaminen; lyhyen aikavälin ohjaus; institutionaalinen inertia.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, miksi toimiva logiikka ei leviä, vaikka sen hyödyt ovat tunnistettavissa. Liite kuvaa esteiden ketjun.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Hyöty syntyy eri paikassa kuin kustannus",
+                "consequence": "Se taho, joka investoi varhaiseen tukeen, ei aina saa säästöä omaan budjettiinsa."
+              },
+              {
+                "step": 2,
+                "event": "Vaikutus näkyy viiveellä",
+                "consequence": "Poliittinen ja hallinnollinen ohjaus suosii usein nopeammin raportoitavia tuloksia."
+              },
+              {
+                "step": 3,
+                "event": "Kokonaisuus ylittää organisaatiorajat",
+                "consequence": "Kukaan ei omista ongelmaa kokonaan, joten kukaan ei voi helposti muuttaa rakennetta yksin."
+              },
+              {
+                "step": 4,
+                "event": "Mittarit kuvaavat toimintaa paremmin kuin vältettyä kärsimystä",
+                "consequence": "Se mikä ei tapahtunut, jää helposti näkymättömäksi saavutukseksi."
+              },
+              {
+                "step": 5,
+                "event": "Korjaava järjestelmä vahvistaa itseään",
+                "consequence": "Kun resurssit kuluvat kriiseihin, ennaltaehkäisy näyttää aina liian hitaalta tai liian kalliilta."
+              }
+            ],
+            "reader_shift": "Toimiva logiikka ei jää leviämättä siksi, että se olisi tuntematon. Se jää leviämättä, koska järjestelmä palkitsee usein korjaamisen paremmin kuin romahduksen estämisen."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 10,
+          "type": "note",
+          "title": "Mitä yhteiskunta päättää pitää onnistumisena",
+          "source": "Poliittinen päätöksenteko; hyvinvointivaltion ohjaus; vaikuttavuus; arvovalinnat; julkisen talouden priorisointi.",
+          "position": 1,
+          "content": {
+            "body": "Osio väittää, että toimivan logiikan tunnistaminen on poliittinen teko. Liite selittää miksi.",
+            "text": "Kun yhteiskunta päättää, mitä se mittaa, se päättää samalla, mikä tulee näkyväksi. Kun se päättää, mitä se rahoittaa, se päättää, millainen tulevaisuus saa mahdollisuuden. Kun se päättää, mitä se kutsuu tehokkuudeksi, se päättää, kenen näkökulmasta tehokkuus määritellään.\n\nSiksi toimivan logiikan tunnistaminen ei ole neutraali analyysi. Se on väite siitä, että ehkäisty kriisi, säilynyt toimintakyky, vahvistunut luottamus ja ajoissa nähty ihminen ovat todellisia tuloksia, vaikka ne eivät aina näy samalla tavalla kuin suoritteet.\n\nPoliittinen teko on tehdä näkyväksi myös se, mikä ei huuda: ongelma joka ei kasvanut, lapsi joka ei pudonnut, perhe joka ei hajonnut, työntekijä joka ei uupunut, vanhus joka ei jäänyt yksin.",
+            "reader_shift": "Näkyväksi tekeminen on vallankäyttöä. Se ratkaisee, mitkä ilmiöt saavat nimen, rahoituksen ja vastuun."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 11,
+          "type": "path",
+          "title": "Seuraava askel: hyvästä poikkeuksesta uudeksi normaaliksi",
+          "source": "Hyvinvointijärjestelmän uudistaminen; systeeminen muutos; ennaltaehkäisevä investointi; palveluiden integraatio.",
+          "position": 1,
+          "content": {
+            "body": "Luvun viimeinen osio siirtää huomion esimerkeistä rakenteelliseen muutokseen. Liite tekee siirtymän näkyväksi.",
+            "paths": [
+              {
+                "claim": "Hyvät käytännöt pysyvät paikallisina, henkilösidonnaisina tai projektimaisina.",
+                "price": "Järjestelmän peruslogiikka ei muutu, ja näkymättömyys uusiutuu muualla.",
+                "promise": "Ne voivat auttaa joitakin ihmisiä merkittävästi.",
+                "condition": "Jos toimiva logiikka jää poikkeukseksi"
+              },
+              {
+                "claim": "Elävä käytäntö muutetaan lomakkeeksi, mittariksi tai prosessiksi ilman sen suhdeperustaa.",
+                "price": "Se menettää juuri sen, mikä teki siitä toimivan.",
+                "promise": "Se näyttää hallittavalta ja raportoitavalta.",
+                "condition": "Jos toimiva logiikka skaalataan väärin"
+              },
+              {
+                "claim": "Ajoissa näkeminen, kokonaisvastuu ja kaksisuuntainen optimointi rakennetaan järjestelmän periaatteiksi.",
+                "price": "Se vaatii budjettien, vastuiden ja onnistumisen määritelmien muuttamista.",
+                "promise": "Ihminen voi tulla näkyväksi ennen kriisiä useammassa kohdassa.",
+                "condition": "Jos toimiva logiikka muutetaan rakenteeksi"
+              }
+            ],
+            "reader_shift": "Seuraava kysymys ei ole, onko toimiva logiikka mahdollinen. Se on jo mahdollinen. Kysymys on, miksi se ei ole järjestelmän oletusasetus."
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 3,
+      "appendices": [
+        {
+          "chapter_position": 3,
+          "section_position": 0,
+          "type": "note",
+          "title": "Kun järjestelmä ei näe omaa varjoaan",
+          "source": "Kompleksiset järjestelmät; institutionaalinen sokeus; Goodhartin laki; julkishallinnon mittarointi; organisaatioiden itsearviointi.",
+          "position": 1,
+          "content": {
+            "body": "Luvun aloitus kysyy, mitä tapahtuu, kun järjestelmä kyllä mittaa ympäristöään mutta ei näe, mitä sen oma mittaaminen tuottaa.",
+            "text": "Järjestelmä voi olla täynnä tietoa ja silti sokea. Se voi tietää jonojen pituudet, päätösten määrät, kustannukset, vasteajat ja suoritteet, mutta olla näkemättä, mitä nämä luvut tekevät ihmisten kokemukselle.\n\nItsehavaintokyky tarkoittaa kykyä kysyä: mitä meidän tapamme mitata, luokitella ja optimoida muuttaa todellisuudessa? Jos järjestelmä ei esitä tätä kysymystä, sen omat sivuvaikutukset jäävät sen ulkopuolelle.\n\nSilloin järjestelmä ei vain kuvaa maailmaa. Se alkaa muokata maailmaa tavoilla, joita se ei itse tunnista.",
+            "reader_shift": "Ongelma ei ole pelkästään väärä mittari. Syvempi ongelma on järjestelmä, joka ei mittaa mittaamisensa seurauksia."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 1,
+          "type": "table",
+          "title": "Mittari ja metamittari",
+          "source": "Metamittaus; arviointitutkimus; indikaattorien validiteetti; Goodhartin laki; Campbellin laki; laadullinen arviointi.",
+          "position": 1,
+          "content": {
+            "body": "Osio esittelee metamittarin. Liite erottaa tavallisen mittarin ja mittaria tarkkailevan mittarin toisistaan.",
+            "note": "Metamittari ei poista mittareita. Se estää niitä saamasta yksinvaltaa.",
+            "rows": [
+              [
+                "Mitä se kysyy?",
+                "Toteutuuko tavoite?",
+                "Mitä tavoitteen mittaaminen tekee todellisuudelle?"
+              ],
+              [
+                "Mitä se näkee?",
+                "Määrän, ajan, kustannuksen, laadun tai tuloksen",
+                "Sokeat pisteet, vääristymät, sivuvaikutukset ja kokemuksellisen hinnan"
+              ],
+              [
+                "Mikä on sen riski?",
+                "Se kaventaa todellisuuden mitattavaan muotoon",
+                "Se jää koristeeksi, jos se ei muuta päätöksentekoa"
+              ],
+              [
+                "Mikä on sen tehtävä?",
+                "Ohjata toimintaa kohti määriteltyä tavoitetta",
+                "Estää tavoitetta muuttumasta todellisuuden korvikkeeksi"
+              ]
+            ],
+            "headers": [
+              "Kysymys",
+              "Mittari",
+              "Metamittari"
+            ]
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 2,
+          "type": "evidence",
+          "title": "Kolme tapaa mitata mittarin vaikutusta",
+          "source": "Arviointitutkimus; asiakaskokemuksen mittaaminen; palvelujärjestelmien laadunvarmistus; vaikuttavuusmittarit; organisaatioiden oppiminen.",
+          "position": 1,
+          "content": {
+            "body": "Osio antaa metamittarille käytännöllisen muodon. Liite jäsentää kolme tapaa, joilla mittaria voidaan tarkkailla.",
+            "findings": [
+              {
+                "aihe": "Kokemuksen metamittari",
+                "havainto": "Se kysyy, parantaako mitattu prosessi ihmisen kokemusta vai siirtääkö se kuorman hänelle.",
+                "merkitys": "Hyvä vasteaika ei riitä, jos ihminen joutuu itse kantamaan järjestelmän hajanaisuuden."
+              },
+              {
+                "aihe": "Sivuvaikutusten metamittari",
+                "havainto": "Se tarkkailee, mitä tavoitteen optimointi heikentää samalla kun se parantaa tavoitetta.",
+                "merkitys": "Järjestelmä voi onnistua valitussa mittarissa ja epäonnistua kokonaisuudessa."
+              },
+              {
+                "aihe": "Luottamuksen metamittari",
+                "havainto": "Se mittaa, lisääkö toiminta ihmisten luottamusta järjestelmään vai kuluttaako se sitä.",
+                "merkitys": "Luottamus on hidas pääoma: sen menettäminen näkyy usein vasta myöhään."
+              }
+            ],
+            "key_insight": "Metamittari ei kysy vain, mikä muuttui. Se kysyy, mitä muutos teki ihmiselle ja järjestelmän kyvylle nähdä itsensä."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 3,
+          "type": "list",
+          "title": "Sokean pisteen nimeämisen neljä vaihetta",
+          "source": "Organisaatioiden oppiminen; hiljainen tieto; laadullinen tutkimus; kompleksisuusteoria; kokemustieto.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee sokean pisteen nimeämistä. Liite tekee siitä käytännöllisen prosessin.",
+            "note": "Nimeäminen ei ratkaise ongelmaa, mutta ilman nimeä ongelma ei yleensä pääse edes ratkaisun piiriin.",
+            "items": [
+              {
+                "body": "Yksittäinen kokemus voidaan ohittaa anekdoottina. Toistuva sama kokemus on signaali järjestelmän tavasta toimia.",
+                "title": "Kerää toistuva poikkeama"
+              },
+              {
+                "body": "Kysymys ei ole vain siitä, kuka epäonnistui, vaan mikä toimintalogiikka tuottaa saman ongelman uudelleen.",
+                "title": "Erota oire rakenteesta"
+              },
+              {
+                "body": "Nimeäminen tekee ongelmasta keskusteltavan. Ilman nimeä ilmiö jää helposti tunteeksi, valitukseksi tai yksittäistapaukseksi.",
+                "title": "Anna ilmiölle nimi"
+              },
+              {
+                "body": "Sokea piste tulee näkyväksi vasta, kun sen nimi muuttaa resursointia, priorisointia tai toimintatapaa.",
+                "title": "Kytke nimi päätöksentekoon"
+              }
+            ],
+            "ordered": true
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 4,
+          "type": "chain",
+          "title": "Poikkeama ei ole häiriö vaan viesti",
+          "source": "Resilienssitutkimus; turvallisuuskulttuuri; organisaatioiden oppiminen; palautejärjestelmät; kompleksiset palvelujärjestelmät.",
+          "position": 1,
+          "content": {
+            "body": "Osio esittää poikkeaman palautteena. Liite näyttää ketjun, jossa häiriöstä tulee oppimisen lähde.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Järjestelmä kohtaa poikkeaman",
+                "consequence": "Jokin ei sovi normaaliin prosessiin, mittariin tai luokitteluun."
+              },
+              {
+                "step": 2,
+                "event": "Poikkeamaa ei torjuta virheenä",
+                "consequence": "Sitä käsitellään signaalina siitä, että todellisuus on järjestelmän mallia rikkaampi."
+              },
+              {
+                "step": 3,
+                "event": "Poikkeama yhdistetään muihin havaintoihin",
+                "consequence": "Yksittäistapauksesta alkaa hahmottua toistuva sokea piste."
+              },
+              {
+                "step": 4,
+                "event": "Järjestelmä muuttaa malliaan",
+                "consequence": "Luokittelu, mittari, resurssi tai toimintatapa päivittyy."
+              },
+              {
+                "step": 5,
+                "event": "Uusi toiminta tuottaa uuden palautteen",
+                "consequence": "Oppiminen ei pääty korjaukseen, vaan jatkuu takaisinkytkentänä."
+              }
+            ],
+            "reader_shift": "Poikkeama on järjestelmän mahdollisuus nähdä se, mitä sen normaali toiminta ei muuten paljasta."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 5,
+          "type": "path",
+          "title": "Kokemustieto ei ole mittarin vastakohta",
+          "source": "Kokemustieto; asiakasosallisuus; deliberatiivinen demokratia; palvelumuotoilu; laadullinen arviointi.",
+          "position": 1,
+          "content": {
+            "body": "Osio korostaa ihmisen ääntä mittarin rinnalla. Liite erottaa aidon kokemustiedon näennäisestä kuulemisesta.",
+            "paths": [
+              {
+                "claim": "Ihmisiä ei kuulla vasta sen jälkeen, kun järjestelmä on jo päättänyt, mikä ongelma on.",
+                "price": "Prosessi hidastuu alussa, mutta voi estää väärin kohdistetun toiminnan.",
+                "promise": "Ongelman määrittely tarkentuu ennen kuin ratkaisu lukitaan.",
+                "condition": "1. Kokemus kerätään ennen ratkaisua"
+              },
+              {
+                "claim": "Yksittäistä kokemusta ei jätetä yksilön mielipiteeksi, vaan se suhteutetaan toistuviin malleihin.",
+                "price": "Se vaatii tulkintaa, laadullista osaamista ja valmiutta muuttaa mittareita.",
+                "promise": "Kokemuksesta tulee järjestelmän oppimista, ei vain palautekanava.",
+                "condition": "2. Kokemus yhdistetään rakenteeseen"
+              },
+              {
+                "claim": "Kuuleminen ei ole aitoa, jos sillä ei ole mitään vaikutusta siihen, mitä tehdään.",
+                "price": "Järjestelmä joutuu jakamaan määrittelyvaltaa niiden kanssa, joita se koskee.",
+                "promise": "Luottamus kasvaa, kun ihmiset näkevät että heidän havaintonsa muuttavat toimintaa.",
+                "condition": "3. Kokemus vaikuttaa päätökseen"
+              }
+            ],
+            "reader_shift": "Ihmisen ääni ei heikennä mittaamista. Se voi estää mittaamista muuttumasta sokeaksi."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 6,
+          "type": "evidence",
+          "title": "Tekoäly voi nähdä kaavoja — mutta ei päätä, mikä on arvokasta",
+          "source": "Tekoäly palvelujärjestelmissä; luonnollisen kielen analyysi; anomaliantunnistus; algoritminen päätöksenteko; AI governance.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee tekoälyä metamittarin mahdollistajana. Liite erottaa mahdollisuudet ja rajat.",
+            "findings": [
+              {
+                "aihe": "Heikkojen signaalien tunnistus",
+                "havainto": "Tekoäly voi auttaa havaitsemaan toistuvia poikkeamia suurista tekstimassoista, palautteista ja palvelupoluista.",
+                "merkitys": "Se voi tehdä näkyväksi ilmiöitä, joita yksittäinen organisaatio ei muuten tunnista."
+              },
+              {
+                "aihe": "Kokemustiedon jäsentäminen",
+                "havainto": "Kielimallit voivat ryhmitellä, tiivistää ja vertailla ihmisten kertomia kokemuksia.",
+                "merkitys": "Kokemustieto voi päästä lähemmäs päätöksenteon rytmiä ilman että se typistyy pelkäksi numeroksi."
+              },
+              {
+                "aihe": "Vääristymän vahvistaminen",
+                "havainto": "Jos tekoäly koulutetaan järjestelmän vanhoilla luokitteluilla ja tavoitteilla, se voi vahvistaa juuri sitä sokeutta, jota sen piti paljastaa.",
+                "merkitys": "Metamittari tarvitsee arvo-ohjauksen ja kriittisen valvonnan."
+              },
+              {
+                "aihe": "Normatiivinen raja",
+                "havainto": "Tekoäly voi auttaa tunnistamaan kaavoja, mutta se ei yksin ratkaise, mitä yhteiskunnan pitäisi pitää tärkeänä.",
+                "merkitys": "Arvovalinta jää ihmisille ja instituutioille."
+              }
+            ],
+            "key_insight": "Tekoälystä voi tulla metamittarin väline vain, jos sitä ei käytetä vanhan mittarilogiikan vahvistamiseen."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 7,
+          "type": "chain",
+          "title": "Miten pysäytysmekanismi toimii",
+          "source": "Varovaisuusperiaate; auditointi; algoritminen vastuu; turvallisuuskulttuuri; poikkeamien eskalointi.",
+          "position": 1,
+          "content": {
+            "body": "Osio nostaa esiin pysäytysmekanismin. Liite kuvaa sen konkreettisena toimintaketjuna.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Metamittari havaitsee poikkeavan signaalin",
+                "consequence": "Esimerkiksi luottamus heikkenee, valitukset kasaantuvat, haavoittuva ryhmä putoaa tai mittari paranee samalla kun kokemus huononee."
+              },
+              {
+                "step": 2,
+                "event": "Poikkeama ylittää sovitun kynnyksen",
+                "consequence": "Tilanne ei jää yksittäisen työntekijän huoleksi, vaan se siirtyy rakenteelliseen tarkasteluun."
+              },
+              {
+                "step": 3,
+                "event": "Normaali optimointi keskeytetään",
+                "consequence": "Järjestelmä ei jatka automaattisesti samaa toimintaa vain siksi, että päämittari näyttää hyvältä."
+              },
+              {
+                "step": 4,
+                "event": "Päätöksentekijät arvioivat sivuvaikutuksen",
+                "consequence": "Kysytään, mitä järjestelmä tuottaa niille ihmisille, jotka eivät näy päämittarissa."
+              },
+              {
+                "step": 5,
+                "event": "Toimintaa muutetaan tai jatketaan perustellusti",
+                "consequence": "Pysäytys ei ole kehityksen vastakohta vaan keino estää sokeaa etenemistä."
+              }
+            ],
+            "reader_shift": "Pysäytysmekanismi on järjestelmän omatunto rakenteellisessa muodossa: se pakottaa kysymään, mitä hyvältä näyttävä kehitys maksaa."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 8,
+          "type": "note",
+          "title": "Mittaaminen on vallankäyttöä",
+          "source": "Mittaamisen filosofia; performatiivisuus; hallinnan teknologiat; indikaattorit; tietososiologia.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, mitä mittaaminen oikeasti tarkoittaa. Liite kiteyttää mittaamisen vallankäytöksi.",
+            "text": "Mittaaminen näyttää neutraalilta, koska se puhuu numeroiden, luokkien ja vertailujen kieltä. Mutta mikään mittari ei synny tyhjästä. Ensin päätetään, mikä ilmiö on olemassa, mistä se alkaa, mihin se päättyy ja millä kielellä se kuvataan.\n\nKun jokin asia mitataan, se saa paikan päätöksenteossa. Kun jokin jää mittaamatta, se voi jäädä moraalisesti ja taloudellisesti näkymättömäksi. Siksi mittaaminen ei vain kuvaa todellisuutta. Se rakentaa sitä todellisuutta, jossa päätöksiä tehdään.\n\nMetamittarin tehtävä on muistuttaa tästä: jokainen mittari sisältää oletuksen siitä, mikä on arvokasta.",
+            "reader_shift": "Kysymys ei ole, mitataanko vai ei. Kysymys on, kenen todellisuus saa tulla mitatuksi ja millä ehdoilla."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 9,
+          "type": "path",
+          "title": "Kaksisuuntaisuuden kolme askelta",
+          "source": "Ihmiskeskeinen arviointi; systeeminen ohjaus; kokemustiedon integrointi; palvelujärjestelmien adaptiivisuus.",
+          "position": 1,
+          "content": {
+            "body": "Osio tiivistää, mistä kaksisuuntaisuus alkaa. Liite muuttaa sen kolmeksi askeleeksi.",
+            "paths": [
+              {
+                "claim": "Järjestelmän on nähtävä resurssit, määrät, jonot, kustannukset ja vaikutukset.",
+                "price": "Toimintamittari voi kaventaa näkökulman siihen, mikä on helposti raportoitavaa.",
+                "promise": "Ilman tätä kokonaisuus ei ole ohjattavissa.",
+                "condition": "1. Mittaa toimintaa"
+              },
+              {
+                "claim": "Järjestelmän on nähtävä, mitä sen omat mittarit ja prosessit tekevät ihmisille.",
+                "price": "Tämä vaatii hitaampaa, laadullisempaa ja osin epämukavampaa tietoa.",
+                "promise": "Sokeat pisteet, sivuvaikutukset ja vääristymät tulevat päätöksenteon piiriin.",
+                "condition": "2. Mittaa mittaamisen seurauksia"
+              },
+              {
+                "claim": "Kaksisuuntaisuus toteutuu vasta, kun palaute muuttaa järjestelmän käyttäytymistä.",
+                "price": "Järjestelmä joutuu hyväksymään, että myös sen omat onnistumisen määritelmät voivat olla ongelman osa.",
+                "promise": "Näkyväksi tekeminen ei jää puheeksi vaan muuttaa rakennetta.",
+                "condition": "3. Muuta toimintaa palautteen perusteella"
+              }
+            ],
+            "reader_shift": "Kaksisuuntaisuus ei ole uusi mittari mittareiden joukkoon. Se on vaatimus, että järjestelmä oppii näkemään myös oman katseensa seuraukset."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 10,
+          "type": "note",
+          "title": "Mittarista resurssiin",
+          "source": "Julkisen talouden priorisointi; hyvinvointi-investoinnit; vaikuttavuusperusteinen ohjaus; budjettipäätökset; resurssien kohdentaminen.",
+          "position": 1,
+          "content": {
+            "body": "Luvun päätös valmistaa siirtymän seuraavaan lukuun. Kun mittarin vaikutus on tehty näkyväksi, kysymys muuttuu resurssien jakamiseksi.",
+            "text": "Mittari ei ole vain havaintoväline. Se on usein portti resurssiin. Se, mikä näkyy mittarissa, saa perusteen tulla rahoitetuksi, korjatuksi tai johdetuksi. Se, mikä jää mittarin ulkopuolelle, voi jäädä myös budjetin ulkopuolelle.\n\nSiksi seuraava kysymys on väistämätön: jos järjestelmä oppii näkemään omat sokeat pisteensä, miten sen pitäisi muuttaa resurssien jakoa? Riittääkö, että tiedämme enemmän, jos raha, vastuu ja valta pysyvät samoissa kohdissa?\n\nSeuraava luku siirtää näkyväksi tekemisen taloudelliseen ja poliittiseen tasoon.",
+            "reader_shift": "Kun mittari muuttuu, myös resurssien oikeutus muuttuu. Näkyväksi tekeminen vaatii lopulta uudelleenjakoa."
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 4,
+      "appendices": [
+        {
+          "chapter_position": 4,
+          "section_position": 0,
+          "type": "note",
+          "title": "Kun kaikki osallistuvat mutta kukaan ei vastaa",
+          "source": "Vastuun sirpaloituminen; palvelujärjestelmien integraatio; hallinnollinen siiloutuminen; case management; kokonaisvastuu.",
+          "position": 1,
+          "content": {
+            "body": "Luvun aloitus nimeää vastuun orpouden: tilanteen, jossa järjestelmässä on monta toimijaa mutta ei ketään, joka kantaa kokonaisuuden.",
+            "text": "Vastuun orpous ei tarkoita, ettei kukaan tekisi työtä. Usein kaikki tekevät juuri oman osansa: yksi arvioi, toinen kirjaa, kolmas päättää, neljäs ohjaa ja viides seuraa. Ongelma syntyy, kun ihmisen elämä ei jakaudu samalla tavalla kuin järjestelmän vastuut.\n\nIhminen voi kulkea palvelusta toiseen ja silti jäädä ilman kokemusta siitä, että kukaan todella omistaa hänen tilanteensa. Jokainen toimija näkee oman ruutunsa, mutta kukaan ei näe kuvaa, jonka ruudut muodostavat.\n\nSiksi vastuun kysymys ei ole vain moraalinen kysymys yksilöiden velvollisuudesta. Se on rakenteellinen kysymys siitä, kenellä on lupa, tieto ja toimivalta kantaa kokonaisuutta.",
+            "reader_shift": "Vastuu ei häviä siksi, että ihmiset eivät välittäisi. Se voi hävitä siksi, että järjestelmä jakaa välittämisen liian pieniin osiin."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 1,
+          "type": "table",
+          "title": "Mistä vastuuvaje näkyy",
+          "source": "Palvelupolkujen analyysi; hallinnollinen taakka; asiakaskokemus; palveluintegraatio; systeeminen arviointi.",
+          "position": 1,
+          "content": {
+            "body": "Osio sanoo, että vastuuvaje on mitattavissa. Liite kokoaa indikaattoreita, joilla vastuun puutetta voi havaita ilman että se jää pelkäksi kokemukseksi.",
+            "note": "Vastuuvaje ei näy vain siinä, ettei apua ole. Se näkyy myös siinä, kuinka paljon ihmisen täytyy tehdä saadakseen järjestelmän toimimaan.",
+            "rows": [
+              [
+                "Toistuvat uudelleenselitykset",
+                "Ihminen joutuu kertomaan saman tilanteen yhä uudelleen eri toimijoille",
+                "Kokonaiskuva ei siirry eikä kuulu kenellekään"
+              ],
+              [
+                "Palvelusta toiseen ohjaaminen",
+                "Ratkaisun sijaan ihminen saa uuden kontaktin, lomakkeen tai jonon",
+                "Vastuu siirtyy prosessissa eteenpäin mutta ei välttämättä kasva"
+              ],
+              [
+                "Päätösten ristiriitaisuus",
+                "Eri osat järjestelmää tekevät ratkaisuja, jotka eivät sovi yhteen",
+                "Kukaan ei sovita kokonaisuutta ihmisen arkeen"
+              ],
+              [
+                "Pitkät katkokset",
+                "Aika kuluu ilman että kukaan aktiivisesti seuraa, mitä ihmiselle tapahtuu",
+                "Vastuu on olemassa paperilla mutta ei ajassa"
+              ],
+              [
+                "Ihmisen oma projektipäällikkyys",
+                "Kuormittunut ihminen joutuu koordinoimaan järjestelmää itse",
+                "Järjestelmä ulkoistaa kokonaisvastuun sille, jolla on vähiten voimavaroja"
+              ]
+            ],
+            "headers": [
+              "Indikaattori",
+              "Mitä se paljastaa",
+              "Miksi se on vastuun mittari"
+            ]
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 2,
+          "type": "path",
+          "title": "Vastuun kolme tasoa",
+          "source": "Vastuuteoria; julkishallinto; palveluintegraatio; organisaatiovastuu; ammatillinen vastuu.",
+          "position": 1,
+          "content": {
+            "body": "Osio erottaa kolme vastuun muotoa. Liite näyttää, miksi pelkkä moraalinen vastuu ei riitä, jos rakenteellinen toimivalta puuttuu.",
+            "paths": [
+              {
+                "claim": "Joku kokee, että ihmisen tilannetta ei voi jättää huomiotta.",
+                "price": "Ilman valtaa ja rakenteita moraalinen vastuu muuttuu helposti henkilökohtaiseksi kuormaksi.",
+                "promise": "Se synnyttää välittämisen ja halun auttaa.",
+                "condition": "1. Moraalinen vastuu"
+              },
+              {
+                "claim": "Jollakin yksiköllä, viranomaisella tai organisaatiolla on muodollinen tehtävä.",
+                "price": "Se voi jäädä prosessivastuuksi, jos kukaan ei seuraa ihmisen kokonaisuutta.",
+                "promise": "Vastuu voidaan kirjata, johtaa ja resursoida.",
+                "condition": "2. Hallinnollinen vastuu"
+              },
+              {
+                "claim": "Jollakin on käytännössä kyky muuttaa ihmisen polkua, yhdistää toimijoita ja seurata vaikutusta.",
+                "price": "Se vaatii mandaattia ylittää rajoja ja häiritä vakiintuneita siiloja.",
+                "promise": "Vastuu näkyy ihmisen arjessa eikä vain organisaatiokaaviossa.",
+                "condition": "3. Toiminnallinen vastuu"
+              }
+            ],
+            "reader_shift": "Vastuu on todellista vasta, kun välittäminen, mandaatti ja toimintakyky kohtaavat samassa rakenteessa."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 3,
+          "type": "chain",
+          "title": "Miten vastuu häviää: neljä vaihetta",
+          "source": "Diffusion of responsibility; byrokratia; palvelupolkujen pirstaleisuus; organisaatiorajat; hallinnollinen siiloutuminen.",
+          "position": 1,
+          "content": {
+            "body": "Osio kuvaa neljä vaihetta, joissa vastuu katoaa ilman että kukaan varsinaisesti päättää luopua siitä.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Tilanne jaetaan osiin",
+                "consequence": "Ihmisen elämä muutetaan järjestelmän käsiteltäviksi ongelmiksi, hakemuksiksi, diagnooseiksi tai päätöksiksi."
+              },
+              {
+                "step": 2,
+                "event": "Jokainen osa saa oman omistajansa",
+                "consequence": "Yksittäiset vastuut selkiytyvät, mutta kokonaisvastuu voi samalla hämärtyä."
+              },
+              {
+                "step": 3,
+                "event": "Rajapinnat muuttuvat siirtokohdiksi",
+                "consequence": "Ihmistä ohjataan eteenpäin, mutta vastuu ei välttämättä seuraa mukana."
+              },
+              {
+                "step": 4,
+                "event": "Kokonaisuus palautuu ihmiselle itselleen",
+                "consequence": "Järjestelmä näyttää toimivan, mutta kuormittunut ihminen joutuu yhdistämään sen osat."
+              }
+            ],
+            "reader_shift": "Vastuun katoaminen ei aina näytä välinpitämättömyydeltä. Se voi näyttää järjestelmälliseltä työnjaolta."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 4,
+          "type": "evidence",
+          "title": "Koordinaatiomandaatti: vastuu, joka saa ylittää rajat",
+          "source": "Case management; integrated care; palveluohjaus; moniammatillinen yhteistyö; one-stop guidance; vastuutyöntekijämallit.",
+          "position": 1,
+          "content": {
+            "body": "Osio esittelee koordinaatiomandaatin. Liite kokoaa sen ydinelementit: pelkkä koordinointi ei riitä, jos mandaatti puuttuu.",
+            "findings": [
+              {
+                "aihe": "Nimetty omistaja",
+                "havainto": "Ihmisellä on taho tai henkilö, joka kantaa kokonaiskuvaa yli palvelu- ja organisaatiorajojen.",
+                "merkitys": "Vastuu ei jää ihmisen itsensä varaan."
+              },
+              {
+                "aihe": "Tieto-oikeus",
+                "havainto": "Kokonaiskuvan kantajalla on pääsy riittävään tietoon tilanteesta ja palvelupolusta.",
+                "merkitys": "Koordinaatio ei perustu arvailuun tai asiakkaan muistikuormaan."
+              },
+              {
+                "aihe": "Toimivalta",
+                "havainto": "Mandaatilla voidaan muuttaa järjestystä, kutsua toimijoita yhteen, priorisoida ja seurata vaikutuksia.",
+                "merkitys": "Vastuu ei ole pelkkää viestinvälitystä."
+              },
+              {
+                "aihe": "Seuranta ajassa",
+                "havainto": "Vastuu ei pääty siihen, että ihminen ohjataan eteenpäin.",
+                "merkitys": "Järjestelmä näkee, johtiko ohjaus todelliseen muutokseen."
+              }
+            ],
+            "key_insight": "Koordinaatiomandaatti tekee vastuun rakenteeksi: se antaa jollekulle luvan nähdä kokonaisuuden ja velvollisuuden toimia sen perusteella."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 5,
+          "type": "evidence",
+          "title": "Ruotsin opetus: koordinaatio ilman valtaa jää ohueksi",
+          "source": "Ruotsin sosiaali- ja terveyspalvelut; samordnad individuell plan; integroidut palvelut; case management; welfare coordination.",
+          "position": 1,
+          "content": {
+            "body": "Osio tarkastelee Ruotsin kokemusta. Liite nostaa siitä yleisemmän opetuksen: vastuuta ei voi ratkaista pelkällä nimeämisellä.",
+            "findings": [
+              {
+                "aihe": "Yhteinen suunnitelma",
+                "havainto": "Monissa malleissa eri toimijat tuodaan saman suunnitelman äärelle.",
+                "merkitys": "Tämä parantaa näkyvyyttä, mutta ei vielä takaa, että joku voi muuttaa kokonaisuutta."
+              },
+              {
+                "aihe": "Toimijoiden välinen riippuvuus",
+                "havainto": "Sosiaali-, terveys-, koulu- ja työvoimapalvelut voivat kaikki vaikuttaa samaan elämään eri mandaateilla.",
+                "merkitys": "Koordinaatio törmää helposti budjetti- ja toimivaltarajoihin."
+              },
+              {
+                "aihe": "Asiakkaan kuorma",
+                "havainto": "Jos koordinointi jää tapaamisiin ja suunnitelmiin, ihminen voi silti joutua kantamaan arjen järjestämisen itse.",
+                "merkitys": "Koordinaation vaikutus mitataan lopulta siinä, väheneekö ihmisen oma hallinnollinen taakka."
+              },
+              {
+                "aihe": "Yleistettävä oppi",
+                "havainto": "Vastuun nimeäminen toimii vain, jos sen mukana annetaan tieto, aika, toimivalta ja seuranta.",
+                "merkitys": "Muuten vastuu voi olla muodollisesti olemassa mutta käytännössä voimaton."
+              }
+            ],
+            "key_insight": "Ruotsin kokemus ei sano, ettei koordinaatio toimisi. Se sanoo, että koordinaatio tarvitsee valtaa ollakseen enemmän kuin keskustelu."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 6,
+          "type": "note",
+          "title": "Merkityksellisyys syntyy vaikutuksesta",
+          "source": "Työn merkityksellisyys; ammatillinen toimijuus; moraalinen stressi; hoivatyö; julkisen sektorin työhyvinvointi.",
+          "position": 1,
+          "content": {
+            "body": "Osio nimeää harvoin sanotun yhteyden: vastuu ja merkityksellisyys kuuluvat yhteen.",
+            "text": "Ihminen ei uuvu pelkästään työn määrään. Hän uupuu myös siihen, että näkee mitä pitäisi tehdä mutta ei voi tehdä sitä. Tämä on vastuun ja toimivallan välinen repeämä.\n\nMerkityksellisyys syntyy usein juuri siitä, että oma teko liittyy kokonaisuuteen. Työntekijä kokee työnsä merkitykselliseksi, kun hän voi vaikuttaa siihen, että ihmisen tilanne todella muuttuu. Jos hän saa vain käsitellä osan, kirjata havainnon ja lähettää ihmisen eteenpäin ilman mahdollisuutta nähdä vaikutusta, vastuu muuttuu moraaliseksi kuormaksi.\n\nSama koskee kansalaista, asiakasta ja palvelun käyttäjää. Merkityksellisyys syntyy kokemuksesta, että oma ääni, valinta tai läsnäolo vaikuttaa siihen, mitä seuraavaksi tapahtuu.",
+            "reader_shift": "Vastuu ilman vaikutusvaltaa kuluttaa. Vastuu, joka voi muuttaa todellisuutta, voi olla merkityksen lähde."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 7,
+          "type": "path",
+          "title": "Kuka kuuntelee molempia signaaleja?",
+          "source": "Kaksisuuntainen optimointi; palveluintegraatio; kokemustieto; systeeminen johtaminen; vastuullinen päätöksenteko.",
+          "position": 1,
+          "content": {
+            "body": "Osio kytkee vastuun kaksisuuntaiseen optimointiin. Liite näyttää, miksi malli ei toimi ilman vastuutahoa.",
+            "paths": [
+              {
+                "claim": "Mittarit kertovat kuormasta, kustannuksista, läpimenoajoista ja suoritteista.",
+                "price": "Ihmisen kokemus voi jäädä hallinnan ulkopuolelle.",
+                "promise": "Kokonaisuus pysyy ohjattavana.",
+                "condition": "1. Järjestelmän signaali"
+              },
+              {
+                "claim": "Kokemus kertoo luottamuksesta, kuormasta, merkityksestä ja siitä, miltä järjestelmä tuntuu arjessa.",
+                "price": "Tieto on hitaampaa, tulkinnanvaraisempaa ja institutionaalisesti epämukavampaa.",
+                "promise": "Sivuvaikutukset ja sokeat pisteet tulevat näkyviksi.",
+                "condition": "2. Ihmisen signaali"
+              },
+              {
+                "claim": "Jollakin pitää olla velvollisuus yhdistää signaalit ja muuttaa toimintaa niiden perusteella.",
+                "price": "Se vaatii selkeää mandaattia, koska signaalit voivat olla ristiriidassa.",
+                "promise": "Kaksisuuntaisuus ei jää raportiksi vaan muuttuu ohjaukseksi.",
+                "condition": "3. Vastuutaho"
+              }
+            ],
+            "reader_shift": "Kaksisuuntainen optimointi tarvitsee vastuun siksi, että ristiriitaiset signaalit eivät ratkaise itse itseään."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 8,
+          "type": "table",
+          "title": "Vastuuhenkilö paperilla ja vastuunkantaja käytännössä",
+          "source": "Vastuutyöntekijämallit; case management; palveluintegraatio; organisaatiovastuu; toimivaltarajat.",
+          "position": 1,
+          "content": {
+            "body": "Osio korostaa, että nimetty vastuu on välttämätön mutta ei riittävä. Liite erottaa heikon ja vahvan vastuun toisistaan.",
+            "note": "Vastuuhenkilö ei ratkaise vastuuvajetta, jos hänestä tulee vain uusi solmu vanhaan siiloutuneeseen järjestelmään.",
+            "rows": [
+              [
+                "Nimeäminen",
+                "Jollakin on rooli tai titteli",
+                "Jollakin on selvä kokonaisvastuu ihmisen polusta"
+              ],
+              [
+                "Tieto",
+                "Tietoa pyydetään tapauskohtaisesti ja usein asiakkaan kautta",
+                "Kokonaiskuva on käytettävissä luvallisesti ja ajantasaisesti"
+              ],
+              [
+                "Toimivalta",
+                "Vastuuhenkilö voi neuvoa ja välittää viestejä",
+                "Vastuunkantaja voi kutsua toimijat yhteen ja muuttaa polkua"
+              ],
+              [
+                "Aika",
+                "Vastuu aktivoituu kohtaamisissa",
+                "Vastuu seuraa vaikutusta ajassa"
+              ],
+              [
+                "Mittaus",
+                "Arvioidaan, onko tehtävä suoritettu",
+                "Arvioidaan, muuttuiko ihmisen tilanne"
+              ]
+            ],
+            "headers": [
+              "Ulottuvuus",
+              "Heikko vastuu",
+              "Vahva vastuu"
+            ]
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 9,
+          "type": "list",
+          "title": "Toimivan vastuun kolme ehtoa",
+          "source": "Palveluohjaus; vastuunjako; integroidut palvelut; systeeminen johtaminen; vaikuttavuuden seuranta.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, milloin vastuu toimii. Liite antaa kolmiosaisen tarkistuslistan.",
+            "note": "Jos yksikin kolmesta ehdosta puuttuu, vastuu voi näyttää olemassa olevalta mutta jäädä ihmisen kannalta vajaaksi.",
+            "items": [
+              {
+                "body": "Ihmisen ei tarvitse arvailla, kuka seuraa kokonaisuutta. Vastuutaho on selvä sekä ihmiselle että muille toimijoille.",
+                "title": "Vastuu on nimetty"
+              },
+              {
+                "body": "Vastuutaho ei vain kuuntele ja kirjaa, vaan voi vaikuttaa järjestykseen, priorisointiin, yhteydenpitoon ja palvelupolkuun.",
+                "title": "Vastuulla on toimivalta"
+              },
+              {
+                "body": "Vastuu ei pääty päätökseen, ohjaukseen tai tapaamiseen. Se tarkistaa, muuttuiko ihmisen elämässä se, minkä piti muuttua.",
+                "title": "Vastuu seuraa vaikutusta"
+              }
+            ],
+            "ordered": true
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 10,
+          "type": "note",
+          "title": "Vastuu tarvitsee resurssin",
+          "source": "Julkisen talouden priorisointi; organisaatiomandaatit; palveluiden integraatio; budjettivastuu; systeeminen muutos.",
+          "position": 1,
+          "content": {
+            "body": "Luvun päätös valmistaa seuraavan kysymyksen: jos vastuu todella nimetään, sille on annettava myös edellytykset toimia.",
+            "text": "Vastuun nimeäminen on vasta alku. Jos vastuulla ei ole aikaa, tietoa, mandaattia ja resurssia, se voi muuttua uudeksi tavaksi siirtää järjestelmän ristiriita yksittäisen ihmisen kannettavaksi.\n\nSiksi vastuu johtaa väistämättä resurssikysymykseen. Kuka saa käyttää aikaa kokonaiskuvaan? Kuka saa muuttaa palvelupolkua? Kenen budjetista ennaltaehkäisevä työ maksetaan? Kuka hyötyy, jos kriisi vältetään?\n\nKun nämä kysymykset avataan, vastuu ei ole enää vain eettinen vaatimus. Se on vallan ja resurssien uudelleenjärjestämistä.",
+            "reader_shift": "Seuraava askel on kysyä, mitä yhteiskunta on valmis siirtämään sinne, missä vastuu todella kannetaan."
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 5,
+      "appendices": [
+        {
+          "chapter_position": 5,
+          "section_position": 0,
+          "type": "note",
+          "title": "Sama ihminen, eri järjestelmä",
+          "source": "Palveluintegraatio; systeeminen muutos; relationaalinen hyvinvointi; kokonaisvastuu; kaksisuuntainen optimointi.",
+          "position": 1,
+          "content": {
+            "body": "Luku alkaa palaamalla kolmeen ihmiseen. Liite tekee näkyväksi, että muutos ei synny ihmisen ominaisuuksien muuttumisesta vaan järjestelmän tavasta kohdata hänet.",
+            "text": "Kun samat ihmiset asetetaan toisenlaiseen rakenteeseen, heidän tarinansa ei muutu siksi, että heistä tulee vahvempia, järkevämpiä tai paremmin järjestelmään sopivia. Tarina muuttuu siksi, että järjestelmä lakkaa tekemästä heidän tilanteestaan yksilöllistä selviytymistehtävää.\n\nYksi saa kannustinloukun sijaan polun, jossa työ, tuki ja riski sovitetaan yhteen. Toinen saa sirpaleisten kontaktien sijaan kokonaiskuvan omistajan. Kolmas saa siirtymän, jossa opiskelu, työ, mielenterveys ja arki eivät putoa eri laatikoihin.\n\nTämä on luvun ydin: kun rakenteet toimivat yhdessä, ihminen ei enää näy ongelmana, joka ei sovi järjestelmään. Järjestelmä alkaa näkyä rakenteena, jonka pitää sopia ihmisen elämään.",
+            "reader_shift": "Ratkaiseva muutos ei ole se, että ihminen oppii navigoimaan järjestelmää paremmin. Ratkaiseva muutos on, ettei hänen enää tarvitse kantaa järjestelmän hajanaisuutta yksin."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 1,
+          "type": "calculation",
+          "title": "Kannustinloukku ei ole vain euroja",
+          "source": "Kannustinloukut; sosiaaliturvan ja työn yhteensovittaminen; työllisyyspalvelut; toimeentuloturva; hallinnollinen riski.",
+          "position": 1,
+          "content": {
+            "body": "Marian osio kuvaa tilanteen, jossa työn vastaanottaminen ei avaudu vain palkkalaskelmalla. Liite näyttää, mistä kannustinloukku todellisuudessa rakentuu.",
+            "example": {
+              "tilanne": "Maria harkitsee osa-aikatyötä.",
+              "johtopaatos": "Kannustinloukku aukeaa vasta, kun riski ei jää yksin Marian kannettavaksi.",
+              "uusi_logiikka": "Järjestelmä rakentaa siirtymäpolun, jossa tulot, tuet, aikataulu ja riski sovitetaan yhteen.",
+              "vanha_logiikka": "Järjestelmä tarkastelee tuloja ja etuuksia erillisinä laskelmina."
+            },
+            "formula": "todellinen_kynnys = taloudellinen_riski + hallinnollinen_epävarmuus + arjen_kuormitus + luottamuksen_puute",
+            "variables": [
+              {
+                "name": "taloudellinen_riski",
+                "meaning": "Kuinka paljon ihminen voi menettää tukea, etuuksia tai ennustettavuutta työn vastaanottamisen seurauksena."
+              },
+              {
+                "name": "hallinnollinen_epävarmuus",
+                "meaning": "Kuinka vaikeaa on tietää etukäteen, mitä päätöksiä, viiveitä tai takaisinperintöjä muutos voi aiheuttaa."
+              },
+              {
+                "name": "arjen_kuormitus",
+                "meaning": "Kuinka paljon työ, hoiva, terveys, kulkeminen ja aikataulut lisäävät kokonaisrasitusta."
+              },
+              {
+                "name": "luottamuksen_puute",
+                "meaning": "Kuinka vähän ihminen luottaa siihen, että järjestelmä kantaa, jos kokeilu epäonnistuu."
+              }
+            ],
+            "reader_shift": "Kannustinloukku ei ole vain väärä rahasumma. Se on epävarmuuden rakenne."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 2,
+          "type": "path",
+          "title": "Väinön polku: kokonaiskuva ennen kriisiä",
+          "source": "Vanhuspalvelut; kotihoito; palveluohjaus; case management; hoidon jatkuvuus; yksinäisyys ja toimintakyky.",
+          "position": 1,
+          "content": {
+            "body": "Väinön osio näyttää, miten kokonaiskuvan puute muuttuu arjen riskiksi. Liite erottaa kolme ehtoa, joiden avulla polku alkaa kantaa.",
+            "paths": [
+              {
+                "claim": "Väinön tilannetta ei katsota vain yksittäisen käynnin tai päätöksen kautta, vaan muutoksena ajassa.",
+                "price": "Se vaatii aikaa ja tietoa, jota pirstaleinen järjestelmä ei automaattisesti tuota.",
+                "promise": "Hidas toimintakyvyn, mielialan tai arjen hallinnan heikkeneminen tulee näkyväksi ennen kriisiä.",
+                "condition": "1. Jatkuva havainto"
+              },
+              {
+                "claim": "Joku omistaa sen kysymyksen, miten kotihoito, terveys, läheiset, yksinäisyys ja turvallisuus muodostavat yhden elämän.",
+                "price": "Vastuutahon täytyy saada mandaatti ylittää organisaatiorajoja.",
+                "promise": "Väinö ei muutu palveluiden väliseksi kuljetettavaksi asiaksi.",
+                "condition": "2. Nimetty kokonaisvastuu"
+              },
+              {
+                "claim": "Palveluiden järjestystä ja painotusta voidaan muuttaa, kun tilanne muuttuu.",
+                "price": "Järjestelmän täytyy sietää joustavuutta ilman että se menettää oikeudenmukaisuutta.",
+                "promise": "Apu ei tule vain ennalta määriteltynä pakettina, vaan suhteessa Väinön todelliseen arkeen.",
+                "condition": "3. Muuttuva polku"
+              }
+            ],
+            "reader_shift": "Kokonaiskuva ei ole ylimääräinen palvelu. Se on ehto sille, ettei ihminen muutu omien palveluidensa koordinaattoriksi silloin, kun hänellä on vähiten voimia."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 3,
+          "type": "evidence",
+          "title": "Siirtymä on riski silloin kun kukaan ei kanna siltaa",
+          "source": "Nuorten palvelut; Ohjaamo-malli; koulutus-siirtymät; mielenterveyspalvelut; työllisyyspalvelut; NEET-nuoret.",
+          "position": 1,
+          "content": {
+            "body": "Emmin osio näyttää, että nuoren polku ei katkea yleensä yhteen päätökseen vaan siirtymien väleihin. Liite nostaa esiin siirtymän kantavat rakenteet.",
+            "findings": [
+              {
+                "aihe": "Yksi ovi",
+                "havainto": "Nuoren ei tarvitse tietää etukäteen, kuuluuko hänen asiansa koulutukseen, työhön, terveyteen vai sosiaaliseen tukeen.",
+                "merkitys": "Avun saaminen ei edellytä järjestelmäosaamista."
+              },
+              {
+                "aihe": "Sillan kantaja",
+                "havainto": "Joku seuraa, mitä tapahtuu siirtymän aikana eikä vain ennen tai jälkeen sitä.",
+                "merkitys": "Katkos ei jää nuoren omaksi epäonnistumiseksi."
+              },
+              {
+                "aihe": "Rinnakkainen tuki",
+                "havainto": "Mielenterveys, opiskelu, toimeentulo ja arjen rytmi voidaan käsitellä yhtä aikaa.",
+                "merkitys": "Elämä ei odota, että yksi ongelma ratkaistaan ennen toista."
+              },
+              {
+                "aihe": "Tulevaisuususko",
+                "havainto": "Nuori tarvitsee kokemuksen, että polku on mahdollinen ennen kuin hän pystyy sitoutumaan siihen.",
+                "merkitys": "Motivaatio ei synny pelkästä velvoitteesta, vaan nähdystä mahdollisuudesta."
+              }
+            ],
+            "key_insight": "Siirtymä ei ole tyhjä väli kahden järjestelmän välillä. Se on kohta, jossa järjestelmän kantokyky testataan."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 4,
+          "type": "table",
+          "title": "Kolme siirtymää, sama rakenne",
+          "source": "Palveluintegraatio; siirtymävaiheet; kannustinloukut; hoidon jatkuvuus; nuorten palvelupolut.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, mitä kolmessa tarinassa tapahtui. Liite asettaa siirtymät rinnakkain ja näyttää yhteisen rakenteen.",
+            "note": "Kolmessa tapauksessa ei korjattu vain yhtä palvelua. Muutettiin se, kuka kantaa riskin, tiedon ja jatkuvuuden.",
+            "rows": [
+              [
+                "Maria",
+                "Työ ja tuki lasketaan erikseen, riski jää ihmiselle",
+                "Työ, tuki ja epävarmuus sovitetaan yhdeksi siirtymäksi",
+                "Kokeilu ei ole hyppy tyhjään"
+              ],
+              [
+                "Väinö",
+                "Palvelut näkevät eri osia vanhenevan ihmisen arjesta",
+                "Joku omistaa kokonaiskuvan ja seuraa muutosta ajassa",
+                "Arki ei hajoa palveluiden väliin"
+              ],
+              [
+                "Emmi",
+                "Nuori siirtyy järjestelmästä toiseen omalla vastuullaan",
+                "Siirtymässä on silta, joka kantaa koulun, työn ja hyvinvoinnin yli",
+                "Tulevaisuus ei katkea hallinnolliseen rajaan"
+              ]
+            ],
+            "headers": [
+              "Ihminen",
+              "Vanha logiikka",
+              "Uusi logiikka",
+              "Ratkaiseva muutos"
+            ]
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 5,
+          "type": "list",
+          "title": "Viisi mekanismia käännettyinä",
+          "source": "Kompleksisuusteoria; palveluintegraatio; kaksisuuntainen optimointi; kokemustieto; systeeminen muutos.",
+          "position": 1,
+          "content": {
+            "body": "Osio kääntää ongelmamekanismit ratkaisuiksi. Liite tekee muutoksen tarkistuslistaksi.",
+            "note": "Käännetyt mekanismit eivät ole irrallisia ratkaisuja. Ne vahvistavat toisiaan vasta, kun ne toimivat yhdessä.",
+            "items": [
+              {
+                "body": "Järjestelmä ei odota, että ongelma muuttuu raskaaksi. Se tunnistaa riskin ajoissa ja vastaa ennen kriisiä.",
+                "title": "Viiveestä varhaiseen havaintoon"
+              },
+              {
+                "body": "Ihmisen elämä ei jakaudu palvelurajojen mukaan, joten jonkun täytyy nähdä ja sovittaa osat yhteen.",
+                "title": "Siiloista kokonaiskuvaan"
+              },
+              {
+                "body": "Järjestelmä ei seuraa vain suoritustaan vaan myös sitä, mitä suoritus tekee ihmisten kokemukselle.",
+                "title": "Mittarista metamittariin"
+              },
+              {
+                "body": "Vastuu ei ole pelkkä tunne tai rooli, vaan oikeus ja velvollisuus muuttaa polkua.",
+                "title": "Vastuuvajeesta mandaattiin"
+              },
+              {
+                "body": "Muutos ei onnistu, jos epävarmuus jää yksin ihmiselle. Toimiva rakenne jakaa riskin ja tekee kokeilusta turvallisemman.",
+                "title": "Riskin ulkoistamisesta jaettuun siirtymään"
+              }
+            ],
+            "ordered": true
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 6,
+          "type": "evidence",
+          "title": "Missä yhteinen rakenne jo näkyy",
+          "source": "Ohjaamo-palvelut; perhekeskukset; moniammatillinen työ; integroidut sote-palvelut; työllisyyden kuntakokeilut; matalan kynnyksen palvelut.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, missä tämä jo tapahtuu. Liite kokoaa käytäntötyyppejä, joissa luvun logiikka on jo tunnistettavissa.",
+            "findings": [
+              {
+                "aihe": "Yhden oven palvelut",
+                "havainto": "Ihmisen ei tarvitse tietää oikeaa hallinnollista luukkua ennen kuin hän saa apua.",
+                "merkitys": "Järjestelmä ottaa osan navigointivastuusta itselleen."
+              },
+              {
+                "aihe": "Moniammatilliset tiimit",
+                "havainto": "Eri ammattilaiset katsovat samaa tilannetta yhtä aikaa sen sijaan, että ihminen kulkee heiltä toiselle.",
+                "merkitys": "Kokonaiskuva syntyy nopeammin ja vähemmällä kuormalla."
+              },
+              {
+                "aihe": "Perhekeskuslogiikka",
+                "havainto": "Lapsen, vanhemman ja perheen tuki voidaan rakentaa arjen ympärille eikä vain ongelmakategorioiden mukaan.",
+                "merkitys": "Varhainen tuki kytkeytyy suhteisiin, ei pelkkiin palveluihin."
+              },
+              {
+                "aihe": "Työn ja sosiaaliturvan yhteensovittaminen",
+                "havainto": "Siirtymää työhön voidaan tukea niin, että epävarmuus ei estä kokeilua.",
+                "merkitys": "Kannustinloukun purkaminen vaatii hallinnollisen ja psykologisen riskin vähentämistä."
+              }
+            ],
+            "key_insight": "Luvun logiikka ei ole utopia. Sen sirpaleita on jo olemassa. Ratkaisevaa on, jäävätkö ne poikkeuksiksi vai muuttuvatko ne järjestelmän periaatteiksi."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 7,
+          "type": "table",
+          "title": "Hyvän esimerkin rajat",
+          "source": "Arviointitutkimus; politiikkakokeilut; skaalautuvuus; implementaatiotutkimus; institutionaalinen muutos.",
+          "position": 1,
+          "content": {
+            "body": "Osio tekee tärkeän rajauksen: esimerkit eivät vielä ratkaise skaalautumisen ongelmaa. Liite erottaa näytön ja toiveen.",
+            "note": "Hyvä esimerkki on todiste mahdollisuudesta, ei vielä todiste järjestelmän muutoksesta.",
+            "rows": [
+              [
+                "Yhteistyö toimii",
+                "Tietyssä paikassa tai tiimissä ihmiset voidaan kohdata kokonaisemmin",
+                "Että sama toimintalogiikka säilyy, kun ihmiset, resurssit ja olosuhteet vaihtuvat"
+              ],
+              [
+                "Varhainen tuki kannattaa",
+                "Yksittäisten ihmisten polut voivat keventyä ja raskaampi tarve vähentyä",
+                "Että budjettijärjestelmä palkitsee ennaltaehkäisystä oikeaa toimijaa"
+              ],
+              [
+                "Koordinaatio auttaa",
+                "Kokonaiskuvan omistaja voi vähentää ihmisen kuormaa",
+                "Että koordinaattorilla on riittävä valta muuttaa palvelupolkua"
+              ],
+              [
+                "Malli on inhimillinen",
+                "Ihmiset voivat kokea tulevansa paremmin nähdyiksi",
+                "Että malli kestää tehokkuuspaineen muuttumatta uudeksi lomakkeeksi"
+              ]
+            ],
+            "headers": [
+              "Väite",
+              "Mitä esimerkki voi osoittaa",
+              "Mitä se ei vielä osoita"
+            ]
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 8,
+          "type": "path",
+          "title": "Osallisuus silloin kun se ei ole helppoa",
+          "source": "Syrjäytyminen; päihde- ja mielenterveyspalvelut; rikostausta; asunnottomuus; stigma; restoratiiviset käytännöt.",
+          "position": 1,
+          "content": {
+            "body": "Osio nostaa vaikeimman tapauksen: ihmisen, jota ei haluta mukaan. Liite erottaa kolme tasoa, joilla osallisuus joutuu todelliseen testiin.",
+            "paths": [
+              {
+                "claim": "Osallisuus ei voi tarkoittaa, että muiden turvallisuus sivuutetaan.",
+                "price": "Turvallisuuspuhe voi muuttua torjunnan oikeutukseksi, jos sitä ei arvioida tarkasti.",
+                "promise": "Yhteisö ei joudu kantamaan rajatonta riskiä.",
+                "condition": "1. Turvallisuuden ehto"
+              },
+              {
+                "claim": "Vaikeakaan ihminen ei menetä ihmisarvoaan siksi, että hänen mukaan ottamisensa on hankalaa.",
+                "price": "Tämä vaatii kykyä erottaa teko, riski ja ihmisarvo toisistaan.",
+                "promise": "Järjestelmä ei jaa ihmisiä niihin, jotka ansaitsevat tulla nähdyiksi, ja niihin, jotka eivät.",
+                "condition": "2. Arvon ehto"
+              },
+              {
+                "claim": "Mukaan ottaminen ei voi jäädä yksittäisen työntekijän sankaruuden varaan.",
+                "price": "Se on hitaampaa ja kalliimpaa kuin ulossulkeminen lyhyellä aikavälillä.",
+                "promise": "Vaikeita tilanteita varten rakennetaan tuki, rajat, osaaminen ja vastuu.",
+                "condition": "3. Rakenteen ehto"
+              }
+            ],
+            "reader_shift": "Osallisuuden arvo mitataan vasta siellä, missä osallisuus ei tunnu luontevalta, helpolta tai palkitsevalta."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 9,
+          "type": "chain",
+          "title": "Miksi kantava logiikka ei skaalaudu itsestään",
+          "source": "Implementaatiotutkimus; julkisen sektorin budjetointi; hallinnolliset siilot; vaikuttavuuden mittaaminen; systeeminen muutos.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, miksi toimiva logiikka ei skaalaudu. Liite näyttää esteiden ketjun.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Hyöty syntyy pitkällä aikavälillä",
+                "consequence": "Poliittinen ja hallinnollinen ohjaus etsii usein nopeammin raportoitavia tuloksia."
+              },
+              {
+                "step": 2,
+                "event": "Kustannus ja hyöty sijaitsevat eri budjeteissa",
+                "consequence": "Se, joka maksaa varhaisen tuen, ei välttämättä saa säästöä omaan järjestelmäänsä."
+              },
+              {
+                "step": 3,
+                "event": "Mittarit seuraavat suoritteita paremmin kuin vältettyjä kriisejä",
+                "consequence": "Se mikä ei tapahtunut, jää heikommin näkyväksi kuin se, mitä tehtiin."
+              },
+              {
+                "step": 4,
+                "event": "Ammatilliset ja hallinnolliset rajat suojaavat vanhaa järjestystä",
+                "consequence": "Yhteistyö jää helposti lisätyöksi, ellei vastuita ja toimivaltaa muuteta."
+              },
+              {
+                "step": 5,
+                "event": "Hyvä käytäntö henkilöityy",
+                "consequence": "Kun kantava toiminta riippuu yksittäisistä ihmisistä, se ei vielä ole järjestelmän ominaisuus."
+              }
+            ],
+            "reader_shift": "Skaalautuminen ei tarkoita hyvän mallin kopioimista. Se tarkoittaa niiden rakenteiden muuttamista, jotka estävät hyvää mallia muuttumasta normaaliksi."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 10,
+          "type": "table",
+          "title": "Miten kaksisuuntainen optimointi skaalataan",
+          "source": "Kaksisuuntainen optimointi; systeeminen johtaminen; kokemustieto; metamittarit; palveluintegraatio; vaikuttavuusperusteinen ohjaus.",
+          "position": 1,
+          "content": {
+            "body": "Osio väittää, että kaksisuuntainen optimointi voi skaalautua. Liite tiivistää sen periaatteiksi.",
+            "note": "Skaalautuva kaksisuuntainen optimointi ei tee järjestelmästä pehmeää. Se tekee siitä tarkemman.",
+            "rows": [
+              [
+                "Yhteinen näkymä",
+                "Järjestelmä näkee sekä suoritteet että kokemuksen samassa päätöksentekokuvassa",
+                "Tilanteen, jossa hyvät luvut peittävät huonon elämän"
+              ],
+              [
+                "Nimetty kokonaisvastuu",
+                "Jollakin on mandaatti yhdistää osat ja seurata vaikutusta ajassa",
+                "Vastuun katoamisen organisaatiorajojen väliin"
+              ],
+              [
+                "Metamittarit",
+                "Mittarit arvioidaan sen mukaan, mitä ne tekevät ihmisten käyttäytymiselle ja kokemukselle",
+                "Goodhartin lain muuttumisen järjestelmän normaaliksi"
+              ],
+              [
+                "Budjettien silloitus",
+                "Varhaisen tuen hyöty huomioidaan yli hallinnollisten rajojen",
+                "Ennaltaehkäisyn jäämisen aina korjaavan työn jalkoihin"
+              ],
+              [
+                "Oppiva takaisinkytkentä",
+                "Poikkeamat, kokemukset ja sivuvaikutukset muuttavat toimintaa",
+                "Sen, että palaute kerätään mutta mikään ei muutu"
+              ]
+            ],
+            "headers": [
+              "Periaate",
+              "Mitä se tarkoittaa",
+              "Mitä se estää"
+            ]
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 11,
+          "type": "note",
+          "title": "Kun ratkaisu muuttuu vastuuksi",
+          "source": "Poliittinen vastuu; hyvinvointivaltion uudistaminen; systeeminen muutos; julkinen päätöksenteko; tulevaisuuspolitiikka.",
+          "position": 1,
+          "content": {
+            "body": "Luvun viimeinen osio siirtää huomion ratkaisuista vastuuseen. Jos tiedämme, että toisenlainen logiikka on mahdollinen, emme voi enää puhua vain ongelman monimutkaisuudesta.",
+            "text": "Kun toimivat rakenteet on kerran nähty, kysymys muuttuu. Enää ei riitä sanoa, että järjestelmä on monimutkainen, resurssit ovat rajalliset tai ihmiset erilaisia. Kaikki tämä on totta, mutta se ei poista vastuuta kysyä, miksi kantava logiikka jää poikkeukseksi.\n\nTässä kohdassa ratkaisu muuttuu poliittiseksi ja moraaliseksi vastuuksi. Jos järjestelmä voi nähdä ihmisen aikaisemmin, kantaa kokonaiskuvaa paremmin ja jakaa siirtymän riskiä oikeudenmukaisemmin, miksi se ei tee niin? Kuka hyötyy nykyisestä järjestyksestä? Kuka maksaa sen hinnan? Kenen kokemus jää edelleen näkymättömäksi?\n\nSeuraava luku ei siksi kysy enää vain, mikä toimii. Se kysyy, mitä näkyväksi tekeminen velvoittaa tekemään.",
+            "reader_shift": "Mahdollisuuden näkeminen poistaa osan viattomuudesta. Kun tiedämme, että toinen logiikka on mahdollinen, kysymys muuttuu: miksi emme rakenna sitä?"
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 6,
+      "appendices": [
+        {
+          "chapter_position": 6,
+          "section_position": 0,
+          "type": "note",
+          "title": "Aloittaminen on vastuun ensimmäinen muoto",
+          "source": "Julkisen sektorin muutos; reformiteoria; institutionaalinen inertia; päätöksentekokyky; systeeminen muutos.",
+          "position": 1,
+          "content": {
+            "body": "Luvun avaus kysyy, kuka aloittaa. Liite tekee näkyväksi, miksi juuri aloittaminen on vaikeaa: se vaatii vastuuta ennen kuin onnistuminen on varmaa.",
+            "text": "Järjestelmät eivät yleensä muutu siksi, että kaikki vakuuttuvat yhtä aikaa. Ne muuttuvat, kun joku ottaa ensimmäisen riskin tehdä näkyväksi sen, minkä moni jo tietää mutta mitä kukaan ei vielä omista.\n\nAloittamisen vaikeus johtuu siitä, että vanha järjestys on aina paremmin organisoitu kuin uusi mahdollisuus. Nykyisillä mittareilla, budjeteilla, vastuilla ja aikatauluilla on omistajat. Uudella logiikalla on aluksi vain väite: ihminen pitäisi nähdä aikaisemmin, vastuu pitäisi yhdistää ja järjestelmän pitäisi mitata myös oman toimintansa sivuvaikutuksia.\n\nSiksi kysymys 'kuka aloittaa?' ei ole retorinen. Se on testi siitä, missä järjestelmässä on vielä kykyä ottaa vastuu ennen pakkoa.",
+            "reader_shift": "Muutos ei ala täydestä varmuudesta. Se alkaa siitä, että joku suostuu kantamaan epävarmuuden ensimmäisenä."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 1,
+          "type": "evidence",
+          "title": "Ammattilaisen havainto on varhainen signaali",
+          "source": "Ammatillinen harkinta; hiljainen tieto; moraalinen stressi; palvelujärjestelmien palaute; kokemustiedon kerääminen.",
+          "position": 1,
+          "content": {
+            "body": "Osio nostaa esiin ammattilaisen, joka näkee eron virallisen onnistumisen ja ihmisen todellisen tilanteen välillä.",
+            "findings": [
+              {
+                "aihe": "Arjen poikkeama",
+                "havainto": "Ammattilainen huomaa tilanteet, joissa prosessi näyttää päättyvän oikein mutta ihmisen ongelma ei ratkea.",
+                "merkitys": "Tämä on usein ensimmäinen signaali siitä, että mittari ei näe kaikkea olennaista."
+              },
+              {
+                "aihe": "Moraalinen stressi",
+                "havainto": "Työntekijä tietää, mitä pitäisi tehdä, mutta järjestelmä ei anna aikaa, valtaa tai reittiä tehdä sitä.",
+                "merkitys": "Yksilön kuormitus voi kertoa rakenteellisesta vastuun ja toimivallan epäsuhdasta."
+              },
+              {
+                "aihe": "Hiljainen tieto",
+                "havainto": "Toistuvat kokemukset kerääntyvät työntekijöille ennen kuin ne näkyvät virallisissa raporteissa.",
+                "merkitys": "Jos hiljainen tieto jää yksilöiden varaan, järjestelmä menettää oman varhaisen havaintonsa."
+              },
+              {
+                "aihe": "Muutosmahdollisuus",
+                "havainto": "Ammattilainen voi nimetä sokean pisteen, kerätä toistuvat havainnot ja nostaa ne yhteiseen käsittelyyn.",
+                "merkitys": "Muutos alkaa usein siitä, että joku lakkaa pitämästä poikkeamaa yksittäistapauksena."
+              }
+            ],
+            "key_insight": "Ammattilainen ei yksin voi korjata järjestelmää, mutta hän voi tehdä näkyväksi kohdan, jossa järjestelmä luulee onnistuvansa mutta ihminen ei tule autetuksi."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 2,
+          "type": "path",
+          "title": "Rajapinnan omistaminen on johtamisen ydinteko",
+          "source": "Systeeminen johtaminen; palveluintegraatio; organisaatiorajat; moniammatillinen työ; julkisen sektorin johtaminen.",
+          "position": 1,
+          "content": {
+            "body": "Osio nostaa esiin johtajan, joka omistaa rajapinnan. Liite jäsentää, mitä se tarkoittaa käytännössä.",
+            "paths": [
+              {
+                "claim": "Oma tulos ei riitä, jos ihmisen kokonaispolku katkeaa yksiköiden välissä.",
+                "price": "Se voi heikentää lyhyen aikavälin yksikkömittareita tai tehdä ristiriidat näkyviksi.",
+                "promise": "Johtaminen ei optimoi vain omaa laatikkoa vaan yhteistä vaikutusta.",
+                "condition": "1. Johtaja näkee oman yksikön ulkopuolelle"
+              },
+              {
+                "claim": "Yhteistyö ei voi perustua vain henkilöiden hyvään tahtoon ja ylimääräiseen venymiseen.",
+                "price": "Se vaatii resurssin siirtämistä pois jostakin nykyisestä tekemisestä.",
+                "promise": "Rajapinnasta tulee osa työtä eikä lisätyö työn päälle.",
+                "condition": "2. Rajapinnalle annetaan työaika ja rakenne"
+              },
+              {
+                "claim": "Kaikki vaikutus ei näy oman organisaation mittareissa.",
+                "price": "Se vaatii uudenlaista tulkintaa tehokkuudesta.",
+                "promise": "Järjestelmä voi alkaa palkita vältettyä kriisiä, sujuvaa siirtymää ja ihmisen kokonaiskuormituksen kevenemistä.",
+                "condition": "3. Johtaja hyväksyy jaetun onnistumisen"
+              }
+            ],
+            "reader_shift": "Rajapinta ei ole tyhjä tila organisaatioiden välillä. Se on usein juuri se paikka, jossa ihmisen elämä joko kannetaan tai pudotetaan."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 3,
+          "type": "chain",
+          "title": "Muutos kolmella tasolla: havainto, rajapinta, rakenne",
+          "source": "Poliittinen päätöksenteko; budjettiohjaus; julkishallinnon reformit; systeeminen muutos; vaikuttavuusperusteinen johtaminen.",
+          "position": 1,
+          "content": {
+            "body": "Osio kuvaa päätöksentekijän roolia. Liite kytkee yhteen ammattilaisen, johtajan ja päätöksentekijän vastuun.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Ammattilainen näkee eron",
+                "consequence": "Järjestelmän virallinen onnistuminen ja ihmisen kokemus eivät vastaa toisiaan."
+              },
+              {
+                "step": 2,
+                "event": "Johtaja omistaa rajapinnan",
+                "consequence": "Poikkeama ei jää yksittäisen työntekijän huoleksi, vaan siitä tulee yhteisen työn kohde."
+              },
+              {
+                "step": 3,
+                "event": "Päätöksentekijä omistaa rakenteen",
+                "consequence": "Budjetit, vastuut, mittarit ja mandaatit voidaan muuttaa niin, että uusi logiikka ei jää projektiksi."
+              },
+              {
+                "step": 4,
+                "event": "Onnistumisen määritelmä muuttuu",
+                "consequence": "Vältetty kriisi, keventynyt siirtymä ja kasvanut luottamus saavat poliittisen ja taloudellisen arvon."
+              },
+              {
+                "step": 5,
+                "event": "Uusi rakenne alkaa kantaa ennen pakkoa",
+                "consequence": "Järjestelmä ei odota romahdusta todistaakseen, että apua tarvitaan."
+              }
+            ],
+            "reader_shift": "Ammattilainen voi nähdä, johtaja voi yhdistää, mutta päätöksentekijä päättää, jääkö havainto poikkeukseksi vai muuttuuko se rakenteeksi."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 4,
+          "type": "evidence",
+          "title": "Reformi-ikkuna: milloin rakenne muuttuu",
+          "source": "Policy window; John Kingdon; institutionaalinen muutos; kriisit ja reformit; julkisen sektorin uudistukset.",
+          "position": 1,
+          "content": {
+            "body": "Osio käsittelee reformi-ikkunaa. Liite tekee näkyväksi, milloin muutos voi ylittää puheen ja muuttua rakenteeksi.",
+            "findings": [
+              {
+                "aihe": "Ongelma on tunnistettu",
+                "havainto": "Riittävän moni näkee, että nykyinen järjestelmä tuottaa toistuvia sivuvaikutuksia, vastuuvajetta tai viivettä.",
+                "merkitys": "Ilman yhteistä ongelman nimeä uudistus jää irrallisiksi parannuksiksi."
+              },
+              {
+                "aihe": "Ratkaisun kieli on valmis",
+                "havainto": "On olemassa käsitteet, mallit ja esimerkit, joilla muutos voidaan tehdä ymmärrettäväksi.",
+                "merkitys": "Uusi logiikka tarvitsee sanat ennen kuin se saa budjetin."
+              },
+              {
+                "aihe": "Päätöksentekijällä on syy toimia",
+                "havainto": "Kriisi, kustannuspaine, luottamuksen heikkeneminen tai poliittinen mahdollisuus tekee vanhan logiikan jatkamisesta vaikeampaa.",
+                "merkitys": "Muutos tarvitsee sekä perusteen että ajoituksen."
+              },
+              {
+                "aihe": "Rakenteeseen voidaan koskea",
+                "havainto": "Budjetti, vastuut, mandaatti tai mittarit ovat muutettavissa, eivät vain puheen tasolla arvioitavissa.",
+                "merkitys": "Reformi-ikkuna on todellinen vasta, kun jokin järjestelmän perusrakenne voi muuttua."
+              }
+            ],
+            "key_insight": "Reformi-ikkuna ei ole pelkkä hyvä hetki. Se on hetki, jossa ongelma, ratkaisu ja päätösvalta osuvat samaan aikaan."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 5,
+          "type": "table",
+          "title": "Miten uusi logiikka leviää: kitkan vähentäminen",
+          "source": "Diffuusioteoria; institutionaalinen muutos; palveluinnovaatioiden leviäminen; käyttäytymistaloustiede; hallinnollinen kitka.",
+          "position": 1,
+          "content": {
+            "body": "Osio sanoo, että leviäminen ei perustu vain poliittiseen tahtoon. Liite näyttää, miten kitkaa vähentämällä uusi logiikka voi muuttua helpommaksi kuin vanha.",
+            "note": "Uusi logiikka leviää, kun oikea toiminta ei enää vaadi poikkeuksellista sankaruutta.",
+            "rows": [
+              [
+                "Tieto",
+                "Kokonaiskuva pitää rakentaa käsin eri järjestelmistä",
+                "Yhteinen näkymä tekee olennaisen tiedon luvallisesti ja ajantasaisesti näkyväksi"
+              ],
+              [
+                "Aika",
+                "Yhteistyö tehdään muun työn päälle",
+                "Rajapintatyölle annetaan oma työaika, tavoite ja johtamisen tuki"
+              ],
+              [
+                "Vastuu",
+                "Kukaan ei omista siirtymää tai kokonaisuutta",
+                "Mandaatilla nimetään taho, joka voi kantaa ja muuttaa polkua"
+              ],
+              [
+                "Budjetti",
+                "Ennaltaehkäisy maksaa yhdessä paikassa ja hyödyttää toista",
+                "Hyötyjen ja kustannusten jakaminen rakennetaan yli hallinnollisten rajojen"
+              ],
+              [
+                "Mittari",
+                "Vanha mittari palkitsee suoritteesta",
+                "Metamittari tekee näkyväksi, mitä suorite tekee ihmiselle"
+              ]
+            ],
+            "headers": [
+              "Kitkan kohta",
+              "Vanha tilanne",
+              "Mitä pitää muuttaa"
+            ]
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 6,
+          "type": "list",
+          "title": "Kolme päätöstä, joilla muutos alkaa",
+          "source": "Julkisen sektorin kehittäminen; palveluintegraatio; reformien toimeenpano; budjettiohjaus; systeeminen johtaminen.",
+          "position": 1,
+          "content": {
+            "body": "Osio nimeää kolme ensimmäistä päätöstä. Liite muuttaa ne käytännölliseksi aloituslistaksi.",
+            "note": "Ensimmäinen päätös ei todista, että koko malli toimii. Se tekee mahdolliseksi oppia todellisesta rajapinnasta.",
+            "items": [
+              {
+                "body": "Älä aloita koko järjestelmän muuttamisesta. Aloita kohdasta, jossa ihmiset toistuvasti putoavat palveluiden, päätösten tai vastuiden väliin.",
+                "title": "Nimeä yksi rajapinta"
+              },
+              {
+                "body": "Mandaatti ei ole vain koordinointia. Sen täytyy sisältää lupa kutsua toimijat yhteen, muuttaa polkua ja seurata vaikutusta.",
+                "title": "Anna yhdelle taholle mandaatti"
+              },
+              {
+                "body": "Seuraa paitsi sitä, mitä järjestelmä teki, myös sitä, kevenikö ihmisen kuorma, vähenikö viive ja vahvistuiko luottamus.",
+                "title": "Mittaa sekä suorite että sivuvaikutus"
+              }
+            ],
+            "ordered": true
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 7,
+          "type": "chain",
+          "title": "Projektista rakenteeksi: kolme vaihetta",
+          "source": "Projektien juurtuminen; implementaatiotutkimus; institutionaalinen muutos; palveluiden pysyvä rahoitus; johtamisjärjestelmät.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, miten projekti muuttuu rakenteeksi. Liite kuvaa juurtumisen kolme vaihetta.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Kokeilu tekee uuden logiikan näkyväksi",
+                "consequence": "Pienessä rajapinnassa voidaan osoittaa, että kokonaisvastuu, kokemussignaali ja varhainen tuki muuttavat ihmisten polkuja."
+              },
+              {
+                "step": 2,
+                "event": "Kokeilun mekanismi erotetaan henkilöistä",
+                "consequence": "Kysytään, mikä tarkalleen toimi: mandaatti, tieto, aika, budjetti, mittari vai niiden yhdistelmä."
+              },
+              {
+                "step": 3,
+                "event": "Mekanismi siirretään pysyvään ohjaukseen",
+                "consequence": "Rahoitus, vastuut, raportointi ja johtaminen muuttuvat niin, ettei uusi toimintatapa riipu enää projektista."
+              },
+              {
+                "step": 4,
+                "event": "Vanha mittari päivitetään",
+                "consequence": "Onnistumista ei arvioida vain suoritteina vaan myös vältettyinä katkoksina, keventyneenä kuormana ja vahvistuneena luottamuksena."
+              }
+            ],
+            "reader_shift": "Projekti muuttuu rakenteeksi vasta, kun sen onnistumisen syy siirretään pysyvään valtaan, rahaan ja vastuuseen."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 8,
+          "type": "note",
+          "title": "Vilja ei tarvitse sankaria vaan rakenteen",
+          "source": "Asiakaskokemus; palvelupolut; hallinnollinen taakka; luottamus; kohtaava palvelu.",
+          "position": 1,
+          "content": {
+            "body": "Osio palaa Viljaan viimeistä kertaa. Liite kiteyttää, että ratkaisu ei ole yksittäinen pelastaja vaan rakenne, joka ei kadota ihmistä.",
+            "text": "Viljan tarina ei ratkea sillä, että hän kohtaa poikkeuksellisen hyvän ihmisen oikealla hetkellä. Sellaisia kohtaamisia tarvitaan, mutta ne eivät voi olla järjestelmän pääasiallinen turvaverkko.\n\nRatkaisevaa on, ettei Viljan tarvitse olla itse oman elämänsä koordinaattori juuri silloin, kun hänen voimansa ovat vähimmillään. Ratkaisevaa on, että joku näkee kokonaisuuden, että tieto ei katkea, että vastuu ei siirry tyhjään kohtaan ja että järjestelmä kysyy, kevenikö hänen elämänsä vai vain päättyikö prosessi.\n\nKun rakenne toimii, Vilja ei välttämättä huomaa kaikkia sen osia. Hän huomaa vain, ettei hänen tarvitse selittää kaikkea alusta, odottaa tyhjässä, pelätä seuraavaa lomaketta tai todistaa loputtomasti, että hänen tilanteensa on todellinen.",
+            "reader_shift": "Hyvä järjestelmä ei tee itsestään suurta numeroa. Se näkyy siinä, että ihminen saa käyttää voimansa elämiseen eikä järjestelmän koossa pitämiseen."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 9,
+          "type": "table",
+          "title": "Mitä tämä kirja ei ratkaise",
+          "source": "Politiikkasuunnittelu; julkisen talouden rajoitteet; toimeenpanotutkimus; vaikutusten arviointi; hallintomallit.",
+          "position": 1,
+          "content": {
+            "body": "Osio kertoo, mitä käsikirjoitus ei sanonut. Liite tekee rajaukset näkyväksi, jotta väite ei muutu liian helpoksi ratkaisulupaukseksi.",
+            "note": "Rajaus ei heikennä väitettä. Se estää väitettä muuttumasta uudeksi yksinkertaistukseksi.",
+            "rows": [
+              [
+                "Se ei anna täydellistä budjettimallia",
+                "Raha, lainsäädäntö ja vastuut vaihtelevat järjestelmittäin",
+                "Silti budjettien on nähtävä varhaisen tuen ja rajapintatyön arvo"
+              ],
+              [
+                "Se ei väitä, että kaikki voidaan ratkaista koordinoinnilla",
+                "Osa ongelmista vaatii lisää resursseja, osa sääntelyn muutosta, osa vaikeita arvovalintoja",
+                "Silti koordinaation puute pahentaa monia ongelmia turhaan"
+              ],
+              [
+                "Se ei poista priorisoinnin tarvetta",
+                "Rajalliset resurssit pakottavat valintoihin",
+                "Silti priorisointi on tehtävä näkyväksi myös ihmisen kokemuksen kannalta"
+              ],
+              [
+                "Se ei lupaa täydellistä näkyvyyttä",
+                "Jokainen järjestelmä jättää jotakin ulkopuolelle",
+                "Silti järjestelmä voi oppia näkemään omia sokeita pisteitään paremmin"
+              ]
+            ],
+            "headers": [
+              "Mitä kirja ei tee",
+              "Miksi se on tärkeä rajaus",
+              "Mitä silti jää voimaan"
+            ]
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 10,
+          "type": "note",
+          "title": "Näkyväksi tekeminen ei pääty näkemiseen",
+          "source": "Näkymättömyys; tunnustus; systeeminen muutos; hyvinvointivaltion tulevaisuus; institutionaalinen vastuu.",
+          "position": 1,
+          "content": {
+            "body": "Luvun viimeinen osio kokoaa kirjan moraalisen ytimen. Liite kiteyttää, miksi näkyväksi tekeminen velvoittaa rakenteelliseen muutokseen.",
+            "text": "Näkyväksi tekeminen alkaa havainnosta, mutta se ei saa päättyä siihen. Jos ihminen nähdään ja silti jätetään samaan rakenteeseen, näkyväksi tekeminen muuttuu helposti uudeksi välinpitämättömyyden muodoksi: nyt tiedämme, mutta emme muuta mitään.\n\nSiksi näkyväksi tekeminen on lopulta rakenteellinen teko. Se tarkoittaa, että vastuu nimetään, tieto kulkee, mittarit tarkistetaan, rajapinnat omistetaan ja resurssit seuraavat sitä, mitä pidämme tärkeänä.\n\nKirjan viimeinen havainto on yksinkertainen: ihminen ei katoa vain pimeään. Hän voi kadota kirkkaasti valaistuun järjestelmään, joka mittaa, luokittelee ja raportoi hänet, mutta ei muuta toimintaansa sen perusteella, mitä hänestä lopulta näkee.",
+            "reader_shift": "Näkyväksi tuleminen on vasta alku. Todellinen kysymys on, muuttuuko mikään sen jälkeen, kun ihminen on nähty."
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 7,
+      "appendices": [
+        {
+          "chapter_position": 7,
+          "section_position": 0,
+          "type": "note",
+          "title": "Kirje ajasta, joka oppi mittaamaan mutta ei aina näkemään",
+          "source": "Hyvinvointivaltion murros; teknologinen hallinta; kokemustieto; järjestelmien mittarointi; inhimillinen tunnustus.",
+          "position": 1,
+          "content": {
+            "body": "Päätösluvun ensimmäinen osio asettuu kirjeen muotoon. Liite kiteyttää, mitä tästä ajasta pitäisi ehkä kertoa myöhemmin.",
+            "text": "Tämä aika ei ollut välinpitämätön siksi, ettei se tiennyt tarpeeksi. Se tiesi paljon. Se mittasi, raportoi, luokitteli, optimoi ja ennusti. Sen ongelma oli vaikeampi: se alkoi nähdä ihmisen yhä useammin niiden välineiden kautta, joiden piti auttaa näkemään hänet paremmin.\n\nKirje tältä hetkeltä ei siis ole syytös yksittäisille ihmisille. Se on tunnustus järjestelmälle, joka kasvoi niin suureksi, että sen oli pakko käyttää välineitä — ja samalla varoitus siitä, että väline voi alkaa korvata kohtaamisen.\n\nJos tuleva lukija kysyy, mitä me emme nähneet, vastaus voi olla tämä: emme aina nähneet, miten ihminen katosi kirkkaaseen näkyvyyteen. Hänestä oli dataa, mutta ei välttämättä vastuuta. Hänestä oli prosessi, mutta ei välttämättä kokonaiskuvaa. Hänestä oli mittari, mutta ei välttämättä merkitystä.",
+            "reader_shift": "Nykyhetken kirje ei kysy, olimmeko hyviä vai pahoja. Se kysyy, mitä jätimme näkemättä samalla kun luulimme näkevämme kaiken."
+          }
+        },
+        {
+          "chapter_position": 7,
+          "section_position": 1,
+          "type": "chain",
+          "title": "Mitä kirjassa tapahtui: näkymättömyyden ketju",
+          "source": "Goodhartin laki; palvelujärjestelmien pirstaleisuus; hallinnollinen taakka; vastuuvaje; kaksisuuntainen optimointi.",
+          "position": 1,
+          "content": {
+            "body": "Osio kertaa, mitä kirjassa on tapahtunut. Liite näyttää argumentin ketjuna johdannosta päätökseen.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Ihminen kysyy, missä häntä tarvitaan",
+                "consequence": "Kirjan lähtökohta on eksistentiaalinen, ei vain hallinnollinen."
+              },
+              {
+                "step": 2,
+                "event": "Mittarit alkavat määrittää näkyvyyttä",
+                "consequence": "Ihminen voi näkyä järjestelmälle yhä tarkemmin ja silti kadota kokemuksena."
+              },
+              {
+                "step": 3,
+                "event": "Toimiva logiikka osoittautuu mahdolliseksi",
+                "consequence": "Neuvolan, peruskoulun ja koordinaation kaltaiset rakenteet näyttävät, ettei toinen tapa ole fantasia."
+              },
+              {
+                "step": 4,
+                "event": "Metamittari tekee mittaamisen seuraukset näkyviksi",
+                "consequence": "Järjestelmä oppii kysymään, mitä sen omat mittarit tekevät ihmiselle."
+              },
+              {
+                "step": 5,
+                "event": "Vastuun puute paljastuu rakenteelliseksi ongelmaksi",
+                "consequence": "Kysymys ei ole vain palvelun laadusta vaan siitä, kuka omistaa kokonaisuuden."
+              },
+              {
+                "step": 6,
+                "event": "Rakenteet alkavat toimia yhdessä",
+                "consequence": "Ihmisen ei tarvitse enää kantaa järjestelmän hajanaisuutta yksin."
+              },
+              {
+                "step": 7,
+                "event": "Aloittamisen vastuu jää jäljelle",
+                "consequence": "Kun mahdollisuus on nähty, kysymys muuttuu: kuka uskaltaa muuttaa rakenteen?"
+              }
+            ],
+            "reader_shift": "Kirjan matka ei kulje ongelmasta ratkaisuun vaan näkymättömästä vastuuseen. Kun ihminen nähdään, järjestelmä ei voi enää teeskennellä, ettei sen tarvitse muuttua."
+          }
+        },
+        {
+          "chapter_position": 7,
+          "section_position": 2,
+          "type": "note",
+          "title": "Kirja ei tarjonnut temppua vaan näkökulman",
+          "source": "Systeeminen ajattelu; julkisen sektorin uudistaminen; kokemustieto; metakognitio; yhteiskunnallinen esseistiikka.",
+          "position": 1,
+          "content": {
+            "body": "Osio kysyy, mitä tämä kirja yritti tehdä. Liite rajaa tehtävän: kirja ei ole tekninen käyttöohje vaan näkökulman siirto.",
+            "text": "Tämä kirja ei yrittänyt sanoa, että hyvinvointijärjestelmä korjataan yhdellä uudella mallilla, sovelluksella, mittarilla tai organisaatiokaaviolla. Se yritti tehdä jotakin hitaampaa: muuttaa sitä, mitä pidämme ongelmana.\n\nJos ongelma nähdään vain resurssipulana, vastaus on aina lisää tai vähemmän rahaa. Jos ongelma nähdään vain johtamisen puutteena, vastaus on uusi prosessi. Jos ongelma nähdään vain yksilöiden kuormana, vastaus on selviytymiskyvyn vahvistaminen.\n\nKirja yritti näyttää, että syvempi ongelma on havaintorakenteessa: mitä järjestelmä näkee, mitä se ei näe, ja mitä se tekee sillä, minkä se lopulta näkee.",
+            "reader_shift": "Kirjan varsinainen ehdotus on katseen muutos: ennen kuin rakennamme ratkaisun, meidän on kysyttävä, millä tavalla järjestelmä näkee ihmisen."
+          }
+        },
+        {
+          "chapter_position": 7,
+          "section_position": 3,
+          "type": "table",
+          "title": "Muutoksen vähimmäisehdot",
+          "source": "Hyvinvointijärjestelmän uudistaminen; palveluintegraatio; systeeminen muutos; vaikuttavuus; julkinen päätöksenteko.",
+          "position": 1,
+          "content": {
+            "body": "Osio kokoaa vielä kerran, mitä muutos vaatii. Liite tiivistää vaatimukset päätöksenteon kielelle.",
+            "note": "Muutos ei vaadi täydellistä varmuutta. Se vaatii, että näkyväksi tullut ongelma saa rakenteellisen vastauksen.",
+            "rows": [
+              [
+                "Metamittari",
+                "Järjestelmä mittaa myös mittaamisensa sivuvaikutuksia",
+                "Hyvät luvut voivat peittää huonon todellisuuden"
+              ],
+              [
+                "Kokonaisvastuu",
+                "Jollakin on mandaatti nähdä ja kantaa ihmisen polku yli rajojen",
+                "Ihminen joutuu itse koordinoimaan järjestelmän osia"
+              ],
+              [
+                "Rajapintojen omistaminen",
+                "Organisaatioiden väleihin rakennetaan työaika, tieto ja johtaminen",
+                "Ihminen katoaa juuri siirtymissä"
+              ],
+              [
+                "Budjettien silloitus",
+                "Ennaltaehkäisyn kustannus ja hyöty nähdään yli hallinnollisten rajojen",
+                "Korjaava työ voittaa aina varhaisen tuen"
+              ],
+              [
+                "Kokemustieto",
+                "Ihmisten arjen signaali vaikuttaa ongelman määrittelyyn ja päätöksiin",
+                "Kokemus jää palautteeksi ilman valtaa"
+              ],
+              [
+                "Poliittinen vastuu",
+                "Päätöksentekijä suostuu muuttamaan onnistumisen määritelmiä",
+                "Uusi logiikka jää projektiksi, puheeksi tai poikkeukseksi"
+              ]
+            ],
+            "headers": [
+              "Ehto",
+              "Mitä se tarkoittaa",
+              "Mitä tapahtuu ilman sitä"
+            ]
+          }
+        },
+        {
+          "chapter_position": 7,
+          "section_position": 4,
+          "type": "note",
+          "title": "Vilja on kysymys, ei tapaus",
+          "source": "Asiakaskokemus; palvelupolut; hallinnollinen taakka; sosiaalinen tunnustus; hyvinvoinnin kokemus.",
+          "position": 1,
+          "content": {
+            "body": "Osio palaa Viljaan lopuksi. Liite muistuttaa, että Vilja ei ole esimerkkihenkilö vain havainnollistamista varten vaan kirjan testi.",
+            "text": "Vilja ei ole tässä kirjassa tapaus, joka todistaa teorian. Hän on kysymys, jonka teoria joutuu kohtaamaan.\n\nJos uusi mittari ei muuta Viljan kokemusta, se ei riitä. Jos koordinaatiomalli ei vähennä hänen kuormaansa, se ei riitä. Jos päätöksenteko puhuu ennaltaehkäisystä mutta Vilja joutuu edelleen odottamaan, selittämään ja pelkäämään yksin, muutos ei ole vielä tapahtunut.\n\nYhden ihmisen tarina ei tietenkään riitä koko järjestelmän arviointiin. Mutta ilman yhden ihmisen tasoa järjestelmä voi jälleen onnistua abstraktisti ja epäonnistua todellisuudessa.",
+            "reader_shift": "Vilja muistuttaa, että järjestelmäuudistus on totta vasta, kun se näkyy ihmisen elämässä keventyneenä kuormana, vahvistuneena luottamuksena tai ajoissa saatuna apuna."
+          }
+        },
+        {
+          "chapter_position": 7,
+          "section_position": 5,
+          "type": "path",
+          "title": "Puuttuvan käsikirjoituksen kolme lukua",
+          "source": "Yhteiskunnallinen mielikuvitus; reformikertomukset; hyvinvointivaltion tulevaisuus; kompleksisuuden hallinta; poliittinen narratiivi.",
+          "position": 1,
+          "content": {
+            "body": "Osio puhuu käsikirjoituksesta, joka puuttuu. Liite jäsentää, millainen yhteinen tarina voisi tehdä muutoksen mahdolliseksi.",
+            "paths": [
+              {
+                "claim": "Hyvinvointijärjestelmän kriisi ei ole vain rahapula, vaan myös havainto-, vastuu- ja optimointikriisi.",
+                "price": "Se pakottaa myöntämään, että myös hyväntahtoiset järjestelmät voivat tehdä ihmisiä näkymättömiksi.",
+                "promise": "Keskustelu pääsee irti liian kapeasta kyllä/ei-leikkausasetelmasta.",
+                "condition": "1. Rehellinen diagnoosi"
+              },
+              {
+                "claim": "Onnistuminen tarkoittaa myös vältettyä kriisiä, keventynyttä hallinnollista taakkaa, säilynyttä luottamusta ja ajoissa nähtyä ihmistä.",
+                "price": "Se tekee päätöksenteosta vaikeampaa, koska kaikki arvokas ei palaudu yhteen lukuun.",
+                "promise": "Politiikka saa kielen sellaiselle arvolle, jota nykyiset mittarit usein aliarvioivat.",
+                "condition": "2. Uusi onnistumisen kuva"
+              },
+              {
+                "claim": "Mittareita, budjetteja, vastuita ja rajapintoja on muutettava, ei vain yksittäisiä palveluja.",
+                "price": "Se häiritsee olemassa olevia valtasuhteita ja onnistumisen määritelmiä.",
+                "promise": "Muutos voi siirtyä projektista järjestelmän ominaisuudeksi.",
+                "condition": "3. Rakenteellinen rohkeus"
+              }
+            ],
+            "reader_shift": "Puuttuva käsikirjoitus ei ole valmis suunnitelma. Se on jaettu tapa sanoa: tämän kriisin ytimessä on ihminen, jonka järjestelmä oppi näkemään väärin."
+          }
+        },
+        {
+          "chapter_position": 7,
+          "section_position": 6,
+          "type": "chain",
+          "title": "Sivilisaation toimintakyky: nähdä ihminen kompleksisuuden keskellä",
+          "source": "Kompleksiset yhteiskunnat; institutionaalinen kapasiteetti; sivilisaation resilienssi; hyvinvointivaltio; teknologinen hallinta.",
+          "position": 1,
+          "content": {
+            "body": "Osio muotoilee käsikirjoituksen syvimmän väitteen. Liite avaa sen ketjuna yksilöstä sivilisaatioon.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Yhteiskunta monimutkaistuu",
+                "consequence": "Suora kohtaaminen ei enää riitä, ja tarvitaan mittareita, organisaatioita, järjestelmiä ja teknologiaa."
+              },
+              {
+                "step": 2,
+                "event": "Järjestelmä oppii näkemään välineiden kautta",
+                "consequence": "Se saa hallintakykyä mutta samalla riskin kaventaa todellisuuden siihen, mitä välineet tunnistavat."
+              },
+              {
+                "step": 3,
+                "event": "Ihmisen kokemus alkaa kadota hallinnan sisään",
+                "consequence": "Järjestelmä voi onnistua prosessissa mutta epäonnistua siinä, mikä ihmiselle todella tapahtuu."
+              },
+              {
+                "step": 4,
+                "event": "Sivilisaatio rakentaa metamittareita ja vastuuta",
+                "consequence": "Se alkaa tarkkailla oman hallintansa sivuvaikutuksia ja korjata niitä ennen romahdusta."
+              },
+              {
+                "step": 5,
+                "event": "Toimintakyky säilyy",
+                "consequence": "Kompleksisuus ei merkitse ihmisen katoamista, vaan kykyä nähdä hänet uusilla, vastuullisemmilla tavoilla."
+              }
+            ],
+            "reader_shift": "Sivilisaation kypsyys ei näy vain siinä, kuinka paljon se pystyy mittaamaan. Se näkyy siinä, tunnistaako se milloin mittaaminen alkaa kadottaa sen, mitä sen piti suojella."
+          }
+        },
+        {
+          "chapter_position": 7,
+          "section_position": 7,
+          "type": "note",
+          "title": "Näkeminen velvoittaa",
+          "source": "Tunnustus; moraalinen vastuu; yhteiskunnallinen muutos; hyvinvointivaltion tulevaisuus; päätöksenteon etiikka.",
+          "position": 1,
+          "content": {
+            "body": "Päätösluvun viimeinen osio sulkee kirjan. Liite jättää jäljelle yhden ajatuksen: näkyväksi tekeminen ei ole neutraali teko.",
+            "text": "Kun jokin tulee näkyväksi, se ei enää ole samalla tavalla viaton. Niin kauan kuin ihminen katoaa järjestelmän väliin, voidaan sanoa, ettei kukaan tiennyt. Mutta kun katoamisen mekanismi on nimetty, tietämättömyyden suoja ohenee.\n\nNäkeminen velvoittaa, koska se muuttaa vastuun ehtoja. Se ei tarkoita, että kaikki voidaan ratkaista heti. Se tarkoittaa, että emme voi enää kutsua samaa sokeutta väistämättömäksi.\n\nKirjan viimeinen lause voisi siksi olla vähemmän päätös kuin alku: jos ihminen on vihdoin nähty, seuraava kysymys kuuluu, kuka muuttaa rakenteen niin, ettei hän katoa uudelleen.",
+            "reader_shift": "Näkyväksi tuleminen ei ole päätepiste. Se on hetki, jolloin vastuu vasta alkaa."
+          }
+        }
+      ]
+    }
+  ],
+  "series_links": [
+    {
+      "evidence_key": "path_dependency.debt_nordics_1995_2024",
+      "indicator_key": "macro.edp_debt_gdp",
+      "indicator_name": "Government debt to GDP ratio",
+      "external_project": "TTT-analyysi",
+      "external_project_ref": "yjkabgtbcgvrfqtewtna",
+      "geography": "Nordics",
+      "year_start": 1995,
+      "year_end": 2024,
+      "expected_j_codes": [
+        "FI",
+        "SE",
+        "NO",
+        "DK",
+        "IS"
+      ],
+      "data_role": "primary_series",
+      "note": "Phase 5 pilot linkage for prediction 6"
+    },
+    {
+      "evidence_key": "path_dependency.tfr_nordics_1995_2024",
+      "indicator_key": "indicator.syntyvyys_tfr",
+      "indicator_name": "Kokonaishedelmällisyysluku (TFR)",
+      "external_project": "TTT-analyysi",
+      "external_project_ref": "yjkabgtbcgvrfqtewtna",
+      "geography": "Nordics",
+      "year_start": 1995,
+      "year_end": 2024,
+      "expected_j_codes": [
+        "FI",
+        "SE",
+        "NO",
+        "DK",
+        "IS"
+      ],
+      "data_role": "primary_series",
+      "note": "Phase 5 pilot linkage for prediction 6"
+    }
+  ]
+}

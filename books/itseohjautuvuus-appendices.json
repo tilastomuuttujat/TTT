@@ -1,1 +1,1902 @@
-{"schema":"book-appendices.v1","exported_at":"2026-05-26T14:40:42.844Z","book":{"id":"9c6c2e8c-d0a3-4a25-9174-7baa308d8d61","slug":"itseohjautuvuus","title":"Itseohjautuvuus"},"chapters":[{"position":0,"slug":"johdanto-kuka-rakentaa-rakentajat","title":"Johdanto — Kuka rakentaa rakentajat?","appendices":[{"id":"1c073caf-d553-4098-a75f-38e322dcf0ef","chapter_position":0,"section_position":1,"type":"evidence","title":"Itseohjautuvuuden mittakaavan kasvu: mitä tutkimus osoittaa","source":null,"position":1,"content":{"body":"Johdannon väite — itseohjautuvuus ei ole enää yksilön ominaisuus vaan rakenteellinen kysymys — on dokumentoitu useista suunnista.","note":"Nämä luvut eivät kuvaa ihmisten kyvyttömyyttä — ne kuvaavat rakenteellista epätasapainoa autonomian ja läpinäkyvyyden välillä.","findings":[{"aihe":"Algoritmiset päätökset arjessa","havainto":"Euroopan komission arvion mukaan yli 70 % eurooppalaisista kohtaa vähintään yhden algoritmisesti ohjatun päätöksen viikossa — uutisvirran, työtarjouksen, luottopisteyden tai hakutulosrankingin muodossa. Euroopan komissio, Digital Economy and Society Index 2023."},{"aihe":"Platformitalous ja autonomia","havainto":"Kansainvälisen työjärjestön ILO:n raportti (2023) osoittaa, että noin 28 % EU:n alustatyöntekijöistä kokee, ettei heillä ole merkittävää sananvaltaa omiin työehtoihinsa — vaikka he ovat muodollisesti itsenäisiä yrittäjiä."},{"aihe":"Läpinäkymättömyyden kokemus","havainto":"Eurobarometri 2023: 67 % EU-kansalaisista kokee, etteivät he ymmärrä miten algoritmiset järjestelmät vaikuttavat heihin. Tietämättömyys on itseohjautuvuuden este."},{"aihe":"Ostromin periaatteet empiirisesti","havainto":"Ostromin Nobel-työ kattoi yli 100 itseohjautuvaa resurssiyhteisöä kuudella mantereella. Yhteinen havainto: toimivuus ei riipu ihmisten altruismista vaan rakenteesta. Nobel-komitean kooste 2009."}]}},{"id":"94b95eca-4bb3-48a3-93b7-e049d00e8f28","chapter_position":0,"section_position":2,"type":"chain","title":"Kolme ovea: miksi väärä reitti on houkutteleva","source":null,"position":2,"content":{"body":"Johdanto esittelee kolme ovea itseohjautuvuuteen. Tämä ketju selittää miksi kaksi ensimmäistä houkuttelevat — ja miksi ne eivät riitä.","steps":[{"step":1,"event":"Ongelma näyttää yksilöltä","consequence":"Luonteva reaktio: kouluta, motivoi, kannusta. Tulos: yksilöt paranevat, rakenne pysyy ennallaan — ongelma toistuu seuraavassa ihmisessä."},{"step":2,"event":"Ongelma näyttää tekniseltä","consequence":"Luonteva reaktio: automatisoi, optimoi, skaalaa. Tulos: tehokkuus kasvaa, mutta kuka ohjaa optimointia? Läpinäkymättömyys syvenee."},{"step":3,"event":"Ongelma tunnistetaan rakenteelliseksi","consequence":"Vaikein reitti: muuta sääntöjä, vastuita, tiedonkulkua. Hidasta, poliittisesti vaikeaa — mutta ainoa joka muuttaa tulosta pysyvästi."}],"reversal":"Kolmas ovi ei sulje kahta ensimmäistä. Yksilön kehitys ja teknologia ovat hyödyllisiä — kun ne on rakennettu kolmannen oven logiikalle."}}]},{"position":1,"slug":"luku-i-itseohjautuvuus-ei-ole-uusi-ilmio","title":"Luku I — Itseohjautuvuus ei ole uusi ilmiö","appendices":[{"id":"3cd97311-0a5c-4846-b1d7-454a4aa48a76","chapter_position":1,"section_position":1,"type":"timeline","title":"Itseohjautuvuuden historia: neljä murrosta","source":null,"position":1,"content":{"body":"Luku I väittää, että itseohjautuvuus ei ole uusi ilmiö — uutta on aikataulu, mittakaava ja läpinäkymättömyys. Tämä aikajana havainnollistaa historiallista jatkumoa.","events":[{"vuosi":"1600-luku","merkitys":"Hajautettu koordinaatio ilman keskusvaltaa — säännöt, roolit ja konfliktinratkaisu olivat yhteisön omia.","tapahtuma":"Viikinkien ja hansaliittolaisten kauppaosuuskunnat"},{"vuosi":"1800-luku","merkitys":"Teollisen vallankumouksen vastavoima: työläiset rakensivat omat järjestelmänsä kun markkinat eivät toimineet heidän hyväkseen.","tapahtuma":"Rochdale Pioneers ja osuustoimintaliike"},{"vuosi":"1960–1990","merkitys":"Globaali itseohjautuva tuotanto ilman omistajaa — osoitti että kompleksi tuotos on mahdollinen ilman hierarkiaa.","tapahtuma":"Avoimen lähdekoodin liike (Linux, GNU)"},{"vuosi":"2000–2010","merkitys":"55 miljoonan artikkelin kokonaisuus, jota ylläpitää vapaaehtoisyhteisö. Mittakaava ylitti kaikki ennusteet.","tapahtuma":"Wikipedia ja hajautettu tiedontuotanto"},{"vuosi":"2010–","merkitys":"Uusi murros: koordinaatio tapahtuu koodin kautta. Säännöt ovat näkymättömiä, mittakaava globaali, muutosnopeus ennätyksellinen.","tapahtuma":"Platformitalous ja algoritminen koordinaatio"}],"key_insight":"Jokaisessa murroksessa sama perusjännite: miten koordinoida toimintaa ilman keskitettyä kontrollia — ja kuka vastaa säännöistä?"}},{"id":"281b7971-1c53-42a8-a2a5-33234b6f8152","chapter_position":1,"section_position":2,"type":"evidence","title":"Mittakaavan kasvu: kolme historiallista vertailua","source":"Ostrom 1990; Airbnb Annual Report 2023","position":2,"content":{"body":"Luvun keskeinen argumentti: mittakaava on muuttunut laadullisesti. Tämä liite vertaa itseohjautuvien järjestelmien kokoa eri aikakausina.","source":"Ostrom 1990, Wheeler 2013, Airbnb Annual Report 2023","comparisons":[{"osallistujia":"28 perustajajäsentä, myöhemmin tuhansia","vaikutusalue":"Yksi kaupunki, myöhemmin kansallinen","järjestelmä":"Rochdale-osuuskunta (1844)"},{"osallistujia":"Yli 20 000 kehittäjää vuosittain","vaikutusalue":"Globaali — käytetään miljardissa laitteessa","järjestelmä":"Linux-ytimen kehitys (1991–)"},{"osallistujia":"4 miljoonaa isäntää, 150+ maata","vaikutusalue":"Globaali — algoritminen koordinaatio korvaa sopimukset","järjestelmä":"Airbnb-alusta (2008–)"}],"qualitative_shift":"Määrällinen kasvu tuottaa laadullisen muutoksen: kun järjestelmä ylittää tietyn koon, kukaan ei enää ymmärrä sitä kokonaan. Syntyy rakenteellinen läpinäkymättömyys."}},{"id":"85a70034-27af-4399-90d6-e4ae60d2687c","chapter_position":1,"section_position":6,"type":"evidence","title":"Mikä ei ole muuttunut: kolme pysyvää periaatetta","source":null,"position":3,"content":{"body":"Luku I päättää havaintoon: vaikka aikataulu, mittakaava ja läpinäkymättömyys ovat muuttuneet, tietyt itseohjautuvuuden ehdot ovat pysyneet samana.","principles":[{"periaate":"Säännöt täytyy voida kyseenalaistaa","nykypäivä":"Algoritmisten järjestelmien ehdot ovat usein muuttumattomia käyttäjille — tämä rikkoo periaatteen.","historiallinen_esimerkki":"Hansaliitto: kauppiaat neuvottelivat säännöt uudelleen kausittain. Jäykkyys johti hajoamiseen."},{"periaate":"Seurausten täytyy palata tekijälle","nykypäivä":"Alustat keräävät datan ja voiton — käyttäjä kantaa riskin ilman vastaavaa hyötyä.","historiallinen_esimerkki":"Osuuskunnat: ylijäämä jaetaan jäsenille suhteessa osallistumiseen. Vastuu ja hyöty kulkevat yhdessä."},{"periaate":"Konflikti täytyy voida ratkaista yhteisön sisällä","nykypäivä":"Alustakonfliktit ratkaistaan alustan ehdoilla — käyttäjällä ei ole realistista oikaisukeinoa.","historiallinen_esimerkki":"Inuiittien kalastusyhteisöt: kiista ratkaistiin yhteisön säännöillä, ei ulkoisella tuomioistuimella."}]}}]},{"position":2,"slug":"luku-ii-mika-pitaa-itseohjautuvuuden-suunnassa","title":"Luku II — Mikä pitää itseohjautuvuuden suunnassa","appendices":[{"id":"f0ee0221-74b9-4d34-a943-9c27ea69212b","chapter_position":2,"section_position":1,"type":"evidence","title":"Elinor Ostromin kahdeksan periaatetta: tutkimusnäyttö","source":"Ostrom 1990; Cox ym. 2010, PNAS","position":1,"content":{"body":"Luku II rakentuu Ostromin periaatteiden varaan. Tämä liite kokoaa empiirisen pohjan niiden taustalla.","principles":[{"numero":1,"näyttö":"Järjestelmät, joissa resurssit ja osallistujat on selkeästi rajattu, säilyvät kestävinä kolme kertaa todennäköisemmin (Ostrom 1990, meta-analyysi 48 yhteisöstä).","periaate":"Selkeästi määritellyt rajat"},{"numero":2,"näyttö":"Globaalit top-down-säännöt epäonnistuvat 60–70 % tapauksissa paikallisissa resurssiyhteisöissä. Paikallinen räätälöinti on ratkaiseva tekijä.","periaate":"Säännöt vastaavat paikallisia olosuhteita"},{"numero":3,"näyttö":"Cox ym. (2010): periaate 3 on vahvin yksittäinen ennustaja pitkäaikaiselle toimivuudelle kaikissa Ostromin tutkimissa yhteisöissä.","periaate":"Osallistujat voivat muuttaa sääntöjä"},{"numero":4,"näyttö":"Järjestelmät, joita valtio aktiivisesti tuki, toimivat paremmin kuin ne, joita ignoroitiin tai vastustettiin.","periaate":"Ulkopuolinen taho tunnustaa oikeuden itsesääntelyyn"},{"numero":5,"näyttö":"Ilman valvontaa vapaamatkustus lisääntyy eksponentiaalisesti järjestelmän koon kasvaessa.","periaate":"Valvontajärjestelmä on olemassa"},{"numero":6,"näyttö":"Ankara ensirangaistus johtaa poisjättäytymiseen — porrastus pitää osallistujat mukana ja korjaa käytöstä.","periaate":"Rikkomuksista seuraa porrastettu rangaistus"},{"numero":7,"näyttö":"Yhteisöt joissa kiista täytyi viedä ulkopuoliseen tuomioistuimeen hajoavat 2–3 kertaa nopeammin.","periaate":"Konfliktinratkaisumekanismit ovat saavutettavia"},{"numero":8,"näyttö":"Suurissa järjestelmissä monitasoisuus on välttämätön — ei yksi taso vaan sisäkkäiset tasot, joilla kullakin on oma autonomiansa.","periaate":"Päätöksenteko on monitasoista"}],"meta_finding":"Cox ym. (2010) meta-analyysi 91 tutkimuksesta: periaatteet 1, 3 ja 7 ovat vahvimmat selittäjät pitkäaikaiselle kestävyydelle."}},{"id":"2b15df65-bfbb-4218-80f9-cdc53193d6cd","chapter_position":2,"section_position":7,"type":"chain","title":"Algoritminen järjestelmä Ostromin linssillä: missä kohtaa rakenne pettää","source":null,"position":2,"content":{"body":"Luku II soveltaa Ostromin periaatteita algoritmisiin järjestelmiin. Tämä ketju näyttää, mitkä periaatteet rikkoutuvat ja millä seurauksilla.","steps":[{"step":1,"event":"Periaate 1 rikkoutuu: rajat epäselviä","consequence":"Kuka on järjestelmän osallistuja? Käyttäjä, kehittäjä, mainostaja, regulaattori? Epäselvyys estää vastuun määrittelyn."},{"step":2,"event":"Periaate 3 rikkoutuu: säännöt eivät muutu osallistujien toimesta","consequence":"Käyttöehdot kirjoittaa yritys. Käyttäjällä ei ole muutosmahdollisuutta — ainoa keino on poistua järjestelmästä."},{"step":3,"event":"Periaate 5 rikkoutuu: valvonta on epäsymmetristä","consequence":"Alusta valvoo käyttäjiä täydellisesti — käyttäjillä ei ole vastaavaa näkyvyyttä alustan toimintaan."},{"step":4,"event":"Periaate 7 rikkoutuu: konfliktinratkaisu ei ole saavutettavissa","consequence":"Tilinsulkeminen tai sisällönpoisto voidaan tehdä ilman perustelua. Valitusmahdollisuus on muodollinen, ei todellinen."},{"step":5,"event":"Vapaamatkustus kasvaa, luottamus laskee","consequence":"Ilman toimivaa valvontaa ja konfliktinratkaisua järjestelmä ajautuu kohti kenen hyvänsä tragediaa: jokainen optimoi omaa hyötyään yhteisen kustannuksella."}],"conclusion":"Algoritminen järjestelmä ei automaattisesti riko Ostromin periaatteita — mutta sen nykymalli rikkoo systemaattisesti periaatteita 3, 5 ja 7. Nämä ovat juuri ne, joilla on suurin empiirinen selitysvoima."}},{"id":"aa854a5f-cdfc-4436-a8af-701d43bbd320","chapter_position":2,"section_position":4,"type":"evidence","title":"Kolme rakenteellista ominaisuutta muissa itseohjautuvissa järjestelmissä","source":null,"position":3,"content":{"body":"Luku II tiivistää: toimiva itseohjautuvuus tarvitsee kolme rakenteellista ominaisuutta — tieto sijaitsee kokemuksessa, seuraukset palaavat tekijälle, konflikti on mahdollinen. Tämä liite osoittaa saman rakenteen eri konteksteissa.","examples":[{"tieto":"Tieto sijaitsee alan osaajilla, ei ministeristöissä","seuraus":"Sopimukset sitovat sopijapuolia — molemmat kantavat riskin","konflikti":"Lakko-oikeus on laillinen — konflikti on järjestelmän osa, ei häiriö","järjestelmä":"Suomalainen työmarkkinaneuvottelu (TES-järjestelmä)"},{"tieto":"Tieto sijaitsee tutkijoilla ja kliinikoilla","seuraus":"Virheellinen julkaisu voidaan vetää takaisin — maine on henkilökohtainen","konflikti":"Tieteellinen kiista on normaalia — se tuottaa parempaa tietoa","järjestelmä":"Lääketiede ja vertaisarviointi"},{"tieto":"Tieto sijaitsee koodarilla joka kohtaa ongelman","seuraus":"Bugikorjaus menee henkilön nimiin — tunnustus on palkkio","konflikti":"Fork on laillinen — yhteisö voi haarautua erimielisyyden kohdalla","järjestelmä":"Open source -yhteisö (Linux)"}],"structural_pattern":"Kaikissa kolmessa: tieto + vastuu + konfliktimahdollisuus muodostavat yhdessä palautejärjestelmän joka korjaa itseään."}}]},{"position":3,"slug":"luku-iii-tieto-sijaitsee-siella-missa-on-kokemus","title":"Luku III — Tieto sijaitsee siellä missä on kokemus","appendices":[{"id":"9fc1a0e3-d326-4bc0-b39d-7a9ecf5ec920","chapter_position":3,"section_position":1,"type":"evidence","title":"Hayekin hajautetun tiedon ongelma: empiiriset sovellukset","source":"Hayek 1945, American Economic Review","position":1,"content":{"body":"Luku III rakentuu Hayekin argumentille: hinnat ovat tiedon välittämismekanismi. Tämä liite laajentaa argumentin järjestelmiin jotka eivät käytä hintoja.","hayek_core":"Hayek (1945): paikallistieto on luonteeltaan hiljaista, hajautettua ja muuttuvaa. Sitä ei voi koota yhteen paikkaan ilman huomattavaa häviötä.","applications":[{"tulos":"Hintatiedon puuttuminen johti systemaattisiin vääristymiin — ylituotantoon joissakin tuotteissa, puutteisiin toisissa. Tieto ei kulkenut suunnittelijoille riittävän nopeasti.","konteksti":"Neuvostoliiton suunnitelmatalous"},{"tulos":"Hoitosuositukset kirjoitetaan kliinisistä tutkimuksista — mutta sairaanhoitajalla on hiljainen tieto yksittäisen potilaan voinnista. Kun tämä tieto ohitetaan, virheet kasvavat.","konteksti":"Sairaanhoitajan tieto potilaan tilasta"},{"tulos":"Standardoitu opetussuunnitelma ei tavoita yksittäisen luokan tarpeita. Opettajalla on tieto — mutta ei aina rakenteellista mahdollisuutta soveltaa sitä.","konteksti":"Opettajan tieto luokan dynamiikasta"},{"tulos":"Globaalit ilmastosopimukset epäonnistuvat usein paikallisessa toimeenpanossa, koska paikallinen tieto maankäytöstä ja ekosysteemeistä puuttuu suunnittelusta.","konteksti":"Paikallinen ympäristötieto"}],"algorithmic_twist":"Algoritminen järjestelmä kerää käyttäytymistietoa laajemmin kuin koskaan — mutta tuo tieto tulee alustan käyttöön, ei käyttäjän. Hayekin ongelma kääntyy: tieto on olemassa, mutta se on epäsymmetrisesti hallussa."}},{"id":"32a368e9-9950-4f60-b4e9-4dac86e1fc5f","chapter_position":3,"section_position":2,"type":"chain","title":"Tiedon keskittyminen algoritmisessa järjestelmässä: viisi vaihetta","source":null,"position":2,"content":{"body":"Luku III kuvaa kuinka algoritminen järjestelmä luo uudenlaisen tiedon keskittymisen. Tämä ketju näyttää mekanismin.","steps":[{"step":1,"event":"Käyttäjä toimii alustalla","consequence":"Jokainen klikkaus, viipyminen, haku tallentuu. Käyttäjä ei tiedä mitä kerätään tai miten sitä käytetään."},{"step":2,"event":"Data jalostuu malliksi","consequence":"Alusta rakentaa ennustemallin: mitä tämä käyttäjä tekee seuraavaksi? Malli on arvokas juuri siksi, että käyttäjä ei tiedä sen olemassaolosta."},{"step":3,"event":"Malli ohjaa käyttäjän toimintaa","consequence":"Suositukset, järjestykset, hinnat — kaikki on optimoitu mallin perusteella. Käyttäjä luulee valitsevansa vapaasti."},{"step":4,"event":"Käyttäjä ei pääse käsiksi omaan dataansa","consequence":"GDPR antaa oikeuden pyytää data — mutta raakadata ilman kontekstia on hyödytöntä. Malli itsessään on salainen."},{"step":5,"event":"Epätasapaino syvenee","consequence":"Alusta tietää käyttäjästä enemmän kuin käyttäjä itse. Ostromin periaate 3 ei voi toteutua ilman tietoa siitä, mitkä säännöt ovat."}],"reversal":"Federoitunut malli kääntää suunnan: data pysyy käyttäjällä, alusta saa rajatun pääsyn. Tieto palaa sinne missä kokemus on."}},{"id":"832444aa-be49-459a-bf3a-56d49d18b0c4","chapter_position":3,"section_position":9,"type":"evidence","title":"Mitä hajautettu tietomalli tarkoittaa Suomelle","source":"Findata.fi; MyData Global 2023","position":3,"content":{"body":"Luku III päättyy sovellukseen Suomen kontekstiin. Tämä liite kokoaa tilanteen ja mahdollisuudet.","current_state":[{"alue":"Terveydenhuolto","tilanne":"Kanta-arkisto on edistysaskel, mutta potilastiedon hyödyntäminen tutkimuksessa ja hoidossa on edelleen rajoitettua tietosuojakysymysten takia."},{"alue":"Koulutus","tilanne":"Oppilaiden oppimisdata kerätään hajautetusti eri järjestelmiin — kokonaiskuva puuttuu sekä oppilaalta, opettajalta että vanhemmalta."},{"alue":"Sosiaalipalvelut","tilanne":"Asiakastieto ei kulje sektorien välillä. Sama henkilö voi olla tuntematon uudelle toimijalle, vaikka on asioinut järjestelmässä vuosia."}],"opportunities":[{"kuvaus":"Suomi on MyData-liikkeen syntysijoilla. Periaate: yksilö hallitsee omaa dataansa ja voi antaa siihen rajatun pääsyn palveluille.","mahdollisuus":"MyData-malli"},{"kuvaus":"Suomen toisiolaki mahdollistaa terveystiedon tutkimuskäytön — malli joka yhdistää yksityisyydensuojan ja tiedon hyödyntämisen.","mahdollisuus":"Findata"},{"kuvaus":"Pohjoismaat jakavat lainsäädännöllisen kulttuurin — yhteinen datamalli voisi olla globaali standardi.","mahdollisuus":"Pohjoismainen yhteistyö"}],"structural_requirement":"Tieto ei palaa kokemuksen luo automaattisesti. Se vaatii poliittisen päätöksen siitä, kenelle data kuuluu — ja rakenteellisen ratkaisun sen toteuttamiseksi."}}]},{"position":4,"slug":"luku-iv-seuraukset-palaavat-tekijalle","title":"Luku IV — Seuraukset palaavat tekijälle","appendices":[{"id":"27823026-c902-4cd5-8de2-b19cbe504448","chapter_position":4,"section_position":1,"type":"evidence","title":"Kolme tapaa jolla seuraus karkaa: empiiriset esimerkit","source":null,"position":1,"content":{"body":"Luku IV argumentoi, että toimiva itseohjautuvuus vaatii seurausten palautumisen tekijälle. Tämä liite dokumentoi kolme mekanismia, joilla seuraus karkaa.","mechanisms":[{"esimerkki":"Subprime-asuntolainat 2008: lainoittajat saivat palkkion heti, seuraukset koituivat muille vuosia myöhemmin. Aikajänteen epäsymmetria mahdollisti riskinoton ilman vastuuta.","mekanismi":"Aika erottaa teon ja seurauksen","algoritminen_vastine":"Sosiaalisen median algoritmi optimoi sitoutumista nyt — mielenterveysvaikutukset näkyvät vuosien päästä."},{"esimerkki":"Monikansallinen yritys siirtää saastuttavan tuotannon matalan sääntelyn maahan. Päätöksentekijä ei koe seurauksia.","mekanismi":"Etäisyys erottaa teon ja seurauksen","algoritminen_vastine":"Algoritmisen suosittelun suunnittelijat eivät käytä samaa tuotetta kuin käyttäjät — heidän informaatioympäristönsä on erilainen."},{"esimerkki":"Kalastusyhteisö: jokainen kalastaja tekee rationaalisen päätöksen, tulos on ylikalastus. Kukaan ei ole yksin vastuussa — kaikki ovat.","mekanismi":"Kollektiivisuus erottaa teon ja seurauksen","algoritminen_vastine":"Disinformaatio: jokainen jakaminen on pieni teko, kollektiivinen tulos voi olla merkittävä yhteiskunnallinen haitta."}],"structural_implication":"Vastuu ei seuraa automaattisesti tekoa. Se täytyy rakentaa sisään järjestelmään — aikatauluttamalla, paikantamalla, kollektiivin sisällä."}},{"id":"39d0cf92-5694-4df3-9ce0-9e2560df9545","chapter_position":4,"section_position":4,"type":"evidence","title":"Mikä on jo toiminut: vastuun rakenteelliset ratkaisut","source":null,"position":2,"content":{"body":"Luku IV etsii toimivia malleja. Tämä liite dokumentoi järjestelmiä, joissa seuraukset on onnistuttu palauttamaan tekijälle rakenteellisesti.","cases":[{"maa":"Suomi ja EU","tulos":"Rakennuslaatu on parantunut. Takuujärjestelmä muuttaa laskelman: virheen korjaaminen on kalliimpaa kuin tekeminen oikein kerralla.","tapaus":"Rakennusalan takuujärjestelmä","mekanismi":"Rakentaja vastaa virheistä 10 vuoden ajan. Vastuu on henkilökohtainen ja ajallinen — rakentaja kantaa seurauksen, vaikka asiakas on jo muuttanut sisään."},{"maa":"Pohjoismaat","tulos":"Seurattavuus luo kannusteen varovaisuuteen — ei pelosta, vaan rakenteesta.","tapaus":"Lääkärin ammatillinen vastuu","mekanismi":"Lääkärin virhe voi johtaa ammattioikeuden menettämiseen. Vastuu on henkilökohtainen, läpinäkyvä ja pitkäaikainen."},{"maa":"EU","tulos":"Epätäydellinen mutta suunnan muuttava: yritykset sisällyttävät ympäristökustannuksen laskelmiin silloin kun valvonta toimii.","tapaus":"Ympäristövastuu (saastuttaja maksaa)","mekanismi":"Saastuttaminen on laillisesti sidottu puhdistusvelvoitteeseen. Ympäristövahinko ei voi enää olla ulkoistettu kustannus."}],"common_thread":"Kaikissa: vastuu on etukäteen sovittu, konkreettinen ja sidottu tekijään — ei teoreettinen moraalinen vaatimus."}},{"id":"d7a78cdd-5117-451a-ab3f-d8c03762f4ed","chapter_position":4,"section_position":5,"type":"chain","title":"Algoritminen vastuu: nykytila ja puutteet","source":null,"position":3,"content":{"body":"Luku IV soveltaa vastuuperiaatteen algoritmisiin järjestelmiin. Tämä ketju kuvaa nykytilan ja sen rakenteelliset aukot.","steps":[{"step":1,"event":"Algoritmi suosittelee sisältöä","consequence":"Käyttäjä altistuu sisällölle — algoritmia ei ole suunniteltu ottamaan vastuuta siitä, mitä hän kohtaa."},{"step":2,"event":"Haitta ilmenee","consequence":"Disinformaatio leviää, polarisaatio kasvaa, nuorten mielenterveys kärsii. Tutkimus dokumentoi yhteyden — syy-seuraussuhde on kiistelty."},{"step":3,"event":"Vastuu hajaantuu","consequence":"Alusta: emme tuottaneet sisältöä. Sisällöntuottaja: emme rakentaneet algoritmia. Mainostaja: emme tienneet minkä vieressä mainos näkyy. Ketään ei voida yksiselitteisesti osoittaa."},{"step":4,"event":"Regulaatio yrittää tavoittaa","consequence":"EU:n Digital Services Act (2023) alkaa muuttaa tätä: alustan täytyy arvioida systeemisiä riskejä ja vastata niistä. Mutta toimeenpano on kesken."},{"step":5,"event":"Rakenteellinen aukko jää","consequence":"Yksilöllinen ja ajallinen vastuu puuttuu: kuka suunnittelija henkilökohtaisesti kantaa seurauksen? Millä aikavälillä vaikutuksia mitataan?"}],"required_shift":"Vastuun rakentaminen algoritmisiin järjestelmiin ei ole mahdoton tehtävä — mutta se vaatii sen hyväksymistä, että koodikin on teko, josta seuraa vastuu."}},{"id":"f49bb9d6-a29c-4ee9-a772-2d2f72efae30","chapter_position":4,"section_position":7,"type":"evidence","title":"Suomalainen sovellus: vastuun rakenne julkisissa järjestelmissä","source":"Oikeusministeriö; VTV 2023","position":4,"content":{"body":"Luku IV päättyy Suomen kontekstiin. Tämä liite kartoittaa, miten vastuuperiaate toteutuu suomalaisissa julkisissa järjestelmissä — ja missä aukot ovat.","gaps":[{"aukko":"Algoritmisten päätösten vastuu","kuvaus":"Kun kunta tai Kela käyttää algoritmista päätöstukea, kuka vastaa virheellisestä päätöksestä? Laki ei vastaa tähän yksiselitteisesti."},{"aukko":"Pitkän aikavälin vastuu","kuvaus":"Poliitikon vastuu on vaalikauden mittainen. Päätösten seuraukset voivat näkyä vasta seuraavalla sukupolvella."}],"strengths":[{"kuvaus":"Suomessa virkamiehen henkilökohtainen vastuu on kirjattu lakiin. Tämä on poikkeuksellista globaalisti — useimmissa maissa vastuu on organisaatiolla, ei yksilöllä.","vahvuus":"Virkavastuu"},{"kuvaus":"Kansalainen voi kannella julkishallinnon toiminnasta ilmaiseksi. Matala kynnys + ulkopuolinen arvioija = toimiva palautekanava.","vahvuus":"Eduskunnan oikeusasiamies"},{"kuvaus":"Valtiontalouden tarkastusvirasto auditoi julkisten varojen käytön. Tulos on julkinen — läpinäkyvyys on rakennettua, ei vapaaehtoista.","vahvuus":"Tilintarkastus ja VTV"}]}}]},{"position":5,"slug":"luku-v-konflikti-on-terveen-jarjestelman-merkki","title":"Luku V — Konflikti on terveen järjestelmän merkki","appendices":[{"id":"4bb7b7f1-8822-4451-8a3c-27a94feb5319","chapter_position":5,"section_position":2,"type":"evidence","title":"Ostromin viides periaate: konfliktin institutionalisointi","source":"Ostrom 1990; Aronson & Patnoe 2011","position":1,"content":{"body":"Luku V rakentuu väitteen varaan: konflikti ei ole järjestelmän häiriö vaan sen terveydentilan mittari. Tämä liite avaa Ostromin viidettä periaatetta empiirisesti.","principle":"Viides periaate: rikkomuksista seuraa porrastettu rangaistus. Taustalla laajempi logiikka: konfliktin täytyy olla mahdollinen ja ratkaistavissa sisäisesti.","empirical_basis":[{"lähde":"Ostrom 1990, tapaustutkimukset Sveitsin vuoristokylistä: yhteisöt joilla oli säännölliset kokoukset ja dokumentoidut kiistat kestivät pidempään kuin ne joissa konflikti puuttui.","havainto":"Yhteisöt joissa ei ole konfliktihistoriaa eivät ole välttämättä terveitä — ne voivat olla hiljennetty"},{"lähde":"Ensimmäinen rikkomus: muistutus. Toinen: pieni rangaistus. Kolmas: poissulkeminen. Tämä rakenne esiintyy riippumattomasti eri kulttuureissa ja kontinenteilla.","havainto":"Porrastettu rangaistus on empiirinen löydös, ei moraalinen valinta"},{"lähde":"Aronson & Patnoe 2011: ryhmät joissa konfliktia ei sallita kehittävät piilotettuja hierarkioita ja epävirallisia koalitioita.","havainto":"Konfliktin poistaminen ei poista erimielisyyttä — se ajaa sen maan alle"}],"counterintuitive":"Järjestelmä ilman näkyvää konfliktia voi olla sairas: joko dominanssi on niin suuri ettei kukaan uskalla kiistää, tai erimielisyydet on pakotettu muualle."}},{"id":"f7833d53-72f8-4385-9429-d260ecc97252","chapter_position":5,"section_position":3,"type":"evidence","title":"Demokratia konfliktijärjestelmänä: kolme esimerkkiä","source":null,"position":2,"content":{"body":"Luku V vertaa algoritmisia järjestelmiä demokratiaan. Tämä liite osoittaa, miten demokratia institutionalisoi konfliktin — ja mitä siitä voi oppia.","examples":[{"järjestelmä":"Suomen eduskunta","konfliktin_rooli":"Äänestys on muodollistettu konflikti: erimielisyys ratkaistaan laskemalla, ei eliminoimalla. Vähemmistöllä on ääni tulevaisuutta varten.","institutionaalinen_rakenne":"Oppositio on virallinen rooli, ei häiriö. Oppositiojohtajalla on asema ja resurssit — konflikti on arvokas."},{"järjestelmä":"Suomalainen työmarkkinajärjestelmä","konfliktin_rooli":"Lakko on laillinen — työnantajan ja työntekijän konflikti on järjestelmän osa. Lakottomana kautena on sovittu luottamus; lakkokaudella on sovittu ratkaisu.","institutionaalinen_rakenne":"Sovittelujärjestelmä: kun osapuolet eivät pääse sopuun, valtakunnansovittelija astuu kuvaan. Kolmas osapuoli on rakennettu järjestelmään."},{"järjestelmä":"Tiedeyhteisö","konfliktin_rooli":"Vertaisarviointi on muodollistettu kritiikki. Julkaiseminen on altistumista konfliktille — tieto paranee kiistelyn kautta.","institutionaalinen_rakenne":"Vetäminen (retraction) on rakennettua: jos tulos on väärä, se poistetaan. Virheiden korjaaminen on normaalia, ei skandaali."}],"algorithmic_contrast":"Algoritminen järjestelmä ei institutionalisoi konfliktia — se suodattaa sen. Sisältömoderointi poistaa erimielisyyden. Suosittelualgoritmi rakentaa kaikukammion. Konflikti ei poistu — se muuttaa muotoaan."}},{"id":"801725cf-100c-456d-8cbf-e9e707c667f0","chapter_position":5,"section_position":6,"type":"chain","title":"Miten algoritminen järjestelmä käsittelee konfliktia: neljä vaihetta","source":null,"position":3,"content":{"body":"Luku V osoittaa, että algoritminen järjestelmä ei institutionalisoi konfliktia vaan muuttaa sen muotoa. Tämä ketju kuvaa mekanismin.","steps":[{"step":1,"event":"Erimielisyys ilmenee alustalla","consequence":"Algoritmi tunnistaa sen negatiivisena signaalina tai positiivisena sitoutumisen mukaan — riippuen siitä, pitääkö polarisoiva sisältö käyttäjän alustalla."},{"step":2,"event":"Algoritmi optimoi sitoutumisen mukaan","consequence":"Polarisoiva sisältö saa enemmän näkyvyyttä — se pitää käyttäjän alustalla. Erimielisyys muuttuu viihteeksi."},{"step":3,"event":"Käyttäjä ei kohtaa erimielisyyttä suoraan","consequence":"Kaikukammio: suositukset vahvistavat olemassa olevia näkemyksiä. Haastaminen vähenee — mutta erimielisyys ei katoa, se vain siirtyy toiselle alustalle tai kasvokkaiseen kohtaamiseen ilman sovittelurakenteita."},{"step":4,"event":"Konflikti purkautuu hallitsemattomasti","consequence":"Kun järjestelmä ei institutionalisoi konfliktia, se purkautuu sen ulkopuolella: katuväkivaltana, poliittisena radikalisoitumisena, tai täydellisenä vetäytymisenä julkisesta diskurssista."}],"design_question":"Voiko algoritminen järjestelmä institutionalisoida konfliktin? Ei poistaa sitä, vaan rakentaa sille kanavan — kuten demokratia tekee?"}},{"id":"5d0aefd9-1ef5-4ac3-b25c-39fa1b9faeae","chapter_position":5,"section_position":8,"type":"evidence","title":"Suomalainen näkökulma: konfliktin kulttuuri ja sen rakenteet","source":"Eurobarometri 2023; Valtioneuvoston kanslia","position":4,"content":{"body":"Luku V päättyy suomalaiseen kontekstiin. Suomella on erityinen suhde konfliktiin — sekä historiallinen trauma että rakenteelliset vahvuudet.","current_strengths":[{"kuvaus":"Palkansaajat, työnantajat ja valtio neuvottelevat yhdessä. Konflikti on institutionalisoitu — ei poistettu.","vahvuus":"Kolmikantaneuvottelu"},{"kuvaus":"Suomessa on yli 300 kuntaa — paikallistason päätöksenteko lähellä asukasta. Pienen mittakaavan konflikti on hallittavampaa.","vahvuus":"Kunnallinen demokratia"},{"kuvaus":"Suomessa luotetaan tuomioistuimiin poikkeuksellisen paljon (Eurobarometri 2023). Institutionaalinen konfliktinratkaisu koetaan oikeudenmukaiseksi.","vahvuus":"Oikeuskulttuurin vahvuus"}],"current_challenges":[{"haaste":"Konsensuksen paine","kuvaus":"Vahva konsensuskulttuuri voi tukahduttaa tärkeän erimielisyyden. Kritiikki voidaan torjua hankalana eikä tärkeänä."},{"haaste":"Algoritminen tila suomeksi","kuvaus":"Suomenkielinen julkinen tila on pieni — disinformaatio ja polarisaatio voivat levitä nopeasti pienessä kieliyhteisössä."}],"historical_context":"Talvisodan kokemus ja jälleenrakennus: konsensuskulttuuri rakentui tietoisesti tilanteessa jossa konflikti olisi ollut kohtalokasta. Konsensus oli selviytymisstrategia."}}]},{"position":6,"slug":"luku-vi-yhteiso-joka-rakentaa-rakentajat","title":"Luku VI — Yhteisö joka rakentaa rakentajat","appendices":[{"id":"f541b4f5-8125-4309-b5ce-0a9276d00056","chapter_position":6,"section_position":2,"type":"evidence","title":"Mikä yhteisöä rakentaa: kolme empiiristä löydöstä","source":"Axelrod 1984; Sherif 1954; Deci & Ryan 2000","position":1,"content":{"body":"Luku VI kysyy: jos itseohjautuvuus vaatii yhteisön, mikä rakentaa sen? Tämä liite kokoaa kolme keskeistä tutkimuslöydöstä.","findings":[{"löydös":"Toistuvat kohtaamiset luovat luottamusta","sovellus":"Digitaalinen yhteisö jossa käyttäjät vaihtuvat jatkuvasti ei rakenna luottamusta. Pysyvyys on edellytys.","tutkimus":"Axelrod (1984): toistuvassa vangin dilemmassa yhteistyö kehittyy ilman sopimusta, kun osapuolet tietävät kohtaavansa uudelleen. Kertaluontoisessa kohtaamisessa vapaamatkustus dominoi."},{"löydös":"Yhteinen kokemus luo yhteenkuuluvuutta","sovellus":"Yhteinen projekti, ei yhteinen paikka, rakentaa yhteisöä.","tutkimus":"Sherif (1954, Robbers Cave): kilpailevat ryhmät integroituivat ainoastaan kun heillä oli yhteinen haaste joka vaati yhteistyötä. Pelkkä läheisyys ei riittänyt."},{"löydös":"Tunnustus ja näkyvyys ovat välttämättömiä","sovellus":"Anonyymi yhteisö voi olla suuri mutta heikko. Tunnistettavuus luo vastuun — ja kuulumisen.","tutkimus":"Deci & Ryan (itsemääräämisen teoria): yhteisöön kuuluminen on perustarve — mutta se täyttyy vain kun yksilö kokee olevansa näkyvä ja tunnustettu."}],"synthesis":"Yhteisöä ei rakenneta kokoamalla ihmisiä yhteen. Se rakentuu toistuvista kohtaamisista + yhteisestä haasteesta + keskinäisestä tunnustuksesta."}},{"id":"166da5fe-4c96-4552-81b3-1eb3029ce72b","chapter_position":6,"section_position":3,"type":"chain","title":"Kolme kerrosta yhteisöä: miten ne rakentuvat ja hajoavat","source":null,"position":2,"content":{"body":"Luku VI esittelee kolme yhteisön kerrosta. Tämä ketju kuvaa miten ne rakentuvat — ja missä järjestyksessä ne hajoavat.","layers":[{"nimi":"Välitön yhteisö (perhe, lähipiiri)","kerros":1,"hajoaminen":"Hajoaa etäisyyden kasvaessa tai luottamuksen murtuessa. Digitaalinen läheisyys ei korvaa fyysistä.","rakentuminen":"Syntyy toistuvista kasvokkaisista kohtaamisista. Ei vaadi yhteistä tavoitetta — riittää yhteinen tila ja aika."},{"nimi":"Toiminnallinen yhteisö (harrastukset, työ, paikallisuus)","kerros":2,"hajoaminen":"Hajoaa kun yhteinen toiminta päättyy tai sen tarkoitus katoaa. Rakenteet eivät automaattisesti siirry uuteen kontekstiin.","rakentuminen":"Rakentuu yhteisen toiminnan ympärille. Vaatii toistuvuuden — kertaluontoinen kohtaaminen ei riitä."},{"nimi":"Abstrakti yhteisö (kansallisuus, arvoyhteisö, globaali)","kerros":3,"hajoaminen":"Hajoaa kun yhteinen narratiivi murtuu tai kilpailevat narratiivit voimistuvat. Algoritminen polarisaatio kohdistuu juuri tähän kerrokseen.","rakentuminen":"Rakentuu jaettujen narratiivien ja symbolien varaan. Ei vaadi kasvokkaisuutta — mutta vaatii jotain yhteistä mihin uskoa."}],"sequence":"Kolmas kerros on heikoin — se rakentuu viimeiseksi ja hajoaa ensimmäiseksi. Vahva abstrakti yhteisö vaatii pohjakseen vahvan toiminnallisen yhteisön."}},{"id":"8cc32321-2476-4297-8db4-157b89fc8aa0","chapter_position":6,"section_position":5,"type":"evidence","title":"Suomi ja EU: itseohjautuvuuden kaksi mittakaavaa","source":"Edelman Trust Barometer 2024; Eurobarometri 2023","position":3,"content":{"eu":[{"arvio":"450 miljoonaa ihmistä, 27 valtiota, 24 virallista kieltä. Mittakaava tekee itseohjautuvuudesta laadullisesti erilaisen haasteen.","ulottuvuus":"Koko"},{"arvio":"EU on itsessään itseohjautuva järjestelmä — jäsenvaltiot ovat osallistujia joilla on oma autonomia. Ostromin monitasoisuus on sen perustava rakenne.","ulottuvuus":"Rakenne"},{"arvio":"EU:n päätöksenteko on monille kansalaisille läpinäkymätöntä — tämä on itseohjautuvuuden este. Osallistuminen vaatii ymmärrystä siitä miten järjestelmä toimii.","ulottuvuus":"Läpinäkymättömyys"}],"body":"Luku VI pohtii kahta mittakaavaa: Suomen sisäistä ja EU-tasoista. Tämä liite vertaa niiden vahvuuksia ja heikkouksia itseohjautuvuuden rakentamisessa.","finland":[{"arvio":"5,5 miljoonaa ihmistä on hallittava mittakaava. Poliitikko, virkamies ja kansalainen voivat kohdata. Verkostot ovat ohuita mutta olemassa.","ulottuvuus":"Koko"},{"arvio":"Suomi on maailman luotetuimpia maita instituutioihin kohdistuvassa luottamuksessa (Edelman Trust Barometer 2024). Tämä on itseohjautuvuuden raaka-aine.","ulottuvuus":"Luottamus"},{"arvio":"Suuri homogeenisuus on lyhyen aikavälin vahvuus mutta pitkän aikavälin riski: miten rakenteet toimivat kun väestö monimuotoistuu?","ulottuvuus":"Yhtenäisyys"}],"synthesis":"Suomi voi toimia EU:n sisällä kokeilukenttänä: riittävän pieni skaalata nopeasti, riittävän vahva institutionaalisesti, riittävän luotettu rakentaa uutta."}},{"id":"7bde6bba-c937-408f-9c6c-e873fe784d77","chapter_position":6,"section_position":6,"type":"calculation","title":"Konkreettinen polku: mitä itseohjautuva algoritminen järjestelmä voisi tarkoittaa Suomessa","source":null,"position":4,"content":{"body":"Luku VI päättyy konkreettiseen polkuun. Tämä liite hahmottelee, mitä Ostromin periaatteisiin perustuva algoritminen järjestelmä tarkoittaisi käytännössä.","steps":[{"vaihe":1,"toimenpide":"Määritellään rajat","kustannus_arvio":"Hallinnollinen investointi: arviolta 20–40 MEUR vuotuinen regulaattorikapasiteetti","mitä_tarkoittaa":"Mikä algoritminen järjestelmä on julkisesti sääntelyä vaativa? EU:n AI Act tekee tätä — Suomi voi implementoida kunnianhimoisesti."},{"vaihe":2,"toimenpide":"Käyttäjille oikeus muuttaa sääntöjä","kustannus_arvio":"Käyttöliittymäinvestointi: kohtuullinen — vaatii tahtoa enemmän kuin rahaa","mitä_tarkoittaa":"Ei tarkoita että jokainen päättää algoritmin koodista — tarkoittaa selkeitä valintoja jotka ovat aidosti käyttäjällä: kuinka paljon personointia, minkä tyyppiset sisällöt."},{"vaihe":3,"toimenpide":"Systeemisten riskien arviointi julkiseksi","kustannus_arvio":"Resursointi: 5–10 henkilöä Traficomiin tai vastaavaan viranomaiseen","mitä_tarkoittaa":"Suuret alustat tekevät riskiarvioinnin DSA:n mukaan — Suomi voi vaatia suomenkielisen yhteenvedon ja julkisen palautemenettelyn."},{"vaihe":4,"toimenpide":"Konfliktinratkaisumalli","kustannus_arvio":"Olemassa olevan rakenteen laajentaminen — ei uutta organisaatiota","mitä_tarkoittaa":"Kuluttajariitalautakunnan tyyppinen, matalan kynnyksen valitusjärjestelmä algoritmisiin päätöksiin: tilinsulkeminen, sisällönpoisto, hinnoittelu."}],"caveat":"Nämä ovat rakenteellisia skenaarioita — eivät teknisiä spesifikaatioita tai poliittisia suosituksia.","timeline":"Polku on mahdollinen nykyisen EU-lainsäädännön puitteissa. Vaatii poliittisen päätöksen priorisoinnista."}}]},{"position":7,"slug":"paatosluku-rakenne-joka-vastaa","title":"Päätösluku — Rakenne joka vastaa","appendices":[{"id":"db2ddf8e-3c73-4798-b0e3-0bcdfbbbe45f","chapter_position":7,"section_position":1,"type":"evidence","title":"Yksilön ja rakenteen suhde: kolmas tapa tutkimuksen valossa","source":"Sen 1999; Ostrom 1990; Hirschman 1970","position":1,"content":{"body":"Päätösluku esittelee kolmannen tavan ajatella yksilön ja rakenteen suhdetta. Tämä liite avaa empiirisen pohjan.","synthesis":"Kolmas tapa: yksilö ei muuta rakennetta yksin eikä rakenne muutu ilman yksilöitä. Muutos tapahtuu yhteyden kohdassa — siellä missä yksilöllä on rakenteellinen rooli jossa hän voi toimia.","third_way":[{"tutkija":"Amartya Sen","argumentti":"Kykyjen lähestymistapa: vapauden kysymys ei ole yksilön ominaisuus eikä rakenteen ominaisuus — se on niiden yhteisvaikutus. Ihmisellä täytyy olla sekä kyky että mahdollisuus."},{"tutkija":"Elinor Ostrom","argumentti":"Järjestelmät joissa yksilöt voivat muuttaa rakenteita toimivat paremmin kuin ne joissa rakenteet ovat ulkoa annettuja tai täysin yksilöiden varassa."},{"tutkija":"Albert Hirschman","argumentti":"Exit, Voice, Loyalty: yksilö muuttaa järjestelmää äänellä (vaikuttaminen) tai poistumalla (markkinavoima). Kolmas tapa on lojaalisuus — pysyminen ja toimiminen sisältä käsin."}],"two_common_views":[{"ongelma":"Jos rakenne on viallinen, yksilön kehittäminen ei riitä. Parempi potilas huonossa sairaalassa saa silti huonoa hoitoa.","näkemys":"Yksilö on ensisijainen"},{"ongelma":"Rakenne ei muutu itsestään — joku muuttaa sitä. Rakennetta muuttavat yksilöt.","näkemys":"Rakenne on kaikki"}]}},{"id":"8c912b39-bc66-4038-b2cb-f1f0a8ef7c0d","chapter_position":7,"section_position":6,"type":"chain","title":"Sivilisaation toimintakyky: mikä ketjuttaa itseohjautuvuuden laajemmaksi","source":null,"position":2,"content":{"body":"Päätösluvun viimeinen argumentti: itseohjautuvuus ei ole vain tehokkuuskysymys — se on sivilisaation toimintakyvyn kysymys. Tämä ketju näyttää kytköksen.","steps":[{"step":1,"event":"Toimivat itseohjautuvat järjestelmät vapauttavat kapasiteettia","consequence":"Kun koordinaatio ei vaadi jatkuvaa valvontaa ja kontrollia, resursseja vapautuu muuhun — innovointiin, hyvinvointiin, uusiin haasteisiin vastaamiseen."},{"step":2,"event":"Kapasiteetti mahdollistaa monimutkaisten ongelmien ratkaisemisen","consequence":"Ilmastomuutos, pandemiat, tekoäly — haasteet jotka ylittävät yksittäisen valtion tai yrityksen kyvyn. Niiden ratkaisu vaatii koordinoitua itseohjautuvuutta suuressa mittakaavassa."},{"step":3,"event":"Luottamus on välttämätön edellytys","consequence":"Koordinoitu itseohjautuvuus vaatii luottamusta — instituutioihin, prosesseihin, toisiin ihmisiin. Luottamus ei synny ilman rakenteita jotka tekevät sen järkeväksi."},{"step":4,"event":"Rakenteet luovat luottamuksen — tai tuhoavat sen","consequence":"Algoritminen järjestelmä joka tuhoaa luottamusta heikentää sivilisaation toimintakykyä. Järjestelmä joka rakentaa sitä vahvistaa sitä."}],"final_point":"Itseohjautuvuus ei ole utopistinen tavoite — se on pragmaattinen välttämättömyys. Ilman sitä emme pysty koordinoimaan vastausta ongelmiin jotka ovat liian suuria yhdelle toimijalle."}},{"id":"bddc0994-1370-4f19-b980-a0bcae67b8c4","chapter_position":7,"section_position":7,"type":"chain","title":"Kirjasarjan kaari: miten neljä kirjaa muodostavat kokonaisuuden","source":null,"position":3,"content":{"arc":[{"kirja":"Laajenemisen logiikka","argumentti":"Järjestelmät kasvavat — ja kasvu tuottaa rakenteellisia ongelmia jotka eivät ratkea lisäämällä enemmän samaa.","yhteys_seuraavaan":"Kasvu tekee näkymättömäksi — seuraava kirja kysyy miten tehdä näkyväksi."},{"kirja":"Näkyväksi","argumentti":"Näkymättömyys on rakenteellinen ongelma — ihmiset katoavat järjestelmiin. Kaksisuuntainen optimointi on rakenteellinen ratkaisu.","yhteys_seuraavaan":"Näkyväksi tekeminen vaatii itseohjautuvuutta — muuten joudutaan turvautumaan valvontaan."},{"kirja":"Itseohjautuvuus","argumentti":"Itseohjautuvuus vaatii kolmea rakenteellista ominaisuutta: tieto sijaitsee kokemuksessa, seuraukset palaavat tekijälle, konflikti on mahdollinen.","yhteys_seuraavaan":"Itseohjautuvuus vaatii katalyytin — joka käynnistää muutoksen ilman jatkuvaa ulkoista painetta."},{"kirja":"Katalyytti","argumentti":"[Seuraava kirja — kaari avoin]","yhteys_seuraavaan":"Sarjan viimeinen argumentti rakentuu tähän."}],"body":"Päätösluku palauttaa kirjasarjan kokonaisrakenteeseen. Tämä liite jäsentää neljän kirjan argumenttiketjun.","synthesis":"Neljä kirjaa muodostavat yhden argumentin: miten rakentaa järjestelmä joka kasvaa, tekee ihmisen näkyväksi, ohjautuu itsestään ja käynnistää itsensä. Jokainen kirja on yhden rakenteellisen ongelman analyysi — ja yksi askel yhteiseen ratkaisuun."}}]}]}
+{
+  "book_slug": "itseohjautuvuus",
+  "book_title": "Itseohjautuvuus",
+  "exported_at": "2026-06-05T14:33:13.396Z",
+  "chapters": [
+    {
+      "chapter_position": 0,
+      "appendices": [
+        {
+          "chapter_position": 0,
+          "section_position": 0,
+          "type": "chain",
+          "title": "Sarjan kaari: kolme kirjaa ja avoin kysymys",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio 0 paikantaa kirjan sarjassa. Kolme edellistä kirjaa kysyivät eri kysymyksiä — tämä kirja kysyy sen mitä ne eivät kysyneet.",
+            "series": [
+              {
+                "kirja": "Laajenemisen logiikka",
+                "kysymys": "Miksi järjestelmät sokeutuvat?",
+                "vastaus": "Optimointi on rakenteellisesti välinpitämätöntä — sama dynamiikka toistuu syanobakteerista tekoälyyn. Kompleksisuus kasvaa, sivuvaikutukset kertyvät.",
+                "jatti_auki": "Onko sokeutuminen väistämätöntä — vai voiko rakenne korjata sen?"
+              },
+              {
+                "kirja": "TTT — Taakka, Totuus, Teko",
+                "kysymys": "Miten sokeutuminen ilmenee Suomessa?",
+                "vastaus": "Viisi mekanismia jotka eivät synny pahuudesta vaan rakenteesta. Järjestelmä joka optimoi omaa jatkuvuuttaan alkuperäisen tehtävänsä sijaan.",
+                "jatti_auki": "Kuka suunnittelee toisin — ja miten?"
+              },
+              {
+                "kirja": "Näkyväksi",
+                "kysymys": "Mitä tehdään kun sokeus on tunnistettu?",
+                "vastaus": "Toimivat rakenteet — neuvola, peruskoulu, koordinaatiomandaatti — eivät ole sattumia. Kaksisuuntainen optimointi, palautesilmukka, kantamisen kolme ehtoa.",
+                "jatti_auki": "Kuka rakentaa nämä rakenteet? Kuka rakentaa rakentajat?"
+              }
+            ],
+            "fourth_question": "Itseohjautuvuus kysyy sen mitä kolme edellistä eivät kysyneet: voiko itseohjautuva järjestelmä palvella sitä yhteisöä jossa se elää — ei kontrollin kautta, vaan rakenteen kautta?"
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 1,
+          "type": "evidence",
+          "title": "Itseohjautuvuuden mittakaavan kasvu: mitä tutkimus osoittaa",
+          "source": "Euroopan komissio DESI 2023, ILO 2023, Eurobarometri 2023",
+          "position": 1,
+          "content": {
+            "body": "Osion väite — itseohjautuvuus ei ole enää yksilön ominaisuus vaan rakenteellinen kysymys — on dokumentoitu useista suunnista.",
+            "note": "Nämä luvut eivät kuvaa ihmisten kyvyttömyyttä — ne kuvaavat rakenteellista epätasapainoa autonomian ja läpinäkyvyyden välillä.",
+            "findings": [
+              {
+                "aihe": "Algoritminen päätöksenteko arjessa",
+                "havainto": "Euroopan komission arvion mukaan yli 70 % eurooppalaisista kohtaa vähintään yhden algoritmisesti ohjatun päätöksen viikossa — uutisvirran, työtarjouksen, luottopisteyden tai hakutulosrankingin muodossa.",
+                "merkitys": "Itseohjautuvuus ei ole enää reunailmiö — se on arjen infrastruktuuria"
+              },
+              {
+                "aihe": "Platformitalous ja autonomia",
+                "havainto": "ILO:n raportti 2023: noin 28 % EU:n alustatyöntekijöistä kokee, ettei heillä ole merkittävää sananvaltaa omiin työehtoihinsa — vaikka he ovat muodollisesti itsenäisiä yrittäjiä.",
+                "merkitys": "Muodollinen autonomia ja todellinen autonomia eroavat — rakenne määrää kumpi on totta"
+              },
+              {
+                "aihe": "Läpinäkymättömyyden kokemus",
+                "havainto": "Eurobarometri 2023: 67 % EU-kansalaisista kokee, etteivät he ymmärrä miten algoritmiset järjestelmät vaikuttavat heihin.",
+                "merkitys": "Läpinäkymättömyys ei ole tekninen yksityiskohta — se on demokraattinen ongelma"
+              },
+              {
+                "aihe": "Ihmisen ja rakenteen suhteen muutos",
+                "havainto": "Aiemmat itseohjautuvat rakenteet — markkinat, byrokratia, tehdas — vaativat ihmisen päivittäistä ylläpitoa. Algoritminen järjestelmä optimoi itseään ilman ihmisen väliintuloa.",
+                "merkitys": "Hidas, tarkistava, korjaava suhde ihmisen ja rakenteen välillä on muuttumassa — ja sen seurauksia ei ole vielä ymmärretty"
+              }
+            ]
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 2,
+          "type": "chain",
+          "title": "Kolme ovea: miksi väärä reitti on houkutteleva",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio esittelee kolme klassista vastausta itseohjautuvien järjestelmien suuntaamiseen. Tämä ketju selittää miksi kaksi ensimmäistä houkuttelevat — ja miksi ne eivät riitä.",
+            "steps": [
+              {
+                "ovi": "Ensimmäinen: sääntely",
+                "ongelma": "Toimii jälkireaktiivisesti. Järjestelmä optimoi sääntöjen kiertämistä yhtä taitavasti kuin alkuperäistä tavoitettaan. EU:n GDPR vastasi vuoden 2015 maailmaan — tekoäly on jo kymmenen vuotta edellä.",
+                "houkuttelevuus": "Tuttu, laillinen, demokraattisesti legitiimi — tuntuu oikealta vastaukselta",
+                "johtopäätös": "Sääntely ei ole turhaa. Se vain ei riitä."
+              },
+              {
+                "ovi": "Toinen: arvojen kirjaaminen",
+                "ongelma": "Arvot ovat ristiriitaisia keskenään. Järjestelmä ei optimoi arvojaan vaan tavoitefunktiotaan. Kaunis arvolista verkkosivuilla ei muuta mitä algoritmi todella maksimoi.",
+                "houkuttelevuus": "Selkeä, kommunikoitava, yhteisöä yhdistävä — tuntuu merkitykselliseltä",
+                "johtopäätös": "Arvot ovat välttämättömiä. Mutta ne eivät yksin ohjaa optimointia."
+              },
+              {
+                "ovi": "Kolmas: rakenne",
+                "ratkaisu": "Ainoa joka muuttaa tulosta pysyvästi: tavoitefunktio sisältää yhteisön hyödyn sisäänrakennettuna, ei lisäkkeenä.",
+                "houkuttelevuus": "Vähäinen — vaatii ymmärrystä järjestelmästä sisältä päin, on hidasta ja poliittisesti vaikeaa",
+                "johtopäätös": "Tämä kirja käsittelee kolmatta vastausta."
+              }
+            ],
+            "reversal": "Kolmas ovi ei sulje kahta ensimmäistä. Sääntely ja arvot ovat hyödyllisiä — kun ne on rakennettu kolmannen oven logiikalle."
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 3,
+          "type": "evidence",
+          "title": "Yhteisöllinen tavoitefunktio: neljä jo toimivaa mallia",
+          "source": "Ostrom E. (1990). Governing the Commons. Cambridge UP. / Nobel-komitean kooste 2009.",
+          "position": 1,
+          "content": {
+            "body": "Osion väite on, että vastaus on osittain jo olemassa — hajallaan eri konteksteissa, eri nimillä. Tässä neljä tunnistettua mallia.",
+            "models": [
+              {
+                "malli": "Ostromin yhteishallinta",
+                "rajoite": "Toimii parhaiten pienissä, rajattavissa yhteisöissä",
+                "periaate": "Osallistujien etu ja yhteisön etu kytkeytyvät yhteen rakenteen kautta — ei altruismin kautta",
+                "konteksti": "Kalastusalueet, laidunmaat, sulkujärjestelmät — ilman markkinoita tai valtiota",
+                "skaalautunut": "Yli 100 dokumentoitua tapausta kuudella mantereella. Nobel-palkinto 2009."
+              },
+              {
+                "malli": "Demokratia vallanjakona",
+                "rajoite": "Hidas — algoritminen itseohjautuvuus toimii nopeammin kuin demokraattinen prosessi ehtii reagoida",
+                "periaate": "Ei tuota parhaita päätöksiä — jakaa vallan niin että yksikään taho ei voi optimoida vapaasti",
+                "konteksti": "Valtion tason päätöksenteko",
+                "skaalautunut": "Vanhin toimiva malli suuressa mittakaavassa"
+              },
+              {
+                "malli": "Avoimet standardit",
+                "rajoite": "Vaatii alkuvaiheen koordinaation ja standardien asettamisen — ei synny itsestään",
+                "periaate": "Rakenne palkitsee yhteistyötä enemmän kuin kilpailua — ilman keskusjohtoa",
+                "konteksti": "Internetin protokollat, tieteen vertaisarviointi, avoin lähdekoodi",
+                "skaalautunut": "Internet on rakennettu avointen protokollien varaan — ei kenenkään omistama, kaikkien käytettävissä"
+              },
+              {
+                "malli": "Kaksisuuntainen optimointi",
+                "rajoite": "Vaatii metamittarin — seurannan joka ulottuu suoritteen yli",
+                "periaate": "Järjestelmä optimoi sekä omaa suoritettaan että sitä mitä ihmiselle tapahtuu sen jälkeen",
+                "konteksti": "Hyvinvointijärjestelmän rakenteet — neuvola, peruskoulu (Näkyväksi-kirjasta)",
+                "skaalautunut": "Suomalainen neuvola: universaali kattavuus, varhainen tunnistaminen, dokumentoitu vaikuttavuus"
+              }
+            ],
+            "common_principle": "Nämä eivät ole erillisiä keksintöjä. Ne ovat saman periaatteen ilmentymiä eri mittakaavoissa: rakenne joka tekee yhteisön hyödyn osaksi tavoitefunktiota, ei sen ulkoiseksi rajoitteeksi."
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 4,
+          "type": "evidence",
+          "title": "Kolme rakenteellista murrosta: miksi vanhat keinot eivät enää riitä",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio vastaa kysymykseen: miksi tämä kirja juuri nyt? Kolme asiaa on muuttunut.",
+            "changes": [
+              {
+                "nyt": "Algoritminen järjestelmä toimii millisekuntien aikataulussa. Tekoäly oppii nopeammin kuin sääntelijä ehtii nimetä uuden ilmiön.",
+                "ennen": "Markkina liikkui niin nopeasti kuin ihminen ehti vastata. Byrokratia muutti suuntaansa kun virkamies vaihtui.",
+                "muutos": "Nopeus",
+                "seuraus": "Jälkikäteinen sääntely on rakenteellisesti myöhässä — ongelma on jo skaalannut ennen kuin korjaus on kirjoitettu lakiin"
+              },
+              {
+                "nyt": "Yksi algoritmi voi vaikuttaa miljardiin ihmiseen yhtä aikaa. Tekoälyjärjestelmät ovat rakenteellisesti globaaleja — ne eivät pysähdy kansallisilla rajoilla.",
+                "ennen": "Itseohjautuvuus oli paikallista — yksi markkina, yksi byrokratia, yksi sosiaalinen järjestelmä.",
+                "muutos": "Mittakaava",
+                "seuraus": "Kansallinen sääntely on riittämätöntä — mutta globaali koordinaatio on vasta alkuvaiheessa"
+              },
+              {
+                "nyt": "Tekoälyn päätöstä ei välttämättä pysty selittämään edes sen rakentaja. Interpretability on aktiiviinen tutkimusalue — ei ratkaistu ongelma.",
+                "ennen": "Markkinahinta muodostui näkyvistä toimijoista. Byrokratian päätöksen pystyi kysymään virkamieheltä.",
+                "muutos": "Läpinäkymättömyys",
+                "seuraus": "Demokraattinen vastuu edellyttää ymmärrettävyyttä — mutta järjestelmät ovat yhä vähemmän ymmärrettäviä"
+              }
+            ],
+            "conclusion": "Nämä kolme muutosta tarkoittavat, että vanhat suuntaamisen tavat — sääntely jälkikäteen, eettiset ohjeistukset, demokraattinen valvonta — ovat rakenteellisesti riittämättömiä. Eivät vääriä. Riittämättömiä. Tarvitaan uusia mekanismeja."
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 5,
+          "type": "evidence",
+          "title": "Analyyttinen vs. normatiivinen: mitä tämä kirja tekee ja mitä ei",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio rajaa kirjan tehtävän. Selkeä rajaus on osa kirjan rehellisyyttä — ja auttaa lukijaa asettamaan odotuksensa oikein.",
+            "what_book_does": [
+              "Nimeää mekanismeja — tunnistaa logiikoita jotka jo toimivat tai epäonnistuvat",
+              "Tunnistaa rakenteet jotka ovat onnistuneet pitämään itseohjautuvuuden palvelemassa yhteisöä",
+              "Kysyy mitä yhteistä näillä rakenteilla on — etsii yleistä periaatetta",
+              "Soveltaa tätä periaatetta algoritmiseen aikakauteen"
+            ],
+            "why_this_matters": "Analyyttinen kirja joka väittää ratkaisevansa ongelman, ratkaisee sen yleensä huonosti. Kirja joka nimeää mekanismit ja tunnistaa toimivat logiikat antaa lukijalle välineet — ei valmiita vastauksia.",
+            "honest_assessment": "Vastausta ei vielä tiedetä kokonaan. Mutta osanen siitä tiedetään — ja se osanen on kirjoittamatta yhteen kirjaan. Tämä kirja yrittää tehdä sen kokoamistyön.",
+            "what_book_does_not": [
+              "Ei lupaa ratkaisua tekoälyn turvallisuusongelmaan — se on avoin tutkimuskysymys",
+              "Ei tarjoa teknistä spesifikaatiota yhteisöllisen tavoitefunktion rakentamisesta",
+              "Ei sano milloin demokratia joutuu kriisiin algoritmisten järjestelmien myötä — tai jo joutui",
+              "Ei tuota poliittista ohjelmaa tai lainsäädäntöehdotuksia"
+            ]
+          }
+        },
+        {
+          "chapter_position": 0,
+          "section_position": 6,
+          "type": "chain",
+          "title": "Sarjan kokonaisliike: neljä kirjaa, yksi kaari",
+          "source": null,
+          "position": 1,
+          "content": {
+            "arc": [
+              {
+                "nimi": "Laajenemisen logiikka",
+                "avasi": "Optimointi on rakenteellisesti välinpitämätöntä — tuottaa sivuvaikutuksia joita kukaan ei aikonut",
+                "kirja": 1,
+                "liike": "Mistä tulemme — laajenemisen mekaniikka syanobakteereista tekoälyyn"
+              },
+              {
+                "nimi": "TTT — Taakka, Totuus, Teko",
+                "avasi": "Järjestelmät eivät ole rikki pahuuden takia — ne ovat rikki rakenteen takia",
+                "kirja": 2,
+                "liike": "Miten sokeutuminen ilmenee — viisi mekanismia Suomen hyvinvointijärjestelmässä"
+              },
+              {
+                "nimi": "Näkyväksi",
+                "avasi": "Toinen suunta on mahdollinen — mutta kuka rakentaa nämä rakenteet?",
+                "kirja": 3,
+                "liike": "Mitä tehdään kun sokeus on tunnistettu — toimivat rakenteet ja niiden logiikka"
+              },
+              {
+                "nimi": "Itseohjautuvuus",
+                "kirja": 4,
+                "liike": "Voiko itseohjautuva järjestelmä palvella yhteisöä — rakenteen kautta, ei kontrollin kautta",
+                "jattaa_auki": "Loput jää lukijalle — joka todennäköisesti elää siinä tulevaisuudessa jossa kysymys tulee kiireellisemmäksi kuin yksikään meistä on vielä ehtinyt ajatella"
+              }
+            ],
+            "body": "Osio paikantaa kirjan sarjan neljäntenä osana. Tässä sarjan kokonaisliike ja se mihin neljäs kirja jättää lukijan.",
+            "series_principle": "Sarjan logiikka: jokainen kirja vastaa edellisen avaamaan kysymykseen — ja avaa uuden. Ei ole tarkoitus sulkea kysymyksiä. On tarkoitus tehdä niistä tarkempia.",
+            "connection_to_ostrom": "Itseohjautuvuus-kirja yhdistää Ostromin yhteishallinnan periaatteet, Näkyväksi-kirjan kaksisuuntaisen optimoinnin ja Laajenemisen logiikan skaalautuvuusajattelun. Vastaus ei tule yhdestä suunnasta — se tulee niiden risteyskohdasta."
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 1,
+      "appendices": [
+        {
+          "chapter_position": 1,
+          "section_position": 0,
+          "type": "timeline",
+          "title": "Itseohjautuvuuden historia: neljä murrosta",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio paikantaa itseohjautuvuuden laajana, ihmistä vanhempana ilmiönä. Tämä aikajana kuvaa neljä rakenteellista murrosta jolloin itseohjautuvuus sai uuden muodon.",
+            "entries": [
+              {
+                "aika": "~3,8 miljardia vuotta sitten",
+                "murros": "Solu",
+                "uusi_piirre": "Ensimmäinen järjestelmä joka optimoi omaa säilymistään — ei tietoisesti, vaan rakenteellisesti",
+                "itseohjautuvuuden_muoto": "Sisäinen rakenne joka ylläpitää tasapainoa, kopioi itseään ja reagoi ympäristöön ilman ulkoista ohjausta"
+              },
+              {
+                "aika": "~10 000 eaa.",
+                "murros": "Markkina ja raha",
+                "uusi_piirre": "Ensimmäinen ihmisten rakentama itseohjautuva järjestelmä joka skaalautui kylää suuremmaksi",
+                "itseohjautuvuuden_muoto": "Hinta muodostuu ilman keskussuunnittelua. Resurssit ohjautuvat kysyntään. Adam Smithin näkymätön käsi."
+              },
+              {
+                "aika": "1600–1800-luku",
+                "murros": "Demokratia",
+                "uusi_piirre": "Itseohjautuvuus joka sisältää korjausmekanismin — valta vaihtuu, hallitukset kaatuvat",
+                "itseohjautuvuuden_muoto": "Yksittäisten äänestäjien valinnat tuottavat yhteisön päätökset ilman keskusohjasta. Vallanjako estää yhtä tahoa optimoimasta vapaasti."
+              },
+              {
+                "aika": "1969–1991",
+                "murros": "Internet",
+                "uusi_piirre": "Ensimmäinen globaali itseohjautuva järjestelmä joka ei kuulu kenellekään mutta on kaikkien käytettävissä",
+                "itseohjautuvuuden_muoto": "TCP/IP ja HTTP määrittelevät protokollan — ei sitä mitä sen päälle rakentuu. Sisältö, palvelut, käyttötavat syntyvät miljardien päätöksistä."
+              }
+            ],
+            "key_observation": "Jokainen murros laajensi itseohjautuvuuden mittakaavaa ja nopeutti sen toimintaa. Algoritminen itseohjautuvuus on viidennen murroksen alku — mutta sen suunta ei ole vielä selvä."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 1,
+          "type": "evidence",
+          "title": "Aikataulujen epäsuhta: nopeus joka ylittää ohjauksen",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osion ydinväite: kun itseohjautuva järjestelmä toimii nopeammin kuin sen ohjaaja, ohjaus muuttuu jälkireaktioksi. Tässä konkreettiset aikataulut.",
+            "timescales": [
+              {
+                "ohjattavuus": "Korkea — muutos näkyy ennen kuin se on peruuttamaton",
+                "järjestelmä": "Ekosysteemi",
+                "toimintanopeus": "Vuosikymmeniä–vuosisatoja",
+                "ihmisen_reaktio": "Sukupolvet — sopeutuminen mahdollista"
+              },
+              {
+                "ohjattavuus": "Kohtalainen — jälkisääntely toimi",
+                "järjestelmä": "Markkina (ennen digitalisaatiota)",
+                "toimintanopeus": "Päiviä–viikkoja",
+                "ihmisen_reaktio": "Kauppias reagoi hinnanmuutoksiin, sääntelijä kuukausissa"
+              },
+              {
+                "ohjattavuus": "Suunniteltu yhteensopivaksi ihmisen aikataulun kanssa",
+                "järjestelmä": "Demokratia",
+                "toimintanopeus": "Vaalikausi 4 vuotta",
+                "ihmisen_reaktio": "Kansalaiset muodostavat mielipiteensä neljässä vuodessa"
+              },
+              {
+                "ohjattavuus": "Matala — ohjaus täytyy olla sisäänrakennettuna ennen toimintaa",
+                "järjestelmä": "Korkean taajuuden kaupankäynti (HFT)",
+                "toimintanopeus": "Mikrosekunteja — 0,000001 sekuntia",
+                "ihmisen_reaktio": "Ihminen ei pysty reagoimaan fyysisesti"
+              },
+              {
+                "ohjattavuus": "Matala — kun ongelma tunnistetaan, algoritmi on jo oppinut uuden version",
+                "järjestelmä": "Sosiaalisen median algoritmi",
+                "toimintanopeus": "Oppii tunneissa käyttäjädatasta",
+                "ihmisen_reaktio": "Sääntelijä kuukausissa–vuosissa"
+              },
+              {
+                "ohjattavuus": "Rakenteellinen viive — sääntely on aina askeleen jäljessä",
+                "järjestelmä": "Suuret kielimallit",
+                "toimintanopeus": "Uusi versio kuukausissa, käyttöönotto välittömästi",
+                "ihmisen_reaktio": "EU AI Act valmisteltiin 2021–2024 — GPT-4 julkaistiin 2023"
+              }
+            ],
+            "structural_impossibility": "Tämä ei ole ihmisen viivettä tai laiskuutta — tämä on rakenteellinen mahdottomuus. Ihmisaivot eivät pysty reagoimaan mikrosekunneissa. Demokratia ei pysty tuottamaan päätöksiä tunneissa. Ratkaisu ei voi olla nopeampi ihminen — sen täytyy olla sisäänrakennettu rakenne."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 2,
+          "type": "evidence",
+          "title": "Mittakaavan kasvu: kolme historiallista vertailua",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osion väite: algoritmisten järjestelmien mittakaava on laadullisesti erilainen kuin aiempien — välitön ja yhdenmukainen, ei asteittainen ja paikallinen.",
+            "comparisons": [
+              {
+                "kattavuus": "~400 miljoonaa ihmistä, neljännes maailman väestöstä",
+                "paikallisuus": "Jokainen siirtomaa sai oman hallintoversionsa — ei identtinen kaikkialla",
+                "järjestelmä": "Brittiläinen imperiumi (huipussaan ~1900)",
+                "levittäytyminen": "150+ vuotta, paikalliset välittäjät, paikallinen sopeutuminen"
+              },
+              {
+                "kattavuus": "~3 miljardia aktiivista käyttäjää",
+                "paikallisuus": "Sama algoritmi kaikille — mukauttaminen vain pintatasolla (kieli, aika)",
+                "järjestelmä": "Facebook/Meta algoritmi (2023)",
+                "levittäytyminen": "20 vuotta, mutta kasvu eksponentiaalinen"
+              },
+              {
+                "kattavuus": "Satoja miljoonia käyttäjiä, saatavilla 100+ maassa",
+                "paikallisuus": "Sama malli — sama tavoitefunktio, sama koulutusdata, samat painokertoimet",
+                "järjestelmä": "GPT-4 / suuret kielimallit",
+                "levittäytyminen": "Kuukausia julkaisusta globaaliin käyttöön"
+              }
+            ],
+            "implication": "Kun yksittäinen järjestelmä vaikuttaa miljardeihin ihmisiin yhdenmukaisesti, sen rakenteelliset ominaisuudet — arvot, tavoitefunktio, sokeat pisteet — muuttuvat globaaliksi infrastruktuuriksi.",
+            "qualitative_difference": "Brittiläinen imperiumi levisi paikallisten ihmisten kautta jotka sopeuttivat sen omaan kontekstiinsa. Algoritmi tekee samat päätökset kaikkialla yhtä aikaa — ei paikallista sopeutumista, ei paikallista vastuuta."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 3,
+          "type": "chain",
+          "title": "Läpinäkymättömyyden ketju: miksi selitettävyys on demokraattinen ongelma",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio kuvaa läpinäkymättömyyden rakenteellisena ominaisuutena — ei salaisuutena jota piilotetaan. Tässä ketju joka yhdistää teknisen ominaisuuden demokraattiseen seuraukseen.",
+            "steps": [
+              {
+                "vaihe": 1,
+                "seuraus": "Yksittäistä päätöstä ei voi palauttaa yksittäisiin parametreihin — kompleksisuus ylittää ymmärrettävyyden",
+                "tapahtuma": "Suuressa kielimallissa on satoja miljardeja parametreja"
+              },
+              {
+                "vaihe": 2,
+                "seuraus": "Käyttäjä ei voi saada perusteltua vastausta — 'algoritmi päätti' ei ole perustelu",
+                "tapahtuma": "Rakentaja ei pysty selittämään yksittäistä päätöstä"
+              },
+              {
+                "vaihe": 3,
+                "seuraus": "Sen oikeudenmukaisuutta on vaikea arvioida — onko luottopäätös, työtarjous tai hoitosuositus puolueeton?",
+                "tapahtuma": "Päätöstä ei voi perustella"
+              },
+              {
+                "vaihe": 4,
+                "seuraus": "Sitä on vaikea korjata — virheen paikantaminen vaatii selitettävyyttä",
+                "tapahtuma": "Logiikkaa ei voi selittää"
+              },
+              {
+                "vaihe": 5,
+                "seuraus": "Vastuuta on vaikea jakaa — ketä voi pitää vastuullisena päätöksestä jota kukaan ei täysin ymmärrä?",
+                "tapahtuma": "Virhettä ei voi paikantaa"
+              },
+              {
+                "vaihe": 6,
+                "seuraus": "Demokraattinen kontrolli murtuu — järjestelmä toimii, mutta ei ole kenenkään vastuulla",
+                "tapahtuma": "Vastuu häviää"
+              }
+            ],
+            "contrast": "Markkinahinta on aina ollut näkyvissä — logiikka ymmärrettävissä vaikka koko järjestelmää ei kukaan hallinnut. Byrokratian päätös on aina ollut perusteltavissa — virkamies pystyi vastaamaan 'miksi'. Algoritminen päätös rikkoo tämän perinteen.",
+            "evidence_key": "self_organization.opacity_chain",
+            "current_state": "Interpretability — tekoälyn selitettävyystutkimus — on aktiivinen tutkimusalue (Anthropic, DeepMind, akateeminen yhteisö). Mutta se on vielä varhainen vaihe, ei ratkaistu ongelma.",
+            "prediction_number": 4
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 4,
+          "type": "chain",
+          "title": "Kolmen murroksen yhteisvaikutus: miksi vanhat ohjausmekanismit murtuvat",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio syntetisoi luvun kolme edellistä osaa. Yksittäin hallittavissa — yhdessä ne tuottavat tilanteen jossa kaikki vanhat ohjausmekanismit murtuvat samaan aikaan.",
+            "conclusion": "Tämä on uusi tilanne. Itseohjautuvuus ei ole uusi ilmiö — mutta tällaista itseohjautuvuutta ei ole ollut. Vanhat ohjausmekanismit eivät ole vääriä — ne ovat riittämättömiä.",
+            "combined_failure": [
+              {
+                "vaatii": "Kansalaiset ymmärtävät mitä järjestelmä tekee",
+                "murtuu_koska": "Läpinäkymättömyys tekee ymmärtämisen mahdottomaksi",
+                "ohjausmekanismi": "Demokraattinen valvonta"
+              },
+              {
+                "vaatii": "Lainsäätäjä ehtii muotoilla sääntöjä ennen vakiintumista",
+                "murtuu_koska": "Nopeus tekee sääntelyn aina askeleen myöhässä olevaksi",
+                "ohjausmekanismi": "Lainsäädäntö"
+              },
+              {
+                "vaatii": "Yhteisö voi muokata järjestelmää omiin tarpeisiinsa",
+                "murtuu_koska": "Globaali mittakaava tekee paikallisen muokkauksen mahdottomaksi",
+                "ohjausmekanismi": "Paikallinen sopeutuminen"
+              }
+            ],
+            "individual_problems": [
+              {
+                "muutos": "Nopeus yksin",
+                "esimerkki": "Pörssi on nopea mutta sen logiikka on ymmärrettävissä — sääntely toimii",
+                "hallittavissa": "Nopea järjestelmä jonka logiikka on ymmärrettävissä — sääntelijä voi reagoida hitaammin mutta tehokkaasti"
+              },
+              {
+                "muutos": "Mittakaava yksin",
+                "esimerkki": "TV-lähetykset ovat laajoja mutta ymmärrettäviä — sääntelyviranomaiset toimivat",
+                "hallittavissa": "Laaja järjestelmä jonka logiikka on läpinäkyvä — demokraattinen valvonta mahdollista"
+              },
+              {
+                "muutos": "Läpinäkymättömyys yksin",
+                "esimerkki": "Lääkeyhtiön tutkimus on monimutkaista mutta tulokset ovat arvioitavissa",
+                "hallittavissa": "Monimutkaiselle järjestelmälle voidaan asettaa tulosmittarit — mitata mitä syntyy, ei miten"
+              }
+            ]
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 5,
+          "type": "evidence",
+          "title": "Kolme pysyvää periaatetta: mikä ei ole muuttunut",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio on luvun käänne: muutosten jälkeen nimetään se mikä pysyy. Rakenteellinen suuntaaminen on toiminut — ja toimii edelleen algoritmisissa järjestelmissä.",
+            "principles": [
+              {
+                "periaate": "Itseohjautuvuutta ei suunnata ulkopuolelta — vaan sisäisillä rakenteilla",
+                "biologinen_esimerkki": "Solu ei karkaa hallintaan koska solukalvo, geneettinen koodi ja energia-aineenvaihdunta ovat sisäisiä rakenteita. Ulkopuolinen kontrolli olisi mahdoton — eikä sitä tarvita.",
+                "algoritmi_implikaatio": "Tekoälyn suuntaaminen ei onnistu pelkästään ulkoisella sääntelyllä — tavoitefunktion on sisällettävä yhteisön hyöty sisäänrakennettuna",
+                "sosiaalinen_esimerkki": "Demokratia ei karkaa hallintaan kun rakenne sisältää vallanjaon, vaihtuvuuden, oikeusvaltion. Diktatuuri syntyy kun nämä sisäiset rakenteet murenevat — ei silloin kun ulkopuolinen valvonta pettää."
+              },
+              {
+                "periaate": "Sisäiset palautekehät pitävät järjestelmän tasapainossa",
+                "biologinen_esimerkki": "Ekosysteemissä liika peto tappaa saaliin loppuun ja vähenee itse. Liika kasvi loppukäyttää ravinteet. Palautekehät ovat sisäänrakennettuja — ei ulkopuolista säätelijää.",
+                "algoritmi_implikaatio": "Algoritminen järjestelmä tarvitsee sisäänrakennettuja palautekehiä — ei vain ulkoista arviointia",
+                "sosiaalinen_esimerkki": "Markkina toimii kun kilpailu, läpinäkyvyys, omistusoikeudet ja tiedon liikkuminen muodostavat sisäiset palautekehät. Monopoli syntyy kun palautekehä katkeaa."
+              },
+              {
+                "periaate": "Rakenne joka kytkee yksilön edun ja yhteisön edun yhteen on kestävä",
+                "biologinen_esimerkki": "Solu palvelee organismia — sen oma säilyminen on kytketty organismin säilymiseen. Syöpäsolu irrottautuu tästä kytkennästä.",
+                "algoritmi_implikaatio": "Tavoitefunktio joka sisältää käyttäjän ja yhteisön hyödyn — ei pelkästään sitoutumista tai myyntiä — on rakenteellisesti kestävämpi",
+                "sosiaalinen_esimerkki": "Ostromin yhteishallinnassa osallistujien etu ja yhteisön etu kytkeytyvät rakenteen kautta. Tämä on toiminut yli 100 dokumentoidussa tapauksessa."
+              }
+            ],
+            "historical_note": "Nämä periaatteet pätevät algoritmisiin järjestelmiin. Mutta niiden soveltaminen vaatii ymmärtää mitä sisäiset rakenteet ovat uudessa kontekstissa — niillä järjestelmillä jotka ovat onnistuneet, ja niillä joiden epäonnistuminen on käynnissä parhaillaan."
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 6,
+          "type": "evidence",
+          "title": "Väärät vastinparit: miksi \"ihminen vs. kone\" johtaa harhaan",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio tekee kirjan tärkeimmän käsitteellisen siirtymän. Useimmat tekoälykeskustelut käyttävät väärää vastinparia — tässä oikea.",
+            "key_question": "Ero ei ole itseohjautuvuuden olemassaolossa. Ero on sen suunnassa. Tämä kirja kysyy mikä määrittää sen suunnan.",
+            "false_dichotomies": [
+              {
+                "miksi_väärä": "Ihminen on itse itseohjautuva — biologisesti, sosiaalisesti, kulttuurisesti. Itseohjautuvuus ei ole koneen ominaisuus jota vastustetaan — se on koko elävän maailman rakenne.",
+                "parempi_kysymys": "Minkälaista itseohjautuvuutta haluamme rakentaa?",
+                "vaara_vastinpari": "Ihminen vs. kone"
+              },
+              {
+                "miksi_väärä": "Täydellinen hallinta on mahdotonta kompleksisen järjestelmän kanssa — sitä on yritetty toistuvasti ja se on epäonnistunut. Neuvostoliiton suunnitelmatalous, kiinalainen internetin sensuuri, keskitetty sisällönhallinta.",
+                "parempi_kysymys": "Miten rakennetaan järjestelmä joka ohjautuu haluttuun suuntaan ilman täydellistä kontrollia?",
+                "vaara_vastinpari": "Hallinta vs. kaaos"
+              }
+            ],
+            "correct_distinction": {
+              "oikea_vastinpari": "Itseohjautuvuus joka palvelee yhteisöä — itseohjautuvuus joka palvelee vain itseään",
+              "esimerkkejä_palvelevasta": [
+                "Solu palvelee organismia — sen säilyminen on kytketty organismin säilymiseen",
+                "Markkina palvelee yhteisöä kun rakenne sisältää kilpailun, läpinäkyvyyden, omistusoikeudet",
+                "Internet palveli aluksi käyttäjiään koska protokollat olivat avoimia — kukaan ei omistanut sitä"
+              ],
+              "esimerkkejä_itseään_palvelevasta": [
+                "Syöpäsolu optimoi omaa lisääntymistään organismin kustannuksella",
+                "Monopoli tukahduttaa kilpailun ja palvelee omistajaa markkinan sijaan",
+                "Sitoutumisalgoritmi maksimoi viettämääsi aikaa sovelluksessa — ei hyvinvointiasi"
+              ]
+            }
+          }
+        },
+        {
+          "chapter_position": 1,
+          "section_position": 7,
+          "type": "chain",
+          "title": "Kirjan rakenne: mitä seuraavissa luvuissa etsitään",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Viimeinen osio sulkee luvun ja avaa kirjan etenemislogiikan. Tämä on lukukartta — mitä tutkitaan ja miksi siinä järjestyksessä.",
+            "honest_limit": "Lopputulos ei ole resepti. Se on mahdollisuus tunnistaa milloin järjestelmä on rakennettu palvelemaan yhteisöä — ja milloin ei.",
+            "chapter_logic": [
+              {
+                "avaa": "Mistä löydetään ne järjestelmät jotka ovat onnistuneet suuntaamisessa?",
+                "luku": "Luku I — Mikä on muuttunut, mikä ei (tämä luku)",
+                "tehtävä": "Nimeää itseohjautuvuuden laajana ilmiönä. Tunnistaa kolme uutta piirrettä. Tekee käsitteellisen siirtymän: ei kontrolli, vaan suunta."
+              },
+              {
+                "avaa": "Toimivatko nämä periaatteet algoritmisissa järjestelmissä?",
+                "luku": "Luku II — Ostromin perintö",
+                "tehtävä": "Tutkii yhteishallintaa — järjestelmiä jotka onnistuivat ilman markkinaa tai valtiota. Ostromin kahdeksan periaatetta."
+              },
+              {
+                "avaa": "Miten rakennetaan järjestelmä joka hyödyntää hajautettua tietoa?",
+                "luku": "Luku III — Hayek ja hajautettu tieto",
+                "tehtävä": "Tutkii tiedon hajautumista — miksi keskitetty ohjaus epäonnistuu ja mitä se tarkoittaa tekoälylle."
+              },
+              {
+                "avaa": "Kuka on vastuussa algoritmisesta päätöksestä?",
+                "luku": "Luku IV — Vastuu ja palautesilmukka",
+                "tehtävä": "Tutkii vastuun rakennetta — miten vastuu katoaa ja miten se rakennetaan sisään."
+              },
+              {
+                "avaa": "Miten algoritmi käsittelee ristiriitaisia etuja?",
+                "luku": "Luku V — Konflikti ja sen institutionalisointi",
+                "tehtävä": "Tutkii konfliktia rakenteen osana — ei ongelmana vaan tarvittavana mekanismina."
+              },
+              {
+                "avaa": "Voisiko sama logiikka toimia algoritmisessa mittakaavassa?",
+                "luku": "Luku VI — Yhteisö ja mittakaava",
+                "tehtävä": "Syntetisoi aiemmat luvut — mitä yhteistä toimivilla rakenteilla on, ja miten ne skaalautuvat."
+              }
+            ],
+            "search_method": "Jokaisessa luvussa sama kysymys: mitä yhteistä on rakenteilla jotka ovat onnistuneet pitämään itseohjautuvuuden palvelemassa yhteisöä? Sama tunnistustyö kuin Näkyväksi-kirjassa — mutta laajemmassa mittakaavassa."
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 2,
+      "appendices": [
+        {
+          "chapter_position": 2,
+          "section_position": 0,
+          "type": "evidence",
+          "title": "Hajautettu tieto toimivista rakenteista: missä vastaukset ovat",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio tekee keskeisen väitteen: ongelma ei ole tiedon puute. Vastaukset ovat olemassa — hajallaan eri tieteenaloilla. Tässä kartta.",
+            "common_gap": "Jokainen näistä tieteenaloista on tunnistanut osan rakenteesta. Kukaan ei ole vielä kirjoittanut niiden yhteistä logiikkaa yhteen kirjaan — ja soveltanut sitä algoritmisiin järjestelmiin. Tämä luku yrittää tehdä sen tunnistustyön.",
+            "knowledge_map": [
+              {
+                "avainteos": "Holling C.S. (1973). Resilience and Stability of Ecological Systems. Annual Review of Ecology.",
+                "tieteenala": "Ekologia",
+                "mitä_tietää": "Miten itseohjautuvat ekosysteemit säilyvät ja murtuvat — palautekehät, resilienttiys, redundanssi"
+              },
+              {
+                "avainteos": "Ostrom E. (1990). Governing the Commons. Cambridge University Press.",
+                "tieteenala": "Taloustiede",
+                "mitä_tietää": "Miten yhteisiä resursseja hallitaan ilman tragediaa — Ostromin kahdeksan periaatetta"
+              },
+              {
+                "avainteos": "North D. (1990). Institutions, Institutional Change and Economic Performance.",
+                "tieteenala": "Politiikan tutkimus",
+                "mitä_tietää": "Miten demokratia säilyy — vallanjaon rakenteet, institutionaaliset tasapainot"
+              },
+              {
+                "avainteos": "Raymond E.S. (1999). The Cathedral and the Bazaar.",
+                "tieteenala": "Tietojenkäsittelytiede",
+                "mitä_tietää": "Miten avoimet hajautetut järjestelmät tuottavat kestäviä tuloksia — avoimen lähdekoodin dynamiikka"
+              },
+              {
+                "avainteos": "Hayek F.A. (1945). The Use of Knowledge in Society. American Economic Review.",
+                "tieteenala": "Organisaatiotutkimus",
+                "mitä_tietää": "Miten vastuu ja tieto kannattaa järjestää organisaatioissa — hajautettu päätöksenteko"
+              }
+            ]
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 1,
+          "type": "evidence",
+          "title": "Elinor Ostromin kahdeksan periaatetta: tutkimusnäyttö",
+          "source": "Ostrom E. (1990). Governing the Commons. / Nobel-komitean kooste 2009.",
+          "position": 1,
+          "content": {
+            "body": "Osio esittelee Ostromin työn. Tässä kahdeksan periaatetta auki kirjoitettuna — ja evidenssi jonka pohjalta ne muodostettiin.",
+            "research_base": {
+              "metodi": "Vertaileva tapaustutkimus — onnistuneet ja epäonnistuneet rinnakkain",
+              "kysymys": "Mitä yhteistä onnistuneilla oli — ei vain onko onnistumista",
+              "aineisto": "Yli 100 tapausta kuudella mantereella — sveitsiläiset alpine-laitumet, japanilaiset metsät, espanjalaiset kasteluverkostot, filippiiniläiset kalastusalueet"
+            },
+            "eight_principles": [
+              {
+                "ydin": "Tiedetään ketkä kuuluvat yhteisöön ja mitkä resurssit ovat sen hallinnassa",
+                "numero": 1,
+                "periaate": "Selkeät rajat",
+                "ilman_tätä": "Ei yhteisöä — vain väkijoukko. Kuka tahansa voi käyttää resurssia ilman vastuuta."
+              },
+              {
+                "ydin": "Käyttösäännöt sovitettu paikallisiin olosuhteisiin — ei yleisiä lakeja jotka pakottavat saman ratkaisun kaikkialle",
+                "numero": 2,
+                "periaate": "Paikalliset säännöt",
+                "ilman_tätä": "Säännöt eivät toimi — paikallinen tieto ohitetaan, sopeutuminen estyy"
+              },
+              {
+                "ydin": "Ne joita säännöt koskevat osallistuvat niiden muotoiluun",
+                "numero": 3,
+                "periaate": "Osallistuminen sääntöjen tekoon",
+                "ilman_tätä": "Säännöt koetaan ulkoa tuotuina — noudattaminen vähenee, kiertäminen lisääntyy"
+              },
+              {
+                "ydin": "Sääntöjen noudattamista valvotaan — mutta valvojat ovat tilivelvollisia yhteisölle",
+                "numero": 4,
+                "periaate": "Valvonta yhteisön sisältä",
+                "ilman_tätä": "Vapaamatkustajuus — yksilö hyötyy yhteisestä ilman omaa panostaan"
+              },
+              {
+                "ydin": "Rikkomuksia ei rangaista raskaasti ensimmäisellä kerralla — varoitus, lievä, raskas",
+                "numero": 5,
+                "periaate": "Porrastetut sanktiot",
+                "ilman_tätä": "Joko rankaisemattomuus tai karkotus — ei keinoa korjata käyttäytymistä"
+              },
+              {
+                "ydin": "Nopeat, edullisesti käytettävissä olevat tavat ratkaista ristiriidat",
+                "numero": 6,
+                "periaate": "Edulliset konfliktinratkaisumekanismit",
+                "ilman_tätä": "Pienet ristiriidat kasvavat suuriksi — kalliiksi oikeudenkäynneiksi tai väkivallaksi"
+              },
+              {
+                "ydin": "Korkeampi hallinto tunnustaa yhteisön oikeuden hallinnoida itseään",
+                "numero": 7,
+                "periaate": "Tunnustus ulkopuolelta",
+                "ilman_tätä": "Yhteisön päätökset voidaan kumota ylhäältä — autonomia on hauras"
+              },
+              {
+                "ydin": "Suuremmat järjestelmät rakentuvat pienempien yhteisöjen kerroksista",
+                "numero": 8,
+                "periaate": "Sisäkkäisyys",
+                "ilman_tätä": "Skaala murtaa paikallisuuden — isompi yksikkö tuhoaa pienemmän logiikan"
+              }
+            ],
+            "unasked_question": "Ostromin lista on opetettu yliopistoissa kolmenkymmenen vuoden ajan. Mutta sitä on harvemmin kysytty: mikä yhdistää näitä kahdeksaa periaatetta? Seuraava osio vastaa tähän."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 2,
+          "type": "chain",
+          "title": "Kolme syvempää ominaisuutta: Ostromin periaatteiden logiikka",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio tekee kirjan keskeisimmän analyyttisen liikkeen: tiivistää kahdeksan periaatetta kolmeksi rakenteelliseksi ominaisuudeksi.",
+            "key_point": "Nämä kolme eivät ole moraalisia vaatimuksia. Ne ovat rakenteellisia ominaisuuksia — joko ne ovat järjestelmässä tai eivät. Niiden puuttuminen tarkoittaa että järjestelmä alkaa palvella itseään, ei pahoista aikomuksista vaan rakenteellisesta välttämättömyydestä.",
+            "derivation": [
+              {
+                "logiikka": "Paikallinen yhteisö tietää resurssistaan asioita joita ulkopuolinen sääntelijä ei voi tietää. Kun päätösvalta on siellä missä tieto on, päätökset ovat parempia — ei siksi että ihmiset ovat viisaampia, vaan koska tieto ei ehdi vääristyä ennen kuin sitä käytetään.",
+                "ominaisuus": "1. Päätösvalta sijaitsee siellä missä on tieto",
+                "rikkoontuminen": "Kun päätösvalta siirtyy pois tiedon lähteeltä, päätökset heikkenevät rakenteellisesti — ei tahdon vaan rakenteen vuoksi",
+                "mistä_periaatteista": "Periaatteet 2 (paikalliset säännöt) ja 3 (osallistuminen sääntöjen tekoon)"
+              },
+              {
+                "logiikka": "Sveitsiläinen joka ylilaiduntaa kärsii itse seurauksesta — hänen lehmänsä eivät saa ruokaa ensi vuonna. Päätöksen tekijä ja seurauksen kantaja ovat sama. Tämä ei ole moraalikysymys vaan rakenteellinen ominaisuus.",
+                "ominaisuus": "2. Ne jotka kantavat seuraukset tekevät päätökset",
+                "rikkoontuminen": "Kun päätöksen tekijä ja seurauksen kantaja erotetaan, itseohjautuvuus alkaa palvella vain päätöksen tekijää",
+                "mistä_periaatteista": "Periaatteet 1 (rajat), 4 (valvonta) ja 5 (sanktiot)"
+              },
+              {
+                "logiikka": "Pieni ongelma käsitellään pienenä. Varoitus ennen sanktiota. Paikallinen ratkaisu ennen ylempää tahoa. Kun konflikti pääsee kasvamaan suureksi, sen ratkaisu vaatii järeitä toimia jotka itse murtavat yhteisön.",
+                "ominaisuus": "3. Konfliktit ratkaistaan paikallisesti ja porrastetusti",
+                "rikkoontuminen": "Kun pienet ristiriidat kasaantuvat ratkaisemattomina, ne kasvavat järjestelmätason kriiseiksi",
+                "mistä_periaatteista": "Periaatteet 5 (porrastetut sanktiot), 6 (konfliktinratkaisu) ja 8 (sisäkkäisyys)"
+              }
+            ]
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 3,
+          "type": "evidence",
+          "title": "Sama logiikka neljässä eri järjestelmässä",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio osoittaa, että kolmen rakenteellisen ominaisuuden logiikka toistuu täysin eri konteksteissa. Tämä ei ole sattuma — se on rakenteellisen logiikan universaalius.",
+            "systems": [
+              {
+                "murtuu_kun": "Pieni eliitti tekee päätökset mutta ei elä niiden seurausten kanssa — demokratia muuttuu oligarkiaksi vaikka vaalit jatkuvatkin",
+                "ominaisuus_1": "Tieto sijaitsee kansalaisilla — he tietävät miten päätökset vaikuttavat heidän arkeensa",
+                "ominaisuus_2": "Äänestäjä kantaa itse päätöksensä seurauksen — hän elää valitsemassaan yhteiskunnassa",
+                "ominaisuus_3": "Konfliktit käsitellään äänestyksissä ja parlamentissa ennen kuin ne muuttuvat väkivallaksi",
+                "järjestelmä": "Demokratia"
+              },
+              {
+                "murtuu_kun": "Monopoli hallitsee tietoa, saastuminen kaatuu ulkopuolisille, tai konfliktit kasaantuvat järjestelmäkriiseiksi",
+                "ominaisuus_1": "Ostajilla on tieto siitä mitä he ostavat — ei informaatioepäsymmetriaa",
+                "ominaisuus_2": "Ostajat ja myyjät kantavat itse päätöstensä seuraukset — ei ulkoisia kustannuksia jotka kaatuvat kolmansille",
+                "ominaisuus_3": "Pienet ristiriidat ratkaistaan sopimusoikeudessa ja kuluttajansuojassa — ei oikeudenkäyntiaalloissa",
+                "järjestelmä": "Toimiva markkinatalous"
+              },
+              {
+                "murtuu_kun": "Rahoittaja omistaa tulokset, julkaisupaineessa syntyy virheellisiä tuloksia, tai kiistoja ei ratkaista avoimesti",
+                "ominaisuus_1": "Tieto sijaitsee tutkijoilla — ei akateemisilla hallinnoijilla",
+                "ominaisuus_2": "Tutkijan maine kantaa hänen päätöksiään — virheellinen tulos vahingoittaa hänen omaa uraansa",
+                "ominaisuus_3": "Tieteelliset kiistat ratkaistaan vertaisarvioinnissa — ei henkilökohtaisina riitoina tai oikeudenkäynteinä",
+                "järjestelmä": "Tieteellinen tutkimus"
+              },
+              {
+                "murtuu_kun": "Yksi yritys hankkii kontrollin, kontribuoijat menettävät päätösvallan, tai konflikteja ei ratkaista avoimesti",
+                "ominaisuus_1": "Tieto hajautettu kontribuoijille jotka tuntevat oman alueensa parhaiten",
+                "ominaisuus_2": "Kontribuoija kantaa itse työnsä laadusta — huono koodi ei mene läpi, maine rakentuu tekemisestä",
+                "ominaisuus_3": "Kiistat ratkaistaan teknisinä keskusteluina sähköpostilistoilla — ei omistussuhteisiin perustuvina päätöksinä",
+                "järjestelmä": "Avoin lähdekoodi (Linux, Wikipedia)"
+              }
+            ],
+            "conclusion": "Sama logiikka. Ostromin yhteishallinta, demokratia, markkinatalous, tiede, avoin koodi — kaikki onnistuvat pitämään itseohjautuvuuden yhteisön palveluksessa kun kolme ominaisuutta on paikallaan. Kaikki murtuvat samasta kohtaa."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 4,
+          "type": "evidence",
+          "title": "Kolme rakenteellista ominaisuutta: testikysymykset käytännön arviointiin",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio toistaa kolme ominaisuutta — kirjan ydin. Tässä ne testikysymyksinä jotka mahdollistavat käytännön arvioinnin.",
+            "practical_use": "Nämä testikysymykset toimivat diagnostisena välineenä — sekä olemassa olevien järjestelmien arviointiin että uusien suunnitteluun.",
+            "three_properties": [
+              {
+                "ominaisuus": "1. Päätösvalta sijaitsee siellä missä on tieto",
+                "testikysymykset": [
+                  "Kuka tekee päätöksen järjestelmästä — ja kenellä on eniten tietoa sen vaikutuksista?",
+                  "Kuinka pitkä matka on tiedon lähteeltä päätöksentekoon?",
+                  "Voiko paikallinen tieto muuttaa järjestelmän toimintaa — vai onko se vain palautetta jota ei kuunnella?"
+                ],
+                "merkkejä_ominaisuuden_puuttumisesta": [
+                  "Päätökset tehdään kaukana niistä jotka elävät niiden kanssa",
+                  "Palautetta kerätään mutta se ei muuta toimintaa",
+                  "Paikallinen asiantuntemus ohitetaan yleisten ohjeiden tieltä"
+                ]
+              },
+              {
+                "ominaisuus": "2. Ne jotka kantavat seuraukset tekevät päätökset",
+                "testikysymykset": [
+                  "Kuka kärsii jos päätös on huono — ja onko hän sama kuin päätöksen tekijä?",
+                  "Voiko päätöksen tekijä ulkoistaa seuraukset muille?",
+                  "Onko olemassa rakenne joka palauttaa seuraukset päätöksen tekijälle?"
+                ],
+                "merkkejä_ominaisuuden_puuttumisesta": [
+                  "Riskit ja hyödyt jakautuvat eri tahoille",
+                  "Päätöksen tekijä ei elä järjestelmän seurausten kanssa",
+                  "Epäonnistumisen kustannukset siirtyvät veronmaksajille, käyttäjille tai yhteisölle"
+                ]
+              },
+              {
+                "ominaisuus": "3. Konfliktit ratkaistaan paikallisesti ja porrastetusti",
+                "testikysymykset": [
+                  "Onko olemassa edullinen ja nopea tapa haastaa järjestelmän päätös?",
+                  "Ratkaistaan pienet ongelmat ennen kuin ne kasvavat suuriksi?",
+                  "Onko ensireaktio virheeseen korjaus vai sanktio?"
+                ],
+                "merkkejä_ominaisuuden_puuttumisesta": [
+                  "Valitusmenettelyt ovat kalliita ja hitaita",
+                  "Pienet ristiriidat jätetään huomiotta kunnes ne räjähtävät",
+                  "Virheeseen vastataan rangaistuksella ennen korjausmahdollisuutta"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 5,
+          "type": "chain",
+          "title": "Sarjan silta: Ostromin logiikka Näkyväksi-kirjan rakenteissa",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio osoittaa, että sama kolmen ominaisuuden logiikka on tunnistettavissa Näkyväksi-kirjan toimivissa rakenteissa. Tämä ei ole sattuma.",
+            "connections": [
+              {
+                "selitys": "Pieni ongelma käsitellään pienenä ennen kuin se kasvaa suureksi. Neuvola näkee lapsen ennen kuin ongelma on kriisi. Porrastetut sanktiot puuttuvat rikkomukseen ennen kuin se vakiintuu.",
+                "esimerkki": "Neuvolassa havaittu kehitysviive ohjataan tukeen ennen kouluikää — ei odoteta että lapsi epäonnistuu koulussa",
+                "ostrom_vastaavuus": "Konfliktit ratkaistaan paikallisesti ja porrastetusti",
+                "nakyvaksi_periaate": "Kohtaaminen ennen kriisiä"
+              },
+              {
+                "selitys": "Ihmisen kokonaistilanteesta tietää eniten ihminen itse ja se rakenne joka kohtaa hänet kokonaisena — ei sektori joka näkee vain palan. Päätökset tehdään lähellä tietoa.",
+                "esimerkki": "Koordinaatiomandaatti: yksi taho omistaa kokonaiskuvan — ei hajautettu usealle sektorille jotka näkevät kukin oman osansa",
+                "ostrom_vastaavuus": "Päätösvalta sijaitsee siellä missä on tieto",
+                "nakyvaksi_periaate": "Ihminen nähdään kokonaisena"
+              },
+              {
+                "selitys": "Ihmisen kokemus palvelusta palaa järjestelmään ja muuttaa sitä. Palvelun tuottaja kohtaa itse sen mitä hänen päätöksensä tuottavat.",
+                "esimerkki": "Metamittari: hoito arvioidaan sen perusteella mitä ihmiselle tapahtui — ei suoritteen perusteella",
+                "ostrom_vastaavuus": "Ne jotka kantavat seuraukset tekevät päätökset",
+                "nakyvaksi_periaate": "Palautesilmukka sulkeutuu"
+              }
+            ],
+            "implication": "Sama logiikka joka tekee neuvolasta toimivan tekee yhteishallinnasta kestävän. Tämä ei ole sattumaa — se on rakenteellisen logiikan toistuvuutta eri mittakaavoissa. Kirjan väite: sama logiikka voidaan tunnistaa ja rakentaa myös algoritmisiin järjestelmiin."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 6,
+          "type": "chain",
+          "title": "Murtumiskuvio: miten toimiva rakenne lakkaa palvelemasta yhteisöään",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio kääntää analyysin: ei vain mikä toimii, vaan miten se murtuu. Murtumiskuvio on tunnistettavissa historiassa toistuvana.",
+            "breakdown_pattern": [
+              {
+                "vaihe": 1,
+                "esimerkki": "Sveitsiläinen vuoristokylä menettää laidunhallinnon kun kansallinen viranomainen ottaa sen vastuun. Paikallinen tieto häviää päätöksenteosta.",
+                "mekanismi": "Skaalautuminen, standardointi tai keskittäminen siirtää päätöksiä kauemmaksi tiedosta",
+                "tapahtuma": "Päätösvalta siirtyy pois siitä paikasta missä tieto on",
+                "varhaiset_merkit": "Paikalliset asiantuntijat eivät enää vaikuta päätöksiin / palautetta ei kuunnella"
+              },
+              {
+                "vaihe": 2,
+                "esimerkki": "Pankkien sääntely ennen 2008: pankit tekivät riskipäätökset, veronmaksajat maksoivat epäonnistumisen. Ei pahuutta — rakenne mahdollisti sen.",
+                "mekanismi": "Rakenne mahdollistaa riskien ulkoistamisen — hyödyt itselle, kustannukset muille",
+                "tapahtuma": "Päätöksen tekijä ja seurauksen kantaja erotetaan toisistaan",
+                "varhaiset_merkit": "Epäonnistumisista ei ole henkilökohtaisia seurauksia / riskit siirtyvät kolmansille"
+              },
+              {
+                "vaihe": 3,
+                "esimerkki": "Oikeudenkäyntien kustannus nousee → pienet ristiriidat jäävät ratkaisematta → kasaantuvat järjestelmätason kriiseiksi",
+                "mekanismi": "Edulliset konfliktinratkaisumekanismit murtuvat — kustannukset nousevat, luottamus heikkenee, viranomaiset alirahoitetaan",
+                "tapahtuma": "Pienet konfliktit kasaantuvat ratkaisemattomina",
+                "varhaiset_merkit": "Yksittäiset valitukset jäävät käsittelemättä / konfliktit eskaloituvat nopeasti"
+              },
+              {
+                "vaihe": 4,
+                "esimerkki": "Monistuneet kaatuneista imperiumeista finanssikriiseihin, romahtaneista yhteisöistä epäonnistuneisiin valtioihin",
+                "mekanismi": "Kun kolme ominaisuutta on murtunut, itseohjautuvuus suuntautuu järjestelmän omaan säilymiseen — ei yhteisön palvelemiseen",
+                "tapahtuma": "Järjestelmä alkaa palvella itseään",
+                "varhaiset_merkit": "Resursseja käytetään yhä enemmän järjestelmän ylläpitoon, ei sen alkuperäiseen tarkoitukseen"
+              }
+            ],
+            "historical_pattern": "Tämä murtumiskuvio on dokumentoitu loputtomasti — aina sama logiikka. Itseohjautuvuus joka palveli yhteisöä alkaa palvella itseään, koska kolme ominaisuutta on murtunut. Ei pahoista aikomuksista — rakenteellisesta välttämättömyydestä."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 7,
+          "type": "chain",
+          "title": "Algoritminen järjestelmä Ostromin linssillä: missä kohtaa rakenne pettää",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio soveltaa kolmea ominaisuutta suoraan algoritmisiin järjestelmiin. Tulos on selvä: kaikki kolme puuttuvat pääosin nykyarkkitehtuurista.",
+            "analysis": [
+              {
+                "arvio": "Puuttuu",
+                "poikkeus": "Jotkut federoituneista järjestelmistä (Mastodon, Matrix) jakavat päätösvaltaa — mutta nämä ovat marginaalisia",
+                "ominaisuus": "Päätösvalta sijaitsee siellä missä on tieto",
+                "algoritminen_todellisuus": "Algoritmin päätökset koskevat käyttäjiä — mutta päätösvalta sen toiminnasta sijaitsee muutamilla yrityksillä. Tieto siitä mikä toimii käyttäjien elämässä on käyttäjillä. Päätös siitä mitä algoritmi optimoi on yrityksellä."
+              },
+              {
+                "arvio": "Puuttuu rakenteellisesti",
+                "poikkeus": "Maineuhka on epäsuora kannustin — mutta epäsymmetrinen ja hidas suhteessa päätösten nopeuteen",
+                "ominaisuus": "Ne jotka kantavat seuraukset tekevät päätökset",
+                "algoritminen_todellisuus": "Sosiaalisen median yritys ei kärsi suoraan jos algoritmi heikentää demokratiaa. Tekoälyyritys ei kärsi suoraan jos mallit syrjäyttävät työpaikkoja. Seuraukset kaatuvat yhteisölle. Päätökset tehdään yrityksessä."
+              },
+              {
+                "arvio": "Puuttuu",
+                "poikkeus": "EU:n AI Act ja DSA yrittävät rakentaa valitusmenettelyjä — mutta nämä ovat vasta alkuvaiheessa",
+                "ominaisuus": "Konfliktit ratkaistaan paikallisesti ja porrastetusti",
+                "algoritminen_todellisuus": "Algoritmista päätöstä ei voi haastaa paikallisesti. Sen logiikkaa ei voi selittää. Konfliktit kasautuvat järjestelmätason kriiseiksi — vaaleihin vaikuttavaksi disinformaatioksi, syrjintäkanteiksi, sääntelyaalloiksi joiden valmistelu vie vuosia."
+              }
+            ],
+            "conclusion": "Kaikki kolme rakenteellista ominaisuutta jotka pitäisivät itseohjautuvuuden yhteisön palveluksessa puuttuvat tai ovat murenemassa. Tämä ei tarkoita että algoritmiset järjestelmät ovat tuhoon tuomittuja. Se tarkoittaa että niiden nykyinen arkkitehtuuri ei sisällä niitä ominaisuuksia joita onnistuneet itseohjautuvat järjestelmät sisälsivät. Jos haluamme niiden palvelevan yhteisöä, meidän on rakennettava ne ominaisuudet niihin — sisäisenä arkkitehtuurina, ei pelkästään ulkoisena sääntelynä."
+          }
+        },
+        {
+          "chapter_position": 2,
+          "section_position": 8,
+          "type": "chain",
+          "title": "Kirjan eteneminen: kolme ominaisuutta kolmessa luvussa",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio sulkee luvun ja avaa kirjan jatkon. Seuraavat luvut käyvät läpi kolme ominaisuutta yksitellen — analyysinä siitä mitä on jo tehty siellä missä on yritetty.",
+            "method": "Jokaisessa luvussa sama kysymys: onko olemassa järjestelmiä jotka ovat onnistuneet rakentamaan tämän ominaisuuden algoritmiseen kontekstiin? Mitä niistä voidaan oppia?",
+            "chapter_map": [
+              {
+                "luku": "Luku III — Hayek ja hajautettu tieto",
+                "kysymys": "Miten algoritmisen järjestelmän rakenne voidaan tehdä sellaiseksi että päätösvalta on lähellä tietoa?",
+                "kontekstit": "Avoin lähdekoodi, federoituneeta järjestelmät, käyttäjien omistama data",
+                "ominaisuus": "Päätösvalta sijaitsee siellä missä on tieto"
+              },
+              {
+                "luku": "Luku IV — Vastuu ja palautesilmukka",
+                "kysymys": "Miten algoritmisen järjestelmän rakentaja saadaan kantamaan seuraukset järjestelmän vaikutuksista?",
+                "kontekstit": "Vastuukysymykset, yhteisomistus, palautekanavat, algoritminen tilivelvollisuus",
+                "ominaisuus": "Ne jotka kantavat seuraukset tekevät päätökset"
+              },
+              {
+                "luku": "Luku V — Konflikti ja sen institutionalisointi",
+                "kysymys": "Miten algoritmisen järjestelmän kanssa syntyvät ristiriidat voidaan käsitellä ennen kuin ne kasvavat kriiseiksi?",
+                "kontekstit": "Valitusmenettelyt, algoritminen selitettävyys, EU:n AI Act, paikallinen governance",
+                "ominaisuus": "Konfliktit ratkaistaan paikallisesti ja porrastetusti"
+              },
+              {
+                "luku": "Luku VI — Yhteisö ja mittakaava",
+                "kysymys": "Mitä kolmen ominaisuuden rakentaminen tarkoittaa Suomelle, EU:lle, demokratialle yleensä?",
+                "kontekstit": "Poliittiset vaatimukset, uusien järjestelmien rakentaminen, sarjan kokonaiskysymys",
+                "ominaisuus": "Synteesi"
+              }
+            ],
+            "series_closing": "Päätösluku palaa sarjan syvimpään kysymykseen: Aukusti ei kysynyt missä häntä tarvitaan, koska rakenne vastasi hänen puolestaan. Vilja kysyy sitä koska rakenne ei enää vastaa. Voivatko tulevat sukupolvet elää järjestelmissä jotka vastaavat heidän puolestaan — rakenteen kautta, ei kontrollin kautta?"
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 3,
+      "appendices": [
+        {
+          "chapter_position": 3,
+          "section_position": 0,
+          "type": "table",
+          "title": "Data vs. hiljainen tieto: rinnakkaisvertailu",
+          "source": "Polanyi M. (1966). The Tacit Dimension. Routledge. / Hayek F.A. (1945). AER.",
+          "position": 1,
+          "content": {
+            "body": "Osio erottaa toisistaan kaksi tietotyyppiä jotka usein sekoitetaan. Tällä erottelulla on rakenteellisia seurauksia.",
+            "note": "Tämä erottelu on luvun ydin. Algoritmi joka kerää käyttäytymistä ei kerää paikallista tietoa — se kerää varjoja. Syvempi tieto vaatii rakenteellista lähestymistä.",
+            "rows": [
+              [
+                "Muoto",
+                "Numeroita, tekstiä, kuvia — tallennettavissa",
+                "Hahmoja, intuitiota, kokemusta — ei helposti tallennettavissa"
+              ],
+              [
+                "Sijaintia",
+                "Voidaan siirtää palvelimelle, tietokantaan",
+                "Asuu ihmisessä, yhteisössä, käytännössä"
+              ],
+              [
+                "Esimerkki",
+                "Laitumen satotilasto, eläinten määrä, sademäärä",
+                "Vuoristolaisen kyky tunnistaa milloin laidun väsyy"
+              ],
+              [
+                "Algoritminen saatavuus",
+                "Korkea — algoritmi voi kerätä ja analysoida",
+                "Matala — algoritmi näkee vain sen käyttäytymisen jonka tieto tuottaa"
+              ],
+              [
+                "Polanyin käsite",
+                "Explicit knowledge",
+                "Tacit knowledge — tiedät enemmän kuin osaat sanoa"
+              ],
+              [
+                "Virhetyyppi ilman sitä",
+                "Ei välttämättä virhettä — luvut voivat olla oikein",
+                "Goodhartin laki: mittari eriytyy tarkoituksesta"
+              ],
+              [
+                "Ostromin periaate",
+                "Voidaan kerätä ulkopuolelta",
+                "Vaatii paikallisen päätösvallan — periaatteet 2 ja 3"
+              ]
+            ],
+            "headers": [
+              "Ominaisuus",
+              "Eksplisiittinen data",
+              "Hiljainen / paikallinen tieto"
+            ]
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 1,
+          "type": "evidence",
+          "title": "Hayekin hajautetun tiedon ongelma: empiiriset sovellukset",
+          "source": "Hayek F.A. (1945). The Use of Knowledge in Society. American Economic Review, 35(4), 519–530.",
+          "position": 1,
+          "content": {
+            "body": "Hayekin 1945-essee kuvasi tiedon hajautumisen ongelman — mutta sen laajin merkitys ulottuu kauas taloustieteen ulkopuolelle. Tässä empiirisiä vahvistuksia eri aloilta.",
+            "findings": [
+              {
+                "aihe": "Neuvostoliiton laskentaongelma",
+                "havainto": "Gosplan yritti laskea 12 miljoonan tuotteen optimaaliset hinnat ja tuotantomäärät. Taloustieteilijä Mises osoitti 1920 että tämä on laskennallisesti mahdotonta — ei tehottomana, vaan periaatteessa. Tieto ei ole olemassa yhdessä paikassa."
+              },
+              {
+                "aihe": "Sähköpörssin hajauttaminen",
+                "havainto": "Pohjoismaiset sähkömarkkinat (Nord Pool, 1996) korvasi kansalliset monopolit. Hajautettu hintamuodostus reagoi säätilaan, kulutuspiikkeihin ja tuotantohäiriöihin nopeammin kuin mikään suunniteltu järjestelmä olisi pystynyt."
+              },
+              {
+                "aihe": "Wikipedia vs. Britannica",
+                "havainto": "Nature-lehti vertasi 2005 Wikipedian ja Encyclopædia Britannican artikkeleiden tarkkuutta. Wikipedia: 162 virhettä, Britannica: 123. Eroa ei pidetty merkittävänä — mutta Wikipedian hajautettu malli tuotti vertailukelpoisen laadun ilman toimituskuntaa."
+              },
+              {
+                "aihe": "Avoimen lähdekoodin Linux",
+                "havainto": "Tuhannet kehittäjät eri puolilta maailmaa rakensivat käyttöjärjestelmän ilman että kukaan omisti kokonaistietoa sen arkkitehtuurista. Hajautettu tieto integroitui yhteisen protokollan (Git) kautta."
+              },
+              {
+                "aihe": "Ennustusmarkkinat",
+                "havainto": "Prediction markets — kuten Metaculus — aggregoivat hajautettua tietoa. Tutkimukset osoittavat niiden ennustavan tulevia tapahtumia tarkemmin kuin asiantuntijapaneelit tai mediaennusteet."
+              }
+            ],
+            "key_insight": "Hayekin havainto ei ole argumentti kaikkien markkinoiden puolesta. Se on havainto siitä, että tietyt hajautetut rakenteet ratkaisevat ongelman jonka mikään keskitetty järjestelmä ei voi ratkaista — paikallisen, hiljaisen tiedon aggregoinnin.",
+            "evidence_key": "optimization.goodhart_metrics",
+            "prediction_number": 2
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 2,
+          "type": "chain",
+          "title": "Tiedon keskittyminen algoritmisessa järjestelmässä: viisi vaihetta",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio paljastaa miksi algoritminen tiedonkeruu on eri asia kuin paikallisen tiedon kerääminen. Tässä viisi vaihetta varjon syntymiseen.",
+            "steps": [
+              {
+                "event": "Käyttäjä toimii järjestelmässä",
+                "consequence": "Algoritmi rekisteröi käyttäytymisen — klikkaukset, selaamisajat, valinnat. Tämä on mitattavaa ja tallennettavaa."
+              },
+              {
+                "event": "Algoritmi tulkitsee käyttäytymisen preferenssinä",
+                "consequence": "Klikkaus = kiinnostus. Pitkä selaamisaika = sitoutuminen. Valinta = halu. Mutta käyttäytyminen on kontekstuaalista — sama henkilö toimii eri tavoin eri tilanteissa."
+              },
+              {
+                "event": "Algoritmi optimoi lisää samaa käyttäytymistä",
+                "consequence": "Jos käyttäjä klikkasi vihaiseksi tekevää uutista, algoritmi näyttää lisää vihaiseksi tekeviä uutisia. Se ei tiedä miksi käyttäjä klikkasi — kiinnostuksesta, vahingossa vai tarkistaakseen onko otsikko totta."
+              },
+              {
+                "event": "Paikallinen tieto katoaa silmukasta",
+                "consequence": "Käyttäjällä on tieto siitä mitä hän todella tarvitsisi — mutta tämä tieto ei vaikuta algoritmiin. Algoritmi näkee käyttäytymisen, ei sen takana olevaa tietoa."
+              },
+              {
+                "event": "Järjestelmä optimoi varjoa, ei alkuperäistä",
+                "consequence": "YouTube oppii ennustamaan klikkaukset erinomaisesti. Se ei ymmärrä käyttäjän oppimista, hyvinvointia tai tarpeita. Sillä on dataa. Sillä ei ole ymmärrystä. Se on optimoinut varjon."
+              }
+            ],
+            "reflection": "Tämä ei ole Hayekin ongelman ratkaisu — se on sen uusi muoto. Algoritmi ei kerää paikallista tietoa, se kerää käyttäytymistä. Nämä ovat eri asioita vaikka ne usein sekoitetaan."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 3,
+          "type": "chain",
+          "title": "Goodhartin laki Hayekin linssin läpi: mekanismi",
+          "source": "Goodhart C.A.E. (1975). / Strathern M. (1997). \"Improving ratings: audit in the British university system.\"",
+          "position": 1,
+          "content": {
+            "body": "Osio yhdistää kaksi analyysiä. Goodhartin laki kuvaa oireen — mittari korruptoi tavoitteen. Hayek selittää syyn — päätös on eriytetty tiedosta. Tässä mekanismi.",
+            "steps": [
+              {
+                "event": "Järjestelmä asettaa mittarin kuvaamaan tavoitetta",
+                "consequence": "Sosiaalityön käyntimäärä kuvaa huolenpidon intensiteettiä. Lastensuojelun kirjaamisnopeus kuvaa reagointikykyä."
+              },
+              {
+                "event": "Päätösvalta mittarista sijaitsee etäällä tiedosta",
+                "consequence": "Mittarista päätetään hallinnossa — ei niiden joukossa jotka tietävät mitä arvo todella on. Sosiaalityöntekijä tietää. Hallinnoija päättää."
+              },
+              {
+                "event": "Ammattilainen alkaa optimoida mittaria",
+                "consequence": "Ei tahallisesti — rakenteellisesti. Kun palkitseva mittari on käyntimäärä, käyntimäärä kasvaa. Syvällisempi työ joka ei näy mittarissa vähenee."
+              },
+              {
+                "event": "Paikallinen tieto katoaa järjestelmästä",
+                "consequence": "Tieto edelleen on sosiaalityöntekijällä. Mutta se ei enää ohjaa järjestelmän toimintaa. Järjestelmä näkee vain mittarin."
+              },
+              {
+                "event": "Mittari paranee, todellisuus heikkenee",
+                "consequence": "Tilastot näyttävät hyvältä. Lasten tilanne ei parane. Järjestelmä on optimoinut mittarin — ei tarkoitusta."
+              }
+            ],
+            "evidence_key": "optimization.goodhart_hayek_mechanism",
+            "open_question": "Ratkaisu ei ole parempi mittari — koska parempikin mittari eriyttää päätöksen tiedosta. Ratkaisu on rakenne jossa tieto vaikuttaa päätökseen suoraan: päätösvalta sijaitsee siellä missä on tieto.",
+            "prediction_number": 2
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 4,
+          "type": "evidence",
+          "title": "Federoitu rakenne: neljä historiallista mallia",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio esittelee federoidun rakenteen — itsenäiset toimijat, yhteiset protokollat, paikallinen päätösvalta. Tässä neljä mallia eri konteksteista.",
+            "pattern": "Kaikissa onnistuneissa tapauksissa: yhteinen protokolla + paikallinen autonomia + avoin pääsy. Kaikissa rapautumisissa: verkostoefektit suosivat suuria toimijoita jotka alkavat hallita protokollaa.",
+            "findings": [
+              {
+                "aihe": "Sähköposti (SMTP, 1982)",
+                "havainto": "Federoidun rakenteen alkuperäinen digitaalinen malli. Jokainen palvelintarjoaja hallitsee omaa infrastruktuuriaan, omia käyttäjiään, omaa tietoturvaansa. Yhteinen protokolla mahdollistaa viestinnän yli rajojen. Ketään ei voida poistaa järjestelmästä sulkematta pois kaikista.",
+                "tila_nyt": "Rapautumassa — yli 50 % sähköpostiliikenteestä kulkee kolmen suuren palvelun (Gmail, Outlook, Yahoo) kautta. Teknisesti federoitu, käytännössä oligopolistinen."
+              },
+              {
+                "aihe": "ActivityPub / Fediverse (2018–)",
+                "havainto": "Sosiaalisen median federoitu protokolla. Mastodon, Pixelfed, PeerTube, Misskey — eri sovellukset jotka kommunikoivat keskenään. Yksittäinen palvelin voi asettaa omat sääntönsä — mutta käyttäjä voi silti seurata muiden palvelimien käyttäjiä.",
+                "tila_nyt": "Marginaalinen mutta kasvava. Meta liittyi Fediverse-verkostoon 2024 Threads-palvelullaan — herättäen kysymyksen voidaanko suuri toimija liittyä federoiduun rakenteeseen ilman että hallitsee sitä."
+              },
+              {
+                "aihe": "Internet-protokollat (TCP/IP, HTTP)",
+                "havainto": "Internetin peruskerros on federoitu: ei kukaan omista, kaikki voivat käyttää. HTTP mahdollistaa että jokainen voi julkaista verkkosivun ilman lupaa. Tämä on tuottanut kaiken: hakukoneet, verkkokaupat, Wikipedian, sosiaalisen median.",
+                "tila_nyt": "Protokolla on avoin — mutta sen päälle rakennettu kerrros on hyvin keskitetty. Google hallitsee hakua, Meta sosiaalista mediaa, Amazon pilvilaskentaa."
+              },
+              {
+                "aihe": "Suomen Kanta-palvelu (2010–)",
+                "havainto": "Suomalainen terveysdatan federoitu infrastruktuuri. Jokainen terveydenhuollon toimija tallentaa tiedot omaan järjestelmäänsä — mutta Kanta mahdollistaa tiedon siirtymisen yli organisaatiorajojen potilaan suostumuksella.",
+                "tila_nyt": "Toimii osittain. Kattavuus vaihtelee. Sosiaalitoimen ja terveydenhuollon rajapinta on edelleen hauras. Malli on oikea — toteutus kesken."
+              }
+            ]
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 5,
+          "type": "note",
+          "title": "Wikipedia rakenteellisena valintana: mitä se todella tarkoittaa",
+          "source": "Reagle J.M. (2010). Good Faith Collaboration. MIT Press. / Wikimedia Foundation Annual Report 2023.",
+          "position": 1,
+          "content": {
+            "body": "Wikipedia ei ole vain tietosanakirja. Se on rakenteellinen valinta siitä missä päätösvalta tiedosta sijaitsee.",
+            "text": "Useimmat tietosanakirjat ovat porttivartioituja: toimituskunta päättää mitä sisällytetään, miten asiat esitetään, kenen näkemys on auktoritatiivinen. Tämä on ymmärrettävää laadunvarmistuksena — mutta sillä on rakenteellinen sivuvaikutus. Paikallinen tieto pääsee sisään vain jos se läpäisee portin.\n\nWikipedia valitsi toisen rakenteen: kuka tahansa voi muokata, yhteisö arvioi, virheen korjaaminen ei vaadi auktoriteetin lupaa. Tämä tuottaa virheiden rinnalla jotain ainutlaatuista: heinävetiläinen voi kirjoittaa Heinävedestä, koska hänellä on paikallinen tieto jota kenelläkään toimituksella ei voi olla.\n\nWikipedian rakenne ei ole kaaosin hyväksyminen. Se on rakenteellinen valinta hajautetun tiedon puolesta. Porttivartiointi on vaihdettu yhteisölliseen korjausprosessiin. Tulos on epätasainen — mutta tasaisesti kattava tavoilla joihin mikään toimituksellinen prosessi ei pysty.\n\nVuonna 2023 suomenkielisessä Wikipediassa on yli 570 000 artikkelia — enemmän kuin yksikään suomalainen kustantaja voisi tuottaa. Kirjoittajia on tuhansia, heidän motivaationaan yhteinen tietämys eikä palkka. Tämä on hajautetun tiedon rakenne toiminnassa.",
+            "source": "Reagle J.M. (2010). Good Faith Collaboration. MIT Press. / Wikimedia Foundation Annual Report 2023."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 6,
+          "type": "calculation",
+          "title": "Suomen osuuskuntakenttä: mittakaava ja haasteet",
+          "source": "Pellervo-Seura, PTT-raportti 2022, Aalto-yliopisto osuuskuntarakenne 2023",
+          "position": 1,
+          "content": {
+            "body": "Suomi on poikkeuksellisen vahva osuuskuntamaa. Tässä mittakaava — ja se mitä se tarkoittaa algoritmisten järjestelmien kannalta.",
+            "note": "Noin 70 % suomalaisista on jonkin osuuskunnan jäsen. Tämä on kansainvälisesti poikkeuksellista. Mutta rakenne on rapautunut: suuret osuuskunnat toimivat yhä enemmän kuin osakeyhtiöt, yksittäisen jäsenen ääni on minimaalinen. Kysymys ei ole onko osuuskuntia — vaan toimivatko ne osuuskunnan periaatteella.",
+            "rows": [
+              {
+                "jäseniä": "~2,9 milj.",
+                "osuuskunta": "S-ryhmä (SOK)",
+                "omistusrakenne": "Asiakkaat omistavat alueosuuskunnat, ne omistavat SOK:n",
+                "liikevaihto_mrd": "13,0"
+              },
+              {
+                "jäseniä": "~2,0 milj.",
+                "osuuskunta": "OP-ryhmä",
+                "omistusrakenne": "Jäsenasiakkaat omistavat paikallisosuuspankit",
+                "liikevaihto_mrd": "9,8"
+              },
+              {
+                "jäseniä": "~4 500 (maidontuottajat)",
+                "osuuskunta": "Valio",
+                "omistusrakenne": "Tuottajaosuuskunnat omistavat Valion",
+                "liikevaihto_mrd": "2,3"
+              },
+              {
+                "jäseniä": "~1,6 milj.",
+                "osuuskunta": "LähiTapiola",
+                "omistusrakenne": "Asiakasomistajat",
+                "liikevaihto_mrd": "1,5"
+              },
+              {
+                "jäseniä": "~90 000 (metsänomistajat)",
+                "osuuskunta": "Metsä Group",
+                "omistusrakenne": "Metsäliitto Osuuskunta",
+                "liikevaihto_mrd": "6,0"
+              }
+            ],
+            "source": "Pellervo-Seura vuosikirja 2023, PTT-raportti osuuskuntatalouudesta 2022"
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 7,
+          "type": "evidence",
+          "title": "Algoritminen auditointi: kolme mallia ja niiden rajoitteet",
+          "source": "EU AI Act (2024), Raji et al. (2020). Closing the AI Accountability Gap. ACM FAccT.",
+          "position": 1,
+          "content": {
+            "body": "Auditointi on heikompi rakenteellinen ominaisuus kuin federointi tai osuuskunta — mutta se on saavutettavissa laajemmin. Tässä kolme mallia ja niiden todelliset rajoitteet.",
+            "findings": [
+              {
+                "aihe": "EU AI Act — riskiperusteinen auditointi",
+                "rajoite": "Auditoinnin syvyys vaihtelee. 'Tekninen dokumentaatio' ei tarkoita samaa kuin toiminnan läpinäkyvyys. Suuret toimijat voivat täyttää muodon täyttämättä tarkoitusta.",
+                "havainto": "Korkean riskin järjestelmät (luottoluokitus, rekrytointi, oikeudenkäyttö, kriittinen infrastruktuuri) vaativat rekisteröinnin, riskiarviointia ja tietyissä tapauksissa kolmannen osapuolen auditointia. Voimaan 2024–2027 vaiheistettuna."
+              },
+              {
+                "aihe": "Algorithmic Impact Assessment (AIA)",
+                "rajoite": "Koskee toistaiseksi vain julkista sektoria. Yksityiset toimijat — jotka tekevät enemmän algoritmisia päätöksiä — eivät ole velvoitettuja.",
+                "havainto": "Kanada ja Uusi-Seelanti ovat ottaneet käyttöön vaikutusarviointivelvoitteen julkishallinnolle ennen algoritmin käyttöönottoa. Arvioinnin kohteena: kuka tekee päätöksen, mitä dataa käytetään, mitä virhemahdollisuuksia on."
+              },
+              {
+                "aihe": "Tekninen auditointi — musta laatikko vs. avoin koodi",
+                "rajoite": "Avoinkaan lähdekoodi ei takaa ymmärrettävyyttä — miljardeja parametreja sisältävä malli on auki mutta ei läpinäkyvä. Interpretability-tutkimus ratkoo tätä mutta on varhaisessa vaiheessa.",
+                "havainto": "Open source -kielimallit (Meta Llama, Mistral) ovat periaatteessa auditoitavissa — koodi on nähtävissä. Suljetut mallit (GPT-4, Gemini) eivät ole. Auditointitutkijat joutuvat tekemään 'mustalaatikkoauditointia' — testaamaan syötteitä ja tulostuksia ilman pääsyä arkkitehtuuriin."
+              }
+            ],
+            "conclusion": "Auditointi on parempi kuin ei-auditointia. Mutta se ei korvaa rakenteellista muutosta — se on jälkikäteinen korjausmekanismi, ei sisäinen rakenne. Hayekin ongelmaa se ei ratkaise — mutta se voi pienentää sen seurauksia."
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 8,
+          "type": "list",
+          "title": "Kolme rakenteellista estettä: miksi federointi, osuuskunnat ja auditointi eivät synny itsestään",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio on kirjan rehellisyyden osio. Ratkaisut ovat olemassa — mutta ne taistelevat selkeitä rakenteellisia voimia vastaan. Tässä kolme estettä.",
+            "note": "Nämä esteet eivät tee ratkaisuja mahdottomiksi. Wikipedia onnistui. Linux onnistui. Suomalaiset osuuskunnat onnistuivat aikoinaan. Mutta ne onnistuivat tietoisen rakentamisen tuloksena — eivät markkinoiden luonnollisesta liikkeestä.",
+            "items": [
+              {
+                "body": "Mitä enemmän tietoa yritys omistaa käyttäjistään, sitä arvokkaampi se on sijoittajille. Mitä suljetumpi järjestelmä, sitä vahvemmat verkostoefektit. Mitä enemmän käyttäjiä yhdellä alustalla, sitä korkeampi kynnys vaihtaa kilpailijalle. Federointi, osuuskuntarakenne ja auditointi vähentävät tätä arvoa — ne ovat rakenteellisesti epäsuotuisia sijoittajaomistuksessa.",
+                "title": "1. Taloudellinen logiikka palkitsee tiedon keskittämistä"
+              },
+              {
+                "body": "Federoidun järjestelmän arvo riippuu siitä kuinka moni käyttää sitä. Fediverse on parempi kuin Twitter rakenteellisesti — mutta Twitter on suurempi. Käyttäjä joutuu valitsemaan paremman rakenteen ja pienemmän verkoston välillä. Tämä valinta on rationaalisesti vaikea. Sähköposti on ainoa digitaalinen kommunikaatiomuoto joka on onnistunut pysymään federoidusti toimivana pitkällä aikavälillä — koska se on niin perustavanlaatuinen ettei kukaan monopolisoinut sitä ajoissa.",
+                "title": "2. Verkostoefektit suosivat skaalaa — ei hajautusta"
+              },
+              {
+                "body": "Algoritmisten järjestelmien auditointiin tarvitaan teknistä osaamista jota useimmilla sääntelyviranomaisilla ei ole. EU:n AI Act on hyvä askel — mutta sen valvontaviranomaisten täytyy ymmärtää mitä he valvovat. Tämä osaamiskuilu on reaalinen. Suuret teknologiayritykset palkkaavat parhaiten AI-osaamista — sääntelijät eivät pysty kilpailemaan palkoissa. Tulos: sääntelykaappaus, jossa toimijat muovaavat sääntöjä joita heidän pitäisi noudattaa.",
+                "title": "3. Tekninen monimutkaisuus nousee — hallinnollinen osaaminen ei pysy perässä"
+              }
+            ]
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 9,
+          "type": "evidence",
+          "title": "Mitä hajautettu tietomalli tarkoittaa Suomelle",
+          "source": "Avoindata.fi, Pellervo-Seura, Maanmittauslaitoksen avoin data -tilastot 2023",
+          "position": 1,
+          "content": {
+            "body": "Suomella on kaksi poikkeuksellista rakenteellista etua hajautetun tiedon logiikan rakentamisessa digitaalisessa aikakaudessa.",
+            "findings": [
+              {
+                "aihe": "Etu 1: Osuuskuntaperinne",
+                "rajoite": "Suuret osuuskunnat ovat rapautuneet — ne käyttäytyvät yhä enemmän kuin osakeyhtiöt. Yksittäisen jäsenen ääni on minimaalinen. Perinne on olemassa mutta se täytyy elvyttää, ei vain viitata siihen.",
+                "havainto": "Suomessa noin 70 % kansalaisista on jonkin osuuskunnan jäsen — yksi maailman korkeimmista osuuskuntatiheyyksistä. S-ryhmä, OP, Valio, LähiTapiola, Metsä Group ovat kaikki osuuskuntia. Rakenteet, juridiikka ja kulttuuri ovat olemassa."
+              },
+              {
+                "aihe": "Etu 2: Poikkeuksellisen avoin julkinen data",
+                "rajoite": "Data on hajallaan eri viranomaisilla. Tietosuojalainsäädäntö rajoittaa yhdistämistä. Kanta on hyvä malli — mutta sosiaalitoimen ja terveydenhuollon raja on edelleen hauras.",
+                "havainto": "Maanmittauslaitoksen kartat ovat avoimia — ainoana maana maailmassa kansallisessa mittakaavassa. Tilastokeskuksen aineistot ovat kattavat ja saatavilla. Kela, THL, verohallinto tuottavat julkista dataa jota useimmissa maissa ei ole. Tämä on infrastruktuuri jonka avulla federoitu digitaalinen palvelu voidaan rakentaa paikalliselle tiedolle."
+              },
+              {
+                "aihe": "Mitä näillä voidaan rakentaa",
+                "rajoite": "Vaatii poliittisen tahdon tunnistaa nämä edut rakenteellisiksi mahdollisuuksiksi — ei vain historiallisina kuriositeetteina.",
+                "havainto": "Suomalainen alusta joka yhdistää osuuskuntaomistuksen, avoimen julkisen datan ja federoidun arkkitehtuurin olisi rakenteellisesti erilainen kuin mikään olemassa oleva digitaalinen palvelu. Se ei optimoisi sijoittajien tuottoa — vaan jäsenten etua. Se ei keräisi tietoa yhteen omistajalle — vaan käyttäisi paikallisesti hallittua dataa. Tämä ei ole utopia — se on Suomen historian perinteen soveltaminen uuteen aikakauteen."
+              }
+            ]
+          }
+        },
+        {
+          "chapter_position": 3,
+          "section_position": 10,
+          "type": "list",
+          "title": "Neljä käytännön johtopäätöstä: päätösvalta siellä missä on tieto",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Osio sulkee luvun neljällä konkreettisella johtopäätöksellä. Nämä eivät ole teoreettisia — ne ovat rakenteellisia valintoja joita voidaan tehdä tai jättää tekemättä.",
+            "note": "Tämä on yksi kolmesta ominaisuudesta. Seuraava luku käsittelee toista: miten varmistetaan että päätöksen tekijä kantaa myös sen seuraukset — eikä siirrä niitä kolmansille, tulevaisuuteen tai yhteisön kannettavaksi.",
+            "items": [
+              {
+                "body": "Käyttäytymisdata ei ole paikallinen tieto — se on sen varjo. Järjestelmä joka optimoi käyttäytymistä ei optimoi sitä mitä käyttäytyminen tuotti. Tämä erottelu on tehtävä eksplisiittisesti ennen järjestelmän suunnittelua.",
+                "title": "Erota käyttäytyminen paikallisesta tiedosta"
+              },
+              {
+                "body": "Federoitu rakenne tarkoittaa: yhteinen protokolla, paikallinen autonomia, avoin pääsy. Se ei ole tekninen kuriositeetti — se on rakenne joka pitää päätösvallan siellä missä on tieto. Julkisessa hallinnossa tämä tarkoittaa Kannan kaltaista infrastruktuuria laajennettuna.",
+                "title": "Rakenna federoituneena aina kun mahdollista"
+              },
+              {
+                "body": "Erityisesti kun palvelun arvo on käyttäjien luomaa — sosiaalinen media, alustapalvelut, yhteisöllinen tieto — omistuksen tulisi heijastaa tätä. Suomella on osuuskuntaperinne. Sitä voidaan soveltaa digitaaliseen aikaan.",
+                "title": "Harkitse käyttäjäosuuskuntia digitaalisissa palveluissa"
+              },
+              {
+                "body": "Silloinkin kun täydellistä rakenteellista muutosta ei voida tehdä välittömästi, auditoitavuus on minimivaatimus. EU AI Act on alku. Sen toimeenpano ja valvontakapasiteetti ratkaisevat tuloksen.",
+                "title": "Vaadi auditoitavuutta kaikista algoritmisista päätöksistä"
+              }
+            ],
+            "ordered": true
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 4,
+      "appendices": [
+        {
+          "chapter_position": 4,
+          "section_position": 1,
+          "type": "evidence",
+          "title": "Kolme tapaa jolla seuraus karkaa: empiiriset esimerkit",
+          "source": null,
+          "position": 1,
+          "content": {
+            "body": "Luku IV argumentoi, että toimiva itseohjautuvuus vaatii seurausten palautumisen tekijälle. Tämä liite dokumentoi kolme mekanismia, joilla seuraus karkaa.",
+            "mechanisms": [
+              {
+                "esimerkki": "Subprime-asuntolainat 2008: lainoittajat saivat palkkion heti, seuraukset koituivat muille vuosia myöhemmin. Aikajänteen epäsymmetria mahdollisti riskinoton ilman vastuuta.",
+                "mekanismi": "Aika erottaa teon ja seurauksen",
+                "algoritminen_vastine": "Sosiaalisen median algoritmi optimoi sitoutumista nyt — mielenterveysvaikutukset näkyvät vuosien päästä."
+              },
+              {
+                "esimerkki": "Monikansallinen yritys siirtää saastuttavan tuotannon matalan sääntelyn maahan. Päätöksentekijä ei koe seurauksia.",
+                "mekanismi": "Etäisyys erottaa teon ja seurauksen",
+                "algoritminen_vastine": "Algoritmisen suosittelun suunnittelijat eivät käytä samaa tuotetta kuin käyttäjät — heidän informaatioympäristönsä on erilainen."
+              },
+              {
+                "esimerkki": "Kalastusyhteisö: jokainen kalastaja tekee rationaalisen päätöksen, tulos on ylikalastus. Kukaan ei ole yksin vastuussa — kaikki ovat.",
+                "mekanismi": "Kollektiivisuus erottaa teon ja seurauksen",
+                "algoritminen_vastine": "Disinformaatio: jokainen jakaminen on pieni teko, kollektiivinen tulos voi olla merkittävä yhteiskunnallinen haitta."
+              }
+            ],
+            "structural_implication": "Vastuu ei seuraa automaattisesti tekoa. Se täytyy rakentaa sisään järjestelmään — aikatauluttamalla, paikantamalla, kollektiivin sisällä."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 4,
+          "type": "evidence",
+          "title": "Mikä on jo toiminut: vastuun rakenteelliset ratkaisut",
+          "source": null,
+          "position": 2,
+          "content": {
+            "body": "Luku IV etsii toimivia malleja. Tämä liite dokumentoi järjestelmiä, joissa seuraukset on onnistuttu palauttamaan tekijälle rakenteellisesti.",
+            "cases": [
+              {
+                "maa": "Suomi ja EU",
+                "tulos": "Rakennuslaatu on parantunut. Takuujärjestelmä muuttaa laskelman: virheen korjaaminen on kalliimpaa kuin tekeminen oikein kerralla.",
+                "tapaus": "Rakennusalan takuujärjestelmä",
+                "mekanismi": "Rakentaja vastaa virheistä 10 vuoden ajan. Vastuu on henkilökohtainen ja ajallinen — rakentaja kantaa seurauksen, vaikka asiakas on jo muuttanut sisään."
+              },
+              {
+                "maa": "Pohjoismaat",
+                "tulos": "Seurattavuus luo kannusteen varovaisuuteen — ei pelosta, vaan rakenteesta.",
+                "tapaus": "Lääkärin ammatillinen vastuu",
+                "mekanismi": "Lääkärin virhe voi johtaa ammattioikeuden menettämiseen. Vastuu on henkilökohtainen, läpinäkyvä ja pitkäaikainen."
+              },
+              {
+                "maa": "EU",
+                "tulos": "Epätäydellinen mutta suunnan muuttava: yritykset sisällyttävät ympäristökustannuksen laskelmiin silloin kun valvonta toimii.",
+                "tapaus": "Ympäristövastuu (saastuttaja maksaa)",
+                "mekanismi": "Saastuttaminen on laillisesti sidottu puhdistusvelvoitteeseen. Ympäristövahinko ei voi enää olla ulkoistettu kustannus."
+              }
+            ],
+            "common_thread": "Kaikissa: vastuu on etukäteen sovittu, konkreettinen ja sidottu tekijään — ei teoreettinen moraalinen vaatimus."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 5,
+          "type": "chain",
+          "title": "Algoritminen vastuu: nykytila ja puutteet",
+          "source": null,
+          "position": 3,
+          "content": {
+            "body": "Luku IV soveltaa vastuuperiaatteen algoritmisiin järjestelmiin. Tämä ketju kuvaa nykytilan ja sen rakenteelliset aukot.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Algoritmi suosittelee sisältöä",
+                "consequence": "Käyttäjä altistuu sisällölle — algoritmia ei ole suunniteltu ottamaan vastuuta siitä, mitä hän kohtaa."
+              },
+              {
+                "step": 2,
+                "event": "Haitta ilmenee",
+                "consequence": "Disinformaatio leviää, polarisaatio kasvaa, nuorten mielenterveys kärsii. Tutkimus dokumentoi yhteyden — syy-seuraussuhde on kiistelty."
+              },
+              {
+                "step": 3,
+                "event": "Vastuu hajaantuu",
+                "consequence": "Alusta: emme tuottaneet sisältöä. Sisällöntuottaja: emme rakentaneet algoritmia. Mainostaja: emme tienneet minkä vieressä mainos näkyy. Ketään ei voida yksiselitteisesti osoittaa."
+              },
+              {
+                "step": 4,
+                "event": "Regulaatio yrittää tavoittaa",
+                "consequence": "EU:n Digital Services Act (2023) alkaa muuttaa tätä: alustan täytyy arvioida systeemisiä riskejä ja vastata niistä. Mutta toimeenpano on kesken."
+              },
+              {
+                "step": 5,
+                "event": "Rakenteellinen aukko jää",
+                "consequence": "Yksilöllinen ja ajallinen vastuu puuttuu: kuka suunnittelija henkilökohtaisesti kantaa seurauksen? Millä aikavälillä vaikutuksia mitataan?"
+              }
+            ],
+            "required_shift": "Vastuun rakentaminen algoritmisiin järjestelmiin ei ole mahdoton tehtävä — mutta se vaatii sen hyväksymistä, että koodikin on teko, josta seuraa vastuu."
+          }
+        },
+        {
+          "chapter_position": 4,
+          "section_position": 7,
+          "type": "evidence",
+          "title": "Suomalainen sovellus: vastuun rakenne julkisissa järjestelmissä",
+          "source": "Oikeusministeriö; VTV 2023",
+          "position": 4,
+          "content": {
+            "body": "Luku IV päättyy Suomen kontekstiin. Tämä liite kartoittaa, miten vastuuperiaate toteutuu suomalaisissa julkisissa järjestelmissä — ja missä aukot ovat.",
+            "gaps": [
+              {
+                "aukko": "Algoritmisten päätösten vastuu",
+                "kuvaus": "Kun kunta tai Kela käyttää algoritmista päätöstukea, kuka vastaa virheellisestä päätöksestä? Laki ei vastaa tähän yksiselitteisesti."
+              },
+              {
+                "aukko": "Pitkän aikavälin vastuu",
+                "kuvaus": "Poliitikon vastuu on vaalikauden mittainen. Päätösten seuraukset voivat näkyä vasta seuraavalla sukupolvella."
+              }
+            ],
+            "strengths": [
+              {
+                "kuvaus": "Suomessa virkamiehen henkilökohtainen vastuu on kirjattu lakiin. Tämä on poikkeuksellista globaalisti — useimmissa maissa vastuu on organisaatiolla, ei yksilöllä.",
+                "vahvuus": "Virkavastuu"
+              },
+              {
+                "kuvaus": "Kansalainen voi kannella julkishallinnon toiminnasta ilmaiseksi. Matala kynnys + ulkopuolinen arvioija = toimiva palautekanava.",
+                "vahvuus": "Eduskunnan oikeusasiamies"
+              },
+              {
+                "kuvaus": "Valtiontalouden tarkastusvirasto auditoi julkisten varojen käytön. Tulos on julkinen — läpinäkyvyys on rakennettua, ei vapaaehtoista.",
+                "vahvuus": "Tilintarkastus ja VTV"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 5,
+      "appendices": [
+        {
+          "chapter_position": 5,
+          "section_position": 2,
+          "type": "evidence",
+          "title": "Ostromin viides periaate: konfliktin institutionalisointi",
+          "source": "Ostrom 1990; Aronson & Patnoe 2011",
+          "position": 1,
+          "content": {
+            "body": "Luku V rakentuu väitteen varaan: konflikti ei ole järjestelmän häiriö vaan sen terveydentilan mittari. Tämä liite avaa Ostromin viidettä periaatetta empiirisesti.",
+            "principle": "Viides periaate: rikkomuksista seuraa porrastettu rangaistus. Taustalla laajempi logiikka: konfliktin täytyy olla mahdollinen ja ratkaistavissa sisäisesti.",
+            "empirical_basis": [
+              {
+                "lähde": "Ostrom 1990, tapaustutkimukset Sveitsin vuoristokylistä: yhteisöt joilla oli säännölliset kokoukset ja dokumentoidut kiistat kestivät pidempään kuin ne joissa konflikti puuttui.",
+                "havainto": "Yhteisöt joissa ei ole konfliktihistoriaa eivät ole välttämättä terveitä — ne voivat olla hiljennetty"
+              },
+              {
+                "lähde": "Ensimmäinen rikkomus: muistutus. Toinen: pieni rangaistus. Kolmas: poissulkeminen. Tämä rakenne esiintyy riippumattomasti eri kulttuureissa ja kontinenteilla.",
+                "havainto": "Porrastettu rangaistus on empiirinen löydös, ei moraalinen valinta"
+              },
+              {
+                "lähde": "Aronson & Patnoe 2011: ryhmät joissa konfliktia ei sallita kehittävät piilotettuja hierarkioita ja epävirallisia koalitioita.",
+                "havainto": "Konfliktin poistaminen ei poista erimielisyyttä — se ajaa sen maan alle"
+              }
+            ],
+            "counterintuitive": "Järjestelmä ilman näkyvää konfliktia voi olla sairas: joko dominanssi on niin suuri ettei kukaan uskalla kiistää, tai erimielisyydet on pakotettu muualle."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 3,
+          "type": "evidence",
+          "title": "Demokratia konfliktijärjestelmänä: kolme esimerkkiä",
+          "source": null,
+          "position": 2,
+          "content": {
+            "body": "Luku V vertaa algoritmisia järjestelmiä demokratiaan. Tämä liite osoittaa, miten demokratia institutionalisoi konfliktin — ja mitä siitä voi oppia.",
+            "examples": [
+              {
+                "järjestelmä": "Suomen eduskunta",
+                "konfliktin_rooli": "Äänestys on muodollistettu konflikti: erimielisyys ratkaistaan laskemalla, ei eliminoimalla. Vähemmistöllä on ääni tulevaisuutta varten.",
+                "institutionaalinen_rakenne": "Oppositio on virallinen rooli, ei häiriö. Oppositiojohtajalla on asema ja resurssit — konflikti on arvokas."
+              },
+              {
+                "järjestelmä": "Suomalainen työmarkkinajärjestelmä",
+                "konfliktin_rooli": "Lakko on laillinen — työnantajan ja työntekijän konflikti on järjestelmän osa. Lakottomana kautena on sovittu luottamus; lakkokaudella on sovittu ratkaisu.",
+                "institutionaalinen_rakenne": "Sovittelujärjestelmä: kun osapuolet eivät pääse sopuun, valtakunnansovittelija astuu kuvaan. Kolmas osapuoli on rakennettu järjestelmään."
+              },
+              {
+                "järjestelmä": "Tiedeyhteisö",
+                "konfliktin_rooli": "Vertaisarviointi on muodollistettu kritiikki. Julkaiseminen on altistumista konfliktille — tieto paranee kiistelyn kautta.",
+                "institutionaalinen_rakenne": "Vetäminen (retraction) on rakennettua: jos tulos on väärä, se poistetaan. Virheiden korjaaminen on normaalia, ei skandaali."
+              }
+            ],
+            "algorithmic_contrast": "Algoritminen järjestelmä ei institutionalisoi konfliktia — se suodattaa sen. Sisältömoderointi poistaa erimielisyyden. Suosittelualgoritmi rakentaa kaikukammion. Konflikti ei poistu — se muuttaa muotoaan."
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 6,
+          "type": "chain",
+          "title": "Miten algoritminen järjestelmä käsittelee konfliktia: neljä vaihetta",
+          "source": null,
+          "position": 3,
+          "content": {
+            "body": "Luku V osoittaa, että algoritminen järjestelmä ei institutionalisoi konfliktia vaan muuttaa sen muotoa. Tämä ketju kuvaa mekanismin.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Erimielisyys ilmenee alustalla",
+                "consequence": "Algoritmi tunnistaa sen negatiivisena signaalina tai positiivisena sitoutumisen mukaan — riippuen siitä, pitääkö polarisoiva sisältö käyttäjän alustalla."
+              },
+              {
+                "step": 2,
+                "event": "Algoritmi optimoi sitoutumisen mukaan",
+                "consequence": "Polarisoiva sisältö saa enemmän näkyvyyttä — se pitää käyttäjän alustalla. Erimielisyys muuttuu viihteeksi."
+              },
+              {
+                "step": 3,
+                "event": "Käyttäjä ei kohtaa erimielisyyttä suoraan",
+                "consequence": "Kaikukammio: suositukset vahvistavat olemassa olevia näkemyksiä. Haastaminen vähenee — mutta erimielisyys ei katoa, se vain siirtyy toiselle alustalle tai kasvokkaiseen kohtaamiseen ilman sovittelurakenteita."
+              },
+              {
+                "step": 4,
+                "event": "Konflikti purkautuu hallitsemattomasti",
+                "consequence": "Kun järjestelmä ei institutionalisoi konfliktia, se purkautuu sen ulkopuolella: katuväkivaltana, poliittisena radikalisoitumisena, tai täydellisenä vetäytymisenä julkisesta diskurssista."
+              }
+            ],
+            "evidence_key": "self_organization.algorithmic_conflict_chain",
+            "design_question": "Voiko algoritminen järjestelmä institutionalisoida konfliktin? Ei poistaa sitä, vaan rakentaa sille kanavan — kuten demokratia tekee?",
+            "prediction_number": 4
+          }
+        },
+        {
+          "chapter_position": 5,
+          "section_position": 8,
+          "type": "evidence",
+          "title": "Suomalainen näkökulma: konfliktin kulttuuri ja sen rakenteet",
+          "source": "Eurobarometri 2023; Valtioneuvoston kanslia",
+          "position": 4,
+          "content": {
+            "body": "Luku V päättyy suomalaiseen kontekstiin. Suomella on erityinen suhde konfliktiin — sekä historiallinen trauma että rakenteelliset vahvuudet.",
+            "current_strengths": [
+              {
+                "kuvaus": "Palkansaajat, työnantajat ja valtio neuvottelevat yhdessä. Konflikti on institutionalisoitu — ei poistettu.",
+                "vahvuus": "Kolmikantaneuvottelu"
+              },
+              {
+                "kuvaus": "Suomessa on yli 300 kuntaa — paikallistason päätöksenteko lähellä asukasta. Pienen mittakaavan konflikti on hallittavampaa.",
+                "vahvuus": "Kunnallinen demokratia"
+              },
+              {
+                "kuvaus": "Suomessa luotetaan tuomioistuimiin poikkeuksellisen paljon (Eurobarometri 2023). Institutionaalinen konfliktinratkaisu koetaan oikeudenmukaiseksi.",
+                "vahvuus": "Oikeuskulttuurin vahvuus"
+              }
+            ],
+            "current_challenges": [
+              {
+                "haaste": "Konsensuksen paine",
+                "kuvaus": "Vahva konsensuskulttuuri voi tukahduttaa tärkeän erimielisyyden. Kritiikki voidaan torjua hankalana eikä tärkeänä."
+              },
+              {
+                "haaste": "Algoritminen tila suomeksi",
+                "kuvaus": "Suomenkielinen julkinen tila on pieni — disinformaatio ja polarisaatio voivat levitä nopeasti pienessä kieliyhteisössä."
+              }
+            ],
+            "historical_context": "Talvisodan kokemus ja jälleenrakennus: konsensuskulttuuri rakentui tietoisesti tilanteessa jossa konflikti olisi ollut kohtalokasta. Konsensus oli selviytymisstrategia."
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 6,
+      "appendices": [
+        {
+          "chapter_position": 6,
+          "section_position": 2,
+          "type": "evidence",
+          "title": "Mikä yhteisöä rakentaa: kolme empiiristä löydöstä",
+          "source": "Axelrod 1984; Sherif 1954; Deci & Ryan 2000",
+          "position": 1,
+          "content": {
+            "body": "Luku VI kysyy: jos itseohjautuvuus vaatii yhteisön, mikä rakentaa sen? Tämä liite kokoaa kolme keskeistä tutkimuslöydöstä.",
+            "findings": [
+              {
+                "löydös": "Toistuvat kohtaamiset luovat luottamusta",
+                "sovellus": "Digitaalinen yhteisö jossa käyttäjät vaihtuvat jatkuvasti ei rakenna luottamusta. Pysyvyys on edellytys.",
+                "tutkimus": "Axelrod (1984): toistuvassa vangin dilemmassa yhteistyö kehittyy ilman sopimusta, kun osapuolet tietävät kohtaavansa uudelleen. Kertaluontoisessa kohtaamisessa vapaamatkustus dominoi."
+              },
+              {
+                "löydös": "Yhteinen kokemus luo yhteenkuuluvuutta",
+                "sovellus": "Yhteinen projekti, ei yhteinen paikka, rakentaa yhteisöä.",
+                "tutkimus": "Sherif (1954, Robbers Cave): kilpailevat ryhmät integroituivat ainoastaan kun heillä oli yhteinen haaste joka vaati yhteistyötä. Pelkkä läheisyys ei riittänyt."
+              },
+              {
+                "löydös": "Tunnustus ja näkyvyys ovat välttämättömiä",
+                "sovellus": "Anonyymi yhteisö voi olla suuri mutta heikko. Tunnistettavuus luo vastuun — ja kuulumisen.",
+                "tutkimus": "Deci & Ryan (itsemääräämisen teoria): yhteisöön kuuluminen on perustarve — mutta se täyttyy vain kun yksilö kokee olevansa näkyvä ja tunnustettu."
+              }
+            ],
+            "synthesis": "Yhteisöä ei rakenneta kokoamalla ihmisiä yhteen. Se rakentuu toistuvista kohtaamisista + yhteisestä haasteesta + keskinäisestä tunnustuksesta."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 3,
+          "type": "chain",
+          "title": "Kolme kerrosta yhteisöä: miten ne rakentuvat ja hajoavat",
+          "source": null,
+          "position": 2,
+          "content": {
+            "body": "Luku VI esittelee kolme yhteisön kerrosta. Tämä ketju kuvaa miten ne rakentuvat — ja missä järjestyksessä ne hajoavat.",
+            "layers": [
+              {
+                "nimi": "Välitön yhteisö (perhe, lähipiiri)",
+                "kerros": 1,
+                "hajoaminen": "Hajoaa etäisyyden kasvaessa tai luottamuksen murtuessa. Digitaalinen läheisyys ei korvaa fyysistä.",
+                "rakentuminen": "Syntyy toistuvista kasvokkaisista kohtaamisista. Ei vaadi yhteistä tavoitetta — riittää yhteinen tila ja aika."
+              },
+              {
+                "nimi": "Toiminnallinen yhteisö (harrastukset, työ, paikallisuus)",
+                "kerros": 2,
+                "hajoaminen": "Hajoaa kun yhteinen toiminta päättyy tai sen tarkoitus katoaa. Rakenteet eivät automaattisesti siirry uuteen kontekstiin.",
+                "rakentuminen": "Rakentuu yhteisen toiminnan ympärille. Vaatii toistuvuuden — kertaluontoinen kohtaaminen ei riitä."
+              },
+              {
+                "nimi": "Abstrakti yhteisö (kansallisuus, arvoyhteisö, globaali)",
+                "kerros": 3,
+                "hajoaminen": "Hajoaa kun yhteinen narratiivi murtuu tai kilpailevat narratiivit voimistuvat. Algoritminen polarisaatio kohdistuu juuri tähän kerrokseen.",
+                "rakentuminen": "Rakentuu jaettujen narratiivien ja symbolien varaan. Ei vaadi kasvokkaisuutta — mutta vaatii jotain yhteistä mihin uskoa."
+              }
+            ],
+            "sequence": "Kolmas kerros on heikoin — se rakentuu viimeiseksi ja hajoaa ensimmäiseksi. Vahva abstrakti yhteisö vaatii pohjakseen vahvan toiminnallisen yhteisön."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 5,
+          "type": "evidence",
+          "title": "Suomi ja EU: itseohjautuvuuden kaksi mittakaavaa",
+          "source": "Edelman Trust Barometer 2024; Eurobarometri 2023",
+          "position": 3,
+          "content": {
+            "eu": [
+              {
+                "arvio": "450 miljoonaa ihmistä, 27 valtiota, 24 virallista kieltä. Mittakaava tekee itseohjautuvuudesta laadullisesti erilaisen haasteen.",
+                "ulottuvuus": "Koko"
+              },
+              {
+                "arvio": "EU on itsessään itseohjautuva järjestelmä — jäsenvaltiot ovat osallistujia joilla on oma autonomia. Ostromin monitasoisuus on sen perustava rakenne.",
+                "ulottuvuus": "Rakenne"
+              },
+              {
+                "arvio": "EU:n päätöksenteko on monille kansalaisille läpinäkymätöntä — tämä on itseohjautuvuuden este. Osallistuminen vaatii ymmärrystä siitä miten järjestelmä toimii.",
+                "ulottuvuus": "Läpinäkymättömyys"
+              }
+            ],
+            "body": "Luku VI pohtii kahta mittakaavaa: Suomen sisäistä ja EU-tasoista. Tämä liite vertaa niiden vahvuuksia ja heikkouksia itseohjautuvuuden rakentamisessa.",
+            "finland": [
+              {
+                "arvio": "5,5 miljoonaa ihmistä on hallittava mittakaava. Poliitikko, virkamies ja kansalainen voivat kohdata. Verkostot ovat ohuita mutta olemassa.",
+                "ulottuvuus": "Koko"
+              },
+              {
+                "arvio": "Suomi on maailman luotetuimpia maita instituutioihin kohdistuvassa luottamuksessa (Edelman Trust Barometer 2024). Tämä on itseohjautuvuuden raaka-aine.",
+                "ulottuvuus": "Luottamus"
+              },
+              {
+                "arvio": "Suuri homogeenisuus on lyhyen aikavälin vahvuus mutta pitkän aikavälin riski: miten rakenteet toimivat kun väestö monimuotoistuu?",
+                "ulottuvuus": "Yhtenäisyys"
+              }
+            ],
+            "synthesis": "Suomi voi toimia EU:n sisällä kokeilukenttänä: riittävän pieni skaalata nopeasti, riittävän vahva institutionaalisesti, riittävän luotettu rakentaa uutta."
+          }
+        },
+        {
+          "chapter_position": 6,
+          "section_position": 6,
+          "type": "calculation",
+          "title": "Konkreettinen polku: mitä itseohjautuva algoritminen järjestelmä voisi tarkoittaa Suomessa",
+          "source": null,
+          "position": 4,
+          "content": {
+            "body": "Luku VI päättyy konkreettiseen polkuun. Tämä liite hahmottelee, mitä Ostromin periaatteisiin perustuva algoritminen järjestelmä tarkoittaisi käytännössä.",
+            "steps": [
+              {
+                "vaihe": 1,
+                "toimenpide": "Määritellään rajat",
+                "kustannus_arvio": "Hallinnollinen investointi: arviolta 20–40 MEUR vuotuinen regulaattorikapasiteetti",
+                "mitä_tarkoittaa": "Mikä algoritminen järjestelmä on julkisesti sääntelyä vaativa? EU:n AI Act tekee tätä — Suomi voi implementoida kunnianhimoisesti."
+              },
+              {
+                "vaihe": 2,
+                "toimenpide": "Käyttäjille oikeus muuttaa sääntöjä",
+                "kustannus_arvio": "Käyttöliittymäinvestointi: kohtuullinen — vaatii tahtoa enemmän kuin rahaa",
+                "mitä_tarkoittaa": "Ei tarkoita että jokainen päättää algoritmin koodista — tarkoittaa selkeitä valintoja jotka ovat aidosti käyttäjällä: kuinka paljon personointia, minkä tyyppiset sisällöt."
+              },
+              {
+                "vaihe": 3,
+                "toimenpide": "Systeemisten riskien arviointi julkiseksi",
+                "kustannus_arvio": "Resursointi: 5–10 henkilöä Traficomiin tai vastaavaan viranomaiseen",
+                "mitä_tarkoittaa": "Suuret alustat tekevät riskiarvioinnin DSA:n mukaan — Suomi voi vaatia suomenkielisen yhteenvedon ja julkisen palautemenettelyn."
+              },
+              {
+                "vaihe": 4,
+                "toimenpide": "Konfliktinratkaisumalli",
+                "kustannus_arvio": "Olemassa olevan rakenteen laajentaminen — ei uutta organisaatiota",
+                "mitä_tarkoittaa": "Kuluttajariitalautakunnan tyyppinen, matalan kynnyksen valitusjärjestelmä algoritmisiin päätöksiin: tilinsulkeminen, sisällönpoisto, hinnoittelu."
+              }
+            ],
+            "caveat": "Nämä ovat rakenteellisia skenaarioita — eivät teknisiä spesifikaatioita tai poliittisia suosituksia.",
+            "timeline": "Polku on mahdollinen nykyisen EU-lainsäädännön puitteissa. Vaatii poliittisen päätöksen priorisoinnista."
+          }
+        }
+      ]
+    },
+    {
+      "chapter_position": 7,
+      "appendices": [
+        {
+          "chapter_position": 7,
+          "section_position": 1,
+          "type": "evidence",
+          "title": "Yksilön ja rakenteen suhde: kolmas tapa tutkimuksen valossa",
+          "source": "Sen 1999; Ostrom 1990; Hirschman 1970",
+          "position": 1,
+          "content": {
+            "body": "Päätösluku esittelee kolmannen tavan ajatella yksilön ja rakenteen suhdetta. Tämä liite avaa empiirisen pohjan.",
+            "synthesis": "Kolmas tapa: yksilö ei muuta rakennetta yksin eikä rakenne muutu ilman yksilöitä. Muutos tapahtuu yhteyden kohdassa — siellä missä yksilöllä on rakenteellinen rooli jossa hän voi toimia.",
+            "third_way": [
+              {
+                "tutkija": "Amartya Sen",
+                "argumentti": "Kykyjen lähestymistapa: vapauden kysymys ei ole yksilön ominaisuus eikä rakenteen ominaisuus — se on niiden yhteisvaikutus. Ihmisellä täytyy olla sekä kyky että mahdollisuus."
+              },
+              {
+                "tutkija": "Elinor Ostrom",
+                "argumentti": "Järjestelmät joissa yksilöt voivat muuttaa rakenteita toimivat paremmin kuin ne joissa rakenteet ovat ulkoa annettuja tai täysin yksilöiden varassa."
+              },
+              {
+                "tutkija": "Albert Hirschman",
+                "argumentti": "Exit, Voice, Loyalty: yksilö muuttaa järjestelmää äänellä (vaikuttaminen) tai poistumalla (markkinavoima). Kolmas tapa on lojaalisuus — pysyminen ja toimiminen sisältä käsin."
+              }
+            ],
+            "two_common_views": [
+              {
+                "ongelma": "Jos rakenne on viallinen, yksilön kehittäminen ei riitä. Parempi potilas huonossa sairaalassa saa silti huonoa hoitoa.",
+                "näkemys": "Yksilö on ensisijainen"
+              },
+              {
+                "ongelma": "Rakenne ei muutu itsestään — joku muuttaa sitä. Rakennetta muuttavat yksilöt.",
+                "näkemys": "Rakenne on kaikki"
+              }
+            ]
+          }
+        },
+        {
+          "chapter_position": 7,
+          "section_position": 6,
+          "type": "chain",
+          "title": "Sivilisaation toimintakyky: mikä ketjuttaa itseohjautuvuuden laajemmaksi",
+          "source": null,
+          "position": 2,
+          "content": {
+            "body": "Päätösluvun viimeinen argumentti: itseohjautuvuus ei ole vain tehokkuuskysymys — se on sivilisaation toimintakyvyn kysymys. Tämä ketju näyttää kytköksen.",
+            "steps": [
+              {
+                "step": 1,
+                "event": "Toimivat itseohjautuvat järjestelmät vapauttavat kapasiteettia",
+                "consequence": "Kun koordinaatio ei vaadi jatkuvaa valvontaa ja kontrollia, resursseja vapautuu muuhun — innovointiin, hyvinvointiin, uusiin haasteisiin vastaamiseen."
+              },
+              {
+                "step": 2,
+                "event": "Kapasiteetti mahdollistaa monimutkaisten ongelmien ratkaisemisen",
+                "consequence": "Ilmastomuutos, pandemiat, tekoäly — haasteet jotka ylittävät yksittäisen valtion tai yrityksen kyvyn. Niiden ratkaisu vaatii koordinoitua itseohjautuvuutta suuressa mittakaavassa."
+              },
+              {
+                "step": 3,
+                "event": "Luottamus on välttämätön edellytys",
+                "consequence": "Koordinoitu itseohjautuvuus vaatii luottamusta — instituutioihin, prosesseihin, toisiin ihmisiin. Luottamus ei synny ilman rakenteita jotka tekevät sen järkeväksi."
+              },
+              {
+                "step": 4,
+                "event": "Rakenteet luovat luottamuksen — tai tuhoavat sen",
+                "consequence": "Algoritminen järjestelmä joka tuhoaa luottamusta heikentää sivilisaation toimintakykyä. Järjestelmä joka rakentaa sitä vahvistaa sitä."
+              }
+            ],
+            "final_point": "Itseohjautuvuus ei ole utopistinen tavoite — se on pragmaattinen välttämättömyys. Ilman sitä emme pysty koordinoimaan vastausta ongelmiin jotka ovat liian suuria yhdelle toimijalle."
+          }
+        },
+        {
+          "chapter_position": 7,
+          "section_position": 7,
+          "type": "chain",
+          "title": "Kirjasarjan kaari: miten neljä kirjaa muodostavat kokonaisuuden",
+          "source": null,
+          "position": 3,
+          "content": {
+            "arc": [
+              {
+                "kirja": "Laajenemisen logiikka",
+                "argumentti": "Järjestelmät kasvavat — ja kasvu tuottaa rakenteellisia ongelmia jotka eivät ratkea lisäämällä enemmän samaa.",
+                "yhteys_seuraavaan": "Kasvu tekee näkymättömäksi — seuraava kirja kysyy miten tehdä näkyväksi."
+              },
+              {
+                "kirja": "Näkyväksi",
+                "argumentti": "Näkymättömyys on rakenteellinen ongelma — ihmiset katoavat järjestelmiin. Kaksisuuntainen optimointi on rakenteellinen ratkaisu.",
+                "yhteys_seuraavaan": "Näkyväksi tekeminen vaatii itseohjautuvuutta — muuten joudutaan turvautumaan valvontaan."
+              },
+              {
+                "kirja": "Itseohjautuvuus",
+                "argumentti": "Itseohjautuvuus vaatii kolmea rakenteellista ominaisuutta: tieto sijaitsee kokemuksessa, seuraukset palaavat tekijälle, konflikti on mahdollinen.",
+                "yhteys_seuraavaan": "Itseohjautuvuus vaatii katalyytin — joka käynnistää muutoksen ilman jatkuvaa ulkoista painetta."
+              },
+              {
+                "kirja": "Katalyytti",
+                "argumentti": "[Seuraava kirja — kaari avoin]",
+                "yhteys_seuraavaan": "Sarjan viimeinen argumentti rakentuu tähän."
+              }
+            ],
+            "body": "Päätösluku palauttaa kirjasarjan kokonaisrakenteeseen. Tämä liite jäsentää neljän kirjan argumenttiketjun.",
+            "synthesis": "Neljä kirjaa muodostavat yhden argumentin: miten rakentaa järjestelmä joka kasvaa, tekee ihmisen näkyväksi, ohjautuu itsestään ja käynnistää itsensä. Jokainen kirja on yhden rakenteellisen ongelman analyysi — ja yksi askel yhteiseen ratkaisuun."
+          }
+        }
+      ]
+    }
+  ],
+  "series_links": [
+    {
+      "evidence_key": "path_dependency.debt_nordics_1995_2024",
+      "indicator_key": "macro.edp_debt_gdp",
+      "indicator_name": "Government debt to GDP ratio",
+      "external_project": "TTT-analyysi",
+      "external_project_ref": "yjkabgtbcgvrfqtewtna",
+      "geography": "Nordics",
+      "year_start": 1995,
+      "year_end": 2024,
+      "expected_j_codes": [
+        "FI",
+        "SE",
+        "NO",
+        "DK",
+        "IS"
+      ],
+      "data_role": "primary_series",
+      "note": "Phase 5 pilot linkage for prediction 6"
+    },
+    {
+      "evidence_key": "path_dependency.tfr_nordics_1995_2024",
+      "indicator_key": "indicator.syntyvyys_tfr",
+      "indicator_name": "Kokonaishedelmällisyysluku (TFR)",
+      "external_project": "TTT-analyysi",
+      "external_project_ref": "yjkabgtbcgvrfqtewtna",
+      "geography": "Nordics",
+      "year_start": 1995,
+      "year_end": 2024,
+      "expected_j_codes": [
+        "FI",
+        "SE",
+        "NO",
+        "DK",
+        "IS"
+      ],
+      "data_role": "primary_series",
+      "note": "Phase 5 pilot linkage for prediction 6"
+    }
+  ]
+}

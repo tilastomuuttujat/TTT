@@ -1,7 +1,7 @@
 {
   "book_slug": "kuusi-ennustetta",
   "book_title": "Kuusi ennustetta",
-  "exported_at": "2026-05-28T12:39:30.832Z",
+  "exported_at": "2026-06-05T14:33:18.124Z",
   "chapters": [
     {
       "chapter_position": 1,
@@ -852,6 +852,9 @@
               2008,
               2020
             ],
+            "series_refs": [
+              "nordics.tfr_1950_2024"
+            ],
             "evidence_key": "path_dependency.tfr_nordics_1995_2024",
             "prediction_number": 6
           }
@@ -1021,6 +1024,9 @@
             "crisisYears": [
               2008,
               2020
+            ],
+            "series_refs": [
+              "nordics.debt_gdp_1995_2024"
             ],
             "evidence_key": "path_dependency.debt_nordics_1995_2024",
             "prediction_number": 6
