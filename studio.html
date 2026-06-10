@@ -85,6 +85,7 @@
       /* Save bar */
       .save-bar{position:fixed;bottom:0;left:0;right:0;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 0 calc(12px + env(safe-area-inset-bottom));z-index:35;transform:translateY(100%);transition:transform .25s;display:none}
       [data-mode="edit"] .save-bar{display:block;transform:translateY(0)}
+      [data-mode="edit"] #exportBtn{display:inline-flex!important}
       .save-bar-inner{display:flex;align-items:center;gap:14px}
       .save-status{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
       .save-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);flex-shrink:0}
@@ -150,6 +151,9 @@
           <button data-mode-set="edit" aria-pressed="false">Muokkaa</button>
         </div>
         <div class="bar-actions">
+          <button id="exportBtn" class="icon-btn" aria-label="Vie JSON" title="Vie lukuversio (JSON)" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </button>
           <button id="lensBtn" class="icon-btn" aria-label="Lukijan katse" aria-pressed="false" title="Lukijan katse">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
           </button>
@@ -587,6 +591,66 @@
         try{if(!p.book)return home();if(p.book&&p.chapter)return renderChapter(p.book,p.chapter);if(p.book)return book(p.book);}catch(e){setError(e.message);}
       }
       window.addEventListener("hashchange",route);
+
+      // ── Vienti: muodosta lukuversion JSON-tiedostot ──────────────────────
+      // Tuottaa rakenteen:
+      //   books/index.json          kirjalista
+      //   books/<slug>.json         kirja + luvut + osiot + liitteet yhdessä
+      // Lukuversio (cloner1) lukee näitä js/renderers-renderöijien kanssa.
+      async function buildExportForBook(slug){
+        const data=await loadBook(slug);
+        const appx=await loadAppendices(slug);
+        // series_links jos research-cardeja
+        let seriesLinks=[];
+        try{
+          const usedKeys=new Set();
+          for(const ch of (appx?.chapters||[]))for(const a of (ch.appendices||[]))if(a.type==="research-card"&&a.content&&Array.isArray(a.content.evidence_keys))a.content.evidence_keys.forEach(k=>usedKeys.add(k));
+          if(usedKeys.size>0){const{data:links}=await sb.from("v_evidence_series_links").select("evidence_key,indicator_key,indicator_name,geography,year_start,year_end,expected_j_codes,data_role");seriesLinks=(links||[]).filter(l=>usedKeys.has(l.evidence_key));}
+        }catch(e){console.warn("series_links:",e);}
+        // Kirjaobjekti — sama muoto kuin cloner1:n loadBook palauttaa
+        const book={
+          slug:data.slug,title:data.title,author:data.author,description:data.description,
+          chapters:(data.chapters||[]).slice().sort((a,b)=>a.position-b.position).map(ch=>({
+            id:ch.id,slug:ch.slug,title:ch.title,position:ch.position,
+            sections:(ch.sections||[]).slice().sort((a,b)=>a.position-b.position).map(s=>({id:s.id,title:s.title,position:s.position,content:s.content}))
+          })),
+          // liitteet upotettuna samaan tiedostoon
+          appendices:{
+            schema:"book-appendices.v1",
+            book:{slug:data.slug,title:data.title},
+            chapters:(appx?.chapters||[]).map(ch=>({position:ch.position,appendices:(ch.appendices||[]).map(a=>({id:a.id,chapter_position:a.chapter_position,section_position:a.section_position,type:a.type,title:a.title,source:a.source??null,position:a.position,content:a.content,hidden:false,reader_function:a.reader_function??null}))})),
+            series_links:seriesLinks
+          }
+        };
+        return book;
+      }
+
+      async function runExport(){
+        const exportBtn=document.getElementById("exportBtn");
+        exportBtn.disabled=true;toast("Kootaan lukuversiota…");
+        try{
+          const books=await loadIndex();
+          const index=books.map(b=>({slug:b.slug,title:b.title,author:b.author,description:b.description,cover_url:b.cover_url??null}));
+          // Lataa JSZip dynaamisesti
+          if(!window.JSZip){await new Promise((res,rej)=>{const s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js";s.onload=res;s.onerror=rej;document.head.appendChild(s);});}
+          const zip=new window.JSZip();
+          const booksFolder=zip.folder("books");
+          booksFolder.file("index.json",JSON.stringify(index,null,2));
+          for(const b of books){
+            const bookData=await buildExportForBook(b.slug);
+            booksFolder.file(b.slug+".json",JSON.stringify(bookData,null,2));
+            toast("Viety: "+b.title);
+          }
+          // README joka kertoo rakenteen
+          zip.file("README.txt","Lukuversion sisältö.\n\nbooks/index.json   kirjalista\nbooks/<slug>.json  kirja + luvut + osiot + liitteet\n\nLukuversio odottaa lisäksi js/renderers-hakemiston liitteiden renderöijille\nja js/appendix-loader.js -loaderin.\n\nViety "+new Date().toISOString());
+          const blob=await zip.generateAsync({type:"blob"});
+          const url=URL.createObjectURL(blob);
+          const a=document.createElement("a");a.href=url;a.download="books-export-"+new Date().toISOString().slice(0,10)+".zip";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+          toast("Lukuversio ladattu ("+books.length+" kirjaa)");
+        }catch(e){console.error(e);toast("Vienti epäonnistui: "+(e.message||e));}
+        finally{exportBtn.disabled=false;}
+      }
+      document.getElementById("exportBtn").addEventListener("click",runExport);
 
       // ── Boot ──
       async function boot(){
