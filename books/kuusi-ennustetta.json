@@ -3,16 +3,108 @@
   "title": "Kuusi ennustetta",
   "author": "Harri Käyhkö",
   "description": "Suomen hyvinvointijärjestelmä kirjojen linssien läpi. Kuusi falsifioitavaa ennustetta, joista jokainen kytkeytyy yhteen sarjan kirjoista. Tutkimusprotokolla pelkän retoriikan sijaan.",
-  "cover_url": null,
   "chapters": [
     {
+      "id": "e0a98dcb-0df0-4537-a5ea-bdbd1e57b989",
       "slug": "johdanto",
       "title": "Johdanto",
       "position": 0,
       "sections": [
         {
-          "title": "Sarjan rakenne",
+          "id": "719037bf-2b70-4a25-8f25-b5cc70905c1b",
+          "title": "Kolme ihmistä, kuusi ennustetta",
           "position": 0,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Vilja on 25. Väinö on 78. Jossain siltä väliltä on nuori ihminen joka rakastui — eikä pystynyt lopettamaan.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "He ovat saman sarjan henkilöitä. Vilja kantaa sukupolvensa taakkaa rakenteiden alla jotka eivät uusiudu itsestään. Väinö käyttää viiden organisaation palveluja joista kukaan ei omista kokonaiskuvaa. Nuori ihminen elää laajenemisen logiikassa — siinä prosessissa joka vahvistaa kaiken olemassaolevan, sekä hyvän että pahan, nopeammin kuin kukaan on valmis vastaanottamaan.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kuusi ennustetta ei lisää uusia ihmisiä. Se kysyy mitä näille kolmelle tapahtuu.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ensimmäinen ennuste koskee laajenemisen logiikkaa — mitä tapahtuu kun tekoäly vahvistaa sen mitä jo on. Se koskee nuorta ihmistä, mutta myös Viljaa ja Väinöä, koska laajeneminen ei kysy kenelle.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Toinen ennuste koskee näkymättömiä mekanismeja — viittä hidasta prosessia jotka ruokkivat toisiaan. Se koskee erityisesti Väinöä, jonka elämässä koordinaatiovaje on konkreettisin: kukaan ei omista kokonaiskuvaa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kolmas ennuste koskee näkyvyyttä — mitä tapahtuu kun näkymättömät tulevat näkyviksi. Se koskee erityisesti Viljaa, jonka sukupolvi kantaa taakkaa jota mittarit eivät näe.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Neljäs, viides ja kuudes ennuste koskevat rakenteita — itseohjautuvuutta, katalyyttiä ja polkuriippuvuutta. Ne koskevat kaikkia kolmea, koska rakenteet eivät kysy yksilöltä lupaa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ennuste ei ole ennustamista. Se on testattava väite — olemassa siksi että voidaan osoittaa milloin se on oikeassa ja milloin väärässä. Jokainen ennuste on kirjoitettu niin että lukija voi seurata sen toteutumista — tai osoittaa että se ei toteutunut.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Viljan, Väinön ja nuoren rakastuneen elämässä ennusteet toteutuvat tai eivät. Se on ainoa tapa jolla ne voivat merkitä jotain.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "e81245b3-12af-4aa5-8a84-98f6dd796f8c",
+          "title": "Sarjan rakenne",
+          "position": 1,
           "content": {
             "type": "doc",
             "content": [
@@ -150,11 +242,13 @@
       ]
     },
     {
+      "id": "ea32ccbc-39a0-4b42-a2c6-f99ae176ac25",
       "slug": "ennuste-1-laajenemisen-logiikka",
       "title": "Ennuste 1 — Laajenemisen logiikka",
       "position": 1,
       "sections": [
         {
+          "id": "6b136054-2627-4c7c-8894-adbe74917549",
           "title": "Väite",
           "position": 0,
           "content": {
@@ -182,6 +276,7 @@
           }
         },
         {
+          "id": "89854b11-da60-4acd-b3d0-8c9c3fbebfa3",
           "title": "Mekanismi",
           "position": 1,
           "content": {
@@ -218,6 +313,7 @@
           }
         },
         {
+          "id": "5383b57d-fe9e-4706-babf-94d5d927e5bf",
           "title": "Näyttö",
           "position": 2,
           "content": {
@@ -245,6 +341,7 @@
           }
         },
         {
+          "id": "a236f522-ae69-4e21-9de6-d95e3525539a",
           "title": "Milloin kumoutuu",
           "position": 3,
           "content": {
@@ -305,6 +402,7 @@
           }
         },
         {
+          "id": "fda2a31f-1f08-4cf9-9b4c-2060cc188378",
           "title": "Mitä tämä tarkoittaa",
           "position": 4,
           "content": {
@@ -334,11 +432,13 @@
       ]
     },
     {
+      "id": "4a09f22f-a01e-4873-a418-6366d3ab3ee2",
       "slug": "ennuste-2-nakymattomat-mekanismit",
       "title": "Ennuste 2 — Näkymättömät mekanismit",
       "position": 2,
       "sections": [
         {
+          "id": "4d67ae5e-549e-48ef-9e79-bdabbbbc49b1",
           "title": "Väite",
           "position": 0,
           "content": {
@@ -366,6 +466,7 @@
           }
         },
         {
+          "id": "2d62d24b-fd3f-42cc-b6ec-7f27c6849357",
           "title": "Mekanismi",
           "position": 1,
           "content": {
@@ -402,6 +503,7 @@
           }
         },
         {
+          "id": "7f23c5a8-b4cf-4657-9a26-02ba32430424",
           "title": "Näyttö",
           "position": 2,
           "content": {
@@ -429,6 +531,7 @@
           }
         },
         {
+          "id": "f14766dc-303a-47de-b68f-2db3f6894d13",
           "title": "Milloin kumoutuu",
           "position": 3,
           "content": {
@@ -489,6 +592,7 @@
           }
         },
         {
+          "id": "1901cf73-c994-4277-a4c2-cad67e392611",
           "title": "Mitä tämä tarkoittaa",
           "position": 4,
           "content": {
@@ -518,11 +622,13 @@
       ]
     },
     {
+      "id": "8401c9d2-1b14-460c-adb2-2c456ab0268a",
       "slug": "ennuste-3-nakyvaksi",
       "title": "Ennuste 3 — Näkyväksi",
       "position": 3,
       "sections": [
         {
+          "id": "886126ee-a418-40db-a8d2-003c66e90428",
           "title": "Väite",
           "position": 0,
           "content": {
@@ -550,6 +656,7 @@
           }
         },
         {
+          "id": "acdcfda6-feca-4cbd-80bb-308ccee7bbee",
           "title": "Mekanismi",
           "position": 1,
           "content": {
@@ -577,6 +684,7 @@
           }
         },
         {
+          "id": "66574cca-0d83-4e34-aecb-18de8d3e6cb6",
           "title": "Näyttö",
           "position": 2,
           "content": {
@@ -604,6 +712,7 @@
           }
         },
         {
+          "id": "71c0010d-df7c-42b8-8693-d8b2351f3426",
           "title": "Milloin kumoutuu",
           "position": 3,
           "content": {
@@ -664,6 +773,7 @@
           }
         },
         {
+          "id": "870408a3-7291-4f19-922f-34bd71a59d6a",
           "title": "Mitä tämä tarkoittaa",
           "position": 4,
           "content": {
@@ -693,11 +803,13 @@
       ]
     },
     {
+      "id": "eb57559a-e509-4580-8eb4-6797ecf60687",
       "slug": "ennuste-4-itseohjautuvuus",
       "title": "Ennuste 4 — Itseohjautuvuus",
       "position": 4,
       "sections": [
         {
+          "id": "e16dae2e-ccc0-4eb6-b409-47cbfeb55a5a",
           "title": "Väite",
           "position": 0,
           "content": {
@@ -725,6 +837,7 @@
           }
         },
         {
+          "id": "761f31fc-d4c6-4c8d-a3ee-ba8d5ab4e339",
           "title": "Mekanismi",
           "position": 1,
           "content": {
@@ -752,6 +865,7 @@
           }
         },
         {
+          "id": "5a8c0119-a184-411d-a2d5-d0c031cff73b",
           "title": "Näyttö",
           "position": 2,
           "content": {
@@ -779,6 +893,7 @@
           }
         },
         {
+          "id": "2385a9cf-ef24-48ce-b0c2-db3bd72f6971",
           "title": "Milloin kumoutuu",
           "position": 3,
           "content": {
@@ -839,6 +954,7 @@
           }
         },
         {
+          "id": "a40920e5-f713-4da2-8e8a-d444420958f2",
           "title": "Mitä tämä tarkoittaa",
           "position": 4,
           "content": {
@@ -868,11 +984,13 @@
       ]
     },
     {
+      "id": "28c440bc-37de-429c-9f4b-2fd5e7b1e5a7",
       "slug": "ennuste-5-katalyytti",
       "title": "Ennuste 5 — Katalyytti",
       "position": 5,
       "sections": [
         {
+          "id": "f5082bef-535e-4cd1-ba22-d2c8f7a4be50",
           "title": "Väite",
           "position": 0,
           "content": {
@@ -900,6 +1018,7 @@
           }
         },
         {
+          "id": "e03f18a1-da61-4f0c-b9ae-ac9d292cd436",
           "title": "Mekanismi",
           "position": 1,
           "content": {
@@ -936,6 +1055,7 @@
           }
         },
         {
+          "id": "301d7434-60e2-480a-bce3-d3bcae3ae739",
           "title": "Näyttö",
           "position": 2,
           "content": {
@@ -954,7 +1074,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Tämä ennuste on sarjan parhaiten testattavissa, koska TTT-tietokannan elastisuusaineisto sisältää jo 255 interventiokohtaista vaikutusarviota. Niistä voidaan tarkastella, vaihteleeko kustannustehokkuus epälineaarisesti — mikä olisi merkki kynnysvaikutuksista.",
+                    "text": "Tämä ennuste on sarjan parhaiten testattavissa, koska tutkimustietokannan elastisuusaineisto sisältää jo 255 interventiokohtaista vaikutusarviota. Niistä voidaan tarkastella, vaihteleeko kustannustehokkuus epälineaarisesti — mikä olisi merkki kynnysvaikutuksista.",
                     "type": "text"
                   }
                 ]
@@ -963,6 +1083,7 @@
           }
         },
         {
+          "id": "f19729c9-3521-49cf-963f-8896d4557c41",
           "title": "Milloin kumoutuu",
           "position": 3,
           "content": {
@@ -993,7 +1114,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Mittari: TTT-tietokannan elasticities-taulun pienten interventioiden vaikutus per käyttöönotettu yksikkö, verrattuna nullhypoteesiin että vaikutus on lineaarinen panoksen kanssa. Aineisto on jo olemassa (255 elastisuusarvoa). Kynnys: jos kustannustehokkuus per euro vaihtelee alle 3-kertaisesti interventioiden välillä, kitkahypoteesi ei tuota epälineaarisuutta.",
+                    "text": "Mittari: tutkimustietokannan elasticities-taulun pienten interventioiden vaikutus per käyttöönotettu yksikkö, verrattuna nullhypoteesiin että vaikutus on lineaarinen panoksen kanssa. Aineisto on jo olemassa (255 elastisuusarvoa). Kynnys: jos kustannustehokkuus per euro vaihtelee alle 3-kertaisesti interventioiden välillä, kitkahypoteesi ei tuota epälineaarisuutta.",
                     "type": "text"
                   }
                 ]
@@ -1023,6 +1144,7 @@
           }
         },
         {
+          "id": "888a5141-2e74-4fa3-a4ed-7d19da525e0d",
           "title": "Mitä tämä tarkoittaa",
           "position": 4,
           "content": {
@@ -1052,11 +1174,13 @@
       ]
     },
     {
+      "id": "751f4649-262a-40b8-87e7-bf1445d9d67c",
       "slug": "ennuste-6-polkuriippuvuus",
       "title": "Ennuste 6 — Polkuriippuvuus",
       "position": 6,
       "sections": [
         {
+          "id": "19a84361-3838-42a0-904d-512064403696",
           "title": "Väite",
           "position": 0,
           "content": {
@@ -1084,6 +1208,7 @@
           }
         },
         {
+          "id": "987de1f2-9133-4548-a1a8-e3af07c3c705",
           "title": "Mekanismi",
           "position": 1,
           "content": {
@@ -1120,6 +1245,7 @@
           }
         },
         {
+          "id": "8f6957ee-4d88-419d-8c9d-851ec87943de",
           "title": "Rakenteelliset erot",
           "position": 2,
           "content": {
@@ -1165,6 +1291,7 @@
           }
         },
         {
+          "id": "4cd0a2f6-d439-4eee-96cc-e4d7f8f4a985",
           "title": "Milloin ennuste kumoutuu",
           "position": 3,
           "content": {
@@ -1213,7 +1340,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Mittari: pohjoismaisten reformien (eläke, sote, varhaiskasvatus) vaikuttavuusarvioiden vertailu Suomen ja Ruotsin välillä, kun ikärakenne, BKT, sote-rahoituksen taso ja kuntarakenne vakioidaan. Aineisto: nordic_indicators (22 552 riviä), TTT-tietokannan elasticities ja causal_chains. Kynnys: jos systemaattinen ero vaikutusten välillä on alle 15 % vakioinnin jälkeen, polkuriippuvuus selittyy taustatekijöillä eikä rakenteella.",
+                    "text": "Mittari: pohjoismaisten reformien (eläke, sote, varhaiskasvatus) vaikuttavuusarvioiden vertailu Suomen ja Ruotsin välillä, kun ikärakenne, BKT, sote-rahoituksen taso ja kuntarakenne vakioidaan. Aineisto: nordic_indicators (22 552 riviä), tutkimustietokannan elasticities ja causal_chains. Kynnys: jos systemaattinen ero vaikutusten välillä on alle 15 % vakioinnin jälkeen, polkuriippuvuus selittyy taustatekijöillä eikä rakenteella.",
                     "type": "text"
                   }
                 ]
@@ -1243,6 +1370,7 @@
           }
         },
         {
+          "id": "76e864d9-c24c-4e6c-bb31-e65283dd4ef8",
           "title": "Mitä indikaattorit kertovat",
           "position": 4,
           "content": {
@@ -1333,11 +1461,13 @@
       ]
     },
     {
+      "id": "eac63faa-55d3-47e6-a097-f84dee9eeeca",
       "slug": "paatosluku-mita-ennusteet-oikeastaan-mittaavat",
       "title": "Päätösluku — Mitä ennusteet oikeastaan mittaavat",
       "position": 7,
       "sections": [
         {
+          "id": "762d4a67-4aee-44db-9046-27add1cc8d04",
           "title": "Ennusteet kristallipallona",
           "position": 0,
           "content": {
@@ -1401,6 +1531,7 @@
           }
         },
         {
+          "id": "04072be3-8473-4908-bff2-4657f5dc28bb",
           "title": "Ennusteiden yhteinen rakenne",
           "position": 1,
           "content": {
@@ -1500,8 +1631,91 @@
           }
         },
         {
-          "title": "Näkymätön siirtymä",
+          "id": "6e1cbcc4-cb8d-42a6-ae50-3101c896c834",
+          "title": "Mitä kaikki kuusi kirjaa eivät mitanneet",
           "position": 2,
+          "content": {
+            "type": "doc",
+            "content": [
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kuusi kirjaa, kuusi linssiä, kuusi eri tapaa katsoa samaa järjestelmää. Mutta jos astuu askeleen taaksepäin ja katsoo kaikkia kuutta yhdessä, niissä on yksi yhteinen sokea piste.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jokainen kirja mittaa sisäkehää.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Laajenemisen logiikka mittaa prosesseja — miten tehokkuus optimoituu, miten liukuhihna toimii, miten järjestelmä kasvaa ja saavuttaa mittakaavansa. Näkymättömät mekanismit mittaa ohjauksen logiikkaa — miten mittarit syntyvät, miten ne alkavat ohjata todellisuutta. Näkyväksi mittaa kohtaamisia — miten ihminen näkyy tai ei näy palvelupolulla. Itseohjautuvuus mittaa vastuun jakautumista — kuka omistaa kokonaisuuden. Katalyytti mittaa koordinaatiota — miten muutos syntyy ilman lupaa. Sukupolvi joka kantaa mittaa aikaa — miten kriisit kerrostuvat ja ketä lasku kohtaa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kaikki nämä ovat todellisia ja tärkeitä mittauksia. Mutta ne ovat kaikki sisäkehän mittauksia — ne kuvaavat järjestelmää siitä käsin mitä järjestelmä jo tietää itsestään.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ulkokehä on jäänyt mittaamatta. Ulkokehä on se mihin ihmiset pyrkivät: mihin he haluavat kuulua, missä he haluavat olla tarpeellisia, mikä tekee heidän elämästään merkityksellisen. Ulkokehä ei ole rekisterissä. Se ei näy missään datassa, koska kukaan ei ole rakentanut järjestelmää joka kysyisi siitä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kehien välinen etäisyys — se miten kaukana sisäkehä on ulkokehästä — on se mitä kaikki kuusi kirjaa kiertävät mutta eivät suoraan nimeä. Laajenemisen logiikka näkee sen optimoinnin sokeudessa: järjestelmä optimoi prosessia mutta kadottaa tarkoituksen. Näkyväksi näkee sen Viljan kysymyksessä: missä minua tarvitaan? Katalyytti näkee sen Hannelen ja Ainon kohtaamattomuudessa: tarve ja halu ovat olemassa mutta eivät löydä toisiaan.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä ei ole kuudennen kirjan puute. Se on yhteinen havainto: kaikki kuusi linssiä ovat tarkentuneet siihen mitä voidaan mitata, koska järjestelmät on rakennettu mittaamaan juuri sitä. Ulkokehä on jäänyt katveeseen ei siksi että se olisi epätärkeä, vaan siksi että kukaan ei ole rakentanut mittaria sille.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jos pitäisi nimetä yksi asia jonka nämä kuusi kirjaa yhdessä löytävät, se on tämä: hyvinvointijärjestelmä on rakennettu kohtaamaan ihminen siinä missä hän on. Mutta ihminen elää siinä mihin hän pyrkii. Kehien välinen etäisyys on se mihin seuraavan järjestelmän täytyy oppia katsomaan.",
+                    "type": "text"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "328206c6-77f6-4b7d-bb88-99812a889a94",
+          "title": "Näkymätön siirtymä",
+          "position": 3,
           "content": {
             "type": "doc",
             "content": [
@@ -1635,8 +1849,9 @@
           }
         },
         {
+          "id": "86974dec-f62e-426d-8700-ecb39fe26fdf",
           "title": "Optimoinnin aikakausi",
-          "position": 3,
+          "position": 4,
           "content": {
             "type": "doc",
             "content": [
@@ -1752,8 +1967,9 @@
           }
         },
         {
+          "id": "ac54462e-f742-4842-a0ef-eb00d1e53013",
           "title": "Kuudes ennuste kaiken alla",
-          "position": 4,
+          "position": 5,
           "content": {
             "type": "doc",
             "content": [
@@ -1869,8 +2085,9 @@
           }
         },
         {
+          "id": "500188a9-388a-4964-ad41-ad83060cc5da",
           "title": "Tulevaisuuden todellinen kysymys",
-          "position": 5,
+          "position": 6,
           "content": {
             "type": "doc",
             "content": [
@@ -1941,8 +2158,9 @@
           }
         },
         {
+          "id": "45ed7240-c3c5-434f-bd53-7921b8e49d8b",
           "title": "Lopuksi",
-          "position": 6,
+          "position": 7,
           "content": {
             "type": "doc",
             "content": [
@@ -2005,5 +2223,2055 @@
         }
       ]
     }
-  ]
+  ],
+  "appendices": {
+    "schema": "book-appendices.v1",
+    "book": {
+      "slug": "kuusi-ennustetta",
+      "title": "Kuusi ennustetta"
+    },
+    "chapters": [
+      {
+        "position": 0,
+        "appendices": []
+      },
+      {
+        "position": 1,
+        "appendices": [
+          {
+            "id": "e3ffca83-56fb-4956-a079-5a48e4114ca9",
+            "chapter_position": 1,
+            "section_position": 2,
+            "type": "evidence",
+            "title": "Optimoinnin logiikka ja sen sivuvaikutukset",
+            "source": null,
+            "position": 0,
+            "content": {
+              "body": "Luvun keskeinen väite: järjestelmät eivät ole kylmiä — ne toimivat juuri niin kuin ne on suunniteltu. Optimointi tuottaa näkymättömyyttä sivuvaikutuksena.",
+              "mechanisms": [
+                {
+                  "esimerkki": "Sairaala mittaa hoitopäiviä. Tavoite on terveys. Optimointi lyhentää hoitopäiviä — potilas kotiutetaan nopeammin, mutta seuranta puuttuu. Terveys ei välttämättä parane.",
+                  "mekanismi": "Mittarin ja tarkoituksen ero"
+                },
+                {
+                  "esimerkki": "Mielenterveyden ensiavun 3 kuukauden jono ei näy sen yksikön budjetissa — mutta näkyy myöhemmin kriisipäivystyksessä, toimeentulotuessa, työkyvyttömyyseläkkeissä.",
+                  "mekanismi": "Viive on näkymätön kustannus"
+                },
+                {
+                  "esimerkki": "Koulu tunnistaa oppilaan haasteet. Tieto ei siirry lastensuojeluun — eri tietojärjestelmä, eri laki, eri budjetti. Sama lapsi on molemmille uusi asiakas.",
+                  "mekanismi": "Sektoriraja katkaisee tiedon"
+                },
+                {
+                  "esimerkki": "Järjestelmä ei rangaise työllistymisestä tahallaan — se on rakennettu eri aikoina eri tarpeisiin. Loukku on useiden rationaalisten päätösten summa.",
+                  "mekanismi": "Kannustinloukku on laskennallinen fakta"
+                }
+              ],
+              "key_insight": "Kukaan ei suunnitellut näkymättömyyttä. Se syntyi, koska jokainen osa optimoi itseään järkevästi — ilman vastuuta kokonaisuudesta.",
+              "evidence_key": "expansion.optimization_side_effects",
+              "prediction_number": 1
+            },
+            "hidden": false,
+            "reader_function": "paljastaa"
+          },
+          {
+            "id": "f8dae5f5-e3e4-4589-b500-b83c3402a271",
+            "chapter_position": 1,
+            "section_position": 4,
+            "type": "research-card",
+            "title": "Ennuste 1 — tutkimuskortti",
+            "source": null,
+            "position": 1,
+            "content": {
+              "lens": "Laajenemisen logiikka",
+              "evidence": [
+                {
+                  "type": "evidence",
+                  "title": "Optimoinnin logiikka ja sen sivuvaikutukset",
+                  "source": null,
+                  "evidence_key": "expansion.optimization_side_effects"
+                }
+              ],
+              "prediction": "Läpivirtauksen optimointi tuottaa raskaampaa kuormaa toisaalla",
+              "evidence_keys": [
+                "expansion.optimization_side_effects"
+              ],
+              "falsification": "Jos tehokkuuden kasvu yhdessä järjestelmän osassa ei systemaattisesti siirrä kuormaa toiseen osaan, vaan vaikutus jää eristyneeksi tai katoaa kokonaan, ennuste heikkenee.",
+              "data_status_fi": "Osittain testattavissa — osa aineistosta puuttuu",
+              "evidence_count": 1,
+              "evidence_titles": [
+                "Optimoinnin logiikka ja sen sivuvaikutukset"
+              ],
+              "prediction_number": 1,
+              "falsification_data_available": "partial",
+              "falsification_operationalized": "Mittari: päivystyskäyntien määrä / 1000 asukasta vs. perusterveydenhuollon hoitojaksojen keskipituus, ajanjakso 2010-2024 hyvinvointialueittain. Kynnys: jos lyhentyneiden hoitojaksojen ja kohonneiden päivystyskäyntien välinen korrelaatio on alle r=0.3 vakioinnin jälkeen (ikärakenne, sairastavuus, alueellinen vauraus), ensimmäinen palaute katoaa."
+            },
+            "hidden": false,
+            "reader_function": "haastaa"
+          }
+        ]
+      },
+      {
+        "position": 2,
+        "appendices": [
+          {
+            "id": "012addbe-564b-4622-b67f-4476f6602b1a",
+            "chapter_position": 2,
+            "section_position": 2,
+            "type": "chain",
+            "title": "Goodhartin laki Hayekin linssin läpi: mekanismi",
+            "source": "Goodhart C.A.E. (1975). / Strathern M. (1997). \"Improving ratings: audit in the British university system.\"",
+            "position": 0,
+            "content": {
+              "body": "Osio yhdistää kaksi analyysiä. Goodhartin laki kuvaa oireen — mittari korruptoi tavoitteen. Hayek selittää syyn — päätös on eriytetty tiedosta. Tässä mekanismi.",
+              "steps": [
+                {
+                  "event": "Järjestelmä asettaa mittarin kuvaamaan tavoitetta",
+                  "consequence": "Sosiaalityön käyntimäärä kuvaa huolenpidon intensiteettiä. Lastensuojelun kirjaamisnopeus kuvaa reagointikykyä."
+                },
+                {
+                  "event": "Päätösvalta mittarista sijaitsee etäällä tiedosta",
+                  "consequence": "Mittarista päätetään hallinnossa — ei niiden joukossa jotka tietävät mitä arvo todella on. Sosiaalityöntekijä tietää. Hallinnoija päättää."
+                },
+                {
+                  "event": "Ammattilainen alkaa optimoida mittaria",
+                  "consequence": "Ei tahallisesti — rakenteellisesti. Kun palkitseva mittari on käyntimäärä, käyntimäärä kasvaa. Syvällisempi työ joka ei näy mittarissa vähenee."
+                },
+                {
+                  "event": "Paikallinen tieto katoaa järjestelmästä",
+                  "consequence": "Tieto edelleen on sosiaalityöntekijällä. Mutta se ei enää ohjaa järjestelmän toimintaa. Järjestelmä näkee vain mittarin."
+                },
+                {
+                  "event": "Mittari paranee, todellisuus heikkenee",
+                  "consequence": "Tilastot näyttävät hyvältä. Lasten tilanne ei parane. Järjestelmä on optimoinut mittarin — ei tarkoitusta."
+                }
+              ],
+              "evidence_key": "optimization.goodhart_hayek_mechanism",
+              "open_question": "Ratkaisu ei ole parempi mittari — koska parempikin mittari eriyttää päätöksen tiedosta. Ratkaisu on rakenne jossa tieto vaikuttaa päätökseen suoraan: päätösvalta sijaitsee siellä missä on tieto.",
+              "prediction_number": 2
+            },
+            "hidden": false,
+            "reader_function": "jäljittää"
+          },
+          {
+            "id": "518e1db9-b8a4-4d6d-92f5-5943a645ca71",
+            "chapter_position": 2,
+            "section_position": 2,
+            "type": "evidence",
+            "title": "Hayekin hajautetun tiedon ongelma: empiiriset sovellukset",
+            "source": "Hayek F.A. (1945). The Use of Knowledge in Society. American Economic Review, 35(4), 519–530.",
+            "position": 1,
+            "content": {
+              "body": "Hayekin 1945-essee kuvasi tiedon hajautumisen ongelman — mutta sen laajin merkitys ulottuu kauas taloustieteen ulkopuolelle. Tässä empiirisiä vahvistuksia eri aloilta.",
+              "findings": [
+                {
+                  "aihe": "Neuvostoliiton laskentaongelma",
+                  "havainto": "Gosplan yritti laskea 12 miljoonan tuotteen optimaaliset hinnat ja tuotantomäärät. Taloustieteilijä Mises osoitti 1920 että tämä on laskennallisesti mahdotonta — ei tehottomana, vaan periaatteessa. Tieto ei ole olemassa yhdessä paikassa."
+                },
+                {
+                  "aihe": "Sähköpörssin hajauttaminen",
+                  "havainto": "Pohjoismaiset sähkömarkkinat (Nord Pool, 1996) korvasi kansalliset monopolit. Hajautettu hintamuodostus reagoi säätilaan, kulutuspiikkeihin ja tuotantohäiriöihin nopeammin kuin mikään suunniteltu järjestelmä olisi pystynyt."
+                },
+                {
+                  "aihe": "Wikipedia vs. Britannica",
+                  "havainto": "Nature-lehti vertasi 2005 Wikipedian ja Encyclopædia Britannican artikkeleiden tarkkuutta. Wikipedia: 162 virhettä, Britannica: 123. Eroa ei pidetty merkittävänä — mutta Wikipedian hajautettu malli tuotti vertailukelpoisen laadun ilman toimituskuntaa."
+                },
+                {
+                  "aihe": "Avoimen lähdekoodin Linux",
+                  "havainto": "Tuhannet kehittäjät eri puolilta maailmaa rakensivat käyttöjärjestelmän ilman että kukaan omisti kokonaistietoa sen arkkitehtuurista. Hajautettu tieto integroitui yhteisen protokollan (Git) kautta."
+                },
+                {
+                  "aihe": "Ennustusmarkkinat",
+                  "havainto": "Prediction markets — kuten Metaculus — aggregoivat hajautettua tietoa. Tutkimukset osoittavat niiden ennustavan tulevia tapahtumia tarkemmin kuin asiantuntijapaneelit tai mediaennusteet."
+                }
+              ],
+              "key_insight": "Hayekin havainto ei ole argumentti kaikkien markkinoiden puolesta. Se on havainto siitä, että tietyt hajautetut rakenteet ratkaisevat ongelman jonka mikään keskitetty järjestelmä ei voi ratkaista — paikallisen, hiljaisen tiedon aggregoinnin.",
+              "evidence_key": "optimization.goodhart_metrics",
+              "prediction_number": 2
+            },
+            "hidden": false,
+            "reader_function": "suhteuttaa"
+          },
+          {
+            "id": "d3638370-89b8-41dd-bce4-f7df03219327",
+            "chapter_position": 2,
+            "section_position": 4,
+            "type": "research-card",
+            "title": "Ennuste 2 — tutkimuskortti",
+            "source": null,
+            "position": 2,
+            "content": {
+              "lens": "Näkymättömät mekanismit",
+              "evidence": [
+                {
+                  "type": "chain",
+                  "title": "Goodhartin laki Hayekin linssin läpi: mekanismi",
+                  "source": "Goodhart C.A.E. (1975). / Strathern M. (1997). \"Improving ratings: audit in the British university system.\"",
+                  "evidence_key": "optimization.goodhart_hayek_mechanism"
+                },
+                {
+                  "type": "evidence",
+                  "title": "Hayekin hajautetun tiedon ongelma: empiiriset sovellukset",
+                  "source": "Hayek F.A. (1945). The Use of Knowledge in Society. American Economic Review, 35(4), 519–530.",
+                  "evidence_key": "optimization.goodhart_metrics"
+                }
+              ],
+              "prediction": "Rahoitus ja mittarit ohjaavat käyttäytymistä",
+              "evidence_keys": [
+                "optimization.goodhart_hayek_mechanism",
+                "optimization.goodhart_metrics"
+              ],
+              "falsification": "Jos mittaroinnin lisääminen ei tuota vääristymiä eikä osaoptimointia — eli toimijat reagoivat indikaattoreihin täsmälleen kuin niiden taustalla olevaan ilmiöön — ennuste heikkenee. Tämä on Goodhartin lain testi konkretisoituna.",
+              "data_status_fi": "Osittain testattavissa — osa aineistosta puuttuu",
+              "evidence_count": 2,
+              "evidence_titles": [
+                "Goodhartin laki Hayekin linssin läpi: mekanismi",
+                "Hayekin hajautetun tiedon ongelma: empiiriset sovellukset"
+              ],
+              "prediction_number": 2,
+              "falsification_data_available": "partial",
+              "falsification_operationalized": "Mittari: DRG-painokertoimien muutoksia seuraavat hoitokäytäntöjen muutokset 12-24 kk viiveellä, vertailu Saksan 2003 DRG-uudistuksen seurausanalyyseihin. Kynnys: jos DRG-painokertoimen 20 % nousu ei systemaattisesti nosta vastaavan diagnoosin koodausosuutta vähintään 10 %, mittaröinnin käytösvaikutus on heikko."
+            },
+            "hidden": false,
+            "reader_function": "haastaa"
+          }
+        ]
+      },
+      {
+        "position": 3,
+        "appendices": [
+          {
+            "id": "c60e73f1-b122-4520-9760-d979d37a007e",
+            "chapter_position": 3,
+            "section_position": 2,
+            "type": "chain",
+            "title": "Näkymättömyyden syntymekanismi: neljä vaihetta",
+            "source": null,
+            "position": 0,
+            "content": {
+              "body": "Miten ihminen muuttuu näkymättömäksi järjestelmässä — ei yhden päätöksen vaan rakenteellisen ajautumisen kautta.",
+              "steps": [
+                {
+                  "step": 1,
+                  "event": "Järjestelmä on suunniteltu yhtä tarvetta varten",
+                  "consequence": "Jokainen palvelu optimoi omaa mittariaan — hoitopäiviä, asiakkaita, suoritteita. Kokonaisuus ei ole kenenkään vastuulla."
+                },
+                {
+                  "step": 2,
+                  "event": "Ihminen ylittää sektorin rajan",
+                  "consequence": "Tieto ei siirry — uusi toimija aloittaa alusta. Ihminen toistaa tarinaansa yhä uudelleen."
+                },
+                {
+                  "step": 3,
+                  "event": "Viive kasvaa",
+                  "consequence": "Tilanne mutkistuu odotusaikana. Yksinkertainen ongelma muuttuu monimutkaiseksi — ja kalliimmaksi ratkaista."
+                },
+                {
+                  "step": 4,
+                  "event": "Ihminen väsyy järjestelmään",
+                  "consequence": "Osa luovuttaa — ei haeta apua, vaikka tarve on olemassa. Tämä näkyy tilastoissa alidiagnosointina ja palveluvajeena."
+                }
+              ],
+              "reversal": "Käänteinen mekanismi on myös mahdollinen: kun tarve tulee näkyväksi ajoissa, sama ketju toimii toisin — varhainen tunnistus, tieto siirtyy, tilanne pysyy hallittavana.",
+              "evidence_key": "visibility.invisibility_mechanism",
+              "prediction_number": 3
+            },
+            "hidden": false,
+            "reader_function": "jäljittää"
+          },
+          {
+            "id": "3e186be3-a688-4eb0-a534-b9abf50e09d0",
+            "chapter_position": 3,
+            "section_position": 2,
+            "type": "evidence",
+            "title": "Neuvola kaksisuuntaisen optimoinnin mallina",
+            "source": "THL: Lastenneuvola lapsiperheiden tukena, 2004 / päivitetty 2019",
+            "position": 1,
+            "content": {
+              "body": "Suomalainen neuvolajärjestelmä on kansainvälisesti poikkeuksellinen — ja se toimii juuri kaksisuuntaisen optimoinnin logiikalla.",
+              "results": [
+                "Suomen imeväiskuolleisuus on maailman alhaisimpia — 1,7 / 1000 elävänä syntynyttä (2022).",
+                "Rokotuskattavuus yli 95 % — saavutettu ilman pakkoa, pelkällä saavutettavuudella.",
+                "Varhainen puuttuminen kehitysviiveisiin — tunnistetaan ennen koulua, ei sen jälkeen."
+              ],
+              "evidence_key": "visibility.neuvola_model",
+              "how_it_works": {
+                "universaalisuus": "Kaikki lapsiperheet käyvät neuvolassa — ei tarvita hakemusta, diagnooseja tai lähetteitä. Kynnys on nolla.",
+                "tiedon_jatkuvuus": "Sama terveydenhoitaja seuraa lasta vuosia — kokonaiskuva syntyy ajan myötä, ei yksittäisessä käynnissä.",
+                "ohjaus_eteenpäin": "Neuvola ei ratkaise kaikkea — mutta se tietää minne ohjata, ja seuraa onko ohjaus johtanut tulokseen.",
+                "varhainen_tunnistaminen": "Terveydenhoitaja tapaa perheen säännöllisesti — ei vain akuutissa hädässä. Huoli voidaan tunnistaa ennen kriisiä."
+              },
+              "exportability": "Neuvolamalli on levinnyt useisiin maihin. Keskeinen havainto: universaalisuus + jatkuvuus + matala kynnys = varhainen tunnistaminen. Ei vaadi korkeaa teknologiaa.",
+              "prediction_number": 3
+            },
+            "hidden": false,
+            "reader_function": "konkretisoi"
+          },
+          {
+            "id": "8e1396da-a4e2-45ac-8c39-7fa8f2482088",
+            "chapter_position": 3,
+            "section_position": 2,
+            "type": "calculation",
+            "title": "Näkymättömyyden kustannus: laskennallinen kehys",
+            "source": "Valtiontalouden tarkastusvirasto, Kelasto, THL hyvinvointikompassi",
+            "position": 2,
+            "content": {
+              "body": "Näkymättömyys on paitsi inhimillinen ongelma, myös laskennallisesti kallis. Tässä viitekehys kustannusten hahmottamiseen.",
+              "caveat": "Nämä luvut ovat suuntaa-antavia — tarkoitus on havainnollistaa suuruusluokkaa, ei tuottaa tarkkaa laskelmaa. Todellinen kustannus riippuu yksilöllisistä poluista.",
+              "evidence_key": "visibility.invisibility_cost_framework",
+              "cost_components": [
+                {
+                  "kuvaus": "Varhainen tuki maksaa murto-osan kriisiavusta. Lastensuojelun avohuolto ~3 000 €/v vs. laitoshoito ~90 000 €/v. Ero syntyy ajoituksesta, ei hoidon laadusta.",
+                  "komponentti": "Myöhästynyt interventio"
+                },
+                {
+                  "kuvaus": "Sama ihminen voi olla samanaikaisesti terveyskeskuksen, mielenterveyspalvelujen, sosiaalityön ja TE-toimiston asiakkaana — ilman koordinaatiota. Hallinnollinen kokonaiskustannus voi ylittää hoidon kustannuksen.",
+                  "komponentti": "Päällekkäiset palvelut"
+                },
+                {
+                  "kuvaus": "Työkyvyttömyyseläkkeelle siirtyminen maksaa yhteiskunnalle keskimäärin ~600 000 € menetettyinä verotuloina ja etuuksina 40 vuoden ajanjaksolla. Ehkäisyn kustannus on murto-osa tästä.",
+                  "komponentti": "Työkyvyttömyyden hinta"
+                },
+                {
+                  "kuvaus": "170 000 ihmistä kannustinloukussa tarkoittaa karkeasti 1–2 miljardin euron vuotuista tuottavuusvajetta, jos edes osa heistä voisi työllistyä ilman etuuden menetystä.",
+                  "komponentti": "Kannustinloukun tuottavuusvaje"
+                }
+              ],
+              "prediction_number": 3
+            },
+            "hidden": false,
+            "reader_function": "konkretisoi"
+          },
+          {
+            "id": "62408992-8187-4449-8522-9991e59a838d",
+            "chapter_position": 3,
+            "section_position": 4,
+            "type": "research-card",
+            "title": "Ennuste 3 — tutkimuskortti",
+            "source": null,
+            "position": 3,
+            "content": {
+              "lens": "Näkyväksi",
+              "evidence": [
+                {
+                  "type": "calculation",
+                  "title": "Näkymättömyyden kustannus: laskennallinen kehys",
+                  "source": "Valtiontalouden tarkastusvirasto, Kelasto, THL hyvinvointikompassi",
+                  "evidence_key": "visibility.invisibility_cost_framework"
+                },
+                {
+                  "type": "chain",
+                  "title": "Näkymättömyyden syntymekanismi: neljä vaihetta",
+                  "source": null,
+                  "evidence_key": "visibility.invisibility_mechanism"
+                },
+                {
+                  "type": "evidence",
+                  "title": "Neuvola kaksisuuntaisen optimoinnin mallina",
+                  "source": "THL: Lastenneuvola lapsiperheiden tukena, 2004 / päivitetty 2019",
+                  "evidence_key": "visibility.neuvola_model"
+                }
+              ],
+              "prediction": "Nähdyksi tuleminen on rakenteellinen tarve",
+              "evidence_keys": [
+                "visibility.invisibility_cost_framework",
+                "visibility.invisibility_mechanism",
+                "visibility.neuvola_model"
+              ],
+              "falsification": "Jos nähdyksi tuleminen ei ennusta toimijuutta — eli ihmiset jotka kokevat tulleensa kuulluiksi eivät käytä palveluja eri tavalla kuin ne jotka eivät koe — ennuste heikkenee.",
+              "data_status_fi": "Vaatii tutkimusasetelman — aineisto ei vielä saatavilla",
+              "evidence_count": 3,
+              "evidence_titles": [
+                "Näkymättömyyden kustannus: laskennallinen kehys",
+                "Näkymättömyyden syntymekanismi: neljä vaihetta",
+                "Neuvola kaksisuuntaisen optimoinnin mallina"
+              ],
+              "prediction_number": 3,
+              "falsification_data_available": "requires_collection",
+              "falsification_operationalized": "Mittari: asiakaskokemuskysely (kuulluksi tulemisen indeksi, 1-5) verrattuna 12 kk myöhempiin rekisterihavaintoihin (palveluiden käyttö, työllisyysstatus, kuntoutuksen läpivienti). Aineisto: neuvolat, mielenterveys, kuntoutus. Kynnys: korrelaatio nollasta poikkeava ja efektikoko Cohenin d > 0.2 ikä-, sukupuoli- ja sosioekonomisen vakioinnin jälkeen."
+            },
+            "hidden": false,
+            "reader_function": "haastaa"
+          }
+        ]
+      },
+      {
+        "position": 4,
+        "appendices": [
+          {
+            "id": "f4404861-8c58-41d2-9eee-03c90a1a7e27",
+            "chapter_position": 4,
+            "section_position": 2,
+            "type": "chain",
+            "title": "Miten vastuu häviää: neljä vaihetta",
+            "source": null,
+            "position": 0,
+            "content": {
+              "body": "Vastuun katoaminen ei ole yksittäinen päätös — se on neljän vaiheen prosessi.",
+              "steps": [
+                {
+                  "step": 1,
+                  "event": "Monimutkainen tilanne ylittää yhden sektorin rajan",
+                  "consequence": "Kukaan ei omista kokonaisuutta — jokainen omistaa oman osansa."
+                },
+                {
+                  "step": 2,
+                  "event": "Jokainen toimija toimii omien mittariensa mukaan",
+                  "consequence": "Suoritteita syntyy, budjetteja käytetään, palavereja pidetään — mutta kokonaisuus ei etene."
+                },
+                {
+                  "step": 3,
+                  "event": "Ihminen joutuu koordinoimaan itse",
+                  "consequence": "Ihminen soittaa, täyttää lomakkeita, selittää tilanteensa yhä uudelleen. Tämä kuluttaa juuri sen energian, jota tarvitaan toipumiseen tai työllistymiseen."
+                },
+                {
+                  "step": 4,
+                  "event": "Ihminen väsyy tai putoa pois",
+                  "consequence": "Palvelujärjestelmä tulkitsee tämän haluttomuutena tai motivaation puutteena. Rakenneongelma näyttää yksilöongelmalta."
+                }
+              ],
+              "evidence_key": "self_organization.responsibility_dissolution",
+              "structural_fix": "Koordinaatiomandaatti katkaisee ketjun kolmannen vaiheen kohdalla: ihmisen ei tarvitse koordinoida itse, koska joku muu omistaa kokonaiskuvan.",
+              "prediction_number": 4
+            },
+            "hidden": false,
+            "reader_function": "jäljittää"
+          },
+          {
+            "id": "3a8f7c0a-4803-4099-8952-3496386c660f",
+            "chapter_position": 4,
+            "section_position": 2,
+            "type": "chain",
+            "title": "Miten algoritminen järjestelmä käsittelee konfliktia: neljä vaihetta",
+            "source": null,
+            "position": 1,
+            "content": {
+              "body": "Luku V osoittaa, että algoritminen järjestelmä ei institutionalisoi konfliktia vaan muuttaa sen muotoa. Tämä ketju kuvaa mekanismin.",
+              "steps": [
+                {
+                  "step": 1,
+                  "event": "Erimielisyys ilmenee alustalla",
+                  "consequence": "Algoritmi tunnistaa sen negatiivisena signaalina tai positiivisena sitoutumisen mukaan — riippuen siitä, pitääkö polarisoiva sisältö käyttäjän alustalla."
+                },
+                {
+                  "step": 2,
+                  "event": "Algoritmi optimoi sitoutumisen mukaan",
+                  "consequence": "Polarisoiva sisältö saa enemmän näkyvyyttä — se pitää käyttäjän alustalla. Erimielisyys muuttuu viihteeksi."
+                },
+                {
+                  "step": 3,
+                  "event": "Käyttäjä ei kohtaa erimielisyyttä suoraan",
+                  "consequence": "Kaikukammio: suositukset vahvistavat olemassa olevia näkemyksiä. Haastaminen vähenee — mutta erimielisyys ei katoa, se vain siirtyy toiselle alustalle tai kasvokkaiseen kohtaamiseen ilman sovittelurakenteita."
+                },
+                {
+                  "step": 4,
+                  "event": "Konflikti purkautuu hallitsemattomasti",
+                  "consequence": "Kun järjestelmä ei institutionalisoi konfliktia, se purkautuu sen ulkopuolella: katuväkivaltana, poliittisena radikalisoitumisena, tai täydellisenä vetäytymisenä julkisesta diskurssista."
+                }
+              ],
+              "evidence_key": "self_organization.algorithmic_conflict_chain",
+              "design_question": "Voiko algoritminen järjestelmä institutionalisoida konfliktin? Ei poistaa sitä, vaan rakentaa sille kanavan — kuten demokratia tekee?",
+              "prediction_number": 4
+            },
+            "hidden": false,
+            "reader_function": "jäljittää"
+          },
+          {
+            "id": "ea7803fc-9c7b-4742-a495-3edef7410dee",
+            "chapter_position": 4,
+            "section_position": 2,
+            "type": "chain",
+            "title": "Läpinäkymättömyyden ketju: miksi selitettävyys on demokraattinen ongelma",
+            "source": null,
+            "position": 2,
+            "content": {
+              "body": "Osio kuvaa läpinäkymättömyyden rakenteellisena ominaisuutena — ei salaisuutena jota piilotetaan. Tässä ketju joka yhdistää teknisen ominaisuuden demokraattiseen seuraukseen.",
+              "steps": [
+                {
+                  "vaihe": 1,
+                  "seuraus": "Yksittäistä päätöstä ei voi palauttaa yksittäisiin parametreihin — kompleksisuus ylittää ymmärrettävyyden",
+                  "tapahtuma": "Suuressa kielimallissa on satoja miljardeja parametreja"
+                },
+                {
+                  "vaihe": 2,
+                  "seuraus": "Käyttäjä ei voi saada perusteltua vastausta — 'algoritmi päätti' ei ole perustelu",
+                  "tapahtuma": "Rakentaja ei pysty selittämään yksittäistä päätöstä"
+                },
+                {
+                  "vaihe": 3,
+                  "seuraus": "Sen oikeudenmukaisuutta on vaikea arvioida — onko luottopäätös, työtarjous tai hoitosuositus puolueeton?",
+                  "tapahtuma": "Päätöstä ei voi perustella"
+                },
+                {
+                  "vaihe": 4,
+                  "seuraus": "Sitä on vaikea korjata — virheen paikantaminen vaatii selitettävyyttä",
+                  "tapahtuma": "Logiikkaa ei voi selittää"
+                },
+                {
+                  "vaihe": 5,
+                  "seuraus": "Vastuuta on vaikea jakaa — ketä voi pitää vastuullisena päätöksestä jota kukaan ei täysin ymmärrä?",
+                  "tapahtuma": "Virhettä ei voi paikantaa"
+                },
+                {
+                  "vaihe": 6,
+                  "seuraus": "Demokraattinen kontrolli murtuu — järjestelmä toimii, mutta ei ole kenenkään vastuulla",
+                  "tapahtuma": "Vastuu häviää"
+                }
+              ],
+              "contrast": "Markkinahinta on aina ollut näkyvissä — logiikka ymmärrettävissä vaikka koko järjestelmää ei kukaan hallinnut. Byrokratian päätös on aina ollut perusteltavissa — virkamies pystyi vastaamaan 'miksi'. Algoritminen päätös rikkoo tämän perinteen.",
+              "evidence_key": "self_organization.opacity_chain",
+              "current_state": "Interpretability — tekoälyn selitettävyystutkimus — on aktiivinen tutkimusalue (Anthropic, DeepMind, akateeminen yhteisö). Mutta se on vielä varhainen vaihe, ei ratkaistu ongelma.",
+              "prediction_number": 4
+            },
+            "hidden": false,
+            "reader_function": "jäljittää"
+          },
+          {
+            "id": "d278c714-5260-4ad6-a56c-938930e9aa7e",
+            "chapter_position": 4,
+            "section_position": 4,
+            "type": "research-card",
+            "title": "Ennuste 4 — tutkimuskortti",
+            "source": null,
+            "position": 3,
+            "content": {
+              "lens": "Itseohjautuvuus",
+              "evidence": [
+                {
+                  "type": "chain",
+                  "title": "Läpinäkymättömyyden ketju: miksi selitettävyys on demokraattinen ongelma",
+                  "source": null,
+                  "evidence_key": "self_organization.opacity_chain"
+                },
+                {
+                  "type": "chain",
+                  "title": "Miten algoritminen järjestelmä käsittelee konfliktia: neljä vaihetta",
+                  "source": null,
+                  "evidence_key": "self_organization.algorithmic_conflict_chain"
+                },
+                {
+                  "type": "chain",
+                  "title": "Miten vastuu häviää: neljä vaihetta",
+                  "source": null,
+                  "evidence_key": "self_organization.responsibility_dissolution"
+                }
+              ],
+              "prediction": "Tavoitefunktio ohjaa toimintaa arvojen ohi",
+              "evidence_keys": [
+                "self_organization.algorithmic_conflict_chain",
+                "self_organization.opacity_chain",
+                "self_organization.responsibility_dissolution"
+              ],
+              "falsification": "Jos toimijoiden käyttäytyminen seuraa julkilausuttuja arvoja eikä kannustinrakennetta — silloinkin kun nämä ovat ristiriidassa keskenään — ennuste heikkenee. Tämä on klassinen organisaatioteoreettinen testi.",
+              "data_status_fi": "Vaatii tutkimusasetelman — aineisto ei vielä saatavilla",
+              "evidence_count": 3,
+              "evidence_titles": [
+                "Läpinäkymättömyyden ketju: miksi selitettävyys on demokraattinen ongelma",
+                "Miten algoritminen järjestelmä käsittelee konfliktia: neljä vaihetta",
+                "Miten vastuu häviää: neljä vaihetta"
+              ],
+              "prediction_number": 4,
+              "falsification_data_available": "requires_collection",
+              "falsification_operationalized": "Mittari: 8-12 julkisorganisaation strategia-asiakirjojen julkilausutut arvot vs. niiden henkilöstön kannustinrakenne (suorituspalkkiot, urapolut, tunnustusjärjestelmät) vs. tuotettujen palveluiden todellinen jakauma. Kvalitatiivinen sisältöanalyysi + kvantitatiivinen palvelutilastoanalyysi. Kynnys: jos käytösero arvojen ja kannustinten välillä on tilastollisesti merkitsevä yli 50 %:ssa tutkituista tapauksista."
+            },
+            "hidden": false,
+            "reader_function": "haastaa"
+          }
+        ]
+      },
+      {
+        "position": 5,
+        "appendices": [
+          {
+            "id": "72d6ec56-146a-4198-8e8e-e349c9601613",
+            "chapter_position": 5,
+            "section_position": 2,
+            "type": "chain",
+            "title": "Kitkan lasku ja käyttäytymisen muutos: kolme toistuvaa mekanismia",
+            "source": "Kirjan argumentti; Arthur 1994",
+            "position": 0,
+            "content": {
+              "body": "Osio 4 tiivistää luvun keskeisen havainnon: rutto, kirjapaino ja kontti toistavat saman rakenteen. Tämä liite formalisoi kolme mekanismia jotka toistuvat kaikissa.",
+              "source": "Kirjan argumentti; vrt. Arthur 1994 verkostovaikutuksista",
+              "mechanisms": [
+                {
+                  "rutto": "Talonpoika joka löysi paremmat ehdot siirtyi. Herra joka ei tarjonnut parempia ehtoja menetti työvoimansa.",
+                  "kontti": "Satama joka otti kontit voitti sataman joka ei ottanut. Laivayhtiö joka siirtyi kontteihin voitti perinteisen lastauksen.",
+                  "kuvaus": "Kun yksi toimija ottaa katalyytin käyttöön ja saa edun, muiden on seurattava tai jäätävä jälkeen. Muutos ei vaadi yksimielisyyttä — riittää kilpailuasetelma.",
+                  "mekanismi": "Kilpailuetu pakottaa seuraamisen",
+                  "kirjapaino": "Paino joka tuotti kirjoja nopeammin voitti kopisti. Kirkko joka yritti tukahduttaa painettua sanaa epäonnistui koska kilpaileva taho painoi lisää."
+                },
+                {
+                  "rutto": "Kun palkat nousivat, maaorjuuden ylläpitäminen vaati yhä enemmän pakkovaltaa. Pakkovalta oli kallista.",
+                  "kontti": "Kun satamat rakensivat konttinosturit, perinteinen lastaus alkoi vaikuttaa hitaalta ja kalliilta myös niille jotka eivät olleet siirtyneet.",
+                  "kuvaus": "Katalyytti ei pakota — se tekee vanhan tavan vaikeammaksi. Kun riittävä osa järjestelmästä on siirtynyt, vanha tapa ei enää toimi yhtä hyvin.",
+                  "mekanismi": "Vaihtoehtojen vaikeutuminen",
+                  "kirjapaino": "Kun kirjoja oli kymmeniä tuhansia, sensuuri muuttui mahdottomaksi. Yhtä kirjaa voitiin polttaa — painaminen alkoi heti uudelleen."
+                },
+                {
+                  "rutto": "Mitä enemmän talonpoikia pystyi liikkumaan, sitä voimakkaampi neuvotteluasema heillä oli — yhteisvoimin.",
+                  "kontti": "Mitä enemmän satamia tuki kontteja, sitä hyödyllisempi kontti oli laivayhtiölle. Standardi vahvistui standardin kautta.",
+                  "kuvaus": "Mitä useampi on siirtynyt, sitä arvokkaampaa siirtyminen on. Katalyytin arvo kasvaa käyttäjämäärän kasvaessa.",
+                  "mekanismi": "Verkostovaikutus vahvistaa muutosta",
+                  "kirjapaino": "Mitä enemmän lukijoita, sitä enemmän haluttiin painaa. Mitä enemmän painettiin, sitä halvemmaksi painaminen tuli."
+                }
+              ],
+              "evidence_key": "catalyst.friction_behavior_change",
+              "common_formula": "Kilpailuetu → vaihtoehdot vaikeutuvat → verkosto vahvistaa → muutos on peruuttamaton ennen kuin kukaan päätti siitä.",
+              "prediction_number": 5
+            },
+            "hidden": false,
+            "reader_function": "paljastaa"
+          },
+          {
+            "id": "23fa1860-07fd-4081-b229-5a3d315befcd",
+            "chapter_position": 5,
+            "section_position": 2,
+            "type": "evidence",
+            "title": "Aktivaatioenergia: kemiallinen metafora ja yhteiskunnalliset vastineet",
+            "source": "Atkins & de Paula 2010",
+            "position": 1,
+            "content": {
+              "body": "Osio 2 esittelee kirjan keskeisen metaforan: aktivaatioenergian. Tämä liite avaa metaforan tarkkuuden ja sen rajat.",
+              "source": "Atkins & de Paula 2010, Physical Chemistry; sovellukset kirjoittajan",
+              "chemistry": {
+                "example": "Vedyn ja hapen yhdistyminen vedeksi vaatii normaaliolosuhteissa kipinän (korkea aktivaatioenergia). Platinakatalyytin läsnäollessa reaktio tapahtuu huoneenlämmössä.",
+                "definition": "Aktivaatioenergia on vähimmäisenergia joka tarvitaan kemiallisen reaktion käynnistämiseen. Reaktio joka on termodynaamisesti mahdollinen ei tapahdu ilman tätä energiaa.",
+                "catalyst_role": "Katalyytti alentaa aktivaatioenergian kynnystä muuttamatta reaktion lopputulosta. Se luo vaihtoehtoisen reitin jossa kynnys on matalampi."
+              },
+              "evidence_key": "catalyst.activation_energy_model",
+              "social_analogues": [
+                {
+                  "ilmiö": "Vapaaehtoistoiminta",
+                  "katalyytti": "Matalan kynnyksen alusta joka yhdistää tarpeen ja kyvyn ilman pitkää prosessia",
+                  "aktivaatioenergia": "Tarvitaan yhteys, kohtaaminen, organisaatio, koordinaatio. Halu auttaa on olemassa — rakenne puuttuu."
+                },
+                {
+                  "ilmiö": "Poliittinen osallistuminen",
+                  "katalyytti": "Mikä rakenne laskisi kansalaistoiminnan aktivaatioenergiaa ilman ammattipolitiikan vaatimuksia?",
+                  "aktivaatioenergia": "Vaalilippu on helppo — mutta ehdolle asettuminen, vaikuttaminen, järjestötoiminta vaativat paljon."
+                },
+                {
+                  "ilmiö": "Pitkäaikaistyöttömän työllistyminen",
+                  "katalyytti": "Matalan kynnyksen osaamispolku joka rakentaa luottamusta tekojen kautta ennen työsopimusta",
+                  "aktivaatioenergia": "CV-aukko, luottamuspula, hakuprosessit — itsekin koettu kynnys on korkea vaikka halu on olemassa."
+                }
+              ],
+              "prediction_number": 5,
+              "limits_of_metaphor": "Kemiallinen katalyytti on passiivinen — se ei valitse mihinkä reaktioon osallistuu. Yhteiskunnallinen katalyytti on poliittinen — sen suunnittelijat tekevät arvovalintoja siitä mitä reaktioita helpotetaan. Metafora auttaa ymmärtämään mekaniikan, mutta ei korvaa eettistä harkintaa."
+            },
+            "hidden": false,
+            "reader_function": "määritellä"
+          },
+          {
+            "id": "0dda37ca-b737-44e5-bfb8-0aafdf5a62ac",
+            "chapter_position": 5,
+            "section_position": 2,
+            "type": "evidence",
+            "title": "Katalyytti ilman suuntaa: kolme esimerkkiä haitallisesta aktivaatioenergian laskusta",
+            "source": "Vosoughi ym. 2018; Finanssivalvonta 2022",
+            "position": 2,
+            "content": {
+              "body": "Osio 6 muistuttaa: katalyytti ei valitse puolta. Tämä liite dokumentoi kolme tapausta joissa aktivaatioenergian lasku tuotti haitallisia seurauksia — saman mekanismin kautta kuin hyödyllisetkin.",
+              "cases": [
+                {
+                  "data": "Mother Jones -tietokanta: joukkoampumiset 1982–2022, korrelaatio aseiden saatavuuden kanssa",
+                  "muutos": "Asekaupan sääntelyn löystyminen, internet-myynti, asemessut ilman taustatarkistuksia",
+                  "tapaus": "Aseiden saatavuus Yhdysvalloissa",
+                  "seuraus": "Joukkulimurhien määrä kasvoi — ei siksi että ihmiset olisivat tulleet väkivaltaisemmiksi vaan koska väkivallan toteuttamisen aktivaatioenergia laski.",
+                  "aktivaatioenergia": "Aseen hankkimisen kitka laski merkittävästi 1980–2020"
+                },
+                {
+                  "data": "Vosoughi, Roy & Aral 2018, Science",
+                  "muutos": "Sisällön tuottaminen ja jakaminen lähes ilmaista, algoritmit maksimoivat sitoutumista",
+                  "tapaus": "Sosiaalinen media ja disinformaatio",
+                  "seuraus": "Disinformaatio leviää nopeammin kuin oikaisu. MIT-tutkimus (2018): valeuutiset leviävät 6x nopeammin kuin todet.",
+                  "aktivaatioenergia": "Valeinformaation tuottamisen ja levittämisen kitka laski lähes nollaan"
+                },
+                {
+                  "data": "Suomen Asiakastieto; Finanssivalvonta 2019–2022",
+                  "muutos": "Lainan hakeminen muuttunut puhelinsovelluksessa 5 minuutiksi",
+                  "tapaus": "Pikavipit ja ylivelkaantuminen",
+                  "seuraus": "Maksuhäiriömerkinnät kasvoivat erityisesti nuorilla. Ei siksi että ihmiset muuttuivat vastuuttomammiksi — vaan koska harkintaa vaativa prosessi poistui.",
+                  "aktivaatioenergia": "Lainanottokynnys laski dramaattisesti — harkinta-aika poistui"
+                }
+              ],
+              "source": "Vosoughi ym. 2018; Finanssivalvonta 2022",
+              "principle": "Sama mekanismi joka tekee pyöräilystä helppoa tekee myös haitallisesta helpompaa. Katalyytti on neutraali — suunnan valitsevat rakentajat.",
+              "evidence_key": "catalyst.harmful_catalysts",
+              "prediction_number": 5
+            },
+            "hidden": false,
+            "reader_function": "haastaa"
+          },
+          {
+            "id": "cdef7dad-8cfa-438a-8f6f-f73b40db4d2b",
+            "chapter_position": 5,
+            "section_position": 4,
+            "type": "research-card",
+            "title": "Ennuste 5 — tutkimuskortti",
+            "source": null,
+            "position": 3,
+            "content": {
+              "lens": "Katalyytti",
+              "evidence": [
+                {
+                  "type": "chain",
+                  "title": "Kitkan lasku ja käyttäytymisen muutos: kolme toistuvaa mekanismia",
+                  "source": "Kirjan argumentti; Arthur 1994",
+                  "evidence_key": "catalyst.friction_behavior_change"
+                },
+                {
+                  "type": "evidence",
+                  "title": "Aktivaatioenergia: kemiallinen metafora ja yhteiskunnalliset vastineet",
+                  "source": "Atkins & de Paula 2010",
+                  "evidence_key": "catalyst.activation_energy_model"
+                },
+                {
+                  "type": "evidence",
+                  "title": "Katalyytti ilman suuntaa: kolme esimerkkiä haitallisesta aktivaatioenergian laskusta",
+                  "source": "Vosoughi ym. 2018; Finanssivalvonta 2022",
+                  "evidence_key": "catalyst.harmful_catalysts"
+                }
+              ],
+              "prediction": "Pienet kitkamuutokset voivat tuottaa suuria vaikutuksia",
+              "evidence_keys": [
+                "catalyst.activation_energy_model",
+                "catalyst.friction_behavior_change",
+                "catalyst.harmful_catalysts"
+              ],
+              "falsification": "Jos kitkan poistaminen ei muuta käyttäytymistä — eli prosessien yksinkertaistaminen ei lisää palveluiden käyttöä tai tuloksia ennustettavalla tavalla — ennuste heikkenee.",
+              "data_status_fi": "Testattavissa nyt — aineisto on käytettävissä",
+              "evidence_count": 3,
+              "evidence_titles": [
+                "Aktivaatioenergia: kemiallinen metafora ja yhteiskunnalliset vastineet",
+                "Katalyytti ilman suuntaa: kolme esimerkkiä haitallisesta aktivaatioenergian laskusta",
+                "Kitkan lasku ja käyttäytymisen muutos: kolme toistuvaa mekanismia"
+              ],
+              "prediction_number": 5,
+              "falsification_data_available": "ready",
+              "falsification_operationalized": "Mittari: TTT-tietokannan elasticities-taulun pienten interventioiden vaikutus per käyttöönotettu yksikkö, verrattuna nullhypoteesiin että vaikutus on lineaarinen panoksen kanssa. Aineisto on jo olemassa (255 elastisuusarvoa). Kynnys: jos kustannustehokkuus per euro vaihtelee alle 3-kertaisesti interventioiden välillä, kitkahypoteesi ei tuota epälineaarisuutta."
+            },
+            "hidden": false,
+            "reader_function": "haastaa"
+          }
+        ]
+      },
+      {
+        "position": 6,
+        "appendices": [
+          {
+            "id": "28dff1c4-7820-4732-adbb-23b35299c9f7",
+            "chapter_position": 6,
+            "section_position": 2,
+            "type": "chart-chartjs",
+            "title": "Hedelmällisyysluku 1995–2024 — neljä pohjoismaata",
+            "source": "NOMESCO; Suomen TTT-tutkimustietokanta",
+            "position": 0,
+            "content": {
+              "body": "Hedelmällisyysluku (TFR, total fertility rate) Suomessa, Ruotsissa, Norjassa ja Tanskassa. Suomi seurasi naapureitaan vuoteen 2010 — sen jälkeen ero on kasvanut, ja Suomen TFR on 2024 alhaisin pohjoismaa.",
+              "kind": "preset-fi-nordic",
+              "note": "Pystyviivat: 2008 finanssikriisi, 2020 koronapandemia. Suomi seurasi naapureitaan 2010 saakka, mutta erkani 2010-luvun puolivälissä.",
+              "yFmt": "decimal",
+              "yMax": 2.1,
+              "yMin": 1.2,
+              "xStep": 5,
+              "height": 400,
+              "series": [
+                {
+                  "data": {
+                    "1995": 1.807,
+                    "1996": 1.764,
+                    "1997": 1.746,
+                    "1998": 1.7,
+                    "1999": 1.735,
+                    "2000": 1.729,
+                    "2001": 1.726,
+                    "2002": 1.718,
+                    "2003": 1.76,
+                    "2004": 1.8,
+                    "2005": 1.803,
+                    "2006": 1.837,
+                    "2007": 1.829,
+                    "2008": 1.846,
+                    "2009": 1.864,
+                    "2010": 1.87,
+                    "2011": 1.827,
+                    "2012": 1.801,
+                    "2013": 1.747,
+                    "2014": 1.71,
+                    "2015": 1.65,
+                    "2016": 1.567,
+                    "2017": 1.489,
+                    "2018": 1.407,
+                    "2019": 1.347,
+                    "2020": 1.37,
+                    "2021": 1.458,
+                    "2022": 1.316,
+                    "2023": 1.257,
+                    "2024": 1.252
+                  },
+                  "color": "fi",
+                  "label": "Suomi",
+                  "dashed": false
+                },
+                {
+                  "data": {
+                    "1995": 1.738,
+                    "1996": 1.606,
+                    "1997": 1.532,
+                    "1998": 1.511,
+                    "1999": 1.503,
+                    "2000": 1.547,
+                    "2001": 1.57,
+                    "2002": 1.653,
+                    "2003": 1.717,
+                    "2004": 1.752,
+                    "2005": 1.769,
+                    "2006": 1.854,
+                    "2007": 1.879,
+                    "2008": 1.907,
+                    "2009": 1.935,
+                    "2010": 1.985,
+                    "2011": 1.901,
+                    "2012": 1.906,
+                    "2013": 1.888,
+                    "2014": 1.881,
+                    "2015": 1.849,
+                    "2016": 1.853,
+                    "2017": 1.779,
+                    "2018": 1.752,
+                    "2019": 1.705,
+                    "2020": 1.664,
+                    "2021": 1.669,
+                    "2022": 1.521,
+                    "2023": 1.449,
+                    "2024": 1.43
+                  },
+                  "color": "nordic",
+                  "label": "Ruotsi",
+                  "dashed": true
+                },
+                {
+                  "data": {
+                    "1995": 1.87,
+                    "1996": 1.89,
+                    "1997": 1.86,
+                    "1998": 1.81,
+                    "1999": 1.85,
+                    "2000": 1.85,
+                    "2001": 1.78,
+                    "2002": 1.75,
+                    "2003": 1.8,
+                    "2004": 1.83,
+                    "2005": 1.84,
+                    "2006": 1.9,
+                    "2007": 1.9,
+                    "2008": 1.96,
+                    "2009": 1.98,
+                    "2010": 1.95,
+                    "2011": 1.88,
+                    "2012": 1.85,
+                    "2013": 1.78,
+                    "2014": 1.76,
+                    "2015": 1.73,
+                    "2016": 1.71,
+                    "2017": 1.62,
+                    "2018": 1.56,
+                    "2019": 1.53,
+                    "2020": 1.48,
+                    "2021": 1.55,
+                    "2022": 1.41,
+                    "2023": 1.4,
+                    "2024": 1.44
+                  },
+                  "color": "nordic",
+                  "label": "Norja",
+                  "dashed": true
+                },
+                {
+                  "data": {
+                    "1995": 1.807,
+                    "1996": 1.747,
+                    "1997": 1.752,
+                    "1998": 1.724,
+                    "1999": 1.735,
+                    "2000": 1.772,
+                    "2001": 1.747,
+                    "2002": 1.724,
+                    "2003": 1.758,
+                    "2004": 1.784,
+                    "2005": 1.802,
+                    "2006": 1.848,
+                    "2007": 1.844,
+                    "2008": 1.889,
+                    "2009": 1.84,
+                    "2010": 1.871,
+                    "2011": 1.752,
+                    "2012": 1.729,
+                    "2013": 1.669,
+                    "2014": 1.691,
+                    "2015": 1.714,
+                    "2016": 1.785,
+                    "2017": 1.752,
+                    "2018": 1.73,
+                    "2019": 1.699,
+                    "2020": 1.675,
+                    "2021": 1.724,
+                    "2022": 1.553,
+                    "2023": 1.496,
+                    "2024": 1.466
+                  },
+                  "color": "nordic",
+                  "label": "Tanska",
+                  "dashed": true
+                }
+              ],
+              "yLabel": "TFR (lapsia/nainen)",
+              "yearsTo": 2024,
+              "chartType": "line",
+              "yearsFrom": 1995,
+              "yearsStep": 1,
+              "showLegend": true,
+              "crisisYears": [
+                2008,
+                2020
+              ],
+              "series_refs": [
+                "nordics.tfr_1950_2024"
+              ],
+              "evidence_key": "path_dependency.tfr_nordics_1995_2024",
+              "prediction_number": 6
+            },
+            "hidden": false,
+            "reader_function": "suhteuttaa"
+          },
+          {
+            "id": "085862c6-abb8-4e8d-a4a6-7a8848f24ab4",
+            "chapter_position": 6,
+            "section_position": 2,
+            "type": "chart-chartjs",
+            "title": "Konsolidoitu julkinen velka 1995–2024 — neljä pohjoismaata",
+            "source": "NOMESCO; Eurostat; Suomen TTT-tutkimustietokanta",
+            "position": 1,
+            "content": {
+              "body": "Konsolidoidun julkisen velan suhde BKT:hen. Suomi erkani naapureistaan 2008 jälkeen — kun muut palauttivat velkansa alle 50 % BKT:sta, Suomi on kiivennyt yli 80 % vuonna 2024.",
+              "kind": "preset-fi-nordic",
+              "note": "Pystyviivat: 2008 finanssikriisi, 2020 koronapandemia. Suomi on ainoa pohjoismaa jonka velka on noussut jatkuvasti 2008 jälkeen.",
+              "yFmt": "decimal",
+              "yMax": 90,
+              "yMin": 25,
+              "xStep": 5,
+              "height": 400,
+              "series": [
+                {
+                  "data": {
+                    "1995": 55.2,
+                    "1996": 55.4,
+                    "1997": 52.2,
+                    "1998": 46.8,
+                    "1999": 44.1,
+                    "2000": 45.1,
+                    "2001": 43.4,
+                    "2002": 42.6,
+                    "2003": 45.2,
+                    "2004": 44.9,
+                    "2005": 42.1,
+                    "2006": 40.2,
+                    "2007": 36,
+                    "2008": 34.7,
+                    "2009": 44.1,
+                    "2010": 50.1,
+                    "2011": 52,
+                    "2012": 57.9,
+                    "2013": 60.8,
+                    "2014": 64.8,
+                    "2015": 68.8,
+                    "2016": 68.6,
+                    "2017": 66.6,
+                    "2018": 65.4,
+                    "2019": 65.3,
+                    "2020": 75.3,
+                    "2021": 73.1,
+                    "2022": 74,
+                    "2023": 77.1,
+                    "2024": 82.5
+                  },
+                  "color": "fi",
+                  "label": "Suomi",
+                  "dashed": false
+                },
+                {
+                  "data": {
+                    "1995": 68.8,
+                    "1996": 69.3,
+                    "1997": 66.9,
+                    "1998": 66.1,
+                    "1999": 60.7,
+                    "2000": 50.4,
+                    "2001": 52,
+                    "2002": 49.8,
+                    "2003": 49.5,
+                    "2004": 48.7,
+                    "2005": 49,
+                    "2006": 43.9,
+                    "2007": 39.3,
+                    "2008": 38,
+                    "2009": 41.3,
+                    "2010": 38.7,
+                    "2011": 37.8,
+                    "2012": 38.1,
+                    "2013": 41.2,
+                    "2014": 46.1,
+                    "2015": 44.8,
+                    "2016": 43.2,
+                    "2017": 41.9,
+                    "2018": 40.2,
+                    "2019": 36,
+                    "2020": 40.4,
+                    "2021": 37.2,
+                    "2022": 34.1,
+                    "2023": 32,
+                    "2024": 34
+                  },
+                  "color": "nordic",
+                  "label": "Ruotsi",
+                  "dashed": true
+                },
+                {
+                  "data": {
+                    "2000": 28.5,
+                    "2001": 27.1,
+                    "2002": 33.7,
+                    "2003": 41.7,
+                    "2004": 43,
+                    "2005": 41.6,
+                    "2006": 52.2,
+                    "2007": 49.3,
+                    "2008": 47,
+                    "2009": 42.1,
+                    "2010": 42.5,
+                    "2011": 28.8,
+                    "2012": 29.9,
+                    "2013": 30.7,
+                    "2014": 28.4,
+                    "2015": 33.1,
+                    "2016": 37,
+                    "2017": 37.4,
+                    "2018": 38.8,
+                    "2019": 39.8,
+                    "2020": 45.1,
+                    "2021": 41.3,
+                    "2022": 36.3,
+                    "2023": 44.4,
+                    "2024": 55.1
+                  },
+                  "color": "nordic",
+                  "label": "Norja",
+                  "dashed": true
+                },
+                {
+                  "data": {
+                    "2000": 53.6,
+                    "2001": 50.1,
+                    "2002": 50.3,
+                    "2003": 48.2,
+                    "2004": 46.2,
+                    "2005": 39.4,
+                    "2006": 33.2,
+                    "2007": 29.5,
+                    "2008": 35.5,
+                    "2009": 43,
+                    "2010": 46.1,
+                    "2011": 50,
+                    "2012": 48.7,
+                    "2013": 47.8,
+                    "2014": 48.7,
+                    "2015": 44.6,
+                    "2016": 41.7,
+                    "2017": 40.2,
+                    "2018": 38.5,
+                    "2019": 38.3,
+                    "2020": 45.2,
+                    "2021": 39.6,
+                    "2022": 33.3,
+                    "2023": 33,
+                    "2024": 30.5
+                  },
+                  "color": "nordic",
+                  "label": "Tanska",
+                  "dashed": true
+                }
+              ],
+              "yLabel": "% BKT:sta",
+              "yearsTo": 2024,
+              "chartType": "line",
+              "yearsFrom": 1995,
+              "yearsStep": 1,
+              "showLegend": true,
+              "crisisYears": [
+                2008,
+                2020
+              ],
+              "series_refs": [
+                "nordics.debt_gdp_1995_2024"
+              ],
+              "evidence_key": "path_dependency.debt_nordics_1995_2024",
+              "prediction_number": 6
+            },
+            "hidden": false,
+            "reader_function": "suhteuttaa"
+          },
+          {
+            "id": "b9863a03-a20c-4189-a0da-5909bda9a0d8",
+            "chapter_position": 6,
+            "section_position": null,
+            "type": "dashboard",
+            "title": "Velka ja syntyvyys: hajontakuvio (Pohjoismaat 1995–2024)",
+            "source": null,
+            "position": 1,
+            "content": {
+              "x": {
+                "max": 2,
+                "min": 1.2,
+                "label": "Hedelmällisyysluku (TFR)"
+              },
+              "y": {
+                "max": 90,
+                "min": 25,
+                "label": "Julkinen velka (% BKT)"
+              },
+              "fit": true,
+              "body": "Jokainen piste on yksi pohjoismaa yhtenä vuonna (1995–2024): vaaka-akselilla hedelmällisyysluku, pystyakselilla julkinen velka suhteessa BKT:hen. Suomi (sininen) ajautuu omaan kulmaansa — matala syntyvyys, korkea velka — kun naapurit ryhmittyvät toisaalle.",
+              "note": "Kuvaileva yhteisliike, ei syy-seuraus. Jokainen piste on maa-vuosi, eivätkä havainnot ole riippumattomia (saman maan peräkkäiset vuodet seuraavat toisiaan), joten suora ja r ovat kuvailevia, eivät tilastollinen testi. Värit erottavat maiden radat — yhteinen suora on vain tiivistys, todellinen liike on kunkin maan oma. r ≈ −0,47.",
+              "view": "hajontakuvio",
+              "groups": {
+                "Norja": "#1f6f6b",
+                "Suomi": "#3a6ea5",
+                "Ruotsi": "#9a8a2a",
+                "Tanska": "#a3503a"
+              },
+              "points": [
+                {
+                  "x": 1.85,
+                  "y": 28.5,
+                  "group": "Norja",
+                  "label": "Norja 2000"
+                },
+                {
+                  "x": 1.78,
+                  "y": 27.1,
+                  "group": "Norja",
+                  "label": "Norja 2001"
+                },
+                {
+                  "x": 1.75,
+                  "y": 33.7,
+                  "group": "Norja",
+                  "label": "Norja 2002"
+                },
+                {
+                  "x": 1.8,
+                  "y": 41.7,
+                  "group": "Norja",
+                  "label": "Norja 2003"
+                },
+                {
+                  "x": 1.83,
+                  "y": 43,
+                  "group": "Norja",
+                  "label": "Norja 2004"
+                },
+                {
+                  "x": 1.84,
+                  "y": 41.6,
+                  "group": "Norja",
+                  "label": "Norja 2005"
+                },
+                {
+                  "x": 1.9,
+                  "y": 52.2,
+                  "group": "Norja",
+                  "label": "Norja 2006"
+                },
+                {
+                  "x": 1.9,
+                  "y": 49.3,
+                  "group": "Norja",
+                  "label": "Norja 2007"
+                },
+                {
+                  "x": 1.96,
+                  "y": 47,
+                  "group": "Norja",
+                  "label": "Norja 2008"
+                },
+                {
+                  "x": 1.98,
+                  "y": 42.1,
+                  "group": "Norja",
+                  "label": "Norja 2009"
+                },
+                {
+                  "x": 1.95,
+                  "y": 42.5,
+                  "group": "Norja",
+                  "label": "Norja 2010"
+                },
+                {
+                  "x": 1.88,
+                  "y": 28.8,
+                  "group": "Norja",
+                  "label": "Norja 2011"
+                },
+                {
+                  "x": 1.85,
+                  "y": 29.9,
+                  "group": "Norja",
+                  "label": "Norja 2012"
+                },
+                {
+                  "x": 1.78,
+                  "y": 30.7,
+                  "group": "Norja",
+                  "label": "Norja 2013"
+                },
+                {
+                  "x": 1.76,
+                  "y": 28.4,
+                  "group": "Norja",
+                  "label": "Norja 2014"
+                },
+                {
+                  "x": 1.73,
+                  "y": 33.1,
+                  "group": "Norja",
+                  "label": "Norja 2015"
+                },
+                {
+                  "x": 1.71,
+                  "y": 37,
+                  "group": "Norja",
+                  "label": "Norja 2016"
+                },
+                {
+                  "x": 1.62,
+                  "y": 37.4,
+                  "group": "Norja",
+                  "label": "Norja 2017"
+                },
+                {
+                  "x": 1.56,
+                  "y": 38.8,
+                  "group": "Norja",
+                  "label": "Norja 2018"
+                },
+                {
+                  "x": 1.53,
+                  "y": 39.8,
+                  "group": "Norja",
+                  "label": "Norja 2019"
+                },
+                {
+                  "x": 1.48,
+                  "y": 45.1,
+                  "group": "Norja",
+                  "label": "Norja 2020"
+                },
+                {
+                  "x": 1.55,
+                  "y": 41.3,
+                  "group": "Norja",
+                  "label": "Norja 2021"
+                },
+                {
+                  "x": 1.41,
+                  "y": 36.3,
+                  "group": "Norja",
+                  "label": "Norja 2022"
+                },
+                {
+                  "x": 1.4,
+                  "y": 44.4,
+                  "group": "Norja",
+                  "label": "Norja 2023"
+                },
+                {
+                  "x": 1.44,
+                  "y": 55.1,
+                  "group": "Norja",
+                  "label": "Norja 2024"
+                },
+                {
+                  "x": 1.738,
+                  "y": 68.8,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 1995"
+                },
+                {
+                  "x": 1.606,
+                  "y": 69.3,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 1996"
+                },
+                {
+                  "x": 1.532,
+                  "y": 66.9,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 1997"
+                },
+                {
+                  "x": 1.511,
+                  "y": 66.1,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 1998"
+                },
+                {
+                  "x": 1.503,
+                  "y": 60.7,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 1999"
+                },
+                {
+                  "x": 1.547,
+                  "y": 50.4,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2000"
+                },
+                {
+                  "x": 1.57,
+                  "y": 52,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2001"
+                },
+                {
+                  "x": 1.653,
+                  "y": 49.8,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2002"
+                },
+                {
+                  "x": 1.717,
+                  "y": 49.5,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2003"
+                },
+                {
+                  "x": 1.752,
+                  "y": 48.7,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2004"
+                },
+                {
+                  "x": 1.769,
+                  "y": 49,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2005"
+                },
+                {
+                  "x": 1.854,
+                  "y": 43.9,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2006"
+                },
+                {
+                  "x": 1.879,
+                  "y": 39.3,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2007"
+                },
+                {
+                  "x": 1.907,
+                  "y": 38,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2008"
+                },
+                {
+                  "x": 1.935,
+                  "y": 41.3,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2009"
+                },
+                {
+                  "x": 1.985,
+                  "y": 38.7,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2010"
+                },
+                {
+                  "x": 1.901,
+                  "y": 37.8,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2011"
+                },
+                {
+                  "x": 1.906,
+                  "y": 38.1,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2012"
+                },
+                {
+                  "x": 1.888,
+                  "y": 41.2,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2013"
+                },
+                {
+                  "x": 1.881,
+                  "y": 46.1,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2014"
+                },
+                {
+                  "x": 1.849,
+                  "y": 44.8,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2015"
+                },
+                {
+                  "x": 1.853,
+                  "y": 43.2,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2016"
+                },
+                {
+                  "x": 1.779,
+                  "y": 41.9,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2017"
+                },
+                {
+                  "x": 1.752,
+                  "y": 40.2,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2018"
+                },
+                {
+                  "x": 1.705,
+                  "y": 36,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2019"
+                },
+                {
+                  "x": 1.664,
+                  "y": 40.4,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2020"
+                },
+                {
+                  "x": 1.669,
+                  "y": 37.2,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2021"
+                },
+                {
+                  "x": 1.521,
+                  "y": 34.1,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2022"
+                },
+                {
+                  "x": 1.449,
+                  "y": 32,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2023"
+                },
+                {
+                  "x": 1.43,
+                  "y": 34,
+                  "group": "Ruotsi",
+                  "label": "Ruotsi 2024"
+                },
+                {
+                  "x": 1.807,
+                  "y": 55.2,
+                  "group": "Suomi",
+                  "label": "Suomi 1995"
+                },
+                {
+                  "x": 1.764,
+                  "y": 55.4,
+                  "group": "Suomi",
+                  "label": "Suomi 1996"
+                },
+                {
+                  "x": 1.746,
+                  "y": 52.2,
+                  "group": "Suomi",
+                  "label": "Suomi 1997"
+                },
+                {
+                  "x": 1.7,
+                  "y": 46.8,
+                  "group": "Suomi",
+                  "label": "Suomi 1998"
+                },
+                {
+                  "x": 1.735,
+                  "y": 44.1,
+                  "group": "Suomi",
+                  "label": "Suomi 1999"
+                },
+                {
+                  "x": 1.729,
+                  "y": 45.1,
+                  "group": "Suomi",
+                  "label": "Suomi 2000"
+                },
+                {
+                  "x": 1.726,
+                  "y": 43.4,
+                  "group": "Suomi",
+                  "label": "Suomi 2001"
+                },
+                {
+                  "x": 1.718,
+                  "y": 42.6,
+                  "group": "Suomi",
+                  "label": "Suomi 2002"
+                },
+                {
+                  "x": 1.76,
+                  "y": 45.2,
+                  "group": "Suomi",
+                  "label": "Suomi 2003"
+                },
+                {
+                  "x": 1.8,
+                  "y": 44.9,
+                  "group": "Suomi",
+                  "label": "Suomi 2004"
+                },
+                {
+                  "x": 1.803,
+                  "y": 42.1,
+                  "group": "Suomi",
+                  "label": "Suomi 2005"
+                },
+                {
+                  "x": 1.837,
+                  "y": 40.2,
+                  "group": "Suomi",
+                  "label": "Suomi 2006"
+                },
+                {
+                  "x": 1.829,
+                  "y": 36,
+                  "group": "Suomi",
+                  "label": "Suomi 2007"
+                },
+                {
+                  "x": 1.846,
+                  "y": 34.7,
+                  "group": "Suomi",
+                  "label": "Suomi 2008"
+                },
+                {
+                  "x": 1.864,
+                  "y": 44.1,
+                  "group": "Suomi",
+                  "label": "Suomi 2009"
+                },
+                {
+                  "x": 1.87,
+                  "y": 50.1,
+                  "group": "Suomi",
+                  "label": "Suomi 2010"
+                },
+                {
+                  "x": 1.827,
+                  "y": 52,
+                  "group": "Suomi",
+                  "label": "Suomi 2011"
+                },
+                {
+                  "x": 1.801,
+                  "y": 57.9,
+                  "group": "Suomi",
+                  "label": "Suomi 2012"
+                },
+                {
+                  "x": 1.747,
+                  "y": 60.8,
+                  "group": "Suomi",
+                  "label": "Suomi 2013"
+                },
+                {
+                  "x": 1.71,
+                  "y": 64.8,
+                  "group": "Suomi",
+                  "label": "Suomi 2014"
+                },
+                {
+                  "x": 1.65,
+                  "y": 68.8,
+                  "group": "Suomi",
+                  "label": "Suomi 2015"
+                },
+                {
+                  "x": 1.567,
+                  "y": 68.6,
+                  "group": "Suomi",
+                  "label": "Suomi 2016"
+                },
+                {
+                  "x": 1.489,
+                  "y": 66.6,
+                  "group": "Suomi",
+                  "label": "Suomi 2017"
+                },
+                {
+                  "x": 1.407,
+                  "y": 65.4,
+                  "group": "Suomi",
+                  "label": "Suomi 2018"
+                },
+                {
+                  "x": 1.347,
+                  "y": 65.3,
+                  "group": "Suomi",
+                  "label": "Suomi 2019"
+                },
+                {
+                  "x": 1.37,
+                  "y": 75.3,
+                  "group": "Suomi",
+                  "label": "Suomi 2020"
+                },
+                {
+                  "x": 1.458,
+                  "y": 73.1,
+                  "group": "Suomi",
+                  "label": "Suomi 2021"
+                },
+                {
+                  "x": 1.316,
+                  "y": 74,
+                  "group": "Suomi",
+                  "label": "Suomi 2022"
+                },
+                {
+                  "x": 1.257,
+                  "y": 77.1,
+                  "group": "Suomi",
+                  "label": "Suomi 2023"
+                },
+                {
+                  "x": 1.252,
+                  "y": 82.5,
+                  "group": "Suomi",
+                  "label": "Suomi 2024"
+                },
+                {
+                  "x": 1.772,
+                  "y": 53.6,
+                  "group": "Tanska",
+                  "label": "Tanska 2000"
+                },
+                {
+                  "x": 1.747,
+                  "y": 50.1,
+                  "group": "Tanska",
+                  "label": "Tanska 2001"
+                },
+                {
+                  "x": 1.724,
+                  "y": 50.3,
+                  "group": "Tanska",
+                  "label": "Tanska 2002"
+                },
+                {
+                  "x": 1.758,
+                  "y": 48.2,
+                  "group": "Tanska",
+                  "label": "Tanska 2003"
+                },
+                {
+                  "x": 1.784,
+                  "y": 46.2,
+                  "group": "Tanska",
+                  "label": "Tanska 2004"
+                },
+                {
+                  "x": 1.802,
+                  "y": 39.4,
+                  "group": "Tanska",
+                  "label": "Tanska 2005"
+                },
+                {
+                  "x": 1.848,
+                  "y": 33.2,
+                  "group": "Tanska",
+                  "label": "Tanska 2006"
+                },
+                {
+                  "x": 1.844,
+                  "y": 29.5,
+                  "group": "Tanska",
+                  "label": "Tanska 2007"
+                },
+                {
+                  "x": 1.889,
+                  "y": 35.5,
+                  "group": "Tanska",
+                  "label": "Tanska 2008"
+                },
+                {
+                  "x": 1.84,
+                  "y": 43,
+                  "group": "Tanska",
+                  "label": "Tanska 2009"
+                },
+                {
+                  "x": 1.871,
+                  "y": 46.1,
+                  "group": "Tanska",
+                  "label": "Tanska 2010"
+                },
+                {
+                  "x": 1.752,
+                  "y": 50,
+                  "group": "Tanska",
+                  "label": "Tanska 2011"
+                },
+                {
+                  "x": 1.729,
+                  "y": 48.7,
+                  "group": "Tanska",
+                  "label": "Tanska 2012"
+                },
+                {
+                  "x": 1.669,
+                  "y": 47.8,
+                  "group": "Tanska",
+                  "label": "Tanska 2013"
+                },
+                {
+                  "x": 1.691,
+                  "y": 48.7,
+                  "group": "Tanska",
+                  "label": "Tanska 2014"
+                },
+                {
+                  "x": 1.714,
+                  "y": 44.6,
+                  "group": "Tanska",
+                  "label": "Tanska 2015"
+                },
+                {
+                  "x": 1.785,
+                  "y": 41.7,
+                  "group": "Tanska",
+                  "label": "Tanska 2016"
+                },
+                {
+                  "x": 1.752,
+                  "y": 40.2,
+                  "group": "Tanska",
+                  "label": "Tanska 2017"
+                },
+                {
+                  "x": 1.73,
+                  "y": 38.5,
+                  "group": "Tanska",
+                  "label": "Tanska 2018"
+                },
+                {
+                  "x": 1.699,
+                  "y": 38.3,
+                  "group": "Tanska",
+                  "label": "Tanska 2019"
+                },
+                {
+                  "x": 1.675,
+                  "y": 45.2,
+                  "group": "Tanska",
+                  "label": "Tanska 2020"
+                },
+                {
+                  "x": 1.724,
+                  "y": 39.6,
+                  "group": "Tanska",
+                  "label": "Tanska 2021"
+                },
+                {
+                  "x": 1.553,
+                  "y": 33.3,
+                  "group": "Tanska",
+                  "label": "Tanska 2022"
+                },
+                {
+                  "x": 1.496,
+                  "y": 33,
+                  "group": "Tanska",
+                  "label": "Tanska 2023"
+                },
+                {
+                  "x": 1.466,
+                  "y": 30.5,
+                  "group": "Tanska",
+                  "label": "Tanska 2024"
+                }
+              ]
+            },
+            "hidden": false,
+            "reader_function": "paljastaa"
+          },
+          {
+            "id": "dbe386b7-0593-4d35-9457-ebf80b2b4459",
+            "chapter_position": 6,
+            "section_position": 2,
+            "type": "table",
+            "title": "Suomi pohjoismaisena erityistapauksena — neljä rakenteellista eroa",
+            "source": "Yhteenveto kirjasta Sukupolvi joka kantaa",
+            "position": 2,
+            "content": {
+              "body": "Neljä rakenteellista eroa joiden vuoksi Suomi on omanlainen koetinkenttä — eikä vain pieni versio Ruotsista.",
+              "rows": [
+                [
+                  "Kaupungistuminen",
+                  "Tiivistetty 1960–1980",
+                  "Hajautunut 1920–1970",
+                  "Suomi teki 50 v:n muutoksen 20 v:ssä"
+                ],
+                [
+                  "Ruotsiin muutto",
+                  "500 000 (1960–75)",
+                  "Ei vastaavaa lähtömuuttoa",
+                  "Taloudellinen ja rakenteellinen kuilu"
+                ],
+                [
+                  "Hyvinvointivaltion rakentaminen",
+                  "1963–1980",
+                  "1945–1965",
+                  "Suomi 20 v jäljessä"
+                ],
+                [
+                  "Koulutusasteen kehitys nuorilla",
+                  "Laskenut 2010-luvulla",
+                  "Noussut tai vakaa",
+                  "Ainoa Pohjoismaa jossa näin"
+                ]
+              ],
+              "source": "Kirja: Sukupolvi joka kantaa, luku 0",
+              "headers": [
+                "Piirre",
+                "Suomi",
+                "Muut Pohjoismaat",
+                "Selitys"
+              ]
+            },
+            "hidden": false,
+            "reader_function": "suhteuttaa"
+          },
+          {
+            "id": "bc82c88f-b41c-49b4-a4ef-e50f99f0f01c",
+            "chapter_position": 6,
+            "section_position": 4,
+            "type": "evidence",
+            "title": "Polkuriippuvuus-indeksi — kolme falsifiointiryhmää",
+            "source": "TTT-tutkimustietokanta (NOMESCO, Eurostat, OECD)",
+            "position": 3,
+            "content": {
+              "body": "Polkuriippuvuus-hypoteesia voidaan testata kolmesta suunnasta. Jokainen ryhmä on itsenäinen — kaikkien kolmen heikkeneminen samanaikaisesti olisi vahva merkki ennusteen kumoutumisesta.",
+              "note": "Kolme ryhmää ovat itsenäisiä, joten yksi kumoutuminen ei riitä koko ennusteen kumoutumiseen. Vahva näyttö kumoutumisesta vaatii että kaikki kolme heikkenevät yhtaikaa.",
+              "findings": [
+                {
+                  "aihe": "Rakenneprofiilit eroavat",
+                  "havainto": "Ikäjakauma, eläkevastuiden taso, kuntarakenne ja velkaprofiili. Jos näiden yhteisprofiili Suomessa on samankaltainen kuin muissa pohjoismaissa kun ne vakioidaan väestökoon ja vauraustason mukaan, ensimmäinen polun pala kumoutuu. Tällä hetkellä erot ovat suuret: Suomen 0–17v osuus on 1,5 pp matalampi kuin Ruotsissa, eläkemenojen suhde BKT:hen on 4 pp korkeampi, ja yli 100 kunnan rakenne eroaa kaikista pohjoismaista."
+                },
+                {
+                  "aihe": "Sukupolvien nettosaanto eroaa",
+                  "havainto": "Verot, etuudet, palvelut ja velka eri sukupolvien yli. Jos Suomi-syntyneen 1965 ja 1985 nettosaannot ovat samat kuin Ruotsi-syntyneen vastaavasti, polun pala kumoutuu. Tällä hetkellä Suomessa nuoret sukupolvet maksavat suhteellisesti enemmän veroa ja saavat vähemmän eläkettä kuin pohjoismaisissa verrokkimaissa — laskelmat viittaavat 10–20 % nettoeroon kohorttiin nähden."
+                },
+                {
+                  "aihe": "Reformivaikutusten ero",
+                  "havainto": "Sama reformi Suomessa ja Ruotsissa tuottaa eri suuruisen vaikutuksen. Eläkereformi 1990-luvulla, sote-uudistus 2023, varhaiskasvatuksen laajennukset — kaikilla on pohjoismaiset vertailupisteet. Jos vaikutuserot ovat keskimäärin nollia tai selittyvät kokonaan vakioiduilla muuttujilla (BKT, ikärakenne, sote-rahoitus), kolmas pala kumoutuu. Jos systemaattinen ero pysyy — kuten esimerkiksi sote-uudistuksen 2023 tehokkuushyödyt jäivät selvästi alle Ruotsin 2018 vastaavan — polku vahvistuu."
+                }
+              ]
+            },
+            "hidden": false,
+            "reader_function": "haastaa"
+          },
+          {
+            "id": "8815b1ec-8745-493e-94a9-bc24184e1fc9",
+            "chapter_position": 6,
+            "section_position": 4,
+            "type": "research-card",
+            "title": "Ennuste 6 — tutkimuskortti",
+            "source": null,
+            "position": 4,
+            "content": {
+              "lens": "Sukupolvi joka kantaa",
+              "evidence": [
+                {
+                  "type": "chart-chartjs",
+                  "title": "Hedelmällisyysluku 1995–2024 — neljä pohjoismaata",
+                  "source": "NOMESCO; Suomen TTT-tutkimustietokanta",
+                  "evidence_key": "path_dependency.tfr_nordics_1995_2024"
+                },
+                {
+                  "type": "chart-chartjs",
+                  "title": "Konsolidoitu julkinen velka 1995–2024 — neljä pohjoismaata",
+                  "source": "NOMESCO; Eurostat; Suomen TTT-tutkimustietokanta",
+                  "evidence_key": "path_dependency.debt_nordics_1995_2024"
+                },
+                {
+                  "type": "table",
+                  "title": "20 mittaria — Suomi Pohjoismaiden heikoimpana tai lähes heikoimpana",
+                  "source": "NOMESCO; Eurostat; OECD; ETK; SVT — kaikki 2023–2024",
+                  "evidence_key": "path_dependency.finland_outlier_20"
+                },
+                {
+                  "type": "table",
+                  "title": "Suomen julkinen velka suhteessa Pohjoismaihin 2000–2024",
+                  "source": "Eurostat; IMF; Norges Bank",
+                  "evidence_key": "path_dependency.debt_nordics_1995_2024"
+                },
+                {
+                  "type": "table",
+                  "title": "Suomen väestöllinen erityispolku vs. Pohjoismaat",
+                  "source": "NOMESCO; SVT; kirjan analyysi",
+                  "evidence_key": "path_dependency.structural_differences"
+                }
+              ],
+              "prediction": "Polkuriippuvuus näkyy Suomen poikkeavana kehityspolkuna",
+              "evidence_keys": [
+                "path_dependency.debt_nordics_1995_2024",
+                "path_dependency.finland_outlier_20",
+                "path_dependency.structural_differences",
+                "path_dependency.tfr_nordics_1995_2024"
+              ],
+              "falsification": "Jos Suomen erityispiirteet katoavat kun ne vakioidaan väestörakenteen, vaurauden ja muiden taustamuuttujien suhteen — eli sama reformi tuottaa Suomessa saman tuloksen kuin verrokkimaissa kontrolloidusti — ennuste heikkenee.",
+              "data_status_fi": "Testattavissa nyt — aineisto on käytettävissä",
+              "evidence_count": 4,
+              "evidence_titles": [
+                "20 mittaria — Suomi Pohjoismaiden heikoimpana tai lähes heikoimpana",
+                "Hedelmällisyysluku 1995–2024 — neljä pohjoismaata",
+                "Konsolidoitu julkinen velka 1995–2024 — neljä pohjoismaata",
+                "Suomen julkinen velka suhteessa Pohjoismaihin 2000–2024",
+                "Suomen väestöllinen erityispolku vs. Pohjoismaat"
+              ],
+              "prediction_number": 6,
+              "falsification_data_available": "ready",
+              "falsification_operationalized": "Mittari: pohjoismaisten reformien (eläke, sote, varhaiskasvatus) vaikuttavuusarvioiden vertailu Suomen ja Ruotsin välillä, kun ikärakenne, BKT, sote-rahoituksen taso ja kuntarakenne vakioidaan. Aineisto: nordic_indicators (22 552 riviä), TTT-tietokannan elasticities ja causal_chains. Kynnys: jos systemaattinen ero vaikutusten välillä on alle 15 % vakioinnin jälkeen, polkuriippuvuus selittyy taustatekijöillä eikä rakenteella."
+            },
+            "hidden": false,
+            "reader_function": "haastaa"
+          }
+        ]
+      },
+      {
+        "position": 7,
+        "appendices": [
+          {
+            "id": "56a09d6b-7da0-46ea-8019-a3a8d8fee11c",
+            "chapter_position": 7,
+            "section_position": null,
+            "type": "dashboard",
+            "title": "Ennuste ei ole kohtalo: skenaariopuu",
+            "source": null,
+            "position": 1,
+            "content": {
+              "body": "Ennuste ei ole kohtalo vaan ehdollinen: se mittaa nykysuunnan, ei väistämätöntä. Kaikki kuusi ennustetta lähtevät samasta oletuksesta — nykyinen logiikka jatkuu. Puu haarautuu siitä, mitä valitsemme. Aika kulkee vasemmalta oikealle; klikkaa solmua lukeaksesi.",
+              "note": "Skenaariot ovat tulkinnallisia, eivät ennusteita todennäköisyyksineen. Pointti on rakenteellinen: ennuste kuvaa ehtoa, ei lopputulosta.",
+              "root": {
+                "kind": "now",
+                "note": "Jokainen kuusi ennustetta kuvaa samaa lähtökohtaa: nykyinen logiikka jatkuu. Mutta ennuste mittaa suuntaa, ei kohtaloa — haarautuma alkaa tästä.",
+                "label": "Nyt — valinnan hetki",
+                "children": [
+                  {
+                    "kind": "path",
+                    "note": "Reformi-ikkuna ohitetaan. Järjestelmä optimoi jatkuvuuttaan, ei tarkoitustaan.",
+                    "label": "Logiikka jatkuu",
+                    "children": [
+                      {
+                        "kind": "bad",
+                        "note": "Polkuriippuvuus kiristyy: jokainen kriisi sementoi vanhan logiikan entistä lujemmin.",
+                        "label": "Lukko syvenee",
+                        "children": [
+                          {
+                            "kind": "bad",
+                            "note": "Kaikki kuusi ennustetta realisoituvat — ei siksi että ne olivat ennustuksia, vaan koska valinta jätettiin tekemättä.",
+                            "label": "Ennusteet toteutuvat"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "path",
+                    "note": "Harvinainen hetki, jolloin rakenne on muutettavissa: paine on riittävä, mutta lukko ei vielä liian korkea.",
+                    "label": "Reformi-ikkuna",
+                    "children": [
+                      {
+                        "kind": "good",
+                        "note": "Tieto, seuraus ja konflikti palautetaan sinne mihin ne kuuluvat — rakenne, joka vastaa.",
+                        "label": "Logiikka käännetään",
+                        "children": [
+                          {
+                            "kind": "good",
+                            "note": "Sama data, eri tulos. Ennusteen arvo oli varoituksessa, ei toteumassa.",
+                            "label": "Ennusteet kumoutuvat"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "path",
+                    "note": "Reformi aloitetaan vajaana tai liian myöhään, kun lukko on jo korkea.",
+                    "label": "Osittain / myöhässä",
+                    "children": [
+                      {
+                        "kind": "bad",
+                        "note": "Hyvinvointi rapautuu vähitellen; mikään yksittäinen kriisi ei pakota muutosta, joten mitään ei muuteta.",
+                        "label": "Hidas ajautuminen"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "view": "skenaariopuu"
+            },
+            "hidden": false,
+            "reader_function": "vapauttaa"
+          }
+        ]
+      }
+    ],
+    "series_links": [
+      {
+        "evidence_key": "path_dependency.debt_nordics_1995_2024",
+        "indicator_key": "macro.edp_debt_gdp",
+        "indicator_name": "Government debt to GDP ratio",
+        "geography": "Nordics",
+        "year_start": 1995,
+        "year_end": 2024,
+        "expected_j_codes": [
+          "FI",
+          "SE",
+          "NO",
+          "DK",
+          "IS"
+        ],
+        "data_role": "primary_series"
+      },
+      {
+        "evidence_key": "path_dependency.tfr_nordics_1995_2024",
+        "indicator_key": "indicator.syntyvyys_tfr",
+        "indicator_name": "Kokonaishedelmällisyysluku (TFR)",
+        "geography": "Nordics",
+        "year_start": 1995,
+        "year_end": 2024,
+        "expected_j_codes": [
+          "FI",
+          "SE",
+          "NO",
+          "DK",
+          "IS"
+        ],
+        "data_role": "primary_series"
+      }
+    ]
+  }
 }
