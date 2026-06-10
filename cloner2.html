@@ -92,7 +92,9 @@
       [data-app-mode="hide"] .app-inline{display:none!important}[data-app-mode="hide"] .ambient-card{display:none!important}
       [data-app-mode="auto"] .ambient-card-body{display:block}
       [data-app-mode="auto"] .app-body{display:block!important}
-      [data-app-mode="auto"] .app-inline-toggles{display:none}
+      [data-app-mode="auto"] .app-inline-toggles{display:none!important;height:0;overflow:hidden;margin:0;padding:0}[data-app-mode="auto"] .app-inline{margin-top:0!important}
+      [data-app-mode="auto"] .app-inline{margin-top:0}
+      [data-app-mode="auto"] .app-inline > .app-inline-toggles{display:none!important;height:0;margin:0;padding:0}
       html{scroll-behavior:auto}
     </style>
   </head>
