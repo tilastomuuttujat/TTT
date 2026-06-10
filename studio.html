@@ -433,7 +433,7 @@
         const show=i=>{const a=appendices[i];if(!a)return;body.innerHTML=`<div class="app-body-head"><span class="kind">${esc(labelFor(a.type))}</span><h3>${esc(a.title||labelFor(a.type))}</h3></div><div class="appx-render-target"></div>`;body.hidden=false;btns.forEach((b,j)=>b.setAttribute("aria-expanded",j===i?"true":"false"));open=i;const t=body.querySelector(".appx-render-target");if(t)doRenderAppendix(t,a);};
         btns.forEach((b,i)=>b.addEventListener("click",()=>{open===i?close():show(i);}));
         const mode=document.documentElement.getAttribute("data-app-mode")||"icon";
-        if(mode==="auto"){container.querySelector(".app-inline-toggles").style.display="none";appendices.forEach((a,i)=>{const w=document.createElement("div");w.className="app-body";w.style.marginTop="14px";w.innerHTML=`<div class="app-body-head"><span class="kind">${esc(labelFor(a.type))}</span><h3>${esc(a.title||labelFor(a.type))}</h3></div><div class="appx-render-target"></div>`;container.appendChild(w);doRenderAppendix(w.querySelector(".appx-render-target"),a);});}
+        if(mode==="auto"){const tg=container.querySelector(".app-inline-toggles");tg.style.display="none";tg.style.height="0";tg.style.margin="0";container.style.marginTop="0";appendices.forEach((a,i)=>{const w=document.createElement("div");w.className="app-body";w.style.marginTop=i===0?"0":"14px";w.innerHTML=`<div class="app-body-head"><span class="kind">${esc(labelFor(a.type))}</span><h3>${esc(a.title||labelFor(a.type))}</h3></div><div class="appx-render-target"></div>`;container.appendChild(w);doRenderAppendix(w.querySelector(".appx-render-target"),a);});}
         else if(mode==="hide"){container.style.display="none";}
       }
 
