@@ -91,6 +91,8 @@
       .drawer-ch{display:flex;align-items:baseline;gap:10px;padding:8px 18px 8px 26px;color:var(--muted);font-size:13.5px;line-height:1.35;transition:background .12s,color .12s;cursor:pointer}.drawer-ch:hover{background:var(--bg-soft);color:var(--fg)}.drawer-ch.active{color:var(--fg);font-weight:500}.drawer-ch .ch-num{font-family:ui-monospace,monospace;font-size:11px;color:var(--muted-2);flex-shrink:0;width:18px}.drawer-ch .ch-title{flex:1}.drawer-ch .ch-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;opacity:0}.drawer-ch.read .ch-dot{opacity:1}
       [data-app-mode="hide"] .app-inline{display:none!important}[data-app-mode="hide"] .ambient-card{display:none!important}
       [data-app-mode="auto"] .ambient-card-body{display:block}
+      [data-app-mode="auto"] .app-body{display:block!important}
+      [data-app-mode="auto"] .app-inline-toggles{display:none}
       html{scroll-behavior:auto}
     </style>
   </head>
@@ -238,15 +240,15 @@
       // auto = ambient-kortit näkyvät heti auki
       // icon = oletustila, valintaikoni näkyy, lukija avaa itse
       // hide = kaikki liitteet piilotettu
-      function applyAppendixMode(mode){
+      function applyAppendixMode(mode,rerender){
         document.documentElement.setAttribute("data-app-mode",mode||"icon");
         settings.appendixMode=mode; saveSettings(settings);
         document.querySelectorAll(".drawer-app-btn").forEach(b=>b.setAttribute("aria-pressed",b.dataset.appMode===mode?"true":"false"));
-        // auto-tilassa avataan kaikki ambient-kortit
-        if(mode==="auto"){document.querySelectorAll(".ambient-card-body").forEach(b=>b.classList.add("open"));document.querySelectorAll(".ambient-card-toggle").forEach(b=>b.setAttribute("aria-expanded","true"));}
+        // Kun tila vaihdetaan käyttäjän toimesta, re-renderöidään nykyinen luku
+        if(rerender){const p=path();const parts=p.split("/").filter(Boolean).map(decodeURIComponent);if(parts[0]==="books"&&parts[1]&&parts[2])chapter(parts[1],parts[2]);}
       }
       applyAppendixMode(settings.appendixMode||"icon");
-      document.querySelectorAll(".drawer-app-btn").forEach(b=>{b.addEventListener("click",()=>applyAppendixMode(b.dataset.appMode));});
+      document.querySelectorAll(".drawer-app-btn").forEach(b=>{b.addEventListener("click",()=>{applyAppendixMode(b.dataset.appMode,true);});});
 
       // ── Scroll-muisti ─────────────────────────────────────────────────────
       const SCROLL_KEY="hk-scroll-v1";
@@ -418,6 +420,17 @@
         const closeBody=()=>{body.hidden=true;body.innerHTML="";buttons.forEach(b=>b.setAttribute("aria-expanded","false"));openIdx=-1;};
         const openBody=idx=>{const a=appendices[idx];if(!a)return;body.innerHTML=`<div class="app-body-head"><span class="kind">${esc(labelFor(a.type))}</span><h3>${esc(a.title||labelFor(a.type))}</h3></div><div class="appx-render-target"></div>`;body.hidden=false;buttons.forEach((b,i)=>b.setAttribute("aria-expanded",i===idx?"true":"false"));openIdx=idx;const target=body.querySelector(".appx-render-target");if(target&&window.renderAppendix)window.renderAppendix(target,a);};
         buttons.forEach((btn,i)=>{btn.addEventListener("click",()=>{if(openIdx===i){const rect=btn.getBoundingClientRect();closeBody();const nr=btn.getBoundingClientRect();window.scrollBy(0,nr.top-rect.top);}else openBody(i);});});
+        // Auto-tilassa renderöidään kaikki liitteet suoraan ilman ikoniklikkausta
+        if((document.documentElement.getAttribute("data-app-mode")||"icon")==="auto"){
+          appendices.forEach((a,i)=>{
+            const wrap=document.createElement("div");
+            wrap.className="app-body";wrap.style.marginTop="14px";
+            wrap.innerHTML=`<div class="app-body-head"><span class="kind">${esc(labelFor(a.type))}</span><h3>${esc(a.title||labelFor(a.type))}</h3></div><div class="appx-render-target"></div>`;
+            container.appendChild(wrap);
+            const target=wrap.querySelector(".appx-render-target");
+            if(target&&window.renderAppendix)window.renderAppendix(target,a);
+          });
+        }
       }
 
       // ── Linssidata ────────────────────────────────────────────────────────
