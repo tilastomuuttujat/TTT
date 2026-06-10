@@ -354,17 +354,31 @@
       // Tiedostot tuotetaan studion vie-toiminnolla: books/index.json + books/<slug>.json
       const DATA_BASE="./books";
       let _bookCache={};
+      function fetchHint(err){
+        if(location.protocol==="file:")return " — Sivua ajetaan file://-protokollalla, joka estää JSON-tiedostojen latauksen. Käynnistä paikallinen palvelin (esim. 'python3 -m http.server') tai julkaise sivu verkkoon.";
+        return " — Varmista että books/-hakemisto tiedostoineen on tämän HTML:n rinnalla ja että olet ajanut studion vie-toiminnon.";
+      }
       async function loadIndex(){
-        const res=await fetch(`${DATA_BASE}/index1.json`,{cache:"no-cache"});
-        if(!res.ok)throw new Error(`index.json (${res.status}). Aja studion vie-toiminto ja sijoita tiedostot books-hakemistoon.`);
+        let res;
+        try{res=await fetch(`${DATA_BASE}/index1.json`,{cache:"no-cache"});}
+        catch(e){throw new Error("books/index1.json -latausvirhe"+fetchHint(e));}
+        if(!res.ok)throw new Error(`books/index1.json palautti ${res.status}`+fetchHint());
         const data=await res.json();
         return (data||[]).map(b=>({slug:b.slug,title:b.title,author:b.author,description:b.description,cover_url:b.cover_url}));
       }
       async function fetchBookFile(slug){
         if(_bookCache[slug])return _bookCache[slug];
-        const res=await fetch(`${DATA_BASE}/${encodeURIComponent(slug)}.json`,{cache:"no-cache"});
-        if(!res.ok)throw new Error(`${slug}.json (${res.status})`);
+        let res;
+        try{res=await fetch(`${DATA_BASE}/${encodeURIComponent(slug)}.json`,{cache:"no-cache"});}
+        catch(e){throw new Error(`books/${slug}.json -latausvirhe`+fetchHint(e));}
+        if(!res.ok)throw new Error(`books/${slug}.json palautti ${res.status}`+fetchHint());
         const data=await res.json();
+        if(!data.appendices||!Array.isArray(data.appendices.chapters)){
+          console.warn(`[cloner1] ${slug}.json ei sisällä appendices.chapters-rakennetta — liitteet eivät näy. Vie tiedosto uudelleen studion ajantasaisella vie-toiminnolla.`);
+        }else{
+          const n=data.appendices.chapters.reduce((s,ch)=>s+(ch.appendices?.length||0),0);
+          console.info(`[cloner1] ${slug}: ${n} liitettä ladattu`);
+        }
         _bookCache[slug]=data;
         return data;
       }
