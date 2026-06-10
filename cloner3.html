@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="fi" data-theme="paper" data-fontsize="m">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Harri Käyhkö – Käsikirjoitukset</title>
+    <meta name="description" content="Harri Käyhkön käsikirjoitukset luettavaksi verkossa." />
+    <meta name="theme-color" content="#fdfbf7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#14110d" media="(prefers-color-scheme: dark)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Harri Käyhkö – Käsikirjoitukset" />
+    <meta property="og:locale" content="fi_FI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600;700&display=swap" />
+    <style>
+      :root,[data-theme="paper"]{--bg:#fdfbf7;--bg-soft:#f4efe5;--card:#ffffff;--fg:#1f1b15;--fg-soft:#3a332a;--muted:#6b6356;--muted-2:#8a8276;--line:#e6dfd0;--line-strong:#c9bfa9;--accent:#1f1b15;--accent-soft:#4a4034;--summary-bg:#f1eadb;--summary-bar:#1f1b15;--shadow-sm:0 1px 0 rgba(31,27,21,.04),0 1px 3px rgba(31,27,21,.04);--shadow-md:0 1px 0 rgba(31,27,21,.04),0 4px 18px rgba(31,27,21,.06);--danger:#a3271a;--focus:#1f1b15}
+      [data-theme="light"]{--bg:#ffffff;--bg-soft:#f3f4f6;--card:#ffffff;--fg:#0f172a;--fg-soft:#1e293b;--muted:#475569;--muted-2:#64748b;--line:#e2e8f0;--line-strong:#cbd5e1;--accent:#0f172a;--accent-soft:#334155;--summary-bg:#f1f5f9;--summary-bar:#0f172a;--shadow-sm:0 1px 0 rgba(15,23,42,.04),0 1px 3px rgba(15,23,42,.04);--shadow-md:0 1px 0 rgba(15,23,42,.04),0 4px 18px rgba(15,23,42,.06);--danger:#b42318;--focus:#0f172a}
+      [data-theme="dark"]{--bg:#14110d;--bg-soft:#1c1814;--card:#1c1814;--fg:#f1ebdd;--fg-soft:#d8d1c0;--muted:#9a9182;--muted-2:#7a7264;--line:#2c2620;--line-strong:#3d362c;--accent:#f1ebdd;--accent-soft:#c9bfa9;--summary-bg:#1c1814;--summary-bar:#c9a86a;--shadow-sm:0 1px 0 rgba(0,0,0,.3),0 1px 3px rgba(0,0,0,.3);--shadow-md:0 1px 0 rgba(0,0,0,.3),0 4px 18px rgba(0,0,0,.4);--danger:#e07a72;--focus:#f1ebdd}
+      @media(prefers-color-scheme:dark){:root:not([data-theme]){color-scheme:dark}}
+      [data-fontsize="s"]{--reader-fs:16.5px;--reader-lh:1.72}[data-fontsize="m"]{--reader-fs:18.5px;--reader-lh:1.78}[data-fontsize="l"]{--reader-fs:20.5px;--reader-lh:1.78}[data-fontsize="xl"]{--reader-fs:22.5px;--reader-lh:1.8}
+      *{box-sizing:border-box}html{color-scheme:light}[data-theme="dark"]{color-scheme:dark}html,body{background:var(--bg)}
+      body{margin:0;color:var(--fg);font-family:"Work Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:400}
+      h1,h2,h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;line-height:1.06;margin:0;color:var(--fg);letter-spacing:-.01em}
+      a{color:inherit;text-decoration:none}
+      a:focus-visible,button:focus-visible,[role="button"]:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:6px}
+      .skip-link{position:absolute;left:12px;top:-100px;background:var(--fg);color:var(--bg);padding:10px 14px;border-radius:8px;font-size:14px;z-index:100;transition:top .15s ease}.skip-link:focus{top:12px}
+      .container{width:min(100% - 40px,760px);margin:0 auto}.container-wide{width:min(100% - 40px,980px);margin:0 auto}
+      header.site{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+      .bar{display:flex;align-items:center;gap:12px;padding:12px 0}.brand{font-family:"Work Sans",system-ui,sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}.brand:hover{color:var(--fg)}
+      .bar-actions{margin-left:auto;display:flex;gap:6px;align-items:center}
+      .icon-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-width:40px;height:40px;padding:0 10px;border-radius:999px;border:1px solid transparent;background:transparent;color:var(--muted);cursor:pointer;font:inherit;font-size:13px;transition:background-color .15s,color .15s}.icon-btn:hover{background:var(--bg-soft);color:var(--fg)}.icon-btn[aria-pressed="true"]{background:var(--fg);color:var(--bg)}.icon-btn svg{width:18px;height:18px}
+      .progress-bar{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0;z-index:50;transition:width .12s linear;pointer-events:none}
+      .settings-panel{position:fixed;top:64px;right:16px;width:min(320px,calc(100vw - 32px));background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-md);padding:18px;z-index:40;display:none}.settings-panel[data-open="true"]{display:block}
+      .settings-panel h3{font-family:"Work Sans",sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:14px}
+      .settings-row{margin-bottom:14px}.settings-row:last-child{margin-bottom:0}.settings-label{font-size:12px;color:var(--muted);margin-bottom:6px;display:block}
+      .settings-group{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;background:var(--bg-soft);padding:4px;border-radius:10px}.settings-group button{border:none;background:transparent;padding:8px 4px;border-radius:7px;font:inherit;font-size:13px;color:var(--muted);cursor:pointer;transition:background .15s,color .15s;min-height:36px}.settings-group button[aria-pressed="true"]{background:var(--card);color:var(--fg);box-shadow:var(--shadow-sm);font-weight:500}
+      main{padding:40px 0 88px;min-height:calc(100dvh - 140px)}
+      footer.site{border-top:1px solid var(--line);padding:24px 0 calc(24px + env(safe-area-inset-bottom));text-align:center;color:var(--muted-2);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+      .hero{margin-bottom:40px}.hero-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:14px}.hero h1{font-size:clamp(44px,8.5vw,76px);margin-bottom:18px}.hero-lede{max-width:560px;color:var(--muted);line-height:1.65;font-size:17px}.hero-lede strong{color:var(--fg);font-weight:500}
+      .resume-card{margin:32px 0 8px;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:var(--bg-soft);display:flex;align-items:center;gap:12px}.resume-card .label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}.resume-card .title{font-family:"Instrument Serif",serif;font-size:20px;line-height:1.2;color:var(--fg)}.resume-card a{margin-left:auto;flex-shrink:0}
+      .section-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:14px;margin-top:36px}
+      .theme-filter{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}.theme-chip{font:inherit;font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;transition:all .15s}.theme-chip:hover{color:var(--fg);border-color:var(--line-strong)}.theme-chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+      .books-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.book-card{display:block;padding:22px 22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--card);transition:border-color .15s,transform .15s,box-shadow .15s;position:relative}.book-card:hover{border-color:var(--line-strong);transform:translateY(-1px);box-shadow:var(--shadow-md)}.book-card h2{font-size:26px;margin-bottom:6px}.book-card .author{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}.book-card .desc{color:var(--muted);font-size:14px;line-height:1.6}
+      .back{display:inline-flex;align-items:center;gap:6px;margin-bottom:22px;color:var(--muted);font-size:13px;padding:6px 10px 6px 6px;border-radius:8px;margin-left:-6px}.back:hover{color:var(--fg);background:var(--bg-soft)}
+      .book-title{font-size:clamp(40px,7vw,64px);margin-bottom:8px}.book-author{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:18px}.book-desc{color:var(--fg-soft);line-height:1.65;max-width:60ch;font-size:17px}
+      .toc{list-style:none;padding:0;margin:18px 0 0}.toc li{border-bottom:1px solid var(--line)}.toc li:last-child{border-bottom:none}.toc a{display:grid;grid-template-columns:32px 1fr auto;gap:16px;align-items:baseline;padding:18px 10px;border-radius:10px;transition:background-color .12s}.toc a:hover{background:var(--bg-soft)}.toc .num{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--muted-2)}.toc .title{font-family:"Instrument Serif",serif;font-size:22px;color:var(--fg)}.toc .meta{font-size:11px;color:var(--muted-2);text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}.toc .read-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-right:6px;vertical-align:middle}
+      .chapter-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-bottom:18px;font-size:13px;color:var(--muted)}.chapter-meta .read-time{display:inline-flex;align-items:center;gap:6px}.chapter-meta .read-time svg{width:14px;height:14px}.theme-tags{display:flex;flex-wrap:wrap;gap:6px}.theme-tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;padding:4px 8px;border:1px solid var(--line);border-radius:4px;color:var(--accent-soft)}
+      .chapter-title{font-size:clamp(38px,7vw,60px);margin-bottom:32px}
+      .summary-box{background:var(--summary-bg);border-left:3px solid var(--summary-bar);padding:22px 24px;margin-bottom:36px;border-radius:0 12px 12px 0}.summary-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:14px}.summary-box ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}.summary-box li{display:flex;gap:12px;font-size:15.5px;line-height:1.55;color:var(--fg)}.summary-box li::before{content:"--";color:var(--muted-2);flex-shrink:0;font-weight:500}
+      .figures{margin-bottom:40px}.figures-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:14px}.figures-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}.figure-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow-sm)}.figure-value{font-family:"Instrument Serif",serif;font-size:32px;line-height:1.05;color:var(--fg);margin-bottom:8px}.figure-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);line-height:1.3}.figure-source{font-size:11px;color:var(--muted-2);font-style:italic;margin-top:6px}
+      .reader{font-size:var(--reader-fs,18.5px);line-height:var(--reader-lh,1.78);color:var(--fg-soft)}.reader p{margin:0 0 1.2em}.reader h1,.reader h2,.reader h3{margin:1.8em 0 .55em;color:var(--fg)}.reader h1{font-size:1.55em}.reader h2{font-size:1.35em}.reader h3{font-size:1.18em}.reader blockquote{margin:1.4em 0;padding-left:1.1em;border-left:3px solid var(--line-strong);color:var(--muted);font-style:italic}.reader ul,.reader ol{padding-left:1.4em}.reader li{margin-bottom:.4em}.reader strong{color:var(--fg);font-weight:600}.reader code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.92em;background:var(--bg-soft);padding:1px 5px;border-radius:4px}
+      .section-title{font-size:clamp(20px,3vw,26px);margin:2em 0 .5em;color:var(--fg)}
+      .pager{display:flex;justify-content:space-between;gap:18px;margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}.pager a{padding:8px 12px;border-radius:8px}.pager a:hover{background:var(--bg-soft);color:var(--fg)}.right{text-align:right;margin-left:auto}.m-pager{display:none}
+      .status{color:var(--muted);padding:40px 0;text-align:center}.error{color:var(--danger);white-space:pre-wrap;font-family:inherit;padding:24px;background:var(--bg-soft);border:1px solid var(--line);border-radius:12px}
+      .app-inline{margin-top:1.8em}.app-inline.chapter-level{margin-top:2.4em}.app-inline-toggles{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+      .app-toggle{position:relative;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;padding:0;border:1px solid var(--line);border-radius:8px;background:var(--card);cursor:pointer;color:var(--muted);font-family:inherit;line-height:1;transition:border-color .15s,color .15s,background .15s,box-shadow .15s;flex-shrink:0}
+      .app-toggle::after{content:attr(title);position:absolute;bottom:calc(100% + 7px);left:50%;transform:translateX(-50%) translateY(3px);background:var(--fg);color:var(--bg);font-size:11px;font-weight:500;padding:5px 9px;border-radius:5px;white-space:nowrap;max-width:240px;overflow:hidden;text-overflow:ellipsis;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s;z-index:10}
+      .app-toggle:hover::after,.app-toggle:focus-visible::after{opacity:1;transform:translateX(-50%) translateY(0)}
+      .app-toggle:hover{border-color:var(--line-strong);color:var(--fg);box-shadow:0 1px 4px rgba(31,27,21,.07)}.app-toggle[aria-expanded="true"]{border-color:var(--fg);color:var(--bg);background:var(--fg)}.app-toggle svg{width:16px;height:16px;flex-shrink:0}.app-toggle .app-toggle-title{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+      .app-body{margin-top:14px;padding:24px 26px 26px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 0 rgba(31,27,21,.03),0 3px 14px rgba(31,27,21,.05);animation:appBodyIn .22s ease}
+      @keyframes appBodyIn{from{opacity:0;transform:translateY(-3px)}to{opacity:1;transform:translateY(0)}}
+      .app-body[hidden]{display:none}.app-body-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}.app-body-head .kind{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--muted-2);flex-shrink:0;background:var(--bg-soft);padding:3px 7px;border-radius:4px}.app-body-head h3{flex:1;font-family:"Instrument Serif",serif;font-size:20px;line-height:1.2;color:var(--fg)}.app-body .lead{font-family:"Instrument Serif",serif;font-size:18px;line-height:1.55;color:var(--fg-soft);margin:0 0 16px}.app-body .note{font-size:13.5px;color:var(--muted);background:var(--bg-soft);border-left:2px solid var(--line-strong);padding:10px 14px;margin:0 0 14px;line-height:1.6;border-radius:0 6px 6px 0}.app-body .source{font-size:11.5px;color:var(--muted-2);font-style:italic;margin:18px 0 0;padding-top:12px;border-top:1px solid var(--line)}
+      .ambient-card{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--line-strong);border-radius:0 10px 10px 0;padding:16px 20px 18px;margin:2em 0;box-shadow:0 1px 0 rgba(31,27,21,.02),0 2px 8px rgba(31,27,21,.04);opacity:0;transform:translateY(6px);transition:opacity .45s ease,transform .45s ease}.ambient-card.revealed{opacity:1;transform:translateY(0)}.ambient-card-head{display:flex;align-items:center;gap:8px;margin-bottom:12px}.ambient-card-icon{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:7px;background:var(--bg-soft);color:var(--muted);flex-shrink:0}.ambient-card-icon svg{width:14px;height:14px}.ambient-card-title{font-family:"Instrument Serif",serif;font-size:15px;line-height:1.25;color:var(--fg);flex:1}.ambient-card-toggle{width:26px;height:26px;display:flex;align-items:center;justify-content:center;border:none;background:none;cursor:pointer;color:var(--muted);border-radius:6px;flex-shrink:0;transition:background .12s,color .12s}.ambient-card-toggle:hover{background:var(--bg-soft);color:var(--fg)}.ambient-card-toggle svg{width:14px;height:14px}.ambient-card-body{display:none}.ambient-card-body.open{display:block}
+      @media(min-width:1100px){.ambient-card-body{display:block}}
+      .search-overlay{position:fixed;inset:0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(8px);z-index:60;display:none;align-items:flex-start;justify-content:center;padding:80px 16px 16px}.search-overlay[data-open="true"]{display:flex}.search-box{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-md);width:min(560px,100%);max-height:calc(100dvh - 120px);display:flex;flex-direction:column;overflow:hidden}.search-input{border:none;background:transparent;padding:18px 20px;font:inherit;font-size:17px;color:var(--fg);border-bottom:1px solid var(--line);outline:none}.search-input::placeholder{color:var(--muted-2)}.search-results{overflow-y:auto;padding:6px}.search-result{display:block;padding:12px 14px;border-radius:10px;color:var(--fg)}.search-result:hover,.search-result[data-active="true"]{background:var(--bg-soft)}.search-result .r-title{font-family:"Instrument Serif",serif;font-size:17px;margin-bottom:2px}.search-result .r-sub{font-size:12px;color:var(--muted)}.search-empty{padding:24px;color:var(--muted);text-align:center;font-size:14px}
+      .wheel-section{margin:0 0 44px}.wheel-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin-bottom:6px}.wheel-section h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(24px,4vw,36px);margin:0 0 8px}.wheel-lede{color:var(--fg-soft);font-size:15px;max-width:56ch;margin:0 0 18px;line-height:1.6}.wheel-wrap{max-width:680px;margin:0 auto}.wheel-wrap svg{width:100%;height:auto;display:block}.wheel-sector{cursor:pointer}.wheel-sector:hover .wheel-sector-shape,.wheel-sector:focus .wheel-sector-shape{filter:brightness(.92)}.wheel-sector-shape{transition:filter .15s}.wheel-label{font-family:"Instrument Serif",Georgia,serif;font-size:15px;fill:var(--fg);pointer-events:none}.wheel-sublabel{font-family:"Work Sans",system-ui,sans-serif;font-size:11px;fill:var(--muted);pointer-events:none;font-weight:600;text-transform:uppercase;letter-spacing:.05em}.wheel-bignum{font-family:"Instrument Serif",Georgia,serif;font-size:72px;fill:rgba(31,27,21,.12);pointer-events:none}.wheel-claim{font-family:"Work Sans",system-ui,sans-serif;font-size:12px;font-weight:500;fill:var(--fg-soft);letter-spacing:.01em;pointer-events:none}.wheel-center-circle{fill:var(--accent)}.wheel-center-ring{fill:none;stroke:rgba(255,255,255,.2);stroke-width:1}.wheel-center-claim{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:13.5px;fill:var(--bg);text-anchor:middle;pointer-events:none}.wheel-center-sub{font-family:"Work Sans",system-ui,sans-serif;font-size:10.5px;font-weight:600;fill:var(--bg);opacity:.75;text-anchor:middle;pointer-events:none;letter-spacing:.03em}.wheel-caption{font-size:11px;color:var(--muted-2);text-align:center;margin-top:10px}.wheel-detail{margin:18px auto 0;max-width:640px;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;padding:16px 20px;text-align:left;box-shadow:var(--shadow-sm);display:none}.wheel-detail.is-open{display:block}.wheel-detail .wd-eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}.wheel-detail h3{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:22px;margin:4px 0 6px}.wheel-detail .wd-claim{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-size:17px;color:var(--fg);margin:0 0 8px}.wheel-detail .wd-expand{color:var(--fg-soft);font-size:14.5px;line-height:1.6;margin:0 0 12px}.wheel-detail .wd-actions a{display:inline-block;background:var(--accent);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;font-weight:500}.wheel-detail .wd-actions a+a{background:transparent;color:var(--fg);border:1px solid var(--line-strong);margin-left:8px}.wheel-detail .wd-actions a[aria-disabled="true"]{background:var(--bg-soft);color:var(--muted);border:1px solid var(--line);cursor:default}
+      .concern-section{margin:0 0 36px;padding:26px 22px;background:var(--card);border:1px solid var(--line);border-radius:16px}.concern-section .ce{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:6px}.concern-section h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(20px,3vw,26px);margin:0 0 14px}.concern-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}.concern-card{display:block;text-decoration:none;color:var(--fg);background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:14px 16px;transition:transform .15s,border-color .15s,background .15s}.concern-card:hover{transform:translateY(-2px);border-color:var(--line-strong);background:var(--card)}.concern-card .cq{font-family:"Instrument Serif",Georgia,serif;font-size:16px;line-height:1.35;margin-bottom:6px}.concern-card .ca{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+      .matrix-section{margin:0 0 44px;background:var(--bg-soft);border:1px solid var(--line);border-radius:16px;overflow:hidden}.matrix-section>summary{list-style:none;cursor:pointer;padding:22px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}.matrix-section>summary::-webkit-details-marker{display:none}.matrix-section>summary .ce{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}.matrix-section>summary h2{display:inline;font-family:"Instrument Serif",Georgia,serif;font-weight:400;font-size:clamp(20px,3vw,26px);margin:0}.matrix-section>summary .matrix-toggle{margin-left:auto;font-size:13px;color:var(--accent);white-space:nowrap}.matrix-section[open]>summary .matrix-toggle-open{display:none}.matrix-section:not([open])>summary .matrix-toggle-close{display:none}.matrix-body{padding:0 22px 26px}.matrix-section .lede{max-width:60ch;color:var(--fg-soft);font-size:14.5px;margin:0 0 16px}.matrix-table-wrap{overflow-x:auto}.matrix-table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card);border-radius:10px;overflow:hidden}.matrix-table th,.matrix-table td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}.matrix-table thead th{background:var(--summary-bg);font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}.matrix-table tbody tr:last-child td{border-bottom:0}.matrix-table td.lens-name{font-family:"Instrument Serif",Georgia,serif;font-size:16px;white-space:nowrap}.matrix-table td.lens-name a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line-strong)}.matrix-table td.lens-name a:hover{border-color:var(--accent)}
+      .ev-data-available{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:6px;font-size:12px}.ev-data-dot{width:7px;height:7px;border-radius:50%;background:#1d9e75;display:inline-block;flex-shrink:0}.ev-data-label{color:#1d9e75;font-weight:600;letter-spacing:.02em}.ev-data-sub{color:var(--muted-2)}.ev-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:24px;z-index:5000;opacity:0;pointer-events:none;transition:opacity .15s}.ev-modal-backdrop.show{opacity:1;pointer-events:auto}.ev-modal{background:var(--bg);border-radius:14px;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;padding:28px;position:relative}.ev-modal h3{font-family:"Instrument Serif",Georgia,serif;font-size:22px;margin:0 0 4px}.ev-modal .ev-modal-close{position:absolute;top:16px;right:16px;background:var(--bg-soft);border:none;border-radius:8px;width:32px;height:32px;cursor:pointer;font-size:18px;color:var(--fg)}.ev-modal-item{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}.ev-modal-item:first-of-type{border-top:none}.ev-meta{margin-bottom:6px}.ev-key{font-family:ui-monospace,monospace;font-size:12px;color:var(--muted);background:var(--bg-soft);padding:2px 6px;border-radius:4px}.rf-badge{display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.10em;padding:2px 7px;border-radius:4px;background:var(--bg-soft);color:var(--muted-2);border:1px solid var(--line);margin-bottom:8px}
+      #bootLoading{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:9998}#bootLoading.hidden{display:none}#bootLoading .msg{color:var(--muted);font-size:14px}#bootError{position:fixed;inset:0;background:var(--bg);padding:24px;font-family:ui-monospace,monospace;font-size:13px;overflow:auto;z-index:9999;display:none}#bootError.show{display:block}#bootError h1{font-size:18px;color:#dc2626;margin-bottom:12px}#bootError pre{white-space:pre-wrap;background:rgba(220,38,38,.1);padding:12px;border-radius:6px}#bootError button{margin-top:16px;margin-right:8px;padding:8px 16px;background:var(--accent);color:var(--bg);border:none;border-radius:6px;cursor:pointer}
+      .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--fg);color:var(--bg);padding:10px 18px;border-radius:10px;font-size:14px;font-weight:500;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:9997;white-space:nowrap}.toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+      @media(max-width:720px){.container,.container-wide{width:min(100% - 28px,980px)}main{padding:24px 0 110px;min-height:calc(100dvh - 120px)}.hero h1{font-size:clamp(40px,11vw,58px)}.hero-lede{font-size:16px}.books-grid{grid-template-columns:1fr}.book-card{padding:20px}.book-card h2{font-size:24px}.book-title{font-size:clamp(36px,10vw,48px)}.chapter-title{font-size:clamp(32px,9vw,44px)}.summary-box{padding:18px 20px}.summary-box li{font-size:15px}.figure-value{font-size:28px}.toc a{grid-template-columns:26px 1fr;padding:16px 8px}.toc .meta{grid-column:2;padding-top:4px}.toc .title{font-size:20px}.pager{display:none}.m-pager{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;bottom:0;left:0;right:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(12px);border-top:1px solid var(--line);z-index:20}.m-pager a,.m-pager span{display:flex;flex-direction:column;justify-content:center;padding:8px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--fg);font-size:14px;min-height:52px;overflow:hidden}.m-pager .label{font-size:10px;color:var(--muted);margin-bottom:2px;text-transform:uppercase;letter-spacing:.08em}.m-pager .title{font-family:"Instrument Serif",serif;font-size:16px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.m-pager a.next{text-align:right}.m-pager span.empty{opacity:.45;justify-content:center;align-items:center}.app-toggle{width:36px;height:36px;border-radius:9px}.app-toggle svg{width:17px;height:17px}}
+      @media(max-width:640px){.matrix-table thead{display:none}.matrix-table,.matrix-table tbody,.matrix-table tr,.matrix-table td{display:block;width:100%}.matrix-table tr{border-bottom:1px solid var(--line);padding:10px 0}.matrix-table td{border:0;padding:6px 14px}.matrix-table td::before{content:attr(data-label);display:block;font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:2px}.matrix-table td.lens-name::before{display:none}}
+      @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+      @media print{header.site,footer.site,.m-pager,.pager,.progress-bar,.settings-panel,.search-overlay,.back,.app-inline-toggles{display:none!important}body{background:white;color:black}.reader{font-size:11pt;line-height:1.55;max-width:100%}.summary-box,.figure-card,.app-body{break-inside:avoid;border:1px solid #999;background:white}a{color:black;text-decoration:none}.app-body{display:block!important}}
+
+      /* ── Drawer ─────────────────────────────────────────────────────────── */
+      .drawer-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:45;opacity:0;pointer-events:none;transition:opacity .25s}.drawer-backdrop.open{opacity:1;pointer-events:auto}
+      .drawer{position:fixed;top:0;left:0;bottom:0;width:min(340px,90vw);background:var(--card);border-right:1px solid var(--line);z-index:46;display:flex;flex-direction:column;transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);overflow:hidden}.drawer.open{transform:translateX(0)}
+      .drawer-header{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--line);flex-shrink:0}.drawer-header h2{font-family:"Work Sans",sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+      .drawer-close{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border:none;background:transparent;cursor:pointer;color:var(--muted);border-radius:8px;transition:background .12s,color .12s}.drawer-close:hover{background:var(--bg-soft);color:var(--fg)}.drawer-close svg{width:16px;height:16px}
+      .drawer-app-row{padding:12px 18px;border-bottom:1px solid var(--line);flex-shrink:0}.drawer-toggle-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:8px;display:block}
+      .drawer-app-group{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--bg-soft);padding:4px;border-radius:10px}
+      .drawer-app-btn{display:flex;flex-direction:column;align-items:center;gap:5px;border:none;background:transparent;padding:8px 4px;border-radius:7px;font:inherit;font-size:11px;color:var(--muted);cursor:pointer;transition:background .15s,color .15s;min-height:52px;line-height:1.2;text-align:center}
+      .drawer-app-btn svg{width:16px;height:16px;flex-shrink:0}
+      .drawer-app-btn[aria-pressed="true"]{background:var(--card);color:var(--fg);box-shadow:var(--shadow-sm);font-weight:500}
+      .drawer-app-btn:hover{color:var(--fg)}
+      .drawer-scroll{flex:1;overflow-y:auto;padding:8px 0}.drawer-book{padding:0}.drawer-book-title{display:flex;align-items:center;gap:8px;padding:12px 18px 6px;cursor:pointer;user-select:none}.drawer-book-title span{font-family:"Instrument Serif",serif;font-size:17px;color:var(--fg);flex:1;line-height:1.2}.drawer-book-title .chevron{width:14px;height:14px;color:var(--muted);flex-shrink:0;transition:transform .15s}.drawer-book[data-open="false"] .chevron{transform:rotate(-90deg)}.drawer-chapters{padding:0 0 8px 0}.drawer-book[data-open="false"] .drawer-chapters{display:none}
+      .drawer-ch{display:flex;align-items:baseline;gap:10px;padding:8px 18px 8px 26px;color:var(--muted);font-size:13.5px;line-height:1.35;transition:background .12s,color .12s;cursor:pointer}.drawer-ch:hover{background:var(--bg-soft);color:var(--fg)}.drawer-ch.active{color:var(--fg);font-weight:500}.drawer-ch .ch-num{font-family:ui-monospace,monospace;font-size:11px;color:var(--muted-2);flex-shrink:0;width:18px}.drawer-ch .ch-title{flex:1}.drawer-ch .ch-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0;opacity:0}.drawer-ch.read .ch-dot{opacity:1}
+      [data-app-mode="hide"] .app-inline{display:none!important}[data-app-mode="hide"] .ambient-card{display:none!important}
+      [data-app-mode="auto"] .ambient-card-body{display:block}
+      [data-app-mode="auto"] .app-body{display:block!important}
+      [data-app-mode="auto"] .app-inline-toggles{display:none!important;height:0;overflow:hidden;margin:0;padding:0}[data-app-mode="auto"] .app-inline{margin-top:0!important}
+      [data-app-mode="auto"] .app-inline{margin-top:0}
+      [data-app-mode="auto"] .app-inline > .app-inline-toggles{display:none!important;height:0;margin:0;padding:0}
+      html{scroll-behavior:auto}
+    </style>
+  </head>
+  <body>
+    <div id="bootLoading"><div class="msg">Ladataan…</div></div>
+    <div id="bootError">
+      <h1>Sovelluksen käynnistyksessä tapahtui virhe</h1>
+      <pre id="bootErrorMsg"></pre>
+      <div>
+        <button onclick="location.reload()">Lataa uudelleen</button>
+        <button onclick="clearSessionAndReload()">Tyhjennä sessio ja lataa uudelleen</button>
+      </div>
+    </div>
+
+    <a href="#main-content" class="skip-link">Siirry sisältöön</a>
+    <div class="progress-bar" id="progress" aria-hidden="true"></div>
+
+    <header class="site">
+      <div class="bar container-wide">
+        <a class="brand" href="#/">Harri Käyhkö</a>
+        <div class="bar-actions">
+          <button id="drawerBtn" class="icon-btn" aria-label="Sisällysluettelo" title="Sisällysluettelo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="15" y2="18"/></svg>
+          </button>
+          <button id="searchBtn" class="icon-btn" aria-label="Hae (näppäin /)" title="Hae">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </button>
+          <button id="settingsBtn" class="icon-btn" aria-label="Lukuasetukset" aria-expanded="false" title="Lukuasetukset">
+            <span style="font-family:'Instrument Serif',serif;font-size:18px;line-height:1">Aa</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div id="settingsPanel" class="settings-panel" role="dialog" aria-label="Lukuasetukset" aria-modal="false">
+      <h3>Lukuasetukset</h3>
+      <div class="settings-row">
+        <label class="settings-label">Fonttikoko</label>
+        <div class="settings-group" role="group" aria-label="Fonttikoko">
+          <button data-fs="s" aria-pressed="false">S</button>
+          <button data-fs="m" aria-pressed="true">M</button>
+          <button data-fs="l" aria-pressed="false">L</button>
+          <button data-fs="xl" aria-pressed="false">XL</button>
+        </div>
+      </div>
+      <div class="settings-row">
+        <label class="settings-label">Teema</label>
+        <div class="settings-group" role="group" aria-label="Teema">
+          <button data-theme-set="paper" aria-pressed="true">Paperi</button>
+          <button data-theme-set="light" aria-pressed="false">Valoisa</button>
+          <button data-theme-set="dark" aria-pressed="false">Tumma</button>
+        </div>
+      </div>
+    </div>
+
+    <main id="main-content" class="container"></main>
+    <footer class="site">© <span id="year"></span> Harri Käyhkö · Käsikirjoitukset</footer>
+
+    <div id="searchOverlay" class="search-overlay" role="dialog" aria-label="Haku" aria-modal="true">
+      <div class="search-box">
+        <input id="searchInput" class="search-input" type="search" placeholder="Hae luvuista, teemoista…" autocomplete="off" aria-label="Hakukenttä" />
+        <div id="searchResults" class="search-results"></div>
+      </div>
+    </div>
+    <div id="toast" class="toast"></div>
+
+    <!-- Drawer -->
+    <div id="drawerBackdrop" class="drawer-backdrop" aria-hidden="true"></div>
+    <nav id="drawer" class="drawer" aria-label="Sisällysluettelo" role="dialog" aria-modal="true">
+      <div class="drawer-header">
+        <h2>Sisällysluettelo</h2>
+        <button id="drawerClose" class="drawer-close" aria-label="Sulje valikko">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="drawer-app-row">
+        <span class="drawer-toggle-label">Liitteet</span>
+        <div class="drawer-app-group" role="group" aria-label="Liitteiden näyttötapa">
+          <button class="drawer-app-btn" data-app-mode="auto" aria-pressed="false" title="Näytä liitteet automaattisesti">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="12" height="10" rx="1.5"/><line x1="5" y1="6.5" x2="11" y2="6.5"/><line x1="5" y1="9" x2="9" y2="9"/></svg>
+            <span>Automaattisesti</span>
+          </button>
+          <button class="drawer-app-btn" data-app-mode="icon" aria-pressed="true" title="Näytä liitteiden valintaikoni">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="5.5"/><line x1="8" y1="5.5" x2="8" y2="8.5"/><circle cx="8" cy="10.5" r=".6" fill="currentColor" stroke="none"/></svg>
+            <span>Valintaikoni</span>
+          </button>
+          <button class="drawer-app-btn" data-app-mode="hide" aria-pressed="false" title="Piilota liitteet">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="2" y1="2" x2="14" y2="14"/><path d="M6.5 4.5A5.5 3 0 0 1 13 8M9.5 11.5A5.5 3 0 0 1 3 8"/></svg>
+            <span>Piilotettu</span>
+          </button>
+        </div>
+      </div>
+      <div id="drawerContent" class="drawer-scroll">
+        <p style="padding:18px;color:var(--muted);font-size:13px">Ladataan…</p>
+      </div>
+    </nav>
+
+    <!-- Vain liitteiden renderöijä (ESM) — lukuversio ei käytä Supabasea -->
+    <script type="module">
+      try {
+        const mod = await import("./js/appendix-loader.js");
+        window.renderAppendix = mod.renderAppendix;
+      } catch(e) {
+        console.warn("appendix-loader.js puuttuu — liitteet renderöidään yksinkertaistettuna", e);
+        window.renderAppendix = null;
+      }
+      window.dispatchEvent(new Event("loader-ready"));
+    </script>
+    <script>
+      // ── Virheenkäsittely ──────────────────────────────────────────────────
+      window.addEventListener("error", e => showBootError(e.error || e.message));
+      window.addEventListener("unhandledrejection", e => showBootError(e.reason));
+      function showBootError(err) {
+        const node = document.getElementById("bootError"), msg = document.getElementById("bootErrorMsg");
+        if (msg) msg.textContent = err && err.stack ? err.stack : (err && err.message ? err.message : String(err));
+        if (node) node.classList.add("show");
+        document.getElementById("bootLoading")?.classList.add("hidden");
+        console.error("[cloner1]", err);
+      }
+      function clearSessionAndReload() {
+        try { const ks=[]; for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&(k.startsWith("sb-")||k.includes("supabase")))ks.push(k);} ks.forEach(k=>localStorage.removeItem(k)); } catch(e){}
+        location.reload();
+      }
+      let toastTimer=null;
+      function toast(msg,kind=""){const el=document.getElementById("toast");if(!el)return;el.textContent=msg;el.className="toast "+(kind||"")+" show";clearTimeout(toastTimer);toastTimer=setTimeout(()=>{el.className="toast "+(kind||"");},2400);}
+
+      // ── Asetukset ─────────────────────────────────────────────────────────
+      const STORE_KEY="hk-settings-v1", LASTREAD_KEY="hk-last-read-v1";
+      const loadSettings=()=>{try{return JSON.parse(localStorage.getItem(STORE_KEY)||"{}");}catch{return{};}};
+      const saveSettings=s=>{try{localStorage.setItem(STORE_KEY,JSON.stringify(s));}catch{}};
+      const settings=loadSettings();
+      function applyTheme(t){document.documentElement.setAttribute("data-theme",t);settings.theme=t;saveSettings(settings);document.querySelectorAll("[data-theme-set]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.themeSet===t?"true":"false"));}
+      function applyFontSize(fs){document.documentElement.setAttribute("data-fontsize",fs);settings.fontSize=fs;saveSettings(settings);document.querySelectorAll("[data-fs]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.fs===fs?"true":"false"));}
+      const prefersDark=window.matchMedia("(prefers-color-scheme: dark)").matches;
+      applyTheme(settings.theme||(prefersDark?"dark":"paper")); applyFontSize(settings.fontSize||"m");
+      const settingsBtn=document.getElementById("settingsBtn"), settingsPanel=document.getElementById("settingsPanel");
+      function toggleSettings(force){const open=force!==undefined?force:settingsPanel.dataset.open!=="true";settingsPanel.dataset.open=open?"true":"false";settingsBtn.setAttribute("aria-expanded",open?"true":"false");settingsBtn.setAttribute("aria-pressed",open?"true":"false");}
+      settingsBtn.addEventListener("click",()=>toggleSettings());
+      document.addEventListener("click",e=>{if(settingsPanel.dataset.open==="true"&&!settingsPanel.contains(e.target)&&e.target!==settingsBtn&&!settingsBtn.contains(e.target))toggleSettings(false);});
+      document.querySelectorAll("[data-theme-set]").forEach(b=>b.addEventListener("click",()=>applyTheme(b.dataset.themeSet)));
+      document.querySelectorAll("[data-fs]").forEach(b=>b.addEventListener("click",()=>applyFontSize(b.dataset.fs)));
+
+      // ── Liitteiden näyttötapa (auto / icon / hide) ────────────────────────
+      // auto = ambient-kortit näkyvät heti auki
+      // icon = oletustila, valintaikoni näkyy, lukija avaa itse
+      // hide = kaikki liitteet piilotettu
+      function applyAppendixMode(mode,rerender){
+        document.documentElement.setAttribute("data-app-mode",mode||"icon");
+        settings.appendixMode=mode; saveSettings(settings);
+        document.querySelectorAll(".drawer-app-btn").forEach(b=>b.setAttribute("aria-pressed",b.dataset.appMode===mode?"true":"false"));
+        // Kun tila vaihdetaan käyttäjän toimesta, re-renderöidään nykyinen luku
+        if(rerender){const p=path();const parts=p.split("/").filter(Boolean).map(decodeURIComponent);if(parts[0]==="books"&&parts[1]&&parts[2])chapter(parts[1],parts[2]);}
+      }
+      applyAppendixMode(settings.appendixMode||"icon");
+      document.querySelectorAll(".drawer-app-btn").forEach(b=>{b.addEventListener("click",()=>{applyAppendixMode(b.dataset.appMode,true);});});
+
+      // ── Scroll-muisti ─────────────────────────────────────────────────────
+      const SCROLL_KEY="hk-scroll-v1";
+      function saveScroll(bookSlug,chapterSlug,y){try{const k=SCROLL_KEY;const m=JSON.parse(localStorage.getItem(k)||"{}");m[bookSlug+"/"+chapterSlug]=Math.round(y);localStorage.setItem(k,JSON.stringify(m));}catch{}}
+      function loadScroll(bookSlug,chapterSlug){try{const m=JSON.parse(localStorage.getItem(SCROLL_KEY)||"{}");return m[bookSlug+"/"+chapterSlug]||0;}catch{return 0;}}
+      let _scrollBook=null,_scrollChapter=null,_scrollSaving=false;
+      function startScrollTracking(bookSlug,chapterSlug){
+        _scrollBook=bookSlug;_scrollChapter=chapterSlug;_scrollSaving=true;
+        window.addEventListener("scroll",onScrollSave,{passive:true});
+      }
+      function stopScrollTracking(){_scrollSaving=false;window.removeEventListener("scroll",onScrollSave);}
+      function onScrollSave(){if(_scrollSaving&&_scrollBook&&_scrollChapter)saveScroll(_scrollBook,_scrollChapter,window.scrollY);}
+
+      // ── Drawer ────────────────────────────────────────────────────────────
+      const drawerBtn=document.getElementById("drawerBtn");
+      const drawerBackdrop=document.getElementById("drawerBackdrop");
+      const drawer=document.getElementById("drawer");
+      const drawerClose=document.getElementById("drawerClose");
+      const drawerContent=document.getElementById("drawerContent");
+      let drawerLoaded=false, drawerOpen=false;
+
+      function openDrawer(){
+        drawerOpen=true;
+        drawer.classList.add("open");
+        drawerBackdrop.classList.add("open");
+        drawer.removeAttribute("aria-hidden");
+        drawerBtn?.setAttribute("aria-pressed","true");
+        drawerClose?.focus();
+        if(!drawerLoaded) loadDrawerContent();
+      }
+      function closeDrawer(){
+        drawerOpen=false;
+        drawer.classList.remove("open");
+        drawerBackdrop.classList.remove("open");
+        drawer.setAttribute("aria-hidden","true");
+        drawerBtn?.setAttribute("aria-pressed","false");
+      }
+      drawerBtn?.addEventListener("click",()=>drawerOpen?closeDrawer():openDrawer());
+      drawerClose?.addEventListener("click",closeDrawer);
+      drawerBackdrop?.addEventListener("click",closeDrawer);
+      window.addEventListener("keydown",e=>{if(e.key==="Escape"&&drawerOpen)closeDrawer();});
+
+      async function loadDrawerContent(){
+        drawerLoaded=true;
+        let books;
+        try{books=allBooksCache||await loadIndex(); allBooksCache=books;}
+        catch(e){drawerContent.innerHTML=`<p style="padding:18px;color:var(--danger);font-size:13px">Lataus epäonnistui.</p>`;return;}
+
+        const currentPath=path();
+        const parts=currentPath.split("/").filter(Boolean).map(decodeURIComponent);
+        const currentBookSlug=parts[0]==="books"?parts[1]:"";
+        const currentChapterSlug=parts[2]||"";
+
+        const html=books.map(b=>{
+          const isCurrentBook=b.slug===currentBookSlug;
+          const bookData=allChaptersCache?allChaptersCache.filter(c=>c.bookSlug===b.slug):[];
+          let readMap={};try{readMap=JSON.parse(localStorage.getItem("hk-read-"+b.slug)||"{}");}catch{}
+
+          const chaptersHtml=bookData.map((c,i)=>{
+            const isActive=isCurrentBook&&c.chapterSlug===currentChapterSlug;
+            const isRead=readMap[c.chapterSlug];
+            return `<a class="drawer-ch${isActive?" active":""}${isRead?" read":""}" href="#/books/${esc(c.bookSlug)}/${esc(c.chapterSlug)}" onclick="closeDrawer()">
+              <span class="ch-num">${String(i+1).padStart(2,"0")}</span>
+              <span class="ch-title">${esc(c.chapterTitle)}</span>
+              <span class="ch-dot" title="Luettu"></span>
+            </a>`;
+          }).join("");
+
+          return `<div class="drawer-book" data-open="${isCurrentBook?"true":"false"}">
+            <div class="drawer-book-title" onclick="this.parentElement.dataset.open=this.parentElement.dataset.open==='true'?'false':'true'">
+              <svg class="chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg>
+              <span>${esc(b.title)}</span>
+            </div>
+            <div class="drawer-chapters">${chaptersHtml||'<p style="padding:6px 26px;font-size:12px;color:var(--muted-2)">Ladataan…</p>'}</div>
+          </div>`;
+        }).join("");
+
+        drawerContent.innerHTML=html||'<p style="padding:18px;color:var(--muted);font-size:13px">Ei kirjoja.</p>';
+
+        // Jos lukuja ei vielä ladattu, lataa ne
+        if(!allChaptersCache){
+          await buildSearchIndex();
+          loadDrawerContent(); // uudelleenlataus kun data on saatavilla
+        }
+      }
+
+      // Päivitetään drawer kun navigoidaan
+      window.addEventListener("hashchange",()=>{if(drawerOpen)loadDrawerContent();drawerLoaded=false;});
+
+      // ── Utilities ─────────────────────────────────────────────────────────
+      const app=document.getElementById("main-content");
+      document.getElementById("year").textContent=new Date().getFullYear();
+      const esc=v=>String(v??"").replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"})[c]);
+      const path=()=>{const h=location.hash.replace(/^#/,"");return h?(h.startsWith("/")?h:`/${h}`):"/"};
+      const setStatus=t=>{app.innerHTML=`<p class="status">${esc(t)}</p>`;};
+      const setError=t=>{app.innerHTML=`<pre class="error">${esc(t)}</pre>`;};
+      function setMeta(title,desc){document.title=title;const m=document.querySelector('meta[name="description"]');if(m&&desc)m.setAttribute("content",desc);const og=document.querySelector('meta[property="og:title"]');if(og)og.setAttribute("content",title);}
+      function readingTimeMinutes(chapter){if(chapter.reading_time_minutes)return chapter.reading_time_minutes;const sections=chapter.sections||[];let words=0;const walk=n=>{if(!n)return;if(typeof n.text==="string")words+=n.text.split(/\s+/).filter(Boolean).length;if(Array.isArray(n.content))n.content.forEach(walk);};sections.forEach(s=>walk(s.content));return Math.max(1,Math.round(words/220));}
+
+      // ── Supabase data loaders ──────────────────────────────────────────────
+      // ── JSON-pohjaiset loaderit (lukuversio EI nojaa Supabaseen) ──────────
+      // Tiedostot tuotetaan studion vie-toiminnolla: books/index.json + books/<slug>.json
+      const DATA_BASE="./books";
+      let _bookCache={};
+      async function loadIndex(){
+        const res=await fetch(`${DATA_BASE}/index.json`,{cache:"no-cache"});
+        if(!res.ok)throw new Error(`index.json (${res.status}). Aja studion vie-toiminto ja sijoita tiedostot books-hakemistoon.`);
+        const data=await res.json();
+        return (data||[]).map(b=>({slug:b.slug,title:b.title,author:b.author,description:b.description,cover_url:b.cover_url}));
+      }
+      async function fetchBookFile(slug){
+        if(_bookCache[slug])return _bookCache[slug];
+        const res=await fetch(`${DATA_BASE}/${encodeURIComponent(slug)}.json`,{cache:"no-cache"});
+        if(!res.ok)throw new Error(`${slug}.json (${res.status})`);
+        const data=await res.json();
+        _bookCache[slug]=data;
+        return data;
+      }
+      async function loadBook(slug){
+        const data=await fetchBookFile(slug);
+        return{slug:data.slug,title:data.title,author:data.author,description:data.description,
+          chapters:(data.chapters||[]).map(ch=>({id:ch.id,slug:ch.slug,title:ch.title,position:ch.position,sections:(ch.sections||[]).map(s=>({id:s.id,title:s.title,position:s.position,content:s.content}))}))};
+      }
+      async function loadAppendices(slug){
+        const data=await fetchBookFile(slug);
+        const ax=data.appendices;
+        if(!ax)return{schema:"book-appendices.v1",book:{slug:data.slug,title:data.title},chapters:[],series_links:[]};
+        return ax;
+      }
+
+      // ── Research-card mapit ───────────────────────────────────────────────
+      let seriesLinkMap={},evidenceAppendixMap={};
+      function buildSeriesLinkMap(p){seriesLinkMap={};(p&&Array.isArray(p.series_links)?p.series_links:[]).forEach(l=>{if(l&&l.evidence_key)seriesLinkMap[l.evidence_key]=l;});}
+      function buildEvidenceAppendixMap(p){evidenceAppendixMap={};if(!p||!Array.isArray(p.chapters))return;for(const ch of p.chapters)for(const a of(Array.isArray(ch.appendices)?ch.appendices:[])){const key=a?.content?.evidence_key||a?.evidence_key||"";if(!key)continue;if(!evidenceAppendixMap[key])evidenceAppendixMap[key]=[];evidenceAppendixMap[key].push(a);}}
+      function openEvidenceAppendicesModal(evidenceKey){
+        const appendices=evidenceAppendixMap[evidenceKey]||[],seriesLink=seriesLinkMap[evidenceKey]||null;if(!appendices.length)return;
+        document.querySelector(".ev-modal-backdrop")?.remove();
+        const seriesHtml=seriesLink?`<div class="ev-data-available" style="margin:10px 0 16px"><span class="ev-data-dot"></span><span class="ev-data-label">Data saatavilla</span><span class="ev-data-sub">${esc([seriesLink.indicator_name,seriesLink.year_start&&seriesLink.year_end?`${seriesLink.year_start}–${seriesLink.year_end}`:"",Array.isArray(seriesLink.expected_j_codes)?seriesLink.expected_j_codes.join(" / "):""].filter(Boolean).join(" · "))}</span></div>`:"";
+        const itemsHtml=appendices.map((a,idx)=>`<section class="ev-modal-item"><div class="app-body-head"><span class="kind">${esc(a.type||"liite")}</span><h3>${esc(a.title||"Liite")}</h3></div><div class="appx-render-target" data-ev-render="${idx}"></div></section>`).join("");
+        const modal=document.createElement("div");modal.className="ev-modal-backdrop show";
+        modal.innerHTML=`<div class="ev-modal" role="dialog" aria-modal="true" aria-label="Evidence-liitteet"><button type="button" class="ev-modal-close" aria-label="Sulje">×</button><h3>Evidence</h3><div class="ev-meta"><span class="ev-key">${esc(evidenceKey)}</span></div>${seriesHtml}${itemsHtml}</div>`;
+        document.body.appendChild(modal);
+        appendices.forEach((a,idx)=>{const t=modal.querySelector(`[data-ev-render="${idx}"]`);if(t&&window.renderAppendix)window.renderAppendix(t,a);});
+        const close=()=>modal.remove();modal.querySelector(".ev-modal-close")?.addEventListener("click",close);modal.addEventListener("click",e=>{if(e.target===modal)close();});
+        document.addEventListener("keydown",function onEsc(e){if(e.key==="Escape"){close();document.removeEventListener("keydown",onEsc);}});
+      }
+      document.addEventListener("click",e=>{const row=e.target.closest&&e.target.closest(".pcard-evidence-row[data-evidence-key]");if(row)openEvidenceAppendicesModal(row.getAttribute("data-evidence-key"));});
+
+      // ── Appendix index ────────────────────────────────────────────────────
+      function indexAppendices(payload){
+        const sectionMap=new Map(),chapterMap=new Map();if(!payload||!Array.isArray(payload.chapters))return{sectionMap,chapterMap};
+        for(const ch of payload.chapters){const apps=Array.isArray(ch.appendices)?ch.appendices.slice():[];if(!apps.length)continue;apps.sort((a,b)=>(a.position??0)-(b.position??0));for(const a of apps){const cp=Number(a.chapter_position),sp=a.section_position;if(sp===null||sp===undefined){if(!chapterMap.has(cp))chapterMap.set(cp,[]);chapterMap.get(cp).push(a);}else{const key=`${cp}:${Number(sp)}`;if(!sectionMap.has(key))sectionMap.set(key,[]);sectionMap.get(key).push(a);}}}
+        return{sectionMap,chapterMap};
+      }
+
+      // ── Appendix icons & labels ────────────────────────────────────────────
+      const APPENDIX_ICONS={timeline:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><line x1="4" y1="12" x2="20" y2="12"/><circle cx="7" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="17" cy="12" r="1.8" fill="currentColor"/></svg>`,evidence:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="17" x2="13" y2="17"/></svg>`,chain:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 1 0-5.66l3-3a4 4 0 0 1 5.66 5.66l-1.5 1.5"/><path d="M14 10a4 4 0 0 1 0 5.66l-3 3a4 4 0 0 1-5.66-5.66l1.5-1.5"/></svg>`,calculation:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="14" x2="20" y2="14"/><line x1="10" y1="9" x2="10" y2="20"/><line x1="15" y1="9" x2="15" y2="20"/></svg>`,path:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c3-1 4-4 7-4s4 3 7 4"/><circle cx="5" cy="19" r="1.5" fill="currentColor"/><circle cx="12" cy="15" r="1.5" fill="currentColor"/><circle cx="19" cy="19" r="1.5" fill="currentColor"/></svg>`,sector:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 4v8l5.5 5.5"/></svg>`,note:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>`,"research-card":`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><circle cx="7" cy="6.5" r="0.8" fill="currentColor"/><line x1="6" y1="13" x2="13" y2="13"/><line x1="6" y1="16.5" x2="18" y2="16.5"/></svg>`,lag:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l4-8 4 4 4-6 4 3"/><line x1="3" y1="20" x2="21" y2="20"/></svg>`,correlation:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="16" r="1.5" fill="currentColor"/><circle cx="10" cy="13" r="1.5" fill="currentColor"/><circle cx="13" cy="10" r="1.5" fill="currentColor"/><circle cx="17" cy="7" r="1.5" fill="currentColor"/><line x1="3" y1="21" x2="21" y2="3" stroke-dasharray="3 2" opacity=".4"/></svg>`,regression:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18l4-5 4 2 5-8" opacity=".4"/><line x1="4" y1="17" x2="20" y2="7"/></svg>`,distribution:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18 Q6 4 12 4 Q18 4 21 18"/><line x1="3" y1="18" x2="21" y2="18"/></svg>`,heatmap:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="4" height="4" fill="currentColor" opacity=".2" rx="1"/><rect x="10" y="3" width="4" height="4" fill="currentColor" opacity=".5" rx="1"/><rect x="17" y="3" width="4" height="4" fill="currentColor" opacity=".9" rx="1"/><rect x="3" y="10" width="4" height="4" fill="currentColor" opacity=".6" rx="1"/><rect x="10" y="10" width="4" height="4" fill="currentColor" opacity=".3" rx="1"/><rect x="17" y="10" width="4" height="4" fill="currentColor" opacity=".7" rx="1"/><rect x="3" y="17" width="4" height="4" fill="currentColor" opacity=".8" rx="1"/><rect x="10" y="17" width="4" height="4" fill="currentColor" opacity=".4" rx="1"/><rect x="17" y="17" width="4" height="4" fill="currentColor" opacity=".15" rx="1"/></svg>`,funnel:`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16l-6 8v6l-4 2v-8z"/></svg>`};
+      const APPENDIX_LABEL={timeline:"Aikajana",evidence:"Tausta",chain:"Ketju",calculation:"Laskelma",path:"Polku",sector:"Sektori",note:"Muistiinpano","research-card":"Tutkimuskortti",lag:"Viive-analyysi",correlation:"Korrelaatio",regression:"Regressio",distribution:"Jakauma",heatmap:"Lämpökartta",funnel:"Suppilo"};
+      const iconFor=t=>APPENDIX_ICONS[t]||APPENDIX_ICONS.evidence;
+      const labelFor=t=>APPENDIX_LABEL[t]||"Liite";
+
+      // ── Doc renderer ──────────────────────────────────────────────────────
+      function renderInline(nodes=[]){return nodes.map(n=>{if(n.type==="hardBreak")return"<br>";let out=esc(n.text??"");for(const m of n.marks??[]){if(m.type==="bold")out=`<strong>${out}</strong>`;if(m.type==="italic")out=`<em>${out}</em>`;if(m.type==="code")out=`<code>${out}</code>`;}return out;}).join("");}
+      function renderDoc(doc){const nodes=doc&&typeof doc==="object"?(doc.content??[]):[];return nodes.map(n=>{if(n.type==="paragraph")return`<p>${renderInline(n.content)}</p>`;if(n.type==="heading"){const level=Math.min(Math.max(Number(n.attrs?.level||2),1),3);return`<h${level}>${renderInline(n.content)}</h${level}>`;}if(n.type==="blockquote")return`<blockquote>${renderDoc({content:n.content})}</blockquote>`;if(n.type==="bulletList")return`<ul>${(n.content??[]).map(li=>`<li>${renderDoc({content:li.content})}</li>`).join("")}</ul>`;if(n.type==="orderedList")return`<ol>${(n.content??[]).map(li=>`<li>${renderDoc({content:li.content})}</li>`).join("")}</ol>`;return"";}).join("");}
+
+      // ── Inline appendix builder ────────────────────────────────────────────
+      function buildInlineAppendixHtml(appendices,region){if(!appendices||!appendices.length)return"";const toggles=appendices.map((a,i)=>`<button type="button" class="app-toggle" data-app-idx="${i}" aria-expanded="false" title="${esc(a.title||labelFor(a.type))}" aria-label="${esc(a.title||labelFor(a.type))}">${iconFor(a.type)}<span class="app-toggle-title">${esc(a.title||labelFor(a.type))}</span></button>`).join("");return`<div class="app-inline ${region==="chapter"?"chapter-level":""}"><div class="app-inline-toggles">${toggles}</div><div class="app-body" hidden></div></div>`;}
+
+      // ── Ambient cards ─────────────────────────────────────────────────────
+      function buildAmbientCards(appendices){return appendices.map((a,i)=>{const bodyId=`amb-${Math.random().toString(36).slice(2)}`;return`<div class="ambient-card" data-ambient-idx="${i}"><div class="ambient-card-head"><div class="ambient-card-icon">${iconFor(a.type)}</div><div class="ambient-card-title">${esc(a.title||labelFor(a.type))}</div><button class="ambient-card-toggle" aria-expanded="false" aria-controls="${bodyId}" title="Näytä / piilota"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6l4 4 4-4"/></svg></button></div><div class="ambient-card-body" id="${bodyId}"><div class="appx-render-target appx-ambient-target" data-ambient-app-id="${esc(a.id||'')}"></div></div></div>`;}).join('');}
+      function initAmbientRender(appendices){document.querySelectorAll('.appx-ambient-target').forEach(target=>{const a=appendices.find(x=>String(x.id)===target.dataset.ambientAppId);if(a&&window.renderAppendix)window.renderAppendix(target,a);});}
+      function initAmbientReveal(){const cards=document.querySelectorAll('.ambient-card:not(.revealed)');if(!cards.length)return;const obs=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){const card=entry.target,idx=parseInt(card.dataset.ambientIdx||'0');setTimeout(()=>card.classList.add('revealed'),idx*80);obs.unobserve(card);if(window.matchMedia('(min-width:1100px)').matches)card.querySelector('.ambient-card-body')?.classList.add('open');}});},{threshold:0.15,rootMargin:'0px 0px -60px 0px'});cards.forEach(card=>obs.observe(card));document.querySelectorAll('.ambient-card-toggle').forEach(btn=>{if(btn._wired)return;btn._wired=true;btn.addEventListener('click',()=>{const expanded=btn.getAttribute('aria-expanded')==='true',body=document.getElementById(btn.getAttribute('aria-controls'));if(!body)return;if(expanded){body.classList.remove('open');btn.setAttribute('aria-expanded','false');btn.querySelector('svg path').setAttribute('d','M4 6l4 4 4-4');}else{body.classList.add('open');btn.setAttribute('aria-expanded','true');btn.querySelector('svg path').setAttribute('d','M4 10l4-4 4 4');}});});}
+
+      // ── wireInlineToggles (lukuversio) ────────────────────────────────────
+      function wireInlineToggles(container,appendices){
+        const buttons=container.querySelectorAll(".app-toggle"),body=container.querySelector(".app-body");let openIdx=-1;
+        const closeBody=()=>{body.hidden=true;body.innerHTML="";buttons.forEach(b=>b.setAttribute("aria-expanded","false"));openIdx=-1;};
+        const openBody=idx=>{const a=appendices[idx];if(!a)return;body.innerHTML=`<div class="app-body-head"><span class="kind">${esc(labelFor(a.type))}</span><h3>${esc(a.title||labelFor(a.type))}</h3></div><div class="appx-render-target"></div>`;body.hidden=false;buttons.forEach((b,i)=>b.setAttribute("aria-expanded",i===idx?"true":"false"));openIdx=idx;const target=body.querySelector(".appx-render-target");if(target&&window.renderAppendix)window.renderAppendix(target,a);};
+        buttons.forEach((btn,i)=>{btn.addEventListener("click",()=>{if(openIdx===i){const rect=btn.getBoundingClientRect();closeBody();const nr=btn.getBoundingClientRect();window.scrollBy(0,nr.top-rect.top);}else openBody(i);});});
+        // Auto-tilassa renderöidään kaikki liitteet suoraan ilman ikoniklikkausta
+        if((document.documentElement.getAttribute("data-app-mode")||"icon")==="auto"){
+          appendices.forEach((a,i)=>{
+            const wrap=document.createElement("div");
+            wrap.className="app-body";wrap.style.marginTop="14px";
+            wrap.innerHTML=`<div class="app-body-head"><span class="kind">${esc(labelFor(a.type))}</span><h3>${esc(a.title||labelFor(a.type))}</h3></div><div class="appx-render-target"></div>`;
+            container.appendChild(wrap);
+            const target=wrap.querySelector(".appx-render-target");
+            if(target&&window.renderAppendix)window.renderAppendix(target,a);
+          });
+        }
+      }
+
+      // ── Linssidata ────────────────────────────────────────────────────────
+      const DEFAULT_LENSES=[
+        {slug:"laajenemisen-logiikka",book:"Laajenemisen logiikka",lens:"Optimointi",claim:"Optimointi parantaa prosessia, mutta voi kadottaa tarkoituksen.",expand:"Tämä käsikirjoitus näyttää, miten tehokkuutta parantavat mittarit ja virtaviivaistus voivat alkaa ohjata toimintaa niin, että varsinainen hyvinvointivaikutus jää toissijaiseksi.",matrix:{sees:"Tehokkuuden mekanismin",blind:"Tarkoituksen",q:"Milloin järjestelmä alkaa palvella itseään?"},concern:"Tehokkuus ei tunnu parantavan hyvinvointia"},
+        {slug:"nakymattomat-mekanismit",book:"Näkymättömät mekanismit",lens:"Mittarit",claim:"Mittarit alkavat ohjata sitä, mitä pidetään todellisena.",expand:"Kun ohjaus nojaa siihen mitä voidaan mitata, mittaamaton katoaa näkyvistä. Käsikirjoitus paljastaa, miten indikaattorit muuttuvat todellisuuden apuvälineestä todellisuuden korvikkeeksi.",matrix:{sees:"Ohjauksen logiikan",blind:"Ihmisen kokemuksen",q:"Mitä järjestelmä pitää todellisena?"},concern:"Mittarit näyttävät hyvää, arki huonoa"},
+        {slug:"nakyvaksi",book:"Näkyväksi",lens:"Asiakkuus",claim:"Asiakas näkyy järjestelmälle usein vasta kustannuksena.",expand:"Asiakkuuden linssi tutkii sitä hetkeä, jolloin ihminen muuttuu tapaukseksi: kun palvelupolku kohtelee häntä prosessina eikä kansalaisena, jolla on oma elämäntilanne.",matrix:{sees:"Kohtaamisen rakenteen",blind:"Kansalaisuuden",q:"Milloin ihminen muuttuu prosessiksi?"},concern:"Ihminen katoaa prosessiin"},
+        {slug:"itseohjautuvuus",book:"Itseohjautuvuus",lens:"Vastuu",claim:"Vastuu hajautuu, kun vaikutukset syntyvät verkostoissa.",expand:"Kun palvelut tuotetaan ammattilaisten ja organisaatioiden verkostoissa, kukaan ei enää omista kokonaisuutta. Käsikirjoitus jäljittää, mihin vastuu hajoaa ja miksi sitä on niin vaikea koota takaisin.",matrix:{sees:"Vastuun hajautumisen",blind:"Omistajuuden",q:"Kuka vastaa kokonaisuudesta?"},concern:"Kukaan ei vastaa kokonaisuudesta"},
+        {slug:"katalyytti",book:"Katalyytti",lens:"Resurssit",claim:"Niukkuus ei synny sieltä, mistä se aina näyttää syntyvän.",expand:"Resurssilinssi tarkastelee, miten rahan ja kapasiteetin liike kätkee taakseen syvempiä rakenteellisia valintoja. Käsikirjoitus kysyy mihin niukkuus todella syntyy ja kenen valinnoista.",matrix:{sees:"Rahan ja kapasiteetin",blind:"Vaikutusten laadun",q:"Mihin niukkuus todella syntyy?"},concern:"Rahat eivät riitä mihinkään"},
+        {slug:"sukupolvi-joka-kantaa",book:"Sukupolvi joka kantaa",lens:"Ennaltaehkäisy",claim:"Ennaltaehkäisy häviää, koska sen onnistuminen on näkymätöntä.",expand:"Sukupolvilinssi näyttää, miksi ennaltaehkäisy aina häviää korjaamiselle: sen tulokset näkyvät vuosikymmenten päässä, kun taas hoidon kustannukset syntyvät tällä budjettikaudella.",matrix:{sees:"Tulevat kustannukset",blind:"Onnistumisen näkymättömyyden",q:"Miksi ehkäisy häviää korjaukselle?"},concern:"Ehkäisy jää aina puheeksi"},
+      ];
+      const DEFAULT_CENTER={title:"Mitä järjestelmä mittaa, sitä se alkaa palvella",sub:"Kuusi linssiä yhteen järjestelmäkriisiin",bridge:"Kooste yhdistää kuusi havaintoa yhdeksi diagnoosiksi.",slug:"kuusi-ennustetta"};
+      function lensDataFrom(books){const bySlug=new Map((books||[]).map(b=>[b.slug,b]));return DEFAULT_LENSES.map(def=>{const b=bySlug.get(def.slug)||{},m=b.matrix||{};return{slug:def.slug,book:b.title||def.book,lens:b.lens||def.lens,claim:b.claim||def.claim,expand:b.expand||def.expand,matrix:{sees:m.sees||def.matrix.sees,blind:m.blind||def.matrix.blind,q:m.q||def.matrix.q},concern:b.concern||def.concern,available:bySlug.has(def.slug)}});}
+      function centerFrom(books){const bySlug=new Map((books||[]).map(b=>[b.slug,b]));const ov=(books||[]).find(b=>b&&b.center);const c=Object.assign({},DEFAULT_CENTER,(ov&&ov.center)||{});c.available=bySlug.has(c.slug);return c;}
+
+      // ── Wheel ─────────────────────────────────────────────────────────────
+      function renderWheel(lenses,center){
+        const CX=360,CY=360,R_OUT=196,R_IN=96,R_CTR=86,R_MID=(R_OUT+R_IN)/2,PAD=0.03,N=lenses.length;
+        const colors=["#ead9c0","#e0cdb0","#d3bd9d","#c6ac88","#b89a73","#a98a64"];
+        const polar=(r,a)=>[CX+r*Math.cos(a),CY+r*Math.sin(a)];
+        const wrap=(text,max)=>{const words=text.split(" "),out=[];let cur="";words.forEach(w=>{if((cur+" "+w).trim().length>max){if(cur)out.push(cur.trim());cur=w;}else cur=(cur+" "+w).trim();});if(cur)out.push(cur.trim());return out;};
+        const sectors=lenses.map((p,i)=>{const a0=(i/N)*Math.PI*2-Math.PI/2+PAD,a1=((i+1)/N)*Math.PI*2-Math.PI/2-PAD,aM=(a0+a1)/2;const[x0o,y0o]=polar(R_OUT,a0),[x1o,y1o]=polar(R_OUT,a1),[x0i,y0i]=polar(R_IN,a0),[x1i,y1i]=polar(R_IN,a1);const d=`M ${x0o} ${y0o} A ${R_OUT} ${R_OUT} 0 0 1 ${x1o} ${y1o} L ${x1i} ${y1i} A ${R_IN} ${R_IN} 0 0 0 ${x0i} ${y0i} Z`;const[lx,ly]=polar(R_MID,aM);const words=p.book.split(" ");let titleLines=[p.book];if(p.book.length>13&&words.length>1){const h=Math.ceil(words.length/2);titleLines=[words.slice(0,h).join(" "),words.slice(h).join(" ")];}const lh=15,topY=ly-((titleLines.length-1)*lh)/2-5;const titleSpans=titleLines.map((ln,k)=>`<text class="wheel-label" x="${lx}" y="${topY+k*lh}" text-anchor="middle" dominant-baseline="middle">${esc(ln)}</text>`).join("");const lensY=topY+(titleLines.length-1)*lh+16;return`<g class="wheel-sector" data-idx="${i}" tabindex="0" role="button" aria-label="${esc(p.book)} -- ${esc(p.lens)}: ${esc(p.claim)}"><path class="wheel-sector-shape" d="${d}" fill="${colors[i%colors.length]}"></path><text class="wheel-bignum" x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle">${i+1}</text>${titleSpans}<text class="wheel-sublabel" x="${lx}" y="${lensY}" text-anchor="middle" dominant-baseline="middle">${esc(p.lens)}</text></g>`;}).join("");
+        const rBase=R_OUT+20,dr=17;let defsStr="",claimStr="";
+        lenses.forEach((p,i)=>{const a0=(i/N)*Math.PI*2-Math.PI/2,a1=((i+1)/N)*Math.PI*2-Math.PI/2,aM=(a0+a1)/2,flip=Math.sin(aM)>0.001,lines=wrap(p.claim,28),n=lines.length;lines.forEach((ln,k)=>{const r=flip?rBase+k*dr:rBase+(n-1-k)*dr,pad=0.07;let S=a0+pad,E=a1-pad,sweep=1;if(flip){S=a1-pad;E=a0+pad;sweep=0;}const[sx,sy]=polar(r,S),[ex,ey]=polar(r,E),id=`wheelArc_${i}_${k}`;defsStr+=`<path id="${id}" d="M ${sx} ${sy} A ${r} ${r} 0 0 ${sweep} ${ex} ${ey}" fill="none"></path>`;claimStr+=`<text class="wheel-claim"><textPath href="#${id}" startOffset="50%" text-anchor="middle">${esc(ln)}</textPath></text>`;});});
+        const ctWords=center.title.split(" ");const ctLines=[];let cur="";ctWords.forEach(w=>{if((cur+" "+w).trim().length>18){ctLines.push(cur.trim());cur=w;}else cur=(cur+" "+w).trim();});if(cur)ctLines.push(cur);const centerLines=ctLines.slice(0,3),lineH=16,startY=CY-((centerLines.length-1)*lineH)/2-8;const centerText=centerLines.map((l,i)=>`<text class="wheel-center-claim" x="${CX}" y="${startY+i*lineH}" dominant-baseline="middle">${esc(l)}</text>`).join("");
+        return`<section class="wheel-section" aria-labelledby="wheelHeading"><div class="wheel-eyebrow">Argumenttikartta</div><h2 id="wheelHeading">Kuusi linssiä, yksi järjestelmäkriisi</h2><p class="wheel-lede">Aloita keskeltä tai valitse linssi. <strong>Ulkokehä tiivistää kunkin näkökulman väitteen</strong>; klikkaa sektoria nähdäksesi sen tarkemmin.</p><div class="wheel-wrap"><svg viewBox="0 0 720 720" role="img" aria-label="Linssien argumenttikartta"><defs>${defsStr}</defs>${sectors}${claimStr}<g class="wheel-sector" data-center="1" tabindex="0" role="button" aria-label="Avaa kooste: ${esc(center.title)}"><circle class="wheel-center-circle" cx="${CX}" cy="${CY}" r="${R_CTR}"></circle><circle class="wheel-center-ring" cx="${CX}" cy="${CY}" r="${R_CTR-7}"></circle>${centerText}<text class="wheel-center-sub" x="${CX}" y="${startY+centerLines.length*lineH+6}" dominant-baseline="middle">→ Avaa kooste ←</text></g></svg></div><div class="wheel-detail" id="wheelDetail" role="region" aria-live="polite"></div><p class="wheel-caption">Keskus: kokoava väite · Sektorit: kuusi käsikirjoitusta · Ulkokehä: kunkin väite</p></section>`;
+      }
+      function wireWheel(lenses,center){const detail=document.getElementById("wheelDetail");if(!detail)return;const open=html=>{detail.innerHTML=html;detail.classList.add("is-open");};document.querySelectorAll(".wheel-section .wheel-sector").forEach(el=>{const handler=e=>{e.preventDefault();if(el.dataset.center){open(`<div class="wd-eyebrow">Kooste</div><h3>${esc(center.title)}</h3><p class="wd-claim">${esc(center.sub)}</p><p class="wd-expand">${esc(center.bridge)}</p><div class="wd-actions">${center.available?`<a href="#/books/${esc(center.slug)}">Lue kooste →</a>`:`<a href="#linssimatriisi" aria-disabled="true">Tulossa</a>`}</div>`);}else{const i=+el.dataset.idx,p=lenses[i];open(`<div class="wd-eyebrow">Linssi ${i+1} · ${esc(p.lens)}</div><h3>${esc(p.book)}</h3><p class="wd-claim">${esc(p.claim)}</p><p class="wd-expand">${esc(p.expand)}</p><div class="wd-actions">${p.available?`<a href="#/books/${esc(p.slug)}">Lue käsikirjoitus →</a>`:`<a href="#linssimatriisi" aria-disabled="true">Tulossa</a>`}<a href="#linssimatriisi">Vertaa linssejä</a></div>`);}detail.scrollIntoView({behavior:"smooth",block:"nearest"});};el.addEventListener("click",handler);el.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" ")handler(e);});});}
+      function renderConcernPicker(lenses){const cards=lenses.map(p=>{const href=p.available?`#/books/${esc(p.slug)}`:"#linssimatriisi";return`<a class="concern-card" href="${href}"><div class="cq">${esc(p.concern)}</div><div class="ca">→ ${esc(p.lens)}-linssi</div></a>`;}).join("");return`<section class="concern-section" aria-labelledby="concernH"><div class="ce">Mistä haluat aloittaa?</div><h2 id="concernH">Valitse huolesi -- löydä linssi.</h2><div class="concern-grid">${cards}</div></section>`;}
+      function renderLensMatrix(lenses){const rows=lenses.map(p=>{const name=p.available?`<a href="#/books/${esc(p.slug)}">${esc(p.lens)}</a>`:esc(p.lens);return`<tr><td class="lens-name">${name}</td><td data-label="Näkee erityisesti">${esc(p.matrix.sees)}</td><td data-label="Sokea piste">${esc(p.matrix.blind)}</td><td data-label="Pääkysymys"><em>${esc(p.matrix.q)}</em></td></tr>`;}).join("");return`<details class="matrix-section" id="linssimatriisi" open><summary aria-label="Näytä tai piilota linssimatriisi"><span class="ce">Vertailu</span><h2>Kuusi linssiä yhdellä silmäyksellä</h2><span class="matrix-toggle"><span class="matrix-toggle-open">Piilota ▲</span><span class="matrix-toggle-close">Näytä ▼</span></span></summary><div class="matrix-body"><p class="lede">Sama hyvinvointijärjestelmä, kuusi tapaa katsoa sitä.</p><div class="matrix-table-wrap"><table class="matrix-table"><thead><tr><th>Linssi</th><th>Näkee erityisesti</th><th>Sokea piste</th><th>Pääkysymys</th></tr></thead><tbody>${rows}</tbody></table></div></div></details>`;}
+
+      // ── Routes ────────────────────────────────────────────────────────────
+      let allBooksCache=null,allChaptersCache=null;
+
+      async function home(){
+        setStatus("Ladataan…");let books;
+        try{books=await loadIndex();}catch(e){return setError(`Kirjojen lataus epäonnistui:\n${e.message}`);}
+        allBooksCache=books;setMeta("Harri Käyhkö – Käsikirjoitukset","Suomen hyvinvointijärjestelmän analyysi kirjojen linsseillä.");
+        const lenses=lensDataFrom(books),center=centerFrom(books);
+        let resumeHtml="";try{const last=JSON.parse(localStorage.getItem(LASTREAD_KEY)||"null");if(last&&last.bookSlug&&last.chapterSlug&&last.title)resumeHtml=`<div class="resume-card"><div><div class="label">Jatka lukemista</div><div class="title">${esc(last.title)}</div></div><a class="icon-btn" href="#/books/${esc(last.bookSlug)}/${esc(last.chapterSlug)}" aria-label="Jatka lukua ${esc(last.title)}">Avaa →</a></div>`;}catch{}
+        const themes=new Set();books.forEach(b=>(b.themes||[]).forEach(t=>themes.add(t)));
+        const filterHtml=themes.size?`<div class="section-label">Suodata teeman mukaan</div><div class="theme-filter" role="group" aria-label="Teemasuodatin"><button class="theme-chip" aria-pressed="true" data-theme-filter="">Kaikki</button>${[...themes].map(t=>`<button class="theme-chip" aria-pressed="false" data-theme-filter="${esc(t)}">${esc(t)}</button>`).join("")}</div>`:"";
+        app.innerHTML=`<section class="hero"><div class="hero-eyebrow">Käsikirjoitukset · Hyvinvointivaltion linssit</div><h1>Suomen hyvinvointi&shy;järjestelmä luettavissa.</h1><p class="hero-lede">Harri Käyhkön kirjoituksia <strong>Suomen hyvinvointijärjestelmästä</strong> -- kirjojen tarjoamilla linsseillä. Jokaisesta luvusta löytyy <strong>päättäjätiivistelmä</strong>, <strong>avainluvut</strong> ja lähteet.</p>${resumeHtml}</section>${renderWheel(lenses,center)}${renderConcernPicker(lenses)}${renderLensMatrix(lenses)}${filterHtml}<div class="section-label">${books.length?"Kirjat":""}</div><section class="books-grid" id="booksGrid">${books.length?books.map(b=>`<a class="book-card" href="#/books/${esc(b.slug)}" data-book-themes="${esc((b.themes||[]).join("|"))}"><h2>${esc(b.title)}</h2><div class="author">${esc(b.author||"Harri Käyhkö")}</div>${b.description?`<p class="desc">${esc(b.description)}</p>`:""}</a>`).join(""):`<p class="status">Ei vielä kirjoja.</p>`}</section>`;
+        wireWheel(lenses,center);
+        document.querySelectorAll("[data-theme-filter]").forEach(btn=>{btn.addEventListener("click",()=>{const t=btn.dataset.themeFilter;document.querySelectorAll("[data-theme-filter]").forEach(b=>b.setAttribute("aria-pressed",b===btn?"true":"false"));document.querySelectorAll(".book-card").forEach(c=>{c.style.display=!t||(c.dataset.bookThemes||"").split("|").includes(t)?"":"none";});});});
+      }
+
+      async function book(slug){
+        setStatus("Ladataan…");let data;try{data=await loadBook(slug);}catch(e){return setError(e.message||"Kirjaa ei löytynyt.");}
+        const chapters=(data.chapters||[]).slice().sort((a,b)=>(a.position??0)-(b.position??0));setMeta(`${data.title} – Harri Käyhkö`,data.description||`${data.title} -- luettavissa verkossa.`);
+        let readMap={};try{readMap=JSON.parse(localStorage.getItem(`hk-read-${slug}`)||"{}");}catch{}
+        app.innerHTML=`<a class="back" href="#/">← Käsikirjoitukset</a><h1 class="book-title">${esc(data.title)}</h1><div class="book-author">${esc(data.author||"Harri Käyhkö")}</div>${data.description?`<p class="book-desc">${esc(data.description)}</p>`:""}<div class="section-label">Sisällysluettelo</div><ol class="toc">${chapters.length?chapters.map((c,i)=>{const read=readMap[c.slug],mins=readingTimeMinutes(c),themes=(c.themes||[]).slice(0,2);return`<li><a href="#/books/${esc(slug)}/${esc(c.slug)}"><span class="num">${String(i+1).padStart(2,"0")}</span><span class="title">${read?'<span class="read-dot" title="Luettu"></span>':""}${esc(c.title)}</span><span class="meta">${mins} min${themes.length?" · "+themes.map(esc).join(" · "):""}</span></a></li>`;}).join(""):`<li class="status">Ei vielä lukuja.</li>`}</ol>`;
+      }
+
+      async function chapter(slug,chapterSlug){
+        setStatus("Ladataan…");let data,appendixPayload;
+        try{[data,appendixPayload]=await Promise.all([loadBook(slug),loadAppendices(slug)]);}catch(e){return setError(e.message||"Kirjaa ei löytynyt.");}
+        buildSeriesLinkMap(appendixPayload);buildEvidenceAppendixMap(appendixPayload);
+        const all=(data.chapters||[]).slice().sort((a,b)=>(a.position??0)-(b.position??0));
+        const current=all.find(c=>c.slug===chapterSlug);if(!current)return setError("Lukua ei löytynyt.");
+        const sections=(current.sections||[]).slice().sort((a,b)=>(a.position??0)-(b.position??0));
+        const idx=all.indexOf(current),prev=idx>0?all[idx-1]:null,next=idx<all.length-1?all[idx+1]:null;
+        const prevHref=prev?`#/books/${esc(slug)}/${esc(prev.slug)}`:"";
+        const nextHref=next?`#/books/${esc(slug)}/${esc(next.slug)}`:"";
+        const{sectionMap,chapterMap}=indexAppendices(appendixPayload);
+        const chapterPos=Number(current.position),chapterAppendices=chapterMap.get(chapterPos)||[];
+        setMeta(`${current.title} – ${data.title}`,(current.summary&&current.summary[0])||data.description||current.title);
+        try{localStorage.setItem(LASTREAD_KEY,JSON.stringify({bookSlug:slug,chapterSlug,title:current.title,bookTitle:data.title,t:Date.now()}));const readMap=JSON.parse(localStorage.getItem(`hk-read-${slug}`)||"{}");readMap[chapterSlug]=true;localStorage.setItem(`hk-read-${slug}`,JSON.stringify(readMap));}catch{}
+        // Tallennetaan vanha scroll ennen renderöintiä, palautetaan renderöinnin jälkeen
+        const savedScrollY=loadScroll(slug,chapterSlug);
+        const mins=readingTimeMinutes(current),themes=current.themes||[],summary=Array.isArray(current.summary||current.tldr)?(current.summary||current.tldr):[],figures=Array.isArray(current.key_figures)?current.key_figures:[];
+        const metaHtml=`<div class="chapter-meta"><span class="read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Lukuaika ≈ ${mins} min</span>${themes.length?`<span class="theme-tags">${themes.map(t=>`<span class="theme-tag">${esc(t)}</span>`).join("")}</span>`:""}</div>`;
+        const summaryHtml=summary.length?`<section class="summary-box" aria-labelledby="summary-label"><div class="summary-label" id="summary-label">Päättäjätiivistelmä</div><ul>${summary.map(s=>`<li>${esc(s)}</li>`).join("")}</ul></section>`:"";
+        const figuresHtml=figures.length?`<section class="figures" aria-labelledby="figures-label"><div class="figures-label" id="figures-label">Avainluvut</div><div class="figures-grid">${figures.map(f=>`<div class="figure-card"><div class="figure-value">${esc(f.value)}</div><div class="figure-label">${esc(f.label)}</div>${f.source?`<div class="figure-source">${esc(f.source)}</div>`:""}</div>`).join("")}</div></section>`:"";
+        const sectionsWithApps=[];
+        const sectionsHtml=sections.map(s=>{const sp=Number(s.position),key=`${chapterPos}:${sp}`,apps=sectionMap.get(key)||[];let appHtml="";if(apps.length){sectionsWithApps.push({sectionPos:sp,appendices:apps});appHtml=buildInlineAppendixHtml(apps,"section");}return`<section data-section-pos="${sp}">${s.title!==undefined?`<h2 class="section-title">${esc(s.title||"")}</h2>`:""}<div class="reader">${renderDoc(s.content)}</div>${appHtml}</section>`;}).join("");
+        const chapterAppHtml=chapterAppendices.length?buildInlineAppendixHtml(chapterAppendices,"chapter"):"";
+        const mPager=`<nav class="m-pager" aria-label="Lukunavigaatio">${prev?`<a href="${prevHref}"><span class="label">← Edellinen</span><span class="title">${esc(prev.title)}</span></a>`:`<span class="empty">Alku</span>`}${next?`<a class="next" href="${nextHref}"><span class="label">Seuraava →</span><span class="title">${esc(next.title)}</span></a>`:`<span class="empty">Loppu</span>`}</nav>`;
+        app.innerHTML=`<article id="chapterArticle"><a class="back" href="#/books/${esc(slug)}">← ${esc(data.title)}</a>${metaHtml}<h1 class="chapter-title">${esc(current.title)}</h1>${summaryHtml}${figuresHtml}<div>${sectionsHtml}</div>${chapterAppHtml}<nav class="pager" aria-label="Lukunavigaatio">${prev?`<a href="${prevHref}">← ${esc(prev.title)}</a>`:`<span></span>`}${next?`<a class="right" href="${nextHref}">${esc(next.title)} →</a>`:`<span></span>`}</nav></article>${mPager}`;
+        for(const{sectionPos,appendices}of sectionsWithApps){const sEl=document.querySelector(`section[data-section-pos="${sectionPos}"]`);if(!sEl)continue;const container=sEl.querySelector(".app-inline");if(container)wireInlineToggles(container,appendices);}
+        if(chapterAppendices.length){const chCont=document.getElementById("chapterArticle")?.querySelector(".app-inline.chapter-level");if(chCont)wireInlineToggles(chCont,chapterAppendices);}
+        requestAnimationFrame(()=>{
+          initAmbientReveal();
+          const allApps=[...sectionsWithApps.flatMap(s=>s.appendices),...chapterAppendices];
+          initAmbientRender(allApps);
+          // Palaa aiempaan scroll-kohtaan
+          if(savedScrollY>100){window.scrollTo({top:savedScrollY,behavior:"instant"});}
+          // Aloita scroll-seuranta
+          stopScrollTracking();
+          startScrollTracking(slug,chapterSlug);
+        });
+        const ld=document.getElementById("chapter-ld");if(ld)ld.remove();const script=document.createElement("script");script.type="application/ld+json";script.id="chapter-ld";script.textContent=JSON.stringify({"@context":"https://schema.org","@type":"Chapter","name":current.title,"isPartOf":{"@type":"Book","name":data.title,"author":{"@type":"Person","name":data.author||"Harri Käyhkö"}},"inLanguage":"fi-FI"});document.head.appendChild(script);
+        initChapterUx(prevHref,nextHref);
+      }
+
+      function initChapterUx(prevHref,nextHref){
+        const bar=document.getElementById("progress");const updateProgress=()=>{if(!bar)return;const h=document.documentElement,max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?Math.min(100,Math.max(0,(h.scrollTop||window.scrollY)/max*100)):0)+"%";};updateProgress();window.addEventListener("scroll",updateProgress,{passive:true});
+        const article=document.getElementById("chapterArticle");if(!article||!window.matchMedia("(max-width:720px)").matches)return;
+        let sx=0,sy=0,tracking=false;
+        article.addEventListener("touchstart",e=>{if(e.touches.length!==1){tracking=false;return;}if(e.target?.closest?.(".app-body,.app-inline,.m-pager")){tracking=false;return;}sx=e.touches[0].clientX;sy=e.touches[0].clientY;tracking=true;},{passive:true});
+        article.addEventListener("touchend",e=>{if(!tracking)return;tracking=false;const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy;if(Math.abs(dx)<80||Math.abs(dy)>50)return;if(dx<0&&nextHref)location.hash=nextHref;else if(dx>0&&prevHref)location.hash=prevHref;},{passive:true});
+      }
+
+      function route(){stopScrollTracking();window.scrollTo(0,0);toggleSettings(false);closeSearch();const parts=path().split("/").filter(Boolean).map(decodeURIComponent);try{if(!parts.length||(parts[0]==="books"&&!parts[1]))return home();if(parts[0]==="books"&&parts[1]&&parts[2])return chapter(parts[1],parts[2]);if(parts[0]==="books"&&parts[1])return book(parts[1]);setError("Sivua ei löytynyt.");}catch(e){setError(e.message||"Tuntematon virhe");}}
+
+      // ── Search ────────────────────────────────────────────────────────────
+      const searchOverlay=document.getElementById("searchOverlay"),searchInput=document.getElementById("searchInput"),searchResults=document.getElementById("searchResults"),searchBtn=document.getElementById("searchBtn");
+      async function buildSearchIndex(){if(allChaptersCache)return allChaptersCache;let books;try{books=allBooksCache||await loadIndex();}catch{return[];}allBooksCache=books;const out=[];for(const b of books){let bd;try{bd=await loadBook(b.slug);}catch{continue;}for(const c of(bd.chapters||[]))out.push({bookSlug:b.slug,bookTitle:bd.title,chapterSlug:c.slug,chapterTitle:c.title,themes:(c.themes||[]).join(" "),haystack:[c.title,(c.themes||[]).join(" ")].join(" ").toLowerCase()});}allChaptersCache=out;return out;}
+      function renderSearch(query){const q=query.trim().toLowerCase();if(!allChaptersCache){searchResults.innerHTML=`<div class="search-empty">Indeksoidaan…</div>`;return;}if(!q){searchResults.innerHTML=`<div class="search-empty">Aloita kirjoittamalla. Hakee lukuja ja teemoja.</div>`;return;}const hits=allChaptersCache.filter(c=>c.haystack.includes(q)).slice(0,20);if(!hits.length){searchResults.innerHTML=`<div class="search-empty">Ei osumia haulle "${esc(query)}".</div>`;return;}searchResults.innerHTML=hits.map((h,i)=>`<a class="search-result" ${i===0?'data-active="true"':""} href="#/books/${esc(h.bookSlug)}/${esc(h.chapterSlug)}"><div class="r-title">${esc(h.chapterTitle)}</div><div class="r-sub">${esc(h.bookTitle)}${h.themes?" · "+esc(h.themes):""}</div></a>`).join("");}
+      async function openSearch(){searchOverlay.dataset.open="true";setTimeout(()=>searchInput.focus(),30);renderSearch("");await buildSearchIndex();renderSearch(searchInput.value);}
+      function closeSearch(){searchOverlay.dataset.open="false";searchInput.value="";}
+      searchBtn.addEventListener("click",openSearch);
+      searchInput.addEventListener("input",e=>renderSearch(e.target.value));
+      searchOverlay.addEventListener("click",e=>{if(e.target===searchOverlay)closeSearch();});
+      window.addEventListener("keydown",e=>{if(e.key==="/"&&!["INPUT","TEXTAREA"].includes(document.activeElement?.tagName)){e.preventDefault();openSearch();}if(e.key==="Escape"){closeSearch();toggleSettings(false);}});
+      window.addEventListener("hashchange",route);
+
+      // ── Boot ──────────────────────────────────────────────────────────────
+      async function boot(){
+        try{
+          if(window.renderAppendix===undefined){await new Promise(resolve=>{window.addEventListener("loader-ready",()=>resolve(),{once:true});setTimeout(resolve,1500);});}
+          document.getElementById("bootLoading").classList.add("hidden");
+          route();
+        }catch(err){showBootError(err);}
+      }
+      boot();
+    </script>
+  </body>
+</html>
