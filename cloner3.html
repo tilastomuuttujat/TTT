@@ -355,7 +355,7 @@
       const DATA_BASE="./books";
       let _bookCache={};
       async function loadIndex(){
-        const res=await fetch(`${DATA_BASE}/index.json`,{cache:"no-cache"});
+        const res=await fetch(`${DATA_BASE}/index1.json`,{cache:"no-cache"});
         if(!res.ok)throw new Error(`index.json (${res.status}). Aja studion vie-toiminto ja sijoita tiedostot books-hakemistoon.`);
         const data=await res.json();
         return (data||[]).map(b=>({slug:b.slug,title:b.title,author:b.author,description:b.description,cover_url:b.cover_url}));
