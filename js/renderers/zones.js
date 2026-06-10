@@ -26,8 +26,9 @@ const ZONE_META = {
                sub: "Aidosti poliittista — tahdon asia" }
 };
 
-export function render(target, appendix) {
-  const c = appendix?.content || {};
+export function render(target, content) {
+  // Loader välittää content-objektin suoraan; tuetaan myös koko appendix-objektia.
+  const c = (content && content.zones) ? content : (content?.content || {});
   const zones = c.zones || {};
 
   let html = "";
