@@ -1,4 +1,4 @@
-// appendix-loader.js -- ainoa jaettu osa. Puhdas esityskerros: ei Supabasea, ei authia.
+// appendix-loader.js — ainoa jaettu osa. Puhdas esityskerros: ei Supabasea, ei authia.
 // Vastuu: valitse oikea renderöijä (content.view || type), lataa se dynaamisesti,
 // tarjoa idempotentti kirjasto- ja CSS-lataus sekä jaetut esitysapurit.
 
@@ -106,6 +106,7 @@ const DEFAULT = {
   distribution: "distribution",
   heatmap: "heatmap",
   funnel: "funnel",
+  zones: "zones",
 };
 
 async function loadModule(key) {
