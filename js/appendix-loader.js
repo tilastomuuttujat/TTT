@@ -107,6 +107,7 @@ const DEFAULT = {
   heatmap: "heatmap",
   funnel: "funnel",
   zones: "zones",
+  quiz: "quiz",
 };
 
 async function loadModule(key) {
