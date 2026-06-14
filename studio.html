@@ -267,11 +267,39 @@
       async function loadAppendices(slug){
         const{data:book}=await sb.from("books").select("id").eq("slug",slug).maybeSingle();if(!book)return null;
         const{data:chapters}=await sb.from("chapters").select("id,position,slug,title").eq("book_id",book.id).order("position");
-        const{data:apps}=await sb.from("appendices").select("id,chapter_position,section_position,type,title,source,position,content,reader_function").eq("book_id",book.id).eq("hidden",false).order("chapter_position").order("position");
+        // Yritä hakea myös verified_section_id (osion id), jos kolumni on olemassa.
+        // Jos kantaa ei ole vielä päivitetty, taivu vanhaan skeemaan.
+        let apps,err;
+        ({data:apps,error:err}=await sb.from("appendices").select("id,chapter_position,section_position,verified_section_id,type,title,source,position,content,reader_function").eq("book_id",book.id).eq("hidden",false).order("chapter_position").order("position"));
+        if(err){
+          console.warn("appendices(verified_section_id):",err.message);
+          ({data:apps,error:err}=await sb.from("appendices").select("id,chapter_position,section_position,type,title,source,position,content,reader_function").eq("book_id",book.id).eq("hidden",false).order("chapter_position").order("position"));
+          if(err)console.warn("appendices:",err.message);
+        }
         const byCh={};for(const a of(apps||[])){if(!byCh[a.chapter_position])byCh[a.chapter_position]=[];byCh[a.chapter_position].push(a);}
         return{chapters:(chapters||[]).map(ch=>({position:ch.position,appendices:(byCh[ch.position]||[]).sort((a,b)=>a.position-b.position)}))};
       }
-      function indexAppendices(payload){const sm=new Map(),cm=new Map();if(!payload||!Array.isArray(payload.chapters))return{sm,cm};for(const ch of payload.chapters){for(const a of(ch.appendices||[])){const cp=Number(a.chapter_position),sp=a.section_position;if(sp==null){if(!cm.has(cp))cm.set(cp,[]);cm.get(cp).push(a);}else{const k=`${cp}:${Number(sp)}`;if(!sm.has(k))sm.set(k,[]);sm.get(k).push(a);}}}return{sm,cm};}
+      // ── Liitteiden indeksointi ──
+      // Ensisijaisesti osion id:n (verified_section_id) mukaan -- pysyy oikein vaikka
+      // osioiden järjestys/positiot muuttuvat. Vanhat liitteet, joilla ei ole
+      // verified_section_id:tä, kohdistetaan position-pohjaisesti (byPos) takautuvasti.
+      function indexAppendices(payload){
+        const byId=new Map(),byPos=new Map(),cm=new Map();
+        if(!payload||!Array.isArray(payload.chapters))return{byId,byPos,cm};
+        for(const ch of payload.chapters){
+          for(const a of(ch.appendices||[])){
+            const cp=Number(a.chapter_position),sp=a.section_position;
+            if(a.verified_section_id){
+              if(!byId.has(a.verified_section_id))byId.set(a.verified_section_id,[]);
+              byId.get(a.verified_section_id).push(a);
+              continue;
+            }
+            if(sp==null){if(!cm.has(cp))cm.set(cp,[]);cm.get(cp).push(a);}
+            else{const k=`${cp}:${Number(sp)}`;if(!byPos.has(k))byPos.set(k,[]);byPos.get(k).push(a);}
+          }
+        }
+        return{byId,byPos,cm};
+      }
 
       // ── Appendix iconit ──
       const ICONS={timeline:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="4" y1="12" x2="20" y2="12"/><circle cx="7" cy="12" r="1.8" fill="currentColor"/><circle cx="12" cy="12" r="1.8" fill="currentColor"/><circle cx="17" cy="12" r="1.8" fill="currentColor"/></svg>',evidence:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><line x1="8" y1="14" x2="16" y2="14"/></svg>',chain:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M10 14a4 4 0 0 1 0-5.66l3-3a4 4 0 0 1 5.66 5.66l-1.5 1.5"/><path d="M14 10a4 4 0 0 1 0 5.66l-3 3a4 4 0 0 1-5.66-5.66l1.5-1.5"/></svg>',note:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg>',calculation:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="16" height="16" rx="2"/><line x1="4" y1="9" x2="20" y2="9"/><line x1="10" y1="9" x2="10" y2="20"/></svg>',lag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3 17l4-8 4 4 4-6 4 3"/><line x1="3" y1="20" x2="21" y2="20"/></svg>',correlation:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="7" cy="16" r="1.5" fill="currentColor"/><circle cx="13" cy="10" r="1.5" fill="currentColor"/><circle cx="17" cy="7" r="1.5" fill="currentColor"/><line x1="3" y1="21" x2="21" y2="3" stroke-dasharray="3 2" opacity=".4"/></svg>',regression:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="4" y1="17" x2="20" y2="7"/></svg>',distribution:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 18 Q6 4 12 4 Q18 4 21 18"/><line x1="3" y1="18" x2="21" y2="18"/></svg>',heatmap:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="5" height="5" fill="currentColor" opacity=".3"/><rect x="10" y="3" width="5" height="5" fill="currentColor" opacity=".7"/><rect x="3" y="10" width="5" height="5" fill="currentColor" opacity=".5"/></svg>',funnel:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 4h16l-6 8v6l-4 2v-8z"/></svg>',sector:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><path d="M12 4v8l5.5 5.5"/></svg>',path:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19c3-1 4-4 7-4s4 3 7 4"/></svg>'};
@@ -372,7 +400,7 @@
         const sections=(current.sections||[]).slice().sort((a,b)=>a.position-b.position);
         const idx=all.indexOf(current),prev=idx>0?all[idx-1]:null,next=idx<all.length-1?all[idx+1]:null;
         const prevHref=prev?`#/books/${esc(slug)}/${esc(prev.slug)}`:"",nextHref=next?`#/books/${esc(slug)}/${esc(next.slug)}`:"";
-        const{sm,cm}=indexAppendices(appx);
+        const{byId,byPos,cm}=indexAppendices(appx);
         const chapterPos=Number(current.position),chapterApps=cm.get(chapterPos)||[];
         document.title=`${current.title} – ${data.title}`;
         try{localStorage.setItem(LASTREAD_KEY,JSON.stringify({bookSlug:slug,chapterSlug,title:current.title,t:Date.now()}));}catch{}
@@ -383,7 +411,7 @@
 
         const sectionsWithApps=[];
         const sectionsHtml=sections.map(s=>{
-          const sp=Number(s.position),apps=sm.get(`${chapterPos}:${sp}`)||[];
+          const sp=Number(s.position),apps=byId.get(s.id)||byPos.get(`${chapterPos}:${sp}`)||[];
           let appHtml="";if(apps.length){sectionsWithApps.push({sectionPos:sp,appendices:apps});appHtml=buildAppInline(apps,"section");}
           const words=countWords(s.content);
           const titleHtml=s.title!==undefined&&s.title!==null?`<h2 class="section-title" data-field="title" ${editMode?'contenteditable="true"':''}>${esc(s.title||"")}</h2>`:"";
@@ -445,25 +473,28 @@
       function wireEditing(slug,chapterSlug){
         // contenteditable input
         app.querySelectorAll('[contenteditable="true"]').forEach(el=>{
+          if(el.dataset.wired==="1")return;el.dataset.wired="1";
           el.addEventListener("input",()=>{
             const wrap=el.closest(".sec-wrap");
             if(el.dataset.field==="chapter-title"){pendingChanges.set("__chapter__",{title:el.textContent.trim()});markDirty();return;}
             if(!wrap)return;
             const id=wrap.dataset.sectionId;
             const titleEl=wrap.querySelector('[data-field="title"]'),contentEl=wrap.querySelector('[data-field="content"]');
-            pendingChanges.set(id,{title:titleEl?titleEl.textContent.trim():null,content:htmlToDoc(contentEl)});
+            const ex=pendingChanges.get(id)||{};
+            pendingChanges.set(id,{...ex,title:titleEl?titleEl.textContent.trim():null,content:htmlToDoc(contentEl)});
             // live word count
             const stats=wrap.querySelector(".sec-stats");if(stats){const w=(contentEl.textContent||"").split(/\s+/).filter(Boolean).length;stats.querySelector(".w-count").textContent=w+" sanaa";stats.dataset.words=w;if(document.documentElement.getAttribute("data-lens")==="true")applyLensAnalysis();}
             markDirty();
           });
         });
         // toolbar-napit
-        app.querySelectorAll(".sec-up").forEach(b=>b.addEventListener("click",()=>moveSection(b.closest(".sec-wrap"),-1)));
-        app.querySelectorAll(".sec-down").forEach(b=>b.addEventListener("click",()=>moveSection(b.closest(".sec-wrap"),1)));
-        app.querySelectorAll(".sec-del").forEach(b=>b.addEventListener("click",()=>deleteSection(b.closest(".sec-wrap"))));
-        app.querySelectorAll(".add-section-btn").forEach(b=>b.addEventListener("click",()=>addSection(+b.dataset.after)));
+        app.querySelectorAll(".sec-up").forEach(b=>{if(b.dataset.wired==="1")return;b.dataset.wired="1";b.addEventListener("click",()=>moveSection(b.closest(".sec-wrap"),-1));});
+        app.querySelectorAll(".sec-down").forEach(b=>{if(b.dataset.wired==="1")return;b.dataset.wired="1";b.addEventListener("click",()=>moveSection(b.closest(".sec-wrap"),1));});
+        app.querySelectorAll(".sec-del").forEach(b=>{if(b.dataset.wired==="1")return;b.dataset.wired="1";b.addEventListener("click",()=>deleteSection(b.closest(".sec-wrap")));});
+        app.querySelectorAll(".add-section-btn").forEach(b=>{if(b.dataset.wired==="1")return;b.dataset.wired="1";b.addEventListener("click",()=>addSection(+b.dataset.after));});
         // drag
         app.querySelectorAll(".sec-handle").forEach(h=>{
+          if(h.dataset.wired==="1")return;h.dataset.wired="1";
           const wrap=h.closest(".sec-wrap");
           h.addEventListener("mousedown",()=>wrap.setAttribute("draggable","true"));
           h.addEventListener("mouseup",()=>wrap.setAttribute("draggable","false"));
@@ -506,25 +537,39 @@
         document.getElementById("saveDot").className="save-dot saving";document.getElementById("saveText").textContent="Tallennetaan…";
         try{
           for(const[id,change]of pendingChanges.entries()){
-            if(id==="__chapter__"){if(currentChapter&&change.title){await sb.from("chapters").update({title:change.title}).eq("id",currentChapter.id);}continue;}
-            if(change.__delete__){if(!id.startsWith("new-"))await sb.from("sections").delete().eq("id",id);continue;}
+            if(id==="__chapter__"){
+              if(currentChapter&&change.title!=null){const{error}=await sb.from("chapters").update({title:change.title}).eq("id",currentChapter.id);if(error)throw new Error("Luvun otsikon tallennus epäonnistui: "+error.message);}
+              continue;
+            }
+            if(change.__delete__){
+              if(!id.startsWith("new-")){const{error}=await sb.from("sections").delete().eq("id",id);if(error)throw new Error("Osion poisto epäonnistui: "+error.message);}
+              continue;
+            }
             if(change.__new__||id.startsWith("new-")){
               const wrap=document.querySelector(`.sec-wrap[data-section-id="${id}"]`);
               const pos=wrap?[...document.querySelectorAll("#sectionsHost .sec-wrap")].indexOf(wrap):999;
               const titleEl=wrap?.querySelector('[data-field="title"]'),contentEl=wrap?.querySelector('[data-field="content"]');
-              await sb.from("sections").insert({chapter_id:currentChapter.id,position:pos,title:titleEl?titleEl.textContent.trim():null,content:contentEl?htmlToDoc(contentEl):{type:"doc",content:[]}});
+              // Käytä ensisijaisesti pendingChanges-tilaan tallennettua sisältöä
+              // (input-tapahtumat päivittävät sen), DOM luettavissa varalla.
+              const title=(change.title!==undefined&&change.title!==null&&change.title!=="")?change.title:(titleEl?titleEl.textContent.trim():null);
+              const content=change.content||(contentEl?htmlToDoc(contentEl):{type:"doc",content:[]});
+              const{error}=await sb.from("sections").insert({chapter_id:currentChapter.id,position:pos,title:title||null,content});
+              if(error)throw new Error("Uuden osion tallennus epäonnistui: "+error.message);
               continue;
             }
             const upd={};if(change.title!==undefined&&change.title!==null)upd.title=change.title;if(change.content)upd.content=change.content;if(change.position!==undefined)upd.position=change.position;
-            if(Object.keys(upd).length)await sb.from("sections").update(upd).eq("id",id);
+            if(Object.keys(upd).length){const{error}=await sb.from("sections").update(upd).eq("id",id);if(error)throw new Error("Osion tallennus epäonnistui: "+error.message);}
           }
           // tallenna kaikkien positiot lopuksi
           const wraps=[...document.querySelectorAll("#sectionsHost .sec-wrap")];
-          for(let i=0;i<wraps.length;i++){const id=wraps[i].dataset.sectionId;if(!id.startsWith("new-"))await sb.from("sections").update({position:i}).eq("id",id);}
+          for(let i=0;i<wraps.length;i++){
+            const id=wraps[i].dataset.sectionId;
+            if(!id.startsWith("new-")){const{error}=await sb.from("sections").update({position:i}).eq("id",id);if(error)throw new Error("Järjestyksen tallennus epäonnistui: "+error.message);}
+          }
           pendingChanges.clear();dirty=false;updateSaveBar();
           document.getElementById("saveText").textContent="Tallennettu";toast("Tallennettu");
           const p=parsePath();if(p.chapter)renderChapter(p.book,p.chapter);
-        }catch(e){console.error(e);toast("Tallennus epäonnistui");document.getElementById("saveText").textContent="Virhe — yritä uudelleen";}
+        }catch(e){console.error(e);toast("Tallennus epäonnistui: "+(e.message||e));document.getElementById("saveText").textContent="Virhe -- yritä uudelleen";}
         finally{saveBtn.disabled=false;}
       }
       document.getElementById("saveBtn").addEventListener("click",saveChanges);
@@ -607,7 +652,7 @@
           for(const ch of (appx?.chapters||[]))for(const a of (ch.appendices||[]))if(a.type==="research-card"&&a.content&&Array.isArray(a.content.evidence_keys))a.content.evidence_keys.forEach(k=>usedKeys.add(k));
           if(usedKeys.size>0){const{data:links}=await sb.from("v_evidence_series_links").select("evidence_key,indicator_key,indicator_name,geography,year_start,year_end,expected_j_codes,data_role");seriesLinks=(links||[]).filter(l=>usedKeys.has(l.evidence_key));}
         }catch(e){console.warn("series_links:",e);}
-        // Kirjaobjekti — sama muoto kuin cloner1:n loadBook palauttaa
+        // Kirjaobjekti -- sama muoto kuin cloner1:n loadBook palauttaa
         const book={
           slug:data.slug,title:data.title,author:data.author,description:data.description,
           chapters:(data.chapters||[]).slice().sort((a,b)=>a.position-b.position).map(ch=>({
@@ -618,7 +663,7 @@
           appendices:{
             schema:"book-appendices.v1",
             book:{slug:data.slug,title:data.title},
-            chapters:(appx?.chapters||[]).map(ch=>({position:ch.position,appendices:(ch.appendices||[]).map(a=>({id:a.id,chapter_position:a.chapter_position,section_position:a.section_position,type:a.type,title:a.title,source:a.source??null,position:a.position,content:a.content,hidden:false,reader_function:a.reader_function??null}))})),
+            chapters:(appx?.chapters||[]).map(ch=>({position:ch.position,appendices:(ch.appendices||[]).map(a=>({id:a.id,chapter_position:a.chapter_position,section_position:a.section_position,verified_section_id:a.verified_section_id??null,type:a.type,title:a.title,source:a.source??null,position:a.position,content:a.content,hidden:false,reader_function:a.reader_function??null}))})),
             series_links:seriesLinks
           }
         };
