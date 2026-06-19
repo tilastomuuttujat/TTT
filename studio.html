@@ -56,67 +56,57 @@
       .pager{display:flex;justify-content:space-between;gap:18px;margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}.pager a{padding:8px 12px;border-radius:8px}.pager a:hover{background:var(--bg-soft);color:var(--fg)}.right{text-align:right;margin-left:auto}
     </style>
     <style>
-      /* ── Editointitilan tyylit ──────────────────────────────────────────── */
-      [data-mode="edit"] .reader [contenteditable]{outline:none;border-radius:6px;transition:background .15s,box-shadow .15s}
-      [data-mode="edit"] .reader [contenteditable]:hover{background:var(--edit-soft)}
-      [data-mode="edit"] .reader [contenteditable]:focus{background:var(--edit-soft);box-shadow:0 0 0 2px var(--edit)}
+      /* ── Editointitilan tyylit (per-osio / per-liite tallennus, cloneadmin-mallin mukaan) ── */
+      [data-mode="edit"] .editable{outline:none;border-radius:6px;padding:4px 8px;margin:-4px -8px;transition:background .15s,box-shadow .15s;cursor:text}
+      [data-mode="edit"] .editable:hover{background:var(--edit-soft)}
+      [data-mode="edit"] .editable:focus{background:var(--edit-soft);box-shadow:0 0 0 2px var(--edit);outline:none}
       [data-mode="edit"] .section-title[contenteditable]:empty::before,[data-mode="edit"] .reader p[contenteditable]:empty::before{content:"Kirjoita…";color:var(--muted-2)}
       .sec-wrap{position:relative;border-radius:12px;transition:background .15s}
       [data-mode="edit"] .sec-wrap{padding:14px 16px;margin:0 -16px 8px;border:1px dashed transparent}
       [data-mode="edit"] .sec-wrap:hover{border-color:var(--line)}
-      [data-mode="edit"] .sec-wrap.dragging{opacity:.5}
-      [data-mode="edit"] .sec-wrap.drag-over{border-color:var(--edit);background:var(--edit-soft)}
       .sec-toolbar{display:none;position:absolute;top:-13px;right:12px;background:var(--card);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow-sm);padding:2px;gap:1px;z-index:5}
       [data-mode="edit"] .sec-wrap:hover .sec-toolbar,[data-mode="edit"] .sec-wrap:focus-within .sec-toolbar{display:flex}
       .sec-toolbar button{width:30px;height:30px;border:none;background:transparent;color:var(--muted);border-radius:6px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .12s,color .12s}.sec-toolbar button:hover{background:var(--bg-soft);color:var(--fg)}.sec-toolbar button.danger:hover{background:var(--danger);color:#fff}.sec-toolbar button svg{width:15px;height:15px}
-      .sec-handle{cursor:grab}.sec-handle:active{cursor:grabbing}
+      .sec-toolbar button:disabled{opacity:.35;cursor:default}.sec-toolbar button:disabled:hover{background:transparent;color:var(--muted)}
       .sec-stats{display:none;font-size:11px;color:var(--muted-2);margin-top:6px;gap:12px;letter-spacing:.02em}
       [data-mode="edit"] .sec-stats{display:flex;flex-wrap:wrap}
       .sec-stats .warn{color:var(--warn)}
       .add-section-btn{display:none;width:100%;padding:10px;margin:10px 0;border:1px dashed var(--line-strong);background:transparent;color:var(--muted);border-radius:10px;cursor:pointer;font-size:13px;transition:all .15s;align-items:center;justify-content:center;gap:6px}
       [data-mode="edit"] .add-section-btn{display:flex}
       .add-section-btn:hover{border-color:var(--edit);color:var(--edit);background:var(--edit-soft)}.add-section-btn svg{width:15px;height:15px}
-      /* Liitteiden kytkentä (edit) */
-      .appx-manage-btn{display:none;align-items:center;gap:6px;border:1px dashed var(--line-strong);background:transparent;color:var(--muted);border-radius:8px;padding:7px 12px;font-size:12.5px;cursor:pointer;margin-top:12px;transition:all .15s}
-      [data-mode="edit"] .appx-manage-btn{display:inline-flex}
-      .appx-manage-btn:hover{border-color:var(--edit);color:var(--edit);background:var(--edit-soft)}
-      .appx-manage-btn svg{width:14px;height:14px}
-      .appx-manage-btn .cnt{background:var(--bg-soft);color:var(--muted);border-radius:999px;padding:1px 7px;font-size:11px;font-weight:600}
-      [data-mode="edit"] .appx-manage-btn .cnt{background:var(--edit-soft);color:var(--edit)}
-      .appx-modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:80;display:none;align-items:center;justify-content:center;padding:20px}
-      .appx-modal-backdrop.open{display:flex}
-      .appx-modal{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow-md);width:min(520px,100%);max-height:80vh;display:flex;flex-direction:column;overflow:hidden}
-      .appx-modal-head{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid var(--line)}
-      .appx-modal-head h3{font-family:"Instrument Serif",serif;font-size:19px;flex:1}
-      .appx-modal-head .sub{font-size:12px;color:var(--muted)}
-      .appx-modal-close{width:32px;height:32px;border:none;background:transparent;cursor:pointer;color:var(--muted);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.appx-modal-close:hover{background:var(--bg-soft);color:var(--fg)}.appx-modal-close svg{width:16px;height:16px}
-      .appx-modal-body{overflow-y:auto;padding:8px}
-      .appx-modal-empty{padding:28px 20px;text-align:center;color:var(--muted);font-size:13.5px}
-      .appx-list-item{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;transition:background .12s}.appx-list-item:hover{background:var(--bg-soft)}
-      .appx-list-item .ic{width:30px;height:30px;flex-shrink:0;border:1px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted)}.appx-list-item .ic svg{width:15px;height:15px}
-      .appx-list-item .info{flex:1;min-width:0}
-      .appx-list-item .info .t{font-size:13.5px;color:var(--fg);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-      .appx-list-item .info .loc{font-size:11.5px;color:var(--muted-2);margin-top:1px}
-      .appx-list-item .loc.assigned{color:var(--ok)}
-      .appx-list-item select{font:inherit;font-size:12px;border:1px solid var(--line);background:var(--bg);color:var(--fg);border-radius:7px;padding:6px 8px;max-width:170px;cursor:pointer}
-      .appx-list-item .unlink-btn{border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:7px;padding:6px 9px;font-size:11.5px;cursor:pointer;white-space:nowrap}.appx-list-item .unlink-btn:hover{border-color:var(--danger);color:var(--danger);background:color-mix(in srgb,var(--danger) 8%,transparent)}
-      .appx-modal-foot{padding:12px 20px;border-top:1px solid var(--line);font-size:11.5px;color:var(--muted-2);line-height:1.5}
+      .add-section-btn:disabled{opacity:.5;cursor:wait}
+      /* Per-osio tallennuspalkki */
+      .sec-save-bar{display:none;gap:8px;align-items:center;margin:10px 0 0;padding:9px 12px;background:var(--edit-soft);border:1px solid var(--edit);border-radius:8px;font-size:13px}
+      .sec-save-bar.dirty{display:flex}
+      .sec-save-bar .label{flex:1;color:var(--edit);font-weight:500}
+      .sec-save-bar button{padding:6px 12px;font-size:12.5px;background:var(--edit);color:#fff;border:none;border-radius:6px;cursor:pointer;font:inherit;font-weight:500}
+      .sec-save-bar button:disabled{opacity:.5;cursor:wait}
+      .sec-save-bar button.secondary{background:transparent;color:var(--fg);border:1px solid var(--line)}
+      .sec-save-bar button.secondary:hover{background:var(--bg-soft)}
+      /* Liitteen / osion sijainti-kontrollit (cloneadmin-mallin mukaiset) */
+      .appx-admin-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;row-gap:8px;margin-top:10px;padding:8px 10px;background:var(--bg-soft);border-radius:8px;font-size:12px;color:var(--muted)}
+      .appx-admin-controls .loc{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+      .appx-admin-controls .loc-label{color:var(--muted)}
+      .appx-admin-controls select{font-size:12px;padding:4px 7px;border:1px solid var(--line-strong);border-radius:6px;background:var(--card);color:var(--fg);max-width:200px}
+      .appx-admin-controls button{font-size:12px;padding:5px 11px;border:1px solid var(--line-strong);border-radius:6px;background:var(--card);color:var(--fg);cursor:pointer;font:inherit}
+      .appx-admin-controls button:hover{background:var(--bg-soft);border-color:var(--edit);color:var(--edit)}
+      .appx-admin-controls button:disabled{opacity:.5;cursor:wait}
+      .appx-admin-controls .appx-save-status{font-size:11.5px;color:var(--muted-2)}
+      .appx-admin-controls .appx-save-status.saved{color:var(--ok)}
+      .appx-admin-controls .appx-save-status.saving{color:var(--edit)}
+      .appx-admin-controls .appx-save-status.error{color:var(--danger)}
+      .appx-pub{display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+      .appx-pub input[type="checkbox"]{width:14px;height:14px;accent-color:var(--edit);cursor:pointer}
       /* Lukijan katse -korostus */
       [data-lens="true"] .reader p[data-heavy="true"]{background:linear-gradient(transparent 60%,rgba(201,138,43,.18) 0)}
       [data-lens="true"] .reader .long-sentence{border-bottom:1.5px dotted var(--warn)}
       .lens-legend{display:none;position:sticky;top:62px;z-index:10;background:var(--summary-bg);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-bottom:20px;font-size:12.5px;color:var(--fg-soft);line-height:1.5}
       [data-lens="true"] .lens-legend{display:block}
       .lens-legend strong{color:var(--fg)}
-      /* Save bar */
-      .save-bar{position:fixed;bottom:0;left:0;right:0;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:12px 0 calc(12px + env(safe-area-inset-bottom));z-index:35;transform:translateY(100%);transition:transform .25s;display:none}
-      [data-mode="edit"] .save-bar{display:block;transform:translateY(0)}
+      /* Yläpalkin tila-ilmaisin (kevyt, ei enää globaalia save-bar-palkkia) */
+      .edit-hint{display:none;position:fixed;bottom:0;left:0;right:0;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:10px 0 calc(10px + env(safe-area-inset-bottom));z-index:35;font-size:12.5px;color:var(--muted);text-align:center}
+      [data-mode="edit"] .edit-hint{display:block}
       [data-mode="edit"] #exportBtn{display:inline-flex!important}
-      .save-bar-inner{display:flex;align-items:center;gap:14px}
-      .save-status{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
-      .save-dot{width:8px;height:8px;border-radius:50%;background:var(--ok);flex-shrink:0}
-      .save-dot.dirty{background:var(--warn)}.save-dot.saving{background:var(--edit);animation:pulse 1s infinite}
-      @keyframes pulse{50%{opacity:.4}}
-      .save-actions{margin-left:auto;display:flex;gap:8px}
       .btn{border:1px solid var(--line);background:var(--card);color:var(--fg);padding:9px 16px;border-radius:9px;font-size:13.5px;font-weight:500;cursor:pointer;transition:all .15s}.btn:hover{border-color:var(--line-strong)}
       .btn.primary{background:var(--edit);color:#fff;border-color:var(--edit)}.btn.primary:hover{filter:brightness(1.08)}
       .btn:disabled{opacity:.5;cursor:default}
@@ -204,7 +194,7 @@
     <main id="main-content" class="container"></main>
     <footer class="site">© <span id="year"></span> Harri Käyhkö · Studio</footer>
 
-    <div class="save-bar"><div class="save-bar-inner container-wide"><div class="save-status"><span class="save-dot" id="saveDot"></span><span id="saveText">Tallennettu</span></div><div class="save-actions"><button class="btn" id="revertBtn">Kumoa muutokset</button><button class="btn primary" id="saveBtn">Tallenna</button></div></div></div>
+    <div class="edit-hint">Muokkaustila — muutokset tallentuvat heti, kun painat osion tai liitteen omaa "Tallenna"/"Siirrä tähän" -nappia.</div>
 
     <div id="drawerBackdrop" class="drawer-backdrop"></div>
     <nav id="drawer" class="drawer" aria-label="Sisällysluettelo">
@@ -218,20 +208,6 @@
     <div id="loginOverlay" class="login-overlay" role="dialog" aria-label="Kirjaudu"><div class="login-box"><h2>Muokkaustila</h2><p>Editointi vaatii kirjautumisen. Kirjaudu sähköpostilla ja salasanalla.</p><input id="loginEmail" type="email" placeholder="Sähköposti" autocomplete="username" /><input id="loginPassword" type="password" placeholder="Salasana" autocomplete="current-password" /><button class="btn primary" id="loginSubmit">Kirjaudu</button><div class="login-err" id="loginErr"></div></div></div>
 
     <div id="toast" class="toast"></div>
-
-    <div id="appxModalBackdrop" class="appx-modal-backdrop" role="dialog" aria-label="Liitteiden kytkentä">
-      <div class="appx-modal">
-        <div class="appx-modal-head">
-          <div style="flex:1">
-            <h3>Liitteiden kytkentä</h3>
-            <div class="sub" id="appxModalSub"></div>
-          </div>
-          <button id="appxModalClose" class="appx-modal-close" aria-label="Sulje"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
-        </div>
-        <div id="appxModalBody" class="appx-modal-body"></div>
-        <div class="appx-modal-foot">Valitse liitteen kohde pudotusvalikosta. Muutokset tallentuvat, kun painat "Tallenna" alapalkista.</div>
-      </div>
-    </div>
 
     <script type="module">
       import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
@@ -306,38 +282,34 @@
       async function loadAppendices(slug){
         const{data:book}=await sb.from("books").select("id").eq("slug",slug).maybeSingle();if(!book)return null;
         const{data:chapters}=await sb.from("chapters").select("id,position,slug,title").eq("book_id",book.id).order("position");
-        // Yritä hakea myös verified_section_id (osion id), jos kolumni on olemassa.
-        // Jos kantaa ei ole vielä päivitetty, taivu vanhaan skeemaan.
+        // Haetaan KAIKKI liitteet (myös piilotetut) -- editointitilassa admin näkee piilotetutkin
+        // ja lukutilan render suodattaa hidden=true pois. chapter_position/section_position on
+        // ensisijainen kohdistustapa (position-pohjainen, sama logiikka kuin cloneadmin.html:ssä).
         let apps,err;
-        ({data:apps,error:err}=await sb.from("appendices").select("id,chapter_position,section_position,verified_section_id,type,title,source,position,content,reader_function").eq("book_id",book.id).eq("hidden",false).order("chapter_position").order("position"));
+        ({data:apps,error:err}=await sb.from("appendices").select("id,book_id,chapter_position,section_position,verified_section_id,type,title,source,position,content,reader_function,hidden").eq("book_id",book.id).order("chapter_position").order("position"));
         if(err){
           console.warn("appendices(verified_section_id):",err.message);
-          ({data:apps,error:err}=await sb.from("appendices").select("id,chapter_position,section_position,type,title,source,position,content,reader_function").eq("book_id",book.id).eq("hidden",false).order("chapter_position").order("position"));
+          ({data:apps,error:err}=await sb.from("appendices").select("id,book_id,chapter_position,section_position,type,title,source,position,content,reader_function,hidden").eq("book_id",book.id).order("chapter_position").order("position"));
           if(err)console.warn("appendices:",err.message);
         }
         const byCh={};for(const a of(apps||[])){if(!byCh[a.chapter_position])byCh[a.chapter_position]=[];byCh[a.chapter_position].push(a);}
-        return{chapters:(chapters||[]).map(ch=>({position:ch.position,appendices:(byCh[ch.position]||[]).sort((a,b)=>a.position-b.position)}))};
+        return{book:{id:book.id},chapters:(chapters||[]).map(ch=>({position:ch.position,appendices:(byCh[ch.position]||[]).sort((a,b)=>a.position-b.position)}))};
       }
       // ── Liitteiden indeksointi ──
-      // Ensisijaisesti osion id:n (verified_section_id) mukaan -- pysyy oikein vaikka
-      // osioiden järjestys/positiot muuttuvat. Vanhat liitteet, joilla ei ole
-      // verified_section_id:tä, kohdistetaan position-pohjaisesti (byPos) takautuvasti.
-      function indexAppendices(payload){
-        const byId=new Map(),byPos=new Map(),cm=new Map();
-        if(!payload||!Array.isArray(payload.chapters))return{byId,byPos,cm};
+      // Position-pohjainen kohdistus (chapter_position + section_position), sama periaate
+      // kuin cloneadmin.html:ssä. includeHidden=true editointitilassa (admin näkee piilotetutkin).
+      function indexAppendices(payload,includeHidden){
+        const byPos=new Map(),cm=new Map();
+        if(!payload||!Array.isArray(payload.chapters))return{byPos,cm};
         for(const ch of payload.chapters){
           for(const a of(ch.appendices||[])){
+            if(a.hidden&&!includeHidden)continue;
             const cp=Number(a.chapter_position),sp=a.section_position;
-            if(a.verified_section_id){
-              if(!byId.has(a.verified_section_id))byId.set(a.verified_section_id,[]);
-              byId.get(a.verified_section_id).push(a);
-              continue;
-            }
-            if(sp==null){if(!cm.has(cp))cm.set(cp,[]);cm.get(cp).push(a);}
+            if(sp==null||sp===""){if(!cm.has(cp))cm.set(cp,[]);cm.get(cp).push(a);}
             else{const k=`${cp}:${Number(sp)}`;if(!byPos.has(k))byPos.set(k,[]);byPos.get(k).push(a);}
           }
         }
-        return{byId,byPos,cm};
+        return{byPos,cm};
       }
 
       // ── Appendix iconit ──
@@ -396,7 +368,7 @@
       }
 
       // ── Tila (read/edit) ──
-      let editMode=false, dirty=false, currentBookData=null, currentChapter=null, currentAppxPayload=null, currentChapterApps=[];
+      let editMode=false, currentBookData=null, currentChapter=null, currentSlug=null, currentChapterSlug=null, adminNav=[], adminBookId=null, currentAppxPayload=null;
       function setMode(mode){
         if(mode==="edit"&&!isAuthed()){openLogin();return;}
         editMode=mode==="edit";
@@ -432,17 +404,19 @@
       async function renderChapter(slug,chapterSlug){
         setStatus("Ladataan…");let data,appx;
         try{[data,appx]=await Promise.all([loadBook(slug),loadAppendices(slug)]);}catch(e){return setError(e.message);}
-        currentBookData=data;
+        currentBookData=data;currentSlug=slug;currentChapterSlug=chapterSlug;
+        adminBookId=data.id||(appx&&appx.book&&appx.book.id)||null;
         const all=(data.chapters||[]).slice().sort((a,b)=>a.position-b.position);
         const current=all.find(c=>c.slug===chapterSlug);if(!current)return setError("Lukua ei löytynyt.");
         currentChapter=current;
+        // adminNav: koko kirjan luvut+osiot position-pohjaisia valikkoja varten (liitteen/osion sijoitus)
+        adminNav=all.map(c=>({position:Number(c.position),title:c.title,sections:(c.sections||[]).slice().sort((a,b)=>a.position-b.position).map(s=>({position:Number(s.position),title:s.title}))}));
         const sections=(current.sections||[]).slice().sort((a,b)=>a.position-b.position);
         const idx=all.indexOf(current),prev=idx>0?all[idx-1]:null,next=idx<all.length-1?all[idx+1]:null;
         const prevHref=prev?`#/books/${esc(slug)}/${esc(prev.slug)}`:"",nextHref=next?`#/books/${esc(slug)}/${esc(next.slug)}`:"";
-        const{byId,byPos,cm}=indexAppendices(appx);
-        const chapterPos=Number(current.position),chapterApps=cm.get(chapterPos)||[];
         currentAppxPayload=appx;
-        currentChapterApps=(appx&&Array.isArray(appx.chapters))?((appx.chapters.find(c=>Number(c.position)===chapterPos)||{}).appendices||[]):[];
+        const{byPos,cm}=indexAppendices(appx,editMode);
+        const chapterPos=Number(current.position),chapterApps=cm.get(chapterPos)||[];
         document.title=`${current.title} – ${data.title}`;
         try{localStorage.setItem(LASTREAD_KEY,JSON.stringify({bookSlug:slug,chapterSlug,title:current.title,t:Date.now()}));}catch{}
         const savedScroll=loadScroll(slug,chapterSlug);
@@ -451,40 +425,38 @@
         const lensLegend=`<div class="lens-legend"><strong>Lukijan katse.</strong> Korostettuna kappaleet joissa on yli 90 sanaa (raskas lukea) ja <span style="border-bottom:1.5px dotted var(--warn)">virkkeet</span> joissa on yli 35 sanaa.</div>`;
 
         const sectionsWithApps=[];
-        const sectionsHtml=sections.map(s=>{
-          const sp=Number(s.position),apps=byId.get(s.id)||byPos.get(`${chapterPos}:${sp}`)||[];
+        const sectionsHtml=sections.map((s,sIdx)=>{
+          const sp=Number(s.position),apps=byPos.get(`${chapterPos}:${sp}`)||[];
           let appHtml="";if(apps.length){sectionsWithApps.push({sectionPos:sp,appendices:apps});appHtml=buildAppInline(apps,"section");}
           const words=countWords(s.content);
-          const titleHtml=s.title!==undefined&&s.title!==null?`<h2 class="section-title" data-field="title" ${editMode?'contenteditable="true"':''}>${esc(s.title||"")}</h2>`:"";
-          const manageBtn=`<button type="button" class="appx-manage-btn" data-manage-section-id="${esc(s.id)}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg>Liitteet${apps.length?` <span class="cnt">${apps.length}</span>`:""}</button>`;
-          return `<div class="sec-wrap" data-section-id="${esc(s.id)}" data-section-pos="${sp}" draggable="false">
-            <div class="sec-toolbar">
-              <button class="sec-handle" title="Raahaa järjestääksesi" aria-label="Raahaa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg></button>
-              <button class="sec-up" title="Siirrä ylös" aria-label="Ylös"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg></button>
-              <button class="sec-down" title="Siirrä alas" aria-label="Alas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
-              <button class="sec-del danger" title="Poista osio" aria-label="Poista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></button>
-            </div>
+          const titleHtml=s.title!==undefined&&s.title!==null?`<h2 class="section-title editable" data-field="title" ${editMode?'contenteditable="true"':''}>${esc(s.title||"")}</h2>`:"";
+          const isFirst=sIdx===0,isLast=sIdx===sections.length-1;
+          const moveBtns=editMode?`<button class="sec-up" title="Siirrä ylös" aria-label="Ylös" ${isFirst?"disabled":""}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg></button>
+              <button class="sec-down" title="Siirrä alas" aria-label="Alas" ${isLast?"disabled":""}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button>
+              <button class="sec-del danger" title="Poista osio" aria-label="Poista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></button>`:"";
+          const toolbar=editMode?`<div class="sec-toolbar">${moveBtns}</div>`:"";
+          const saveBar=editMode?`<div class="sec-save-bar" data-save-bar><span class="label">Tallentamattomia muutoksia</span><button type="button" data-action="discard" class="secondary">Hylkää</button><button type="button" data-action="save">Tallenna</button></div>`:"";
+          return `<div class="sec-wrap" data-section-id="${esc(s.id)}" data-section-pos="${sp}">
+            ${toolbar}
             ${titleHtml}
-            <div class="reader" data-field="content" ${editMode?'contenteditable="true"':''}>${renderDoc(s.content)}</div>
+            <div class="reader editable" data-field="content" ${editMode?'contenteditable="true"':''}>${renderDoc(s.content)}</div>
             <div class="sec-stats" data-words="${words}"><span class="w-count">${words} sanaa</span><span>~${Math.max(1,Math.round(words/220))} min</span></div>
+            ${saveBar}
             ${appHtml}
-            ${editMode?manageBtn:""}
           </div>
-          <button class="add-section-btn" data-after="${sp}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Lisää osio tähän</button>`;
+          ${editMode?`<button class="add-section-btn" data-after="${sp}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Lisää osio tähän</button>`:""}`;
         }).join("");
 
         const chapterAppHtml=chapterApps.length?buildAppInline(chapterApps,"chapter"):"";
-        const chapterManageBtn=editMode?`<button type="button" class="appx-manage-btn" data-manage-section-id="" style="margin-bottom:20px">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07l1.5-1.5"/></svg>Koko luvun liitteet${chapterApps.length?` <span class="cnt">${chapterApps.length}</span>`:""}</button>`:"";
-        const firstAdd=`<button class="add-section-btn" data-after="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Lisää osio alkuun</button>`;
+        const firstAdd=editMode?`<button class="add-section-btn" data-after="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Lisää osio alkuun</button>`:"";
 
-        app.innerHTML=`<article id="chapterArticle"><a class="back" href="#/books/${esc(slug)}">← ${esc(data.title)}</a><div class="chapter-meta"><span class="read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>≈ ${mins} min</span></div><h1 class="chapter-title" data-field="chapter-title" ${editMode?'contenteditable="true"':''}>${esc(current.title)}</h1>${lensLegend}${editMode?firstAdd:""}<div id="sectionsHost">${sectionsHtml}</div>${chapterAppHtml}${chapterManageBtn}<nav class="pager">${prev?`<a href="${prevHref}">← ${esc(prev.title)}</a>`:'<span></span>'}${next?`<a class="right" href="${nextHref}">${esc(next.title)} →</a>`:'<span></span>'}</nav></article>`;
+        app.innerHTML=`<article id="chapterArticle"><a class="back" href="#/books/${esc(slug)}">← ${esc(data.title)}</a><div class="chapter-meta"><span class="read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>≈ ${mins} min</span></div><h1 class="chapter-title editable" data-field="chapter-title" ${editMode?'contenteditable="true"':''}>${esc(current.title)}</h1>${editMode?'<div class="sec-save-bar" data-chapter-save-bar><span class="label">Otsikko muuttunut</span><button type="button" data-action="discard" class="secondary">Hylkää</button><button type="button" data-action="save">Tallenna otsikko</button></div>':''}${lensLegend}${firstAdd}<div id="sectionsHost">${sectionsHtml}</div>${chapterAppHtml}<nav class="pager">${prev?`<a href="${prevHref}">← ${esc(prev.title)}</a>`:'<span></span>'}${next?`<a class="right" href="${nextHref}">${esc(next.title)} →</a>`:'<span></span>'}</nav></article>`;
 
         // Liitteiden kytkentä
         for(const{sectionPos,appendices}of sectionsWithApps){const el=document.querySelector(`.sec-wrap[data-section-pos="${sectionPos}"] .app-inline`);if(el)wireAppInline(el,appendices);}
         if(chapterApps.length){const el=document.querySelector("#chapterArticle > .app-inline.chapter-level");if(el)wireAppInline(el,chapterApps);}
 
-        if(editMode){wireEditing(slug,chapterSlug);wireAppManageButtons();}
+        if(editMode){wireSectionEditing(sections);wireChapterTitleEditing();wireSectionMoveButtons(sections);wireSectionDelete();wireAddSectionButtons();}
 
         requestAnimationFrame(()=>{
           applyLensAnalysis();
@@ -497,210 +469,233 @@
       // ── Appendix inline ──
       function buildAppInline(appendices,region){
         if(!appendices.length)return"";
-        const toggles=appendices.map((a,i)=>`<button type="button" class="app-toggle" data-i="${i}" aria-expanded="false" title="${esc(a.title||labelFor(a.type))}">${iconFor(a.type)}</button>`).join("");
+        const toggles=appendices.map((a,i)=>`<button type="button" class="app-toggle" data-i="${i}" aria-expanded="false" title="${esc(a.title||labelFor(a.type))}" style="${a.hidden?'opacity:.38':''}">${iconFor(a.type)}</button>`).join("");
         return`<div class="app-inline ${region==="chapter"?"chapter-level":""}"><div class="app-inline-toggles">${toggles}</div><div class="app-body" hidden></div></div>`;
+      }
+      // Rakentaa luku+osio -pudotusvalikot (cloneadmin.html-mallin mukaan, position-pohjainen)
+      function buildChapterOptions(selChPos){
+        return adminNav.map(c=>`<option value="${c.position}" ${Number(selChPos)===c.position?"selected":""}>${esc(String(c.position).padStart(2,"0"))} · ${esc(c.title)}</option>`).join("");
+      }
+      function buildSectionOptions(chPos,selSecPos){
+        const ch=adminNav.find(c=>c.position===Number(chPos));
+        const secs=ch?ch.sections:[];
+        const isClear=(selSecPos===null||selSecPos===undefined||selSecPos==="");
+        return `<option value="" ${isClear?"selected":""}>Koko luku (ei osiota)</option>`+
+          secs.map(s=>`<option value="${s.position}" ${(!isClear&&Number(selSecPos)===s.position)?"selected":""}>${esc(String(s.position).padStart(2,"0"))} · ${esc(s.title)}</option>`).join("");
       }
       function wireAppInline(container,appendices){
         const btns=container.querySelectorAll(".app-toggle"),body=container.querySelector(".app-body");let open=-1;
         const close=()=>{body.hidden=true;body.innerHTML="";btns.forEach(b=>b.setAttribute("aria-expanded","false"));open=-1;};
-        const show=i=>{const a=appendices[i];if(!a)return;body.innerHTML=`<div class="app-body-head"><span class="kind">${esc(labelFor(a.type))}</span><h3>${esc(a.title||labelFor(a.type))}</h3></div><div class="appx-render-target"></div>`;body.hidden=false;btns.forEach((b,j)=>b.setAttribute("aria-expanded",j===i?"true":"false"));open=i;const t=body.querySelector(".appx-render-target");if(t)doRenderAppendix(t,a);};
+        const show=i=>{
+          const a=appendices[i];if(!a)return;
+          const ctrlHtml=editMode?`
+            <div class="appx-admin-controls">
+              <label class="appx-pub"><input type="checkbox" class="appx-pub-check" ${a.hidden?"":"checked"}/> Julkaistu lukijoille</label>
+              <span class="loc">
+                <span class="loc-label">Sijainti:</span>
+                <select class="appx-ch-select" aria-label="Luku">${buildChapterOptions(a.chapter_position)}</select>
+                <select class="appx-se-select" aria-label="Osio">${buildSectionOptions(a.chapter_position,a.section_position)}</select>
+                <button type="button" class="appx-move-btn">Siirrä tähän</button>
+              </span>
+              <span class="appx-save-status"></span>
+            </div>`:"";
+          body.innerHTML=`<div class="app-body-head"><span class="kind">${esc(labelFor(a.type))}</span><h3>${esc(a.title||labelFor(a.type))}</h3></div><div class="appx-render-target"></div>${ctrlHtml}`;
+          body.hidden=false;btns.forEach((b,j)=>b.setAttribute("aria-expanded",j===i?"true":"false"));open=i;
+          const t=body.querySelector(".appx-render-target");if(t)doRenderAppendix(t,a);
+          if(!editMode)return;
+          const pubCheck=body.querySelector(".appx-pub-check"),chSel=body.querySelector(".appx-ch-select"),seSel=body.querySelector(".appx-se-select"),moveBtn=body.querySelector(".appx-move-btn"),statusEl=body.querySelector(".appx-save-status");
+          const setSt=(txt,cls)=>{if(statusEl){statusEl.textContent=txt;statusEl.className="appx-save-status "+(cls||"");}};
+          if(chSel&&seSel)chSel.addEventListener("change",()=>{seSel.innerHTML=buildSectionOptions(chSel.value,"");});
+          if(pubCheck){
+            pubCheck.addEventListener("change",async()=>{
+              const newHidden=!pubCheck.checked;setSt("Tallennetaan…","saving");
+              try{const{error}=await sb.from("appendices").update({hidden:newHidden}).eq("id",a.id);if(error)throw error;
+                a.hidden=newHidden;setSt(newHidden?"Piilossa":"Julkaistu","saved");
+                const btn=container.querySelector(`.app-toggle[data-i="${i}"]`);if(btn)btn.style.opacity=newHidden?"0.38":"";
+                toast(newHidden?"Liite piilotettu (ei julkaistu)":"Liite julkaistu lukijoille");
+              }catch(err){setSt("Virhe: "+(err.message||err),"error");pubCheck.checked=!pubCheck.checked;toast("Tallennus epäonnistui");}
+            });
+          }
+          if(moveBtn){
+            moveBtn.addEventListener("click",async()=>{
+              const ch=Number(chSel.value),se=(seSel.value===""?null:Number(seSel.value));
+              if(ch===Number(a.chapter_position)&&se===(a.section_position??null)){setSt("Sama sijainti","");return;}
+              setSt("Siirretään…","saving");
+              try{
+                const{error}=await sb.from("appendices").update({chapter_position:ch,section_position:se,verified_section_id:null}).eq("id",a.id);
+                if(error)throw error;
+                a.chapter_position=ch;a.section_position=se;
+                setSt("Siirretty","saved");
+                toast("Liite siirretty – sivu päivittyy.");
+                renderChapter(currentSlug,currentChapterSlug);
+              }catch(err){setSt("Virhe: "+(err.message||err),"error");toast("Siirto epäonnistui");}
+            });
+          }
+        };
         btns.forEach((b,i)=>b.addEventListener("click",()=>{open===i?close():show(i);}));
         const mode=document.documentElement.getAttribute("data-app-mode")||"icon";
-        if(mode==="auto"){const tg=container.querySelector(".app-inline-toggles");tg.style.display="none";tg.style.height="0";tg.style.margin="0";container.style.marginTop="0";appendices.forEach((a,i)=>{const w=document.createElement("div");w.className="app-body";w.style.marginTop=i===0?"0":"14px";w.innerHTML=`<div class="app-body-head"><span class="kind">${esc(labelFor(a.type))}</span><h3>${esc(a.title||labelFor(a.type))}</h3></div><div class="appx-render-target"></div>`;container.appendChild(w);doRenderAppendix(w.querySelector(".appx-render-target"),a);});}
-        else if(mode==="hide"){container.style.display="none";}
+        if(!editMode&&mode==="auto"){const tg=container.querySelector(".app-inline-toggles");tg.style.display="none";tg.style.height="0";tg.style.margin="0";container.style.marginTop="0";appendices.forEach((a,i)=>{const w=document.createElement("div");w.className="app-body";w.style.marginTop=i===0?"0":"14px";w.innerHTML=`<div class="app-body-head"><span class="kind">${esc(labelFor(a.type))}</span><h3>${esc(a.title||labelFor(a.type))}</h3></div><div class="appx-render-target"></div>`;container.appendChild(w);doRenderAppendix(w.querySelector(".appx-render-target"),a);});}
+        else if(!editMode&&mode==="hide"){container.style.display="none";}
       }
 
-      // ── Liitteiden kytkentä (osion <-> liite) ──
-      // Liitteen kohdistus = joko tietty osio (verified_section_id) tai koko luku (NULL).
-      // Tehdyt siirrot kerätään appendixMoves-mappiin ja kirjoitetaan tallennuksen yhteydessä.
-      function effectiveAppxTarget(a){
-        if(appendixMoves.has(a.id))return appendixMoves.get(a.id);
-        return{verified_section_id:a.verified_section_id??null,chapter_position:Number(a.chapter_position),section_position:a.section_position??null};
-      }
-      function openAppxModal(){document.getElementById("appxModalBackdrop").classList.add("open");}
-      function closeAppxModal(){document.getElementById("appxModalBackdrop").classList.remove("open");}
-      document.getElementById("appxModalClose").addEventListener("click",closeAppxModal);
-      document.getElementById("appxModalBackdrop").addEventListener("click",e=>{if(e.target.id==="appxModalBackdrop")closeAppxModal();});
-
-      function renderAppxModal(){
-        if(!currentChapter)return;
-        const chapterPos=Number(currentChapter.position);
-        const sections=(currentChapter.sections||[]).slice().sort((a,b)=>a.position-b.position);
-        const sub=document.getElementById("appxModalSub"),body=document.getElementById("appxModalBody");
-        sub.textContent=currentChapter.title||"";
-        const apps=currentChapterApps.slice().sort((a,b)=>(a.section_position??-1)-(b.section_position??-1)||a.position-b.position);
-        if(!apps.length){body.innerHTML=`<div class="appx-modal-empty">Tässä luvussa ei ole liitteitä.</div>`;return;}
-        const optionsFor=a=>{
-          const tgt=effectiveAppxTarget(a);
-          const chapterSelected=tgt.verified_section_id==null?" selected":"";
-          const secOpts=sections.map(s=>`<option value="${esc(s.id)}"${tgt.verified_section_id===s.id?" selected":""}>${esc(s.title||("Osio "+(s.position+1)))}</option>`).join("");
-          return `<option value=""${chapterSelected}>— Koko luku —</option>${secOpts}`;
-        };
-        body.innerHTML=apps.map(a=>{
-          const tgt=effectiveAppxTarget(a);
-          const locLabel=tgt.verified_section_id?(sections.find(s=>s.id===tgt.verified_section_id)?.title||"Osio"):"Koko luku";
-          return `<div class="appx-list-item" data-appx-id="${esc(a.id)}">
-            <div class="ic">${iconFor(a.type)}</div>
-            <div class="info"><div class="t">${esc(a.title||labelFor(a.type))}</div><div class="loc${tgt.verified_section_id?" assigned":""}">${esc(labelFor(a.type))} · ${esc(locLabel)}</div></div>
-            <select aria-label="Kohdista osioon">${optionsFor(a)}</select>
-          </div>`;
-        }).join("");
-        body.querySelectorAll("select").forEach(sel=>{
-          sel.addEventListener("change",()=>{
-            const item=sel.closest(".appx-list-item"),id=item.dataset.appxId;
-            const a=currentChapterApps.find(x=>x.id===id);if(!a)return;
-            const newSectionId=sel.value||null;
-            const newSectionPos=newSectionId?sections.find(s=>s.id===newSectionId)?.position??null:null;
-            appendixMoves.set(id,{verified_section_id:newSectionId,chapter_position:chapterPos,section_position:newSectionPos});
-            const loc=item.querySelector(".loc");loc.textContent=`${labelFor(a.type)} · ${newSectionId?(sections.find(s=>s.id===newSectionId)?.title||"Osio"):"Koko luku"}`;
-            loc.classList.toggle("assigned",!!newSectionId);
+      // ── Editointi: osion title/content (per-osio tallennus, cloneadmin-mallin mukaan) ──
+      // Jokainen osio tallentaa itsensä suoraan kun käyttäjä painaa "Tallenna" --
+      // ei globaalia pending-tilaa joka voisi mennä epäsynkkaan DOM:n kanssa.
+      function wireSectionEditing(sectionsData){
+        document.querySelectorAll(".sec-wrap[data-section-id]").forEach(wrap=>{
+          if(wrap.dataset.wiredEdit==="1")return;wrap.dataset.wiredEdit="1";
+          const sectionId=wrap.dataset.sectionId;
+          const titleEl=wrap.querySelector('[data-field="title"]'),contentEl=wrap.querySelector('[data-field="content"]');
+          const saveBar=wrap.querySelector('[data-save-bar]');if(!saveBar)return;
+          const saveBtn=saveBar.querySelector('[data-action="save"]'),discardBtn=saveBar.querySelector('[data-action="discard"]');
+          const originalTitle=titleEl?titleEl.innerHTML:"",originalContent=contentEl?contentEl.innerHTML:"";
+          const markDirty=()=>saveBar.classList.add("dirty");
+          if(titleEl)titleEl.addEventListener("input",()=>{
             markDirty();
-            // päivitä myös taustalla olevat "Liitteet N" -laskurit pikaisesti seuraavalla renderillä
+            const stats=wrap.querySelector(".sec-stats");if(stats&&contentEl){const w=(contentEl.textContent||"").split(/\s+/).filter(Boolean).length;stats.querySelector(".w-count").textContent=w+" sanaa";}
           });
-        });
-      }
-      function wireAppManageButtons(){
-        document.querySelectorAll(".appx-manage-btn").forEach(b=>{
-          if(b.dataset.wired==="1")return;b.dataset.wired="1";
-          b.addEventListener("click",()=>{renderAppxModal();openAppxModal();});
-        });
-      }
-
-
-
-      // ── Editointi ──
-      let pendingChanges=new Map(); // sectionId -> {title, content}
-      let appendixMoves=new Map(); // appendixId -> {verified_section_id, chapter_position, section_position}
-      function markDirty(){dirty=true;updateSaveBar();}
-      function updateSaveBar(){const dot=document.getElementById("saveDot"),txt=document.getElementById("saveText");if(dirty){dot.className="save-dot dirty";txt.textContent=(pendingChanges.size+appendixMoves.size)+" muutosta tallentamatta";}else{dot.className="save-dot";txt.textContent="Tallennettu";}}
-
-      function wireEditing(slug,chapterSlug){
-        // contenteditable input
-        app.querySelectorAll('[contenteditable="true"]').forEach(el=>{
-          if(el.dataset.wired==="1")return;el.dataset.wired="1";
-          el.addEventListener("input",()=>{
-            const wrap=el.closest(".sec-wrap");
-            if(el.dataset.field==="chapter-title"){pendingChanges.set("__chapter__",{title:el.textContent.trim()});markDirty();return;}
-            if(!wrap)return;
-            const id=wrap.dataset.sectionId;
-            const titleEl=wrap.querySelector('[data-field="title"]'),contentEl=wrap.querySelector('[data-field="content"]');
-            const ex=pendingChanges.get(id)||{};
-            pendingChanges.set(id,{...ex,title:titleEl?titleEl.textContent.trim():null,content:htmlToDoc(contentEl)});
-            // live word count
+          if(contentEl)contentEl.addEventListener("input",()=>{
+            markDirty();
             const stats=wrap.querySelector(".sec-stats");if(stats){const w=(contentEl.textContent||"").split(/\s+/).filter(Boolean).length;stats.querySelector(".w-count").textContent=w+" sanaa";stats.dataset.words=w;if(document.documentElement.getAttribute("data-lens")==="true")applyLensAnalysis();}
-            markDirty();
           });
-        });
-        // toolbar-napit
-        app.querySelectorAll(".sec-up").forEach(b=>{if(b.dataset.wired==="1")return;b.dataset.wired="1";b.addEventListener("click",()=>moveSection(b.closest(".sec-wrap"),-1));});
-        app.querySelectorAll(".sec-down").forEach(b=>{if(b.dataset.wired==="1")return;b.dataset.wired="1";b.addEventListener("click",()=>moveSection(b.closest(".sec-wrap"),1));});
-        app.querySelectorAll(".sec-del").forEach(b=>{if(b.dataset.wired==="1")return;b.dataset.wired="1";b.addEventListener("click",()=>deleteSection(b.closest(".sec-wrap")));});
-        app.querySelectorAll(".add-section-btn").forEach(b=>{if(b.dataset.wired==="1")return;b.dataset.wired="1";b.addEventListener("click",()=>addSection(+b.dataset.after));});
-        // drag
-        app.querySelectorAll(".sec-handle").forEach(h=>{
-          if(h.dataset.wired==="1")return;h.dataset.wired="1";
-          const wrap=h.closest(".sec-wrap");
-          h.addEventListener("mousedown",()=>wrap.setAttribute("draggable","true"));
-          h.addEventListener("mouseup",()=>wrap.setAttribute("draggable","false"));
-          wrap.addEventListener("dragstart",e=>{wrap.classList.add("dragging");e.dataTransfer.effectAllowed="move";});
-          wrap.addEventListener("dragend",()=>{wrap.classList.remove("dragging");wrap.setAttribute("draggable","false");document.querySelectorAll(".drag-over").forEach(x=>x.classList.remove("drag-over"));});
-          wrap.addEventListener("dragover",e=>{e.preventDefault();const d=document.querySelector(".dragging");if(d&&d!==wrap)wrap.classList.add("drag-over");});
-          wrap.addEventListener("dragleave",()=>wrap.classList.remove("drag-over"));
-          wrap.addEventListener("drop",e=>{
-            e.preventDefault();wrap.classList.remove("drag-over");
-            const d=document.querySelector(".dragging");if(!d||d===wrap)return;
-            const host=document.getElementById("sectionsHost");
-            const rect=wrap.getBoundingClientRect();
-            const after=e.clientY>rect.top+rect.height/2;
-            const dAdd=nextSecWrapAddBtn(d);
-            const wrapAdd=nextSecWrapAddBtn(wrap);
-            const refNode=after?(wrapAdd?wrapAdd.nextSibling:wrap.nextSibling):wrap;
-            host.insertBefore(d,refNode);
-            if(dAdd)host.insertBefore(dAdd,d.nextSibling);
-            recomputePositions();
+          // plaintext-paste contenteditableissa
+          [titleEl,contentEl].forEach(el=>{if(!el)return;el.addEventListener("paste",e=>{e.preventDefault();const text=(e.clipboardData||window.clipboardData).getData("text/plain");document.execCommand("insertText",false,text);});});
+          if(discardBtn)discardBtn.addEventListener("click",()=>{
+            if(titleEl)titleEl.innerHTML=originalTitle;
+            if(contentEl)contentEl.innerHTML=originalContent;
+            saveBar.classList.remove("dirty");
+          });
+          if(saveBtn)saveBtn.addEventListener("click",async()=>{
+            saveBtn.disabled=true;saveBtn.textContent="Tallennetaan…";
+            try{
+              const update={};
+              if(titleEl)update.title=(titleEl.textContent||"").trim()||null;
+              if(contentEl)update.content=htmlToDoc(contentEl);
+              const{error}=await sb.from("sections").update(update).eq("id",sectionId);
+              if(error)throw error;
+              saveBar.classList.remove("dirty");
+              toast("Osio tallennettu");
+            }catch(err){toast("Tallennus epäonnistui: "+(err.message||err));}
+            finally{saveBtn.disabled=false;saveBtn.textContent="Tallenna";}
           });
         });
       }
 
-      function prevSecWrap(el){let s=el.previousElementSibling;while(s&&!s.classList.contains("sec-wrap"))s=s.previousElementSibling;return s;}
-      function nextSecWrap(el){let s=el.nextElementSibling;while(s&&!s.classList.contains("sec-wrap"))s=s.nextElementSibling;return s;}
-      function moveSection(wrap,dir){const host=document.getElementById("sectionsHost");const sib=dir<0?prevSecWrap(wrap):nextSecWrap(wrap);if(!sib)return;const wrapAdd=nextSecWrapAddBtn(wrap),sibAdd=nextSecWrapAddBtn(sib);if(dir<0){host.insertBefore(wrap,sib);if(wrapAdd)host.insertBefore(wrapAdd,sib);}else{host.insertBefore(sib,wrap);if(sibAdd)host.insertBefore(sibAdd,wrap);}recomputePositions();wrap.scrollIntoView({block:"center",behavior:"smooth"});}
-      function nextSecWrapAddBtn(wrap){const n=wrap.nextElementSibling;return n&&n.classList.contains("add-section-btn")?n:null;}
-      function recomputePositions(){
-        const wraps=[...document.querySelectorAll("#sectionsHost .sec-wrap")];
-        wraps.forEach((w,i)=>{const id=w.dataset.sectionId;const titleEl=w.querySelector('[data-field="title"]'),contentEl=w.querySelector('[data-field="content"]');const ex=pendingChanges.get(id)||{};pendingChanges.set(id,{...ex,title:titleEl?titleEl.textContent.trim():null,content:htmlToDoc(contentEl),position:i});});
-        markDirty();
-      }
-      function deleteSection(wrap){
-        if(!confirm("Poistetaanko tämä osio? Tallennus poistaa sen pysyvästi."))return;
-        const id=wrap.dataset.sectionId;pendingChanges.set(id,{__delete__:true});
-        const add=wrap.nextElementSibling;if(add&&add.classList.contains("add-section-btn"))add.remove();
-        wrap.remove();recomputePositions();
-      }
-      function addSection(afterPos){
-        const tempId="new-"+Date.now();
-        const host=document.getElementById("sectionsHost");
-        const html=`<div class="sec-wrap" data-section-id="${tempId}" data-section-pos="9999" data-new="true"><div class="sec-toolbar"><button class="sec-handle" title="Raahaa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg></button><button class="sec-up" title="Ylös"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg></button><button class="sec-down" title="Alas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button><button class="sec-del danger" title="Poista"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></button></div><h2 class="section-title" data-field="title" contenteditable="true"></h2><div class="reader" data-field="content" contenteditable="true"><p></p></div><div class="sec-stats" data-words="0"><span class="w-count">0 sanaa</span></div></div>`;
-        const tmp=document.createElement("div");tmp.innerHTML=html;const node=tmp.firstElementChild;
-        if(afterPos===-1){host.insertBefore(node,host.firstChild);}
-        else{const ref=[...host.querySelectorAll(".sec-wrap")].find(w=>+w.dataset.sectionPos===afterPos);if(ref&&ref.nextElementSibling)host.insertBefore(node,ref.nextElementSibling.classList.contains("add-section-btn")?ref.nextElementSibling.nextElementSibling:ref.nextElementSibling);else host.appendChild(node);}
-        pendingChanges.set(tempId,{__new__:true,title:"",content:{type:"doc",content:[{type:"paragraph"}]}});
-        wireEditing(); recomputePositions();
-        node.querySelector('[data-field="title"]').focus();
+      function wireChapterTitleEditing(){
+        const titleEl=document.querySelector('.chapter-title[data-field="chapter-title"]');
+        const saveBar=document.querySelector('[data-chapter-save-bar]');
+        if(!titleEl||!saveBar||!currentChapter)return;
+        if(titleEl.dataset.wired==="1")return;titleEl.dataset.wired="1";
+        const original=titleEl.innerHTML;
+        const saveBtn=saveBar.querySelector('[data-action="save"]'),discardBtn=saveBar.querySelector('[data-action="discard"]');
+        titleEl.addEventListener("input",()=>saveBar.classList.add("dirty"));
+        titleEl.addEventListener("paste",e=>{e.preventDefault();const text=(e.clipboardData||window.clipboardData).getData("text/plain");document.execCommand("insertText",false,text);});
+        discardBtn.addEventListener("click",()=>{titleEl.innerHTML=original;saveBar.classList.remove("dirty");});
+        saveBtn.addEventListener("click",async()=>{
+          saveBtn.disabled=true;saveBtn.textContent="Tallennetaan…";
+          try{
+            const title=(titleEl.textContent||"").trim();
+            const{error}=await sb.from("chapters").update({title}).eq("id",currentChapter.id);
+            if(error)throw error;
+            currentChapter.title=title;saveBar.classList.remove("dirty");toast("Luvun otsikko tallennettu");
+          }catch(err){toast("Tallennus epäonnistui: "+(err.message||err));}
+          finally{saveBtn.disabled=false;saveBtn.textContent="Tallenna otsikko";}
+        });
       }
 
-      // ── Tallennus ──
-      async function saveChanges(){
-        if(!pendingChanges.size&&!appendixMoves.size){toast("Ei muutoksia");return;}
-        const saveBtn=document.getElementById("saveBtn");saveBtn.disabled=true;
-        document.getElementById("saveDot").className="save-dot saving";document.getElementById("saveText").textContent="Tallennetaan…";
+      // ── Osion sijainnin siirto (position swap, tallentuu heti) ──
+      function wireSectionMoveButtons(sectionsData){
+        document.querySelectorAll(".sec-up").forEach(b=>{
+          if(b.dataset.wired==="1")return;b.dataset.wired="1";
+          b.addEventListener("click",()=>moveSectionPosition(b.closest(".sec-wrap"),-1,sectionsData));
+        });
+        document.querySelectorAll(".sec-down").forEach(b=>{
+          if(b.dataset.wired==="1")return;b.dataset.wired="1";
+          b.addEventListener("click",()=>moveSectionPosition(b.closest(".sec-wrap"),1,sectionsData));
+        });
+      }
+      async function moveSectionPosition(wrap,dir,sectionsData){
+        if(!wrap)return;
+        const sections=sectionsData.slice().sort((a,b)=>a.position-b.position);
+        const idx=sections.findIndex(s=>s.id===wrap.dataset.sectionId);
+        const otherIdx=idx+dir;
+        if(idx<0||otherIdx<0||otherIdx>=sections.length)return;
+        const a=sections[idx],b=sections[otherIdx];
+        const btn=wrap.querySelector(dir<0?".sec-up":".sec-down");if(btn)btn.disabled=true;
         try{
-          for(const[id,change]of pendingChanges.entries()){
-            if(id==="__chapter__"){
-              if(currentChapter&&change.title!=null){const{error}=await sb.from("chapters").update({title:change.title}).eq("id",currentChapter.id);if(error)throw new Error("Luvun otsikon tallennus epäonnistui: "+error.message);}
-              continue;
-            }
-            if(change.__delete__){
-              if(!id.startsWith("new-")){const{error}=await sb.from("sections").delete().eq("id",id);if(error)throw new Error("Osion poisto epäonnistui: "+error.message);}
-              continue;
-            }
-            if(change.__new__||id.startsWith("new-")){
-              const wrap=document.querySelector(`.sec-wrap[data-section-id="${id}"]`);
-              const pos=wrap?[...document.querySelectorAll("#sectionsHost .sec-wrap")].indexOf(wrap):999;
-              const titleEl=wrap?.querySelector('[data-field="title"]'),contentEl=wrap?.querySelector('[data-field="content"]');
-              // Käytä ensisijaisesti pendingChanges-tilaan tallennettua sisältöä
-              // (input-tapahtumat päivittävät sen), DOM luettavissa varalla.
-              const title=(change.title!==undefined&&change.title!==null&&change.title!=="")?change.title:(titleEl?titleEl.textContent.trim():null);
-              const content=change.content||(contentEl?htmlToDoc(contentEl):{type:"doc",content:[]});
-              const{error}=await sb.from("sections").insert({chapter_id:currentChapter.id,position:pos,title:title||null,content});
-              if(error)throw new Error("Uuden osion tallennus epäonnistui: "+error.message);
-              continue;
-            }
-            const upd={};if(change.title!==undefined&&change.title!==null)upd.title=change.title;if(change.content)upd.content=change.content;if(change.position!==undefined)upd.position=change.position;
-            if(Object.keys(upd).length){const{error}=await sb.from("sections").update(upd).eq("id",id);if(error)throw new Error("Osion tallennus epäonnistui: "+error.message);}
-          }
-          // tallenna kaikkien positiot lopuksi
-          const wraps=[...document.querySelectorAll("#sectionsHost .sec-wrap")];
-          for(let i=0;i<wraps.length;i++){
-            const id=wraps[i].dataset.sectionId;
-            if(!id.startsWith("new-")){const{error}=await sb.from("sections").update({position:i}).eq("id",id);if(error)throw new Error("Järjestyksen tallennus epäonnistui: "+error.message);}
-          }
-          // liitteiden kytkentämuutokset
-          for(const[appxId,tgt]of appendixMoves.entries()){
-            const upd={verified_section_id:tgt.verified_section_id,section_position:tgt.section_position};
-            const{error}=await sb.from("appendices").update(upd).eq("id",appxId);
-            if(error)throw new Error("Liitteen kytkennän tallennus epäonnistui: "+error.message);
-          }
-          pendingChanges.clear();appendixMoves.clear();dirty=false;updateSaveBar();
-          document.getElementById("saveText").textContent="Tallennettu";toast("Tallennettu");
-          const p=parsePath();if(p.chapter)renderChapter(p.book,p.chapter);
-        }catch(e){console.error(e);toast("Tallennus epäonnistui: "+(e.message||e));document.getElementById("saveText").textContent="Virhe -- yritä uudelleen";}
-        finally{saveBtn.disabled=false;}
+          // swap-päivitys: käytetään väliaikaista negatiivista positiota törmäysten välttämiseksi
+          const tempPos=-1-Date.now()%100000;
+          let r=await sb.from("sections").update({position:tempPos}).eq("id",a.id);if(r.error)throw r.error;
+          r=await sb.from("sections").update({position:a.position}).eq("id",b.id);if(r.error)throw r.error;
+          r=await sb.from("sections").update({position:b.position}).eq("id",a.id);if(r.error)throw r.error;
+          toast("Osion sijainti vaihdettu");
+          renderChapter(currentSlug,currentChapterSlug);
+        }catch(err){toast("Siirto epäonnistui: "+(err.message||err));if(btn)btn.disabled=false;}
       }
-      document.getElementById("saveBtn").addEventListener("click",saveChanges);
-      document.getElementById("revertBtn").addEventListener("click",()=>{if((pendingChanges.size||appendixMoves.size)&&!confirm("Kumotaanko tallentamattomat muutokset?"))return;pendingChanges.clear();appendixMoves.clear();dirty=false;updateSaveBar();const p=parsePath();if(p.chapter)renderChapter(p.book,p.chapter);});
-      window.addEventListener("keydown",e=>{if((e.metaKey||e.ctrlKey)&&e.key==="s"){e.preventDefault();if(editMode)saveChanges();}});
-      window.addEventListener("beforeunload",e=>{if(dirty){e.preventDefault();e.returnValue="";}});
+
+      // ── Osion poisto (tallentuu heti) ──
+      function wireSectionDelete(){
+        document.querySelectorAll(".sec-del").forEach(b=>{
+          if(b.dataset.wired==="1")return;b.dataset.wired="1";
+          b.addEventListener("click",async()=>{
+            const wrap=b.closest(".sec-wrap");if(!wrap)return;
+            if(!confirm("Poistetaanko tämä osio? Tämä poistaa sen pysyvästi tietokannasta."))return;
+            b.disabled=true;
+            try{
+              const{error}=await sb.from("sections").delete().eq("id",wrap.dataset.sectionId);
+              if(error)throw error;
+              toast("Osio poistettu");
+              renderChapter(currentSlug,currentChapterSlug);
+            }catch(err){toast("Poisto epäonnistui: "+(err.message||err));b.disabled=false;}
+          });
+        });
+      }
+
+      // ── Uuden osion lisäys ──
+      // Luo osion suoraan tietokantaan oletussisällöllä (ei tyhjä DOM-elementti jota pitäisi
+      // muistaa täyttää) -- näin osio on heti olemassa ja sitä voi muokata normaalilla
+      // per-osio-tallennuksella (wireSectionEditing). Tämä korjaa aiemman ongelman, jossa
+      // pelkkä otsikko tallentui mutta sisältö ei.
+      function wireAddSectionButtons(){
+        document.querySelectorAll(".add-section-btn").forEach(b=>{
+          if(b.dataset.wired==="1")return;b.dataset.wired="1";
+          b.addEventListener("click",()=>insertNewSection(+b.dataset.after));
+        });
+      }
+      async function insertNewSection(afterPos){
+        if(!currentChapter)return;
+        const btn=document.querySelector(`.add-section-btn[data-after="${afterPos}"]`);
+        if(btn){btn.disabled=true;btn.textContent="Luodaan…";}
+        try{
+          const sections=(currentChapter.sections||[]).slice().sort((a,b)=>a.position-b.position);
+          // Lasketaan uusi position: heti afterPos:in jälkeen. Muut osiot siirretään +1 jotta tila vapautuu.
+          const insertAt=afterPos===-1?0:(sections.find(s=>Number(s.position)===afterPos)?.position??sections.length-1)+1;
+          const toShift=sections.filter(s=>Number(s.position)>=insertAt).sort((a,b)=>b.position-a.position);
+          for(const s of toShift){
+            const{error}=await sb.from("sections").update({position:Number(s.position)+1}).eq("id",s.id);
+            if(error)throw error;
+          }
+          const defaultContent={type:"doc",content:[{type:"paragraph",content:[]}]};
+          const{data:inserted,error:insErr}=await sb.from("sections").insert({chapter_id:currentChapter.id,position:insertAt,title:"Uusi osio",content:defaultContent}).select("id").maybeSingle();
+          if(insErr)throw insErr;
+          toast("Osio luotu — muokkaa sisältöä ja paina Tallenna");
+          await renderChapter(currentSlug,currentChapterSlug);
+          // Vieritä uuteen osioon ja fokusoi sisältö (ei otsikko) jotta kirjoittaminen menee oikeaan paikkaan
+          if(inserted&&inserted.id){
+            const newWrap=document.querySelector(`.sec-wrap[data-section-id="${inserted.id}"]`);
+            if(newWrap){
+              newWrap.scrollIntoView({block:"center",behavior:"smooth"});
+              const contentEl=newWrap.querySelector('[data-field="content"]');
+              if(contentEl)contentEl.focus();
+            }
+          }
+        }catch(err){toast("Osion luonti epäonnistui: "+(err.message||err));}
+        finally{if(btn){btn.disabled=false;btn.textContent="Lisää osio tähän";}}
+      }
+
+      window.addEventListener("beforeunload",e=>{
+        if(document.querySelector(".sec-save-bar.dirty")){e.preventDefault();e.returnValue="";}
+      });
 
       // ── Auth ──
       let _session=null;
@@ -751,11 +746,11 @@
       function initProgress(){const bar=document.getElementById("progress");const upd=()=>{const h=document.documentElement,max=h.scrollHeight-h.clientHeight;bar.style.width=(max>0?Math.min(100,Math.max(0,window.scrollY/max*100)):0)+"%";};upd();window.removeEventListener("scroll",upd);window.addEventListener("scroll",upd,{passive:true});}
 
       // ── Globaalit näppäimet ──
-      window.addEventListener("keydown",e=>{if(e.key==="/"&&!["INPUT","TEXTAREA"].includes(document.activeElement?.tagName)&&!document.activeElement?.isContentEditable){e.preventDefault();openSearch();}if(e.key==="Escape"){closeSearch();closeLogin();closeAppxModal();toggleSettings(false);if(drawerOpen)closeDrawer();}});
+      window.addEventListener("keydown",e=>{if(e.key==="/"&&!["INPUT","TEXTAREA"].includes(document.activeElement?.tagName)&&!document.activeElement?.isContentEditable){e.preventDefault();openSearch();}if(e.key==="Escape"){closeSearch();closeLogin();toggleSettings(false);if(drawerOpen)closeDrawer();}});
 
       // ── Reititys ──
       function route(){
-        if(dirty&&editMode){if(!confirm("Sinulla on tallentamattomia muutoksia. Poistutaanko silti?")){return;}dirty=false;pendingChanges.clear();appendixMoves.clear();updateSaveBar();}
+        if(editMode&&document.querySelector(".sec-save-bar.dirty")){if(!confirm("Sinulla on tallentamattomia muutoksia. Poistutaanko silti?")){return;}}
         stopTracking();window.scrollTo(0,0);toggleSettings(false);closeSearch();
         const p=parsePath();
         try{if(!p.book)return home();if(p.book&&p.chapter)return renderChapter(p.book,p.chapter);if(p.book)return book(p.book);}catch(e){setError(e.message);}
@@ -784,11 +779,11 @@
             id:ch.id,slug:ch.slug,title:ch.title,position:ch.position,
             sections:(ch.sections||[]).slice().sort((a,b)=>a.position-b.position).map(s=>({id:s.id,title:s.title,position:s.position,content:s.content}))
           })),
-          // liitteet upotettuna samaan tiedostoon
+          // liitteet upotettuna samaan tiedostoon -- VAIN julkaistut (hidden=false) viedään lukijaversioon
           appendices:{
             schema:"book-appendices.v1",
             book:{slug:data.slug,title:data.title},
-            chapters:(appx?.chapters||[]).map(ch=>({position:ch.position,appendices:(ch.appendices||[]).map(a=>({id:a.id,chapter_position:a.chapter_position,section_position:a.section_position,verified_section_id:a.verified_section_id??null,type:a.type,title:a.title,source:a.source??null,position:a.position,content:a.content,hidden:false,reader_function:a.reader_function??null}))})),
+            chapters:(appx?.chapters||[]).map(ch=>({position:ch.position,appendices:(ch.appendices||[]).filter(a=>!a.hidden).map(a=>({id:a.id,chapter_position:a.chapter_position,section_position:a.section_position,verified_section_id:a.verified_section_id??null,type:a.type,title:a.title,source:a.source??null,position:a.position,content:a.content,hidden:false,reader_function:a.reader_function??null}))})),
             series_links:seriesLinks
           }
         };
