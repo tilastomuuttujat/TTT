@@ -308,27 +308,32 @@ export function render(el_, c, opts) {
     <div class="appx-fls-tabs" role="tablist">${tabsHtml}</div>
     ${panelsHtml}
   </div>
-  <div class="appx-fls-tt" id="${uid}-tt"></div>
-  <script>(function(){
-    var root=document.getElementById('${uid}');
-    if(!root)return;
-    var tabs=root.querySelectorAll('.appx-fls-tab');
-    var panels=root.querySelectorAll('.appx-fls-panel-wrap');
-    tabs.forEach(function(tab,i){
-      tab.addEventListener('click',function(){
-        tabs.forEach(function(t,j){t.setAttribute('aria-selected',i===j)});
-        panels.forEach(function(p,j){p.style.display=i===j?'':'none'});
-      });
-    });
-    var tip=document.getElementById('${uid}-tt');
-    root.addEventListener('mousemove',function(e){
-      var t=e.target.closest('[data-tip]');
-      if(!t){tip.style.opacity=0;return;}
-      tip.textContent=t.getAttribute('data-tip');
-      tip.style.left=e.clientX+'px';tip.style.top=e.clientY+'px';tip.style.opacity=1;
-    });
-    root.addEventListener('mouseleave',function(){tip.style.opacity=0;});
-  })();<\/script>`;
+  <div class="appx-fls-tt" id="${uid}-tt"></div>`;
 
   el_.innerHTML = util.lead(c) + main + util.extras(c) + util.source(c);
+
+  // Tapahtumankäsittely liitetään suoraan tästä render()-funktiosta -- ei luoteta innerHTML:ään upotetun
+  // <script>-tagin suoritukseen, koska selaimet eivät aja innerHTML:n kautta lisättyjä <script>-tageja.
+  const root = el_.querySelector("#" + uid);
+  if (!root) return;
+  const tabs = root.querySelectorAll(".appx-fls-tab");
+  const panels = root.querySelectorAll(".appx-fls-panel-wrap");
+  tabs.forEach((tab, i) => {
+    tab.addEventListener("click", () => {
+      tabs.forEach((t, j) => t.setAttribute("aria-selected", i === j));
+      panels.forEach((p, j) => { p.style.display = i === j ? "" : "none"; });
+    });
+  });
+  const tip = el_.querySelector("#" + uid + "-tt");
+  if (tip) {
+    root.addEventListener("mousemove", (e) => {
+      const t = e.target.closest("[data-tip]");
+      if (!t) { tip.style.opacity = 0; return; }
+      tip.textContent = t.getAttribute("data-tip");
+      tip.style.left = e.clientX + "px";
+      tip.style.top = e.clientY + "px";
+      tip.style.opacity = 1;
+    });
+    root.addEventListener("mouseleave", () => { tip.style.opacity = 0; });
+  }
 }
