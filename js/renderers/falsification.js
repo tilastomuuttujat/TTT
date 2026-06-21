@@ -240,6 +240,77 @@ function drawSparkGrid(svg, chart) {
 
 function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
 
+// kind: "band" -- min-max-kaistale verrokkimaista (chart.range) + fokusmaan käyrä (chart.focus) sen päällä.
+// chart.focus_in_range: false (oletus) -- kaistale lasketaan VAIN range-sarjoista, puolueeton vertailu,
+//   fokus voi olla kaistaleen ulko- tai sisäpuolella.
+// chart.focus_in_range: true -- fokus on mukana kaistaleen min/max-laskennassa (esteettinen, "sulava" muoto).
+//   Tällöin fokus ei voi koskaan olla kaistaleen ulkopuolella -- se on aina vähintään reunalla, joskus itse
+//   muodostamassa kaistaleen reunaa. Tilastot raportoivat "reunalla" (fokus on ääriarvo) vs. "sisällä".
+function drawBand(svg, chart) {
+  const W = 520, H = 280, P = { t: 16, r: 16, b: 30, l: 42 };
+  const focus = chart.focus;
+  const range = chart.range || [];
+  if (!focus || !range.length) return "<p style='color:var(--muted)'>Ei dataa.</p>";
+
+  // Yhteinen vuosijoukko: oletetaan range-sarjoilla sama x-akseli (vuodet); käytetään ensimmäistä mallina.
+  const years = range[0].points.map(p => p[0]);
+  const allCountries = chart.focus_in_range ? [...range, focus] : range;
+  const bandLo = years.map((y, i) => Math.min(...allCountries.map(s => s.points[i][1])));
+  const bandHi = years.map((y, i) => Math.max(...allCountries.map(s => s.points[i][1])));
+
+  const allY = [...bandLo, ...bandHi, ...focus.points.map(p => p[1])];
+  const yMin = Math.min(...allY), yMax = Math.max(...allY);
+  const pad = (yMax - yMin) * 0.1 || 1;
+  const y0 = chart.y_min !== undefined ? chart.y_min : yMin - pad;
+  const y1 = chart.y_max !== undefined ? chart.y_max : yMax + pad;
+  const x0 = Math.min(...years), x1 = Math.max(...years);
+  const X = x => P.l + (x - x0) / (x1 - x0 || 1) * (W - P.l - P.r);
+  const Y = v => H - P.b - (v - y0) / (y1 - y0 || 1) * (H - P.t - P.b);
+
+  let g = "";
+  const yTicks = 4;
+  for (let i = 0; i <= yTicks; i++) {
+    const v = y0 + (y1 - y0) * i / yTicks;
+    g += `<line class="appx-fls-grid" x1="${P.l}" y1="${Y(v)}" x2="${W - P.r}" y2="${Y(v)}"/>`;
+    g += `<text class="appx-fls-axis-label" x="${P.l - 6}" y="${Y(v) + 3}" text-anchor="end">${v.toFixed(1)}</text>`;
+  }
+  const xStep = Math.max(1, Math.floor(years.length / 5));
+  for (let i = 0; i < years.length; i += xStep) {
+    g += `<text class="appx-fls-axis-label" x="${X(years[i])}" y="${H - P.b + 14}" text-anchor="middle">${years[i]}</text>`;
+  }
+
+  // Kaistale: täytetty alue bandLo..bandHi välillä. Yläreuna curvePath-käyränä, sitten suora viiva alareunan
+  // ensimmäiseen pisteeseen, sitten alareuna käänteisenä käyränä takaisin alkuun, lopuksi suljetaan polku.
+  const topPts = years.map((y, i) => [X(y), Y(bandHi[i])]);
+  const botPtsRev = years.map((y, i) => [X(y), Y(bandLo[i])]).reverse();
+  const topPath = curvePath(topPts);
+  const botPath = curvePath(botPtsRev);
+  // botPath alkaa "M x y" -- korvataan se "L x y" -siirtymäksi jotta se jatkaa samaa polkua katkeamatta.
+  const botPathContinued = "L" + botPath.slice(1);
+  const bandPath = `${topPath} ${botPathContinued} Z`;
+  const band = `<path d="${bandPath}" fill="var(--accent,#1f1b15)" fill-opacity=".10" stroke="none"/>`;
+
+  // Kaistaleen ylä- ja alareunaviivat ohuina, jotta kaistaleen muoto erottuu myös ilman täyttöä.
+  const topLine = `<path d="${curvePath(topPts)}" fill="none" stroke="#a9a29a" stroke-width="1.2" stroke-dasharray="3 3" opacity=".7"/>`;
+  const botLine = `<path d="${curvePath(years.map((y, i) => [X(y), Y(bandLo[i])]))}" fill="none" stroke="#a9a29a" stroke-width="1.2" stroke-dasharray="3 3" opacity=".7"/>`;
+
+  // Fokuskäyrä (Suomi) päällimmäisenä, korostettuna.
+  const focusPts = focus.points.map(([x, y]) => [X(x), Y(y)]);
+  const focusColor = ROLE_COLOR(focus.color_role || "primary");
+  const focusLine = `<path d="${curvePath(focusPts)}" fill="none" stroke="${focusColor}" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>`;
+  let focusDots = "";
+  focus.points.forEach(([x, y]) => {
+    focusDots += `<circle class="appx-fls-pt" cx="${X(x)}" cy="${Y(y)}" r="3.2" fill="${focusColor}" stroke="#fff" stroke-width="1" data-tip="${esc(focus.label)} · ${x} · ${y}${focus.unit || ''}"/>`;
+  });
+  const lastF = focus.points[focus.points.length - 1];
+  const focusLabel = `<text x="${X(lastF[0]) + 6}" y="${Y(lastF[1]) + 3}" font-size="10.5" font-weight="700" fill="${focusColor}" font-family="Work Sans,system-ui,sans-serif">${esc(focus.label)}</text>`;
+
+  const rangeNames = range.map(s => esc(s.label)).join(" · ");
+  const bandLabel = `<text x="${P.l}" y="${P.t + 8}" font-size="9" fill="var(--muted-2,#8a8276)" font-family="Work Sans,system-ui,sans-serif">${esc(chart.range_label || rangeNames)} (min–max)</text>`;
+
+  return `<svg class="appx-fls-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${g}${band}${topLine}${botLine}${bandLabel}${focusLine}${focusDots}${focusLabel}</svg>`;
+}
+
 // Catmull-Rom -> kuutiollinen Bézier, pehmeä käyrä datapisteiden läpi. Ei käytetä regressiosuorille (ne pysyvät suorina, koska ne ovat sovituksia, ei dataa).
 function curvePath(points, tension = .45) {
   if (points.length < 2) return "";
@@ -263,6 +334,7 @@ function renderChart(chart) {
   if (chart.kind === "lines") svgHtml = drawLines(null, chart);
   else if (chart.kind === "bars") svgHtml = drawBars(null, chart);
   else if (chart.kind === "sparkline-grid") svgHtml = drawSparkGrid(null, chart);
+  else if (chart.kind === "band") svgHtml = drawBand(null, chart);
   return `<div class="appx-fls-chart-card">${svgHtml}</div>`;
 }
 
@@ -313,7 +385,7 @@ export function render(el_, c, opts) {
   el_.innerHTML = util.lead(c) + main + util.extras(c) + util.source(c);
 
   // Tapahtumankäsittely liitetään suoraan tästä render()-funktiosta -- ei luoteta innerHTML:ään upotetun
-  // <script>-tagin suoritukseen, koska selaimet eivät aja innerHTML:n kautta lisättyjä <script>-tageja.
+  // script-elementin suoritukseen, koska selaimet eivät aja innerHTML:n kautta lisättyjä script-tageja.
   const root = el_.querySelector("#" + uid);
   if (!root) return;
   const tabs = root.querySelectorAll(".appx-fls-tab");
