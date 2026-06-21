@@ -136,6 +136,30 @@ function drawBars(svg, chart) {
   return `<svg class="appx-fls-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${zeroLine}${rows}</svg>`;
 }
 
+function drawSparkGrid(svg, chart) {
+  const W = 520, H = 260, cols = 2, gap = 8;
+  const panels = chart.panels || [];
+  const rows = Math.ceil(panels.length / cols);
+  const cw = (W - gap * (cols + 1)) / cols, ch = (H - gap * (rows + 1)) / rows;
+  let out = "";
+  panels.forEach((pl, idx) => {
+    const cx = gap + (idx % cols) * (cw + gap), cy = gap + Math.floor(idx / cols) * (ch + gap);
+    const color = ROLE_COLOR(pl.color_role);
+    out += `<rect x="${cx}" y="${cy}" width="${cw}" height="${ch}" rx="4" fill="var(--bg,#fdfbf7)" stroke="var(--line,#e6dfd0)"/>`;
+    out += `<text x="${cx + 8}" y="${cy + 14}" font-size="9.5" font-weight="700" fill="var(--fg,#1c2024)" font-family="Work Sans,system-ui,sans-serif">${esc(pl.label)}</text>`;
+    const pts = pl.points, xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+    const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys) * 0.92, y1 = Math.max(...ys) * 1.08;
+    const pad = 10;
+    const X = x => cx + pad + (x - x0) / (x1 - x0 || 1) * (cw - 2 * pad);
+    const Y = v => cy + ch - pad - (v - y0) / (y1 - y0 || 1) * (ch - pad - 22);
+    const line = pts.map(([x, y]) => [X(x), Y(y)]);
+    out += `<path d="${curvePath(line)}" fill="none" stroke="${color}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>`;
+    pts.forEach(([x, y]) => { out += `<circle class="appx-fls-pt" cx="${X(x)}" cy="${Y(y)}" r="2.2" fill="${color}" data-tip="${esc(pl.label)} · ${x} · ${fmtVal(y, pl.fmt)}"/>`; });
+    out += `<text x="${cx + 8}" y="${cy + ch - 5}" font-size="8.5" fill="var(--muted-2,#8a8276)" font-family="Work Sans,system-ui,sans-serif">${x0}: ${fmtVal(pts[0][1], pl.fmt)} → ${x1}: ${fmtVal(ys[ys.length - 1], pl.fmt)}</text>`;
+  });
+  return `<svg class="appx-fls-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${out}</svg>`;
+}
+
 function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
 
 function drawBand(svg, chart) {
@@ -219,6 +243,7 @@ function renderChart(chart) {
   let svgHtml = "";
   if (chart.kind === "lines") svgHtml = drawLines(null, chart);
   else if (chart.kind === "bars") svgHtml = drawBars(null, chart);
+  else if (chart.kind === "sparkline-grid") svgHtml = drawSparkGrid(null, chart);
   else if (chart.kind === "band") svgHtml = drawBand(null, chart);
   return `<div class="appx-fls-chart-card">${svgHtml}</div>`;
 }
