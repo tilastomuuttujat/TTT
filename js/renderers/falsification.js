@@ -1,43 +1,3 @@
-// renderers/falsification.js -- kolmiportainen falsifiointiliite (A indikaattori / B mekanismi / C vahva testi).
-// Sama rajapinta kuin muilla rendereilla: export function render(el, c, opts).
-//
-// Skeema (content):
-// {
-//   view: "falsification",
-//   body: "...",                 // lead-teksti, valinnainen
-//   claim: "\"...\"",            // ennusteen ydinväite
-//   tiers: [
-//     {
-//       tier: "A" | "B" | "C",
-//       tier_label: "Indikaattoritesti" | "Mekanismitesti" | "Vahva testi",
-//       title: "...",
-//       rule: "...",
-//       verdict: "...",                 // esim. "Indikaattorituki", "Ei tue eikä kumoa"
-//       verdict_status: "pass"|"indicator"|"mechanism"|"partial"|"pending",
-//       chart: {
-//         kind: "lines" | "bars" | "sparkline-grid" | "missing",
-//         // kind:"lines" ---------------------------------------------------
-//         series: [{ key, label, color_role, points: [[x,y], ...], unit }],
-//         y_label, x_label,
-//         threshold: { value, label, axis:"y"|"x" },     // valinnainen vaakaviiva/pystyviiva
-//         fit: { from: x, series_key },                   // valinnainen regressiosuora (PNS) yhdelle sarjalle
-//         dual_axis: { left:{min,max,unit}, right:{min,max,unit}, right_series:[key,...] }, // valinnainen
-//         // kind:"bars" ----------------------------------------------------
-//         bars: [{ label, value, tone_role }],
-//         corridor: { low, high, label },                 // valinnainen pystykäytävä (esim. ±15%)
-//         baseline: 0,
-//         // kind:"sparkline-grid" -------------------------------------------
-//         panels: [{ label, points:[[x,y],...], color_role, fmt:"pct1"|"num1"|"num2" }],
-//         // kind:"missing" ---------------------------------------------------
-//         required: ["series.key", ...]
-//       },
-//       stats: [[label, value, sub, tone_role], ...],     // tone_role: pass|warn|fi|""
-//       note: "..."
-//     }
-//   ],
-//   source: "..."
-// }
-
 let cssDone = false;
 function injectCss(util) {
   if (cssDone) return; cssDone = true;
@@ -86,10 +46,6 @@ function injectCss(util) {
     .appx-fls-stat .v { font-size: 17px; font-weight: 700; font-family: "Work Sans", system-ui, sans-serif; color: var(--fg, #1f1b15); }
     .appx-fls-stat .v.pass { color: #2e7d5b; } .appx-fls-stat .v.warn { color: #9a6526; } .appx-fls-stat .v.fi { color: var(--accent, #1f1b15); }
     .appx-fls-stat .sub { font-size: 10.5px; color: var(--muted-2, #8a8276); margin-top: 2px; }
-    .appx-fls-reading { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--line, #e6dfd0); }
-    .appx-fls-reading-item { font-size: 11px; color: var(--muted, #6b6356); display: flex; align-items: center; gap: 6px;
-      font-family: "Work Sans", system-ui, sans-serif; }
-    .appx-fls-swatch { width: 12px; height: 3px; border-radius: 2px; flex-shrink: 0; }
     .appx-fls-note { border: 1px dashed var(--line, #e6dfd0); border-radius: 6px; padding: 12px 14px; margin-top: 12px;
       font-size: 12.5px; color: var(--muted, #6b6356); line-height: 1.5; }
     .appx-fls-note b { color: var(--fg, #1f1b15); }
@@ -102,24 +58,18 @@ function injectCss(util) {
   `);
 }
 
-const TONE_COLOR = { pass: "#2e7d5b", warn: "#c8843b", fi: "var(--accent, #1f1b15)", "": "var(--fg, #1f1b15)" };
+const TONE_COLOR = { pass: "#2e7d5b", warn: "#c8843b", fi: "var(--accent, #1f6f78)", "": "var(--fg, #1c2024)" };
 const ROLE_COLOR = (role) => ({
-  primary: "var(--accent, #1f1b15)", other: "#a9a29a", warn: "#9c4a38",
+  primary: "var(--accent, #1f6f78)", other: "#a9a29a", warn: "#9c4a38",
   pass: "#2e7d5b", b: "#8a5a2a", c: "#6b4f8a"
-}[role] || "var(--accent, #1f1b15)");
+}[role] || "var(--accent, #1f6f78)");
 
-function el(tag, attrs) {
-  const e = document.createElementNS("http://www.w3.org/2000/svg", tag);
-  for (const k in attrs) e.setAttribute(k, attrs[k]);
-  return e;
-}
 function fmtVal(v, fmt) {
   if (fmt === "pct1") return Number(v).toFixed(1) + "%";
   if (fmt === "num2") return Number(v).toFixed(2);
   return Number(v).toFixed(1);
 }
 
-// --- kind: lines (aikasarja + valinnainen kynnys/regressio) ---
 function drawLines(svg, chart) {
   const W = 520, H = 280, P = { t: 16, r: 16, b: 30, l: 42 };
   const series = chart.series || [];
@@ -148,27 +98,9 @@ function drawLines(svg, chart) {
     g += `<text class="appx-fls-axis-label" x="${X(uniqX[i])}" y="${H - P.b + 14}" text-anchor="middle">${uniqX[i]}</text>`;
   }
 
-  if (chart.threshold && chart.threshold.axis !== "x") {
-    const ty = Y(chart.threshold.value);
-    g += `<line class="appx-fls-thresh" x1="${P.l}" y1="${ty}" x2="${W - P.r}" y2="${ty}"/>`;
-    g += `<text class="appx-fls-axis-label" x="${W - P.r}" y="${ty - 5}" text-anchor="end" fill="#c8843b">${chart.threshold.label || ""}</text>`;
-  } else if (chart.threshold && chart.threshold.axis === "x") {
-    const tx = X(chart.threshold.value);
-    g += `<line class="appx-fls-thresh" x1="${tx}" y1="${P.t}" x2="${tx}" y2="${H - P.b}"/>`;
-    g += `<text class="appx-fls-axis-label" x="${tx + 4}" y="${P.t + 10}" fill="#c8843b">${chart.threshold.label || ""}</text>`;
-  }
-
   let lines = "", dots = "", labels = "";
   series.forEach(s => {
     const color = ROLE_COLOR(s.color_role);
-    if (chart.fit && chart.fit.series_key === s.key) {
-      const pts = s.points.filter(p => p[0] >= chart.fit.from);
-      const n = pts.length, sx = pts.reduce((a, p) => a + p[0], 0), sy = pts.reduce((a, p) => a + p[1], 0);
-      const sxx = pts.reduce((a, p) => a + p[0] * p[0], 0), sxy = pts.reduce((a, p) => a + p[0] * p[1], 0);
-      const m = (n * sxy - sx * sy) / (n * sxx - sx * sx), b = (sy - m * sx) / n;
-      const xa = chart.fit.from, xb = x1;
-      lines += `<line x1="${X(xa)}" y1="${Y(m * xa + b)}" x2="${X(xb)}" y2="${Y(m * xb + b)}" stroke="${color}" stroke-width="1.6" stroke-dasharray="4 3" opacity=".8"/>`;
-    }
     const pts = s.points.map(([x, y]) => [X(x), Y(y)]);
     lines += `<path d="${curvePath(pts)}" fill="none" stroke="${color}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>`;
     s.points.forEach(([x, y]) => {
@@ -181,78 +113,37 @@ function drawLines(svg, chart) {
   return `<svg class="appx-fls-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${g}${lines}${dots}${labels}</svg>`;
 }
 
-// --- kind: bars (vaakapalkit, valinnainen kynnyskäytävä) ---
 function drawBars(svg, chart) {
   const W = 520, H = 240, P = { t: 14, r: 18, b: 14, l: 140 };
   const bars = chart.bars || [];
   const baseline = chart.baseline ?? 0;
   const vals = bars.map(b => b.value);
-  const maxAbs = Math.max(...vals.map(v => Math.abs(v - baseline)), chart.corridor ? chart.corridor.high : 0) * 1.15 || 1;
+  const maxAbs = Math.max(...vals.map(v => Math.abs(v - baseline))) * 1.15 || 1;
   const zero = P.l + (W - P.l - P.r) / 2;
   const X = v => zero + (v - baseline) / maxAbs * ((W - P.l - P.r) / 2);
-  let corridor = "";
-  if (chart.corridor) {
-    const { low, high } = chart.corridor;
-    corridor = `<rect class="appx-fls-corridor" x="${X(low)}" y="${P.t - 4}" width="${X(high) - X(low)}" height="${H - P.t - P.b + 4}"/>
-      <line class="appx-fls-thresh" x1="${X(low)}" y1="${P.t - 4}" x2="${X(low)}" y2="${H - P.b}"/>
-      <line class="appx-fls-thresh" x1="${X(high)}" y1="${P.t - 4}" x2="${X(high)}" y2="${H - P.b}"/>`;
-  }
   const rowH = (H - P.t - P.b) / bars.length;
   let rows = "";
   bars.forEach((b, i) => {
     const cy = P.t + rowH * i + rowH / 2;
-    const out = chart.corridor ? (b.value < chart.corridor.low || b.value > chart.corridor.high) : true;
-    const color = out ? ROLE_COLOR(b.tone_role || "primary") : "#a9a29a";
+    const color = ROLE_COLOR(b.tone_role || "primary");
     const bx = Math.min(zero, X(b.value)), bw = Math.abs(X(b.value) - zero);
-    rows += `<text x="${P.l - 10}" y="${cy + 4}" text-anchor="end" font-size="11" fill="var(--fg,#1f1b15)" font-family="Work Sans,system-ui,sans-serif">${esc(b.label)}</text>`;
+    rows += `<text x="${P.l - 10}" y="${cy + 4}" text-anchor="end" font-size="11" fill="var(--fg,#1c2024)" font-family="Work Sans,system-ui,sans-serif">${esc(b.label)}</text>`;
     rows += `<rect class="appx-fls-pt" x="${bx}" y="${cy - 9}" width="${bw}" height="18" rx="2" fill="${color}" data-tip="${esc(b.label)} · ${b.value}"/>`;
     const vx = b.value > baseline ? X(b.value) + 6 : X(b.value) - 6;
     rows += `<text x="${vx}" y="${cy + 4}" text-anchor="${b.value > baseline ? 'start' : 'end'}" font-size="10.5" fill="${color}" font-weight="700" font-family="Work Sans,system-ui,sans-serif">${b.value > baseline ? '+' : ''}${b.value}</text>`;
   });
   const zeroLine = `<line class="appx-fls-zero" x1="${zero}" y1="${P.t - 4}" x2="${zero}" y2="${H - P.b}"/>`;
-  return `<svg class="appx-fls-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${corridor}${zeroLine}${rows}</svg>`;
-}
-
-// --- kind: sparkline-grid (useita pieniä rinnakkaisia kuvioita) ---
-function drawSparkGrid(svg, chart) {
-  const W = 520, H = 260, cols = 2, gap = 8;
-  const panels = chart.panels || [];
-  const rows = Math.ceil(panels.length / cols);
-  const cw = (W - gap * (cols + 1)) / cols, ch = (H - gap * (rows + 1)) / rows;
-  let out = "";
-  panels.forEach((pl, idx) => {
-    const cx = gap + (idx % cols) * (cw + gap), cy = gap + Math.floor(idx / cols) * (ch + gap);
-    const color = ROLE_COLOR(pl.color_role);
-    out += `<rect x="${cx}" y="${cy}" width="${cw}" height="${ch}" rx="4" fill="var(--bg,#fdfbf7)" stroke="var(--line,#e6dfd0)"/>`;
-    out += `<text x="${cx + 8}" y="${cy + 14}" font-size="9.5" font-weight="700" fill="var(--fg,#1f1b15)" font-family="Work Sans,system-ui,sans-serif">${esc(pl.label)}</text>`;
-    const pts = pl.points, xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
-    const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys) * 0.92, y1 = Math.max(...ys) * 1.08;
-    const pad = 10;
-    const X = x => cx + pad + (x - x0) / (x1 - x0 || 1) * (cw - 2 * pad);
-    const Y = v => cy + ch - pad - (v - y0) / (y1 - y0 || 1) * (ch - pad - 22);
-    const line = pts.map(([x, y]) => [X(x), Y(y)]);
-    out += `<path d="${curvePath(line)}" fill="none" stroke="${color}" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>`;
-    pts.forEach(([x, y]) => { out += `<circle class="appx-fls-pt" cx="${X(x)}" cy="${Y(y)}" r="2.2" fill="${color}" data-tip="${esc(pl.label)} · ${x} · ${fmtVal(y, pl.fmt)}"/>`; });
-    out += `<text x="${cx + 8}" y="${cy + ch - 5}" font-size="8.5" fill="var(--muted-2,#8a8276)" font-family="Work Sans,system-ui,sans-serif">${x0}: ${fmtVal(pts[0][1], pl.fmt)} → ${x1}: ${fmtVal(ys[ys.length - 1], pl.fmt)}</text>`;
-  });
-  return `<svg class="appx-fls-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${out}</svg>`;
+  return `<svg class="appx-fls-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${zeroLine}${rows}</svg>`;
 }
 
 function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
 
-// kind: "band" -- min-max-kaistale verrokkimaista (chart.range) + fokusmaan käyrä (chart.focus) sen päällä.
-// chart.focus_in_range: false (oletus) -- kaistale lasketaan VAIN range-sarjoista, puolueeton vertailu,
-//   fokus voi olla kaistaleen ulko- tai sisäpuolella.
-// chart.focus_in_range: true -- fokus on mukana kaistaleen min/max-laskennassa (esteettinen, "sulava" muoto).
-//   Tällöin fokus ei voi koskaan olla kaistaleen ulkopuolella -- se on aina vähintään reunalla, joskus itse
-//   muodostamassa kaistaleen reunaa. Tilastot raportoivat "reunalla" (fokus on ääriarvo) vs. "sisällä".
 function drawBand(svg, chart) {
   const W = 520, H = 280, P = { t: 16, r: 16, b: 30, l: 42 };
   const focus = chart.focus;
   const range = chart.range || [];
   if (!focus || !range.length) return "<p style='color:var(--muted)'>Ei dataa.</p>";
 
-  // Yhteinen vuosijoukko: oletetaan range-sarjoilla sama x-akseli (vuodet); käytetään ensimmäistä mallina.
   const years = range[0].points.map(p => p[0]);
   const allCountries = chart.focus_in_range ? [...range, focus] : range;
   const bandLo = years.map((y, i) => Math.min(...allCountries.map(s => s.points[i][1])));
@@ -279,22 +170,17 @@ function drawBand(svg, chart) {
     g += `<text class="appx-fls-axis-label" x="${X(years[i])}" y="${H - P.b + 14}" text-anchor="middle">${years[i]}</text>`;
   }
 
-  // Kaistale: täytetty alue bandLo..bandHi välillä. Yläreuna curvePath-käyränä, sitten suora viiva alareunan
-  // ensimmäiseen pisteeseen, sitten alareuna käänteisenä käyränä takaisin alkuun, lopuksi suljetaan polku.
   const topPts = years.map((y, i) => [X(y), Y(bandHi[i])]);
   const botPtsRev = years.map((y, i) => [X(y), Y(bandLo[i])]).reverse();
   const topPath = curvePath(topPts);
   const botPath = curvePath(botPtsRev);
-  // botPath alkaa "M x y" -- korvataan se "L x y" -siirtymäksi jotta se jatkaa samaa polkua katkeamatta.
   const botPathContinued = "L" + botPath.slice(1);
   const bandPath = `${topPath} ${botPathContinued} Z`;
-  const band = `<path d="${bandPath}" fill="var(--accent,#1f1b15)" fill-opacity=".10" stroke="none"/>`;
+  const band = `<path d="${bandPath}" fill="var(--accent,#1f6f78)" fill-opacity=".10" stroke="none"/>`;
 
-  // Kaistaleen ylä- ja alareunaviivat ohuina, jotta kaistaleen muoto erottuu myös ilman täyttöä.
   const topLine = `<path d="${curvePath(topPts)}" fill="none" stroke="#a9a29a" stroke-width="1.2" stroke-dasharray="3 3" opacity=".7"/>`;
   const botLine = `<path d="${curvePath(years.map((y, i) => [X(y), Y(bandLo[i])]))}" fill="none" stroke="#a9a29a" stroke-width="1.2" stroke-dasharray="3 3" opacity=".7"/>`;
 
-  // Fokuskäyrä (Suomi) päällimmäisenä, korostettuna.
   const focusPts = focus.points.map(([x, y]) => [X(x), Y(y)]);
   const focusColor = ROLE_COLOR(focus.color_role || "primary");
   const focusLine = `<path d="${curvePath(focusPts)}" fill="none" stroke="${focusColor}" stroke-width="2.6" stroke-linejoin="round" stroke-linecap="round"/>`;
@@ -311,7 +197,7 @@ function drawBand(svg, chart) {
   return `<svg class="appx-fls-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${g}${band}${topLine}${botLine}${bandLabel}${focusLine}${focusDots}${focusLabel}</svg>`;
 }
 
-// Catmull-Rom -> kuutiollinen Bézier, pehmeä käyrä datapisteiden läpi. Ei käytetä regressiosuorille (ne pysyvät suorina, koska ne ovat sovituksia, ei dataa).
+// Catmull-Rom splinekäyrän interpolointi pehmeitä käyriä varten
 function curvePath(points, tension = .45) {
   if (points.length < 2) return "";
   if (points.length === 2) return `M${points[0][0]} ${points[0][1]} L${points[1][0]} ${points[1][1]}`;
@@ -333,7 +219,6 @@ function renderChart(chart) {
   let svgHtml = "";
   if (chart.kind === "lines") svgHtml = drawLines(null, chart);
   else if (chart.kind === "bars") svgHtml = drawBars(null, chart);
-  else if (chart.kind === "sparkline-grid") svgHtml = drawSparkGrid(null, chart);
   else if (chart.kind === "band") svgHtml = drawBand(null, chart);
   return `<div class="appx-fls-chart-card">${svgHtml}</div>`;
 }
@@ -384,8 +269,6 @@ export function render(el_, c, opts) {
 
   el_.innerHTML = util.lead(c) + main + util.extras(c) + util.source(c);
 
-  // Tapahtumankäsittely liitetään suoraan tästä render()-funktiosta -- ei luoteta innerHTML:ään upotetun
-  // script-elementin suoritukseen, koska selaimet eivät aja innerHTML:n kautta lisättyjä script-tageja.
   const root = el_.querySelector("#" + uid);
   if (!root) return;
   const tabs = root.querySelectorAll(".appx-fls-tab");
