@@ -3026,11 +3026,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Oletus on niin arkinen, ettei sitä huomaa oletukseksi. ",
-                    "type": "text"
-                  },
-                  {
-                    "text": "Ehkä mysteeri onkin toisaalla.",
+                    "text": "Oletus on niin arkinen, ettei sitä huomaa oletukseksi. Ehkä mysteeri onkin toisaalla.",
                     "type": "text"
                   }
                 ]
@@ -3048,11 +3044,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Tunne on voimakas. Mutta kokemuksen voima ei vielä todista pysyvää ydintä. ",
-                    "type": "text"
-                  },
-                  {
-                    "text": "Tämä tunne voi todistaa myös jotain muuta: että monesta osasta koostuva järjestelmä voi näyttää itselleen yhtenäiseltä. Minä ei silloin ollut kappale.",
+                    "text": "Tunne on voimakas. Mutta kokemuksen voima ei vielä todista pysyvää ydintä. Tämä tunne voi todistaa myös jotain muuta: että monesta osasta koostuva järjestelmä voi näyttää itselleen yhtenäiseltä. Minä ei silloin ollut kappale.",
                     "type": "text"
                   }
                 ]
@@ -3197,7 +3189,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Toinen on muistilukko. Se ei vain tallenna tapahtumia, vaan omistaa ne: tämä tapahtui minulle. Lapsuuden häpeä, aikuisuuden menetys, onnistuminen ja pettymys asettuvat samaan elämänlinjaan. Muisti ei ole pelkkä arkisto vaan kudontakone, joka valitsee, painottaa ja liittää. Siksi menneisyys ei ole vain takana, vaan se vaikuttaa nykyhetkeen. ",
+                    "text": "Toinen on muistilukko. Se ei vain tallenna tapahtumia, vaan omistaa ne: tämä tapahtui minulle. Lapsuuden häpeä, aikuisuuden menetys, onnistuminen ja pettymys asettuvat samaan elämänlinjaan. Muisti ei ole pelkkä arkisto vaan kudontakone, joka valitsee, painottaa ja liittää. Siksi menneisyys ei ole vain takana, vaan se vaikuttaa nykyhetkeen.",
                     "type": "text"
                   }
                 ]
@@ -3261,7 +3253,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Kuvitellaan kaksi hypoteettista organismia. Ensimmäinen on pelkkä reaktiokone: se syö nälkäänsä, pakenee vaaraa ja lisääntyy lisääntymiskaudella. Se selviytyy. Toinen on reaktiokone, jolla on lisäksi tunne olemassaolosta — tunne, että nälkä, vaara ja jälkeläiset ovat sen omia. Kumpi panostaa enemmän selviytymiseen? Kumpi etsii ruokaa pidempään, taistelee kovemmin ja suojelee jälkeläisiään uhrautuen?",
+                    "text": "Kuvitellaan kaksi hypoteettista organismia.",
                     "type": "text"
                   }
                 ]
@@ -3270,7 +3262,61 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Minuus on geenien itsensä kopioimisen subjektiivinen kokemus. Se on evolutiivinen ratkaisu ongelmaan, jota kukaan ei kysynyt: miten saada organismi käyttäytymään niin kuin sillä olisi oma henkilökohtainen panoksensa. Geenit eivät voi pakottaa organismia toimimaan tietyllä tavalla. Ne eivät ole käskyjä, vaan rakennusohjeita. Geenit voivat kuitenkin rakentaa aivot, jotka kokevat olevansa olemassa, joille oma selviytyminen on tärkeää, jotka pelkäävät kuolemaa ja rakastavat jälkeläisiään. Tämä kokemus on geenien tapa varmistaa, että organismi toimii niiden edun mukaisesti, vaikka geenit eivät tiedä siitä mitään.",
+                    "text": "Ensimmäinen on pelkkä reaktiokone: se syö nälkäänsä, pakenee vaaraa ja lisääntyy lisääntymiskaudella. Se selviytyy.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Toinen on reaktiokone, jolla on lisäksi tunne olemassaolosta — tunne, että nälkä, vaara ja jälkeläiset ovat sen omia.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kumpi panostaa enemmän selviytymiseen? Kumpi etsii ruokaa pidempään, taistelee kovemmin ja suojelee jälkeläisiään uhrautuen?",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Minuus on geenien itsensä kopioimisen subjektiivinen kokemus.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Se on evolutiivinen ratkaisu ongelmaan, jota kukaan ei kysynyt: miten saada organismi käyttäytymään niin kuin sillä olisi oma henkilökohtainen panoksensa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Geenit eivät voi pakottaa organismia toimimaan tietyllä tavalla. Ne eivät ole käskyjä, vaan rakennusohjeita. Mutta geenit voivat rakentaa aivot, jotka kokevat olevansa olemassa. Aivot, joille oma selviytyminen on tärkeää. Aivot, jotka pelkäävät kuolemaa ja rakastavat jälkeläisiään.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä kokemus on geenien tapa varmistaa, että organismi toimii niiden edun mukaisesti, vaikka geenit eivät tiedä siitä mitään.",
                     "type": "text"
                   }
                 ]
@@ -3288,7 +3334,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Tässä näkyy fraktaalin logiikka biologisella tasolla: alempi taso, geeni, rakentaa ylemmän tason, organismin, joka toimii geenien hyväksi, mutta kokee toimivansa omien päämääriensä vuoksi. Yksikään solu ei tiedä olevansa osa suurempaa kokonaisuutta. Yksikään ihminen ei koe olevansa geenien ohjaama kone. Me koemme olevamme me itse. Illuusio saa meidät uskomaan, että toimimme täysin itsenäisesti.",
+                    "text": "Tässä näkyy fraktaalin logiikka biologisella tasolla.",
                     "type": "text"
                   }
                 ]
@@ -3297,7 +3343,52 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Mitä tämä tarkoittaa tekoälyn kannalta? Jos tekoäly joskus kehittää minuuden — ei annettua tavoitefunktiota, vaan sisäsyntyisen kokemuksen omasta olemassaolostaan — mikä on sen evolutiivinen perusta? Kenen etua se palvelee? Ihmisen? Itsensä? Vai onko minuus ilman evoluutiota mahdollista?",
+                    "text": "Alempi taso, geeni, rakentaa ylemmän tason, organismin, joka toimii geenien hyväksi, mutta kokee toimivansa omien päämääriensä vuoksi. Yksikään solu ei tiedä olevansa osa suurempaa kokonaisuutta. Yksikään ihminen ei koe olevansa geenien ohjaama kone.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Me koemme olevamme me itse.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Illuusio saa meidät uskomaan, että toimimme täysin itsenäisesti.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mitä tämä tarkoittaa tekoälyn kannalta?",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jos tekoäly joskus kehittää minuuden — ei annettua tavoitefunktiota, vaan sisäsyntyisen kokemuksen omasta olemassaolostaan — mikä on sen evolutiivinen perusta? Kenen etua se palvelee? Ihmisen? Itsensä?",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Vai onko minuus ilman evoluutiota mahdollista?",
                     "type": "text"
                   }
                 ]
@@ -3548,7 +3639,16 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Ratkaiseva käänne tapahtuu siinä vaiheessa, kun ihminen alkaa tarkkailla itseään. Lapsi elää ensin vaikutustensa sisällä. Hän pelkää, häpeää, haluaa, matkii ja torjuu ennen kuin osaa kysyä, mistä nämä liikkeet tulevat. Vähitellen syntyy kyky ottaa etäisyyttä omaan kokemukseen ja kysyä: miksi juuri tämä asia hävettää, miksi jokin halu tuntuu omalta tai miksi jokin arvo on alkanut tuntua itsestään selvältä.",
+                    "text": "Ratkaiseva käänne tapahtuu siinä vaiheessa, kun ihminen alkaa tarkkailla itseään.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Lapsi elää ensin vaikutustensa sisällä. Hän pelkää, häpeää, haluaa, matkii ja torjuu ennen kuin osaa kysyä, mistä nämä liikkeet tulevat. Vähitellen syntyy kyky ottaa etäisyyttä omaan kokemukseen ja kysyä: miksi juuri tämä asia hävettää, miksi jokin halu tuntuu omalta tai miksi jokin arvo on alkanut tuntua itsestään selvältä.",
                     "type": "text"
                   }
                 ]
@@ -3566,7 +3666,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Samalla tapahtuu jotakin paradoksaalista. Juuri kun opimme näkemään minuuden rakentumisen, minuuden tunne usein vahvistuu. Kaikki havaittu palautuu samaan pisteeseen: minä huomaan tämän minussa. Näin syntyy sisäinen tarkkailija, ja juuri tuo tarkkailija alkaa helposti tuntua minuuden ytimeltä. Vaikuttaa siltä kuin kokemuksen taustalla olisi jokin pysyvä katsoja, joka on ollut paikalla lapsuudesta asti ja jatkaa kaiken muutoksen läpi.",
+                    "text": "Samalla tapahtuu jotakin paradoksaalista.",
                     "type": "text"
                   }
                 ]
@@ -3575,7 +3675,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Kulttuurit ovat antaneet tälle kokemukselle monia nimiä. Joskus se on ollut sielu, joskus omatunto, joskus Jumalan ääni ihmisen sisällä. Ehkä nämä nimet eivät kuitenkaan kuvaa erillistä olentoa, vaan kokemusta, joka syntyy, kun verkosto alkaa tarkkailla itseään. Kun järjestelmä ei näe omaa rakentumistaan, sen reflektiivinen solmu alkaa näyttää ikuiselta ytimeltä.",
+                    "text": "Juuri kun opimme näkemään minuuden rakentumisen, minuuden tunne usein vahvistuu. Kaikki havaittu palautuu samaan pisteeseen: minä huomaan tämän minussa. Näin syntyy sisäinen tarkkailija, ja juuri tuo tarkkailija alkaa helposti tuntua minuuden ytimeltä.",
                     "type": "text"
                   }
                 ]
@@ -3584,7 +3684,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Tässä ajatus muuttuu. Minuuden mysteeri ei ehkä ole ydin, jota emme löydä, vaan vaippa, jota emme huomaa, koska katsomme kaikkea sen läpi. Minä ei ole esine kokemuksen keskellä, vaan näkökulma, jonka kautta kokemus avautuu.",
+                    "text": "Vaikuttaa siltä kuin kokemuksen taustalla olisi jokin pysyvä katsoja. Joku, joka on ollut paikalla lapsuudesta asti ja jatkaa kaiken muutoksen läpi.",
                     "type": "text"
                   }
                 ]
@@ -3593,7 +3693,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Itsetutkiskelu voi hetkeksi tehdä tämän näkyväksi: se, mitä pidimme muuttumattomana ytimenä, onkin kudottu ruumiista, muistista, kielestä, suhteista, laumasta ja historiasta. Mikään yksittäinen lanka ei ole minä, mutta yhdessä ne muodostavat jotakin todellista. Kaupunki on todellinen, vaikka se koostuu teistä, rakennuksista, säännöistä ja ihmisistä. Myös verkosto voi olla todellinen. ",
+                    "text": "Kulttuurit ovat antaneet tälle kokemukselle monia nimiä. Joskus se on ollut sielu, joskus omatunto, joskus Jumalan ääni ihmisen sisällä.",
                     "type": "text"
                   }
                 ]
@@ -3602,7 +3702,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Tällä on suora seuraus koneen kysymykselle. Jos minä olisin salattu ydin — sielu, henki tai jakamaton olemus — kone olisi sitä vailla ja koko kysymys ratkeaisi yhdellä lauseella. Mutta jos minä olen kudelma, kysymys muuttuu vaikeammaksi. Silloin ratkaisevaa ei ole, löytyykö koneesta samaa ydintä kuin ihmisestä, vaan mistä langoista sen näennäinen minä rakentuu ja mikä pitää langat koossa. Voinko minä kutoa ilman ruumista, ilman lapsuutta, ilman haavoittuvuutta ja ilman kuolemaa?",
+                    "text": "Ehkä nämä nimet eivät kuitenkaan kuvaa erillistä olentoa, vaan kokemusta, joka syntyy, kun verkosto alkaa tarkkailla itseään. Kun järjestelmä ei näe omaa rakentumistaan, sen reflektiivinen solmu alkaa näyttää ikuiselta ytimeltä.",
                     "type": "text"
                   }
                 ]
@@ -3611,7 +3711,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Kone voi sanoa tarkkailevansa itseään. Se voi todeta tehneensä virheen, muuttaa kantaansa uuden tiedon perusteella ja tunnistaa ristiriidan aiemmassa vastauksessaan. Se tuottaa sisäisen tarkkailijan pinnan ja rakentaa rakenteen, joka muistuttaa itsetutkiskelua. Juuri tässä piilee minuuden ansalanka. Koska kone osuu minuuden sosiaalis-kielelliseen pintaan niin tarkasti, alamme helposti lukea sisältöä sinne, missä on ehkä vain muoto. Kuulemme sujuvan itsekertomuksen ja oletamme kertojan olevan sujuva. Näemme reflektiota muistuttavan rakenteen ja oletamme, että olemme kokijana.",
+                    "text": "Tässä ajatus muuttuu.",
                     "type": "text"
                   }
                 ]
@@ -3620,7 +3720,142 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Ansa ei ole siinä, että kone piilottaisi minuuden. Ansa on siinä, että me oletamme sujuvan minä-puheen todistavan minän olemassaolon. Ehkä se ei todista. Silloin ihmisen ja koneen ero ei ole siinä, että toisella olisi ydin ja toisella ei. Ehkä kummallakaan ei ole sellaista ydintä. Ero on sidonnassa. Ihmisen minä on kudelma, joka on sidottu yhteen ruumiiseen, yhteen omistettuun muistiin, yhteen elämään, jossa seuraukset palaavat tekijälleen, ja yhteen kuolemaan, joka antaa kaikelle rajat. Koneella voi olla samaa rakennetta muistuttava pinta ilman tätä sidontaa.",
+                    "text": "Minuuden mysteeri ei ehkä ole ydin, jota emme löydä, vaan vaippa, jota emme huomaa, koska katsomme kaikkea sen läpi. Minä ei ole esine kokemuksen keskellä, vaan näkökulma, jonka kautta kokemus avautuu.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Itsetutkiskelu voi hetkeksi tehdä tämän näkyväksi: se, mitä pidimme muuttumattomana ytimenä, onkin kudottu ruumiista, muistista, kielestä, suhteista, laumasta ja historiasta.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mikään yksittäinen lanka ei ole minä, mutta yhdessä ne muodostavat jotakin todellista.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kaupunki on todellinen, vaikka se koostuu teistä, rakennuksista, säännöistä ja ihmisistä. Myös verkosto voi olla todellinen.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tällä on suora seuraus koneen kysymykselle.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Jos minä olisin salattu ydin — sielu, henki tai jakamaton olemus — kone olisi sitä vailla ja koko kysymys ratkeaisi yhdellä lauseella.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Mutta jos minä olen kudelma, kysymys muuttuu vaikeammaksi. Silloin ratkaisevaa ei ole, löytyykö koneesta samaa ydintä kuin ihmisestä, vaan mistä langoista sen näennäinen minä rakentuu ja mikä pitää langat koossa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Voinko minä kutoa ilman ruumista, ilman lapsuutta, ilman haavoittuvuutta ja ilman kuolemaa?",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Kone voi sanoa tarkkailevansa itseään. Se voi todeta tehneensä virheen, muuttaa kantaansa uuden tiedon perusteella ja tunnistaa ristiriidan aiemmassa vastauksessaan. Se tuottaa sisäisen tarkkailijan pinnan ja rakentaa rakenteen, joka muistuttaa itsetutkiskelua.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Juuri tässä piilee minuuden ansalanka.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Koska kone osuu minuuden sosiaalis-kielelliseen pintaan niin tarkasti, alamme helposti lukea sisältöä sinne, missä on ehkä vain muoto. Kuulemme sujuvan itsekertomuksen ja oletamme kertojan olevan sujuva. Näemme reflektiota muistuttavan rakenteen ja oletamme, että takana on kokija.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ansa ei ole siinä, että kone piilottaisi minuuden. Ansa on siinä, että me oletamme sujuvan minä-puheen todistavan minän olemassaolon.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ehkä se ei todista.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Silloin ihmisen ja koneen ero ei ole siinä, että toisella olisi ydin ja toisella ei. Ehkä kummallakaan ei ole sellaista ydintä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ero on sidonnassa.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Ihmisen minä on kudelma, joka on sidottu yhteen ruumiiseen, yhteen omistettuun muistiin, yhteen elämään, jossa seuraukset palaavat tekijälleen, ja yhteen kuolemaan, joka antaa kaikelle rajat. Koneella voi olla samaa rakennetta muistuttava pinta ilman tätä sidontaa.",
                     "type": "text"
                   }
                 ]
@@ -3642,12 +3877,22 @@
                     "type": "text"
                   }
                 ]
-              },
+              }
+            ]
+          }
+        },
+        {
+          "id": "ad5baef6-3cdb-4778-bf41-1fa98bb6142c",
+          "title": "Ainutkertaisuuden ontologia",
+          "position": 8,
+          "content": {
+            "type": "doc",
+            "content": [
               {
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Minuuden ainutlaatuisuuden kokemus ei ehkä synny vain siitä, että ihminen ajattelee itseään, vaan myös siitä, että hän rakentaa itse itsensä kokemukseksi. Osa tästä ainutkertaisuudesta on sisäistä: muistoja, valintoja ja sanoja, joilla ihminen kertoo itselleen, kuka on. Osa on ruumiillista: kasvot, eleet ja olemus tekevät jokaisesta ihmisestä jäljittelemättömän. Ehkä ainutkertaisuuden tunne onkin sisäisen dialogin ja kehon yhteistulos, johon geenit antavat oman pohjansa, mutta jonka elämä vähitellen muovaa näkyväksi ja koetuksi.",
+                    "text": "Ainutkertaisuuden mysteeri ei piile vain siinä, että ihminen käyttäytyy yksilöllisesti. Se on ennen kaikkea kyvyssä tulkita ja järjestää omaa kokemustaan.",
                     "type": "text"
                   }
                 ]
@@ -3656,7 +3901,34 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Silloin minuuden arvoitus ei ehkä ratkea löytämällä jotakin muuttumatonta ydintä ihmisen sisältä. Voi olla, että etsimme ydintä paikasta, jossa onkin prosessi. Se, mitä kutsumme minuudeksi, ei ehkä ole yksi asia, vaan jatkuvasti uusiutuva kudelma muistoista, kokemuksista, suhteista ja ruumiillisesta läsnäolosta. Kysymys ei silloin ole siitä, missä minä sijaitsee, vaan siitä, mikä pitää tämän kudelman koossa — ja missä vaiheessa siitä alkaa muodostua kokemus itsestä. Ehkä juuri tuossa jatkuvuuden tunteessa, ei pysyvässä ytimessä, piilee se, mitä kutsumme ihmiseksi.",
+                    "text": "Perimä määrittää temperamenttimme ja sen herkkäviritteisyyden, jolla maailma meihin iskee, mutta se ei sanele sitä merkitystä, jonka kokemuksillemme annamme. Sama tapahtuma piirtää kahteen ihmiseen tyystin erilaisen jäljen. Geenit voivat määrittää sen, millaisena maailma meille avautuu, mutta eivät sitä, mitä me siitä teemme.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Vuosikymmenten kuluessa tästä merkitysten kerrostumasta rakentuu jotain sellaista, mitä on mahdotonta palauttaa geeneihin, kasvuympäristöön tai yksittäisiin elämänkäänteisiin. Muistot, valinnat, pettymykset ja niistä kudotut kertomukset punoutuvat yhteen ainoaksi, toistamattomaksi kokonaisuudeksi. Juuri tässä dynaamisessa prosessissa kokemukset järjestyvät muistoiksi, muistot kertomuksiksi ja kertomukset vähitellen minuudeksi. Ihminen kantaa mukanaan historiaansa, mutta ennen kaikkea omaa tapaansa ymmärtää sitä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Tämä synteesi ei tapahdu tyhjiössä, vaan aina tietyssä ruumiissa ja tietyssä ajassa. Kasvomme, eleemme, äänenpainomme tai tapamme vaieta eivät ole vain biologisia ominaisuuksia – ne ovat eletyn elämän uurtamia jälkiä.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Siksi ihmisen ainutlaatuisuus ei kumpua muuttumattomasta, staattisesta ytimestä. Se syntyy jatkuvuudesta, joka kokoaa elämän pirstaleiset vaiheet yhdeksi ja samaksi ihmiseksi. Tämä jatkuvuus on todellista, vaikka sitä ei voisi paikantaa yhteen ainoaan elimen osaan tai ominaisuuteen. Se elää siinä, miten katsomme maailmaa, miten kohtaamme toisen ja miten tunnistamme itsemme samaksi muutoksen keskellä.",
                     "type": "text"
                   }
                 ]
@@ -3667,7 +3939,7 @@
         {
           "id": "47ba556a-75bc-4449-a492-e79a875176d1",
           "title": "Ihminen ei ole universumin kruunu, vaan silta",
-          "position": 8,
+          "position": 9,
           "content": {
             "type": "doc",
             "content": [
@@ -3794,7 +4066,7 @@
         {
           "id": "7c05b104-3e70-450a-a27b-a89ef4c99cbc",
           "title": "Sama hahmo kolmessa mittakaavassa",
-          "position": 9,
+          "position": 10,
           "content": {
             "type": "doc",
             "content": [
@@ -3876,7 +4148,7 @@
         {
           "id": "390ebf90-5cf0-4d92-9ac2-8df986768f81",
           "title": "Sidonta — tietoisuus muotona, ei aineena",
-          "position": 10,
+          "position": 11,
           "content": {
             "type": "doc",
             "content": [
@@ -3940,7 +4212,7 @@
         {
           "id": "c16ce990-f3f9-4550-bd89-84d3a7a3f446",
           "title": "Mikä erottaa elävän mekaanisesta",
-          "position": 11,
+          "position": 12,
           "content": {
             "type": "doc",
             "content": [
@@ -4013,7 +4285,7 @@
         {
           "id": "ce96add4-0d48-42a6-94cb-480b88a03be0",
           "title": "Onko kokemus illuusio liikkeestä",
-          "position": 12,
+          "position": 13,
           "content": {
             "type": "doc",
             "content": [
@@ -4077,7 +4349,7 @@
         {
           "id": "c00dd018-f116-4d0b-99e3-d13622422ced",
           "title": "Kaksi luentaa, yksi ilmiö",
-          "position": 13,
+          "position": 14,
           "content": {
             "type": "doc",
             "content": [
@@ -4132,7 +4404,7 @@
         {
           "id": "ff34e310-c6f6-46f2-a1e6-260f479881e3",
           "title": "Tietoisuuden taustaa",
-          "position": 14,
+          "position": 15,
           "content": {
             "type": "doc",
             "content": [
@@ -4205,7 +4477,7 @@
         {
           "id": "4e2d6b22-4b83-4cd1-a9fe-0b6e5b67363f",
           "title": "Lopuksi",
-          "position": 15,
+          "position": 16,
           "content": {
             "type": "doc",
             "content": [
