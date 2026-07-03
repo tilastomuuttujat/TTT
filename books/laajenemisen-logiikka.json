@@ -1460,7 +1460,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Miksi tämä kirja ei lähde tälle tielle? Koska Dennettin ratkaisu vaikuttaa useimmille meistä fenomenologisesti epäuskottavalta. Kun koen punaista väriä tai rakkauden tuskaa, se ei tunnu pelkältä informaationkäsittelyltä. Se tuntuu joltakin. Dennett saattaa olla oikeassa, mutta hänen on selitettävä, miksi tämä \"harha\" on niin perustavanlaatuinen ja miksi se tuntuu kaikista muista filosofeista niin todelliselta.",
+                    "text": "Miksi tämä kirja ei ratkaise kysymystä Dennettin tavalla? Ei siksi, että hänen vastauksensa olisi ilmeisen väärä, vaan siksi, että se tuntuu ratkaisevan arvoituksen ennen kuin olemme edes varmoja siitä, mikä arvoitus tarkalleen on. Jos tietoisuus on vain järjestelmän itsestään muodostama kuvaus, kysymys sen siirtymisestä biologisesta teknologiseen menettää suuren osan vaikeudestaan. Mutta samalla katoaa myös jotain siitä ilmiöstä, jota yritämme selittää.",
                     "type": "text"
                   }
                 ]
@@ -1469,7 +1469,16 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Tässä epävarmuudessa meidän on elettävä.",
+                    "text": "Ehkä ongelma ei ole siinä, että tietoisuudelle annetaan luonnollinen selitys. Ongelma on siinä, että selitys näyttää jättävän jäljelle juuri sen, mikä teki tietoisuudesta ongelman alun perinkin: sen, että maailma ei ainoastaan tapahdu, vaan tuntuu joltakin.",
+                    "type": "text"
+                  }
+                ]
+              },
+              {
+                "type": "paragraph",
+                "content": [
+                  {
+                    "text": "Siksi kirja ei päädy ratkaisuun. Se päätyy kysymykseen, joka on ehkä täsmällisempi kuin se, josta lähdimme. Ja juuri siinä epävarmuudessa on syy jatkaa.",
                     "type": "text"
                   }
                 ]

@@ -6662,7 +6662,7 @@
                 "type": "paragraph",
                 "content": [
                   {
-                    "text": "Ei abstraktinVaan rakenteena, jossa vastuu on nimetty, valtuutettu ja seurattavissa.a rakenteena.",
+                    "text": "Ei abstraktina vaan rakenteena, jossa vastuu on nimetty, valtuutettu ja seurattavissa.",
                     "type": "text"
                   }
                 ]
@@ -8343,23 +8343,6 @@
         "position": 0,
         "appendices": [
           {
-            "id": "bc89fb98-36b9-4ddc-b676-62c1cdc896c2",
-            "chapter_position": 0,
-            "section_position": 0,
-            "verified_section_id": "5d5c0faf-f58a-4754-ad4b-b004670b230b",
-            "type": "note",
-            "title": "Mekanismi ei näy otsikoissa, mutta se näkyy seurauksissa",
-            "source": "Hyvinvointijärjestelmän rakenteet; mekanismiajattelu; systeeminen analyysi; julkisen talouden ohjaus; institutionaalinen muutos.",
-            "position": 1,
-            "content": {
-              "body": "Johdannon ensimmäinen osio avaa kirjan lähtökohdan: näkyvän poliittisen keskustelun alla toimii mekanismeja, jotka toistuvat päätöksistä ja hallituskausista riippumatta.",
-              "text": "Hyvinvointijärjestelmää koskeva keskustelu jää usein näkyviin asioihin: rahaan, päätöksiin, palveluihin, jonoihin, hallituksiin ja uudistuksiin. Ne ovat tärkeitä, mutta ne eivät yksin selitä, miksi samat ongelmat palaavat eri muodoissa.\n\nMekanismi on jotakin muuta kuin yksittäinen päätös. Se on toistuva tapa, jolla järjestelmä muuttaa panokset seurauksiksi. Se voi toimia, vaikka kukaan ei erikseen haluaisi sen seurauksia. Se voi tuottaa viivettä, osaoptimointia, vastuun hajaantumista, poliittista lukkiutumista tai kapasiteetin kulumista.\n\nSiksi kirja ei kysy vain, kuka teki väärin tai mistä puuttui rahaa. Se kysyy, millaiset näkymättömät mekanismit tekevät tietyistä seurauksista toistuvia.",
-              "reader_shift": "Kun ongelma nähdään mekanismina, syyllisten etsiminen ei riitä. On katsottava, mikä järjestelmässä tuottaa saman lopputuloksen yhä uudelleen."
-            },
-            "hidden": false,
-            "reader_function": "paljastaa"
-          },
-          {
             "id": "ea1bc68e-c23c-44dd-8fe8-2550d0cc8d69",
             "chapter_position": 0,
             "section_position": 1,
@@ -8696,46 +8679,12 @@
             },
             "hidden": false,
             "reader_function": "suhteuttaa"
-          },
-          {
-            "id": "d2b3feab-d039-4e01-b07d-125734609b9b",
-            "chapter_position": 0,
-            "section_position": 9,
-            "verified_section_id": "92ffb8ab-a5ec-4634-944d-2a5bc93c1c79",
-            "type": "note",
-            "title": "Ei säästölista, ei syytös, ei valmis malli",
-            "source": "Yhteiskunnallinen analyysi; hyvinvointivaltion uudistaminen; politiikkakeskustelu; systeeminen kritiikki.",
-            "position": 1,
-            "content": {
-              "body": "Johdannon viimeinen osio kertoo, mitä käsikirjoitus ei ole. Liite vahvistaa lukutavan: tarkoitus ei ole tarjota yhtä valmista ratkaisua vaan tarkentaa ongelman näkemistä.",
-              "text": "Tämä käsikirjoitus ei ole säästölista. Se ei lähde oletuksesta, että hyvinvointijärjestelmän ongelma ratkeaa yksinkertaisesti leikkaamalla, lisäämällä tai siirtämällä rahaa. Raha on tärkeää, mutta se toimii mekanismien sisällä.\n\nTämä ei ole myöskään syytös yksittäisiä ammattilaisia, virkamiehiä, poliitikkoja tai kansalaisia kohtaan. Monet ongelmat syntyvät juuri siitä, että ihmiset tekevät oman osansa järkevästi järjestelmässä, joka kokonaisuutena tuottaa huonoja seurauksia.\n\nEikä tämä ole valmis teknokraattinen malli. Jos näkymättömät mekanismit otetaan vakavasti, ratkaisut eivät voi olla vain uusia kaavioita. Niiden täytyy muuttaa sitä, mitä järjestelmä näkee, miten se kantaa vastuuta ja mihin se kykenee.",
-              "reader_shift": "Kirjan tarkoitus ei ole tehdä monimutkaisesta yksinkertaista. Sen tarkoitus on tehdä monimutkainen näkyväksi riittävän tarkasti, jotta siihen voi lopulta tarttua."
-            },
-            "hidden": false,
-            "reader_function": "haastaa"
           }
         ]
       },
       {
         "position": 1,
         "appendices": [
-          {
-            "id": "0f190e5f-5717-424f-aead-41543ba38b2d",
-            "chapter_position": 1,
-            "section_position": 0,
-            "verified_section_id": "d867e046-923c-467a-9de1-0fcb56a21e62",
-            "type": "note",
-            "title": "Rahoitus ei jakaudu vain tarpeen mukaan",
-            "source": "Julkisen talouden ohjaus; budjettirakenteet; suoriterahoitus; hyvinvointipalveluiden rahoitus; institutionaalinen polkuriippuvuus.",
-            "position": 1,
-            "content": {
-              "body": "Luvun avaus nimeää rahoituksen peruslogiikan. Liite muistuttaa, että raha ei kulje järjestelmässä neutraalina virtana, vaan sääntöjen, mittareiden ja aiempien rakenteiden ohjaamana.",
-              "text": "Hyvinvointijärjestelmässä raha näyttää usein vastaavan tarpeeseen: missä on enemmän sairautta, sinne tarvitaan enemmän hoitoa; missä on enemmän ongelmia, sinne tarvitaan enemmän palveluja. Mutta käytännössä raha kulkee myös toista reittiä. Se seuraa budjettikohtia, organisaatiorajoja, suoritteita, lainsäädäntöä, poliittisia kompromisseja ja sitä, mitä on totuttu pitämään mitattavana.\n\nSiksi raha ei vain mahdollista toimintaa. Se tekee jotkin tarpeet näkyvämmiksi kuin toiset. Akuutti kriisi saa helpommin muodon kuin vältetty kriisi. Suorite saa helpommin hinnan kuin vahvistunut luottamus. Korjaava palvelu saa helpommin budjettirivin kuin ennalta ehkäisty ongelma.\n\nRahoituksen näkymätön mekanismi syntyy tästä: raha ei välttämättä mene sinne, missä inhimillinen tarve on suurin, vaan sinne, missä tarve osaa muuttua järjestelmän tunnistamaksi kustannukseksi.",
-              "reader_shift": "Rahoitusta ei pidä katsoa vain summana. Sitä pitää katsoa havaintokoneena: mitä se tekee näkyväksi, mitä se jättää piiloon ja millaista toimintaa se palkitsee."
-            },
-            "hidden": false,
-            "reader_function": "haastaa"
-          },
           {
             "id": "65be0aad-62a5-42b8-8b86-c6eb30399bdb",
             "chapter_position": 1,
@@ -8956,46 +8905,6 @@
             "reader_function": "määritellä"
           },
           {
-            "id": "121e0b5f-31d1-44cd-9e53-015cc8813d20",
-            "chapter_position": 1,
-            "section_position": 7,
-            "verified_section_id": "e7c73fa0-bdec-48b8-a5e2-611fea5ebc65",
-            "type": "calculation",
-            "title": "Kustannusten kasautumisen yksinkertainen kaava",
-            "source": "Ennaltaehkäisy; kustannusvaikuttavuus; palveluviive; korjaavat palvelut; sosiaalisten ongelmien kasautuminen.",
-            "position": 1,
-            "content": {
-              "body": "Osio käsittelee kustannusten kiihtymistä. Liite antaa yksinkertaisen laskennallisen kehyksen, jolla voi hahmottaa miksi myöhäinen tuki on usein kalliimpaa.",
-              "example": {
-                "tilanne": "Kevyt tuki olisi voinut estää kriisin alkuvaiheessa.",
-                "johtopaatos": "Halpa päätös alussa voi olla kallis päätös kokonaisuudessa.",
-                "myöhäinen_vaihe": "Kun ongelma kasvaa, tarvitaan raskaampaa palvelua, useampia toimijoita ja pidempää palautumista."
-              },
-              "formula": "kokonaiskustannus = suora_kustannus + viiveen_kasvu + inhimillinen_kuorma + järjestelmävaikutus",
-              "variables": [
-                {
-                  "name": "suora_kustannus",
-                  "meaning": "Palvelun, hoidon, päätöksen tai toimenpiteen välitön rahallinen kustannus."
-                },
-                {
-                  "name": "viiveen_kasvu",
-                  "meaning": "Se lisäkustannus, joka syntyy, kun ongelma ehtii kasvaa ennen apua."
-                },
-                {
-                  "name": "inhimillinen_kuorma",
-                  "meaning": "Ihmisen toimintakyvyn, luottamuksen, terveyden tai arjen hallinnan heikkeneminen."
-                },
-                {
-                  "name": "järjestelmävaikutus",
-                  "meaning": "Muihin palveluihin, läheisiin, työhön, koulutukseen tai yhteisöihin siirtyvät seuraukset."
-                }
-              ],
-              "reader_shift": "Kustannusten kiihtyminen tekee näkyväksi sen, että säästö ja lykkääminen eivät ole sama asia."
-            },
-            "hidden": false,
-            "reader_function": "konkretisoi"
-          },
-          {
             "id": "20a60a65-92bc-44ca-8e65-8485ad999c5d",
             "chapter_position": 1,
             "section_position": 8,
@@ -9034,23 +8943,6 @@
                 }
               ],
               "reader_shift": "Passiivisuus voittaa usein siksi, että sen kustannus on parempi piiloutumaan."
-            },
-            "hidden": false,
-            "reader_function": "paljastaa"
-          },
-          {
-            "id": "b73b0934-6c47-4be3-be83-c15f103ba9a1",
-            "chapter_position": 1,
-            "section_position": 9,
-            "verified_section_id": "a53f6b5f-1a63-4e8f-ae92-309de38ae37e",
-            "type": "note",
-            "title": "Lasku tulee neljässä muodossa",
-            "source": "Julkisen talouden kestävyys; sosiaalinen kustannus; luottamuspääoma; palvelujärjestelmien kapasiteetti; hyvinvointivelka.",
-            "position": 1,
-            "content": {
-              "body": "Luvun päätös muistuttaa, että lasku tulee silti. Liite kiteyttää, missä muodoissa lykätty kustannus palaa.",
-              "text": "Järjestelmä voi lykätä kustannusta, siirtää sen toiseen budjettiin, nimetä sen uudelleen tai jättää sen yksilön kannettavaksi. Mutta se ei välttämättä poista sitä.\n\nLasku voi palata rahana: kalliimpana hoitona, raskaampana palveluna tai kasvavana velkana. Se voi palata inhimillisenä kuormana: uupumuksena, sairautena, syrjäytymisenä tai menetettyinä mahdollisuuksina. Se voi palata luottamuksen menetyksenä: ihmiset lakkaavat uskomasta, että järjestelmä näkee heidät ajoissa. Ja se voi palata kapasiteetin kulumisena: ammattilaiset käyttävät yhä enemmän aikaansa kriisien paikkaamiseen, eivät niiden estämiseen.\n\nSiksi luvun perusväite on yksinkertainen: rahoitus ja mittarit eivät ole hallinnon teknisiä yksityiskohtia. Ne ratkaisevat, missä vaiheessa yhteiskunta suostuu näkemään ongelman.",
-              "reader_shift": "Laskun voi piilottaa kirjanpidolta hetkeksi. Ihmisten elämältä sitä ei voi piilottaa loputtomiin."
             },
             "hidden": false,
             "reader_function": "paljastaa"
@@ -9159,23 +9051,6 @@
       {
         "position": 2,
         "appendices": [
-          {
-            "id": "1ce186a2-eefc-40bc-984c-6f19ac6bcaff",
-            "chapter_position": 2,
-            "section_position": 0,
-            "verified_section_id": "d09fb1dc-0529-4023-bb0a-28f3fa693f60",
-            "type": "note",
-            "title": "Kun kaikki vastaavat, kukaan ei kanna kokonaisuutta",
-            "source": "Palveluintegraatio; kokonaisvastuu; hallinnollinen siiloutuminen; sote-järjestelmä; julkisen sektorin vastuunjako.",
-            "position": 1,
-            "content": {
-              "body": "Luvun avaus nimeää vastuun paradoksin: järjestelmässä voi olla paljon vastuullisia toimijoita, mutta ei ketään, joka omistaa ihmisen kokonaisen tilanteen.",
-              "text": "Kokonaisuus ei katoa siksi, että kukaan ei tekisi työtään. Usein jokainen tekee juuri sen, mitä hänen tehtävänsä, budjettinsa, lakinsa ja mittarinsa edellyttävät. Yksi arvioi, toinen ohjaa, kolmas päättää, neljäs hoitaa, viides seuraa ja kuudes raportoi.\n\nOngelma syntyy siitä, että ihmisen elämä ei noudata samaa jakoa. Sairaus, työ, perhe, mielenterveys, talous, asuminen ja arjen kuorma eivät pysähdy organisaatiorajoihin. Kun järjestelmä jakaa vastuun osiin, se voi samalla kadottaa sen kohdan, jossa osat pitäisi sovittaa yhteen.\n\nSiksi kokonaisvastuu on eri asia kuin osavastuiden summa. Se on kyky nähdä, mitä ihmiselle tapahtuu eri päätösten, palvelujen ja viiveiden yhteisvaikutuksena.",
-              "reader_shift": "Vastuun hajaantuminen ei näytä aina välinpitämättömyydeltä. Se voi näyttää hyvin organisoidulta työnjaolta, jossa kukaan ei silti omista ihmisen kokonaisuutta."
-            },
-            "hidden": false,
-            "reader_function": "paljastaa"
-          },
           {
             "id": "763caabc-8f3c-4f28-b6be-c268b60bbccf",
             "chapter_position": 2,
@@ -9394,23 +9269,6 @@
             "reader_function": "haastaa"
           },
           {
-            "id": "d53f9888-a9a1-43bb-ae07-207d60cbf1d6",
-            "chapter_position": 2,
-            "section_position": 6,
-            "verified_section_id": "24430ef5-a9ad-438c-aaba-73a58d23fbaf",
-            "type": "note",
-            "title": "Kuuliaisuus ei ole sama asia kuin johtajuus",
-            "source": "Suomen julkishallinto; EU-jäsenyys; talouskuripolitiikka; institutionaalinen kulttuuri; reformikyky.",
-            "position": 1,
-            "content": {
-              "body": "Osio käyttää mallioppilaan kuvaa. Liite erottaa sääntöjen hyvän noudattamisen ja rakenteellisen johtajuuden toisistaan.",
-              "text": "Mallioppilas osaa noudattaa sääntöjä, raportoida oikein ja näyttää uskottavalta ulkoisissa arvioissa. Tämä ei ole vähäpätöistä. Luottamus, kurinalaisuus ja ennustettavuus ovat vahvuuksia.\n\nMutta mallioppilas ei välttämättä johda luokkaa. Johtajuus edellyttää kykyä nähdä, milloin vanhat säännöt eivät enää riitä, milloin mittarit ohjaavat väärään suuntaan ja milloin rakenteita pitää muuttaa ennen kuin kriisi pakottaa.\n\nJos Suomi jää vain sääntöjen parhaaksi noudattajaksi, se voi optimoida itseään järjestelmään, joka ei enää vastaa sen omiin ongelmiin. Tarvitaan kykyä erottaa vastuullisuus ja varovainen passiivisuus toisistaan.",
-              "reader_shift": "Järjestelmän kypsyys ei näy vain siinä, kuinka hyvin se noudattaa sääntöjä. Se näkyy siinä, pystyykö se muuttamaan sääntöjen soveltamista silloin, kun todellisuus muuttuu."
-            },
-            "hidden": false,
-            "reader_function": "haastaa"
-          },
-          {
             "id": "004c6b37-9712-4907-97de-b5841e184f65",
             "chapter_position": 2,
             "section_position": 7,
@@ -9491,23 +9349,6 @@
             },
             "hidden": false,
             "reader_function": "konkretisoi"
-          },
-          {
-            "id": "2c933904-ba87-4c9f-be76-059b7314d608",
-            "chapter_position": 2,
-            "section_position": 9,
-            "verified_section_id": "e2fa340a-28ef-48e0-aad0-7bc527eff1de",
-            "type": "note",
-            "title": "Vastuun paradoksi: kaikki ovat mukana, mutta kokonaisuus puuttuu",
-            "source": "Diffusion of responsibility; julkishallinto; palveluintegraatio; kokonaisvastuu; systeeminen johtaminen.",
-            "position": 1,
-            "content": {
-              "body": "Luvun viimeinen osio kiteyttää vastuun paradoksin. Liite palauttaa luvun perusväitteen yhteen ajatukseen.",
-              "text": "Järjestelmä voi olla täynnä vastuita ja silti vailla kokonaisvastuuta. Tämä on luvun paradoksi. Mitä tarkemmin tehtävät, budjetit ja toimivallat jaetaan, sitä selkeämmin jokainen voi sanoa tehneensä oman osansa. Mutta ihmisen elämä ei välttämättä parane osien summana.\n\nKokonaisvastuu ei tarkoita, että yksi toimija tekisi kaiken. Se tarkoittaa, että jollakin on mandaatti nähdä, miten osat vaikuttavat toisiinsa, ja muuttaa toimintaa sen perusteella.\n\nIlman tällaista vastuuta järjestelmä voi päätyä tilanteeseen, jossa kaikki ovat mukana, kaikki ovat perustellusti rajanneet tehtävänsä ja silti ihminen jää yksin kantamaan kokonaisuuden.",
-              "reader_shift": "Kun kaikki ovat vastuussa vain omasta osastaan, kokonaisuus voi jäädä juuri sen ulkopuolelle, mistä kukaan saa päättää."
-            },
-            "hidden": false,
-            "reader_function": "määritellä"
           }
         ]
       },
@@ -9556,23 +9397,6 @@
             },
             "hidden": false,
             "reader_function": "jäljittää"
-          },
-          {
-            "id": "1dcc45e6-f257-4f47-9d67-5e82502cf51d",
-            "chapter_position": 3,
-            "section_position": 1,
-            "verified_section_id": "3106aa0f-d8bb-4bd1-af7e-b01e24ac9296",
-            "type": "note",
-            "title": "Polku ei pakota, mutta se kallistaa",
-            "source": "Polkuriippuvuus; institutionaalinen muutos; historiallinen institutionalismi; lukkiutuminen; hyvinvointivaltion kehitys.",
-            "position": 1,
-            "content": {
-              "body": "Osio määrittelee polkuriippuvuuden. Liite tiivistää käsitteen: aiempi valinta ei määrää kaikkea, mutta se muuttaa seuraavien valintojen kustannuksia.",
-              "text": "Polkuriippuvuus ei tarkoita kohtaloa. Se tarkoittaa, että kerran tehty ratkaisu alkaa muuttaa myöhempien ratkaisujen hintaa. Jokin tapa järjestää palvelut, rahoitus, vastuu tai mittaaminen tekee jatkossa samansuuntaisista ratkaisuista helpompia ja vaihtoehtoisista ratkaisuista vaikeampia.\n\nKun polku on syntynyt, se saa ympärilleen osaamista, järjestelmiä, budjetteja, ammattirooleja, odotuksia ja mittareita. Silloin muutos ei enää tarkoita vain yhden päätöksen vaihtamista. Se tarkoittaa kokonaisen toimintaympäristön uudelleenjärjestämistä.\n\nSiksi polkuriippuvuus on niin vahva näkymätön mekanismi. Se ei estä muutosta avoimesti. Se vain tekee vanhasta suunnasta halvemman, tutumman ja hallinnollisesti helpomman kuin uuden suunnan.",
-              "reader_shift": "Polkuriippuvuus on historian painovoimaa: se ei näy käskynä, mutta se tuntuu jokaisessa yrityksessä lähteä toiseen suuntaan."
-            },
-            "hidden": false,
-            "reader_function": "määritellä"
           },
           {
             "id": "8bff24ea-c838-4729-8feb-d35491037fc5",
@@ -9857,85 +9681,12 @@
             },
             "hidden": false,
             "reader_function": "haastaa"
-          },
-          {
-            "id": "4cb97f6f-69c7-431e-8aaa-4673370b0510",
-            "chapter_position": 3,
-            "section_position": 9,
-            "verified_section_id": "09c692f5-49bd-4e2d-a4d1-7294a3143934",
-            "type": "note",
-            "title": "Vastuu ilman yksittäistä syyllistä",
-            "source": "Rakenteellinen eriarvoisuus; moraalinen vastuu; institutionaalinen vastuu; sosiaalinen oikeudenmukaisuus.",
-            "position": 1,
-            "content": {
-              "body": "Luvun päätös sanoo, että rakenne ei ole kenenkään vika. Liite tekee eron syyllisyyden ja vastuun välille.",
-              "text": "Rakenteellinen eriarvoisuus on vaikea puheenaihe, koska se ei aina tarjoa selkeää syyllistä. Kukaan yksittäinen ihminen ei välttämättä päätä, että lapsen mahdollisuudet kapenevat, että luottamus periytyy epätasaisesti tai että kriisin seuraukset jäävät elämään perheisiin.\n\nMutta se, ettei ole yhtä syyllistä, ei tarkoita, ettei ole vastuuta. Rakenteellinen vastuu syntyy silloin, kun tiedämme mekanismin ja annamme sen silti jatkua. Kun tiedämme, että talous, terveys, koulutus ja luottamus kasautuvat, emme voi enää puhua vain yksilön valinnoista.\n\nTämän luvun vaikein opetus on juuri tämä: järjestelmä voi olla epäoikeudenmukainen ilman pahaa tarkoitusta. Ja juuri siksi sen korjaaminen vaatii enemmän kuin hyvää tarkoitusta.",
-              "reader_shift": "Kun rakenne ei ole kenenkään vika, se voi silti olla kaikkien vastuulla."
-            },
-            "hidden": false,
-            "reader_function": "haastaa"
           }
         ]
       },
       {
         "position": 4,
         "appendices": [
-          {
-            "id": "b8742828-f60d-46a2-b630-a0b3908962d3",
-            "chapter_position": 4,
-            "section_position": 0,
-            "verified_section_id": "2c3c654f-a48a-4645-87d8-296e018272be",
-            "type": "note",
-            "title": "Reunaehdot eivät kysy lupaa",
-            "source": "Demografinen muutos; hyvinvointivaltion kantokyky; julkinen talous; kriisinkestävyys; systeeminen resilienssi.",
-            "position": 1,
-            "content": {
-              "body": "Luvun avaus nimeää reunaehdot: väestö, kriisit, työvoima, talous ja luottamus muodostavat tilan, jonka sisällä järjestelmän on toimittava.",
-              "text": "Hyvinvointijärjestelmä ei elä poliittisten toiveiden varassa, vaan reunaehtojen sisällä. Väestörakenne, huoltosuhde, työvoiman saatavuus, kriisien määrä, velkaantuminen, mielenterveys ja luottamus eivät ole vain keskustelun aiheita. Ne ovat järjestelmän toimintaympäristön rajoja.\n\nReunaehdot eivät tarkoita, että politiikalla ei olisi väliä. Päinvastoin: mitä tiukemmat reunaehdot, sitä tärkeämpää on käyttää liikkumatila viisaasti. Mutta ne estävät yhden helpon ajattelutavan: sen, että kaikki ratkeaisi vain tahdolla, arvovalinnalla tai hallinnollisella uudistuksella.\n\nTämän luvun perusväite on, että järjestelmän kriisi ei synny vain sisäisistä vioista. Se syntyy myös siitä, että ulkoinen todellisuus muuttuu nopeammin kuin järjestelmän kyky sopeutua.",
-              "reader_shift": "Reunaehtojen tunnistaminen ei ole luovuttamista. Se on lähtökohta sille, että järjestelmä voidaan rakentaa kestämään todellista maailmaa."
-            },
-            "hidden": false,
-            "reader_function": "määritellä"
-          },
-          {
-            "id": "dd83ea4c-bd7d-4615-a5b3-a48bef7e78ff",
-            "chapter_position": 4,
-            "section_position": 1,
-            "verified_section_id": "34b1b4fc-97f2-4e64-956d-b20cc8061f99",
-            "type": "calculation",
-            "title": "Huoltosuhteen yksinkertainen painekaava",
-            "source": "Väestön ikääntyminen; huoltosuhde; työikäinen väestö; julkisen talouden kestävyys; hoivatarve.",
-            "position": 1,
-            "content": {
-              "body": "Osio sanoo, että matematiikka ei neuvottele. Liite antaa yksinkertaistetun kaavan, jolla väestörakenteen painetta voi hahmottaa.",
-              "example": {
-                "havainto": "Jos hoivatarve kasvaa ja työikäinen väestö pienenee, järjestelmäpaine kasvaa vaikka palveluiden laatu ei heikkenisi.",
-                "johtopaatos": "Kysymys ei ole vain rahasta, vaan siitä, miten työ, teknologia, ennaltaehkäisy ja vastuut järjestetään uudelleen."
-              },
-              "formula": "järjestelmäpaine = hoivatarve / (työikäinen_väestö × tuottavuus × veropohja)",
-              "variables": [
-                {
-                  "name": "hoivatarve",
-                  "meaning": "Ikääntymisen, sairastavuuden, mielenterveyden, toimintakyvyn ja sosiaalisen tuen synnyttämä kokonaiskysyntä."
-                },
-                {
-                  "name": "työikäinen_väestö",
-                  "meaning": "Se osa väestöstä, jonka työ, verot ja ammatillinen panos kannattelevat palveluita."
-                },
-                {
-                  "name": "tuottavuus",
-                  "meaning": "Kuinka paljon vaikuttavaa työtä saadaan aikaan käytettävissä olevalla henkilöstöllä, teknologialla ja järjestämistavalla."
-                },
-                {
-                  "name": "veropohja",
-                  "meaning": "Talouden kyky rahoittaa yhteisiä palveluita ilman että velka, veroaste tai kasvu törmää kestämättömään rajaan."
-                }
-              ],
-              "reader_shift": "Demografia ei kerro, mitä pitää arvostaa. Mutta se kertoo, kuinka kauan vanha toimintalogiikka voi jatkua muuttumatta."
-            },
-            "hidden": false,
-            "reader_function": "konkretisoi"
-          },
           {
             "id": "c2bbe62c-eb60-4e22-820f-bd7f841ddfa1",
             "chapter_position": 4,
@@ -10283,80 +10034,12 @@
             },
             "hidden": false,
             "reader_function": "vapauttaa"
-          },
-          {
-            "id": "32409f5d-c39a-45d2-bcbd-7b581f2c97d5",
-            "chapter_position": 4,
-            "section_position": null,
-            "verified_section_id": null,
-            "type": "evidence",
-            "title": "Suomi poikkeaa: syntyvyyden lasku kasautuu ensisynnyttäjiin",
-            "source": "Hellstrand ym. / Flux Consortium (2026); Geruso & Spears NBER Working Paper 33913 (2025); European Sociological Review 40(2) 2024",
-            "position": 2,
-            "content": {
-              "body": "Kansainvälinen tutkimus osoittaa, että kehittyneissä maissa yli 60 % syntyvyyden laskusta selittyy sillä, että lapsia jo saavat perheet saavat aiempaa vähemmän lapsia (Geruso & Spears 2025). Suomessa tilanne on päinvastainen: lasku kasautuu lähes kokonaan ensisynnyttäjien vähenemiseen.",
-              "evidence": {
-                "sources": [
-                  "Geruso, M. & Spears, D. (2025). Childless or Child-fewer? Childlessness and Parity Progression where Fertility is Below Replacement. NBER Working Paper 33913.",
-                  "Hellstrand, J. et al. / Flux Consortium (2026). Suomen syntyvyyden lasku ja ensisynnytysten rooli.",
-                  "European Sociological Review (2024). Lapsettomuusihanteiden muutos suomalaisilla kohorteilla."
-                ],
-                "data_use": "source_based",
-                "publication_status": "ready"
-              },
-              "findings": [
-                {
-                  "aihe": "Ensisynnytysten osuus laskusta",
-                  "lahde": "Hellstrand ym. / Flux Consortium 2026",
-                  "havainto": "Vuosina 2010–2024 noin 82 % Suomen syntyvyyden laskusta selittyy ensimmäisten synnytysten vähenemisellä.",
-                  "merkitys": "Perheellistyminen lykkääntyy tai jää kokonaan tapahtumatta – ei niinkään se, että jo perheelliset haluaisivat vähemmän lapsia."
-                },
-                {
-                  "aihe": "Perheellisten synnytystiheys",
-                  "lahde": "Flux Consortium 2026",
-                  "havainto": "Toisten ja kolmansien lasten syntymät selittävät kumpikin vain noin 8 % laskusta. Perheellisten naisten synnytystiheys on pysynyt suhteellisen vakaana.",
-                  "merkitys": "Rakenteelliset esteet osuvat erityisesti siihen hetkeen, jolloin ensimmäinen lapsi pitäisi syntyä."
-                },
-                {
-                  "aihe": "Lapsettomuusihanteiden leviäminen",
-                  "lahde": "European Sociological Review 2024",
-                  "havainto": "1985–1989 syntyneistä suomalaisista miehistä 25–26 % ilmoitti ihanteekseen nolla lasta. Vastaava luku 1975–1979 syntyneillä oli 4–5 %. Naisilla muutos oli yhtä dramaattinen.",
-                  "merkitys": "Arvomuutos on todellinen – mutta se ei yksin selitä laskua. Myös ne jotka haluavat lapsia, lykkäävät tai luopuvat rakenteellisista syistä."
-                },
-                {
-                  "aihe": "Vertailu kehittyneisiin maihin",
-                  "lahde": "Geruso & Spears, NBER Working Paper 33913, 2025",
-                  "havainto": "Geruso & Spears (NBER 2025) analysoivat 34 kehittyneen talouden kohorttidataa: lapsettomien osuuden kasvu selittää vain 38 % laskusta, loput 62 % selittyy perheellisten pienemmästä lapsimäärästä.",
-                  "merkitys": "Suomi on poikkeustapaus: mekanismi on erilainen kuin useimmissa verrokkimaissa."
-                }
-              ],
-              "key_insight": "Suomessa syntyvyyden lasku ei ole pääosin kysymys siitä, että perheelliset saavat vähemmän lapsia. Se on kysymys siitä, ettei ensimmäistä lasta synny. Tämä tarkentaa rakenteellisen selityksen kohdentumista: esteet ovat erityisen voimakkaita juuri perheellistymisen kynnyksellä."
-            },
-            "hidden": false,
-            "reader_function": "paljastaa"
           }
         ]
       },
       {
         "position": 5,
         "appendices": [
-          {
-            "id": "f0b9a066-b0bb-413a-a8fb-ea0bfae4a931",
-            "chapter_position": 5,
-            "section_position": 0,
-            "verified_section_id": "7c11973a-aec0-431d-89e9-21a0a83efa7e",
-            "type": "note",
-            "title": "Mekanismi muuttuu elämäksi",
-            "source": "Rakenteellinen eriarvoisuus; palvelujärjestelmät; hallinnollinen taakka; hyvinvointivaltion asiakaskokemus.",
-            "position": 1,
-            "content": {
-              "body": "Luvun avaus siirtää tarkastelun järjestelmän mekanismeista ihmisten elämiin. Liite kiteyttää, miksi rakenteellinen analyysi tarvitsee kasvot.",
-              "text": "Mekanismi on helppo ymmärtää abstraktina: rahoitus ohjaa, mittarit kaventavat, vastuu hajoaa, reunaehdot kiristyvät ja kapasiteetti kuluu. Mutta mikään näistä ei jää abstraktiksi sille ihmiselle, jonka arjessa mekanismi lopulta tapahtuu.\n\nRahoituksen logiikka näkyy siinä, saako ihminen apua ennen kriisiä vai vasta sen jälkeen. Mittari näkyy siinä, mitä hänen tilanteestaan kirjataan ja mitä jää ulkopuolelle. Vastuun hajautuminen näkyy siinä, kuinka monta kertaa sama elämä pitää selittää uudelleen. Reunaehdot näkyvät siinä, kuinka kauan jonotetaan. Kapasiteetin puute näkyy siinä, miten väsyneeltä järjestelmä tuntuu.\n\nSiksi luvun kuusi kasvot eivät ole pelkkiä esimerkkejä. Ne ovat testejä sille, osaako mekanismianalyysi palata ihmisen tasolle.",
-              "reader_shift": "Jos mekanismi ei näy ihmisen elämässä, se jää teoriaksi. Jos se näkyy, kysymys muuttuu: miksi hyväksymme rakenteen, jonka seuraukset tunnistamme?"
-            },
-            "hidden": false,
-            "reader_function": "konkretisoi"
-          },
           {
             "id": "71a03e5d-48db-40dc-82be-7f83229b08c6",
             "chapter_position": 5,
@@ -11005,46 +10688,12 @@
             },
             "hidden": false,
             "reader_function": "vapauttaa"
-          },
-          {
-            "id": "55ad8d4f-23d0-46ae-9da5-0fb797b65abd",
-            "chapter_position": 6,
-            "section_position": 8,
-            "verified_section_id": "81d0faca-7ff4-4056-a363-d52f1adb174e",
-            "type": "note",
-            "title": "Investointi ihmisiin on säästö vain jos se tehdään ajoissa",
-            "source": "Hyvinvointi-investoinnit; inhimillinen pääoma; ennaltaehkäisy; toimintakyky; julkisen talouden kestävyys.",
-            "position": 1,
-            "content": {
-              "body": "Luvun päätös kiteyttää ihmisiin investoimisen logiikan. Liite yhdistää taloudellisen ja moraalisen perustelun.",
-              "text": "Investointi ihmisiin kuulostaa helposti juhlapuheelta. Mutta hyvinvointijärjestelmässä se on myös kylmästi rakenteellinen väite: toimintakyky, terveys, luottamus, koulutus ja osallisuus ovat järjestelmän kantavaa pääomaa. Kun ne heikkenevät, lasku palaa myöhemmin raskaampina palveluina, työkyvyn menetyksenä, turvattomuutena ja luottamuksen murentumisena.\n\nInvestointi ihmisiin ei tarkoita, että jokainen meno olisi automaattisesti hyvä. Se tarkoittaa, että päätöksenteon pitää erottaa kulutus, paikkaaminen ja kantokykyä rakentava panostus toisistaan. Ajoissa tehty tuki voi olla säästöä juuri siksi, että se estää kalliimman ja inhimillisesti raskaamman vaiheen.\n\nTämän luvun viimeinen ajatus on siksi yksinkertainen: jos järjestelmä säästää ihmisistä väärässä kohdassa, se ei välttämättä säästä lainkaan. Se vain siirtää laskun aikaan, paikkaan ja ihmiselle, jossa se on vaikeampi maksaa.",
-              "reader_shift": "Ihmisiin investoiminen on säästöä silloin, kun se säilyttää toimintakyvyn ennen kuin sen menetys muuttuu järjestelmän kalleimmaksi ongelmaksi."
-            },
-            "hidden": false,
-            "reader_function": "määritellä"
           }
         ]
       },
       {
         "position": 7,
         "appendices": [
-          {
-            "id": "08304827-382a-49da-8a9e-e0600a3851b4",
-            "chapter_position": 7,
-            "section_position": 0,
-            "verified_section_id": "f5fd2a76-ac57-4ace-8446-83096bf2c1fc",
-            "type": "note",
-            "title": "Muutos alkaa, kun vanha ei enää kanna",
-            "source": "Järjestelmämuutos; reformi-ikkuna; kriisijohtaminen; institutionaalinen muutos; hyvinvointivaltion uudistaminen.",
-            "position": 1,
-            "content": {
-              "body": "Päätösluvun avaus nimeää muutoksen pakotevoiman. Liite erottaa muutoksen toiveen ja muutoksen pakon.",
-              "text": "Järjestelmät muuttuvat harvoin siksi, että joku on esittänyt täydellisen argumentin. Ne muuttuvat, kun vanhan järjestyksen kustannus alkaa ylittää sen turvan, jonka vanha järjestys tarjoaa.\n\nHyvinvointijärjestelmässä tämä pakotevoima voi syntyä monesta lähteestä: rahoitus ei enää kanna, henkilöstö ei enää riitä, palvelut eivät enää kohtaa tarvetta, kansalaisten luottamus heikkenee tai kriisit paljastavat rakenteen, jota normaalitilanne peitti.\n\nPakko ei kuitenkaan takaa hyvää muutosta. Se vain avaa ikkunan. Jos mekanismeja ei ymmärretä, järjestelmä voi reagoida kriisiin vahvistamalla juuri niitä rakenteita, jotka kriisin tuottivat.",
-              "reader_shift": "Muutoksen pakotevoima ei ole ratkaisu. Se on hetki, jossa ratkaisu tulee mahdolliseksi — tai jossa vanha sokeus saa uuden muodon."
-            },
-            "hidden": false,
-            "reader_function": "haastaa"
-          },
           {
             "id": "7a5cb6c3-2180-447a-a8d4-431eebfe5df8",
             "chapter_position": 7,
@@ -11205,23 +10854,6 @@
             "reader_function": "vapauttaa"
           },
           {
-            "id": "317bcd23-3022-4286-888f-52077e4d6962",
-            "chapter_position": 7,
-            "section_position": 5,
-            "verified_section_id": "1fa5b916-a5a4-465d-8205-3ff897615848",
-            "type": "note",
-            "title": "Järjestelmäpolitiikka: politiikkaa mekanismeihin",
-            "source": "Järjestelmäpolitiikka; systeeminen reformi; julkisen sektorin ohjaus; palveluintegraatio; hyvinvointivaltion tulevaisuus.",
-            "position": 1,
-            "content": {
-              "body": "Osio kysyy, mitä järjestelmäpolitiikka tarkoittaa. Liite antaa tiiviin määritelmän.",
-              "text": "Järjestelmäpolitiikka ei ole vain uuden palvelun lisäämistä, vanhan menon leikkaamista tai hallinnon uudelleenjärjestelyä. Se on politiikkaa, joka kohdistuu mekanismeihin: siihen, miten rahoitus ohjaa, miten mittarit näkevät, miten vastuu jakautuu, miten kapasiteetti kuluu ja miten pitkän aikavälin seuraukset tulevat näkyviksi.\n\nTällainen politiikka on vaikeampaa kuin tavallinen ohjelmapolitiikka, koska sen onnistuminen ei aina näy heti uutena päätöksenä tai helposti mitattavana lupauksena. Sen tulos on usein se, että jokin aiemmin toistuva virhe alkaa tapahtua harvemmin.\n\nJärjestelmäpolitiikka kysyy: mitä pitää muuttaa järjestelmän toimintalogiikassa, jotta yksittäisten ihmisten ei tarvitse yhä uudelleen paikata sen samoja puutteita?",
-              "reader_shift": "Järjestelmäpolitiikan mitta ei ole, kuinka paljon uutta päätetään. Sen mitta on, muuttuuko mekanismi, joka tuotti vanhan ongelman."
-            },
-            "hidden": false,
-            "reader_function": "määritellä"
-          },
-          {
             "id": "ffe3ddd3-e513-417b-a59e-63f77b48dfeb",
             "chapter_position": 7,
             "section_position": 6,
@@ -11248,23 +10880,6 @@
                 }
               ],
               "ordered": true
-            },
-            "hidden": false,
-            "reader_function": "vapauttaa"
-          },
-          {
-            "id": "25fab297-7628-4d14-b37a-f4af8ed64aad",
-            "chapter_position": 7,
-            "section_position": 7,
-            "verified_section_id": "fdcadea9-f691-4b3c-a891-b79d45f7dfe2",
-            "type": "note",
-            "title": "Näkyväksi tehty mekanismi ei ole enää kohtalo",
-            "source": "Hyvinvointivaltion tulevaisuus; mekanismiajattelu; systeeminen muutos; institutionaalinen vastuu.",
-            "position": 1,
-            "content": {
-              "body": "Kirjan viimeinen osio sulkee argumentin. Liite kiteyttää, miksi näkymättömien mekanismien nimeäminen on poliittisesti ja moraalisesti merkittävää.",
-              "text": "Näkymätön mekanismi on voimakas, koska se näyttää luonnolliselta. Rahoitus näyttää vain rahalta, mittari vain tiedolta, vastuunjako vain organisaatiolta, reunaehto vain realiteetilta ja kapasiteettipula vain resurssikysymykseltä. Mutta kun mekanismi nimetään, se lakkaa olemasta pelkkä tausta.\n\nSilloin voidaan kysyä: miksi raha näkee vasta kriisin? Miksi mittari ei näe kuormaa? Miksi vastuu hajoaa juuri siirtymissä? Miksi pitkän aikavälin pääoma katoaa vuosibudjettiin? Miksi kapasiteetti kuluu paikkaamiseen eikä oppimiseen?\n\nTämä kirja ei väitä, että vastaukset ovat helppoja. Se väittää, että kysymykset pitää asettaa oikeaan kohtaan. Jos mekanismi jää näkymättömäksi, ihminen kantaa sen seuraukset yksityisenä ongelmana. Jos mekanismi tehdään näkyväksi, järjestelmä voidaan rakentaa toisin.",
-              "reader_shift": "Näkymättömyys on mekanismin valtaa. Näkyväksi tekeminen on ensimmäinen tapa ottaa se valta takaisin."
             },
             "hidden": false,
             "reader_function": "vapauttaa"
