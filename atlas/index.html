@@ -286,6 +286,10 @@ body.panel-expanded .panel.expanded{opacity:1;pointer-events:auto}
 }
 .node:hover circle.ring,.node:focus circle.ring{stroke-width:3.2;filter:drop-shadow(0 0 7px rgba(255,209,102,.6))}
 .node.selected circle.ring{stroke:#ffd166!important;stroke-width:3.6;filter:drop-shadow(0 0 11px rgba(255,209,102,.9))}
+.node.discovery-highlight circle.ring{stroke:#fff0a6!important;stroke-width:4.4;stroke-dasharray:0;filter:drop-shadow(0 0 15px rgba(255,209,102,.98));animation:discoveryNodePulse 1.8s ease-in-out infinite}
+.node.discovery-highlight circle.core{filter:drop-shadow(0 0 12px rgba(255,209,102,.62))}
+.node.discovery-highlight text{fill:#fff8d8;font-size:11px}
+@keyframes discoveryNodePulse{0%,100%{opacity:1}50%{opacity:.78}}
 .node.anchor circle.ring{
   stroke:#ffd166!important;stroke-width:3.7;stroke-dasharray:0;
   filter:drop-shadow(0 0 11px rgba(255,209,102,.78))
@@ -297,6 +301,8 @@ body.panel-expanded .panel.expanded{opacity:1;pointer-events:auto}
 .link.interpretive{stroke-dasharray:7 7}
 .link.contextual{stroke-dasharray:2 10}
 .link.selected{stroke:#fff2b8;stroke-width:3.6;filter:drop-shadow(0 0 8px rgba(255,209,102,.72))}
+.link.discovery-highlight{stroke:#fff0a6!important;stroke-width:4.2!important;stroke-opacity:1!important;filter:drop-shadow(0 0 10px rgba(255,209,102,.92));animation:discoveryLinkPulse 1.6s ease-in-out infinite}
+@keyframes discoveryLinkPulse{0%,100%{stroke-opacity:1}50%{stroke-opacity:.64}}
 .link-hit{fill:none;stroke:transparent;stroke-width:18;cursor:pointer}
 .rel-label{font-size:8.6px;font-weight:700;fill:#cbd5e5;text-anchor:middle;paint-order:stroke;stroke:#080b10;stroke-width:4;pointer-events:none;transition:opacity .3s}
 .rel-label.selected{fill:#fff2b8;font-size:9.3px}
@@ -1816,7 +1822,8 @@ body.root-cause-mode .temporal-guide .era.past::after{content:" · JUURISYYT";co
 .temporal-guide .reading-order{display:none!important}
 
 /* Verkon sisältö saa hieman tilaa vasemman reunalapun jälkeen. */
-.panel svg .viewport-root{transform-box:fill-box}
+.panel svg .viewport-root{transform-box:fill-box;transform-origin:0 0;transition:transform .78s cubic-bezier(.22,.9,.3,1);will-change:transform}
+.panel svg.discovery-camera-moving{filter:drop-shadow(0 0 10px rgba(255,209,102,.08))}
 
 @media(max-width:1100px){
   .panel header.panel-heading{width:112px!important;max-width:112px!important;padding-left:37px!important}
@@ -2251,6 +2258,7 @@ body.chain-mode .analysis-launcher,body.interp-mode .analysis-launcher,body.pane
 .discovery-list{overflow:auto;padding:8px 10px 14px;display:grid;gap:8px}
 .discovery-card{border:1px solid rgba(121,142,178,.26);border-radius:12px;background:rgba(18,26,40,.8);padding:11px 12px;cursor:pointer;transition:.18s}
 .discovery-card:hover{border-color:rgba(255,209,102,.5);background:rgba(26,36,54,.94);transform:translateY(-1px)}
+.discovery-card.active{border-color:#ffd166;background:linear-gradient(180deg,rgba(55,47,25,.94),rgba(25,32,45,.96));box-shadow:0 0 0 1px rgba(255,209,102,.2),0 0 22px rgba(255,209,102,.13)}
 .discovery-rating{display:flex;align-items:center;gap:7px;font-size:9px;color:#ffd166;font-weight:850}.discovery-rating small{color:var(--muted);font-size:8px;font-weight:700}
 .discovery-card h4{margin:6px 0 7px;font-size:13px;line-height:1.3;color:#f2f6ff}
 .discovery-path{font-size:9.5px;line-height:1.5;color:#cbd4e3}.discovery-path span{white-space:nowrap}.discovery-arrow{color:#7889a6;margin:0 4px}
@@ -2278,7 +2286,7 @@ body.discovery-focus-mode .discovery-focus-banner{opacity:1;visibility:visible;p
 .discovery-focus-banner p{margin:0;color:#b9c5d7;font-size:10px;line-height:1.45}
 .discovery-focus-banner .df-close{position:absolute;right:9px;top:8px;border:0;background:transparent;color:#8390a5;font-size:18px}
 .discovery-focus-banner .df-path{display:flex;align-items:center;gap:5px;overflow:auto;margin-top:9px;padding-top:8px;border-top:1px solid rgba(255,255,255,.07)}
-.discovery-focus-banner .df-node{white-space:nowrap;border:1px solid rgba(126,148,184,.28);border-radius:999px;background:rgba(23,33,50,.88);padding:4px 8px;font-size:8.5px;color:#e6edf8}
+.discovery-focus-banner .df-node{appearance:none;cursor:pointer;white-space:nowrap;border:1px solid rgba(126,148,184,.28);border-radius:999px;background:rgba(23,33,50,.88);padding:4px 8px;font-size:8.5px;color:#e6edf8}
 .discovery-focus-banner .df-node:first-child{border-color:rgba(143,184,255,.55)}
 .discovery-focus-banner .df-node:last-child{border-color:rgba(255,182,115,.58)}
 .discovery-focus-banner .df-arrow{color:#ffd166;font-weight:900}
@@ -2530,12 +2538,6 @@ body.discovery-focus-mode .panel[data-discovery-stage] .discovery-stage-label{di
   </main>
 </div>
 
-<div class="onboarding" id="onboarding" role="status" aria-live="polite">
-  <div class="step active" data-step="1"><span class="step-num">1</span>Valitse kysymys tai kirjoita oma</div>
-  <div class="step" data-step="2"><span class="step-num">2</span>Vieritä palloa vaihtaaksesi linssiä</div>
-  <div class="step" data-step="3"><span class="step-num">3</span>Klikkaa ilmiötä -- näet mistä ketju tulee ja minne johtaa</div>
-  <button class="onboarding-close" id="onboardingClose" title="Sulje ohje">×</button>
-</div>
 
 <aside class="reading-guide" id="readingGuide" role="dialog" aria-modal="false" aria-label="Näkymän lukuohje"></aside>
 
@@ -3102,6 +3104,67 @@ function themeDisplayName(t,year=currentYear){
   }
   return bestOverlap>0?(best.label||t.name):(t.name||t.id||"");
 }
+const RELATION_TYPE_LABELS={
+  triggered:"käynnisti",
+  first_wave_of:"oli kehityksen ensimmäinen ilmentymä",
+  enabled:"mahdollisti",
+  produced:"johti",
+  created_capacity_for:"rakensi valmiutta",
+  structural_precursor:"rakensi perustan",
+  evolved_into:"kehittyi myöhemmin ilmiöksi",
+  supports:"tuki",
+  contributed_to:"vaikutti",
+  constrained:"rajoitti",
+  responded_to:"oli vastaus ilmiöön",
+  associated_with:"liittyi ilmiöön",
+  context_for:"muodosti taustan",
+  deepened:"syvensi",
+  accelerated:"kiihdytti",
+  created_preconditions_for:"loi edellytykset",
+  shared_context:"jakoi yhteisen taustan",
+  explains:"selitti",
+  named_by_source:"yhdistettiin lähteessä",
+  umbrella_for:"kokosi yhteen",
+  related_framework:"liittyi samaan kehykseen",
+  shared_driver:"oli yhteinen taustatekijä",
+  flip_side_of:"oli saman kehityksen kääntöpuoli",
+  cross_reference:"liittyi toiseen havaintoon",
+  dual_effect:"vaikutti kahteen suuntaan",
+  comparison:"toimi vertailukohtana",
+  contrasts:"oli vastakkainen kehityssuunta",
+  definitional:"liittyi määritelmällisesti",
+  tested_by:"joutui koetukselle",
+  generalizes:"laajensi ilmiön yleisemmäksi",
+  mediated_by:"vahvisti vaikutusta",
+  strengthened_by:"vahvisti"
+};
+function humanizeTechnicalText(text){
+  let output=String(text??"");
+  // Relaatioiden sisäiset tunnisteet eivät kuulu lukijalle.
+  output=output.replace(/\brel[-_ ]?\d+\b/gi,"");
+  for(const [type,label] of Object.entries(RELATION_TYPE_LABELS)){
+    output=output.replace(new RegExp(`\\b${type}\\b`,"gi"),label)
+  }
+  return output
+    .replace(/\s+([,.;:!?])/g,"$1")
+    .replace(/([:;,-])\s*([:;,-])/g,"$1")
+    .replace(/\s{2,}/g," ")
+    .replace(/^\s*[\-\u2013\u2014:;,.]+\s*/, "")
+    .trim()
+}
+function readableThemeReferences(text,year=currentYear){
+  const input=String(text??"");
+  if(!input)return "";
+  const named=input.replace(/\b([RSKAM]\d{2})\b/g,(match,id)=>{
+    const theme=tmap.get(id);
+    return theme?themeDisplayName(theme,year):match
+  });
+  return humanizeTechnicalText(named)
+}
+function readableEntityName(id,year=currentYear){
+  const entity=tmap.get(id);
+  return entity?themeDisplayName(entity,year):String(id??"")
+}
 function themeNameWithArc(t,year=currentYear){
   const label=themeDisplayName(t,year),arc=t?.name||"";
   return label&&arc&&label!==arc?`${label} -- osa kehityskaarta: ${arc}`:label||arc;
@@ -3197,24 +3260,12 @@ function relationGroup(r){
   return REL_GROUPS.context
 }
 function relationTypePhrase(type){
-  const map={
-    triggered:"laukaisi",first_wave_of:"oli ensimmäinen aalto ilmiöstä",enabled:"mahdollisti",produced:"tuotti",
-    created_capacity_for:"rakensi valmiutta",structural_precursor:"loi rakenteellisia edellytyksiä",evolved_into:"kehittyi kohti",
-    supports:"tuki",contributed_to:"vaikutti",constrained:"rajoitti",responded_to:"oli vastaus ilmiöön",
-    associated_with:"liittyi",context_for:"muodosti kontekstin",deepened:"syvensi",accelerated:"kiihdytti",
-    created_preconditions_for:"loi edellytykset",shared_context:"jakoi yhteisen kontekstin",
-    explains:"selittää ilmiötä",named_by_source:"yhdistetty lähteessä",umbrella_for:"kattaa ilmiön",
-    related_framework:"liittyvä kehys",shared_driver:"yhteinen taustavoima",flip_side_of:"saman kehityksen kääntöpuoli",
-    cross_reference:"ristiviittaus",dual_effect:"kaksisuuntainen vaikutus",comparison:"vertailukohta",
-    contrasts:"vastakohta ilmiölle",definitional:"määritelmällinen yhteys",tested_by:"koeteltiin ilmiössä",
-    generalizes:"yleistää ilmiön"
-  };
-  return map[type]||String(type||"liittyi ilmiöön").replaceAll("_"," ")
+  return RELATION_TYPE_LABELS[type]||humanizeTechnicalText(String(type||"liittyi ilmiöön").replaceAll("_"," "))
 }
 function relationSentence(r){
-  const a=tmap.get(r.from)?.name||r.from,b=tmap.get(r.to)?.name||r.to;
+  const a=readableEntityName(r.from),b=readableEntityName(r.to);
   if(r.label){
-    const label=String(r.label).trim();
+    const label=readableThemeReferences(String(r.label).trim());
     if(label.includes(a)||label.includes(b))return /[.!?]$/.test(label)?label:label+".";
     return `${a}: ${label.charAt(0).toLowerCase()+label.slice(1)} → ${b}.`
   }
@@ -3670,11 +3721,13 @@ function ensurePanelDom(panel){
     +markerDef(`arr-${panel}-active`,"#ffd166")
     +Object.values(REL_GROUPS).map(g=>markerDef(`arr-${panel}-${g.key}`,g.color)).join("");
   svg.appendChild(defs);
+  const viewport=svgNode("g","viewport-root");
+  svg.appendChild(viewport);
   const layers={};
   for(const name of ["halos","links","labels","nodes"]){
-    const g=svgNode("g","layer-"+name);svg.appendChild(g);layers[name]=g
+    const g=svgNode("g","layer-"+name);viewport.appendChild(g);layers[name]=g
   }
-  return panelDom[panel]={svg,layers,nodes:new Map(),links:new Map(),clusters:new Map()}
+  return panelDom[panel]={svg,viewport,layers,nodes:new Map(),links:new Map(),clusters:new Map(),camera:{scale:1,cx:350,cy:215}}
 }
 function fadeRemove(map,key,delay=430){
   const entry=map.get(key);if(!entry)return;
@@ -3819,6 +3872,7 @@ function renderPanel(panel,w){
     const isActive=selected||inActiveChain;
     const scope=relationScope(r);
     e.path.setAttribute("class",`link rel-${group.key} scope-${scope} ${r.rel_class==="tulkinta"?"interpretive":r.rel_class==="konteksti"?"contextual":""} ${(r.directness==="indirect"||r.directness==="contextual")?"indirect":""} ${isActive?"active":""} ${(isActive||score>.56)?"flow":""}`);
+    e.path.classList.toggle("discovery-highlight",document.body.classList.contains("discovery-focus-mode")&&activeRelationIds.has(r.id));
     e.path.dataset.scope=scope;
     e.path.setAttribute("aria-label",`${relationScopeLabel(scope)}: ${relationSentence(r)}`);
     e.path.setAttribute("marker-end",`url(#arr-${panel}${isActive?"-active":group.key==="context"?"":"-"+group.key})`);
@@ -3900,6 +3954,7 @@ function renderPanel(panel,w){
       e.g.style.transform=targetTransform
     }
     e.g.classList.toggle("selected",n.isSelected);
+    e.g.classList.toggle("discovery-highlight",document.body.classList.contains("discovery-focus-mode")&&activeNodeIds.has(n.id));
     e.g.classList.toggle("anchor",n.isAnchor);
     e.g.classList.remove("ep-observed","ep-risk","ep-possible");
     e.g.classList.add(`ep-${n.epistemic.state}`);
@@ -6123,6 +6178,7 @@ window.addEventListener("resize",requestSemanticRender);
 
 // ==== Löydöskokoelma ======================================================
 let discoveryIndex=[];
+let activeDiscoveryId=null;
 function discoveryRelationAllowed(r){
   if(r.from_kind!=="theme"||r.to_kind!=="theme")return false;
   if(!tmap.has(r.from)||!tmap.has(r.to))return false;
@@ -6141,16 +6197,64 @@ function discoveryLevel(rels){
 }
 function discoveryMechanismPhrase(r){
   const why=chainWhy(r);
-  if(why)return String(why).replace(/\s+/g," ").trim();
-  return relationSentence(r).replace(/\.$/,"")
+  if(why)return readableThemeReferences(String(why).replace(/\s+/g," ").trim());
+  return readableThemeReferences(relationSentence(r).replace(/\.$/,""))
+}
+function discoveryPathSpan(nodes){
+  const years=nodes.map(n=>Number(n?.period?.start)).filter(Number.isFinite);
+  return years.length?Math.max(...years)-Math.min(...years):0
+}
+function discoverySpecificMechanism(r){
+  const raw=String(chainWhy(r)||"").replace(/\s+/g," ").trim();
+  if(raw.length<38)return false;
+  const generic=String(relationSentence(r)||"").replace(/[.!?]+$/g,"").trim().toLowerCase();
+  return raw.replace(/[.!?]+$/g,"").trim().toLowerCase()!==generic
+}
+function discoverySignals(nodes,rels){
+  const span=discoveryPathSpan(nodes);
+  const groups=new Set(rels.map(r=>relationGroup(r).key));
+  const types=new Set(rels.map(r=>r.relation_type));
+  const specific=rels.filter(discoverySpecificMechanism).length;
+  const curated=rels.filter(r=>curatedRelationIds.has(r.id)).length;
+  const delayed=rels.some((r,i)=>{
+    const a=nodes[i],b=nodes[i+1];
+    const ae=Number(a?.period?.end??a?.period?.start),bs=Number(b?.period?.start);
+    return Number.isFinite(ae)&&Number.isFinite(bs)&&bs-ae>=5
+  });
+  return{span,groups:groups.size,types:types.size,specific,curated,delayed}
+}
+function discoveryIsInsight(nodes,rels){
+  // Yksittäinen nuoli on relaation kuvaus, ei löydös.
+  if(!nodes||nodes.length<3||!rels||rels.length<2)return false;
+  const s=discoverySignals(nodes,rels);
+  let score=0;
+  if(s.span>=10)score++;
+  if(s.delayed)score++;
+  if(s.groups>=2||s.types>=2)score++;
+  if(s.specific>=1)score++;
+  if(s.curated===rels.length)score++;
+  // Löydöksen on tuotava vähintään kaksi lisäsignaalia ja niiden joukossa
+  // joko mekanismi, ajallinen viive tai usean relaatiotyypin yhdistelmä.
+  return score>=2&&(s.specific>0||s.delayed||s.span>=10||(s.groups>=2&&s.types>=2))
 }
 function discoveryTitle(nodes,rels=[]){
-  const first=themeDisplayName(nodes[0])||"Ilmiö",last=themeDisplayName(nodes[nodes.length-1])||"seuraus";
-  if(nodes.length===2&&rels[0]){
-    const verb=relationTypePhrase(rels[0].relation_type);
-    return `${first} ${verb} kehitystä kohti ilmiötä ${last}`
-  }
-  return `${first}:n pitkä vaikutus ilmiöön ${last}`
+  const first=themeDisplayName(nodes[0])||"Ilmiö";
+  const middle=themeDisplayName(nodes[1])||"välivaihe";
+  const last=themeDisplayName(nodes[nodes.length-1])||"seuraus";
+  const s=discoverySignals(nodes,rels);
+  if(s.delayed&&s.span>=10)return `${first}: vaikutus tuli näkyviin ${s.span} vuoden aikajänteellä ilmiössä ${last}`;
+  if(s.groups>=2||s.types>=2)return `${middle} vahvisti ilmiön ${first} vaikutusta ilmiöön ${last}`;
+  return `${first} vaikutti ilmiöön ${last} välivaiheen ${middle} kautta`
+}
+function discoveryReason(item){
+  const s=discoverySignals(item.nodes,item.rels);
+  const reasons=[];
+  if(s.span>=10)reasons.push(`${s.span} vuoden aikajänne`);
+  if(s.delayed)reasons.push("selvä vaikutusviive");
+  if(s.groups>=2||s.types>=2)reasons.push("usean mekanismin ketju");
+  if(s.specific)reasons.push("aineistossa kuvattu vahvistava mekanismi");
+  if(s.curated===item.rels.length)reasons.push("kokonaan kuratoitu polku");
+  return reasons.slice(0,3).join(" · ")
 }
 function discoveryHow(item){
   if(!item?.rels?.length)return "";
@@ -6169,7 +6273,7 @@ function discoveryEndTheme(item){return themeDisplayName(item.nodes[item.nodes.l
 function buildDiscoveryIndex(){
   const candidates=[];
   const rels=relations.filter(discoveryRelationAllowed);
-  for(const r of rels)candidates.push([r]);
+  // Yksittäisiä relaatioita ei nosteta löydöksiksi: sama tieto näkyy jo nuolena.
   const out=new Map();rels.forEach(r=>{if(!out.has(r.from))out.set(r.from,[]);out.get(r.from).push(r)});
   for(const r1 of rels){
     for(const r2 of out.get(r1.to)||[]){
@@ -6186,6 +6290,7 @@ function buildDiscoveryIndex(){
     if(starts.some((v,i)=>i&&v+12<starts[i-1]))continue;
     const quality=Math.min(...path.map(edgeQuality));
     if(quality<.3)continue;
+    if(!discoveryIsInsight(nodes,path))continue;
     const key=`${ids[0]}→${ids[ids.length-1]}`;
     const item={id:key,from:ids[0],to:ids[ids.length-1],rels:path,nodes,quality,level:discoveryLevel(path),title:discoveryTitle(nodes,path)};
     const old=best.get(key);if(!old||item.quality>old.quality||(item.quality===old.quality&&item.rels.length<old.rels.length))best.set(key,item)
@@ -6209,7 +6314,7 @@ function renderDiscoveryCollection(){
     "end-theme":(a,b)=>discoveryEndTheme(a).localeCompare(discoveryEndTheme(b),"fi")||discoveryYear(a)-discoveryYear(b)
   }[sort];
   const shown=discoveryIndex.filter(x=>(filter==="all"||x.level.key===filter)&&(!term||`${x.title} ${x.nodes.map(n=>n.name).join(" ")} ${discoveryHow(x)}`.toLowerCase().includes(term))).sort(sorter).slice(0,120);
-  list.innerHTML=shown.length?shown.map((x,i)=>`<article class="discovery-card" tabindex="0" data-discovery="${i}" data-from="${esc(x.from)}" data-to="${esc(x.to)}"><div class="discovery-rating">${"★".repeat(x.level.stars)}${"☆".repeat(5-x.level.stars)} <small>${esc(x.level.label)}</small></div><h4>${esc(x.title)}</h4><div class="discovery-path">${x.nodes.map((n,j)=>`${j?'<span class="discovery-arrow">→</span>':''}<span>${esc(themeDisplayName(n))}</span>`).join("")}</div><div class="discovery-how"><b>Miten?</b> ${esc(discoveryHow(x))}</div><div class="discovery-meta"><span>${discoveryYear(x)}–</span><span>${x.rels.length} ${x.rels.length===1?"askel":"askelta"}</span><span>avaa tulkinta</span></div></article>`).join(""):`<div class="discovery-empty">Hakuehdoilla ei löytynyt löydöksiä.</div>`;
+  list.innerHTML=shown.length?shown.map((x,i)=>`<article class="discovery-card${activeDiscoveryId===x.id?" active":""}" tabindex="0" data-discovery="${i}" data-discovery-id="${esc(x.id)}" data-from="${esc(x.from)}" data-to="${esc(x.to)}"><div class="discovery-rating">${"★".repeat(x.level.stars)}${"☆".repeat(5-x.level.stars)} <small>${esc(x.level.label)}</small></div><h4>${esc(x.title)}</h4><div class="discovery-path">${x.nodes.map((n,j)=>`${j?'<span class="discovery-arrow">→</span>':''}<span>${esc(themeDisplayName(n))}</span>`).join("")}</div><div class="discovery-how"><b>Miksi tämä on löydös?</b> ${esc(discoveryReason(x))}</div><div class="discovery-how"><b>Miten?</b> ${esc(discoveryHow(x))}</div><div class="discovery-meta"><span>${discoveryYear(x)}–</span><span>${x.rels.length} ${x.rels.length===1?"askel":"askelta"}</span><span>avaa tulkinta</span></div></article>`).join(""):`<div class="discovery-empty">Hakuehdoilla ei löytynyt löydöksiä.</div>`;
   list.querySelectorAll(".discovery-card").forEach((card,index)=>{
     const open=()=>{
       const item=shown[index];
@@ -6246,9 +6351,9 @@ function discoveryDominantLevel(nodes){
 }
 function discoveryNarrative(item){
   const names=item.nodes.map(themeDisplayName);
+  const reason=discoveryReason(item);
   const how=discoveryHow(item);
-  if(names.length===2)return `${names[0]} ei vain ajoitu ennen ilmiötä ${names[1]}, vaan aineiston relaatio kuvaa vaikutuksen suunnan. Miten muutos tapahtui: ${how}`;
-  return `Atlas lukee löydöksen ajallisena vaikutusketjuna. ${names[0]} käynnistää kehityksen, välivaiheet välittävät vaikutusta ja ${names[names.length-1]} on ketjun näkyvä seuraus. Miten: ${how}`
+  return `Tämä ei ole yksittäisen relaation selostus, vaan useasta aineiston kohdasta muodostuva tulkinta. Löydös syntyi, koska ketjussa havaittiin ${reason}. ${names[1]} toimii vaikutusta vahvistavana vaiheena ilmiön ${names[0]} ja seurauksen ${names[names.length-1]} välillä. Miten muutos tapahtui: ${how}`
 }
 function applyDiscoveryPanelLabels(item){
   const stages=[
@@ -6265,13 +6370,53 @@ function applyDiscoveryPanelLabels(item){
     if(t)t.textContent=title.replace(/^\d · /,"");if(q)q.textContent=sub
   })
 }
+function setPanelCamera(panel,{scale=1,cx=350,cy=215}={},animate=true){
+  const dom=ensurePanelDom(panel);
+  const safeScale=Math.max(1,Math.min(1.72,Number(scale)||1));
+  const safeCx=Number.isFinite(cx)?cx:350,safeCy=Number.isFinite(cy)?cy:215;
+  dom.camera={scale:safeScale,cx:safeCx,cy:safeCy};
+  if(!animate)dom.viewport.style.transition="none";
+  dom.viewport.setAttribute("transform",`translate(350 215) scale(${safeScale.toFixed(3)}) translate(${-safeCx.toFixed(1)} ${-safeCy.toFixed(1)})`);
+  dom.svg.classList.toggle("discovery-camera-moving",animate);
+  if(!animate){void dom.viewport.getBBox();dom.viewport.style.transition=""}
+  else setTimeout(()=>dom.svg.classList.remove("discovery-camera-moving"),820)
+}
+function resetDiscoveryCamera(animate=true){
+  PANELS.forEach(panel=>setPanelCamera(panel,{scale:1,cx:350,cy:215},animate))
+}
+function discoveryCameraTarget(panel,ids,focusId=null){
+  const points=[...ids].map(id=>({id,p:panelNodePositions[panel]?.get(id)})).filter(x=>x.p);
+  if(!points.length)return null;
+  if(focusId){
+    const focused=points.find(x=>x.id===focusId);
+    if(focused)return{scale:1.55,cx:focused.p.x,cy:focused.p.y}
+  }
+  const xs=points.map(x=>x.p.x),ys=points.map(x=>x.p.y);
+  const minX=Math.min(...xs),maxX=Math.max(...xs),minY=Math.min(...ys),maxY=Math.max(...ys);
+  const width=Math.max(105,maxX-minX+105),height=Math.max(82,maxY-minY+82);
+  return{scale:Math.max(1.08,Math.min(1.58,620/width,350/height)),cx:(minX+maxX)/2,cy:(minY+maxY)/2}
+}
+function animateDiscoveryCamera(item,focusId=null){
+  const ids=new Set(item.nodes.map(t=>t.id));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    PANELS.forEach(panel=>{
+      const target=discoveryCameraTarget(panel,ids,focusId);
+      setPanelCamera(panel,target||{scale:1,cx:350,cy:215},true)
+    })
+  }))
+}
+
 function clearDiscoveryFocus(){
+  activeDiscoveryId=null;
   document.body.classList.remove("discovery-focus-mode");
   document.querySelectorAll(".panel[data-discovery-stage]").forEach(x=>x.removeAttribute("data-discovery-stage"));
   if(currentQuestion)applyQuestionLabels(currentQuestion);else applyQuestionLabels(null);
+  document.querySelectorAll(".discovery-card.active").forEach(x=>x.classList.remove("active"));
+  resetDiscoveryCamera(true);
   requestSemanticRender()
 }
 function activateDiscovery(item){
+  activeDiscoveryId=item.id;
   toggleDiscoveryCollection(false);
   closeAnalysisSurfaces?.();
   document.body.classList.remove("chain-mode","view-argument","view-timeline","view-summary-mode","interp-mode");
@@ -6294,13 +6439,20 @@ function activateDiscovery(item){
   applyDiscoveryPanelLabels(item);
 
   const banner=ensureDiscoveryFocusUI();
-  banner.innerHTML=`<button class="df-close" type="button" aria-label="Sulje löydöksen tulkinta">×</button><div class="df-top"><div class="df-icon">↝</div><div class="df-copy"><div class="df-kicker">${esc(item.level.label)} löydös</div><h2>${esc(item.title)}</h2><p>${esc(discoveryNarrative(item))}</p></div></div><div class="df-path">${item.nodes.map((n,i)=>`${i?'<span class="df-arrow">→</span>':''}<span class="df-node">${esc(themeDisplayName(n))}</span>`).join("")}</div><div class="discovery-mechanisms"><h3>Miten muutos tapahtui?</h3>${item.rels.map((r,i)=>`<div class="discovery-mech-row"><i>${i+1}</i><div><b>${esc(themeDisplayName(item.nodes[i]))} → ${esc(themeDisplayName(item.nodes[i+1]))}</b><span>${esc(discoveryMechanismPhrase(r))}</span><small>${esc(relationTypePhrase(r.relation_type))} · ${esc(chainTimeGap(item.nodes[i],item.nodes[i+1]))}</small></div></div>`).join("")}</div><div class="df-meta"><span>${item.rels.length} ${item.rels.length===1?"askel":"askelta"}</span><span>painopiste ${currentYear}-luku</span><span>${esc(LEVELS[activeLevel]?.title||"järjestelmätaso")}</span><span>kultaiset yhteydet = löydöksen polku</span></div>`;
+  banner.innerHTML=`<button class="df-close" type="button" aria-label="Sulje löydöksen tulkinta">×</button><div class="df-top"><div class="df-icon">↝</div><div class="df-copy"><div class="df-kicker">${esc(item.level.label)} löydös</div><h2>${esc(item.title)}</h2><p>${esc(discoveryNarrative(item))}</p></div></div><div class="df-path">${item.nodes.map((n,i)=>`${i?'<span class="df-arrow">→</span>':''}<button class="df-node" type="button" data-theme-id="${esc(n.id)}">${esc(themeDisplayName(n))}</button>`).join("")}</div><div class="discovery-mechanisms"><h3>Miten muutos tapahtui?</h3>${item.rels.map((r,i)=>`<div class="discovery-mech-row"><i>${i+1}</i><div><b>${esc(themeDisplayName(item.nodes[i]))} → ${esc(themeDisplayName(item.nodes[i+1]))}</b><span>${esc(discoveryMechanismPhrase(r))}</span><small>${esc(relationTypePhrase(r.relation_type))} · ${esc(chainTimeGap(item.nodes[i],item.nodes[i+1]))}</small></div></div>`).join("")}</div><div class="df-meta"><span>${item.rels.length} ${item.rels.length===1?"askel":"askelta"}</span><span>painopiste ${currentYear}-luku</span><span>${esc(LEVELS[activeLevel]?.title||"järjestelmätaso")}</span><span>kultaiset yhteydet = löydöksen polku</span></div>`;
   banner.querySelector(".df-close")?.addEventListener("click",clearDiscoveryFocus);
+  banner.querySelectorAll(".df-node[data-theme-id]").forEach(btn=>btn.addEventListener("click",()=>{
+    const id=btn.dataset.themeId;
+    if(!id)return;
+    illuminatedId=id;selectedSourcePanel=panelOfTheme(id);
+    computeFocusEchoes(id);requestSemanticRender();
+    animateDiscoveryCamera(item,id);
+  }));
 
   document.getElementById("coreName").textContent=item.title;
   document.getElementById("questionIntro").textContent=discoveryNarrative(item);
   chainKind="path";updateRightRail(true);requestSemanticRender();
-  setTimeout(()=>requestSemanticRender(),80)
+  setTimeout(()=>{requestSemanticRender();animateDiscoveryCamera(item)},90)
 }
 
 function toggleDiscoveryCollection(force){
