@@ -3778,6 +3778,34 @@
       "confidence": "vahva"
     },
     {
+  "id": "sahkon-jakeluverkkojen-yksityistaminen-2013",
+  "title": "Sähkön jakeluverkkojen yksityistäminen",
+  "year_start": 2013,
+  "year_end": 2014,
+  "type": "omistus- ja infrastruktuurimurros",
+  "domains": [
+    "energia",
+    "talous",
+    "valtio",
+    "infrastruktuuri",
+    "huoltovarmuus"
+  ],
+  "phase": "julkisesta infrastruktuurista markkinaehtoiseen omistukseen",
+  "problem": "Valtionyhtiöt hakivat pääomia investointeihin ja julkinen omistaja pyrki vapauttamaan pääomaa muihin tarkoituksiin. Samalla sähköverkko nähtiin vakaata tuottoa tarjoavana sijoituskohteena.",
+  "mechanism": "Fortum myi sähkön jakeluverkkonsa kansainväliselle sijoittajaryhmälle, jonka pohjalta muodostui Caruna. Jakeluverkot siirtyivät yksityiseen omistukseen samalla kun niiden toimintaa ohjattiin Energiaviraston sääntelymallilla.",
+  "effects": [
+    "jakeluverkkojen omistus kansainvälistyi",
+    "verkkoinvestoinnit kasvoivat",
+    "sähkön siirtohinnoista tuli laajan yhteiskunnallisen keskustelun kohde",
+    "luonnollisten monopolien sääntelyn merkitys korostui",
+    "huoltovarmuuden ja kriittisen infrastruktuurin omistus nousivat poliittiseksi kysymykseksi"
+  ],
+  "long_effect": "Murros muutti käsitystä siitä, missä määrin kriittinen infrastruktuuri voi olla markkinaehtoisen ja kansainvälisen omistuksen piirissä. Samalla se vahvisti keskustelua sääntelyn, omistajuuden ja yhteiskunnallisen hyväksyttävyyden suhteesta.",
+  "current_relevance": "Sähkön siirtohinnat, verkkoinvestoinnit, energiaomavaraisuus, kriittisen infrastruktuurin omistus, huoltovarmuus sekä luonnollisten monopolien sääntely ovat edelleen ajankohtaisia kysymyksiä.",
+  "importance": 4,
+  "confidence": "vahva"
+},
+    {
       "id": "ennaltaehkaisevat-perhepalvelut-2014",
       "title": "Ennaltaehkäisevien perhepalvelujen vahvistaminen",
       "year_start": 2014,
@@ -4334,6 +4362,35 @@
       "confidence": "kehittyvä"
     },
     {
+  "id": "datakeskusten-rakentamisen-kiihtyminen-2023",
+  "title": "Datakeskusten rakentamisen kiihtyminen",
+  "year_start": 2023,
+  "year_end": 2035,
+  "type": "digitaalisen infrastruktuurin murros",
+  "domains": [
+    "digitalisaatio",
+    "energia",
+    "tekoäly",
+    "aluekehitys",
+    "teollisuus"
+  ],
+  "phase": "digitaalisen tuotantoinfrastruktuurin rakentuminen",
+  "problem": "Pilvipalvelujen, tekoälyn ja digitaalisten palvelujen laskentatarve kasvoi nopeasti, mikä lisäsi tarvetta suurille datakeskuksille.",
+  "mechanism": "Suomeen suunnattiin merkittäviä datakeskusinvestointeja vakaan toimintaympäristön, uusiutuvan sähkön, viileän ilmaston, tietoliikenneyhteyksien ja sähköverkon vuoksi.",
+  "effects": [
+    "sähkönkulutuksen kasvu",
+    "kantaverkon investointitarpeen lisääntyminen",
+    "alueelliset investoinnit",
+    "hukkalämmön hyödyntäminen",
+    "tekoälylaskennan kapasiteetin kasvu",
+    "uuden digitaalisen infrastruktuurin rakentuminen"
+  ],
+  "long_effect": "Datakeskuksista muodostui osa kansallista kriittistä infrastruktuuria samalla tavoin kuin sähkö-, liikenne- ja tietoliikenneverkot aiemmin.",
+  "current_relevance": "Datakeskukset vaikuttavat energia-, ilmasto-, investointi-, huoltovarmuus- ja tekoälypolitiikkaan.",
+  "importance": 5,
+  "confidence": "vahva"
+},
+    {
       "id": "hyvinvointialueet-2023",
       "title": "Hyvinvointialueiden käynnistyminen",
       "year_start": 2023,
@@ -4536,6 +4593,34 @@
       "importance": 5,
       "confidence": "vahva"
     },
+    {
+  "id": "tekoalyinfrastruktuurin-rakentuminen-2024",
+  "title": "Tekoälyinfrastruktuurin rakentuminen",
+  "year_start": 2024,
+  "year_end": 2035,
+  "type": "teknologinen rakennemuutos",
+  "domains": [
+    "tekoäly",
+    "digitalisaatio",
+    "energia",
+    "talous",
+    "turvallisuus"
+  ],
+  "phase": "tekoäly siirtyy palveluista infrastruktuuriksi",
+  "problem": "Generatiivisen tekoälyn hyödyntäminen edellytti huomattavasti aiempaa suurempaa laskentakapasiteettia, datakeskuksia, puolijohteita ja energiantuotantoa.",
+  "mechanism": "Yritykset ja julkinen sektori investoivat datakeskuksiin, laskentaklustereihin, tekoälypalveluihin ja niitä tukevaan energia- sekä tietoliikenneinfrastruktuuriin.",
+  "effects": [
+    "tekoälypalvelujen yleistyminen",
+    "laskentakapasiteetin kasvu",
+    "energiaintensiivisten investointien lisääntyminen",
+    "uusi digitaalinen kilpailukyky",
+    "kyberturvallisuuden merkityksen kasvu"
+  ],
+  "long_effect": "Tekoälyinfrastruktuurista muodostui sähköverkkojen ja tietoliikenneverkkojen rinnalle yksi yhteiskunnan keskeisistä tuotantorakenteista.",
+  "current_relevance": "Kilpailu tekoälykapasiteetista vaikuttaa kansalliseen kilpailukykyyn, tutkimukseen, turvallisuuteen ja tuottavuuteen.",
+  "importance": 5,
+  "confidence": "kohtalainen"
+},
     {
       "id": "eu-tekoalyasetus-2024",
       "title": "EU:n tekoälyasetus",
