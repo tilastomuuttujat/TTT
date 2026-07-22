@@ -2759,7 +2759,7 @@ footer.foot .rule{
       </div>
 
       <div class="field">
-        <select id="typeF">
+        <select id="typeF" aria-label="Suodata murrostyypin tai tyyppiryhmän mukaan">
           <option value="">Kaikki murrostyypit</option>
         </select>
       </div>
@@ -2818,6 +2818,183 @@ const CONF = [
   "kohtalainen",
   "kehittyvä"
 ];
+
+/*
+ * Murrostyyppien sanamuodot ovat aineistossa tarkoituksella tarkkoja,
+ * mutta suodattimessa yli sadan lähes yksittäisen tyypin lista on raskas.
+ * Siksi tyypit ryhmitellään käyttöliittymässä laajoihin pääluokkiin.
+ * Tarkka tyyppi säilyy silti valittavana oman ryhmänsä alla.
+ */
+const TYPE_CLUSTERS = [
+  {
+    id:"crisis",
+    label:"Kriisit, sodat ja konfliktit",
+    keywords:["kriisi","sota","konflikti","sortokausi"]
+  },
+  {
+    id:"social",
+    label:"Sosiaali, terveys ja perhe",
+    keywords:[
+      "sosiaali","terveys","kansanterveys","perhe","lapsi",
+      "vammais","palvelujärjestelmä","sosiaalivakuutus"
+    ]
+  },
+  {
+    id:"governance",
+    label:"Hallinto, oikeus ja demokratia",
+    keywords:[
+      "hallinto","oikeud","valtiosääntö","valtiollinen","demokra",
+      "institutionaalinen","instituutio","sääntely","poliittinen",
+      "ulkopoliittinen","turvallisuuspoliittinen"
+    ]
+  },
+  {
+    id:"economy",
+    label:"Talous, raha ja omistus",
+    keywords:[
+      "taloud","talous","raha","rahoitus","omistus","omistaja",
+      "julkisen talouden","varallisuus","integraatiopolitiikan"
+    ]
+  },
+  {
+    id:"work",
+    label:"Työ, toimeentulo ja työmarkkinat",
+    keywords:["työ","toimeentulo","työllisyys","työmarkkina"]
+  },
+  {
+    id:"education",
+    label:"Koulutus, osaaminen ja tieto",
+    keywords:["koulutus","osaamis","tieto"]
+  },
+  {
+    id:"technology",
+    label:"Teknologia, digitalisaatio ja infrastruktuuri",
+    keywords:[
+      "teknolog","digitaal","infrastruktuur","viestintä","liikenne"
+    ]
+  },
+  {
+    id:"population",
+    label:"Väestö, alueet ja asuminen",
+    keywords:[
+      "väestö","alue","muuttoliike","asunto","yhdyskunta",
+      "rakennuskanta","maaseutu","maa- ja yhteiskuntarakenne"
+    ]
+  },
+  {
+    id:"environment",
+    label:"Energia, ympäristö ja luonnonvarat",
+    keywords:["energia","ympäristö","luonnonvara","metsä","maatalous"]
+  },
+  {
+    id:"other",
+    label:"Muut ja monialaiset murrokset",
+    keywords:[]
+  }
+];
+
+function typeCluster(type){
+  const normalized =
+    String(type || "")
+      .toLocaleLowerCase("fi");
+
+  return TYPE_CLUSTERS.find(cluster =>
+    cluster.id !== "other" &&
+    cluster.keywords.some(keyword =>
+      normalized.includes(keyword)
+    )
+  )?.id || "other";
+}
+
+
+/*
+ * Myös teemat (domains) ovat aineistossa tarkkoja ja osin päällekkäisiä.
+ * Käyttöliittymässä ne ryhmitellään pääteemoihin samalla periaatteella
+ * kuin murrostyypit. Yksittäinen teema säilyy valittavana ryhmän alla.
+ */
+const DOMAIN_CLUSTERS = [
+  {
+    id:"society",
+    label:"Yhteiskunta, politiikka ja oikeus",
+    keywords:[
+      "yhteiskunta","politiikka","demokratia","hallinto","valtio",
+      "oikeus","lainsäädäntö","instituutio","kansalaisuus","järjestöt",
+      "turvallisuus","puolustus","ulkopolitiikka"
+    ]
+  },
+  {
+    id:"welfare",
+    label:"Hyvinvointi, terveys ja perhe",
+    keywords:[
+      "hyvinvointi","terveys","sosiaali","hoiva","perhe","lapset",
+      "nuoret","vanhukset","vammaisuus","neuvola","kansanterveys",
+      "toimeentulo","sosiaaliturva","eläke"
+    ]
+  },
+  {
+    id:"economy",
+    label:"Talous, työ ja elinkeinot",
+    keywords:[
+      "talous","raha","rahoitus","verotus","velka","kauppa","työ",
+      "työllisyys","työmarkkinat","yrittäjyys","teollisuus","elinkeinot",
+      "tuotanto","omistus","varallisuus","kilpailukyky"
+    ]
+  },
+  {
+    id:"education",
+    label:"Koulutus, tutkimus ja kulttuuri",
+    keywords:[
+      "koulutus","koulu","oppivelvollisuus","osaaminen","tutkimus",
+      "tiede","tieto","yliopisto","korkeakoulu","kirjasto","kulttuuri",
+      "media","lukutaito"
+    ]
+  },
+  {
+    id:"technology",
+    label:"Teknologia, digitalisaatio ja infrastruktuuri",
+    keywords:[
+      "teknologia","digitalisaatio","tekoäly","data","internet",
+      "viestintä","tietoliikenne","infrastruktuuri","liikenne","rautatie",
+      "sähkö","energia","datakeskus","alusta"
+    ]
+  },
+  {
+    id:"population",
+    label:"Väestö, alueet ja asuminen",
+    keywords:[
+      "väestö","alue","muuttoliike","kaupungistuminen","maaseutu",
+      "asuminen","kaupunki","lähiö","maahanmuutto","siirtolaisuus",
+      "syntyvyys","ikääntyminen","segregaatio","huoltosuhde"
+    ]
+  },
+  {
+    id:"environment",
+    label:"Ympäristö, luonto ja luonnonvarat",
+    keywords:[
+      "ympäristö","luonto","ilmasto","metsä","maatalous","luonnonvarat",
+      "ruoka","huoltovarmuus","omavaraisuus","vesi","päästöt",
+      "biodiversiteetti"
+    ]
+  },
+  {
+    id:"other",
+    label:"Muut ja monialaiset teemat",
+    keywords:[]
+  }
+];
+
+function domainCluster(domain){
+  const normalized =
+    String(domain || "")
+      .toLocaleLowerCase("fi");
+
+  return DOMAIN_CLUSTERS.find(cluster =>
+    cluster.id !== "other" &&
+    cluster.keywords.some(keyword =>
+      normalized.includes(keyword)
+    )
+  )?.id || "other";
+}
 
 const REL_LABELS = {
   enabled:"mahdollisti",
@@ -3325,21 +3502,61 @@ function populateFilters(){
       a.localeCompare(b,"fi")
     );
 
+  const groupedTypes =
+    TYPE_CLUSTERS.map(cluster => ({
+      ...cluster,
+      types:types.filter(type =>
+        typeCluster(type) === cluster.id
+      )
+    }));
+
   $("typeF").insertAdjacentHTML(
     "beforeend",
-    types
-      .map(type =>
-        `<option>${esc(type)}</option>`
-      )
+    groupedTypes
+      .filter(cluster => cluster.types.length)
+      .map(cluster => `
+        <optgroup label="${esc(cluster.label)}">
+          <option value="cluster::${esc(cluster.id)}">
+            Kaikki: ${esc(cluster.label)} (${cluster.types.length})
+          </option>
+          ${cluster.types
+            .map(type => `
+              <option value="${esc(type)}">
+                ${esc(type)}
+              </option>
+            `)
+            .join("")}
+        </optgroup>
+      `)
       .join("")
   );
 
+  const groupedDomains =
+    DOMAIN_CLUSTERS.map(cluster => ({
+      ...cluster,
+      domains:domains.filter(domain =>
+        domainCluster(domain) === cluster.id
+      )
+    }));
+
   $("domainF").insertAdjacentHTML(
     "beforeend",
-    domains
-      .map(domain =>
-        `<option>${esc(domain)}</option>`
-      )
+    groupedDomains
+      .filter(cluster => cluster.domains.length)
+      .map(cluster => `
+        <optgroup label="${esc(cluster.label)}">
+          <option value="cluster::${esc(cluster.id)}">
+            Kaikki: ${esc(cluster.label)} (${cluster.domains.length})
+          </option>
+          ${cluster.domains
+            .map(domain => `
+              <option value="${esc(domain)}">
+                ${esc(domain)}
+              </option>
+            `)
+            .join("")}
+        </optgroup>
+      `)
       .join("")
   );
 
@@ -3411,18 +3628,36 @@ function filtered(){
         return false;
       }
 
-      if(
-        state.type &&
-        item.type !== state.type
-      ){
-        return false;
+      if(state.type){
+        const isCluster =
+          state.type.startsWith("cluster::");
+
+        const matchesType =
+          isCluster
+            ? typeCluster(item.type) ===
+              state.type.slice("cluster::".length)
+            : item.type === state.type;
+
+        if(!matchesType){
+          return false;
+        }
       }
 
-      if(
-        state.domain &&
-        !(item.domains || []).includes(state.domain)
-      ){
-        return false;
+      if(state.domain){
+        const isDomainCluster =
+          state.domain.startsWith("cluster::");
+
+        const matchesDomain =
+          isDomainCluster
+            ? (item.domains || []).some(domain =>
+                domainCluster(domain) ===
+                state.domain.slice("cluster::".length)
+              )
+            : (item.domains || []).includes(state.domain);
+
+        if(!matchesDomain){
+          return false;
+        }
       }
 
       if(
