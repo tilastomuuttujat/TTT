@@ -1446,30 +1446,32 @@
       "importance": 5,
       "confidence": "vahva"
     },
-    {
-      "id": "aitiysavustus-1937",
-      "title": "Äitiysavustus",
-      "year_start": 1937,
-      "year_end": 1937,
-      "type": "sosiaalinen uudistus",
-      "domains": [
-        "perhe",
-        "terveys",
-        "lapset"
-      ],
-      "phase": "ennaltaehkäisevä perhepolitiikka",
-      "problem": "Äitiys- ja imeväiskuolleisuus sekä perheiden aineellinen puute.",
-      "mechanism": "Äideille tarjottiin aineellista tukea ja yhteys terveyspalveluihin.",
-      "effects": [
-        "äitiyspakkauksen synty",
-        "neuvolakäyntien kannustimet",
-        "äitien ja lasten terveyden paraneminen"
-      ],
-      "long_effect": "Universaalin perhe- ja ennaltaehkäisevän terveyspolitiikan symboli.",
-      "current_relevance": "Äitiysavustus on edelleen osa perhe-etuuksia.",
-      "importance": 5,
-      "confidence": "vahva"
-    },
+{
+  "id": "aitiysavustus-1937",
+  "title": "Äitiysavustus",
+  "year_start": 1937,
+  "year_end": 1949,
+  "type": "sosiaalinen uudistus",
+  "domains": [
+    "perhe",
+    "terveys",
+    "lapset",
+    "hyvinvointivaltio"
+  ],
+  "phase": "ennaltaehkäisevän perhepolitiikan rakentuminen",
+  "problem": "Äitiys- ja imeväiskuolleisuus olivat korkeita, ja monilla perheillä oli puutteelliset mahdollisuudet hankkia vastasyntyneen tarvitsemia tarvikkeita sekä saada raskaudenaikaista terveyden seurantaa.",
+  "mechanism": "Äitiysavustus tarjosi odottaville äideille välttämättömiä vauvan tarvikkeita ja kannusti hakeutumaan neuvolaan raskauden aikana. Vuonna 1949 etuus laajennettiin koskemaan kaikkia odottavia äitejä.",
+  "effects": [
+    "äitiyspakkauksen vakiintuminen",
+    "neuvolapalvelujen käytön lisääntyminen",
+    "äitiys- ja imeväisterveyden paraneminen",
+    "lapsiperheiden yhdenvertaisuuden vahvistuminen"
+  ],
+  "long_effect": "Äitiysavustuksesta muodostui suomalaisen universaalin perhepolitiikan ja ennaltaehkäisevän terveydenhuollon tunnetuimpia instituutioita sekä kansainvälisesti tunnettu sosiaalinen innovaatio.",
+  "current_relevance": "Äitiysavustus on edelleen osa suomalaista perhepolitiikkaa ja symboloi varhaisen tuen, universaalien palvelujen ja lasten yhdenvertaisten lähtökohtien periaatetta.",
+  "importance": 5,
+  "confidence": "vahva"
+},
     {
       "id": "talvi-ja-jatkosota",
       "title": "Talvi- ja jatkosota",
