@@ -194,6 +194,42 @@ td.mono{font:12px var(--mono);color:var(--muted)}
   display:none;
 }
 .overlay.open{display:block}
+
+/* KIRJAUTUMISIKKUNA */
+.login-overlay{z-index:90}
+.login-overlay.open{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.login-box{
+  width:min(380px, 100%);
+  padding:28px 26px;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:16px;
+  box-shadow:0 20px 50px rgba(18,51,47,.25);
+}
+.login-box h2{
+  margin:0 0 6px;
+  font-family:var(--serif);
+  font-size:1.4rem;
+  color:var(--forest-deep);
+}
+.login-box p{
+  margin:0 0 18px;
+  color:var(--muted);
+  font-size:13.5px;
+  line-height:1.5;
+}
+.login-err{
+  min-height:18px;
+  margin-top:10px;
+  color:var(--red);
+  font-size:12.5px;
+}
+
 .sheet{
   position:fixed;
   top:0;right:0;bottom:0;
@@ -332,6 +368,17 @@ td.mono{font:12px var(--mono);color:var(--muted)}
 </head>
 <body>
 
+<div class="overlay login-overlay open" id="overlayLogin">
+  <div class="login-box">
+    <h2>Kirjaudu sisään</h2>
+    <p>Murrosmatriisin editori vaatii kirjautumisen. Käytä Supabase-projektiisi luotua käyttäjätiliä.</p>
+    <div class="field"><label>Sähköposti</label><input type="text" id="loginEmail" autocomplete="username"></div>
+    <div class="field"><label>Salasana</label><input type="password" id="loginPassword" autocomplete="current-password"></div>
+    <button class="btn primary" id="loginSubmit" style="width:100%;justify-content:center">Kirjaudu</button>
+    <div class="login-err" id="loginErr"></div>
+  </div>
+</div>
+
 <header class="top">
   <div>
     <h1>Murrosmatriisin editori</h1>
@@ -340,13 +387,16 @@ td.mono{font:12px var(--mono);color:var(--muted)}
   <div class="exports">
     <button class="btn" id="exportMurros">⬇ Vie murrosvaiheet.json</button>
     <button class="btn" id="exportArtikkelit">⬇ Vie artikkelit.json</button>
+    <button class="btn" id="logoutBtn" style="display:none">Kirjaudu ulos</button>
   </div>
 </header>
 
 <div class="warn-banner">
-  Tämä tiedosto sisältää suoran yhteyden tietokantaan ja on tarkoitettu vain omaan käyttöösi.
-  Älä julkaise sitä julkisesti saatavilla olevalla verkko-osoitteessa ilman lisäsuojausta.
+  Muokkaus vaatii kirjautumisen. Data ei ole saatavilla tai muokattavissa ilman kelvollista käyttäjätiliä,
+  vaikka tämä tiedosto joutuisi vääriin käsiin.
 </div>
+
+<div id="appShell" style="display:none">
 
 <nav class="tabs">
   <button data-tab="items" class="active">Kortit <span class="count" id="countItems">–</span></button>
@@ -406,6 +456,8 @@ td.mono{font:12px var(--mono);color:var(--muted)}
   </section>
 
 </main>
+
+</div><!-- /appShell -->
 
 <!-- ============ MUOKKAUSPANEELI: KORTTI ============ -->
 <div class="overlay" id="overlayItem">
@@ -604,6 +656,7 @@ const sb = createClient(SUPABASE_URL, SUPABASE_KEY, {
    TILA
    ========================================================== */
 const state = {
+  session: null,
   items: [],
   relations: [],
   articles: [],
@@ -632,6 +685,7 @@ document.querySelectorAll("[data-close]").forEach(btn => {
   btn.addEventListener("click", () => closeSheet(btn.dataset.close));
 });
 document.querySelectorAll(".overlay").forEach(ov => {
+  if(ov.id === "overlayLogin") return; // kirjautuminen on pakollinen, ei suljettavissa taustaa klikkaamalla
   ov.addEventListener("click", e => { if(e.target === ov) ov.classList.remove("open"); });
 });
 
@@ -653,17 +707,20 @@ document.querySelectorAll("nav.tabs button").forEach(btn => {
 async function loadAll(){
   $("connStatus").textContent = "ladataan dataa…";
   try{
-    const [itemsRes, relRes, artRes, linksRes, typesRes] = await Promise.all([
-      sb.from("items").select("*").order("year_start", { ascending: true }),
-      sb.from("relations").select("*").order("id", { ascending: true }),
-      sb.from("articles").select("*").order("id", { ascending: true }),
-      sb.from("article_links").select("*").order("sort_order", { ascending: true }),
-      sb.from("article_relation_types").select("*")
-    ]);
+    const itemsRes = await sb.from("items").select("*").order("year_start", { ascending: true });
+    if(itemsRes.error) throw itemsRes.error;
 
-    for(const r of [itemsRes, relRes, artRes, linksRes, typesRes]){
-      if(r.error) throw r.error;
-    }
+    const relRes = await sb.from("relations").select("*").order("id", { ascending: true });
+    if(relRes.error) throw relRes.error;
+
+    const artRes = await sb.from("articles").select("*").order("id", { ascending: true });
+    if(artRes.error) throw artRes.error;
+
+    const linksRes = await sb.from("article_links").select("*").order("sort_order", { ascending: true });
+    if(linksRes.error) throw linksRes.error;
+
+    const typesRes = await sb.from("article_relation_types").select("*");
+    if(typesRes.error) throw typesRes.error;
 
     state.items = itemsRes.data;
     state.relations = relRes.data;
@@ -1130,13 +1187,13 @@ function downloadJSON(obj, filename){
 $("exportMurros").addEventListener("click", async () => {
   $("exportMurros").disabled = true;
   try{
-    const [itemsRes, relRes, metaRes] = await Promise.all([
-      sb.from("items").select("*").order("year_start", { ascending: true }),
-      sb.from("relations").select("*").order("id", { ascending: true }),
-      sb.from("dataset_meta").select("data").eq("id", "murrosvaiheet").single()
-    ]);
+    const itemsRes = await sb.from("items").select("*").order("year_start", { ascending: true });
     if(itemsRes.error) throw itemsRes.error;
+
+    const relRes = await sb.from("relations").select("*").order("id", { ascending: true });
     if(relRes.error) throw relRes.error;
+
+    const metaRes = await sb.from("dataset_meta").select("data").eq("id", "murrosvaiheet").single();
     if(metaRes.error) throw metaRes.error;
 
     const items = itemsRes.data.map(it => {
@@ -1174,15 +1231,16 @@ $("exportMurros").addEventListener("click", async () => {
 $("exportArtikkelit").addEventListener("click", async () => {
   $("exportArtikkelit").disabled = true;
   try{
-    const [artRes, linksRes, typesRes, metaRes] = await Promise.all([
-      sb.from("articles").select("*").order("id", { ascending: true }),
-      sb.from("article_links").select("article_id,item_id,relation_type,weight,sort_order").order("sort_order", { ascending: true }),
-      sb.from("article_relation_types").select("*"),
-      sb.from("article_dataset_meta").select("data").eq("id", "artikkelit").single()
-    ]);
+    const artRes = await sb.from("articles").select("*").order("id", { ascending: true });
     if(artRes.error) throw artRes.error;
+
+    const linksRes = await sb.from("article_links").select("article_id,item_id,relation_type,weight,sort_order").order("sort_order", { ascending: true });
     if(linksRes.error) throw linksRes.error;
+
+    const typesRes = await sb.from("article_relation_types").select("*");
     if(typesRes.error) throw typesRes.error;
+
+    const metaRes = await sb.from("article_dataset_meta").select("data").eq("id", "artikkelit").single();
     if(metaRes.error) throw metaRes.error;
 
     const articles = artRes.data.map(a => ({
@@ -1209,9 +1267,95 @@ $("exportArtikkelit").addEventListener("click", async () => {
 });
 
 /* ==========================================================
+   KIRJAUTUMINEN
+   ========================================================== */
+function showLogin(){
+  $("overlayLogin").classList.add("open");
+  $("appShell").style.display = "none";
+  $("logoutBtn").style.display = "none";
+  setTimeout(() => $("loginEmail").focus(), 30);
+}
+
+function showApp(){
+  $("overlayLogin").classList.remove("open");
+  $("appShell").style.display = "block";
+  $("logoutBtn").style.display = "inline-flex";
+}
+
+async function attemptLogin(){
+  const email = $("loginEmail").value.trim();
+  const password = $("loginPassword").value;
+  const errEl = $("loginErr");
+  errEl.textContent = "";
+
+  if(!email || !password){
+    errEl.textContent = "Sähköposti ja salasana ovat pakollisia.";
+    return;
+  }
+
+  $("loginSubmit").disabled = true;
+  errEl.textContent = "Kirjaudutaan…";
+  try{
+    const { error } = await sb.auth.signInWithPassword({ email, password });
+    if(error) throw error;
+    errEl.textContent = "";
+    $("loginPassword").value = "";
+    showApp();
+    $("connStatus").textContent = "kirjauduttu · ladataan dataa…";
+    await loadAll();
+  }catch(err){
+    errEl.textContent = "Kirjautuminen epäonnistui: " + err.message;
+  }finally{
+    $("loginSubmit").disabled = false;
+  }
+}
+
+$("loginSubmit").addEventListener("click", attemptLogin);
+$("loginPassword").addEventListener("keydown", e => { if(e.key === "Enter") attemptLogin(); });
+$("loginEmail").addEventListener("keydown", e => { if(e.key === "Enter") attemptLogin(); });
+
+$("logoutBtn").addEventListener("click", async () => {
+  try{
+    await sb.auth.signOut();
+  }catch(err){ /* ei kriittinen */ }
+  state.items = []; state.relations = []; state.articles = []; state.articleLinks = [];
+  showLogin();
+  toast("Kirjauduttu ulos.");
+});
+
+sb.auth.onAuthStateChange((event, session) => {
+  state.session = session;
+  if(event === "SIGNED_OUT"){
+    showLogin();
+  }
+});
+
+/* ==========================================================
    KÄYNNISTYS
    ========================================================== */
-loadAll();
+async function boot(){
+  $("connStatus").textContent = "tarkistetaan kirjautumista…";
+  try{
+    const { data, error } = await sb.auth.getSession();
+    if(error) throw error;
+
+    if(data.session){
+      state.session = data.session;
+      showApp();
+      $("connStatus").textContent = "kirjauduttu · ladataan dataa…";
+      await loadAll();
+    }else{
+      showLogin();
+      $("connStatus").textContent = "kirjaudu sisään jatkaaksesi";
+    }
+  }catch(err){
+    showLogin();
+    $("connStatus").textContent = "kirjaudu sisään jatkaaksesi";
+    console.error("Istunnon tarkistus epäonnistui:", err);
+  }
+}
+
+boot();
 </script>
 </body>
 </html>
