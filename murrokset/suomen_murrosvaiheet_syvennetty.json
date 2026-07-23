@@ -5889,14 +5889,6 @@
     },
     {
       "from": "covid-19",
-      "to": "koulutusleikkaukset",
-      "type": "exposed_effects_of",
-      "rel_class": "tulkinta",
-      "confidence": "kohtalainen",
-      "rationale": "Pandemia teki koulutusjärjestelmän resurssi- ja oppimisvajeet näkyvämmiksi."
-    },
-    {
-      "from": "covid-19",
       "to": "vaeston-ikaantyminen",
       "type": "exposed_vulnerability_of",
       "rel_class": "tapahtuma",
