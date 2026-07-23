@@ -4,8 +4,8 @@
     "description": "Atlas-pohjainen luettelo kriiseistä, uudistuksista, vapauksien laajenemisesta, institutionaalisista ratkaisuista sekä teknologisista, taloudellisista ja väestöllisistä murroksista.",
     "model": "murros → havaittu ongelma → mekanismi → seuraukset → pitkä vaikutus → nykymerkitys",
     "status": "analyyttinen työversio; vuosiluvut ja kausaaliväitteet tulee lähteistää ennen julkaisua",
-    "count": 187,
-    "relation_count": 272,
+    "count": 195,
+    "relation_count": 295,
     "relation_model": "Erillinen relations-taulukko: from → to, type, rel_class, confidence ja rationale.",
     "relation_classes": {
       "tapahtuma": "Ajallisesti rajattu tapahtuma tai kriisi laukaisi, kiihdytti tai paljasti muutoksen.",
@@ -15,7 +15,8 @@
     },
     "predecessor_cards_added": 10,
     "nineteenth_century_cards_added": 6,
-    "successor_cards_added": 48
+    "successor_cards_added": 48,
+    "orphan_fix_note": "2026-07-23: Kytketty verkostoon 8 aiemmin relaatiotonta korttia (väestöketju: vaestollinen-siirtyma-1880, suuret-ikaluokat-1945, syntyvyyden-rakennemuutos-1969, vaeston-ikaantyminen-1975, historiallisen-matala-syntyvyys-2010; infraketju: sahkon-jakeluverkkojen-yksityistaminen-2013, datakeskusten-rakentamisen-kiihtyminen-2023, tekoalyinfrastruktuurin-rakentuminen-2024) lisäämällä 24 relaatiota. Korjattu meta.count (187->195) ja meta.relation_count vastaamaan todellisia määriä. Kuratoijalle: vaeston-ikaantyminen-1975 ja vaeston-ikaantyminen ovat osin päällekkäisiä -- harkitse yhdistämistä. Avustettu luonnos, vaatii katselmoinnin."
   },
   "items": [
     {
@@ -705,6 +706,32 @@
       "current_relevance": "Työmarkkinoiden alueellinen liikkuvuus ja alueellinen keskittyminen.",
       "importance": 5,
       "confidence": "kohtalainen"
+    },
+    {
+      "id": "vaestollinen-siirtyma-1880",
+      "title": "Väestöllinen siirtymä ja syntyvyyden laskun alku",
+      "year_start": 1880,
+      "year_end": 1935,
+      "type": "väestöllinen rakennemuutos",
+      "domains": [
+        "väestö",
+        "perhe",
+        "terveys",
+        "kaupungistuminen"
+      ],
+      "phase": "väestöllinen siirtymä",
+      "problem": "Perinteinen suurperhemalli alkoi muuttua kaupungistumisen, teollistumisen ja laskevan lapsikuolleisuuden seurauksena.",
+      "mechanism": "Elinolojen paraneminen, koulutuksen lisääntyminen ja kaupungistuminen muuttivat perhekokoa ja lasten merkitystä taloudessa.",
+      "effects": [
+        "perhekoko pieneni",
+        "väestönkasvu hidastui",
+        "väestöpoliittinen keskustelu voimistui",
+        "lapsikuolleisuus väheni"
+      ],
+      "long_effect": "Suomi siirtyi vähitellen korkeasta syntyvyydestä moderniin väestörakenteeseen.",
+      "current_relevance": "Väestöllinen siirtymä loi perustan myöhemmille syntyvyyshaasteille.",
+      "importance": 5,
+      "confidence": "vahva"
     },
     {
       "id": "sahkoistyminen-1880",
@@ -1446,32 +1473,32 @@
       "importance": 5,
       "confidence": "vahva"
     },
-{
-  "id": "aitiysavustus-1937",
-  "title": "Äitiysavustus",
-  "year_start": 1937,
-  "year_end": 1949,
-  "type": "sosiaalinen uudistus",
-  "domains": [
-    "perhe",
-    "terveys",
-    "lapset",
-    "hyvinvointivaltio"
-  ],
-  "phase": "ennaltaehkäisevän perhepolitiikan rakentuminen",
-  "problem": "Äitiys- ja imeväiskuolleisuus olivat korkeita, ja monilla perheillä oli puutteelliset mahdollisuudet hankkia vastasyntyneen tarvitsemia tarvikkeita sekä saada raskaudenaikaista terveyden seurantaa.",
-  "mechanism": "Äitiysavustus tarjosi odottaville äideille välttämättömiä vauvan tarvikkeita ja kannusti hakeutumaan neuvolaan raskauden aikana. Vuonna 1949 etuus laajennettiin koskemaan kaikkia odottavia äitejä.",
-  "effects": [
-    "äitiyspakkauksen vakiintuminen",
-    "neuvolapalvelujen käytön lisääntyminen",
-    "äitiys- ja imeväisterveyden paraneminen",
-    "lapsiperheiden yhdenvertaisuuden vahvistuminen"
-  ],
-  "long_effect": "Äitiysavustuksesta muodostui suomalaisen universaalin perhepolitiikan ja ennaltaehkäisevän terveydenhuollon tunnetuimpia instituutioita sekä kansainvälisesti tunnettu sosiaalinen innovaatio.",
-  "current_relevance": "Äitiysavustus on edelleen osa suomalaista perhepolitiikkaa ja symboloi varhaisen tuen, universaalien palvelujen ja lasten yhdenvertaisten lähtökohtien periaatetta.",
-  "importance": 5,
-  "confidence": "vahva"
-},
+    {
+      "id": "aitiysavustus-1937",
+      "title": "Äitiysavustus",
+      "year_start": 1937,
+      "year_end": 1949,
+      "type": "sosiaalinen uudistus",
+      "domains": [
+        "perhe",
+        "terveys",
+        "lapset",
+        "hyvinvointivaltio"
+      ],
+      "phase": "ennaltaehkäisevän perhepolitiikan rakentuminen",
+      "problem": "Äitiys- ja imeväiskuolleisuus olivat korkeita, ja monilla perheillä oli puutteelliset mahdollisuudet hankkia vastasyntyneen tarvitsemia tarvikkeita sekä saada raskaudenaikaista terveyden seurantaa.",
+      "mechanism": "Äitiysavustus tarjosi odottaville äideille välttämättömiä vauvan tarvikkeita ja kannusti hakeutumaan neuvolaan raskauden aikana. Vuonna 1949 etuus laajennettiin koskemaan kaikkia odottavia äitejä.",
+      "effects": [
+        "äitiyspakkauksen vakiintuminen",
+        "neuvolapalvelujen käytön lisääntyminen",
+        "äitiys- ja imeväisterveyden paraneminen",
+        "lapsiperheiden yhdenvertaisuuden vahvistuminen"
+      ],
+      "long_effect": "Äitiysavustuksesta muodostui suomalaisen universaalin perhepolitiikan ja ennaltaehkäisevän terveydenhuollon tunnetuimpia instituutioita sekä kansainvälisesti tunnettu sosiaalinen innovaatio.",
+      "current_relevance": "Äitiysavustus on edelleen osa suomalaista perhepolitiikkaa ja symboloi varhaisen tuen, universaalien palvelujen ja lasten yhdenvertaisten lähtökohtien periaatetta.",
+      "importance": 5,
+      "confidence": "vahva"
+    },
     {
       "id": "talvi-ja-jatkosota",
       "title": "Talvi- ja jatkosota",
@@ -1496,6 +1523,33 @@
       ],
       "long_effect": "Jälleenrakennuksen, kansallisen yhteistyön ja turvallisuuspolitiikan pitkä perintö.",
       "current_relevance": "Kokonaisturvallisuus ja huoltovarmuus.",
+      "importance": 5,
+      "confidence": "vahva"
+    },
+    {
+      "id": "suuret-ikaluokat-1945",
+      "title": "Suurten ikäluokkien synty",
+      "year_start": 1945,
+      "year_end": 1950,
+      "type": "väestöllinen murros",
+      "domains": [
+        "väestö",
+        "perhe",
+        "koulutus",
+        "talous"
+      ],
+      "phase": "sodan jälkeinen väestöbuumi",
+      "problem": "Sodan jälkeen yhteiskunta siirtyi jälleenrakennukseen ja perheiden perustaminen kiihtyi nopeasti.",
+      "mechanism": "Rauhan aika, taloudellinen optimismi ja perhepolitiikan vahvistuminen nostivat syntyvyyden poikkeuksellisen korkeaksi.",
+      "effects": [
+        "suuret ikäluokat syntyivät",
+        "koulutusinvestoinnit kasvoivat",
+        "kaupungistuminen kiihtyi",
+        "työvoiman määrä kasvoi",
+        "eläkejärjestelmän rahoituspohja vahvistui"
+      ],
+      "long_effect": "Suuret ikäluokat määrittivät Suomen työmarkkinoita, talouskasvua ja myöhemmin ikääntymiskehitystä vuosikymmeniksi.",
+      "current_relevance": "Ikäluokan eläköityminen vaikuttaa edelleen huoltosuhteeseen ja julkiseen talouteen.",
       "importance": 5,
       "confidence": "vahva"
     },
@@ -2238,6 +2292,32 @@
       "confidence": "vahva"
     },
     {
+      "id": "syntyvyyden-rakennemuutos-1969",
+      "title": "Syntyvyyden rakennemuutos",
+      "year_start": 1968,
+      "year_end": 1975,
+      "type": "väestöllinen rakennemuutos",
+      "domains": [
+        "väestö",
+        "perhe",
+        "naiset",
+        "työ"
+      ],
+      "phase": "moderni perhemalli",
+      "problem": "Yhteiskunnan rakennemuutos muutti perheen, työn ja koulutuksen suhdetta.",
+      "mechanism": "Naisten koulutuksen lisääntyminen, työssäkäynti, ehkäisyn yleistyminen ja kaupungistuminen pienensivät perhekokoja.",
+      "effects": [
+        "kokonaishedelmällisyys laski",
+        "perheet pienenivät",
+        "ensisynnyttäjien ikä nousi",
+        "pitkän aikavälin huoltosuhde heikkeni"
+      ],
+      "long_effect": "Syntyvyyden lasku muuttui pysyväksi rakenteelliseksi ilmiöksi.",
+      "current_relevance": "Nykyinen väestön ikääntyminen juontuu osittain tästä murroksesta.",
+      "importance": 5,
+      "confidence": "vahva"
+    },
+    {
       "id": "opintolaina-1969",
       "title": "Opintotuen rakentuminen",
       "year_start": 1969,
@@ -2435,6 +2515,42 @@
       "current_relevance": "Vanhemmuuden vahvistaminen ja lapsen yhdenvertaisuus.",
       "importance": 4,
       "confidence": "vahva"
+    },
+    {
+      "id": "vaeston-ikaantyminen-1975",
+      "title": "Väestön ikääntyminen",
+      "year_start": 1975,
+      "year_end": 2035,
+      "type": "väestöllinen rakennemuutos",
+      "domains": [
+        "väestö",
+        "hyvinvointivaltio",
+        "julkinen talous",
+        "terveydenhuolto",
+        "työmarkkinat"
+      ],
+      "phase": "Ikärakenteen muutos",
+      "problem": "Syntyvyyden pitkäaikainen lasku ja eliniän pidentyminen muuttivat väestön ikärakennetta. Työikäisten suhteellinen osuus pieneni samalla kun ikääntyneiden määrä kasvoi nopeasti.",
+      "mechanism": "Suuret ikäluokat siirtyivät vähitellen eläkkeelle samaan aikaan, kun nuoremmat ikäluokat jäivät aiempaa pienemmiksi. Väestön keski-ikä nousi ja huollettavien määrä kasvoi suhteessa työikäiseen väestöön.",
+      "effects": [
+        "vanhusväestön määrä kasvoi",
+        "huoltosuhde heikkeni",
+        "hoivapalvelujen kysyntä kasvoi",
+        "eläkemenot lisääntyivät",
+        "työvoiman saatavuus heikkeni monilla aloilla",
+        "alueelliset väestöerot kasvoivat",
+        "julkisen talouden menopaineet kasvoivat"
+      ],
+      "long_effect": "Väestön ikääntyminen muodostui yhdeksi Suomen hyvinvointivaltion keskeisistä pitkän aikavälin rakenteellisista muutosvoimista. Se vaikuttaa samanaikaisesti julkiseen talouteen, työmarkkinoihin, palvelujärjestelmään, asumiseen, aluekehitykseen ja talouskasvuun.",
+      "current_relevance": "Ikärakenteen muutos on edelleen käynnissä ja ohjaa merkittävää osaa sosiaali-, terveys-, työvoima- ja talouspoliittisista ratkaisuista.",
+      "importance": 5,
+      "confidence": "vahva",
+      "sources": [
+        "Tilastokeskus",
+        "Väestöennusteet",
+        "THL",
+        "Valtiovarainministeriö"
+      ]
     },
     {
       "id": "tyoterveyshuolto-1978",
@@ -3730,6 +3846,33 @@
       "confidence": "vahva"
     },
     {
+      "id": "historiallisen-matala-syntyvyys-2010",
+      "title": "Historiallisen matalan syntyvyyden aika",
+      "year_start": 2010,
+      "year_end": 2035,
+      "type": "väestöllinen murros",
+      "domains": [
+        "väestö",
+        "talous",
+        "työ",
+        "hyvinvointivaltio"
+      ],
+      "phase": "pitkittynyt matalan syntyvyyden kausi",
+      "problem": "Syntyvyys laski ennätyksellisen alhaiseksi ilman sotaa tai laajamittaista yhteiskunnallista katastrofia.",
+      "mechanism": "Perheen perustamisen lykkääntyminen, epävarmuus, kaupungistuminen, muuttuneet elämäntavat ja ikärakenteen muutos vähensivät syntyvyyttä.",
+      "effects": [
+        "huoltosuhde heikkeni",
+        "työikäinen väestö pieneni",
+        "alueellinen eriytyminen kiihtyi",
+        "työvoimapula kasvoi",
+        "maahanmuuton merkitys korostui"
+      ],
+      "long_effect": "Matalasta syntyvyydestä tuli yksi Suomen keskeisistä pitkän aikavälin rakennemuutoksista.",
+      "current_relevance": "Syntyvyys vaikuttaa lähes kaikkiin hyvinvointivaltion rahoitukseen ja palvelurakenteeseen liittyviin kysymyksiin.",
+      "importance": 5,
+      "confidence": "vahva"
+    },
+    {
       "id": "alustatalous",
       "title": "Alustatalouden nousu",
       "year_start": 2010,
@@ -3780,33 +3923,33 @@
       "confidence": "vahva"
     },
     {
-  "id": "sahkon-jakeluverkkojen-yksityistaminen-2013",
-  "title": "Sähkön jakeluverkkojen yksityistäminen",
-  "year_start": 2013,
-  "year_end": 2014,
-  "type": "omistus- ja infrastruktuurimurros",
-  "domains": [
-    "energia",
-    "talous",
-    "valtio",
-    "infrastruktuuri",
-    "huoltovarmuus"
-  ],
-  "phase": "julkisesta infrastruktuurista markkinaehtoiseen omistukseen",
-  "problem": "Valtionyhtiöt hakivat pääomia investointeihin ja julkinen omistaja pyrki vapauttamaan pääomaa muihin tarkoituksiin. Samalla sähköverkko nähtiin vakaata tuottoa tarjoavana sijoituskohteena.",
-  "mechanism": "Fortum myi sähkön jakeluverkkonsa kansainväliselle sijoittajaryhmälle, jonka pohjalta muodostui Caruna. Jakeluverkot siirtyivät yksityiseen omistukseen samalla kun niiden toimintaa ohjattiin Energiaviraston sääntelymallilla.",
-  "effects": [
-    "jakeluverkkojen omistus kansainvälistyi",
-    "verkkoinvestoinnit kasvoivat",
-    "sähkön siirtohinnoista tuli laajan yhteiskunnallisen keskustelun kohde",
-    "luonnollisten monopolien sääntelyn merkitys korostui",
-    "huoltovarmuuden ja kriittisen infrastruktuurin omistus nousivat poliittiseksi kysymykseksi"
-  ],
-  "long_effect": "Murros muutti käsitystä siitä, missä määrin kriittinen infrastruktuuri voi olla markkinaehtoisen ja kansainvälisen omistuksen piirissä. Samalla se vahvisti keskustelua sääntelyn, omistajuuden ja yhteiskunnallisen hyväksyttävyyden suhteesta.",
-  "current_relevance": "Sähkön siirtohinnat, verkkoinvestoinnit, energiaomavaraisuus, kriittisen infrastruktuurin omistus, huoltovarmuus sekä luonnollisten monopolien sääntely ovat edelleen ajankohtaisia kysymyksiä.",
-  "importance": 4,
-  "confidence": "vahva"
-},
+      "id": "sahkon-jakeluverkkojen-yksityistaminen-2013",
+      "title": "Sähkön jakeluverkkojen yksityistäminen",
+      "year_start": 2013,
+      "year_end": 2014,
+      "type": "omistus- ja infrastruktuurimurros",
+      "domains": [
+        "energia",
+        "talous",
+        "valtio",
+        "infrastruktuuri",
+        "huoltovarmuus"
+      ],
+      "phase": "julkisesta infrastruktuurista markkinaehtoiseen omistukseen",
+      "problem": "Valtionyhtiöt hakivat pääomia investointeihin ja julkinen omistaja pyrki vapauttamaan pääomaa muihin tarkoituksiin. Samalla sähköverkko nähtiin vakaata tuottoa tarjoavana sijoituskohteena.",
+      "mechanism": "Fortum myi sähkön jakeluverkkonsa kansainväliselle sijoittajaryhmälle, jonka pohjalta muodostui Caruna. Jakeluverkot siirtyivät yksityiseen omistukseen samalla kun niiden toimintaa ohjattiin Energiaviraston sääntelymallilla.",
+      "effects": [
+        "jakeluverkkojen omistus kansainvälistyi",
+        "verkkoinvestoinnit kasvoivat",
+        "sähkön siirtohinnoista tuli laajan yhteiskunnallisen keskustelun kohde",
+        "luonnollisten monopolien sääntelyn merkitys korostui",
+        "huoltovarmuuden ja kriittisen infrastruktuurin omistus nousivat poliittiseksi kysymykseksi"
+      ],
+      "long_effect": "Murros muutti käsitystä siitä, missä määrin kriittinen infrastruktuuri voi olla markkinaehtoisen ja kansainvälisen omistuksen piirissä. Samalla se vahvisti keskustelua sääntelyn, omistajuuden ja yhteiskunnallisen hyväksyttävyyden suhteesta.",
+      "current_relevance": "Sähkön siirtohinnat, verkkoinvestoinnit, energiaomavaraisuus, kriittisen infrastruktuurin omistus, huoltovarmuus sekä luonnollisten monopolien sääntely ovat edelleen ajankohtaisia kysymyksiä.",
+      "importance": 4,
+      "confidence": "vahva"
+    },
     {
       "id": "ennaltaehkaisevat-perhepalvelut-2014",
       "title": "Ennaltaehkäisevien perhepalvelujen vahvistaminen",
@@ -4364,34 +4507,34 @@
       "confidence": "kehittyvä"
     },
     {
-  "id": "datakeskusten-rakentamisen-kiihtyminen-2023",
-  "title": "Datakeskusten rakentamisen kiihtyminen",
-  "year_start": 2023,
-  "year_end": 2035,
-  "type": "digitaalisen infrastruktuurin murros",
-  "domains": [
-    "digitalisaatio",
-    "energia",
-    "tekoäly",
-    "aluekehitys",
-    "teollisuus"
-  ],
-  "phase": "digitaalisen tuotantoinfrastruktuurin rakentuminen",
-  "problem": "Pilvipalvelujen, tekoälyn ja digitaalisten palvelujen laskentatarve kasvoi nopeasti, mikä lisäsi tarvetta suurille datakeskuksille.",
-  "mechanism": "Suomeen suunnattiin merkittäviä datakeskusinvestointeja vakaan toimintaympäristön, uusiutuvan sähkön, viileän ilmaston, tietoliikenneyhteyksien ja sähköverkon vuoksi.",
-  "effects": [
-    "sähkönkulutuksen kasvu",
-    "kantaverkon investointitarpeen lisääntyminen",
-    "alueelliset investoinnit",
-    "hukkalämmön hyödyntäminen",
-    "tekoälylaskennan kapasiteetin kasvu",
-    "uuden digitaalisen infrastruktuurin rakentuminen"
-  ],
-  "long_effect": "Datakeskuksista muodostui osa kansallista kriittistä infrastruktuuria samalla tavoin kuin sähkö-, liikenne- ja tietoliikenneverkot aiemmin.",
-  "current_relevance": "Datakeskukset vaikuttavat energia-, ilmasto-, investointi-, huoltovarmuus- ja tekoälypolitiikkaan.",
-  "importance": 5,
-  "confidence": "vahva"
-},
+      "id": "datakeskusten-rakentamisen-kiihtyminen-2023",
+      "title": "Datakeskusten rakentamisen kiihtyminen",
+      "year_start": 2023,
+      "year_end": 2035,
+      "type": "digitaalisen infrastruktuurin murros",
+      "domains": [
+        "digitalisaatio",
+        "energia",
+        "tekoäly",
+        "aluekehitys",
+        "teollisuus"
+      ],
+      "phase": "digitaalisen tuotantoinfrastruktuurin rakentuminen",
+      "problem": "Pilvipalvelujen, tekoälyn ja digitaalisten palvelujen laskentatarve kasvoi nopeasti, mikä lisäsi tarvetta suurille datakeskuksille.",
+      "mechanism": "Suomeen suunnattiin merkittäviä datakeskusinvestointeja vakaan toimintaympäristön, uusiutuvan sähkön, viileän ilmaston, tietoliikenneyhteyksien ja sähköverkon vuoksi.",
+      "effects": [
+        "sähkönkulutuksen kasvu",
+        "kantaverkon investointitarpeen lisääntyminen",
+        "alueelliset investoinnit",
+        "hukkalämmön hyödyntäminen",
+        "tekoälylaskennan kapasiteetin kasvu",
+        "uuden digitaalisen infrastruktuurin rakentuminen"
+      ],
+      "long_effect": "Datakeskuksista muodostui osa kansallista kriittistä infrastruktuuria samalla tavoin kuin sähkö-, liikenne- ja tietoliikenneverkot aiemmin.",
+      "current_relevance": "Datakeskukset vaikuttavat energia-, ilmasto-, investointi-, huoltovarmuus- ja tekoälypolitiikkaan.",
+      "importance": 5,
+      "confidence": "vahva"
+    },
     {
       "id": "hyvinvointialueet-2023",
       "title": "Hyvinvointialueiden käynnistyminen",
@@ -4596,33 +4739,33 @@
       "confidence": "vahva"
     },
     {
-  "id": "tekoalyinfrastruktuurin-rakentuminen-2024",
-  "title": "Tekoälyinfrastruktuurin rakentuminen",
-  "year_start": 2024,
-  "year_end": 2035,
-  "type": "teknologinen rakennemuutos",
-  "domains": [
-    "tekoäly",
-    "digitalisaatio",
-    "energia",
-    "talous",
-    "turvallisuus"
-  ],
-  "phase": "tekoäly siirtyy palveluista infrastruktuuriksi",
-  "problem": "Generatiivisen tekoälyn hyödyntäminen edellytti huomattavasti aiempaa suurempaa laskentakapasiteettia, datakeskuksia, puolijohteita ja energiantuotantoa.",
-  "mechanism": "Yritykset ja julkinen sektori investoivat datakeskuksiin, laskentaklustereihin, tekoälypalveluihin ja niitä tukevaan energia- sekä tietoliikenneinfrastruktuuriin.",
-  "effects": [
-    "tekoälypalvelujen yleistyminen",
-    "laskentakapasiteetin kasvu",
-    "energiaintensiivisten investointien lisääntyminen",
-    "uusi digitaalinen kilpailukyky",
-    "kyberturvallisuuden merkityksen kasvu"
-  ],
-  "long_effect": "Tekoälyinfrastruktuurista muodostui sähköverkkojen ja tietoliikenneverkkojen rinnalle yksi yhteiskunnan keskeisistä tuotantorakenteista.",
-  "current_relevance": "Kilpailu tekoälykapasiteetista vaikuttaa kansalliseen kilpailukykyyn, tutkimukseen, turvallisuuteen ja tuottavuuteen.",
-  "importance": 5,
-  "confidence": "kohtalainen"
-},
+      "id": "tekoalyinfrastruktuurin-rakentuminen-2024",
+      "title": "Tekoälyinfrastruktuurin rakentuminen",
+      "year_start": 2024,
+      "year_end": 2035,
+      "type": "teknologinen rakennemuutos",
+      "domains": [
+        "tekoäly",
+        "digitalisaatio",
+        "energia",
+        "talous",
+        "turvallisuus"
+      ],
+      "phase": "tekoäly siirtyy palveluista infrastruktuuriksi",
+      "problem": "Generatiivisen tekoälyn hyödyntäminen edellytti huomattavasti aiempaa suurempaa laskentakapasiteettia, datakeskuksia, puolijohteita ja energiantuotantoa.",
+      "mechanism": "Yritykset ja julkinen sektori investoivat datakeskuksiin, laskentaklustereihin, tekoälypalveluihin ja niitä tukevaan energia- sekä tietoliikenneinfrastruktuuriin.",
+      "effects": [
+        "tekoälypalvelujen yleistyminen",
+        "laskentakapasiteetin kasvu",
+        "energiaintensiivisten investointien lisääntyminen",
+        "uusi digitaalinen kilpailukyky",
+        "kyberturvallisuuden merkityksen kasvu"
+      ],
+      "long_effect": "Tekoälyinfrastruktuurista muodostui sähköverkkojen ja tietoliikenneverkkojen rinnalle yksi yhteiskunnan keskeisistä tuotantorakenteista.",
+      "current_relevance": "Kilpailu tekoälykapasiteetista vaikuttaa kansalliseen kilpailukykyyn, tutkimukseen, turvallisuuteen ja tuottavuuteen.",
+      "importance": 5,
+      "confidence": "kohtalainen"
+    },
     {
       "id": "eu-tekoalyasetus-2024",
       "title": "EU:n tekoälyasetus",
@@ -6942,6 +7085,198 @@
       "rel_class": "tulkinta",
       "confidence": "kohtalainen",
       "rationale": "Paikallinen vastuu voi tuottaa eroja palvelumalleihin ja kyvykkyyksiin."
+    },
+    {
+      "from": "terveydenhoitoasetus-1879",
+      "to": "vaestollinen-siirtyma-1880",
+      "type": "contributed_to",
+      "rel_class": "rakenne",
+      "confidence": "kohtalainen",
+      "rationale": "Terveydenhoidon järjestäminen ja hygienian paraneminen laskivat lapsikuolleisuutta, mikä on väestöllisen siirtymän klassinen käynnistäjä."
+    },
+    {
+      "from": "kansakouluasetus-1866",
+      "to": "vaestollinen-siirtyma-1880",
+      "type": "contributed_to",
+      "rel_class": "rakenne",
+      "confidence": "kohtalainen",
+      "rationale": "Koulutuksen leviäminen on tutkimuksessa yhdistetty syntyvyyden laskuun; kansakoululaitos loi tämän mekanismin perustan Suomessa."
+    },
+    {
+      "from": "palkkatyoyhteiskunta-1865",
+      "to": "vaestollinen-siirtyma-1880",
+      "type": "created_context_for",
+      "rel_class": "rakenne",
+      "confidence": "kohtalainen",
+      "rationale": "Siirtymä palkkatyöhön muutti lasten taloudellista merkitystä perheessä, mikä tuki perhekoon pienenemistä."
+    },
+    {
+      "from": "vaestollinen-siirtyma-1880",
+      "to": "syntyvyyden-rakennemuutos-1969",
+      "type": "long_term_precursor",
+      "rel_class": "kaari",
+      "confidence": "vahva",
+      "rationale": "1960-luvun syntyvyyden lasku jatkoi jo 1880-luvulla alkanutta väestöllisen siirtymän pitkää kaarta uusin mekanismein."
+    },
+    {
+      "from": "talvi-ja-jatkosota",
+      "to": "suuret-ikaluokat-1945",
+      "type": "triggered",
+      "rel_class": "tapahtuma",
+      "confidence": "vahva",
+      "rationale": "Sodan päättyminen ja rauhan tulo laukaisivat lykättyjen perheenperustamisten purkautumisen ja poikkeuksellisen korkean syntyvyyden 1945-1950."
+    },
+    {
+      "from": "suuret-ikaluokat-1945",
+      "to": "suuret_ikaluokat_tyohon",
+      "type": "evolved_into",
+      "rel_class": "kaari",
+      "confidence": "vahva",
+      "rationale": "Sama kohortti: 1945-1950 syntyneet ikäluokat siirtyivät työmarkkinoille 1965-1985, mikä on saman väestöilmiön seuraava vaihe."
+    },
+    {
+      "from": "suuret-ikaluokat-1945",
+      "to": "peruskoulu-1968",
+      "type": "created_pressure_for",
+      "rel_class": "rakenne",
+      "confidence": "kohtalainen",
+      "rationale": "Poikkeuksellisen suuret ikäluokat kuormittivat rinnakkaiskoulujärjestelmää ja loivat osaltaan painetta yhtenäisen peruskoulun rakentamiselle."
+    },
+    {
+      "from": "suuret-ikaluokat-1945",
+      "to": "vaeston-ikaantyminen-1975",
+      "type": "long_term_precursor",
+      "rel_class": "kaari",
+      "confidence": "vahva",
+      "rationale": "Suurten ikäluokkien poikkeuksellinen koko määritti vuosikymmeniä myöhemmin ikääntymiskehityksen mittakaavan, kun kohortti alkoi lähestyä eläkeikää."
+    },
+    {
+      "from": "kaupungistuminen",
+      "to": "syntyvyyden-rakennemuutos-1969",
+      "type": "contributed_to",
+      "rel_class": "rakenne",
+      "confidence": "vahva",
+      "rationale": "Kaupungistuminen muutti asumista, työtä ja perhekokoa; kaupunkiväestön syntyvyys oli maaseutua matalampi."
+    },
+    {
+      "from": "korkeakoulutuksen-massoittuminen-1960",
+      "to": "syntyvyyden-rakennemuutos-1969",
+      "type": "contributed_to",
+      "rel_class": "rakenne",
+      "confidence": "kohtalainen",
+      "rationale": "Erityisesti naisten koulutustason nousu lykkäsi perheellistymistä ja pienensi perhekokoa."
+    },
+    {
+      "from": "syntyvyyden-rakennemuutos-1969",
+      "to": "paivahoitolaki-1973",
+      "type": "created_pressure_for",
+      "rel_class": "rakenne",
+      "confidence": "vahva",
+      "rationale": "Naisten työssäkäynnin yleistyminen, joka oli osa samaa rakennemuutosta, loi välittömän tarpeen lakisääteiselle päivähoitojärjestelmälle."
+    },
+    {
+      "from": "syntyvyyden-rakennemuutos-1969",
+      "to": "vaeston-ikaantyminen-1975",
+      "type": "structural_precursor",
+      "rel_class": "kaari",
+      "confidence": "vahva",
+      "rationale": "Pysyväksi jäänyt syntyvyyden lasku on toinen ikääntymiskehityksen kahdesta perusajurista eliniän pidentymisen rinnalla."
+    },
+    {
+      "from": "syntyvyyden-rakennemuutos-1969",
+      "to": "historiallisen-matala-syntyvyys-2010",
+      "type": "long_term_precursor",
+      "rel_class": "kaari",
+      "confidence": "vahva",
+      "rationale": "2010-luvun ennätysmatala syntyvyys jatkaa ja syventää 1960-luvulla pysyväksi muuttunutta laskutrendiä."
+    },
+    {
+      "from": "vaeston-ikaantyminen-1975",
+      "to": "vaeston-ikaantyminen",
+      "type": "evolved_into",
+      "rel_class": "kaari",
+      "confidence": "vahva",
+      "rationale": "Sama pitkä ilmiö kahtena korttina: 1975 alkanut rakenteellinen ikääntymiskehitys kiihtyi 1995 alkaen suurten ikäluokkien lähestyessä eläkeikää. HUOM KURATOIJALLE: kortit ovat osin päällekkäisiä (1975-2035 ja 1995-2035) -- harkitse yhdistämistä tai työnjaon täsmentämistä."
+    },
+    {
+      "from": "vaeston-ikaantyminen-1975",
+      "to": "elakeuudistukset-2005",
+      "type": "created_pressure_for",
+      "rel_class": "rakenne",
+      "confidence": "vahva",
+      "rationale": "Ikärakenteen ennakoitava muutos loi paineen eläkejärjestelmän kestävyysuudistuksille (elinaikakerroin, eläkeiän nosto)."
+    },
+    {
+      "from": "finanssikriisi-2008",
+      "to": "historiallisen-matala-syntyvyys-2010",
+      "type": "contributed_to",
+      "rel_class": "tulkinta",
+      "confidence": "heikko",
+      "rationale": "Ajallinen yhteys taantumaan on ilmeinen, mutta suomalainen tutkimus ei ole löytänyt taloudellisista tekijöistä riittävää selitystä laskun syvyydelle -- kausaalisuus on epävarma."
+    },
+    {
+      "from": "historiallisen-matala-syntyvyys-2010",
+      "to": "vaeston-ikaantyminen",
+      "type": "intensified",
+      "rel_class": "rakenne",
+      "confidence": "vahva",
+      "rationale": "Ennätysmatala syntyvyys pienentää tulevia työikäisten ikäluokkia ja syventää ikääntymiskehityksen vaikutuksia entisestään."
+    },
+    {
+      "from": "valtionyhtioiden_yhtioittaminen",
+      "to": "sahkon-jakeluverkkojen-yksityistaminen-2013",
+      "type": "long_term_precursor",
+      "rel_class": "rakenne",
+      "confidence": "vahva",
+      "rationale": "1990-luvulla alkanut yhtiöittämis- ja yksityistämispolitiikka loi mallin ja jatkumon, jonka päätepisteitä verkkokauppa oli."
+    },
+    {
+      "from": "omistajaohjaus",
+      "to": "sahkon-jakeluverkkojen-yksityistaminen-2013",
+      "type": "created_context_for",
+      "rel_class": "rakenne",
+      "confidence": "kohtalainen",
+      "rationale": "Keskitetty omistajaohjauspolitiikka määritteli, mitkä omistukset katsottiin strategisiksi ja mitkä vapautettaviksi pääomiksi."
+    },
+    {
+      "from": "sahkon-jakeluverkkojen-yksityistaminen-2013",
+      "to": "uniper",
+      "type": "enabled",
+      "rel_class": "rakenne",
+      "confidence": "kohtalainen",
+      "rationale": "Verkkokaupasta vapautunut pääoma tuki Fortumin kansainvälistä sijoitusstrategiaa, jonka osaksi Uniper-omistus myöhemmin muodostui."
+    },
+    {
+      "from": "tekoaly-murros",
+      "to": "datakeskusten-rakentamisen-kiihtyminen-2023",
+      "type": "created_pressure_for",
+      "rel_class": "rakenne",
+      "confidence": "vahva",
+      "rationale": "Generatiivisen tekoälyn laskentatarve on datakeskusinvestointien kiihtymisen keskeinen ajuri."
+    },
+    {
+      "from": "ilmasto-vihrea-siirtyma",
+      "to": "datakeskusten-rakentamisen-kiihtyminen-2023",
+      "type": "enabled",
+      "rel_class": "rakenne",
+      "confidence": "kohtalainen",
+      "rationale": "Runsas uusiutuva sähkö ja viileä ilmasto ovat Suomen keskeiset vetovoimatekijät datakeskussijoituksissa."
+    },
+    {
+      "from": "datakeskusten-rakentamisen-kiihtyminen-2023",
+      "to": "tekoalyinfrastruktuurin-rakentuminen-2024",
+      "type": "enabled",
+      "rel_class": "rakenne",
+      "confidence": "vahva",
+      "rationale": "Datakeskuskapasiteetti on tekoälyinfrastruktuurin fyysinen perusta; ilman sitä laskentaklusterit eivät voi rakentua."
+    },
+    {
+      "from": "tekoaly-murros",
+      "to": "tekoalyinfrastruktuurin-rakentuminen-2024",
+      "type": "created_pressure_for",
+      "rel_class": "rakenne",
+      "confidence": "vahva",
+      "rationale": "Tekoälyn käyttöönoton laajeneminen loi suoran tarpeen kansalliselle laskenta-, energia- ja tietoliikenneinfrastruktuurille."
     }
   ]
 }
