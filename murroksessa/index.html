@@ -1012,7 +1012,12 @@ function chainForItem(id){
   const t=ITEMS.get(id);
   if(!t)return{nodes:[],rels:[],focusIdx:0};
   if(t.type==="analyyttinen kehys"||t.type==="sukupolviprofiili"){
-    const fan=fanRelatives(id).slice(0,4);
+    /* Kehyskorteilla ei ole oikeaa syy-seurausketjua, vaan rinnastuksia.
+       Näytetään ne silti aikajärjestyksessä (ei pisteytysjärjestyksessä),
+       jotta lista ei hyppele ajassa edestakaisin -- pisteytys määrää vain
+       ketkä neljästä pääsevät mukaan, ei missä järjestyksessä he näkyvät. */
+    const fan=fanRelatives(id).slice(0,4)
+      .sort((a,b)=>(a.item.year_start??0)-(b.item.year_start??0));
     return{nodes:[t,...fan.map(x=>x.item)],rels:fan.map(x=>x.rel),focusIdx:0};
   }
   const c=buildChain(id);
@@ -1067,7 +1072,9 @@ function openChainDrawer(k,source){
   const {nodes,rels,focusIdx}=chainForItem(primary.id);
   $("#dEye").textContent=`${DEC0+ +d*10}-luku · ${z.t}`;
   $("#dTitle").textContent=primary.title;
-  $("#dSub").textContent="Valittu ilmiö siirtyy kartalta ketjun alkuun. Seuraavat solmut ilmestyvät vaikutusjärjestyksessä.";
+  $("#dSub").textContent=FRAME_TYPES.has(primary.type)
+    ?"Tämä on analyysikehys, ei tapahtuma -- sillä ei ole syitä eikä seurauksia. Alla aikajärjestyksessä esimerkkejä, joita kehys auttaa tulkitsemaan."
+    :"Valittu ilmiö siirtyy kartalta ketjun alkuun. Seuraavat solmut ilmestyvät vaikutusjärjestyksessä.";
   let html="";
   nodes.forEach((n,i)=>{
     html+=chainStepHtml(n,i,focusIdx);
@@ -1085,6 +1092,9 @@ function openChainDrawer(k,source){
     const alt=ITEMS.get(ACTIVE_CHAIN_ID);if(!alt)return;
     const c=chainForItem(ACTIVE_CHAIN_ID);
     $("#dTitle").textContent=alt.title;
+    $("#dSub").textContent=FRAME_TYPES.has(alt.type)
+      ?"Tämä on analyysikehys, ei tapahtuma -- sillä ei ole syitä eikä seurauksia. Alla aikajärjestyksessä esimerkkejä, joita kehys auttaa tulkitsemaan."
+      :"Valittu ilmiö siirtyy kartalta ketjun alkuun. Seuraavat solmut ilmestyvät vaikutusjärjestyksessä.";
     let h="";c.nodes.forEach((n,i)=>{h+=chainStepHtml(n,i,c.focusIdx);if(c.rels[i])h+=`<div class="chain-rel"><span>${esc(chainRelation(c.rels[i]))}</span>${chainRationale(c.rels[i])?`<em>${esc(chainRationale(c.rels[i]))}</em>`:""}</div>`});
     $("#chainRail").innerHTML=h;
     $("#chainRail").querySelectorAll(".chain-card").forEach(x=>x.addEventListener("click",()=>openRead(x.dataset.id)));
