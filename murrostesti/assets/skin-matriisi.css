@@ -48,6 +48,8 @@ body{
 [data-theme="dark"] .matrix-labels{background:var(--t-surface-2)}
 [data-theme="dark"] .matrix-label{border-bottom-color:var(--t-line-soft)}
 [data-theme="dark"] .matrix-years{background:var(--t-surface-2)}
+[data-theme="dark"] .dialog-head{background:var(--t-veil)}
+.close{color:var(--t-ink)}
 [data-theme="dark"] .card-chain,
 [data-theme="dark"] .chain-box{background:var(--t-surface-2)}
 
