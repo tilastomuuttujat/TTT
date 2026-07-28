@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Suomen murrosvaiheet 1800–2050 · Verkkoatlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #EDF0F2;   /* jää   */
+  --panel:     #FAFBFC;   /* paperi*/
+  --ink:       #17222E;
+  --muted:     #5C6B7A;
+  --faint:     #8D99A6;
+  --hairline:  #D6DDE3;
+  --accent:    #0B3D7E;   /* viiri */
+  --accent-soft:#DCE7F5;
+  --danger:    #B3402F;
+  --radius: 10px;
+  --sidebar-w: 384px;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  overflow: hidden;
+  font-size: 14px;
+  line-height: 1.5;
+}
+#app { display: flex; flex-direction: column; height: 100vh; }
+
+/* ---------- Header ---------- */
+header {
+  display: flex; align-items: center; gap: 20px;
+  padding: 10px 20px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--hairline);
+  flex-wrap: wrap;
+}
+.brand { display: flex; flex-direction: column; min-width: 240px; }
+.brand h1 {
+  font-family: var(--font-display);
+  font-size: 17px; font-weight: 600; letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.brand .sub {
+  font-family: var(--font-mono);
+  font-size: 10.5px; color: var(--muted); letter-spacing: 0.04em;
+}
+.stats { display: flex; gap: 16px; font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.stats b { color: var(--ink); font-weight: 500; }
+
+.controls { display: flex; align-items: center; gap: 10px; margin-left: auto; flex-wrap: wrap; }
+
+.search-wrap { position: relative; }
+#search {
+  font-family: var(--font-body); font-size: 13px;
+  padding: 7px 12px 7px 30px;
+  width: 240px;
+  border: 1px solid var(--hairline); border-radius: var(--radius);
+  background: var(--bg); color: var(--ink);
+  outline: none; transition: border-color .15s, background .15s;
+}
+#search:focus { border-color: var(--accent); background: #fff; }
+.search-wrap::before {
+  content: ""; position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  width: 13px; height: 13px;
+  background: no-repeat center / contain url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%235C6B7A" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>');
+  pointer-events: none;
+}
+.search-results {
+  position: absolute; top: calc(100% + 4px); left: 0; right: 0; z-index: 40;
+  background: #fff; border: 1px solid var(--hairline); border-radius: var(--radius);
+  box-shadow: 0 10px 28px rgba(23,34,46,.14);
+  max-height: 320px; overflow-y: auto; display: none;
+}
+.search-results.open { display: block; }
+.search-results button {
+  display: block; width: 100%; text-align: left;
+  padding: 8px 12px; border: 0; background: none; cursor: pointer;
+  font-family: var(--font-body); font-size: 13px; color: var(--ink);
+  border-bottom: 1px solid var(--bg);
+}
+.search-results button:hover, .search-results button.active { background: var(--accent-soft); }
+.search-results .sr-year { font-family: var(--font-mono); font-size: 10.5px; color: var(--muted); margin-left: 6px; }
+
+.seg {
+  display: inline-flex; border: 1px solid var(--hairline); border-radius: var(--radius);
+  overflow: hidden; background: var(--bg);
+}
+.seg button {
+  font-family: var(--font-display); font-size: 12px; font-weight: 500;
+  padding: 7px 14px; border: 0; background: none; color: var(--muted); cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.seg button.on { background: var(--accent); color: #fff; }
+.seg button:not(.on):hover { color: var(--ink); }
+
+/* ---------- Main ---------- */
+main { flex: 1; display: flex; min-height: 0; }
+#graph-col { flex: 1; display: flex; flex-direction: column; min-width: 0; position: relative; }
+#graph-wrap { flex: 1; position: relative; min-height: 0; }
+#graph { width: 100%; height: 100%; display: block; cursor: grab; }
+#graph.dragging { cursor: grabbing; }
+
+.zoom-tools {
+  position: absolute; left: 14px; top: 14px; z-index: 5;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.zoom-tools button {
+  width: 32px; height: 32px; border-radius: 8px;
+  border: 1px solid var(--hairline); background: var(--panel); color: var(--ink);
+  font-family: var(--font-mono); font-size: 15px; cursor: pointer;
+  box-shadow: 0 1px 3px rgba(23,34,46,.08);
+}
+.zoom-tools button:hover { background: #fff; border-color: var(--accent); }
+
+#hint {
+  position: absolute; left: 14px; bottom: 12px; z-index: 5;
+  font-family: var(--font-mono); font-size: 10.5px; color: var(--faint);
+  pointer-events: none; user-select: none;
+}
+
+/* tooltip */
+#tooltip {
+  position: fixed; z-index: 60; pointer-events: none;
+  background: #fff; border: 1px solid var(--hairline); border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(23,34,46,.16);
+  padding: 8px 11px; max-width: 300px; display: none;
+}
+#tooltip .tt-title { font-family: var(--font-display); font-weight: 600; font-size: 12.5px; line-height: 1.3; }
+#tooltip .tt-meta { font-family: var(--font-mono); font-size: 10px; color: var(--muted); margin-top: 3px; }
+#tooltip .tt-body { font-size: 11.5px; color: var(--muted); margin-top: 5px; line-height: 1.45; }
+
+/* ---------- Timeline ---------- */
+#timeline-wrap {
+  background: var(--panel); border-top: 1px solid var(--hairline);
+  padding: 6px 14px 4px;
+}
+#timeline-label {
+  font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+  display: flex; justify-content: space-between; padding: 0 2px 2px;
+}
+#timeline-label .tl-range { color: var(--accent); font-weight: 500; }
+#timeline { display: block; width: 100%; height: 66px; }
+#timeline .brush .selection { fill: var(--accent); fill-opacity: .12; stroke: var(--accent); stroke-width: 1; }
+
+/* ---------- Sidebar ---------- */
+aside {
+  width: var(--sidebar-w); flex-shrink: 0;
+  background: var(--panel); border-left: 1px solid var(--hairline);
+  overflow-y: auto; overscroll-behavior: contain;
+}
+aside::-webkit-scrollbar { width: 8px; }
+aside::-webkit-scrollbar-thumb { background: var(--hairline); border-radius: 4px; }
+.pane { padding: 18px 20px 26px; }
+
+.eyebrow {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted);
+}
+.legend-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px; }
+.legend-actions { display: flex; gap: 8px; }
+.linklike {
+  border: 0; background: none; cursor: pointer;
+  font-family: var(--font-mono); font-size: 10.5px; color: var(--accent);
+  text-decoration: underline; text-underline-offset: 2px; padding: 0;
+}
+.type-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+.type-list li { border-radius: 7px; }
+.type-btn {
+  display: flex; align-items: center; gap: 9px; width: 100%;
+  padding: 5px 8px; border: 0; background: none; cursor: pointer;
+  font-family: var(--font-body); font-size: 12.5px; color: var(--ink);
+  border-radius: 7px; text-align: left;
+  transition: background .12s, opacity .12s;
+}
+.type-btn:hover { background: var(--bg); }
+.type-btn .dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); }
+.type-btn .cnt { margin-left: auto; font-family: var(--font-mono); font-size: 10.5px; color: var(--faint); }
+.type-btn.off { opacity: .35; }
+.type-btn.off .dot { background: var(--hairline) !important; }
+
+.section-gap { border-top: 1px solid var(--hairline); margin: 18px 0 14px; }
+
+.linkclass-list { list-style: none; display: flex; flex-direction: column; gap: 7px; margin-top: 10px; }
+.linkclass-list li { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--muted); }
+.linkclass-list svg { flex-shrink: 0; }
+.linkclass-list .lc-name { color: var(--ink); font-weight: 500; margin-right: 2px; }
+
+.about { font-size: 12px; color: var(--muted); line-height: 1.55; margin-top: 8px; }
+
+/* Detail card */
+.back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 0; background: none; cursor: pointer; padding: 0;
+  font-family: var(--font-mono); font-size: 11px; color: var(--accent);
+  margin-bottom: 14px;
+}
+.back-btn:hover { text-decoration: underline; text-underline-offset: 2px; }
+
+.d-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.badge {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .06em;
+  text-transform: uppercase; color: #fff; padding: 3px 8px; border-radius: 5px;
+}
+.d-years { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); }
+.d-title {
+  font-family: var(--font-display); font-size: 19px; font-weight: 600;
+  line-height: 1.25; letter-spacing: -0.01em; margin: 10px 0 6px;
+}
+.d-phase { font-style: italic; color: var(--muted); font-size: 12.5px; margin-bottom: 12px; }
+
+.d-metas { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 12px; }
+.d-meta { display: flex; flex-direction: column; gap: 2px; }
+.d-meta .k { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--faint); }
+.d-meta .v { font-size: 12px; color: var(--ink); }
+.imp-dots { display: inline-flex; gap: 3px; align-items: center; }
+.imp-dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--hairline); }
+.imp-dots i.on { background: var(--accent); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 14px; }
+.chip {
+  font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+  background: var(--bg); border: 1px solid var(--hairline);
+  border-radius: 20px; padding: 2px 9px;
+}
+
+.d-img { margin: 0 0 14px; }
+.d-img img {
+  display: block; width: 100%; border-radius: var(--radius);
+  border: 1px solid var(--hairline); background: var(--bg);
+}
+.d-img figcaption { font-family: var(--font-mono); font-size: 10px; color: var(--faint); margin-top: 5px; }
+
+.d-sec { margin-bottom: 14px; }
+.d-sec h3 {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 5px;
+}
+.d-sec p { font-size: 12.5px; line-height: 1.6; }
+.d-sec ul { padding-left: 17px; font-size: 12.5px; line-height: 1.55; }
+.d-sec ul li { margin-bottom: 4px; }
+details.d-sec summary {
+  cursor: pointer; font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--accent);
+  margin-bottom: 5px; user-select: none;
+}
+details.d-sec[open] summary { color: var(--muted); }
+
+.conn-group { margin-bottom: 14px; }
+.conn-group h3 {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+}
+.conn-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+.conn-item {
+  display: flex; align-items: flex-start; gap: 8px; width: 100%;
+  padding: 6px 8px; border: 1px solid var(--hairline); border-radius: 8px;
+  background: #fff; cursor: pointer; text-align: left;
+  font-family: var(--font-body); transition: border-color .12s, background .12s;
+}
+.conn-item:hover { border-color: var(--accent); background: var(--accent-soft); }
+.conn-item .dot { width: 9px; height: 9px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
+.conn-item .c-main { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.conn-item .c-title { font-size: 12px; font-weight: 500; color: var(--ink); line-height: 1.3; }
+.conn-item .c-rel { font-family: var(--font-mono); font-size: 9.5px; color: var(--muted); }
+.conn-item .c-rat { font-size: 11px; color: var(--muted); line-height: 1.4; margin-top: 2px; }
+
+.d-sources { font-family: var(--font-mono); font-size: 10px; color: var(--faint); line-height: 1.5; }
+
+/* ---------- Loader & error ---------- */
+#overlay {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg);
+}
+.overlay-card {
+  max-width: 520px; margin: 20px; padding: 28px 30px;
+  background: var(--panel); border: 1px solid var(--hairline); border-radius: 14px;
+  box-shadow: 0 16px 44px rgba(23,34,46,.10);
+}
+.overlay-card h2 { font-family: var(--font-display); font-size: 17px; margin-bottom: 8px; }
+.overlay-card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
+.overlay-card code {
+  display: block; font-family: var(--font-mono); font-size: 12px;
+  background: var(--bg); border: 1px solid var(--hairline); border-radius: 8px;
+  padding: 9px 12px; margin: 6px 0; color: var(--ink); overflow-x: auto;
+}
+.spinner {
+  width: 26px; height: 26px; margin-bottom: 14px;
+  border: 3px solid var(--hairline); border-top-color: var(--accent);
+  border-radius: 50%; animation: spin .8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .spinner { animation-duration: 1.6s; }
+}
+
+/* ---------- Guided start & interpretation ---------- */
+.guide-tools {
+  position: absolute; right: 14px; top: 14px; z-index: 6;
+  display: flex; gap: 7px; flex-wrap: wrap; justify-content: flex-end;
+}
+.guide-tools button {
+  border: 1px solid var(--hairline); background: rgba(250,251,252,.96);
+  color: var(--ink); border-radius: 8px; padding: 7px 10px;
+  font-family: var(--font-display); font-size: 11.5px; font-weight: 500;
+  cursor: pointer; box-shadow: 0 1px 4px rgba(23,34,46,.08);
+}
+.guide-tools button:hover, .guide-tools button.on { border-color: var(--accent); color: var(--accent); background: #fff; }
+
+#start-panel {
+  position: absolute; left: 50%; top: 50%; z-index: 12;
+  transform: translate(-50%,-50%); width: min(560px, calc(100% - 48px));
+  background: rgba(250,251,252,.98); border: 1px solid var(--hairline);
+  border-radius: 14px; box-shadow: 0 18px 60px rgba(23,34,46,.16);
+  padding: 22px; transition: opacity .2s, transform .2s; backdrop-filter: blur(10px);
+}
+#start-panel.hidden { opacity: 0; pointer-events: none; transform: translate(-50%,-47%); }
+#start-panel .sp-kicker { font-family: var(--font-mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+#start-panel h2 { font-family: var(--font-display); font-size: 22px; line-height: 1.2; margin: 7px 0 8px; }
+#start-panel p { color: var(--muted); font-size: 13px; line-height: 1.55; max-width: 52em; }
+.start-paths { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; margin-top: 16px; }
+.start-paths button {
+  text-align: left; border: 1px solid var(--hairline); background: #fff; color: var(--ink);
+  border-radius: 9px; padding: 10px 11px; cursor: pointer; font-family: var(--font-body);
+}
+.start-paths button:hover { border-color: var(--accent); background: var(--accent-soft); }
+.start-paths b { display: block; font-family: var(--font-display); font-size: 12.5px; margin-bottom: 2px; }
+.start-paths small { color: var(--muted); font-size: 10.5px; line-height: 1.3; }
+.start-close { margin-top: 13px; border: 0; background: none; color: var(--accent); font-family: var(--font-mono); font-size: 10.5px; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+
+.insight-box { margin-top: 14px; padding: 11px 12px; border-radius: 9px; background: var(--accent-soft); color: var(--ink); font-size: 11.5px; line-height: 1.5; }
+.insight-box b { font-family: var(--font-display); }
+
+@media (max-width: 700px) {
+  .guide-tools { top: 56px; }
+  .start-paths { grid-template-columns: 1fr; }
+  #start-panel { width: calc(100% - 28px); padding: 18px; }
+}
+
+
+
+/* ---------- Infographic lightbox ---------- */
+.d-img { position: relative; }
+.d-img img { cursor: zoom-in; transition: transform .16s, box-shadow .16s; }
+.d-img img:hover { transform: translateY(-1px); box-shadow: 0 7px 20px rgba(23,34,46,.14); }
+.d-img::after {
+  content: "Klikkaa suurentaaksesi";
+  position: absolute; right: 8px; bottom: 24px;
+  padding: 4px 8px; border-radius: 6px;
+  background: rgba(23,34,46,.82); color: #fff;
+  font-family: var(--font-mono); font-size: 9.5px;
+  pointer-events: none; opacity: 0; transition: opacity .15s;
+}
+.d-img:hover::after { opacity: 1; }
+
+#image-lightbox {
+  position: fixed; inset: 0; z-index: 200;
+  display: none; flex-direction: column;
+  background: rgba(10,16,23,.94); color: #fff;
+}
+#image-lightbox.open { display: flex; }
+.lightbox-bar {
+  display: flex; align-items: center; gap: 8px;
+  min-height: 52px; padding: 8px 12px;
+  background: rgba(10,16,23,.82); border-bottom: 1px solid rgba(255,255,255,.16);
+}
+.lightbox-title { min-width: 0; margin-right: auto; font-family: var(--font-display); font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lightbox-bar button {
+  min-width: 34px; height: 34px; padding: 0 10px;
+  border: 1px solid rgba(255,255,255,.24); border-radius: 8px;
+  background: rgba(255,255,255,.08); color: #fff; cursor: pointer;
+  font-family: var(--font-mono); font-size: 13px;
+}
+.lightbox-bar button:hover { background: rgba(255,255,255,.16); }
+.lightbox-stage {
+  flex: 1; min-height: 0; overflow: hidden; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  cursor: grab; touch-action: none;
+}
+.lightbox-stage.dragging { cursor: grabbing; }
+#lightbox-image {
+  display: block; max-width: calc(100vw - 32px); max-height: calc(100vh - 84px);
+  object-fit: contain; user-select: none; -webkit-user-drag: none;
+  transform-origin: center center; will-change: transform;
+  box-shadow: 0 16px 48px rgba(0,0,0,.38);
+}
+.lightbox-help {
+  position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%);
+  padding: 5px 9px; border-radius: 7px;
+  background: rgba(10,16,23,.72); color: rgba(255,255,255,.78);
+  font-family: var(--font-mono); font-size: 10px; white-space: nowrap; pointer-events: none;
+}
+body.lightbox-open { overflow: hidden; }
+@media (max-width: 640px) {
+  .lightbox-title { display: none; }
+  .lightbox-bar { justify-content: center; }
+  .lightbox-bar button:first-of-type { margin-left: auto; }
+  .lightbox-help { font-size: 9px; max-width: 92vw; white-space: normal; text-align: center; }
+}
+
+/* SVG text */
+.node-label {
+  font-family: var(--font-body); font-size: 10px; fill: var(--ink);
+  paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round;
+  pointer-events: none; user-select: none;
+}
+.year-axis text { font-family: var(--font-mono); font-size: 10px; fill: var(--muted); }
+.year-axis line, .year-axis path { stroke: var(--hairline); }
+.tl-axis text { font-family: var(--font-mono); font-size: 9px; fill: var(--faint); }
+.tl-axis line, .tl-axis path { stroke: var(--hairline); }
+
+/* focus visibility */
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (max-width: 900px) {
+  main { flex-direction: column; }
+  aside { width: 100%; border-left: 0; border-top: 1px solid var(--hairline); max-height: 42vh; }
+  #search { width: 170px; }
+  .stats { display: none; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="brand">
+      <h1 id="app-title">Suomen murrosvaiheet · verkkoatlas</h1>
+      <span class="sub" id="app-sub">murros → ongelma → mekanismi → seuraukset → nykymerkitys</span>
+    </div>
+    <div class="stats" id="stats" aria-live="polite"></div>
+    <div class="controls">
+      <div class="search-wrap">
+        <input id="search" type="search" placeholder="Hae murrosta tai teemaa…"
+               autocomplete="off" aria-label="Hae murrosvaihetta">
+        <div class="search-results" id="search-results" role="listbox"></div>
+      </div>
+      <div class="seg" role="group" aria-label="Asettelu">
+        <button id="mode-network" class="on" type="button">Verkko</button>
+        <button id="mode-time" type="button">Aikajana</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="graph-col">
+      <div id="graph-wrap">
+        <svg id="graph" role="img" aria-label="Murrosvaiheiden verkkokaavio"></svg>
+        <div class="zoom-tools">
+          <button id="zoom-in" type="button" title="Lähennä" aria-label="Lähennä">+</button>
+          <button id="zoom-out" type="button" title="Loitonna" aria-label="Loitonna">−</button>
+          <button id="zoom-reset" type="button" title="Palauta näkymä" aria-label="Palauta näkymä">⌂</button>
+        </div>
+        <div class="guide-tools" aria-label="Ohjattu tutkiminen">
+          <button id="open-start" type="button">Aloita tästä</button>
+          <button id="show-hubs" type="button">Tärkeät solmut</button>
+        </div>
+        <div id="start-panel" role="dialog" aria-modal="false" aria-labelledby="start-title">
+          <span class="sp-kicker">Ohjattu aloitus</span>
+          <h2 id="start-title">Mistä haluat aloittaa?</h2>
+          <p>Valitse yksi näkökulma. Atlas rajaa verkon ja nostaa esiin aiheeseen liittyvät murrokset. Sen jälkeen voit jatkaa vapaasti solmusta toiseen.</p>
+          <div class="start-paths">
+            <button data-path="welfare"><b>Hyvinvointivaltio</b><small>Palvelut, sosiaaliturva, hoiva ja instituutiot</small></button>
+            <button data-path="economy"><b>Talous ja kriisit</b><small>Rakennemuutokset, velka, työ ja sopeutuminen</small></button>
+            <button data-path="education"><b>Koulutus ja osaaminen</b><small>Lukutaito, koulutusjärjestelmä ja tietoyhteiskunta</small></button>
+            <button data-path="population"><b>Väestö ja alueet</b><small>Muuttoliike, kaupungistuminen, syntyvyys ja ikääntyminen</small></button>
+          </div>
+          <button class="start-close" id="start-close" type="button">Tutkin koko verkkoa ilman rajausta</button>
+        </div>
+        <div id="hint">raahaa solmuja · rullaa lähentääksesi · klikkaa solmua avataksesi vaikutukset</div>
+      </div>
+      <div id="timeline-wrap">
+        <div id="timeline-label">
+          <span>Murrosten ajallinen jakauma (kpl / vuosikymmen) -- rajaa maalaamalla</span>
+          <span class="tl-range" id="tl-range">1800–2050</span>
+        </div>
+        <svg id="timeline" aria-label="Aikajanan rajaus"></svg>
+      </div>
+    </div>
+    <aside id="sidebar" aria-live="polite"></aside>
+  </main>
+</div>
+
+<div id="tooltip" role="tooltip"></div>
+
+<div id="image-lightbox" role="dialog" aria-modal="true" aria-label="Suurennettu infografiikka">
+  <div class="lightbox-bar">
+    <div class="lightbox-title" id="lightbox-title"></div>
+    <button id="lightbox-minus" type="button" aria-label="Loitonna" title="Loitonna">−</button>
+    <button id="lightbox-reset" type="button" aria-label="Palauta koko" title="Palauta koko">100 %</button>
+    <button id="lightbox-plus" type="button" aria-label="Lähennä" title="Lähennä">+</button>
+    <button id="lightbox-close" type="button" aria-label="Sulje suurennos" title="Sulje">✕</button>
+  </div>
+  <div class="lightbox-stage" id="lightbox-stage">
+    <img id="lightbox-image" alt="">
+    <div class="lightbox-help">Rullaa zoomataksesi · raahaa kuvaa · kaksoisklikkaa palauttaaksesi · Esc sulkee</div>
+  </div>
+</div>
+
+
+<div id="overlay">
+  <div class="overlay-card" id="overlay-card">
+    <div class="spinner" aria-hidden="true"></div>
+    <h2>Ladataan aineistoa…</h2>
+    <p>Haetaan tiedostoa <code style="display:inline;padding:1px 6px">suomen_murrosvaiheet_syvennetty.json</code></p>
+  </div>
+</div>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+(function murrosAtlas() {
+"use strict";
+
+const DATA_URL = "suomen_murrosvaiheet_syvennetty.json";
+
+/* ---------- Palette: value type → color ---------- */
+const TYPE_COLORS = new Map([
+  ["kriisi",               "#C0392B"],
+  ["uudistus",             "#1E7F5C"],
+  ["rakennemuutos",        "#2E62A8"],
+  ["instituutio",          "#6C4FA8"],
+  ["teknologinen murros",  "#0F8C9C"],
+  ["väestömuutos",         "#C57C1F"],
+  ["tapahtuma",            "#C94F8C"],
+  ["pitkä kaari",          "#7C6A4E"],
+  ["onnistuminen",         "#5E9732"],
+  ["analyyttinen kehys",   "#74808C"],
+  ["sukupolviprofiili",    "#A98A21"],
+  ["tulevaisuusskenaario", "#5052C7"]
+]);
+const FALLBACK_COLOR = "#4A5560";
+const typeColor = t => TYPE_COLORS.get(t) || FALLBACK_COLOR;
+
+/* Analyyttiset kehykset (esim. "Mallien verkko") eivät kuvaa tiettyä ajankohtaa --
+   niiden year_start on atlaksen kattava alaraja, ei tapahtuma-aika. Aikajana-tilassa
+   niitä ei siis sijoiteta year_start:n mukaan kuten oikeita tapahtumia, vaan omalle,
+   ajasta riippumattomalle riville. */
+const FRAME_TYPES = new Set(["analyyttinen kehys"]);
+
+/* link class → stroke style */
+const LINK_STYLE = {
+  "rakenne":   { dash: null,    base: "#93A2B1" },
+  "kaari":     { dash: null,    base: "#6E8296" },
+  "tapahtuma": { dash: "1.5 4", base: "#93A2B1" },
+  "tulkinta":  { dash: "5 4",   base: "#A6B2BE" }
+};
+const LINK_CLASS_LABELS = { kaari: "kaari", rakenne: "rakenne", tapahtuma: "tapahtuma", tulkinta: "tulkinta" };
+
+/* relation type → readable Finnish gloss (fallback: prettified id) */
+const REL_FI = {
+  enabled: "mahdollisti", contributed_to: "myötävaikutti", culminated_in: "huipentui",
+  exemplified_by: "ilmeni muodossa", structural_precursor: "rakenteellinen edeltäjä",
+  created_pressure_for: "loi painetta", complemented: "täydensi", integrates: "yhdistää",
+  accelerated: "kiihdytti", contrasts: "kontrastina", long_term_precursor: "pitkän ajan edeltäjä",
+  evolved_into: "kehittyi muotoon", created_capacity_for: "loi valmiuksia",
+  expanded_into: "laajeni muotoon", created_context_for: "loi kontekstin",
+  produced: "tuotti", supported: "tuki", triggered: "laukaisi", required: "edellytti",
+  reinforced: "vahvisti", intensified: "voimisti", formalized: "muodollisti",
+  replaced_by: "korvautui", constrained: "rajoitti", caused: "aiheutti",
+  delayed: "viivästytti", weakened: "heikensi", strengthened: "vahvisti",
+  mitigated: "lievensi", informed: "pohjusti", may_produce: "voi tuottaa"
+};
+const relLabel = t => REL_FI[t] || String(t || "").replace(/_/g, " ");
+
+/* ---------- State ---------- */
+let META = null, NODES = [], LINKS = [];
+let nodeById = new Map();
+let simulation = null;
+let mode = "network";                 // "network" | "time"
+let activeTypes = new Set();          // visible value types
+let yearRange = null;                 // [a, b] or null = all
+let searchQuery = "";
+let guidedFilter = null;               // optional curated domain/title filter
+let hubsOnly = false;                  // emphasize structurally central nodes
+let selectedId = null;                // pinned node
+let YEAR_MIN = 1800, YEAR_MAX = 2050;
+
+/* ---------- DOM ---------- */
+const svg = d3.select("#graph");
+const tooltip = document.getElementById("tooltip");
+const sidebar = document.getElementById("sidebar");
+const overlay = document.getElementById("overlay");
+const overlayCard = document.getElementById("overlay-card");
+const esc = s => String(s ?? "")
+  .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+  .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+
+/* ---------- Load ---------- */
+fetch(DATA_URL)
+  .then(r => { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+  .then(init)
+  .catch(showLoadError);
+
+function showLoadError(err) {
+  overlayCard.innerHTML = `
+    <h2>Aineistoa ei voitu ladata</h2>
+    <p>Tiedostoa <b>${esc(DATA_URL)}</b> ei löytynyt tai selain esti sen lataamisen
+       (${esc(err.message)}).</p>
+    <p>Varmista, että JSON-tiedosto on <b>samassa kansiossa</b> kuin tämä HTML-tiedosto.
+       Selaimet estävät <code style="display:inline;padding:1px 6px">fetch</code>-kutsut suoraan
+       levyltä avatuissa sivuissa, joten käynnistä kansiossa kevyt palvelin:</p>
+    <code>python3 -m http.server 8000</code>
+    <p>ja avaa sitten <code style="display:inline;padding:1px 6px">http://localhost:8000/murrosatlas.html</code></p>`;
+}
+
+/* ---------- Init ---------- */
+function init(data) {
+  META = data.meta || {};
+  const items = data.items || [];
+  const relations = data.relations || [];
+
+  /* nodes */
+  NODES = items.map(d => ({ ...d, degree: 0 }));
+  nodeById = new Map(NODES.map(d => [d.id, d]));
+
+  /* links -- keep only those whose endpoints exist */
+  LINKS = relations
+    .filter(r => nodeById.has(r.from) && nodeById.has(r.to))
+    .map((r, i) => ({ ...r, source: r.from, target: r.to, _i: i }));
+  for (const l of LINKS) {
+    nodeById.get(l.from).degree++;
+    nodeById.get(l.to).degree++;
+  }
+
+  const yrs = NODES.flatMap(d => [d.year_start, d.year_end]).filter(Number.isFinite);
+  YEAR_MIN = d3.min(yrs) ?? 1800;
+  YEAR_MAX = d3.max(yrs) ?? 2050;
+
+  activeTypes = new Set(NODES.map(d => d.type));
+
+  if (META.title) document.getElementById("app-title").textContent = META.title;
+  if (META.model) document.getElementById("app-sub").textContent = META.model;
+  document.getElementById("stats").innerHTML =
+    `<span><b>${NODES.length}</b> murrosta</span>` +
+    `<span><b>${LINKS.length}</b> yhteyttä</span>` +
+    `<span><b>${YEAR_MIN}–${YEAR_MAX}</b></span>`;
+
+  buildGraph();
+  buildTimeline();
+  renderLegend();
+  wireHeader();
+  overlay.remove();
+}
+
+/* ---------- Graph ---------- */
+let gRoot, gLinks, gNodes, gLabels, gAxis, gFrameLane, zoomBehavior;
+let linkSel, nodeSel, labelSel;
+let W = 800, H = 600;
+
+const radius = d => 3.5 + Math.sqrt(d.degree) * 2.1 + (d.importance - 3) * 1.3;
+const shortTitle = d => d.title.length > 30 ? d.title.slice(0, 29).trimEnd() + "…" : d.title;
+const timeX = () => d3.scaleLinear().domain([YEAR_MIN, YEAR_MAX]).range([70, Math.max(W - 60, 200)]);
+
+function buildGraph() {
+  const wrap = document.getElementById("graph-wrap");
+  W = wrap.clientWidth; H = wrap.clientHeight;
+  svg.attr("viewBox", [0, 0, W, H]);
+
+  /* arrowhead for highlighted links */
+  svg.append("defs").append("marker")
+    .attr("id", "arrow").attr("viewBox", "0 -4 8 8")
+    .attr("refX", 7).attr("refY", 0)
+    .attr("markerWidth", 6).attr("markerHeight", 6)
+    .attr("orient", "auto")
+    .append("path").attr("d", "M0,-3.4L8,0L0,3.4").attr("fill", "var(--accent)");
+
+  gRoot = svg.append("g");
+  gAxis = gRoot.append("g").attr("class", "year-axis").attr("opacity", 0);
+  gFrameLane = gRoot.append("g").attr("class", "frame-lane").attr("opacity", 0);
+  gLinks = gRoot.append("g");
+  gNodes = gRoot.append("g");
+  gLabels = gRoot.append("g");
+
+  linkSel = gLinks.selectAll("line").data(LINKS, d => d._i).join("line")
+    .attr("class", "net-link")
+    .attr("stroke", d => (LINK_STYLE[d.rel_class] || LINK_STYLE.rakenne).base)
+    .attr("stroke-width", 1)
+    .attr("stroke-opacity", 0.4)
+    .attr("stroke-dasharray", d => (LINK_STYLE[d.rel_class] || {}).dash)
+    .style("cursor", "pointer")
+    .on("mouseenter", (ev, d) => { showLinkTooltip(ev, d); emphasizeLink(d); })
+    .on("mousemove", moveTooltip)
+    .on("mouseleave", () => { hideTooltip(); refreshEmphasis(); });
+
+  nodeSel = gNodes.selectAll("circle").data(NODES, d => d.id).join("circle")
+    .attr("r", radius)
+    .attr("fill", d => typeColor(d.type))
+    .attr("stroke", "#fff")
+    .attr("stroke-width", 1.2)
+    .style("cursor", "pointer")
+    .call(d3.drag()
+      .on("start", dragStart).on("drag", dragMove).on("end", dragEnd))
+    .on("mouseenter", (ev, d) => { showNodeTooltip(ev, d); emphasizeNode(d); })
+    .on("mousemove", moveTooltip)
+    .on("mouseleave", () => { hideTooltip(); refreshEmphasis(); })
+    .on("click", (ev, d) => { ev.stopPropagation(); selectNode(d.id); });
+
+  /* future scenarios get a dashed ring */
+  nodeSel.filter(d => d.type === "tulevaisuusskenaario")
+    .attr("stroke-dasharray", "2.5 2")
+    .attr("stroke", d => typeColor(d.type))
+    .attr("fill", "#fff")
+    .attr("fill-opacity", 0.9)
+    .attr("stroke-width", 1.8);
+
+  labelSel = gLabels.selectAll("text")
+    .data(NODES.filter(d => d.degree >= 7 || d.importance === 5), d => d.id)
+    .join("text")
+    .attr("class", "node-label")
+    .attr("text-anchor", "middle")
+    .text(shortTitle);
+
+  simulation = d3.forceSimulation(NODES)
+    .force("link", d3.forceLink(LINKS).id(d => d.id)
+      .distance(l => 34 + 3 * Math.min(nodeById.get(l.from).degree, nodeById.get(l.to).degree))
+      .strength(0.25))
+    .force("charge", d3.forceManyBody().strength(-115).distanceMax(420))
+    .force("collide", d3.forceCollide().radius(d => radius(d) + 3.5).iterations(2))
+    .force("x", d3.forceX(W / 2).strength(0.045))
+    .force("y", d3.forceY(H / 2).strength(0.06))
+    .on("tick", ticked);
+
+  zoomBehavior = d3.zoom()
+    .scaleExtent([0.25, 6])
+    .on("zoom", ev => {
+      gRoot.attr("transform", ev.transform);
+      gLabels.attr("opacity", ev.transform.k >= 0.55 ? 1 : 0);
+    });
+  svg.call(zoomBehavior)
+     .on("dblclick.zoom", null);
+
+  svg.on("click", () => selectNode(null));
+  document.getElementById("zoom-in").onclick = () => svg.transition().duration(220).call(zoomBehavior.scaleBy, 1.35);
+  document.getElementById("zoom-out").onclick = () => svg.transition().duration(220).call(zoomBehavior.scaleBy, 1 / 1.35);
+  document.getElementById("zoom-reset").onclick = () => svg.transition().duration(320).call(zoomBehavior.transform, d3.zoomIdentity);
+
+  window.addEventListener("resize", onResize);
+  window.addEventListener("keydown", ev => { if (ev.key === "Escape") selectNode(null); });
+}
+
+function ticked() {
+  linkSel
+    .attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+    .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+  nodeSel.attr("cx", d => d.x).attr("cy", d => d.y);
+  labelSel.attr("x", d => d.x).attr("y", d => d.y - radius(d) - 4);
+}
+
+function onResize() {
+  const wrap = document.getElementById("graph-wrap");
+  W = wrap.clientWidth; H = wrap.clientHeight;
+  svg.attr("viewBox", [0, 0, W, H]);
+  applyMode(true);
+  drawTimelineChart();
+}
+
+/* ---------- Layout modes ---------- */
+function applyMode(soft) {
+  if (mode === "time") {
+    const x = timeX();
+    const frameLaneY = 54; /* oma rivi ylälaidassa ajattomille kehyskorteille */
+    simulation
+      .force("x", d3.forceX(d => FRAME_TYPES.has(d.type) ? (W / 2) : x(Math.min(d.year_start, YEAR_MAX)))
+        .strength(d => FRAME_TYPES.has(d.type) ? 0.06 : 0.85))
+      .force("y", d3.forceY(d => FRAME_TYPES.has(d.type) ? frameLaneY : H / 2)
+        .strength(d => FRAME_TYPES.has(d.type) ? 0.9 : 0.045))
+      .force("charge", d3.forceManyBody().strength(-46).distanceMax(240));
+    drawYearAxis(x);
+    drawFrameLane(frameLaneY);
+    gAxis.transition().duration(300).attr("opacity", 1);
+    gFrameLane.transition().duration(300).attr("opacity", 1);
+  } else {
+    simulation
+      .force("x", d3.forceX(W / 2).strength(0.045))
+      .force("y", d3.forceY(H / 2).strength(0.06))
+      .force("charge", d3.forceManyBody().strength(-115).distanceMax(420));
+    gAxis.transition().duration(300).attr("opacity", 0);
+    gFrameLane.transition().duration(300).attr("opacity", 0);
+  }
+  simulation.alpha(soft ? 0.35 : 0.9).restart();
+}
+
+function drawFrameLane(y) {
+  gFrameLane.selectAll("*").remove();
+  gFrameLane.append("line")
+    .attr("x1", 0).attr("x2", W).attr("y1", y + 28).attr("y2", y + 28)
+    .attr("stroke", "#B9C0C7").attr("stroke-dasharray", "2 4");
+  gFrameLane.append("text")
+    .attr("x", 12).attr("y", y - 14)
+    .attr("fill", "#74808C").attr("font-size", 11).attr("font-weight", 600)
+    .text("ANALYYTTISET KEHYKSET -- eivät sidottu tiettyyn ajankohtaan");
+}
+
+function drawYearAxis(x) {
+  gAxis.selectAll("*").remove();
+  const axis = d3.axisBottom(x).ticks(10).tickFormat(d3.format("d")).tickSize(-(H - 60));
+  gAxis.attr("transform", `translate(0,${H - 30})`).call(axis);
+  gAxis.select(".domain").remove();
+  gAxis.selectAll("line").attr("stroke-dasharray", "2 4");
+}
+
+/* ---------- Filtering & emphasis ---------- */
+function nodeVisible(d) {
+  if (!activeTypes.has(d.type)) return false;
+  if (yearRange && (d.year_end < yearRange[0] || d.year_start > yearRange[1])) return false;
+  const hay = (d.title + " " + (d.domains || []).join(" ") + " " + d.type + " " + (d.phase || "")).toLowerCase();
+  if (searchQuery && !hay.includes(searchQuery)) return false;
+  if (guidedFilter && !guidedFilter.some(term => hay.includes(term))) return false;
+  return true;
+}
+
+function refreshEmphasis() {
+  const sel = selectedId ? nodeById.get(selectedId) : null;
+  let neigh = null;
+  if (sel) {
+    neigh = new Set([sel.id]);
+    for (const l of LINKS) {
+      if (l.from === sel.id) neigh.add(l.to);
+      if (l.to === sel.id) neigh.add(l.from);
+    }
+  }
+  nodeSel
+    .attr("opacity", d => {
+      if (!nodeVisible(d)) return 0.06;
+      if (neigh) return neigh.has(d.id) ? 1 : 0.10;
+      if (hubsOnly) return (d.degree >= 8 || d.importance === 5) ? 1 : 0.08;
+      return 1;
+    })
+    .style("pointer-events", d => nodeVisible(d) ? null : "none")
+    .attr("stroke-width", d => d.id === selectedId ? 3 : (d.type === "tulevaisuusskenaario" ? 1.8 : 1.2));
+
+  linkSel
+    .attr("stroke-opacity", d => {
+      const vs = nodeVisible(nodeById.get(d.from)), vt = nodeVisible(nodeById.get(d.to));
+      if (!vs || !vt) return 0.02;
+      if (sel) return (d.from === sel.id || d.to === sel.id) ? 0.9 : 0.05;
+      return 0.4;
+    })
+    .attr("stroke", d => sel && (d.from === sel.id || d.to === sel.id)
+      ? "var(--accent)" : (LINK_STYLE[d.rel_class] || LINK_STYLE.rakenne).base)
+    .attr("stroke-width", d => sel && (d.from === sel.id || d.to === sel.id) ? 1.8 : 1)
+    .attr("marker-end", d => sel && (d.from === sel.id || d.to === sel.id) ? "url(#arrow)" : null);
+
+  labelSel.attr("opacity", d => nodeVisible(d) ? (neigh && !neigh.has(d.id) ? 0.12 : 1) : 0.05);
+}
+
+function emphasizeNode(d) {
+  if (selectedId) return;                       /* pinned selection wins */
+  const neigh = new Set([d.id]);
+  for (const l of LINKS) {
+    if (l.from === d.id) neigh.add(l.to);
+    if (l.to === d.id) neigh.add(l.from);
+  }
+  nodeSel.attr("opacity", e => !nodeVisible(e) ? 0.06 : (neigh.has(e.id) ? 1 : 0.12));
+  linkSel
+    .attr("stroke-opacity", e => (e.from === d.id || e.to === d.id) ? 0.9 : 0.04)
+    .attr("stroke", e => (e.from === d.id || e.to === d.id)
+      ? "var(--accent)" : (LINK_STYLE[e.rel_class] || LINK_STYLE.rakenne).base)
+    .attr("marker-end", e => (e.from === d.id || e.to === d.id) ? "url(#arrow)" : null);
+}
+
+function emphasizeLink(d) {
+  if (selectedId) return;
+  linkSel.attr("stroke-opacity", e => e._i === d._i ? 1 : 0.05)
+    .attr("stroke", e => e._i === d._i ? "var(--accent)" : (LINK_STYLE[e.rel_class] || LINK_STYLE.rakenne).base)
+    .attr("stroke-width", e => e._i === d._i ? 2 : 1)
+    .attr("marker-end", e => e._i === d._i ? "url(#arrow)" : null);
+  nodeSel.attr("opacity", e => !nodeVisible(e) ? 0.06 : ((e.id === d.from || e.id === d.to) ? 1 : 0.12));
+}
+
+/* ---------- Selection & navigation ---------- */
+function selectNode(id) {
+  selectedId = id;
+  refreshEmphasis();
+  if (id) renderDetail(nodeById.get(id)); else renderLegend();
+}
+
+function focusNode(id) {
+  const d = nodeById.get(id);
+  if (!d) return;
+  selectNode(id);
+  const t = d3.zoomTransform(svg.node());
+  const k = Math.max(t.k, 1.15);
+  svg.transition().duration(480).call(
+    zoomBehavior.transform,
+    d3.zoomIdentity.translate(W / 2 - k * d.x, H / 2 - k * d.y).scale(k)
+  );
+}
+
+/* ---------- Drag ---------- */
+function dragStart(ev, d) {
+  if (!ev.active) simulation.alphaTarget(0.25).restart();
+  d.fx = d.x; d.fy = d.y;
+  svg.classed("dragging", true);
+}
+function dragMove(ev, d) { d.fx = ev.x; d.fy = ev.y; }
+function dragEnd(ev, d) {
+  if (!ev.active) simulation.alphaTarget(0);
+  d.fx = null; d.fy = null;
+  svg.classed("dragging", false);
+}
+
+/* ---------- Tooltip ---------- */
+function showNodeTooltip(ev, d) {
+  tooltip.innerHTML =
+    `<div class="tt-title">${esc(d.title)}</div>
+     <div class="tt-meta">${esc(d.type)} · ${d.year_start}–${d.year_end} · ${d.degree} yhteyttä</div>
+     <div class="tt-body">${esc(d.phase || "")}</div>`;
+  tooltip.style.display = "block";
+  moveTooltip(ev);
+}
+function showLinkTooltip(ev, d) {
+  const a = nodeById.get(d.from), b = nodeById.get(d.to);
+  tooltip.innerHTML =
+    `<div class="tt-title">${esc(a.title)} → ${esc(b.title)}</div>
+     <div class="tt-meta">${esc(relLabel(d.type))} · ${esc(d.rel_class)} · luottamus: ${esc(d.confidence || "–")}</div>
+     <div class="tt-body">${esc(d.rationale || "")}</div>`;
+  tooltip.style.display = "block";
+  moveTooltip(ev);
+}
+function moveTooltip(ev) {
+  const pad = 14, tw = tooltip.offsetWidth, th = tooltip.offsetHeight;
+  let x = ev.clientX + pad, y = ev.clientY + pad;
+  if (x + tw > window.innerWidth - 8) x = ev.clientX - tw - pad;
+  if (y + th > window.innerHeight - 8) y = ev.clientY - th - pad;
+  tooltip.style.left = x + "px"; tooltip.style.top = y + "px";
+}
+function hideTooltip() { tooltip.style.display = "none"; }
+
+/* ---------- Timeline ---------- */
+let tlBrush, tlX;
+function buildTimeline() { drawTimelineChart(); }
+
+function drawTimelineChart() {
+  const tsvg = d3.select("#timeline");
+  tsvg.selectAll("*").remove();
+  const box = document.getElementById("timeline").getBoundingClientRect();
+  const tw = Math.max(box.width, 320), th = 66;
+  tsvg.attr("viewBox", [0, 0, tw, th]);
+
+  const m = { l: 6, r: 6, t: 4, b: 16 };
+  const dec0 = Math.floor(YEAR_MIN / 10) * 10;
+  const decades = d3.range(dec0, YEAR_MAX + 10, 10);
+  const counts = decades.map(dec => ({
+    dec,
+    n: NODES.filter(d => d.year_start <= dec + 9 && d.year_end >= dec).length
+  }));
+
+  tlX = d3.scaleLinear().domain([dec0, YEAR_MAX + 10]).range([m.l, tw - m.r]);
+  const y = d3.scaleLinear().domain([0, d3.max(counts, c => c.n) || 1]).range([th - m.b, m.t]);
+
+  tsvg.append("g").selectAll("rect").data(counts).join("rect")
+    .attr("x", c => tlX(c.dec) + 1)
+    .attr("width", c => Math.max(tlX(c.dec + 10) - tlX(c.dec) - 2, 1))
+    .attr("y", c => y(c.n))
+    .attr("height", c => (th - m.b) - y(c.n))
+    .attr("rx", 2)
+    .attr("fill", "var(--accent)")
+    .attr("fill-opacity", 0.28);
+
+  tsvg.append("g").attr("class", "tl-axis")
+    .attr("transform", `translate(0,${th - m.b})`)
+    .call(d3.axisBottom(tlX).ticks(12).tickFormat(d3.format("d")).tickSizeOuter(0));
+
+  tlBrush = d3.brushX()
+    .extent([[m.l, m.t], [tw - m.r, th - m.b]])
+    .on("brush end", ev => {
+      if (ev.selection) {
+        const [a, b] = ev.selection.map(tlX.invert);
+        yearRange = [Math.round(a), Math.round(b)];
+        document.getElementById("tl-range").textContent = `${yearRange[0]}–${yearRange[1]}`;
+      } else {
+        yearRange = null;
+        document.getElementById("tl-range").textContent = `${YEAR_MIN}–${YEAR_MAX}`;
+      }
+      refreshEmphasis();
+    });
+
+  const gb = tsvg.append("g").attr("class", "brush").call(tlBrush);
+  if (yearRange) gb.call(tlBrush.move, [tlX(yearRange[0]), tlX(yearRange[1])]);
+}
+
+/* ---------- Sidebar: legend ---------- */
+function renderLegend() {
+  const counts = d3.rollup(NODES, v => v.length, d => d.type);
+  const types = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+
+  const typeRows = types.map(([t, n]) => `
+    <li><button type="button" class="type-btn ${activeTypes.has(t) ? "" : "off"}" data-type="${esc(t)}">
+      <span class="dot" style="background:${typeColor(t)}"></span>
+      <span>${esc(t)}</span><span class="cnt">${n}</span>
+    </button></li>`).join("");
+
+  const lcRows = Object.keys(LINK_STYLE).map(k => {
+    const s = LINK_STYLE[k];
+    return `<li>
+      <svg width="34" height="8"><line x1="1" y1="4" x2="33" y2="4"
+        stroke="${s.base}" stroke-width="1.6" ${s.dash ? `stroke-dasharray="${s.dash}"` : ""}/></svg>
+      <span><span class="lc-name">${esc(LINK_CLASS_LABELS[k])}</span>
+      ${esc((META.relation_classes || {})[k] || "")}</span>
+    </li>`;
+  }).join("");
+
+  sidebar.innerHTML = `
+    <div class="pane">
+      <div class="legend-head">
+        <span class="eyebrow">Murrostyypit -- suodata klikkaamalla</span>
+        <span class="legend-actions">
+          <button type="button" class="linklike" id="types-all">kaikki</button>
+          <button type="button" class="linklike" id="types-none">tyhjennä</button>
+        </span>
+      </div>
+      <ul class="type-list">${typeRows}</ul>
+
+      <div class="section-gap"></div>
+      <span class="eyebrow">Yhteysluokat</span>
+      <ul class="linkclass-list">${lcRows}</ul>
+
+      <div class="section-gap"></div>
+      <span class="eyebrow">Lukuohje</span>
+      <p class="about">
+        Solmun koko kertoo yhteyksien määrän ja arvioidun merkittävyyden; väri kertoo
+        murroksen tyypin (katkoviivareunus = tulevaisuusskenaario).
+        Vie hiiri solmun tai viivan päälle nähdäksesi esikatselun, ja klikkaa solmua
+        avataksesi koko kortin: ongelma, mekanismi, seuraukset ja nykymerkitys.
+        Nuolet osoittavat vaikutuksen suunnan valitusta murroksesta.
+      </p>
+      <div class="insight-box"><b>Kolmas näkökulma:</b> verkkoatlas ei tarjoa yhtä valmista reittiä, vaan näyttää koko järjestelmän ja antaa lukijan valita oman tutkimuspolkunsa.</div>
+      ${META.status ? `<div class="section-gap"></div>
+        <span class="eyebrow">Aineiston tila</span>
+        <p class="about">${esc(META.status)}</p>` : ""}
+    </div>`;
+
+  sidebar.querySelectorAll(".type-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const t = btn.dataset.type;
+      if (activeTypes.has(t)) activeTypes.delete(t); else activeTypes.add(t);
+      btn.classList.toggle("off", !activeTypes.has(t));
+      refreshEmphasis();
+    });
+    btn.addEventListener("mouseenter", () => {
+      if (!activeTypes.has(btn.dataset.type)) return;
+      nodeSel.attr("opacity", e => !nodeVisible(e) ? 0.06 : (e.type === btn.dataset.type ? 1 : 0.12));
+      linkSel.attr("stroke-opacity", 0.05);
+    });
+    btn.addEventListener("mouseleave", refreshEmphasis);
+  });
+  document.getElementById("types-all").onclick = () => {
+    activeTypes = new Set(NODES.map(d => d.type)); renderLegend(); refreshEmphasis();
+  };
+  document.getElementById("types-none").onclick = () => {
+    activeTypes.clear(); renderLegend(); refreshEmphasis();
+  };
+}
+
+/* ---------- Sidebar: detail card ---------- */
+function renderDetail(d) {
+  const incoming = LINKS.filter(l => l.to === d.id);
+  const outgoing = LINKS.filter(l => l.from === d.id);
+
+  const connItem = (l, otherId) => {
+    const o = nodeById.get(otherId);
+    return `<li><button type="button" class="conn-item" data-goto="${esc(o.id)}">
+      <span class="dot" style="background:${typeColor(o.type)}"></span>
+      <span class="c-main">
+        <span class="c-title">${esc(o.title)}</span>
+        <span class="c-rel">${esc(relLabel(l.type))} · ${esc(l.rel_class)}</span>
+        ${l.rationale ? `<span class="c-rat">${esc(l.rationale)}</span>` : ""}
+      </span>
+    </button></li>`;
+  };
+
+  const img = (d.images && d.images[0]) ? d.images[0] : null;
+  const impDots = [1, 2, 3, 4, 5].map(i => `<i class="${i <= d.importance ? "on" : ""}"></i>`).join("");
+
+  sidebar.innerHTML = `
+    <div class="pane">
+      <button type="button" class="back-btn" id="back-legend">← Takaisin selitteeseen</button>
+
+      <div class="d-top">
+        <span class="badge" style="background:${typeColor(d.type)}">${esc(d.type)}</span>
+        <span class="d-years">${d.year_start}–${d.year_end}</span>
+      </div>
+      <h2 class="d-title">${esc(d.title)}</h2>
+      ${d.phase ? `<p class="d-phase">${esc(d.phase)}</p>` : ""}
+
+      <div class="d-metas">
+        <div class="d-meta"><span class="k">Merkittävyys</span>
+          <span class="v"><span class="imp-dots">${impDots}</span></span></div>
+        <div class="d-meta"><span class="k">Luottamus</span><span class="v">${esc(d.confidence || "–")}</span></div>
+        <div class="d-meta"><span class="k">Yhteyksiä</span><span class="v">${d.degree}</span></div>
+      </div>
+
+      ${(d.domains && d.domains.length) ? `<div class="chips">${d.domains.map(x => `<span class="chip">${esc(x)}</span>`).join("")}</div>` : ""}
+
+      ${img ? `<figure class="d-img">
+        <img class="infographic-expand" src="${esc(img.url)}" alt="${esc(img.caption || d.title)}" loading="lazy"
+             tabindex="0" role="button" aria-label="Suurenna infografiikka: ${esc(img.caption || d.title)}"
+             onerror="this.closest('figure').remove()">
+        ${img.caption ? `<figcaption>${esc(img.caption)}</figcaption>` : ""}
+      </figure>` : ""}
+
+      ${d.problem ? `<div class="d-sec"><h3>Havaittu ongelma</h3><p>${esc(d.problem)}</p></div>` : ""}
+      ${d.mechanism ? `<details class="d-sec"><summary>Mekanismi -- näytä</summary><p>${esc(d.mechanism)}</p></details>` : ""}
+      ${(d.effects && d.effects.length) ? `<div class="d-sec"><h3>Seuraukset</h3>
+        <ul>${d.effects.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
+      ${d.long_effect ? `<div class="d-sec"><h3>Pitkä vaikutus</h3><p>${esc(d.long_effect)}</p></div>` : ""}
+      ${d.current_relevance ? `<div class="d-sec"><h3>Nykymerkitys</h3><p>${esc(d.current_relevance)}</p></div>` : ""}
+
+      ${incoming.length ? `<div class="conn-group"><h3>Taustalla · ${incoming.length}</h3>
+        <ul class="conn-list">${incoming.map(l => connItem(l, l.from)).join("")}</ul></div>` : ""}
+      ${outgoing.length ? `<div class="conn-group"><h3>Vaikutti eteenpäin · ${outgoing.length}</h3>
+        <ul class="conn-list">${outgoing.map(l => connItem(l, l.to)).join("")}</ul></div>` : ""}
+
+      ${(d.sources && d.sources.length) ? `<div class="section-gap"></div>
+        <p class="d-sources">Lähdeviitteet: ${d.sources.map(esc).join("; ")}</p>` : ""}
+    </div>`;
+
+  document.getElementById("back-legend").onclick = () => selectNode(null);
+  sidebar.querySelectorAll("[data-goto]").forEach(btn =>
+    btn.addEventListener("click", () => focusNode(btn.dataset.goto)));
+  const infographic = sidebar.querySelector(".infographic-expand");
+  if (infographic) {
+    const open = () => openImageLightbox(infographic.src, infographic.alt || d.title);
+    infographic.addEventListener("click", open);
+    infographic.addEventListener("keydown", ev => {
+      if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); open(); }
+    });
+  }
+  sidebar.scrollTop = 0;
+}
+
+
+
+/* ---------- Infographic lightbox ---------- */
+const imageLightbox = document.getElementById("image-lightbox");
+const lightboxStage = document.getElementById("lightbox-stage");
+const lightboxImage = document.getElementById("lightbox-image");
+const lightboxTitle = document.getElementById("lightbox-title");
+let lightboxScale = 1, lightboxX = 0, lightboxY = 0;
+let lightboxDragging = false, dragOriginX = 0, dragOriginY = 0, imageOriginX = 0, imageOriginY = 0;
+
+function updateLightboxTransform() {
+  lightboxImage.style.transform = `translate(${lightboxX}px, ${lightboxY}px) scale(${lightboxScale})`;
+  document.getElementById("lightbox-reset").textContent = `${Math.round(lightboxScale * 100)} %`;
+}
+function resetImageLightbox() {
+  lightboxScale = 1; lightboxX = 0; lightboxY = 0; updateLightboxTransform();
+}
+function changeLightboxScale(multiplier) {
+  lightboxScale = Math.max(0.5, Math.min(6, lightboxScale * multiplier));
+  if (lightboxScale <= 1) { lightboxX = 0; lightboxY = 0; }
+  updateLightboxTransform();
+}
+function openImageLightbox(src, title) {
+  lightboxImage.src = src;
+  lightboxImage.alt = title || "Suurennettu infografiikka";
+  lightboxTitle.textContent = title || "Infografiikka";
+  resetImageLightbox();
+  imageLightbox.classList.add("open");
+  document.body.classList.add("lightbox-open");
+  document.getElementById("lightbox-close").focus();
+}
+function closeImageLightbox() {
+  imageLightbox.classList.remove("open");
+  document.body.classList.remove("lightbox-open");
+  lightboxImage.removeAttribute("src");
+}
+
+document.getElementById("lightbox-plus").addEventListener("click", () => changeLightboxScale(1.25));
+document.getElementById("lightbox-minus").addEventListener("click", () => changeLightboxScale(0.8));
+document.getElementById("lightbox-reset").addEventListener("click", resetImageLightbox);
+document.getElementById("lightbox-close").addEventListener("click", closeImageLightbox);
+lightboxStage.addEventListener("wheel", ev => {
+  ev.preventDefault(); changeLightboxScale(ev.deltaY < 0 ? 1.12 : 1 / 1.12);
+}, { passive: false });
+lightboxStage.addEventListener("dblclick", resetImageLightbox);
+lightboxStage.addEventListener("pointerdown", ev => {
+  if (ev.target !== lightboxImage || lightboxScale <= 1) return;
+  lightboxDragging = true; dragOriginX = ev.clientX; dragOriginY = ev.clientY;
+  imageOriginX = lightboxX; imageOriginY = lightboxY;
+  lightboxStage.classList.add("dragging");
+  lightboxStage.setPointerCapture(ev.pointerId);
+});
+lightboxStage.addEventListener("pointermove", ev => {
+  if (!lightboxDragging) return;
+  lightboxX = imageOriginX + ev.clientX - dragOriginX;
+  lightboxY = imageOriginY + ev.clientY - dragOriginY;
+  updateLightboxTransform();
+});
+function endLightboxDrag() { lightboxDragging = false; lightboxStage.classList.remove("dragging"); }
+lightboxStage.addEventListener("pointerup", endLightboxDrag);
+lightboxStage.addEventListener("pointercancel", endLightboxDrag);
+imageLightbox.addEventListener("click", ev => {
+  if (ev.target === imageLightbox || ev.target === lightboxStage) closeImageLightbox();
+});
+document.addEventListener("keydown", ev => {
+  if (!imageLightbox.classList.contains("open")) return;
+  if (ev.key === "Escape") closeImageLightbox();
+  else if (ev.key === "+" || ev.key === "=") changeLightboxScale(1.25);
+  else if (ev.key === "-") changeLightboxScale(0.8);
+  else if (ev.key === "0") resetImageLightbox();
+});
+
+/* ---------- Header: search & mode ---------- */
+function wireHeader() {
+  const input = document.getElementById("search");
+  const results = document.getElementById("search-results");
+
+  const runSearch = () => {
+    searchQuery = input.value.trim().toLowerCase();
+    refreshEmphasis();
+    if (!searchQuery) { results.classList.remove("open"); results.innerHTML = ""; return; }
+    const matches = NODES.filter(nodeVisible).slice(0, 9);
+    results.innerHTML = matches.length
+      ? matches.map(d =>
+          `<button type="button" data-id="${esc(d.id)}">${esc(d.title)}<span class="sr-year">${d.year_start}</span></button>`
+        ).join("")
+      : `<button type="button" disabled>Ei osumia</button>`;
+    results.classList.add("open");
+    results.querySelectorAll("button[data-id]").forEach(b =>
+      b.addEventListener("click", () => {
+        input.value = ""; searchQuery = "";
+        results.classList.remove("open");
+        focusNode(b.dataset.id);
+      }));
+  };
+  input.addEventListener("input", runSearch);
+  input.addEventListener("keydown", ev => {
+    if (ev.key === "Enter") {
+      const first = results.querySelector("button[data-id]");
+      if (first) first.click();
+    } else if (ev.key === "Escape") {
+      input.value = ""; searchQuery = ""; results.classList.remove("open"); refreshEmphasis();
+    }
+  });
+  document.addEventListener("click", ev => {
+    if (!ev.target.closest(".search-wrap")) results.classList.remove("open");
+  });
+
+  const bNet = document.getElementById("mode-network");
+  const bTime = document.getElementById("mode-time");
+  bNet.onclick = () => { mode = "network"; bNet.classList.add("on"); bTime.classList.remove("on"); applyMode(false); };
+  bTime.onclick = () => { mode = "time"; bTime.classList.add("on"); bNet.classList.remove("on"); applyMode(false); };
+
+  const startPanel = document.getElementById("start-panel");
+  const openStart = document.getElementById("open-start");
+  const closeStart = document.getElementById("start-close");
+  const hubsBtn = document.getElementById("show-hubs");
+  const PATHS = {
+    welfare: ["hyvinvointi", "sosiaaliturva", "terveys", "hoiva", "palvelu", "instituutio"],
+    economy: ["talous", "työ", "lama", "velka", "teollisuus", "markkina", "kriisi"],
+    education: ["koulutus", "koulu", "lukutaito", "osaaminen", "tieto", "yliopisto"],
+    population: ["väestö", "syntyvyys", "ikäänty", "muutto", "kaupunki", "alue"]
+  };
+
+  openStart.onclick = () => startPanel.classList.remove("hidden");
+  closeStart.onclick = () => {
+    guidedFilter = null; hubsOnly = false; hubsBtn.classList.remove("on");
+    startPanel.classList.add("hidden"); refreshEmphasis(); renderLegend();
+  };
+  startPanel.querySelectorAll("[data-path]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      guidedFilter = PATHS[btn.dataset.path] || null;
+      hubsOnly = false; hubsBtn.classList.remove("on");
+      startPanel.classList.add("hidden");
+      selectNode(null); refreshEmphasis(); renderLegend();
+    });
+  });
+  hubsBtn.onclick = () => {
+    hubsOnly = !hubsOnly; guidedFilter = null;
+    hubsBtn.classList.toggle("on", hubsOnly);
+    startPanel.classList.add("hidden"); selectNode(null); refreshEmphasis(); renderLegend();
+  };
+
+}
+
+})();
+</script>
+</body>
+</html>
