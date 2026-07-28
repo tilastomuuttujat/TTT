@@ -64,6 +64,10 @@ header.top{
   display:grid;grid-template-columns:142px 198px 142px;grid-template-rows:auto auto;
   gap:0;align-items:center;justify-content:center
 }
+/* Kapealla näytöllä #quadGrid ei saa osallistua omaan asetteluunsa --
+   display:contents päästää lohkot suoraan #stage:n oman grid-asettelun
+   lapsiksi, kuten ennenkin. Leveällä näytöllä tämä ohitetaan alempana. */
+#quadGrid{display:contents}
 .quad{width:142px}
 .quad.left{justify-self:end;transform:translateX(15px)}
 .quad.right{justify-self:start;transform:translateX(-15px)}
@@ -96,7 +100,10 @@ header.top{
 }
 .cells{
   position:relative;
-  display:grid;grid-template-columns:repeat(12,var(--cell));grid-auto-rows:var(--cell);
+  /* Kiinteä 12x12-ruudukko: korkeus ja leveys eivät koskaan riipu siitä,
+     kuinka moni paikka on täytetty -- kaikki neljä lohkoa ovat aina
+     täsmälleen samankokoisia ja istuvat samoilla keskilinjoilla. */
+  display:grid;grid-template-columns:repeat(12,var(--cell));grid-template-rows:repeat(12,var(--cell));
   gap:var(--gap);justify-content:start;
   -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
   -webkit-mask-size:100% 100%;mask-size:100% 100%
@@ -313,13 +320,31 @@ body.chain-focus #stage .cell.sel{opacity:1!important;filter:saturate(1.25);tran
     margin:0;
     transform:translate(-50%,-50%);
   }
-  .quad{position:absolute;width:214.5px;height:214.5px;padding:0;transform:none!important}
+  .quad{position:relative;width:214.5px;height:214.5px;padding:0;transform:none!important}
   .quad .cells{width:214.5px;height:214.5px}
-  /* Tiiviimpi murrosrengas: sektorit lähes kohtaavat pääilmansuunnissa. */
-  #quad-talous{left:calc(50% - 174px);top:calc(50% - 174px)}
-  #quad-valta{left:calc(50% + 52px);top:calc(50% - 174px)}
-  #quad-ihmiset{left:calc(50% - 174px);top:calc(50% + 52px)}
-  #quad-tieto{left:calc(50% + 52px);top:calc(50% + 52px)}
+
+  /* #quadGrid on aito 2x2-ruudukko: molemmat oikean puolen lohkot (valta, tieto)
+     jakavat kirjaimellisesti saman grid-rivin vasemman puolen parinsa kanssa
+     (talous, ihmiset). Rivi- ja sarakekorkeudet tulevat SAMASTA track-määrittelystä,
+     joten oikea ja vasen puoli EIVÄT VOI ajautua eri korkeuksille -- toisin kuin
+     kaksi erillistä calc()-lauseketta, joita voisi vahingossa eriyttää. */
+  #quadGrid{
+    display:grid;
+    grid-template-columns:214.5px 214.5px;
+    grid-template-rows:214.5px 214.5px;
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    z-index:2;
+  }
+  /* !important tarvitaan voittamaan buildQuads()-funktion asettama inline-tyyli,
+     joka on tarkoitettu vain kapean näytön 3-sarakkeiselle varalayoutille. */
+  #quad-talous{grid-column:1!important;grid-row:1!important}
+  #quad-valta{grid-column:2!important;grid-row:1!important}
+  #quad-ihmiset{grid-column:1!important;grid-row:2!important}
+  #quad-tieto{grid-column:2!important;grid-row:2!important}
+  /* Lohkojen sijainnit määritellään VAIN yhdessä paikassa (V23-lohko alempana),
+     jotta vasen ja oikea puoli eivät voi ajautua eri korkeuksille
+     ristiriitaisten sääntöjen takia. Vanhat epäsymmetriset siirtymät
+     (-174px / +52px) on poistettu. */
   #zoneRing{inset:0;width:100%;height:100%}
 }
 
@@ -340,17 +365,59 @@ body.chain-focus #stage .cell.sel{opacity:1!important;filter:saturate(1.25);tran
     mask-image:none!important;
   }
 
-  /* Neljä lämpökarttaa muodostavat yhden katkeamattoman 308 × 308 px ruutukentän.
-     Kvadrantit kohtaavat täsmälleen keskiakselilla; ainoa aukko syntyy ruutujen
-     sijoittelussa navigointipalloa varten. */
-  #quad-talous{left:calc(50% - 214.5px);top:calc(50% - 214.5px)}
-  #quad-valta{left:50%;top:calc(50% - 214.5px)}
-  #quad-ihmiset{left:calc(50% - 214.5px);top:50%}
-  #quad-tieto{left:50%;top:50%}
-
   /* Lämpöhehku saa ulottua soluruudukon reunan yli ilman leikkautumista. */
   .quad,.quad .cells{overflow:visible}
+
+  /* Katkoviivaiset keskilinjat todentavat kohdistuksen silmämääräisesti. */
+  #centerlines{display:block}
 }
+
+/* ---------- keskilinjat ---------- */
+#centerlines{position:absolute;inset:0;z-index:1;pointer-events:none;display:none}
+#centerlines .cl-h{position:absolute;left:-46px;right:-46px;top:50%;border-top:1.5px dashed rgba(190,205,215,.26)}
+#centerlines .cl-v{position:absolute;top:-34px;bottom:-34px;left:50%;border-left:1.5px dashed rgba(190,205,215,.26)}
+
+/* ---------- kulmakortit (kuten kuvassa) ---------- */
+.info-card{
+  position:fixed;z-index:8;width:250px;padding:16px 18px;
+  background:rgba(16,23,30,.92);border:1px solid var(--line-d);border-radius:13px;
+  box-shadow:0 14px 40px rgba(0,0,0,.4);backdrop-filter:blur(8px);
+  display:none;font-size:12px;color:#C9D4DB;line-height:1.5
+}
+.info-card h3{font-family:var(--disp);font-weight:600;font-size:16px;color:var(--bright);margin-bottom:8px}
+.info-card p{margin-bottom:8px;color:#AEBCC6}
+.info-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.info-card li{display:flex;gap:10px;align-items:flex-start}
+.info-card .sw{flex:none;width:15px;height:15px;border-radius:3px;margin-top:1px}
+.info-card .sw.light{background:rgb(255,190,169)}
+.info-card .sw.deep{background:rgb(220,40,20)}
+.info-card .sw.outline{background:transparent;border:2px solid #EDF2F5}
+.info-card .sw.dash{background:none;border:0;height:2px;margin-top:7px;border-top:2px dashed #9FB0BC;border-radius:0}
+#card-title{left:18px;top:82px}
+#card-legend{right:18px;top:82px}
+#card-tips{left:18px;bottom:86px}
+.scale{display:flex;gap:2px;margin:9px 0 4px}
+.scale i{flex:1;height:13px;border-radius:2px}
+.scale-lab{display:flex;justify-content:space-between;font-size:11px;color:var(--dim)}
+@media(min-width:1280px){
+  .info-card{display:block}
+  .brand p{display:none}
+}
+
+/* ---------- vuosikymmenrivi ---------- */
+#decades{
+  display:flex;gap:6px;overflow-x:auto;padding:4px 18px 20px;
+  margin:0 auto;max-width:1440px;scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,.16) transparent
+}
+#decades button{
+  flex:none;font-size:12px;font-weight:500;padding:8px 13px;
+  border:1px solid var(--line-d);border-radius:8px;
+  background:rgba(255,255,255,.045);color:#C9D4DB;
+  transition:border-color .15s,background .15s,color .15s
+}
+#decades button:hover{border-color:var(--okra);color:#fff}
+#decades button.active{background:var(--lake);border-color:var(--lake);color:#08131A;font-weight:600}
 
 /* V28: neliöiden sivumitta on kasvatettu 50 prosenttia (11 px → 16,5 px).
    Ruutuväliä on samalla tiivistetty hieman, jotta lämpökartta säilyy yhtenäisenä. */
@@ -380,6 +447,7 @@ body.chain-focus #stage .cell.sel{opacity:1!important;filter:saturate(1.25);tran
 </header>
 
 <div id="stage">
+  <div id="centerlines" aria-hidden="true"><span class="cl-h"></span><span class="cl-v"></span></div>
   <svg id="svgLinks" aria-hidden="true"></svg>
   <svg id="zoneRing" aria-label="Nelikentän lohkot"></svg>
   <div id="labels"></div>
@@ -403,6 +471,35 @@ body.chain-focus #stage .cell.sel{opacity:1!important;filter:saturate(1.25);tran
       <text id="sphereHint2" x="106" y="158" style="font-family:var(--ui);font-size:8px;fill:#72838E;text-anchor:middle">↕ korttityyppi</text>
     </svg>
   </div>
+</div>
+
+<nav id="decades" aria-label="Valitse vuosikymmen"></nav>
+
+<div class="info-card" id="card-title" aria-hidden="true">
+  <h3>Suomen murrosvaiheet</h3>
+  <p>Murrosrengas: neljä toisiinsa liittyvää lämpökarttaa.</p>
+  <p>Vaaleampi = vähän, syvempi punainen = paljon murroksia.</p>
+  <div class="scale" id="titleScale"></div>
+  <div class="scale-lab"><span>Vähän</span><span>Paljon</span></div>
+</div>
+
+<div class="info-card" id="card-legend" aria-hidden="true">
+  <h3>Näin luet rengasta</h3>
+  <ul>
+    <li><span class="sw light"></span><span>Vaalea = vähän murroksia</span></li>
+    <li><span class="sw deep"></span><span>Syvempi punainen = paljon murroksia</span></li>
+    <li><span class="sw outline"></span><span>Klikkaa solua nähdäksesi yhteydet ja tiedot</span></li>
+    <li><span class="sw dash"></span><span>Täsmälleen samat keskilinjat</span></li>
+  </ul>
+</div>
+
+<div class="info-card" id="card-tips" aria-hidden="true">
+  <h3>Vinkit</h3>
+  <ul>
+    <li><span aria-hidden="true">🖱️</span><span>Vie hiiri solun päälle nähdäksesi lisätiedot</span></li>
+    <li><span aria-hidden="true">👆</span><span>Klikkaa solua piirtääksesi yhteydet</span></li>
+    <li><span aria-hidden="true">◎</span><span>Klikkaa rengaskaarta suodattaaksesi vyöhykkeen mukaan</span></li>
+  </ul>
 </div>
 
 <aside id="drawer" aria-live="polite" aria-label="Vaikutusketju">
@@ -510,14 +607,19 @@ function slotOrderFor(pos){
   const cornerX=fx*(GRIDCOLS-1), cornerY=fy*(GRIDROWS-1);
   const slots=[];
   for(let r=0;r<GRIDROWS;r++)for(let c=0;c<GRIDCOLS;c++){
-    const dist=Math.hypot(c-cornerX,r-cornerY);
+    const dx=Math.abs(c-cornerX), dy=Math.abs(r-cornerY);
+    const dist=Math.hypot(dx,dy);
     if(dist<SPHERE_NOTCH_R)continue;  /* sisäreuna: pallon aukko */
     if(dist>OUTER_RING_R)continue;    /* ulkoreuna: kupera ulkokehä */
-    slots.push({c,r,dist});
+    slots.push({c,r,dist,dx,dy});
   }
-  /* Merkittävimmät ryhmät sijoittuvat ensin sisäkehälle. Kun lähes kaikki käytettävissä olevat paikat
-     täyttyvät, ulkoreuna muodostaa samalla yhtenäisen porrastetun ympyrän. */
-  slots.sort((a,b)=>a.dist-b.dist);
+  /* Merkittävimmät ryhmät sijoittuvat ensin sisäkehälle. Toissijaiset avaimet
+     (dy, dx) mitataan etäisyyksinä pallon puoleisesta kulmasta, joten
+     täyttöjärjestys on identtinen kaikissa neljässä lohkossa: peililohkot
+     täyttyvät täsmälleen peilikuvina myös silloin, kun suodatettu näkymä
+     ei täytä kaikkia paikkoja. Vasen ja oikea puoli pysyvät siksi aina
+     samalla korkeudella. */
+  slots.sort((a,b)=>a.dist-b.dist||a.dy-b.dy||a.dx-b.dx);
   return slots;
 }
 const decIdx=y=>Math.max(0,Math.min(DECN-1,Math.floor((y-DEC0)/10)));
@@ -608,6 +710,9 @@ const DISPLAY_CELLS=new Map();
 
 function buildQuads(){
   const stage=$("#stage");
+  const quadGrid=document.createElement("div");
+  quadGrid.id="quadGrid";
+  stage.appendChild(quadGrid);
   ZONES.forEach(z=>{
     const q=document.createElement("div");
     q.className="quad "+(z.pos==="ne"||z.pos==="se"?"right":"left");
@@ -620,7 +725,7 @@ function buildQuads(){
     let html=`<h2 data-z="${z.id}">${esc(z.t)}<span class="n">${shown} keskeistä · ${n} yhteensä</span></h2>`;
     html+=`<div class="cells"><canvas class="heat" data-zone="${z.id}"></canvas></div>`;
     q.innerHTML=html;
-    stage.appendChild(q);
+    quadGrid.appendChild(q);
   });
   stage.addEventListener("click",e=>{
     const c=e.target.closest(".cell");
@@ -793,9 +898,50 @@ function paintHeat(zoneId,placed){
   ctx.filter="none";
 }
 
+/* ===== Vuosikymmenrivi ja väriasteikko ============================== */
+function initDecades(){
+  const bar=$("#decades");
+  if(!bar)return;
+  const frag=document.createDocumentFragment();
+  for(let i=0;i<DECN;i++){
+    const b=document.createElement("button");
+    b.type="button"; b.dataset.d=i;
+    b.textContent=(DEC0+i*10)+"-luku";
+    b.setAttribute("aria-label",(DEC0+i*10)+"-luku");
+    b.addEventListener("click",()=>setDec(i));
+    frag.appendChild(b);
+  }
+  bar.appendChild(frag);
+  const sc=$("#titleScale");
+  if(sc){
+    for(let i=0;i<7;i++){
+      const t=i/6, el=document.createElement("i");
+      el.style.background=cellStyle({length:Math.max(1,Math.round(1+t*(MAXN-1)))}).css;
+      sc.appendChild(el);
+    }
+  }
+}
+function syncDecades(){
+  const bar=$("#decades");
+  if(!bar)return;
+  let act=null;
+  bar.querySelectorAll("button").forEach(b=>{
+    const on=+b.dataset.d===focusDec;
+    b.classList.toggle("active",on);
+    if(on)act=b;
+  });
+  if(act&&typeof bar.scrollTo==="function"){
+    try{
+      const target=act.offsetLeft-(bar.clientWidth-act.offsetWidth)/2;
+      bar.scrollTo({left:Math.max(0,target),behavior:"smooth"});
+    }catch(e){}
+  }
+}
+
 function refresh(){
   drawSphere();
   drawZoneRing();
+  syncDecades();
   $("#sphereYear").textContent=(DEC0+focusDec*10)+"-luku";
   const typeText=TYPE_CLUSTERS[typeCluster].t;
   $("#sphereSpan").textContent=typeText;
@@ -1225,7 +1371,7 @@ async function boot(){
   start(d,a);
 }
 function start(d,a){
-  ingest(d,a); buildQuads(); initSphere(); initFind();
+  ingest(d,a); buildQuads(); initSphere(); initFind(); initDecades();
   let best=0,bn=-1;
   for(let i=0;i<DECN;i++){
     const n=ZONES.reduce((s,z)=>s+((CELLS.get(key(z.id,i))||[]).length),0);
