@@ -5,6 +5,14 @@ export const title = 'Murrosrengas';
 let readingObserver = null;
 let styleElement = null;
 
+const observerOptions = {
+  childList: true,
+  subtree: true,
+  characterData: true,
+  attributes: true,
+  attributeFilter: ['class']
+};
+
 function injectReadingStyles() {
   if (document.getElementById('murros-ring-reading-enhancements')) return;
 
@@ -24,9 +32,7 @@ function injectReadingStyles() {
       line-height: 1.5;
     }
 
-    #read .reading-context strong {
-      color: var(--ink);
-    }
+    #read .reading-context strong { color: var(--ink); }
 
     #read .knot.focus {
       margin: 8px 0 12px;
@@ -61,36 +67,39 @@ function injectReadingStyles() {
   document.head.appendChild(styleElement);
 }
 
+function setText(element, text) {
+  if (element && element.textContent !== text) element.textContent = text;
+}
+
 function simplifyReadingView() {
   const read = document.getElementById('read');
   if (!read) return;
 
-  const labels = [
+  [
     ['.rtop a[href="#claim"]', 'Pääajatus'],
     ['.rtop a[href="#story"]', 'Tiivistelmä'],
     ['.rtop a[href="#chain"]', 'Vaikutuspolku'],
     ['.rtop a[href="#caveats"]', 'Tulkinnan rajat']
-  ];
+  ].forEach(([selector, text]) => setText(read.querySelector(selector), text));
 
-  labels.forEach(([selector, text]) => {
-    const element = read.querySelector(selector);
-    if (element) element.textContent = text;
-  });
+  setText(
+    read.querySelector('#claim .kicker'),
+    '1 · Ydinajatus — mitä tässä oikeastaan tapahtui'
+  );
+  setText(
+    read.querySelector('#story .kicker'),
+    '2 · Tiivistelmä — miksi tällä on väliä'
+  );
+  setText(
+    read.querySelector('#caveats .kicker'),
+    '4 · Tulkinnan rajat — mitä aineisto kertoo ja mitä ei'
+  );
 
-  const claimKicker = read.querySelector('#claim .kicker');
-  if (claimKicker) claimKicker.textContent = '1 · Ydinajatus — mitä tässä oikeastaan tapahtui';
-
-  const storyKicker = read.querySelector('#story .kicker');
-  if (storyKicker) storyKicker.textContent = '2 · Tiivistelmä — miksi tällä on väliä';
-
-  const caveatKicker = read.querySelector('#caveats .kicker');
-  if (caveatKicker) caveatKicker.textContent = '4 · Tulkinnan rajat — mitä aineisto kertoo ja mitä ei';
-
-  const backButton = read.querySelector('#readBack');
-  if (backButton) {
-    const drawerOpen = document.getElementById('drawer')?.classList.contains('on');
-    backButton.textContent = drawerOpen ? '← Takaisin ketjuun' : '← Takaisin kartalle';
-  }
+  const drawerOpen = document.getElementById('drawer')?.classList.contains('on');
+  setText(
+    read.querySelector('#readBack'),
+    drawerOpen ? '← Takaisin ketjuun' : '← Takaisin kartalle'
+  );
 }
 
 function cleanStoryBody() {
@@ -116,6 +125,17 @@ function cleanStoryBody() {
   });
 }
 
+function setReadingContext(context, title, description) {
+  const signature = `${title}\n${description}`;
+  if (context.dataset.signature === signature) return;
+
+  context.replaceChildren();
+  const strong = document.createElement('strong');
+  strong.textContent = title;
+  context.append(strong, document.createTextNode(` ${description}`));
+  context.dataset.signature = signature;
+}
+
 function updateReadingContext() {
   const claim = document.getElementById('claim');
   const claimMeta = document.getElementById('claimMeta');
@@ -131,14 +151,26 @@ function updateReadingContext() {
 
   const knots = spine.querySelectorAll('.knot');
   const relations = spine.querySelectorAll('.joint');
-  const currentTitle = claimMeta.querySelector('.badge.okra')?.textContent?.trim();
+  const currentTitle = claimMeta.querySelector('.badge.okra')?.textContent?.trim() || 'Tämä ilmiö';
 
   if (relations.length > 0) {
-    context.innerHTML = `<strong>${currentTitle || 'Tämä murros'}</strong> liittyy tässä tulkinnassa ${Math.max(0, knots.length - 1)} muuhun ilmiöön. Alla näkyy aineistosta muodostettu vahvin vaikutuspolku.`;
+    setReadingContext(
+      context,
+      currentTitle,
+      `liittyy tässä tulkinnassa ${Math.max(0, knots.length - 1)} muuhun ilmiöön. Alla näkyy aineistosta muodostettu vahvin vaikutuspolku.`
+    );
   } else if (knots.length > 1) {
-    context.innerHTML = `<strong>${currentTitle || 'Tätä ilmiötä'}</strong> tarkastellaan suhteessa ${knots.length - 1} muuhun ilmiöön. Yhteydet ovat rinnastuksia, eivät välttämättä syy–seuraussuhteita.`;
+    setReadingContext(
+      context,
+      currentTitle,
+      `tarkastellaan suhteessa ${knots.length - 1} muuhun ilmiöön. Yhteydet ovat rinnastuksia, eivät välttämättä syy–seuraussuhteita.`
+    );
   } else {
-    context.innerHTML = `<strong>${currentTitle || 'Tämä ilmiö'}</strong> avataan ensin tiivistelmänä ja sen jälkeen aineiston sallimien yhteyksien kautta.`;
+    setReadingContext(
+      context,
+      currentTitle,
+      'avataan ensin tiivistelmänä ja sen jälkeen aineiston sallimien yhteyksien kautta.'
+    );
   }
 }
 
@@ -148,21 +180,24 @@ function enhanceReadingView() {
   updateReadingContext();
 }
 
+function observeReadingView(read) {
+  readingObserver?.observe(read, observerOptions);
+}
+
 function installReadingEnhancement() {
   injectReadingStyles();
-  enhanceReadingView();
 
   const read = document.getElementById('read');
   if (!read) return;
 
-  readingObserver = new MutationObserver(() => enhanceReadingView());
-  readingObserver.observe(read, {
-    childList: true,
-    subtree: true,
-    characterData: true,
-    attributes: true,
-    attributeFilter: ['class']
+  enhanceReadingView();
+
+  readingObserver = new MutationObserver(() => {
+    readingObserver.disconnect();
+    enhanceReadingView();
+    observeReadingView(read);
   });
+  observeReadingView(read);
 }
 
 export async function mount(root, context = {}) {
