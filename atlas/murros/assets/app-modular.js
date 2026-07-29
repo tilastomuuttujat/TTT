@@ -8,6 +8,9 @@ const fsBtn = document.getElementById('fsBtn');
 document.body.appendChild(loader);
 
 const THEME_KEY = 'murros-theme';
+const SUPABASE_URL = 'https://zzbubbrsgiqsvsovkkmf.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_YNqxZI4Oj-DSjVBoTKhQ2Q_4DchUIBb';
+const ATLAS_DATA_FILE = 'suomen_murrosvaiheet_syvennetty.json';
 const VIEWS = {
   rengas: () => import('../views/rengas.js'),
   verkko: () => import('../views/verkko.js'),
@@ -17,6 +20,7 @@ const VIEWS = {
 let activeView = null;
 let activeModule = null;
 let switching = false;
+let publishedInfographicIds = new Set();
 
 function getTheme() {
   try {
@@ -46,6 +50,59 @@ function setActiveTab(name) {
   });
 }
 
+async function loadPublishedInfographicIds() {
+  const endpoint = `${SUPABASE_URL}/rest/v1/items?select=id&unpublished=eq.false`;
+  const response = await fetch(endpoint, {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Authorization: `Bearer ${SUPABASE_KEY}`,
+      Accept: 'application/json'
+    },
+    cache: 'no-store'
+  });
+
+  if (!response.ok) {
+    throw new Error(`Infografiikkojen julkaisuluettelon lataus epäonnistui (${response.status}).`);
+  }
+
+  const rows = await response.json();
+  publishedInfographicIds = new Set(rows.map(row => row.id));
+}
+
+function filterInfographics(data) {
+  if (!data || !Array.isArray(data.items)) return data;
+
+  return {
+    ...data,
+    items: data.items.map(item => {
+      if (publishedInfographicIds.has(item.id)) return item;
+      if (!('images' in item)) return item;
+      return { ...item, images: [] };
+    })
+  };
+}
+
+function installAtlasDataFilter() {
+  if (window.__murrosAtlasFetchFiltered) return;
+
+  const nativeFetch = window.fetch.bind(window);
+  window.fetch = async (input, init) => {
+    const response = await nativeFetch(input, init);
+    const url = typeof input === 'string' ? input : input?.url || '';
+
+    if (!url.includes(ATLAS_DATA_FILE) || !response.ok) return response;
+
+    const data = filterInfographics(await response.clone().json());
+    return new Response(JSON.stringify(data), {
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers
+    });
+  };
+
+  window.__murrosAtlasFetchFiltered = true;
+}
+
 function enhanceMountedView(name) {
   if (name !== 'rengas') return;
 
@@ -73,7 +130,6 @@ function enhanceMountedView(name) {
     replay.textContent = 'Sulje animaatio';
     replay.setAttribute('aria-label', 'Sulje animaatio ja vaikutusketju');
 
-    /* Vanhan anonyymin toisto-kuuntelijan edelle kaappausvaiheessa. */
     replay.addEventListener('click', event => {
       event.preventDefault();
       event.stopImmediatePropagation();
@@ -135,5 +191,19 @@ window.addEventListener('keydown', event => {
   location.hash = map[event.key];
 });
 
-setTheme(getTheme(), false);
-showView(selectedView());
+async function startApp() {
+  setTheme(getTheme(), false);
+
+  try {
+    await loadPublishedInfographicIds();
+  } catch (error) {
+    /* Turvallinen oletus: tietokantavirheessä infografiikkoja ei julkaista. */
+    publishedInfographicIds = new Set();
+    console.error(error);
+  }
+
+  installAtlasDataFilter();
+  await showView(selectedView());
+}
+
+startApp();
