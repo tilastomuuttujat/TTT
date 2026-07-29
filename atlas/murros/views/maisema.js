@@ -53,7 +53,6 @@ function installSelectionFx() {
   doc.head.appendChild(style);
 
   const onClick = event => {
-    // Maisema näyttää tooltipin vain silloin, kun osoitin on valittavan solmun päällä.
     if (!tip?.classList.contains('on')) return;
 
     const bounds = wrap.getBoundingClientRect();
@@ -74,6 +73,20 @@ function installSelectionFx() {
   };
 }
 
+async function buildLandscapeDocument() {
+  const htmlUrl = new URL('../../maisema.html', import.meta.url);
+  const response = await fetch(htmlUrl, { cache: 'no-store' });
+  if (!response.ok) throw new Error(`maisema.html: ${response.status}`);
+
+  const baseUrl = new URL('../../', import.meta.url).href;
+  return (await response.text())
+    .replace('<head>', `<head>\n<base href="${baseUrl}">`)
+    .replace(
+      '<script type="module" src="./maisema-app.js"></script>',
+      '<script type="module" src="./maisema-overview-bootstrap.js"></script>'
+    );
+}
+
 export async function mount(root, context = {}) {
   const view = document.createElement('section');
   view.className = 'modular-view maisema-view';
@@ -82,11 +95,11 @@ export async function mount(root, context = {}) {
 
   frame = document.createElement('iframe');
   frame.className = 'maisema-frame';
-  frame.src = '../maisema.html';
   frame.title = 'Maisema 3D · Suomen rakennemuutosten atlas';
   frame.loading = 'eager';
   frame.allow = 'fullscreen';
   frame.addEventListener('load', installSelectionFx, { once: true });
+  frame.srcdoc = await buildLandscapeDocument();
 
   view.appendChild(frame);
   root.replaceChildren(view);
