@@ -170,8 +170,8 @@ function installEnhancements(adminApi) {
   styleEl = document.createElement('style');
   styleEl.dataset.matriisiReading = 'true';
   styleEl.textContent = `
-    /* Dialogi alkaa yhteisen yläpalkin alta. */
-    #viewRoot .modular-view[data-source$="matriisi.html"] .overlay{
+    /* Dialogi lisätään suoraan body-elementtiin: se alkaa yhteisen yläpalkin alta. */
+    body > .overlay{
       top:var(--t-nav-h)!important;
       bottom:0!important;
       height:auto!important;
@@ -180,19 +180,19 @@ function installEnhancements(adminApi) {
       align-items:flex-start!important;
       overflow:auto!important;
     }
-    #viewRoot .modular-view[data-source$="matriisi.html"] .dialog{
+    body > .overlay .dialog{
       max-height:calc(100vh - var(--t-nav-h) - 36px)!important;
       margin:0 auto!important;
       scroll-padding-top:72px;
     }
-    #viewRoot .modular-view[data-source$="matriisi.html"] .dialog-head{
+    body > .overlay .dialog-head{
       top:0!important;
       z-index:20!important;
     }
-    #viewRoot .modular-view[data-source$="matriisi.html"] .dialog-head-actions{
+    body > .overlay .dialog-head-actions{
       flex-shrink:0;
     }
-    #viewRoot .modular-view[data-source$="matriisi.html"] .close{
+    body > .overlay .close{
       position:relative!important;
       z-index:22!important;
       flex:none!important;
@@ -242,11 +242,11 @@ function installEnhancements(adminApi) {
     .iac-status{grid-column:1/-1;min-height:14px;font-family:var(--mono);font-size:9.5px;color:var(--muted)}
 
     @media(max-width:768px){
-      #viewRoot .modular-view[data-source$="matriisi.html"] .overlay{
+      body > .overlay{
         padding:10px 0 0!important;
         align-items:flex-end!important;
       }
-      #viewRoot .modular-view[data-source$="matriisi.html"] .dialog{
+      body > .overlay .dialog{
         max-height:calc(100vh - var(--t-nav-h) - 10px)!important;
       }
     }
