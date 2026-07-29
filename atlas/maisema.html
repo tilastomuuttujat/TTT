@@ -7,8 +7,7 @@
 <style>
 :root{--bg:#070a0f;--panel:rgba(12,18,28,.88);--line:#29374c;--text:#eef3fb;--muted:#9aa7bb;--accent:#ffd166;--R:#4f8ef7;--S:#2fd08c;--K:#f4536a;--A:#8d70c9;--M:#b06a5a}
 *{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden}body{font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 50% 15%,#182337 0,#0b111b 38%,var(--bg) 78%)}
-button,input,select{font:inherit}.stage{position:fixed;inset:0}.canvas-wrap{position:absolute;inset:0}canvas{display:block}
-.hud{position:absolute;z-index:5;pointer-events:none}.panel{pointer-events:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 54px rgba(0,0,0,.4);backdrop-filter:blur(14px)}
+button,input,select{font:inherit}.stage{position:fixed;inset:0}.canvas-wrap{position:absolute;inset:0}canvas{display:block}.hud{position:absolute;z-index:5;pointer-events:none}.panel{pointer-events:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 54px rgba(0,0,0,.4);backdrop-filter:blur(14px)}
 .intro{left:18px;top:18px;width:min(330px,calc(100vw - 36px));padding:17px}.kicker{font:600 10px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.17em;text-transform:uppercase;color:var(--accent)}h1{margin:7px 0 4px;font:600 25px/1.08 Georgia,serif}p{margin:0;color:#cbd4e3}.legend{display:grid;grid-template-columns:repeat(3,max-content);gap:8px 14px;margin-top:14px;font-size:11px;color:var(--muted)}.legend span{display:flex;align-items:center;gap:6px}.sw{width:8px;height:8px;border-radius:50%}
 .controls{left:18px;bottom:18px;width:min(510px,calc(100vw - 36px));padding:14px 16px}.control-row{display:grid;grid-template-columns:auto 1fr auto;gap:11px;align-items:center}.control-row+.control-row{margin-top:11px}.control-label{font:600 10px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}input[type=range]{width:100%;accent-color:var(--accent)}.year{min-width:45px;text-align:right;font:600 13px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--accent)}select,.btn{border:1px solid var(--line);border-radius:9px;background:#111a28;color:var(--text);padding:7px 9px}.btn{cursor:pointer}.btn:hover{border-color:#50617a}.actions{display:flex;gap:7px;justify-content:flex-end}
 .details{right:18px;top:18px;width:min(350px,calc(100vw - 36px));padding:17px;display:none}.details.open{display:block}.details h2{margin:6px 28px 7px 0;font:600 21px/1.15 Georgia,serif}.meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}.pill{padding:3px 7px;border-radius:999px;border:1px solid var(--line);font:10px ui-monospace,SFMono-Regular,Menlo,monospace;color:#cbd4e3}.close{position:absolute;right:12px;top:11px;width:30px;height:30px;border:1px solid var(--line);border-radius:8px;background:#111a28;color:var(--text);cursor:pointer}.summary{max-height:33vh;overflow:auto;padding-right:5px;color:#d8e0ec}.hint{position:absolute;left:50%;top:20px;transform:translateX(-50%);z-index:4;padding:8px 12px;border-radius:999px;background:rgba(8,12,19,.72);border:1px solid rgba(120,142,174,.28);font-size:11px;color:#aebacf;pointer-events:none}.loading{position:absolute;inset:0;z-index:20;display:grid;place-items:center;background:#070a0f;color:var(--muted);font:11px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;text-transform:uppercase}.loading[hidden]{display:none}.error{max-width:620px;margin:20px;padding:22px;border:1px solid #793f4a;border-radius:12px;background:#1b1116;color:#ffd9df;white-space:pre-wrap}
@@ -34,77 +33,6 @@ button,input,select{font:inherit}.stage{position:fixed;inset:0}.canvas-wrap{posi
   <div class="loading" id="loading">Rakennetaan historiamaisemaa…</div>
 </div>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
-<script type="module">
-import * as THREE from 'three';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
-
-const wrap=document.getElementById('canvasWrap'),loading=document.getElementById('loading');
-const yearRange=document.getElementById('yearRange'),yearOut=document.getElementById('yearOut'),themeSelect=document.getElementById('themeSelect');
-const playBtn=document.getElementById('playBtn'),resetBtn=document.getElementById('resetBtn'),details=document.getElementById('details');
-const categoryLane={R:-28,S:-14,K:0,A:14,M:28};
-const stageHeight={structure:0,trajectory:8,pressure:16,event:24,adaptation:32};
-const defaultColors={R:'#4f8ef7',S:'#2fd08c',K:'#f4536a',A:'#8d70c9',M:'#b06a5a'};
-let scene,camera,renderer,labelRenderer,controls,raycaster,pointer,atlas,nodes=[],edges=[],nodeById=new Map(),selected=null,playing=false,playTimer=null;
-
-function yearOf(t){return Number(t?.period?.start ?? t?.year ?? t?.start_year ?? t?.epistemic?.known_from ?? 2000)}
-function causalStage(t){const v=t?.causal?.stage||t?.causal?.role||t?.causal_stage||t?.cycle_phase; if(stageHeight[v]!=null)return v; if(t.category==='K')return 'event'; if(t.category==='S')return 'adaptation'; return 'structure'}
-function xForYear(y,min,max){return ((y-min)/(max-min)-.5)*150}
-function categoryColor(id){return atlas.categories?.find(c=>c.id===id)?.color||defaultColors[id]||'#b9c4d4'}
-function relationEnds(r){return [r.from||r.source||r.from_id,r.to||r.target||r.to_id]}
-
-async function init(){
- try{
-  const res=await fetch('./atlas.json',{cache:'no-store'}); if(!res.ok)throw new Error(`atlas.json: ${res.status}`); atlas=await res.json();
-  buildLegend(); buildSelect(); setupScene(); buildLandscape(); bind(); animate(); loading.hidden=true;
- }catch(err){console.error(err);loading.innerHTML=`<div class="error"><strong>Maisemaa ei voitu rakentaa.</strong>\n\n${String(err?.stack||err)}</div>`}
-}
-function buildLegend(){document.getElementById('legend').innerHTML=(atlas.categories||Object.keys(defaultColors).map(id=>({id,title:id,color:defaultColors[id]}))).map(c=>`<span><i class="sw" style="background:${c.color}"></i>${c.title||c.id}</span>`).join('')}
-function buildSelect(){[...(atlas.themes||[])].sort((a,b)=>yearOf(a)-yearOf(b)).forEach(t=>{const o=document.createElement('option');o.value=t.id;o.textContent=`${t.id} · ${t.name||t.title}`;themeSelect.appendChild(o)})}
-function setupScene(){
- scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x070a0f,.0065);
- camera=new THREE.PerspectiveCamera(48,wrap.clientWidth/wrap.clientHeight,.1,1000);camera.position.set(15,70,125);
- renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(wrap.clientWidth,wrap.clientHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;wrap.appendChild(renderer.domElement);
- labelRenderer=new CSS2DRenderer();labelRenderer.setSize(wrap.clientWidth,wrap.clientHeight);Object.assign(labelRenderer.domElement.style,{position:'absolute',inset:'0',pointerEvents:'none'});wrap.appendChild(labelRenderer.domElement);
- controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.06;controls.minDistance=35;controls.maxDistance=260;controls.maxPolarAngle=Math.PI*.48;controls.target.set(0,10,0);
- scene.add(new THREE.HemisphereLight(0xb8d2ff,0x11151d,1.35));const key=new THREE.DirectionalLight(0xffffff,2.2);key.position.set(-40,90,50);scene.add(key);
- raycaster=new THREE.Raycaster();pointer=new THREE.Vector2();
- const grid=new THREE.GridHelper(170,20,0x42516a,0x202a39);grid.position.y=-2;scene.add(grid);
- addAxes();
-}
-function addAxes(){
- const mat=new THREE.LineBasicMaterial({color:0x70819a,transparent:true,opacity:.55});
- const pts=[new THREE.Vector3(-78,-1,34),new THREE.Vector3(78,-1,34)];scene.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),mat));
- [1850,1900,1950,2000,2050].forEach(y=>{const x=xForYear(y,1850,2050);const d=document.createElement('div');d.textContent=y;Object.assign(d.style,{color:'#98a8bd',font:'10px ui-monospace,monospace',padding:'2px 4px',background:'rgba(7,10,15,.65)',borderRadius:'4px'});const l=new CSS2DObject(d);l.position.set(x,-1,36);scene.add(l)});
-}
-function buildLandscape(){
- const themes=atlas.themes||[];const years=themes.map(yearOf).filter(Number.isFinite);const min=Math.min(1850,...years),max=Math.max(2050,...years);yearRange.min=min;yearRange.max=max;yearRange.value=max;yearOut.value=max;yearOut.textContent=max;
- const sphere=new THREE.SphereGeometry(1.25,18,14);
- themes.forEach((t,i)=>{
-  const year=yearOf(t),cat=t.category||String(t.id||'R')[0],stage=causalStage(t);const z=(categoryLane[cat]??0)+((i%5)-2)*.75;const y=(stageHeight[stage]??7)+(Math.sin(i*1.71)*2.2);const x=xForYear(year,min,max);
-  const material=new THREE.MeshStandardMaterial({color:categoryColor(cat),roughness:.4,metalness:.08,emissive:new THREE.Color(categoryColor(cat)).multiplyScalar(.08),transparent:true});
-  const mesh=new THREE.Mesh(sphere,material);mesh.position.set(x,y,z);mesh.userData={theme:t,year,baseScale:1};scene.add(mesh);nodes.push(mesh);nodeById.set(t.id,mesh);
- });
- const lineMat=new THREE.LineBasicMaterial({color:0x71829b,transparent:true,opacity:.22});
- (atlas.relations||[]).forEach(r=>{const [a,b]=relationEnds(r),from=nodeById.get(a),to=nodeById.get(b);if(!from||!to)return;const mid=from.position.clone().lerp(to.position,.5);mid.y+=Math.min(12,from.position.distanceTo(to.position)*.12);const curve=new THREE.QuadraticBezierCurve3(from.position.clone(),mid,to.position.clone());const line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(12)),lineMat.clone());line.userData={relation:r,from,to};scene.add(line);edges.push(line)});
- applyFilters();
-}
-function bind(){
- addEventListener('resize',resize);renderer.domElement.addEventListener('pointermove',e=>{const r=renderer.domElement.getBoundingClientRect();pointer.x=((e.clientX-r.left)/r.width)*2-1;pointer.y=-((e.clientY-r.top)/r.height)*2+1});
- renderer.domElement.addEventListener('click',pick);yearRange.addEventListener('input',()=>{yearOut.textContent=yearRange.value;applyFilters()});themeSelect.addEventListener('change',()=>selectById(themeSelect.value));
- playBtn.addEventListener('click',togglePlay);resetBtn.addEventListener('click',reset);document.getElementById('closeDetails').addEventListener('click',()=>selectNode(null));
- addEventListener('message',e=>{if(e.data?.type==='murros:theme')document.documentElement.dataset.theme=e.data.theme});
-}
-function pick(){raycaster.setFromCamera(pointer,camera);const hit=raycaster.intersectObjects(nodes,false)[0];selectNode(hit?.object||null)}
-function selectById(id){selectNode(id?nodeById.get(id):null)}
-function selectNode(mesh){selected=mesh||null;themeSelect.value=selected?.userData.theme.id||'';if(!selected){details.classList.remove('open');applyFilters();return}const t=selected.userData.theme;document.getElementById('detailId').textContent=`${t.id} · ${selected.userData.year}`;document.getElementById('detailTitle').textContent=t.name||t.title||t.id;document.getElementById('detailMeta').innerHTML=`<span class="pill">${t.category||'–'}</span><span class="pill">${causalStage(t)}</span><span class="pill">${t.evidence||'ei näyttöluokkaa'}</span>`;document.getElementById('detailSummary').textContent=t.summary||t.description||'Ei kuvausta.';details.classList.add('open');applyFilters();controls.target.copy(selected.position);camera.position.lerp(selected.position.clone().add(new THREE.Vector3(18,22,34)),.35)}
-function connectedIds(id){const set=new Set([id]);(atlas.relations||[]).forEach(r=>{const [a,b]=relationEnds(r);if(a===id)set.add(b);if(b===id)set.add(a)});return set}
-function applyFilters(){const cutoff=Number(yearRange.value),focus=selected?connectedIds(selected.userData.theme.id):null;nodes.forEach(n=>{const visible=n.userData.year<=cutoff;const active=!focus||focus.has(n.userData.theme.id);n.visible=visible;n.material.opacity=active?1:.1;n.scale.setScalar(n===selected?2.15:active?1:.72)});edges.forEach(e=>{const visible=e.from.visible&&e.to.visible;const active=!focus||(focus.has(e.from.userData.theme.id)&&focus.has(e.to.userData.theme.id));e.visible=visible;e.material.opacity=active?.72:.035;e.material.color.set(active?0xffd166:0x71829b)})}
-function togglePlay(){playing=!playing;playBtn.textContent=playing?'❚❚ Pysäytä':'▶ Toista';clearInterval(playTimer);if(!playing)return;yearRange.value=yearRange.min;yearOut.textContent=yearRange.value;applyFilters();playTimer=setInterval(()=>{let y=Number(yearRange.value)+1;if(y>Number(yearRange.max)){playing=false;playBtn.textContent='▶ Toista';clearInterval(playTimer);return}yearRange.value=y;yearOut.textContent=y;applyFilters()},90)}
-function reset(){clearInterval(playTimer);playing=false;playBtn.textContent='▶ Toista';yearRange.value=yearRange.max;yearOut.textContent=yearRange.max;selectNode(null);controls.reset();camera.position.set(15,70,125);controls.target.set(0,10,0)}
-function resize(){camera.aspect=wrap.clientWidth/wrap.clientHeight;camera.updateProjectionMatrix();renderer.setSize(wrap.clientWidth,wrap.clientHeight);labelRenderer.setSize(wrap.clientWidth,wrap.clientHeight)}
-function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera);labelRenderer.render(scene,camera)}
-init();
-</script>
+<script type="module" src="./maisema-app.js"></script>
 </body>
 </html>
