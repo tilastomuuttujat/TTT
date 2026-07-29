@@ -1,6 +1,7 @@
 const mounted = {
   styles: [],
   scripts: [],
+  cleanups: [],
   source: null
 };
 
@@ -32,24 +33,44 @@ function installStyles(doc, sourceUrl) {
   });
 }
 
-function executeScripts(doc, sourceUrl) {
+async function executeScripts(doc, sourceUrl) {
   const scripts = [...doc.querySelectorAll('script')];
-  for (const oldScript of scripts) {
-    const script = document.createElement('script');
-    const type = oldScript.getAttribute('type');
-    if (type) script.type = type;
 
+  for (const oldScript of scripts) {
     const src = oldScript.getAttribute('src');
+    let code = oldScript.textContent || '';
+
     if (src) {
-      script.src = absolutiseUrl(src, sourceUrl);
-      script.async = false;
-    } else {
-      script.textContent = `${oldScript.textContent}\n//# sourceURL=${sourceUrl}`;
+      const scriptUrl = absolutiseUrl(src, sourceUrl);
+      const response = await fetch(scriptUrl, { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error(`Skriptiä ei voitu ladata: ${response.status} ${scriptUrl}`);
+      }
+      code = await response.text();
     }
 
-    script.dataset.modularViewScript = sourceUrl;
-    document.body.appendChild(script);
-    mounted.scripts.push(script);
+    if (!code.trim()) continue;
+
+    /*
+      Suoritetaan vanhan näkymän JavaScript omassa funktioalueessaan.
+      Näin eri näkymien globaalit const/let-muuttujat eivät törmää toisiinsa.
+      Palautettu cleanup-funktio on vapaaehtoinen tulevia aidosti modulaarisia
+      näkymiä varten.
+    */
+    const run = new Function(
+      'window',
+      'document',
+      'root',
+      'registerCleanup',
+      `${code}\n//# sourceURL=${src ? absolutiseUrl(src, sourceUrl) : sourceUrl}`
+    );
+
+    const registerCleanup = fn => {
+      if (typeof fn === 'function') mounted.cleanups.push(fn);
+    };
+
+    const result = run(window, document, document.querySelector('.modular-view'), registerCleanup);
+    if (typeof result === 'function') mounted.cleanups.push(result);
   }
 }
 
@@ -80,12 +101,15 @@ export async function mountHtmlView(root, sourcePath) {
   fixRelativeUrls(wrapper, sourceUrl);
 
   root.replaceChildren(wrapper);
-  executeScripts(doc, sourceUrl);
+  await executeScripts(doc, sourceUrl);
 
   return wrapper;
 }
 
 export function unmountHtmlView(root) {
+  mounted.cleanups.splice(0).reverse().forEach(fn => {
+    try { fn(); } catch (error) { console.warn('Näkymän siivous epäonnistui', error); }
+  });
   mounted.scripts.forEach(node => node.remove());
   mounted.styles.forEach(node => node.remove());
   mounted.scripts.length = 0;
