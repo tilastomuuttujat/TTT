@@ -53,17 +53,33 @@ function enhanceMountedView(name) {
     .map(id => document.getElementById(id))
     .filter(Boolean);
 
-  if (cards.length !== 3 || document.getElementById('ringInfoPanel')) return;
+  if (cards.length === 3 && !document.getElementById('ringInfoPanel')) {
+    const panel = document.createElement('aside');
+    panel.id = 'ringInfoPanel';
+    panel.setAttribute('aria-label', 'Murrosrenkaan lukuohje');
 
-  const panel = document.createElement('aside');
-  panel.id = 'ringInfoPanel';
-  panel.setAttribute('aria-label', 'Murrosrenkaan lukuohje');
+    cards[0].parentNode.insertBefore(panel, cards[0]);
+    cards.forEach(card => {
+      card.removeAttribute('aria-hidden');
+      panel.appendChild(card);
+    });
+  }
 
-  cards[0].parentNode.insertBefore(panel, cards[0]);
-  cards.forEach(card => {
-    card.removeAttribute('aria-hidden');
-    panel.appendChild(card);
-  });
+  const replay = document.getElementById('chainReplay');
+  const close = document.getElementById('dClose');
+
+  if (replay && close && !replay.dataset.closeEnhanced) {
+    replay.dataset.closeEnhanced = 'true';
+    replay.textContent = 'Sulje animaatio';
+    replay.setAttribute('aria-label', 'Sulje animaatio ja vaikutusketju');
+
+    /* Vanhan anonyymin toisto-kuuntelijan edelle kaappausvaiheessa. */
+    replay.addEventListener('click', event => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      close.click();
+    }, true);
+  }
 }
 
 async function showView(name) {
