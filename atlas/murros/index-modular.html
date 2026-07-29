@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fi" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Murrosatlas · moduuliversio</title>
+<meta name="description" content="Murrosatlas ilman iframeja. Näkymät ladataan ES-moduuleina.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/theme.css">
+<style>
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;display:flex;flex-direction:column;overflow:hidden;font:15px/1.55 var(--t-sans);color:var(--t-ink);background:var(--t-paper)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:where(button,a,input):focus-visible{outline:2px solid var(--t-forest);outline-offset:2px;border-radius:8px}
+.topbar{position:relative;z-index:1000;display:flex;align-items:center;gap:18px;min-height:var(--t-nav-h);padding:10px 20px;background:var(--t-veil);backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid var(--t-line)}
+.brand{display:flex;align-items:baseline;gap:10px;min-width:0}.brand .mark{width:26px;height:26px;flex:none;border-radius:50%;align-self:center;background:conic-gradient(from 210deg,var(--t-forest),var(--t-ochre),var(--t-copper),var(--t-forest));box-shadow:var(--t-glow)}
+.brand h1{margin:0;font-family:var(--t-serif);font-size:19px;font-weight:600;white-space:nowrap}.brand .sub{font-family:var(--t-mono);font-size:10.5px;letter-spacing:.06em;color:var(--t-muted);text-transform:uppercase}
+.tabs{display:flex;gap:2px;margin-left:auto;padding:3px;background:var(--t-surface-sunk);border:1px solid var(--t-line-soft);border-radius:999px}.tab{display:flex;align-items:center;gap:8px;padding:7px 15px;border-radius:999px;font-size:13px;font-weight:500;color:var(--t-muted);white-space:nowrap}.tab[aria-selected="true"]{background:var(--t-surface);color:var(--t-ink);box-shadow:var(--t-shadow-1)}.tab .dot{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.55}.tab[aria-selected="true"] .dot{opacity:1}
+.tools{display:flex;gap:8px}.icon-btn{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;border:1px solid var(--t-line);background:var(--t-surface)}.icon-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8}
+#viewRoot{position:relative;flex:1;min-height:0;overflow:auto}.loader{position:absolute;inset:0;z-index:900;display:grid;place-items:center;background:var(--t-paper);font-family:var(--t-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--t-muted)}.loader[hidden]{display:none}.error{max-width:680px;margin:40px auto;padding:24px;border:1px solid var(--t-line);border-radius:14px;background:var(--t-surface);white-space:pre-wrap}
+@media(max-width:760px){.brand .sub{display:none}.topbar{flex-wrap:wrap}.tabs{order:3;width:100%;margin-left:0;justify-content:space-between}.tab{padding:7px 11px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="mark" aria-hidden="true"></span><h1>Murrosatlas</h1><span class="sub">moduuliversio</span></div>
+  <nav class="tabs" aria-label="Näkymä">
+    <button class="tab" data-view="rengas" aria-selected="false"><span class="dot"></span>Rengas</button>
+    <button class="tab" data-view="verkko" aria-selected="false"><span class="dot"></span>Verkko</button>
+    <button class="tab" data-view="matriisi" aria-selected="false"><span class="dot"></span>Matriisi</button>
+  </nav>
+  <div class="tools">
+    <button class="icon-btn" id="themeBtn" type="button" aria-label="Vaihda teema"><svg viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg></button>
+    <button class="icon-btn" id="fsBtn" type="button" aria-label="Koko näyttö"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+  </div>
+</header>
+<main id="viewRoot"><div class="loader" id="loader">Ladataan näkymää…</div></main>
+<script type="module" src="assets/app-modular.js"></script>
+</body>
+</html>
