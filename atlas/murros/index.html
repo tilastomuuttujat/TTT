@@ -26,6 +26,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #viewRoot>.modular-view[data-source$="verkko.html"]{width:100%;height:100%}
 #viewRoot>.modular-view[data-source$="verkko.html"]>#app{display:flex;width:100%;height:100%;max-width:none}
 
+/* Matriisi on pitkä lukusivu, ei yhden ruudun sovellus. */
+#viewRoot:has(>.modular-view[data-source$="matriisi.html"]){overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable}
+#viewRoot>.modular-view[data-source$="matriisi.html"]{height:auto;min-height:100%;overflow:visible}
+#viewRoot>.modular-view[data-source$="matriisi.html"]>#app{height:auto!important;min-height:100%!important;overflow:visible!important}
+
 /* Rengasnäkymän ohjepaneeli seuraa yhteistä teemaa. */
 #ringInfoPanel{position:fixed;left:18px;top:148px;z-index:12;width:270px;max-height:calc(100vh - 174px);overflow:auto;padding:18px;background:color-mix(in srgb,var(--t-surface) 94%,transparent);color:var(--t-ink);border:1px solid var(--t-line);border-radius:14px;box-shadow:var(--t-shadow-2);backdrop-filter:blur(10px);scrollbar-width:thin}
 #ringInfoPanel .info-card{position:static!important;display:block!important;width:auto!important;padding:0!important;background:none!important;color:var(--t-ink)!important;border:0!important;border-radius:0!important;box-shadow:none!important;backdrop-filter:none!important}
