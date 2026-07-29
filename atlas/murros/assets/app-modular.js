@@ -46,6 +46,26 @@ function setActiveTab(name) {
   });
 }
 
+function enhanceMountedView(name) {
+  if (name !== 'rengas') return;
+
+  const cards = ['card-title', 'card-legend', 'card-tips']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+
+  if (cards.length !== 3 || document.getElementById('ringInfoPanel')) return;
+
+  const panel = document.createElement('aside');
+  panel.id = 'ringInfoPanel';
+  panel.setAttribute('aria-label', 'Murrosrenkaan lukuohje');
+
+  cards[0].parentNode.insertBefore(panel, cards[0]);
+  cards.forEach(card => {
+    card.removeAttribute('aria-hidden');
+    panel.appendChild(card);
+  });
+}
+
 async function showView(name) {
   if (switching || activeView === name) return;
   switching = true;
@@ -58,6 +78,7 @@ async function showView(name) {
 
     const module = await VIEWS[name]();
     await module.mount(root, { theme: getTheme() });
+    enhanceMountedView(name);
 
     activeModule = module;
     activeView = name;
