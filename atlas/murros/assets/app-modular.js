@@ -4,6 +4,9 @@ const tabs = [...document.querySelectorAll('.tab')];
 const themeBtn = document.getElementById('themeBtn');
 const fsBtn = document.getElementById('fsBtn');
 
+/* Loader pidetään näkymäjuuren ulkopuolella, jotta mount() ei poista sitä. */
+document.body.appendChild(loader);
+
 const THEME_KEY = 'murros-theme';
 const VIEWS = {
   rengas: () => import('../views/rengas.js'),
