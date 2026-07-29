@@ -19,7 +19,8 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
 const VIEWS = {
   rengas: () => import('../views/rengas.js'),
   verkko: () => import('../views/verkko.js'),
-  matriisi: () => import('../views/matriisi.js')
+  matriisi: () => import('../views/matriisi.js'),
+  paattely: () => import('../views/paattely.js')
 };
 
 let activeView = null;
@@ -230,7 +231,7 @@ fsBtn.addEventListener('click', () => {
 });
 window.addEventListener('keydown', event => {
   if (event.metaKey || event.ctrlKey || event.altKey) return;
-  const map = { '1': 'rengas', '2': 'verkko', '3': 'matriisi' };
+  const map = { '1': 'rengas', '2': 'verkko', '3': 'matriisi', '4': 'paattely' };
   if (map[event.key]) location.hash = map[event.key];
 });
 
