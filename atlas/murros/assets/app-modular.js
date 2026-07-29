@@ -20,7 +20,8 @@ const VIEWS = {
   rengas: () => import('../views/rengas.js'),
   verkko: () => import('../views/verkko.js'),
   matriisi: () => import('../views/matriisi.js'),
-  paattely: () => import('../views/paattely.js')
+  paattely: () => import('../views/paattely.js'),
+  maisema: () => import('../views/maisema.js')
 };
 
 let activeView = null;
@@ -231,7 +232,7 @@ fsBtn.addEventListener('click', () => {
 });
 window.addEventListener('keydown', event => {
   if (event.metaKey || event.ctrlKey || event.altKey) return;
-  const map = { '1': 'rengas', '2': 'verkko', '3': 'matriisi', '4': 'paattely' };
+  const map = { '1': 'rengas', '2': 'verkko', '3': 'matriisi', '4': 'paattely', '5': 'maisema' };
   if (map[event.key]) location.hash = map[event.key];
 });
 
