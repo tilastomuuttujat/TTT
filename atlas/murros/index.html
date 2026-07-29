@@ -25,6 +25,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 #viewRoot>.modular-view>#app{width:100%!important;height:100%!important;min-width:0;min-height:0}
 #viewRoot>.modular-view[data-source$="verkko.html"]{width:100%;height:100%}
 #viewRoot>.modular-view[data-source$="verkko.html"]>#app{display:flex;width:100%;height:100%;max-width:none}
+#viewRoot>.paattely-view{background:#070a0f}
+#viewRoot>.paattely-view>.paattely-frame{display:block;width:100%;height:100%;border:0;background:#070a0f}
 
 /* Matriisi on pitkä lukusivu, ei yhden ruudun sovellus. */
 #viewRoot:has(>.modular-view[data-source$="matriisi.html"]){overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable}
@@ -48,7 +50,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 .loader{position:absolute;inset:0;z-index:900;display:grid;place-items:center;background:var(--t-paper);font-family:var(--t-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--t-muted)}.loader[hidden]{display:none}.error{max-width:680px;margin:40px auto;padding:24px;border:1px solid var(--t-line);border-radius:14px;background:var(--t-surface);white-space:pre-wrap}
 @media(max-width:1279px){#ringInfoPanel{display:none}}
-@media(max-width:760px){.brand .sub{display:none}.topbar{flex-wrap:wrap}.tabs{order:3;width:100%;margin-left:0;justify-content:space-between}.tab{padding:7px 11px}}
+@media(max-width:900px){.topbar{gap:10px}.tab{padding:7px 11px}}
+@media(max-width:760px){.brand .sub{display:none}.topbar{flex-wrap:wrap}.tabs{order:3;width:100%;margin-left:0;justify-content:space-between}.tab{padding:7px 9px;font-size:12px}}
 </style>
 </head>
 <body>
@@ -58,6 +61,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <button class="tab" data-view="rengas" aria-selected="false"><span class="dot"></span>Rengas</button>
     <button class="tab" data-view="verkko" aria-selected="false"><span class="dot"></span>Verkko</button>
     <button class="tab" data-view="matriisi" aria-selected="false"><span class="dot"></span>Matriisi</button>
+    <button class="tab" data-view="paattely" aria-selected="false"><span class="dot"></span>Päättely</button>
   </nav>
   <div class="tools">
     <button class="icon-btn" id="themeBtn" type="button" aria-label="Vaihda teema"><svg viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg></button>
