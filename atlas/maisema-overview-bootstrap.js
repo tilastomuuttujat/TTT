@@ -94,7 +94,7 @@ function makeRouteLabel(node, primary = false, step = null) {
   const el = document.createElement('div');
   el.className = 'route-node-label';
   const stepText = Number.isInteger(step) ? \`<em>VAIHE \${step + 1}</em>\` : '';
-  el.innerHTML = \`\${stepText}<b>\${node.theme.id} · \${node.year}</b><span>\${node.theme.name || node.theme.title || node.theme.id}</span>\`;
+  el.innerHTML = \`\${stepText}<b>\${node.theme.id} · \${spanLabel(node.theme)}</b><span>\${node.theme.name || node.theme.title || node.theme.id}</span>\`;
   Object.assign(el.style, {
     maxWidth: primary ? '210px' : '175px',
     padding: primary ? '7px 10px' : '5px 8px',
