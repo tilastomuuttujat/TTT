@@ -48,6 +48,10 @@ let flight = null;
 /* ---------------------------------- data helpers */
 const yearOf = t => Number(t?.period?.start ?? t?.year ?? t?.start_year ?? t?.epistemic?.known_from ?? 1900);
 const endOf = t => Number(t?.period?.end ?? yearOf(t));
+const spanLabel = t => {
+  const y0 = yearOf(t), y1 = endOf(t);
+  return Number.isFinite(y1) && y1 !== y0 ? `${y0}–${y1}` : `${y0}`;
+};
 
 function stageOf(t) {
   const raw = t?.causal?.stage || t?.causal?.role || t?.causal_stage;
@@ -326,7 +330,7 @@ function buildLanes() {
 const CAUSAL_SCOPES = new Set(['causal']);
 const CAUSAL_RELCLASS_FALLBACK = new Set(['rakenne', 'kaari', 'tapahtuma', 'vastavaikutus']);
 const SPARK_CAUSAL = 0xffd166;  // kulta -- ajallinen syy-seuraus, kulkee eteenpäin
-const SPARK_INTERP = 0x7fd7ff;  // jäänsininen -- tulkinnallinen/kontekstuaalinen, ei suuntaa
+const SPARK_INTERP = 0x2b6f91;  // tumma teräksensininen -- tulkinnallinen/kontekstuaalinen, kiertää vastasuuntaan
 
 function isCausalRel(rel) {
   const scope = rel?.explanation_model?.relation_scope;
@@ -447,7 +451,7 @@ function renderSearch() {
     .sort((a, b) => a.year - b.year)
     .slice(0, 40);
   results.innerHTML = list.map(n =>
-    `<button data-goto="${n.theme.id}"><i>${n.theme.id} · ${n.year}</i>${n.theme.name || n.theme.title || ''}</button>`
+    `<button data-goto="${n.theme.id}"><i>${n.theme.id} · ${spanLabel(n.theme)}</i>${n.theme.name || n.theme.title || ''}</button>`
   ).join('') || '<button disabled style="color:#6c7b93">Ei osumia</button>';
   results.classList.add('open');
 }
@@ -512,7 +516,7 @@ function renderDetails(node) {
   if (rels.length) {
     html += `<div class="sect"><h3>Ketjut (${rels.length})</h3><div class="links">` +
       rels.map(r => `<button data-goto="${r.n.theme.id}">
-          <i class="dot" style="background:${r.causal ? '#ffd166' : '#7fd7ff'}" title="${r.causal ? 'kausaalinen' : 'tulkinnallinen / kontekstuaalinen'}"></i>
+          <i class="dot" style="background:${r.causal ? '#ffd166' : '#2b6f91'}" title="${r.causal ? 'kausaalinen' : 'tulkinnallinen / kontekstuaalinen'}"></i>
           <span>${r.dir} ${r.n.theme.name || r.n.theme.id}</span>
           <span class="rel">${(r.kind || '').replace(/_/g, ' ')}</span>
         </button>`).join('') + '</div></div>';
@@ -601,7 +605,7 @@ function hoverTest() {
   hovered = rec;
   renderer.domElement.style.cursor = rec ? 'pointer' : 'grab';
   if (rec) {
-    tip.innerHTML = `<i>${rec.theme.id} · ${rec.year}</i>${rec.theme.name || rec.theme.title || ''}`;
+    tip.innerHTML = `<i>${rec.theme.id} · ${spanLabel(rec.theme)}</i>${rec.theme.name || rec.theme.title || ''}`;
     tip.classList.add('on');
   } else {
     tip.classList.remove('on');
@@ -648,13 +652,13 @@ function animate() {
       if (e.isCausal) {
         // Kausaalinen: kipinä matkaa aina kronologisesti eteenpäin (ks. buildEdges).
         e.t = (e.t + dt * 0.35) % 1;
-        e.spark.position.copy(e.curve.getPoint(e.t));
-        e.spark.material.opacity = e.opacity;
       } else {
-        // Tulkinnallinen/kontekstuaalinen: ei suuntaväitettä -- paikallaan sykkivä piste.
-        e.spark.position.copy(e.curve.getPoint(0.5));
-        e.spark.material.opacity = e.opacity * (0.55 + Math.sin(time * 4) * 0.45);
+        // Tulkinnallinen/kontekstuaalinen: kiertää vastasuuntaan, palautesilmukkana --
+        // ei väitä syy-seurausta, joten kulkusuunta on tarkoituksella käänteinen.
+        e.t = (e.t - dt * 0.35 + 1) % 1;
       }
+      e.spark.position.copy(e.curve.getPoint(e.t));
+      e.spark.material.opacity = e.opacity;
     } else {
       e.spark.visible = false;
     }
