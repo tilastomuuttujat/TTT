@@ -71,6 +71,33 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   </div>
 </header>
 <main id="viewRoot"><div class="loader" id="loader">Ladataan näkymää…</div></main>
+<script>
+(() => {
+  const root = document.getElementById('viewRoot');
+  const cardIds = ['card-title', 'card-legend', 'card-tips'];
+
+  function consolidateRingInfo() {
+    const view = root.querySelector('.modular-view[data-source$="rengas.html"]');
+    if (!view || view.querySelector('#ringInfoPanel')) return;
+
+    const cards = cardIds.map(id => view.querySelector(`#${id}`));
+    if (cards.some(card => !card)) return;
+
+    const panel = document.createElement('aside');
+    panel.id = 'ringInfoPanel';
+    panel.setAttribute('aria-label', 'Murrosrenkaan ohjeet');
+    cards.forEach(card => {
+      card.removeAttribute('aria-hidden');
+      panel.appendChild(card);
+    });
+    view.appendChild(panel);
+  }
+
+  const observer = new MutationObserver(consolidateRingInfo);
+  observer.observe(root, { childList: true, subtree: true });
+  consolidateRingInfo();
+})();
+</script>
 <script src="assets/data-path-router.js"></script>
 <script type="module" src="assets/app-modular.js"></script>
 </body>
