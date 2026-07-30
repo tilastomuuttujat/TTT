@@ -37,6 +37,8 @@ let activeSession = null;
 let infographicRows = [];
 let infographicsByTarget = new Map();
 let infographicById = new Map();
+let infographicByUrl = new Map();
+let adminObserver = null;
 
 function getTheme() {
   try {
@@ -61,9 +63,7 @@ function selectedView() {
 }
 
 function setActiveTab(name) {
-  tabs.forEach(tab => {
-    tab.setAttribute('aria-selected', String(tab.dataset.view === name));
-  });
+  tabs.forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.view === name)));
 }
 
 function storageUrl(path) {
@@ -73,6 +73,10 @@ function storageUrl(path) {
   return `${SUPABASE_URL}/storage/v1/object/public/${STORAGE_BUCKET}/${normalized}`;
 }
 
+function normalizeUrl(url) {
+  try { return new URL(url, location.href).href; } catch { return String(url || ''); }
+}
+
 function targetIds(row) {
   return [
     row.murros_item_id,
@@ -80,41 +84,6 @@ function targetIds(row) {
     row.selitys_model_id,
     row.selitys_generation_id
   ].filter(Boolean);
-}
-
-function indexInfographics(rows) {
-  infographicRows = [...rows].sort((a, b) =>
-    (a.sort_order ?? 1) - (b.sort_order ?? 1) || a.id - b.id
-  );
-  infographicsByTarget = new Map();
-  infographicById = new Map();
-
-  for (const row of infographicRows) {
-    const normalized = { ...row, url: storageUrl(row.storage_path) };
-    infographicById.set(String(row.id), normalized);
-    for (const targetId of targetIds(row)) {
-      if (!infographicsByTarget.has(targetId)) infographicsByTarget.set(targetId, []);
-      infographicsByTarget.get(targetId).push(normalized);
-    }
-  }
-}
-
-async function loadInfographics() {
-  let query = supabase
-    .from('infographics')
-    .select('id,storage_path,content_summary,purpose,caption,sort_order,murros_item_id,selitys_theme_id,selitys_model_id,selitys_generation_id,unpublished')
-    .order('sort_order', { ascending: true })
-    .order('id', { ascending: true });
-
-  if (!activeSession) query = query.eq('unpublished', false);
-
-  const { data, error } = await query;
-  if (error) throw error;
-  indexInfographics(data || []);
-}
-
-function rowsForTarget(id) {
-  return infographicsByTarget.get(id) || [];
 }
 
 function infographicPayload(row) {
@@ -130,18 +99,54 @@ function infographicPayload(row) {
   };
 }
 
+function indexInfographics(rows) {
+  infographicRows = [...rows].sort((a, b) =>
+    (a.sort_order ?? 1) - (b.sort_order ?? 1) || a.id - b.id
+  );
+  infographicsByTarget = new Map();
+  infographicById = new Map();
+  infographicByUrl = new Map();
+
+  for (const source of infographicRows) {
+    const row = { ...source, url: storageUrl(source.storage_path) };
+    infographicById.set(String(row.id), row);
+    if (row.url) infographicByUrl.set(normalizeUrl(row.url), row);
+    for (const targetId of targetIds(row)) {
+      if (!infographicsByTarget.has(targetId)) infographicsByTarget.set(targetId, []);
+      infographicsByTarget.get(targetId).push(row);
+    }
+  }
+}
+
+async function loadInfographics() {
+  let query = supabase
+    .from('infographics')
+    .select('id,storage_path,content_summary,purpose,caption,sort_order,murros_item_id,selitys_theme_id,selitys_model_id,selitys_generation_id,unpublished')
+    .order('sort_order', { ascending: true })
+    .order('id', { ascending: true });
+
+  if (!activeSession) query = query.eq('unpublished', false);
+  const { data, error } = await query;
+  if (error) throw error;
+  indexInfographics(data || []);
+}
+
+function rowsForTarget(id) {
+  return infographicsByTarget.get(id) || [];
+}
+
 function attachInfographics(entry) {
   if (!entry?.id) return entry;
   const rows = rowsForTarget(entry.id);
   const visibleRows = activeSession ? rows : rows.filter(row => !row.unpublished);
   const infographics = visibleRows.map(infographicPayload);
-  const images = infographics.map(info => info.url).filter(Boolean);
   const primary = infographics[0] || null;
 
   const next = {
     ...entry,
     infographics,
-    images
+    // Verkko.html ja matriisi.html odottavat kuvia olioina: img.url, img.caption.
+    images: infographics
   };
 
   if (activeSession) {
@@ -156,13 +161,11 @@ function attachInfographics(entry) {
       image_status: primary ? (primary.unpublished ? 'unpublished' : 'published') : null
     };
   }
-
   return next;
 }
 
 function decorateAtlasData(data, url) {
   if (!data || typeof data !== 'object') return data;
-
   if (url.includes('selitysatlas.json')) {
     return {
       ...data,
@@ -171,23 +174,17 @@ function decorateAtlasData(data, url) {
       generations: Array.isArray(data.generations) ? data.generations.map(attachInfographics) : data.generations
     };
   }
-
-  if (Array.isArray(data.items)) {
-    return { ...data, items: data.items.map(attachInfographics) };
-  }
-
+  if (Array.isArray(data.items)) return { ...data, items: data.items.map(attachInfographics) };
   return data;
 }
 
 function installAtlasDataFilter() {
   if (window.__murrosAtlasFetchFiltered) return;
-
   const nativeFetch = window.fetch.bind(window);
   window.fetch = async (input, init) => {
     const response = await nativeFetch(input, init);
     const url = typeof input === 'string' ? input : input?.url || '';
-    const isAtlasData = ATLAS_DATA_FILES.some(file => url.includes(file));
-    if (!isAtlasData || !response.ok) return response;
+    if (!ATLAS_DATA_FILES.some(file => url.includes(file)) || !response.ok) return response;
 
     const data = decorateAtlasData(await response.clone().json(), url);
     const headers = new Headers(response.headers);
@@ -198,19 +195,16 @@ function installAtlasDataFilter() {
       headers
     });
   };
-
   window.__murrosAtlasFetchFiltered = true;
 }
 
 function publicationForTarget(id) {
   const rows = rowsForTarget(id);
-  if (!rows.length) return false;
-  return rows.some(row => !row.unpublished);
+  return rows.length > 0 && rows.some(row => !row.unpublished);
 }
 
 async function updatePublication(id, published) {
   if (!activeSession) throw new Error('Admin-istunto ei ole voimassa.');
-
   const directRow = infographicById.get(String(id));
   const rows = directRow ? [directRow] : rowsForTarget(id);
   if (!rows.length) throw new Error(`Kohteelle ${id} ei löytynyt infografiikkaa.`);
@@ -221,12 +215,10 @@ async function updatePublication(id, published) {
     .update({ unpublished: !published })
     .in('id', ids)
     .select('id,storage_path,content_summary,purpose,caption,sort_order,murros_item_id,selitys_theme_id,selitys_model_id,selitys_generation_id,unpublished');
-
   if (error) throw error;
 
   const replacements = new Map((data || []).map(row => [String(row.id), row]));
   indexInfographics(infographicRows.map(row => replacements.get(String(row.id)) || row));
-
   window.dispatchEvent(new CustomEvent('murros:publication-changed', {
     detail: { id, infographicIds: ids, published }
   }));
@@ -238,58 +230,70 @@ function exposeAdminApi() {
     get isAuthenticated() { return Boolean(activeSession); },
     get session() { return activeSession; },
     getPublication: publicationForTarget,
-    getInfographics(id) {
-      return rowsForTarget(id).map(infographicPayload);
-    },
-    getItemIdByTitle(title) {
-      const normalized = String(title || '').trim();
-      const node = document.querySelector('circle')?.ownerSVGElement
-        ? [...document.querySelectorAll('circle')].find(circle => circle.__data__?.title === normalized)
-        : null;
-      return node?.__data__?.id ?? null;
+    getInfographics(id) { return rowsForTarget(id).map(infographicPayload); },
+    getInfographicByUrl(url) {
+      const row = infographicByUrl.get(normalizeUrl(url));
+      return row ? infographicPayload(row) : null;
     },
     setPublication: updatePublication
   };
 }
 
-function enhanceMountedView(name) {
-  if (name !== 'rengas') return;
+function addAdminToggle(figure) {
+  if (!activeSession || figure.dataset.infographicAdmin === 'true') return;
+  const image = figure.querySelector('img');
+  if (!image) return;
+  const row = infographicByUrl.get(normalizeUrl(image.currentSrc || image.src));
+  if (!row) return;
 
-  const cards = ['card-title', 'card-legend', 'card-tips']
-    .map(id => document.getElementById(id))
-    .filter(Boolean);
+  figure.dataset.infographicAdmin = 'true';
+  const label = document.createElement('label');
+  label.className = 'infographic-admin-toggle';
+  Object.assign(label.style, {
+    display: 'flex', alignItems: 'center', gap: '8px', marginTop: '9px',
+    padding: '8px 10px', border: '1px solid rgba(120,120,120,.28)',
+    borderRadius: '8px', font: '500 12px system-ui,sans-serif', cursor: 'pointer'
+  });
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.checked = !row.unpublished;
+  const text = document.createElement('span');
+  text.textContent = 'Julkaistu';
+  label.append(checkbox, text);
+  figure.appendChild(label);
 
-  if (cards.length === 3 && !document.getElementById('ringInfoPanel')) {
-    const panel = document.createElement('aside');
-    panel.id = 'ringInfoPanel';
-    panel.setAttribute('aria-label', 'Murrosrenkaan lukuohje');
-    cards[0].parentNode.insertBefore(panel, cards[0]);
-    cards.forEach(card => {
-      card.removeAttribute('aria-hidden');
-      panel.appendChild(card);
-    });
-  }
+  checkbox.addEventListener('change', async () => {
+    checkbox.disabled = true;
+    try {
+      await updatePublication(row.id, checkbox.checked);
+      text.textContent = checkbox.checked ? 'Julkaistu' : 'Piilotettu yleisöltä';
+    } catch (error) {
+      checkbox.checked = !checkbox.checked;
+      console.error(error);
+      alert(`Julkaisutilan tallennus epäonnistui: ${error.message}`);
+    } finally {
+      checkbox.disabled = false;
+    }
+  });
+}
 
-  const replay = document.getElementById('chainReplay');
-  const close = document.getElementById('dClose');
-  if (replay && close && !replay.dataset.closeEnhanced) {
-    replay.dataset.closeEnhanced = 'true';
-    replay.textContent = 'Sulje animaatio';
-    replay.setAttribute('aria-label', 'Sulje animaatio ja vaikutusketju');
-    replay.addEventListener('click', event => {
-      event.preventDefault();
-      event.stopImmediatePropagation();
-      close.click();
-    }, true);
-  }
+function enhanceInfographicAdmin(name) {
+  adminObserver?.disconnect();
+  adminObserver = null;
+  if (!activeSession || !['verkko', 'matriisi'].includes(name)) return;
+
+  const scan = () => root.querySelectorAll('.d-img, .card-images figure').forEach(addAdminToggle);
+  scan();
+  adminObserver = new MutationObserver(scan);
+  adminObserver.observe(root, { childList: true, subtree: true });
 }
 
 async function showView(name, force = false) {
   if (switching || (!force && activeView === name)) return;
   switching = true;
   loader.hidden = false;
-
   try {
+    adminObserver?.disconnect();
     if (activeModule?.unmount) await activeModule.unmount(root);
     const module = await VIEWS[name]();
     await module.mount(root, {
@@ -297,10 +301,10 @@ async function showView(name, force = false) {
       isAdmin: Boolean(activeSession),
       adminApi: window.__murrosAdminApi
     });
-    enhanceMountedView(name);
     activeModule = module;
     activeView = name;
     setActiveTab(name);
+    enhanceInfographicAdmin(name);
     document.title = `${module.title || 'Murrosatlas'} · Murrosatlas`;
   } catch (error) {
     console.error(error);
@@ -311,19 +315,13 @@ async function showView(name, force = false) {
   }
 }
 
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    const name = tab.dataset.view;
-    if (name !== activeView) location.hash = name;
-  });
-});
-
+tabs.forEach(tab => tab.addEventListener('click', () => {
+  const name = tab.dataset.view;
+  if (name !== activeView) location.hash = name;
+}));
 window.addEventListener('hashchange', () => showView(selectedView()));
 themeBtn.addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
-fsBtn.addEventListener('click', () => {
-  if (document.fullscreenElement) document.exitFullscreen();
-  else document.documentElement.requestFullscreen();
-});
+fsBtn.addEventListener('click', () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen());
 window.addEventListener('keydown', event => {
   if (event.metaKey || event.ctrlKey || event.altKey) return;
   const map = { '1': 'rengas', '2': 'verkko', '3': 'matriisi', '4': 'paattely', '5': 'maisema' };
@@ -333,15 +331,10 @@ window.addEventListener('keydown', event => {
 async function refreshSession(session) {
   const wasAdmin = Boolean(activeSession);
   activeSession = session || null;
-  try {
-    await loadInfographics();
-  } catch (error) {
-    indexInfographics([]);
-    console.error(error);
-  }
+  try { await loadInfographics(); }
+  catch (error) { indexInfographics([]); console.error(error); }
   exposeAdminApi();
-  const isAdmin = Boolean(activeSession);
-  if (activeView && wasAdmin !== isAdmin) await showView(activeView, true);
+  if (activeView && wasAdmin !== Boolean(activeSession)) await showView(activeView, true);
 }
 
 async function startApp() {
@@ -349,21 +342,12 @@ async function startApp() {
   const { data: { session }, error } = await supabase.auth.getSession();
   if (error) console.error(error);
   activeSession = session || null;
-
-  try {
-    await loadInfographics();
-  } catch (loadError) {
-    indexInfographics([]);
-    console.error(loadError);
-  }
-
+  try { await loadInfographics(); }
+  catch (loadError) { indexInfographics([]); console.error(loadError); }
   exposeAdminApi();
   installAtlasDataFilter();
   await showView(selectedView());
-
-  supabase.auth.onAuthStateChange((_event, nextSession) => {
-    queueMicrotask(() => refreshSession(nextSession));
-  });
+  supabase.auth.onAuthStateChange((_event, nextSession) => queueMicrotask(() => refreshSession(nextSession)));
 }
 
 startApp();
