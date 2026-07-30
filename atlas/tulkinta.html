@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Murrosatlas × Selitysatlas — tulkintanäkymä</title>
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #05070c;
+      --panel: rgba(8, 13, 22, 0.78);
+      --line: rgba(150, 170, 205, 0.22);
+      --text: #eef3fb;
+      --muted: #9aa8bd;
+      --gold: #ffd166;
+      --cyan: #7fd7ff;
+      --violet: #b39aff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font: 14px/1.5 Inter, system-ui, sans-serif;
+    }
+
+    #app,
+    canvas {
+      position: fixed;
+      inset: 0;
+      display: block;
+    }
+
+    canvas { touch-action: none; }
+
+    .panel {
+      position: fixed;
+      z-index: 10;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--panel);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.42);
+      backdrop-filter: blur(16px);
+    }
+
+    .intro {
+      top: 18px;
+      left: 18px;
+      width: 370px;
+    }
+
+    .intro h1 {
+      margin: 0 0 8px;
+      font: 600 25px/1.1 Georgia, serif;
+    }
+
+    .intro p {
+      margin: 0;
+      color: #bdc8d8;
+      font-size: 12.5px;
+    }
+
+    .layers {
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .layer {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: 9px;
+      align-items: start;
+    }
+
+    .dot {
+      width: 22px;
+      height: 22px;
+      margin-top: 1px;
+      border-radius: 50%;
+    }
+
+    .dot.murros {
+      background: rgba(127, 215, 255, 0.16);
+      border: 1px solid rgba(127, 215, 255, 0.55);
+    }
+
+    .dot.selitys {
+      background: rgba(179, 154, 255, 0.16);
+      border: 1px solid rgba(179, 154, 255, 0.55);
+    }
+
+    .layer b {
+      display: block;
+      font-size: 11.5px;
+    }
+
+    .layer span {
+      color: var(--muted);
+      font-size: 10.5px;
+    }
+
+    .status {
+      left: 50%;
+      bottom: 20px;
+      width: min(700px, calc(100vw - 40px));
+      transform: translateX(-50%);
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .status strong { color: var(--gold); }
+
+    .details {
+      top: 18px;
+      right: 18px;
+      width: 365px;
+      max-height: calc(100vh - 36px);
+      overflow: auto;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(12px);
+      transition: 180ms ease;
+    }
+
+    .details.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+    }
+
+    .details button.close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 30px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font: 600 9px/1.2 ui-monospace, monospace;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .details h2 {
+      margin: 8px 36px 8px 0;
+      font: 600 22px/1.15 Georgia, serif;
+    }
+
+    .summary {
+      color: #d5deeb;
+      font-size: 12.5px;
+      line-height: 1.6;
+    }
+
+    .explain {
+      margin: 12px 0;
+      padding: 11px 12px;
+      border: 1px solid rgba(255, 209, 102, 0.22);
+      border-radius: 11px;
+      background: rgba(255, 209, 102, 0.06);
+    }
+
+    .links {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .links h3 {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font: 600 9px/1.2 ui-monospace, monospace;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .links button {
+      display: block;
+      width: 100%;
+      margin: 0;
+      padding: 7px 8px;
+      border: 0;
+      border-radius: 8px;
+      background: transparent;
+      color: #d7e0ec;
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .links button:hover { background: rgba(255,255,255,0.06); }
+
+    .node-label {
+      padding: 3px 6px;
+      border: 1px solid rgba(150, 170, 205, 0.2);
+      border-radius: 6px;
+      background: rgba(5, 7, 12, 0.82);
+      color: #e6edf7;
+      font: 500 9px/1.2 ui-monospace, monospace;
+      white-space: nowrap;
+    }
+
+    .node-label.peak {
+      color: #eadfff;
+      border-color: rgba(179, 154, 255, 0.35);
+    }
+
+    .loading {
+      position: fixed;
+      z-index: 40;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: var(--bg);
+      color: var(--muted);
+      font: 600 11px ui-monospace, monospace;
+      letter-spacing: 0.16em;
+    }
+
+    .loading.hidden { display: none; }
+
+    @media (max-width: 800px) {
+      .intro { width: calc(100vw - 36px); }
+      .intro .layers { display: none; }
+      .details {
+        top: auto;
+        right: 10px;
+        bottom: 82px;
+        width: calc(100vw - 20px);
+        max-height: 48vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <section class="panel intro">
+    <h1>Murrosatlas × Selitysatlas</h1>
+    <p>
+      Klikkaus ei zoomaa. Se säilyttää näkymän, korostaa valitun käsitteen
+      yhteydet ja himmentää muun aineiston tulkinnan tueksi.
+    </p>
+
+    <div class="layers">
+      <div class="layer">
+        <i class="dot murros"></i>
+        <div>
+          <b>Murrosatlas — mitä tapahtui?</b>
+          <span>Maanpinnan pallot kuvaavat havaittuja muutoksia ja murroksia.</span>
+        </div>
+      </div>
+      <div class="layer">
+        <i class="dot selitys"></i>
+        <div>
+          <b>Selitysatlas — miten sitä voidaan ymmärtää?</b>
+          <span>Ylemmät huiput kuvaavat malleja, mekanismeja ja tulkintakehyksiä.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside id="details" class="panel details">
+    <button id="closeDetails" class="close" aria-label="Sulje">×</button>
+    <div id="detailKind" class="eyebrow"></div>
+    <h2 id="detailTitle"></h2>
+    <div id="detailBody" class="summary"></div>
+    <div id="detailLinks" class="links"></div>
+  </aside>
+
+  <div id="status" class="panel status">
+    <strong>Klikkaa palloa.</strong>
+    Valittu näkökulma eristyy, muut kohteet himmenevät ja ketjun kaikki käsitteet nimetään.
+  </div>
+
+  <div id="loading" class="loading">RAKENNETAAN TULKINTANÄKYMÄÄ…</div>
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+
+    const $ = id => document.getElementById(id);
+    const MIN_YEAR = 1850;
+    const MAX_YEAR = 2035;
+
+    const state = {
+      selected: null,
+      nodes: [],
+      edges: [],
+      nodeById: new Map(),
+      pointer: new THREE.Vector2(),
+      drag: null
+    };
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x05070c);
+    scene.fog = new THREE.FogExp2(0x05070c, 0.0055);
+
+    const camera = new THREE.PerspectiveCamera(46, innerWidth / innerHeight, 0.1, 1500);
+    camera.position.set(20, 76, 145);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    $('app').appendChild(renderer.domElement);
+
+    const labels = new CSS2DRenderer();
+    labels.setSize(innerWidth, innerHeight);
+    Object.assign(labels.domElement.style, {
+      position: 'fixed',
+      inset: '0',
+      pointerEvents: 'none'
+    });
+    $('app').appendChild(labels.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.055;
+    controls.minDistance = 38;
+    controls.maxDistance = 300;
+    controls.maxPolarAngle = Math.PI * 0.49;
+    controls.target.set(0, 13, 0);
+
+    const raycaster = new THREE.Raycaster();
+
+    scene.add(new THREE.HemisphereLight(0xb8d2ff, 0x080b11, 1.5));
+
+    const keyLight = new THREE.DirectionalLight(0xffffff, 2);
+    keyLight.position.set(-60, 100, 60);
+    scene.add(keyLight);
+
+    const grid = new THREE.GridHelper(250, 50, 0x3d4f6b, 0x1b2534);
+    grid.position.y = -4;
+    grid.material.transparent = true;
+    grid.material.opacity = 0.42;
+    scene.add(grid);
+
+    function yearX(year) {
+      return ((Number(year) - MIN_YEAR) / (MAX_YEAR - MIN_YEAR) - 0.5) * 170;
+    }
+
+    function hash(text) {
+      let value = 0;
+      for (const char of String(text)) {
+        value = ((value << 5) - value + char.charCodeAt(0)) | 0;
+      }
+      return Math.abs(value);
+    }
+
+    async function fetchFirst(paths) {
+      for (const path of paths) {
+        try {
+          const response = await fetch(path);
+          if (response.ok) return response.json();
+        } catch (_) {}
+      }
+      throw new Error(`Tiedostoa ei löytynyt: ${paths.join(' / ')}`);
+    }
+
+    async function loadData() {
+      const [murros, selitys, crosswalk] = await Promise.all([
+        fetchFirst(['murrosatlas.json', 'murros/murrosatlas.json']),
+        fetchFirst(['selitysatlas.json', 'murros/selitysatlas.json']),
+        fetchFirst(['crosswalk.json', 'murros/crosswalk.json'])
+      ]);
+
+      const ground = (murros.items || []).map(item => ({
+        id: item.id,
+        title: item.title,
+        year: item.year_start || item.year || MIN_YEAR,
+        summary: item.problem || item.current_relevance || item.phase || '',
+        domains: item.domains || []
+      }));
+
+      const peaks = (selitys.themes || []).map(theme => ({
+        id: theme.id,
+        title: theme.name || theme.title,
+        year: theme.period?.start || theme.year_start || theme.year || MIN_YEAR,
+        summary: theme.summary || theme.description || '',
+        domains: theme.domains || []
+      }));
+
+      return { ground, peaks, links: crosswalk.links || [] };
+    }
+
+    function createLabel(text, peak) {
+      const element = document.createElement('div');
+      element.className = `node-label${peak ? ' peak' : ''}`;
+      element.textContent = text;
+
+      const label = new CSS2DObject(element);
+      label.position.set(0, peak ? 3.1 : 2.4, 0);
+      label.visible = false;
+      return label;
+    }
+
+    function createNode(item, kind, index) {
+      const peak = kind === 'peak';
+      const lane = hash((item.domains || []).join('-') || item.id) % 15;
+      const z = -35 + lane * 5;
+      const y = peak ? 24 + (hash(item.id) % 18) : -1 + (hash(item.id) % 20) / 10;
+      const color = new THREE.Color(peak ? 0xb39aff : 0x61c8ee);
+
+      const geometry = peak
+        ? new THREE.OctahedronGeometry(1.15, 1)
+        : new THREE.IcosahedronGeometry(1, 2);
+
+      const material = new THREE.MeshStandardMaterial({
+        color,
+        emissive: color.clone().multiplyScalar(0.45),
+        emissiveIntensity: peak ? 1.2 : 0.8,
+        roughness: 0.28,
+        metalness: 0.32,
+        transparent: true,
+        opacity: 0.96
+      });
+
+      const mesh = new THREE.Mesh(geometry, material);
+      const group = new THREE.Group();
+      group.position.set(yearX(item.year) + ((hash(item.id) % 30) - 15) / 10, y, z);
+      group.add(mesh);
+
+      const halo = new THREE.Mesh(
+        new THREE.SphereGeometry(1.9, 18, 14),
+        new THREE.MeshBasicMaterial({
+          color,
+          transparent: true,
+          opacity: peak ? 0.1 : 0.07,
+          depthWrite: false,
+          side: THREE.BackSide
+        })
+      );
+      group.add(halo);
+
+      const label = createLabel(item.title, peak);
+      group.add(label);
+      scene.add(group);
+
+      const node = { item, kind, group, mesh, halo, label };
+      state.nodes.push(node);
+      state.nodeById.set(item.id, node);
+      return node;
+    }
+
+    function createEdge(link) {
+      const from = state.nodeById.get(link.source);
+      const to = state.nodeById.get(link.target);
+      if (!from || !to) return;
+
+      const start = from.group.position.clone();
+      const end = to.group.position.clone();
+      const middle = start.clone().lerp(end, 0.5);
+      middle.y += 8 + Math.abs(start.x - end.x) * 0.06;
+
+      const curve = new THREE.QuadraticBezierCurve3(start, middle, end);
+      const strong = link.status === 'approved' || link.tier === 'high' || Number(link.confidence) >= 0.8;
+
+      const line = new THREE.Line(
+        new THREE.BufferGeometry().setFromPoints(curve.getPoints(32)),
+        new THREE.LineBasicMaterial({
+          color: strong ? 0xffd166 : 0x4fc4ee,
+          transparent: true,
+          opacity: strong ? 0.34 : 0.13,
+          depthWrite: false
+        })
+      );
+
+      scene.add(line);
+      state.edges.push({ link, from, to, line, strong });
+    }
+
+    function relatedNodes(selected) {
+      const related = new Set([selected]);
+      for (const edge of state.edges) {
+        if (edge.from === selected) related.add(edge.to);
+        if (edge.to === selected) related.add(edge.from);
+      }
+      return related;
+    }
+
+    function applyFocus(selected) {
+      state.selected = selected;
+      const active = selected ? relatedNodes(selected) : new Set();
+
+      for (const node of state.nodes) {
+        const chosen = node === selected;
+        const linked = active.has(node);
+
+        node.mesh.material.opacity = selected
+          ? chosen ? 1 : linked ? 0.94 : 0.045
+          : 0.96;
+
+        node.halo.material.opacity = selected
+          ? chosen ? 0.25 : linked ? 0.13 : 0.004
+          : node.kind === 'peak' ? 0.1 : 0.07;
+
+        const scale = selected
+          ? chosen ? 1.18 : linked ? 1.06 : 0.86
+          : 1;
+
+        node.group.scale.setScalar(scale);
+        node.label.visible = selected ? linked : false;
+      }
+
+      for (const edge of state.edges) {
+        const activeEdge = selected && (edge.from === selected || edge.to === selected);
+        edge.line.material.opacity = selected
+          ? activeEdge ? (edge.strong ? 0.95 : 0.68) : 0.004
+          : edge.strong ? 0.34 : 0.13;
+      }
+    }
+
+    function openDetails(node) {
+      applyFocus(node);
+
+      const links = state.edges
+        .filter(edge => edge.from === node || edge.to === node)
+        .map(edge => ({
+          node: edge.from === node ? edge.to : edge.from,
+          link: edge.link
+        }));
+
+      $('detailKind').textContent = node.kind === 'peak'
+        ? 'SELITYSATLAS · SELITYSMALLI'
+        : 'MURROSATLAS · HAVAITTU MUUTOS';
+
+      $('detailTitle').textContent = node.item.title;
+
+      const explanation = node.kind === 'peak'
+        ? 'Valinta näyttää, mihin Murrosatlaksen havaintoihin tätä selitysmallia ehdotetaan sovellettavaksi.'
+        : 'Valinta näyttää, millä Selitysatlaksen malleilla tätä murrosta voidaan yrittää ymmärtää.';
+
+      $('detailBody').innerHTML = `
+        <div class="explain"><strong>Mitä klikkaus kuvaa?</strong><br>${explanation}</div>
+        ${escapeHtml(node.item.summary || 'Ei kuvausta.')}
+      `;
+
+      $('detailLinks').innerHTML = links.length
+        ? `<h3>Ketjuun liittyvät käsitteet</h3>${links.map(({ node: other, link }) => `
+            <button data-node="${escapeHtml(other.item.id)}">
+              ${escapeHtml(other.item.title)}
+              ${Number.isFinite(Number(link.confidence)) ? ` · ${Math.round(Number(link.confidence) * 100)} %` : ''}
+            </button>
+          `).join('')}`
+        : '<h3>Ketjuun liittyvät käsitteet</h3><p>Ei crosswalk-yhteyksiä.</p>';
+
+      $('details').classList.add('open');
+      $('status').innerHTML = node.kind === 'peak'
+        ? '<strong>Selitysmalli valittu.</strong> Kirkkaat yhteydet näyttävät murrokset, joita malli voi valaista.'
+        : '<strong>Murros valittu.</strong> Kirkkaat yhteydet näyttävät mahdolliset selitysmallit.';
+    }
+
+    function clearFocus() {
+      applyFocus(null);
+      $('details').classList.remove('open');
+      $('status').innerHTML = '<strong>Klikkaa palloa.</strong> Valittu näkökulma eristyy, muut kohteet himmenevät ja ketjun kaikki käsitteet nimetään.';
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"]/g, character => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;'
+      }[character]));
+    }
+
+    function pick(event) {
+      const rect = renderer.domElement.getBoundingClientRect();
+      state.pointer.set(
+        ((event.clientX - rect.left) / rect.width) * 2 - 1,
+        -((event.clientY - rect.top) / rect.height) * 2 + 1
+      );
+
+      raycaster.setFromCamera(state.pointer, camera);
+      const hit = raycaster.intersectObjects(state.nodes.map(node => node.mesh), false)[0];
+      return hit ? state.nodes.find(node => node.mesh === hit.object) : null;
+    }
+
+    function bindEvents() {
+      renderer.domElement.addEventListener('pointerdown', event => {
+        state.drag = {
+          id: event.pointerId,
+          x: event.clientX,
+          y: event.clientY,
+          moved: false
+        };
+      });
+
+      renderer.domElement.addEventListener('pointermove', event => {
+        if (!state.drag || state.drag.id !== event.pointerId) return;
+        if (Math.hypot(event.clientX - state.drag.x, event.clientY - state.drag.y) > 6) {
+          state.drag.moved = true;
+        }
+      });
+
+      renderer.domElement.addEventListener('pointerup', event => {
+        if (!state.drag || state.drag.id !== event.pointerId) return;
+        const moved = state.drag.moved;
+        state.drag = null;
+        if (moved) return;
+
+        const node = pick(event);
+        if (node) openDetails(node);
+        else clearFocus();
+      });
+
+      $('closeDetails').addEventListener('click', clearFocus);
+
+      $('detailLinks').addEventListener('click', event => {
+        const button = event.target.closest('[data-node]');
+        const node = button && state.nodeById.get(button.dataset.node);
+        if (node) openDetails(node);
+      });
+
+      addEventListener('resize', () => {
+        camera.aspect = innerWidth / innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(innerWidth, innerHeight);
+        labels.setSize(innerWidth, innerHeight);
+      });
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+      labels.render(scene, camera);
+    }
+
+    loadData()
+      .then(data => {
+        data.ground.forEach((item, index) => createNode(item, 'ground', index));
+        data.peaks.forEach((item, index) => createNode(item, 'peak', index));
+        data.links.forEach(createEdge);
+
+        bindEvents();
+        clearFocus();
+        animate();
+        $('loading').classList.add('hidden');
+      })
+      .catch(error => {
+        $('loading').textContent = `VIRHE: ${error.message}`;
+        console.error(error);
+      });
+  </script>
+</body>
+</html>
