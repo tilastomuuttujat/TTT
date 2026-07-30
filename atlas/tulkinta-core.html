@@ -1,1 +1,252 @@
-placeholder
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Murrosatlas × Selitysatlas · maisemaversio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#05070c;--ink:#eef3fb;--muted:#93a1b8;--dim:#6c7b93;--glass:rgba(9,14,22,.64);--glass2:rgba(11,17,27,.88);--line:rgba(126,150,186,.2);--line2:rgba(126,150,186,.36);--gold:#ffd166;--cyan:#7fd7ff;--violet:#a889ff;--serif:"Fraunces",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--sans:"Inter",system-ui,sans-serif}
+*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans)}button,input{font:inherit;color:inherit}.stage,#app{position:fixed;inset:0}canvas{display:block;touch-action:none}.vignette,.grain,.scan{position:fixed;inset:0;pointer-events:none}.vignette{z-index:2;background:radial-gradient(120% 90% at 50% 38%,transparent 40%,rgba(3,5,9,.52) 78%,rgba(2,3,6,.92) 100%)}.grain{z-index:3;opacity:.04;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>")}.scan{z-index:3;opacity:.08;background:repeating-linear-gradient(to bottom,rgba(255,255,255,.035) 0 1px,transparent 1px 4px)}
+.panel{position:fixed;z-index:8;background:var(--glass);border:1px solid var(--line);border-radius:18px;box-shadow:0 26px 70px rgba(0,0,0,.48),inset 0 1px rgba(255,255,255,.05);backdrop-filter:blur(18px) saturate(135%)}.intro{left:20px;top:20px;width:380px;padding:18px 19px}.kicker{font:600 10px/1.2 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}.intro h1{font:600 27px/1.06 var(--serif);margin:8px 0 7px}.intro h1 em{font-style:italic;color:var(--gold)}.intro p{font-size:12.5px;color:#b9c6da;margin:0}.stats{display:flex;gap:18px;margin-top:14px;padding-top:13px;border-top:1px solid var(--line)}.stat b{display:block;font:600 17px var(--mono)}.stat span{font:500 8px var(--mono);letter-spacing:.14em;color:var(--dim);text-transform:uppercase}.legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}.chip{display:inline-flex;align-items:center;gap:7px;padding:5px 9px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:10.5px;color:#c3cfe0;cursor:pointer}.chip.active{border-color:rgba(255,209,102,.5);color:#ffe2a0;background:rgba(255,209,102,.09)}.chip .sw{width:8px;height:8px;border-radius:50%;box-shadow:0 0 10px currentColor}
+.topbar{right:20px;top:20px;padding:7px;display:flex;gap:5px}.tab{border:1px solid transparent;background:transparent;border-radius:11px;padding:8px 12px;color:#aeb9c9;font-size:11.5px;cursor:pointer}.tab:hover{background:rgba(255,255,255,.06)}.tab.active{border-color:rgba(255,209,102,.45);color:#ffe3a5;background:rgba(255,209,102,.09)}
+.controls{left:20px;bottom:20px;width:min(650px,calc(100vw - 40px));padding:15px 17px}.ticks{position:relative;height:14px}.ticks i{position:absolute;transform:translateX(-50%);font:500 9px var(--mono);color:var(--dim);font-style:normal}.slider{appearance:none;width:100%;height:22px;background:transparent;cursor:pointer}.slider::-webkit-slider-runnable-track{height:4px;border-radius:99px;background:linear-gradient(90deg,var(--gold) var(--p,100%),rgba(255,255,255,.12) var(--p,100%))}.slider::-webkit-slider-thumb{appearance:none;width:16px;height:16px;margin-top:-6px;border-radius:50%;background:var(--gold);border:2px solid #0a0f18;box-shadow:0 0 0 4px rgba(255,209,102,.14),0 0 18px rgba(255,209,102,.56)}.row{display:flex;gap:9px;align-items:center;margin-top:10px}.year{font:600 25px var(--mono);color:var(--gold);min-width:72px}.btn{border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.04);padding:8px 11px;cursor:pointer;font-size:12px}.btn:hover{border-color:var(--line2);background:rgba(255,255,255,.08)}.btn.primary{border-color:rgba(255,209,102,.44);color:#ffe4a9;background:rgba(255,209,102,.1)}.spacer{flex:1}.search{position:relative;min-width:210px;flex:1}.search input{width:100%;border:1px solid var(--line);border-radius:11px;background:rgba(255,255,255,.04);padding:8px 11px;outline:none}.results{position:absolute;left:0;right:0;bottom:calc(100% + 8px);max-height:250px;overflow:auto;background:var(--glass2);border:1px solid var(--line);border-radius:13px;padding:5px;display:none}.results.open{display:block}.results button{width:100%;display:block;text-align:left;border:0;background:transparent;border-radius:8px;padding:7px 9px;font-size:11.5px;cursor:pointer}.results button:hover{background:rgba(255,255,255,.07)}
+.details{right:20px;top:78px;width:370px;max-height:calc(100vh - 176px);padding:19px;overflow:auto;opacity:0;transform:translateX(15px) scale(.98);pointer-events:none;transition:.28s}.details.open{opacity:1;transform:none;pointer-events:auto}.details h2{font:600 22px/1.16 var(--serif);margin:7px 32px 5px 0}.close{position:absolute;right:13px;top:13px;width:30px;height:30px;border:1px solid var(--line);border-radius:9px;background:rgba(255,255,255,.04);cursor:pointer}.meta{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}.pill{padding:4px 8px;border-radius:999px;border:1px solid var(--line);font:500 9.5px var(--mono);color:#cbd4e3}.summary{font-size:12.5px;line-height:1.62;color:#d3dcea}.sect{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}.sect h3{font:600 9px var(--mono);letter-spacing:.18em;color:var(--dim);text-transform:uppercase;margin:0 0 8px}.links button{width:100%;display:flex;gap:8px;text-align:left;border:0;background:transparent;border-radius:8px;padding:6px 7px;color:#ccd7e7;font-size:11.5px;cursor:pointer}.links button:hover{background:rgba(255,255,255,.07)}.links .rel{margin-left:auto;font:500 9px var(--mono);color:var(--dim)}
+.tip{position:fixed;z-index:12;pointer-events:none;padding:7px 10px;border-radius:10px;background:rgba(6,10,17,.92);border:1px solid var(--line2);font-size:11.5px;opacity:0;transform:translate(-50%,-135%);transition:opacity .12s;white-space:nowrap}.tip.on{opacity:1}.hint{position:fixed;z-index:7;left:50%;top:25px;transform:translateX(-50%);padding:7px 13px;border-radius:999px;background:rgba(6,10,17,.6);border:1px solid var(--line);font:500 10px var(--mono);letter-spacing:.08em;color:#9dabc1;pointer-events:none}.loading{position:fixed;z-index:30;inset:0;display:grid;place-items:center;background:#05070c}.loading.gone{opacity:0;pointer-events:none;transition:.6s}.orb{width:62px;height:62px;margin:auto;border-radius:50%;background:conic-gradient(transparent,var(--gold));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 0);animation:spin 1.1s linear infinite}@keyframes spin{to{transform:rotate(1turn)}}.loading p{font:500 10px var(--mono);letter-spacing:.24em;color:var(--dim)}.error{max-width:650px;margin:20px;padding:22px;border:1px solid #7a3f4a;border-radius:14px;background:#170f14;color:#ffd9df;white-space:pre-wrap;font:12px/1.6 var(--mono)}
+.node-label{padding:3px 6px;border-radius:6px;background:rgba(5,7,12,.7);border:1px solid rgba(126,150,186,.16);font:500 9px var(--mono);color:#d6e0ee;white-space:nowrap;opacity:.9}.node-label.peak{color:#ffe2a0;border-color:rgba(255,209,102,.25)}
+.layer-guide{left:20px;top:292px;width:380px;padding:14px 16px;transition:.25s}
+.layer-guide h2{margin:0 0 9px;font:600 12px var(--serif)}
+.layer-row{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:start;padding:8px 0}
+.layer-row+.layer-row{border-top:1px solid var(--line)}
+.layer-icon{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font:600 12px var(--mono)}
+.layer-icon.ground{background:rgba(75,190,230,.12);border:1px solid rgba(75,190,230,.38);color:#7fd7ff}
+.layer-icon.peak{background:rgba(168,137,255,.12);border:1px solid rgba(168,137,255,.4);color:#c6afff}
+.layer-row b{display:block;font-size:11.5px;margin-bottom:2px}
+.layer-row span{display:block;color:#9eabc0;font-size:10.5px;line-height:1.45}
+.guide-arrow{text-align:center;color:var(--gold);font:600 9px var(--mono);letter-spacing:.08em;margin:-2px 0}
+.reading-status{position:fixed;z-index:7;left:50%;bottom:110px;transform:translateX(-50%);width:min(620px,calc(100vw - 40px));padding:10px 14px;border-radius:14px;background:rgba(7,11,18,.76);border:1px solid var(--line);backdrop-filter:blur(12px);text-align:center;color:#b8c4d7;font-size:11.5px;pointer-events:none;transition:.25s}
+.reading-status strong{color:#ffe0a0}
+.reading-status.selected{border-color:rgba(255,209,102,.34);background:rgba(12,15,21,.88)}
+.interpretation{margin:12px 0;padding:11px 12px;border-radius:12px;background:rgba(255,209,102,.065);border:1px solid rgba(255,209,102,.2)}
+.interpretation b{display:block;font:600 9px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.interpretation p{margin:0;color:#d6deeb;font-size:12px;line-height:1.55}
+.link-note{display:block;margin-top:2px;color:#8492a8;font-size:9.5px;line-height:1.35}
+.confidence{white-space:nowrap;font:500 9px var(--mono)}
+.confidence.high{color:#8de8bd}.confidence.medium{color:#ffd58a}.confidence.low{color:#f39ba7}
+.layer-badge{position:fixed;z-index:5;pointer-events:none;padding:6px 10px;border-radius:999px;background:rgba(5,7,12,.62);border:1px solid var(--line);font:600 9px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#9eacc0}
+.layer-badge.top{left:50%;top:82px;transform:translateX(-50%);color:#cab8ff}
+.layer-badge.bottom{left:50%;bottom:145px;transform:translateX(-50%);color:#87dff7}
+@media(max-width:980px){.layer-guide{display:none}.reading-status{bottom:92px}.layer-badge{display:none}}
+@media(max-width:980px){.intro{width:330px}.topbar{top:210px;left:20px;right:auto}.details{top:auto;bottom:145px;max-height:45vh}.hint{display:none}}@media(max-width:680px){.intro{left:10px;top:10px;width:calc(100vw - 20px);padding:13px}.intro p,.stats{display:none}.topbar{display:none}.controls{left:10px;bottom:10px;width:calc(100vw - 20px)}.search{display:none}.details{right:10px;width:calc(100vw - 20px)}}
+</style>
+</head>
+<body>
+<div class="stage"><div id="app"></div><div class="vignette"></div><div class="scan"></div><div class="grain"></div></div>
+<div class="hint">vedä · rullaa · napsauta solmua</div><div id="tip" class="tip"></div>
+<div class="layer-badge top">SELITYSATLAS · miksi ja millä mekanismilla?</div>
+<div class="layer-badge bottom">MURROSATLAS · mitä tapahtui ja muuttui?</div>
+<section class="panel intro"><div class="kicker">YHTEISMAISEMA · 1850–2035</div><h1>Murrosatlas <em>×</em> Selitysatlas</h1><p>Alempi kerros näyttää, mitä Suomessa muuttui. Ylempi kerros kokoaa malleja, joilla murroksia voidaan selittää. Klikkaus valaisee näiden välisen tulkintapolun.</p><div class="stats"><div class="stat"><b id="groundCount">–</b><span>murrosta</span></div><div class="stat"><b id="peakCount">–</b><span>selitystä</span></div><div class="stat"><b id="approvedCount">–</b><span>vahvaa linkkiä</span></div></div><div id="chips" class="legend"></div></section>
+<section class="panel layer-guide" id="layerGuide">
+  <h2>Näin luet maisemaa</h2>
+  <div class="layer-row"><div class="layer-icon peak">▲</div><div><b>Selitysatlas -- mallit</b><span>Huiput kokoavat useita murroksia saman mekanismin tai kehitysmallin alle.</span></div></div>
+  <div class="guide-arrow">↕ EHDOTETTU TULKINTAYHTEYS</div>
+  <div class="layer-row"><div class="layer-icon ground">●</div><div><b>Murrosatlas -- havainnot</b><span>Maanpinnan pisteet kuvaavat tapahtumia, päätöksiä, kriisejä ja rakennemuutoksia ajassa.</span></div></div>
+</section>
+<nav class="panel topbar"><button class="tab active" data-mode="all">Kaikki</button><button class="tab" data-mode="approved">Vahvat yhteydet</button><button class="tab" data-mode="orphans">Orvot</button><button class="tab" data-mode="chains">Murrosketjut</button></nav>
+<section class="panel controls"><div id="ticks" class="ticks"></div><input id="yearRange" class="slider" type="range" min="1850" max="2035" value="2035"><div class="row"><div id="yearValue" class="year">2035</div><button id="play" class="btn primary">▶ Toista</button><button id="resetView" class="btn">Palauta</button><button id="toggleLabels" class="btn">Tekstit</button><div class="spacer"></div><div class="search"><input id="searchInput" placeholder="Etsi murrosta tai teemaa…"><div id="results" class="results"></div></div></div></section>
+<aside id="details" class="panel details"><button id="closeDetails" class="close">×</button><div id="detailKind" class="kicker"></div><h2 id="detailTitle"></h2><div id="detailMeta" class="meta"></div><div id="detailSummary" class="summary"></div><div id="detailExtra"></div></aside>
+<div id="readingStatus" class="reading-status"><strong>Klikkaa murrosta tai selityshuippua.</strong> Näkymä säilyttää nykyisen mittakaavan, himmentää muun aineiston ja eristää valitun kohteen yhteydet.</div>
+<div id="loading" class="loading"><div><div class="orb"></div><p>RAKENNETAAN YHTEISMAISEMAA…</p></div></div>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+const $=id=>document.getElementById(id),MIN_YEAR=1850,MAX_YEAR=2035,SPAN=174;
+const urls={
+ murros:['murrosatlas.json'],
+ selitys:['selitysatlas.json'],
+ crosswalk:['crosswalk.json']
+};
+const fallback={R:'#4f8ef7',S:'#2fd08c',K:'#f4536a',A:'#8d70c9',M:'#c07a5a'};
+const laneNames=['talous','yhteiskunta','hyvinvointi','teknologia','alueet','kulttuuri','politiikka','koulutus','ympäristö','terveys','työ','maaseutu','asuminen','hallinto','väestö'];
+const laneColor={talous:'#ff9b38',yhteiskunta:'#4aa8ff',hyvinvointi:'#4fd88b',teknologia:'#5caeff',alueet:'#3ed0df',kulttuuri:'#aa82ff',politiikka:'#f45c72',koulutus:'#a985ff',ympäristö:'#8edb59',terveys:'#54d9bb',työ:'#ffad45',maaseutu:'#82cf63',asuminen:'#43c1dd',hallinto:'#61adff',väestö:'#f36a7c'};
+let atlas,scene,camera,renderer,labelRenderer,composer,controls,raycaster,mode='all',topic='Kaikki',year=MAX_YEAR,playing=false,selected=null,hovered=null,labelsOn=true,flight=null;
+const pointer=new THREE.Vector2(-2,-2),clock=new THREE.Clock(),nodeById=new Map(),nodes=[],edges=[],relations=[];
+const xOf=y=>((y-MIN_YEAR)/(MAX_YEAR-MIN_YEAR)-.5)*SPAN;
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+async function getJson(candidates,label){
+ let last='';
+ for(const url of candidates){try{const r=await fetch(url,{cache:'no-store'});if(r.ok)return r.json();last=`HTTP ${r.status} (${r.url})`}catch(err){last=err.message}}
+ throw new Error(`${label}: ${last||'tiedostoa ei löytynyt'}`)
+}
+async function load(){const [m,s,c]=await Promise.all([getJson(urls.murros,'Murrosatlas'),getJson(urls.selitys,'Selitysatlas'),getJson(urls.crosswalk,'Crosswalk')]);if(!Array.isArray(m.items))throw new Error('murrosatlas.json: items-taulukko puuttuu');if(!Array.isArray(s.themes))throw new Error('selitysatlas.json: themes-taulukko puuttuu');if(!Array.isArray(c.links))throw new Error('crosswalk.json: links-taulukko puuttuu');
+ const ground=m.items.map((x,i)=>({id:x.id||`murros-${i+1}`,sourceId:x.id,title:x.title||x.name||`Murros ${i+1}`,year:clamp(x.year_start??x.year),end:x.year_end,category:(x.domains||[])[0]||x.type||'yhteiskunta',domains:x.domains||[],summary:x.problem||x.current_relevance||x.phase||'',importance:Number(x.importance)||3,type:x.type||'murros'}));
+ const peaks=s.themes.map((x,i)=>({id:x.id||`S${String(i+1).padStart(2,'0')}`,title:x.name||x.title||`Selitysteema ${i+1}`,year:clamp(x.period?.start??x.year_start??x.year),end:x.period?.end??x.year_end,category:x.category||'A',domains:x.domains||x.tags||[],summary:x.summary||x.description||'',importance:Math.max(2,Number(x.importance)||((x.system_position?.impact_levels||[]).length+2)),color:x.display?.color}));
+ return{ground,peaks,links:c.links,relations:m.relations||[],meta:c.meta||{}}}
+function clamp(v){v=Number(v)||MIN_YEAR;return Math.max(MIN_YEAR,Math.min(MAX_YEAR,v))}function seeded(s){let h=2166136261;for(const ch of String(s)){h^=ch.charCodeAt(0);h=Math.imul(h,16777619)}return()=>((h=Math.imul(h^h>>>15,1|h))>>>0)/4294967296}
+function setup(){scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x05070c,.0054);camera=new THREE.PerspectiveCamera(46,innerWidth/innerHeight,.1,1600);camera.position.set(20,78,145);renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;$('app').appendChild(renderer.domElement);
+ labelRenderer=new CSS2DRenderer();labelRenderer.setSize(innerWidth,innerHeight);Object.assign(labelRenderer.domElement.style,{position:'fixed',inset:'0',pointerEvents:'none',zIndex:'4'});$('app').appendChild(labelRenderer.domElement);
+ controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.dampingFactor=.055;controls.minDistance=38;controls.maxDistance=300;controls.maxPolarAngle=Math.PI*.49;controls.target.set(0,13,0);controls.saveState();raycaster=new THREE.Raycaster();raycaster.params.Line.threshold=1.1;
+ scene.add(new THREE.HemisphereLight(0xa8c8ff,0x0b0f16,1.25));const key=new THREE.DirectionalLight(0xffffff,2);key.position.set(-60,110,60);scene.add(key);const rim=new THREE.DirectionalLight(0xffd166,.8);rim.position.set(70,35,-70);scene.add(rim);buildAtmosphere();
+ composer=new EffectComposer(renderer);composer.addPass(new RenderPass(scene,camera));composer.addPass(new UnrealBloomPass(new THREE.Vector2(innerWidth,innerHeight),.68,.72,.17));composer.addPass(new OutputPass())}
+function buildAtmosphere(){const count=1200,pos=new Float32Array(count*3);for(let i=0;i<count;i++){const r=280+Math.random()*430,th=Math.random()*Math.PI*2,ph=Math.acos(THREE.MathUtils.randFloatSpread(1.4));pos.set([r*Math.sin(ph)*Math.cos(th),Math.abs(r*Math.cos(ph))*.7,r*Math.sin(ph)*Math.sin(th)],i*3)}scene.add(new THREE.Points(new THREE.BufferGeometry().setAttribute('position',new THREE.BufferAttribute(pos,3)),new THREE.PointsMaterial({color:0x9fb6d8,size:1.2,transparent:true,opacity:.45,depthWrite:false})));
+ const grid=new THREE.GridHelper(250,50,0x3d4f6b,0x1b2534);grid.position.y=-3.8;grid.material.transparent=true;grid.material.opacity=.46;scene.add(grid);const glow=new THREE.Mesh(new THREE.CircleGeometry(135,64),new THREE.MeshBasicMaterial({color:0x0d1826,transparent:true,opacity:.55,depthWrite:false}));glow.rotation.x=-Math.PI/2;glow.position.y=-4;scene.add(glow)}
+function laneOf(item){const text=((item.category||'')+' '+(item.domains||[]).join(' ')).toLowerCase();let i=laneNames.findIndex(n=>text.includes(n));if(i<0)i=Math.abs(hash(item.id))%laneNames.length;return i}function hash(s){let h=0;for(const c of String(s))h=((h<<5)-h+c.charCodeAt(0))|0;return h}
+function addLabel(text,obj,peak=false){const el=document.createElement('div');el.className='node-label'+(peak?' peak':'');el.textContent=text;const l=new CSS2DObject(el);l.position.set(0,peak?2.9:2.2,0);obj.add(l);return l}
+function build(){buildAxes();const core=new THREE.IcosahedronGeometry(1,2),halo=new THREE.SphereGeometry(1.85,18,14);
+ atlas.ground.forEach((g,i)=>{const r=seeded(g.sourceId),lane=laneOf(g),z=-35+lane*(70/(laneNames.length-1))+(r()-.5)*1.4,y=-1.2+r()*2.9,c=new THREE.Color(laneColor[laneNames[lane]]||'#57ccef'),w=.7+g.importance*.16,group=new THREE.Group();group.position.set(xOf(g.year)+(r()-.5)*1.7,y,z);const mesh=new THREE.Mesh(core,new THREE.MeshStandardMaterial({color:c,roughness:.3,metalness:.3,emissive:c.clone().multiplyScalar(.45),emissiveIntensity:1,transparent:true,opacity:.96}));mesh.scale.setScalar(w);group.add(mesh);const shell=new THREE.Mesh(halo,new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:.075,depthWrite:false,side:THREE.BackSide}));shell.scale.setScalar(w);group.add(shell);scene.add(group);const rec={kind:'ground',item:g,group,mesh,shell,color:c,baseScale:w,label:addLabel(g.title,group,false),target:1,phase:r()*6.28};nodes.push(rec);nodeById.set(g.id,rec);nodeById.set(g.sourceId,rec)});
+ atlas.peaks.forEach((p,i)=>{const r=seeded(p.id),lane=laneOf(p),z=-35+lane*(70/(laneNames.length-1)),h=17+p.importance*2.5+r()*8,c=new THREE.Color(p.color||fallback[p.category]||'#a889ff'),w=.85+p.importance*.17,group=new THREE.Group();group.position.set(xOf(p.year)+(r()-.5)*4,h,z+(r()-.5)*2.4);const mesh=new THREE.Mesh(new THREE.OctahedronGeometry(1.15,1),new THREE.MeshStandardMaterial({color:c,roughness:.22,metalness:.42,emissive:c.clone().multiplyScalar(.62),emissiveIntensity:1.35,transparent:true,opacity:.98}));mesh.scale.setScalar(w);group.add(mesh);const shell=new THREE.Mesh(new THREE.SphereGeometry(2.2,18,14),new THREE.MeshBasicMaterial({color:c,transparent:true,opacity:.095,depthWrite:false,side:THREE.BackSide}));shell.scale.setScalar(w);group.add(shell);const stem=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(0,-(h+3.6),0)]),new THREE.LineBasicMaterial({color:c,transparent:true,opacity:.12}));group.add(stem);scene.add(group);const rec={kind:'peak',item:p,group,mesh,shell,color:c,baseScale:w,label:addLabel(p.title,group,true),target:1,phase:r()*6.28};nodes.push(rec);nodeById.set(p.id,rec)});
+ buildEdges();populate();applyFilters(true)}
+function buildAxes(){for(let y=1850;y<=2035;y+=25){const x=xOf(y),line=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(x,-3.7,-39),new THREE.Vector3(x,-3.7,39)]),new THREE.LineBasicMaterial({color:0x4a5c78,transparent:true,opacity:.28}));scene.add(line);const el=document.createElement('div');el.className='node-label';el.textContent=y;const l=new CSS2DObject(el);l.position.set(x,-3.1,40);scene.add(l)}}
+function arc(a,b,height,color,opacity,dashed=false){const start=a.group.position.clone(),end=b.group.position.clone(),mid=start.clone().lerp(end,.5);mid.y+=height;const curve=new THREE.QuadraticBezierCurve3(start,mid,end),pts=curve.getPoints(32),mat=dashed?new THREE.LineDashedMaterial({color,transparent:true,opacity,dashSize:1.1,gapSize:.75,depthWrite:false}):new THREE.LineBasicMaterial({color,transparent:true,opacity,blending:THREE.AdditiveBlending,depthWrite:false}),line=new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),mat);if(dashed)line.computeLineDistances();scene.add(line);return line}
+function buildEdges(){atlas.links.forEach(l=>{const a=nodeById.get(l.source),b=nodeById.get(l.target);if(!a||!b)return;const approved=l.status==='approved'||l.tier==='high'||Number(l.confidence)>=.8,
+ line=arc(a,b,7+Math.abs(a.group.position.x-b.group.position.x)*.07,approved?0xffd166:0x46bdea,approved?.38:.16,!approved);edges.push({line,link:l,a,b})});atlas.relations.slice(0,300).forEach((r,i)=>{const a=nodeById.get(r.from||r.source),b=nodeById.get(r.to||r.target);if(!a||!b)return;const line=arc(a,b,1.4+(i%5)*.5,0x856ee8,.11,false);relations.push({line,rel:r,a,b})})}
+function populate(){$('groundCount').textContent=atlas.ground.length;$('peakCount').textContent=atlas.peaks.length;$('approvedCount').textContent=atlas.links.filter(x=>x.status==='approved'||x.tier==='high'||Number(x.confidence)>=.8).length;const topics=['Kaikki','Talous','Yhteiskunta','Hyvinvointi','Teknologia','Alueet','Kulttuuri','Politiikka','Koulutus','Ympäristö','Terveys','Työ'];$('chips').innerHTML=topics.map(t=>`<button class="chip ${t==='Kaikki'?'active':''}" data-topic="${t}"><i class="sw" style="background:${laneColor[t.toLowerCase()]||'#ffd166'}"></i>${t}</button>`).join('');$('ticks').innerHTML=[1850,1900,1950,2000,2035].map(y=>`<i style="left:${(y-MIN_YEAR)/(MAX_YEAR-MIN_YEAR)*100}%">${y}</i>`).join('')}
+function itemMatch(item){const text=(item.title+' '+item.summary+' '+(item.category||'')+' '+(item.domains||[]).join(' ')).toLowerCase();return item.year<=year&&(topic==='Kaikki'||text.includes(topic.toLowerCase().replace('työ','työ')))}
+function applyFilters(first=false){const linked=new Set(atlas.links.map(l=>l.source));nodes.forEach(n=>{let v=itemMatch(n.item);if(mode==='approved')v=v&&atlas.links.some(l=>(l.source===n.item.id||l.source===n.item.sourceId)&&(l.status==='approved'||l.tier==='high'||Number(l.confidence)>=.8));if(mode==='orphans')v=n.kind==='ground'&&v&&!linked.has(n.item.id)&&!linked.has(n.item.sourceId);if(mode==='chains')v=n.kind==='ground'&&v;n.target=v?1:0;n.group.visible=first?v:n.group.visible;if(n.label)n.label.visible=labelsOn&&v});edges.forEach(e=>{e.line.visible=e.a.target>0&&e.b.target>0&&mode!=='orphans'&&mode!=='chains'&&(mode!=='approved'||(e.link.status==='approved'||e.link.tier==='high'||Number(e.link.confidence)>=.8))});relations.forEach(e=>e.line.visible=mode==='chains'&&e.a.target>0&&e.b.target>0);highlight(selected);paintYear()}
+function paintYear(){const p=(year-MIN_YEAR)/(MAX_YEAR-MIN_YEAR)*100;$('yearRange').style.setProperty('--p',`${p}%`);$('yearValue').textContent=year}
+function linkStrength(l){
+ const c=Number(l.confidence)||0;
+ if(l.status==='approved')return {label:'hyväksytty',cls:'high'};
+ if(l.tier==='high'||c>=.8)return {label:'vahva ehdokas',cls:'high'};
+ if(l.tier==='medium'||c>=.5)return {label:'mahdollinen',cls:'medium'};
+ return {label:'heikko ehdokas',cls:'low'}
+}
+function highlight(rec){
+ flight=null;
+ const directCross=new Set();
+ const directSame=new Set();
+ if(rec){
+  edges.forEach(e=>{if(e.a===rec)directCross.add(e.b);else if(e.b===rec)directCross.add(e.a)});
+  relations.forEach(e=>{if(e.a===rec)directSame.add(e.b);else if(e.b===rec)directSame.add(e.a)});
+ }
+ nodes.forEach(n=>{
+  const isSelected=n===rec;
+  const isCross=directCross.has(n);
+  const isSame=directSame.has(n);
+  const baseVisible=n.target>0;
+  let opacity=.98,shell=.105,scale=1,labelVisible=labelsOn&&baseVisible;
+  if(rec){
+   if(isSelected){opacity=1;shell=.28;scale=1.16}
+   else if(isCross){opacity=.93;shell=.15;scale=1.07}
+   else if(isSame){opacity=.42;shell=.045;scale=.96}
+   else {opacity=.035;shell=.003;scale=.86}
+   labelVisible=baseVisible&&(isSelected||isCross||isSame);
+  }
+  n.mesh.material.opacity=opacity;
+  n.shell.material.opacity=shell;
+  n.focusScale=scale;
+  if(n.label)n.label.visible=labelVisible;
+ });
+ edges.forEach(e=>{
+  const hit=rec&&(e.a===rec||e.b===rec);
+  const strong=e.link.status==='approved'||e.link.tier==='high'||Number(e.link.confidence)>=.8;
+  e.line.material.opacity=rec?(hit?(strong?.96:.7):.004):(strong?.38:.14);
+  if(e.line.material.linewidth!==undefined)e.line.material.linewidth=hit?2:1;
+ });
+ relations.forEach(e=>{
+  const hit=rec&&(e.a===rec||e.b===rec);
+  e.line.material.opacity=rec?(hit?.34:.003):.09;
+ });
+}
+function showDetails(rec){
+ selected=rec;highlight(rec);
+ const item=rec.item,
+ ls=atlas.links.filter(l=>l.source===item.id||l.target===item.id||l.source===item.sourceId||l.target===item.sourceId),
+ rs=atlas.relations.filter(r=>[r.from,r.to,r.source,r.target].includes(item.sourceId||item.id));
+ const isPeak=rec.kind==='peak';
+ $('detailKind').textContent=isPeak?'SELITYSATLAS · SELITYSMALLI':'MURROSATLAS · HAVAITTU MUUTOS';
+ $('detailTitle').textContent=item.title;
+ $('detailMeta').innerHTML=`<span class="pill">${item.year}${item.end&&item.end!==item.year?'–'+item.end:''}</span><span class="pill">${esc(item.category)}</span><span class="pill">${ls.length?ls.length+' ehdotettua kerroslinkkiä':'ei ehdotettua kerroslinkkiä'}</span>`;
+ const question=isPeak
+  ?'Klikkaus näyttää, mihin Murrosatlaksen havaintoihin tämä selitysmalli on ehdotettu liitettäväksi. Yhteys ei vielä tarkoita todistettua syy-yhteyttä.'
+  :'Klikkaus näyttää, millä Selitysatlaksen malleilla tätä murrosta voidaan yrittää ymmärtää. Yhteys on tulkintaehdotus, ei väite yhdestä varmasta syystä.';
+ $('detailSummary').innerHTML=`<div class="interpretation"><b>Mitä klikkaus kuvaa?</b><p>${question}</p></div><div>${esc(item.summary||'Ei kuvausta.')}</div>`;
+ const crossEntries=ls.map(l=>{
+   const otherId=(l.source===item.id||l.source===item.sourceId)?l.target:l.source;
+   return {id:otherId,link:l}
+ }).filter((x,i,a)=>a.findIndex(y=>y.id===x.id)===i).slice(0,16);
+ const sameIds=[...new Set(rs.flatMap(r=>[r.from,r.to,r.source,r.target]).filter(x=>x&&x!==item.id&&x!==item.sourceId))].slice(0,10);
+ const crossSection=crossEntries.length?`<div class="sect"><h3>${isPeak?'Murrokset, joihin malli nojaa':'Selitysmallit, jotka voivat valaista murrosta'} (${crossEntries.length})</h3><div class="links">${crossEntries.map(({id,link})=>{
+   const n=nodeById.get(id);if(!n)return '';
+   const strength=linkStrength(link);
+   const conf=Number(link.confidence);
+   return `<button data-node="${esc(id)}"><span>${esc(n.item.title)}<small class="link-note">${isPeak?'havainto Murrosatlaksessa':'malli Selitysatlaksessa'}</small></span><span class="confidence ${strength.cls}">${strength.label}${Number.isFinite(conf)?' · '+Math.round(conf*100)+' %':''}</span></button>`
+ }).join('')}</div></div>`:`<div class="sect"><h3>Ei vielä kerroslinkkejä</h3><div class="summary">Tälle kohteelle ei ole crosswalk-aineistossa ehdotettua yhteyttä toiseen atlakseen.</div></div>`;
+ const sameSection=sameIds.length?`<div class="sect"><h3>Saman kerroksen kehitysyhteydet (${sameIds.length})</h3><div class="links">${sameIds.map(id=>{const n=nodeById.get(id);return n?`<button data-node="${esc(id)}"><span>${esc(n.item.title)}</span><span class="rel">${n.kind==='peak'?'selitysmalli':'murros'}</span></button>`:''}).join('')}</div></div>`:'';
+ $('detailExtra').innerHTML=crossSection+sameSection;
+ $('details').classList.add('open');
+ const status=isPeak
+  ?`<strong>Selitysmalli valittu:</strong> valaistut alalinkit näyttävät murrokset, joiden tulkintaan mallia ehdotetaan.`
+  :`<strong>Murros valittu:</strong> valaistut ylälinkit näyttävät selitysmallit, joilla murrosta voidaan tulkita.`;
+ $('readingStatus').innerHTML=status;
+ $('readingStatus').classList.add('selected');
+}
+function clear(){selected=null;highlight(null);$('details').classList.remove('open');$('readingStatus').classList.remove('selected');$('readingStatus').innerHTML='<strong>Klikkaa murrosta tai selityshuippua.</strong> Näkymä säilyttää nykyisen mittakaavan, himmentää muun aineiston ja eristää valitun kohteen yhteydet.'}
+function search(q){q=q.trim().toLowerCase();if(!q){$('results').classList.remove('open');return}const found=nodes.filter(n=>(n.item.title+' '+n.item.summary).toLowerCase().includes(q)).slice(0,10);$('results').innerHTML=found.map(n=>`<button data-node="${esc(n.item.id)}">${esc(n.item.title)} <small>· ${n.item.year}</small></button>`).join('');$('results').classList.toggle('open',found.length>0)}
+function bind(){
+ const drag={active:false,pointerId:null,x:0,y:0,moved:false};
+ const pick=e=>{
+  const rect=renderer.domElement.getBoundingClientRect();
+  pointer.set(((e.clientX-rect.left)/rect.width)*2-1,-((e.clientY-rect.top)/rect.height)*2+1);
+  raycaster.setFromCamera(pointer,camera);
+  const visibleMeshes=nodes.filter(n=>n.group.visible&&n.group.scale.x>.03).map(n=>n.mesh);
+  const hit=raycaster.intersectObjects(visibleMeshes,false)[0];
+  return hit?nodes.find(n=>n.mesh===hit.object)||null:null;
+ };
+ const updateHover=e=>{
+  const rec=pick(e);
+  hovered=rec;
+  renderer.domElement.style.cursor=drag.active?(drag.moved?'grabbing':'grab'):(rec?'pointer':'grab');
+  if(rec&&!drag.moved){
+   $('tip').innerHTML=`<b>${esc(rec.item.title)}</b><br><span>${rec.kind==='peak'?'Selitysmalli · klikkaa nähdäksesi sen murrospohjan':'Murros · klikkaa nähdäksesi mahdolliset selitysmallit'}</span>`;
+   $('tip').style.left=e.clientX+'px';$('tip').style.top=e.clientY+'px';$('tip').classList.add('on');
+  }else $('tip').classList.remove('on');
+ };
+ renderer.domElement.addEventListener('pointerdown',e=>{
+  if(e.button!==0)return;
+  drag.active=true;drag.pointerId=e.pointerId;drag.x=e.clientX;drag.y=e.clientY;drag.moved=false;
+  hovered=null;$('tip').classList.remove('on');
+ });
+ renderer.domElement.addEventListener('pointermove',e=>{
+  if(drag.active&&e.pointerId===drag.pointerId){
+   if(Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>6)drag.moved=true;
+   if(drag.moved){hovered=null;$('tip').classList.remove('on');renderer.domElement.style.cursor='grabbing';return;}
+  }
+  updateHover(e);
+ });
+ renderer.domElement.addEventListener('pointerup',e=>{
+  if(!drag.active||e.pointerId!==drag.pointerId)return;
+  const wasDrag=drag.moved;
+  drag.active=false;drag.pointerId=null;drag.moved=false;
+  renderer.domElement.style.cursor='grab';
+  if(wasDrag){hovered=null;$('tip').classList.remove('on');return;}
+  const rec=pick(e);hovered=rec;
+  if(rec)showDetails(rec);else clear();
+ });
+ renderer.domElement.addEventListener('pointercancel',()=>{drag.active=false;drag.pointerId=null;drag.moved=false;hovered=null;$('tip').classList.remove('on')});
+ renderer.domElement.addEventListener('pointerleave',()=>{if(!drag.active){hovered=null;$('tip').classList.remove('on')}});
+ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');mode=b.dataset.mode;clear();applyFilters()});
+ $('chips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');topic=b.dataset.topic;clear();applyFilters()};
+ $('yearRange').oninput=e=>{year=+e.target.value;applyFilters()};
+ $('play').onclick=()=>{playing=!playing;$('play').textContent=playing?'❚❚ Tauko':'▶ Toista';if(playing&&year>=MAX_YEAR){year=MIN_YEAR;$('yearRange').value=year;applyFilters()}};
+ $('resetView').onclick=()=>{controls.reset();clear()};
+ $('toggleLabels').onclick=()=>{labelsOn=!labelsOn;highlight(selected)};
+ $('searchInput').oninput=e=>search(e.target.value);
+ $('results').onclick=e=>{const b=e.target.closest('[data-node]'),n=b&&nodeById.get(b.dataset.node);if(n){showDetails(n);$('results').classList.remove('open')}};
+ $('detailExtra').onclick=e=>{const b=e.target.closest('[data-node]'),n=b&&nodeById.get(b.dataset.node);if(n)showDetails(n)};
+ $('closeDetails').onclick=clear;
+ addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);labelRenderer.setSize(innerWidth,innerHeight);composer.setSize(innerWidth,innerHeight)})
+}
+function animate(){requestAnimationFrame(animate);const dt=Math.min(clock.getDelta(),.05),t=performance.now();if(playing){year+=dt*9;if(year>=MAX_YEAR){year=MAX_YEAR;playing=false;$('play').textContent='▶ Toista'}year=Math.floor(year);$('yearRange').value=year;applyFilters()}nodes.forEach(n=>{n.group.visible=n.target>0||n.group.scale.x>.03;const desired=n.target*(n.focusScale||1);const s=THREE.MathUtils.lerp(n.group.scale.x,desired,.12);n.group.scale.setScalar(s);n.mesh.rotation.y+=dt*(n.kind==='peak'?.42:.14);n.shell.scale.setScalar(n.baseScale*(1+.045*Math.sin(t*.0015+n.phase)))});if(flight){flight.t=Math.min(1,flight.t+dt*1.45);const k=1-Math.pow(1-flight.t,3);camera.position.lerpVectors(flight.fromCam,flight.toCam,k);controls.target.lerpVectors(flight.fromTarget,flight.toTarget,k);if(flight.t>=1)flight=null}controls.update();composer.render();labelRenderer.render(scene,camera)}
+load().then(d=>{atlas=d;setup();build();bind();animate();$('loading').classList.add('gone')}).catch(err=>{$('loading').innerHTML=`<div class="error"><strong>Yhteismaisemaa ei voitu rakentaa.</strong>\n\n${esc(err.message)}\n\nTiedostojen tulee olla samassa kansiossa:\n• murrosatlas.json\n• selitysatlas.json\n• crosswalk.json</div>`;console.error(err)});
+</script>
+</body>
+</html>
