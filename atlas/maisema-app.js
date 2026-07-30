@@ -312,6 +312,28 @@ function buildLanes() {
   });
 }
 
+/*
+ * Kipinän väri ja suunta kertovat kaksi eri asiaa:
+ *  - VÄRI  = millaista näyttöä relaatiosta on (kausaalinen vai tulkinnallinen/kontekstuaalinen)
+ *  - SUUNTA = mikä tapahtui ensin (aina kronologisesti aiemmasta myöhempään), ei koskaan
+ *            data-kenttien from/to-tallennusjärjestys sellaisenaan.
+ *
+ * Ensisijainen lähde luokitukselle on explanation_model.relation_scope, koska se on
+ * kuratoijien itsensä arvioima ja tarkempi kuin karkeampi rel_class-kenttä (jonka arvo
+ * on osalla relaatioista peräisin automaattisesta siemenluokittelusta eikä aina täsmää
+ * relaation oman selitystekstin kanssa -- esim. rel-080).
+ */
+const CAUSAL_SCOPES = new Set(['causal']);
+const CAUSAL_RELCLASS_FALLBACK = new Set(['rakenne', 'kaari', 'tapahtuma', 'vastavaikutus']);
+const SPARK_CAUSAL = 0xffd166;  // kulta -- ajallinen syy-seuraus, kulkee eteenpäin
+const SPARK_INTERP = 0x7fd7ff;  // jäänsininen -- tulkinnallinen/kontekstuaalinen, ei suuntaa
+
+function isCausalRel(rel) {
+  const scope = rel?.explanation_model?.relation_scope;
+  if (scope) return CAUSAL_SCOPES.has(scope);
+  return CAUSAL_RELCLASS_FALLBACK.has(rel?.rel_class);
+}
+
 function buildEdges() {
   (atlas.relations || []).forEach(rel => {
     const [a, b] = ends(rel);
@@ -319,8 +341,13 @@ function buildEdges() {
     const to = nodeById.get(b);
     if (!from || !to || from === to) return;
 
-    const p0 = from.group.position.clone();
-    const p1 = to.group.position.clone();
+    const isCausal = isCausalRel(rel);
+    // Kronologinen järjestys ratkaisee reitin -- ei se, kumpi on datassa from/to.
+    const earlier = from.year <= to.year ? from : to;
+    const later = from.year <= to.year ? to : from;
+
+    const p0 = earlier.group.position.clone();
+    const p1 = later.group.position.clone();
     const mid = p0.clone().lerp(p1, 0.5);
     mid.y += Math.min(20, p0.distanceTo(p1) * 0.22) + 3;
     const curve = new THREE.QuadraticBezierCurve3(p0, mid, p1);
@@ -329,7 +356,7 @@ function buildEdges() {
     const geo = new THREE.BufferGeometry().setFromPoints(pts);
     const colors = new Float32Array(pts.length * 3);
     for (let i = 0; i < pts.length; i++) {
-      const c = from.color.clone().lerp(to.color, i / (pts.length - 1));
+      const c = earlier.color.clone().lerp(later.color, i / (pts.length - 1));
       colors.set([c.r, c.g, c.b], i * 3);
     }
     geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
@@ -339,14 +366,21 @@ function buildEdges() {
     }));
     scene.add(line);
 
-    // travelling spark
+    // kipinä: kausaalinen matkaa, tulkinnallinen/kontekstuaalinen sykkii paikallaan
     const spark = new THREE.Mesh(
       new THREE.SphereGeometry(0.42, 10, 8),
-      new THREE.MeshBasicMaterial({ color: 0xffd166, transparent: true, opacity: 0 })
+      new THREE.MeshBasicMaterial({
+        color: isCausal ? SPARK_CAUSAL : SPARK_INTERP,
+        transparent: true, opacity: 0
+      })
     );
     scene.add(spark);
 
-    edges.push({ line, spark, curve, from, to, rel, t: Math.random(), opacity: 0.22, target: 0.22 });
+    edges.push({
+      line, spark, curve, from, to, rel, isCausal,
+      t: isCausal ? Math.random() : 0.5,
+      opacity: 0.22, target: 0.22
+    });
   });
 }
 
@@ -465,9 +499,12 @@ function renderDetails(node) {
 
   const rels = (atlas.relations || []).map(r => {
     const [a, b] = ends(r);
-    if (a === t.id && nodeById.get(b)) return { n: nodeById.get(b), kind: r.relation_type, dir: '→' };
-    if (b === t.id && nodeById.get(a)) return { n: nodeById.get(a), kind: r.relation_type, dir: '←' };
-    return null;
+    const other = a === t.id ? nodeById.get(b) : b === t.id ? nodeById.get(a) : null;
+    if (!other) return null;
+    // Nuoli seuraa kronologiaa, ei datan tallennusjärjestystä (from/to) --
+    // sama sääntö kuin 3D-näkymän kipinän suunnassa.
+    const dir = node.year <= other.year ? '→' : '←';
+    return { n: other, kind: r.relation_type, dir, causal: isCausalRel(r) };
   }).filter(Boolean);
 
   let html = '';
@@ -475,7 +512,7 @@ function renderDetails(node) {
   if (rels.length) {
     html += `<div class="sect"><h3>Ketjut (${rels.length})</h3><div class="links">` +
       rels.map(r => `<button data-goto="${r.n.theme.id}">
-          <i class="dot" style="background:${r.n.color.getStyle()}"></i>
+          <i class="dot" style="background:${r.causal ? '#ffd166' : '#7fd7ff'}" title="${r.causal ? 'kausaalinen' : 'tulkinnallinen / kontekstuaalinen'}"></i>
           <span>${r.dir} ${r.n.theme.name || r.n.theme.id}</span>
           <span class="rel">${(r.kind || '').replace(/_/g, ' ')}</span>
         </button>`).join('') + '</div></div>';
@@ -607,10 +644,17 @@ function animate() {
     e.line.visible = vis;
     e.line.material.opacity = e.opacity;
     if (e.hot && vis) {
-      e.t = (e.t + dt * 0.35) % 1;
       e.spark.visible = true;
-      e.spark.position.copy(e.curve.getPoint(e.t));
-      e.spark.material.opacity = e.opacity;
+      if (e.isCausal) {
+        // Kausaalinen: kipinä matkaa aina kronologisesti eteenpäin (ks. buildEdges).
+        e.t = (e.t + dt * 0.35) % 1;
+        e.spark.position.copy(e.curve.getPoint(e.t));
+        e.spark.material.opacity = e.opacity;
+      } else {
+        // Tulkinnallinen/kontekstuaalinen: ei suuntaväitettä -- paikallaan sykkivä piste.
+        e.spark.position.copy(e.curve.getPoint(0.5));
+        e.spark.material.opacity = e.opacity * (0.55 + Math.sin(time * 4) * 0.45);
+      }
     } else {
       e.spark.visible = false;
     }
