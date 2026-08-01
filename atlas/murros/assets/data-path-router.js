@@ -7,6 +7,8 @@
   const redirects = new Map([
     ['suomen_murrosvaiheet_syvennetty.json', '../murrosatlas.json'],
     ['murrosatlas.json', '../murrosatlas.json'],
+    ['selitysatlas.json', '../selitysatlas.json'],
+    ['crosswalk.json', '../crosswalk.json'],
     ['artikkelit.json', '../artikkelit.json']
   ]);
 
@@ -40,6 +42,33 @@
     const request = new Request(target, input);
     return nativeFetch(request, init);
   };
+
+  function installCrosswalkTabs() {
+    const tabs = document.querySelector('.topbar .tabs');
+    if (!tabs || tabs.querySelector('[data-crosswalk-link]')) return;
+
+    const tulkinta = tabs.querySelector('a[href="../tulkinta.html"]');
+    const links = [
+      ['network', 'Atlasverkko'],
+      ['radial', 'Kytkentäkehä'],
+      ['timeline', 'Aikajana']
+    ];
+
+    for (const [view, label] of links) {
+      const link = document.createElement('a');
+      link.className = 'tab-link';
+      link.dataset.crosswalkLink = view;
+      link.href = `crosswalk.html?view=${view}`;
+      link.innerHTML = `<span class="dot"></span>${label}`;
+      tabs.insertBefore(link, tulkinta || null);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', installCrosswalkTabs, { once: true });
+  } else {
+    installCrosswalkTabs();
+  }
 
   window.__murrosAtlasDataPathsRouted = true;
 })();
