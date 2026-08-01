@@ -43,32 +43,20 @@
     return nativeFetch(request, init);
   };
 
-  function installCrosswalkTabs() {
+  function installAtlasNetworkTab() {
     const tabs = document.querySelector('.topbar .tabs');
-    if (!tabs || tabs.querySelector('[data-crosswalk-link]')) return;
+    if (!tabs || tabs.querySelector('[data-view="atlasverkko"]')) return;
 
     const tulkinta = tabs.querySelector('a[href="../tulkinta.html"]');
-    const links = [
-      ['network', 'Atlasverkko'],
-      ['radial', 'Kytkentäkehä'],
-      ['timeline', 'Aikajana']
-    ];
-
-    for (const [view, label] of links) {
-      const link = document.createElement('a');
-      link.className = 'tab-link';
-      link.dataset.crosswalkLink = view;
-      link.href = `crosswalk.html?view=${view}`;
-      link.innerHTML = `<span class="dot"></span>${label}`;
-      tabs.insertBefore(link, tulkinta || null);
-    }
+    const button = document.createElement('button');
+    button.className = 'tab';
+    button.type = 'button';
+    button.dataset.view = 'atlasverkko';
+    button.setAttribute('aria-selected', 'false');
+    button.innerHTML = '<span class="dot"></span>Atlasverkko';
+    tabs.insertBefore(button, tulkinta || null);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', installCrosswalkTabs, { once: true });
-  } else {
-    installCrosswalkTabs();
-  }
-
+  installAtlasNetworkTab();
   window.__murrosAtlasDataPathsRouted = true;
 })();
