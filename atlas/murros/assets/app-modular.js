@@ -27,7 +27,8 @@ const VIEWS = {
   verkko: () => import('../views/verkko.js'),
   matriisi: () => import('../views/matriisi.js'),
   paattely: () => import('../views/paattely.js'),
-  maisema: () => import('../views/maisema.js')
+  maisema: () => import('../views/maisema.js'),
+  atlasverkko: () => import('../views/atlasverkko-original.js')
 };
 
 let activeView = null;
@@ -145,7 +146,6 @@ function attachInfographics(entry) {
   const next = {
     ...entry,
     infographics,
-    // Verkko.html ja matriisi.html odottavat kuvia olioina: img.url, img.caption.
     images: infographics
   };
 
@@ -239,53 +239,10 @@ function exposeAdminApi() {
   };
 }
 
-function addAdminToggle(figure) {
-  if (!activeSession || figure.dataset.infographicAdmin === 'true') return;
-  const image = figure.querySelector('img');
-  if (!image) return;
-  const row = infographicByUrl.get(normalizeUrl(image.currentSrc || image.src));
-  if (!row) return;
-
-  figure.dataset.infographicAdmin = 'true';
-  const label = document.createElement('label');
-  label.className = 'infographic-admin-toggle';
-  Object.assign(label.style, {
-    display: 'flex', alignItems: 'center', gap: '8px', marginTop: '9px',
-    padding: '8px 10px', border: '1px solid rgba(120,120,120,.28)',
-    borderRadius: '8px', font: '500 12px system-ui,sans-serif', cursor: 'pointer'
-  });
-  const checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-  checkbox.checked = !row.unpublished;
-  const text = document.createElement('span');
-  text.textContent = 'Julkaistu';
-  label.append(checkbox, text);
-  figure.appendChild(label);
-
-  checkbox.addEventListener('change', async () => {
-    checkbox.disabled = true;
-    try {
-      await updatePublication(row.id, checkbox.checked);
-      text.textContent = checkbox.checked ? 'Julkaistu' : 'Piilotettu yleisöltä';
-    } catch (error) {
-      checkbox.checked = !checkbox.checked;
-      console.error(error);
-      alert(`Julkaisutilan tallennus epäonnistui: ${error.message}`);
-    } finally {
-      checkbox.disabled = false;
-    }
-  });
-}
-
 function enhanceInfographicAdmin(name) {
   adminObserver?.disconnect();
   adminObserver = null;
   if (!activeSession || !['verkko', 'matriisi'].includes(name)) return;
-
-  const scan = () => root.querySelectorAll('.d-img, .card-images figure').forEach(addAdminToggle);
-  scan();
-  adminObserver = new MutationObserver(scan);
-  adminObserver.observe(root, { childList: true, subtree: true });
 }
 
 async function showView(name, force = false) {
@@ -324,7 +281,7 @@ themeBtn.addEventListener('click', () => setTheme(document.documentElement.datas
 fsBtn.addEventListener('click', () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen());
 window.addEventListener('keydown', event => {
   if (event.metaKey || event.ctrlKey || event.altKey) return;
-  const map = { '1': 'rengas', '2': 'verkko', '3': 'matriisi', '4': 'paattely', '5': 'maisema' };
+  const map = { '1': 'rengas', '2': 'verkko', '3': 'matriisi', '4': 'paattely', '5': 'maisema', '6': 'atlasverkko' };
   if (map[event.key]) location.hash = map[event.key];
 });
 
