@@ -28,7 +28,7 @@ const VIEWS = {
   matriisi: () => import('../views/matriisi.js'),
   paattely: () => import('../views/paattely.js'),
   maisema: () => import('../views/maisema.js'),
-  atlasverkko: () => import('../views/atlasverkko-original.js')
+  atlasverkko: () => import('../views/atlasverkko.js')
 };
 
 let activeView = null;
@@ -239,10 +239,53 @@ function exposeAdminApi() {
   };
 }
 
+function addAdminToggle(figure) {
+  if (!activeSession || figure.dataset.infographicAdmin === 'true') return;
+  const image = figure.querySelector('img');
+  if (!image) return;
+  const row = infographicByUrl.get(normalizeUrl(image.currentSrc || image.src));
+  if (!row) return;
+
+  figure.dataset.infographicAdmin = 'true';
+  const label = document.createElement('label');
+  label.className = 'infographic-admin-toggle';
+  Object.assign(label.style, {
+    display: 'flex', alignItems: 'center', gap: '8px', marginTop: '9px',
+    padding: '8px 10px', border: '1px solid rgba(120,120,120,.28)',
+    borderRadius: '8px', font: '500 12px system-ui,sans-serif', cursor: 'pointer'
+  });
+  const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.checked = !row.unpublished;
+  const text = document.createElement('span');
+  text.textContent = 'Julkaistu';
+  label.append(checkbox, text);
+  figure.appendChild(label);
+
+  checkbox.addEventListener('change', async () => {
+    checkbox.disabled = true;
+    try {
+      await updatePublication(row.id, checkbox.checked);
+      text.textContent = checkbox.checked ? 'Julkaistu' : 'Piilotettu yleisöltä';
+    } catch (error) {
+      checkbox.checked = !checkbox.checked;
+      console.error(error);
+      alert(`Julkaisutilan tallennus epäonnistui: ${error.message}`);
+    } finally {
+      checkbox.disabled = false;
+    }
+  });
+}
+
 function enhanceInfographicAdmin(name) {
   adminObserver?.disconnect();
   adminObserver = null;
   if (!activeSession || !['verkko', 'matriisi'].includes(name)) return;
+
+  const scan = () => root.querySelectorAll('.d-img, .card-images figure').forEach(addAdminToggle);
+  scan();
+  adminObserver = new MutationObserver(scan);
+  adminObserver.observe(root, { childList: true, subtree: true });
 }
 
 async function showView(name, force = false) {
