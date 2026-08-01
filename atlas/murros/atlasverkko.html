@@ -9,36 +9,12 @@
 </head>
 <body>
   <div id="app">
-    <header>
-      <button class="iconbtn mobtabs" id="mLeft" aria-label="Suodattimet">☰</button>
-      <div class="brand"><h1>Atlasverkko</h1><span class="sub">Murrosatlas × Selitysatlas · crosswalk</span></div>
-      <div class="seg" role="tablist">
-        <button data-view="network" class="on">Verkko</button>
-        <button data-view="radial">Kehä</button>
-        <button data-view="timeline">Aikajana</button>
-      </div>
-      <button class="iconbtn" id="focusBtn" title="Tarkennus valittuun (F)">◎</button>
-      <button class="iconbtn" id="shotBtn" title="Tallenna kuvana">⤓</button>
-      <button class="iconbtn mobtabs" id="mRight" aria-label="Tiedot">ⓘ</button>
-    </header>
-    <aside id="controls">
-      <div class="sec"><h2>Haku</h2><div class="field"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input id="q" type="search" placeholder="nimi, tunnus, teema…" autocomplete="off" /></div><div id="results"></div></div>
-      <div class="sec"><h2>Näkymä</h2><label class="chk on"><input type="checkbox" id="onlyLinked" checked /><span>Vain crosswalk-kytketyt</span></label><label class="chk"><input type="checkbox" id="showRel" /><span>Murrosten sisäiset relaatiot</span></label><label class="chk on"><input type="checkbox" id="showLabels" checked /><span>Nimilaput</span></label><label class="chk on"><input type="checkbox" id="glow" checked /><span>Hehku ja liike</span></label></div>
-      <div class="sec"><h2>Luottamus ≥ <span class="val" id="confVal">0.50</span></h2><input type="range" id="conf" min="0.5" max="0.95" step="0.05" value="0.5" /></div>
-      <div class="sec"><h2>Aikaikkuna <span class="val" id="yearLabel"></span></h2><div class="dual"><div class="track"></div><div class="fill" id="yfill"></div><input type="range" id="y0" /><input type="range" id="y1" /></div></div>
-      <div class="sec"><h2>Selitysatlas</h2><div id="cats"></div></div>
-      <div class="sec"><h2>Murrosatlas</h2><div class="rowbtns"><button class="mini" data-all="types">Kaikki</button><button class="mini" data-none="types">Ei mitään</button></div><div id="types"></div></div>
-      <div class="sec"><h2>Toiminnot</h2><button class="btn" id="reheat" style="margin-bottom:6px">Järjestä uudelleen</button><button class="btn" id="reset">Nollaa suodattimet</button></div>
-    </aside>
-    <main>
-      <canvas id="cv"></canvas><div id="tip"></div>
-      <div class="stagebar"><span class="pill" id="viewPill">Verkko</span><span class="pill live" id="focusPill" hidden>Tarkennus</span></div>
-      <div class="zoomer"><button id="zin" title="Lähennä">+</button><button id="zout" title="Loitonna">−</button><button id="zfit" title="Sovita (0)">⤢</button></div>
-      <div id="empty"><div>Ei solmuja näillä suodattimilla.<br><span style="font-size:11.5px">Laajenna aikaikkunaa tai laske luottamusrajaa.</span></div></div>
-    </main>
+    <header><button class="iconbtn mobtabs" id="mLeft" aria-label="Suodattimet">☰</button><div class="brand"><h1>Atlasverkko</h1><span class="sub">Murrosatlas × Selitysatlas · crosswalk</span></div><div class="seg" role="tablist"><button data-view="network" class="on">Verkko</button><button data-view="radial">Kehä</button><button data-view="timeline">Aikajana</button></div><button class="iconbtn" id="focusBtn" title="Tarkennus valittuun (F)">◎</button><button class="iconbtn" id="shotBtn" title="Tallenna kuvana">⤓</button><button class="iconbtn mobtabs" id="mRight" aria-label="Tiedot">ⓘ</button></header>
+    <aside id="controls"><div class="sec"><h2>Haku</h2><div class="field"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input id="q" type="search" placeholder="nimi, tunnus, teema…" autocomplete="off" /></div><div id="results"></div></div><div class="sec"><h2>Näkymä</h2><label class="chk on"><input type="checkbox" id="onlyLinked" checked /><span>Vain crosswalk-kytketyt</span></label><label class="chk"><input type="checkbox" id="showRel" /><span>Murrosten sisäiset relaatiot</span></label><label class="chk on"><input type="checkbox" id="showLabels" checked /><span>Nimilaput</span></label><label class="chk on"><input type="checkbox" id="glow" checked /><span>Hehku ja liike</span></label></div><div class="sec"><h2>Luottamus ≥ <span class="val" id="confVal">0.50</span></h2><input type="range" id="conf" min="0.5" max="0.95" step="0.05" value="0.5" /></div><div class="sec"><h2>Aikaikkuna <span class="val" id="yearLabel"></span></h2><div class="dual"><div class="track"></div><div class="fill" id="yfill"></div><input type="range" id="y0" /><input type="range" id="y1" /></div></div><div class="sec"><h2>Selitysatlas</h2><div id="cats"></div></div><div class="sec"><h2>Murrosatlas</h2><div class="rowbtns"><button class="mini" data-all="types">Kaikki</button><button class="mini" data-none="types">Ei mitään</button></div><div id="types"></div></div><div class="sec"><h2>Toiminnot</h2><button class="btn" id="reheat" style="margin-bottom:6px">Järjestä uudelleen</button><button class="btn" id="reset">Nollaa suodattimet</button></div></aside>
+    <main><canvas id="cv"></canvas><div id="tip"></div><div class="stagebar"><span class="pill" id="viewPill">Verkko</span><span class="pill live" id="focusPill" hidden>Tarkennus</span></div><div class="zoomer"><button id="zin" title="Lähennä">+</button><button id="zout" title="Loitonna">−</button><button id="zfit" title="Sovita (0)">⤢</button></div><div id="empty"><div>Ei solmuja näillä suodattimilla.<br><span style="font-size:11.5px">Laajenna aikaikkunaa tai laske luottamusrajaa.</span></div></div></main>
     <aside id="detail"><div id="detailBody"></div></aside>
     <footer><div class="legend"><span><i class="swatch" style="background:var(--murros);color:var(--murros)"></i>Murros</span><span><i class="swatch" style="background:var(--k);color:var(--k)"></i>K kriisi</span><span><i class="swatch" style="background:var(--r);color:var(--r)"></i>R rakenne</span><span><i class="swatch" style="background:var(--s);color:var(--s)"></i>S siirtymä</span></div><span id="stats"></span><span id="hoverInfo"></span></footer>
   </div>
-  <script type="module" src="assets/atlasverkko-loader.js"></script>
+  <script src="assets/atlasverkko-loader.js"></script>
 </body>
 </html>
