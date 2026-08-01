@@ -43,20 +43,32 @@
     return nativeFetch(request, init);
   };
 
-  function installAtlasNetworkTab() {
+  function installExtraAtlasTabs() {
     const tabs = document.querySelector('.topbar .tabs');
-    if (!tabs || tabs.querySelector('[data-view="atlasverkko"]')) return;
+    if (!tabs) return;
 
     const tulkinta = tabs.querySelector('a[href="../tulkinta.html"]');
-    const button = document.createElement('button');
-    button.className = 'tab';
-    button.type = 'button';
-    button.dataset.view = 'atlasverkko';
-    button.setAttribute('aria-selected', 'false');
-    button.innerHTML = '<span class="dot"></span>Atlasverkko';
-    tabs.insertBefore(button, tulkinta || null);
+
+    if (!tabs.querySelector('[data-view="atlasverkko"]')) {
+      const button = document.createElement('button');
+      button.className = 'tab';
+      button.type = 'button';
+      button.dataset.view = 'atlasverkko';
+      button.setAttribute('aria-selected', 'false');
+      button.innerHTML = '<span class="dot"></span>Atlasverkko';
+      tabs.insertBefore(button, tulkinta || null);
+    }
+
+    if (!tabs.querySelector('[data-atlasmaisema-demo]')) {
+      const link = document.createElement('a');
+      link.className = 'tab-link';
+      link.dataset.atlasmaisemaDemo = 'true';
+      link.href = 'atlasmaisema-demo.html';
+      link.innerHTML = '<span class="dot"></span>Maisema-demo';
+      tabs.insertBefore(link, tulkinta || null);
+    }
   }
 
-  installAtlasNetworkTab();
+  installExtraAtlasTabs();
   window.__murrosAtlasDataPathsRouted = true;
 })();
