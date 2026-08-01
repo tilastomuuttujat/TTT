@@ -1,0 +1,1031 @@
+"use strict";
+
+/**
+ * Atlasverkko data loader
+ *
+ * The visualization reads the source datasets directly. This adapter only
+ * maps their public field names to the compact graph model used by the view.
+ */
+
+const DATA_FILES = Object.freeze({
+  transformations: "../murrosatlas.json",
+  explanations: "../selitysatlas.json",
+  crosswalk: "../crosswalk.json",
+});
+
+async function fetchJson(filePath) {
+  const response = await fetch(filePath);
+
+  if (!response.ok) {
+    throw new Error(
+      `Aineiston lataus epäonnistui: ${filePath} (HTTP ${response.status})`,
+    );
+  }
+
+  return response.json();
+}
+
+async function loadAtlasData() {
+  try {
+    const [transformationAtlas, explanationAtlas, crosswalk] =
+      await Promise.all([
+        fetchJson(DATA_FILES.transformations),
+        fetchJson(DATA_FILES.explanations),
+        fetchJson(DATA_FILES.crosswalk),
+      ]);
+
+    const transformations = transformationAtlas.items.map((item) => ({
+      id: item.id,
+      title: item.title,
+      y0: item.year_start,
+      y1: item.year_end,
+      type: item.type,
+      domains: item.domains ?? [],
+      problem: item.problem ?? item.phase ?? "",
+      mech: item.mechanism ?? "",
+      effects: item.effects ?? [],
+    }));
+
+    const explanations = explanationAtlas.themes.map((theme) => ({
+      id: theme.id,
+      name: theme.name,
+      y0: theme.period_start ?? theme.period?.start,
+      y1: theme.period_end ?? theme.period?.end,
+      cat: theme.category,
+      domains: theme.domains ?? [],
+      summary: theme.summary ?? "",
+      evidence: theme.evidence ?? "unknown",
+    }));
+
+    const crosswalkLinks = crosswalk.links.map((link) => ({
+      s: link.source,
+      t: link.target,
+      c: link.confidence ?? 0,
+      tier: link.tier ?? "unspecified",
+    }));
+
+    const relations = transformationAtlas.relations.map((relation) => ({
+      f: relation.from,
+      t: relation.to,
+      type: relation.type,
+      cls: relation.rel_class,
+    }));
+
+    return {
+      murros: transformations,
+      selitys: explanations,
+      crosswalkEdges: crosswalkLinks,
+      relationEdges: relations,
+      types: [...new Set(transformations.map((item) => item.type))].sort(),
+    };
+  } catch (error) {
+    showLoadingError(error);
+    throw error;
+  }
+}
+
+function showLoadingError(error) {
+  const stage = document.querySelector("main");
+
+  if (!stage) {
+    return;
+  }
+
+  const message = document.createElement("div");
+  message.className = "data-error";
+
+  const heading = document.createElement("strong");
+  const details = document.createElement("span");
+  const hint = document.createElement("small");
+
+  heading.textContent = "Aineistoa ei voitu ladata.";
+  details.textContent = error.message;
+  hint.textContent =
+    "Käynnistä sivu paikallisen HTTP-palvelimen kautta; " +
+    "file:// ei salli fetch-latauksia.";
+
+  message.append(heading, details, hint);
+  stage.replaceChildren(message);
+}
+
+const atlasData = await loadAtlasData();
+
+const CATEGORY_STYLES = {
+  K: {
+    c: "#ff5f77",
+    n: "Kriisi / K",
+  },
+  R: {
+    c: "#69d18d",
+    n: "Rakenne / R",
+  },
+  S: {
+    c: "#a08cf7",
+    n: "Siirtymä / S",
+  },
+};
+
+const TRANSFORMATION_COLOR = "#63c5da";
+
+const getElement = (id) =>
+  document.getElementById(id);
+
+const escapeHtml = (value) =>
+  String(value == null ? "" : value).replace(
+    /[&<>"]/g,
+    (character) =>
+      ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+      })[character],
+  );
+
+const clamp = (value, minimum, maximum) =>
+  value < minimum
+    ? minimum
+    : value > maximum
+      ? maximum
+      : value;
+
+const lerp = (start, end, amount) =>
+  start + (end - start) * amount;
+
+/* =========================================================
+   Graafimallin rakentaminen
+   ========================================================= */
+
+const graphNodes = [];
+const nodeById = new Map();
+
+atlasData.murros.forEach((item) => {
+  const node = {
+    id: item.id,
+    kind: "m",
+    label: item.title,
+    y0: item.y0,
+    y1: item.y1,
+    type: item.type,
+    domains: item.domains || [],
+    text: item.problem,
+    mech: item.mech,
+    effects: item.effects || [],
+    color: TRANSFORMATION_COLOR,
+    deg: 0,
+    rdeg: 0,
+  };
+
+  graphNodes.push(node);
+  nodeById.set(node.id, node);
+});
+
+atlasData.selitys.forEach((item) => {
+  const node = {
+    id: item.id,
+    kind: "s",
+    label: item.name,
+    y0: item.y0,
+    y1: item.y1,
+    type: item.cat,
+    domains: item.domains || [],
+    text: item.summary,
+    mech: "",
+    effects: [],
+    color:
+      CATEGORY_STYLES[item.cat]?.c ||
+      "#e6a94e",
+    deg: 0,
+    rdeg: 0,
+    evidence: item.evidence,
+  };
+
+  graphNodes.push(node);
+  nodeById.set(node.id, node);
+});
+
+const crosswalkEdges =
+  atlasData.crosswalkEdges
+    .filter(
+      (link) =>
+        nodeById.has(link.s) &&
+        nodeById.has(link.t),
+    )
+    .map((link) => ({
+      s: nodeById.get(link.s),
+      t: nodeById.get(link.t),
+      conf: link.c,
+      tier: link.tier,
+      kind: "cw",
+    }));
+
+const relationEdges =
+  atlasData.relationEdges
+    .filter(
+      (relation) =>
+        nodeById.has(relation.f) &&
+        nodeById.has(relation.t) &&
+        relation.f !== relation.t,
+    )
+    .map((relation) => ({
+      s: nodeById.get(relation.f),
+      t: nodeById.get(relation.t),
+      conf: 0.4,
+      kind: "rel",
+      type: relation.type,
+      cls: relation.cls,
+    }));
+
+crosswalkEdges.forEach((edge) => {
+  edge.s.deg += 1;
+  edge.t.deg += 1;
+});
+
+relationEdges.forEach((edge) => {
+  edge.s.rdeg += 1;
+  edge.t.rdeg += 1;
+});
+
+const adjacency = new Map();
+
+function addAdj(source, target, edge) {
+  if (!adjacency.has(source.id)) {
+    adjacency.set(source.id, []);
+  }
+
+  adjacency.get(source.id).push({
+    o: target,
+    l: edge,
+  });
+}
+
+crosswalkEdges
+  .concat(relationEdges)
+  .forEach((edge) => {
+    addAdj(edge.s, edge.t, edge);
+    addAdj(edge.t, edge.s, edge);
+  });
+
+const maximumDegree = Math.max(
+  1,
+  ...graphNodes.map((node) => node.deg),
+);
+
+const minimumYear = Math.min(
+  ...graphNodes.map(
+    (node) =>
+      node.y0 ||
+      node.y1 ||
+      1800,
+  ),
+);
+
+const maximumYear = Math.max(
+  ...graphNodes.map(
+    (node) =>
+      node.y1 ||
+      node.y0 ||
+      2050,
+  ),
+);
+
+const transformationTypes =
+  (atlasData.types || []).slice();
+
+/* =========================================================
+   Canvas ja näkymän tila
+   ========================================================= */
+
+const canvas = getElement("cv");
+const canvasContext =
+  canvas.getContext("2d");
+
+let W = 0;
+let H = 0;
+let pixelRatio = 1;
+
+let visibleNodes = [];
+let visibleEdges = [];
+
+let alpha = 1;
+let fitted = false;
+
+const animationStartTime =
+  performance.now();
+
+const viewState = {
+  view: "network",
+  q: "",
+
+  onlyLinked: true,
+  showRel: false,
+  labels: true,
+  glow: true,
+
+  conf: 0.5,
+
+  cats: new Set([
+    "K",
+    "R",
+    "S",
+  ]),
+
+  types: new Set(
+    transformationTypes,
+  ),
+
+  y0: minimumYear,
+  y1: maximumYear,
+
+  sel: null,
+  hover: null,
+  focus: false,
+
+  tx: 0,
+  ty: 0,
+  k: 1,
+
+  ktarget: 1,
+  txt: 0,
+  tyt: 0,
+};
+/* ---------- controls ---------- */
+
+function chip(
+  box,
+  key,
+  label,
+  color,
+  onchange,
+) {
+  const row =
+    document.createElement("label");
+
+  row.className = "chk on";
+
+  row.innerHTML = `
+    <input type="checkbox" checked>
+    <i
+      class="swatch"
+      style="background:${color};color:${color}"
+    ></i>
+    <span>${escapeHtml(label)}</span>
+    <span
+      class="count"
+      data-c="${escapeHtml(key)}"
+    ></span>
+  `;
+
+  const input =
+    row.querySelector("input");
+
+  input.addEventListener(
+    "change",
+    (event) => {
+      row.classList.toggle(
+        "on",
+        event.target.checked,
+      );
+
+      onchange(
+        key,
+        event.target.checked,
+      );
+    },
+  );
+
+  row.dataset.key = key;
+  box.appendChild(row);
+
+  return row;
+}
+
+/**
+ * Selitysatlaksen K-, R- ja S-suodattimet.
+ */
+Object.keys(CATEGORY_STYLES).forEach(
+  (category) =>
+    chip(
+      getElement("cats"),
+      category,
+      CATEGORY_STYLES[category].n,
+      CATEGORY_STYLES[category].c,
+
+      (key, enabled) => {
+        if (enabled) {
+          viewState.cats.add(key);
+        } else {
+          viewState.cats.delete(key);
+        }
+
+        refresh(true);
+      },
+    ),
+);
+
+/**
+ * Murrosatlaksen tyyppisuodattimet.
+ */
+transformationTypes.forEach(
+  (type) =>
+    chip(
+      getElement("types"),
+      type,
+      type,
+      TRANSFORMATION_COLOR,
+
+      (key, enabled) => {
+        if (enabled) {
+          viewState.types.add(key);
+        } else {
+          viewState.types.delete(key);
+        }
+
+        refresh(true);
+      },
+    ),
+);
+
+/**
+ * Valitse kaikki / ei mitään.
+ */
+document
+  .querySelectorAll(
+    "[data-all],[data-none]",
+  )
+  .forEach((button) => {
+    button.addEventListener(
+      "click",
+      () => {
+        const selectAll =
+          button.hasAttribute("data-all");
+
+        viewState.types =
+          selectAll
+            ? new Set(transformationTypes)
+            : new Set();
+
+        getElement("types")
+          .querySelectorAll("label")
+          .forEach((row) => {
+            const checkbox =
+              row.querySelector("input");
+
+            checkbox.checked =
+              selectAll;
+
+            row.classList.toggle(
+              "on",
+              selectAll,
+            );
+          });
+
+        refresh(true);
+      },
+    );
+  });
+
+/* =========================================================
+   Hakukenttä
+   ========================================================= */
+
+getElement("q").addEventListener(
+  "input",
+  (event) => {
+    viewState.q =
+      event.target.value
+        .trim()
+        .toLowerCase();
+
+    renderResults();
+    refresh();
+  },
+);
+
+/* =========================================================
+   Näkymän valinnat
+   ========================================================= */
+
+getElement("onlyLinked").addEventListener(
+  "change",
+  (event) => {
+    viewState.onlyLinked =
+      event.target.checked;
+
+    toggleRow(event);
+    refresh(true);
+  },
+);
+
+getElement("showRel").addEventListener(
+  "change",
+  (event) => {
+    viewState.showRel =
+      event.target.checked;
+
+    toggleRow(event);
+    refresh(true);
+  },
+);
+
+getElement("showLabels").addEventListener(
+  "change",
+  (event) => {
+    viewState.labels =
+      event.target.checked;
+
+    toggleRow(event);
+    draw();
+  },
+);
+
+getElement("glow").addEventListener(
+  "change",
+  (event) => {
+    viewState.glow =
+      event.target.checked;
+
+    toggleRow(event);
+    draw();
+  },
+);
+
+function toggleRow(event) {
+  event.target
+    .closest("label")
+    .classList.toggle(
+      "on",
+      event.target.checked,
+    );
+}
+
+/* =========================================================
+   Luottamusraja
+   ========================================================= */
+
+getElement("conf").addEventListener(
+  "input",
+  (event) => {
+    viewState.conf =
+      Number(event.target.value);
+
+    getElement("confVal").textContent =
+      viewState.conf.toFixed(2);
+
+    refresh(true);
+  },
+);
+
+/* =========================================================
+   Aikaikkuna
+   ========================================================= */
+
+const minimumYearInput =
+  getElement("y0");
+
+const maximumYearInput =
+  getElement("y1");
+
+[
+  minimumYearInput,
+  maximumYearInput,
+].forEach((rangeInput) => {
+  rangeInput.min = minimumYear;
+  rangeInput.max = maximumYear;
+  rangeInput.step = 1;
+});
+
+minimumYearInput.value =
+  minimumYear;
+
+maximumYearInput.value =
+  maximumYear;
+
+function yearSync() {
+  viewState.y0 = Math.min(
+    Number(minimumYearInput.value),
+    Number(maximumYearInput.value),
+  );
+
+  viewState.y1 = Math.max(
+    Number(minimumYearInput.value),
+    Number(maximumYearInput.value),
+  );
+
+  getElement("yearLabel").textContent =
+    `${viewState.y0}–${viewState.y1}`;
+
+  const fill =
+    getElement("yfill");
+
+  const yearSpan =
+    maximumYear - minimumYear;
+
+  fill.style.left =
+    (
+      (
+        viewState.y0 -
+        minimumYear
+      ) /
+      yearSpan *
+      100
+    ) + "%";
+
+  fill.style.width =
+    (
+      (
+        viewState.y1 -
+        viewState.y0
+      ) /
+      yearSpan *
+      100
+    ) + "%";
+
+  refresh(true);
+}
+
+minimumYearInput.addEventListener(
+  "input",
+  yearSync,
+);
+
+maximumYearInput.addEventListener(
+  "input",
+  yearSync,
+);
+
+/* =========================================================
+   Nollaus
+   ========================================================= */
+
+getElement("reset").addEventListener(
+  "click",
+  () => {
+    viewState.q = "";
+
+    getElement("q").value = "";
+
+    renderResults();
+
+    viewState.conf = 0.5;
+
+    getElement("conf").value =
+      0.5;
+
+    getElement("confVal").textContent =
+      "0.50";
+
+    viewState.cats =
+      new Set(["K", "R", "S"]);
+
+    viewState.types =
+      new Set(transformationTypes);
+
+    document
+      .querySelectorAll(
+        "#cats label,#types label",
+      )
+      .forEach((row) => {
+        row
+          .querySelector("input")
+          .checked = true;
+
+        row.classList.add("on");
+      });
+
+    minimumYearInput.value =
+      minimumYear;
+
+    maximumYearInput.value =
+      maximumYear;
+
+    viewState.focus = false;
+
+    getElement("focusPill").hidden =
+      true;
+
+    viewState.sel = null;
+
+    renderDetail(null);
+    yearSync();
+    resetCam();
+  },
+);
+
+/* =========================================================
+   Muut painikkeet
+   ========================================================= */
+
+getElement("reheat").addEventListener(
+  "click",
+  () => {
+    seed();
+    alpha = 1;
+    fitted = false;
+  },
+);
+
+getElement("focusBtn").addEventListener(
+  "click",
+  () =>
+    setFocus(
+      !viewState.focus,
+    ),
+);
+
+getElement("shotBtn").addEventListener(
+  "click",
+  shot,
+);
+
+getElement("zin").addEventListener(
+  "click",
+  () => zoomBy(1.3),
+);
+
+getElement("zout").addEventListener(
+  "click",
+  () => zoomBy(1 / 1.3),
+);
+
+getElement("zfit").addEventListener(
+  "click",
+  resetCam,
+);
+
+getElement("mLeft").addEventListener(
+  "click",
+  () =>
+    getElement("controls")
+      .classList.toggle("open"),
+);
+
+getElement("mRight").addEventListener(
+  "click",
+  () =>
+    getElement("detail")
+      .classList.toggle("open"),
+);
+
+/* =========================================================
+   Verkko-, kehä- ja aikajananäkymät
+   ========================================================= */
+
+document
+  .querySelectorAll(".seg button")
+  .forEach((button) => {
+    button.addEventListener(
+      "click",
+      () => {
+        document
+          .querySelectorAll(
+            ".seg button",
+          )
+          .forEach((item) =>
+            item.classList.remove("on"),
+          );
+
+        button.classList.add("on");
+
+        viewState.view =
+          button.dataset.view;
+
+        getElement(
+          "viewPill",
+        ).textContent =
+          button.textContent;
+
+        getElement("tip")
+          .classList.remove("on");
+
+        viewState.hover = null;
+
+        resetCam();
+
+        if (
+          viewState.view ===
+          "network"
+        ) {
+          seed();
+          alpha = 1;
+        }
+
+        fitted = false;
+
+        refresh(true);
+      },
+    );
+  });
+
+/* =========================================================
+   Pikanäppäimet
+   ========================================================= */
+
+addEventListener(
+  "keydown",
+  (event) => {
+    if (
+      /input|textarea/i.test(
+        event.target.tagName,
+      )
+    ) {
+      return;
+    }
+
+    const viewShortcuts = {
+      1: "network",
+      2: "radial",
+      3: "timeline",
+    };
+
+    if (
+      viewShortcuts[event.key]
+    ) {
+      document
+        .querySelector(
+          `.seg button[data-view="${viewShortcuts[event.key]}"]`,
+        )
+        .click();
+    }
+
+    if (event.key === "0") {
+      resetCam();
+    }
+
+    if (
+      event.key === "f" ||
+      event.key === "F"
+    ) {
+      setFocus(
+        !viewState.focus,
+      );
+    }
+
+    if (
+      event.key === "l" ||
+      event.key === "L"
+    ) {
+      getElement(
+        "showLabels",
+      ).click();
+    }
+
+    if (
+      event.key === "Escape"
+    ) {
+      viewState.sel = null;
+
+      setFocus(false);
+      renderDetail(null);
+      draw();
+    }
+
+    if (event.key === "/") {
+      event.preventDefault();
+      getElement("q").focus();
+    }
+  },
+);
+
+/* =========================================================
+   Hakutulokset
+   ========================================================= */
+
+function renderResults() {
+  const resultsBox =
+    getElement("results");
+
+  if (!viewState.q) {
+    resultsBox.innerHTML = "";
+    return;
+  }
+
+  const matchingNodes =
+    graphNodes
+      .filter((node) => {
+        const searchableText = [
+          node.label,
+          node.id,
+          ...(node.domains || []),
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        return searchableText.includes(
+          viewState.q,
+        );
+      })
+      .sort(
+        (first, second) =>
+          second.deg -
+          first.deg,
+      )
+      .slice(0, 24);
+
+  resultsBox.innerHTML =
+    matchingNodes
+      .map((node) => {
+        const shortenedLabel =
+          node.label.length > 44
+            ? node.label.slice(0, 43) +
+              "…"
+            : node.label;
+
+        return `
+          <button
+            data-go="${escapeHtml(node.id)}"
+          >
+            <i
+              class="swatch"
+              style="
+                background:${node.color};
+                color:${node.color};
+              "
+            ></i>
+
+            <span>
+              ${escapeHtml(shortenedLabel)}
+            </span>
+
+            <span class="rid">
+              ${escapeHtml(node.id).slice(0, 10)}
+            </span>
+          </button>
+        `;
+      })
+      .join("") ||
+    `
+      <div
+        class="hint"
+        style="padding:4px 6px"
+      >
+        Ei osumia.
+      </div>
+    `;
+
+  resultsBox
+    .querySelectorAll("[data-go]")
+    .forEach((button) => {
+      button.addEventListener(
+        "click",
+        () =>
+          goTo(
+            nodeById.get(
+              button.dataset.go,
+            ),
+          ),
+      );
+    });
+}
+
+/* =========================================================
+   Suodatus
+   ========================================================= */
+
+const inYear = (node) => {
+  const startYear =
+    node.y0 ||
+    node.y1 ||
+    0;
+
+  const endYear =
+    node.y1 ||
+    node.y0 ||
+    0;
+
+  return (
+    endYear >= viewState.y0 &&
+    startYear <= viewState.y1
+  );
+};
+
+function passes(node) {
+  if (
+    node.kind === "s" &&
+    !viewState.cats.has(node.type)
+  ) {
+    return false;
+  }
+
+  if (
+    node.kind === "m" &&
+    !viewState.types.has(node.type)
+  ) {
+    return false;
+  }
+
+  return inYear(node);
+}
+
+function refresh(relayout) {
+  const availableEdges =
+    crosswalkEdges
+      .filter(
+        (edge) =>
+          edge.conf >=
+          viewState.conf -
+            1e-9,
+      )
+      .concat(
+        viewState.showRel
+          ? relationEdges
