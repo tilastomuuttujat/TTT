@@ -3,18 +3,18 @@ export const title = 'Atlasverkko';
 let frame = null;
 let objectUrl = null;
 
-const MODULE_SOURCE = './views/atlasverkko-original.js';
+const PAYLOAD_SOURCE = './views/atlasverkko-payload-1.js';
 
 async function readEmbeddedHtml() {
-  const response = await fetch(MODULE_SOURCE, { cache: 'no-store' });
+  const response = await fetch(PAYLOAD_SOURCE, { cache: 'no-store' });
   if (!response.ok) {
-    throw new Error(`Atlasverkon lähdemoduulia ei voitu ladata: HTTP ${response.status}`);
+    throw new Error(`Atlasverkon aineistoa ei voitu ladata: HTTP ${response.status}`);
   }
 
   const source = await response.text();
-  const match = source.match(/const\s+PAYLOAD\s*=\s*'([^']+)'\s*;/);
+  const match = source.match(/const\s+PAYLOAD\s*=\s*(['"])([A-Za-z0-9+/=]+)\1\s*;?/s);
   if (!match) {
-    throw new Error('Atlasverkon pakattua sisältöä ei löytynyt lähdemoduulista.');
+    throw new Error('Atlasverkon pakattua sisältöä ei löytynyt payload-tiedostosta.');
   }
 
   if (!('DecompressionStream' in window)) {
@@ -22,7 +22,7 @@ async function readEmbeddedHtml() {
   }
 
   const bytes = Uint8Array.from(
-    atob(match[1]),
+    atob(match[2]),
     character => character.charCodeAt(0),
   );
 
@@ -36,11 +36,6 @@ async function readEmbeddedHtml() {
 export async function mount(root) {
   const html = await readEmbeddedHtml();
 
-  /*
-   * Blob-osoite antaa alkuperäiselle HTML:lle aidon dokumenttikontekstin.
-   * <base> varmistaa, että ../murrosatlas.json, ../selitysatlas.json ja
-   * ../crosswalk.json ratkaistaan atlas/murros/-hakemistosta käsin.
-   */
   const baseUrl = new URL('./', window.location.href).href;
   const documentHtml = html.replace(
     /<head>/i,
