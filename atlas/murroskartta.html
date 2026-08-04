@@ -612,6 +612,48 @@
         border-radius: 8px;
         border: 1px solid var(--line);
         background: var(--panel2, #14181d);
+        cursor: pointer;
+      }
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5vh 5vw;
+        background: rgba(10, 12, 14, 0.86);
+      }
+      .lightbox[hidden] {
+        display: none;
+      }
+      .lightbox img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 6px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+      }
+      .lightbox-close {
+        all: unset;
+        position: fixed;
+        top: 18px;
+        right: 22px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        font-size: 20px;
+        line-height: 1;
+        cursor: pointer;
+      }
+      .lightbox-close:hover,
+      .lightbox-close:focus-visible {
+        background: rgba(255, 255, 255, 0.22);
       }
       .lens-feature-fig figcaption {
         margin-top: 6px;
@@ -1457,6 +1499,10 @@
       </p>
     </main>
     <div class="tip" id="tip" role="tooltip" aria-hidden="true"></div>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Infografiikka suurennettuna" hidden>
+      <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Sulje suurennos">&times;</button>
+      <img id="lightboxImg" alt="" />
+    </div>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
     <script>
       (function () {
@@ -2727,6 +2773,17 @@
             img.src = entry.infographic.url;
             img.loading = "lazy";
             img.alt = entry.infographic.caption || entry.title || chainId;
+            img.tabIndex = 0;
+            img.setAttribute("role", "button");
+            img.setAttribute("aria-label", "Näytä infografiikka suurennettuna");
+            const openThis = () => openLightbox(img.src, img.alt);
+            img.addEventListener("click", openThis);
+            img.addEventListener("keydown", (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                openThis();
+              }
+            });
             const caption = document.createElement("figcaption");
             caption.textContent = entry.infographic.caption || "";
             fig.append(img, caption);
@@ -3196,11 +3253,38 @@
         document
           .getElementById("core")
           .addEventListener("click", () => setSel(["M21", "M27", "M28"]));
+        /* Infographic lightbox: click a thumbnail to see it full-size. */
+        function openLightbox(src, alt) {
+          const box = document.getElementById("lightbox");
+          const img = document.getElementById("lightboxImg");
+          img.src = src;
+          img.alt = alt || "";
+          box.hidden = false;
+          box.setAttribute("aria-hidden", "false");
+          document.getElementById("lightboxClose").focus();
+        }
+        function closeLightbox() {
+          const box = document.getElementById("lightbox");
+          box.hidden = true;
+          box.setAttribute("aria-hidden", "true");
+          document.getElementById("lightboxImg").src = "";
+        }
+        document
+          .getElementById("lightboxClose")
+          .addEventListener("click", closeLightbox);
+        document.getElementById("lightbox").addEventListener("click", () => {
+          closeLightbox();
+        });
+
         document
           .getElementById("none")
           .addEventListener("click", () => setSel([]));
         document.addEventListener("keydown", (e) => {
           if (e.key === "Escape") {
+            if (!document.getElementById("lightbox").hidden) {
+              closeLightbox();
+              return;
+            }
             activeChain = null;
             activeNode = null;
             render();
