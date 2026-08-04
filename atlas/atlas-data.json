@@ -1,0 +1,533 @@
+{
+  "models": [
+    {
+      "id": "M21",
+      "short": "Arvon siirtyminen",
+      "name": "Arvon ja hyvinvoinnin siirtomekanismi",
+      "summary": "Arvo muuttuu yhteiseksi hyvinvoinniksi vain toimivan siirtomekanismin kautta.",
+      "quote": "Arvon määrä ei yksin ratkaise -- ratkaisevaa on sen tie yhteiseksi toimintakyvyksi.",
+      "steps": [
+        "Arvon synty",
+        "Työ ja omistus",
+        "Siirtomekanismi",
+        "Hyvinvointi",
+        "Toimintakyky",
+        "Uusi arvo"
+      ],
+      "breaks": [
+        2
+      ],
+      "eras": [
+        {
+          "period": "1800–1860",
+          "label": "Paikallinen arvo",
+          "note": "Tuotanto ja hyvinvointi kohtasivat lähellä."
+        },
+        {
+          "period": "1860–1945",
+          "label": "Teollinen palkkakanava",
+          "note": "Työ ja vienti laajensivat rahataloutta."
+        },
+        {
+          "period": "1945–1990",
+          "label": "Hyvinvointivaltion siirto",
+          "note": "Palkat, verot ja palvelut vahvistivat toisiaan."
+        },
+        {
+          "period": "1990–2025",
+          "label": "Pääoma ja verkostot",
+          "note": "Arvo liikkuu nopeammin kuin kansalliset siirtomekanismit."
+        },
+        {
+          "period": "2025–2050",
+          "label": "Uusi arvonjako?",
+          "note": "Omistus, data ja tuottavuushyöty kytketään yhteiseen toimintakykyyn."
+        }
+      ]
+    },
+    {
+      "id": "M27",
+      "short": "Riskin siirtyminen",
+      "name": "Riskin siirtymä 1800–2050",
+      "summary": "Riski ei katoa: se siirtyy, kertyy ja tulee lopulta jonkun kannettavaksi.",
+      "quote": "Systeeminen riski syntyy, kun kukaan ei hallitse kokonaisuutta.",
+      "steps": [
+        "Epävarmuus",
+        "Altistuminen",
+        "Suoja",
+        "Riskin jako",
+        "Jäljelle jäävä riski",
+        "Systeeminen seuraus"
+      ],
+      "breaks": [
+        4
+      ],
+      "eras": [
+        {
+          "period": "1800–1860",
+          "label": "Kotitalouden riski",
+          "note": "Perhe kantoi sadon, sairauden ja toimeentulon epävarmuuden."
+        },
+        {
+          "period": "1860–1945",
+          "label": "Paikallisesti jaettu",
+          "note": "Yhteisöt, kassat ja järjestöt jakoivat riskiä."
+        },
+        {
+          "period": "1945–1990",
+          "label": "Vakuutettu riski",
+          "note": "Sosiaalivakuutus ja valtio laajensivat turvaa."
+        },
+        {
+          "period": "1990–2025",
+          "label": "Hajautunut riski",
+          "note": "Verkostot ja alustat siirtävät riskiä yksilöille ja julkiselle taloudelle."
+        },
+        {
+          "period": "2025–2050",
+          "label": "Systeeminen riskinkanto?",
+          "note": "Kokonaisriski tehdään näkyväksi ja sille nimetään kantaja."
+        }
+      ]
+    },
+    {
+      "id": "M28",
+      "short": "Vastuun siirtyminen",
+      "name": "Vastuun siirtymä 1800–2050",
+      "summary": "Vastuu edellyttää toimivaltaa, tietoa, resursseja ja mahdollisuutta korjata.",
+      "quote": "Vastuuta ei voi uskottavasti siirtää toimijalle, jolla ei ole kykyä vaikuttaa lopputulokseen.",
+      "steps": [
+        "Velvollisuus",
+        "Tehtävä",
+        "Toimivalta",
+        "Toteutus",
+        "Seuraus",
+        "Korjausvastuu"
+      ],
+      "breaks": [
+        2,
+        4
+      ],
+      "eras": [
+        {
+          "period": "1800–1860",
+          "label": "Henkilökohtainen vastuu",
+          "note": "Vastuu seurasi läheistä tehtävää ja yhteisöä."
+        },
+        {
+          "period": "1860–1945",
+          "label": "Ammatillinen vastuu",
+          "note": "Työnjako ja sääntely eriyttivät velvollisuuksia."
+        },
+        {
+          "period": "1945–1990",
+          "label": "Institutionaalinen vastuu",
+          "note": "Julkiset organisaatiot ottivat kokonaisia tehtäviä vastuulleen."
+        },
+        {
+          "period": "1990–2025",
+          "label": "Pirstoutunut vastuu",
+          "note": "Hankinta-, johto- ja tuotantoketjut erottavat päätöksen seurauksesta."
+        },
+        {
+          "period": "2025–2050",
+          "label": "Jäljitettävä kokonaisvastuu?",
+          "note": "Vastuu seuraa vaikutusta koko ketjun läpi."
+        }
+      ]
+    },
+    {
+      "id": "M33",
+      "short": "Ongelmanratkaisu",
+      "name": "Ongelmanratkaisun ketju",
+      "summary": "Tarve muuttuu vaikutukseksi vain, jos tieto, päätös, toimeenpano ja oppiminen pysyvät yhteydessä.",
+      "quote": "Ratkaisevaa ei ole vain, kuinka paljon yhteiskunta tietää — vaan kuinka nopeasti tieto muuttuu korjaavaksi toiminnaksi.",
+      "steps": [
+        "Tarve",
+        "Havainto",
+        "Tieto",
+        "Päätös",
+        "Toimeenpano",
+        "Vaikutus",
+        "Oppiminen"
+      ],
+      "breaks": [
+        4,
+        6
+      ],
+      "eras": [
+        {
+          "period": "1800–1860",
+          "label": "Paikallinen kokemus",
+          "note": "Tarve näkyi lähellä, keinot olivat rajalliset."
+        },
+        {
+          "period": "1860–1945",
+          "label": "Hallinnon rakentuminen",
+          "note": "Havainto muuttui tilastoksi, laiksi ja instituutioksi."
+        },
+        {
+          "period": "1945–1990",
+          "label": "Asiantuntijavaltio",
+          "note": "Yhteinen tieto, päätös ja toimeenpano vahvistuivat."
+        },
+        {
+          "period": "1990–2025",
+          "label": "Mittari- ja hankejärjestelmä",
+          "note": "Tietoa syntyy paljon, mutta vastuu ja oppiminen hajautuvat."
+        },
+        {
+          "period": "2025–2050",
+          "label": "Oppiva järjestelmä?",
+          "note": "Reaaliaikainen palaute yhdistää tarpeen, päätöksen ja korjauksen."
+        }
+      ]
+    },
+    {
+      "id": "M34",
+      "short": "Kustannuksen reitti",
+      "name": "Kustannuksen uusi reitti",
+      "summary": "Kun hyöty ja kustannus osuvat eri toimijoille tai eri aikaan, päätös näyttää liian halvalta.",
+      "quote": "Todellinen hinta ei ole se, mitä päätös maksaa nyt — vaan se, mitä yhteiskunta joutuu sen seurauksena kantamaan.",
+      "steps": [
+        "Hyöty",
+        "Toiminta",
+        "Välitön kustannus",
+        "Siirretty kustannus",
+        "Lopullinen maksaja",
+        "Jälkilasku"
+      ],
+      "breaks": [
+        3
+      ],
+      "eras": [
+        {
+          "period": "1800–1860",
+          "label": "Paikallinen kustannus",
+          "note": "Hyöty ja haitta näkyivät usein samassa yhteisössä."
+        },
+        {
+          "period": "1860–1945",
+          "label": "Teollistuva kustannus",
+          "note": "Haitat siirtyivät työntekijöille ja kaupunkeihin."
+        },
+        {
+          "period": "1945–1990",
+          "label": "Kollektiivinen korjaus",
+          "note": "Vakuutus, verotus ja palvelut jakoivat kustannuksia."
+        },
+        {
+          "period": "1990–2025",
+          "label": "Hajautunut jälkilasku",
+          "note": "Globaalit ketjut ja velka erottavat hyödyn ja maksajan."
+        },
+        {
+          "period": "2025–2050",
+          "label": "Kustannus takaisin päätökseen?",
+          "note": "Elinkaarivastuu tekee seuraukset näkyviksi."
+        }
+      ]
+    },
+    {
+      "id": "M35",
+      "short": "Ylläpito",
+      "name": "Ylläpidon ja rapautumisen ketju",
+      "summary": "Yhteinen pääoma ei säily itsestään: käyttö kuluttaa ja ylläpito uudistaa.",
+      "quote": "Rapautuminen ei ala rikkoutumisesta — vaan siitä, että kuluminen jatkuu ilman uudistumista.",
+      "steps": [
+        "Rakentaminen",
+        "Käyttö",
+        "Kuluminen",
+        "Lykätty ylläpito",
+        "Korjausvelka",
+        "Toimintakyvyn menetys"
+      ],
+      "breaks": [
+        3
+      ],
+      "eras": [
+        {
+          "period": "1800–1860",
+          "label": "Paikallinen ylläpito",
+          "note": "Yhteisö hoiti sen, minkä tunsi ja tarvitsi."
+        },
+        {
+          "period": "1860–1945",
+          "label": "Rakentava valtio",
+          "note": "Tiet, koulut ja hallinto loivat yhteistä pääomaa."
+        },
+        {
+          "period": "1945–1990",
+          "label": "Laajenevat järjestelmät",
+          "note": "Ylläpito kiinnittyi instituutioihin ja veropohjaan."
+        },
+        {
+          "period": "1990–2025",
+          "label": "Tehokkuuden aikakausi",
+          "note": "Rakentaminen näkyy, lykkäys jää piiloon."
+        },
+        {
+          "period": "2025–2050",
+          "label": "Ennakoiva uusiutuminen?",
+          "note": "Kunto ja vaikutus ohjaavat jatkuvaa ylläpitoa."
+        }
+      ]
+    },
+    {
+      "id": "M36",
+      "short": "Häiriö ja uudistus",
+      "name": "Häiriöstä uudistumiseen",
+      "summary": "Puskuri lieventää iskua, sopeutuminen muuttaa toimintaa ja uudistus muuttaa rakennetta.",
+      "quote": "Häiriön kestäminen ei vielä ole sopeutumista — järjestelmä uudistuu vasta, kun seuraava isku kohtaa sen vahvempana.",
+      "steps": [
+        "Häiriö",
+        "Ensisuoja",
+        "Jatkuvuus",
+        "Sopeutuminen",
+        "Rakenteellinen uudistus",
+        "Oppiminen",
+        "Vahvempi järjestelmä"
+      ],
+      "breaks": [
+        4
+      ],
+      "eras": [
+        {
+          "period": "1800–1860",
+          "label": "Paikallinen selviytyminen",
+          "note": "Perhe ja yhteisö kantoivat suuren osan häiriöstä."
+        },
+        {
+          "period": "1860–1945",
+          "label": "Kansallinen varautuminen",
+          "note": "Hallinto ja infrastruktuuri vahvistuivat."
+        },
+        {
+          "period": "1945–1990",
+          "label": "Kollektiivinen turva",
+          "note": "Vakuutus, tulonsiirrot ja palvelut jakoivat iskuja."
+        },
+        {
+          "period": "1990–2025",
+          "label": "Monikriisien hallinta",
+          "note": "Poikkeustoimet turvaavat jatkuvuutta, mutta uudistus voi viivästyä."
+        },
+        {
+          "period": "2025–2050",
+          "label": "Ennakoiva uudistuminen?",
+          "note": "Häiriösignaali käynnistää oppimisen ja rakenteellisen korjauksen."
+        }
+      ]
+    },
+    {
+      "id": "M37",
+      "short": "Oikeutus",
+      "name": "Oikeutuksen ketju",
+      "summary": "Valta muuttuu hyväksytyksi, kun päätös koetaan perustelluksi, reiluksi ja korjattavaksi.",
+      "quote": "Valta ei säily oikeutettuna siksi, että sillä on oikeus päättää — vaan siksi, että sen päätökset voidaan ymmärtää, arvioida ja korjata.",
+      "steps": [
+        "Valtuutus",
+        "Osallistuminen",
+        "Päätös",
+        "Perustelu",
+        "Koettu oikeudenmukaisuus",
+        "Hyväksyntä",
+        "Luottamus"
+      ],
+      "breaks": [
+        4
+      ],
+      "eras": [
+        {
+          "period": "1800–1860",
+          "label": "Alamaisuus ja sääty",
+          "note": "Valta perustui asemaan ja ylhäältä annettuun järjestykseen."
+        },
+        {
+          "period": "1860–1917",
+          "label": "Edustuksen laajeneminen",
+          "note": "Julkisuus, järjestäytyminen ja osallistuminen vahvistuivat."
+        },
+        {
+          "period": "1917–1990",
+          "label": "Demokraattinen hyvinvointivaltio",
+          "note": "Äänioikeus ja yhteiset palvelut loivat vastavuoroisuutta."
+        },
+        {
+          "period": "1990–2025",
+          "label": "Hajautunut vaikuttaminen",
+          "note": "Päätösvalta, markkinat, verkostot ja alustat limittyvät."
+        },
+        {
+          "period": "2025–2050",
+          "label": "Algoritminen valta?",
+          "note": "Voidaanko päätös jäljittää, perustella ja korjata?"
+        }
+      ]
+    },
+    {
+      "id": "M38",
+      "short": "Kyvykkyys",
+      "name": "Kyvykkyyden uusiutumisen ketju",
+      "summary": "Toimintakyky säilyy, jos tämän päivän käyttö rakentaa seuraavan kierroksen edellytykset.",
+      "quote": null,
+      "steps": [
+        "Peritty kyvykkyys",
+        "Käyttö",
+        "Kokemus",
+        "Oppiminen",
+        "Siirtyminen",
+        "Uudistuminen",
+        "Vahvempi kyvykkyys"
+      ],
+      "breaks": [
+        3
+      ],
+      "eras": [
+        {
+          "period": "1800–1860",
+          "label": "Peritty ja paikallinen taito",
+          "note": "Kyky välittyi perheessä, työssä ja yhteisössä."
+        },
+        {
+          "period": "1860–1945",
+          "label": "Koulutuksen nousu",
+          "note": "Lukutaito ja hallinnollinen kyky laajenivat."
+        },
+        {
+          "period": "1945–1990",
+          "label": "Kansallinen kyvykkyysinvestointi",
+          "note": "Koulutus, terveys ja tutkimus vahvistivat toisiaan."
+        },
+        {
+          "period": "1990–2025",
+          "label": "Tehokas käyttö",
+          "note": "Oppiminen ja palautuminen eriytyvät tuotannosta."
+        },
+        {
+          "period": "2025–2050",
+          "label": "Jatkuva uusiutuminen?",
+          "note": "Työ, tekoäly ja oppiminen rakentavat seuraavaa kyvykkyyttä."
+        }
+      ]
+    },
+    {
+      "id": "M39",
+      "short": "Sukupolvet",
+      "name": "Sukupolvien jatkuvuuden ketju",
+      "summary": "Yhteiskunta jatkuu, kun seuraava sukupolvi saa kyvyn, paikan ja mahdollisuuden kantaa vastuuta.",
+      "quote": "Sukupolvisopimus ei ole lupaus säilyttää kaikki ennallaan — vaan velvollisuus jättää seuraaville todellinen kyky rakentaa oma tulevaisuutensa.",
+      "steps": [
+        "Uusi sukupolvi",
+        "Hoiva ja turva",
+        "Kasvu ja oppiminen",
+        "Osallistuminen",
+        "Vastuun kantaminen",
+        "Perinnön siirtäminen",
+        "Seuraava sukupolvi"
+      ],
+      "breaks": [
+        5
+      ],
+      "eras": [
+        {
+          "period": "1800–1860",
+          "label": "Perheen ja suvun jatkuvuus",
+          "note": "Työ, hoiva ja vanhuudenturva kuuluivat samaan ketjuun."
+        },
+        {
+          "period": "1860–1945",
+          "label": "Kansallinen sukupolviprojekti",
+          "note": "Koulu, terveys ja kansalaisuus laajensivat vastuuta."
+        },
+        {
+          "period": "1945–1990",
+          "label": "Hyvinvointivaltion sopimus",
+          "note": "Työikäiset rahoittivat palveluja ja tulevaa kyvykkyyttä."
+        },
+        {
+          "period": "1990–2025",
+          "label": "Ikääntyvä yhteiskunta",
+          "note": "Vastuut kasvavat ja lähtökohdat eriytyvät."
+        },
+        {
+          "period": "2025–2050",
+          "label": "Uusi sukupolvisopimus?",
+          "note": "Syntyvyys, maahanmuutto, osallisuus ja hoiva sovitetaan yhteen."
+        }
+      ]
+    }
+  ],
+  "junctions": [
+    {
+      "id": "visibility",
+      "name": "Näkyväksi tekeminen",
+      "words": [
+        "havainto",
+        "tieto",
+        "kustannus",
+        "kokemus",
+        "perustelu",
+        "altistuminen"
+      ],
+      "note": "Järjestelmä voi vastata vain siihen, minkä se kykenee havaitsemaan.",
+      "series": 2
+    },
+    {
+      "id": "responsibility",
+      "name": "Päätös ja vastuu",
+      "words": [
+        "päätös",
+        "vastuu",
+        "toimivalta",
+        "maksaja",
+        "jako",
+        "velvollisuus"
+      ],
+      "note": "Toimivalta, resurssit ja seuraukset on saatava samaan vastuurakenteeseen.",
+      "series": 3
+    },
+    {
+      "id": "feedback",
+      "name": "Palaute ja oppiminen",
+      "words": [
+        "vaikutus",
+        "oppiminen",
+        "kokemus",
+        "korjaus",
+        "jälkilasku",
+        "luottamus"
+      ],
+      "note": "Vaikutus tarvitsee palautetien, muuten järjestelmä toistaa virheensä.",
+      "series": 4
+    },
+    {
+      "id": "renewal",
+      "name": "Uusiutuminen",
+      "words": [
+        "uusi",
+        "uudistus",
+        "uudistuminen",
+        "vahvempi",
+        "jatkuvuus",
+        "seuraava"
+      ],
+      "note": "Kestävyys näkyy siinä, paranevatko seuraavan kierroksen lähtökohdat.",
+      "series": 5
+    }
+  ],
+  "phases": [
+    "Lähtökohta",
+    "Muuntuminen",
+    "Jako ja vastuu",
+    "Seuraus ja palaute",
+    "Uusiutuminen"
+  ],
+  "phaseIcons": [
+    "○",
+    "◇",
+    "△",
+    "□",
+    "↺"
+  ]
+}
