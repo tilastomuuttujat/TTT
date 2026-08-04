@@ -696,6 +696,181 @@
       .lens-average.dim {
         opacity: 0.12;
       }
+
+      .lens-average.future-path {
+        stroke-dasharray: 8 7;
+        opacity: 0.86;
+      }
+
+      .scenario-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        flex-wrap: wrap;
+      }
+
+      .scenario-toolbar-label {
+        font-size: 9.5px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--future);
+        margin-left: 8px;
+      }
+
+      .scenario-global {
+        display: inline-flex;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        overflow: hidden;
+        background: var(--paper2);
+      }
+
+      .scenario-global-option {
+        border: 0;
+        border-right: 1px solid var(--line);
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        padding: 6px 10px;
+        font-size: 10.5px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .scenario-global-option:last-child {
+        border-right: 0;
+      }
+
+      .scenario-global-option:hover {
+        color: var(--ink);
+        background: var(--soft);
+      }
+
+      .scenario-global-option[aria-pressed="true"] {
+        color: var(--paper);
+        background: var(--future);
+      }
+
+      .scenario-customize[aria-expanded="true"],
+      .scenario-customize.is-mixed {
+        border-color: var(--future);
+        color: var(--future);
+      }
+
+      .scenario-panel {
+        margin-top: 11px;
+        padding-top: 11px;
+        border-top: 1px solid var(--soft);
+      }
+
+      .scenario-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+
+      .scenario-title {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--future);
+      }
+
+      .scenario-note {
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      .scenario-presets {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .scenario-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(320px, 1fr));
+        gap: 7px 14px;
+      }
+
+      .scenario-row {
+        display: grid;
+        grid-template-columns: minmax(150px, 1fr) auto;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+        padding: 7px 9px;
+        border: 1px solid var(--soft);
+        border-radius: 10px;
+        background: color-mix(in srgb, var(--future) 3%, var(--paper2));
+      }
+
+      .scenario-row-name {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        font-size: 11.5px;
+        color: var(--ink2);
+      }
+
+      .scenario-swatch {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex: 0 0 auto;
+        background: var(--c);
+      }
+
+      .scenario-row-name span:last-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .scenario-options {
+        display: inline-flex;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        overflow: hidden;
+        background: var(--paper);
+      }
+
+      .scenario-option {
+        border: 0;
+        border-right: 1px solid var(--line);
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        padding: 5px 8px;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .scenario-option:last-child {
+        border-right: 0;
+      }
+
+      .scenario-option:hover {
+        color: var(--ink);
+        background: var(--soft);
+      }
+
+      .scenario-option[aria-pressed="true"] {
+        color: var(--paper);
+        background: var(--future);
+      }
+
+      @media (max-width: 900px) {
+        .scenario-grid {
+          grid-template-columns: 1fr;
+        }
+      }
       @media (max-width: 900px) {
         header {
           grid-template-columns: 1fr;
@@ -1095,6 +1270,24 @@
           </div>
         </div>
         <div class="chips" id="chips"></div>
+        <div class="scenario-toolbar" aria-label="Kehityssuunnan vaihtoehdot 2025–2050">
+          <span class="scenario-toolbar-label">Kehityssuunta 2025–2050</span>
+          <div class="scenario-global" role="group" aria-label="Kaikkien linssien kehityssuunta">
+            <button class="scenario-global-option" type="button" data-scenario-preset="weak" aria-pressed="false">Heikkenee</button>
+            <button class="scenario-global-option" type="button" data-scenario-preset="trend" aria-pressed="true">Nykyinen</button>
+            <button class="scenario-global-option" type="button" data-scenario-preset="strong" aria-pressed="false">Vahvistuu</button>
+          </div>
+          <button class="action scenario-customize" id="scenarioCustomize" type="button" aria-expanded="false" aria-controls="scenarioPanel">Mukauta…</button>
+        </div>
+        <div class="scenario-panel" id="scenarioPanel" hidden>
+          <div class="scenario-head">
+            <div>
+              <div class="scenario-title">Linssikohtainen kehityssuunta</div>
+              <div class="scenario-note">Mukauta vain tarvittaessa. Historiallinen osa ei muutu.</div>
+            </div>
+          </div>
+          <div class="scenario-grid" id="scenarioGrid"></div>
+        </div>
       </section>
       <section class="map">
         <div class="map-head">
@@ -1132,7 +1325,7 @@
             ><i class="road"></i>Linssin keskimääräinen sijainti ja
             tihentymä</span
           ><span><i class="ring"></i>Usealle linssille yhteinen murros</span
-          ><span class="hint">Tumma katkoviiva = interpolointi · vihreä katkoviiva = tulevaisuusodotus</span>
+          ><span class="hint">Tumma katkoviiva = interpolointi · vihreä katkoviiva = valittu tulevaisuuspolku</span>
         </div>
       </section>
       <section class="detail" id="detail" aria-live="polite"></section>
@@ -1186,6 +1379,12 @@
           allLabels: false,
           density: true,
         };
+        const FUTURE_MODES = {
+          weak: { label: "Heikkenee", direction: 1 },
+          trend: { label: "Nykyinen suunta jatkuu", direction: 0 },
+          strong: { label: "Vahvistuu", direction: -1 },
+        };
+        const FUTURE_SCENARIO_SHIFT = 0.11;
         let chains,
           atlas,
           anchors,
@@ -1197,7 +1396,8 @@
           itemMap,
           roleMap,
           displayY = new Map(),
-          displayYear = new Map();
+          displayYear = new Map(),
+          futureModes = new Map();
         const S = (s) =>
           String(s ?? "").replace(
             /[&<>"']/g,
@@ -1603,7 +1803,7 @@
             "Lukusuunta",
             "Vaaka kertoo ajankohdan. Etäisyys keskiviivasta kertoo vaikutuksen suunnan ja tulkinnallisen voimakkuuden.",
             "Valitse yksi tai useampi linssi",
-            `<p>Murrokset, niiden tihentymä ja keskimääräinen sijainti käyttävät linssin omaa väriä. Tumma käyrä kokoaa näkyvien linssien keskimääräisen suunnan viiden vuoden jaksoissa.</p>`,
+            `<p>Murrokset, niiden tihentymä ja keskimääräinen sijainti käyttävät linssin omaa väriä. Tumma käyrä kokoaa näkyvien linssien keskimääräisen suunnan viiden vuoden jaksoissa. Mahdollisille tulevaisuuspoluille voidaan valita linssikohtaisesti, jäävätkö ne toteutumatta, toteutuvatko ne osittain vai toteutuvatko ne hyvin.</p>`,
             "",
             "",
           );
@@ -1676,6 +1876,90 @@
             chips.appendChild(b);
           });
         }
+        function applyScenarioPreset(mode) {
+          chains.models.forEach((model) => futureModes.set(model.id, mode));
+          syncScenarioControls();
+          render();
+          writeState();
+        }
+
+        function buildScenarioControls() {
+          const panel = document.getElementById("scenarioPanel");
+          const grid = document.getElementById("scenarioGrid");
+          const customize = document.getElementById("scenarioCustomize");
+          if (!panel || !grid || !chains) return;
+
+          grid.replaceChildren();
+          chains.models.forEach((model, index) => {
+            if (!futureModes.has(model.id)) futureModes.set(model.id, "trend");
+            const row = document.createElement("div");
+            row.className = "scenario-row";
+            row.dataset.chainId = model.id;
+
+            const name = document.createElement("div");
+            name.className = "scenario-row-name";
+            name.innerHTML = `<span class="scenario-swatch" style="--c:${colors[index % colors.length]}"></span><span>${S(model.id)} · ${S(model.short || model.name)}</span>`;
+
+            const options = document.createElement("div");
+            options.className = "scenario-options";
+            options.setAttribute("role", "group");
+            options.setAttribute("aria-label", `${model.name}: kehityssuunnan vaihtoehto`);
+            Object.entries(FUTURE_MODES).forEach(([mode, config]) => {
+              const button = document.createElement("button");
+              button.type = "button";
+              button.className = "scenario-option";
+              button.textContent = config.label;
+              button.dataset.mode = mode;
+              button.setAttribute("aria-pressed", String(futureModes.get(model.id) === mode));
+              button.addEventListener("click", () => {
+                futureModes.set(model.id, mode);
+                syncScenarioControls();
+                render();
+                writeState();
+              });
+              options.appendChild(button);
+            });
+            row.append(name, options);
+            grid.appendChild(row);
+          });
+
+          document.querySelectorAll("[data-scenario-preset]").forEach((button) => {
+            button.addEventListener("click", () => applyScenarioPreset(button.dataset.scenarioPreset));
+          });
+
+          customize?.addEventListener("click", () => {
+            const open = panel.hidden;
+            panel.hidden = !open;
+            customize.setAttribute("aria-expanded", String(open));
+            customize.textContent = open ? "Sulje mukautus" : "Mukauta…";
+          });
+
+          syncScenarioControls();
+        }
+
+        function syncScenarioControls() {
+          document.querySelectorAll(".scenario-row").forEach((row) => {
+            const activeMode = futureModes.get(row.dataset.chainId) || "trend";
+            row.querySelectorAll(".scenario-option").forEach((button) => {
+              button.setAttribute("aria-pressed", String(button.dataset.mode === activeMode));
+            });
+          });
+
+          const modes = chains?.models.map((model) => futureModes.get(model.id) || "trend") || [];
+          const commonMode = modes.length && modes.every((mode) => mode === modes[0]) ? modes[0] : null;
+          document.querySelectorAll(".scenario-global-option").forEach((button) => {
+            button.setAttribute("aria-pressed", String(button.dataset.scenarioPreset === commonMode));
+          });
+
+          const customize = document.getElementById("scenarioCustomize");
+          if (customize) {
+            customize.classList.toggle("is-mixed", !commonMode);
+            customize.title = commonMode
+              ? `Kaikilla linsseillä: ${FUTURE_MODES[commonMode].label}`
+              : "Linsseillä on eri kehityssuuntia";
+          }
+        }
+
         function sync() {
           [...chips.children].forEach((b, i) =>
             b.setAttribute("aria-pressed", selected.has(chains.models[i].id)),
@@ -1695,7 +1979,7 @@
         // Derived curves and density field
         // ------------------------------------------------------------------
 
-        function lensAveragePoints(chainId) {
+        function baseLensAveragePoints(chainId) {
           const ids = new Set(layout.lens_paths[chainId] || []);
           layout.anchor_roles
             .filter((r) => r.chain_id === chainId)
@@ -1712,11 +1996,130 @@
           return [...bins]
             .sort((a, b) => a[0] - b[0])
             .map(([key, group]) => {
-              const x = group.reduce((s, n) => s + xy(n).x, 0) / group.length,
-                y = group.reduce((s, n) => s + xy(n).y, 0) / group.length;
+              const x = group.reduce((sum, node) => sum + xy(node).x, 0) / group.length;
+              const y = group.reduce((sum, node) => sum + xy(node).y, 0) / group.length;
               return { x, y, count: group.length, year: 1810 + key * 20 };
             });
         }
+
+        /**
+         * Build a genuine scenario path after NOW_YEAR.
+         *
+         * The previous implementation shifted an already optimistic curated
+         * future baseline. Consequently even "Heikkenee" could still rise.
+         * Here every scenario starts from the same 2025 anchor:
+         *
+         * - Heikkenee: moves clearly towards the lower half of the chart.
+         * - Nykyinen suunta jatkuu: extrapolates the recent historical trend,
+         *   with a conservative cap so one noisy interval cannot dominate.
+         * - Vahvistuu: moves clearly towards the upper half of the chart.
+         *
+         * Future source points determine only the years and density counts;
+         * their pre-authored y positions no longer force every scenario up.
+         */
+        function lensAveragePoints(chainId) {
+          const points = baseLensAveragePoints(chainId);
+          if (points.length < 2) return points;
+
+          const historical = points.filter((point) => point.year < NOW_YEAR);
+          if (!historical.length) return points;
+
+          function interpolateNowY() {
+            const exact = points.find((point) => point.year === NOW_YEAR);
+            if (exact) return exact.y;
+
+            for (let index = 1; index < points.length; index++) {
+              const left = points[index - 1];
+              const right = points[index];
+              if (left.year < NOW_YEAR && right.year > NOW_YEAR) {
+                const fraction = (NOW_YEAR - left.year) / (right.year - left.year);
+                return left.y + (right.y - left.y) * fraction;
+              }
+            }
+
+            return historical.at(-1)?.y ?? points[0].y;
+          }
+
+          const anchorY = interpolateNowY();
+          const boundaryPoint = {
+            x: xForYear(NOW_YEAR),
+            y: anchorY,
+            count: historical.at(-1)?.count || 1,
+            year: NOW_YEAR,
+          };
+
+          const mode = futureModes.get(chainId) || "trend";
+          const plotHeight = H - P.t - P.b;
+          const directionalChange = plotHeight * 0.18;
+          const trendLimit = plotHeight * 0.1;
+
+          // Estimate the current direction from the recent historical curve.
+          // A linear regression is steadier than taking only the last segment.
+          const recent = historical.filter((point) => point.year >= 1985);
+          const trendSource = recent.length >= 2 ? recent : historical.slice(-3);
+          let projectedTrendChange = 0;
+          if (trendSource.length >= 2) {
+            const meanYear = trendSource.reduce((sum, point) => sum + point.year, 0) / trendSource.length;
+            const meanY = trendSource.reduce((sum, point) => sum + point.y, 0) / trendSource.length;
+            const numerator = trendSource.reduce(
+              (sum, point) => sum + (point.year - meanYear) * (point.y - meanY),
+              0,
+            );
+            const denominator = trendSource.reduce(
+              (sum, point) => sum + (point.year - meanYear) ** 2,
+              0,
+            );
+            const slope = denominator ? numerator / denominator : 0;
+            projectedTrendChange = Math.max(
+              -trendLimit,
+              Math.min(trendLimit, slope * (2050 - NOW_YEAR)),
+            );
+          }
+
+          const targetY =
+            mode === "weak"
+              ? anchorY + directionalChange
+              : mode === "strong"
+                ? anchorY - directionalChange
+                : anchorY + projectedTrendChange;
+
+          const sourceFuture = points.filter((point) => point.year > NOW_YEAR);
+          const futureYears = [...new Set([
+            ...sourceFuture.map((point) => point.year),
+            2030,
+            2040,
+            2050,
+          ])]
+            .filter((year) => year > NOW_YEAR && year <= 2050)
+            .sort((a, b) => a - b);
+
+          const countForYear = (year) => {
+            const nearest = sourceFuture.reduce((best, point) => {
+              if (!best) return point;
+              return Math.abs(point.year - year) < Math.abs(best.year - year) ? point : best;
+            }, null);
+            return nearest?.count || 1;
+          };
+
+          const scenarioPoints = futureYears.map((year) => {
+            const linearProgress = Math.max(
+              0,
+              Math.min(1, (year - NOW_YEAR) / (2050 - NOW_YEAR)),
+            );
+            // Smoothstep gives a calm departure from the present-day anchor.
+            const progress = linearProgress * linearProgress * (3 - 2 * linearProgress);
+            return {
+              x: xForYear(year),
+              y: Math.max(P.t, Math.min(H - P.b, anchorY + (targetY - anchorY) * progress)),
+              count: countForYear(year),
+              year,
+              scenarioMode: mode,
+            };
+          });
+
+          return [...historical, boundaryPoint, ...scenarioPoints];
+        }
+
         /**
          * Concentric density bands, outermost first.
          * Each band is a full closed ribbon around the lens's average path,
@@ -1785,7 +2188,7 @@
             E(
               "text",
               { x: nowX + 14, y: P.t - 5, class: "future-label" },
-              "TULEVAISUUSODOTUKSET",
+              "MAHDOLLISET TULEVAISUUSPOLUT",
             ),
           );
 
@@ -1952,24 +2355,50 @@
                 }),
               );
             }
-            const average = E("path", {
-              d: path(points),
-              stroke: color(id),
-              class: `lens-average ${activeChain === id ? "active" : ""} ${activeNode && !pathUsage.get(activeNode)?.includes(id) ? "dim" : ""}`,
-            });
-            average.addEventListener("click", () => {
+            const historicalAveragePoints = points.filter((point) => point.year <= NOW_YEAR);
+            const projectedAveragePoints = points.filter((point) => point.year > NOW_YEAR);
+            const pathClass = `lens-average ${activeChain === id ? "active" : ""} ${activeNode && !pathUsage.get(activeNode)?.includes(id) ? "dim" : ""}`;
+            const activateAverage = () => {
               activeChain = activeChain === id ? null : id;
               activeNode = null;
               render();
               activeChain
                 ? showChain(chains.models.find((model) => model.id === id))
                 : intro();
-            });
-            bindTip(average, () => {
+            };
+            const averageTip = () => {
               const model = chains.models.find((item) => item.id === id);
-              return `<b>${S(model.name)}</b><em>${S(id)} · murrosten keskimääräinen sijainti</em><br>${S(model.summary)}`;
-            });
-            averages.appendChild(average);
+              const mode = FUTURE_MODES[futureModes.get(id) || "trend"].label.toLowerCase();
+              return `<b>${S(model.name)}</b><em>${S(id)} · kehityssuunta: ${S(mode)}</em><br>${S(model.summary)}`;
+            };
+
+            if (historicalAveragePoints.length > 1) {
+              const historicalAverage = E("path", {
+                d: path(historicalAveragePoints),
+                stroke: color(id),
+                class: pathClass,
+              });
+              historicalAverage.addEventListener("click", activateAverage);
+              bindTip(historicalAverage, averageTip);
+              averages.appendChild(historicalAverage);
+            }
+
+            if (projectedAveragePoints.length) {
+              const futureStart = historicalAveragePoints.at(-1);
+              const futureAveragePoints = futureStart
+                ? [futureStart, ...projectedAveragePoints]
+                : projectedAveragePoints;
+              if (futureAveragePoints.length > 1) {
+                const futureAverage = E("path", {
+                  d: path(futureAveragePoints),
+                  stroke: color(id),
+                  class: `${pathClass} future-path`,
+                });
+                futureAverage.addEventListener("click", activateAverage);
+                bindTip(futureAverage, averageTip);
+                averages.appendChild(futureAverage);
+              }
+            }
             const end = points.at(-1);
             labels.appendChild(
               E(
@@ -2140,6 +2569,10 @@
           params.set("y", `${UI.yearMin}-${UI.yearMax}`);
           if (UI.allLabels) params.set("labels", "1");
           if (!UI.density) params.set("density", "0");
+          const nonTrendScenarios = [...futureModes.entries()]
+            .filter(([, mode]) => mode !== "trend")
+            .map(([id, mode]) => `${id}:${mode}`);
+          if (nonTrendScenarios.length) params.set("future", nonTrendScenarios.join(","));
           if (activeNode) params.set("node", activeNode);
           else if (activeChain) params.set("chain", activeChain);
           history.replaceState(null, "", "#" + params.toString());
@@ -2156,6 +2589,10 @@
           }
           out.labels = params.get("labels") === "1";
           out.density = params.get("density") !== "0";
+          out.future = (params.get("future") || "")
+            .split(",")
+            .map((entry) => entry.split(":"))
+            .filter(([id, mode]) => id && FUTURE_MODES[mode]);
           out.node = params.get("node");
           out.chain = params.get("chain");
           return out;
@@ -2512,6 +2949,10 @@
           );
           const state = readState();
           const valid = new Set(chains.models.map((m) => m.id));
+          futureModes = new Map(chains.models.map((model) => [model.id, "trend"]));
+          (state.future || []).forEach(([id, mode]) => {
+            if (valid.has(id) && FUTURE_MODES[mode]) futureModes.set(id, mode);
+          });
           selected = new Set(
             (state.lens || ["M21"]).filter((id) => valid.has(id)),
           );
@@ -2528,6 +2969,7 @@
           const loader = document.getElementById("loading");
           if (loader) loader.remove();
           buildChips();
+          buildScenarioControls();
           sync();
           ["core", "all", "none"].forEach((id) => {
             document.getElementById(id).disabled = false;
