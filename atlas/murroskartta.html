@@ -589,6 +589,119 @@
       .impact span {
         color: var(--ink2);
       }
+      .lens-feature {
+        margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+      }
+      .lens-feature[hidden] {
+        display: none;
+      }
+      .lens-feature-inner {
+        display: grid;
+        grid-template-columns: minmax(220px, 320px) 1fr;
+        gap: 22px;
+        align-items: start;
+      }
+      .lens-feature-fig {
+        margin: 0;
+      }
+      .lens-feature-fig img {
+        width: 100%;
+        display: block;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: var(--panel2, #14181d);
+      }
+      .lens-feature-fig figcaption {
+        margin-top: 6px;
+        font-size: 10.5px;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+      .lens-feature-eyebrow {
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 4px;
+      }
+      .lens-feature-title {
+        margin: 0 0 4px;
+        font-size: 16px;
+        line-height: 1.3;
+      }
+      .lens-feature-dek {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .lens-feature-body {
+        font-size: 12px;
+        line-height: 1.65;
+        max-width: 72ch;
+      }
+      .lens-feature-body p {
+        margin: 0 0 10px;
+      }
+      .lens-feature-body h4 {
+        margin: 18px 0 8px;
+        font-size: 13.5px;
+        line-height: 1.35;
+      }
+      .lens-feature-body h5 {
+        margin: 14px 0 6px;
+        font-size: 12.5px;
+        line-height: 1.35;
+        color: var(--ink2, inherit);
+      }
+      .lens-feature-body blockquote {
+        margin: 10px 0;
+        padding: 2px 0 2px 12px;
+        border-left: 2px solid var(--line);
+        color: var(--ink2, inherit);
+        font-style: italic;
+      }
+      .lens-feature-body ul {
+        margin: 0 0 10px;
+        padding-left: 18px;
+      }
+      .lens-feature-body li {
+        margin: 2px 0;
+      }
+      .lens-feature-body [hidden] {
+        display: none;
+      }
+      .lens-feature-more {
+        all: unset;
+        cursor: pointer;
+        color: var(--accent, #6fa8dc);
+        font-size: 11.5px;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .lens-feature-further {
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .lens-feature-further li {
+        margin: 2px 0;
+      }
+      .lens-feature-missing {
+        margin-top: 8px;
+        font-size: 10.5px;
+        color: var(--muted);
+        font-style: italic;
+      }
+      @media (max-width: 720px) {
+        .lens-feature-inner {
+          grid-template-columns: 1fr;
+        }
+      }
       .notice {
         margin-top: 14px;
         max-width: 95ch;
@@ -1329,6 +1442,12 @@
         </div>
       </section>
       <section class="detail" id="detail" aria-live="polite"></section>
+      <section
+        class="lens-feature"
+        id="lensFeature"
+        aria-live="polite"
+        hidden
+      ></section>
       <p class="notice">
         Y-sijainti ja vaikutuskäyrä ovat linssikohtaisia rakenteellisia
         tulkintoja, eivät määrällisiä mittauksia. Käyrä alkaa ensimmäisestä
@@ -1351,6 +1470,7 @@
           atlas: "murrosatlas.json",
           anchors: "chain-anchors.json",
           layout: "murros-layout.json",
+          lensContent: "lens-content.json",
         };
         const NS = "http://www.w3.org/2000/svg",
           svg = document.getElementById("chart"),
@@ -1389,6 +1509,7 @@
           atlas,
           anchors,
           layout,
+          lensContent = {},
           selected = new Set(),
           activeChain = null,
           activeNode = null,
@@ -2514,6 +2635,172 @@
           document.getElementById("nodeCount").textContent = relevant.size;
           document.getElementById("edgeCount").textContent = selected.size;
           document.getElementById("jointCount").textContent = shared;
+          renderLensFeature();
+        }
+
+        /**
+         * Article + infographic for the sole selected lens.
+         *
+         * Only makes sense with exactly one lens active -- with several
+         * lenses selected there is no single "this is the one" article to
+         * anchor at the bottom of the page, so the section hides itself.
+         */
+        /**
+         * Turn one saved article "paragraph" into a real element.
+         *
+         * Article bodies were written as markdown-ish plain text (## / ### /
+         * > blockquote / **bold** / "- " lists), which showed up as literal
+         * asterisks and hashes when just dropped in via textContent. This
+         * renders the handful of patterns actually used, nothing more.
+         */
+        function renderLensBlock(raw) {
+          const text = String(raw ?? "");
+          if (text.startsWith("### ")) {
+            const el = document.createElement("h5");
+            appendInline(el, text.slice(4));
+            return el;
+          }
+          if (text.startsWith("## ")) {
+            const el = document.createElement("h4");
+            appendInline(el, text.slice(3));
+            return el;
+          }
+          if (text.startsWith("> ")) {
+            const el = document.createElement("blockquote");
+            appendInline(el, text.slice(2));
+            return el;
+          }
+          const lines = text.split("\n");
+          if (lines.every((line) => line.startsWith("- "))) {
+            const ul = document.createElement("ul");
+            lines.forEach((line) => {
+              const li = document.createElement("li");
+              appendInline(li, line.slice(2));
+              ul.appendChild(li);
+            });
+            return ul;
+          }
+          const p = document.createElement("p");
+          appendInline(p, text);
+          return p;
+        }
+
+        /** Append text to el, turning **bold** spans into <strong>. */
+        function appendInline(el, text) {
+          const parts = String(text).split(/\*\*(.+?)\*\*/g);
+          parts.forEach((part, i) => {
+            if (part === "") return;
+            if (i % 2 === 1) {
+              const strong = document.createElement("strong");
+              strong.textContent = part;
+              el.appendChild(strong);
+            } else {
+              el.appendChild(document.createTextNode(part));
+            }
+          });
+        }
+
+        function renderLensFeature() {
+          const section = document.getElementById("lensFeature");
+          if (!section) return;
+          if (selected.size !== 1) {
+            section.hidden = true;
+            section.replaceChildren();
+            return;
+          }
+          const chainId = [...selected][0];
+          const entry = lensContent[chainId];
+          const model = chains.models.find((m) => m.id === chainId);
+          if (!entry || !model) {
+            section.hidden = true;
+            section.replaceChildren();
+            return;
+          }
+
+          const wrap = document.createElement("div");
+          wrap.className = "lens-feature-inner";
+
+          const fig = document.createElement("figure");
+          fig.className = "lens-feature-fig";
+          if (entry.infographic?.url) {
+            const img = document.createElement("img");
+            img.src = entry.infographic.url;
+            img.loading = "lazy";
+            img.alt = entry.infographic.caption || entry.title || chainId;
+            const caption = document.createElement("figcaption");
+            caption.textContent = entry.infographic.caption || "";
+            fig.append(img, caption);
+          }
+
+          const art = document.createElement("div");
+          const eyebrow = document.createElement("p");
+          eyebrow.className = "lens-feature-eyebrow";
+          eyebrow.textContent = `${chainId} \u00b7 artikkeli`;
+          const title = document.createElement("h3");
+          title.className = "lens-feature-title";
+          title.textContent = entry.title || model.name;
+          const dek = document.createElement("p");
+          dek.className = "lens-feature-dek";
+          dek.textContent = entry.dek || "";
+
+          const body = document.createElement("div");
+          body.className = "lens-feature-body";
+          const paragraphs = entry.body || [];
+          paragraphs.forEach((text) => {
+            body.appendChild(renderLensBlock(text));
+          });
+          const blocks = [...body.children];
+          const collapsible = blocks.length > 3;
+          if (collapsible) {
+            blocks.forEach((el, i) => {
+              if (i >= 3) el.hidden = true;
+            });
+          }
+
+          art.append(eyebrow, title, dek, body);
+
+          if (collapsible) {
+            const more = document.createElement("button");
+            more.type = "button";
+            more.className = "lens-feature-more";
+            more.textContent = "Lue koko artikkeli";
+            more.setAttribute("aria-expanded", "false");
+            more.addEventListener("click", () => {
+              const expand = more.getAttribute("aria-expanded") !== "true";
+              blocks.forEach((el, i) => {
+                if (i >= 3) el.hidden = !expand;
+              });
+              more.setAttribute("aria-expanded", String(expand));
+              more.textContent = expand ? "Näytä vähemmän" : "Lue koko artikkeli";
+            });
+            art.appendChild(more);
+          }
+
+          if (entry.missing_primary_article) {
+            const note = document.createElement("p");
+            note.className = "lens-feature-missing";
+            note.textContent =
+              "Tälle linssille ei ole vielä omaa kokoavaa artikkelia -- yllä oleva teksti on lyhyt kehys.";
+            art.appendChild(note);
+          }
+          if (entry.further_reading?.length) {
+            const label = document.createElement("p");
+            label.className = "lens-feature-eyebrow";
+            label.style.marginTop = "10px";
+            label.textContent = "Lisälukemista";
+            const list = document.createElement("ul");
+            list.className = "lens-feature-further";
+            entry.further_reading.forEach((ref) => {
+              const li = document.createElement("li");
+              li.textContent = ref.title;
+              list.appendChild(li);
+            });
+            art.append(label, list);
+          }
+
+          wrap.append(fig, art);
+          section.replaceChildren(wrap);
+          section.hidden = false;
         }
 
         // ------------------------------------------------------------------
@@ -2931,14 +3218,15 @@
             }),
           ),
         )
-          .then(([c, a, an, l]) => boot(c, a, an, l))
+          .then(([c, a, an, l, lc]) => boot(c, a, an, l, lc))
           .catch((err) => showLoadError(err));
 
-        function boot(c, a, an, l) {
+        function boot(c, a, an, l, lc) {
           chains = c;
           atlas = a;
           anchors = an;
           layout = l;
+          lensContent = lc || {};
           nodeMap = new Map(layout.nodes.map((n) => [n.id, n]));
           itemMap = new Map(atlas.items.map((i) => [i.id, i]));
           roleMap = new Map(
@@ -3001,7 +3289,7 @@
           box.className = "error";
           box.innerHTML =
             `<strong>Atlas-dataa ei voitu ladata automaattisesti.</strong>${S(err.message)}<br><br>` +
-            `Varmista, että atlas-data.json, murrosatlas.json, chain-anchors.json ja murros-layout.json ovat samassa hakemistossa -- ` +
+            `Varmista, että atlas-data.json, murrosatlas.json, chain-anchors.json, murros-layout.json ja lens-content.json ovat samassa hakemistossa -- ` +
             `tai valitse tiedostot alta, jos avaat sivun suoraan levyltä.` +
             `<div class="filebox"><label class="tool-btn" for="pick">Valitse JSON-tiedostot</label>` +
             `<input id="pick" type="file" accept="application/json,.json" multiple hidden></div>`;
@@ -3027,6 +3315,7 @@
                 picked[FILES.atlas],
                 picked[FILES.anchors],
                 picked[FILES.layout],
+                picked[FILES.lensContent],
               );
             });
         }
