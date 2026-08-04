@@ -1,0 +1,2594 @@
+<!doctype html>
+<!--
+  Murroskartta 1800–2050
+  SPDX-License-Identifier: MIT
+
+  This file is intentionally unminified. The visualization logic is kept in
+  one document, while atlas content remains in separate JSON data files.
+-->
+<html lang="fi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Murroskartta 1800–2050 · Murrosten vaikutuskartta</title>
+    <meta
+      name="description"
+      content="Murrosatlaksen linssikohtainen vaikutuskartta vuosille 1800–2050."
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f2ede3;
+        --bg2: #e9e2d4;
+        --paper: #fffdf8;
+        --paper2: #faf6ee;
+        --ink: #15293c;
+        --ink2: #3c4d5e;
+        --muted: #6d7883;
+        --faint: #98a1aa;
+        --line: #d6cec0;
+        --strong: #b9ae9c;
+        --soft: #ece5d9;
+        --hot: #ad4128;
+        --future: #2f6b4f;
+        --shadow:
+          0 1px 2px rgba(24, 32, 40, 0.05),
+          0 18px 46px -22px rgba(24, 32, 40, 0.35);
+        --serif:
+          "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+        --sans:
+          ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, sans-serif;
+        --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0e161e;
+          --bg2: #121d27;
+          --paper: #17222c;
+          --paper2: #1c2833;
+          --ink: #f0f2ee;
+          --ink2: #cfd7dd;
+          --muted: #9fa9b2;
+          --faint: #75808a;
+          --line: #33414c;
+          --strong: #4b5a66;
+          --soft: #22303b;
+          --hot: #e8795a;
+          --future: #5fbf8f;
+          --shadow: 0 20px 50px -28px rgba(0, 0, 0, 0.9);
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        color: var(--ink);
+        background:
+          radial-gradient(
+            1100px 600px at 10% -10%,
+            color-mix(in srgb, var(--paper) 70%, transparent),
+            transparent 70%
+          ),
+          linear-gradient(180deg, var(--bg), var(--bg2));
+        background-attachment: fixed;
+        -webkit-font-smoothing: antialiased;
+      }
+      .app {
+        max-width: 1760px;
+        margin: auto;
+        padding: 32px 18px 60px;
+      }
+      button {
+        font: inherit;
+        color: inherit;
+      }
+      button:disabled {
+        cursor: wait;
+        opacity: 0.45;
+        pointer-events: none;
+      }
+      :focus-visible {
+        outline: 2px solid var(--hot);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+      header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 30px;
+        align-items: end;
+        margin-bottom: 22px;
+      }
+      .kicker {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--hot);
+      }
+      .kicker:before {
+        content: "";
+        width: 25px;
+        height: 2px;
+        background: var(--hot);
+      }
+      h1 {
+        font: 400 clamp(36px, 5vw, 66px) / 1.02 var(--serif);
+        letter-spacing: -0.028em;
+        margin: 13px 0;
+      }
+      h1 em {
+        font-style: italic;
+        color: var(--hot);
+      }
+      .lede {
+        max-width: 82ch;
+        margin: 0;
+        color: var(--ink2);
+        line-height: 1.68;
+        font-size: 15px;
+      }
+      .stats {
+        display: flex;
+        gap: 10px;
+      }
+      .stat {
+        min-width: 100px;
+        padding: 12px 14px;
+        background: color-mix(in srgb, var(--paper) 80%, transparent);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+      }
+      .stat b {
+        display: block;
+        font: 400 29px/1 var(--serif);
+      }
+      .stat span {
+        display: block;
+        margin-top: 7px;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .controls {
+        position: sticky;
+        top: 9px;
+        z-index: 20;
+        padding: 13px 15px;
+        margin-bottom: 15px;
+        background: color-mix(in srgb, var(--paper) 90%, transparent);
+        backdrop-filter: blur(18px);
+        border: 1px solid var(--line);
+        border-radius: 17px;
+        box-shadow: var(--shadow);
+      }
+      .control-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .control-head strong {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .actions {
+        display: flex;
+        gap: 6px;
+      }
+      .action {
+        border: 1px solid var(--line);
+        background: var(--paper2);
+        border-radius: 999px;
+        cursor: pointer;
+        transition: 0.18s ease;
+        font-size: 11px;
+        padding: 6px 11px;
+      }
+      .action:hover,
+      .chip:hover {
+        border-color: var(--ink);
+        transform: translateY(-1px);
+      }
+      .chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        --c: #777;
+        position: relative;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--paper2);
+        color: var(--c);
+        cursor: pointer;
+        transition: 0.18s ease;
+      }
+      .chip svg {
+        width: 21px;
+        height: 21px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .chip:after {
+        content: attr(data-label);
+        position: absolute;
+        z-index: 30;
+        left: 50%;
+        bottom: -34px;
+        transform: translateX(-50%) translateY(-2px);
+        padding: 5px 8px;
+        border-radius: 7px;
+        background: var(--ink);
+        color: var(--paper);
+        font-size: 10px;
+        white-space: nowrap;
+        pointer-events: none;
+        opacity: 0;
+        transition: 0.15s;
+      }
+      .chip:hover:after,
+      .chip:focus-visible:after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      .chip[aria-pressed="false"] {
+        opacity: 0.46;
+        background: transparent;
+        color: var(--muted);
+      }
+      .chip[aria-pressed="true"] {
+        background: color-mix(in srgb, var(--c) 11%, var(--paper));
+        border-color: color-mix(in srgb, var(--c) 55%, var(--line));
+        box-shadow: inset 0 -3px 0 color-mix(in srgb, var(--c) 72%, transparent);
+      }
+      .map {
+        position: relative;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      .map-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 15px;
+        flex-wrap: wrap;
+        padding: 13px 19px;
+        border-bottom: 1px solid var(--line);
+        background: linear-gradient(180deg, var(--paper2), transparent);
+      }
+      .map-head h2 {
+        margin: 0;
+        font: 400 18px var(--serif);
+      }
+      .map-head p {
+        margin: 0;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .scroll {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+      }
+      .chart {
+        display: block;
+        min-width: 1450px;
+        width: 100%;
+        height: auto;
+      }
+      .year-line {
+        stroke: var(--line);
+        stroke-width: 1;
+      }
+      .now-line {
+        stroke: var(--hot);
+        stroke-width: 1.5;
+        stroke-dasharray: 6 5;
+      }
+      .year {
+        fill: var(--ink);
+        font: 400 18px var(--serif);
+      }
+      .year-small {
+        fill: var(--faint);
+        font: 9px var(--mono);
+      }
+      .community-guide {
+        stroke: var(--line);
+        stroke-width: 1;
+        stroke-dasharray: 2 6;
+        opacity: 0.36;
+      }
+      .community-label {
+        fill: var(--faint);
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.09em;
+        paint-order: stroke;
+        stroke: var(--paper);
+        stroke-width: 4;
+      }
+      .edge {
+        fill: none;
+        stroke: var(--strong);
+        stroke-linecap: round;
+        opacity: 0.08;
+        pointer-events: none;
+      }
+      .edge.strong {
+        opacity: 0.14;
+      }
+      .lens {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.55;
+        cursor: pointer;
+        transition:
+          opacity 0.18s,
+          stroke-width 0.18s;
+      }
+      .lens:hover,
+      .lens.active {
+        opacity: 0.96;
+        stroke-width: 3.1;
+      }
+      .lens.dim {
+        opacity: 0.025;
+      }
+      .lens.future {
+        stroke-dasharray: 7 6;
+      }
+      .lens-label {
+        font-size: 10px;
+        font-weight: 800;
+        paint-order: stroke;
+        stroke: var(--paper);
+        stroke-width: 5;
+      }
+      .node {
+        cursor: pointer;
+        transition: opacity 0.18s;
+      }
+      .node.dim {
+        opacity: 0.1;
+      }
+      .node circle {
+        fill: var(--paper);
+        stroke: var(--ink2);
+        stroke-width: 1;
+      }
+      .node.imp4 circle {
+        stroke-width: 1.5;
+      }
+      .node.imp5 circle {
+        stroke: var(--hot);
+        stroke-width: 2;
+      }
+      .node.on-path circle {
+        stroke-width: 2;
+      }
+      .node.active circle {
+        fill: var(--hot);
+        stroke: var(--paper);
+        stroke-width: 2.5;
+      }
+      .node-label {
+        fill: var(--ink);
+        font-size: 9.5px;
+        font-weight: 700;
+        paint-order: stroke;
+        stroke: var(--paper);
+        stroke-width: 4;
+        stroke-linejoin: round;
+        pointer-events: none;
+      }
+      .joint-ring {
+        fill: none;
+        stroke: var(--hot);
+        stroke-width: 1.1;
+        opacity: 0.72;
+        pointer-events: none;
+      }
+      .joint-dot {
+        stroke: var(--paper);
+        stroke-width: 1;
+        pointer-events: none;
+      }
+      .legend {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 12px 19px;
+        border-top: 1px solid var(--line);
+        font-size: 10px;
+        color: var(--muted);
+        background: linear-gradient(0deg, var(--paper2), transparent);
+      }
+      .legend span {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .legend i {
+        display: block;
+        width: 27px;
+        height: 2px;
+        border-radius: 8px;
+        background: var(--ink);
+        opacity: 0.4;
+      }
+      .legend .road {
+        background: linear-gradient(90deg, #17697f, #b0522c);
+        opacity: 1;
+      }
+      .legend .cumulative-key {
+        height: 4px;
+        background: var(--ink);
+        opacity: 0.9;
+      }
+      .legend .ring {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: transparent;
+        border: 1.5px solid var(--hot);
+        opacity: 1;
+      }
+      .legend .hint {
+        margin-left: auto;
+        font-style: italic;
+      }
+      .semantic-center {
+        stroke: var(--ink2);
+        stroke-width: 1;
+        stroke-dasharray: 4 7;
+        opacity: 0.32;
+      }
+      .semantic-label {
+        fill: var(--muted);
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        paint-order: stroke;
+        stroke: var(--paper);
+        stroke-width: 5;
+      }
+      .lens.backward {
+        stroke-dasharray: 5 5;
+        opacity: 0.58;
+      }
+      .direction-arrow {
+        opacity: 0.8;
+      }
+      .tip {
+        position: fixed;
+        z-index: 60;
+        max-width: 310px;
+        padding: 10px 12px;
+        border-radius: 11px;
+        pointer-events: none;
+        background: color-mix(in srgb, var(--ink) 95%, transparent);
+        color: var(--paper);
+        font-size: 11px;
+        line-height: 1.45;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transform: translateY(4px);
+        transition: 0.14s;
+      }
+      .tip.on {
+        opacity: 1;
+        transform: none;
+      }
+      .tip b {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 3px;
+      }
+      .tip em {
+        font: 10px var(--mono);
+        font-style: normal;
+        opacity: 0.7;
+      }
+      .detail {
+        margin-top: 15px;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 21px 23px;
+        display: grid;
+        grid-template-columns: 190px minmax(0, 1.25fr) minmax(250px, 0.85fr);
+        gap: 26px;
+        min-height: 160px;
+      }
+      .eyebrow {
+        font-size: 9.5px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--hot);
+      }
+      .meta {
+        font-size: 11px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-top: 9px;
+        border-top: 1px solid var(--soft);
+        padding-top: 9px;
+      }
+      .detail h3 {
+        font: 400 26px/1.16 var(--serif);
+        margin: 5px 0 9px;
+      }
+      .detail p {
+        font-size: 13px;
+        line-height: 1.7;
+        color: var(--ink2);
+        margin: 0 0 9px;
+      }
+      .sub {
+        font-size: 12px !important;
+        color: var(--muted) !important;
+      }
+      .impacts {
+        display: flex;
+        flex-direction: column;
+      }
+      .caption {
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--faint);
+        margin-bottom: 6px;
+      }
+      .impact {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 9px;
+        align-items: baseline;
+        font-size: 11.5px;
+        padding: 6px 0;
+        border-bottom: 1px solid var(--soft);
+      }
+      .impact b {
+        color: var(--hot);
+        font: 10px var(--mono);
+      }
+      .impact span {
+        color: var(--ink2);
+      }
+      .notice {
+        margin-top: 14px;
+        max-width: 95ch;
+        font-size: 10.5px;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+      .error {
+        padding: 65px 20px;
+        text-align: center;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .error strong {
+        display: block;
+        font: 400 21px var(--serif);
+        color: var(--ink);
+        margin-bottom: 8px;
+      }
+      .cumulative-line {
+        fill: none;
+        stroke: var(--ink);
+        stroke-width: 4.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.92;
+        filter: drop-shadow(
+          0 1px 2px color-mix(in srgb, var(--ink) 28%, transparent)
+        );
+        pointer-events: none;
+      }
+      .cumulative-halo {
+        fill: none;
+        stroke: var(--paper);
+        stroke-width: 8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.88;
+        pointer-events: none;
+      }
+      .cumulative-line.sparse {
+        stroke-width: 3.1;
+        opacity: 0.64;
+      }
+      .cumulative-line.interpolated {
+        stroke-width: 3.1;
+        stroke-dasharray: 7 8;
+        opacity: 0.62;
+      }
+
+      .cumulative-line.future-scenario {
+        stroke: var(--future);
+        stroke-width: 3.4;
+        stroke-dasharray: 8 7;
+        opacity: 0.82;
+      }
+
+      .future-zone {
+        fill: var(--future);
+        opacity: 0.035;
+        pointer-events: none;
+      }
+
+      .future-label {
+        fill: var(--future);
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        paint-order: stroke;
+        stroke: var(--paper);
+        stroke-width: 4;
+      }
+      .cumulative-endpoint {
+        fill: var(--ink);
+        stroke: var(--paper);
+        stroke-width: 2.5;
+        pointer-events: none;
+      }
+      .contour-field {
+        stroke-width: 1;
+        stroke-linejoin: round;
+        pointer-events: none;
+      }
+      .contour-line {
+        fill: none;
+        stroke-width: 1;
+        stroke-linecap: round;
+        opacity: 0.2;
+        pointer-events: none;
+      }
+      .lens-average {
+        fill: none;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.72;
+        cursor: pointer;
+        filter: drop-shadow(0 0 1px var(--paper));
+      }
+      .lens-average:hover,
+      .lens-average.active {
+        stroke-width: 3;
+        opacity: 1;
+      }
+      .lens-average.dim {
+        opacity: 0.12;
+      }
+      @media (max-width: 900px) {
+        header {
+          grid-template-columns: 1fr;
+        }
+        .stats {
+          flex-wrap: wrap;
+        }
+        .controls {
+          position: static;
+        }
+        .detail {
+          grid-template-columns: 1fr;
+          gap: 17px;
+        }
+        .app {
+          padding: 22px 10px 44px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      /* ============ v2 enhancements ============ */
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --bg: #f2ede3;
+        --bg2: #e9e2d4;
+        --paper: #fffdf8;
+        --paper2: #faf6ee;
+        --ink: #15293c;
+        --ink2: #3c4d5e;
+        --muted: #6d7883;
+        --faint: #98a1aa;
+        --line: #d6cec0;
+        --strong: #b9ae9c;
+        --soft: #ece5d9;
+        --hot: #ad4128;
+        --future: #2f6b4f;
+        --shadow:
+          0 1px 2px rgba(24, 32, 40, 0.05),
+          0 18px 46px -22px rgba(24, 32, 40, 0.35);
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #0e161e;
+        --bg2: #121d27;
+        --paper: #17222c;
+        --paper2: #1c2833;
+        --ink: #f0f2ee;
+        --ink2: #cfd7dd;
+        --muted: #9fa9b2;
+        --faint: #75808a;
+        --line: #33414c;
+        --strong: #4b5a66;
+        --soft: #22303b;
+        --hot: #e8795a;
+        --future: #5fbf8f;
+        --shadow: 0 20px 50px -28px rgba(0, 0, 0, 0.9);
+      }
+      .toolbar {
+        display: grid;
+        grid-template-columns: minmax(240px, 1.4fr) minmax(260px, 1.6fr) auto;
+        gap: 14px 18px;
+        align-items: center;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        padding: 14px 16px;
+        margin: 0 0 14px;
+      }
+      .tool {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        min-width: 0;
+      }
+      .tool > label,
+      .tool .tool-title {
+        font: 600 10.5px/1 var(--sans);
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--faint);
+      }
+      .search-wrap {
+        position: relative;
+      }
+      .search-wrap input {
+        width: 100%;
+        font: 400 14px var(--sans);
+        color: var(--ink);
+        background: var(--paper2);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 9px 30px 9px 11px;
+        outline: none;
+      }
+      .search-wrap input:focus {
+        border-color: var(--strong);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--strong) 22%, transparent);
+      }
+      .search-clear {
+        position: absolute;
+        right: 6px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 0;
+        background: none;
+        cursor: pointer;
+        color: var(--faint);
+        font-size: 16px;
+        line-height: 1;
+        padding: 4px 6px;
+        border-radius: 6px;
+      }
+      .search-clear:hover {
+        color: var(--ink);
+        background: var(--soft);
+      }
+      .results {
+        position: absolute;
+        z-index: 40;
+        top: calc(100% + 6px);
+        left: 0;
+        right: 0;
+        max-height: 320px;
+        overflow: auto;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        padding: 5px;
+        display: none;
+      }
+      .results.on {
+        display: block;
+      }
+      .results button {
+        display: grid;
+        grid-template-columns: 46px 1fr;
+        gap: 8px;
+        align-items: baseline;
+        width: 100%;
+        text-align: left;
+        border: 0;
+        background: none;
+        cursor: pointer;
+        padding: 7px 9px;
+        border-radius: 8px;
+      }
+      .results button:hover,
+      .results button.cursor {
+        background: var(--soft);
+      }
+      .results b {
+        font: 600 12px var(--mono);
+        color: var(--hot);
+      }
+      .results span {
+        font: 400 13px/1.35 var(--sans);
+        color: var(--ink2);
+      }
+      .results .empty {
+        padding: 10px;
+        font: 400 13px var(--sans);
+        color: var(--muted);
+      }
+      .range-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .range-row input[type="range"] {
+        flex: 1;
+        accent-color: var(--hot);
+        min-width: 60px;
+      }
+      .range-val {
+        font: 600 12px var(--mono);
+        color: var(--ink2);
+        min-width: 78px;
+        text-align: right;
+      }
+      .switches {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+      .switch,
+      .tool-btn {
+        font: 600 11.5px var(--sans);
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        border: 1px solid var(--line);
+        background: var(--paper2);
+        color: var(--ink2);
+        padding: 7px 11px;
+        border-radius: 999px;
+        transition:
+          background 0.15s,
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .switch:hover,
+      .tool-btn:hover {
+        border-color: var(--strong);
+        color: var(--ink);
+      }
+      .switch[aria-pressed="true"] {
+        background: var(--ink);
+        color: var(--paper);
+        border-color: var(--ink);
+      }
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 26px;
+        transform: translateX(-50%) translateY(12px);
+        background: var(--ink);
+        color: var(--paper);
+        font: 500 13px var(--sans);
+        padding: 10px 16px;
+        border-radius: 999px;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+        z-index: 90;
+      }
+      .toast.on {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      .loading {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        justify-content: center;
+        padding: 60px 20px;
+        color: var(--muted);
+        font: 400 15px var(--sans);
+      }
+      .loading i {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid var(--line);
+        border-top-color: var(--hot);
+        animation: spin 0.8s linear infinite;
+        display: block;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .filebox {
+        margin-top: 14px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .node.pulse circle {
+        animation: pulse 1.1s ease-out 2;
+      }
+      @keyframes pulse {
+        0% {
+          r: 4;
+        }
+        50% {
+          r: 15;
+        }
+        100% {
+          r: 4;
+        }
+      }
+      .kbd-hint {
+        font: 400 11.5px var(--sans);
+        color: var(--faint);
+      }
+      @media (max-width: 900px) {
+        .toolbar {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <div>
+          <div class="kicker">Selitysatlas · murrosten tulkintakartta</div>
+          <h1>Aika määrää suunnan,<br /><em>vaikutukset maiseman</em></h1>
+          <p class="lede">
+            Jokainen näkyvä murros kuuluu valittuun pitkäaikaisketjuun.
+            Pystysijainti kertoo murroksen tulkinnallisen suunnan, ja linssin
+            värinen kaari kokoaa niiden keskimääräisen sijainnin ajassa.
+          </p>
+        </div>
+        <div class="stats">
+          <div class="stat"><b id="nodeCount">–</b><span>ilmiötä</span></div>
+          <div class="stat">
+            <b id="edgeCount">–</b><span>valittua linssiä</span>
+          </div>
+          <div class="stat">
+            <b id="jointCount">–</b><span>yhteistä murrosta</span>
+          </div>
+        </div>
+      </header>
+      <section class="toolbar" aria-label="Kartan hallinta">
+        <div class="tool">
+          <label for="q">Hae ilmiötä</label>
+          <div class="search-wrap">
+            <input
+              id="q"
+              type="search"
+              autocomplete="off"
+              placeholder="esim. rautatie, lama, koulu…"
+              aria-controls="results"
+            />
+            <button
+              class="search-clear"
+              id="qClear"
+              type="button"
+              aria-label="Tyhjennä haku"
+            >
+              ×
+            </button>
+            <div class="results" id="results" role="listbox"></div>
+          </div>
+        </div>
+        <div class="tool">
+          <span class="tool-title">Aikaikkuna</span>
+          <div class="range-row">
+            <input
+              id="yFrom"
+              type="range"
+              min="1800"
+              max="2050"
+              step="10"
+              value="1800"
+              aria-label="Alkuvuosi"
+            />
+            <input
+              id="yTo"
+              type="range"
+              min="1800"
+              max="2050"
+              step="10"
+              value="2050"
+              aria-label="Loppuvuosi"
+            />
+            <span class="range-val" id="yVal">1800–2050</span>
+          </div>
+        </div>
+        <div class="tool">
+          <span class="tool-title">Näkymä</span>
+          <div class="switches">
+            <button
+              class="switch"
+              id="tLabels"
+              aria-pressed="false"
+              type="button"
+            >
+              Kaikki nimet
+            </button>
+            <button
+              class="switch"
+              id="tDensity"
+              aria-pressed="true"
+              type="button"
+            >
+              Tihentymä
+            </button>
+            <button class="tool-btn" id="tTheme" type="button">Teema</button>
+            <button class="tool-btn" id="tShare" type="button">
+              Kopioi linkki
+            </button>
+            <button class="tool-btn" id="tPng" type="button">Lataa PNG</button>
+          </div>
+        </div>
+      </section>
+      <section class="controls">
+        <div class="control-head">
+          <strong>Valitse murrosmaisemaa selittävät linssit</strong>
+          <div class="actions">
+            <button class="action" id="core" disabled>Ydinketjut</button
+            ><button class="action" id="all" disabled>Kaikki</button
+            ><button class="action" id="none" disabled>Tyhjennä</button>
+          </div>
+        </div>
+        <div class="chips" id="chips"></div>
+      </section>
+      <section class="map">
+        <div class="map-head">
+          <h2>Valitun linssin murrosmaisema</h2>
+          <p>
+            Vaaka = aika · pysty = vaikutuksen suunta · värikaari = murrosten
+            keskimääräinen sijainti
+          </p>
+        </div>
+        <div class="scroll" id="scroll">
+          <div class="loading" id="loading"><i></i>Ladataan atlas-dataa…</div>
+          <svg
+            class="chart"
+            id="chart"
+            viewBox="0 0 1780 980"
+            role="img"
+            aria-labelledby="title desc"
+          >
+            <title id="title">
+              Murrosatlaksen linssikohtainen vaikutuskartta
+            </title>
+            <desc id="desc">
+              Kartta näyttää valittujen linssien relevantit murrokset, niiden
+              tihentymät, linssikohtaiset keskimääräiset sijaintikäyrät ja
+              valittujen linssien yhteisvaikutuksen. Sankey-reittejä ei
+              piirretä.
+            </desc>
+          </svg>
+        </div>
+        <div class="legend">
+          <span
+            ><i class="cumulative-key"></i>Kumulatiivinen yhteiskunnallinen
+            vaikutus</span
+          ><span
+            ><i class="road"></i>Linssin keskimääräinen sijainti ja
+            tihentymä</span
+          ><span><i class="ring"></i>Usealle linssille yhteinen murros</span
+          ><span class="hint">Tumma katkoviiva = interpolointi · vihreä katkoviiva = tulevaisuusodotus</span>
+        </div>
+      </section>
+      <section class="detail" id="detail" aria-live="polite"></section>
+      <p class="notice">
+        Y-sijainti ja vaikutuskäyrä ovat linssikohtaisia rakenteellisia
+        tulkintoja, eivät määrällisiä mittauksia. Käyrä alkaa ensimmäisestä
+        luokitellusta murroksesta: korjaavat vaikutukset nostavat sitä
+        keskiviivan yläpuolelle ja kuormittavat painavat alapuolelle. Hento
+        contour näyttää murrosten tihentymän.
+      </p>
+    </main>
+    <div class="tip" id="tip" role="tooltip" aria-hidden="true"></div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script>
+      (function () {
+        "use strict";
+
+        // ------------------------------------------------------------------
+        // Data files and application state
+        // ------------------------------------------------------------------
+        const FILES = {
+          chains: "atlas-data.json",
+          atlas: "murrosatlas.json",
+          anchors: "chain-anchors.json",
+          layout: "murros-layout.json",
+        };
+        const NS = "http://www.w3.org/2000/svg",
+          svg = document.getElementById("chart"),
+          chips = document.getElementById("chips"),
+          detail = document.getElementById("detail"),
+          tip = document.getElementById("tip");
+        const colors = [
+            "#17697f",
+            "#b0522c",
+            "#6a55a3",
+            "#28755a",
+            "#a9761d",
+            "#9a4463",
+            "#356e9c",
+            "#5f7632",
+            "#714c78",
+            "#845a34",
+          ],
+          W = 1780,
+          H = 980,
+          NOW_YEAR = 2025,
+          P = { l: 92, r: 68, t: 64, b: 70 };
+        const UI = {
+          yearMin: 1800,
+          yearMax: 2050,
+          allLabels: false,
+          density: true,
+        };
+        let chains,
+          atlas,
+          anchors,
+          layout,
+          selected = new Set(),
+          activeChain = null,
+          activeNode = null,
+          nodeMap,
+          itemMap,
+          roleMap,
+          displayY = new Map(),
+          displayYear = new Map();
+        const S = (s) =>
+          String(s ?? "").replace(
+            /[&<>"']/g,
+            (c) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;",
+              })[c],
+          );
+        /** Create one SVG element and apply dynamic lens colours inline. */
+        function E(elementName, attributes = {}, textContent = "") {
+          const element = document.createElementNS(NS, elementName);
+
+          for (const [name, value] of Object.entries(attributes)) {
+            element.setAttribute(name, value);
+          }
+
+          if (attributes.stroke) element.style.stroke = attributes.stroke;
+          if (attributes.fill) element.style.fill = attributes.fill;
+          if (attributes["fill-opacity"] !== undefined) {
+            element.style.fillOpacity = attributes["fill-opacity"];
+          }
+          if (attributes.opacity !== undefined) {
+            element.style.opacity = attributes.opacity;
+          }
+
+          if (textContent !== "") element.textContent = textContent;
+          return element;
+        }
+        function color(id) {
+          const i = chains.models.findIndex((v) => v.id === id);
+          return colors[(i < 0 ? 0 : i) % colors.length];
+        }
+        function inferredDisplayYear(node) {
+          const item = itemMap?.get(node.id) || {};
+          const text = `${item.title || ""} ${item.phase || ""} ${item.current_relevance || ""}`;
+          const years = [...text.matchAll(/\b(20(?:2[6-9]|[3-4]\d|50))\b/g)]
+            .map((match) => Number(match[1]))
+            .filter((year) => year > NOW_YEAR && year <= 2050);
+          return Math.max(node.year, ...(years.length ? years : [node.year]));
+        }
+
+        function yearOf(node) {
+          return displayYear.get(node.id) ?? node.year;
+        }
+
+        function xForYear(year) {
+          return P.l + ((year - 1800) / 250) * (W - P.l - P.r);
+        }
+
+        function xy(n) {
+          const y = displayY.has(n.id) ? displayY.get(n.id) : n.y;
+          return {
+            x: xForYear(yearOf(n)),
+            y: P.t + y * (H - P.t - P.b),
+          };
+        }
+        function short(s, n) {
+          s = String(s ?? "");
+          return s.length > n ? s.slice(0, n - 1) + "…" : s;
+        }
+        function path(points) {
+          if (points.length < 2) return "";
+          let d = `M${points[0].x},${points[0].y}`;
+          for (let i = 1; i < points.length; i++) {
+            const a = points[i - 1],
+              b = points[i],
+              dx = (b.x - a.x) * 0.42;
+            d += ` C${a.x + dx},${a.y} ${b.x - dx},${b.y} ${b.x},${b.y}`;
+          }
+          return d;
+        }
+        function smoothPath(points) {
+          if (points.length < 2) return "";
+          let d = `M${points[0].x},${points[0].y}`;
+          for (let i = 0; i < points.length - 1; i++) {
+            const p0 = points[i - 1] || points[i],
+              p1 = points[i],
+              p2 = points[i + 1],
+              p3 = points[i + 2] || p2,
+              c1 = { x: p1.x + (p2.x - p0.x) / 6, y: p1.y + (p2.y - p0.y) / 6 },
+              c2 = { x: p2.x - (p3.x - p1.x) / 6, y: p2.y - (p3.y - p1.y) / 6 };
+            d += ` C${c1.x},${c1.y} ${c2.x},${c2.y} ${p2.x},${p2.y}`;
+          }
+          return d;
+        }
+
+        /**
+         * Calculate shape-preserving Steffen tangents for a curve whose x values
+         * increase monotonically. Unlike a free Catmull–Rom spline, this method
+         * cannot turn backwards on the time axis or create loops between years.
+         */
+        function monotoneTangents(points) {
+          if (points.length < 2) return [];
+
+          const slopes = [];
+          const widths = [];
+          for (let index = 0; index < points.length - 1; index++) {
+            const width = Math.max(0.0001, points[index + 1].x - points[index].x);
+            widths.push(width);
+            slopes.push((points[index + 1].y - points[index].y) / width);
+          }
+
+          const tangents = new Array(points.length);
+          tangents[0] = slopes[0];
+          tangents[tangents.length - 1] = slopes[slopes.length - 1];
+
+          for (let index = 1; index < points.length - 1; index++) {
+            const previousSlope = slopes[index - 1];
+            const nextSlope = slopes[index];
+
+            if (previousSlope === 0 || nextSlope === 0 || previousSlope * nextSlope <= 0) {
+              tangents[index] = 0;
+              continue;
+            }
+
+            const weightedSlope =
+              (previousSlope * widths[index] + nextSlope * widths[index - 1]) /
+              (widths[index - 1] + widths[index]);
+            tangents[index] =
+              (Math.sign(previousSlope) + Math.sign(nextSlope)) *
+              Math.min(
+                Math.abs(previousSlope),
+                Math.abs(nextSlope),
+                0.5 * Math.abs(weightedSlope),
+              );
+          }
+
+          return tangents;
+        }
+
+        /**
+         * Return one monotone cubic Bézier segment. Control points remain inside
+         * the segment's x interval, so the cumulative curve always moves forward
+         * in time and stays smooth without overshooting into a loop.
+         */
+        function monotoneSegmentPath(points, index, tangents = monotoneTangents(points)) {
+          if (index < 1 || index >= points.length) return "";
+
+          const start = points[index - 1];
+          const end = points[index];
+          const width = Math.max(0.0001, end.x - start.x);
+          const firstControl = {
+            x: start.x + width / 3,
+            y: start.y + (tangents[index - 1] * width) / 3,
+          };
+          const secondControl = {
+            x: end.x - width / 3,
+            y: end.y - (tangents[index] * width) / 3,
+          };
+
+          return `M${start.x},${start.y} C${firstControl.x},${firstControl.y} ${secondControl.x},${secondControl.y} ${end.x},${end.y}`;
+        }
+
+        function monotoneCurvePath(points) {
+          if (points.length < 2) return "";
+
+          const tangents = monotoneTangents(points);
+          let curve = monotoneSegmentPath(points, 1, tangents);
+          for (let index = 2; index < points.length; index++) {
+            curve += monotoneSegmentPath(points, index, tangents).replace(/^M[^C]+/, "");
+          }
+          return curve;
+        }
+        function showTip(h, e) {
+          tip.innerHTML = h;
+          tip.classList.add("on");
+          moveTip(e);
+        }
+        function moveTip(e) {
+          const r = tip.getBoundingClientRect(),
+            p = 14;
+          let x = e.clientX + p,
+            y = e.clientY + p;
+          if (x + r.width > innerWidth - 8) x = e.clientX - r.width - p;
+          if (y + r.height > innerHeight - 8) y = e.clientY - r.height - p;
+          tip.style.left = Math.max(8, x) + "px";
+          tip.style.top = Math.max(8, y) + "px";
+        }
+        function hideTip() {
+          tip.classList.remove("on");
+        }
+        function bindTip(n, f) {
+          n.addEventListener("mouseenter", (e) => showTip(f(), e));
+          n.addEventListener("mousemove", moveTip);
+          n.addEventListener("mouseleave", hideTip);
+        }
+        // ------------------------------------------------------------------
+        // Lens icons
+        // ------------------------------------------------------------------
+
+        const ICONS = {
+          M21: '<path d="M4 7h11m0 0-3-3m3 3-3 3M20 17H9m0 0 3-3m-3 3 3 3"/>',
+          M27: '<path d="M12 3 5 6v5c0 4.6 2.8 8 7 10 4.2-2 7-5.4 7-10V6l-7-3Z"/><path d="M12 8v5m0 3h.01"/>',
+          M28: '<path d="M12 3v18M5 6h14M6 6l-3 7h6L6 6Zm12 0-3 7h6l-3-7ZM8 21h8"/>',
+          M33: '<path d="M9 18h6m-5 3h4M8.5 14.5A6 6 0 1 1 15.5 14.5c-1 .8-1.5 1.7-1.5 2.5h-4c0-.8-.5-1.7-1.5-2.5Z"/>',
+          M34: '<ellipse cx="9" cy="8" rx="5" ry="2.5"/><path d="M4 8v4c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5V8m-9.5 4v4c0 1.4 2 2.5 4.5 2.5 1.2 0 2.2-.2 3-.6m3-6.4c2.6.1 4.5 1.1 4.5 2.5v4c0 1.4-2.2 2.5-5 2.5-1.1 0-2-.2-2.8-.4"/>',
+          M35: '<path d="m14.5 6.5 3-3 3 3-3 3M4 20l7.5-7.5m-4-6a4 4 0 0 0 5 5l-7 7-3-3 7-7a4 4 0 0 0-5-5"/>',
+          M36: '<path d="M20 7v5h-5M4 17v-5h5M6.2 8a7 7 0 0 1 11.3-2L20 8m-16 8 2.5 2a7 7 0 0 0 11.3-2"/>',
+          M37: '<path d="m3 9 9-5 9 5M5 10h14M6 10v8m4-8v8m4-8v8m4-8v8M4 21h16"/>',
+          M38: '<path d="m3 9 9-5 9 5-9 5-9-5Zm4 3v5c3 2 7 2 10 0v-5m4-3v6"/>',
+          M39: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm13 10v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
+        };
+        function lensIcon(id) {
+          return `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[id] || ICONS.M21}</svg>`;
+        }
+        // ------------------------------------------------------------------
+        // Interpretation model
+        // ------------------------------------------------------------------
+
+        function polarity(role, item) {
+          const r = String(role || "").toLowerCase(),
+            t = `${item?.title || ""} ${item?.problem || ""}`.toLowerCase();
+          const positive =
+              /(vahvist|laajens|rakens|suojasi|turvasi|korjasi|tasasi|vähensi|oppiva|uudistava|jatkuva|jäljitettävä|kokosi|järjesti|välitti|nopeutti|palautti|kytki|osaamis|uusi |elinkaari|ennakoiva|perusteltava)/,
+            negative =
+              /(katkaisi|haastoi|koetteli|lykkäsi|kasasi|paljasti|eriytti|jälkilasku|siirsi kustann|lisäsi.*riski|kasvatti.*(paine|jälki))/,
+            crisis =
+              /(sisällissota|maailmansota|suomen sota|lama|kriisi|pandemia|nälkä|sortokaus|hyökkäys|katko|rapaut|työttömyys|velka)/;
+          let score =
+            (positive.test(r) ? 0.8 : 0) -
+            (negative.test(r) ? 0.8 : 0) -
+            (crisis.test(t) ? 0.45 : 0);
+          return Math.max(-1, Math.min(1, score));
+        }
+        function prepareView() {
+          const relevant = new Set(),
+            usage = new Map(),
+            sums = new Map(),
+            counts = new Map();
+          function addScore(id, value) {
+            sums.set(id, (sums.get(id) || 0) + value);
+            counts.set(id, (counts.get(id) || 0) + 1);
+          }
+          selected.forEach((chainId) => {
+            const ids = layout.lens_paths[chainId] || [];
+            ids.forEach((id) => {
+              relevant.add(id);
+              if (!usage.has(id)) usage.set(id, []);
+              usage.get(id).push(chainId);
+            });
+            const known = ids.map((id) => {
+              const role = roleMap.get(chainId + "|" + id);
+              return role ? polarity(role.role, itemMap.get(id)) : null;
+            });
+            ids.forEach((id, index) => {
+              let value = known[index];
+              if (value === null) {
+                let left = index - 1,
+                  right = index + 1;
+                while (left >= 0 && known[left] === null) left--;
+                while (right < known.length && known[right] === null) right++;
+                if (left >= 0 && right < known.length) {
+                  const f = (index - left) / (right - left);
+                  value = known[left] * (1 - f) + known[right] * f;
+                } else if (left >= 0) value = known[left];
+                else if (right < known.length) value = known[right];
+                else value = polarity("", itemMap.get(id)) * 0.55;
+              }
+              addScore(id, value);
+            });
+            layout.anchor_roles
+              .filter((r) => r.chain_id === chainId)
+              .forEach((r) => {
+                relevant.add(r.phenomenon_id);
+                if (!usage.has(r.phenomenon_id)) usage.set(r.phenomenon_id, []);
+                if (!usage.get(r.phenomenon_id).includes(chainId))
+                  usage.get(r.phenomenon_id).push(chainId);
+                addScore(
+                  r.phenomenon_id,
+                  polarity(r.role, itemMap.get(r.phenomenon_id)),
+                );
+              });
+          });
+          const scores = new Map();
+          displayY = new Map();
+          displayYear = new Map();
+          relevant.forEach((id) => {
+            const n = nodeMap.get(id);
+            if (!n) return;
+            displayYear.set(id, inferredDisplayYear(n));
+            const score =
+                (sums.get(id) || 0) / Math.max(1, counts.get(id) || 0),
+              residual = (n.y - 0.5) * 0.1;
+            scores.set(id, score);
+            displayY.set(
+              id,
+              Math.max(0.07, Math.min(0.93, 0.5 - score * 0.4 + residual)),
+            );
+          });
+          for (let pass = 0; pass < 28; pass++) {
+            const ids = [...relevant]
+              .filter((id) => nodeMap.has(id))
+              .sort((a, b) => yearOf(nodeMap.get(a)) - yearOf(nodeMap.get(b)));
+            for (let i = 0; i < ids.length; i++)
+              for (let j = i + 1; j < ids.length; j++) {
+                const a = nodeMap.get(ids[i]),
+                  b = nodeMap.get(ids[j]);
+                if ((yearOf(b) - yearOf(a)) / 250 > 0.023) break;
+                const ya = displayY.get(a.id),
+                  yb = displayY.get(b.id),
+                  gap = 0.021;
+                if (Math.abs(yb - ya) < gap) {
+                  const push = (gap - Math.abs(yb - ya)) * 0.27,
+                    sign = yb >= ya ? 1 : -1;
+                  displayY.set(a.id, Math.max(0.055, ya - sign * push));
+                  displayY.set(b.id, Math.min(0.945, yb + sign * push));
+                }
+              }
+          }
+          return { relevant, usage, scores };
+        }
+        /**
+         * Build the overall curve directly from the currently visible lens
+         * averages. Each selected lens is sampled at five-year intervals and
+         * the available y-values are averaged. Historical and future series are
+         * handled separately, so scenario points cannot bend the line before
+         * the 2025 NOW boundary.
+         */
+        function cumulativePoints() {
+          const step = 5;
+          const selectedSeries = [...selected]
+            .map((chainId) => ({
+              chainId,
+              points: lensAveragePoints(chainId)
+                .filter((point) => Number.isFinite(point.year) && Number.isFinite(point.y))
+                .sort((a, b) => a.year - b.year),
+            }))
+            .filter((series) => series.points.length > 1);
+
+          if (!selectedSeries.length) return [];
+
+          function interpolate(seriesPoints, year) {
+            if (seriesPoints.length < 2) return null;
+            if (year < seriesPoints[0].year || year > seriesPoints.at(-1).year) return null;
+
+            for (let index = 1; index < seriesPoints.length; index++) {
+              const left = seriesPoints[index - 1];
+              const right = seriesPoints[index];
+              if (year < left.year || year > right.year) continue;
+              if (right.year === left.year) return (left.y + right.y) / 2;
+              const fraction = (year - left.year) / (right.year - left.year);
+              return left.y + (right.y - left.y) * fraction;
+            }
+            return null;
+          }
+
+          function buildPeriod(fromYear, toYear, future) {
+            const rows = [];
+            const startYear = Math.ceil(fromYear / step) * step;
+            for (let year = startYear; year <= toYear; year += step) {
+              const values = [];
+              selectedSeries.forEach(({ points }) => {
+                const periodPoints = points.filter((point) =>
+                  future ? point.year >= NOW_YEAR : point.year <= NOW_YEAR,
+                );
+                const y = interpolate(periodPoints, year);
+                if (Number.isFinite(y)) values.push(y);
+              });
+              if (!values.length) continue;
+              rows.push({
+                year,
+                y: values.reduce((sum, value) => sum + value, 0) / values.length,
+                count: values.length,
+              });
+            }
+
+            // A short three-sample moving average removes local five-year
+            // jitter without allowing future samples to affect history.
+            return rows.map((row, index) => {
+              const neighbourhood = rows.slice(Math.max(0, index - 1), Math.min(rows.length, index + 2));
+              return {
+                year: row.year,
+                x: xForYear(row.year),
+                y: neighbourhood.reduce((sum, item) => sum + item.y, 0) / neighbourhood.length,
+                count: row.count,
+              };
+            });
+          }
+
+          const historicalYears = selectedSeries
+            .flatMap(({ points }) => points.filter((point) => point.year <= NOW_YEAR).map((point) => point.year));
+          const futureYears = selectedSeries
+            .flatMap(({ points }) => points.filter((point) => point.year > NOW_YEAR).map((point) => point.year));
+
+          const historical = historicalYears.length
+            ? buildPeriod(Math.min(...historicalYears), NOW_YEAR, false)
+            : [];
+          const future = futureYears.length
+            ? buildPeriod(NOW_YEAR + step, Math.max(...futureYears), true)
+            : [];
+
+          return [...historical, ...future];
+        }
+        function panel(e, m, t, b, c, r) {
+          detail.innerHTML = `<div><div class="eyebrow">${e}</div>${m ? `<div class="meta">${m}</div>` : ""}</div><div><h3>${t}</h3>${b}</div><div class="impacts">${r ? `<div class="caption">${c}</div>${r}` : ""}</div>`;
+        }
+        function intro() {
+          panel(
+            "Lukusuunta",
+            "Vaaka kertoo ajankohdan. Etäisyys keskiviivasta kertoo vaikutuksen suunnan ja tulkinnallisen voimakkuuden.",
+            "Valitse yksi tai useampi linssi",
+            `<p>Murrokset, niiden tihentymä ja keskimääräinen sijainti käyttävät linssin omaa väriä. Tumma käyrä kokoaa näkyvien linssien keskimääräisen suunnan viiden vuoden jaksoissa.</p>`,
+            "",
+            "",
+          );
+        }
+        function showChain(m) {
+          const ids = layout.lens_paths[m.id] || [];
+          panel(
+            `${S(m.id)} · selittävä linssi`,
+            `${ids.length} relevanttia solmua`,
+            S(m.name),
+            `<p>${S(m.summary)}</p>${m.quote ? `<p class="sub">"${S(m.quote)}"</p>` : ""}`,
+            "Reitin keskeiset liittymät",
+            [...new Set(ids)]
+              .filter((id) => layout.joints[id] && nodeMap.has(id))
+              .sort((a, b) => layout.joints[b].score - layout.joints[a].score)
+              .slice(0, 7)
+              .map(
+                (id) =>
+                  `<div class="impact"><b>${nodeMap.get(id).year}</b><span>${S(itemMap.get(id)?.title || id)}</span></div>`,
+              )
+              .join(""),
+          );
+        }
+        function showNode(id) {
+          const it = itemMap.get(id),
+            n = nodeMap.get(id),
+            j = layout.joints[id],
+            roles = [...roleMap.values()].filter(
+              (v) => v.phenomenon_id === id && selected.has(v.chain_id),
+            );
+          panel(
+            `Murrosatlas · ${yearOf(n)}`,
+            `${S(it.type || "ilmiö")}<br>${S((it.domains || []).slice(0, 5).join(" · "))}`,
+            S(it.title),
+            `<p>${S(it.problem || it.phase || it.current_relevance || "")}</p>${j ? `<p class="sub">Nivelperuste: ${S(j.reasons.join(" · "))}</p>` : ""}`,
+            roles.length ? "Valittujen linssien tulkinta" : "Vaikutusyhteisö",
+            roles.length
+              ? roles
+                  .map(
+                    (v) =>
+                      `<div class="impact"><b>${S(v.chain_id)}</b><span>${S(v.role)}</span></div>`,
+                  )
+                  .join("")
+              : `<div class="impact"><b>${n.community}</b><span>${S(n.community_label)}</span></div>`,
+          );
+        }
+        // ------------------------------------------------------------------
+        // User interface
+        // ------------------------------------------------------------------
+
+        function buildChips() {
+          chips.replaceChildren();
+          chains.models.forEach((m, i) => {
+            const b = document.createElement("button");
+            b.className = "chip";
+            b.style.setProperty("--c", colors[i % colors.length]);
+            b.innerHTML = lensIcon(m.id);
+            b.setAttribute("aria-label", `${m.id} ${m.short}`);
+            b.setAttribute("data-label", `${m.id} · ${m.short}`);
+            b.setAttribute("aria-pressed", selected.has(m.id));
+            b.addEventListener("click", () => {
+              selected.has(m.id) ? selected.delete(m.id) : selected.add(m.id);
+              activeChain = selected.has(m.id) ? m.id : null;
+              activeNode = null;
+              sync();
+              render();
+              activeChain ? showChain(m) : intro();
+              writeState();
+            });
+            chips.appendChild(b);
+          });
+        }
+        function sync() {
+          [...chips.children].forEach((b, i) =>
+            b.setAttribute("aria-pressed", selected.has(chains.models[i].id)),
+          );
+        }
+        function setSel(ids) {
+          if (!chains) return;
+          selected = new Set(ids);
+          activeChain = null;
+          activeNode = null;
+          sync();
+          render();
+          intro();
+          writeState();
+        }
+        // ------------------------------------------------------------------
+        // Derived curves and density field
+        // ------------------------------------------------------------------
+
+        function lensAveragePoints(chainId) {
+          const ids = new Set(layout.lens_paths[chainId] || []);
+          layout.anchor_roles
+            .filter((r) => r.chain_id === chainId)
+            .forEach((r) => ids.add(r.phenomenon_id));
+          const bins = new Map();
+          [...ids].forEach((id) => {
+            const n = nodeMap.get(id);
+            if (!n || !displayY.has(id)) return;
+            const displayNodeYear = yearOf(n);
+            const key = Math.floor((displayNodeYear - 1800) / 20);
+            if (!bins.has(key)) bins.set(key, []);
+            bins.get(key).push(n);
+          });
+          return [...bins]
+            .sort((a, b) => a[0] - b[0])
+            .map(([key, group]) => {
+              const x = group.reduce((s, n) => s + xy(n).x, 0) / group.length,
+                y = group.reduce((s, n) => s + xy(n).y, 0) / group.length;
+              return { x, y, count: group.length, year: 1810 + key * 20 };
+            });
+        }
+        /**
+         * Concentric density bands, outermost first.
+         * Each band is a full closed ribbon around the lens's average path,
+         * scaled to a fraction of the point-count-derived base width. Bands
+         * are drawn stacked (outer -> inner) at the same low fill-opacity,
+         * so overlap alone brightens the core -- three thin, honestly
+         * transparent layers instead of one flat, guessed-at band.
+         */
+        const CONTOUR_LEVELS = [1, 0.66, 0.36];
+        const CONTOUR_OPACITY = 0.07;
+        function contourBand(points, scale) {
+          if (points.length < 2) return "";
+          const widths = points.map(
+              (p) => (8 + Math.min(24, Math.sqrt(p.count) * 7)) * scale,
+            ),
+            upper = points.map((p, i) => ({ x: p.x, y: p.y - widths[i] })),
+            lower = points
+              .map((p, i) => ({ x: p.x, y: p.y + widths[i] }))
+              .reverse();
+          return (
+            smoothPath(upper) +
+            ` L${lower[0].x},${lower[0].y} ` +
+            smoothPath(lower).replace(/^M[^C]+/, "") +
+            " Z"
+          );
+        }
+        function contourLevels(points) {
+          return CONTOUR_LEVELS.map((scale) => contourBand(points, scale));
+        }
+        // ------------------------------------------------------------------
+        // Main SVG renderer: one authoritative rendering function
+        // ------------------------------------------------------------------
+
+        function render() {
+          hideTip();
+          svg
+            .querySelectorAll("g[data-layer],defs[data-render]")
+            .forEach((node) => node.remove());
+          const bg = E("g", { "data-layer": "bg" });
+          const contours = E("g", { "data-layer": "contours" });
+          const cumulative = E("g", { "data-layer": "cumulative" });
+          const averages = E("g", { "data-layer": "averages" });
+          const nodes = E("g", { "data-layer": "nodes" });
+          const labels = E("g", { "data-layer": "labels" });
+          const joints = E("g", { "data-layer": "joints" });
+          svg.append(bg, contours, cumulative, averages, nodes, labels, joints);
+
+          const view = prepareView();
+          const relevant = view.relevant;
+          const pathUsage = view.usage;
+          const top = P.t;
+          const bottom = H - P.b;
+          const center = top + (bottom - top) / 2;
+
+          const nowX = xForYear(NOW_YEAR);
+          bg.appendChild(
+            E("rect", {
+              x: nowX,
+              y: P.t - 22,
+              width: W - P.r - nowX,
+              height: H - P.b - P.t + 40,
+              class: "future-zone",
+            }),
+          );
+          bg.appendChild(
+            E(
+              "text",
+              { x: nowX + 14, y: P.t - 5, class: "future-label" },
+              "TULEVAISUUSODOTUKSET",
+            ),
+          );
+
+          [1800, 1850, 1900, 1950, 2000, NOW_YEAR, 2050].forEach((year) => {
+            const x = xForYear(year);
+            bg.appendChild(
+              E("line", {
+                x1: x,
+                y1: P.t - 22,
+                x2: x,
+                y2: H - P.b + 18,
+                class: year === NOW_YEAR ? "now-line" : "year-line",
+              }),
+            );
+            bg.appendChild(
+              E(
+                "text",
+                { x, y: 30, "text-anchor": "middle", class: "year" },
+                year,
+              ),
+            );
+            if (year === NOW_YEAR)
+              bg.appendChild(
+                E("text", { x: x + 7, y: 47, class: "year-small" }, "NYT"),
+              );
+          });
+          bg.appendChild(
+            E("line", {
+              x1: P.l,
+              y1: center,
+              x2: W - P.r,
+              y2: center,
+              class: "semantic-center",
+            }),
+          );
+          bg.appendChild(
+            E(
+              "text",
+              { x: P.l + 10, y: top + 18, class: "semantic-label" },
+              "ENEMMÄN PAREMPAAN",
+            ),
+          );
+          bg.appendChild(
+            E(
+              "text",
+              { x: P.l + 10, y: center - 7, class: "semantic-label" },
+              "NEUTRAALI KESKIVIIVA",
+            ),
+          );
+          bg.appendChild(
+            E(
+              "text",
+              { x: P.l + 10, y: bottom - 10, class: "semantic-label" },
+              "ENEMMÄN HEIKOMPAA KOHTI",
+            ),
+          );
+
+          const effectPoints = cumulativePoints().filter(
+            (point) => point.year >= UI.yearMin && point.year <= UI.yearMax,
+          );
+          const historicalPoints = effectPoints.filter(
+            (point) => point.year <= NOW_YEAR,
+          );
+          const projectedPoints = effectPoints.filter(
+            (point) => point.year > NOW_YEAR,
+          );
+
+          if (historicalPoints.length > 1) {
+            cumulative.appendChild(
+              E("path", {
+                d: monotoneCurvePath(historicalPoints),
+                class: "cumulative-halo",
+              }),
+            );
+            const historicalTangents = monotoneTangents(historicalPoints);
+            for (let index = 1; index < historicalPoints.length; index++) {
+              const previous = historicalPoints[index - 1];
+              const current = historicalPoints[index];
+              const gap = current.year - previous.year;
+              const confidence = Math.min(previous.count, current.count);
+              const segmentClass =
+                gap > 35 ? "interpolated" : confidence < 2 ? "sparse" : "";
+              cumulative.appendChild(
+                E("path", {
+                  d: monotoneSegmentPath(
+                    historicalPoints,
+                    index,
+                    historicalTangents,
+                  ),
+                  class: `cumulative-line ${segmentClass}`,
+                }),
+              );
+            }
+          }
+
+          if (projectedPoints.length) {
+            const futureStart = historicalPoints.at(-1);
+            const futureCurvePoints = futureStart
+              ? [futureStart, ...projectedPoints]
+              : projectedPoints;
+            if (futureCurvePoints.length > 1) {
+              const futureTangents = monotoneTangents(futureCurvePoints);
+              for (let index = 1; index < futureCurvePoints.length; index++) {
+                cumulative.appendChild(
+                  E("path", {
+                    d: monotoneSegmentPath(
+                      futureCurvePoints,
+                      index,
+                      futureTangents,
+                    ),
+                    class: "cumulative-line future-scenario",
+                  }),
+                );
+              }
+            }
+          }
+
+          if (effectPoints.length) {
+            const first = effectPoints[0];
+            const historicalEnd = historicalPoints.at(-1) || first;
+            cumulative.appendChild(
+              E("circle", {
+                cx: first.x,
+                cy: first.y,
+                r: 4.5,
+                class: "cumulative-endpoint",
+              }),
+            );
+            if (historicalEnd !== first) {
+              cumulative.appendChild(
+                E("circle", {
+                  cx: historicalEnd.x,
+                  cy: historicalEnd.y,
+                  r: 4.5,
+                  class: "cumulative-endpoint",
+                }),
+              );
+            }
+          }
+
+          selected.forEach((id) => {
+            const points = lensAveragePoints(id).filter(
+              (p) => p.year >= UI.yearMin - 20 && p.year <= UI.yearMax + 20,
+            );
+            if (points.length < 2) return;
+            if (UI.density) {
+              contourLevels(points).forEach((band) => {
+                if (!band) return;
+                contours.appendChild(
+                  E("path", {
+                    d: band,
+                    fill: color(id),
+                    stroke: color(id),
+                    opacity: CONTOUR_OPACITY,
+                    class: "contour-field",
+                  }),
+                );
+              });
+              contours.appendChild(
+                E("path", {
+                  d: smoothPath(points),
+                  stroke: color(id),
+                  class: "contour-line",
+                }),
+              );
+            }
+            const average = E("path", {
+              d: path(points),
+              stroke: color(id),
+              class: `lens-average ${activeChain === id ? "active" : ""} ${activeNode && !pathUsage.get(activeNode)?.includes(id) ? "dim" : ""}`,
+            });
+            average.addEventListener("click", () => {
+              activeChain = activeChain === id ? null : id;
+              activeNode = null;
+              render();
+              activeChain
+                ? showChain(chains.models.find((model) => model.id === id))
+                : intro();
+            });
+            bindTip(average, () => {
+              const model = chains.models.find((item) => item.id === id);
+              return `<b>${S(model.name)}</b><em>${S(id)} · murrosten keskimääräinen sijainti</em><br>${S(model.summary)}`;
+            });
+            averages.appendChild(average);
+            const end = points.at(-1);
+            labels.appendChild(
+              E(
+                "text",
+                {
+                  x: end.x + 8,
+                  y: end.y - 7,
+                  fill: color(id),
+                  class: "lens-label",
+                },
+                id,
+              ),
+            );
+          });
+
+          let shared = 0;
+          layout.nodes
+            .filter(
+              (node) =>
+                relevant.has(node.id) &&
+                yearOf(node) >= UI.yearMin &&
+                yearOf(node) <= UI.yearMax,
+            )
+            .forEach((node) => {
+              const item = itemMap.get(node.id);
+              const point = xy(node);
+              const uses = pathUsage.get(node.id) || [];
+              const active = node.id === activeNode;
+              const directRoles = uses.filter((id) =>
+                roleMap.has(id + "|" + node.id),
+              );
+              const primary = uses[0];
+              const radius =
+                2.6 + (node.importance - 3) * 1.4 + (uses.length > 1 ? 1.2 : 0);
+              const group = E("g", {
+                "data-id": node.id,
+                tabindex: "0",
+                class: `node imp${node.importance} on-path ${active ? "active" : ""} ${pulseId === node.id ? "pulse" : ""}`,
+                role: "button",
+                "aria-label": item.title,
+              });
+              group.appendChild(
+                E("circle", {
+                  cx: point.x,
+                  cy: point.y,
+                  r: radius,
+                  fill: color(primary),
+                  "fill-opacity": active ? 0.92 : 0.13,
+                  stroke: color(primary),
+                }),
+              );
+              const activate = () => {
+                activeNode = node.id;
+                activeChain = null;
+                render();
+                showNode(node.id);
+                writeState();
+              };
+              group.addEventListener("click", activate);
+              group.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  activate();
+                }
+              });
+              bindTip(
+                group,
+                () =>
+                  `<b>${S(item.title)}</b><em>${yearOf(node)} · ${uses.join(" + ")}</em><br>${S(short(item.problem || item.phase || "", 170))}`,
+              );
+              nodes.appendChild(group);
+              const isShared = uses.length > 1;
+              const shouldLabel =
+                active || UI.allLabels || directRoles.length > 0 || isShared;
+              if (shouldLabel)
+                labels.appendChild(
+                  E(
+                    "text",
+                    {
+                      x: point.x + radius + 4,
+                      y: point.y - 4,
+                      class: "node-label",
+                    },
+                    short(item.title, 30),
+                  ),
+                );
+              if (isShared) {
+                shared++;
+                joints.appendChild(
+                  E("circle", {
+                    cx: point.x,
+                    cy: point.y,
+                    r: radius + 6 + uses.length,
+                    class: "joint-ring",
+                  }),
+                );
+                uses.forEach((id, index) => {
+                  const angle =
+                    -Math.PI / 2 + (index * Math.PI * 2) / uses.length;
+                  const ringRadius = radius + 6 + uses.length;
+                  joints.appendChild(
+                    E("circle", {
+                      cx: point.x + Math.cos(angle) * ringRadius,
+                      cy: point.y + Math.sin(angle) * ringRadius,
+                      r: 3,
+                      fill: color(id),
+                      class: "joint-dot",
+                    }),
+                  );
+                });
+              }
+            });
+          document.getElementById("nodeCount").textContent = relevant.size;
+          document.getElementById("edgeCount").textContent = selected.size;
+          document.getElementById("jointCount").textContent = shared;
+        }
+
+        // ------------------------------------------------------------------
+        // v2: search, time window, theme, sharing, export, keyboard
+        // ------------------------------------------------------------------
+        let pulseId = null;
+        let searchIndex = [];
+        const $ = (id) => document.getElementById(id);
+
+        function toast(message) {
+          const el = $("toast");
+          el.textContent = message;
+          el.classList.add("on");
+          clearTimeout(el._t);
+          el._t = setTimeout(() => el.classList.remove("on"), 2200);
+        }
+
+        /* ---- theme ---- */
+        function applyTheme(mode) {
+          if (mode === "auto")
+            document.documentElement.removeAttribute("data-theme");
+          else document.documentElement.setAttribute("data-theme", mode);
+          try {
+            localStorage.setItem("mk-theme", mode);
+          } catch (e) {}
+        }
+        function initTheme() {
+          let mode = "auto";
+          try {
+            mode = localStorage.getItem("mk-theme") || "auto";
+          } catch (e) {}
+          applyTheme(mode);
+          $("tTheme").addEventListener("click", () => {
+            const order = ["auto", "light", "dark"];
+            let current =
+              document.documentElement.getAttribute("data-theme") || "auto";
+            const next = order[(order.indexOf(current) + 1) % order.length];
+            applyTheme(next);
+            toast(
+              next === "auto"
+                ? "Teema: järjestelmän mukaan"
+                : next === "light"
+                  ? "Teema: vaalea"
+                  : "Teema: tumma",
+            );
+          });
+        }
+
+        /* ---- URL state ---- */
+        function writeState() {
+          const params = new URLSearchParams();
+          if (selected.size) params.set("lens", [...selected].join(","));
+          params.set("y", `${UI.yearMin}-${UI.yearMax}`);
+          if (UI.allLabels) params.set("labels", "1");
+          if (!UI.density) params.set("density", "0");
+          if (activeNode) params.set("node", activeNode);
+          else if (activeChain) params.set("chain", activeChain);
+          history.replaceState(null, "", "#" + params.toString());
+        }
+        function readState() {
+          const params = new URLSearchParams(location.hash.slice(1));
+          const out = {};
+          if (params.get("lens"))
+            out.lens = params.get("lens").split(",").filter(Boolean);
+          const y = (params.get("y") || "").match(/^(\d{4})-(\d{4})$/);
+          if (y) {
+            out.yearMin = +y[1];
+            out.yearMax = +y[2];
+          }
+          out.labels = params.get("labels") === "1";
+          out.density = params.get("density") !== "0";
+          out.node = params.get("node");
+          out.chain = params.get("chain");
+          return out;
+        }
+
+        /* ---- search ---- */
+        function buildSearchIndex() {
+          const inLens = new Set();
+          Object.values(layout.lens_paths).forEach((ids) =>
+            ids.forEach((id) => inLens.add(id)),
+          );
+          layout.anchor_roles.forEach((r) => inLens.add(r.phenomenon_id));
+          searchIndex = layout.nodes
+            .filter((n) => inLens.has(n.id) && itemMap.has(n.id))
+            .map((n) => {
+              const it = itemMap.get(n.id);
+              return {
+                id: n.id,
+                year: yearOf(n),
+                title: it.title || n.id,
+                hay: `${it.title || ""} ${(it.domains || []).join(" ")} ${it.type || ""} ${it.problem || ""}`.toLowerCase(),
+              };
+            })
+            .sort((a, b) => a.year - b.year);
+        }
+        function lensesFor(id) {
+          const list = [];
+          Object.entries(layout.lens_paths).forEach(([chainId, ids]) => {
+            if (ids.includes(id)) list.push(chainId);
+          });
+          layout.anchor_roles.forEach((r) => {
+            if (r.phenomenon_id === id && !list.includes(r.chain_id))
+              list.push(r.chain_id);
+          });
+          return list;
+        }
+        function focusNode(id) {
+          const lenses = lensesFor(id);
+          if (lenses.length && !lenses.some((l) => selected.has(l))) {
+            selected.add(lenses[0]);
+            sync();
+          }
+          const n = nodeMap.get(id);
+          if (n) {
+            const targetYear = yearOf(n);
+            if (targetYear < UI.yearMin) {
+              UI.yearMin = Math.max(1800, Math.floor(targetYear / 10) * 10);
+              $("yFrom").value = UI.yearMin;
+            }
+            if (targetYear > UI.yearMax) {
+              UI.yearMax = Math.min(2050, Math.ceil(targetYear / 10) * 10);
+              $("yTo").value = UI.yearMax;
+            }
+            syncRangeLabel();
+          }
+          activeNode = id;
+          activeChain = null;
+          pulseId = id;
+          render();
+          showNode(id);
+          writeState();
+          const target = svg.querySelector(
+            `g.node[data-id="${CSS.escape(id)}"]`,
+          );
+          if (target && target.scrollIntoView) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "center",
+            });
+          }
+          setTimeout(() => {
+            pulseId = null;
+          }, 2400);
+        }
+        function runSearch(term) {
+          const box = $("results");
+          const q = term.trim().toLowerCase();
+          if (q.length < 2) {
+            box.classList.remove("on");
+            box.replaceChildren();
+            return;
+          }
+          const hits = searchIndex
+            .filter((row) => row.hay.includes(q))
+            .sort((a, b) => {
+              const at = a.title.toLowerCase().indexOf(q),
+                bt = b.title.toLowerCase().indexOf(q);
+              const ar = at < 0 ? 99 : at,
+                br = bt < 0 ? 99 : bt;
+              return ar - br || a.year - b.year;
+            })
+            .slice(0, 20);
+          box.replaceChildren();
+          if (!hits.length) {
+            const empty = document.createElement("div");
+            empty.className = "empty";
+            empty.textContent = "Ei osumia.";
+            box.appendChild(empty);
+          } else {
+            hits.forEach((row) => {
+              const button = document.createElement("button");
+              button.type = "button";
+              button.innerHTML = `<b>${row.year}</b><span>${S(row.title)}</span>`;
+              button.addEventListener("click", () => {
+                box.classList.remove("on");
+                $("q").value = row.title;
+                focusNode(row.id);
+              });
+              box.appendChild(button);
+            });
+          }
+          box.classList.add("on");
+        }
+        function initSearch() {
+          const input = $("q"),
+            box = $("results");
+          input.addEventListener("input", () => runSearch(input.value));
+          input.addEventListener("keydown", (event) => {
+            const items = [...box.querySelectorAll("button")];
+            if (!items.length) return;
+            const at = items.findIndex((b) => b.classList.contains("cursor"));
+            if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+              event.preventDefault();
+              const next =
+                event.key === "ArrowDown"
+                  ? Math.min(items.length - 1, at + 1)
+                  : Math.max(0, at <= 0 ? 0 : at - 1);
+              items.forEach((b) => b.classList.remove("cursor"));
+              items[next].classList.add("cursor");
+              items[next].scrollIntoView({ block: "nearest" });
+            } else if (event.key === "Enter") {
+              event.preventDefault();
+              (items[at] || items[0]).click();
+            } else if (event.key === "Escape") {
+              box.classList.remove("on");
+            }
+          });
+          $("qClear").addEventListener("click", () => {
+            input.value = "";
+            box.classList.remove("on");
+            input.focus();
+          });
+          document.addEventListener("click", (event) => {
+            if (!event.target.closest(".search-wrap"))
+              box.classList.remove("on");
+          });
+        }
+
+        /* ---- time window ---- */
+        function syncRangeLabel() {
+          $("yVal").textContent = `${UI.yearMin}–${UI.yearMax}`;
+        }
+        function initRange() {
+          const from = $("yFrom"),
+            to = $("yTo");
+          const update = () => {
+            let a = +from.value,
+              b = +to.value;
+            if (a > b - 20) {
+              if (document.activeElement === from) {
+                a = Math.max(1800, b - 20);
+                from.value = a;
+              } else {
+                b = Math.min(2050, a + 20);
+                to.value = b;
+              }
+            }
+            UI.yearMin = a;
+            UI.yearMax = b;
+            syncRangeLabel();
+            render();
+            writeState();
+          };
+          from.addEventListener("input", update);
+          to.addEventListener("input", update);
+          syncRangeLabel();
+        }
+
+        /* ---- toggles, share, export ---- */
+        function initToggles() {
+          const labels = $("tLabels"),
+            density = $("tDensity");
+          labels.setAttribute("aria-pressed", String(UI.allLabels));
+          density.setAttribute("aria-pressed", String(UI.density));
+          labels.addEventListener("click", () => {
+            UI.allLabels = !UI.allLabels;
+            labels.setAttribute("aria-pressed", String(UI.allLabels));
+            render();
+            writeState();
+          });
+          density.addEventListener("click", () => {
+            UI.density = !UI.density;
+            density.setAttribute("aria-pressed", String(UI.density));
+            render();
+            writeState();
+          });
+          $("tShare").addEventListener("click", async () => {
+            writeState();
+            try {
+              await navigator.clipboard.writeText(location.href);
+              toast("Näkymän linkki kopioitu leikepöydälle.");
+            } catch (e) {
+              toast("Kopiointi ei onnistunut -- kopioi osoiterivi.");
+            }
+          });
+          $("tPng").addEventListener("click", exportPNG);
+        }
+        function exportPNG() {
+          const clone = svg.cloneNode(true);
+          const styleText = [...document.querySelectorAll("style")]
+            .map((s) => s.textContent)
+            .join("\n");
+          const computed = getComputedStyle(document.documentElement);
+          const vars = [
+            "--ink",
+            "--ink2",
+            "--muted",
+            "--faint",
+            "--line",
+            "--strong",
+            "--soft",
+            "--paper",
+            "--paper2",
+            "--hot",
+            "--future",
+            "--bg",
+          ]
+            .map((v) => `${v}:${computed.getPropertyValue(v).trim()};`)
+            .join("");
+          const styleNode = document.createElementNS(NS, "style");
+          styleNode.textContent =
+            `svg{${vars}background:${computed.getPropertyValue("--paper").trim()};font-family:ui-sans-serif,system-ui,sans-serif}` +
+            styleText;
+          clone.insertBefore(styleNode, clone.firstChild);
+          clone.setAttribute("xmlns", NS);
+          const serialized = new XMLSerializer().serializeToString(clone);
+          const image = new Image();
+          const scale = 2;
+          image.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = W * scale;
+            canvas.height = H * scale;
+            const ctx = canvas.getContext("2d");
+            ctx.fillStyle =
+              computed.getPropertyValue("--paper").trim() || "#fff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob((blob) => {
+              const url = URL.createObjectURL(blob);
+              const link = document.createElement("a");
+              link.href = url;
+              link.download = `murroskartta-${[...selected].join("-") || "tyhja"}-${UI.yearMin}-${UI.yearMax}.png`;
+              link.click();
+              setTimeout(() => URL.revokeObjectURL(url), 4000);
+              toast("PNG ladattu.");
+            }, "image/png");
+          };
+          image.onerror = () =>
+            toast("Kuvan vienti ei onnistunut tässä selaimessa.");
+          image.src =
+            "data:image/svg+xml;charset=utf-8," +
+            encodeURIComponent(serialized);
+        }
+
+        /* ---- keyboard navigation between phenomena ---- */
+        function visibleNodeIds() {
+          return [...svg.querySelectorAll("g.node[data-id]")].map((g) =>
+            g.getAttribute("data-id"),
+          );
+        }
+        function stepNode(direction) {
+          const ids = visibleNodeIds();
+          if (!ids.length) return;
+          const at = ids.indexOf(activeNode);
+          const next =
+            ids[
+              Math.max(0, Math.min(ids.length - 1, at < 0 ? 0 : at + direction))
+            ];
+          if (next) focusNode(next);
+        }
+
+        function initUI() {
+          buildSearchIndex();
+          initSearch();
+          initRange();
+          initToggles();
+          document.addEventListener("keydown", (event) => {
+            const typing = /^(INPUT|TEXTAREA)$/.test(
+              document.activeElement?.tagName || "",
+            );
+            if (typing) return;
+            if (event.key === "ArrowRight") {
+              event.preventDefault();
+              stepNode(1);
+            } else if (event.key === "ArrowLeft") {
+              event.preventDefault();
+              stepNode(-1);
+            } else if (event.key === "/") {
+              event.preventDefault();
+              $("q").focus();
+            }
+          });
+        }
+        // ------------------------------------------------------------------
+        // Events and data loading
+        // ------------------------------------------------------------------
+
+        document
+          .getElementById("all")
+          .addEventListener("click", () =>
+            setSel(chains.models.map((m) => m.id)),
+          );
+        document
+          .getElementById("core")
+          .addEventListener("click", () => setSel(["M21", "M27", "M28"]));
+        document
+          .getElementById("none")
+          .addEventListener("click", () => setSel([]));
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            activeChain = null;
+            activeNode = null;
+            render();
+            intro();
+          }
+        });
+        addEventListener("scroll", hideTip, { passive: true });
+        intro();
+        initTheme();
+        Promise.all(
+          Object.values(FILES).map((f) =>
+            fetch(f).then((r) => {
+              if (!r.ok) throw Error(`${f}: ${r.status}`);
+              return r.json();
+            }),
+          ),
+        )
+          .then(([c, a, an, l]) => boot(c, a, an, l))
+          .catch((err) => showLoadError(err));
+
+        function boot(c, a, an, l) {
+          chains = c;
+          atlas = a;
+          anchors = an;
+          layout = l;
+          nodeMap = new Map(layout.nodes.map((n) => [n.id, n]));
+          itemMap = new Map(atlas.items.map((i) => [i.id, i]));
+          roleMap = new Map(
+            layout.anchor_roles.map((r) => [
+              r.chain_id + "|" + r.phenomenon_id,
+              r,
+            ]),
+          );
+          const state = readState();
+          const valid = new Set(chains.models.map((m) => m.id));
+          selected = new Set(
+            (state.lens || ["M21"]).filter((id) => valid.has(id)),
+          );
+          if (state.chain && valid.has(state.chain)) {
+            activeChain = state.chain;
+            selected.add(state.chain);
+          }
+          if (state.yearMin) {
+            UI.yearMin = state.yearMin;
+            UI.yearMax = state.yearMax;
+          }
+          UI.allLabels = !!state.labels;
+          UI.density = state.density !== false;
+          const loader = document.getElementById("loading");
+          if (loader) loader.remove();
+          buildChips();
+          sync();
+          ["core", "all", "none"].forEach((id) => {
+            document.getElementById(id).disabled = false;
+          });
+          initUI();
+          document.getElementById("yFrom").value = UI.yearMin;
+          document.getElementById("yTo").value = UI.yearMax;
+          syncRangeLabel();
+          document
+            .getElementById("tLabels")
+            .setAttribute("aria-pressed", String(UI.allLabels));
+          document
+            .getElementById("tDensity")
+            .setAttribute("aria-pressed", String(UI.density));
+          render();
+          if (state.node && nodeMap.has(state.node)) focusNode(state.node);
+          else if (activeChain)
+            showChain(chains.models.find((m) => m.id === activeChain));
+          else if (selected.size)
+            showChain(chains.models.find((m) => m.id === [...selected][0]));
+          else intro();
+        }
+
+        /* Offline / file:// fallback: let the reader pick the four JSON files. */
+        function showLoadError(err) {
+          const loader = document.getElementById("loading");
+          if (loader) loader.remove();
+          const box = document.createElement("div");
+          box.className = "error";
+          box.innerHTML =
+            `<strong>Atlas-dataa ei voitu ladata automaattisesti.</strong>${S(err.message)}<br><br>` +
+            `Varmista, että atlas-data.json, murrosatlas.json, chain-anchors.json ja murros-layout.json ovat samassa hakemistossa -- ` +
+            `tai valitse tiedostot alta, jos avaat sivun suoraan levyltä.` +
+            `<div class="filebox"><label class="tool-btn" for="pick">Valitse JSON-tiedostot</label>` +
+            `<input id="pick" type="file" accept="application/json,.json" multiple hidden></div>`;
+          document.getElementById("scroll").replaceChildren(box);
+          box
+            .querySelector("#pick")
+            .addEventListener("change", async (event) => {
+              const picked = {};
+              for (const file of event.target.files) {
+                try {
+                  picked[file.name] = JSON.parse(await file.text());
+                } catch (e) {}
+              }
+              const need = Object.values(FILES);
+              const missing = need.filter((name) => !picked[name]);
+              if (missing.length) {
+                toast("Puuttuu: " + missing.join(", "));
+                return;
+              }
+              document.getElementById("scroll").replaceChildren(svg);
+              boot(
+                picked[FILES.chains],
+                picked[FILES.atlas],
+                picked[FILES.anchors],
+                picked[FILES.layout],
+              );
+            });
+        }
+      })();
+    </script>
+  </body>
+</html>
