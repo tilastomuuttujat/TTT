@@ -1,0 +1,98 @@
+{
+  "meta": {
+    "id": "visualization-cards",
+    "schema_version": 1,
+    "title": "Atlasin visualisointikortit",
+    "description": "Esiasetukset, joita Atlasin ja muiden sivustojen Web Componentit voivat käyttää.",
+    "data_source": "tilastomuuttujat.json"
+  },
+  "cards": [
+    {
+      "id": "TYOTTOMYYS_1990_2024",
+      "component": "atlas-stat-card",
+      "title": "Työttömyysaste – laman isku ja pitkä palautuminen",
+      "subtitle": "Suomi 1990–2024",
+      "series": ["TYOTTOMYYSASTE"],
+      "type": "line",
+      "options": {
+        "show_points": true,
+        "show_values": true,
+        "show_notes": true,
+        "zero_baseline": true
+      }
+    },
+    {
+      "id": "TYOLLISYYS_POLKU",
+      "component": "atlas-stat-card",
+      "title": "Työllisyysaste – historiallinen pohja ja tulevaisuuspolku",
+      "subtitle": "Suomi 1970–2035",
+      "series": ["TYOLLISYYSASTE"],
+      "type": "area",
+      "options": {
+        "show_points": true,
+        "show_values": true,
+        "show_notes": true,
+        "forecast_from": 2025,
+        "zero_baseline": false
+      }
+    },
+    {
+      "id": "JULKINEN_VELKA_POLKU",
+      "component": "atlas-stat-card",
+      "title": "Julkinen velka suhteessa BKT:hen",
+      "subtitle": "Historialliset havainnot ja skenaario",
+      "series": ["JULKINEN_VELKA_BKT"],
+      "type": "line",
+      "options": {
+        "show_points": true,
+        "show_values": true,
+        "show_notes": true,
+        "forecast_from": 2025,
+        "zero_baseline": true
+      }
+    },
+    {
+      "id": "VAESTON_IKAANTYMINEN",
+      "component": "atlas-stat-card",
+      "title": "Väestön ikääntyminen",
+      "subtitle": "Yli 65-vuotiaiden osuus ja väestöllinen huoltosuhde",
+      "series": ["YLI65_OSUUS", "HUOLTOSUHDE"],
+      "type": "line",
+      "options": {
+        "show_points": true,
+        "show_values": true,
+        "show_notes": true,
+        "forecast_from": 2025,
+        "zero_baseline": true
+      }
+    },
+    {
+      "id": "RAKENNEMUUTOS_KAUPUNGISTUMINEN",
+      "component": "atlas-stat-card",
+      "title": "Kaupungistumisen rakennemuutos",
+      "subtitle": "Kaupunkiväestön osuus Suomessa",
+      "series": ["KAUPUNKIVAESTO_OSUUS"],
+      "type": "area",
+      "options": {
+        "show_points": true,
+        "show_values": true,
+        "show_notes": false,
+        "zero_baseline": true
+      }
+    },
+    {
+      "id": "SYNTYVYYS_MURROS",
+      "component": "atlas-stat-card",
+      "title": "Syntyvyyden murros",
+      "subtitle": "Kokonaishedelmällisyysluku",
+      "series": ["SYNTYVYYS_TFR"],
+      "type": "line",
+      "options": {
+        "show_points": true,
+        "show_values": true,
+        "show_notes": true,
+        "zero_baseline": false
+      }
+    }
+  ]
+}
