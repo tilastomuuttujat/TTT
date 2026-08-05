@@ -2362,29 +2362,49 @@ $("exportYhdistys").addEventListener("click", async () => {
    ========================================================== */
 $("triggerGithubExport").addEventListener("click", async () => {
   const button = $("triggerGithubExport");
+
   if(!state.session){
     toast("Kirjaudu ensin sisään.", true);
     return;
   }
 
-  button.disabled = true;
   const originalText = button.textContent;
+  button.disabled = true;
   button.textContent = "Käynnistetään…";
 
   try{
-    const { data, error } = await sb.functions.invoke("trigger-github-export", {
-      body: { workflow: "export-atlas-statistics.yml", ref: "main", repository: "tilastomuuttujat/TTT" }
-    });
+    const { data, error } = await sb.functions.invoke(
+      "trigger-github-export",
+      {
+        body: {
+          target: "tilastomuuttujat"
+        }
+      }
+    );
 
     if(error) throw error;
-    if(!data?.ok) throw new Error(data?.error || "GitHub Actions -käynnistys epäonnistui");
 
-    toast("Tilastomuuttujien JSON-päivitys käynnistetty GitHubissa.");
+    if(!data?.ok){
+      throw new Error(
+        data?.error || "GitHub Actions -käynnistys epäonnistui"
+      );
+    }
+
+    toast("Tilastomuuttujien JSON-päivitys käynnistettiin GitHubissa.");
     button.textContent = "✓ Päivitys käynnistetty";
-    setTimeout(() => { button.textContent = originalText; }, 2500);
+
+    setTimeout(() => {
+      button.textContent = originalText;
+    }, 2500);
   }catch(err){
-    console.error("GitHub Actions -käynnistysvirhe:", err);
-    toast("Käynnistys epäonnistui: " + (err?.message || "tuntematon virhe"), true);
+    console.error("GitHub-exportin käynnistys epäonnistui:", err);
+
+    toast(
+      "GitHub-päivityksen käynnistys epäonnistui: " +
+        (err?.message || "tuntematon virhe"),
+      true
+    );
+
     button.textContent = originalText;
   }finally{
     button.disabled = false;
