@@ -1,9 +1,11 @@
 {
   "meta": {
     "id": "tilastomuuttujat",
+    "title": "Suomen rakennemuutosten atlaksen tilastomuuttujat",
     "schema_version": 1,
-    "generated_at": "2026-08-05T14:19:41.576Z",
+    "generated_at": "2026-08-05T14:26:39.310Z",
     "source": "Supabase",
+    "count": 12,
     "series_count": 12,
     "value_count": 27
   },
