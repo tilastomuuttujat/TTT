@@ -2,7 +2,7 @@
   "meta": {
     "id": "tilastomuuttujat",
     "schema_version": 1,
-    "generated_at": "2026-08-05T13:48:08.659Z",
+    "generated_at": "2026-08-05T14:19:41.576Z",
     "source": "Supabase",
     "series_count": 12,
     "value_count": 27
