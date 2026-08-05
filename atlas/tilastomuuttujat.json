@@ -1,0 +1,274 @@
+{
+  "meta": {
+    "id": "tilastomuuttujat",
+    "schema_version": 1,
+    "generated_at": "2026-08-05T13:20:29.821Z",
+    "source": "Supabase",
+    "series_count": 12,
+    "value_count": 27
+  },
+  "series": [
+    {
+      "code": "TYOTTOMYYSASTE",
+      "title": "Työttömyysaste",
+      "group": "talous",
+      "unit": "%",
+      "description": "Työttömien osuus työvoimasta.",
+      "source": "Tilastokeskus, ETLA, VM",
+      "decimals": 1,
+      "sort_order": 10,
+      "values": [
+        {
+          "year": 1990,
+          "value": 3,
+          "note": "Karkeistettu arvio ennen 1990-luvun lamaa (K03-teema)."
+        },
+        {
+          "year": 1993,
+          "value": 19.1,
+          "note": "Laman huippu (K04-teema)."
+        },
+        {
+          "year": 2024,
+          "value": 8,
+          "note": "Keskiarvo K04-teeman ilmoittamasta 7-9%:n haarukasta 2020-luvulla."
+        }
+      ]
+    },
+    {
+      "code": "TYOLLISYYSASTE",
+      "title": "Työllisyysaste",
+      "group": "talous",
+      "unit": "%",
+      "description": "Työllisten osuus 15-64-vuotiaista.",
+      "source": "Tilastokeskus, ETLA, TEM, OECD, THL, VM",
+      "decimals": 0,
+      "sort_order": 20,
+      "values": [
+        {
+          "year": 1970,
+          "value": 68
+        },
+        {
+          "year": 1995,
+          "value": 56,
+          "note": "1990-luvun laman pohjalukema."
+        },
+        {
+          "year": 2035,
+          "value": 72,
+          "note": "Ennuste (R12-teema)."
+        }
+      ]
+    },
+    {
+      "code": "JULKINEN_VELKA_BKT",
+      "title": "Julkinen velka suhteessa BKT:hen",
+      "group": "talous",
+      "unit": "%",
+      "description": "Julkisyhteisöjen velka suhteessa bruttokansantuotteeseen (EMU-velka).",
+      "source": "Tilastokeskus, VM, Suomen Pankki, ETLA, OECD, Eurostat",
+      "decimals": 0,
+      "sort_order": 30,
+      "values": [
+        {
+          "year": 1990,
+          "value": 18,
+          "note": "K19-teeman lukema."
+        },
+        {
+          "year": 2023,
+          "value": 74,
+          "note": "K19-teeman lukema. HUOM: K16-teema ilmoittaa samalle vuodelle 73%, R13-teema 70% -- lähteiden välillä pieni, toistaiseksi täsmäyttämätön ristiriita."
+        },
+        {
+          "year": 2035,
+          "value": 106,
+          "note": "K19-teeman ennuste \"ilman lisätoimia\". HUOM: R13-teema ilmoittaa samalle vuodelle 38%, ilmeisesti eri skenaario (sopeutustoimien kanssa) -- teemakuvauksissa ei ole selvennetty tätä, suositellaan tarkistettavaksi ennen julkista käyttöä."
+        }
+      ]
+    },
+    {
+      "code": "TEOLLISUUDEN_BKT_OSUUS",
+      "title": "Teollisuuden osuus BKT:sta",
+      "group": "talous",
+      "unit": "%",
+      "description": "Teollisuuden arvonlisäys suhteessa bruttokansantuotteeseen.",
+      "source": "Tilastokeskus",
+      "decimals": 0,
+      "sort_order": 40,
+      "values": [
+        {
+          "year": 1860,
+          "value": 5
+        },
+        {
+          "year": 1975,
+          "value": 45
+        }
+      ]
+    },
+    {
+      "code": "VIENTI_EU_MRD",
+      "title": "Vienti EU-maihin",
+      "group": "talous",
+      "unit": "mrd €",
+      "description": "Suomen tavara- ja palveluviennin arvo EU-maihin.",
+      "source": "Tilastokeskus, Suomen Pankki, VM, UM",
+      "decimals": 0,
+      "sort_order": 50,
+      "values": [
+        {
+          "year": 1994,
+          "value": 20
+        },
+        {
+          "year": 2022,
+          "value": 82
+        }
+      ]
+    },
+    {
+      "code": "SYNTYVYYS_TFR",
+      "title": "Kokonaishedelmällisyysluku",
+      "group": "väestö",
+      "unit": "lasta/nainen",
+      "description": "Syntyvien lasten keskimääräinen lukumäärä naista kohti hedelmällisyysiän aikana.",
+      "source": "Tilastokeskus, THL",
+      "decimals": 2,
+      "sort_order": 60,
+      "values": [
+        {
+          "year": 1970,
+          "value": 1.76
+        },
+        {
+          "year": 2024,
+          "value": 1.33
+        }
+      ]
+    },
+    {
+      "code": "KAUPUNKIVAESTO_OSUUS",
+      "title": "Kaupunkiväestön osuus",
+      "group": "väestö",
+      "unit": "%",
+      "description": "Taajamissa/kaupunkialueilla asuvan väestön osuus koko väestöstä.",
+      "source": "Tilastokeskus",
+      "decimals": 0,
+      "sort_order": 70,
+      "values": [
+        {
+          "year": 1950,
+          "value": 33
+        },
+        {
+          "year": 2025,
+          "value": 74
+        }
+      ]
+    },
+    {
+      "code": "YLI65_OSUUS",
+      "title": "Yli 65-vuotiaiden osuus väestöstä",
+      "group": "väestö",
+      "unit": "%",
+      "description": "Yli 65-vuotiaiden osuus koko väestöstä.",
+      "source": "Tilastokeskus",
+      "decimals": 0,
+      "sort_order": 80,
+      "values": [
+        {
+          "year": 1950,
+          "value": 4
+        },
+        {
+          "year": 2050,
+          "value": 32,
+          "note": "Ennuste."
+        }
+      ]
+    },
+    {
+      "code": "HUOLTOSUHDE",
+      "title": "Väestöllinen huoltosuhde",
+      "group": "väestö",
+      "unit": "huollettavaa/100 työikäistä",
+      "description": "Alle 15- ja yli 64-vuotiaiden määrä sataa 15-64-vuotiasta kohden.",
+      "source": "Tilastokeskus",
+      "decimals": 0,
+      "sort_order": 90,
+      "values": [
+        {
+          "year": 1950,
+          "value": 55
+        },
+        {
+          "year": 2050,
+          "value": 93,
+          "note": "Ennuste."
+        }
+      ]
+    },
+    {
+      "code": "ELINAJANODOTE_MIEHET",
+      "title": "Miesten elinajanodote syntyessä",
+      "group": "hyvinvointi",
+      "unit": "vuotta",
+      "description": "Vastasyntyneen pojan odotettavissa oleva elinikä.",
+      "source": "THL, Tilastokeskus, Kela, STM, OECD",
+      "decimals": 1,
+      "sort_order": 100,
+      "values": [
+        {
+          "year": 1970,
+          "value": 66.1
+        },
+        {
+          "year": 2024,
+          "value": 78.1
+        }
+      ]
+    },
+    {
+      "code": "ELINAJANODOTE_NAISET",
+      "title": "Naisten elinajanodote syntyessä",
+      "group": "hyvinvointi",
+      "unit": "vuotta",
+      "description": "Vastasyntyneen tytön odotettavissa oleva elinikä.",
+      "source": "THL, Tilastokeskus, Kela, STM, OECD",
+      "decimals": 1,
+      "sort_order": 110,
+      "values": [
+        {
+          "year": 1970,
+          "value": 75.1
+        },
+        {
+          "year": 2024,
+          "value": 84.3
+        }
+      ]
+    },
+    {
+      "code": "INTERNETIN_KAYTTO",
+      "title": "Internetin käyttäjien osuus väestöstä",
+      "group": "teknologia",
+      "unit": "%",
+      "description": "Internetiä käyttävän väestön osuus.",
+      "source": "Tilastokeskus, Traficom, ETLA",
+      "decimals": 0,
+      "sort_order": 120,
+      "values": [
+        {
+          "year": 1995,
+          "value": 7
+        },
+        {
+          "year": 2024,
+          "value": 96
+        }
+      ]
+    }
+  ]
+}
