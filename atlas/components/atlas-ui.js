@@ -3,6 +3,7 @@ import "./atlas-article.js";
 import "./atlas-topic.js";
 import "./atlas-timeline.js";
 import "./atlas-network.js";
+import "./atlas-matrix.js";
 
 export const ATLAS_COMPONENTS = [
   "atlas-stat-card",
@@ -10,4 +11,5 @@ export const ATLAS_COMPONENTS = [
   "atlas-topic",
   "atlas-timeline",
   "atlas-network",
+  "atlas-matrix",
 ];
