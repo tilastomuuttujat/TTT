@@ -51,6 +51,10 @@ function attrBoolean(value, fallback = false) {
   return !["false", "0", "no", "off"].includes(String(value).toLowerCase());
 }
 
+function unique(values) {
+  return [...new Set(values)];
+}
+
 class AtlasStatCard extends HTMLElement {
   static observedAttributes = ["card", "data-base", "cards-url", "data-url"];
 
