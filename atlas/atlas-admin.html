@@ -409,11 +409,11 @@ td.mono{font:12px var(--mono);color:var(--muted)}
     <div class="sub" id="connStatus">yhdistetään…</div>
   </div>
   <div class="exports">
-    <button class="btn" id="exportMurros">⬇ Vie murrosvaiheet.json</button>
+    <button class="btn" id="exportMurros" style="display:none">⬇ Vie murrosvaiheet.json</button>
     <button class="btn" id="exportArtikkelit">⬇ Vie artikkelit.json</button>
-    <button class="btn" id="exportYhdistys">⬇ Vie yhdistys.json</button>
+    <button class="btn" id="exportYhdistys" style="display:none">⬇ Vie yhdistys.json</button>
     <button class="btn" id="exportStatistics">⬇ Vie tilastomuuttujat.json</button>
-    <button class="btn primary" id="triggerGithubExport">↻ Päivitä atlas-JSON GitHubissa</button>
+    <button class="btn primary" id="triggerGithubExport">↻ Päivitä tilastomuuttujat GitHubissa</button>
     <button class="btn" id="logoutBtn" style="display:none">Kirjaudu ulos</button>
   </div>
 </header>
@@ -1198,204 +1198,22 @@ function renderItems(){
 
   $("itemsBody").innerHTML = rows.map(it => `
     <tr${it.unpublished ? ' style="opacity:.55"' : ""}>
-      <td class="mono">${it.year_start}${it.year_end !== it.year_start ? "–" + it.year_end : ""}</td>
-      <td><strong>${esc(it.title)}</strong>${it.unpublished ? ' <span class="pill" style="background:var(--red);color:var(--paper)">Ei julkaista</span>' : ""}<br><span class="mono" style="color:var(--muted)">${esc(it.id)}</span></td>
-      <td>${esc(it.type)}${it.subtype && it.subtype !== it.type ? `<br><span class="mono" style="color:var(--muted);font-size:11px">${esc(it.subtype)}</span>` : ""}</td>
-      <td>${it.importance}/5</td>
-      <td><span class="pill">${esc(it.confidence)}</span></td>
-      <td class="actions">
-        <button class="btn small" data-edit-item="${esc(it.id)}">Muokkaa</button>
-      </td>
+      <td class="mono">${it.year_start}${it.year_end && it.year_end !== it.year_start ? "–" + it.year_end : ""}</td>
+      <td><strong>${esc(it.title)}</strong><br><span style="color:var(--muted);font:11px var(--mono)">${esc(it.id)}${it.unpublished ? " · EI JULKAISTA" : ""}</span></td>
+      <td><span class="pill">${esc(it.type)}</span>${it.subtype ? `<br><small style="color:var(--muted)">${esc(it.subtype)}</small>` : ""}</td>
+      <td>${it.importance}</td>
+      <td>${esc(it.confidence)}</td>
+      <td class="actions"><button class="btn small" data-edit-item="${esc(it.id)}">Muokkaa</button></td>
     </tr>
   `).join("");
 
   document.querySelectorAll("[data-edit-item]").forEach(btn => {
     btn.addEventListener("click", () => openItemForm(btn.dataset.editItem));
   });
-
   updateSortArrows("itemsTable", "items");
 }
 
 $("searchItems").addEventListener("input", renderItems);
-bindSortableHeaders("itemsTable", "items", renderItems);
-
-/* ==========================================================
-   LOMAKE: KORTTI
-   ========================================================== */
-function openItemForm(id){
-  state.editingItemId = id || null;
-  const it = id ? state.items.find(i => i.id === id) : null;
-
-  $("itemFormTitle").textContent = it ? "Muokkaa korttia" : "Uusi kortti";
-  $("f_id").value = it ? it.id : "";
-  $("f_id").disabled = !!it;
-  $("f_title").value = it ? it.title : "";
-  $("f_year_start").value = it ? it.year_start : "";
-  $("f_year_end").value = it ? it.year_end : "";
-  const validTypes = [
-    "tapahtuma","kriisi","uudistus","rakennemuutos","instituutio",
-    "teknologinen murros","väestömuutos","pitkä kaari","analyyttinen kehys",
-    "sukupolviprofiili","tulevaisuusskenaario","onnistuminen"
-  ];
-  const currentType = it ? it.type : "rakennemuutos";
-  $("f_type").value = validTypes.includes(currentType) ? currentType : "rakennemuutos";
-  if(it && !validTypes.includes(it.type)){
-    // Vanha, ei-normalisoitu type-arvo joka ei täsmää mihinkään 12 vakioarvoon --
-    // ei pakoteta mihinkään väärin, vaan varoitetaan ja jätetään alkuperäinen
-    // sana näkyviin subtype-kentässä, jos sitä ei vielä ole tallennettu erikseen.
-    toast(`Huom: kortin type-arvo ("${it.type}") ei ole yksi 12 vakioarvosta. Valitse lähin vaihtoehto ja tarkista alaluokka.`, true);
-  }
-  $("f_subtype").value = it ? (it.subtype || it.type || "") : "";
-  $("f_phase").value = it ? it.phase : "";
-  $("f_domains").value = it ? (it.domains || []).join(", ") : "";
-  $("f_problem").value = it ? it.problem : "";
-  $("f_mechanism").value = it ? it.mechanism : "";
-  $("f_effects").value = it ? (it.effects || []).join("\n") : "";
-  $("f_long_effect").value = it ? it.long_effect : "";
-  $("f_current_relevance").value = it ? it.current_relevance : "";
-  $("f_importance").value = it ? it.importance : "5";
-  $("f_confidence").value = it ? it.confidence : "kohtalainen";
-  $("f_sources").value = it ? (it.sources || []).join(", ") : "";
-  $("f_unpublished").checked = it ? !!it.unpublished : false;
-
-  $("deleteItem").style.display = it ? "inline-flex" : "none";
-  $("addItemAttachForm").style.display = it ? "grid" : "none";
-  $("itemAttachHint").style.display = it ? "none" : "block";
-
-  renderItemAttachments();
-  openSheet("overlayItem");
-}
-
-$("newItem").addEventListener("click", () => openItemForm(null));
-
-$("saveItem").addEventListener("click", async () => {
-  const id = $("f_id").value.trim();
-  if(!id){ toast("ID on pakollinen", true); return; }
-  if(!/^[a-z0-9_-]+$/.test(id)){ toast("ID saa sisältää vain pieniä kirjaimia, numeroita, - ja _", true); return; }
-
-  const payload = {
-    id,
-    title: $("f_title").value.trim(),
-    year_start: Number($("f_year_start").value),
-    year_end: Number($("f_year_end").value || $("f_year_start").value),
-    type: $("f_type").value.trim(),
-    subtype: $("f_subtype").value.trim() || null,
-    phase: $("f_phase").value.trim(),
-    domains: splitList($("f_domains").value),
-    problem: $("f_problem").value.trim(),
-    mechanism: $("f_mechanism").value.trim(),
-    effects: splitLines($("f_effects").value),
-    long_effect: $("f_long_effect").value.trim(),
-    current_relevance: $("f_current_relevance").value.trim(),
-    importance: Number($("f_importance").value),
-    confidence: $("f_confidence").value,
-    unpublished: $("f_unpublished").checked,
-    sources: splitList($("f_sources").value)
-  };
-
-  try{
-    if(state.editingItemId){
-      const { error } = await sb.from("items").update(payload).eq("id", state.editingItemId);
-      if(error) throw error;
-    }else{
-      const { error } = await sb.from("items").insert(payload);
-      if(error) throw error;
-    }
-    toast("Kortti tallennettu.");
-    closeSheet("overlayItem");
-    await loadAll();
-  }catch(err){
-    toast("Tallennus epäonnistui: " + err.message, true);
-  }
-});
-
-$("deleteItem").addEventListener("click", async () => {
-  if(!state.editingItemId) return;
-  if(!confirm(`Poistetaanko kortti "${state.editingItemId}"? Tämä poistaa myös siihen liittyvät relaatiot ja artikkelikytkennät.`)) return;
-  try{
-    const { error } = await sb.from("items").delete().eq("id", state.editingItemId);
-    if(error) throw error;
-    toast("Kortti poistettu.");
-    closeSheet("overlayItem");
-    await loadAll();
-  }catch(err){
-    toast("Poisto epäonnistui: " + err.message, true);
-  }
-});
-
-/* ==========================================================
-   LIITTEET (KUVAT): KORTTI
-   ========================================================== */
-function renderItemAttachments(){
-  const list = $("itemAttachmentsList");
-  if(!state.editingItemId){
-    list.innerHTML = "";
-    return;
-  }
-  const rows = state.attachments
-    .filter(a => a.item_id === state.editingItemId)
-    .sort((x,y) => (x.sort_order||0) - (y.sort_order||0));
-
-  list.innerHTML = rows.length ? rows.map(a => `
-    <div class="linked-item attach-row">
-      <div class="li-main">
-        <img class="attach-thumb" src="${esc(attachUrl(a.storage_path))}" alt="" loading="lazy"
-             onerror="this.style.opacity=0.15">
-        <div class="li-text">
-          <div class="li-title">${esc(a.storage_path)}</div>
-          <div class="li-meta">${esc(a.caption || "(ei kuvatekstiä)")} · järj. ${a.sort_order ?? "-"}</div>
-        </div>
-      </div>
-      <button class="btn small danger" data-remove-item-attach="${a.id}">Poista</button>
-    </div>
-  `).join("") : `<div class="hint">Ei vielä liitteitä.</div>`;
-
-  document.querySelectorAll("[data-remove-item-attach]").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      const attachId = Number(btn.dataset.removeItemAttach);
-      if(!confirm("Poistetaanko liite kortilta? Tiedosto jää Storageen, vain kytkentä poistuu.")) return;
-      try{
-        const { error } = await sb.from("attachments").delete().eq("id", attachId);
-        if(error) throw error;
-        state.attachments = state.attachments.filter(a => a.id !== attachId);
-        renderItemAttachments();
-        toast("Liite poistettu kortilta.");
-      }catch(err){
-        toast("Poisto epäonnistui: " + err.message, true);
-      }
-    });
-  });
-}
-
-$("addItemAttachBtn").addEventListener("click", async () => {
-  if(!state.editingItemId){ toast("Tallenna kortti ensin.", true); return; }
-  const storage_path = $("att_i_path").value.trim();
-  const caption = $("att_i_caption").value.trim();
-  const sort_order = Number($("att_i_sort").value) || 1;
-
-  if(!storage_path){ toast("Anna tiedostonimi", true); return; }
-
-  try{
-    const { data, error } = await sb.from("attachments").insert({
-      item_id: state.editingItemId, storage_path, caption: caption || null, sort_order
-    }).select();
-    if(error) throw error;
-    state.attachments.push(data[0]);
-    renderItemAttachments();
-    $("att_i_path").value = "";
-    $("att_i_caption").value = "";
-    toast("Liite lisätty.");
-  }catch(err){
-    toast("Lisäys epäonnistui: " + err.message, true);
-  }
-});
-
-function splitList(str){
-  return str.split(",").map(s => s.trim()).filter(Boolean);
-}
-function splitLines(str){
-  return str.split("\n").map(s => s.trim()).filter(Boolean);
-}
 
 /* ==========================================================
    RENDER: RELAATIOT
@@ -1404,11 +1222,9 @@ function renderRelations(){
   const q = $("searchRelations").value.trim().toLowerCase();
   let rows = state.relations.filter(r =>
     !q ||
-    r.from_id.toLowerCase().includes(q) ||
-    r.to_id.toLowerCase().includes(q) ||
-    r.type.toLowerCase().includes(q) ||
     itemLabel(r.from_id).toLowerCase().includes(q) ||
-    itemLabel(r.to_id).toLowerCase().includes(q)
+    itemLabel(r.to_id).toLowerCase().includes(q) ||
+    (r.type || "").toLowerCase().includes(q)
   );
   rows = applySort(rows, "relations", {
     from: r => itemLabel(r.from_id),
@@ -1425,9 +1241,9 @@ function renderRelations(){
     <tr>
       <td>${esc(itemLabel(r.from_id))}</td>
       <td>${esc(itemLabel(r.to_id))}</td>
-      <td class="mono">${esc(r.type)}</td>
-      <td><span class="pill">${esc(r.rel_class)}</span></td>
-      <td><span class="pill">${esc(r.confidence)}</span></td>
+      <td><span class="pill">${esc(r.type)}</span></td>
+      <td>${esc(r.rel_class)}</td>
+      <td>${esc(r.confidence)}</td>
       <td class="actions"><button class="btn small" data-edit-rel="${r.id}">Muokkaa</button></td>
     </tr>
   `).join("");
@@ -1435,88 +1251,17 @@ function renderRelations(){
   document.querySelectorAll("[data-edit-rel]").forEach(btn => {
     btn.addEventListener("click", () => openRelationForm(Number(btn.dataset.editRel)));
   });
-
   updateSortArrows("relationsTable", "relations");
 }
 
 $("searchRelations").addEventListener("input", renderRelations);
-bindSortableHeaders("relationsTable", "relations", renderRelations);
-
-/* ==========================================================
-   LOMAKE: RELAATIO
-   ========================================================== */
-function openRelationForm(id){
-  state.editingRelationId = id || null;
-  const r = id ? state.relations.find(x => x.id === id) : null;
-
-  $("relFormTitle").textContent = r ? "Muokkaa relaatiota" : "Uusi relaatio";
-  $("r_from").value = r ? r.from_id : "";
-  $("r_to").value = r ? r.to_id : "";
-  $("r_type").value = r ? r.type : "";
-  $("r_class").value = r ? r.rel_class : "rakenne";
-  $("r_confidence").value = r ? r.confidence : "kohtalainen";
-  $("r_rationale").value = r ? r.rationale : "";
-
-  $("deleteRelation").style.display = r ? "inline-flex" : "none";
-  openSheet("overlayRelation");
-}
-
-$("newRelation").addEventListener("click", () => openRelationForm(null));
-
-$("saveRelation").addEventListener("click", async () => {
-  const from_id = $("r_from").value.trim();
-  const to_id = $("r_to").value.trim();
-  const type = $("r_type").value.trim();
-
-  if(!from_id || !to_id || !type){ toast("Mistä, mihin ja tyyppi ovat pakollisia", true); return; }
-  if(!state.items.some(i => i.id === from_id)){ toast(`Korttia "${from_id}" ei löydy`, true); return; }
-  if(!state.items.some(i => i.id === to_id)){ toast(`Korttia "${to_id}" ei löydy`, true); return; }
-
-  const payload = {
-    from_id, to_id, type,
-    rel_class: $("r_class").value,
-    confidence: $("r_confidence").value,
-    rationale: $("r_rationale").value.trim()
-  };
-
-  try{
-    if(state.editingRelationId){
-      const { error } = await sb.from("relations").update(payload).eq("id", state.editingRelationId);
-      if(error) throw error;
-    }else{
-      const { error } = await sb.from("relations").insert(payload);
-      if(error) throw error;
-    }
-    toast("Relaatio tallennettu.");
-    closeSheet("overlayRelation");
-    await loadAll();
-  }catch(err){
-    toast("Tallennus epäonnistui: " + err.message, true);
-  }
-});
-
-$("deleteRelation").addEventListener("click", async () => {
-  if(!state.editingRelationId) return;
-  if(!confirm("Poistetaanko tämä relaatio?")) return;
-  try{
-    const { error } = await sb.from("relations").delete().eq("id", state.editingRelationId);
-    if(error) throw error;
-    toast("Relaatio poistettu.");
-    closeSheet("overlayRelation");
-    await loadAll();
-  }catch(err){
-    toast("Poisto epäonnistui: " + err.message, true);
-  }
-});
 
 /* ==========================================================
    RENDER: ARTIKKELIT
    ========================================================== */
 function renderArticles(){
   const q = $("searchArticles").value.trim().toLowerCase();
-  let rows = state.articles.filter(a =>
-    !q || a.title.toLowerCase().includes(q) || a.id.toLowerCase().includes(q)
-  );
+  let rows = state.articles.filter(a => !q || a.title.toLowerCase().includes(q));
   rows = applySort(rows, "articles", {
     title: a => a.title,
     status: a => a.status || "",
@@ -1530,7 +1275,7 @@ function renderArticles(){
     const linkCount = state.articleLinks.filter(l => l.article_id === a.id).length;
     return `
       <tr>
-        <td><strong>${esc(a.title)}</strong><br><span class="mono" style="color:var(--muted)">${esc(a.id)}</span></td>
+        <td><strong>${esc(a.title)}</strong><br><span style="color:var(--muted);font:11px var(--mono)">${esc(a.id)}</span></td>
         <td><span class="pill">${esc(a.status)}</span></td>
         <td>${linkCount}</td>
         <td class="actions"><button class="btn small" data-edit-art="${esc(a.id)}">Muokkaa</button></td>
@@ -1541,233 +1286,357 @@ function renderArticles(){
   document.querySelectorAll("[data-edit-art]").forEach(btn => {
     btn.addEventListener("click", () => openArticleForm(btn.dataset.editArt));
   });
-
   updateSortArrows("articlesTable", "articles");
 }
 
 $("searchArticles").addEventListener("input", renderArticles);
-bindSortableHeaders("articlesTable", "articles", renderArticles);
 
 /* ==========================================================
-   LOMAKE: ARTIKKELI
+   KORTIN MUOKKAUS
+   ========================================================== */
+function openItemForm(id){
+  const item = id ? state.items.find(i => i.id === id) : null;
+  state.editingItemId = item?.id || null;
+  $("itemFormTitle").textContent = item ? "Muokkaa korttia" : "Uusi kortti";
+  $("f_id").value = item?.id || "";
+  $("f_id").disabled = !!item;
+  $("f_title").value = item?.title || "";
+  $("f_year_start").value = item?.year_start ?? "";
+  $("f_year_end").value = item?.year_end ?? "";
+  $("f_type").value = item?.type || "tapahtuma";
+  $("f_subtype").value = item?.subtype || "";
+  $("f_phase").value = item?.phase || "";
+  $("f_domains").value = (item?.domains || []).join(", ");
+  $("f_problem").value = item?.problem || "";
+  $("f_mechanism").value = item?.mechanism || "";
+  $("f_effects").value = (item?.effects || []).join("\n");
+  $("f_long_effect").value = item?.long_effect || "";
+  $("f_current_relevance").value = item?.current_relevance || "";
+  $("f_importance").value = item?.importance ?? 5;
+  $("f_confidence").value = item?.confidence || "vahva";
+  $("f_sources").value = (item?.sources || []).join(", ");
+  $("f_unpublished").checked = !!item?.unpublished;
+  $("deleteItem").style.display = item ? "inline-flex" : "none";
+  renderItemAttachments(item?.id || null);
+  openSheet("overlayItem");
+}
+
+$("newItem").addEventListener("click", () => openItemForm(null));
+
+$("saveItem").addEventListener("click", async () => {
+  const id = $("f_id").value.trim();
+  const title = $("f_title").value.trim();
+  if(!id || !title){ toast("ID ja otsikko ovat pakollisia.", true); return; }
+
+  const row = {
+    id, title,
+    year_start: Number($("f_year_start").value),
+    year_end: $("f_year_end").value ? Number($("f_year_end").value) : null,
+    type: $("f_type").value,
+    subtype: $("f_subtype").value.trim() || null,
+    phase: $("f_phase").value.trim() || null,
+    domains: $("f_domains").value.split(",").map(s=>s.trim()).filter(Boolean),
+    problem: $("f_problem").value.trim(),
+    mechanism: $("f_mechanism").value.trim(),
+    effects: $("f_effects").value.split("\n").map(s=>s.trim()).filter(Boolean),
+    long_effect: $("f_long_effect").value.trim(),
+    current_relevance: $("f_current_relevance").value.trim(),
+    importance: Number($("f_importance").value),
+    confidence: $("f_confidence").value,
+    sources: $("f_sources").value.split(",").map(s=>s.trim()).filter(Boolean),
+    unpublished: $("f_unpublished").checked
+  };
+
+  $("saveItem").disabled = true;
+  try{
+    const { error } = await sb.from("items").upsert(row, { onConflict: "id" });
+    if(error) throw error;
+    toast("Kortti tallennettu.");
+    closeSheet("overlayItem");
+    await loadAll();
+  }catch(err){ toast("Tallennus epäonnistui: " + err.message, true); }
+  finally{ $("saveItem").disabled = false; }
+});
+
+$("deleteItem").addEventListener("click", async () => {
+  const id = state.editingItemId;
+  if(!id || !confirm(`Poistetaanko kortti ${id}? Myös siihen liittyvät relaatiot poistuvat.`)) return;
+  try{
+    const { error } = await sb.from("items").delete().eq("id", id);
+    if(error) throw error;
+    toast("Kortti poistettu.");
+    closeSheet("overlayItem");
+    await loadAll();
+  }catch(err){ toast("Poisto epäonnistui: " + err.message, true); }
+});
+
+/* ==========================================================
+   RELAATION MUOKKAUS
+   ========================================================== */
+function openRelationForm(id){
+  const rel = id ? state.relations.find(r => r.id === id) : null;
+  state.editingRelationId = rel?.id || null;
+  $("relFormTitle").textContent = rel ? "Muokkaa relaatiota" : "Uusi relaatio";
+  $("r_from").value = rel?.from_id || "";
+  $("r_to").value = rel?.to_id || "";
+  $("r_type").value = rel?.type || "";
+  $("r_class").value = rel?.rel_class || "tulkinta";
+  $("r_confidence").value = rel?.confidence || "kohtalainen";
+  $("r_rationale").value = rel?.rationale || "";
+  $("deleteRelation").style.display = rel ? "inline-flex" : "none";
+  openSheet("overlayRelation");
+}
+
+$("newRelation").addEventListener("click", () => openRelationForm(null));
+
+$("saveRelation").addEventListener("click", async () => {
+  const from_id = $("r_from").value.trim();
+  const to_id = $("r_to").value.trim();
+  const type = $("r_type").value.trim();
+  if(!from_id || !to_id || !type){ toast("Mistä, mihin ja tyyppi ovat pakollisia.", true); return; }
+
+  const row = {
+    from_id, to_id, type,
+    rel_class: $("r_class").value,
+    confidence: $("r_confidence").value,
+    rationale: $("r_rationale").value.trim()
+  };
+  if(state.editingRelationId) row.id = state.editingRelationId;
+
+  $("saveRelation").disabled = true;
+  try{
+    const { error } = await sb.from("relations").upsert(row);
+    if(error) throw error;
+    toast("Relaatio tallennettu.");
+    closeSheet("overlayRelation");
+    await loadAll();
+  }catch(err){ toast("Tallennus epäonnistui: " + err.message, true); }
+  finally{ $("saveRelation").disabled = false; }
+});
+
+$("deleteRelation").addEventListener("click", async () => {
+  const id = state.editingRelationId;
+  if(!id || !confirm("Poistetaanko relaatio?")) return;
+  try{
+    const { error } = await sb.from("relations").delete().eq("id", id);
+    if(error) throw error;
+    toast("Relaatio poistettu.");
+    closeSheet("overlayRelation");
+    await loadAll();
+  }catch(err){ toast("Poisto epäonnistui: " + err.message, true); }
+});
+
+/* ==========================================================
+   ARTIKKELIN MUOKKAUS
    ========================================================== */
 function openArticleForm(id){
-  state.editingArticleId = id || null;
-  const a = id ? state.articles.find(x => x.id === id) : null;
-
-  $("artFormTitle").textContent = a ? "Muokkaa artikkelia" : "Uusi artikkeli";
-  $("a_id").value = a ? a.id : "";
-  $("a_id").disabled = !!a;
-  $("a_title").value = a ? a.title : "";
-  $("a_dek").value = a ? (a.dek || "") : "";
-  $("a_tags").value = a ? (a.tags || []).join(", ") : "";
-  $("a_body").value = a ? (a.body || []).join("\n") : "";
-  $("a_status").value = a ? a.status : "ai_draft";
-  $("a_note").value = a ? (a.note || "") : "";
-
-  $("deleteArticle").style.display = a ? "inline-flex" : "none";
-  $("addLinkForm").style.display = a ? "grid" : "none";
-  $("linksHint").style.display = a ? "none" : "block";
-  $("addArticleAttachForm").style.display = a ? "grid" : "none";
-  $("articleAttachHint").style.display = a ? "none" : "block";
-
-  renderArticleLinks();
-  renderArticleAttachments();
+  const art = id ? state.articles.find(a => a.id === id) : null;
+  state.editingArticleId = art?.id || null;
+  $("artFormTitle").textContent = art ? "Muokkaa artikkelia" : "Uusi artikkeli";
+  $("a_id").value = art?.id || "";
+  $("a_id").disabled = !!art;
+  $("a_title").value = art?.title || "";
+  $("a_dek").value = art?.dek || "";
+  $("a_tags").value = (art?.tags || []).join(", ");
+  $("a_body").value = (art?.body || []).join("\n");
+  $("a_status").value = art?.status || "ai_draft";
+  $("a_note").value = art?.curation_note || "";
+  $("deleteArticle").style.display = art ? "inline-flex" : "none";
+  renderArticleLinks(art?.id || null);
+  renderArticleAttachments(art?.id || null);
   openSheet("overlayArticle");
 }
 
 $("newArticle").addEventListener("click", () => openArticleForm(null));
 
-function renderArticleLinks(){
-  const list = $("articleLinksList");
-  if(!state.editingArticleId){
-    list.innerHTML = "";
-    return;
-  }
-  const links = state.articleLinks
-    .filter(l => l.article_id === state.editingArticleId)
-    .sort((x,y) => (x.sort_order||0) - (y.sort_order||0));
+$("saveArticle").addEventListener("click", async () => {
+  const id = $("a_id").value.trim();
+  const title = $("a_title").value.trim();
+  if(!id || !title){ toast("ID ja otsikko ovat pakollisia.", true); return; }
 
+  const row = {
+    id, title,
+    dek: $("a_dek").value.trim(),
+    tags: $("a_tags").value.split(",").map(s=>s.trim()).filter(Boolean),
+    body: $("a_body").value.split("\n").map(s=>s.trim()).filter(Boolean),
+    status: $("a_status").value,
+    curation_note: $("a_note").value.trim() || null,
+    updated: new Date().toISOString().slice(0,10)
+  };
+
+  $("saveArticle").disabled = true;
+  try{
+    const { error } = await sb.from("articles").upsert(row, { onConflict: "id" });
+    if(error) throw error;
+    state.editingArticleId = id;
+    toast("Artikkeli tallennettu.");
+    await loadAll();
+    openArticleForm(id);
+  }catch(err){ toast("Tallennus epäonnistui: " + err.message, true); }
+  finally{ $("saveArticle").disabled = false; }
+});
+
+$("deleteArticle").addEventListener("click", async () => {
+  const id = state.editingArticleId;
+  if(!id || !confirm(`Poistetaanko artikkeli ${id}?`)) return;
+  try{
+    const { error } = await sb.from("articles").delete().eq("id", id);
+    if(error) throw error;
+    toast("Artikkeli poistettu.");
+    closeSheet("overlayArticle");
+    await loadAll();
+  }catch(err){ toast("Poisto epäonnistui: " + err.message, true); }
+});
+
+/* ==========================================================
+   ARTIKKELI-KORTTI-KYTKENNÄT
+   ========================================================== */
+function renderArticleLinks(articleId){
+  const list = $("articleLinksList");
+  const form = $("addLinkForm");
+  const hint = $("linksHint");
+  if(!articleId){
+    list.innerHTML = ""; form.style.display = "none"; hint.style.display = "block"; return;
+  }
+  form.style.display = "grid"; hint.style.display = "none";
+  const links = state.articleLinks.filter(l => l.article_id === articleId).sort((a,b)=>a.sort_order-b.sort_order);
   list.innerHTML = links.length ? links.map(l => `
     <div class="linked-item">
-      <div>
-        <div class="li-title">${esc(itemLabel(l.item_id))}</div>
-        <div class="li-meta">${esc(l.relation_type)} · paino ${l.weight} · järj. ${l.sort_order}</div>
-      </div>
-      <button class="btn small danger" data-remove-link="${l.id}">Poista</button>
+      <div><div class="li-title">${esc(itemLabel(l.item_id))}</div>
+      <div class="li-meta">${esc(l.relation_type)} · paino ${l.weight} · järjestys ${l.sort_order}</div></div>
+      <button class="btn small danger" data-del-link="${l.id}">Poista</button>
     </div>
-  `).join("") : `<div class="hint">Ei vielä kytkettyjä kortteja.</div>`;
+  `).join("") : '<div style="color:var(--muted);font-size:13px">Ei kytkentöjä.</div>';
 
-  document.querySelectorAll("[data-remove-link]").forEach(btn => {
+  document.querySelectorAll("[data-del-link]").forEach(btn => {
     btn.addEventListener("click", async () => {
-      const linkId = Number(btn.dataset.removeLink);
-      try{
-        const { error } = await sb.from("article_links").delete().eq("id", linkId);
-        if(error) throw error;
-        state.articleLinks = state.articleLinks.filter(l => l.id !== linkId);
-        renderArticleLinks();
-        toast("Kytkentä poistettu.");
-      }catch(err){
-        toast("Poisto epäonnistui: " + err.message, true);
-      }
+      if(!confirm("Poistetaanko kytkentä?")) return;
+      const { error } = await sb.from("article_links").delete().eq("id", Number(btn.dataset.delLink));
+      if(error) toast("Poisto epäonnistui: " + error.message, true);
+      else { await loadAll(); renderArticleLinks(articleId); }
     });
   });
 }
 
 $("addLinkBtn").addEventListener("click", async () => {
-  if(!state.editingArticleId){ toast("Tallenna artikkeli ensin.", true); return; }
-  const item_id = $("link_item").value.trim();
-  const relation_type = $("link_type").value;
-  const weight = Number($("link_weight").value) || 3;
-  const sort_order = Number($("link_sort").value) || 1;
-
-  if(!item_id){ toast("Valitse kortti", true); return; }
-  if(!state.items.some(i => i.id === item_id)){ toast(`Korttia "${item_id}" ei löydy`, true); return; }
-
-  try{
-    const { data, error } = await sb.from("article_links").insert({
-      article_id: state.editingArticleId, item_id, relation_type, weight, sort_order
-    }).select();
-    if(error) throw error;
-    state.articleLinks.push(data[0]);
-    renderArticleLinks();
-    $("link_item").value = "";
-    toast("Kytkentä lisätty.");
-  }catch(err){
-    toast("Lisäys epäonnistui: " + err.message, true);
-  }
+  const articleId = state.editingArticleId;
+  if(!articleId) return;
+  const itemId = $("link_item").value.trim();
+  if(!itemId){ toast("Valitse kortti.", true); return; }
+  const row = {
+    article_id: articleId, item_id: itemId,
+    relation_type: $("link_type").value,
+    weight: Number($("link_weight").value),
+    sort_order: Number($("link_sort").value)
+  };
+  const { error } = await sb.from("article_links").upsert(row, { onConflict: "article_id,item_id" });
+  if(error) toast("Kytkentä epäonnistui: " + error.message, true);
+  else { $("link_item").value = ""; await loadAll(); renderArticleLinks(articleId); }
 });
 
 /* ==========================================================
-   LIITTEET (KUVAT): ARTIKKELI
+   LIITTEET (KUVAT)
    ========================================================== */
-function renderArticleAttachments(){
-  const list = $("articleAttachmentsList");
-  if(!state.editingArticleId){
-    list.innerHTML = "";
-    return;
+function renderItemAttachments(itemId){
+  const list = $("itemAttachmentsList");
+  const form = $("addItemAttachForm");
+  const hint = $("itemAttachHint");
+  if(!itemId){
+    list.innerHTML = ""; form.style.display = "none"; hint.style.display = "block"; return;
   }
-  const rows = state.attachments
-    .filter(a => a.article_id === state.editingArticleId)
-    .sort((x,y) => (x.sort_order||0) - (y.sort_order||0));
-
-  list.innerHTML = rows.length ? rows.map(a => `
+  form.style.display = "grid"; hint.style.display = "none";
+  const atts = state.attachments.filter(a => a.item_id === itemId).sort((a,b)=>a.sort_order-b.sort_order);
+  list.innerHTML = atts.length ? atts.map(a => `
     <div class="linked-item attach-row">
       <div class="li-main">
-        <img class="attach-thumb" src="${esc(attachUrl(a.storage_path))}" alt="" loading="lazy"
-             onerror="this.style.opacity=0.15">
-        <div class="li-text">
-          <div class="li-title">${esc(a.storage_path)}</div>
-          <div class="li-meta">${esc(a.caption || "(ei kuvatekstiä)")} · järj. ${a.sort_order ?? "-"}</div>
-        </div>
+        <img class="attach-thumb" src="${attachUrl(a.storage_path)}" alt="">
+        <div class="li-text"><div class="li-title">${esc(a.storage_path)}</div>
+        <div class="li-meta">${esc(a.caption || "ei kuvatekstiä")} · järjestys ${a.sort_order}</div></div>
       </div>
-      <button class="btn small danger" data-remove-article-attach="${a.id}">Poista</button>
+      <button class="btn small danger" data-del-att="${a.id}">Poista</button>
     </div>
-  `).join("") : `<div class="hint">Ei vielä liitteitä.</div>`;
+  `).join("") : '<div style="color:var(--muted);font-size:13px">Ei liitteitä.</div>';
+  bindAttachmentDeletes(itemId, null);
+}
 
-  document.querySelectorAll("[data-remove-article-attach]").forEach(btn => {
+function renderArticleAttachments(articleId){
+  const list = $("articleAttachmentsList");
+  const form = $("addArticleAttachForm");
+  const hint = $("articleAttachHint");
+  if(!articleId){
+    list.innerHTML = ""; form.style.display = "none"; hint.style.display = "block"; return;
+  }
+  form.style.display = "grid"; hint.style.display = "none";
+  const atts = state.attachments.filter(a => a.article_id === articleId).sort((a,b)=>a.sort_order-b.sort_order);
+  list.innerHTML = atts.length ? atts.map(a => `
+    <div class="linked-item attach-row">
+      <div class="li-main">
+        <img class="attach-thumb" src="${attachUrl(a.storage_path)}" alt="">
+        <div class="li-text"><div class="li-title">${esc(a.storage_path)}</div>
+        <div class="li-meta">${esc(a.caption || "ei kuvatekstiä")} · järjestys ${a.sort_order}</div></div>
+      </div>
+      <button class="btn small danger" data-del-att="${a.id}">Poista</button>
+    </div>
+  `).join("") : '<div style="color:var(--muted);font-size:13px">Ei liitteitä.</div>';
+  bindAttachmentDeletes(null, articleId);
+}
+
+function bindAttachmentDeletes(itemId, articleId){
+  document.querySelectorAll("[data-del-att]").forEach(btn => {
     btn.addEventListener("click", async () => {
-      const attachId = Number(btn.dataset.removeArticleAttach);
-      if(!confirm("Poistetaanko liite artikkelilta? Tiedosto jää Storageen, vain kytkentä poistuu.")) return;
-      try{
-        const { error } = await sb.from("attachments").delete().eq("id", attachId);
-        if(error) throw error;
-        state.attachments = state.attachments.filter(a => a.id !== attachId);
-        renderArticleAttachments();
-        toast("Liite poistettu artikkelilta.");
-      }catch(err){
-        toast("Poisto epäonnistui: " + err.message, true);
+      if(!confirm("Poistetaanko liitekytkentä? Kuvaa ei poisteta Storagesta.")) return;
+      const { error } = await sb.from("attachments").delete().eq("id", Number(btn.dataset.delAtt));
+      if(error) toast("Poisto epäonnistui: " + error.message, true);
+      else {
+        await loadAll();
+        if(itemId) renderItemAttachments(itemId);
+        if(articleId) renderArticleAttachments(articleId);
       }
     });
   });
 }
 
+$("addItemAttachBtn").addEventListener("click", async () => {
+  const itemId = state.editingItemId;
+  if(!itemId) return;
+  const storagePath = $("att_i_path").value.trim();
+  if(!storagePath){ toast("Anna tiedostonimi.", true); return; }
+  const { error } = await sb.from("attachments").insert({
+    item_id: itemId,
+    storage_path: storagePath,
+    caption: $("att_i_caption").value.trim() || null,
+    sort_order: Number($("att_i_sort").value) || 1
+  });
+  if(error) toast("Liitteen lisäys epäonnistui: " + error.message, true);
+  else {
+    $("att_i_path").value = ""; $("att_i_caption").value = "";
+    await loadAll(); renderItemAttachments(itemId);
+  }
+});
+
 $("addArticleAttachBtn").addEventListener("click", async () => {
-  if(!state.editingArticleId){ toast("Tallenna artikkeli ensin.", true); return; }
-  const storage_path = $("att_a_path").value.trim();
-  const caption = $("att_a_caption").value.trim();
-  const sort_order = Number($("att_a_sort").value) || 1;
-
-  if(!storage_path){ toast("Anna tiedostonimi", true); return; }
-
-  try{
-    const { data, error } = await sb.from("attachments").insert({
-      article_id: state.editingArticleId, storage_path, caption: caption || null, sort_order
-    }).select();
-    if(error) throw error;
-    state.attachments.push(data[0]);
-    renderArticleAttachments();
-    $("att_a_path").value = "";
-    $("att_a_caption").value = "";
-    toast("Liite lisätty.");
-  }catch(err){
-    toast("Lisäys epäonnistui: " + err.message, true);
-  }
-});
-
-$("saveArticle").addEventListener("click", async () => {
-  const id = $("a_id").value.trim();
-  if(!id){ toast("ID on pakollinen", true); return; }
-  if(!/^[a-z0-9_-]+$/.test(id)){ toast("ID saa sisältää vain pieniä kirjaimia, numeroita, - ja _", true); return; }
-
-  const payload = {
-    id,
-    title: $("a_title").value.trim(),
-    dek: $("a_dek").value.trim(),
-    tags: splitList($("a_tags").value),
-    body: splitLines($("a_body").value),
-    status: $("a_status").value,
-    note: $("a_note").value.trim()
-  };
-
-  try{
-    const wasNew = !state.editingArticleId;
-    if(state.editingArticleId){
-      const { error } = await sb.from("articles").update(payload).eq("id", state.editingArticleId);
-      if(error) throw error;
-    }else{
-      const { error } = await sb.from("articles").insert(payload);
-      if(error) throw error;
-    }
-    toast("Artikkeli tallennettu.");
-    if(wasNew){
-      // Pidetään paneeli auki, jotta käyttäjä voi heti lisätä kytkentöjä.
-      state.editingArticleId = id;
-      await loadAll();
-      openArticleForm(id);
-    }else{
-      closeSheet("overlayArticle");
-      await loadAll();
-    }
-  }catch(err){
-    toast("Tallennus epäonnistui: " + err.message, true);
-  }
-});
-
-$("deleteArticle").addEventListener("click", async () => {
-  if(!state.editingArticleId) return;
-  if(!confirm(`Poistetaanko artikkeli "${state.editingArticleId}"? Tämä poistaa myös sen kytkennät.`)) return;
-  try{
-    const { error } = await sb.from("articles").delete().eq("id", state.editingArticleId);
-    if(error) throw error;
-    toast("Artikkeli poistettu.");
-    closeSheet("overlayArticle");
-    await loadAll();
-  }catch(err){
-    toast("Poisto epäonnistui: " + err.message, true);
+  const articleId = state.editingArticleId;
+  if(!articleId) return;
+  const storagePath = $("att_a_path").value.trim();
+  if(!storagePath){ toast("Anna tiedostonimi.", true); return; }
+  const { error } = await sb.from("attachments").insert({
+    article_id: articleId,
+    storage_path: storagePath,
+    caption: $("att_a_caption").value.trim() || null,
+    sort_order: Number($("att_a_sort").value) || 1
+  });
+  if(error) toast("Liitteen lisäys epäonnistui: " + error.message, true);
+  else {
+    $("att_a_path").value = ""; $("att_a_caption").value = "";
+    await loadAll(); renderArticleAttachments(articleId);
   }
 });
 
 /* ==========================================================
-   YHDISTYS: ydintiedot
+   YHDISTYS -- RENDERÖINTI JA MUOKKAUS
    ========================================================== */
-function linesToArr(str){ return str.split("\n").map(s => s.trim()).filter(Boolean); }
-
 function renderAssociationCore(){
-  const a = state.association;
-  $("countAssociation").textContent = a ? (state.boardMembers.length + state.documents.length) : 0;
-  if(!a) return;
-
+  const a = state.association || {};
   $("assoc_name").value = a.name || "";
   $("assoc_short_name").value = a.short_name || "";
   $("assoc_kicker").value = a.kicker || "";
@@ -1777,228 +1646,140 @@ function renderAssociationCore(){
   $("assoc_activities").value = (a.activities || []).join("\n");
   $("assoc_chair").value = a.chair || "";
   $("assoc_updated").value = a.updated || "";
-  $("assoc_links").value = (a.links || []).map(l => `${l.label} | ${l.url}`).join("\n");
-
+  $("assoc_links").value = (a.links || []).map(l => `${l.label || ""} | ${l.url || ""}`).join("\n");
   const m = a.membership || {};
   $("assoc_membership_lead").value = m.lead || "";
-  $("assoc_membership_steps").value = (m.steps || []).map(s => `${s.title} | ${s.text}`).join("\n");
+  $("assoc_membership_steps").value = (m.steps || []).map(s => `${s.title || ""} | ${s.body || ""}`).join("\n");
   $("assoc_payment_lines").value = (m.payment_lines || []).join("\n");
-  $("assoc_join_url").value = m.join_url || "";
-  $("assoc_join_label").value = m.join_label || "";
-
+  $("assoc_join_url").value = m.join_guide?.url || "";
+  $("assoc_join_label").value = m.join_guide?.label || "";
   $("assoc_board_lead").value = a.board_lead || "";
+  $("countAssociation").textContent = state.boardMembers.length + state.documents.length;
+}
+
+function parsePipeLines(text, keys){
+  return String(text || "").split(/\r?\n/).map(s=>s.trim()).filter(Boolean).map(line => {
+    const parts = line.split("|").map(s=>s.trim());
+    const obj = {}; keys.forEach((k,i)=>obj[k]=parts[i]||""); return obj;
+  });
 }
 
 $("saveAssociationCore").addEventListener("click", async () => {
-  const links = linesToArr($("assoc_links").value).map(line => {
-    const [label, url] = line.split("|").map(s => s.trim());
-    return { label, url, external: true };
-  });
-  const steps = linesToArr($("assoc_membership_steps").value).map(line => {
-    const [title, text] = line.split("|").map(s => s.trim());
-    return { title, text };
-  });
-
-  const payload = {
-    name: $("assoc_name").value.trim(),
-    short_name: $("assoc_short_name").value.trim(),
-    kicker: $("assoc_kicker").value.trim(),
-    mission: $("assoc_mission").value.trim(),
-    role_in_atlas: $("assoc_role_in_atlas").value.trim(),
-    activities_title: $("assoc_activities_title").value.trim(),
-    activities: linesToArr($("assoc_activities").value),
-    chair: $("assoc_chair").value.trim(),
-    updated: $("assoc_updated").value.trim(),
-    links,
+  const row = {
+    id: "main",
+    name: $("assoc_name").value.trim(), short_name: $("assoc_short_name").value.trim(),
+    kicker: $("assoc_kicker").value.trim(), mission: $("assoc_mission").value.trim(),
+    role_in_atlas: $("assoc_role_in_atlas").value.trim(), activities_title: $("assoc_activities_title").value.trim(),
+    activities: $("assoc_activities").value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean),
+    chair: $("assoc_chair").value.trim(), updated: $("assoc_updated").value.trim(),
+    links: parsePipeLines($("assoc_links").value, ["label","url"]),
     membership: {
       lead: $("assoc_membership_lead").value.trim(),
-      steps,
-      payment_lines: linesToArr($("assoc_payment_lines").value),
-      join_url: $("assoc_join_url").value.trim(),
-      join_label: $("assoc_join_label").value.trim()
+      steps: parsePipeLines($("assoc_membership_steps").value, ["title","body"]),
+      payment_lines: $("assoc_payment_lines").value.split(/\r?\n/).map(s=>s.trim()).filter(Boolean),
+      join_guide: { url: $("assoc_join_url").value.trim(), label: $("assoc_join_label").value.trim() }
     },
     board_lead: $("assoc_board_lead").value.trim()
   };
-
+  $("saveAssociationCore").disabled = true;
   try{
-    const { error } = await sb.from("association").update(payload).eq("id", "main");
+    const { error } = await sb.from("association").upsert(row, { onConflict: "id" });
     if(error) throw error;
-    toast("Yhdistyksen ydintiedot tallennettu.");
-    await loadAll();
-  }catch(err){
-    toast("Tallennus epäonnistui: " + err.message, true);
-  }
+    toast("Yhdistyksen ydintiedot tallennettu."); await loadAll();
+  }catch(err){ toast("Tallennus epäonnistui: " + err.message, true); }
+  finally{ $("saveAssociationCore").disabled = false; }
 });
 
-/* ==========================================================
-   YHDISTYS: hallituksen jäsenet
-   ========================================================== */
 function renderBoardMembers(){
-  $("boardEmpty").style.display = state.boardMembers.length ? "none" : "block";
-  $("boardBody").innerHTML = state.boardMembers.map(m => `
-    <tr>
-      <td><strong>${esc(m.name)}</strong></td>
-      <td>${esc(m.role)}</td>
-      <td class="mono" style="font-size:12px">${esc(m.email || "")}${m.phone ? " · " + esc(m.phone) : ""}</td>
-      <td class="actions"><button class="btn small" data-edit-board="${m.id}">Muokkaa</button></td>
-    </tr>
+  const rows = state.boardMembers;
+  $("boardEmpty").style.display = rows.length ? "none" : "block";
+  $("boardBody").innerHTML = rows.map(m => `
+    <tr><td><strong>${esc(m.name)}</strong></td><td>${esc(m.role || "")}</td>
+    <td>${esc(m.email || "")}${m.phone ? `<br>${esc(m.phone)}` : ""}</td>
+    <td class="actions"><button class="btn small" data-edit-board="${m.id}">Muokkaa</button></td></tr>
   `).join("");
-  document.querySelectorAll("[data-edit-board]").forEach(btn => {
-    btn.addEventListener("click", () => openBoardMemberForm(Number(btn.dataset.editBoard)));
-  });
+  document.querySelectorAll("[data-edit-board]").forEach(btn => btn.addEventListener("click", () => openBoardForm(Number(btn.dataset.editBoard))));
 }
 
-function openBoardMemberForm(id){
-  state.editingBoardMemberId = id || null;
+function openBoardForm(id){
   const m = id ? state.boardMembers.find(x => x.id === id) : null;
-
+  state.editingBoardMemberId = m?.id || null;
   $("boardFormTitle").textContent = m ? "Muokkaa hallituksen jäsentä" : "Uusi hallituksen jäsen";
-  $("bm_name").value = m ? m.name : "";
-  $("bm_role").value = m ? m.role : "";
-  $("bm_email").value = m ? (m.email || "") : "";
-  $("bm_phone").value = m ? (m.phone || "") : "";
-  $("bm_profile_url").value = m ? (m.profile_url || "") : "";
-  $("bm_image").value = m ? (m.image || "") : "";
-  $("bm_note").value = m ? (m.note || "") : "";
-  $("bm_sort_order").value = m ? m.sort_order : (state.boardMembers.length + 1);
-
+  $("bm_name").value = m?.name || ""; $("bm_role").value = m?.role || "";
+  $("bm_email").value = m?.email || ""; $("bm_phone").value = m?.phone || "";
+  $("bm_profile_url").value = m?.profile_url || ""; $("bm_image").value = m?.image || "";
+  $("bm_note").value = m?.note || ""; $("bm_sort_order").value = m?.sort_order || 1;
   $("deleteBoardMember").style.display = m ? "inline-flex" : "none";
   openSheet("overlayBoardMember");
 }
-
-$("newBoardMember").addEventListener("click", () => openBoardMemberForm(null));
-
+$("newBoardMember").addEventListener("click", () => openBoardForm(null));
 $("saveBoardMember").addEventListener("click", async () => {
-  const name = $("bm_name").value.trim();
-  const role = $("bm_role").value.trim();
-  if(!name || !role){ toast("Nimi ja rooli ovat pakollisia", true); return; }
-
-  const payload = {
-    name, role,
-    email: $("bm_email").value.trim() || null,
-    phone: $("bm_phone").value.trim() || null,
-    profile_url: $("bm_profile_url").value.trim() || null,
-    image: $("bm_image").value.trim() || null,
-    note: $("bm_note").value.trim() || null,
-    sort_order: Number($("bm_sort_order").value) || 1
-  };
-
+  const row = { name: $("bm_name").value.trim(), role: $("bm_role").value.trim() || null,
+    email: $("bm_email").value.trim() || null, phone: $("bm_phone").value.trim() || null,
+    profile_url: $("bm_profile_url").value.trim() || null, image: $("bm_image").value.trim() || null,
+    note: $("bm_note").value.trim() || null, sort_order: Number($("bm_sort_order").value) || 1 };
+  if(!row.name){ toast("Nimi on pakollinen.", true); return; }
+  if(state.editingBoardMemberId) row.id = state.editingBoardMemberId;
   try{
-    if(state.editingBoardMemberId){
-      const { error } = await sb.from("association_board_members").update(payload).eq("id", state.editingBoardMemberId);
-      if(error) throw error;
-    }else{
-      const { error } = await sb.from("association_board_members").insert(payload);
-      if(error) throw error;
-    }
-    toast("Hallituksen jäsen tallennettu.");
-    closeSheet("overlayBoardMember");
-    await loadAll();
-  }catch(err){
-    toast("Tallennus epäonnistui: " + err.message, true);
-  }
+    const { error } = await sb.from("association_board_members").upsert(row);
+    if(error) throw error;
+    toast("Hallituksen jäsen tallennettu."); closeSheet("overlayBoardMember"); await loadAll();
+  }catch(err){ toast("Tallennus epäonnistui: " + err.message, true); }
 });
-
 $("deleteBoardMember").addEventListener("click", async () => {
-  if(!state.editingBoardMemberId) return;
-  if(!confirm("Poistetaanko tämä hallituksen jäsen?")) return;
+  if(!state.editingBoardMemberId || !confirm("Poistetaanko hallituksen jäsen?")) return;
   try{
     const { error } = await sb.from("association_board_members").delete().eq("id", state.editingBoardMemberId);
     if(error) throw error;
-    toast("Hallituksen jäsen poistettu.");
-    closeSheet("overlayBoardMember");
-    await loadAll();
-  }catch(err){
-    toast("Poisto epäonnistui: " + err.message, true);
-  }
+    toast("Poistettu."); closeSheet("overlayBoardMember"); await loadAll();
+  }catch(err){ toast("Poisto epäonnistui: " + err.message, true); }
 });
 
-/* ==========================================================
-   YHDISTYS: asiakirjat ja tiedotus
-   ========================================================== */
 function renderDocuments(){
-  $("documentsEmpty").style.display = state.documents.length ? "none" : "block";
-  $("documentsBody").innerHTML = state.documents.map(d => `
-    <tr>
-      <td>${esc(d.group_title)}</td>
-      <td>${esc(d.title || "(tyhjä ryhmä)")}</td>
-      <td><span class="pill">${esc(d.type || "–")}</span></td>
-      <td class="actions"><button class="btn small" data-edit-doc="${d.id}">Muokkaa</button></td>
-    </tr>
+  const rows = state.documents;
+  $("documentsEmpty").style.display = rows.length ? "none" : "block";
+  $("documentsBody").innerHTML = rows.map(d => `
+    <tr><td>${esc(d.group_title)}</td><td><strong>${esc(d.title || "(tyhjä ryhmä)")}</strong></td><td>${esc(d.type || "")}</td>
+    <td class="actions"><button class="btn small" data-edit-doc="${d.id}">Muokkaa</button></td></tr>
   `).join("");
-  document.querySelectorAll("[data-edit-doc]").forEach(btn => {
-    btn.addEventListener("click", () => openDocumentForm(Number(btn.dataset.editDoc)));
-  });
-
-  const groups = [...new Set(state.documents.map(d => d.group_title))];
+  document.querySelectorAll("[data-edit-doc]").forEach(btn => btn.addEventListener("click", () => openDocumentForm(Number(btn.dataset.editDoc))));
+  const groups = [...new Set(rows.map(d => d.group_title).filter(Boolean))];
   $("documentGroupOptions").innerHTML = groups.map(g => `<option value="${esc(g)}">`).join("");
 }
 
 function openDocumentForm(id){
-  state.editingDocumentId = id || null;
   const d = id ? state.documents.find(x => x.id === id) : null;
-
+  state.editingDocumentId = d?.id || null;
   $("documentFormTitle").textContent = d ? "Muokkaa asiakirjaa" : "Uusi asiakirja";
-  $("doc_group_title").value = d ? d.group_title : "";
-  $("doc_group_sort_order").value = d ? d.group_sort_order : (state.documents.length ? Math.max(...state.documents.map(x => x.group_sort_order)) : 1);
-  $("doc_group_empty_text").value = d ? (d.group_empty_text || "") : "";
-  $("doc_title").value = d ? (d.title || "") : "";
-  $("doc_description").value = d ? (d.description || "") : "";
-  $("doc_date").value = d ? (d.date || "") : "";
-  $("doc_type").value = d ? (d.type || "") : "";
-  $("doc_url").value = d ? (d.url || "") : "";
-  $("doc_sort_order").value = d ? d.sort_order : 1;
-
+  $("doc_group_title").value = d?.group_title || ""; $("doc_group_sort_order").value = d?.group_sort_order || 1;
+  $("doc_group_empty_text").value = d?.group_empty_text || ""; $("doc_title").value = d?.title || "";
+  $("doc_description").value = d?.description || ""; $("doc_date").value = d?.date || "";
+  $("doc_type").value = d?.type || ""; $("doc_url").value = d?.url || ""; $("doc_sort_order").value = d?.sort_order || 1;
   $("deleteDocument").style.display = d ? "inline-flex" : "none";
   openSheet("overlayDocument");
 }
-
 $("newDocument").addEventListener("click", () => openDocumentForm(null));
-
 $("saveDocument").addEventListener("click", async () => {
-  const group_title = $("doc_group_title").value.trim();
-  if(!group_title){ toast("Ryhmän nimi on pakollinen", true); return; }
-
-  const payload = {
-    group_title,
-    group_sort_order: Number($("doc_group_sort_order").value) || 1,
-    group_empty_text: $("doc_group_empty_text").value.trim() || null,
-    title: $("doc_title").value.trim() || null,
-    description: $("doc_description").value.trim() || null,
-    date: $("doc_date").value.trim() || null,
-    type: $("doc_type").value.trim() || null,
-    url: $("doc_url").value.trim() || null,
-    sort_order: Number($("doc_sort_order").value) || 1
-  };
-
+  const row = { group_title: $("doc_group_title").value.trim(), group_sort_order: Number($("doc_group_sort_order").value)||1,
+    group_empty_text: $("doc_group_empty_text").value.trim()||null, title: $("doc_title").value.trim()||null,
+    description: $("doc_description").value.trim()||null, date: $("doc_date").value.trim()||null,
+    type: $("doc_type").value.trim()||null, url: $("doc_url").value.trim()||null,
+    sort_order: Number($("doc_sort_order").value)||1 };
+  if(!row.group_title){ toast("Ryhmä on pakollinen.", true); return; }
+  if(state.editingDocumentId) row.id = state.editingDocumentId;
   try{
-    if(state.editingDocumentId){
-      const { error } = await sb.from("association_documents").update(payload).eq("id", state.editingDocumentId);
-      if(error) throw error;
-    }else{
-      const { error } = await sb.from("association_documents").insert(payload);
-      if(error) throw error;
-    }
-    toast("Asiakirja tallennettu.");
-    closeSheet("overlayDocument");
-    await loadAll();
-  }catch(err){
-    toast("Tallennus epäonnistui: " + err.message, true);
-  }
+    const { error } = await sb.from("association_documents").upsert(row);
+    if(error) throw error;
+    toast("Asiakirja tallennettu."); closeSheet("overlayDocument"); await loadAll();
+  }catch(err){ toast("Tallennus epäonnistui: " + err.message, true); }
 });
-
 $("deleteDocument").addEventListener("click", async () => {
-  if(!state.editingDocumentId) return;
-  if(!confirm("Poistetaanko tämä asiakirja?")) return;
+  if(!state.editingDocumentId || !confirm("Poistetaanko asiakirja?")) return;
   try{
     const { error } = await sb.from("association_documents").delete().eq("id", state.editingDocumentId);
     if(error) throw error;
-    toast("Asiakirja poistettu.");
-    closeSheet("overlayDocument");
-    await loadAll();
-  }catch(err){
-    toast("Poisto epäonnistui: " + err.message, true);
-  }
+    toast("Poistettu."); closeSheet("overlayDocument"); await loadAll();
+  }catch(err){ toast("Poisto epäonnistui: " + err.message, true); }
 });
 
 /* ==========================================================
@@ -2239,30 +2020,21 @@ $("exportArtikkelit").addEventListener("click", async () => {
       });
     }
 
-    const unpublishedIds = new Set(unpublishedItemsRes.data.map(i => i.id));
-    const links = linksRes.data.filter(l => !unpublishedIds.has(l.item_id));
-    const skippedLinks = linksRes.data.length - links.length;
-
+    const hiddenIds = new Set(unpublishedItemsRes.data.map(r => r.id));
     const articles = artRes.data.map(a => {
-      const out = {
-        id: a.id, title: a.title, dek: a.dek, tags: a.tags,
-        status: a.status, note: a.note, body: a.body
-      };
-      if(imagesByArticle[a.id]){ out.images = imagesByArticle[a.id]; }
+      const links = linksRes.data.filter(l => l.article_id === a.id && !hiddenIds.has(l.item_id)).map(l => ({
+        item_id: l.item_id, relation_type: l.relation_type,
+        relation_label: state.relationTypes[l.relation_type] || l.relation_type,
+        weight: l.weight, sort_order: l.sort_order
+      }));
+      const out = { id: a.id, title: a.title, dek: a.dek, tags: a.tags, body: a.body,
+        status: a.status, curation_note: a.curation_note, updated: a.updated, links };
+      if(imagesByArticle[a.id]) out.images = imagesByArticle[a.id];
       return out;
     });
 
-    const relation_types = {};
-    for(const row of typesRes.data){ relation_types[row.type] = row.label; }
-
-    const meta = {
-      ...metaRes.data.data,
-      count: articles.length,
-      link_count: links.length
-    };
-
-    downloadJSON({ meta, relation_types, articles, links }, "artikkelit.json");
-    toast(`artikkelit.json ladattu.${skippedLinks ? ` (${skippedLinks} kytkentää julkaisemattomiin kortteihin jätetty pois)` : ""}`);
+    downloadJSON({ meta: metaRes.data.data, relation_types: typesRes.data, articles }, "artikkelit.json");
+    toast("artikkelit.json ladattu.");
   }catch(err){
     toast("Export epäonnistui: " + err.message, true);
   }finally{
@@ -2278,57 +2050,28 @@ $("exportYhdistys").addEventListener("click", async () => {
   try{
     const assocRes = await sb.from("association").select("*").eq("id", "main").single();
     if(assocRes.error) throw assocRes.error;
-
     const boardRes = await sb.from("association_board_members").select("*").order("sort_order", { ascending: true });
     if(boardRes.error) throw boardRes.error;
-
     const docsRes = await sb.from("association_documents").select("*").order("group_sort_order", { ascending: true }).order("sort_order", { ascending: true });
     if(docsRes.error) throw docsRes.error;
 
     const a = assocRes.data;
-
-    // Ryhmitellään asiakirjat group_title/group_sort_order:n mukaan alkuperäistä yhdistys.json-muotoa vastaavaksi
-    const groupMap = new Map();
-    for(const d of docsRes.data){
-      const key = d.group_title;
-      if(!groupMap.has(key)){
-        groupMap.set(key, {
-          title: d.group_title,
-          _sort: d.group_sort_order,
-          empty_text: d.group_empty_text || undefined,
-          items: []
-        });
-      }
-      const grp = groupMap.get(key);
-      if(d.group_empty_text) grp.empty_text = d.group_empty_text;
-      if(d.title){
-        const item = { title: d.title };
-        if(d.description) item.description = d.description;
-        if(d.date) item.date = d.date;
-        if(d.type) item.type = d.type;
-        if(d.url) item.url = d.url;
-        grp.items.push(item);
-      }
-    }
-    const documents = [...groupMap.values()]
-      .sort((x, y) => x._sort - y._sort)
-      .map(({ _sort, ...rest }) => rest);
-
     const board = {
-      lead: a.board_lead,
-      members: boardRes.data.map(m => {
-        const person = { name: m.name, role: m.role };
-        if(m.email) person.email = m.email;
-        if(m.phone) person.phone = m.phone;
-        if(m.profile_url) person.profile_url = m.profile_url;
-        if(m.image) person.image = m.image;
-        if(m.note) person.note = m.note;
-        return person;
-      })
+      lead: a.board_lead || "",
+      members: boardRes.data.map(m => ({
+        name: m.name, role: m.role, email: m.email, phone: m.phone,
+        profile_url: m.profile_url, image: m.image, note: m.note
+      }))
     };
+    const groups = [];
+    for(const d of docsRes.data){
+      let g = groups.find(x => x.title === d.group_title);
+      if(!g){ g = { title: d.group_title, empty_text: d.group_empty_text || null, items: [] }; groups.push(g); }
+      if(d.title) g.items.push({ title: d.title, description: d.description, date: d.date, type: d.type, url: d.url });
+    }
+    const documents = { groups };
 
     const doc = {
-      id: a.id,
       name: a.name,
       short_name: a.short_name,
       kicker: a.kicker,
@@ -2354,7 +2097,7 @@ $("exportYhdistys").addEventListener("click", async () => {
 });
 
 /* ==========================================================
-   GITHUB ACTIONS: JSON-TIEDOSTOJEN PÄIVITYS
+   GITHUB ACTIONS: TILASTOMUUTTUJIEN PÄIVITYS
 
    Painike kutsuu kirjautuneen käyttäjän Supabase-istunnolla
    Edge Functionia "trigger-github-export". GitHubin tokenia
@@ -2412,95 +2155,59 @@ $("triggerGithubExport").addEventListener("click", async () => {
 });
 
 /* ==========================================================
-   KIRJAUTUMINEN
+   KIRJAUTUMINEN JA SOVELLUKSEN KÄYNNISTYS
    ========================================================== */
-function showLogin(){
-  $("overlayLogin").classList.add("open");
-  $("appShell").style.display = "none";
-  $("logoutBtn").style.display = "none";
-  setTimeout(() => $("loginEmail").focus(), 30);
-}
-
-function showApp(){
+async function showAuthenticated(session){
+  state.session = session;
   $("overlayLogin").classList.remove("open");
   $("appShell").style.display = "block";
   $("logoutBtn").style.display = "inline-flex";
+  await loadAll();
 }
 
-async function attemptLogin(){
+function showLogin(message){
+  state.session = null;
+  $("appShell").style.display = "none";
+  $("logoutBtn").style.display = "none";
+  $("overlayLogin").classList.add("open");
+  $("loginErr").textContent = message || "";
+  $("connStatus").textContent = "kirjautuminen vaaditaan";
+}
+
+async function doLogin(){
   const email = $("loginEmail").value.trim();
   const password = $("loginPassword").value;
-  const errEl = $("loginErr");
-  errEl.textContent = "";
-
-  if(!email || !password){
-    errEl.textContent = "Sähköposti ja salasana ovat pakollisia.";
-    return;
-  }
-
+  $("loginErr").textContent = "";
+  if(!email || !password){ $("loginErr").textContent = "Anna sähköposti ja salasana."; return; }
   $("loginSubmit").disabled = true;
-  errEl.textContent = "Kirjaudutaan…";
   try{
-    const { error } = await sb.auth.signInWithPassword({ email, password });
+    const { data, error } = await sb.auth.signInWithPassword({ email, password });
     if(error) throw error;
-    errEl.textContent = "";
-    $("loginPassword").value = "";
-    showApp();
-    $("connStatus").textContent = "kirjauduttu · ladataan dataa…";
-    await loadAll();
-  }catch(err){
-    errEl.textContent = "Kirjautuminen epäonnistui: " + err.message;
-  }finally{
-    $("loginSubmit").disabled = false;
-  }
+    await showAuthenticated(data.session);
+  }catch(err){ $("loginErr").textContent = "Kirjautuminen epäonnistui: " + (err.message || "tuntematon virhe"); }
+  finally{ $("loginSubmit").disabled = false; }
 }
 
-$("loginSubmit").addEventListener("click", attemptLogin);
-$("loginPassword").addEventListener("keydown", e => { if(e.key === "Enter") attemptLogin(); });
-$("loginEmail").addEventListener("keydown", e => { if(e.key === "Enter") attemptLogin(); });
-
+$("loginSubmit").addEventListener("click", doLogin);
+$("loginPassword").addEventListener("keydown", e => { if(e.key === "Enter") doLogin(); });
 $("logoutBtn").addEventListener("click", async () => {
-  try{
-    await sb.auth.signOut();
-  }catch(err){ /* ei kriittinen */ }
-  state.items = []; state.relations = []; state.articles = []; state.articleLinks = [];
-  showLogin();
-  toast("Kirjauduttu ulos.");
+  await sb.auth.signOut();
+  showLogin("Olet kirjautunut ulos.");
 });
 
 sb.auth.onAuthStateChange((event, session) => {
-  state.session = session;
-  if(event === "SIGNED_OUT"){
-    showLogin();
-  }
+  if(event === "SIGNED_OUT") showLogin();
+  if(event === "SIGNED_IN" && session && !state.session) showAuthenticated(session);
 });
 
-/* ==========================================================
-   KÄYNNISTYS
-   ========================================================== */
-async function boot(){
-  $("connStatus").textContent = "tarkistetaan kirjautumista…";
-  try{
-    const { data, error } = await sb.auth.getSession();
-    if(error) throw error;
+const { data: sessionData } = await sb.auth.getSession();
+if(sessionData.session) await showAuthenticated(sessionData.session);
+else showLogin();
 
-    if(data.session){
-      state.session = data.session;
-      showApp();
-      $("connStatus").textContent = "kirjauduttu · ladataan dataa…";
-      await loadAll();
-    }else{
-      showLogin();
-      $("connStatus").textContent = "kirjaudu sisään jatkaaksesi";
-    }
-  }catch(err){
-    showLogin();
-    $("connStatus").textContent = "kirjaudu sisään jatkaaksesi";
-    console.error("Istunnon tarkistus epäonnistui:", err);
-  }
-}
+bindSortableHeaders("itemsTable", "items", renderItems);
+bindSortableHeaders("relationsTable", "relations", renderRelations);
+bindSortableHeaders("articlesTable", "articles", renderArticles);
 
-boot();
 </script>
 </body>
 </html>
