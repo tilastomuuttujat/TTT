@@ -1,0 +1,62 @@
+name: Export Atlas JSON
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atlas-json-export
+  cancel-in-progress: false
+
+jobs:
+  export:
+    name: Export Atlas JSON
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: |
+          npm install @supabase/supabase-js
+
+      - name: Export Atlas JSON
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          node scripts/export-atlas-json.mjs
+
+      - name: Commit updated JSON
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add \
+            atlas/artikkelit.json \
+            atlas/tilastomuuttujat.json \
+            atlas/murrosatlas.json \
+            atlas/selitysatlas.json \
+            atlas/crosswalk.json \
+            atlas/lens-content.json \
+            atlas/chain-anchors.json \
+            atlas/murros-layout.json \
+            atlas/atlas-data.json
+
+          if git diff --cached --quiet; then
+            echo "Atlas JSON files unchanged."
+          else
+            git commit -m "Update Atlas JSON"
+            git push
+          fi
+
+      - name: Finished
+        run: echo "Atlas export complete."
