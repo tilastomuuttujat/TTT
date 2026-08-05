@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atlas-visualisointikortit</title>
+  <style>
+    :root {
+      --atlas-paper: #fdfcf7;
+      --atlas-line: #ded8ca;
+      --atlas-title: #1f4642;
+      --atlas-ink: #172421;
+      --atlas-radius: 16px;
+    }
+    body {
+      margin: 0;
+      padding: 32px;
+      background: #f4f0e6;
+      color: #172421;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main { max-width: 1100px; margin: 0 auto; }
+    h1 { font-family: Georgia, serif; color: #1f4642; }
+    .intro { max-width: 760px; color: #5f6b66; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr));
+      gap: 22px;
+      margin-top: 28px;
+    }
+    code { background: #fff; padding: 2px 5px; border-radius: 4px; }
+  </style>
+  <script type="module" src="./atlas-stat-card.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Atlasin visualisointikortit</h1>
+    <p class="intro">Sama Web Component voidaan ladata myös toisesta GitHub Pages -sivustosta. Kortin sisältö määräytyy <code>card</code>-tunnuksella.</p>
+    <div class="grid">
+      <atlas-stat-card card="TYOTTOMYYS_1990_2024"></atlas-stat-card>
+      <atlas-stat-card card="JULKINEN_VELKA_POLKU"></atlas-stat-card>
+      <atlas-stat-card card="VAESTON_IKAANTYMINEN"></atlas-stat-card>
+      <atlas-stat-card card="SYNTYVYYS_MURROS"></atlas-stat-card>
+    </div>
+  </main>
+</body>
+</html>
