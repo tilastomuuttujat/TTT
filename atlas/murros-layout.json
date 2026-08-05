@@ -4,14 +4,13 @@
     "item_count": 340,
     "relation_count": 642,
     "community_count": 12,
-    "layout_version": 3,
-    "generated_at": "2026-08-05T14:26:39.310Z"
+    "layout_version": 3
   },
   "nodes": [
     {
       "id": "torpparijarjestelman-jannite-1800",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.750555,
       "community": 6,
       "community_label": "instituutiot · analyysi · yhteiskunta",
@@ -21,27 +20,27 @@
     {
       "id": "kansanjuhlista-elamystalouteen",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.951393,
       "community": 2,
       "community_label": "talous · kulttuuri · työ",
       "importance": 4,
-      "betweenness": 0.000086
+      "betweenness": 8.6e-05
     },
     {
       "id": "kodin-rakennemuutos",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.277879,
       "community": 0,
       "community_label": "yhteiskunta · sukupolvet · talous",
       "importance": 4,
-      "betweenness": 0.000086
+      "betweenness": 8.6e-05
     },
     {
       "id": "postitieverkko-1800",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.479971,
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
@@ -51,7 +50,7 @@
     {
       "id": "yhteisollisyyden-rakennemuutos",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.949692,
       "community": 2,
       "community_label": "talous · kulttuuri · työ",
@@ -61,7 +60,7 @@
     {
       "id": "lukutaidon-nousu-1800",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.333001,
       "community": 5,
       "community_label": "kunta · koulutus · työ",
@@ -71,17 +70,17 @@
     {
       "id": "alkoholikulttuurin-rakennemuutos",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.620628,
       "community": 4,
       "community_label": "terveys · työ · ennaltaehkäisy",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "ruokakulttuurin-rakennemuutos",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.776329,
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
@@ -91,7 +90,7 @@
     {
       "id": "rituaalien-rakennemuutos",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.956496,
       "community": 2,
       "community_label": "talous · kulttuuri · työ",
@@ -101,7 +100,7 @@
     {
       "id": "tilaton-maaton-vaesto-1800",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.581221,
       "community": 5,
       "community_label": "kunta · koulutus · työ",
@@ -111,7 +110,7 @@
     {
       "id": "musiikista-elamystaloudeksi",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.954795,
       "community": 2,
       "community_label": "talous · kulttuuri · työ",
@@ -121,7 +120,7 @@
     {
       "id": "ruukkiteollisuus-1800",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.431425,
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
@@ -131,7 +130,7 @@
     {
       "id": "pientilallisuuden-perusta",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.797178,
       "community": 2,
       "community_label": "talous · kulttuuri · työ",
@@ -141,17 +140,17 @@
     {
       "id": "maanomistuksen-vapautuminen-1600",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.820499,
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "saatyhteiskunnan-vaiheet-1600",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.856191,
       "community": 7,
       "community_label": "demokratia · valtio · oikeudet",
@@ -161,7 +160,7 @@
     {
       "id": "penkkiurheilun-nousu",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.958196,
       "community": 2,
       "community_label": "talous · kulttuuri · työ",
@@ -171,7 +170,7 @@
     {
       "id": "kirjasta-digitaaliseen-sisaltoon",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.379023,
       "community": 3,
       "community_label": "teknologia · digitalisaatio · talous",
@@ -181,7 +180,7 @@
     {
       "id": "kaskiviljelysta-metsatalouteen-1800",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.710806,
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
@@ -191,17 +190,17 @@
     {
       "id": "tervanpoltto-1600",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.528034,
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "elamankaaren-rakennemuutos",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.057112,
       "community": 0,
       "community_label": "yhteiskunta · sukupolvet · talous",
@@ -211,7 +210,7 @@
     {
       "id": "saunasta-hyvinvointikulttuuriksi",
       "year": 1800,
-      "x": 0,
+      "x": 0.0,
       "y": 0.944589,
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
@@ -226,7 +225,7 @@
       "community": 0,
       "community_label": "yhteiskunta · sukupolvet · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "suomen-sota-autonomia-1808",
@@ -306,7 +305,7 @@
       "community": 2,
       "community_label": "talous · kulttuuri · työ",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "muuttorajoitukset-1817",
@@ -316,7 +315,7 @@
       "community": 11,
       "community_label": "työ · järjestöt · oikeudet",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "sukupolviprofiili-liisa-1825",
@@ -376,7 +375,7 @@
       "community": 7,
       "community_label": "demokratia · valtio · oikeudet",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "saimaan-kanava-1856",
@@ -386,7 +385,7 @@
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "kytkeytymisen-dynamiikka",
@@ -396,7 +395,7 @@
       "community": 6,
       "community_label": "instituutiot · analyysi · yhteiskunta",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "korjauskyvyn-malli",
@@ -436,7 +435,7 @@
       "community": 6,
       "community_label": "instituutiot · analyysi · yhteiskunta",
       "importance": 5,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "naisasialiike-1884",
@@ -536,7 +535,7 @@
       "community": 6,
       "community_label": "instituutiot · analyysi · yhteiskunta",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "liikkumavaran-malli",
@@ -566,7 +565,7 @@
       "community": 6,
       "community_label": "instituutiot · analyysi · yhteiskunta",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "konfliktin-dynamiikka-malli",
@@ -626,7 +625,7 @@
       "community": 6,
       "community_label": "instituutiot · analyysi · yhteiskunta",
       "importance": 4,
-      "betweenness": 0.000086
+      "betweenness": 8.6e-05
     },
     {
       "id": "resilienssin-malli",
@@ -656,7 +655,7 @@
       "community": 6,
       "community_label": "instituutiot · analyysi · yhteiskunta",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "rautatieverkko-1862",
@@ -726,7 +725,7 @@
       "community": 11,
       "community_label": "työ · järjestöt · oikeudet",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "sukupolviprofiili-aino-1865",
@@ -796,7 +795,7 @@
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "tehdasjarjestelma-1870",
@@ -916,7 +915,7 @@
       "community": 5,
       "community_label": "kunta · koulutus · työ",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "sukupolviprofiili-elias-1885",
@@ -946,7 +945,7 @@
       "community": 7,
       "community_label": "demokratia · valtio · oikeudet",
       "importance": 5,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "sisallissodan-taustatekijat-1890-1918",
@@ -1096,7 +1095,7 @@
       "community": 11,
       "community_label": "työ · järjestöt · oikeudet",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "itsenaisyys-1917",
@@ -1236,7 +1235,7 @@
       "community": 4,
       "community_label": "terveys · työ · ennaltaehkäisy",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "tyosopimuslaki-1922",
@@ -1346,7 +1345,7 @@
       "community": 7,
       "community_label": "demokratia · valtio · oikeudet",
       "importance": 3,
-      "betweenness": 0.000086
+      "betweenness": 8.6e-05
     },
     {
       "id": "lasten-tyon-suojelu-1930",
@@ -1356,7 +1355,7 @@
       "community": 5,
       "community_label": "kunta · koulutus · työ",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "tyoturvallisuus-1930",
@@ -1376,7 +1375,7 @@
       "community": 4,
       "community_label": "terveys · työ · ennaltaehkäisy",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "alkoholimonopoli-1932",
@@ -1436,7 +1435,7 @@
       "community": 4,
       "community_label": "terveys · työ · ennaltaehkäisy",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "maksuton-kouluruoka-1957",
@@ -1446,7 +1445,7 @@
       "community": 5,
       "community_label": "kunta · koulutus · työ",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "jalleenrakennus",
@@ -1546,7 +1545,7 @@
       "community": 2,
       "community_label": "talous · kulttuuri · työ",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "tyoehtosopimuslaki-1946",
@@ -1566,7 +1565,7 @@
       "community": 5,
       "community_label": "kunta · koulutus · työ",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "yya-sopimus-1948",
@@ -1576,7 +1575,7 @@
       "community": 8,
       "community_label": "talous · EU · rahoitus",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "lapsilisa-1948",
@@ -1636,7 +1635,7 @@
       "community": 0,
       "community_label": "yhteiskunta · sukupolvet · talous",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "pohjoismaiset-tyomarkkinat-1954",
@@ -1646,7 +1645,7 @@
       "community": 2,
       "community_label": "talous · kulttuuri · työ",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "kaupungistuminen",
@@ -1676,7 +1675,7 @@
       "community": 4,
       "community_label": "terveys · työ · ennaltaehkäisy",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "ammattioppilaitoslaki-1958",
@@ -1706,7 +1705,7 @@
       "community": 0,
       "community_label": "yhteiskunta · sukupolvet · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "omaishoidon-vahvistuminen-1960",
@@ -1716,7 +1715,7 @@
       "community": 0,
       "community_label": "yhteiskunta · sukupolvet · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "television-yleistyminen-1960",
@@ -1726,7 +1725,7 @@
       "community": 3,
       "community_label": "teknologia · digitalisaatio · talous",
       "importance": 5,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "tyottomyysturva-1960",
@@ -1756,7 +1755,7 @@
       "community": 2,
       "community_label": "talous · kulttuuri · työ",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "julkisen-talouden-rakennemuutos-1960",
@@ -1796,7 +1795,7 @@
       "community": 5,
       "community_label": "kunta · koulutus · työ",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "hoivan-rakennemuutos-1960",
@@ -1886,7 +1885,7 @@
       "community": 2,
       "community_label": "talous · kulttuuri · työ",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "lahiot",
@@ -2016,7 +2015,7 @@
       "community": 0,
       "community_label": "yhteiskunta · sukupolvet · talous",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "oljy-kriisi-1973",
@@ -2026,7 +2025,7 @@
       "community": 9,
       "community_label": "talous · energia · teollisuus",
       "importance": 3,
-      "betweenness": 0.000086
+      "betweenness": 8.6e-05
     },
     {
       "id": "paivahoitolaki-1973",
@@ -2056,7 +2055,7 @@
       "community": 7,
       "community_label": "demokratia · valtio · oikeudet",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "tyoterveyshuolto-1978",
@@ -2076,7 +2075,7 @@
       "community": 3,
       "community_label": "teknologia · digitalisaatio · talous",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "terveyspalvelujen-kaksijakoisuus-1980",
@@ -2106,7 +2105,7 @@
       "community": 6,
       "community_label": "instituutiot · analyysi · yhteiskunta",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "sosiaalihuoltolaki-1982",
@@ -2126,7 +2125,7 @@
       "community": 10,
       "community_label": "talous · koulutus · työ",
       "importance": 3,
-      "betweenness": 0.000086
+      "betweenness": 8.6e-05
     },
     {
       "id": "ymparistohallinto-1983",
@@ -2166,7 +2165,7 @@
       "community": 0,
       "community_label": "yhteiskunta · sukupolvet · talous",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "sukupolviprofiili-marja-1985",
@@ -2236,7 +2235,7 @@
       "community": 6,
       "community_label": "instituutiot · analyysi · yhteiskunta",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "vammaispalvelulaki-1987",
@@ -2256,7 +2255,7 @@
       "community": 10,
       "community_label": "talous · koulutus · työ",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "liikelaitostaminen",
@@ -2366,7 +2365,7 @@
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "kaupunkiseutujen-segregaatio-1990",
@@ -2406,7 +2405,7 @@
       "community": 2,
       "community_label": "talous · kulttuuri · työ",
       "importance": 4,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "ilmasto-vihrea-siirtyma",
@@ -2516,7 +2515,7 @@
       "community": 3,
       "community_label": "teknologia · digitalisaatio · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "digital-julkishallinto",
@@ -2526,7 +2525,7 @@
       "community": 3,
       "community_label": "teknologia · digitalisaatio · talous",
       "importance": 4,
-      "betweenness": 1
+      "betweenness": 1.0
     },
     {
       "id": "perustuslaki-2000",
@@ -2546,7 +2545,7 @@
       "community": 8,
       "community_label": "talous · EU · rahoitus",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "olkiluoto-3-2002",
@@ -2606,7 +2605,7 @@
       "community": 3,
       "community_label": "teknologia · digitalisaatio · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "elakeuudistukset-2005",
@@ -2666,7 +2665,7 @@
       "community": 0,
       "community_label": "yhteiskunta · sukupolvet · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "solidium",
@@ -2676,7 +2675,7 @@
       "community": 9,
       "community_label": "talous · energia · teollisuus",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "nokia-rakennemuutos",
@@ -2726,7 +2725,7 @@
       "community": 8,
       "community_label": "talous · EU · rahoitus",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "historiallisen-matala-syntyvyys-2010",
@@ -2806,7 +2805,7 @@
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "koulutusleikkaukset",
@@ -2826,7 +2825,7 @@
       "community": 11,
       "community_label": "työ · järjestöt · oikeudet",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "kiky-2016",
@@ -2856,7 +2855,7 @@
       "community": 5,
       "community_label": "kunta · koulutus · työ",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "perustulokokeilu-2017",
@@ -2876,7 +2875,7 @@
       "community": 7,
       "community_label": "demokratia · valtio · oikeudet",
       "importance": 3,
-      "betweenness": 0.000086
+      "betweenness": 8.6e-05
     },
     {
       "id": "tasa-arvoinen-avioliittolaki-2017",
@@ -2896,7 +2895,7 @@
       "community": 3,
       "community_label": "teknologia · digitalisaatio · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "tietosuoja-asetus-2018",
@@ -2916,7 +2915,7 @@
       "community": 2,
       "community_label": "talous · kulttuuri · työ",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "sosiaaliturvauudistus-2019",
@@ -2946,7 +2945,7 @@
       "community": 3,
       "community_label": "teknologia · digitalisaatio · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "covid-19",
@@ -3036,7 +3035,7 @@
       "community": 3,
       "community_label": "teknologia · digitalisaatio · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "hyvinvointialueet-2023",
@@ -3086,7 +3085,7 @@
       "community": 9,
       "community_label": "talous · energia · teollisuus",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "kuntien-tehtavan-muutos-2023",
@@ -3106,7 +3105,7 @@
       "community": 0,
       "community_label": "yhteiskunta · sukupolvet · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "tulevaisuus-2032-hoiva-tekoaly",
@@ -3116,7 +3115,7 @@
       "community": 0,
       "community_label": "yhteiskunta · sukupolvet · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "pohjoismainen-puolustusyhteistyo-2024",
@@ -3126,7 +3125,7 @@
       "community": 9,
       "community_label": "talous · energia · teollisuus",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "eu-tekoalyasetus-2024",
@@ -3156,7 +3155,7 @@
       "community": 5,
       "community_label": "kunta · koulutus · työ",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "skenaario-t02-tekoaly-tyopariksi",
@@ -3166,7 +3165,7 @@
       "community": 3,
       "community_label": "teknologia · digitalisaatio · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "skenaario-t03-puurakentamisesta-vientituote",
@@ -3186,7 +3185,7 @@
       "community": 10,
       "community_label": "talous · koulutus · työ",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "skenaario-t05-energiasta-kilpailuetu",
@@ -3206,7 +3205,7 @@
       "community": 4,
       "community_label": "terveys · työ · ennaltaehkäisy",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "tulevaisuus-2050-uusi-tasapaino",
@@ -3246,7 +3245,7 @@
       "community": 3,
       "community_label": "teknologia · digitalisaatio · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "skenaario-t10-paikallinen-energiantuotanto",
@@ -3306,7 +3305,7 @@
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "kuntapohjainen-tyollisyydenhoito-2025",
@@ -3326,7 +3325,7 @@
       "community": 3,
       "community_label": "teknologia · digitalisaatio · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "tulevaisuus-2035-vaesto-vahenee",
@@ -3336,7 +3335,7 @@
       "community": 0,
       "community_label": "yhteiskunta · sukupolvet · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "tulevaisuus-2030-hiilineutraali",
@@ -3346,7 +3345,7 @@
       "community": 0,
       "community_label": "yhteiskunta · sukupolvet · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "skenaario-2050-4-hidas-kasvu",
@@ -3356,7 +3355,7 @@
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "skenaario-2050-2-velkaantunut",
@@ -3366,7 +3365,7 @@
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "skenaario-2050-3-teknologia",
@@ -3376,7 +3375,7 @@
       "community": 1,
       "community_label": "talous · teollisuus · metsätalous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     },
     {
       "id": "skenaario-2050-5-vihrea-vienti",
@@ -3406,56 +3405,56 @@
       "community": 0,
       "community_label": "yhteiskunta · sukupolvet · talous",
       "importance": 3,
-      "betweenness": 0
+      "betweenness": 0.0
     }
   ],
   "edges": [
     {
       "from": "ensimmainen-maailmansota",
       "to": "itsenaisyys-1917",
-      "strength": 1,
+      "strength": 1.0,
       "class": "tapahtuma",
       "confidence": "vahva"
     },
     {
       "from": "talvi-ja-jatkosota",
       "to": "karjalan_evakot",
-      "strength": 1,
+      "strength": 1.0,
       "class": "tapahtuma",
       "confidence": "vahva"
     },
     {
       "from": "talvi-ja-jatkosota",
       "to": "jalleenrakennus",
-      "strength": 1,
+      "strength": 1.0,
       "class": "tapahtuma",
       "confidence": "vahva"
     },
     {
       "from": "talvi-ja-jatkosota",
       "to": "sotakorvaukset_teollistuminen",
-      "strength": 1,
+      "strength": 1.0,
       "class": "tapahtuma",
       "confidence": "vahva"
     },
     {
       "from": "1990-luvun-lama",
       "to": "markan_kellutus",
-      "strength": 1,
+      "strength": 1.0,
       "class": "tapahtuma",
       "confidence": "vahva"
     },
     {
       "from": "tekoaly-murros",
       "to": "koulutuksen-arviointikriisi-2023",
-      "strength": 1,
+      "strength": 1.0,
       "class": "tapahtuma",
       "confidence": "vahva"
     },
     {
       "from": "talvi-ja-jatkosota",
       "to": "suuret-ikaluokat-1945",
-      "strength": 1,
+      "strength": 1.0,
       "class": "tapahtuma",
       "confidence": "vahva"
     },
