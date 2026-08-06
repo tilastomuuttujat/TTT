@@ -58,15 +58,6 @@
       button.innerHTML = '<span class="dot"></span>Atlasverkko';
       tabs.insertBefore(button, tulkinta || null);
     }
-
-    if (!tabs.querySelector('[data-atlasmaisema-demo]')) {
-      const link = document.createElement('a');
-      link.className = 'tab-link';
-      link.dataset.atlasmaisemaDemo = 'true';
-      link.href = 'atlasmaisema-demo.html';
-      link.innerHTML = '<span class="dot"></span>Maisema-demo';
-      tabs.insertBefore(link, tulkinta || null);
-    }
   }
 
   installExtraAtlasTabs();
