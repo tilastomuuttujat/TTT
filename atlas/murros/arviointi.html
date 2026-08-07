@@ -199,6 +199,23 @@ body.heatmap-only.help-collapsed .help-reopen{display:block}
   .help-item{font-size:10px}
 }
 
+
+/* --- Pysyvä lämpökarttanäkymä: maalausasteikko kartan yläpuolella --- */
+body.heatmap-only .palette-bar{
+  display:flex!important;max-width:none;width:100%;margin:0 0 6px;position:relative;top:auto;
+  flex:0 0 auto;padding:7px 10px;border-radius:10px;box-shadow:none;
+}
+body.heatmap-only .palette-bar .paint{width:32px;height:32px;border-radius:7px}
+body.heatmap-only .palette-bar .mode-hint{max-width:28ch}
+body.heatmap-only .palette-bar #exportBtn,
+body.heatmap-only .palette-bar #resetBtn,
+body.heatmap-only .palette-bar #logoutBtn{display:none!important}
+body.heatmap-only #panBtn{display:none!important}
+body.heatmap-only #heatmapOnlyBtn{display:none!important}
+#manualSaveBtn{display:none}
+body.heatmap-only #manualSaveBtn.email-save-visible{display:inline-flex;align-items:center;gap:6px}
+#manualSaveBtn.pending{background:var(--hot);border-color:var(--hot);color:#fff}
+
 </style>
 </head>
 <body>
@@ -254,13 +271,13 @@ body.heatmap-only.help-collapsed .help-reopen{display:block}
           title="Palauta ruutu koontiarvoon">⌫</button>
   <span class="mode-hint" id="modeHint">Valitse väri ja maalaa ruutuihin.</span>
   <span class="spacer"></span>
+  <button class="btn" id="manualSaveBtn" type="button" title="Tallenna odottavat muutokset heti">Tallenna muutokset</button>
   <button class="btn" id="exportBtn" type="button">Vie JSON</button>
   <button class="btn" id="resetBtn" type="button">Tyhjennä omat</button>
   <button class="btn" id="logoutBtn" type="button">Kirjaudu ulos</button>
 </section>
 
 <section class="toolbar">
-  <button class="btn heatmap-primary" id="heatmapOnlyBtn" type="button" aria-pressed="false" title="Näytä vain lämpökartta">☷ Lämpökartta</button>
   <select class="heatmap-primary" id="matrixSelect" aria-label="Valitse versio"></select>
   <button class="btn heatmap-secondary" id="newMatrixBtn" type="button">Uusi versio</button>
   <button class="btn heatmap-secondary" id="renameBtn" type="button">Nimeä</button>
@@ -324,7 +341,6 @@ body.heatmap-only.help-collapsed .help-reopen{display:block}
     <button class="btn" id="zoomReset" type="button" title="Palauta solukoko 100 %">↺</button>
   </div>
   <button class="btn heatmap-primary" id="analysisBtn" type="button" aria-pressed="false" title="Piilota solujen numerot ja tarkastele vain värirakennetta">Analyysitila</button>
-  <button class="btn heatmap-primary" id="panBtn" type="button" aria-pressed="false" title="Kun Pan on päällä, vedä karttaa hiirellä tai sormella">Pan</button>
 </section>
 
 <div class="heatmap-workspace">
@@ -339,7 +355,6 @@ body.heatmap-only.help-collapsed .help-reopen{display:block}
         <h3>1 · Näkymä</h3>
         <div class="help-item"><span class="help-icon">▦</span><div><strong>Lukutila</strong><br>Solussa näkyy arvo 0–6, kun ruutu on riittävän suuri.</div></div>
         <div class="help-item"><span class="help-icon">◉</span><div><strong>Analyysitila</strong><br>Numerot väistyvät ja värirakenne sekä klusterit korostuvat.</div></div>
-        <div class="help-item"><span class="help-icon">✋</span><div><strong>Pan</strong><br>Vedä karttaa hiirellä tai sormella. Tavallinen vieritys toimii ilman Pan-tilaa.</div></div>
         <div class="help-item"><span class="help-icon">□</span><div><strong>Ruutu − / +</strong><br>Muuttaa neliösolun kokoa. 100 % = 26 × 26 px.</div></div>
       </section>
 
@@ -361,7 +376,7 @@ body.heatmap-only.help-collapsed .help-reopen{display:block}
         <h3>4 · Merkinnät</h3>
         <div class="help-item"><span class="help-icon">•</span><div><strong>Himmeä piste solussa</strong><br>Oma arviosi poikkeaa koontiarvosta.</div></div>
         <div class="help-item"><span class="help-icon">✓</span><div><strong>Rivin valintamerkki</strong><br>Poistamalla sen rivi siirtyy huomiotta jätettyihin; arvioinnit säilyvät.</div></div>
-        <div class="help-note">Arvojen maalaus ja muut arvioinnin hallintatoiminnot löytyvät <strong>Normaali näkymä</strong> -tilasta.</div>
+        <div class="help-note"><strong>Maalaus:</strong> valitse kartan yläpuolisesta 0–6-väriskaalasta arvo ja maalaa soluja klikkaamalla tai vetämällä. Kumi palauttaa solun koontiarvoon. Sähköpostilla kirjautuneelle näkyy lisäksi <strong>Tallenna muutokset</strong> -painike.</div>
       </section>
     </div>
   </aside>
@@ -575,6 +590,8 @@ async function toggleExcluded(id) {
 function scheduleSave() {
   clearTimeout(state.saveTimer);
   $("#saveBadge").textContent = "Tallennetaan…"; $("#saveBadge").className = "badge warn";
+  const b = document.getElementById("manualSaveBtn");
+  if (b && b.classList.contains("email-save-visible")) b.classList.add("pending");
   state.saveTimer = setTimeout(flush, 500);
 }
 async function flush() {
@@ -597,11 +614,29 @@ async function flush() {
     $("#saveBadge").textContent = "Tallennettu " +
       new Date().toLocaleTimeString("fi-FI",{hour:"2-digit",minute:"2-digit"});
     $("#saveBadge").className = "badge ok";
+    document.getElementById("manualSaveBtn")?.classList.remove("pending");
   } catch (err) {
     $("#saveBadge").textContent = "Tallennus epäonnistui"; $("#saveBadge").className = "badge warn";
     alert("Tallennus epäonnistui: " + err.message +
       "\nMuutokset näkyvät ruudulla mutta eivät ole tallessa.");
   }
+}
+
+/* Sähköpostikäyttäjän näkyvä varmistustallennus. Automaattitallennus säilyy taustalla. */
+const manualSaveBtn = document.getElementById("manualSaveBtn");
+if (manualSaveBtn) {
+  manualSaveBtn.addEventListener("click", async () => {
+    manualSaveBtn.disabled = true;
+    manualSaveBtn.textContent = "Tallennetaan…";
+    await flush();
+    const failed = document.getElementById("saveBadge")?.classList.contains("warn");
+    manualSaveBtn.textContent = failed ? "Tallennus epäonnistui" : "Tallennettu";
+    if (!failed) manualSaveBtn.classList.remove("pending");
+    setTimeout(() => {
+      manualSaveBtn.textContent = "Tallenna muutokset";
+      manualSaveBtn.disabled = false;
+    }, failed ? 1800 : 900);
+  });
 }
 
 /* ---------- Maalaus ---------- */
@@ -1121,7 +1156,6 @@ function saveViewPrefs() {
     localStorage.setItem("lampokartta.zoom", String(state.view.zoom));
     localStorage.setItem("lampokartta.analysis", state.view.analysis ? "1" : "0");
     localStorage.setItem("lampokartta.group", state.filters.group);
-    localStorage.setItem("lampokartta.pan", state.view.pan ? "1" : "0");
   } catch {}
 }
 function setZoom(v) {
@@ -1134,12 +1168,6 @@ $("#zoomReset").addEventListener("click", () => setZoom(1));
 $("#analysisBtn").addEventListener("click", () => {
   state.view.analysis = !state.view.analysis;
   saveViewPrefs(); applyZoom();
-});
-$("#panBtn").addEventListener("click", () => {
-  state.view.pan = !state.view.pan;
-  $("#panBtn").setAttribute("aria-pressed", String(state.view.pan));
-  shell.classList.toggle("pan-mode", state.view.pan);
-  saveViewPrefs();
 });
 $("#clusterRowsBtn").addEventListener("click", () => { computeClusters("rows"); render(); });
 $("#clusterColsBtn").addEventListener("click", () => { computeClusters("columns"); render(); });
@@ -1177,11 +1205,11 @@ $("#group").addEventListener("change", (e) => {
     state.view.analysis = localStorage.getItem("lampokartta.analysis") === "1";
     const g = localStorage.getItem("lampokartta.group");
     if (["none","era","coverage","lens"].includes(g)) state.filters.group = g;
-    state.view.pan = localStorage.getItem("lampokartta.pan") === "1";
+    state.view.pan = false;
   } catch {}
   $("#group").value = state.filters.group;
-  $("#panBtn").setAttribute("aria-pressed", String(state.view.pan));
-  shell.classList.toggle("pan-mode", state.view.pan);
+  state.view.pan = false;
+  shell.classList.remove("pan-mode");
   applyZoom();
 })();
 
@@ -1198,24 +1226,11 @@ $("#helpReopen").addEventListener("click", () => setHelpCollapsed(false));
   setHelpCollapsed(collapsed);
 })();
 
-/* ---------- Kokoruutuinen lämpökarttatila ---------- */
-function setHeatmapOnly(on) {
-  document.body.classList.toggle("heatmap-only", on);
-  const b = $("#heatmapOnlyBtn");
-  if (b) {
-    b.setAttribute("aria-pressed", String(on));
-    b.textContent = on ? "← Normaali näkymä" : "☷ Lämpökartta";
-    b.title = on ? "Palaa normaaliin näkymään" : "Näytä vain lämpökartta";
-  }
-  try { localStorage.setItem("lampokartta.only", on ? "1" : "0"); } catch {}
+/* ---------- Pysyvä lämpökarttanäkymä ---------- */
+function enableHeatmapView() {
+  document.body.classList.add("heatmap-only");
+  try { localStorage.setItem("lampokartta.only", "1"); } catch {}
 }
-$("#heatmapOnlyBtn").addEventListener("click", () =>
-  setHeatmapOnly(!document.body.classList.contains("heatmap-only")));
-(() => {
-  let on = false;
-  try { on = localStorage.getItem("lampokartta.only") === "1"; } catch {}
-  setHeatmapOnly(on);
-})();
 
 /* Tiiviys muistetaan laitekohtaisesti: se on näyttöön liittyvä valinta,
    ei osa arviointia, joten sitä ei tallenneta tietokantaan. */
@@ -1254,6 +1269,9 @@ async function start() {
   const anon = !!u?.is_anonymous;
   $("#userBadge").textContent = u?.email || (anon ? "kirjautumaton istunto" : "kirjautunut");
   $("#userBadge").className = "badge" + (anon ? " warn" : "");
+  const manual = document.getElementById("manualSaveBtn");
+  if (manual) manual.classList.toggle("email-save-visible", !!u?.email && !anon);
+  enableHeatmapView();
   // Anonyymin istunnon katoavuus on kerrottava ennen kuin työ menetetään,
   // ei vasta silloin kun se on jo mennyt.
   const warn = document.getElementById("anonWarn");
