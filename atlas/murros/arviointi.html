@@ -52,7 +52,19 @@ thead th{position:sticky;top:0;z-index:20;background:var(--paper2);border-bottom
 .lens-label{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;font-size:10px;font-weight:750;cursor:help}
 .lens-id{color:var(--hot);font-weight:900;margin-bottom:4px}
 .row-head{position:sticky;left:0;z-index:12;width:250px;min-width:250px;max-width:250px;background:var(--paper);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-.row-label{height:34px;display:flex;align-items:center;gap:7px;padding:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px;font-weight:600}
+.row-label{height:34px;display:flex;align-items:center;gap:7px;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px;font-weight:600}
+.skip{flex:0 0 16px;width:16px;height:16px;margin:0;cursor:pointer;accent-color:var(--hot)}
+.row-title{overflow:hidden;text-overflow:ellipsis}
+/* Ohitettu rivi jää näkyviin mutta väistyy: merkinnät eivät katoa, vain
+   järjestys ja huomioarvo muuttuvat. */
+tr.skipped .row-label{opacity:.5}
+tr.skipped .row-title{text-decoration:line-through;text-decoration-thickness:1px}
+tr.skipped .cell{opacity:.28}
+tr.skipped .heat{cursor:not-allowed}
+.divider td,.divider th{background:var(--soft);height:26px;padding:0 10px;
+  font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  border-bottom:1px solid var(--line)}
+.divider th{position:sticky;left:0;z-index:12}
 .year{font-variant-numeric:tabular-nums;color:var(--muted);font-size:9px;min-width:30px}
 
 /* Lämpökartan ruutu. Koontiarvo piirtyy vaimeana, oma merkintä vahvana. */
@@ -67,6 +79,18 @@ thead th{position:sticky;top:0;z-index:20;background:var(--paper2);border-bottom
 .heat.mine::after{content:"";position:absolute;right:3px;top:3px;width:5px;height:5px;border-radius:50%;background:currentColor;z-index:3}
 .heat.painting{outline:2px solid var(--hot);outline-offset:-2px}
 .heat.seed .v{font-style:italic}
+/* Interpoloitu pohja erotetaan kuratoidusta: arvo on laskettu polun
+   naapureista eikä ole oma arvio, joten se ei saa näyttää yhtä varmalta. */
+.heat.interpolated::before{content:"";position:absolute;inset:0;z-index:1;
+  background:repeating-linear-gradient(45deg,transparent 0 4px,rgba(255,255,255,.28) 4px 6px)}
+@media(prefers-color-scheme:dark){.heat.interpolated::before{
+  background:repeating-linear-gradient(45deg,transparent 0 4px,rgba(0,0,0,.30) 4px 6px)}}
+.heat.mine.interpolated::before{display:none}
+/* Tyhjä ruutu: ei pohja-arviota. Ei sama asia kuin neutraali 3 -- siksi
+   ruutu on väritön ja arvo näkyy pisteenä, ei numerona. */
+.heat.blank{background:transparent;color:var(--muted)}
+.heat.blank .v{opacity:.35;font-weight:400}
+.heat.blank:hover{background:color-mix(in srgb,var(--ink) 6%,transparent)}
 
 /* Lämpöasteikko 0-6 */
 .h0{background:#7f1d1d;color:#fff}.h1{background:#b33a2b;color:#fff}.h2{background:#d77a52;color:#1a1a1a}
@@ -93,8 +117,12 @@ thead th{position:sticky;top:0;z-index:20;background:var(--paper2);border-bottom
 <section class="auth" id="authView">
   <div class="kicker">Murroskartta</div>
   <h2>Arviointilämpökartta</h2>
-  <p>Koonti kaikkien käyttäjien arvioista on julkinen. Oman version
-     tallentaminen vaatii kirjautumisen.</p>
+  <p>Koonti kaikkien käyttäjien arvioista on julkinen. Kun kirjaudut
+     sähköpostilla, maalauksesi ja ohituksesi tallentuvat pysyvästi ja
+     löytyvät samalla osoitteella miltä tahansa laitteelta.</p>
+  <p style="font-size:12px;color:var(--muted)"><strong>Huomaa:</strong>
+     kirjautumaton istunto luo uuden tunnuksen joka kerta. Merkinnät katoavat
+     kun selain suljetaan tai laite vaihtuu. Käytä sitä vain kokeiluun.</p>
   <label for="email">Sähköposti</label>
   <input id="email" type="email" autocomplete="email" placeholder="nimi@esimerkki.fi">
   <div class="row">
@@ -122,6 +150,12 @@ thead th{position:sticky;top:0;z-index:20;background:var(--paper2);border-bottom
     <span class="badge" id="userBadge"></span>
   </div>
 </header>
+
+<div id="anonWarn" class="notice" style="display:none;max-width:1800px;margin:0 auto 10px">
+  Olet kirjautumattomassa istunnossa. Merkinnät tallentuvat, mutta ne katoavat
+  kun selain suljetaan tai laite vaihtuu — niitä ei voi palauttaa. Kirjaudu
+  sähköpostilla, jos haluat säilyttää työsi.
+</div>
 
 <section class="palette-bar" aria-label="Maalauspaletti">
   <span class="paint-label">Väri</span>
@@ -164,7 +198,8 @@ thead th{position:sticky;top:0;z-index:20;background:var(--paper2);border-bottom
   <span><i class="h0"></i>0 = −3 voimakkaasti heikentävä</span>
   <span><i class="h3"></i>3 = 0 ristiriitainen</span>
   <span><i class="h6"></i>6 = +3 voimakkaasti vahvistava</span>
-  <span>· vaimea = koonti · vahva + piste = oma merkintä · kursiivi = ei vielä käyttäjäarvioita</span>
+  <span>· vaimea = koonti · vahva + piste = oma merkintä · vinoviivoitus = interpoloitu · tyhjä ruutu = ei arviota, maalattavissa</span>
+  <span>· rivin alun täppä siirtää murroksen luettelon loppuun; merkinnät säilyvät</span>
 </div>
 </main>
 
@@ -217,7 +252,7 @@ const SCALE_TEXT = ["voimakkaasti heikentävä","selvästi heikentävä","lievä
 
 const state = {
   session:null, agg:new Map(), lenses:[], items:[],
-  matrices:[], matrixId:null, overrides:new Map(),
+  matrices:[], matrixId:null, overrides:new Map(), excluded:new Set(),
   filters:{search:"",period:"all",changed:"all"},
   paint:4, erasing:false, dragging:false,
   pending:new Map(), saveTimer:null,
@@ -280,7 +315,7 @@ $("#logoutBtn").addEventListener("click", () => db.auth.signOut());
 /* ---------- Data ---------- */
 async function loadAggregate() {
   const { data, error } = await db.from("lens_aggregate")
-    .select("phenomenon_id,lens_id,mean_direction,mean_cell,contributor_count,spread,source,seed_direction")
+    .select("phenomenon_id,lens_id,mean_direction,mean_cell,contributor_count,spread,source,seed_direction,tier")
     .order("phenomenon_id");
   if (error) throw error;
   const { data: base, error: e2 } = await db.from("lens_baselines")
@@ -298,9 +333,12 @@ async function loadAggregate() {
   }
   state.items = [...seen.values()].sort((a,b) => a.year - b.year || a.title.localeCompare(b.title,"fi"));
   const users = data.filter((a) => a.source === "users").length;
+  const cur = data.filter((a) => a.tier === "curated").length;
+  const itp = data.filter((a) => a.tier === "interpolated").length;
+  const none = data.filter((a) => a.tier === "none").length;
   $("#aggBadge").textContent = users
-    ? `koonti: ${users}/${data.length} paria käyttäjädatasta`
-    : `koonti: lähteistetty pohja (ei vielä käyttäjäarvioita)`;
+    ? `${users} solua käyttäjädatasta · pohja: ${cur} kuratoitua, ${itp} interpoloitua, ${none} tyhjää`
+    : `pohja: ${cur} kuratoitua · ${itp} interpoloitua · ${none} arvioimatta`;
 }
 async function loadMatrices() {
   const { data, error } = await db.from("matrices").select("id,name").order("created_at");
@@ -318,6 +356,27 @@ async function loadOverrides() {
     .select("phenomenon_id,lens_id,user_direction").eq("matrix_id", state.matrixId);
   if (error) throw error;
   state.overrides = new Map(data.map((r) => [key(r.phenomenon_id,r.lens_id), r.user_direction]));
+  const ex = await db.from("excluded").select("phenomenon_id").eq("matrix_id", state.matrixId);
+  if (ex.error) throw ex.error;
+  state.excluded = new Set(ex.data.map((r) => r.phenomenon_id));
+}
+
+/* Ohitus on näkymävalinta, ei poisto: rivi siirtyy loppuun mutta sen
+   merkinnät säilyvät ja palaavat sellaisenaan kun ohitus perutaan. */
+async function toggleExcluded(id) {
+  const on = !state.excluded.has(id);
+  if (on) state.excluded.add(id); else state.excluded.delete(id);
+  render();
+  const q = on
+    ? db.from("excluded").insert({ matrix_id: state.matrixId, phenomenon_id: id })
+    : db.from("excluded").delete().eq("matrix_id", state.matrixId).eq("phenomenon_id", id);
+  const { error } = await q;
+  if (error) {
+    // Palautetaan tila, jottei ruutu näytä eri asiaa kuin tietokanta.
+    if (on) state.excluded.delete(id); else state.excluded.add(id);
+    render();
+    alert("Ohituksen tallennus epäonnistui: " + error.message);
+  }
 }
 
 /* ---------- Tallennus ---------- */
@@ -374,6 +433,7 @@ function paintFromPoint(x, y) {
   const el = document.elementFromPoint(x, y);
   const btn = el && el.closest ? el.closest(".heat[data-p]") : null;
   if (!btn || btn.disabled) return;
+  if (state.excluded.has(btn.dataset.p)) return;
   if (applyPaint(btn.dataset.p, btn.dataset.l)) paintCell(btn);
 }
 // Yksittäinen ruutu päivitetään paikallaan; koko taulukkoa ei piirretä
@@ -382,11 +442,14 @@ function paintCell(btn) {
   const p = btn.dataset.p, l = btn.dataset.l;
   const a = state.agg.get(key(p,l));
   const mine = state.overrides.has(key(p,l));
-  const dir = mine ? state.overrides.get(key(p,l)) : Number(a.mean_direction);
-  const cell = toCell(dir);
-  btn.className = "heat h" + cell + (mine ? " mine" : "") +
-    (!mine && a.source === "seed" ? " seed" : "");
-  btn.querySelector(".v").textContent = cell;
+  const hasBase = a.mean_direction !== null && a.mean_direction !== undefined;
+  const dir = mine ? state.overrides.get(key(p,l)) : (hasBase ? Number(a.mean_direction) : null);
+  const cell = dir === null ? null : toCell(dir);
+  btn.className = "heat " + (cell === null ? "blank" : "h" + cell) +
+    (mine ? " mine" : "") +
+    (!mine && hasBase && a.source === "seed" ? " seed" : "") +
+    (!mine && a.tier === "interpolated" ? " interpolated" : "");
+  btn.querySelector(".v").textContent = cell === null ? "·" : cell;
   btn.setAttribute("aria-label", ariaFor(a, mine, cell));
   updateCounts();
 }
@@ -396,6 +459,7 @@ function updateCounts() {
 
 /* ---------- Renderöinti ---------- */
 function ariaFor(a, mine, cell) {
+  if (cell === null) return `${a.title}, ${a.lens_id}: ei arviota, maalattavissa`;
   return `${a.title}, ${a.lens_id}: ${cell} (${SCALE_TEXT[cell]})` +
     (mine ? ", oma merkintä" : ", koontiarvo");
 }
@@ -416,8 +480,15 @@ function visibleItems() {
   });
 }
 function render() {
-  const rows = visibleItems();
-  $("#rowCount").textContent = `${rows.length} murrosta × ${state.lenses.length} linssiä`;
+  const all = visibleItems();
+  // Järjestys säilyy alkuperäisenä molemmissa ryhmissä, joten takaisin
+  // otettu murros palaa täsmälleen omalle oletuspaikalleen.
+  const active = all.filter((it) => !state.excluded.has(it.id));
+  const skipped = all.filter((it) => state.excluded.has(it.id));
+  const rows = [...active, ...skipped];
+  $("#rowCount").textContent =
+    `${active.length} murrosta × ${state.lenses.length} linssiä` +
+    (skipped.length ? ` · ${skipped.length} ohitettu` : "");
   updateCounts();
   const head = state.lenses.map((l) =>
     `<th class="lens-head"><div><span class="lens-label" title="${esc(LENS_NAMES[l]||l)}"><span class="lens-id">${esc(l)}</span> · ${esc(LENS_NAMES[l]||"")}</span></div></th>`).join("");
@@ -426,22 +497,42 @@ function render() {
       const a = state.agg.get(key(it.id,l));
       if (!a) return `<td class="cell"><button class="heat faded" disabled><span class="v">·</span></button></td>`;
       const mine = state.overrides.has(key(it.id,l));
-      const dir = mine ? state.overrides.get(key(it.id,l)) : Number(a.mean_direction);
-      const cell = toCell(dir);
+      const hasBase = a.mean_direction !== null && a.mean_direction !== undefined;
+      const dir = mine ? state.overrides.get(key(it.id,l)) : (hasBase ? Number(a.mean_direction) : null);
+      const cell = dir === null ? null : toCell(dir);
       const tip = `${LENS_NAMES[l]||l}\n${a.role||""}\n` +
-        `Koonti: ${Number(a.mean_direction).toFixed(2)} (${a.contributor_count} arviota` +
-        (a.source === "seed" ? ", lähteistetty pohja" : "") + ")" +
+        (hasBase
+          ? `Koonti: ${Number(a.mean_direction).toFixed(2)} (${a.contributor_count} arviota`
+          : `Ei pohja-arviota — tätä yhteyttä ei ole arvioitu (${a.contributor_count} käyttäjäarviota`) +
+        (a.source === "seed"
+          ? (a.tier === "interpolated"
+              ? ", interpoloitu pohja — laskettu polun naapureista"
+              : ", lähteistetty pohja")
+          : "") + ")" +
         (mine ? `\nOma: ${dir >= 0 ? "+" : ""}${dir}` : "") +
         (a.spread ? `\nHajonta: ${Number(a.spread).toFixed(2)}` : "") +
         (a.evidence_type === "scenario_assumption" ? "\nTulevaisuusoletus, ei havainto" : "");
-      return `<td class="cell"><button class="heat h${cell}${mine?" mine":""}${!mine&&a.source==="seed"?" seed":""}` +
+      return `<td class="cell"><button class="heat ${cell===null?"blank":"h"+cell}${mine?" mine":""}${!mine&&hasBase&&a.source==="seed"?" seed":""}${!mine&&a.tier==="interpolated"?" interpolated":""}` +
         `" data-p="${esc(it.id)}" data-l="${esc(l)}" title="${esc(tip)}" ` +
-        `aria-label="${esc(ariaFor(a,mine,cell))}"><span class="v">${cell}</span></button></td>`;
+        `aria-label="${esc(ariaFor(a,mine,cell))}"><span class="v">${cell===null?"·":cell}</span></button></td>`;
     }).join("");
-    return `<tr><th class="row-head" title="${esc(it.title)}"><div class="row-label"><span class="year">${it.year}</span><span>${esc(it.title)}</span></div></th>${cells}</tr>`;
+    const off = state.excluded.has(it.id);
+    return `<tr class="${off ? "skipped" : ""}"><th class="row-head" title="${esc(it.title)}">` +
+      `<div class="row-label">` +
+      `<input class="skip" type="checkbox" data-skip="${esc(it.id)}" ${off ? "" : "checked"} ` +
+      `aria-label="${off ? "Ota mukaan" : "Jätä huomiotta"}: ${esc(it.title)}" ` +
+      `title="${off ? "Ota takaisin mukaan" : "Jätä huomiotta — rivi siirtyy loppuun, merkinnät säilyvät"}">` +
+      `<span class="year">${it.year}</span><span class="row-title">${esc(it.title)}</span></div></th>${cells}</tr>`;
   }).join("");
+  const divider = skipped.length
+    ? `<tr class="divider"><th>Huomiotta jätetyt</th><td colspan="${state.lenses.length}">` +
+      `${skipped.length} murrosta · merkinnät säilyvät, ota takaisin täpästä</td></tr>`
+    : "";
+  const bodyRows = body.split("</tr>").filter(Boolean).map((r) => r + "</tr>");
+  const split = active.length;
+  const html = bodyRows.slice(0, split).join("") + divider + bodyRows.slice(split).join("");
   $("#matrixShell").innerHTML = rows.length
-    ? `<table><thead><tr><th class="corner">Murros · vuosi</th>${head}</tr></thead><tbody>${body}</tbody></table>`
+    ? `<table><thead><tr><th class="corner">Murros · vuosi</th>${head}</tr></thead><tbody>${html}</tbody></table>`
     : '<div class="empty-state">Rajauksella ei löytynyt murroksia.</div>';
 }
 
@@ -465,8 +556,15 @@ $("#eraser").addEventListener("click", () => {
 
 /* ---------- Veto: hiiri ja kosketus ---------- */
 const shell = $("#matrixShell");
+shell.addEventListener("change", (e) => {
+  const box = e.target.closest("[data-skip]");
+  if (box) toggleExcluded(box.dataset.skip);
+});
 shell.addEventListener("pointerdown", (e) => {
+  if (e.target.closest("[data-skip]")) return;   // täppä ei aloita maalausta
   const btn = e.target.closest(".heat[data-p]"); if (!btn || btn.disabled) return;
+  // Ohitettua riviä ei maalata: se olisi ristiriitainen ele.
+  if (state.excluded.has(btn.dataset.p)) return;
   state.dragging = true; btn.classList.add("painting");
   if (applyPaint(btn.dataset.p, btn.dataset.l)) paintCell(btn);
   // Kosketuksessa selain muuten vierittäisi taulukkoa maalauksen sijaan.
@@ -556,7 +654,13 @@ async function start() {
   $("#authView").classList.add("hidden");
   $("#appView").classList.remove("hidden");
   const u = state.session?.user;
-  $("#userBadge").textContent = u?.email || (u?.is_anonymous ? "kirjautumaton istunto" : "kirjautunut");
+  const anon = !!u?.is_anonymous;
+  $("#userBadge").textContent = u?.email || (anon ? "kirjautumaton istunto" : "kirjautunut");
+  $("#userBadge").className = "badge" + (anon ? " warn" : "");
+  // Anonyymin istunnon katoavuus on kerrottava ennen kuin työ menetetään,
+  // ei vasta silloin kun se on jo mennyt.
+  const warn = document.getElementById("anonWarn");
+  if (warn) warn.style.display = anon ? "block" : "none";
   try {
     await loadAggregate(); await loadMatrices(); await loadOverrides();
     renderPalette(); renderMatrixSelect(); render();
