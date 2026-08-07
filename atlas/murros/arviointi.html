@@ -6,7 +6,12 @@
 <title>Murroskartta · Arviointilämpökartta</title>
 <meta name="description" content="Koonti kaikkien arvioista ja oma versio maalaamalla.">
 <style>
-:root{color-scheme:light dark;--bg:#f2ede3;--bg2:#e9e2d4;--paper:#fffdf8;--paper2:#faf6ee;--ink:#15293c;--ink2:#3c4d5e;--muted:#6d7883;--line:#d6cec0;--soft:#ece5d9;--hot:#ad4128;--ok:#2f6b4f;--shadow:0 1px 2px rgba(24,32,40,.05),0 18px 46px -22px rgba(24,32,40,.28);--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Inter,sans-serif}
+:root{
+/* Ruudukon mitat yhdessä paikassa, jotta tiiviys on yksi säädin eikä
+   kymmenen erillistä sääntöä. Oletus on tiivis: lämpökartta hahmottuu
+   kokonaisuutena vasta kun rivit mahtuvat ruudulle yhtä aikaa. */
+--cw:30px;--ch:24px;--rw:200px;--fs:10px;--lh:120px;--nfs:9px;
+color-scheme:light dark;--bg:#f2ede3;--bg2:#e9e2d4;--paper:#fffdf8;--paper2:#faf6ee;--ink:#15293c;--ink2:#3c4d5e;--muted:#6d7883;--line:#d6cec0;--soft:#ece5d9;--hot:#ad4128;--ok:#2f6b4f;--shadow:0 1px 2px rgba(24,32,40,.05),0 18px 46px -22px rgba(24,32,40,.28);--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Inter,sans-serif}
 @media(prefers-color-scheme:dark){:root{--bg:#0e161e;--bg2:#121d27;--paper:#17222c;--paper2:#1c2833;--ink:#f0f2ee;--ink2:#cfd7dd;--muted:#9fa9b2;--line:#33414c;--soft:#22303b;--hot:#e8795a;--ok:#5fbf8f;--shadow:0 20px 50px -28px rgba(0,0,0,.9)}}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:var(--sans);color:var(--ink);background:linear-gradient(180deg,var(--bg),var(--bg2));-webkit-text-size-adjust:100%}
 button,input,select{font:inherit;color:inherit}
@@ -46,14 +51,14 @@ h1{font:400 clamp(26px,4vw,44px)/1.05 var(--serif);margin:6px 0}
 table{border-collapse:separate;border-spacing:0;width:max-content;min-width:100%}
 th,td{padding:0}
 thead th{position:sticky;top:0;z-index:20;background:var(--paper2);border-bottom:1px solid var(--line)}
-.corner{left:0;z-index:32!important;width:250px;min-width:250px;text-align:left;padding:9px 11px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line)}
-.lens-head{width:46px;min-width:46px;height:140px;vertical-align:bottom}
-.lens-head>div{height:133px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px}
-.lens-label{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;font-size:10px;font-weight:750;cursor:help}
+.corner{left:0;z-index:32!important;width:var(--rw);min-width:var(--rw);text-align:left;padding:9px 11px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line)}
+.lens-head{width:var(--cw);min-width:var(--cw);height:var(--lh);vertical-align:bottom}
+.lens-head>div{height:calc(var(--lh) - 7px);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px}
+.lens-label{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;font-size:var(--fs);font-weight:750;cursor:help}
 .lens-id{color:var(--hot);font-weight:900;margin-bottom:4px}
-.row-head{position:sticky;left:0;z-index:12;width:250px;min-width:250px;max-width:250px;background:var(--paper);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-.row-label{height:34px;display:flex;align-items:center;gap:7px;padding:0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px;font-weight:600}
-.skip{flex:0 0 16px;width:16px;height:16px;margin:0;cursor:pointer;accent-color:var(--hot)}
+.row-head{position:sticky;left:0;z-index:12;width:var(--rw);min-width:var(--rw);max-width:var(--rw);background:var(--paper);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.row-label{height:var(--ch);display:flex;align-items:center;gap:5px;padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:var(--fs);font-weight:600}
+.skip{flex:0 0 13px;width:13px;height:13px;margin:0;cursor:pointer;accent-color:var(--hot)}
 .row-title{overflow:hidden;text-overflow:ellipsis}
 /* Ohitettu rivi jää näkyviin mutta väistyy: merkinnät eivät katoa, vain
    järjestys ja huomioarvo muuttuvat. */
@@ -65,12 +70,12 @@ tr.skipped .heat{cursor:not-allowed}
   font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
   border-bottom:1px solid var(--line)}
 .divider th{position:sticky;left:0;z-index:12}
-.year{font-variant-numeric:tabular-nums;color:var(--muted);font-size:9px;min-width:30px}
+.year{font-variant-numeric:tabular-nums;color:var(--muted);font-size:calc(var(--fs) - 1px);min-width:28px}
 
 /* Lämpökartan ruutu. Koontiarvo piirtyy vaimeana, oma merkintä vahvana. */
-.cell{width:46px;min-width:46px;height:34px;padding:0;border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent);border-right:1px solid color-mix(in srgb,var(--line) 55%,transparent)}
-.heat{width:100%;height:34px;border:0;background:transparent;cursor:crosshair;position:relative;
-  font-size:11px;font-weight:700;font-variant-numeric:tabular-nums;touch-action:none;color:inherit}
+.cell{width:var(--cw);min-width:var(--cw);height:var(--ch);padding:0;border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent);border-right:1px solid color-mix(in srgb,var(--line) 55%,transparent)}
+.heat{width:100%;height:var(--ch);border:0;background:transparent;cursor:crosshair;position:relative;
+  font-size:var(--nfs);font-weight:700;font-variant-numeric:tabular-nums;touch-action:none;color:inherit}
 .heat[disabled]{cursor:default}
 .heat .v{position:relative;z-index:2;opacity:.55}
 .heat.mine .v{opacity:1;font-weight:900}
@@ -107,6 +112,14 @@ tr.skipped .heat{cursor:not-allowed}
 .legend{max-width:1800px;margin:8px auto 0;display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--muted);align-items:center}
 .legend i{display:inline-block;width:16px;height:16px;border-radius:5px;vertical-align:middle;margin-right:4px}
 .empty-state{padding:40px;text-align:center;color:var(--muted)}
+/* Tiheystasot. Tiiveimmässä numerot jätetään pois: 30 pikselin ruudussa
+   luku on lukukelvoton ja vie huomion väriltä, joka on varsinainen viesti.
+   Arvo säilyy silti aria-labelissa ja työkaluvihjeessä. */
+body.d-tight{--cw:22px;--ch:18px;--rw:170px;--fs:9px;--lh:100px;--nfs:0px}
+body.d-tight .heat .v{display:none}
+body.d-tight .skip{flex:0 0 11px;width:11px;height:11px}
+body.d-normal{--cw:30px;--ch:24px;--rw:200px;--fs:10px;--lh:120px;--nfs:9px}
+body.d-wide{--cw:44px;--ch:32px;--rw:250px;--fs:11px;--lh:140px;--nfs:11px}
 .hidden{display:none!important}
 .auth{max-width:520px;margin:60px auto;padding:26px;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:var(--shadow)}
 .auth h2{font:400 25px var(--serif);margin:0 0 6px}
@@ -116,7 +129,14 @@ tr.skipped .heat{cursor:not-allowed}
 .auth .row{display:flex;gap:8px;flex-wrap:wrap}
 .notice{font-size:12px;line-height:1.5;padding:11px 13px;border-radius:10px;border-left:3px solid var(--hot);background:color-mix(in srgb,var(--hot) 7%,transparent);color:var(--ink2);margin:12px 0 0}
 .notice.ok{border-left-color:var(--ok);background:color-mix(in srgb,var(--ok) 8%,transparent)}
-@media(max-width:760px){.corner,.row-head{width:170px;min-width:170px;max-width:170px}.paint{width:38px;height:38px}.matrix-shell{max-height:calc(100vh - 340px)}}
+@media(max-width:760px){.paint{width:34px;height:34px}.matrix-shell{max-height:calc(100vh - 330px)}}
+/* Tiiviissä tilassa kartta saa enemmän pystytilaa: paletti ja työkalut
+   vievät vähemmän, jotta useampi rivi mahtuu kerralla näkyviin. */
+body.d-tight .palette-bar{padding:7px 10px;gap:8px}
+body.d-tight .paint{width:34px;height:34px;border-radius:9px}
+body.d-tight .matrix-shell{max-height:calc(100vh - 250px)}
+body.d-tight h1{font-size:clamp(22px,3vw,32px);margin:4px 0}
+body.d-tight .lead{display:none}
 </style>
 </head>
 <body>
@@ -208,6 +228,11 @@ tr.skipped .heat{cursor:not-allowed}
     <option value="all">Kaikki pohjat</option>
     <option value="curated">Vain lähteistetyt solut</option>
     <option value="strong">Lähteistetyt ja interpoloidut</option>
+  </select>
+  <select id="density" aria-label="Ruudukon tiiviys">
+    <option value="tight">Tiivis</option>
+    <option value="normal">Normaali</option>
+    <option value="wide">Väljä</option>
   </select>
   <select id="sort" aria-label="Järjestys">
     <option value="year">Järjestys: vuosi</option>
@@ -715,6 +740,23 @@ $("#exportBtn").addEventListener("click", async () => {
   a.download = `arviointi-${m.name.replace(/\W+/g,"-").toLowerCase()}-${new Date().toISOString().slice(0,10)}.json`;
   a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 500);
 });
+/* Tiiviys muistetaan laitekohtaisesti: se on näyttöön liittyvä valinta,
+   ei osa arviointia, joten sitä ei tallenneta tietokantaan. */
+function applyDensity(v) {
+  document.body.classList.remove("d-tight","d-normal","d-wide");
+  document.body.classList.add("d-" + v);
+  try { localStorage.setItem("lampokartta.density", v); } catch {}
+  $("#density").value = v;
+}
+$("#density").addEventListener("change", (e) => applyDensity(e.target.value));
+(() => {
+  let v = null;
+  try { v = localStorage.getItem("lampokartta.density"); } catch {}
+  // Kapealla näytöllä tiivis on parempi oletus kuin normaali.
+  if (!v) v = window.innerWidth < 1100 ? "tight" : "normal";
+  applyDensity(v);
+})();
+
 for (const [id,k] of [["#search","search"],["#period","period"],["#changed","changed"],
                       ["#coverage","coverage"],["#quality","quality"],["#sort","sort"]])
   $(id).addEventListener(id === "#search" ? "input" : "change", (e) => {
