@@ -48,16 +48,18 @@ h1{font:400 clamp(26px,4vw,44px)/1.05 var(--serif);margin:6px 0}
 .toolbar input[type=search]{min-width:180px;flex:1;max-width:320px}
 
 .matrix-shell{max-width:1800px;margin:0 auto;border:1px solid var(--line);border-radius:16px;background:var(--paper);box-shadow:var(--shadow);overflow:auto;max-height:calc(100vh - 300px);overscroll-behavior:contain}
-table{border-collapse:separate;border-spacing:0;width:max-content;min-width:100%}
+table{border-collapse:separate;border-spacing:0;width:max-content;min-width:0;table-layout:auto}
 th,td{padding:0}
 thead th{position:sticky;top:0;z-index:20;background:var(--paper2);border-bottom:1px solid var(--line)}
 .corner{left:0;z-index:32!important;width:var(--rw);min-width:var(--rw);text-align:left;padding:9px 11px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line)}
-.lens-head{width:var(--cw);min-width:var(--cw);height:var(--lh);vertical-align:bottom}
+.lens-head{width:var(--cell);min-width:var(--cell);max-width:var(--cell);height:var(--lh);vertical-align:bottom;overflow:hidden}
 .lens-head>div{height:calc(var(--lh) - 7px);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px}
 .lens-label{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;font-size:var(--fs);font-weight:750;cursor:help}
 .lens-id{color:var(--hot);font-weight:900;margin-bottom:4px}
 .row-head{position:sticky;left:0;z-index:12;width:var(--rw);min-width:var(--rw);max-width:var(--rw);background:var(--paper);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
 .row-label{height:var(--ch);display:flex;align-items:center;gap:5px;padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:var(--fs);font-weight:600}
+tbody tr:not(.divider){height:var(--cell)}
+tbody tr:not(.divider)>td.cell{height:var(--cell)}
 .skip{flex:0 0 13px;width:13px;height:13px;margin:0;cursor:pointer;accent-color:var(--hot)}
 .row-title{overflow:hidden;text-overflow:ellipsis}
 /* Rivi- ja sarakeotsikot toimivat myös lajittelukytkiminä. Aktiivinen
@@ -83,8 +85,8 @@ tr.skipped .heat{cursor:not-allowed}
 
 /* Lämpökartan ruutu. Väri kertoo vain arvon 0–6.
    Käyttäjän poikkeama koonnista merkitään ainoastaan himmeällä pisteellä. */
-.cell{width:var(--cell);min-width:var(--cell);height:var(--cell);padding:0;border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent);border-right:1px solid color-mix(in srgb,var(--line) 55%,transparent)}
-.heat{width:var(--cell);height:var(--cell);border:0;background:transparent;cursor:crosshair;position:relative;
+.cell{width:var(--cell);min-width:var(--cell);max-width:var(--cell);height:var(--cell);min-height:var(--cell);max-height:var(--cell);padding:0;border:0;overflow:hidden}
+.heat{display:block;width:var(--cell);min-width:var(--cell);max-width:var(--cell);height:var(--cell);min-height:var(--cell);max-height:var(--cell);aspect-ratio:1 / 1;margin:0;padding:0;border:0;border-radius:0;background:transparent;cursor:crosshair;position:relative;
   font-size:var(--nfs);font-weight:750;font-variant-numeric:tabular-nums;touch-action:none;color:inherit}
 .heat[disabled]{cursor:default}
 .heat .v{position:relative;z-index:2;opacity:.92}
