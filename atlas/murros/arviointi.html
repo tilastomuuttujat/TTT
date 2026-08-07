@@ -60,6 +60,15 @@ thead th{position:sticky;top:0;z-index:20;background:var(--paper2);border-bottom
 .row-label{height:var(--ch);display:flex;align-items:center;gap:5px;padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:var(--fs);font-weight:600}
 .skip{flex:0 0 13px;width:13px;height:13px;margin:0;cursor:pointer;accent-color:var(--hot)}
 .row-title{overflow:hidden;text-overflow:ellipsis}
+/* Rivi- ja sarakeotsikot toimivat myös lajittelukytkiminä. Aktiivinen
+   lajitteluperuste korostetaan ilman että lämpökartan värejä muutetaan. */
+.row-head[data-sort-row],.lens-head[data-sort-lens]{cursor:pointer}
+.row-head[data-sort-row]:hover{background:color-mix(in srgb,var(--hot) 7%,var(--paper))}
+.lens-head[data-sort-lens]:hover{background:color-mix(in srgb,var(--hot) 7%,var(--paper2))}
+.row-head.sort-active{box-shadow:inset 4px 0 0 var(--hot);background:color-mix(in srgb,var(--hot) 9%,var(--paper))}
+.lens-head.sort-active{box-shadow:inset 0 -4px 0 var(--hot);background:color-mix(in srgb,var(--hot) 9%,var(--paper2))}
+.sort-arrow{font-size:9px;font-weight:900;color:var(--hot);margin-left:4px}
+#restoreOrderBtn[disabled]{opacity:.45}
 /* Ohitettu rivi jää näkyviin mutta väistyy: merkinnät eivät katoa, vain
    järjestys ja huomioarvo muuttuvat. */
 tr.skipped .row-label{opacity:.5}
@@ -107,8 +116,15 @@ body.d-normal{--cw:30px;--ch:24px;--rw:200px;--fs:10px;--lh:120px;--nfs:9px}
 body.d-wide{--cw:44px;--ch:32px;--rw:250px;--fs:11px;--lh:140px;--nfs:11px}
 .zoom-controls{display:flex;align-items:center;gap:4px;border:1px solid var(--line);background:var(--paper2);border-radius:999px;padding:2px 4px}
 .zoom-controls .btn{padding:5px 8px;border:0;background:transparent}
-.zoom-readout{min-width:45px;text-align:center;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.zoom-readout{min-width:42px;text-align:center;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+.zoom-axis{font-size:10px;font-weight:900;color:var(--hot);padding:0 2px;user-select:none}
+.zoom-sep{width:1px;height:18px;background:var(--line);margin:0 2px}
 #panBtn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.cluster-controls{display:flex;align-items:center;gap:3px;border:1px solid var(--line);background:var(--paper2);border-radius:999px;padding:2px 4px}
+.cluster-controls .btn{padding:5px 8px;border:0;background:transparent}
+.cluster-controls .btn[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.cluster-label{padding:0 4px;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+
 .matrix-shell.pan-mode{cursor:grab}
 .matrix-shell.pan-mode.panning{cursor:grabbing;user-select:none}
 .matrix-shell.pan-mode .heat,.matrix-shell.pan-mode .skip{cursor:grab}
@@ -129,6 +145,24 @@ body.d-tight .paint{width:34px;height:34px;border-radius:9px}
 body.d-tight .matrix-shell{max-height:calc(100vh - 250px)}
 body.d-tight h1{font-size:clamp(22px,3vw,32px);margin:4px 0}
 body.d-tight .lead{display:none}
+
+/* Kokoruutuinen lämpökarttatila */
+#heatmapOnlyBtn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+body.heatmap-only{overflow:hidden}
+body.heatmap-only .app{padding:8px 8px 8px;height:100vh;display:flex;flex-direction:column}
+body.heatmap-only .top,
+body.heatmap-only #anonWarn,
+body.heatmap-only .palette-bar,
+body.heatmap-only .legend{display:none!important}
+body.heatmap-only .toolbar{max-width:none;width:100%;margin:0 0 6px;flex:0 0 auto;padding:0 2px}
+body.heatmap-only .matrix-shell{max-width:none;width:100%;max-height:none;height:auto;flex:1 1 auto;margin:0;border-radius:10px}
+body.heatmap-only .toolbar .heatmap-secondary{display:none}
+body.heatmap-only .toolbar .heatmap-primary{display:inline-flex}
+body.heatmap-only .toolbar select.heatmap-primary{display:block}
+body.heatmap-only .toolbar input.heatmap-primary{display:block}
+body.heatmap-only .toolbar #search{max-width:260px;min-width:150px}
+body.heatmap-only .corner{background:var(--paper2)}
+
 </style>
 </head>
 <body>
@@ -190,12 +224,13 @@ body.d-tight .lead{display:none}
 </section>
 
 <section class="toolbar">
-  <select id="matrixSelect" aria-label="Valitse versio"></select>
-  <button class="btn" id="newMatrixBtn" type="button">Uusi versio</button>
-  <button class="btn" id="renameBtn" type="button">Nimeä</button>
-  <button class="btn" id="deleteBtn" type="button">Poista</button>
-  <input id="search" type="search" placeholder="Hae murrosta…" aria-label="Hae murrosta">
-  <select id="period" aria-label="Rajaa aikakausi">
+  <button class="btn heatmap-primary" id="heatmapOnlyBtn" type="button" aria-pressed="false" title="Näytä vain lämpökartta">☷ Lämpökartta</button>
+  <select class="heatmap-primary" id="matrixSelect" aria-label="Valitse versio"></select>
+  <button class="btn heatmap-secondary" id="newMatrixBtn" type="button">Uusi versio</button>
+  <button class="btn heatmap-secondary" id="renameBtn" type="button">Nimeä</button>
+  <button class="btn heatmap-secondary" id="deleteBtn" type="button">Poista</button>
+  <input class="heatmap-primary" id="search" type="search" placeholder="Hae murrosta…" aria-label="Hae murrosta">
+  <select class="heatmap-primary" id="period" aria-label="Rajaa aikakausi">
     <option value="all">Kaikki vuodet</option>
     <option value="1800-1899">1800-luku</option>
     <option value="1900-1949">1900–1949</option>
@@ -203,47 +238,61 @@ body.d-tight .lead{display:none}
     <option value="1990-2025">1990–2025</option>
     <option value="2026-2100">Tulevaisuus</option>
   </select>
-  <select id="changed" aria-label="Rajaa merkinnät">
+  <select class="heatmap-secondary" id="changed" aria-label="Rajaa merkinnät">
     <option value="all">Kaikki rivit</option>
     <option value="mine">Vain omat merkinnät</option>
     <option value="untouched">Vain koskemattomat</option>
   </select>
-  <select id="coverage" aria-label="Rajaa kattavuuden mukaan">
+  <select class="heatmap-secondary" id="coverage" aria-label="Rajaa kattavuuden mukaan">
     <option value="0">Kaikki kattavuudet</option>
     <option value="1">Vähintään 1 arvio</option>
     <option value="3">Vähintään 3 arviota</option>
     <option value="5">Vähintään 5 arviota</option>
     <option value="8">Vähintään 8 arviota</option>
   </select>
-  <select id="quality" aria-label="Rajaa pohjan laadun mukaan">
+  <select class="heatmap-secondary" id="quality" aria-label="Rajaa pohjan laadun mukaan">
     <option value="all">Kaikki pohjat</option>
     <option value="curated">Vain lähteistetyt solut</option>
     <option value="strong">Lähteistetyt ja interpoloidut</option>
   </select>
-  <select id="density" aria-label="Ruudukon tiiviys">
+  <select class="heatmap-primary" id="density" aria-label="Ruudukon tiiviys">
     <option value="tight">Tiivis</option>
     <option value="normal">Normaali</option>
     <option value="wide">Väljä</option>
   </select>
-  <select id="sort" aria-label="Järjestys">
+  <select class="heatmap-secondary" id="sort" aria-label="Järjestys">
     <option value="year">Järjestys: vuosi</option>
     <option value="coverage">Järjestys: kattavuus</option>
     <option value="curated">Järjestys: lähteistetyt ensin</option>
     <option value="title">Järjestys: nimi</option>
   </select>
-  <select id="group" aria-label="Ryhmittele rivit">
+  <select class="heatmap-primary" id="group" aria-label="Ryhmittele rivit">
     <option value="none">Ei ryhmittelyä</option>
     <option value="era">Ryhmittele: aikakausi</option>
     <option value="coverage">Ryhmittele: kattavuus</option>
     <option value="lens">Ryhmittele: päälinssi</option>
   </select>
-  <div class="zoom-controls" role="group" aria-label="Lämpökartan zoomaus">
-    <button class="btn" id="zoomOut" type="button" title="Loitonna">−</button>
-    <span class="zoom-readout" id="zoomReadout">100 %</span>
-    <button class="btn" id="zoomIn" type="button" title="Lähennä">+</button>
-    <button class="btn" id="zoomReset" type="button" title="Palauta 100 %">↺</button>
+  <div class="cluster-controls heatmap-primary" role="group" aria-label="Samankaltaisuusklusterointi">
+    <span class="cluster-label">Klusteri</span>
+    <button class="btn" id="clusterRowsBtn" type="button" aria-pressed="false" title="Järjestä rivit koko väriprofiilin samankaltaisuuden mukaan">Rivit</button>
+    <button class="btn" id="clusterColsBtn" type="button" aria-pressed="false" title="Järjestä sarakkeet koko väriprofiilin samankaltaisuuden mukaan">Sarakkeet</button>
+    <button class="btn" id="clusterBothBtn" type="button" aria-pressed="false" title="Klusteroi sekä rivit että sarakkeet">Molemmat</button>
   </div>
-  <button class="btn" id="panBtn" type="button" aria-pressed="false" title="Kun Pan on päällä, vedä karttaa hiirellä tai sormella">Pan</button>
+  <button class="btn heatmap-primary" id="restoreOrderBtn" type="button" disabled
+          title="Palauta rivien ja sarakkeiden alkuperäinen järjestys">↺ Palauta järjestys</button>
+  <div class="zoom-controls heatmap-primary" role="group" aria-label="Lämpökartan akselikohtainen zoomaus">
+    <span class="zoom-axis" title="Sarakkeiden leveys">X</span>
+    <button class="btn" id="zoomXOut" type="button" title="Kavenna sarakkeita">−</button>
+    <span class="zoom-readout" id="zoomXReadout">100 %</span>
+    <button class="btn" id="zoomXIn" type="button" title="Levennä sarakkeita">+</button>
+    <span class="zoom-sep" aria-hidden="true"></span>
+    <span class="zoom-axis" title="Rivien korkeus">Y</span>
+    <button class="btn" id="zoomYOut" type="button" title="Mataloi rivejä">−</button>
+    <span class="zoom-readout" id="zoomYReadout">100 %</span>
+    <button class="btn" id="zoomYIn" type="button" title="Korota rivejä">+</button>
+    <button class="btn" id="zoomReset" type="button" title="Palauta X ja Y 100 %">↺</button>
+  </div>
+  <button class="btn heatmap-primary" id="panBtn" type="button" aria-pressed="false" title="Kun Pan on päällä, vedä karttaa hiirellä tai sormella">Pan</button>
 </section>
 
 <section class="matrix-shell" id="matrixShell" aria-label="Arviointilämpökartta">
@@ -321,7 +370,8 @@ const state = {
   session:null, agg:new Map(), lenses:[], items:[],
   matrices:[], matrixId:null, overrides:new Map(), excluded:new Set(),
   filters:{search:"",period:"all",changed:"all",coverage:0,quality:"all",sort:"year",group:"none"},
-  view:{zoom:1,pan:false,panDragging:false,panX:0,panY:0,scrollLeft:0,scrollTop:0},
+  order:{columnRow:null,columnDir:"asc",rowLens:null,rowDir:"asc",cluster:"none",clusterRows:[],clusterCols:[]},
+  view:{zoomX:1,zoomY:1,pan:false,panDragging:false,panX:0,panY:0,scrollLeft:0,scrollTop:0},
   paint:4, erasing:false, dragging:false,
   pending:new Map(), saveTimer:null,
 };
@@ -570,15 +620,132 @@ function visibleItems() {
     return true;
   });
 }
+function effectiveCell(p, l) {
+  const a = state.agg.get(key(p,l));
+  if (!a) return null;
+  if (state.overrides.has(key(p,l))) return toCell(state.overrides.get(key(p,l)));
+  if (a.mean_direction === null || a.mean_direction === undefined) return null;
+  return toCell(Number(a.mean_direction));
+}
+function compareCells(a, b, dir) {
+  // Tyhjät jäävät aina loppuun riippumatta suunnasta.
+  if (a === null && b === null) return 0;
+  if (a === null) return 1;
+  if (b === null) return -1;
+  return dir === "asc" ? a - b : b - a;
+}
+/* ---------- Samankaltaisuusklusterointi ---------- */
+function profileDistance(a, b) {
+  // RMS-etäisyys vain yhteisistä arvoista. Puuttuvat arvot eivät muutu
+  // neutraaleiksi, mutta eri kattavuudesta annetaan pieni lisärangaistus.
+  let sum = 0, shared = 0, missing = 0;
+  const n = Math.max(a.length, b.length);
+  for (let i=0; i<n; i++) {
+    const x = a[i] ?? null, y = b[i] ?? null;
+    if (x === null || y === null) { if (x !== y) missing++; continue; }
+    const d = (x-y) / 6;
+    sum += d*d; shared++;
+  }
+  const base = shared ? Math.sqrt(sum/shared) : 1;
+  const penalty = n ? (missing/n) * .18 : 0;
+  return base + penalty;
+}
+function clusterOrder(entries, vectorFor) {
+  if (entries.length < 3) return entries.map(x => x.id);
+  let clusters = entries.map((entry, index) => ({
+    ids:[entry.id], first:index, size:1, centroid:vectorFor(entry).map(v => v === null ? null : Number(v))
+  }));
+  function centroidDistance(a,b) { return profileDistance(a.centroid,b.centroid); }
+  function mergeCentroid(a,b) {
+    const n = Math.max(a.centroid.length,b.centroid.length), out=[];
+    for (let i=0;i<n;i++) {
+      const x=a.centroid[i] ?? null, y=b.centroid[i] ?? null;
+      if (x === null) out.push(y);
+      else if (y === null) out.push(x);
+      else out.push((x*a.size + y*b.size)/(a.size+b.size));
+    }
+    return out;
+  }
+  while (clusters.length > 1) {
+    let bi=0,bj=1,bd=Infinity;
+    for (let i=0;i<clusters.length-1;i++) for (let j=i+1;j<clusters.length;j++) {
+      const d=centroidDistance(clusters[i],clusters[j]);
+      if (d < bd) { bd=d; bi=i; bj=j; }
+    }
+    let a=clusters[bi], b=clusters[bj];
+    // Haarojen suunta valitaan rajapinnan etäisyyden perusteella. Näin
+    // lämpökartan samankaltaiset profiilit muodostavat mahdollisimman yhtenäisiä blokkeja.
+    const va0=vectorFor({id:a.ids[0]}), va1=vectorFor({id:a.ids[a.ids.length-1]});
+    const vb0=vectorFor({id:b.ids[0]}), vb1=vectorFor({id:b.ids[b.ids.length-1]});
+    const opts=[
+      {d:profileDistance(va1,vb0), ids:[...a.ids,...b.ids]},
+      {d:profileDistance(va0,vb0), ids:[...a.ids].reverse().concat(b.ids)},
+      {d:profileDistance(va1,vb1), ids:a.ids.concat([...b.ids].reverse())},
+      {d:profileDistance(va0,vb1), ids:[...b.ids,...a.ids]},
+    ].sort((x,y)=>x.d-y.d);
+    const merged={ids:opts[0].ids, first:Math.min(a.first,b.first), size:a.size+b.size,
+      centroid:mergeCentroid(a,b)};
+    clusters.splice(bj,1); clusters.splice(bi,1,merged);
+  }
+  return clusters[0].ids;
+}
+function rowVectorById(id, lenses=state.lenses) {
+  return lenses.map(l => effectiveCell(id,l));
+}
+function colVectorById(lens, items) {
+  return items.map(it => effectiveCell(it.id,lens));
+}
+function computeClusters(mode) {
+  const visible = visibleItems().filter(it => !state.excluded.has(it.id));
+  const rowEntries = visible.map(it => ({id:it.id}));
+  const colEntries = state.lenses.map(l => ({id:l}));
+  state.order.clusterRows = (mode === "rows" || mode === "both")
+    ? clusterOrder(rowEntries, e => rowVectorById(e.id, state.lenses)) : [];
+  state.order.clusterCols = (mode === "columns" || mode === "both")
+    ? clusterOrder(colEntries, e => colVectorById(e.id, visible)) : [];
+  state.order.cluster = mode;
+  state.order.columnRow = null; state.order.rowLens = null;
+}
+function syncClusterButtons() {
+  const m=state.order.cluster;
+  $("#clusterRowsBtn")?.setAttribute("aria-pressed", String(m === "rows"));
+  $("#clusterColsBtn")?.setAttribute("aria-pressed", String(m === "columns"));
+  $("#clusterBothBtn")?.setAttribute("aria-pressed", String(m === "both"));
+}
+function orderedLenses() {
+  const base = [...state.lenses];
+  if ((state.order.cluster === "columns" || state.order.cluster === "both") && state.order.clusterCols.length) {
+    const pos = new Map(state.order.clusterCols.map((id,i)=>[id,i]));
+    return base.sort((a,b)=>(pos.get(a) ?? 1e9)-(pos.get(b) ?? 1e9));
+  }
+  if (!state.order.columnRow) return base;
+  const original = new Map(base.map((l,i) => [l,i]));
+  return base.sort((a,b) =>
+    compareCells(effectiveCell(state.order.columnRow,a), effectiveCell(state.order.columnRow,b), state.order.columnDir) ||
+    original.get(a) - original.get(b));
+}
 function sortItems(list) {
   const s = state.filters.sort;
-  if (s === "year") return [...list].sort((a,b) => a.year - b.year || a.title.localeCompare(b.title,"fi"));
   const copy = [...list];
-  if (s === "title") copy.sort((a,b) => a.title.localeCompare(b.title,"fi"));
+  if (s === "year") copy.sort((a,b) => a.year - b.year || a.title.localeCompare(b.title,"fi"));
+  else if (s === "title") copy.sort((a,b) => a.title.localeCompare(b.title,"fi"));
   else if (s === "coverage")
     copy.sort((a,b) => rowStats(b).base - rowStats(a).base || a.year - b.year);
   else if (s === "curated")
     copy.sort((a,b) => rowStats(b).curated - rowStats(a).curated || a.year - b.year);
+
+  if ((state.order.cluster === "rows" || state.order.cluster === "both") && state.order.clusterRows.length) {
+    const pos = new Map(state.order.clusterRows.map((id,i)=>[id,i]));
+    copy.sort((a,b)=>(pos.get(a.id) ?? 1e9)-(pos.get(b.id) ?? 1e9));
+  }
+
+  if (state.order.rowLens) {
+    // Vakaassa tasatilanteessa säilytetään käyttäjän normaali rivijärjestys.
+    const fallback = new Map(copy.map((it,i) => [it.id,i]));
+    copy.sort((a,b) =>
+      compareCells(effectiveCell(a.id,state.order.rowLens), effectiveCell(b.id,state.order.rowLens), state.order.rowDir) ||
+      fallback.get(a.id) - fallback.get(b.id));
+  }
   return copy;
 }
 function eraLabel(year) {
@@ -614,7 +781,9 @@ function groupLabel(it) {
   return "";
 }
 function groupRows(list) {
-  if (state.filters.group === "none") return [{ label:"", items:list }];
+  // Sarakkeen mukaan lajiteltaessa koko värijakauman pitää näkyä yhtenä jatkumona.
+  if (state.order.rowLens || state.order.cluster === "rows" || state.order.cluster === "both" || state.filters.group === "none")
+    return [{ label:"", items:sortItems(list) }];
   const map = new Map();
   for (const it of list) {
     const g = groupLabel(it);
@@ -631,8 +800,8 @@ function groupRows(list) {
   } else groups.sort((a,b) => a.label.localeCompare(b.label,"fi"));
   return groups;
 }
-function renderRow(it) {
-  const cells = state.lenses.map((l) => {
+function renderRow(it, lenses) {
+  const cells = lenses.map((l) => {
     const a = state.agg.get(key(it.id,l));
     if (!a) return `<td class="cell"><button class="heat faded" disabled><span class="v">·</span></button></td>`;
     const mine = state.overrides.has(key(it.id,l));
@@ -657,16 +826,29 @@ function renderRow(it) {
       `aria-label="${esc(ariaFor(a,mine,cell))}"><span class="v">${cell===null?"·":cell}</span></button></td>`;
   }).join("");
   const off = state.excluded.has(it.id);
-  return `<tr class="${off ? "skipped" : ""}"><th class="row-head" title="${esc(it.title)}">` +
+  const activeSort = state.order.columnRow === it.id;
+  const arrow = activeSort ? `<span class="sort-arrow">${state.order.columnDir === "asc" ? "0→6" : "6→0"}</span>` : "";
+  return `<tr class="${off ? "skipped" : ""}"><th class="row-head${activeSort ? " sort-active" : ""}" data-sort-row="${esc(it.id)}" ` +
+    `title="${esc(it.title)} · Klikkaa järjestääksesi sarakkeet tämän rivin värin mukaan">` +
     `<div class="row-label"><input class="skip" type="checkbox" data-skip="${esc(it.id)}" ${off ? "" : "checked"} ` +
     `aria-label="${off ? "Ota mukaan" : "Jätä huomiotta"}: ${esc(it.title)}" ` +
     `title="${off ? "Ota takaisin mukaan" : "Jätä huomiotta -- rivi siirtyy loppuun, merkinnät säilyvät"}">` +
-    `<span class="year">${it.year}</span><span class="row-title">${esc(it.title)}</span></div></th>${cells}</tr>`;
+    `<span class="year">${it.year}</span><span class="row-title">${esc(it.title)}</span>${arrow}</div></th>${cells}</tr>`;
+}
+function densityBase() {
+  const body = document.body;
+  if (body.classList.contains("d-tight")) return { cw:22, ch:18 };
+  if (body.classList.contains("d-wide")) return { cw:44, ch:32 };
+  return { cw:30, ch:24 };
 }
 function applyZoom() {
-  const table = document.querySelector("#matrixShell table");
-  if (table) table.style.zoom = String(state.view.zoom);
-  $("#zoomReadout").textContent = `${Math.round(state.view.zoom*100)} %`;
+  const base = densityBase();
+  const cw = Math.max(12, Math.round(base.cw * state.view.zoomX));
+  const ch = Math.max(10, Math.round(base.ch * state.view.zoomY));
+  document.body.style.setProperty("--cw", cw + "px");
+  document.body.style.setProperty("--ch", ch + "px");
+  $("#zoomXReadout").textContent = `${Math.round(state.view.zoomX*100)} %`;
+  $("#zoomYReadout").textContent = `${Math.round(state.view.zoomY*100)} %`;
 }
 function render() {
   const all = visibleItems();
@@ -676,21 +858,30 @@ function render() {
   $("#rowCount").textContent = `${active.length} murrosta × ${state.lenses.length} linssiä` +
     (skipped.length ? ` · ${skipped.length} ohitettu` : "");
   updateCounts();
-  const head = state.lenses.map((l) =>
-    `<th class="lens-head"><div><span class="lens-label" title="${esc(LENS_NAMES[l]||l)}"><span class="lens-id">${esc(l)}</span> · ${esc(LENS_NAMES[l]||"")}</span></div></th>`).join("");
+  const lenses = orderedLenses();
+  const head = lenses.map((l) => {
+    const activeSort = state.order.rowLens === l;
+    const arrow = activeSort ? `<span class="sort-arrow">${state.order.rowDir === "asc" ? "0→6" : "6→0"}</span>` : "";
+    return `<th class="lens-head${activeSort ? " sort-active" : ""}" data-sort-lens="${esc(l)}" ` +
+      `title="${esc(LENS_NAMES[l]||l)} · Klikkaa järjestääksesi rivit tämän sarakkeen värin mukaan"><div>` +
+      `<span class="lens-label"><span class="lens-id">${esc(l)}</span> · ${esc(LENS_NAMES[l]||"")}${arrow}</span></div></th>`;
+  }).join("");
   let html = "";
   for (const g of groupRows(active)) {
-    if (g.label) html += `<tr class="divider"><th>${esc(g.label)}</th><td colspan="${state.lenses.length}">${g.items.length} murrosta</td></tr>`;
-    html += g.items.map(renderRow).join("");
+    if (g.label) html += `<tr class="divider"><th>${esc(g.label)}</th><td colspan="${lenses.length}">${g.items.length} murrosta</td></tr>`;
+    html += g.items.map((it) => renderRow(it,lenses)).join("");
   }
   if (skipped.length) {
-    html += `<tr class="divider"><th>Huomiotta jätetyt</th><td colspan="${state.lenses.length}">${skipped.length} murrosta · merkinnät säilyvät</td></tr>`;
-    html += skipped.map(renderRow).join("");
+    html += `<tr class="divider"><th>Huomiotta jätetyt</th><td colspan="${lenses.length}">${skipped.length} murrosta · merkinnät säilyvät</td></tr>`;
+    html += skipped.map((it) => renderRow(it,lenses)).join("");
   }
   $("#matrixShell").innerHTML = (active.length || skipped.length)
     ? `<table><thead><tr><th class="corner">Murros · vuosi</th>${head}</tr></thead><tbody>${html}</tbody></table>`
     : '<div class="empty-state">Rajauksella ei löytynyt murroksia.</div>';
   applyZoom();
+  const resetOrder = $("#restoreOrderBtn");
+  if (resetOrder) resetOrder.disabled = !(state.order.columnRow || state.order.rowLens || state.order.cluster !== "none");
+  syncClusterButtons();
 }
 
 /* ---------- Paletti ---------- */
@@ -717,7 +908,30 @@ shell.addEventListener("change", (e) => {
   const box = e.target.closest("[data-skip]");
   if (box) toggleExcluded(box.dataset.skip);
 });
+shell.addEventListener("click", (e) => {
+  if (e.target.closest("[data-skip]")) return;
+  const row = e.target.closest("[data-sort-row]");
+  if (row) {
+    state.order.cluster = "none"; state.order.clusterRows = []; state.order.clusterCols = []; syncClusterButtons();
+    const id = row.dataset.sortRow;
+    if (state.order.columnRow === id)
+      state.order.columnDir = state.order.columnDir === "asc" ? "desc" : "asc";
+    else { state.order.columnRow = id; state.order.columnDir = "asc"; }
+    render();
+    return;
+  }
+  const col = e.target.closest("[data-sort-lens]");
+  if (col) {
+    state.order.cluster = "none"; state.order.clusterRows = []; state.order.clusterCols = []; syncClusterButtons();
+    const lens = col.dataset.sortLens;
+    if (state.order.rowLens === lens)
+      state.order.rowDir = state.order.rowDir === "asc" ? "desc" : "asc";
+    else { state.order.rowLens = lens; state.order.rowDir = "asc"; }
+    render();
+  }
+});
 shell.addEventListener("pointerdown", (e) => {
+  if (e.target.closest("[data-sort-row],[data-sort-lens]")) return;
   if (state.view.pan) {
     state.view.panDragging = true;
     state.view.panX = e.clientX; state.view.panY = e.clientY;
@@ -751,13 +965,15 @@ function endPointer() {
   }
 }
 for (const ev of ["pointerup","pointercancel"]) window.addEventListener(ev, endPointer);
-// Ctrl/⌘ + rulla zoomaa kohdistimen alla; tavallinen rulla panoroi normaalisti.
+// Ctrl/⌘ + rulla zoomaa sarakkeita. Ctrl/⌘ + Alt + rulla zoomaa rivejä.
+// Tavallinen rulla ja trackpad säilyvät vieritykseen/panorointiin.
 shell.addEventListener("wheel", (e) => {
   if (!(e.ctrlKey || e.metaKey)) return;
   e.preventDefault();
-  const next = clamp(state.view.zoom + (e.deltaY < 0 ? .1 : -.1), .45, 2.2);
-  if (next === state.view.zoom) return;
-  state.view.zoom = Math.round(next*100)/100; saveViewPrefs(); applyZoom();
+  const delta = e.deltaY < 0 ? .1 : -.1;
+  if (e.altKey) state.view.zoomY = clamp(Math.round((state.view.zoomY + delta)*100)/100, .45, 2.2);
+  else state.view.zoomX = clamp(Math.round((state.view.zoomX + delta)*100)/100, .45, 2.2);
+  saveViewPrefs(); applyZoom();
 }, {passive:false});
 
 /* ---------- Versiot ja toiminnot ---------- */
@@ -822,31 +1038,62 @@ $("#exportBtn").addEventListener("click", async () => {
 /* ---------- Ryhmittely, zoom ja pan ---------- */
 function saveViewPrefs() {
   try {
-    localStorage.setItem("lampokartta.zoom", String(state.view.zoom));
+    localStorage.setItem("lampokartta.zoomX", String(state.view.zoomX));
+    localStorage.setItem("lampokartta.zoomY", String(state.view.zoomY));
     localStorage.setItem("lampokartta.group", state.filters.group);
     localStorage.setItem("lampokartta.pan", state.view.pan ? "1" : "0");
   } catch {}
 }
-function setZoom(v) {
-  state.view.zoom = clamp(Math.round(v*100)/100, .45, 2.2);
+function setAxisZoom(axis, v) {
+  const value = clamp(Math.round(v*100)/100, .45, 2.2);
+  if (axis === "x") state.view.zoomX = value;
+  else state.view.zoomY = value;
   saveViewPrefs(); applyZoom();
 }
-$("#zoomOut").addEventListener("click", () => setZoom(state.view.zoom - .1));
-$("#zoomIn").addEventListener("click", () => setZoom(state.view.zoom + .1));
-$("#zoomReset").addEventListener("click", () => setZoom(1));
+$("#zoomXOut").addEventListener("click", () => setAxisZoom("x", state.view.zoomX - .1));
+$("#zoomXIn").addEventListener("click", () => setAxisZoom("x", state.view.zoomX + .1));
+$("#zoomYOut").addEventListener("click", () => setAxisZoom("y", state.view.zoomY - .1));
+$("#zoomYIn").addEventListener("click", () => setAxisZoom("y", state.view.zoomY + .1));
+$("#zoomReset").addEventListener("click", () => {
+  state.view.zoomX = 1; state.view.zoomY = 1; saveViewPrefs(); applyZoom();
+});
 $("#panBtn").addEventListener("click", () => {
   state.view.pan = !state.view.pan;
   $("#panBtn").setAttribute("aria-pressed", String(state.view.pan));
   shell.classList.toggle("pan-mode", state.view.pan);
   saveViewPrefs();
 });
+$("#clusterRowsBtn").addEventListener("click", () => { computeClusters("rows"); render(); });
+$("#clusterColsBtn").addEventListener("click", () => { computeClusters("columns"); render(); });
+$("#clusterBothBtn").addEventListener("click", () => {
+  // Molemmat lasketaan kahdessa vaiheessa: ensin rivit, sitten sarakkeet riviklustereiden järjestyksessä.
+  computeClusters("rows");
+  const visible = visibleItems().filter(it => !state.excluded.has(it.id));
+  const pos = new Map(state.order.clusterRows.map((id,i)=>[id,i]));
+  visible.sort((a,b)=>(pos.get(a.id) ?? 1e9)-(pos.get(b.id) ?? 1e9));
+  state.order.clusterCols = clusterOrder(state.lenses.map(l=>({id:l})), e => colVectorById(e.id, visible));
+  state.order.cluster = "both";
+  render();
+});
+$("#restoreOrderBtn").addEventListener("click", () => {
+  state.order.columnRow = null; state.order.columnDir = "asc";
+  state.order.rowLens = null; state.order.rowDir = "asc";
+  state.order.cluster = "none"; state.order.clusterRows = []; state.order.clusterCols = [];
+  syncClusterButtons();
+  render();
+});
 $("#group").addEventListener("change", (e) => {
   state.filters.group = e.target.value; saveViewPrefs(); render();
 });
 (() => {
   try {
-    const z = Number(localStorage.getItem("lampokartta.zoom"));
-    if (Number.isFinite(z) && z >= .45 && z <= 2.2) state.view.zoom = z;
+    const legacy = Number(localStorage.getItem("lampokartta.zoom"));
+    const zx = Number(localStorage.getItem("lampokartta.zoomX"));
+    const zy = Number(localStorage.getItem("lampokartta.zoomY"));
+    if (Number.isFinite(zx) && zx >= .45 && zx <= 2.2) state.view.zoomX = zx;
+    else if (Number.isFinite(legacy) && legacy >= .45 && legacy <= 2.2) state.view.zoomX = legacy;
+    if (Number.isFinite(zy) && zy >= .45 && zy <= 2.2) state.view.zoomY = zy;
+    else if (Number.isFinite(legacy) && legacy >= .45 && legacy <= 2.2) state.view.zoomY = legacy;
     const g = localStorage.getItem("lampokartta.group");
     if (["none","era","coverage","lens"].includes(g)) state.filters.group = g;
     state.view.pan = localStorage.getItem("lampokartta.pan") === "1";
@@ -854,7 +1101,26 @@ $("#group").addEventListener("change", (e) => {
   $("#group").value = state.filters.group;
   $("#panBtn").setAttribute("aria-pressed", String(state.view.pan));
   shell.classList.toggle("pan-mode", state.view.pan);
-  $("#zoomReadout").textContent = `${Math.round(state.view.zoom*100)} %`;
+  applyZoom();
+})();
+
+/* ---------- Kokoruutuinen lämpökarttatila ---------- */
+function setHeatmapOnly(on) {
+  document.body.classList.toggle("heatmap-only", on);
+  const b = $("#heatmapOnlyBtn");
+  if (b) {
+    b.setAttribute("aria-pressed", String(on));
+    b.textContent = on ? "← Normaali näkymä" : "☷ Lämpökartta";
+    b.title = on ? "Palaa normaaliin näkymään" : "Näytä vain lämpökartta";
+  }
+  try { localStorage.setItem("lampokartta.only", on ? "1" : "0"); } catch {}
+}
+$("#heatmapOnlyBtn").addEventListener("click", () =>
+  setHeatmapOnly(!document.body.classList.contains("heatmap-only")));
+(() => {
+  let on = false;
+  try { on = localStorage.getItem("lampokartta.only") === "1"; } catch {}
+  setHeatmapOnly(on);
 })();
 
 /* Tiiviys muistetaan laitekohtaisesti: se on näyttöön liittyvä valinta,
@@ -864,6 +1130,7 @@ function applyDensity(v) {
   document.body.classList.add("d-" + v);
   try { localStorage.setItem("lampokartta.density", v); } catch {}
   $("#density").value = v;
+  applyZoom();
 }
 $("#density").addEventListener("change", (e) => applyDensity(e.target.value));
 (() => {
@@ -878,6 +1145,7 @@ for (const [id,k] of [["#search","search"],["#period","period"],["#changed","cha
                       ["#coverage","coverage"],["#quality","quality"],["#sort","sort"]])
   $(id).addEventListener(id === "#search" ? "input" : "change", (e) => {
     state.filters[k] = k === "coverage" ? Number(e.target.value) : e.target.value;
+    if (state.order.cluster !== "none") computeClusters(state.order.cluster);
     render();
   });
 window.addEventListener("beforeunload", (e) => {
