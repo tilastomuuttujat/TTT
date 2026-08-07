@@ -1,0 +1,1195 @@
+{
+  "meta": {
+    "title": "M36 — Resilienssikerros",
+    "schema_version": "1.0",
+    "generated": "2026-08-06",
+    "lens_id": "M36",
+    "lens_name": "Häiriöstä uudistumiseen",
+    "purpose": "Johdettu havaintokerros: kuvaa mitattujen sarjojen poikkeamaa ja paluuta kriisiä edeltäneen lähtötason tuntumaan.",
+    "critical_note": "Palautumisaika on menneestä aineistosta laskettu kuvaileva havainto. Se ei osoita kriisin kausaalivaikutusta, mittaa M36-linssiä eikä ennusta tulevaa.",
+    "method": "Lähtötaso = enintään kolme viimeistä havaintoa viiden vuoden ajalta ennen kriisiä. Huippupoikkeama = suurin absoluuttinen poikkeama kriisin aikana (vähintään kolmen vuoden ikkuna). Palautuminen = ensimmäinen huipun jälkeinen havainto lähtötason toleranssissa, myös seuraava lähihavainto toleranssissa. Seuranta enintään 20 vuotta kriisin päättymisestä ja korkeintaan vuoteen 2025.",
+    "series_ids": [
+      "julkmenot_bkt",
+      "huoltosuhde_taloud",
+      "gini_kaytettavissa",
+      "velkajarjestely_kokomaa",
+      "ess_luottamus_eduskunta",
+      "terveys_bkt",
+      "brief.public_debt_gdp"
+    ],
+    "crisis_count": 12,
+    "source_files": [
+      "hyvinvointikerros.json",
+      "chain-anchors.json",
+      "murrosatlas.json"
+    ]
+  },
+  "series": {
+    "julkmenot_bkt": {
+      "name": "Julkiset menot suhteessa BKT:hen",
+      "unit": "%",
+      "source": "finland_public_finance_master_v15",
+      "role": "julkisen vastuun laajuus",
+      "reliability": "mitattu",
+      "validation_status": "lähdekannan mukainen"
+    },
+    "huoltosuhde_taloud": {
+      "name": "Taloudellinen huoltosuhde",
+      "unit": "ei-työllistä / 100 työllistä",
+      "source": "finland_public_finance_master_v15",
+      "role": "työllisyyteen perustuva kuormitus",
+      "reliability": "mitattu",
+      "validation_status": "lähdekannan mukainen"
+    },
+    "gini_kaytettavissa": {
+      "name": "Gini-kerroin, käytettävissä oleva tulo",
+      "unit": "indeksi",
+      "source": "finland_public_finance_master_v15",
+      "role": "arvon jakautuminen",
+      "reliability": "mitattu",
+      "validation_status": "lähdekannan mukainen"
+    },
+    "velkajarjestely_kokomaa": {
+      "name": "Velkajärjestelyhakemukset, koko maa",
+      "unit": "lkm",
+      "source": "Tilastokeskus 11ht 2025",
+      "role": "riskin realisoituminen kotitalouksissa",
+      "reliability": "mitattu",
+      "validation_status": "lähdekannan mukainen"
+    },
+    "ess_luottamus_eduskunta": {
+      "name": "Luottamus eduskuntaan",
+      "unit": "keskiarvo 0–10",
+      "source": "European Social Survey, Suomi (pspwght)",
+      "role": "oikeutus: luottamus edustuslaitokseen",
+      "reliability": "mitattu",
+      "validation_status": "lähdekannan mukainen"
+    },
+    "terveys_bkt": {
+      "name": "Terveysmenot suhteessa BKT:hen",
+      "unit": "%",
+      "source": "finland_public_finance_master_v15",
+      "role": "terveysmenojen osuus",
+      "reliability": "mitattu",
+      "validation_status": "lähdekannan mukainen"
+    },
+    "brief.public_debt_gdp": {
+      "name": "Julkinen velka suhteessa BKT:hen (pitkä sarja)",
+      "unit": "%",
+      "source": "briiffi.html Chart.js -aineisto (book-editor-suite, research.series_registry)",
+      "source_family": "Nordic Statistics / NOMESCO -pohjainen, alkuperäislähdettä ei kirjattu",
+      "reliability": "rekonstruktio",
+      "validation_status": "draft, validoimaton",
+      "role": "kustannuksen kertyminen ajassa, 1860 alkaen",
+      "note": "Ennen vuotta 1950 osa arvoista on rekonstruktioita. Aineisto on lähdekannassa draft-tilassa eikä sitä ole validoitu. Arvot on kirjattu kahden vuoden välein ja pyöristetty, joten sarja kuvaa trendiä eikä yksittäisiä vuosia."
+    }
+  },
+  "crises": [
+    {
+      "id": "nalkavuodet-1866",
+      "title": "Suuret nälkävuodet",
+      "year_start": 1866,
+      "year_end": 1868,
+      "m36_role": "pakotti varautumaan",
+      "m36_rationale": "Kriisi johti köyhäinhoidon uudistukseen ja kriisivastuun vahvistumiseen.",
+      "observations": [
+        {
+          "series_id": "brief.public_debt_gdp",
+          "name": "Julkinen velka suhteessa BKT:hen (pitkä sarja)",
+          "unit": "%",
+          "reliability": "rekonstruktio",
+          "validation_status": "draft, validoimaton",
+          "baseline_years": [
+            1862,
+            1864
+          ],
+          "baseline": 9.5,
+          "peak_year": 1868,
+          "peak_value": 14.0,
+          "deviation": 4.5,
+          "deviation_pct": 47.37,
+          "tolerance": 2.0,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 76.0,
+          "status": "ei palautunut seurantaikkunassa"
+        }
+      ],
+      "coverage_count": 1
+    },
+    {
+      "id": "sortokaudet",
+      "title": "Sortokaudet",
+      "year_start": 1899,
+      "year_end": 1917,
+      "m36_role": "synnytti järjestäytynyttä vastarintakykyä",
+      "m36_rationale": "Adressiliike, kutsuntalakot ja passiivinen vastarinta rakensivat kansalaisyhteiskunnallista kykyä puolustaa autonomista järjestystä.",
+      "observations": [
+        {
+          "series_id": "brief.public_debt_gdp",
+          "name": "Julkinen velka suhteessa BKT:hen (pitkä sarja)",
+          "unit": "%",
+          "reliability": "rekonstruktio",
+          "validation_status": "draft, validoimaton",
+          "baseline_years": [
+            1894,
+            1896,
+            1898
+          ],
+          "baseline": 18.0,
+          "peak_year": 1912,
+          "peak_value": 13.0,
+          "deviation": -5.0,
+          "deviation_pct": -27.78,
+          "tolerance": 2.0,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 76.0,
+          "status": "ei palautunut seurantaikkunassa"
+        }
+      ],
+      "coverage_count": 1
+    },
+    {
+      "id": "sisallissota-1918",
+      "title": "Sisällissota",
+      "year_start": 1918,
+      "year_end": 1918,
+      "m36_role": "pakotti jälleenrakentamaan",
+      "m36_rationale": "Jälleenrakennus ja sovintopolitiikka seurasivat, mutta hitaasti ja kalliisti.",
+      "observations": [
+        {
+          "series_id": "brief.public_debt_gdp",
+          "name": "Julkinen velka suhteessa BKT:hen (pitkä sarja)",
+          "unit": "%",
+          "reliability": "rekonstruktio",
+          "validation_status": "draft, validoimaton",
+          "baseline_years": [
+            1914,
+            1916
+          ],
+          "baseline": 16.0,
+          "peak_year": 1920,
+          "peak_value": 38.0,
+          "deviation": 22.0,
+          "deviation_pct": 137.5,
+          "tolerance": 2.0,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 76.0,
+          "status": "ei palautunut seurantaikkunassa"
+        }
+      ],
+      "coverage_count": 1
+    },
+    {
+      "id": "1930-luvun-lama-suomessa",
+      "title": "1930-luvun lama Suomessa",
+      "year_start": 1929,
+      "year_end": 1935,
+      "m36_role": "paljasti sosiaaliturvan aukot ja vahvisti uudistuspaineita",
+      "m36_rationale": "Pitkittynyt työttömyys ja toimeentulon epävarmuus tekivät sosiaalisen suojan puutteet näkyviksi. Myöhemmät uudistukset olivat monen tekijän tulosta, eivät laman automaattinen seuraus.",
+      "observations": [
+        {
+          "series_id": "brief.public_debt_gdp",
+          "name": "Julkinen velka suhteessa BKT:hen (pitkä sarja)",
+          "unit": "%",
+          "reliability": "rekonstruktio",
+          "validation_status": "draft, validoimaton",
+          "baseline_years": [
+            1924,
+            1926,
+            1928
+          ],
+          "baseline": 30.0,
+          "peak_year": 1930,
+          "peak_value": 28.0,
+          "deviation": -2.0,
+          "deviation_pct": -6.67,
+          "tolerance": 2.0,
+          "recovered": true,
+          "recovery_year": 1932,
+          "recovery_years_from_peak": 2,
+          "last_observation_year": 2024,
+          "last_value": 76.0,
+          "status": "palautui lähtötason tuntumaan"
+        }
+      ],
+      "coverage_count": 1
+    },
+    {
+      "id": "talvi-ja-jatkosota",
+      "title": "Talvi- ja jatkosota",
+      "year_start": 1939,
+      "year_end": 1945,
+      "m36_role": "testasi jatkuvuutta",
+      "m36_rationale": "Jatkuvuus säilyi ja jälleenrakennus onnistui huoltovarmuusajatteluna.",
+      "observations": [
+        {
+          "series_id": "brief.public_debt_gdp",
+          "name": "Julkinen velka suhteessa BKT:hen (pitkä sarja)",
+          "unit": "%",
+          "reliability": "rekonstruktio",
+          "validation_status": "draft, validoimaton",
+          "baseline_years": [
+            1934,
+            1936,
+            1938
+          ],
+          "baseline": 27.0,
+          "peak_year": 1944,
+          "peak_value": 78.0,
+          "deviation": 51.0,
+          "deviation_pct": 188.89,
+          "tolerance": 2.0,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 76.0,
+          "status": "ei palautunut seurantaikkunassa"
+        }
+      ],
+      "coverage_count": 1
+    },
+    {
+      "id": "oljy-kriisi-1973",
+      "title": "Öljykriisit",
+      "year_start": 1973,
+      "year_end": 1979,
+      "m36_role": "pakotti monipuolistamaan energialähteet",
+      "m36_rationale": "Kriisi tuotti kestävän energia- ja huoltovarmuuspolitiikan.",
+      "observations": [
+        {
+          "series_id": "brief.public_debt_gdp",
+          "name": "Julkinen velka suhteessa BKT:hen (pitkä sarja)",
+          "unit": "%",
+          "reliability": "rekonstruktio",
+          "validation_status": "draft, validoimaton",
+          "baseline_years": [
+            1968,
+            1970,
+            1972
+          ],
+          "baseline": 11.0,
+          "peak_year": 1974,
+          "peak_value": 8.0,
+          "deviation": -3.0,
+          "deviation_pct": -27.27,
+          "tolerance": 2.0,
+          "recovered": true,
+          "recovery_year": 1976,
+          "recovery_years_from_peak": 2,
+          "last_observation_year": 2024,
+          "last_value": 76.0,
+          "status": "palautui lähtötason tuntumaan"
+        }
+      ],
+      "coverage_count": 1
+    },
+    {
+      "id": "1990-luvun-lama",
+      "title": "1990-luvun lama",
+      "year_start": 1990,
+      "year_end": 1994,
+      "m36_role": "käynnisti sopeutumisen",
+      "m36_rationale": "Sopeutuminen onnistui ICT-vetoisena, mutta työttömyys jäi pysyväksi.",
+      "observations": [
+        {
+          "series_id": "julkmenot_bkt",
+          "name": "Julkiset menot suhteessa BKT:hen",
+          "unit": "%",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            1987,
+            1988,
+            1989
+          ],
+          "baseline": 55.6,
+          "peak_year": 1993,
+          "peak_value": 81.9,
+          "deviation": 26.3,
+          "deviation_pct": 47.3,
+          "tolerance": 2.78,
+          "recovered": true,
+          "recovery_year": 2000,
+          "recovery_years_from_peak": 7,
+          "last_observation_year": 2024,
+          "last_value": 77.7,
+          "status": "palautui lähtötason tuntumaan"
+        },
+        {
+          "series_id": "huoltosuhde_taloud",
+          "name": "Taloudellinen huoltosuhde",
+          "unit": "ei-työllistä / 100 työllistä",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            1987,
+            1988,
+            1989
+          ],
+          "baseline": 111.0,
+          "peak_year": 1993,
+          "peak_value": 170.0,
+          "deviation": 59.0,
+          "deviation_pct": 53.15,
+          "tolerance": 5.55,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 133.0,
+          "status": "ei palautunut seurantaikkunassa"
+        },
+        {
+          "series_id": "gini_kaytettavissa",
+          "name": "Gini-kerroin, käytettävissä oleva tulo",
+          "unit": "indeksi",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            1987,
+            1988,
+            1989
+          ],
+          "baseline": 20.7,
+          "peak_year": 1993,
+          "peak_value": 21.3,
+          "deviation": 0.6,
+          "deviation_pct": 2.9,
+          "tolerance": 1.035,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 28.4,
+          "status": "ei palautunut seurantaikkunassa"
+        },
+        {
+          "series_id": "brief.public_debt_gdp",
+          "name": "Julkinen velka suhteessa BKT:hen (pitkä sarja)",
+          "unit": "%",
+          "reliability": "rekonstruktio",
+          "validation_status": "draft, validoimaton",
+          "baseline_years": [
+            1986,
+            1988
+          ],
+          "baseline": 16.0,
+          "peak_year": 1994,
+          "peak_value": 56.0,
+          "deviation": 40.0,
+          "deviation_pct": 250.0,
+          "tolerance": 2.0,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 76.0,
+          "status": "ei palautunut seurantaikkunassa"
+        }
+      ],
+      "coverage_count": 4
+    },
+    {
+      "id": "pankkikriisi",
+      "title": "Suomen pankkikriisi",
+      "year_start": 1991,
+      "year_end": 1994,
+      "m36_role": "testasi rahoitusjärjestelmän jatkuvuutta ja pakotti uudistamaan sen",
+      "m36_rationale": "Kriisi johti pysyvään rakenteelliseen oppimiseen: murrosatlas kirjaa seurauksiksi rahoitusmarkkinoiden sääntelyn vahvistumisen ja pitkäaikaisvaikutukseksi pankkisektorin riskienhallinnan muutoksen. Häiriö muuttui uudistumiseksi, joten M36-linssissä vaikutus on vahvistava -- vaikka kriisi itsessään oli tuhoisa.",
+      "observations": [
+        {
+          "series_id": "julkmenot_bkt",
+          "name": "Julkiset menot suhteessa BKT:hen",
+          "unit": "%",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            1988,
+            1989,
+            1990
+          ],
+          "baseline": 55.6,
+          "peak_year": 1993,
+          "peak_value": 81.9,
+          "deviation": 26.3,
+          "deviation_pct": 47.3,
+          "tolerance": 2.78,
+          "recovered": true,
+          "recovery_year": 2000,
+          "recovery_years_from_peak": 7,
+          "last_observation_year": 2024,
+          "last_value": 77.7,
+          "status": "palautui lähtötason tuntumaan"
+        },
+        {
+          "series_id": "huoltosuhde_taloud",
+          "name": "Taloudellinen huoltosuhde",
+          "unit": "ei-työllistä / 100 työllistä",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            1988,
+            1989,
+            1990
+          ],
+          "baseline": 111.0,
+          "peak_year": 1993,
+          "peak_value": 170.0,
+          "deviation": 59.0,
+          "deviation_pct": 53.15,
+          "tolerance": 5.55,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 133.0,
+          "status": "ei palautunut seurantaikkunassa"
+        },
+        {
+          "series_id": "gini_kaytettavissa",
+          "name": "Gini-kerroin, käytettävissä oleva tulo",
+          "unit": "indeksi",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            1988,
+            1989,
+            1990
+          ],
+          "baseline": 20.9,
+          "peak_year": 1993,
+          "peak_value": 21.3,
+          "deviation": 0.4,
+          "deviation_pct": 1.91,
+          "tolerance": 1.045,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 28.4,
+          "status": "ei palautunut seurantaikkunassa"
+        },
+        {
+          "series_id": "brief.public_debt_gdp",
+          "name": "Julkinen velka suhteessa BKT:hen (pitkä sarja)",
+          "unit": "%",
+          "reliability": "rekonstruktio",
+          "validation_status": "draft, validoimaton",
+          "baseline_years": [
+            1986,
+            1988,
+            1990
+          ],
+          "baseline": 16.0,
+          "peak_year": 1994,
+          "peak_value": 56.0,
+          "deviation": 40.0,
+          "deviation_pct": 250.0,
+          "tolerance": 2.0,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 76.0,
+          "status": "ei palautunut seurantaikkunassa"
+        }
+      ],
+      "coverage_count": 4
+    },
+    {
+      "id": "finanssikriisi-2008",
+      "title": "Globaali finanssikriisi",
+      "year_start": 2008,
+      "year_end": 2012,
+      "m36_role": "synnytti eurooppalaisen kriisinhallintarakenteen",
+      "m36_rationale": "Pitkäaikaisvaikutukseksi on kirjattu eurooppalaisen pankki- ja kriisinhallinnan vahvistuminen, seurauksiksi EU:n vakausmekanismit ja pankkisääntelyn kiristyminen. Häiriö tuotti pysyvän uudistuksen, joten M36-linssissä suunta on vahvistava.",
+      "observations": [
+        {
+          "series_id": "julkmenot_bkt",
+          "name": "Julkiset menot suhteessa BKT:hen",
+          "unit": "%",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2005,
+            2006,
+            2007
+          ],
+          "baseline": 59.0,
+          "peak_year": 2012,
+          "peak_value": 69.9,
+          "deviation": 10.9,
+          "deviation_pct": 18.47,
+          "tolerance": 2.95,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 77.7,
+          "status": "ei palautunut seurantaikkunassa"
+        },
+        {
+          "series_id": "huoltosuhde_taloud",
+          "name": "Taloudellinen huoltosuhde",
+          "unit": "ei-työllistä / 100 työllistä",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2005,
+            2006,
+            2007
+          ],
+          "baseline": 128.0,
+          "peak_year": 2009,
+          "peak_value": 134.0,
+          "deviation": 6.0,
+          "deviation_pct": 4.69,
+          "tolerance": 6.4,
+          "recovered": true,
+          "recovery_year": 2010,
+          "recovery_years_from_peak": 1,
+          "last_observation_year": 2024,
+          "last_value": 133.0,
+          "status": "palautui lähtötason tuntumaan"
+        },
+        {
+          "series_id": "gini_kaytettavissa",
+          "name": "Gini-kerroin, käytettävissä oleva tulo",
+          "unit": "indeksi",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2005,
+            2006,
+            2007
+          ],
+          "baseline": 28.7,
+          "peak_year": 2012,
+          "peak_value": 26.9,
+          "deviation": -1.8,
+          "deviation_pct": -6.27,
+          "tolerance": 1.435,
+          "recovered": true,
+          "recovery_year": 2017,
+          "recovery_years_from_peak": 5,
+          "last_observation_year": 2024,
+          "last_value": 28.4,
+          "status": "palautui lähtötason tuntumaan"
+        },
+        {
+          "series_id": "velkajarjestely_kokomaa",
+          "name": "Velkajärjestelyhakemukset, koko maa",
+          "unit": "lkm",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2005,
+            2006,
+            2007
+          ],
+          "baseline": 3699.0,
+          "peak_year": 2008,
+          "peak_value": 2816.0,
+          "deviation": -883.0,
+          "deviation_pct": -23.87,
+          "tolerance": 500.0,
+          "recovered": true,
+          "recovery_year": 2010,
+          "recovery_years_from_peak": 2,
+          "last_observation_year": 2025,
+          "last_value": 5350.0,
+          "status": "palautui lähtötason tuntumaan"
+        },
+        {
+          "series_id": "ess_luottamus_eduskunta",
+          "name": "Luottamus eduskuntaan",
+          "unit": "keskiarvo 0–10",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2004,
+            2006
+          ],
+          "baseline": 3.92,
+          "peak_year": 2010,
+          "peak_value": 3.67,
+          "deviation": -0.25,
+          "deviation_pct": -6.38,
+          "tolerance": 0.25,
+          "recovered": true,
+          "recovery_year": 2024,
+          "recovery_years_from_peak": 14,
+          "last_observation_year": 2024,
+          "last_value": 4.125,
+          "status": "palautui lähtötason tuntumaan"
+        },
+        {
+          "series_id": "terveys_bkt",
+          "name": "Terveysmenot suhteessa BKT:hen",
+          "unit": "%",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2005,
+            2006,
+            2007
+          ],
+          "baseline": 6.7,
+          "peak_year": 2012,
+          "peak_value": 7.7,
+          "deviation": 1.0,
+          "deviation_pct": 14.93,
+          "tolerance": 0.335,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2023,
+          "last_value": 7.6,
+          "status": "ei palautunut seurantaikkunassa"
+        },
+        {
+          "series_id": "brief.public_debt_gdp",
+          "name": "Julkinen velka suhteessa BKT:hen (pitkä sarja)",
+          "unit": "%",
+          "reliability": "rekonstruktio",
+          "validation_status": "draft, validoimaton",
+          "baseline_years": [
+            2004,
+            2006
+          ],
+          "baseline": 40.0,
+          "peak_year": 2012,
+          "peak_value": 53.0,
+          "deviation": 13.0,
+          "deviation_pct": 32.5,
+          "tolerance": 2.0,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 76.0,
+          "status": "ei palautunut seurantaikkunassa"
+        }
+      ],
+      "coverage_count": 7
+    },
+    {
+      "id": "eurokriisi-vakausmekanismit-2010",
+      "title": "Eurokriisi ja yhteiset vakausmekanismit",
+      "year_start": 2010,
+      "year_end": 2015,
+      "m36_role": "rakensi rahaliitolle yhteiset rahoitus- ja kriisinhallintamekanismit",
+      "m36_rationale": "EFSF ja myöhemmin pysyvä ESM loivat euroalueelle yhteisen rahoitustuen ja kriisinhallinnan rakenteen, jota täydensivät talouspolitiikan valvonnan ja pankkiunionin uudistukset.",
+      "observations": [
+        {
+          "series_id": "julkmenot_bkt",
+          "name": "Julkiset menot suhteessa BKT:hen",
+          "unit": "%",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2007,
+            2008,
+            2009
+          ],
+          "baseline": 59.2,
+          "peak_year": 2014,
+          "peak_value": 72.4,
+          "deviation": 13.2,
+          "deviation_pct": 22.3,
+          "tolerance": 2.96,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 77.7,
+          "status": "ei palautunut seurantaikkunassa"
+        },
+        {
+          "series_id": "huoltosuhde_taloud",
+          "name": "Taloudellinen huoltosuhde",
+          "unit": "ei-työllistä / 100 työllistä",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2007,
+            2008,
+            2009
+          ],
+          "baseline": 124.0,
+          "peak_year": 2015,
+          "peak_value": 143.0,
+          "deviation": 19.0,
+          "deviation_pct": 15.32,
+          "tolerance": 6.2,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 133.0,
+          "status": "ei palautunut seurantaikkunassa"
+        },
+        {
+          "series_id": "gini_kaytettavissa",
+          "name": "Gini-kerroin, käytettävissä oleva tulo",
+          "unit": "indeksi",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2007,
+            2008,
+            2009
+          ],
+          "baseline": 28.4,
+          "peak_year": 2012,
+          "peak_value": 26.9,
+          "deviation": -1.5,
+          "deviation_pct": -5.28,
+          "tolerance": 1.42,
+          "recovered": true,
+          "recovery_year": 2013,
+          "recovery_years_from_peak": 1,
+          "last_observation_year": 2024,
+          "last_value": 28.4,
+          "status": "palautui lähtötason tuntumaan"
+        },
+        {
+          "series_id": "velkajarjestely_kokomaa",
+          "name": "Velkajärjestelyhakemukset, koko maa",
+          "unit": "lkm",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2007,
+            2008,
+            2009
+          ],
+          "baseline": 2923.0,
+          "peak_year": 2015,
+          "peak_value": 4277.0,
+          "deviation": 1354.0,
+          "deviation_pct": 46.32,
+          "tolerance": 500.0,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2025,
+          "last_value": 5350.0,
+          "status": "ei palautunut seurantaikkunassa"
+        },
+        {
+          "series_id": "ess_luottamus_eduskunta",
+          "name": "Luottamus eduskuntaan",
+          "unit": "keskiarvo 0–10",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2006,
+            2008
+          ],
+          "baseline": 3.9475,
+          "peak_year": 2014,
+          "peak_value": 3.601,
+          "deviation": -0.3465,
+          "deviation_pct": -8.78,
+          "tolerance": 0.25,
+          "recovered": true,
+          "recovery_year": 2024,
+          "recovery_years_from_peak": 10,
+          "last_observation_year": 2024,
+          "last_value": 4.125,
+          "status": "palautui lähtötason tuntumaan"
+        },
+        {
+          "series_id": "terveys_bkt",
+          "name": "Terveysmenot suhteessa BKT:hen",
+          "unit": "%",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2007,
+            2008,
+            2009
+          ],
+          "baseline": 6.7,
+          "peak_year": 2013,
+          "peak_value": 7.9,
+          "deviation": 1.2,
+          "deviation_pct": 17.91,
+          "tolerance": 0.335,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2023,
+          "last_value": 7.6,
+          "status": "ei palautunut seurantaikkunassa"
+        },
+        {
+          "series_id": "brief.public_debt_gdp",
+          "name": "Julkinen velka suhteessa BKT:hen (pitkä sarja)",
+          "unit": "%",
+          "reliability": "rekonstruktio",
+          "validation_status": "draft, validoimaton",
+          "baseline_years": [
+            2006,
+            2008
+          ],
+          "baseline": 35.0,
+          "peak_year": 2014,
+          "peak_value": 59.0,
+          "deviation": 24.0,
+          "deviation_pct": 68.57,
+          "tolerance": 2.0,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 76.0,
+          "status": "ei palautunut seurantaikkunassa"
+        }
+      ],
+      "coverage_count": 7
+    },
+    {
+      "id": "covid-19",
+      "title": "Covid-19-pandemia",
+      "year_start": 2020,
+      "year_end": 2022,
+      "m36_role": "turvasi jatkuvuutta mutta vaati oppimista",
+      "m36_rationale": "Jatkuvuus turvattiin ja etäosallistuminen vakiintui pysyväksi.",
+      "observations": [
+        {
+          "series_id": "julkmenot_bkt",
+          "name": "Julkiset menot suhteessa BKT:hen",
+          "unit": "%",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2017,
+            2018,
+            2019
+          ],
+          "baseline": 66.6,
+          "peak_year": 2020,
+          "peak_value": 72.4,
+          "deviation": 5.8,
+          "deviation_pct": 8.71,
+          "tolerance": 3.33,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 77.7,
+          "status": "seuranta kesken"
+        },
+        {
+          "series_id": "huoltosuhde_taloud",
+          "name": "Taloudellinen huoltosuhde",
+          "unit": "ei-työllistä / 100 työllistä",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2017,
+            2018,
+            2019
+          ],
+          "baseline": 133.0,
+          "peak_year": 2020,
+          "peak_value": 142.0,
+          "deviation": 9.0,
+          "deviation_pct": 6.77,
+          "tolerance": 6.65,
+          "recovered": true,
+          "recovery_year": 2021,
+          "recovery_years_from_peak": 1,
+          "last_observation_year": 2024,
+          "last_value": 133.0,
+          "status": "palautui lähtötason tuntumaan"
+        },
+        {
+          "series_id": "gini_kaytettavissa",
+          "name": "Gini-kerroin, käytettävissä oleva tulo",
+          "unit": "indeksi",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2017,
+            2018,
+            2019
+          ],
+          "baseline": 27.9,
+          "peak_year": 2021,
+          "peak_value": 29.1,
+          "deviation": 1.2,
+          "deviation_pct": 4.3,
+          "tolerance": 1.395,
+          "recovered": true,
+          "recovery_year": 2022,
+          "recovery_years_from_peak": 1,
+          "last_observation_year": 2024,
+          "last_value": 28.4,
+          "status": "palautui lähtötason tuntumaan"
+        },
+        {
+          "series_id": "velkajarjestely_kokomaa",
+          "name": "Velkajärjestelyhakemukset, koko maa",
+          "unit": "lkm",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2017,
+            2018,
+            2019
+          ],
+          "baseline": 4212.0,
+          "peak_year": 2021,
+          "peak_value": 3816.0,
+          "deviation": -396.0,
+          "deviation_pct": -9.4,
+          "tolerance": 500.0,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2025,
+          "last_value": 5350.0,
+          "status": "ei palautunut seurantaikkunassa"
+        },
+        {
+          "series_id": "ess_luottamus_eduskunta",
+          "name": "Luottamus eduskuntaan",
+          "unit": "keskiarvo 0–10",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2016,
+            2018
+          ],
+          "baseline": 3.6965,
+          "peak_year": 2020,
+          "peak_value": 4.226,
+          "deviation": 0.5295,
+          "deviation_pct": 14.32,
+          "tolerance": 0.25,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 4.125,
+          "status": "seuranta kesken"
+        },
+        {
+          "series_id": "terveys_bkt",
+          "name": "Terveysmenot suhteessa BKT:hen",
+          "unit": "%",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2017,
+            2018,
+            2019
+          ],
+          "baseline": 7.1,
+          "peak_year": 2021,
+          "peak_value": 7.8,
+          "deviation": 0.7,
+          "deviation_pct": 9.86,
+          "tolerance": 0.355,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2023,
+          "last_value": 7.6,
+          "status": "seuranta kesken"
+        },
+        {
+          "series_id": "brief.public_debt_gdp",
+          "name": "Julkinen velka suhteessa BKT:hen (pitkä sarja)",
+          "unit": "%",
+          "reliability": "rekonstruktio",
+          "validation_status": "draft, validoimaton",
+          "baseline_years": [
+            2016,
+            2018
+          ],
+          "baseline": 63.5,
+          "peak_year": 2020,
+          "peak_value": 75.0,
+          "deviation": 11.5,
+          "deviation_pct": 18.11,
+          "tolerance": 3.175,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 76.0,
+          "status": "seuranta kesken"
+        }
+      ],
+      "coverage_count": 7
+    },
+    {
+      "id": "ukrainan-sota-energiakriisi",
+      "title": "Venäjän hyökkäyssota ja energiakriisi",
+      "year_start": 2022,
+      "year_end": 2026,
+      "m36_role": "käynnisti turvallisuusuudistuksen",
+      "m36_rationale": "Energialähteet hajautettiin nopeasti ja turvallisuusratkaisu uudistettiin.",
+      "observations": [
+        {
+          "series_id": "julkmenot_bkt",
+          "name": "Julkiset menot suhteessa BKT:hen",
+          "unit": "%",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2019,
+            2020,
+            2021
+          ],
+          "baseline": 70.0,
+          "peak_year": 2024,
+          "peak_value": 77.7,
+          "deviation": 7.7,
+          "deviation_pct": 11.0,
+          "tolerance": 3.5,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 77.7,
+          "status": "seuranta kesken"
+        },
+        {
+          "series_id": "huoltosuhde_taloud",
+          "name": "Taloudellinen huoltosuhde",
+          "unit": "ei-työllistä / 100 työllistä",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2019,
+            2020,
+            2021
+          ],
+          "baseline": 133.0,
+          "peak_year": 2022,
+          "peak_value": 130.0,
+          "deviation": -3.0,
+          "deviation_pct": -2.26,
+          "tolerance": 6.65,
+          "recovered": true,
+          "recovery_year": 2023,
+          "recovery_years_from_peak": 1,
+          "last_observation_year": 2024,
+          "last_value": 133.0,
+          "status": "palautui lähtötason tuntumaan"
+        },
+        {
+          "series_id": "gini_kaytettavissa",
+          "name": "Gini-kerroin, käytettävissä oleva tulo",
+          "unit": "indeksi",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2019,
+            2020,
+            2021
+          ],
+          "baseline": 27.9,
+          "peak_year": 2022,
+          "peak_value": 28.6,
+          "deviation": 0.7,
+          "deviation_pct": 2.51,
+          "tolerance": 1.395,
+          "recovered": true,
+          "recovery_year": 2023,
+          "recovery_years_from_peak": 1,
+          "last_observation_year": 2024,
+          "last_value": 28.4,
+          "status": "palautui lähtötason tuntumaan"
+        },
+        {
+          "series_id": "velkajarjestely_kokomaa",
+          "name": "Velkajärjestelyhakemukset, koko maa",
+          "unit": "lkm",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2019,
+            2020,
+            2021
+          ],
+          "baseline": 3816.0,
+          "peak_year": 2025,
+          "peak_value": 5350.0,
+          "deviation": 1534.0,
+          "deviation_pct": 40.2,
+          "tolerance": 500.0,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2025,
+          "last_value": 5350.0,
+          "status": "seuranta kesken"
+        },
+        {
+          "series_id": "terveys_bkt",
+          "name": "Terveysmenot suhteessa BKT:hen",
+          "unit": "%",
+          "reliability": "mitattu",
+          "validation_status": "lähdekannan mukainen",
+          "baseline_years": [
+            2019,
+            2020,
+            2021
+          ],
+          "baseline": 7.7,
+          "peak_year": 2022,
+          "peak_value": 7.5,
+          "deviation": -0.2,
+          "deviation_pct": -2.6,
+          "tolerance": 0.385,
+          "recovered": true,
+          "recovery_year": 2023,
+          "recovery_years_from_peak": 1,
+          "last_observation_year": 2023,
+          "last_value": 7.6,
+          "status": "palautui lähtötason tuntumaan"
+        },
+        {
+          "series_id": "brief.public_debt_gdp",
+          "name": "Julkinen velka suhteessa BKT:hen (pitkä sarja)",
+          "unit": "%",
+          "reliability": "rekonstruktio",
+          "validation_status": "draft, validoimaton",
+          "baseline_years": [
+            2018,
+            2020
+          ],
+          "baseline": 69.5,
+          "peak_year": 2024,
+          "peak_value": 76.0,
+          "deviation": 6.5,
+          "deviation_pct": 9.35,
+          "tolerance": 3.475,
+          "recovered": false,
+          "recovery_year": null,
+          "recovery_years_from_peak": null,
+          "last_observation_year": 2024,
+          "last_value": 76.0,
+          "status": "seuranta kesken"
+        }
+      ],
+      "coverage_count": 6
+    }
+  ]
+}
