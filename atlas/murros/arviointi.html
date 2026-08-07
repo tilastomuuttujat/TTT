@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Murroskartta · Oma arviointimatriisi</title>
+<meta name="description" content="Linssien oletusarvot ja käyttäjän oma versio.">
+<style>
+:root{color-scheme:light dark;--bg:#f2ede3;--bg2:#e9e2d4;--paper:#fffdf8;--paper2:#faf6ee;--ink:#15293c;--ink2:#3c4d5e;--muted:#6d7883;--line:#d6cec0;--soft:#ece5d9;--hot:#ad4128;--ok:#2f6b4f;--shadow:0 1px 2px rgba(24,32,40,.05),0 18px 46px -22px rgba(24,32,40,.28);--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Inter,sans-serif}
+@media(prefers-color-scheme:dark){:root{--bg:#0e161e;--bg2:#121d27;--paper:#17222c;--paper2:#1c2833;--ink:#f0f2ee;--ink2:#cfd7dd;--muted:#9fa9b2;--line:#33414c;--soft:#22303b;--hot:#e8795a;--ok:#5fbf8f;--shadow:0 20px 50px -28px rgba(0,0,0,.9)}}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:var(--sans);color:var(--ink);background:linear-gradient(180deg,var(--bg),var(--bg2))}
+button,input,select,textarea{font:inherit;color:inherit}
+.app{padding:20px 18px 42px}
+.top{max-width:1800px;margin:0 auto 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:end}
+.kicker{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--hot)}
+h1{font:400 clamp(28px,4vw,50px)/1.03 var(--serif);margin:7px 0}
+.lead{max-width:78ch;margin:0;color:var(--ink2);font-size:13px;line-height:1.55}
+.stats{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;align-items:center}
+.badge{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 10px;font-size:11px;color:var(--muted);white-space:nowrap}
+.badge.ok{color:var(--ok)}.badge.warn{color:var(--hot)}
+.toolbar{max-width:1800px;margin:0 auto 12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px;background:color-mix(in srgb,var(--paper) 92%,transparent);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);position:sticky;top:8px;z-index:40}
+.toolbar input,.toolbar select{border:1px solid var(--line);background:var(--paper2);border-radius:10px;padding:8px 10px}
+.toolbar input[type=search]{min-width:220px;flex:1}
+.btn{border:1px solid var(--line);background:var(--paper2);border-radius:999px;padding:8px 12px;cursor:pointer}
+.btn:hover{border-color:var(--ink)}.btn.hot{background:var(--hot);border-color:var(--hot);color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.spacer{flex:1}
+.legend{max-width:1800px;margin:0 auto 10px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:10px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.swatch{width:20px;height:20px;border-radius:6px;border:1px solid color-mix(in srgb,var(--ink) 16%,var(--line));display:grid;place-items:center;font-size:10px;font-weight:800}
+.matrix-shell{max-width:1800px;margin:0 auto;border:1px solid var(--line);border-radius:16px;background:var(--paper);box-shadow:var(--shadow);overflow:auto;max-height:calc(100vh - 260px)}
+table{border-collapse:separate;border-spacing:0;width:max-content;min-width:100%;table-layout:fixed}
+th,td{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:0}
+thead th{position:sticky;top:0;z-index:20;background:var(--paper2)}
+.corner{left:0;z-index:32!important;width:300px;min-width:300px;text-align:left;padding:10px 12px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.lens-head{width:44px;min-width:44px;height:150px;vertical-align:bottom}
+.lens-head>div{height:143px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:7px}
+.lens-label{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;font-size:10px;font-weight:750;cursor:help}
+.lens-id{color:var(--hot);font-weight:900;margin-bottom:5px}
+.row-head{position:sticky;left:0;z-index:12;width:300px;min-width:300px;max-width:300px;background:var(--paper);height:32px}
+.row-label{height:32px;display:flex;align-items:center;gap:8px;padding:0 10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px;font-weight:600}
+.year{font-variant-numeric:tabular-nums;color:var(--muted);font-size:9px;min-width:31px}
+.matrix-row:hover .row-head,.matrix-row:hover td{background:color-mix(in srgb,var(--hot) 4%,var(--paper))}
+.cell{width:52px;min-width:52px;height:36px;background:var(--paper);text-align:center}
+.cell-editor{height:35px;display:grid;grid-template-columns:15px 1fr;align-items:stretch}
+.stepper{display:grid;grid-template-rows:1fr 1fr;border-right:1px solid color-mix(in srgb,var(--ink) 12%,var(--line))}
+.step{border:0;background:transparent;padding:0;font-size:10px;font-weight:900;line-height:1;cursor:pointer;color:var(--muted)}
+.step:first-child{border-bottom:1px solid color-mix(in srgb,var(--ink) 10%,var(--line))}
+.step:hover:not(:disabled){background:var(--soft);color:var(--ink)}
+.step:disabled{cursor:not-allowed;opacity:.18}
+.score{position:relative;width:100%;height:35px;border:0;background:transparent;font-weight:850;font-size:12px;font-variant-numeric:tabular-nums;cursor:default}
+.score.changed{box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--hot) 64%,transparent)}
+.score.changed::after{content:attr(data-delta);position:absolute;right:2px;bottom:1px;font-size:7px;line-height:1;font-weight:900;opacity:.85}
+.score.scenario::before{content:"";position:absolute;left:2px;top:2px;width:4px;height:4px;border-radius:50%;background:currentColor;opacity:.6}
+.score.empty{color:var(--muted);font-weight:400}
+.score[data-value="0"]{background:color-mix(in srgb,#7f1d1d 82%,var(--paper));color:#fff}
+.score[data-value="1"]{background:color-mix(in srgb,#b33a2b 68%,var(--paper));color:#fff}
+.score[data-value="2"]{background:color-mix(in srgb,#d77a52 45%,var(--paper));color:var(--ink)}
+.score[data-value="3"]{background:var(--soft);color:var(--ink)}
+.score[data-value="4"]{background:color-mix(in srgb,#7ea879 42%,var(--paper));color:var(--ink)}
+.score[data-value="5"]{background:color-mix(in srgb,#397a57 66%,var(--paper));color:#fff}
+.score[data-value="6"]{background:color-mix(in srgb,#185a3b 84%,var(--paper));color:#fff}
+.hidden{display:none!important}
+.empty-state{padding:40px;text-align:center;color:var(--muted)}
+.auth{max-width:520px;margin:60px auto;padding:28px;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:var(--shadow)}
+.auth h2{font:400 26px var(--serif);margin:0 0 6px}
+.auth p{color:var(--ink2);font-size:13px;line-height:1.55;margin:0 0 16px}
+.auth label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.08em}
+.auth input{width:100%;border:1px solid var(--line);background:var(--paper2);border-radius:10px;padding:11px 12px;margin-bottom:12px}
+.auth .row{display:flex;gap:8px;flex-wrap:wrap}
+.notice{font-size:12px;line-height:1.5;padding:11px 13px;border-radius:10px;border-left:3px solid var(--hot);background:color-mix(in srgb,var(--hot) 7%,transparent);color:var(--ink2);margin:14px 0 0}
+.notice.ok{border-left-color:var(--ok);background:color-mix(in srgb,var(--ok) 8%,transparent)}
+@media(max-width:700px){.top{grid-template-columns:1fr}.stats{justify-content:flex-start}.corner,.row-head{width:210px;min-width:210px;max-width:210px}.matrix-shell{max-height:calc(100vh - 300px)}}
+</style>
+</head>
+<body>
+
+<!-- Kirjautumisnäkymä -->
+<section class="auth" id="authView">
+  <div class="kicker">Murroskartta</div>
+  <h2>Oma arviointimatriisi</h2>
+  <p>Järjestelmän lähtöarvot ovat kaikkien luettavissa. Omien muutosten
+     tallentaminen vaatii kirjautumisen, jotta versiosi säilyy laitteesta
+     riippumatta eikä näy muille.</p>
+  <label for="email">Sähköposti</label>
+  <input id="email" type="email" autocomplete="email" placeholder="nimi@esimerkki.fi">
+  <div class="row">
+    <button class="btn hot" id="magicBtn" type="button">Lähetä kirjautumislinkki</button>
+    <button class="btn" id="anonBtn" type="button">Jatka kirjautumatta</button>
+    <button class="btn" id="testBtn" type="button">Testaa yhteys</button>
+  </div>
+  <div id="authMsg"></div>
+  <div id="diag" class="notice" style="display:none"></div>
+</section>
+
+<main class="app hidden" id="appView">
+<header class="top">
+  <div>
+    <div class="kicker">Murroskartta · asiantuntija-arviointi</div>
+    <h1>Oma arviointimatriisi</h1>
+    <p class="lead">Rivit ovat murroksia ja sarakkeet selityslinssejä. Solussa näkyy
+      käytössä oleva arvo asteikolla 0–6, joka vastaa suunta-arvoa −3…+3.
+      Lähtöarvot tulevat lähteistetystä aineistosta. Muuta arvoa solun reunan
+      + ja − -painikkeilla; vain poikkeama tallennetaan, joten lähtöarvon
+      päivittyessä oma versiosi pysyy mukana. Klikkaa muutettua solua
+      palauttaaksesi sen lähtöarvoon.</p>
+  </div>
+  <div class="stats">
+    <span class="badge" id="rowCount">– murrosta</span>
+    <span class="badge" id="progressBadge">0 muutettu</span>
+    <span class="badge ok" id="saveBadge">Tallennettu</span>
+    <span class="badge" id="userBadge"></span>
+  </div>
+</header>
+
+<section class="toolbar" aria-label="Työkalut">
+  <select id="matrixSelect" aria-label="Valitse versio"></select>
+  <button class="btn" id="newMatrixBtn" type="button">Uusi versio</button>
+  <button class="btn" id="renameBtn" type="button">Nimeä</button>
+  <button class="btn" id="deleteBtn" type="button">Poista</button>
+  <input id="search" type="search" placeholder="Hae murrosta…" aria-label="Hae murrosta">
+  <select id="period" aria-label="Rajaa aikakausi">
+    <option value="all">Kaikki vuodet</option>
+    <option value="1800-1899">1800-luku</option>
+    <option value="1900-1949">1900–1949</option>
+    <option value="1950-1989">1950–1989</option>
+    <option value="1990-2025">1990–2025</option>
+    <option value="2026-2100">Tulevaisuus</option>
+  </select>
+  <select id="changed" aria-label="Rajaa muutokset">
+    <option value="all">Kaikki rivit</option>
+    <option value="changed">Vain muutetut</option>
+    <option value="untouched">Vain koskemattomat</option>
+  </select>
+  <span class="spacer"></span>
+  <button class="btn" id="exportBtn" type="button">Vie JSON</button>
+  <button class="btn" id="resetBtn" type="button">Palauta lähtöarvoihin</button>
+  <button class="btn" id="logoutBtn" type="button">Kirjaudu ulos</button>
+</section>
+
+<div class="legend" aria-label="Asteikon selite">
+  <span><i class="swatch" data-v="0">0</i> −3 voimakkaasti heikentävä</span>
+  <span><i class="swatch" data-v="1">1</i> −2</span>
+  <span><i class="swatch" data-v="2">2</i> −1</span>
+  <span><i class="swatch" data-v="3">3</i> 0 ristiriitainen</span>
+  <span><i class="swatch" data-v="4">4</i> +1</span>
+  <span><i class="swatch" data-v="5">5</i> +2</span>
+  <span><i class="swatch" data-v="6">6</i> +3 voimakkaasti vahvistava</span>
+  <span style="margin-left:10px">· pieni piste solun kulmassa = tulevaisuusoletus, ei havainto</span>
+</div>
+
+<section class="matrix-shell" id="matrixShell" aria-label="Murros–linssi-arviointimatriisi">
+  <div class="empty-state">Ladataan…</div>
+</section>
+</main>
+
+<script>
+/* Virheet näkyviin ennen kuin mitään muuta ladataan. Aiemmin epäonnistunut
+   moduulilataus jätti sivun mykäksi: painikkeet eivät saaneet kuuntelijoita
+   eikä käyttäjä nähnyt syytä. */
+function showDiag(text, fatal) {
+  const el = document.getElementById("diag");
+  if (!el) return;
+  el.style.display = "block";
+  el.style.borderLeftColor = fatal ? "var(--hot)" : "var(--ok)";
+  el.textContent = text;
+}
+window.addEventListener("error", (e) => {
+  showDiag("Sivun skripti kaatui: " + (e.message || e.type) +
+    (e.filename ? " (" + e.filename + ")" : ""), true);
+});
+window.addEventListener("unhandledrejection", (e) => {
+  showDiag("Käsittelemätön virhe: " + (e.reason?.message || e.reason), true);
+});
+if (location.protocol === "file:") {
+  showDiag("Sivu on avattu file://-osoitteena. Kirjautuminen ei toimi näin, " +
+    "koska selain estää verkkopyynnöt paikallisesta tiedostosta. Avaa sivu " +
+    "verkkopalvelimen kautta (esim. http://localhost:8000).", true);
+}
+</script>
+
+<script type="module">
+/* Kirjasto haetaan CDN:stä. Jos ensisijainen ei vastaa, kokeillaan toista --
+   muuten yksi verkkokatko tekee koko sivusta toimimattoman. */
+let createClient;
+try {
+  ({ createClient } = await import("https://esm.sh/@supabase/supabase-js@2"));
+} catch (e1) {
+  try {
+    ({ createClient } = await import("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm"));
+  } catch (e2) {
+    showDiag("Supabase-kirjastoa ei saatu ladattua kummastakaan lähteestä (" +
+      e1.message + " / " + e2.message + "). Tarkista verkkoyhteys tai " +
+      "mahdollinen sisällönestäjä.", true);
+    throw e2;
+  }
+}
+
+const SUPABASE_URL = "https://zzbubbrsgiqsvsovkkmf.supabase.co";
+const SUPABASE_KEY = "sb_publishable_YNqxZI4Oj-DSjVBoTKhQ2Q_4DchUIBb";
+
+const db = createClient(SUPABASE_URL, SUPABASE_KEY, {
+  db: { schema: "arviointi" },
+  auth: { persistSession: true, autoRefreshToken: true },
+});
+
+const LENS_NAMES = {
+  M21: "Arvon siirtyminen", M27: "Riskin siirtyminen", M28: "Vastuun siirtyminen",
+  M33: "Ongelmanratkaisu", M34: "Kustannuksen reitti", M35: "Ylläpito ja rapautuminen",
+  M36: "Häiriöstä uudistumiseen", M37: "Oikeutuksen ketju",
+  M38: "Kyvykkyyden uusiutuminen", M39: "Sukupolvien jatkuvuus",
+};
+
+const state = {
+  session: null, baselines: [], lenses: [], items: [],
+  matrices: [], matrixId: null, overrides: new Map(),
+  filters: { search: "", period: "all", changed: "all" },
+  saveTimer: null, pending: new Map(),
+};
+
+const $ = (s) => document.querySelector(s);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+const key = (p, l) => p + "|" + l;
+// Tietokannassa suunta on -3..3, käyttöliittymässä 0..6.
+const toCell = (d) => clamp(d + 3, 0, 6);
+const toDirection = (v) => clamp(v, 0, 6) - 3;
+
+function setMsg(el, text, ok) {
+  el.innerHTML = text ? `<div class="notice${ok ? " ok" : ""}">${esc(text)}</div>` : "";
+}
+
+/* ---------- Kirjautuminen ---------- */
+
+async function initAuth() {
+  const { data } = await db.auth.getSession();
+  state.session = data.session;
+  db.auth.onAuthStateChange((_e, session) => {
+    const was = !!state.session;
+    state.session = session;
+    if (!was && session) start();
+    if (was && !session) location.reload();
+  });
+  if (state.session) start(); else showAuth();
+}
+
+function showAuth() {
+  $("#authView").classList.remove("hidden");
+  $("#appView").classList.add("hidden");
+  showDiag("Yhteys Supabaseen muodostettu. Valitse kirjautumistapa.", false);
+}
+
+$("#magicBtn").addEventListener("click", async () => {
+  const email = $("#email").value.trim();
+  if (!email) return setMsg($("#authMsg"), "Anna sähköpostiosoite.");
+  $("#magicBtn").disabled = true;
+  const { error } = await db.auth.signInWithOtp({
+    email, options: { emailRedirectTo: location.href.split("#")[0] },
+  });
+  $("#magicBtn").disabled = false;
+  if (error) {
+    setMsg($("#authMsg"), `Lähetys epäonnistui: ${error.message}`);
+    showDiag("Auth-virhe: " + error.message +
+      " · Paluuosoite jonka sivu pyysi: " + location.href.split("#")[0] +
+      " · Tämän osoitteen on oltava Supabasen Redirect URLs -listassa.", true);
+  } else {
+    setMsg($("#authMsg"),
+      "Kirjautumislinkki lähetettiin osoitteeseen " + email +
+      ". Avaa se samalla selaimella. Tarkista myös roskapostikansio.", true);
+  }
+});
+
+$("#anonBtn").addEventListener("click", async () => {
+  $("#anonBtn").disabled = true;
+  const { error } = await db.auth.signInAnonymously();
+  $("#anonBtn").disabled = false;
+  if (error) {
+    setMsg($("#authMsg"),
+      `Kirjautumaton käyttö ei onnistunut: ${error.message}`);
+    showDiag("Anonyymi kirjautuminen on todennäköisesti pois päältä. " +
+      "Supabase → Authentication → Sign In / Providers → Anonymous sign-ins → Enable. " +
+      "Tekninen virhe: " + error.message, true);
+  }
+});
+
+$("#logoutBtn").addEventListener("click", async () => {
+  await db.auth.signOut();
+});
+
+/* Yhteystesti erottaa toisistaan kolme eri vikaa, jotka näyttävät
+   käyttäjälle samalta: selain estää pyynnön, palvelin ei vastaa, tai
+   pyyntö menee perille mutta oikeudet puuttuvat. */
+$("#testBtn").addEventListener("click", async () => {
+  const btn = $("#testBtn");
+  btn.disabled = true;
+  showDiag("Testataan yhteyttä…", false);
+  const url = SUPABASE_URL + "/rest/v1/lens_baselines?select=lens_id&limit=1";
+  try {
+    const res = await fetch(url, {
+      headers: {
+        apikey: SUPABASE_KEY,
+        Authorization: "Bearer " + SUPABASE_KEY,
+        "Accept-Profile": "arviointi",
+      },
+    });
+    const text = await res.text();
+    if (res.ok) {
+      showDiag(
+        "Yhteys toimii. Palvelin vastasi " + res.status + " ja palautti dataa: " +
+        text.slice(0, 120) + " · Vika on siis kirjautumisasetuksissa, ei verkossa.",
+        false);
+    } else {
+      showDiag(
+        "Palvelin vastasi mutta hylkäsi pyynnön: HTTP " + res.status + " · " +
+        text.slice(0, 200), true);
+    }
+  } catch (err) {
+    showDiag(
+      "Pyyntö ei lähtenyt selaimesta lainkaan (" + err.message + "). " +
+      "Tämä ei ole Supabasen asetusvika. Nykyinen osoite on " + location.origin +
+      ". Jos tämä on sovelluksen sisäinen esikatselu (esim. Working Copy, " +
+      "localhost-portti), sen selainikkuna estää ulkopuoliset verkkopyynnöt. " +
+      "Avaa sama sivu tavallisessa Safarissa julkaistusta osoitteesta.", true);
+  }
+  btn.disabled = false;
+});
+
+/* ---------- Data ---------- */
+
+async function loadBaselines() {
+  const { data, error } = await db.from("lens_baselines")
+    .select("phenomenon_id,lens_id,direction,role,confidence,evidence_type,source_count,year,title")
+    .order("year", { ascending: true });
+  if (error) throw error;
+  state.baselines = data;
+  state.lenses = [...new Set(data.map((r) => r.lens_id))].sort();
+  const seen = new Map();
+  for (const r of data) {
+    if (!seen.has(r.phenomenon_id))
+      seen.set(r.phenomenon_id, { id: r.phenomenon_id, title: r.title, year: r.year, cells: new Map() });
+    seen.get(r.phenomenon_id).cells.set(r.lens_id, r);
+  }
+  state.items = [...seen.values()].sort((a, b) => a.year - b.year || a.title.localeCompare(b.title, "fi"));
+}
+
+async function loadMatrices() {
+  const { data, error } = await db.from("matrices")
+    .select("id,name,is_default,updated_at").order("created_at");
+  if (error) throw error;
+  state.matrices = data;
+  if (!data.length) {
+    const created = await db.from("matrices")
+      .insert({ name: "Oma arviointi", is_default: true }).select().single();
+    if (created.error) throw created.error;
+    state.matrices = [created.data];
+  }
+  state.matrixId = state.matrixId && state.matrices.some((m) => m.id === state.matrixId)
+    ? state.matrixId : state.matrices[0].id;
+}
+
+async function loadOverrides() {
+  const { data, error } = await db.from("overrides")
+    .select("phenomenon_id,lens_id,user_direction").eq("matrix_id", state.matrixId);
+  if (error) throw error;
+  state.overrides = new Map(data.map((r) => [key(r.phenomenon_id, r.lens_id), r.user_direction]));
+}
+
+/* ---------- Tallennus ---------- */
+
+function scheduleSave() {
+  clearTimeout(state.saveTimer);
+  $("#saveBadge").textContent = "Tallennetaan…";
+  $("#saveBadge").className = "badge warn";
+  state.saveTimer = setTimeout(flush, 400);
+}
+
+async function flush() {
+  if (!state.pending.size) return;
+  const batch = [...state.pending.values()];
+  state.pending.clear();
+  const upserts = batch.filter((b) => b.direction !== null).map((b) => ({
+    matrix_id: state.matrixId, phenomenon_id: b.p, lens_id: b.l, user_direction: b.direction,
+  }));
+  const deletes = batch.filter((b) => b.direction === null);
+  try {
+    if (upserts.length) {
+      const { error } = await db.from("overrides")
+        .upsert(upserts, { onConflict: "matrix_id,phenomenon_id,lens_id" });
+      if (error) throw error;
+    }
+    for (const d of deletes) {
+      const { error } = await db.from("overrides").delete()
+        .eq("matrix_id", state.matrixId).eq("phenomenon_id", d.p).eq("lens_id", d.l);
+      if (error) throw error;
+    }
+    $("#saveBadge").textContent = `Tallennettu ${new Date().toLocaleTimeString("fi-FI", { hour: "2-digit", minute: "2-digit" })}`;
+    $("#saveBadge").className = "badge ok";
+  } catch (err) {
+    // Epäonnistunut tallennus ei saa jäädä huomaamatta: muutokset ovat
+    // yhä näkyvissä, mutta käyttäjän on tiedettävä ettei niitä tallennettu.
+    $("#saveBadge").textContent = "Tallennus epäonnistui";
+    $("#saveBadge").className = "badge warn";
+    console.error(err);
+    alert(`Tallennus epäonnistui: ${err.message}\nMuutokset näkyvät ruudulla mutta eivät ole tallessa.`);
+  }
+}
+
+function setValue(p, l, cellValue) {
+  const base = state.baselines.find((b) => b.phenomenon_id === p && b.lens_id === l);
+  if (!base) return;
+  const direction = toDirection(cellValue);
+  if (direction === base.direction) {
+    state.overrides.delete(key(p, l));
+    state.pending.set(key(p, l), { p, l, direction: null });
+  } else {
+    state.overrides.set(key(p, l), direction);
+    state.pending.set(key(p, l), { p, l, direction });
+  }
+  scheduleSave();
+}
+
+/* ---------- Renderöinti ---------- */
+
+function effective(p, l, base) {
+  const o = state.overrides.get(key(p, l));
+  return o === undefined ? base.direction : o;
+}
+
+function visibleItems() {
+  const q = state.filters.search.trim().toLocaleLowerCase("fi");
+  return state.items.filter((item) => {
+    if (q && !item.title.toLocaleLowerCase("fi").includes(q) &&
+        !item.id.toLocaleLowerCase("fi").includes(q)) return false;
+    if (state.filters.period !== "all") {
+      const [a, b] = state.filters.period.split("-").map(Number);
+      if (!(item.year >= a && item.year <= b)) return false;
+    }
+    if (state.filters.changed !== "all") {
+      const hasChange = [...item.cells.keys()].some((l) => state.overrides.has(key(item.id, l)));
+      if (state.filters.changed === "changed" && !hasChange) return false;
+      if (state.filters.changed === "untouched" && hasChange) return false;
+    }
+    return true;
+  });
+}
+
+function render() {
+  const rows = visibleItems();
+  $("#rowCount").textContent = `${rows.length} murrosta`;
+  $("#progressBadge").textContent = `${state.overrides.size} muutettu`;
+
+  const head = state.lenses.map((l) =>
+    `<th class="lens-head" scope="col"><div><span class="lens-label" title="${esc(LENS_NAMES[l] || l)}"><span class="lens-id">${esc(l)}</span> · ${esc(LENS_NAMES[l] || "")}</span></div></th>`).join("");
+
+  const body = rows.map((item) => {
+    const cells = state.lenses.map((l) => {
+      const base = item.cells.get(l);
+      if (!base) return `<td class="cell"><div class="cell-editor"><div class="stepper"><button class="step" disabled>+</button><button class="step" disabled>−</button></div><button class="score empty" disabled>·</button></div></td>`;
+      const dir = effective(item.id, l, base);
+      const value = toCell(dir);
+      const delta = dir - base.direction;
+      const changed = delta !== 0;
+      const scenario = base.evidence_type === "scenario_assumption";
+      const title = `${LENS_NAMES[l] || l}\n${base.role || ""}\nLähtöarvo ${base.direction >= 0 ? "+" : ""}${base.direction}` +
+        (changed ? `\nOma arvo ${dir >= 0 ? "+" : ""}${dir} (ero ${delta > 0 ? "+" : ""}${delta})` : "") +
+        `\nVarmuus: ${base.confidence || "?"} · lähteitä: ${base.source_count ?? 0}` +
+        (scenario ? "\nTulevaisuusoletus, ei havainto" : "");
+      return `<td class="cell"><div class="cell-editor" title="${esc(title)}">
+        <div class="stepper">
+          <button class="step" data-act="up" data-p="${esc(item.id)}" data-l="${esc(l)}" aria-label="Suurenna" ${value >= 6 ? "disabled" : ""}>+</button>
+          <button class="step" data-act="down" data-p="${esc(item.id)}" data-l="${esc(l)}" aria-label="Pienennä" ${value <= 0 ? "disabled" : ""}>−</button>
+        </div>
+        <button class="score${changed ? " changed" : ""}${scenario ? " scenario" : ""}" data-value="${value}"
+          ${changed ? `data-delta="${delta > 0 ? "+" : ""}${delta}"` : ""}
+          data-act="reset" data-p="${esc(item.id)}" data-l="${esc(l)}"
+          aria-label="${esc(item.title)}, ${esc(l)}: arvo ${value}">${value}</button>
+      </div></td>`;
+    }).join("");
+    return `<tr class="matrix-row"><th class="row-head" scope="row" title="${esc(item.title)}"><div class="row-label"><span class="year">${item.year}</span><span>${esc(item.title)}</span></div></th>${cells}</tr>`;
+  }).join("");
+
+  $("#matrixShell").innerHTML = rows.length
+    ? `<table><thead><tr><th class="corner" scope="col">Murros · vuosi</th>${head}</tr></thead><tbody>${body}</tbody></table>`
+    : '<div class="empty-state">Rajauksella ei löytynyt murroksia.</div>';
+}
+
+$("#matrixShell").addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-act]");
+  if (!btn || btn.disabled) return;
+  const { act, p, l } = btn.dataset;
+  const base = state.baselines.find((b) => b.phenomenon_id === p && b.lens_id === l);
+  if (!base) return;
+  const current = toCell(effective(p, l, base));
+  if (act === "up") setValue(p, l, current + 1);
+  else if (act === "down") setValue(p, l, current - 1);
+  else if (act === "reset") {
+    if (!state.overrides.has(key(p, l))) return;
+    setValue(p, l, toCell(base.direction));
+  }
+  render();
+});
+
+/* ---------- Versionhallinta ---------- */
+
+function renderMatrixSelect() {
+  $("#matrixSelect").innerHTML = state.matrices
+    .map((m) => `<option value="${m.id}"${m.id === state.matrixId ? " selected" : ""}>${esc(m.name)}</option>`).join("");
+  $("#deleteBtn").disabled = state.matrices.length <= 1;
+}
+
+$("#matrixSelect").addEventListener("change", async (e) => {
+  await flush();
+  state.matrixId = e.target.value;
+  await loadOverrides();
+  render();
+});
+
+$("#newMatrixBtn").addEventListener("click", async () => {
+  const name = prompt("Uuden version nimi:", `Versio ${state.matrices.length + 1}`);
+  if (!name) return;
+  const { data, error } = await db.from("matrices").insert({ name }).select().single();
+  if (error) return alert(`Luonti epäonnistui: ${error.message}`);
+  state.matrices.push(data);
+  state.matrixId = data.id;
+  await loadOverrides();
+  renderMatrixSelect(); render();
+});
+
+$("#renameBtn").addEventListener("click", async () => {
+  const m = state.matrices.find((x) => x.id === state.matrixId);
+  const name = prompt("Version nimi:", m.name);
+  if (!name || name === m.name) return;
+  const { error } = await db.from("matrices").update({ name }).eq("id", m.id);
+  if (error) return alert(`Nimeäminen epäonnistui: ${error.message}`);
+  m.name = name; renderMatrixSelect();
+});
+
+$("#deleteBtn").addEventListener("click", async () => {
+  if (state.matrices.length <= 1) return;
+  const m = state.matrices.find((x) => x.id === state.matrixId);
+  if (!confirm(`Poistetaanko versio "${m.name}" ja kaikki sen muutokset pysyvästi?`)) return;
+  const { error } = await db.from("matrices").delete().eq("id", m.id);
+  if (error) return alert(`Poisto epäonnistui: ${error.message}`);
+  state.matrices = state.matrices.filter((x) => x.id !== m.id);
+  state.matrixId = state.matrices[0].id;
+  await loadOverrides();
+  renderMatrixSelect(); render();
+});
+
+$("#resetBtn").addEventListener("click", async () => {
+  if (!state.overrides.size) return;
+  if (!confirm(`Palautetaanko kaikki ${state.overrides.size} muutosta lähtöarvoihin?`)) return;
+  const { error } = await db.from("overrides").delete().eq("matrix_id", state.matrixId);
+  if (error) return alert(`Palautus epäonnistui: ${error.message}`);
+  state.overrides.clear(); render();
+  $("#saveBadge").textContent = "Palautettu"; $("#saveBadge").className = "badge ok";
+});
+
+$("#exportBtn").addEventListener("click", async () => {
+  await flush();
+  const m = state.matrices.find((x) => x.id === state.matrixId);
+  const changes = [...state.overrides.entries()].map(([k, dir]) => {
+    const [p, l] = k.split("|");
+    const base = state.baselines.find((b) => b.phenomenon_id === p && b.lens_id === l);
+    return {
+      phenomenon_id: p, lens_id: l,
+      base_direction: base.direction, user_direction: dir,
+      delta: dir - base.direction, role: base.role,
+    };
+  });
+  const payload = {
+    schema_version: "1.0", matrix: m.name, exported_at: new Date().toISOString(),
+    scale: { min: -3, max: 3, note: "Suunta = vaikutus toimintakykyyn valitun linssin kannalta." },
+    baseline_source: "arviointi.lens_baselines (chain-anchors, sourced)",
+    change_count: changes.length, changes,
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `arviointi-${m.name.replace(/\W+/g, "-").toLowerCase()}-${new Date().toISOString().slice(0, 10)}.json`;
+  a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 500);
+});
+
+for (const [id, k] of [["#search", "search"], ["#period", "period"], ["#changed", "changed"]]) {
+  $(id).addEventListener(id === "#search" ? "input" : "change", (e) => {
+    state.filters[k] = e.target.value; render();
+  });
+}
+
+// Keskeneräinen tallennus ei saa kadota välilehteä suljettaessa.
+window.addEventListener("beforeunload", (e) => {
+  if (state.pending.size) { e.preventDefault(); e.returnValue = ""; }
+});
+
+/* ---------- Käynnistys ---------- */
+
+async function start() {
+  $("#authView").classList.add("hidden");
+  $("#appView").classList.remove("hidden");
+  const u = state.session?.user;
+  $("#userBadge").textContent = u?.email || (u?.is_anonymous ? "kirjautumaton istunto" : "kirjautunut");
+  try {
+    await loadBaselines();
+    await loadMatrices();
+    await loadOverrides();
+    renderMatrixSelect();
+    render();
+  } catch (err) {
+    $("#matrixShell").innerHTML = `<div class="empty-state">Aineiston lataus epäonnistui: ${esc(err.message)}</div>`;
+    console.error(err);
+  }
+}
+
+document.querySelectorAll(".swatch[data-v]").forEach((el) => {
+  el.dataset.value = el.dataset.v; el.classList.add("score");
+});
+
+initAuth();
+</script>
+</body>
+</html>
