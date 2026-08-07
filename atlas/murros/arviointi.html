@@ -51,16 +51,20 @@ h1{font:400 clamp(26px,4vw,44px)/1.05 var(--serif);margin:6px 0}
 table{border-collapse:separate;border-spacing:0;width:max-content;min-width:0;table-layout:auto}
 th,td{padding:0}
 thead th{position:sticky;top:0;z-index:20;background:var(--paper2);border-bottom:1px solid var(--line)}
-.corner{left:0;z-index:32!important;width:var(--rw);min-width:var(--rw);text-align:left;padding:9px 11px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line)}
-.lens-head{width:var(--cell);min-width:var(--cell);max-width:var(--cell);height:var(--lh);vertical-align:bottom;overflow:hidden}
-.lens-head>div{height:calc(var(--lh) - 7px);display:flex;align-items:flex-end;justify-content:center;padding-bottom:6px}
-.lens-label{writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;font-size:var(--fs);font-weight:750;cursor:help}
-.lens-id{color:var(--hot);font-weight:900;margin-bottom:4px}
-.row-head{position:sticky;left:0;z-index:12;width:var(--rw);min-width:var(--rw);max-width:var(--rw);background:var(--paper);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
-.row-label{height:var(--ch);display:flex;align-items:center;gap:5px;padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:var(--fs);font-weight:600}
+.skip-head{position:sticky;left:0;z-index:34!important;width:30px;min-width:30px;max-width:30px;background:var(--paper2);border-right:1px solid var(--line)}
+.corner{left:30px;z-index:32!important;width:var(--rw);min-width:var(--rw);text-align:left;padding:9px 11px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line)}
+.lens-head{position:relative;width:var(--cell);min-width:var(--cell);max-width:var(--cell);height:var(--lh);vertical-align:bottom;overflow:visible}
+.lens-head>div{position:relative;height:100%;width:100%;overflow:visible}
+.lens-label{position:absolute;left:7px;bottom:8px;transform:rotate(-45deg);transform-origin:left bottom;white-space:nowrap;font-size:var(--fs);font-weight:750;cursor:help;line-height:1.15}
+.lens-id{color:var(--hot);font-weight:900;margin-right:3px}
+.row-toggle{position:sticky;left:0;z-index:14;width:30px;min-width:30px;max-width:30px;background:var(--paper);border-right:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+.row-head{position:sticky;left:30px;z-index:12;width:var(--rw);min-width:var(--rw);max-width:var(--rw);background:var(--paper);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.row-label{height:var(--cell);display:flex;align-items:center;gap:5px;padding:0 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:var(--fs);font-weight:600}
 tbody tr:not(.divider){height:var(--cell)}
 tbody tr:not(.divider)>td.cell{height:var(--cell)}
-.skip{flex:0 0 13px;width:13px;height:13px;margin:0;cursor:pointer;accent-color:var(--hot)}
+.skip-toggle{width:17px;height:17px;padding:0;border:1px solid color-mix(in srgb,var(--hot) 55%,var(--line));border-radius:50%;background:var(--hot);color:#fff;cursor:pointer;display:inline-grid;place-items:center;font-size:11px;font-weight:900;line-height:1}
+.skip-toggle:hover{transform:scale(1.08)}
+.skip-toggle[aria-pressed="false"]{background:var(--paper2);color:var(--muted);border-color:var(--line)}
 .row-title{overflow:hidden;text-overflow:ellipsis}
 /* Rivi- ja sarakeotsikot toimivat myös lajittelukytkiminä. Aktiivinen
    lajitteluperuste korostetaan ilman että lämpökartan värejä muutetaan. */
@@ -112,7 +116,7 @@ tr.skipped .heat{cursor:not-allowed}
    luku on lukukelvoton ja vie huomion väriltä, joka on varsinainen viesti.
    Arvo säilyy silti aria-labelissa ja työkaluvihjeessä. */
 body.d-tight{--cell:18px;--rw:170px;--fs:9px;--lh:100px;--nfs:9px}
-body.d-tight .skip{flex:0 0 11px;width:11px;height:11px}
+body.d-tight .skip-toggle{width:15px;height:15px;font-size:9px}
 body.d-normal{--cell:26px;--rw:200px;--fs:10px;--lh:120px;--nfs:9px}
 body.d-wide{--cell:32px;--rw:250px;--fs:11px;--lh:140px;--nfs:11px}
 body.values-hidden .heat .v,body.analysis-mode .heat .v{display:none!important}
@@ -122,15 +126,11 @@ body.values-hidden .heat .v,body.analysis-mode .heat .v{display:none!important}
 .zoom-readout{min-width:42px;text-align:center;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
 .zoom-axis{font-size:10px;font-weight:900;color:var(--hot);padding:0 2px;user-select:none}
 .zoom-sep{width:1px;height:18px;background:var(--line);margin:0 2px}
-#panBtn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .cluster-controls{display:flex;align-items:center;gap:3px;border:1px solid var(--line);background:var(--paper2);border-radius:999px;padding:2px 4px}
 .cluster-controls .btn{padding:5px 8px;border:0;background:transparent}
 .cluster-controls .btn[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
 .cluster-label{padding:0 4px;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
 
-.matrix-shell.pan-mode{cursor:grab}
-.matrix-shell.pan-mode.panning{cursor:grabbing;user-select:none}
-.matrix-shell.pan-mode .heat,.matrix-shell.pan-mode .skip{cursor:grab}
 .hidden{display:none!important}
 .auth{max-width:520px;margin:60px auto;padding:26px;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:var(--shadow)}
 .auth h2{font:400 25px var(--serif);margin:0 0 6px}
@@ -154,8 +154,6 @@ body.d-tight .lead{display:none}
 body.heatmap-only{overflow:hidden}
 body.heatmap-only .app{padding:8px 8px 8px;height:100vh;display:flex;flex-direction:column}
 body.heatmap-only .top,
-body.heatmap-only #anonWarn,
-body.heatmap-only .palette-bar,
 body.heatmap-only .legend{display:none!important}
 body.heatmap-only .toolbar{max-width:none;width:100%;margin:0 0 6px;flex:0 0 auto;padding:0 2px}
 body.heatmap-only .matrix-shell{max-width:none;width:100%;max-height:none;height:auto;flex:1 1 auto;margin:0;border-radius:10px}
@@ -163,6 +161,8 @@ body.heatmap-only .matrix-shell{max-width:none;width:100%;max-height:none;height
    Sarakkeita ei venytetä: jokainen solu säilyy täsmälleen --cell × --cell. */
 body.heatmap-only #matrixShell>table{margin-left:auto;margin-right:auto}
 body.heatmap-only .toolbar .heatmap-secondary{display:none}
+body.heatmap-only.filters-open .toolbar .filter-secondary{display:block}
+body.heatmap-only #moreFiltersBtn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 body.heatmap-only .toolbar .heatmap-primary{display:inline-flex}
 body.heatmap-only .toolbar select.heatmap-primary{display:block}
 body.heatmap-only .toolbar input.heatmap-primary{display:block}
@@ -210,8 +210,11 @@ body.heatmap-only .palette-bar .mode-hint{max-width:28ch}
 body.heatmap-only .palette-bar #exportBtn,
 body.heatmap-only .palette-bar #resetBtn,
 body.heatmap-only .palette-bar #logoutBtn{display:none!important}
-body.heatmap-only #panBtn{display:none!important}
 body.heatmap-only #heatmapOnlyBtn{display:none!important}
+
+body.heatmap-only #anonWarn{margin:0!important;padding:6px 9px;max-width:360px!important;font-size:10px;line-height:1.3;border-radius:8px;flex:0 1 auto}
+body.heatmap-only #saveBadge{display:inline-flex;align-items:center;white-space:nowrap}
+.palette-status{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 #manualSaveBtn{display:none}
 body.heatmap-only #manualSaveBtn.email-save-visible{display:inline-flex;align-items:center;gap:6px}
 #manualSaveBtn.pending{background:var(--hot);border-color:var(--hot);color:#fff}
@@ -253,16 +256,9 @@ body.heatmap-only #manualSaveBtn.email-save-visible{display:inline-flex;align-it
     <span class="badge" id="rowCount">–</span>
     <span class="badge" id="mineBadge">0 omaa merkintää</span>
     <span class="badge" id="aggBadge">–</span>
-    <span class="badge ok" id="saveBadge">Tallennettu</span>
     <span class="badge" id="userBadge"></span>
   </div>
 </header>
-
-<div id="anonWarn" class="notice" style="display:none;max-width:1800px;margin:0 auto 10px">
-  Olet kirjautumattomassa istunnossa. Merkinnät tallentuvat, mutta ne katoavat
-  kun selain suljetaan tai laite vaihtuu -- niitä ei voi palauttaa. Kirjaudu
-  sähköpostilla, jos haluat säilyttää työsi.
-</div>
 
 <section class="palette-bar" aria-label="Maalauspaletti">
   <span class="paint-label">Väri</span>
@@ -270,7 +266,11 @@ body.heatmap-only #manualSaveBtn.email-save-visible{display:inline-flex;align-it
   <button class="paint eraser" id="eraser" type="button" aria-pressed="false"
           title="Palauta ruutu koontiarvoon">⌫</button>
   <span class="mode-hint" id="modeHint">Valitse väri ja maalaa ruutuihin.</span>
+  <div id="anonWarn" class="notice" style="display:none">
+    Kirjautumaton istunto: merkinnät katoavat, kun selain suljetaan tai laite vaihtuu.
+  </div>
   <span class="spacer"></span>
+  <div class="palette-status"><span class="badge ok" id="saveBadge">Tallennettu</span></div>
   <button class="btn" id="manualSaveBtn" type="button" title="Tallenna odottavat muutokset heti">Tallenna muutokset</button>
   <button class="btn" id="exportBtn" type="button">Vie JSON</button>
   <button class="btn" id="resetBtn" type="button">Tyhjennä omat</button>
@@ -279,9 +279,9 @@ body.heatmap-only #manualSaveBtn.email-save-visible{display:inline-flex;align-it
 
 <section class="toolbar">
   <select class="heatmap-primary" id="matrixSelect" aria-label="Valitse versio"></select>
-  <button class="btn heatmap-secondary" id="newMatrixBtn" type="button">Uusi versio</button>
-  <button class="btn heatmap-secondary" id="renameBtn" type="button">Nimeä</button>
-  <button class="btn heatmap-secondary" id="deleteBtn" type="button">Poista</button>
+  <button class="btn heatmap-secondary version-secondary" id="newMatrixBtn" type="button">Uusi versio</button>
+  <button class="btn heatmap-secondary version-secondary" id="renameBtn" type="button">Nimeä</button>
+  <button class="btn heatmap-secondary version-secondary" id="deleteBtn" type="button">Poista</button>
   <input class="heatmap-primary" id="search" type="search" placeholder="Hae murrosta…" aria-label="Hae murrosta">
   <select class="heatmap-primary" id="period" aria-label="Rajaa aikakausi">
     <option value="all">Kaikki vuodet</option>
@@ -291,19 +291,19 @@ body.heatmap-only #manualSaveBtn.email-save-visible{display:inline-flex;align-it
     <option value="1990-2025">1990–2025</option>
     <option value="2026-2100">Tulevaisuus</option>
   </select>
-  <select class="heatmap-secondary" id="changed" aria-label="Rajaa merkinnät">
+  <select class="heatmap-secondary filter-secondary" id="changed" aria-label="Rajaa merkinnät">
     <option value="all">Kaikki rivit</option>
     <option value="mine">Vain omat merkinnät</option>
     <option value="untouched">Vain koskemattomat</option>
   </select>
-  <select class="heatmap-secondary" id="coverage" aria-label="Rajaa kattavuuden mukaan">
+  <select class="heatmap-secondary filter-secondary" id="coverage" aria-label="Rajaa kattavuuden mukaan">
     <option value="0">Kaikki kattavuudet</option>
     <option value="1">Vähintään 1 arvio</option>
     <option value="3">Vähintään 3 arviota</option>
     <option value="5">Vähintään 5 arviota</option>
     <option value="8">Vähintään 8 arviota</option>
   </select>
-  <select class="heatmap-secondary" id="quality" aria-label="Rajaa pohjan laadun mukaan">
+  <select class="heatmap-secondary filter-secondary" id="quality" aria-label="Rajaa pohjan laadun mukaan">
     <option value="all">Kaikki pohjat</option>
     <option value="curated">Vain lähteistetyt solut</option>
     <option value="strong">Lähteistetyt ja interpoloidut</option>
@@ -313,7 +313,7 @@ body.heatmap-only #manualSaveBtn.email-save-visible{display:inline-flex;align-it
     <option value="normal">Normaali</option>
     <option value="wide">Väljä</option>
   </select>
-  <select class="heatmap-secondary" id="sort" aria-label="Järjestys">
+  <select class="heatmap-secondary filter-secondary" id="sort" aria-label="Järjestys">
     <option value="year">Järjestys: vuosi</option>
     <option value="coverage">Järjestys: kattavuus</option>
     <option value="curated">Järjestys: lähteistetyt ensin</option>
@@ -325,6 +325,7 @@ body.heatmap-only #manualSaveBtn.email-save-visible{display:inline-flex;align-it
     <option value="coverage">Ryhmittele: kattavuus</option>
     <option value="lens">Ryhmittele: päälinssi</option>
   </select>
+  <button class="btn heatmap-primary" id="moreFiltersBtn" type="button" aria-pressed="false" title="Näytä tai piilota tarkemmat rajaukset">Suodattimet</button>
   <div class="cluster-controls heatmap-primary" role="group" aria-label="Samankaltaisuusklusterointi">
     <span class="cluster-label">Klusteri</span>
     <button class="btn" id="clusterRowsBtn" type="button" aria-pressed="false" title="Järjestä rivit koko väriprofiilin samankaltaisuuden mukaan">Rivit</button>
@@ -375,7 +376,8 @@ body.heatmap-only #manualSaveBtn.email-save-visible{display:inline-flex;align-it
       <section class="help-section">
         <h3>4 · Merkinnät</h3>
         <div class="help-item"><span class="help-icon">•</span><div><strong>Himmeä piste solussa</strong><br>Oma arviosi poikkeaa koontiarvosta.</div></div>
-        <div class="help-item"><span class="help-icon">✓</span><div><strong>Rivin valintamerkki</strong><br>Poistamalla sen rivi siirtyy huomiotta jätettyihin; arvioinnit säilyvät.</div></div>
+        <div class="help-item"><span class="help-icon">✓</span><div><strong>Rivin valintapainike</strong><br>Erillinen pyöreä painike rivin vasemmalla puolella siirtää rivin huomiotta jätettyihin tai takaisin; arvioinnit säilyvät.</div></div>
+        <div class="help-item"><span class="help-icon">⌄</span><div><strong>Suodattimet</strong><br>Avaa kattavuus-, laatu-, omat merkinnät- ja järjestysrajaukset.</div></div>
         <div class="help-note"><strong>Maalaus:</strong> valitse kartan yläpuolisesta 0–6-väriskaalasta arvo ja maalaa soluja klikkaamalla tai vetämällä. Kumi palauttaa solun koontiarvoon. Sähköpostilla kirjautuneelle näkyy lisäksi <strong>Tallenna muutokset</strong> -painike.</div>
       </section>
     </div>
@@ -460,7 +462,7 @@ const state = {
   matrices:[], matrixId:null, overrides:new Map(), excluded:new Set(),
   filters:{search:"",period:"all",changed:"all",coverage:0,quality:"all",sort:"year",group:"none"},
   order:{columnRow:null,columnDir:"asc",rowLens:null,rowDir:"asc",cluster:"none",clusterRows:[],clusterCols:[]},
-  view:{zoom:1,analysis:false,pan:false,panDragging:false,panX:0,panY:0,scrollLeft:0,scrollTop:0},
+  view:{zoom:1,analysis:false},
   paint:4, erasing:false, dragging:false,
   pending:new Map(), saveTimer:null,
 };
@@ -542,10 +544,12 @@ async function loadAggregate() {
   const users = data.filter((a) => a.source === "users").length;
   const cur = data.filter((a) => a.tier === "curated").length;
   const itp = data.filter((a) => a.tier === "interpolated").length;
+  const nei = data.filter((a) => a.tier === "neighbour").length;
+  const kw = data.filter((a) => a.tier === "keyword").length;
   const none = data.filter((a) => a.tier === "none").length;
   $("#aggBadge").textContent = users
-    ? `${users} solua käyttäjädatasta · pohja: ${cur} kuratoitua, ${itp} interpoloitua, ${none} tyhjää`
-    : `pohja: ${cur} kuratoitua · ${itp} interpoloitua · ${none} arvioimatta`;
+    ? `${users} solua käyttäjädatasta · pohja: ${cur} lähteistettyä, ${itp} interpoloitua, ${nei} naapureista, ${kw} sanastosta, ${none} tyhjää`
+    : `pohja: ${cur} lähteistettyä · ${itp} interpoloitua · ${nei} naapureista · ${kw} sanastosta · ${none} arvioimatta`;
 }
 async function loadMatrices() {
   const { data, error } = await db.from("matrices").select("id,name").order("created_at");
@@ -937,12 +941,13 @@ function renderRow(it, lenses) {
   const off = state.excluded.has(it.id);
   const activeSort = state.order.columnRow === it.id;
   const arrow = activeSort ? `<span class="sort-arrow">${state.order.columnDir === "asc" ? "0→6" : "6→0"}</span>` : "";
-  return `<tr class="${off ? "skipped" : ""}"><th class="row-head${activeSort ? " sort-active" : ""}" data-sort-row="${esc(it.id)}" ` +
-    `title="${esc(it.title)} · Klikkaa järjestääksesi sarakkeet tämän rivin värin mukaan">` +
-    `<div class="row-label"><input class="skip" type="checkbox" data-skip="${esc(it.id)}" ${off ? "" : "checked"} ` +
+  return `<tr class="${off ? "skipped" : ""}">` +
+    `<th class="row-toggle"><button class="skip-toggle" type="button" data-skip="${esc(it.id)}" aria-pressed="${off ? "false" : "true"}" ` +
     `aria-label="${off ? "Ota mukaan" : "Jätä huomiotta"}: ${esc(it.title)}" ` +
-    `title="${off ? "Ota takaisin mukaan" : "Jätä huomiotta -- rivi siirtyy loppuun, merkinnät säilyvät"}">` +
-    `<span class="year">${it.year}</span><span class="row-title">${esc(it.title)}</span>${arrow}</div></th>${cells}</tr>`;
+    `title="${off ? "Ota takaisin mukaan" : "Jätä huomiotta -- rivi siirtyy loppuun, merkinnät säilyvät"}">${off ? "+" : "✓"}</button></th>` +
+    `<th class="row-head${activeSort ? " sort-active" : ""}" data-sort-row="${esc(it.id)}" ` +
+    `title="${esc(it.title)} · Klikkaa järjestääksesi sarakkeet tämän rivin värin mukaan">` +
+    `<div class="row-label"><span class="year">${it.year}</span><span class="row-title">${esc(it.title)}</span>${arrow}</div></th>${cells}</tr>`;
 }
 function densityBase() {
   const body = document.body;
@@ -984,15 +989,15 @@ function render() {
   }).join("");
   let html = "";
   for (const g of groupRows(active)) {
-    if (g.label) html += `<tr class="divider"><th>${esc(g.label)}</th><td colspan="${lenses.length}">${g.items.length} murrosta</td></tr>`;
+    if (g.label) html += `<tr class="divider"><th colspan="2">${esc(g.label)}</th><td colspan="${lenses.length}">${g.items.length} murrosta</td></tr>`;
     html += g.items.map((it) => renderRow(it,lenses)).join("");
   }
   if (skipped.length) {
-    html += `<tr class="divider"><th>Huomiotta jätetyt</th><td colspan="${lenses.length}">${skipped.length} murrosta · merkinnät säilyvät</td></tr>`;
+    html += `<tr class="divider"><th colspan="2">Huomiotta jätetyt</th><td colspan="${lenses.length}">${skipped.length} murrosta · merkinnät säilyvät</td></tr>`;
     html += skipped.map((it) => renderRow(it,lenses)).join("");
   }
   $("#matrixShell").innerHTML = (active.length || skipped.length)
-    ? `<table><thead><tr><th class="corner">Murros · vuosi</th>${head}</tr></thead><tbody>${html}</tbody></table>`
+    ? `<table><thead><tr><th class="skip-head" aria-label="Mukana"></th><th class="corner">Murros · vuosi</th>${head}</tr></thead><tbody>${html}</tbody></table>`
     : '<div class="empty-state">Rajauksella ei löytynyt murroksia.</div>';
   applyZoom();
   const resetOrder = $("#restoreOrderBtn");
@@ -1020,12 +1025,9 @@ $("#eraser").addEventListener("click", () => {
 
 /* ---------- Veto: maalaus tai pan ---------- */
 const shell = $("#matrixShell");
-shell.addEventListener("change", (e) => {
-  const box = e.target.closest("[data-skip]");
-  if (box) toggleExcluded(box.dataset.skip);
-});
 shell.addEventListener("click", (e) => {
-  if (e.target.closest("[data-skip]")) return;
+  const skip = e.target.closest("[data-skip]");
+  if (skip) { toggleExcluded(skip.dataset.skip); return; }
   const row = e.target.closest("[data-sort-row]");
   if (row) {
     state.order.cluster = "none"; state.order.clusterRows = []; state.order.clusterCols = []; syncClusterButtons();
@@ -1048,14 +1050,6 @@ shell.addEventListener("click", (e) => {
 });
 shell.addEventListener("pointerdown", (e) => {
   if (e.target.closest("[data-sort-row],[data-sort-lens]")) return;
-  if (state.view.pan) {
-    state.view.panDragging = true;
-    state.view.panX = e.clientX; state.view.panY = e.clientY;
-    state.view.scrollLeft = shell.scrollLeft; state.view.scrollTop = shell.scrollTop;
-    shell.classList.add("panning");
-    try { shell.setPointerCapture(e.pointerId); } catch {}
-    e.preventDefault(); return;
-  }
   if (e.target.closest("[data-skip]")) return;
   const btn = e.target.closest(".heat[data-p]"); if (!btn || btn.disabled) return;
   if (state.excluded.has(btn.dataset.p)) return;
@@ -1064,17 +1058,11 @@ shell.addEventListener("pointerdown", (e) => {
   e.preventDefault();
 });
 shell.addEventListener("pointermove", (e) => {
-  if (state.view.panDragging) {
-    shell.scrollLeft = state.view.scrollLeft - (e.clientX - state.view.panX);
-    shell.scrollTop = state.view.scrollTop - (e.clientY - state.view.panY);
-    e.preventDefault(); return;
-  }
   if (!state.dragging) return;
   paintFromPoint(e.clientX, e.clientY);
   e.preventDefault();
 });
 function endPointer() {
-  state.view.panDragging = false; shell.classList.remove("panning");
   if (state.dragging) {
     state.dragging = false;
     document.querySelectorAll(".heat.painting").forEach((x) => x.classList.remove("painting"));
@@ -1205,13 +1193,21 @@ $("#group").addEventListener("change", (e) => {
     state.view.analysis = localStorage.getItem("lampokartta.analysis") === "1";
     const g = localStorage.getItem("lampokartta.group");
     if (["none","era","coverage","lens"].includes(g)) state.filters.group = g;
-    state.view.pan = false;
   } catch {}
   $("#group").value = state.filters.group;
-  state.view.pan = false;
-  shell.classList.remove("pan-mode");
   applyZoom();
 })();
+
+/* ---------- Tarkemmat suodattimet ---------- */
+const moreFiltersBtn = document.getElementById("moreFiltersBtn");
+if (moreFiltersBtn) {
+  moreFiltersBtn.addEventListener("click", () => {
+    const on = !document.body.classList.contains("filters-open");
+    document.body.classList.toggle("filters-open", on);
+    moreFiltersBtn.setAttribute("aria-pressed", String(on));
+    moreFiltersBtn.textContent = on ? "Piilota suodattimet" : "Suodattimet";
+  });
+}
 
 /* ---------- Käyttöohjepaneeli ---------- */
 function setHelpCollapsed(on) {
