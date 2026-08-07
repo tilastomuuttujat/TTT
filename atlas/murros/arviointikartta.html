@@ -1,0 +1,4681 @@
+<!doctype html>
+<!--
+  Murroskartta 1800–2050
+  SPDX-License-Identifier: MIT
+
+  This file is intentionally unminified. The visualization logic is kept in
+  one document, while atlas content remains in separate JSON data files.
+-->
+<html lang="fi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Murroskartta 1800–2050 · Murrosten vaikutuskartta</title>
+    <meta
+      name="description"
+      content="Murrosatlaksen linssikohtainen vaikutuskartta vuosille 1800–2050."
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f2ede3;
+        --bg2: #e9e2d4;
+        --paper: #fffdf8;
+        --paper2: #faf6ee;
+        --ink: #15293c;
+        --ink2: #3c4d5e;
+        --muted: #6d7883;
+        --faint: #98a1aa;
+        --line: #d6cec0;
+        --strong: #b9ae9c;
+        --soft: #ece5d9;
+        --hot: #ad4128;
+        --future: #2f6b4f;
+        --shadow:
+          0 1px 2px rgba(24, 32, 40, 0.05),
+          0 18px 46px -22px rgba(24, 32, 40, 0.35);
+        --serif:
+          "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+        --sans:
+          ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, sans-serif;
+        --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0e161e;
+          --bg2: #121d27;
+          --paper: #17222c;
+          --paper2: #1c2833;
+          --ink: #f0f2ee;
+          --ink2: #cfd7dd;
+          --muted: #9fa9b2;
+          --faint: #75808a;
+          --line: #33414c;
+          --strong: #4b5a66;
+          --soft: #22303b;
+          --hot: #e8795a;
+          --future: #5fbf8f;
+          --shadow: 0 20px 50px -28px rgba(0, 0, 0, 0.9);
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        color: var(--ink);
+        background:
+          radial-gradient(
+            1100px 600px at 10% -10%,
+            color-mix(in srgb, var(--paper) 70%, transparent),
+            transparent 70%
+          ),
+          linear-gradient(180deg, var(--bg), var(--bg2));
+        background-attachment: fixed;
+        -webkit-font-smoothing: antialiased;
+      }
+      .app {
+        max-width: 1760px;
+        margin: auto;
+        padding: 32px 18px 60px;
+      }
+      button {
+        font: inherit;
+        color: inherit;
+      }
+      button:disabled {
+        cursor: wait;
+        opacity: 0.45;
+        pointer-events: none;
+      }
+      :focus-visible {
+        outline: 2px solid var(--hot);
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+      header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 30px;
+        align-items: end;
+        margin-bottom: 22px;
+      }
+      .kicker {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--hot);
+      }
+      .kicker:before {
+        content: "";
+        width: 25px;
+        height: 2px;
+        background: var(--hot);
+      }
+      h1 {
+        font: 400 clamp(36px, 5vw, 66px) / 1.02 var(--serif);
+        letter-spacing: -0.028em;
+        margin: 13px 0;
+      }
+      h1 em {
+        font-style: italic;
+        color: var(--hot);
+      }
+      .lede {
+        max-width: 82ch;
+        margin: 0;
+        color: var(--ink2);
+        line-height: 1.68;
+        font-size: 15px;
+      }
+      .stats {
+        display: flex;
+        gap: 10px;
+      }
+      .stat {
+        min-width: 100px;
+        padding: 12px 14px;
+        background: color-mix(in srgb, var(--paper) 80%, transparent);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+      }
+      .stat b {
+        display: block;
+        font: 400 29px/1 var(--serif);
+      }
+      .stat span {
+        display: block;
+        margin-top: 7px;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .controls {
+        position: sticky;
+        top: 9px;
+        z-index: 20;
+        padding: 13px 15px;
+        margin-bottom: 15px;
+        background: color-mix(in srgb, var(--paper) 90%, transparent);
+        backdrop-filter: blur(18px);
+        border: 1px solid var(--line);
+        border-radius: 17px;
+        box-shadow: var(--shadow);
+      }
+      .control-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .control-head strong {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .actions {
+        display: flex;
+        gap: 6px;
+      }
+      .action {
+        border: 1px solid var(--line);
+        background: var(--paper2);
+        border-radius: 999px;
+        cursor: pointer;
+        transition: 0.18s ease;
+        font-size: 11px;
+        padding: 6px 11px;
+      }
+      .action:hover,
+      .chip:hover {
+        border-color: var(--ink);
+        transform: translateY(-1px);
+      }
+      .chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .chip {
+        --c: #777;
+        position: relative;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: var(--paper2);
+        color: var(--c);
+        cursor: pointer;
+        transition: 0.18s ease;
+      }
+      .chip svg {
+        width: 21px;
+        height: 21px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .chip:after {
+        content: attr(data-label);
+        position: absolute;
+        z-index: 30;
+        left: 50%;
+        bottom: -34px;
+        transform: translateX(-50%) translateY(-2px);
+        padding: 5px 8px;
+        border-radius: 7px;
+        background: var(--ink);
+        color: var(--paper);
+        font-size: 10px;
+        white-space: nowrap;
+        pointer-events: none;
+        opacity: 0;
+        transition: 0.15s;
+      }
+      .chip:hover:after,
+      .chip:focus-visible:after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      .chip[aria-pressed="false"] {
+        opacity: 0.46;
+        background: transparent;
+        color: var(--muted);
+      }
+      .chip[aria-pressed="true"] {
+        background: color-mix(in srgb, var(--c) 11%, var(--paper));
+        border-color: color-mix(in srgb, var(--c) 55%, var(--line));
+        box-shadow: inset 0 -3px 0 color-mix(in srgb, var(--c) 72%, transparent);
+      }
+      .map {
+        position: relative;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      .map-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 15px;
+        flex-wrap: wrap;
+        padding: 13px 19px;
+        border-bottom: 1px solid var(--line);
+        background: linear-gradient(180deg, var(--paper2), transparent);
+      }
+      .map-head h2 {
+        margin: 0;
+        font: 400 18px var(--serif);
+      }
+      .map-head p {
+        margin: 0;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .scroll {
+        overflow-x: auto;
+        overscroll-behavior-x: contain;
+      }
+      .chart {
+        display: block;
+        min-width: 1450px;
+        width: 100%;
+        height: auto;
+      }
+      .year-line {
+        stroke: var(--line);
+        stroke-width: 1;
+      }
+      .now-line {
+        stroke: var(--hot);
+        stroke-width: 1.5;
+        stroke-dasharray: 6 5;
+      }
+      .year {
+        fill: var(--ink);
+        font: 400 18px var(--serif);
+      }
+      .year-small {
+        fill: var(--faint);
+        font: 9px var(--mono);
+      }
+      .community-guide {
+        stroke: var(--line);
+        stroke-width: 1;
+        stroke-dasharray: 2 6;
+        opacity: 0.36;
+      }
+      .community-label {
+        fill: var(--faint);
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.09em;
+        paint-order: stroke;
+        stroke: var(--paper);
+        stroke-width: 4;
+      }
+      .edge {
+        fill: none;
+        stroke: var(--strong);
+        stroke-linecap: round;
+        opacity: 0.08;
+        pointer-events: none;
+      }
+      .edge.strong {
+        opacity: 0.14;
+      }
+      .lens {
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.55;
+        cursor: pointer;
+        transition:
+          opacity 0.18s,
+          stroke-width 0.18s;
+      }
+      .lens:hover,
+      .lens.active {
+        opacity: 0.96;
+        stroke-width: 3.1;
+      }
+      .lens.dim {
+        opacity: 0.025;
+      }
+      .lens.future {
+        stroke-dasharray: 7 6;
+      }
+      .lens-label {
+        font-size: 10px;
+        font-weight: 800;
+        paint-order: stroke;
+        stroke: var(--paper);
+        stroke-width: 5;
+      }
+      .node {
+        cursor: pointer;
+        transition: opacity 0.18s;
+      }
+      .node.dim {
+        opacity: 0.1;
+      }
+      .node circle {
+        fill: var(--paper);
+        stroke: var(--ink2);
+        stroke-width: 1;
+      }
+      .node.imp4 circle {
+        stroke-width: 1.5;
+      }
+      .node.imp5 circle {
+        stroke: var(--hot);
+        stroke-width: 2;
+      }
+      .node.on-path circle {
+        stroke-width: 2;
+      }
+      .node.active circle {
+        fill: var(--hot);
+        stroke: var(--paper);
+        stroke-width: 2.5;
+      }
+      .node-label {
+        fill: var(--ink);
+        font-size: 9.5px;
+        font-weight: 700;
+        paint-order: stroke;
+        stroke: var(--paper);
+        stroke-width: 4;
+        stroke-linejoin: round;
+        pointer-events: none;
+      }
+      .joint-ring {
+        fill: none;
+        stroke: var(--hot);
+        stroke-width: 1.1;
+        opacity: 0.72;
+        pointer-events: none;
+      }
+      .joint-dot {
+        stroke: var(--paper);
+        stroke-width: 1;
+        pointer-events: none;
+      }
+      .legend {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 12px 19px;
+        border-top: 1px solid var(--line);
+        font-size: 10px;
+        color: var(--muted);
+        background: linear-gradient(0deg, var(--paper2), transparent);
+      }
+      .legend span {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .legend i {
+        display: block;
+        width: 27px;
+        height: 2px;
+        border-radius: 8px;
+        background: var(--ink);
+        opacity: 0.4;
+      }
+      .legend .road {
+        background: linear-gradient(90deg, #17697f, #b0522c);
+        opacity: 1;
+      }
+      .legend .cumulative-key {
+        height: 4px;
+        background: var(--ink);
+        opacity: 0.9;
+      }
+      .legend .spread-key {
+        height: 9px;
+        background: color-mix(in srgb, var(--ink) 5%, transparent);
+        border: 1px dashed color-mix(in srgb, var(--ink) 45%, transparent);
+        opacity: 1;
+      }
+      .legend .conflict-key {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: transparent;
+        border: 1.4px dashed var(--hot);
+        opacity: 1;
+      }
+      .legend .ring {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: transparent;
+        border: 1.5px solid var(--hot);
+        opacity: 1;
+      }
+      .legend .hint {
+        margin-left: auto;
+        font-style: italic;
+      }
+      .semantic-center {
+        stroke: var(--ink2);
+        stroke-width: 1;
+        stroke-dasharray: 4 7;
+        opacity: 0.32;
+      }
+      .semantic-label {
+        fill: var(--muted);
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        paint-order: stroke;
+        stroke: var(--paper);
+        stroke-width: 5;
+      }
+      .axis-caption {
+        fill: var(--muted);
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        opacity: 0.75;
+        paint-order: stroke;
+        stroke: var(--paper);
+        stroke-width: 4;
+      }
+      .lens.backward {
+        stroke-dasharray: 5 5;
+        opacity: 0.58;
+      }
+      .direction-arrow {
+        opacity: 0.8;
+      }
+      .tip {
+        position: fixed;
+        z-index: 60;
+        max-width: 310px;
+        padding: 10px 12px;
+        border-radius: 11px;
+        pointer-events: none;
+        background: color-mix(in srgb, var(--ink) 95%, transparent);
+        color: var(--paper);
+        font-size: 11px;
+        line-height: 1.45;
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transform: translateY(4px);
+        transition: 0.14s;
+      }
+      .tip.on {
+        opacity: 1;
+        transform: none;
+      }
+      .tip b {
+        display: block;
+        font-size: 12px;
+        margin-bottom: 3px;
+      }
+      .tip em {
+        font: 10px var(--mono);
+        font-style: normal;
+        opacity: 0.7;
+      }
+      .detail {
+        margin-top: 15px;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+        padding: 21px 23px;
+        display: grid;
+        grid-template-columns: 190px minmax(0, 1.25fr) minmax(250px, 0.85fr);
+        gap: 26px;
+        min-height: 160px;
+      }
+      .eyebrow {
+        font-size: 9.5px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--hot);
+      }
+      .meta {
+        font-size: 11px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-top: 9px;
+        border-top: 1px solid var(--soft);
+        padding-top: 9px;
+      }
+      .detail h3 {
+        font: 400 26px/1.16 var(--serif);
+        margin: 5px 0 9px;
+      }
+      .detail p {
+        font-size: 13px;
+        line-height: 1.7;
+        color: var(--ink2);
+        margin: 0 0 9px;
+      }
+      .sub {
+        font-size: 12px !important;
+        color: var(--muted) !important;
+      }
+      .impacts {
+        display: flex;
+        flex-direction: column;
+      }
+      .caption {
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--faint);
+        margin-bottom: 6px;
+      }
+      .impact {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 9px;
+        align-items: baseline;
+        font-size: 11.5px;
+        padding: 6px 0;
+        border-bottom: 1px solid var(--soft);
+      }
+      .impact b {
+        color: var(--hot);
+        font: 10px var(--mono);
+      }
+      .impact span {
+        color: var(--ink2);
+      }
+      .basis {
+        display: block;
+        margin-top: 3px;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .basis-curated {
+        color: var(--hot);
+      }
+      .basis-derived {
+        color: var(--muted);
+        opacity: 0.85;
+      }
+      .basis-seeded {
+        color: var(--muted);
+      }
+      .basis-reviewed {
+        color: var(--future);
+      }
+      .basis-sourced {
+        color: var(--hot);
+      }
+      .detail-block {
+        display: block;
+        margin-top: 7px;
+        padding-top: 6px;
+        border-top: 1px dashed var(--line);
+      }
+      .detail-line {
+        display: block;
+        margin-top: 3px;
+        color: var(--ink2);
+        font-size: 11px;
+        font-style: normal;
+        line-height: 1.4;
+      }
+      .detail-line b {
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .detail-line.evidence {
+        color: var(--muted);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .detail-line.strengthened b {
+        color: var(--future);
+      }
+      .detail-line.weakened b,
+      .detail-line.burdened b {
+        color: var(--hot);
+      }
+      .sources {
+        display: block;
+        margin-top: 6px;
+        font-size: 11px;
+      }
+      .sources summary {
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      .sources ul {
+        margin: 5px 0 0;
+        padding-left: 15px;
+      }
+      .sources li {
+        margin-bottom: 5px;
+        line-height: 1.4;
+      }
+      .sources a {
+        color: var(--ink);
+      }
+      .src-meta {
+        color: var(--muted);
+      }
+      .detail-line.derived-note {
+        color: var(--muted);
+        font-size: 10px;
+        font-style: italic;
+      }
+      .src-note {
+        display: block;
+        color: var(--muted);
+        font-size: 10px;
+        line-height: 1.35;
+      }
+      .basis-rationale {
+        display: block;
+        margin-top: 4px;
+        color: var(--ink2);
+        font-size: 11px;
+        font-style: normal;
+        line-height: 1.45;
+      }
+      .lens-feature {
+        margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+      }
+      .lens-feature[hidden] {
+        display: none;
+      }
+      .lens-feature-inner {
+        display: grid;
+        grid-template-columns: minmax(220px, 320px) 1fr;
+        gap: 22px;
+        align-items: start;
+      }
+      .lens-feature-fig {
+        margin: 0;
+      }
+      .lens-feature-fig img {
+        width: 100%;
+        display: block;
+        border-radius: 8px;
+        border: 1px solid var(--line);
+        background: var(--panel2, #14181d);
+        cursor: pointer;
+      }
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5vh 5vw;
+        background: rgba(10, 12, 14, 0.86);
+      }
+      .lightbox[hidden] {
+        display: none;
+      }
+      .lightbox img {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 6px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+      }
+      .lightbox-close {
+        all: unset;
+        position: fixed;
+        top: 18px;
+        right: 22px;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        font-size: 20px;
+        line-height: 1;
+        cursor: pointer;
+      }
+      .lightbox-close:hover,
+      .lightbox-close:focus-visible {
+        background: rgba(255, 255, 255, 0.22);
+      }
+      .lens-feature-fig figcaption {
+        margin-top: 6px;
+        font-size: 10.5px;
+        line-height: 1.5;
+        color: var(--muted);
+      }
+      .lens-feature-eyebrow {
+        font-size: 10px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 4px;
+      }
+      .lens-feature-title {
+        margin: 0 0 4px;
+        font-size: 16px;
+        line-height: 1.3;
+      }
+      .lens-feature-dek {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+      .lens-feature-body {
+        font-size: 12px;
+        line-height: 1.65;
+        max-width: 72ch;
+      }
+      .lens-feature-body p {
+        margin: 0 0 10px;
+      }
+      .lens-feature-body h4 {
+        margin: 18px 0 8px;
+        font-size: 13.5px;
+        line-height: 1.35;
+      }
+      .lens-feature-body h5 {
+        margin: 14px 0 6px;
+        font-size: 12.5px;
+        line-height: 1.35;
+        color: var(--ink2, inherit);
+      }
+      .lens-feature-body blockquote {
+        margin: 10px 0;
+        padding: 2px 0 2px 12px;
+        border-left: 2px solid var(--line);
+        color: var(--ink2, inherit);
+        font-style: italic;
+      }
+      .lens-feature-body ul {
+        margin: 0 0 10px;
+        padding-left: 18px;
+      }
+      .lens-feature-body li {
+        margin: 2px 0;
+      }
+      .lens-feature-body [hidden] {
+        display: none;
+      }
+      .lens-feature-more {
+        all: unset;
+        cursor: pointer;
+        color: var(--accent, #6fa8dc);
+        font-size: 11.5px;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      .lens-feature-further {
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+        font-size: 11px;
+        color: var(--muted);
+      }
+      .lens-feature-further li {
+        margin: 2px 0;
+      }
+      .lens-feature-missing {
+        margin-top: 8px;
+        font-size: 10.5px;
+        color: var(--muted);
+        font-style: italic;
+      }
+      @media (max-width: 720px) {
+        .lens-feature-inner {
+          grid-template-columns: 1fr;
+        }
+      }
+      .notice {
+        margin-top: 14px;
+        max-width: 95ch;
+        font-size: 10.5px;
+        line-height: 1.6;
+        color: var(--muted);
+      }
+      .error {
+        padding: 65px 20px;
+        text-align: center;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+      .error strong {
+        display: block;
+        font: 400 21px var(--serif);
+        color: var(--ink);
+        margin-bottom: 8px;
+      }
+      .cumulative-line {
+        fill: none;
+        stroke: var(--ink);
+        stroke-width: 4.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.92;
+        filter: drop-shadow(
+          0 1px 2px color-mix(in srgb, var(--ink) 28%, transparent)
+        );
+        pointer-events: none;
+      }
+      .node.off-focus {
+        opacity: 0.16;
+      }
+      .consensus {
+        font-weight: 600;
+      }
+      .consensus-conflicting {
+        color: var(--hot);
+      }
+      .conflict-ring {
+        fill: none;
+        stroke: var(--hot);
+        stroke-width: 1.3;
+        stroke-dasharray: 2.5 2.5;
+        opacity: 0.75;
+        pointer-events: none;
+      }
+      .tip-agree {
+        display: block;
+        margin-top: 2px;
+        color: var(--hot);
+      }
+      /*
+       * Hajonta-alue ja tihentymäkontuurit ovat eri asioita: kontuuri kertoo
+       * kuinka monta murrosta jaksolla on, hajonta kertoo kuinka eri mieltä
+       * linssit ovat. Molemmat olivat aluksi vaaleita täytettyjä vyöhykkeitä
+       * keskikäyrän ympärillä, jolloin ne luettiin yhdeksi. Hajonta saa siksi
+       * oman kielensä: ohut reunaviiva ja hyvin kevyt täyttö.
+       */
+      .spread-band {
+        fill: color-mix(in srgb, var(--ink) 4%, transparent);
+        stroke: color-mix(in srgb, var(--ink) 42%, transparent);
+        stroke-width: 1;
+        stroke-dasharray: 3 4;
+        pointer-events: none;
+      }
+      .spread-band.future {
+        fill: color-mix(in srgb, var(--future) 5%, transparent);
+        stroke: color-mix(in srgb, var(--future) 52%, transparent);
+      }
+      .cumulative-halo {
+        fill: none;
+        stroke: var(--paper);
+        stroke-width: 8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.88;
+        pointer-events: none;
+      }
+      .cumulative-line.sparse {
+        stroke-width: 3.1;
+        opacity: 0.64;
+      }
+      .cumulative-line.interpolated {
+        stroke-width: 3.1;
+        stroke-dasharray: 7 8;
+        opacity: 0.62;
+      }
+
+      .cumulative-line.future-scenario {
+        stroke: var(--future);
+        stroke-width: 3.4;
+        stroke-dasharray: 8 7;
+        opacity: 0.82;
+      }
+
+      .future-zone {
+        fill: var(--future);
+        opacity: 0.035;
+        pointer-events: none;
+      }
+
+      .future-label {
+        fill: var(--future);
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        paint-order: stroke;
+        stroke: var(--paper);
+        stroke-width: 4;
+      }
+      .cumulative-endpoint {
+        fill: var(--ink);
+        stroke: var(--paper);
+        stroke-width: 2.5;
+        pointer-events: none;
+      }
+      .contour-field {
+        stroke-width: 1;
+        stroke-linejoin: round;
+        pointer-events: none;
+      }
+      .contour-line {
+        fill: none;
+        stroke-width: 1;
+        stroke-linecap: round;
+        opacity: 0.2;
+        pointer-events: none;
+      }
+      .lens-average {
+        fill: none;
+        stroke-width: 2.2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        opacity: 0.72;
+        cursor: pointer;
+        filter: drop-shadow(0 0 1px var(--paper));
+      }
+      .lens-average:hover,
+      .lens-average.active {
+        stroke-width: 3;
+        opacity: 1;
+      }
+      .lens-average.dim {
+        opacity: 0.12;
+      }
+
+      .lens-average.future-path {
+        stroke-dasharray: 8 7;
+        opacity: 0.86;
+      }
+
+      .scenario-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        flex-wrap: wrap;
+      }
+
+      .scenario-toolbar-label {
+        font-size: 9.5px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--future);
+        margin-left: 8px;
+      }
+
+      .scenario-global {
+        display: inline-flex;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        overflow: hidden;
+        background: var(--paper2);
+      }
+
+      .scenario-global-option {
+        border: 0;
+        border-right: 1px solid var(--line);
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        padding: 6px 10px;
+        font-size: 10.5px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .scenario-global-option:last-child {
+        border-right: 0;
+      }
+
+      .scenario-global-option:hover {
+        color: var(--ink);
+        background: var(--soft);
+      }
+
+      .scenario-global-option[aria-pressed="true"] {
+        color: var(--paper);
+        background: var(--future);
+      }
+
+      .scenario-customize[aria-expanded="true"],
+      .scenario-customize.is-mixed {
+        border-color: var(--future);
+        color: var(--future);
+      }
+
+      .scenario-panel {
+        margin-top: 11px;
+        padding-top: 11px;
+        border-top: 1px solid var(--soft);
+      }
+
+      .scenario-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+
+      .scenario-title {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--future);
+      }
+
+      .scenario-note {
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      .scenario-presets {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+
+      .scenario-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(320px, 1fr));
+        gap: 7px 14px;
+      }
+
+      .scenario-row {
+        display: grid;
+        grid-template-columns: minmax(150px, 1fr) auto;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+        padding: 7px 9px;
+        border: 1px solid var(--soft);
+        border-radius: 10px;
+        background: color-mix(in srgb, var(--future) 3%, var(--paper2));
+      }
+
+      .scenario-row-name {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        font-size: 11.5px;
+        color: var(--ink2);
+      }
+
+      .scenario-swatch {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex: 0 0 auto;
+        background: var(--c);
+      }
+
+      .scenario-row-name span:last-child {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .scenario-options {
+        display: inline-flex;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        overflow: hidden;
+        background: var(--paper);
+      }
+
+      .scenario-option {
+        border: 0;
+        border-right: 1px solid var(--line);
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        padding: 5px 8px;
+        font-size: 10px;
+        font-weight: 700;
+      }
+
+      .scenario-option:last-child {
+        border-right: 0;
+      }
+
+      .scenario-option:hover {
+        color: var(--ink);
+        background: var(--soft);
+      }
+
+      .scenario-option[aria-pressed="true"] {
+        color: var(--paper);
+        background: var(--future);
+      }
+
+      @media (max-width: 900px) {
+        .scenario-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 900px) {
+        header {
+          grid-template-columns: 1fr;
+        }
+        .stats {
+          flex-wrap: wrap;
+        }
+        .controls {
+          position: static;
+        }
+        .detail {
+          grid-template-columns: 1fr;
+          gap: 17px;
+        }
+        .app {
+          padding: 22px 10px 44px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          transition: none !important;
+        }
+        html {
+          scroll-behavior: auto;
+        }
+      }
+
+      /* ============ v2 enhancements ============ */
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --bg: #f2ede3;
+        --bg2: #e9e2d4;
+        --paper: #fffdf8;
+        --paper2: #faf6ee;
+        --ink: #15293c;
+        --ink2: #3c4d5e;
+        --muted: #6d7883;
+        --faint: #98a1aa;
+        --line: #d6cec0;
+        --strong: #b9ae9c;
+        --soft: #ece5d9;
+        --hot: #ad4128;
+        --future: #2f6b4f;
+        --shadow:
+          0 1px 2px rgba(24, 32, 40, 0.05),
+          0 18px 46px -22px rgba(24, 32, 40, 0.35);
+      }
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --bg: #0e161e;
+        --bg2: #121d27;
+        --paper: #17222c;
+        --paper2: #1c2833;
+        --ink: #f0f2ee;
+        --ink2: #cfd7dd;
+        --muted: #9fa9b2;
+        --faint: #75808a;
+        --line: #33414c;
+        --strong: #4b5a66;
+        --soft: #22303b;
+        --hot: #e8795a;
+        --future: #5fbf8f;
+        --shadow: 0 20px 50px -28px rgba(0, 0, 0, 0.9);
+      }
+      .toolbar {
+        display: grid;
+        grid-template-columns: minmax(240px, 1.4fr) minmax(260px, 1.6fr) auto;
+        gap: 14px 18px;
+        align-items: center;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        padding: 14px 16px;
+        margin: 0 0 14px;
+      }
+      .tool {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        min-width: 0;
+      }
+      .tool > label,
+      .tool .tool-title {
+        font: 600 10.5px/1 var(--sans);
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--faint);
+      }
+      .search-wrap {
+        position: relative;
+      }
+      .search-wrap input {
+        width: 100%;
+        font: 400 14px var(--sans);
+        color: var(--ink);
+        background: var(--paper2);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 9px 30px 9px 11px;
+        outline: none;
+      }
+      .search-wrap input:focus {
+        border-color: var(--strong);
+        box-shadow: 0 0 0 3px color-mix(in srgb, var(--strong) 22%, transparent);
+      }
+      .search-clear {
+        position: absolute;
+        right: 6px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 0;
+        background: none;
+        cursor: pointer;
+        color: var(--faint);
+        font-size: 16px;
+        line-height: 1;
+        padding: 4px 6px;
+        border-radius: 6px;
+      }
+      .search-clear:hover {
+        color: var(--ink);
+        background: var(--soft);
+      }
+      .results {
+        position: absolute;
+        z-index: 40;
+        top: calc(100% + 6px);
+        left: 0;
+        right: 0;
+        max-height: 320px;
+        overflow: auto;
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        padding: 5px;
+        display: none;
+      }
+      .results.on {
+        display: block;
+      }
+      .results button {
+        display: grid;
+        grid-template-columns: 46px 1fr;
+        gap: 8px;
+        align-items: baseline;
+        width: 100%;
+        text-align: left;
+        border: 0;
+        background: none;
+        cursor: pointer;
+        padding: 7px 9px;
+        border-radius: 8px;
+      }
+      .results button:hover,
+      .results button.cursor {
+        background: var(--soft);
+      }
+      .results b {
+        font: 600 12px var(--mono);
+        color: var(--hot);
+      }
+      .results span {
+        font: 400 13px/1.35 var(--sans);
+        color: var(--ink2);
+      }
+      .results .empty {
+        padding: 10px;
+        font: 400 13px var(--sans);
+        color: var(--muted);
+      }
+      .range-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .range-row input[type="range"] {
+        flex: 1;
+        accent-color: var(--hot);
+        min-width: 60px;
+      }
+      .range-val {
+        font: 600 12px var(--mono);
+        color: var(--ink2);
+        min-width: 78px;
+        text-align: right;
+      }
+      .switches {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+      .switch,
+      .tool-btn {
+        font: 600 11.5px var(--sans);
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        border: 1px solid var(--line);
+        background: var(--paper2);
+        color: var(--ink2);
+        padding: 7px 11px;
+        border-radius: 999px;
+        transition:
+          background 0.15s,
+          color 0.15s,
+          border-color 0.15s;
+      }
+      .switch:hover,
+      .tool-btn:hover {
+        border-color: var(--strong);
+        color: var(--ink);
+      }
+      .switch[aria-pressed="true"] {
+        background: var(--ink);
+        color: var(--paper);
+        border-color: var(--ink);
+      }
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 26px;
+        transform: translateX(-50%) translateY(12px);
+        background: var(--ink);
+        color: var(--paper);
+        font: 500 13px var(--sans);
+        padding: 10px 16px;
+        border-radius: 999px;
+        opacity: 0;
+        pointer-events: none;
+        transition:
+          opacity 0.2s,
+          transform 0.2s;
+        z-index: 90;
+      }
+      .toast.on {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+      .loading {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        justify-content: center;
+        padding: 60px 20px;
+        color: var(--muted);
+        font: 400 15px var(--sans);
+      }
+      .loading i {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        border: 2px solid var(--line);
+        border-top-color: var(--hot);
+        animation: spin 0.8s linear infinite;
+        display: block;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .filebox {
+        margin-top: 14px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .node.pulse circle {
+        animation: pulse 1.1s ease-out 2;
+      }
+      @keyframes pulse {
+        0% {
+          r: 4;
+        }
+        50% {
+          r: 15;
+        }
+        100% {
+          r: 4;
+        }
+      }
+      .kbd-hint {
+        font: 400 11.5px var(--sans);
+        color: var(--faint);
+      }
+      @media (max-width: 900px) {
+        .toolbar {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .analysis-browser {
+        display: inline-grid;
+        grid-template-columns: 32px minmax(148px, 210px) 32px;
+        align-items: stretch;
+        height: 44px;
+        margin-left: 4px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--paper2);
+        box-shadow: inset 0 0 0 1px color-mix(in srgb,var(--paper) 45%,transparent);
+      }
+      .analysis-browser button {
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+        transition: .16s ease;
+      }
+      .analysis-browser button:hover { background: var(--soft); color: var(--ink); }
+      .analysis-step { font: 500 20px/1 var(--serif); }
+      .analysis-toggle {
+        min-width: 0;
+        padding: 4px 10px;
+        border-left: 1px solid var(--line) !important;
+        border-right: 1px solid var(--line) !important;
+        display: grid;
+        grid-template-columns: 20px minmax(0,1fr) 10px;
+        align-items: center;
+        gap: 7px;
+        text-align: left;
+      }
+      .analysis-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; }
+      .analysis-copy { min-width: 0; }
+      .analysis-copy b { display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:10px; color:var(--ink2); }
+      .analysis-copy small { display:block; margin-top:2px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:7px; letter-spacing:.11em; text-transform:uppercase; color:var(--faint); }
+      .analysis-state { width:8px; height:8px; border-radius:50%; border:1px solid var(--faint); background:transparent; }
+      .analysis-toggle[aria-pressed="true"] { color:var(--hot); background:color-mix(in srgb,var(--hot) 10%,var(--paper)); }
+      .analysis-toggle[aria-pressed="true"] .analysis-copy b { color:var(--hot); }
+      .analysis-toggle[aria-pressed="true"] .analysis-state { border-color:var(--hot); background:var(--hot); box-shadow:0 0 0 3px color-mix(in srgb,var(--hot) 15%,transparent); }
+      @media (max-width: 760px) { .analysis-browser { grid-template-columns:30px minmax(118px,1fr) 30px; } }
+      #chart.interaction-pulse { animation: interactionPulse .28s ease-out; transform-origin: 50% 50%; }
+      @keyframes interactionPulse {
+        0% { opacity: .82; transform: scale(.998); }
+        55% { opacity: 1; transform: scale(1.002); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+      .resilience-compare { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin: 0 0 13px; padding: 9px; border: 1px solid var(--line); border-radius: 12px; background: color-mix(in srgb,var(--paper2) 76%,transparent); }
+      .resilience-compare > span { margin-right: 3px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+      .resilience-compare button { border: 1px solid var(--line); border-radius: 999px; padding: 6px 9px; background: var(--paper); color: var(--ink2); cursor: pointer; font-size: 10px; font-weight: 700; transition: .16s ease; }
+      .resilience-compare button:hover { border-color: var(--ink); transform: translateY(-1px); }
+      .resilience-compare button[aria-pressed="true"] { border-color: var(--hot); background: color-mix(in srgb,var(--hot) 11%,var(--paper)); color: var(--hot); }
+      .resilience-basis { margin: -3px 0 12px; color: var(--muted); font-size: 10px; line-height: 1.5; }
+      .resilience-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+      .resilience-card { padding: 12px; border: 1px solid var(--line); border-radius: 13px; background: color-mix(in srgb,var(--paper2) 88%,transparent); }
+      .resilience-card header { display: flex; justify-content: space-between; gap: 10px; align-items: start; margin-bottom: 9px; }
+      .resilience-card header div { display: grid; grid-template-columns: auto 1fr; gap: 8px; align-items: baseline; }
+      .resilience-card header b { color: var(--hot); font: 500 18px/1 var(--serif); }
+      .resilience-card header span { font-size: 12px; font-weight: 750; }
+      .resilience-card header small { color: var(--muted); white-space: nowrap; }
+      .resilience-summary { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+      .resilience-summary span { padding: 3px 6px; border-radius: 999px; background: var(--soft); color: var(--muted); font-size: 9px; font-weight: 750; text-transform: uppercase; letter-spacing: .06em; }
+      .resilience-row { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 10px; padding: 6px 0; border-top: 1px solid color-mix(in srgb,var(--line) 65%,transparent); font-size: 10px; }
+      .resilience-row span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+      .resilience-row b { font-weight: 750; text-align: right; }
+      .resilience-row.is-recovered b { color: var(--future); }
+      .resilience-row.is-open b { color: var(--hot); }
+      .resilience-row.is-pending b { color: var(--muted); }
+      .resilience-map-status-bg { fill: color-mix(in srgb,var(--paper) 94%,transparent); stroke: var(--hot); stroke-width: 1.2; filter: drop-shadow(0 5px 12px rgba(20,30,40,.14)); }
+      .resilience-map-status-kicker { fill: var(--muted); font-size: 7px; font-weight: 800; letter-spacing: .14em; }
+      .resilience-map-status-label { fill: var(--hot); font-size: 11px; font-weight: 800; }
+      .method-note { margin-top: 10px; color: var(--muted); font-size: 11px; line-height: 1.55; }
+      .method-note summary { cursor: pointer; font-weight: 750; color: var(--ink2); }
+      @media (max-width: 800px) { .resilience-head, .resilience-grid { grid-template-columns: 1fr; } }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <div>
+          <div class="kicker">Selitysatlas · murrosten tulkintakartta</div>
+          <h1>Aika määrää suunnan,<br /><em>vaikutukset maiseman</em></h1>
+          <p class="lede">
+            Jokainen näkyvä murros kuuluu valittuun pitkäaikaisketjuun.
+            Pystysijainti kertoo murroksen tulkinnallisen suunnan, ja linssin
+            värinen kaari kokoaa niiden keskimääräisen sijainnin ajassa.
+          </p>
+        </div>
+        <div class="stats">
+          <div class="stat"><b id="nodeCount">–</b><span>ilmiötä</span></div>
+          <div class="stat">
+            <b id="edgeCount">–</b><span>valittua linssiä</span>
+          </div>
+          <div class="stat">
+            <b id="jointCount">–</b><span>yhteistä murrosta</span>
+          </div>
+        </div>
+      </header>
+      <section class="toolbar" aria-label="Kartan hallinta">
+        <div class="tool">
+          <label for="q">Hae ilmiötä</label>
+          <div class="search-wrap">
+            <input
+              id="q"
+              type="search"
+              autocomplete="off"
+              placeholder="esim. rautatie, lama, koulu…"
+              aria-controls="results"
+            />
+            <button
+              class="search-clear"
+              id="qClear"
+              type="button"
+              aria-label="Tyhjennä haku"
+            >
+              ×
+            </button>
+            <div class="results" id="results" role="listbox"></div>
+          </div>
+        </div>
+        <div class="tool">
+          <span class="tool-title">Aikaikkuna</span>
+          <div class="range-row">
+            <input
+              id="yFrom"
+              type="range"
+              min="1800"
+              max="2050"
+              step="10"
+              value="1800"
+              aria-label="Alkuvuosi"
+            />
+            <input
+              id="yTo"
+              type="range"
+              min="1800"
+              max="2050"
+              step="10"
+              value="2050"
+              aria-label="Loppuvuosi"
+            />
+            <span class="range-val" id="yVal">1800–2050</span>
+          </div>
+        </div>
+        <div class="tool">
+          <span class="tool-title">Näkymä</span>
+          <div class="switches">
+            <button
+              class="switch"
+              id="tLabels"
+              aria-pressed="false"
+              type="button"
+            >
+              Kaikki nimet
+            </button>
+            <button
+              class="switch"
+              id="tDensity"
+              aria-pressed="true"
+              type="button"
+            >
+              Tihentymä
+            </button>
+            <button class="tool-btn" id="tTheme" type="button">Teema</button>
+            <button class="tool-btn" id="tShare" type="button">
+              Kopioi linkki
+            </button>
+            <button class="tool-btn" id="tPng" type="button">Lataa PNG</button>
+          </div>
+        </div>
+      </section>
+      <section class="controls">
+        <div class="control-head">
+          <strong>Valitse murrosmaisemaa selittävät linssit</strong>
+          <div class="actions">
+            <button class="action" id="core" disabled>Ydinketjut</button
+            ><button class="action" id="all" disabled>Kaikki</button
+            ><button class="action" id="none" disabled>Tyhjennä</button>
+          </div>
+        </div>
+        <div class="chips" id="chips"></div>
+        <div class="scenario-toolbar" aria-label="Kehityssuunnan vaihtoehdot 2025–2050">
+          <span class="scenario-toolbar-label">Kehityssuunta 2025–2050</span>
+          <div class="scenario-global" role="group" aria-label="Kaikkien linssien kehityssuunta">
+            <button class="scenario-global-option" type="button" data-scenario-preset="weak" aria-pressed="false">Heikkenee</button>
+            <button class="scenario-global-option" type="button" data-scenario-preset="trend" aria-pressed="true">Nykyinen</button>
+            <button class="scenario-global-option" type="button" data-scenario-preset="strong" aria-pressed="false">Vahvistuu</button>
+          </div>
+          <button class="action scenario-customize" id="scenarioCustomize" type="button" aria-expanded="false" aria-controls="scenarioPanel">Mukauta…</button>
+        </div>
+        <div class="scenario-panel" id="scenarioPanel" hidden>
+          <div class="scenario-head">
+            <div>
+              <div class="scenario-title">Linssikohtainen kehityssuunta</div>
+              <div class="scenario-note">Mukauta vain tarvittaessa. Historiallinen osa ei muutu.</div>
+            </div>
+          </div>
+          <div class="scenario-grid" id="scenarioGrid"></div>
+        </div>
+      </section>
+      <section class="map">
+        <div class="map-head">
+          <h2>Valitun linssin murrosmaisema</h2>
+          <p>
+            Vaaka = aika · pysty = vaikutuksen suunta · värikaari = murrosten
+            keskimääräinen sijainti
+          </p>
+        </div>
+        <div class="scroll" id="scroll">
+          <div class="loading" id="loading"><i></i>Ladataan atlas-dataa…</div>
+          <svg
+            class="chart"
+            id="chart"
+            viewBox="0 0 1780 980"
+            role="img"
+            aria-labelledby="title desc"
+          >
+            <title id="title">
+              Murrosatlaksen linssikohtainen vaikutuskartta
+            </title>
+            <desc id="desc">
+              Kartta näyttää valittujen linssien relevantit murrokset, niiden
+              tihentymät, linssikohtaiset keskimääräiset sijaintikäyrät ja
+              valittujen linssien yhteisvaikutuksen. Sankey-reittejä ei
+              piirretä.
+            </desc>
+          </svg>
+        </div>
+        <div class="legend">
+          <span
+            ><i class="cumulative-key"></i>Linssien yhteinen
+            vaikutussuunta</span
+          ><span
+            ><i class="spread-key"></i>Linssien välinen hajonta</span
+          ><span
+            ><i class="road"></i>Linssin keskimääräinen sijainti ja
+            tihentymä</span
+          ><span><i class="ring"></i>Usealle linssille yhteinen murros</span
+          ><span><i class="conflict-key"></i>Linssit eri mieltä vaikutuksesta</span
+          ><span class="hint">Tumma katkoviiva = interpolointi · vihreä katkoviiva = valittu tulevaisuuspolku</span>
+        </div>
+      </section>
+      <section class="detail" id="detail" aria-live="polite"></section>
+      <section
+        class="lens-feature"
+        id="lensFeature"
+        aria-live="polite"
+        hidden
+      ></section>
+      <p class="notice">
+        Pystyakseli kuvaa <strong>valitun linssin mukaista vaikutusta
+        järjestelmän toimintakykyyn</strong>, ei hyvinvointia eikä yhteiskunnan
+        kokonaistilaa. Sama murros voi olla yhdessä linssissä vahvistava ja
+        toisessa heikentävä; tämän ristiriidan näkyväksi tekeminen on kartan
+        keskeinen hyöty. Sijainnit ovat rakenteellisia tulkintoja, eivät
+        määrällisiä mittauksia: osa perustuu kuratoituun murros–linssi-arvioon,
+        osa on johdettu polun varrelta. Avaa murros nähdäksesi kumpi on
+        kyseessä.
+      </p>
+    </main>
+    <div class="tip" id="tip" role="tooltip" aria-hidden="true"></div>
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Infografiikka suurennettuna" hidden>
+      <button type="button" class="lightbox-close" id="lightboxClose" aria-label="Sulje suurennos">&times;</button>
+      <img id="lightboxImg" alt="" />
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script>
+      (function () {
+        "use strict";
+
+        // ------------------------------------------------------------------
+        // Data files and application state
+        // ------------------------------------------------------------------
+        const FILES = {
+          chains: "atlas-data.json",
+          atlas: "murrosatlas.json",
+          anchors: "chain-anchors.json",
+          layout: "murros-layout.json",
+          lensContent: "lens-content.json",
+          resilience: "resilienssikerros.json",
+          wellbeing: "hyvinvointikerros.json",
+        };
+
+        // Arviointilämpökartan julkinen koonti. Koonti on ensisijainen
+        // vaikutussuunnan lähde; paikalliset JSON-arviot jäävät varmistavaksi
+        // fallbackiksi, joten kartta toimii myös jos Supabase ei ole saatavilla.
+        const AGGREGATE_API =
+          "https://zzbubbrsgiqsvsovkkmf.supabase.co/rest/v1/lens_aggregate";
+        const AGGREGATE_KEY =
+          "sb_publishable_YNqxZI4Oj-DSjVBoTKhQ2Q_4DchUIBb";
+        const NS = "http://www.w3.org/2000/svg",
+          svg = document.getElementById("chart"),
+          chips = document.getElementById("chips"),
+          detail = document.getElementById("detail"),
+          tip = document.getElementById("tip");
+        const colors = [
+            "#17697f",
+            "#b0522c",
+            "#6a55a3",
+            "#28755a",
+            "#a9761d",
+            "#9a4463",
+            "#356e9c",
+            "#5f7632",
+            "#714c78",
+            "#845a34",
+          ],
+          W = 1780,
+          H = 980,
+          NOW_YEAR = 2025,
+          P = { l: 92, r: 68, t: 64, b: 70 };
+        const UI = {
+          yearMin: 1800,
+          yearMax: 2050,
+          allLabels: false,
+          density: true,
+        };
+        const FUTURE_MODES = {
+          weak: { label: "Heikkenee", direction: 1 },
+          trend: { label: "Nykyinen suunta jatkuu", direction: 0 },
+          strong: { label: "Vahvistuu", direction: -1 },
+        };
+        const FUTURE_SCENARIO_SHIFT = 0.11;
+        let chains,
+          atlas,
+          anchors,
+          layout,
+          lensContent = {},
+          resilience = { meta: {}, crises: [] },
+          wellbeing = { meta: {}, series: {} },
+          aggregate = new Map(),
+          aggregateStatus = { loaded: false, rows: 0, userRows: 0 },
+          selected = new Set(),
+          activeChain = null,
+          activeNode = null,
+          nodeMap,
+          itemMap,
+          roleMap,
+          displayY = new Map(),
+          displayYear = new Map(),
+          futureModes = new Map();
+        const S = (s) =>
+          String(s ?? "").replace(
+            /[&<>"']/g,
+            (c) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;",
+              })[c],
+          );
+        /** Create one SVG element and apply dynamic lens colours inline. */
+        function E(elementName, attributes = {}, textContent = "") {
+          const element = document.createElementNS(NS, elementName);
+
+          for (const [name, value] of Object.entries(attributes)) {
+            element.setAttribute(name, value);
+          }
+
+          if (attributes.stroke) element.style.stroke = attributes.stroke;
+          if (attributes.fill) element.style.fill = attributes.fill;
+          if (attributes["fill-opacity"] !== undefined) {
+            element.style.fillOpacity = attributes["fill-opacity"];
+          }
+          if (attributes.opacity !== undefined) {
+            element.style.opacity = attributes.opacity;
+          }
+
+          if (textContent !== "") element.textContent = textContent;
+          return element;
+        }
+        function color(id) {
+          const i = chains.models.findIndex((v) => v.id === id);
+          return colors[(i < 0 ? 0 : i) % colors.length];
+        }
+        function inferredDisplayYear(node) {
+          const item = itemMap?.get(node.id) || {};
+          const text = `${item.title || ""} ${item.phase || ""} ${item.current_relevance || ""}`;
+          const years = [...text.matchAll(/\b(20(?:2[6-9]|[3-4]\d|50))\b/g)]
+            .map((match) => Number(match[1]))
+            .filter((year) => year > NOW_YEAR && year <= 2050);
+          return Math.max(node.year, ...(years.length ? years : [node.year]));
+        }
+
+        function yearOf(node) {
+          return displayYear.get(node.id) ?? node.year;
+        }
+
+        function xForYear(year) {
+          return P.l + ((year - 1800) / 250) * (W - P.l - P.r);
+        }
+
+        function xy(n) {
+          const y = displayY.has(n.id) ? displayY.get(n.id) : n.y;
+          return {
+            x: xForYear(yearOf(n)),
+            y: P.t + y * (H - P.t - P.b),
+          };
+        }
+        function short(s, n) {
+          s = String(s ?? "");
+          return s.length > n ? s.slice(0, n - 1) + "…" : s;
+        }
+        function path(points) {
+          if (points.length < 2) return "";
+          let d = `M${points[0].x},${points[0].y}`;
+          for (let i = 1; i < points.length; i++) {
+            const a = points[i - 1],
+              b = points[i],
+              dx = (b.x - a.x) * 0.42;
+            d += ` C${a.x + dx},${a.y} ${b.x - dx},${b.y} ${b.x},${b.y}`;
+          }
+          return d;
+        }
+        function smoothPath(points) {
+          if (points.length < 2) return "";
+          let d = `M${points[0].x},${points[0].y}`;
+          for (let i = 0; i < points.length - 1; i++) {
+            const p0 = points[i - 1] || points[i],
+              p1 = points[i],
+              p2 = points[i + 1],
+              p3 = points[i + 2] || p2,
+              c1 = { x: p1.x + (p2.x - p0.x) / 6, y: p1.y + (p2.y - p0.y) / 6 },
+              c2 = { x: p2.x - (p3.x - p1.x) / 6, y: p2.y - (p3.y - p1.y) / 6 };
+            d += ` C${c1.x},${c1.y} ${c2.x},${c2.y} ${p2.x},${p2.y}`;
+          }
+          return d;
+        }
+
+        /**
+         * Calculate shape-preserving Steffen tangents for a curve whose x values
+         * increase monotonically. Unlike a free Catmull–Rom spline, this method
+         * cannot turn backwards on the time axis or create loops between years.
+         */
+        function monotoneTangents(points) {
+          if (points.length < 2) return [];
+
+          const slopes = [];
+          const widths = [];
+          for (let index = 0; index < points.length - 1; index++) {
+            const width = Math.max(0.0001, points[index + 1].x - points[index].x);
+            widths.push(width);
+            slopes.push((points[index + 1].y - points[index].y) / width);
+          }
+
+          const tangents = new Array(points.length);
+          tangents[0] = slopes[0];
+          tangents[tangents.length - 1] = slopes[slopes.length - 1];
+
+          for (let index = 1; index < points.length - 1; index++) {
+            const previousSlope = slopes[index - 1];
+            const nextSlope = slopes[index];
+
+            if (previousSlope === 0 || nextSlope === 0 || previousSlope * nextSlope <= 0) {
+              tangents[index] = 0;
+              continue;
+            }
+
+            const weightedSlope =
+              (previousSlope * widths[index] + nextSlope * widths[index - 1]) /
+              (widths[index - 1] + widths[index]);
+            tangents[index] =
+              (Math.sign(previousSlope) + Math.sign(nextSlope)) *
+              Math.min(
+                Math.abs(previousSlope),
+                Math.abs(nextSlope),
+                0.5 * Math.abs(weightedSlope),
+              );
+          }
+
+          return tangents;
+        }
+
+        /**
+         * Return one monotone cubic Bézier segment. Control points remain inside
+         * the segment's x interval, so the cumulative curve always moves forward
+         * in time and stays smooth without overshooting into a loop.
+         */
+        function monotoneSegmentPath(points, index, tangents = monotoneTangents(points)) {
+          if (index < 1 || index >= points.length) return "";
+
+          const start = points[index - 1];
+          const end = points[index];
+          const width = Math.max(0.0001, end.x - start.x);
+          const firstControl = {
+            x: start.x + width / 3,
+            y: start.y + (tangents[index - 1] * width) / 3,
+          };
+          const secondControl = {
+            x: end.x - width / 3,
+            y: end.y - (tangents[index] * width) / 3,
+          };
+
+          return `M${start.x},${start.y} C${firstControl.x},${firstControl.y} ${secondControl.x},${secondControl.y} ${end.x},${end.y}`;
+        }
+
+        function monotoneCurvePath(points) {
+          if (points.length < 2) return "";
+
+          const tangents = monotoneTangents(points);
+          let curve = monotoneSegmentPath(points, 1, tangents);
+          for (let index = 2; index < points.length; index++) {
+            curve += monotoneSegmentPath(points, index, tangents).replace(/^M[^C]+/, "");
+          }
+          return curve;
+        }
+        function showTip(h, e) {
+          tip.innerHTML = h;
+          tip.classList.add("on");
+          moveTip(e);
+        }
+        function moveTip(e) {
+          const r = tip.getBoundingClientRect(),
+            p = 14;
+          let x = e.clientX + p,
+            y = e.clientY + p;
+          if (x + r.width > innerWidth - 8) x = e.clientX - r.width - p;
+          if (y + r.height > innerHeight - 8) y = e.clientY - r.height - p;
+          tip.style.left = Math.max(8, x) + "px";
+          tip.style.top = Math.max(8, y) + "px";
+        }
+        function hideTip() {
+          tip.classList.remove("on");
+        }
+        function bindTip(n, f) {
+          n.addEventListener("mouseenter", (e) => showTip(f(), e));
+          n.addEventListener("mousemove", moveTip);
+          n.addEventListener("mouseleave", hideTip);
+        }
+        // ------------------------------------------------------------------
+        // Lens icons
+        // ------------------------------------------------------------------
+
+        const ICONS = {
+          M21: '<path d="M4 7h11m0 0-3-3m3 3-3 3M20 17H9m0 0 3-3m-3 3 3 3"/>',
+          M27: '<path d="M12 3 5 6v5c0 4.6 2.8 8 7 10 4.2-2 7-5.4 7-10V6l-7-3Z"/><path d="M12 8v5m0 3h.01"/>',
+          M28: '<path d="M12 3v18M5 6h14M6 6l-3 7h6L6 6Zm12 0-3 7h6l-3-7ZM8 21h8"/>',
+          M33: '<path d="M9 18h6m-5 3h4M8.5 14.5A6 6 0 1 1 15.5 14.5c-1 .8-1.5 1.7-1.5 2.5h-4c0-.8-.5-1.7-1.5-2.5Z"/>',
+          M34: '<ellipse cx="9" cy="8" rx="5" ry="2.5"/><path d="M4 8v4c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5V8m-9.5 4v4c0 1.4 2 2.5 4.5 2.5 1.2 0 2.2-.2 3-.6m3-6.4c2.6.1 4.5 1.1 4.5 2.5v4c0 1.4-2.2 2.5-5 2.5-1.1 0-2-.2-2.8-.4"/>',
+          M35: '<path d="m14.5 6.5 3-3 3 3-3 3M4 20l7.5-7.5m-4-6a4 4 0 0 0 5 5l-7 7-3-3 7-7a4 4 0 0 0-5-5"/>',
+          M36: '<path d="M20 7v5h-5M4 17v-5h5M6.2 8a7 7 0 0 1 11.3-2L20 8m-16 8 2.5 2a7 7 0 0 0 11.3-2"/>',
+          M37: '<path d="m3 9 9-5 9 5M5 10h14M6 10v8m4-8v8m4-8v8m4-8v8M4 21h16"/>',
+          M38: '<path d="m3 9 9-5 9 5-9 5-9-5Zm4 3v5c3 2 7 2 10 0v-5m4-3v6"/>',
+          M39: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm13 10v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
+        };
+        function lensIcon(id) {
+          return `<svg viewBox="0 0 24 24" aria-hidden="true">${ICONS[id] || ICONS.M21}</svg>`;
+        }
+        // ------------------------------------------------------------------
+        // Interpretation model
+        // ------------------------------------------------------------------
+
+        /**
+         * Kuratoitujen murros-linssi-roolien yhdistetty hakemisto.
+         *
+         * chain-anchors.json on kuratoinnin ensisijainen lähde: se on
+         * uudempi ja laajempi kuin murros-layout.jsonin anchor_roles, joka
+         * on jäänyt varhaisempaan versioon. Layout täydentää vain ne parit,
+         * joita anchors ei tunne, jottei mikään aiemmin näkynyt yhteys
+         * katoa kartalta.
+         *
+         * Arvoon kirjataan source-kenttä, jotta tietokortti voi myöhemmin
+         * kertoa lukijalle, perustuuko pisteen sijainti kuratoituun rooliin
+         * vai johdettuun arvioon.
+         */
+        function buildRoleMap(anchorData, layoutData) {
+          const map = new Map();
+          (anchorData?.anchors || []).forEach((anchor) => {
+            (anchor.links || []).forEach((link) => {
+              if (!link?.chain_id || !anchor.phenomenon_id) return;
+              map.set(link.chain_id + "|" + anchor.phenomenon_id, {
+                chain_id: link.chain_id,
+                phenomenon_id: anchor.phenomenon_id,
+                role: link.role,
+                strength: link.strength,
+                direction: link.direction ?? null,
+                confidence: link.confidence || null,
+                rationale: link.rationale || null,
+                basis: link.basis || null,
+                needs_review: link.needs_review === true,
+                // Skeema 2.1 -- vaikutuksen ajallisuus, kohdentuminen,
+                // jakauma, näytön laji ja lähteet.
+                delay: link.delay || null,
+                duration: link.duration || null,
+                scope: link.scope || null,
+                strengthened: link.strengthened || null,
+                weakened: link.weakened || null,
+                distribution: link.distribution || null,
+                evidence_type: link.evidence_type || null,
+                sources: link.sources || null,
+                source: "anchors",
+              });
+            });
+          });
+          (layoutData?.anchor_roles || []).forEach((r) => {
+            const key = r.chain_id + "|" + r.phenomenon_id;
+            if (map.has(key)) return;
+            map.set(key, { ...r, source: "layout" });
+          });
+          // Datan eriytyminen näkyviin: ankkuri voi viitata murrokseen, jota
+          // ei ole tässä layout-aineistossa. Tällainen yhteys ei voi näkyä
+          // kartalla, joten se raportoidaan hiljaisen pudotuksen sijaan.
+          const unknown = new Set();
+          map.forEach((r) => {
+            if (!nodeMap.has(r.phenomenon_id)) unknown.add(r.phenomenon_id);
+          });
+          if (unknown.size)
+            console.warn(
+              `Murroskartta: ${unknown.size} ankkuroitua murrosta puuttuu layout-aineistosta eikä näy kartalla:`,
+              [...unknown],
+            );
+          return map;
+        }
+
+        /**
+         * Kuratoitu strength kertoo yhteyden voimakkuuden. Aiemmin "vahva"
+         * ja "kohtalainen" tuottivat identtisen arvon; nyt ero näkyy myös
+         * pystysijainnissa. Puuttuva strength saa väliarvon, jottei
+         * luokittelematon yhteys hyppää ääripäähän.
+         */
+        const STRENGTH_WEIGHT = { vahva: 1, kohtalainen: 0.6 };
+        function strengthWeight(strength) {
+          return STRENGTH_WEIGHT[String(strength || "").toLowerCase()] ?? 0.8;
+        }
+
+        /**
+         * Eksplisiittinen suunta-asteikko -3...+3 skaalataan kartan
+         * sisäiseen -1...+1 -asteikkoon. Tämä on kuratoijan oma arvio, joten
+         * se ohittaa roolitekstistä pääteltävän suunnan kokonaan.
+         */
+        function directionToScore(direction) {
+          return Math.max(-1, Math.min(1, Number(direction) / 3));
+        }
+
+        function aggregateKey(lensId, phenomenonId) {
+          return `${phenomenonId}|${lensId}`;
+        }
+
+        function aggregateFor(lensId, phenomenonId) {
+          return aggregate.get(aggregateKey(lensId, phenomenonId)) || null;
+        }
+
+        function aggregateScore(lensId, phenomenonId) {
+          const row = aggregateFor(lensId, phenomenonId);
+          if (!row) return null;
+          const direction = Number(row.mean_direction);
+          return Number.isFinite(direction) ? directionToScore(direction) : null;
+        }
+
+        async function loadLensAggregate() {
+          try {
+            const params = new URLSearchParams({
+              select: "phenomenon_id,lens_id,mean_direction,mean_cell,contributor_count,spread,source,seed_direction,tier",
+            });
+            const response = await fetch(`${AGGREGATE_API}?${params}`, {
+              headers: {
+                apikey: AGGREGATE_KEY,
+                Authorization: `Bearer ${AGGREGATE_KEY}`,
+                "Accept-Profile": "arviointi",
+              },
+            });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const rows = await response.json();
+            aggregateStatus = {
+              loaded: true,
+              rows: rows.length,
+              userRows: rows.filter((row) => row.source === "users" || Number(row.contributor_count) > 0).length,
+            };
+            return rows;
+          } catch (error) {
+            console.warn("Murroskartta: arviointikoontia ei voitu ladata; käytetään paikallista pohjaa.", error);
+            aggregateStatus = { loaded: false, rows: 0, userRows: 0 };
+            return [];
+          }
+        }
+        function polarity(role, item, strength, curatedDirection) {
+          // Kuratoitu suunta voittaa aina sanamuotopäättelyn. null tarkoittaa
+          // ettei suuntaa ole arvioitu, jolloin palataan regex-varalle.
+          if (
+            curatedDirection !== null &&
+            curatedDirection !== undefined &&
+            curatedDirection !== ""
+          )
+            return directionToScore(curatedDirection);
+          const r = String(role || "").toLowerCase(),
+            t = `${item?.title || ""} ${item?.problem || ""}`.toLowerCase();
+          const positive =
+              /(vahvist|laajens|rakens|suojasi|turvasi|korjasi|tasasi|vähensi|oppiva|uudistava|jatkuva|jäljitettävä|kokosi|järjesti|välitti|nopeutti|palautti|kytki|osaamis|uusi |elinkaari|ennakoiva|perusteltava)/,
+            negative =
+              /(katkaisi|haastoi|koetteli|lykkäsi|kasasi|paljasti|eriytti|jälkilasku|siirsi kustann|lisäsi.*riski|kasvatti.*(paine|jälki))/,
+            crisis =
+              /(sisällissota|maailmansota|suomen sota|lama|kriisi|pandemia|nälkä|sortokaus|hyökkäys|katko|rapaut|työttömyys|velka)/;
+          // Roolin suunta skaalataan kuratoidulla voimakkuudella. Kriisitermi
+          // koskee murrosta itseään, ei yksittäistä yhteyttä, joten sitä ei
+          // skaalata.
+          const direction =
+            (positive.test(r) ? 0.8 : 0) - (negative.test(r) ? 0.8 : 0);
+          const score =
+            direction * strengthWeight(strength) -
+            (crisis.test(t) ? 0.45 : 0);
+          return Math.max(-1, Math.min(1, score));
+        }
+        /** Yhtenevyysluokka lukijan kielelle. */
+        function agreementLabel(consensus) {
+          if (!consensus) return "";
+          const n = consensus.lenses;
+          if (consensus.kind === "conflicting")
+            return `${n} linssiä eri mieltä: ${consensus.positives} vahvistavaa, ${consensus.negatives} heikentävää`;
+          if (consensus.kind === "reinforcing")
+            return `${n} linssiä samaa mieltä: vahvistaa`;
+          if (consensus.kind === "weakening")
+            return `${n} linssiä samaa mieltä: heikentää`;
+          return `${n} linssiä: vaikutus jää neutraaliksi`;
+        }
+        function prepareView() {
+          const relevant = new Set(),
+            usage = new Map(),
+            sums = new Map(),
+            counts = new Map(),
+            perLens = new Map();
+          function addScore(id, value, chainId) {
+            sums.set(id, (sums.get(id) || 0) + value);
+            counts.set(id, (counts.get(id) || 0) + 1);
+            // Linssikohtaiset arvot talteen, jotta voidaan erottaa
+            // yhtenevä ja ristiriitainen vaikutus toisistaan.
+            if (!perLens.has(id)) perLens.set(id, new Map());
+            if (chainId) perLens.get(id).set(chainId, value);
+          }
+          selected.forEach((chainId) => {
+            // Aineistossa sama murros esiintyy osassa polkuja useaan kertaan
+            // (86 duplikaattia 409 merkinnästä). Duplikaatit vääristävät
+            // naapureista tehtävää interpolointia, joten polku luetaan
+            // järjestyksen säilyttäen mutta kertaalleen.
+            const ids = [...new Set(layout.lens_paths[chainId] || [])];
+            ids.forEach((id) => {
+              relevant.add(id);
+              if (!usage.has(id)) usage.set(id, []);
+              usage.get(id).push(chainId);
+            });
+            const known = ids.map((id) => {
+              const fromAggregate = aggregateScore(chainId, id);
+              if (fromAggregate !== null) return fromAggregate;
+              const role = roleMap.get(chainId + "|" + id);
+              return role
+                ? polarity(
+                    role.role,
+                    itemMap.get(id),
+                    role.strength,
+                    role.direction,
+                  )
+                : null;
+            });
+            ids.forEach((id, index) => {
+              let value = known[index];
+              if (value === null) {
+                let left = index - 1,
+                  right = index + 1;
+                while (left >= 0 && known[left] === null) left--;
+                while (right < known.length && known[right] === null) right++;
+                if (left >= 0 && right < known.length) {
+                  const f = (index - left) / (right - left);
+                  value = known[left] * (1 - f) + known[right] * f;
+                } else if (left >= 0) value = known[left];
+                else if (right < known.length) value = known[right];
+                else value = polarity("", itemMap.get(id)) * 0.55;
+              }
+              addScore(id, value, chainId);
+            });
+            [...roleMap.values()]
+              .filter((r) => r.chain_id === chainId)
+              .forEach((r) => {
+                if (!nodeMap.has(r.phenomenon_id)) return;
+                relevant.add(r.phenomenon_id);
+                if (!usage.has(r.phenomenon_id)) usage.set(r.phenomenon_id, []);
+                if (!usage.get(r.phenomenon_id).includes(chainId))
+                  usage.get(r.phenomenon_id).push(chainId);
+                // Polun sisällä oleva murros on jo pisteytetty yllä. Näin
+                // sama koontiarvo ei saa kaksinkertaista painoa vain siksi,
+                // että sillä on myös eksplisiittinen ankkurirooli.
+                if (ids.includes(r.phenomenon_id)) return;
+                const fromAggregate = aggregateScore(chainId, r.phenomenon_id);
+                addScore(
+                  r.phenomenon_id,
+                  fromAggregate !== null
+                    ? fromAggregate
+                    : polarity(
+                        r.role,
+                        itemMap.get(r.phenomenon_id),
+                        r.strength,
+                        r.direction,
+                      ),
+                  chainId,
+                );
+              });
+          });
+          const scores = new Map();
+          displayY = new Map();
+          displayYear = new Map();
+          relevant.forEach((id) => {
+            const n = nodeMap.get(id);
+            if (!n) return;
+            displayYear.set(id, inferredDisplayYear(n));
+            const score =
+                (sums.get(id) || 0) / Math.max(1, counts.get(id) || 0),
+              residual = (n.y - 0.5) * 0.1;
+            scores.set(id, score);
+            displayY.set(
+              id,
+              Math.max(0.07, Math.min(0.93, 0.5 - score * 0.4 + residual)),
+            );
+          });
+          for (let pass = 0; pass < 28; pass++) {
+            const ids = [...relevant]
+              .filter((id) => nodeMap.has(id))
+              .sort((a, b) => yearOf(nodeMap.get(a)) - yearOf(nodeMap.get(b)));
+            for (let i = 0; i < ids.length; i++)
+              for (let j = i + 1; j < ids.length; j++) {
+                const a = nodeMap.get(ids[i]),
+                  b = nodeMap.get(ids[j]);
+                if ((yearOf(b) - yearOf(a)) / 250 > 0.023) break;
+                const ya = displayY.get(a.id),
+                  yb = displayY.get(b.id),
+                  gap = 0.021;
+                if (Math.abs(yb - ya) < gap) {
+                  const push = (gap - Math.abs(yb - ya)) * 0.27,
+                    sign = yb >= ya ? 1 : -1;
+                  displayY.set(a.id, Math.max(0.055, ya - sign * push));
+                  displayY.set(b.id, Math.min(0.945, yb + sign * push));
+                }
+              }
+          }
+          // Yhtenevyysluokittelu: onko murroksen vaikutus valittujen linssien
+          // mielestä samansuuntainen vai erkanevatko ne toisistaan. Tämä on
+          // monilinssinäkymän tärkein havainto -- keskiarvo voi peittää sen,
+          // että sama murros vahvistaa yhtä mekanismia ja heikentää toista.
+          const agreement = new Map();
+          const NEUTRAL_BAND = 0.12;
+          perLens.forEach((values, id) => {
+            if (values.size < 2) return;
+            const list = [...values.values()];
+            const positives = list.filter((v) => v > NEUTRAL_BAND).length;
+            const negatives = list.filter((v) => v < -NEUTRAL_BAND).length;
+            const spread = Math.max(...list) - Math.min(...list);
+            let kind = "mixed";
+            if (positives && !negatives) kind = "reinforcing";
+            else if (negatives && !positives) kind = "weakening";
+            else if (!positives && !negatives) kind = "neutral";
+            else kind = "conflicting";
+            agreement.set(id, {
+              kind,
+              spread,
+              lenses: values.size,
+              positives,
+              negatives,
+            });
+          });
+          return { relevant, usage, scores, agreement, perLens };
+        }
+        /**
+         * Build the overall curve directly from the currently visible lens
+         * averages. Each selected lens is sampled at five-year intervals and
+         * the available y-values are averaged. Historical and future series are
+         * handled separately, so scenario points cannot bend the line before
+         * the 2025 NOW boundary.
+         */
+        function cumulativePoints() {
+          const step = 5;
+          const selectedSeries = [...selected]
+            .map((chainId) => ({
+              chainId,
+              points: lensAveragePoints(chainId)
+                .filter((point) => Number.isFinite(point.year) && Number.isFinite(point.y))
+                .sort((a, b) => a.year - b.year),
+            }))
+            .filter((series) => series.points.length > 1);
+
+          if (!selectedSeries.length) return [];
+
+          function interpolate(seriesPoints, year) {
+            if (seriesPoints.length < 2) return null;
+            if (year < seriesPoints[0].year || year > seriesPoints.at(-1).year) return null;
+
+            for (let index = 1; index < seriesPoints.length; index++) {
+              const left = seriesPoints[index - 1];
+              const right = seriesPoints[index];
+              if (year < left.year || year > right.year) continue;
+              if (right.year === left.year) return (left.y + right.y) / 2;
+              const fraction = (year - left.year) / (right.year - left.year);
+              return left.y + (right.y - left.y) * fraction;
+            }
+            return null;
+          }
+
+          function buildPeriod(fromYear, toYear, future) {
+            const rows = [];
+            const startYear = Math.ceil(fromYear / step) * step;
+            for (let year = startYear; year <= toYear; year += step) {
+              const values = [];
+              selectedSeries.forEach(({ points }) => {
+                const periodPoints = points.filter((point) =>
+                  future ? point.year >= NOW_YEAR : point.year <= NOW_YEAR,
+                );
+                const y = interpolate(periodPoints, year);
+                if (Number.isFinite(y)) values.push(y);
+              });
+              if (!values.length) continue;
+              // Hajonta on briefin mukaan usein kiinnostavampi kuin keskiarvo:
+              // se kertoo ovatko linssit samaa vai eri mieltä murroksen
+              // vaikutuksesta. Tallennetaan ääriarvot keskisuunnan rinnalle.
+              rows.push({
+                year,
+                y: values.reduce((sum, value) => sum + value, 0) / values.length,
+                low: Math.min(...values),
+                high: Math.max(...values),
+                count: values.length,
+              });
+            }
+
+            // A short three-sample moving average removes local five-year
+            // jitter without allowing future samples to affect history.
+            return rows.map((row, index) => {
+              const neighbourhood = rows.slice(Math.max(0, index - 1), Math.min(rows.length, index + 2));
+              return {
+                year: row.year,
+                x: xForYear(row.year),
+                y: neighbourhood.reduce((sum, item) => sum + item.y, 0) / neighbourhood.length,
+                low:
+                  neighbourhood.reduce((sum, item) => sum + item.low, 0) /
+                  neighbourhood.length,
+                high:
+                  neighbourhood.reduce((sum, item) => sum + item.high, 0) /
+                  neighbourhood.length,
+                count: row.count,
+              };
+            });
+          }
+
+          const historicalYears = selectedSeries
+            .flatMap(({ points }) => points.filter((point) => point.year <= NOW_YEAR).map((point) => point.year));
+          const futureYears = selectedSeries
+            .flatMap(({ points }) => points.filter((point) => point.year > NOW_YEAR).map((point) => point.year));
+
+          const historical = historicalYears.length
+            ? buildPeriod(Math.min(...historicalYears), NOW_YEAR, false)
+            : [];
+          const future = futureYears.length
+            ? buildPeriod(NOW_YEAR + step, Math.max(...futureYears), true)
+            : [];
+
+          return [...historical, ...future];
+        }
+        function panel(e, m, t, b, c, r) {
+          detail.innerHTML = `<div><div class="eyebrow">${e}</div>${m ? `<div class="meta">${m}</div>` : ""}</div><div><h3>${t}</h3>${b}</div><div class="impacts">${r ? `<div class="caption">${c}</div>${r}` : ""}</div>`;
+        }
+        function intro() {
+          panel(
+            "Lukusuunta",
+            "Vaaka kertoo ajankohdan. Etäisyys keskiviivasta kertoo vaikutuksen suunnan ja tulkinnallisen voimakkuuden.",
+            "Valitse yksi tai useampi linssi",
+            `<p>Murrosten vaikutussuunta käyttää ensisijaisesti arviointilämpökartan koontia. Jos koontiarvo puuttuu, kartta käyttää kuratoitua ankkuriarviota ja vasta viimeisenä polun interpolointia. Tumma käyrä kokoaa näkyvien linssien keskimääräisen suunnan viiden vuoden jaksoissa. Mahdollisille tulevaisuuspoluille voidaan valita linssikohtaisesti kehityssuunta vuoteen 2050.</p>`,
+            "",
+            "",
+          );
+        }
+        let resilienceCompareMode = null;
+        let analysisBrowseIndex = 0;
+        const resilienceCompareModes = {
+          impact: { label: "Vaikutuksen suuruus", group: "Resilienssi", kind: "resilience", metric: "peak", description: "Kriisin suurin havaittu poikkeama lähtötasosta." },
+          recovery: { label: "Palautumisaika", group: "Resilienssi", kind: "resilience", metric: "recovery", description: "Vuodet kriisihuipusta lähtötason tuntumaan." },
+          persistence: { label: "Pysyvyys", group: "Resilienssi", kind: "resilience", metric: "latest", description: "Kuinka suuri poikkeama on jäljellä viimeisessä havainnossa." },
+          nordic: { label: "Pohjoismaapoikkeama", group: "Vertailu", kind: "series", series: "brief.gini", description: "Pohjoismaiseen aineistoperheeseen kuuluva Gini-sarja. Erillistä mediaanisarjaa ei toimitetussa JSON:ssa ole." },
+          gini: { label: "Gini", group: "Hyvinvointi", kind: "series", series: "brief.gini", description: "Tuloerojen taso murroksen ajankohtana." },
+          employment: { label: "Työllisyys", group: "Hyvinvointi", kind: "series", series: "brief.industrial_employment_share", description: "Teollisen työllisyyden osuus murroksen ajankohtana." },
+          dependency: { label: "Huoltosuhde", group: "Hyvinvointi", kind: "series", series: "indicator.ttt_huoltosuhde", description: "Demografinen huoltosuhde; vuodesta 2025 ennuste." },
+          debt: { label: "Julkinen velka", group: "Hyvinvointi", kind: "series", series: "brief.public_debt_gdp", description: "Julkinen velka suhteessa BKT:hen." },
+          trust: { label: "Luottamus", group: "Hyvinvointi", kind: "series", series: "ess_sosiaalinen_luottamus", description: "Sosiaalisen luottamuksen taso." },
+          healthy: { label: "Terveet elinvuodet", group: "Hyvinvointi", kind: "seriesMean", series: ["hly_syntymasta_miehet", "hly_syntymasta_naiset"], description: "Naisten ja miesten terveiden elinvuosien keskiarvo." },
+          population: { label: "Väestö", group: "Hyvinvointi", kind: "series", series: "brief.median_age", description: "Väestörakennetta kuvaava mediaani-ikä." },
+          resilience: { label: "Resilienssi", group: "Resilienssi", kind: "composite", description: "Vaikutuksen syvyyden, palautumisajan ja pysyvyyden yhdistelmä." },
+          time: { label: "Aikasuodatin", group: "Rajaus", kind: "time", description: "Korostaa valitun aikavälin sisällä myöhempiä murroksia ja himmentää ulkopuoliset." },
+          scenario2050: { label: "2050-skenaario", group: "Tulevaisuus", kind: "scenario", description: "Korostaa vuoden 2025 jälkeiset skenaariomurrokset." },
+        };
+        const analysisModeOrder = Object.keys(resilienceCompareModes);
+        function median(values) {
+          const numbers = values.filter(Number.isFinite).sort((a, b) => a - b);
+          if (!numbers.length) return null;
+          const middle = Math.floor(numbers.length / 2);
+          return numbers.length % 2
+            ? numbers[middle]
+            : (numbers[middle - 1] + numbers[middle]) / 2;
+        }
+
+        /**
+         * Muodostaa vertailutilan solmukohtaiset arvot ennen piirtoa.
+         * Vertailu ei ole SVG:n päälle lisättävä koriste, vaan osa samaa
+         * parametriaineistoa, josta sijainti, koko ja korostus johdetaan.
+         */
+        function nearestSeriesValue(seriesId, year) {
+          const series = wellbeing.series?.[seriesId];
+          const points = series?.points || [];
+          if (!points.length) return null;
+          let best = null;
+          let distance = Infinity;
+          points.forEach(([pointYear, value]) => {
+            const d = Math.abs(Number(pointYear) - year);
+            if (d < distance && Number.isFinite(Number(value))) {
+              best = { value: Number(value), year: Number(pointYear), series };
+              distance = d;
+            }
+          });
+          return best && distance <= 12 ? best : null;
+        }
+
+        function deriveComparisonEffects(mode) {
+          const definition = resilienceCompareModes[mode];
+          if (!definition) return { effects: new Map(), label: null, definition: null };
+          const raw = new Map();
+
+          if (definition.kind === "resilience" || definition.kind === "composite") {
+            (resilience.crises || []).forEach((crisis) => {
+              const observations = crisis.observations || [];
+              const recovery = median(observations.map((item) => Number(item.recovery_years_from_peak)));
+              const impact = median(observations.map((item) => Math.abs(Number(item.deviation_pct))));
+              const persistence = median(observations.map((item) => {
+                const baseline = Number(item.baseline), latest = Number(item.last_value);
+                return Number.isFinite(baseline) && baseline !== 0 && Number.isFinite(latest) ? Math.abs(((latest-baseline)/baseline)*100) : null;
+              }));
+              let value = definition.metric === "recovery" ? recovery : definition.metric === "latest" ? persistence : impact;
+              if (definition.kind === "composite") {
+                const open = observations.filter((item) => !item.recovered && item.status !== "seuranta kesken").length;
+                value = (impact || 0) * .38 + (recovery || 0) * .34 + (persistence || 0) * .28 + open * 4;
+              }
+              if (Number.isFinite(value) && nodeMap.has(crisis.id)) raw.set(crisis.id,{ value, crisis, unit: definition.metric === "recovery" ? "vuotta" : "%" });
+            });
+          } else if (definition.kind === "series" || definition.kind === "seriesMean") {
+            nodeMap.forEach((node,id) => {
+              const year = inferredDisplayYear(node);
+              const ids = Array.isArray(definition.series) ? definition.series : [definition.series];
+              const hits = ids.map(seriesId => nearestSeriesValue(seriesId,year)).filter(Boolean);
+              if (!hits.length) return;
+              const value = hits.reduce((sum,item)=>sum+item.value,0)/hits.length;
+              raw.set(id,{ value, observationYear: Math.round(hits.reduce((sum,item)=>sum+item.year,0)/hits.length), unit: hits[0].series.unit || "", seriesName: hits.map(item=>item.series.name).join(" + ") });
+            });
+          } else if (definition.kind === "time") {
+            nodeMap.forEach((node,id) => {
+              const year = inferredDisplayYear(node);
+              if (year >= UI.yearMin && year <= UI.yearMax) raw.set(id,{ value: year, unit:"vuosi" });
+            });
+          } else if (definition.kind === "scenario") {
+            nodeMap.forEach((node,id) => {
+              const year = inferredDisplayYear(node);
+              if (year > NOW_YEAR) raw.set(id,{ value: year-NOW_YEAR, unit:"vuotta tulevaisuuteen" });
+            });
+          }
+
+          const values=[...raw.values()].map(item=>Number(item.value)).filter(Number.isFinite);
+          const minValue=Math.min(...values,0), maxValue=Math.max(...values,1), span=Math.max(1e-9,maxValue-minValue);
+          const effects=new Map();
+          raw.forEach((item,id)=>{
+            const normalized=Math.max(0,Math.min(1,(item.value-minValue)/span));
+            effects.set(id,{...item,normalized,comparisonY:.82-normalized*.64,radiusMultiplier:1.05+normalized*1.15,opacity:.28+normalized*.7,strokeWidth:1.1+normalized*2.7});
+          });
+          return { effects, label: definition.label, definition };
+        }
+
+        /**
+         * Yksi ainoa renderöinnin lähtöpiste. Ensin lasketaan linssien
+         * vaikutus, sitten vertailun vaikutus, lopuksi ne yhdistetään
+         * valmiiksi piirto-parametreiksi. SVG-piirto ei muuta tilaa.
+         */
+        function deriveRenderParameters() {
+          const view = prepareView();
+          const comparison = deriveComparisonEffects(resilienceCompareMode);
+
+          comparison.effects.forEach((effect, id) => {
+            view.relevant.add(id);
+            if (!view.usage.has(id)) view.usage.set(id, []);
+            const analysisTag = comparison.definition?.kind === "resilience" || comparison.definition?.kind === "composite" ? "M36" : "AN";
+            if (!view.usage.get(id).includes(analysisTag)) view.usage.get(id).push(analysisTag);
+
+            const lensY = displayY.get(id);
+            const combinedY = Number.isFinite(lensY)
+              ? lensY * 0.58 + effect.comparisonY * 0.42
+              : effect.comparisonY;
+            displayY.set(id, Math.max(0.07, Math.min(0.93, combinedY)));
+            if (!displayYear.has(id)) {
+              const node = nodeMap.get(id);
+              if (node) displayYear.set(id, inferredDisplayYear(node));
+            }
+          });
+
+          return {
+            view,
+            comparison,
+            nodeEffects: comparison.effects,
+            state: {
+              selectedLenses: new Set(selected),
+              comparisonMode: resilienceCompareMode,
+            },
+          };
+        }
+
+        function resilienceValue(observation) {
+          const number = (value, digits = 1) => Number.isFinite(value)
+            ? Number(value).toLocaleString("fi-FI", { maximumFractionDigits: digits })
+            : "–";
+          if (resilienceCompareMode === "impact") {
+            const sign = Number(observation.deviation) > 0 ? "+" : "";
+            return `${sign}${number(observation.deviation)} ${S(observation.unit || "")} · ${sign}${number(observation.deviation_pct)} %`;
+          }
+          if (resilienceCompareMode === "impact") {
+            return `${observation.peak_year || "–"} · ${number(observation.peak_value)} ${S(observation.unit || "")}`;
+          }
+          if (resilienceCompareMode === "persistence") {
+            const baseline = Number(observation.baseline);
+            const latest = Number(observation.last_value);
+            const delta = Number.isFinite(baseline) && Number.isFinite(latest) ? latest - baseline : null;
+            const sign = Number(delta) > 0 ? "+" : "";
+            return `${observation.last_observation_year || "–"} · ${sign}${number(delta)} ${S(observation.unit || "")}`;
+          }
+          if (!resilienceCompareMode) return "";
+          return observation.recovered
+            ? `${observation.recovery_years_from_peak} v · ${observation.recovery_year}`
+            : observation.status;
+        }
+        function resilienceBlock() {
+          const rows = (resilience.crises || [])
+            .filter((crisis) => crisis.coverage_count > 0)
+            .sort((a, b) => b.year_start - a.year_start);
+          if (!rows.length) return "";
+          const cards = rows.slice(0, 6).map((crisis) => {
+            const recovered = crisis.observations.filter((o) => o.recovered).length;
+            const pending = crisis.observations.filter((o) => o.status === "seuranta kesken").length;
+            const unresolved = crisis.observations.length - recovered - pending;
+            const observations = crisis.observations.slice(0, 5).map((o) => {
+              const label = resilienceValue(o);
+              const cls = resilienceCompareMode === "recovery"
+                ? (o.recovered ? "is-recovered" : (o.status === "seuranta kesken" ? "is-pending" : "is-open"))
+                : "";
+              return `<div class="resilience-row ${cls}"><span>${S(o.name)}</span><b>${S(label)}</b></div>`;
+            }).join("");
+            return `<article class="resilience-card">
+              <header><div><b>${crisis.year_start}</b><span>${S(crisis.title)}</span></div><small>${crisis.coverage_count} sarjaa</small></header>
+              <div class="resilience-summary"><span>${recovered} palautui</span><span>${unresolved} ei palautunut</span>${pending ? `<span>${pending} kesken</span>` : ""}</div>
+              ${observations}
+            </article>`;
+          }).join("");
+          return `<section class="resilience-layer" aria-label="M36 resilienssikerros">
+            <div class="resilience-head"><div><span class="eyebrow">Mitattu havaintokerros</span><h4>Palautuminen ei tapahdu yhdellä kellolla</h4></div><p>${S(resilience.meta?.critical_note || "")}</p></div>
+            ${resilienceCompareMode ? `<p class="resilience-basis"><strong>${S(resilienceCompareModes[resilienceCompareMode].label)}:</strong> ${S(resilienceCompareModes[resilienceCompareMode].description)}</p><div class="resilience-grid">${cards}</div>` : `<div class="resilience-empty">Tarkastelutila ei ole käytössä. Selaa nuolilla ja aktivoi keskimmäisestä painikkeesta.</div>`}
+            <details class="method-note"><summary>Laskentatapa ja rajaukset</summary><p>${S(resilience.meta?.method || "")}</p></details>
+          </section>`;
+        }
+
+        function showChain(m) {
+          const ids = [...new Set(layout.lens_paths[m.id] || [])];
+          const curated = [...roleMap.values()].filter(
+            (v) => v.chain_id === m.id,
+          ).length;
+          const aggregateRows = ids.filter((id) => Number.isFinite(aggregateFor(m.id, id)?.mean_direction)).length;
+          const userAggregateRows = ids.filter((id) => Number(aggregateFor(m.id, id)?.contributor_count) > 0).length;
+          panel(
+            `${S(m.id)} · selittävä linssi`,
+            `${ids.length} relevanttia solmua · ${aggregateRows} koontiarvoa${userAggregateRows ? ` (${userAggregateRows} käyttäjäkoontia)` : ""} · ${curated} kuratoitua pohja-arviota`,
+            S(m.name),
+            `<p>${S(m.summary)}</p>${m.quote ? `<p class="sub">"${S(m.quote)}"</p>` : ""}${m.id === "M36" ? resilienceBlock() : ""}`,
+            "Reitin keskeiset liittymät",
+            [...new Set(ids)]
+              .filter((id) => layout.joints[id] && nodeMap.has(id))
+              .sort((a, b) => layout.joints[b].score - layout.joints[a].score)
+              .slice(0, 7)
+              .map(
+                (id) =>
+                  `<div class="impact"><b>${nodeMap.get(id).year}</b><span>${S(itemMap.get(id)?.title || id)}</span></div>`,
+              )
+              .join(""),
+          );
+        }
+        function analysisIcon(mode) {
+          const d = resilienceCompareModes[mode];
+          const glyph = d?.group === "Hyvinvointi" ? "M4 18V9m5 9V5m5 13v-7m5 7V3" : d?.group === "Tulevaisuus" ? "M5 18L19 6m-7 0h7v7" : d?.group === "Rajaus" ? "M4 7h16M7 4v6m10-6v6M4 17h16M9 14v6m6-6v6" : "M4 16l5-6 4 3 7-8M4 20h16";
+          return `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${glyph}"/></svg>`;
+        }
+        function syncResilienceCompareControls() {
+          const toggle = document.getElementById("analysisToggle");
+          const definition = resilienceCompareModes[analysisModeOrder[analysisBrowseIndex]];
+          if (!toggle || !definition) return;
+          toggle.setAttribute("aria-pressed", String(resilienceCompareMode === analysisModeOrder[analysisBrowseIndex]));
+          toggle.setAttribute("aria-label", `${definition.label}. ${resilienceCompareMode === analysisModeOrder[analysisBrowseIndex] ? "Poista tarkastelu käytöstä" : "Ota tarkastelu käyttöön"}.`);
+          toggle.innerHTML = `${analysisIcon(analysisModeOrder[analysisBrowseIndex])}<span class="analysis-copy"><b>${S(definition.label)}</b><small>${S(definition.group)} · ${resilienceCompareMode === analysisModeOrder[analysisBrowseIndex] ? "aktiivinen" : "passiivinen"}</small></span><span class="analysis-state" aria-hidden="true"></span>`;
+        }
+        function browseAnalysis(delta) {
+          const wasEnabled = resilienceCompareMode !== null;
+
+          analysisBrowseIndex =
+            (analysisBrowseIndex + delta + analysisModeOrder.length) %
+            analysisModeOrder.length;
+
+          // Selaus vaihtaa vain valittua tarkastelua. Jos tarkastelukerros oli
+          // aktiivinen, myös uusi muuttuja pysyy aktiivisena ja vaikuttaa heti
+          // seuraavan renderöinnin parametreihin.
+          if (wasEnabled) {
+            resilienceCompareMode = analysisModeOrder[analysisBrowseIndex];
+            sync();
+            render();
+
+            if (activeChain) {
+              const model = chains.models.find((item) => item.id === activeChain);
+              model ? showChain(model) : intro();
+            } else if (selected.size === 1) {
+              const model = chains.models.find((item) => item.id === [...selected][0]);
+              model ? showChain(model) : intro();
+            } else {
+              intro();
+            }
+          } else {
+            syncResilienceCompareControls();
+          }
+
+          pulseInteraction();
+          writeState();
+        }
+        function pulseInteraction() {
+          svg.classList.remove("interaction-pulse");
+          void svg.getBoundingClientRect();
+          svg.classList.add("interaction-pulse");
+        }
+        function leaveResilienceComparison({ restore = true, renderNow = true } = {}) {
+          if (!resilienceCompareMode) return;
+          resilienceCompareMode = null;
+
+
+          sync();
+          if (renderNow) {
+            render();
+            if (activeChain) {
+              const model = chains.models.find((item) => item.id === activeChain);
+              model ? showChain(model) : intro();
+            } else if (selected.size === 1) {
+              const model = chains.models.find((item) => item.id === [...selected][0]);
+              model ? showChain(model) : intro();
+            } else {
+              intro();
+            }
+            writeState();
+          }
+        }
+
+        function toggleResilienceComparison(mode) {
+          if (!resilienceCompareModes[mode]) return;
+
+          // Vertailu on rinnakkainen näkymätila. Sama ikoni kytkee sen pois,
+          // toinen ikoni vaihtaa perusteen. Linssivalintoihin ei kosketa.
+          resilienceCompareMode = resilienceCompareMode === mode ? null : mode;
+
+          sync();
+          render();
+          pulseInteraction();
+
+          if (activeChain) {
+            const model = chains.models.find((item) => item.id === activeChain);
+            model ? showChain(model) : intro();
+          } else if (selected.size === 1) {
+            const model = chains.models.find((item) => item.id === [...selected][0]);
+            model ? showChain(model) : intro();
+          } else {
+            intro();
+          }
+          writeState();
+        }
+
+        /**
+         * Kertoo lukijalle, mihin pisteen pystysijainti perustuu kussakin
+         * valitussa linssissä: kuratoituun rooliin vai polun varrelta
+         * johdettuun arvioon. Ilman tätä kuratoitu ja arvattu näyttävät
+         * kartalla täsmälleen samalta.
+         */
+        function basisFor(id) {
+          const rows = [];
+          selected.forEach((chainId) => {
+            const role = roleMap.get(chainId + "|" + id);
+            const agg = aggregateFor(chainId, id);
+            const aggregateFields = agg
+              ? {
+                  aggregateDirection: Number.isFinite(Number(agg.mean_direction)) ? Number(agg.mean_direction) : null,
+                  aggregateCell: Number.isFinite(Number(agg.mean_cell)) ? Number(agg.mean_cell) : null,
+                  aggregateContributors: Number(agg.contributor_count) || 0,
+                  aggregateSpread: Number.isFinite(Number(agg.spread)) ? Number(agg.spread) : null,
+                  aggregateSource: agg.source || null,
+                  aggregateTier: agg.tier || null,
+                }
+              : {};
+            if (role) {
+              rows.push({
+                chain_id: chainId,
+                kind: "curated",
+                role: role.role,
+                strength: role.strength,
+                direction: role.direction,
+                confidence: role.confidence,
+                rationale: role.rationale,
+                basis: role.basis,
+                needsReview: role.needs_review,
+                delay: role.delay,
+                duration: role.duration,
+                scope: role.scope,
+                strengthened: role.strengthened,
+                weakened: role.weakened,
+                distribution: role.distribution,
+                evidenceType: role.evidence_type,
+                sources: role.sources,
+                ...aggregateFields,
+              });
+            } else if ((layout.lens_paths[chainId] || []).includes(id)) {
+              rows.push({
+                chain_id: chainId,
+                kind: agg ? "aggregate" : "derived",
+                ...aggregateFields,
+              });
+            }
+          });
+          return rows;
+        }
+        /** Suunta-arvo lukijan kielelle: -3...+3 ilman etumerkkien tulkintaa. */
+        function directionLabel(direction) {
+          if (direction === null || direction === undefined || direction === "")
+            return "suuntaa ei arvioitu";
+          const value = Number(direction);
+          if (value === 0) return "vaikutus ristiriitainen (0)";
+          const word = value > 0 ? "vahvistaa" : "heikentää";
+          return `${word} toimintakykyä (${value > 0 ? "+" : ""}${value})`;
+        }
+        /**
+         * Näytön laji erottaa havainnon, tulkinnan, mallinnuksen ja
+         * tulevaisuusoletuksen. Tämä on olennaista erityisesti vuoden 2025
+         * jälkeisillä murroksilla: skenaario ei saa näyttää ennusteelta.
+         */
+        const EVIDENCE_LABEL = {
+          historiallinen_havainto: "historiallinen havainto",
+          historiallinen_tulkinta: "historiallinen tulkinta",
+          mallinnettu_tulkinta: "mallinnettu tulkinta",
+          scenario_assumption: "tulevaisuusoletus, ei ennuste",
+        };
+        function delayText(delay) {
+          if (!delay) return "";
+          const span =
+            delay.min_years !== null &&
+            delay.min_years !== undefined &&
+            delay.max_years !== null &&
+            delay.max_years !== undefined
+              ? ` (${delay.min_years}–${delay.max_years} v)`
+              : "";
+          return delay.class ? `${delay.class}${span}` : span.trim();
+        }
+        function durationText(duration) {
+          if (!duration) return "";
+          const from = duration.start_year ? `${duration.start_year}–` : "";
+          const to = duration.end_year
+            ? `${duration.end_year}`
+            : duration.ongoing
+              ? "jatkuu"
+              : "";
+          const span = from || to ? ` (${from}${to})` : "";
+          return duration.class ? `${duration.class}${span}` : span.trim();
+        }
+        function listBlock(label, items, className) {
+          if (!items || !items.length) return "";
+          // Aineistossa samat ryhmät toistuvat eri sanamuodoissa; näytetään
+          // kukin kerran ja korkeintaan kolme, jottei kortti kasva liikaa.
+          const unique = [...new Set(items.map((x) => String(x).trim()))]
+            .filter(Boolean)
+            .slice(0, 3);
+          if (!unique.length) return "";
+          return `<span class="detail-line ${className}"><b>${S(label)}</b> ${S(unique.join(", "))}</span>`;
+        }
+        function sourcesHtml(sources) {
+          if (!sources || !sources.length) return "";
+          const rows = sources
+            .map((source) => {
+              const meta = [source.organization, source.year]
+                .filter(Boolean)
+                .join(" ");
+              const title = source.url
+                ? `<a href="${S(source.url)}" target="_blank" rel="noopener noreferrer">${S(source.title)}</a>`
+                : S(source.title);
+              return `<li>${title}${meta ? ` <span class="src-meta">${S(meta)}</span>` : ""}${source.note ? `<span class="src-note">${S(source.note)}</span>` : ""}</li>`;
+            })
+            .join("");
+          return `<details class="sources"><summary>${sources.length} lähdettä</summary><ul>${rows}</ul></details>`;
+        }
+        /**
+         * Skeema 2.1:n kentät lukijalle. Nämä ovat briefin kohdan 5 kaksi
+         * viimeistä vaatimusta -- millä viiveellä vaikutus ilmeni ja kenelle
+         * hyödyt ja haitat kohdistuivat -- jotka olivat aiemmin datassa
+         * mutta eivät näkyneet missään.
+         */
+        function detailHtml(row) {
+          const parts = [];
+          if (row.evidenceType)
+            parts.push(
+              `<span class="detail-line evidence">${S(
+                EVIDENCE_LABEL[row.evidenceType] || row.evidenceType,
+              )}</span>`,
+            );
+          const timing = [delayText(row.delay), durationText(row.duration)]
+            .filter(Boolean)
+            .join(" · ");
+          if (timing)
+            parts.push(
+              `<span class="detail-line"><b>Viive ja kesto</b> ${S(timing)}</span>`,
+            );
+          if (row.scope && (row.scope.level || (row.scope.groups || []).length)) {
+            const level = Array.isArray(row.scope.level)
+              ? row.scope.level.join(", ")
+              : row.scope.level || "";
+            const groups = [
+              ...new Set((row.scope.groups || []).map((x) => String(x).trim())),
+            ]
+              .slice(0, 3)
+              .join(", ");
+            parts.push(
+              `<span class="detail-line"><b>Kohdentuminen</b> ${S([level, groups].filter(Boolean).join(" · "))}</span>`,
+            );
+          }
+          parts.push(listBlock("Vahvistui", row.strengthened, "strengthened"));
+          parts.push(listBlock("Heikkeni", row.weakened, "weakened"));
+          if (row.distribution) {
+            parts.push(
+              listBlock(
+                "Hyöty",
+                row.distribution.beneficiaries,
+                "beneficiaries",
+              ),
+            );
+            parts.push(
+              listBlock(
+                "Kustannus",
+                row.distribution.burdened,
+                "burdened",
+              ),
+            );
+          }
+          // Aineiston oma huomautus kertoo, että kohdentuminen ja jakauma on
+          // johdettu murroksen teemoista. Ne eivät siis ole lähteistettyjä
+          // samalla tavalla kuin yhteyden ydintulkinta, ja se on sanottava.
+          const derived =
+            (row.scope && row.scope.note) ||
+            (row.distribution && row.distribution.distribution_note);
+          if (derived)
+            parts.push(
+              `<span class="detail-line derived-note">Kohdentuminen ja jakauma ovat suuntaa-antavia tulkintoja, eivät lähteistettyjä havaintoja.</span>`,
+            );
+          parts.push(sourcesHtml(row.sources));
+          const body = parts.filter(Boolean).join("");
+          return body ? `<span class="detail-block">${body}</span>` : "";
+        }
+        function basisRowHtml(row) {
+          const hasAggregate = Number.isFinite(row.aggregateDirection);
+          const aggregateMeta = hasAggregate
+            ? (() => {
+                const sign = row.aggregateDirection > 0 ? "+" : "";
+                const source = row.aggregateContributors > 0 || row.aggregateSource === "users"
+                  ? `arviointikoonti · ${row.aggregateContributors} arvioijaa`
+                  : `koontipohja${row.aggregateTier ? ` · ${S(row.aggregateTier)}` : ""}`;
+                const spread = Number.isFinite(row.aggregateSpread)
+                  ? ` · hajonta ${row.aggregateSpread.toLocaleString("fi-FI", { maximumFractionDigits: 2 })}`
+                  : "";
+                return `<em class="basis basis-reviewed">${source} · ${sign}${row.aggregateDirection.toLocaleString("fi-FI", { maximumFractionDigits: 2 })} (ruutu ${row.aggregateCell ?? "–"})${spread}</em>`;
+              })()
+            : "";
+
+          if (row.kind === "aggregate")
+            return `<div class="impact"><b>${S(row.chain_id)}</b><span>Koontiin perustuva vaikutus${aggregateMeta}</span></div>`;
+          if (row.kind !== "curated")
+            return `<div class="impact"><b>${S(row.chain_id)}</b><span>Kuuluu linssin polkuun<em class="basis basis-derived">johdettu sijainti · ei omaa arviota</em></span></div>`;
+
+          const hasDirection =
+            row.direction !== null &&
+            row.direction !== undefined &&
+            row.direction !== "";
+          const meta = [
+            directionLabel(row.direction),
+            row.strength ? `${S(row.strength)} yhteys` : "",
+            row.confidence ? `varmuus: ${S(row.confidence)}` : "",
+          ]
+            .filter(Boolean)
+            .join(" · " );
+          const originText = {
+            seeded_from_role_text: "alustettu sanamuodosta · tarkistamaton",
+            model_reviewed: "tulkittu atlas-sisällöstä · vahvistamaton",
+            curated: "ihmisen vahvistama",
+            sourced: "vahvistettu ja lähteistetty",
+          };
+          const badgeClass =
+            row.basis === "sourced"
+              ? "basis basis-sourced"
+              : row.basis === "curated"
+                ? "basis basis-curated"
+                : row.basis === "model_reviewed"
+                  ? "basis basis-reviewed"
+                  : "basis basis-seeded";
+          const badgeText = originText[row.basis] || "alkuperä tuntematon";
+          const fallback = !hasDirection
+            ? `<em class="basis basis-derived">suuntaa ei ole arvioitu</em>`
+            : "";
+          const rationale = row.rationale
+            ? `<em class="basis-rationale">${S(row.rationale)}</em>`
+            : "";
+          return `<div class="impact"><b>${S(row.chain_id)}</b><span>${S(row.role)}${aggregateMeta}<em class="${badgeClass}">${badgeText} · ${meta}</em>${rationale}${fallback}${detailHtml(row)}</span></div>`;
+        }
+        function showNode(id) {
+          const it = itemMap.get(id),
+            n = nodeMap.get(id),
+            j = layout.joints[id],
+            basis = basisFor(id);
+          const curatedCount = basis.filter((r) => r.kind === "curated").length;
+          const aggregateCount = basis.filter((r) => Number.isFinite(r.aggregateDirection)).length;
+          const userAggregateCount = basis.filter((r) => Number.isFinite(r.aggregateDirection) && r.aggregateContributors > 0).length;
+          const caption = basis.length
+            ? `Mihin sijainti perustuu · ${aggregateCount}/${basis.length} koontiarvoa${userAggregateCount ? ` · ${userAggregateCount} käyttäjäkoontia` : ""} · ${curatedCount} kuratoitua pohjaa`
+            : "Vaikutusyhteisö";
+          const consensus = lastView && lastView.agreement.get(id);
+          const consensusHtml = consensus
+            ? `<p class="sub consensus consensus-${consensus.kind}">${S(agreementLabel(consensus))}</p>`
+            : "";
+          panel(
+            `Murrosatlas · ${yearOf(n)}`,
+            `${S(it.type || "ilmiö")}<br>${S((it.domains || []).slice(0, 5).join(" · "))}`,
+            S(it.title),
+            `<p>${S(it.problem || it.phase || it.current_relevance || "")}</p>${consensusHtml}${j ? `<p class="sub">Nivelperuste: ${S(j.reasons.join(" · "))}</p>` : ""}`,
+            caption,
+            basis.length
+              ? basis.map(basisRowHtml).join("")
+              : `<div class="impact"><b>${n.community}</b><span>${S(n.community_label)}</span></div>`,
+          );
+        }
+        // ------------------------------------------------------------------
+        // User interface
+        // ------------------------------------------------------------------
+
+        function buildChips() {
+          chips.replaceChildren();
+          chains.models.forEach((m, i) => {
+            const b = document.createElement("button");
+            b.className = "chip";
+            b.dataset.chainId = m.id;
+            b.style.setProperty("--c", colors[i % colors.length]);
+            b.innerHTML = lensIcon(m.id);
+            b.setAttribute("aria-label", `${m.id} ${m.short}`);
+            b.setAttribute("data-label", `${m.id} · ${m.short}`);
+            b.setAttribute("aria-pressed", selected.has(m.id));
+            b.addEventListener("click", () => {
+              selected.has(m.id) ? selected.delete(m.id) : selected.add(m.id);
+              activeChain = selected.has(m.id) ? m.id : null;
+              activeNode = null;
+              sync();
+              render();
+              pulseInteraction();
+              activeChain ? showChain(m) : intro();
+              writeState();
+            });
+            chips.appendChild(b);
+          });
+
+          const browser = document.createElement("div");
+          browser.className = "analysis-browser";
+          browser.setAttribute("role", "group");
+          browser.setAttribute("aria-label", "Tarkastelutilan valinta");
+
+          const previous = document.createElement("button");
+          previous.type = "button";
+          previous.className = "analysis-step";
+          previous.textContent = "‹";
+          previous.setAttribute("aria-label", "Edellinen tarkastelutila");
+          previous.addEventListener("click", () => browseAnalysis(-1));
+
+          const toggle = document.createElement("button");
+          toggle.type = "button";
+          toggle.id = "analysisToggle";
+          toggle.className = "analysis-toggle";
+          toggle.addEventListener("click", () => toggleResilienceComparison(analysisModeOrder[analysisBrowseIndex]));
+
+          const next = document.createElement("button");
+          next.type = "button";
+          next.className = "analysis-step";
+          next.textContent = "›";
+          next.setAttribute("aria-label", "Seuraava tarkastelutila");
+          next.addEventListener("click", () => browseAnalysis(1));
+
+          browser.append(previous, toggle, next);
+          chips.appendChild(browser);
+          syncResilienceCompareControls();
+        }
+        function applyScenarioPreset(mode) {
+          chains.models.forEach((model) => futureModes.set(model.id, mode));
+          syncScenarioControls();
+          render();
+          writeState();
+        }
+
+        function buildScenarioControls() {
+          const panel = document.getElementById("scenarioPanel");
+          const grid = document.getElementById("scenarioGrid");
+          const customize = document.getElementById("scenarioCustomize");
+          if (!panel || !grid || !chains) return;
+
+          grid.replaceChildren();
+          chains.models.forEach((model, index) => {
+            if (!futureModes.has(model.id)) futureModes.set(model.id, "trend");
+            const row = document.createElement("div");
+            row.className = "scenario-row";
+            row.dataset.chainId = model.id;
+
+            const name = document.createElement("div");
+            name.className = "scenario-row-name";
+            name.innerHTML = `<span class="scenario-swatch" style="--c:${colors[index % colors.length]}"></span><span>${S(model.id)} · ${S(model.short || model.name)}</span>`;
+
+            const options = document.createElement("div");
+            options.className = "scenario-options";
+            options.setAttribute("role", "group");
+            options.setAttribute("aria-label", `${model.name}: kehityssuunnan vaihtoehto`);
+            Object.entries(FUTURE_MODES).forEach(([mode, config]) => {
+              const button = document.createElement("button");
+              button.type = "button";
+              button.className = "scenario-option";
+              button.textContent = config.label;
+              button.dataset.mode = mode;
+              button.setAttribute("aria-pressed", String(futureModes.get(model.id) === mode));
+              button.addEventListener("click", () => {
+                futureModes.set(model.id, mode);
+                syncScenarioControls();
+                render();
+                writeState();
+              });
+              options.appendChild(button);
+            });
+            row.append(name, options);
+            grid.appendChild(row);
+          });
+
+          document.querySelectorAll("[data-scenario-preset]").forEach((button) => {
+            button.addEventListener("click", () => applyScenarioPreset(button.dataset.scenarioPreset));
+          });
+
+          customize?.addEventListener("click", () => {
+            const open = panel.hidden;
+            panel.hidden = !open;
+            customize.setAttribute("aria-expanded", String(open));
+            customize.textContent = open ? "Sulje mukautus" : "Mukauta…";
+          });
+
+          syncScenarioControls();
+        }
+
+        function syncScenarioControls() {
+          document.querySelectorAll(".scenario-row").forEach((row) => {
+            const activeMode = futureModes.get(row.dataset.chainId) || "trend";
+            row.querySelectorAll(".scenario-option").forEach((button) => {
+              button.setAttribute("aria-pressed", String(button.dataset.mode === activeMode));
+            });
+          });
+
+          const modes = chains?.models.map((model) => futureModes.get(model.id) || "trend") || [];
+          const commonMode = modes.length && modes.every((mode) => mode === modes[0]) ? modes[0] : null;
+          document.querySelectorAll(".scenario-global-option").forEach((button) => {
+            button.setAttribute("aria-pressed", String(button.dataset.scenarioPreset === commonMode));
+          });
+
+          const customize = document.getElementById("scenarioCustomize");
+          if (customize) {
+            customize.classList.toggle("is-mixed", !commonMode);
+            customize.title = commonMode
+              ? `Kaikilla linsseillä: ${FUTURE_MODES[commonMode].label}`
+              : "Linsseillä on eri kehityssuuntia";
+          }
+        }
+
+        function sync() {
+          // Päivitä vain varsinaiset linssi-ikonit. Vertailuikonit ja jakaja
+          // ovat samassa säiliössä, mutta eivät kuulu chains.models-taulukkoon.
+          chips.querySelectorAll("[data-chain-id]").forEach((button) => {
+            button.setAttribute(
+              "aria-pressed",
+              String(selected.has(button.dataset.chainId)),
+            );
+          });
+          syncResilienceCompareControls();
+        }
+        function setSel(ids) {
+          if (!chains) return;
+          selected = new Set(ids);
+          activeChain = null;
+          activeNode = null;
+          sync();
+          render();
+          intro();
+          writeState();
+        }
+        // ------------------------------------------------------------------
+        // Derived curves and density field
+        // ------------------------------------------------------------------
+
+        function baseLensAveragePoints(chainId) {
+          const ids = new Set(layout.lens_paths[chainId] || []);
+          [...roleMap.values()]
+            .filter((r) => r.chain_id === chainId)
+            .forEach((r) => ids.add(r.phenomenon_id));
+          const bins = new Map();
+          [...ids].forEach((id) => {
+            const n = nodeMap.get(id);
+            if (!n || !displayY.has(id)) return;
+            const displayNodeYear = yearOf(n);
+            const key = Math.floor((displayNodeYear - 1800) / 20);
+            if (!bins.has(key)) bins.set(key, []);
+            bins.get(key).push(n);
+          });
+          return [...bins]
+            .sort((a, b) => a[0] - b[0])
+            .map(([key, group]) => {
+              const x = group.reduce((sum, node) => sum + xy(node).x, 0) / group.length;
+              const y = group.reduce((sum, node) => sum + xy(node).y, 0) / group.length;
+              return { x, y, count: group.length, year: 1810 + key * 20 };
+            });
+        }
+
+        /**
+         * Build a genuine scenario path after NOW_YEAR.
+         *
+         * The previous implementation shifted an already optimistic curated
+         * future baseline. Consequently even "Heikkenee" could still rise.
+         * Here every scenario starts from the same 2025 anchor:
+         *
+         * - Heikkenee: moves clearly towards the lower half of the chart.
+         * - Nykyinen suunta jatkuu: extrapolates the recent historical trend,
+         *   with a conservative cap so one noisy interval cannot dominate.
+         * - Vahvistuu: moves clearly towards the upper half of the chart.
+         *
+         * Future source points determine only the years and density counts;
+         * their pre-authored y positions no longer force every scenario up.
+         */
+        function lensAveragePoints(chainId) {
+          const points = baseLensAveragePoints(chainId);
+          if (points.length < 2) return points;
+
+          const historical = points.filter((point) => point.year < NOW_YEAR);
+          if (!historical.length) return points;
+
+          function interpolateNowY() {
+            const exact = points.find((point) => point.year === NOW_YEAR);
+            if (exact) return exact.y;
+
+            for (let index = 1; index < points.length; index++) {
+              const left = points[index - 1];
+              const right = points[index];
+              if (left.year < NOW_YEAR && right.year > NOW_YEAR) {
+                const fraction = (NOW_YEAR - left.year) / (right.year - left.year);
+                return left.y + (right.y - left.y) * fraction;
+              }
+            }
+
+            return historical.at(-1)?.y ?? points[0].y;
+          }
+
+          const anchorY = interpolateNowY();
+          const boundaryPoint = {
+            x: xForYear(NOW_YEAR),
+            y: anchorY,
+            count: historical.at(-1)?.count || 1,
+            year: NOW_YEAR,
+          };
+
+          const mode = futureModes.get(chainId) || "trend";
+          const plotHeight = H - P.t - P.b;
+          const directionalChange = plotHeight * 0.18;
+          const trendLimit = plotHeight * 0.1;
+
+          // Estimate the current direction from the recent historical curve.
+          // A linear regression is steadier than taking only the last segment.
+          const recent = historical.filter((point) => point.year >= 1985);
+          const trendSource = recent.length >= 2 ? recent : historical.slice(-3);
+          let projectedTrendChange = 0;
+          if (trendSource.length >= 2) {
+            const meanYear = trendSource.reduce((sum, point) => sum + point.year, 0) / trendSource.length;
+            const meanY = trendSource.reduce((sum, point) => sum + point.y, 0) / trendSource.length;
+            const numerator = trendSource.reduce(
+              (sum, point) => sum + (point.year - meanYear) * (point.y - meanY),
+              0,
+            );
+            const denominator = trendSource.reduce(
+              (sum, point) => sum + (point.year - meanYear) ** 2,
+              0,
+            );
+            const slope = denominator ? numerator / denominator : 0;
+            projectedTrendChange = Math.max(
+              -trendLimit,
+              Math.min(trendLimit, slope * (2050 - NOW_YEAR)),
+            );
+          }
+
+          const targetY =
+            mode === "weak"
+              ? anchorY + directionalChange
+              : mode === "strong"
+                ? anchorY - directionalChange
+                : anchorY + projectedTrendChange;
+
+          const sourceFuture = points.filter((point) => point.year > NOW_YEAR);
+          const futureYears = [...new Set([
+            ...sourceFuture.map((point) => point.year),
+            2030,
+            2040,
+            2050,
+          ])]
+            .filter((year) => year > NOW_YEAR && year <= 2050)
+            .sort((a, b) => a - b);
+
+          const countForYear = (year) => {
+            const nearest = sourceFuture.reduce((best, point) => {
+              if (!best) return point;
+              return Math.abs(point.year - year) < Math.abs(best.year - year) ? point : best;
+            }, null);
+            return nearest?.count || 1;
+          };
+
+          const scenarioPoints = futureYears.map((year) => {
+            const linearProgress = Math.max(
+              0,
+              Math.min(1, (year - NOW_YEAR) / (2050 - NOW_YEAR)),
+            );
+            // Smoothstep gives a calm departure from the present-day anchor.
+            const progress = linearProgress * linearProgress * (3 - 2 * linearProgress);
+            return {
+              x: xForYear(year),
+              y: Math.max(P.t, Math.min(H - P.b, anchorY + (targetY - anchorY) * progress)),
+              count: countForYear(year),
+              year,
+              scenarioMode: mode,
+            };
+          });
+
+          return [...historical, boundaryPoint, ...scenarioPoints];
+        }
+
+        /**
+         * Concentric density bands, outermost first.
+         * Each band is a full closed ribbon around the lens's average path,
+         * scaled to a fraction of the point-count-derived base width. Bands
+         * are drawn stacked (outer -> inner) at the same low fill-opacity,
+         * so overlap alone brightens the core -- three thin, honestly
+         * transparent layers instead of one flat, guessed-at band.
+         */
+        const CONTOUR_LEVELS = [1, 0.66, 0.36];
+        const CONTOUR_OPACITY = 0.07;
+        function contourBand(points, scale) {
+          if (points.length < 2) return "";
+          const widths = points.map(
+              (p) => (8 + Math.min(24, Math.sqrt(p.count) * 7)) * scale,
+            ),
+            upper = points.map((p, i) => ({ x: p.x, y: p.y - widths[i] })),
+            lower = points
+              .map((p, i) => ({ x: p.x, y: p.y + widths[i] }))
+              .reverse();
+          return (
+            smoothPath(upper) +
+            ` L${lower[0].x},${lower[0].y} ` +
+            smoothPath(lower).replace(/^M[^C]+/, "") +
+            " Z"
+          );
+        }
+        function contourLevels(points) {
+          return CONTOUR_LEVELS.map((scale) => contourBand(points, scale));
+        }
+        // ------------------------------------------------------------------
+        // Main SVG renderer: one authoritative rendering function
+        // ------------------------------------------------------------------
+
+        /**
+         * Nimilappujen sijoittelu tärkeysjärjestyksessä.
+         *
+         * Kartalla on tiheimmillään 17 murrosta samalla 20 vuoden jaksolla,
+         * joten kaikkia nimiä ei voi näyttää yhtä aikaa luettavasti. Lappu
+         * yritetään sijoittaa ensin pisteen oikealle puolelle, sitten
+         * vasemmalle, ylös tai alas. Jos mikään ei mahdu, lappu jätetään
+         * pois -- piste itse ja sen työkaluvihje jäävät silti käyttöön.
+         */
+        const LABEL_HEIGHT = 11;
+        const LABEL_CHAR_WIDTH = 5.2;
+        function placeLabels(candidates, target) {
+          const placed = [];
+          const overlaps = (box) =>
+            placed.some(
+              (other) =>
+                box.x1 < other.x2 &&
+                box.x2 > other.x1 &&
+                box.y1 < other.y2 &&
+                box.y2 > other.y1,
+            );
+          [...candidates]
+            .sort((a, b) => b.priority - a.priority)
+            .forEach((candidate) => {
+              const width = candidate.text.length * LABEL_CHAR_WIDTH;
+              const gap = candidate.radius + 4;
+              const options = [
+                { x: candidate.cx + gap, y: candidate.cy - 4, anchor: "start" },
+                { x: candidate.cx - gap, y: candidate.cy - 4, anchor: "end" },
+                {
+                  x: candidate.cx,
+                  y: candidate.cy - candidate.radius - 7,
+                  anchor: "middle",
+                },
+                {
+                  x: candidate.cx,
+                  y: candidate.cy + candidate.radius + 12,
+                  anchor: "middle",
+                },
+              ];
+              for (const option of options) {
+                const half =
+                  option.anchor === "middle"
+                    ? width / 2
+                    : option.anchor === "end"
+                      ? width
+                      : 0;
+                const box = {
+                  x1: option.x - half,
+                  x2: option.x - half + width,
+                  y1: option.y - LABEL_HEIGHT,
+                  y2: option.y + 3,
+                };
+                if (overlaps(box)) continue;
+                placed.push(box);
+                target.appendChild(
+                  E(
+                    "text",
+                    {
+                      x: option.x,
+                      y: option.y,
+                      "text-anchor": option.anchor,
+                      class: "node-label",
+                    },
+                    candidate.text,
+                  ),
+                );
+                return;
+              }
+            });
+        }
+
+        function render() {
+          hideTip();
+          svg
+            .querySelectorAll("g[data-layer],defs[data-render]")
+            .forEach((node) => node.remove());
+          const bg = E("g", { "data-layer": "bg" });
+          const contours = E("g", { "data-layer": "contours" });
+          const cumulative = E("g", { "data-layer": "cumulative" });
+          const averages = E("g", { "data-layer": "averages" });
+          const nodes = E("g", { "data-layer": "nodes" });
+          const labels = E("g", { "data-layer": "labels" });
+          const joints = E("g", { "data-layer": "joints" });
+          svg.append(bg, contours, cumulative, averages, nodes, labels, joints);
+
+          const renderParams = deriveRenderParameters();
+          const view = renderParams.view;
+          lastView = view;
+          const relevant = view.relevant;
+          const pathUsage = view.usage;
+          const nodeEffects = renderParams.nodeEffects;
+          const top = P.t;
+          const bottom = H - P.b;
+          const center = top + (bottom - top) / 2;
+          const comparisonAxis = resilienceCompareMode
+            ? resilienceCompareModes[resilienceCompareMode]?.label
+            : null;
+
+          const nowX = xForYear(NOW_YEAR);
+          bg.appendChild(
+            E("rect", {
+              x: nowX,
+              y: P.t - 22,
+              width: W - P.r - nowX,
+              height: H - P.b - P.t + 40,
+              class: "future-zone",
+            }),
+          );
+          bg.appendChild(
+            E(
+              "text",
+              { x: nowX + 14, y: P.t - 5, class: "future-label" },
+              "MAHDOLLISET TULEVAISUUSPOLUT",
+            ),
+          );
+
+          [1800, 1850, 1900, 1950, 2000, NOW_YEAR, 2050].forEach((year) => {
+            const x = xForYear(year);
+            bg.appendChild(
+              E("line", {
+                x1: x,
+                y1: P.t - 22,
+                x2: x,
+                y2: H - P.b + 18,
+                class: year === NOW_YEAR ? "now-line" : "year-line",
+              }),
+            );
+            bg.appendChild(
+              E(
+                "text",
+                { x, y: 30, "text-anchor": "middle", class: "year" },
+                year,
+              ),
+            );
+            if (year === NOW_YEAR)
+              bg.appendChild(
+                E("text", { x: x + 7, y: 47, class: "year-small" }, "NYT"),
+              );
+          });
+          bg.appendChild(
+            E("line", {
+              x1: P.l,
+              y1: center,
+              x2: W - P.r,
+              y2: center,
+              class: "semantic-center",
+            }),
+          );
+          bg.appendChild(
+            E(
+              "text",
+              { x: P.l + 10, y: top + 18, class: "semantic-label" },
+              "VAHVISTAA JÄRJESTELMÄN TOIMINTAKYKYÄ",
+            ),
+          );
+          bg.appendChild(
+            E(
+              "text",
+              { x: P.l + 10, y: center - 7, class: "semantic-label" },
+              "VAIKUTUS RISTIRIITAINEN TAI EPÄSELVÄ",
+            ),
+          );
+          bg.appendChild(
+            E(
+              "text",
+              { x: P.l + 10, y: bottom - 10, class: "semantic-label" },
+              "HEIKENTÄÄ JÄRJESTELMÄN TOIMINTAKYKYÄ",
+            ),
+          );
+          // Akselin merkitys sanotaan ääneen: pystysuunta ei ole yksi mitattu
+          // suure, vaan riippuu siitä mikä linssi on valittuna.
+          bg.appendChild(
+            E(
+              "text",
+              {
+                x: 16,
+                y: center,
+                class: "axis-caption",
+                transform: `rotate(-90 16 ${center})`,
+                "text-anchor": "middle",
+              },
+              comparisonAxis
+                ? `Pystyakseli = linssivaikutus + vertailu: ${comparisonAxis}`
+                : "Pystyakseli = valitun linssin mukainen vaikutus järjestelmän toimintakykyyn",
+            ),
+          );
+
+          const effectPoints = cumulativePoints().filter(
+            (point) => point.year >= UI.yearMin && point.year <= UI.yearMax,
+          );
+          const historicalPoints = effectPoints.filter(
+            (point) => point.year <= NOW_YEAR,
+          );
+          const projectedPoints = effectPoints.filter(
+            (point) => point.year > NOW_YEAR,
+          );
+
+          // Hajonta-alue piirretään ennen keskisuuntaa, jotta käyrä jää
+          // päälle. Alue näytetään vain kun linssejä on useampi kuin yksi:
+          // yhdellä linssillä hajontaa ei ole olemassa.
+          function spreadAreaPath(points) {
+            if (points.length < 2) return "";
+            const upper = points.map((p) => `${p.x},${p.low}`);
+            const lower = [...points]
+              .reverse()
+              .map((p) => `${p.x},${p.high}`);
+            return `M${upper.join(" L")} L${lower.join(" L")} Z`;
+          }
+          if (selected.size > 1) {
+            [historicalPoints, projectedPoints].forEach((series, index) => {
+              const spread = series.filter(
+                (point) => Number.isFinite(point.low) && Number.isFinite(point.high),
+              );
+              if (spread.length < 2) return;
+              cumulative.appendChild(
+                E("path", {
+                  d: spreadAreaPath(spread),
+                  class: index === 0 ? "spread-band" : "spread-band future",
+                }),
+              );
+            });
+          }
+
+          if (historicalPoints.length > 1) {
+            cumulative.appendChild(
+              E("path", {
+                d: monotoneCurvePath(historicalPoints),
+                class: "cumulative-halo",
+              }),
+            );
+            const historicalTangents = monotoneTangents(historicalPoints);
+            for (let index = 1; index < historicalPoints.length; index++) {
+              const previous = historicalPoints[index - 1];
+              const current = historicalPoints[index];
+              const gap = current.year - previous.year;
+              const confidence = Math.min(previous.count, current.count);
+              const segmentClass =
+                gap > 35 ? "interpolated" : confidence < 2 ? "sparse" : "";
+              cumulative.appendChild(
+                E("path", {
+                  d: monotoneSegmentPath(
+                    historicalPoints,
+                    index,
+                    historicalTangents,
+                  ),
+                  class: `cumulative-line ${segmentClass}`,
+                }),
+              );
+            }
+          }
+
+          if (projectedPoints.length) {
+            const futureStart = historicalPoints.at(-1);
+            const futureCurvePoints = futureStart
+              ? [futureStart, ...projectedPoints]
+              : projectedPoints;
+            if (futureCurvePoints.length > 1) {
+              const futureTangents = monotoneTangents(futureCurvePoints);
+              for (let index = 1; index < futureCurvePoints.length; index++) {
+                cumulative.appendChild(
+                  E("path", {
+                    d: monotoneSegmentPath(
+                      futureCurvePoints,
+                      index,
+                      futureTangents,
+                    ),
+                    class: "cumulative-line future-scenario",
+                  }),
+                );
+              }
+            }
+          }
+
+          if (effectPoints.length) {
+            const first = effectPoints[0];
+            const historicalEnd = historicalPoints.at(-1) || first;
+            cumulative.appendChild(
+              E("circle", {
+                cx: first.x,
+                cy: first.y,
+                r: 4.5,
+                class: "cumulative-endpoint",
+              }),
+            );
+            if (historicalEnd !== first) {
+              cumulative.appendChild(
+                E("circle", {
+                  cx: historicalEnd.x,
+                  cy: historicalEnd.y,
+                  r: 4.5,
+                  class: "cumulative-endpoint",
+                }),
+              );
+            }
+          }
+
+          selected.forEach((id) => {
+            const points = lensAveragePoints(id).filter(
+              (p) => p.year >= UI.yearMin - 20 && p.year <= UI.yearMax + 20,
+            );
+            if (points.length < 2) return;
+            if (UI.density) {
+              // Monilinssinäkymässä kontuureja on päällekkäin yhtä monta kuin
+              // linssejä, ja niiden päälle piirtyy vielä hajonta-alue. Siksi
+              // kontuurit vaimenevat sitä enemmän mitä useampi linssi on
+              // valittuna -- yhdellä linssillä ne näkyvät entiseen tapaan.
+              const densityOpacity =
+                CONTOUR_OPACITY * (selected.size > 1 ? 0.55 : 1);
+              contourLevels(points).forEach((band) => {
+                if (!band) return;
+                contours.appendChild(
+                  E("path", {
+                    d: band,
+                    fill: color(id),
+                    stroke: color(id),
+                    opacity: densityOpacity,
+                    class: "contour-field",
+                  }),
+                );
+              });
+              contours.appendChild(
+                E("path", {
+                  d: smoothPath(points),
+                  stroke: color(id),
+                  class: "contour-line",
+                }),
+              );
+            }
+            const historicalAveragePoints = points.filter((point) => point.year <= NOW_YEAR);
+            const projectedAveragePoints = points.filter((point) => point.year > NOW_YEAR);
+            // Yhden linssin korostus: valittu kaari nousee esiin ja muut
+            // jäävät taustalle, jotta monilinssinäkymästä voi eristää yhden
+            // mekanismin ilman että muut katoavat kokonaan.
+            const dimmedByChain = activeChain && activeChain !== id;
+            const dimmedByNode =
+              activeNode && !pathUsage.get(activeNode)?.includes(id);
+            const pathClass = `lens-average ${activeChain === id ? "active" : ""} ${dimmedByChain || dimmedByNode ? "dim" : ""}`;
+            const activateAverage = () => {
+              activeChain = activeChain === id ? null : id;
+              activeNode = null;
+              render();
+              pulseInteraction();
+              activeChain
+                ? showChain(chains.models.find((model) => model.id === id))
+                : intro();
+            };
+            const averageTip = () => {
+              const model = chains.models.find((item) => item.id === id);
+              const mode = FUTURE_MODES[futureModes.get(id) || "trend"].label.toLowerCase();
+              return `<b>${S(model.name)}</b><em>${S(id)} · kehityssuunta: ${S(mode)}</em><br>${S(model.summary)}`;
+            };
+
+            if (historicalAveragePoints.length > 1) {
+              const historicalAverage = E("path", {
+                d: path(historicalAveragePoints),
+                stroke: color(id),
+                class: pathClass,
+              });
+              historicalAverage.addEventListener("click", activateAverage);
+              bindTip(historicalAverage, averageTip);
+              averages.appendChild(historicalAverage);
+            }
+
+            if (projectedAveragePoints.length) {
+              const futureStart = historicalAveragePoints.at(-1);
+              const futureAveragePoints = futureStart
+                ? [futureStart, ...projectedAveragePoints]
+                : projectedAveragePoints;
+              if (futureAveragePoints.length > 1) {
+                const futureAverage = E("path", {
+                  d: path(futureAveragePoints),
+                  stroke: color(id),
+                  class: `${pathClass} future-path`,
+                });
+                futureAverage.addEventListener("click", activateAverage);
+                bindTip(futureAverage, averageTip);
+                averages.appendChild(futureAverage);
+              }
+            }
+            const end = points.at(-1);
+            labels.appendChild(
+              E(
+                "text",
+                {
+                  x: end.x + 8,
+                  y: end.y - 7,
+                  fill: color(id),
+                  class: "lens-label",
+                },
+                id,
+              ),
+            );
+          });
+
+          let shared = 0;
+          const labelCandidates = [];
+          layout.nodes
+            .filter(
+              (node) =>
+                relevant.has(node.id) &&
+                yearOf(node) >= UI.yearMin &&
+                yearOf(node) <= UI.yearMax,
+            )
+            .forEach((node) => {
+              const item = itemMap.get(node.id);
+              const point = xy(node);
+              const uses = pathUsage.get(node.id) || [];
+              const active = node.id === activeNode;
+              const directRoles = uses.filter((id) =>
+                roleMap.has(id + "|" + node.id),
+              );
+              const primary = uses[0];
+              const comparisonEffect = nodeEffects.get(node.id);
+              const baseRadius =
+                2.6 + (node.importance - 3) * 1.4 + (uses.length > 1 ? 1.2 : 0);
+              const radius = baseRadius * (comparisonEffect?.radiusMultiplier || 1);
+              const consensus = view.agreement.get(node.id);
+              const offFocus = activeChain && !uses.includes(activeChain);
+              const group = E("g", {
+                "data-id": node.id,
+                tabindex: "0",
+                class: `node imp${node.importance} on-path ${active ? "active" : ""} ${pulseId === node.id ? "pulse" : ""} ${consensus ? "agree-" + consensus.kind : ""} ${comparisonEffect ? "comparison-active comparison-" + resilienceCompareMode : ""} ${offFocus && !comparisonEffect ? "off-focus" : ""}`,
+                role: "button",
+                "aria-label": item.title,
+              });
+              // Ristiriitainen murros saa oman kehyksensä: linssit ovat siitä
+              // eri mieltä, mikä on juuri se havainto jonka keskiarvo peittää.
+              if (consensus && consensus.kind === "conflicting")
+                group.appendChild(
+                  E("circle", {
+                    cx: point.x,
+                    cy: point.y,
+                    r: radius + 3.4,
+                    class: "conflict-ring",
+                  }),
+                );
+              group.appendChild(
+                E("circle", {
+                  cx: point.x,
+                  cy: point.y,
+                  r: radius,
+                  fill: comparisonEffect ? "var(--hot)" : color(primary),
+                  "fill-opacity": active
+                    ? 0.92
+                    : comparisonEffect
+                      ? comparisonEffect.opacity
+                      : 0.13,
+                  stroke: comparisonEffect ? "var(--hot)" : color(primary),
+                  "stroke-width": comparisonEffect?.strokeWidth || 1,
+                }),
+              );
+              const activate = () => {
+                activeNode = node.id;
+                activeChain = null;
+                render();
+                showNode(node.id);
+                writeState();
+              };
+              group.addEventListener("click", activate);
+              group.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  activate();
+                }
+              });
+              bindTip(
+                group,
+                () =>
+                  `<b>${S(item.title)}</b><em>${yearOf(node)} · ${uses.join(" + ")}</em>${comparisonEffect ? `<em class="tip-agree">${S(resilienceCompareModes[resilienceCompareMode]?.label || "Vertailu")}: ${S(Number(comparisonEffect.value).toLocaleString("fi-FI", { maximumFractionDigits: 1 }))}</em>` : ""}${consensus ? `<em class="tip-agree">${agreementLabel(consensus)}</em>` : ""}<br>${S(short(item.problem || item.phase || "", 170))}`,
+              );
+              nodes.appendChild(group);
+              const isShared = uses.length > 1;
+              // Yhden linssin näkymässä isShared ei koskaan täyty, jolloin
+              // aiemmin nimettiin vain kuratoidut (M21: 15/37). Nyt kaikki
+              // näkyvät murrokset ovat ehdokkaita ja törmäyksenesto ratkaisee
+              // mitkä mahtuvat -- tila täytetään sen sijaan että se jäisi
+              // tyhjäksi tai menisi tukkoon.
+              const shouldLabel =
+                active ||
+                UI.allLabels ||
+                directRoles.length > 0 ||
+                isShared ||
+                selected.size <= 2;
+              // Nimilappuja ei enää piirretä heti, vaan kerätään ehdokkaiksi.
+              // Näin ne voidaan sijoittaa tärkeysjärjestyksessä ja karsia
+              // päällekkäiset -- aiemmin lappu meni aina samaan kohtaan
+              // piirtojärjestyksen mukaan, jolloin tiheillä jaksoilla nimet
+              // menivät ristiin.
+              if (shouldLabel)
+                labelCandidates.push({
+                  text: short(item.title, 30),
+                  x: point.x + radius + 4,
+                  y: point.y - 4,
+                  cx: point.x,
+                  cy: point.y,
+                  radius,
+                  // Prioriteetti: valittu kortti ensin, sitten kuratoidut
+                  // arviot, sitten tärkeys ja jaettujen linssien määrä.
+                  priority:
+                    (active ? 1000 : 0) +
+                    directRoles.length * 40 +
+                    (Number(node.importance) || 0) * 10 +
+                    uses.length,
+                });
+              if (isShared) {
+                shared++;
+                joints.appendChild(
+                  E("circle", {
+                    cx: point.x,
+                    cy: point.y,
+                    r: radius + 6 + uses.length,
+                    class: "joint-ring",
+                  }),
+                );
+                uses.forEach((id, index) => {
+                  const angle =
+                    -Math.PI / 2 + (index * Math.PI * 2) / uses.length;
+                  const ringRadius = radius + 6 + uses.length;
+                  joints.appendChild(
+                    E("circle", {
+                      cx: point.x + Math.cos(angle) * ringRadius,
+                      cy: point.y + Math.sin(angle) * ringRadius,
+                      r: 3,
+                      fill: color(id),
+                      class: "joint-dot",
+                    }),
+                  );
+                });
+              }
+            });
+
+          placeLabels(labelCandidates, labels);
+
+          document.getElementById("nodeCount").textContent = relevant.size;
+          document.getElementById("edgeCount").textContent = selected.size;
+          document.getElementById("jointCount").textContent = shared;
+
+          // Vertailutunniste piirretään viimeisenä ylimmäksi kerrokseksi.
+          if (resilienceCompareMode && resilienceCompareModes[resilienceCompareMode]) {
+            const comparison = resilienceCompareModes[resilienceCompareMode];
+            const overlay = E("g", {
+              "data-layer": "resilience-comparison-overlay",
+              class: `resilience-map-status mode-${resilienceCompareMode}`,
+              "pointer-events": "none",
+            });
+            const badgeWidth = 350;
+            const badgeX = W - P.r - badgeWidth;
+            const badgeY = P.t - 18;
+            overlay.appendChild(E("rect", {
+              x: badgeX, y: badgeY, width: badgeWidth, height: 38, rx: 19,
+              class: "resilience-map-status-bg",
+            }));
+            overlay.appendChild(E("text", {
+              x: badgeX + 16, y: badgeY + 14,
+              class: "resilience-map-status-kicker",
+            }, "VERTAILUTILA · KOKO NÄKYMÄ"));
+            overlay.appendChild(E("text", {
+              x: badgeX + 16, y: badgeY + 29,
+              class: "resilience-map-status-label",
+            }, comparison.label));
+            svg.appendChild(overlay);
+          }
+
+          renderLensFeature();
+        }
+
+        /**
+         * Article + infographic for the sole selected lens.
+         *
+         * Only makes sense with exactly one lens active -- with several
+         * lenses selected there is no single "this is the one" article to
+         * anchor at the bottom of the page, so the section hides itself.
+         */
+        /**
+         * Turn one saved article "paragraph" into a real element.
+         *
+         * Article bodies were written as markdown-ish plain text (## / ### /
+         * > blockquote / **bold** / "- " lists), which showed up as literal
+         * asterisks and hashes when just dropped in via textContent. This
+         * renders the handful of patterns actually used, nothing more.
+         */
+        function renderLensBlock(raw) {
+          const text = String(raw ?? "");
+          if (text.startsWith("### ")) {
+            const el = document.createElement("h5");
+            appendInline(el, text.slice(4));
+            return el;
+          }
+          if (text.startsWith("## ")) {
+            const el = document.createElement("h4");
+            appendInline(el, text.slice(3));
+            return el;
+          }
+          if (text.startsWith("> ")) {
+            const el = document.createElement("blockquote");
+            appendInline(el, text.slice(2));
+            return el;
+          }
+          const lines = text.split("\n");
+          if (lines.every((line) => line.startsWith("- "))) {
+            const ul = document.createElement("ul");
+            lines.forEach((line) => {
+              const li = document.createElement("li");
+              appendInline(li, line.slice(2));
+              ul.appendChild(li);
+            });
+            return ul;
+          }
+          const p = document.createElement("p");
+          appendInline(p, text);
+          return p;
+        }
+
+        /** Append text to el, turning **bold** spans into <strong>. */
+        function appendInline(el, text) {
+          const parts = String(text).split(/\*\*(.+?)\*\*/g);
+          parts.forEach((part, i) => {
+            if (part === "") return;
+            if (i % 2 === 1) {
+              const strong = document.createElement("strong");
+              strong.textContent = part;
+              el.appendChild(strong);
+            } else {
+              el.appendChild(document.createTextNode(part));
+            }
+          });
+        }
+
+        function renderLensFeature() {
+          const section = document.getElementById("lensFeature");
+          if (!section) return;
+          if (selected.size !== 1) {
+            section.hidden = true;
+            section.replaceChildren();
+            return;
+          }
+          const chainId = [...selected][0];
+          const entry = lensContent[chainId];
+          const model = chains.models.find((m) => m.id === chainId);
+          if (!entry || !model) {
+            section.hidden = true;
+            section.replaceChildren();
+            return;
+          }
+
+          const wrap = document.createElement("div");
+          wrap.className = "lens-feature-inner";
+
+          const fig = document.createElement("figure");
+          fig.className = "lens-feature-fig";
+          if (entry.infographic?.url) {
+            const img = document.createElement("img");
+            img.src = entry.infographic.url;
+            img.loading = "lazy";
+            img.alt = entry.infographic.caption || entry.title || chainId;
+            img.tabIndex = 0;
+            img.setAttribute("role", "button");
+            img.setAttribute("aria-label", "Näytä infografiikka suurennettuna");
+            const openThis = () => openLightbox(img.src, img.alt);
+            img.addEventListener("click", openThis);
+            img.addEventListener("keydown", (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                openThis();
+              }
+            });
+            const caption = document.createElement("figcaption");
+            caption.textContent = entry.infographic.caption || "";
+            fig.append(img, caption);
+          }
+
+          const art = document.createElement("div");
+          const eyebrow = document.createElement("p");
+          eyebrow.className = "lens-feature-eyebrow";
+          eyebrow.textContent = `${chainId} \u00b7 artikkeli`;
+          const title = document.createElement("h3");
+          title.className = "lens-feature-title";
+          title.textContent = entry.title || model.name;
+          const dek = document.createElement("p");
+          dek.className = "lens-feature-dek";
+          dek.textContent = entry.dek || "";
+
+          const body = document.createElement("div");
+          body.className = "lens-feature-body";
+          const paragraphs = entry.body || [];
+          paragraphs.forEach((text) => {
+            body.appendChild(renderLensBlock(text));
+          });
+          const blocks = [...body.children];
+          const collapsible = blocks.length > 3;
+          if (collapsible) {
+            blocks.forEach((el, i) => {
+              if (i >= 3) el.hidden = true;
+            });
+          }
+
+          art.append(eyebrow, title, dek, body);
+
+          if (collapsible) {
+            const more = document.createElement("button");
+            more.type = "button";
+            more.className = "lens-feature-more";
+            more.textContent = "Lue koko artikkeli";
+            more.setAttribute("aria-expanded", "false");
+            more.addEventListener("click", () => {
+              const expand = more.getAttribute("aria-expanded") !== "true";
+              blocks.forEach((el, i) => {
+                if (i >= 3) el.hidden = !expand;
+              });
+              more.setAttribute("aria-expanded", String(expand));
+              more.textContent = expand ? "Näytä vähemmän" : "Lue koko artikkeli";
+            });
+            art.appendChild(more);
+          }
+
+          if (entry.missing_primary_article) {
+            const note = document.createElement("p");
+            note.className = "lens-feature-missing";
+            note.textContent =
+              "Tälle linssille ei ole vielä omaa kokoavaa artikkelia -- yllä oleva teksti on lyhyt kehys.";
+            art.appendChild(note);
+          }
+          if (entry.further_reading?.length) {
+            const label = document.createElement("p");
+            label.className = "lens-feature-eyebrow";
+            label.style.marginTop = "10px";
+            label.textContent = "Lisälukemista";
+            const list = document.createElement("ul");
+            list.className = "lens-feature-further";
+            entry.further_reading.forEach((ref) => {
+              const li = document.createElement("li");
+              li.textContent = ref.title;
+              list.appendChild(li);
+            });
+            art.append(label, list);
+          }
+
+          wrap.append(fig, art);
+          section.replaceChildren(wrap);
+          section.hidden = false;
+        }
+
+        // ------------------------------------------------------------------
+        // v2: search, time window, theme, sharing, export, keyboard
+        // ------------------------------------------------------------------
+        let pulseId = null;
+        let lastView = null;
+        let searchIndex = [];
+        const $ = (id) => document.getElementById(id);
+
+        function toast(message) {
+          const el = $("toast");
+          el.textContent = message;
+          el.classList.add("on");
+          clearTimeout(el._t);
+          el._t = setTimeout(() => el.classList.remove("on"), 2200);
+        }
+
+        /* ---- theme ---- */
+        function applyTheme(mode) {
+          if (mode === "auto")
+            document.documentElement.removeAttribute("data-theme");
+          else document.documentElement.setAttribute("data-theme", mode);
+          try {
+            localStorage.setItem("mk-theme", mode);
+          } catch (e) {}
+        }
+        function initTheme() {
+          let mode = "auto";
+          try {
+            mode = localStorage.getItem("mk-theme") || "auto";
+          } catch (e) {}
+          applyTheme(mode);
+          $("tTheme").addEventListener("click", () => {
+            const order = ["auto", "light", "dark"];
+            let current =
+              document.documentElement.getAttribute("data-theme") || "auto";
+            const next = order[(order.indexOf(current) + 1) % order.length];
+            applyTheme(next);
+            toast(
+              next === "auto"
+                ? "Teema: järjestelmän mukaan"
+                : next === "light"
+                  ? "Teema: vaalea"
+                  : "Teema: tumma",
+            );
+          });
+        }
+
+        /* ---- URL state ---- */
+        function writeState() {
+          const params = new URLSearchParams();
+          if (selected.size) params.set("lens", [...selected].join(","));
+          params.set("y", `${UI.yearMin}-${UI.yearMax}`);
+          if (UI.allLabels) params.set("labels", "1");
+          if (!UI.density) params.set("density", "0");
+          const nonTrendScenarios = [...futureModes.entries()]
+            .filter(([, mode]) => mode !== "trend")
+            .map(([id, mode]) => `${id}:${mode}`);
+          if (nonTrendScenarios.length) params.set("future", nonTrendScenarios.join(","));
+          if (resilienceCompareMode) params.set("analysis", resilienceCompareMode);
+          params.set("analysisIndex", String(analysisBrowseIndex));
+          if (activeNode) params.set("node", activeNode);
+          else if (activeChain) params.set("chain", activeChain);
+          history.replaceState(null, "", "#" + params.toString());
+        }
+        function readState() {
+          const params = new URLSearchParams(location.hash.slice(1));
+          const out = {};
+          if (params.get("lens"))
+            out.lens = params.get("lens").split(",").filter(Boolean);
+          const y = (params.get("y") || "").match(/^(\d{4})-(\d{4})$/);
+          if (y) {
+            out.yearMin = +y[1];
+            out.yearMax = +y[2];
+          }
+          out.labels = params.get("labels") === "1";
+          out.density = params.get("density") !== "0";
+          out.future = (params.get("future") || "")
+            .split(",")
+            .map((entry) => entry.split(":"))
+            .filter(([id, mode]) => id && FUTURE_MODES[mode]);
+          out.analysis = params.get("analysis");
+          const analysisIndex = Number(params.get("analysisIndex"));
+          if (Number.isInteger(analysisIndex)) out.analysisIndex = analysisIndex;
+          out.node = params.get("node");
+          out.chain = params.get("chain");
+          return out;
+        }
+
+        /* ---- search ---- */
+        function buildSearchIndex() {
+          const inLens = new Set();
+          Object.values(layout.lens_paths).forEach((ids) =>
+            ids.forEach((id) => inLens.add(id)),
+          );
+          roleMap.forEach((r) => inLens.add(r.phenomenon_id));
+          searchIndex = layout.nodes
+            .filter((n) => inLens.has(n.id) && itemMap.has(n.id))
+            .map((n) => {
+              const it = itemMap.get(n.id);
+              return {
+                id: n.id,
+                year: yearOf(n),
+                title: it.title || n.id,
+                hay: `${it.title || ""} ${(it.domains || []).join(" ")} ${it.type || ""} ${it.problem || ""}`.toLowerCase(),
+              };
+            })
+            .sort((a, b) => a.year - b.year);
+        }
+        function lensesFor(id) {
+          const list = [];
+          Object.entries(layout.lens_paths).forEach(([chainId, ids]) => {
+            if (ids.includes(id)) list.push(chainId);
+          });
+          roleMap.forEach((r) => {
+            if (r.phenomenon_id === id && !list.includes(r.chain_id))
+              list.push(r.chain_id);
+          });
+          return list;
+        }
+        function focusNode(id) {
+          const lenses = lensesFor(id);
+          if (lenses.length && !lenses.some((l) => selected.has(l))) {
+            selected.add(lenses[0]);
+            sync();
+          }
+          const n = nodeMap.get(id);
+          if (n) {
+            const targetYear = yearOf(n);
+            if (targetYear < UI.yearMin) {
+              UI.yearMin = Math.max(1800, Math.floor(targetYear / 10) * 10);
+              $("yFrom").value = UI.yearMin;
+            }
+            if (targetYear > UI.yearMax) {
+              UI.yearMax = Math.min(2050, Math.ceil(targetYear / 10) * 10);
+              $("yTo").value = UI.yearMax;
+            }
+            syncRangeLabel();
+          }
+          activeNode = id;
+          activeChain = null;
+          pulseId = id;
+          render();
+          showNode(id);
+          writeState();
+          const target = svg.querySelector(
+            `g.node[data-id="${CSS.escape(id)}"]`,
+          );
+          if (target && target.scrollIntoView) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "nearest",
+              inline: "center",
+            });
+          }
+          setTimeout(() => {
+            pulseId = null;
+          }, 2400);
+        }
+        function runSearch(term) {
+          const box = $("results");
+          const q = term.trim().toLowerCase();
+          if (q.length < 2) {
+            box.classList.remove("on");
+            box.replaceChildren();
+            return;
+          }
+          const hits = searchIndex
+            .filter((row) => row.hay.includes(q))
+            .sort((a, b) => {
+              const at = a.title.toLowerCase().indexOf(q),
+                bt = b.title.toLowerCase().indexOf(q);
+              const ar = at < 0 ? 99 : at,
+                br = bt < 0 ? 99 : bt;
+              return ar - br || a.year - b.year;
+            })
+            .slice(0, 20);
+          box.replaceChildren();
+          if (!hits.length) {
+            const empty = document.createElement("div");
+            empty.className = "empty";
+            empty.textContent = "Ei osumia.";
+            box.appendChild(empty);
+          } else {
+            hits.forEach((row) => {
+              const button = document.createElement("button");
+              button.type = "button";
+              button.innerHTML = `<b>${row.year}</b><span>${S(row.title)}</span>`;
+              button.addEventListener("click", () => {
+                box.classList.remove("on");
+                $("q").value = row.title;
+                focusNode(row.id);
+              });
+              box.appendChild(button);
+            });
+          }
+          box.classList.add("on");
+        }
+        function initSearch() {
+          const input = $("q"),
+            box = $("results");
+          input.addEventListener("input", () => runSearch(input.value));
+          input.addEventListener("keydown", (event) => {
+            const items = [...box.querySelectorAll("button")];
+            if (!items.length) return;
+            const at = items.findIndex((b) => b.classList.contains("cursor"));
+            if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+              event.preventDefault();
+              const next =
+                event.key === "ArrowDown"
+                  ? Math.min(items.length - 1, at + 1)
+                  : Math.max(0, at <= 0 ? 0 : at - 1);
+              items.forEach((b) => b.classList.remove("cursor"));
+              items[next].classList.add("cursor");
+              items[next].scrollIntoView({ block: "nearest" });
+            } else if (event.key === "Enter") {
+              event.preventDefault();
+              (items[at] || items[0]).click();
+            } else if (event.key === "Escape") {
+              box.classList.remove("on");
+            }
+          });
+          $("qClear").addEventListener("click", () => {
+            input.value = "";
+            box.classList.remove("on");
+            input.focus();
+          });
+          document.addEventListener("click", (event) => {
+            if (!event.target.closest(".search-wrap"))
+              box.classList.remove("on");
+          });
+        }
+
+        /* ---- time window ---- */
+        function syncRangeLabel() {
+          $("yVal").textContent = `${UI.yearMin}–${UI.yearMax}`;
+        }
+        function initRange() {
+          const from = $("yFrom"),
+            to = $("yTo");
+          const update = () => {
+            let a = +from.value,
+              b = +to.value;
+            if (a > b - 20) {
+              if (document.activeElement === from) {
+                a = Math.max(1800, b - 20);
+                from.value = a;
+              } else {
+                b = Math.min(2050, a + 20);
+                to.value = b;
+              }
+            }
+            UI.yearMin = a;
+            UI.yearMax = b;
+            syncRangeLabel();
+            render();
+            writeState();
+          };
+          from.addEventListener("input", update);
+          to.addEventListener("input", update);
+          syncRangeLabel();
+        }
+
+        /* ---- toggles, share, export ---- */
+        function initToggles() {
+          const labels = $("tLabels"),
+            density = $("tDensity");
+          labels.setAttribute("aria-pressed", String(UI.allLabels));
+          density.setAttribute("aria-pressed", String(UI.density));
+          labels.addEventListener("click", () => {
+            UI.allLabels = !UI.allLabels;
+            labels.setAttribute("aria-pressed", String(UI.allLabels));
+            render();
+            writeState();
+          });
+          density.addEventListener("click", () => {
+            UI.density = !UI.density;
+            density.setAttribute("aria-pressed", String(UI.density));
+            render();
+            writeState();
+          });
+          $("tShare").addEventListener("click", async () => {
+            writeState();
+            try {
+              await navigator.clipboard.writeText(location.href);
+              toast("Näkymän linkki kopioitu leikepöydälle.");
+            } catch (e) {
+              toast("Kopiointi ei onnistunut -- kopioi osoiterivi.");
+            }
+          });
+          $("tPng").addEventListener("click", exportPNG);
+        }
+        function exportPNG() {
+          const clone = svg.cloneNode(true);
+          const styleText = [...document.querySelectorAll("style")]
+            .map((s) => s.textContent)
+            .join("\n");
+          const computed = getComputedStyle(document.documentElement);
+          const vars = [
+            "--ink",
+            "--ink2",
+            "--muted",
+            "--faint",
+            "--line",
+            "--strong",
+            "--soft",
+            "--paper",
+            "--paper2",
+            "--hot",
+            "--future",
+            "--bg",
+          ]
+            .map((v) => `${v}:${computed.getPropertyValue(v).trim()};`)
+            .join("");
+          const styleNode = document.createElementNS(NS, "style");
+          styleNode.textContent =
+            `svg{${vars}background:${computed.getPropertyValue("--paper").trim()};font-family:ui-sans-serif,system-ui,sans-serif}` +
+            styleText;
+          clone.insertBefore(styleNode, clone.firstChild);
+          clone.setAttribute("xmlns", NS);
+          const serialized = new XMLSerializer().serializeToString(clone);
+          const image = new Image();
+          const scale = 2;
+          image.onload = () => {
+            const canvas = document.createElement("canvas");
+            canvas.width = W * scale;
+            canvas.height = H * scale;
+            const ctx = canvas.getContext("2d");
+            ctx.fillStyle =
+              computed.getPropertyValue("--paper").trim() || "#fff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+            canvas.toBlob((blob) => {
+              const url = URL.createObjectURL(blob);
+              const link = document.createElement("a");
+              link.href = url;
+              link.download = `murroskartta-${[...selected].join("-") || "tyhja"}-${UI.yearMin}-${UI.yearMax}.png`;
+              link.click();
+              setTimeout(() => URL.revokeObjectURL(url), 4000);
+              toast("PNG ladattu.");
+            }, "image/png");
+          };
+          image.onerror = () =>
+            toast("Kuvan vienti ei onnistunut tässä selaimessa.");
+          image.src =
+            "data:image/svg+xml;charset=utf-8," +
+            encodeURIComponent(serialized);
+        }
+
+        /* ---- keyboard navigation between phenomena ---- */
+        function visibleNodeIds() {
+          return [...svg.querySelectorAll("g.node[data-id]")].map((g) =>
+            g.getAttribute("data-id"),
+          );
+        }
+        function stepNode(direction) {
+          const ids = visibleNodeIds();
+          if (!ids.length) return;
+          const at = ids.indexOf(activeNode);
+          const next =
+            ids[
+              Math.max(0, Math.min(ids.length - 1, at < 0 ? 0 : at + direction))
+            ];
+          if (next) focusNode(next);
+        }
+
+        function initUI() {
+          buildSearchIndex();
+          initSearch();
+          initRange();
+          initToggles();
+          document.addEventListener("keydown", (event) => {
+            const typing = /^(INPUT|TEXTAREA)$/.test(
+              document.activeElement?.tagName || "",
+            );
+            if (typing) return;
+            if (event.key === "ArrowRight") {
+              event.preventDefault();
+              stepNode(1);
+            } else if (event.key === "ArrowLeft") {
+              event.preventDefault();
+              stepNode(-1);
+            } else if (event.key === "/") {
+              event.preventDefault();
+              $("q").focus();
+            }
+          });
+        }
+        // ------------------------------------------------------------------
+        // Events and data loading
+        // ------------------------------------------------------------------
+
+        document
+          .getElementById("all")
+          .addEventListener("click", () =>
+            setSel(chains.models.map((m) => m.id)),
+          );
+        document
+          .getElementById("core")
+          .addEventListener("click", () => setSel(["M21", "M27", "M28"]));
+        /* Infographic lightbox: click a thumbnail to see it full-size. */
+        function openLightbox(src, alt) {
+          const box = document.getElementById("lightbox");
+          const img = document.getElementById("lightboxImg");
+          img.src = src;
+          img.alt = alt || "";
+          box.hidden = false;
+          box.setAttribute("aria-hidden", "false");
+          document.getElementById("lightboxClose").focus();
+        }
+        function closeLightbox() {
+          const box = document.getElementById("lightbox");
+          box.hidden = true;
+          box.setAttribute("aria-hidden", "true");
+          document.getElementById("lightboxImg").src = "";
+        }
+        document
+          .getElementById("lightboxClose")
+          .addEventListener("click", closeLightbox);
+        document.getElementById("lightbox").addEventListener("click", () => {
+          closeLightbox();
+        });
+
+        document
+          .getElementById("none")
+          .addEventListener("click", () => setSel([]));
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            if (!document.getElementById("lightbox").hidden) {
+              closeLightbox();
+              return;
+            }
+            activeChain = null;
+            activeNode = null;
+            render();
+            intro();
+          }
+        });
+        addEventListener("scroll", hideTip, { passive: true });
+        intro();
+        initTheme();
+        Promise.all([
+          ...Object.values(FILES).map((f) =>
+            fetch(f).then((r) => {
+              if (!r.ok) throw Error(`${f}: ${r.status}`);
+              return r.json();
+            }),
+          ),
+          loadLensAggregate(),
+        ])
+          .then(([c, a, an, l, lc, r, w, aggRows]) => boot(c, a, an, l, lc, r, w, aggRows))
+          .catch((err) => showLoadError(err));
+
+        function boot(c, a, an, l, lc, r, w, aggRows = []) {
+          chains = c;
+          atlas = a;
+          anchors = an;
+          layout = l;
+          lensContent = lc || {};
+          resilience = r || { meta: {}, crises: [] };
+          wellbeing = w || { meta: {}, series: {} };
+          aggregate = new Map((aggRows || []).map((row) => [aggregateKey(row.lens_id, row.phenomenon_id), row]));
+          if (aggregate.size) {
+            console.info(`Murroskartta: arviointikoonti käytössä (${aggregate.size} solua, ${aggregateStatus.userRows} käyttäjädataa sisältävää).`);
+          }
+          nodeMap = new Map(layout.nodes.map((n) => [n.id, n]));
+          itemMap = new Map(atlas.items.map((i) => [i.id, i]));
+          roleMap = buildRoleMap(anchors, layout);
+          const state = readState();
+          const valid = new Set(chains.models.map((m) => m.id));
+          futureModes = new Map(chains.models.map((model) => [model.id, "trend"]));
+          (state.future || []).forEach(([id, mode]) => {
+            if (valid.has(id) && FUTURE_MODES[mode]) futureModes.set(id, mode);
+          });
+          selected = new Set(
+            (state.lens || ["M21"]).filter((id) => valid.has(id)),
+          );
+          if (state.chain && valid.has(state.chain)) {
+            activeChain = state.chain;
+            selected.add(state.chain);
+          }
+          if (state.yearMin) {
+            UI.yearMin = state.yearMin;
+            UI.yearMax = state.yearMax;
+          }
+          UI.allLabels = !!state.labels;
+          UI.density = state.density !== false;
+          if (
+            Number.isInteger(state.analysisIndex) &&
+            state.analysisIndex >= 0 &&
+            state.analysisIndex < analysisModeOrder.length
+          ) {
+            analysisBrowseIndex = state.analysisIndex;
+          }
+          if (state.analysis && resilienceCompareModes[state.analysis]) {
+            resilienceCompareMode = state.analysis;
+            analysisBrowseIndex = analysisModeOrder.indexOf(state.analysis);
+          }
+          const loader = document.getElementById("loading");
+          if (loader) loader.remove();
+          buildChips();
+          buildScenarioControls();
+          sync();
+          ["core", "all", "none"].forEach((id) => {
+            document.getElementById(id).disabled = false;
+          });
+          initUI();
+          document.getElementById("yFrom").value = UI.yearMin;
+          document.getElementById("yTo").value = UI.yearMax;
+          syncRangeLabel();
+          document
+            .getElementById("tLabels")
+            .setAttribute("aria-pressed", String(UI.allLabels));
+          document
+            .getElementById("tDensity")
+            .setAttribute("aria-pressed", String(UI.density));
+          render();
+          if (state.node && nodeMap.has(state.node)) focusNode(state.node);
+          else if (activeChain)
+            showChain(chains.models.find((m) => m.id === activeChain));
+          else if (selected.size)
+            showChain(chains.models.find((m) => m.id === [...selected][0]));
+          else intro();
+        }
+
+        /* Offline / file:// fallback: let the reader pick the four JSON files. */
+        function showLoadError(err) {
+          const loader = document.getElementById("loading");
+          if (loader) loader.remove();
+          const box = document.createElement("div");
+          box.className = "error";
+          box.innerHTML =
+            `<strong>Atlas-dataa ei voitu ladata automaattisesti.</strong>${S(err.message)}<br><br>` +
+            `Varmista, että kaikki seitsemän JSON-tiedostoa ovat samassa hakemistossa -- ` +
+            `tai valitse tiedostot alta, jos avaat sivun suoraan levyltä.` +
+            `<div class="filebox"><label class="tool-btn" for="pick">Valitse JSON-tiedostot</label>` +
+            `<input id="pick" type="file" accept="application/json,.json" multiple hidden></div>`;
+          document.getElementById("scroll").replaceChildren(box);
+          box
+            .querySelector("#pick")
+            .addEventListener("change", async (event) => {
+              const picked = {};
+              for (const file of event.target.files) {
+                try {
+                  picked[file.name] = JSON.parse(await file.text());
+                } catch (e) {}
+              }
+              const need = Object.values(FILES);
+              const missing = need.filter((name) => !picked[name]);
+              if (missing.length) {
+                toast("Puuttuu: " + missing.join(", "));
+                return;
+              }
+              document.getElementById("scroll").replaceChildren(svg);
+              boot(
+                picked[FILES.chains],
+                picked[FILES.atlas],
+                picked[FILES.anchors],
+                picked[FILES.layout],
+                picked[FILES.lensContent],
+                picked[FILES.resilience],
+                picked[FILES.wellbeing],
+              );
+            });
+        }
+      })();
+    </script>
+  </body>
+</html>
