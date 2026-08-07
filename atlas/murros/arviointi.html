@@ -225,14 +225,15 @@ body.heatmap-only #heatmapOnlyBtn{display:none!important}
 body.heatmap-only #anonWarn{margin:0!important;padding:6px 9px;max-width:360px!important;font-size:10px;line-height:1.3;border-radius:8px;flex:0 1 auto}
 body.heatmap-only #saveBadge{display:inline-flex;align-items:center;white-space:nowrap}
 .palette-status{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-#manualSaveBtn{display:none}
-body.heatmap-only #manualSaveBtn.email-save-visible{display:inline-flex;align-items:center;gap:6px}
-#manualSaveBtn.pending{background:var(--hot);border-color:var(--hot);color:#fff}
 
 /* Työskentelyalueen oikea puoli: maalauspalkki kuuluu suoraan lämpökartan päälle.
    Se ei vaikuta --cell-arvoon eikä neliösolujen mittoihin. */
 .matrix-column{display:flex;flex-direction:column;min-width:0;flex:1 1 auto;gap:6px}
 .matrix-column>.palette-bar{flex:0 0 auto;margin:0!important;width:100%!important;max-width:none!important}
+.palette-view-controls{display:flex;align-items:center;gap:6px;flex-wrap:nowrap}
+.palette-view-controls .zoom-controls{flex:0 0 auto}
+.palette-view-controls #analysisBtn{white-space:nowrap}
+@media(max-width:900px){.palette-view-controls{flex-wrap:wrap}.palette-bar .mode-hint{display:none}}
 .matrix-column>.matrix-shell{flex:1 1 auto;min-height:0}
 body.heatmap-only .heatmap-workspace .matrix-column{flex:1 1 auto;min-width:0;height:100%}
 body.heatmap-only .heatmap-workspace .matrix-column .matrix-shell{width:100%;height:auto;flex:1 1 auto}
@@ -344,14 +345,6 @@ body.heatmap-only .lens-head>div{height:190px;overflow:visible}
   </div>
   <button class="btn heatmap-primary" id="restoreOrderBtn" type="button" disabled
           title="Palauta rivien ja sarakkeiden alkuperäinen järjestys">↺ Palauta järjestys</button>
-  <div class="zoom-controls heatmap-primary" role="group" aria-label="Lämpökartan solukoko">
-    <span class="zoom-axis" title="Neliösolun koko">Ruutu</span>
-    <button class="btn" id="zoomOut" type="button" title="Pienennä neliösoluja">−</button>
-    <span class="zoom-readout" id="zoomReadout">100 %</span>
-    <button class="btn" id="zoomIn" type="button" title="Suurenna neliösoluja">+</button>
-    <button class="btn" id="zoomReset" type="button" title="Palauta solukoko 100 %">↺</button>
-  </div>
-  <button class="btn heatmap-primary" id="analysisBtn" type="button" aria-pressed="false" title="Piilota solujen numerot ja tarkastele vain värirakennetta">Analyysitila</button>
 </section>
 
 <div class="heatmap-workspace">
@@ -388,7 +381,7 @@ body.heatmap-only .lens-head>div{height:190px;overflow:visible}
         <div class="help-item"><span class="help-icon">•</span><div><strong>Himmeä piste solussa</strong><br>Oma arviosi poikkeaa koontiarvosta.</div></div>
         <div class="help-item"><span class="help-icon">✓</span><div><strong>Rivin valintapainike</strong><br>Erillinen pyöreä painike rivin vasemmalla puolella siirtää rivin huomiotta jätettyihin tai takaisin; arvioinnit säilyvät.</div></div>
         <div class="help-item"><span class="help-icon">⌄</span><div><strong>Suodattimet</strong><br>Avaa kattavuus-, laatu-, omat merkinnät- ja järjestysrajaukset.</div></div>
-        <div class="help-note"><strong>Maalaus:</strong> valitse kartan yläpuolisesta 0–6-väriskaalasta arvo ja maalaa soluja klikkaamalla tai vetämällä. Kumi palauttaa solun koontiarvoon. Sähköpostilla kirjautuneelle näkyy lisäksi <strong>Tallenna muutokset</strong> -painike.</div>
+        <div class="help-note"><strong>Maalaus:</strong> valitse kartan yläpuolisesta 0–6-väriskaalasta arvo ja maalaa soluja klikkaamalla tai vetämällä. Kumi palauttaa solun koontiarvoon. Muutokset tallentuvat automaattisesti; tallennuksen tila näkyy väriskaalan oikealla puolella.</div>
       </section>
     </div>
   </aside>
@@ -402,12 +395,21 @@ body.heatmap-only .lens-head>div{height:190px;overflow:visible}
   <button class="paint eraser" id="eraser" type="button" aria-pressed="false"
           title="Palauta ruutu koontiarvoon">⌫</button>
   <span class="mode-hint" id="modeHint">Valitse väri ja maalaa ruutuihin.</span>
+  <div class="palette-view-controls" aria-label="Lämpökartan näkymäasetukset">
+    <div class="zoom-controls" role="group" aria-label="Lämpökartan solukoko">
+      <span class="zoom-axis" title="Neliösolun koko">Ruutu</span>
+      <button class="btn" id="zoomOut" type="button" title="Pienennä neliösoluja">−</button>
+      <span class="zoom-readout" id="zoomReadout">100 %</span>
+      <button class="btn" id="zoomIn" type="button" title="Suurenna neliösoluja">+</button>
+      <button class="btn" id="zoomReset" type="button" title="Palauta solukoko 100 %">↺</button>
+    </div>
+    <button class="btn" id="analysisBtn" type="button" aria-pressed="false" title="Piilota solujen numerot ja tarkastele vain värirakennetta">Analyysitila</button>
+  </div>
   <div id="anonWarn" class="notice" style="display:none">
     Kirjautumaton istunto: merkinnät katoavat, kun selain suljetaan tai laite vaihtuu.
   </div>
   <span class="spacer"></span>
   <div class="palette-status"><span class="badge ok" id="saveBadge">Tallennettu</span></div>
-  <button class="btn" id="manualSaveBtn" type="button" title="Tallenna odottavat muutokset heti">Tallenna muutokset</button>
   <button class="btn" id="exportBtn" type="button">Vie JSON</button>
   <button class="btn" id="resetBtn" type="button">Tyhjennä omat</button>
   <button class="btn" id="logoutBtn" type="button">Kirjaudu ulos</button>
@@ -623,8 +625,6 @@ async function toggleExcluded(id) {
 function scheduleSave() {
   clearTimeout(state.saveTimer);
   $("#saveBadge").textContent = "Tallennetaan…"; $("#saveBadge").className = "badge warn";
-  const b = document.getElementById("manualSaveBtn");
-  if (b && b.classList.contains("email-save-visible")) b.classList.add("pending");
   state.saveTimer = setTimeout(flush, 500);
 }
 async function flush() {
@@ -647,29 +647,11 @@ async function flush() {
     $("#saveBadge").textContent = "Tallennettu " +
       new Date().toLocaleTimeString("fi-FI",{hour:"2-digit",minute:"2-digit"});
     $("#saveBadge").className = "badge ok";
-    document.getElementById("manualSaveBtn")?.classList.remove("pending");
   } catch (err) {
     $("#saveBadge").textContent = "Tallennus epäonnistui"; $("#saveBadge").className = "badge warn";
     alert("Tallennus epäonnistui: " + err.message +
       "\nMuutokset näkyvät ruudulla mutta eivät ole tallessa.");
   }
-}
-
-/* Sähköpostikäyttäjän näkyvä varmistustallennus. Automaattitallennus säilyy taustalla. */
-const manualSaveBtn = document.getElementById("manualSaveBtn");
-if (manualSaveBtn) {
-  manualSaveBtn.addEventListener("click", async () => {
-    manualSaveBtn.disabled = true;
-    manualSaveBtn.textContent = "Tallennetaan…";
-    await flush();
-    const failed = document.getElementById("saveBadge")?.classList.contains("warn");
-    manualSaveBtn.textContent = failed ? "Tallennus epäonnistui" : "Tallennettu";
-    if (!failed) manualSaveBtn.classList.remove("pending");
-    setTimeout(() => {
-      manualSaveBtn.textContent = "Tallenna muutokset";
-      manualSaveBtn.disabled = false;
-    }, failed ? 1800 : 900);
-  });
 }
 
 /* ---------- Maalaus ---------- */
@@ -1303,8 +1285,6 @@ async function start() {
   const anon = !!u?.is_anonymous;
   $("#userBadge").textContent = u?.email || (anon ? "kirjautumaton istunto" : "kirjautunut");
   $("#userBadge").className = "badge" + (anon ? " warn" : "");
-  const manual = document.getElementById("manualSaveBtn");
-  if (manual) manual.classList.toggle("email-save-visible", !!u?.email && !anon);
   enableHeatmapView();
   // Anonyymin istunnon katoavuus on kerrottava ennen kuin työ menetetään,
   // ei vasta silloin kun se on jo mennyt.
