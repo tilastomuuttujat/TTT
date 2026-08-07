@@ -596,6 +596,52 @@ $("#testBtn").addEventListener("click", async () => {
 });
 $("#logoutBtn").addEventListener("click", () => db.auth.signOut());
 
+/* ---------- Laitteen paikallinen koontivälimuisti ---------- */
+const LOCAL_ASSESSMENT_KEY = "murroskartta.arviointi.snapshot.v1";
+let localSnapshotTimer = null;
+
+function aggregateRowForStorage(a) {
+  return {
+    phenomenon_id: a.phenomenon_id,
+    lens_id: a.lens_id,
+    mean_direction: a.mean_direction ?? null,
+    mean_cell: a.mean_cell ?? null,
+    contributor_count: Number(a.contributor_count) || 0,
+    spread: a.spread ?? null,
+    source: a.source || null,
+    seed_direction: a.seed_direction ?? null,
+    tier: a.tier || null,
+  };
+}
+
+function writeLocalAssessmentSnapshot() {
+  if (!state.agg.size) return;
+  try {
+    const overrides = [...state.overrides.entries()].map(([compoundKey, direction]) => {
+      const [phenomenon_id, lens_id] = compoundKey.split("|");
+      return { phenomenon_id, lens_id, user_direction: Number(direction) };
+    });
+    const snapshot = {
+      schema_version: 1,
+      saved_at: new Date().toISOString(),
+      source: "arviointi.html",
+      aggregate_rows: [...state.agg.values()].map(aggregateRowForStorage),
+      overrides,
+    };
+    localStorage.setItem(LOCAL_ASSESSMENT_KEY, JSON.stringify(snapshot));
+  } catch (err) {
+    // LocalStorage on apuvälimuisti; tietokantatallennus saa jatkaa vaikka
+    // selain estäisi paikallisen tallennuksen tai kiintiö olisi täynnä.
+    console.warn("Arviointikoontia ei voitu tallentaa laitteen muistiin.", err);
+  }
+}
+
+function scheduleLocalAssessmentSnapshot() {
+  clearTimeout(localSnapshotTimer);
+  localSnapshotTimer = setTimeout(writeLocalAssessmentSnapshot, 120);
+}
+window.addEventListener("pagehide", writeLocalAssessmentSnapshot);
+
 /* ---------- Data ---------- */
 async function loadAggregate() {
   const { data, error } = await db.from("lens_aggregate")
@@ -624,7 +670,7 @@ async function loadAggregate() {
   const none = data.filter((a) => a.tier === "none").length;
   $("#aggBadge").textContent = users
     ? `${users} solua käyttäjädatasta · pohja: ${cur} lähteistettyä, ${itp} interpoloitua, ${nei} naapureista, ${kw} sanastosta, ${none} tyhjää`
-    : `pohja: ${cur} lähteistettyä · ${itp} interpoloitua · ${nei} naapureista · ${kw} sanastosta · ${none} arvioimatta`;
+    : `pohja: ${cur} lähteistettyä · ${itp} interpoloitua · ${nei} naapureista · ${kw} sanastosta · ${none} arvioimatta`;  scheduleLocalAssessmentSnapshot();
 }
 async function loadMatrices() {
   const { data, error } = await db.from("matrices").select("id,name").order("created_at");
@@ -645,6 +691,7 @@ async function loadOverrides() {
   const ex = await db.from("excluded").select("phenomenon_id").eq("matrix_id", state.matrixId);
   if (ex.error) throw ex.error;
   state.excluded = new Set(ex.data.map((r) => r.phenomenon_id));
+  scheduleLocalAssessmentSnapshot();
 }
 
 /* Ohitus on näkymävalinta, ei poisto: rivi siirtyy loppuun mutta sen
@@ -713,6 +760,7 @@ function applyPaint(p, l) {
     state.pending.set(key(p,l), { p, l, direction:dir });
   }
   scheduleSave();
+  scheduleLocalAssessmentSnapshot();
   return true;
 }
 function paintFromPoint(x, y) {
@@ -1181,7 +1229,9 @@ $("#resetBtn").addEventListener("click", async () => {
   if (!confirm(`Poistetaanko kaikki ${state.overrides.size} omaa merkintää?`)) return;
   const { error } = await db.from("overrides").delete().eq("matrix_id", state.matrixId);
   if (error) return alert("Tyhjennys epäonnistui: " + error.message);
-  state.overrides.clear(); render();
+  state.overrides.clear();
+  scheduleLocalAssessmentSnapshot();
+  render();
 });
 $("#exportBtn").addEventListener("click", async () => {
   await flush();
