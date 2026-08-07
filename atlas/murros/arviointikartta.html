@@ -1780,6 +1780,7 @@
           "https://zzbubbrsgiqsvsovkkmf.supabase.co/rest/v1/lens_aggregate";
         const AGGREGATE_KEY =
           "sb_publishable_YNqxZI4Oj-DSjVBoTKhQ2Q_4DchUIBb";
+        const LOCAL_ASSESSMENT_KEY = "murroskartta.arviointi.snapshot.v1";
         const NS = "http://www.w3.org/2000/svg",
           svg = document.getElementById("chart"),
           chips = document.getElementById("chips"),
@@ -1821,7 +1822,7 @@
           resilience = { meta: {}, crises: [] },
           wellbeing = { meta: {}, series: {} },
           aggregate = new Map(),
-          aggregateStatus = { loaded: false, rows: 0, userRows: 0 },
+          aggregateStatus = { loaded: false, rows: 0, userRows: 0, localOverrides: 0, source: "none" },
           selected = new Set(),
           activeChain = null,
           activeNode = null,
@@ -2137,11 +2138,46 @@
         function aggregateScore(lensId, phenomenonId) {
           const row = aggregateFor(lensId, phenomenonId);
           if (!row) return null;
+          const localDirection = Number(row.local_user_direction);
+          if (Number.isFinite(localDirection)) return directionToScore(localDirection);
           const direction = Number(row.mean_direction);
           return Number.isFinite(direction) ? directionToScore(direction) : null;
         }
 
+        function readLocalAssessmentSnapshot() {
+          try {
+            const raw = localStorage.getItem(LOCAL_ASSESSMENT_KEY);
+            if (!raw) return null;
+            const snapshot = JSON.parse(raw);
+            if (!snapshot || Number(snapshot.schema_version) !== 1 || !Array.isArray(snapshot.aggregate_rows)) return null;
+            const overrides = new Map(
+              (snapshot.overrides || []).map((row) => [aggregateKey(row.lens_id, row.phenomenon_id), Number(row.user_direction)]),
+            );
+            const rows = snapshot.aggregate_rows.map((row) => {
+              const local = overrides.get(aggregateKey(row.lens_id, row.phenomenon_id));
+              return Number.isFinite(local) ? { ...row, local_user_direction: local } : row;
+            });
+            return { snapshot, rows, overrideCount: overrides.size };
+          } catch (error) {
+            console.warn("Murroskartta: laitteen arviointivälimuistia ei voitu lukea.", error);
+            return null;
+          }
+        }
+
         async function loadLensAggregate() {
+          const local = readLocalAssessmentSnapshot();
+          if (local?.rows?.length) {
+            aggregateStatus = {
+              loaded: true,
+              rows: local.rows.length,
+              userRows: local.rows.filter((row) => row.source === "users" || Number(row.contributor_count) > 0).length,
+              localOverrides: local.overrideCount,
+              source: "localStorage",
+              savedAt: local.snapshot.saved_at || null,
+            };
+            return local.rows;
+          }
+
           try {
             const params = new URLSearchParams({
               select: "phenomenon_id,lens_id,mean_direction,mean_cell,contributor_count,spread,source,seed_direction,tier",
@@ -2159,11 +2195,13 @@
               loaded: true,
               rows: rows.length,
               userRows: rows.filter((row) => row.source === "users" || Number(row.contributor_count) > 0).length,
+              localOverrides: 0,
+              source: "server",
             };
             return rows;
           } catch (error) {
             console.warn("Murroskartta: arviointikoontia ei voitu ladata; käytetään paikallista pohjaa.", error);
-            aggregateStatus = { loaded: false, rows: 0, userRows: 0 };
+            aggregateStatus = { loaded: false, rows: 0, userRows: 0, localOverrides: 0, source: "none" };
             return [];
           }
         }
@@ -2777,6 +2815,7 @@
             const aggregateFields = agg
               ? {
                   aggregateDirection: Number.isFinite(Number(agg.mean_direction)) ? Number(agg.mean_direction) : null,
+                  localUserDirection: Number.isFinite(Number(agg.local_user_direction)) ? Number(agg.local_user_direction) : null,
                   aggregateCell: Number.isFinite(Number(agg.mean_cell)) ? Number(agg.mean_cell) : null,
                   aggregateContributors: Number(agg.contributor_count) || 0,
                   aggregateSpread: Number.isFinite(Number(agg.spread)) ? Number(agg.spread) : null,
@@ -2949,6 +2988,10 @@
           return body ? `<span class="detail-block">${body}</span>` : "";
         }
         function basisRowHtml(row) {
+          const hasLocal = Number.isFinite(row.localUserDirection);
+          const localMeta = hasLocal
+            ? `<em class="basis basis-reviewed">laitteen oma arvio · ${row.localUserDirection > 0 ? "+" : ""}${row.localUserDirection.toLocaleString("fi-FI", { maximumFractionDigits: 2 })} (ruutu ${Math.max(0, Math.min(6, Math.round(row.localUserDirection + 3)))})</em>`
+            : "";
           const hasAggregate = Number.isFinite(row.aggregateDirection);
           const aggregateMeta = hasAggregate
             ? (() => {
@@ -2964,7 +3007,7 @@
             : "";
 
           if (row.kind === "aggregate")
-            return `<div class="impact"><b>${S(row.chain_id)}</b><span>Koontiin perustuva vaikutus${aggregateMeta}</span></div>`;
+            return `<div class="impact"><b>${S(row.chain_id)}</b><span>${hasLocal ? "Laitteen omaan arvioon perustuva vaikutus" : "Koontiin perustuva vaikutus"}${localMeta}${aggregateMeta}</span></div>`;
           if (row.kind !== "curated")
             return `<div class="impact"><b>${S(row.chain_id)}</b><span>Kuuluu linssin polkuun<em class="basis basis-derived">johdettu sijainti · ei omaa arviota</em></span></div>`;
 
@@ -3000,7 +3043,7 @@
           const rationale = row.rationale
             ? `<em class="basis-rationale">${S(row.rationale)}</em>`
             : "";
-          return `<div class="impact"><b>${S(row.chain_id)}</b><span>${S(row.role)}${aggregateMeta}<em class="${badgeClass}">${badgeText} · ${meta}</em>${rationale}${fallback}${detailHtml(row)}</span></div>`;
+          return `<div class="impact"><b>${S(row.chain_id)}</b><span>${S(row.role)}${localMeta}${aggregateMeta}<em class="${badgeClass}">${badgeText} · ${meta}</em>${rationale}${fallback}${detailHtml(row)}</span></div>`;
         }
         function showNode(id) {
           const it = itemMap.get(id),
@@ -4551,6 +4594,25 @@
         addEventListener("scroll", hideTip, { passive: true });
         intro();
         initTheme();
+        window.addEventListener("storage", (event) => {
+          if (event.key !== LOCAL_ASSESSMENT_KEY || !chains) return;
+          const local = readLocalAssessmentSnapshot();
+          if (!local?.rows?.length) return;
+          aggregate = new Map(local.rows.map((row) => [aggregateKey(row.lens_id, row.phenomenon_id), row]));
+          aggregateStatus = {
+            loaded: true,
+            rows: local.rows.length,
+            userRows: local.rows.filter((row) => row.source === "users" || Number(row.contributor_count) > 0).length,
+            localOverrides: local.overrideCount,
+            source: "localStorage",
+            savedAt: local.snapshot.saved_at || null,
+          };
+          render();
+          if (activeNode) showNode(activeNode);
+          else if (activeChain) showChain(chains.models.find((model) => model.id === activeChain));
+          else intro();
+        });
+
         Promise.all([
           ...Object.values(FILES).map((f) =>
             fetch(f).then((r) => {
@@ -4573,7 +4635,9 @@
           wellbeing = w || { meta: {}, series: {} };
           aggregate = new Map((aggRows || []).map((row) => [aggregateKey(row.lens_id, row.phenomenon_id), row]));
           if (aggregate.size) {
-            console.info(`Murroskartta: arviointikoonti käytössä (${aggregate.size} solua, ${aggregateStatus.userRows} käyttäjädataa sisältävää).`);
+            const sourceLabel = aggregateStatus.source === "localStorage" ? "laitteen muistista" : "palvelimelta";
+            const ownLabel = aggregateStatus.localOverrides ? `, ${aggregateStatus.localOverrides} laitteen omaa arviota` : "";
+            console.info(`Murroskartta: arviointikoonti käytössä ${sourceLabel} (${aggregate.size} solua, ${aggregateStatus.userRows} käyttäjädataa sisältävää${ownLabel}).`);
           }
           nodeMap = new Map(layout.nodes.map((n) => [n.id, n]));
           itemMap = new Map(atlas.items.map((i) => [i.id, i]));
