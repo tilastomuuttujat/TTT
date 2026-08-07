@@ -48,14 +48,22 @@ h1{font:400 clamp(26px,4vw,44px)/1.05 var(--serif);margin:6px 0}
 .toolbar input[type=search]{min-width:180px;flex:1;max-width:320px}
 
 .matrix-shell{max-width:1800px;margin:0 auto;border:1px solid var(--line);border-radius:16px;background:var(--paper);box-shadow:var(--shadow);overflow:auto;max-height:calc(100vh - 300px);overscroll-behavior:contain}
+.matrix-shell table{overflow:visible}
+.lens-head[data-sort-lens]{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 table{border-collapse:separate;border-spacing:0;width:max-content;min-width:0;table-layout:auto}
 th,td{padding:0}
-thead th{position:sticky;top:0;z-index:20;background:var(--paper2);border-bottom:1px solid var(--line)}
-.skip-head{position:sticky;left:0;z-index:34!important;width:30px;min-width:30px;max-width:30px;background:var(--paper2);border-right:1px solid var(--line)}
-.corner{left:30px;z-index:32!important;width:var(--rw);min-width:var(--rw);text-align:left;padding:9px 11px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border-right:1px solid var(--line)}
-.lens-head{position:relative;width:var(--cell);min-width:var(--cell);max-width:var(--cell);height:190px;vertical-align:bottom;overflow:hidden}
-.lens-head>div{position:relative;height:190px;width:100%;overflow:visible}
-.lens-label{position:absolute;left:5px;bottom:12px;transform:rotate(-45deg);transform-origin:left bottom;white-space:nowrap;font-size:var(--fs);font-weight:750;cursor:help;line-height:1.15;max-width:none}
+/* Otsakerivi pysyy kokonaisuutena paikallaan pystysuunnassa. Taustaväri on
+   thead-rivillä, jotta yksittäiset 26 px sarakeotsikot voivat olla läpinäkyviä
+   ja 45° teksti saa ulottua niiden ulkopuolelle ilman että viereinen solu
+   peittää tai leikkaa sitä. */
+thead{position:sticky;top:0;z-index:30;background:var(--paper2)}
+thead tr{background:var(--paper2)}
+thead th{position:relative;z-index:20;background:transparent;border-bottom:1px solid var(--line);overflow:visible}
+.skip-head{position:sticky;left:0;z-index:36!important;width:30px;min-width:30px;max-width:30px;background:var(--paper2);border-right:1px solid var(--line)}
+.corner{position:sticky;left:30px;z-index:35!important;width:var(--rw);min-width:var(--rw);max-width:var(--rw);text-align:left;padding:9px 11px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:var(--paper2);border-right:1px solid var(--line)}
+.lens-head{position:relative;width:var(--cell);min-width:var(--cell);max-width:var(--cell);height:190px;vertical-align:bottom;overflow:visible;background:transparent}
+.lens-head>div{position:relative;height:190px;width:var(--cell);overflow:visible}
+.lens-label{position:absolute;left:4px;bottom:12px;z-index:2;transform:rotate(-45deg);transform-origin:left bottom;white-space:nowrap;font-size:var(--fs);font-weight:750;cursor:pointer;line-height:1.15;max-width:none;background:transparent}
 body.d-tight .lens-head,body.d-tight .lens-head>div{height:170px}
 body.d-wide .lens-head,body.d-wide .lens-head>div{height:210px}
 .lens-id{color:var(--hot);font-weight:900;margin-right:3px}
@@ -229,10 +237,12 @@ body.heatmap-only #manualSaveBtn.email-save-visible{display:inline-flex;align-it
 body.heatmap-only .heatmap-workspace .matrix-column{flex:1 1 auto;min-width:0;height:100%}
 body.heatmap-only .heatmap-workspace .matrix-column .matrix-shell{width:100%;height:auto;flex:1 1 auto}
 
-/* 45° otsakkeet pidetään kokonaan lämpökartan oman otsakealueen sisällä. */
-body.heatmap-only thead th{top:0}
-body.heatmap-only .lens-head{height:190px}
-body.heatmap-only .lens-head>div{height:190px}
+/* Lämpökarttatilassa otsakevyöhyke pysyy matrix-shellin yläreunassa.
+   Älä aseta .lens-head-soluille overflow:hidden-arvoa: 45° otsikko tarvitsee
+   enemmän vaakasuuntaista piirtoalaa kuin 26 px datasarake. */
+body.heatmap-only thead{top:0}
+body.heatmap-only .lens-head{height:190px;overflow:visible}
+body.heatmap-only .lens-head>div{height:190px;overflow:visible}
 
 </style>
 </head>
@@ -1002,7 +1012,8 @@ function render() {
   const head = lenses.map((l) => {
     const activeSort = state.order.rowLens === l;
     const arrow = activeSort ? `<span class="sort-arrow">${state.order.rowDir === "asc" ? "0→6" : "6→0"}</span>` : "";
-    return `<th class="lens-head${activeSort ? " sort-active" : ""}" data-sort-lens="${esc(l)}" ` +
+    return `<th class="lens-head${activeSort ? " sort-active" : ""}" data-sort-lens="${esc(l)}" role="button" tabindex="0" ` +
+      `aria-label="${esc((LENS_NAMES[l]||l) + ". Järjestä rivit tämän sarakkeen mukaan")}" ` +
       `title="${esc(LENS_NAMES[l]||l)} · Klikkaa järjestääksesi rivit tämän sarakkeen värin mukaan"><div>` +
       `<span class="lens-label"><span class="lens-id">${esc(l)}</span> · ${esc(LENS_NAMES[l]||"")}${arrow}</span></div></th>`;
   }).join("");
@@ -1044,6 +1055,14 @@ $("#eraser").addEventListener("click", () => {
 
 /* ---------- Veto: maalaus tai pan ---------- */
 const shell = $("#matrixShell");
+shell.addEventListener("keydown", (e) => {
+  if (e.key !== "Enter" && e.key !== " ") return;
+  const target = e.target.closest?.("[data-sort-row],[data-sort-lens]");
+  if (!target) return;
+  e.preventDefault();
+  target.click();
+});
+
 shell.addEventListener("click", (e) => {
   const skip = e.target.closest("[data-skip]");
   if (skip) { toggleExcluded(skip.dataset.skip); return; }
