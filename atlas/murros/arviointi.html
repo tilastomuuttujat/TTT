@@ -72,32 +72,17 @@ tr.skipped .heat{cursor:not-allowed}
 .divider th{position:sticky;left:0;z-index:12}
 .year{font-variant-numeric:tabular-nums;color:var(--muted);font-size:calc(var(--fs) - 1px);min-width:28px}
 
-/* Lämpökartan ruutu. Koontiarvo piirtyy vaimeana, oma merkintä vahvana. */
+/* Lämpökartan ruutu. Väri kertoo vain arvon 0–6.
+   Käyttäjän poikkeama koonnista merkitään ainoastaan himmeällä pisteellä. */
 .cell{width:var(--cw);min-width:var(--cw);height:var(--ch);padding:0;border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent);border-right:1px solid color-mix(in srgb,var(--line) 55%,transparent)}
 .heat{width:100%;height:var(--ch);border:0;background:transparent;cursor:crosshair;position:relative;
-  font-size:var(--nfs);font-weight:700;font-variant-numeric:tabular-nums;touch-action:none;color:inherit}
+  font-size:var(--nfs);font-weight:750;font-variant-numeric:tabular-nums;touch-action:none;color:inherit}
 .heat[disabled]{cursor:default}
-.heat .v{position:relative;z-index:2;opacity:.55}
-.heat.mine .v{opacity:1;font-weight:900}
-/* Oma merkintä erottuu kolmella tavalla: täysi kylläisyys, sisäkehys ja kulmamerkki. */
-.heat.mine{box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--ink) 42%,transparent)}
-.heat.mine::after{content:"";position:absolute;right:3px;top:3px;width:5px;height:5px;border-radius:50%;background:currentColor;z-index:3}
+.heat .v{position:relative;z-index:2;opacity:.92}
+.heat.mine .v{opacity:1;font-weight:850}
+.heat.changed::after{content:"";position:absolute;right:3px;top:3px;width:4px;height:4px;border-radius:50%;
+  background:currentColor;opacity:.38;z-index:3}
 .heat.painting{outline:2px solid var(--hot);outline-offset:-2px}
-.heat.seed .v{font-style:italic}
-/* Interpoloitu pohja erotetaan kuratoidusta: arvo on laskettu polun
-   naapureista eikä ole oma arvio, joten se ei saa näyttää yhtä varmalta. */
-.heat.interpolated::before{content:"";position:absolute;inset:0;z-index:1;
-  background:repeating-linear-gradient(45deg,transparent 0 4px,rgba(255,255,255,.28) 4px 6px)}
-@media(prefers-color-scheme:dark){.heat.interpolated::before{
-  background:repeating-linear-gradient(45deg,transparent 0 4px,rgba(0,0,0,.30) 4px 6px)}}
-.heat.mine.interpolated::before{display:none}
-/* Naapurista ja sanastosta johdetut ovat heikoin pohjataso: pisteviivoitus
-   erottaa ne interpoloidusta, joka nojaa saman linssin omaan polkuun. */
-.heat.weak::before{content:"";position:absolute;inset:0;z-index:1;
-  background:radial-gradient(currentColor .8px,transparent .8px);background-size:5px 5px;opacity:.32}
-.heat.weak .v{opacity:.45}
-.heat.mine.weak::before{display:none}
-.heat.mine.weak .v{opacity:1}
 /* Tyhjä ruutu: ei pohja-arviota. Ei sama asia kuin neutraali 3 -- siksi
    ruutu on väritön ja arvo näkyy pisteenä, ei numerona. */
 .heat.blank{background:transparent;color:var(--muted)}
@@ -105,8 +90,8 @@ tr.skipped .heat{cursor:not-allowed}
 .heat.blank:hover{background:color-mix(in srgb,var(--ink) 6%,transparent)}
 
 /* Lämpöasteikko 0-6 */
-.h0{background:#7f1d1d;color:#fff}.h1{background:#b33a2b;color:#fff}.h2{background:#d77a52;color:#1a1a1a}
-.h3{background:#e8e0d2;color:#1a1a1a}.h4{background:#7ea879;color:#152015}.h5{background:#397a57;color:#fff}.h6{background:#185a3b;color:#fff}
+.h0{background:#7f1d1d;color:#fff}.h1{background:#b91c1c;color:#fff}.h2{background:#e98b8b;color:#321515}
+.h3{background:#e7e5e4;color:#292524}.h4{background:#9fc79f;color:#17341d}.h5{background:#4f8f5b;color:#fff}.h6{background:#1f6b3a;color:#fff}
 .faded{opacity:.42}
 
 .legend{max-width:1800px;margin:8px auto 0;display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--muted);align-items:center}
@@ -120,6 +105,13 @@ body.d-tight .heat .v{display:none}
 body.d-tight .skip{flex:0 0 11px;width:11px;height:11px}
 body.d-normal{--cw:30px;--ch:24px;--rw:200px;--fs:10px;--lh:120px;--nfs:9px}
 body.d-wide{--cw:44px;--ch:32px;--rw:250px;--fs:11px;--lh:140px;--nfs:11px}
+.zoom-controls{display:flex;align-items:center;gap:4px;border:1px solid var(--line);background:var(--paper2);border-radius:999px;padding:2px 4px}
+.zoom-controls .btn{padding:5px 8px;border:0;background:transparent}
+.zoom-readout{min-width:45px;text-align:center;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
+#panBtn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.matrix-shell.pan-mode{cursor:grab}
+.matrix-shell.pan-mode.panning{cursor:grabbing;user-select:none}
+.matrix-shell.pan-mode .heat,.matrix-shell.pan-mode .skip{cursor:grab}
 .hidden{display:none!important}
 .auth{max-width:520px;margin:60px auto;padding:26px;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:var(--shadow)}
 .auth h2{font:400 25px var(--serif);margin:0 0 6px}
@@ -166,11 +158,10 @@ body.d-tight .lead{display:none}
   <div class="kicker">Murroskartta · yhteinen arviointi</div>
   <h1>Arviointilämpökartta</h1>
   <p class="lead">Pohjana on koonti kaikkien käyttäjien arvioista. Valitse
-     yläreunasta väri ja maalaa se ruutuihin — vedä sormea tai hiirtä useamman
-     ruudun yli kerralla. Omat merkintäsi näkyvät vahvempina kuin koontiarvo.
-     Kumi palauttaa ruudun koontiarvoon. Työkalupalkista voit rajata näkyviin
-     vain riittävän katetut rivit tai vain lähteistetyt solut, ja järjestää
-     rivit kattavuuden mukaan.</p>
+     yläreunasta arvo ja maalaa se ruutuihin -- vedä sormea tai hiirtä useamman
+     ruudun yli kerralla. Himmennettu piste kertoo, että oma arviosi poikkeaa koonnista.
+     Kumi palauttaa ruudun koontiarvoon. Työkalupalkista voit rajata, ryhmitellä,
+     zoomata ja panoroida lämpökarttaa kokonaisvaikutelman hahmottamiseksi.</p>
   <div class="stats">
     <span class="badge" id="rowCount">–</span>
     <span class="badge" id="mineBadge">0 omaa merkintää</span>
@@ -182,7 +173,7 @@ body.d-tight .lead{display:none}
 
 <div id="anonWarn" class="notice" style="display:none;max-width:1800px;margin:0 auto 10px">
   Olet kirjautumattomassa istunnossa. Merkinnät tallentuvat, mutta ne katoavat
-  kun selain suljetaan tai laite vaihtuu — niitä ei voi palauttaa. Kirjaudu
+  kun selain suljetaan tai laite vaihtuu -- niitä ei voi palauttaa. Kirjaudu
   sähköpostilla, jos haluat säilyttää työsi.
 </div>
 
@@ -240,6 +231,19 @@ body.d-tight .lead{display:none}
     <option value="curated">Järjestys: lähteistetyt ensin</option>
     <option value="title">Järjestys: nimi</option>
   </select>
+  <select id="group" aria-label="Ryhmittele rivit">
+    <option value="none">Ei ryhmittelyä</option>
+    <option value="era">Ryhmittele: aikakausi</option>
+    <option value="coverage">Ryhmittele: kattavuus</option>
+    <option value="lens">Ryhmittele: päälinssi</option>
+  </select>
+  <div class="zoom-controls" role="group" aria-label="Lämpökartan zoomaus">
+    <button class="btn" id="zoomOut" type="button" title="Loitonna">−</button>
+    <span class="zoom-readout" id="zoomReadout">100 %</span>
+    <button class="btn" id="zoomIn" type="button" title="Lähennä">+</button>
+    <button class="btn" id="zoomReset" type="button" title="Palauta 100 %">↺</button>
+  </div>
+  <button class="btn" id="panBtn" type="button" aria-pressed="false" title="Kun Pan on päällä, vedä karttaa hiirellä tai sormella">Pan</button>
 </section>
 
 <section class="matrix-shell" id="matrixShell" aria-label="Arviointilämpökartta">
@@ -250,7 +254,7 @@ body.d-tight .lead{display:none}
   <span><i class="h0"></i>0 = −3 voimakkaasti heikentävä</span>
   <span><i class="h3"></i>3 = 0 ristiriitainen</span>
   <span><i class="h6"></i>6 = +3 voimakkaasti vahvistava</span>
-  <span>· vaimea = koonti · vahva + piste = oma merkintä · vinoviivoitus = interpoloitu · tyhjä ruutu = ei arviota, maalattavissa</span>
+  <span>· himmeä piste = oma arvio poikkeaa koonnista · tyhjä ruutu = ei arviota, maalattavissa</span>
   <span>· rivin alun täppä siirtää murroksen luettelon loppuun; merkinnät säilyvät</span>
 </div>
 </main>
@@ -316,7 +320,8 @@ const SCALE_TEXT = ["voimakkaasti heikentävä","selvästi heikentävä","lievä
 const state = {
   session:null, agg:new Map(), lenses:[], items:[],
   matrices:[], matrixId:null, overrides:new Map(), excluded:new Set(),
-  filters:{search:"",period:"all",changed:"all",coverage:0,quality:"all",sort:"year"},
+  filters:{search:"",period:"all",changed:"all",coverage:0,quality:"all",sort:"year",group:"none"},
+  view:{zoom:1,pan:false,panDragging:false,panX:0,panY:0,scrollLeft:0,scrollTop:0},
   paint:4, erasing:false, dragging:false,
   pending:new Map(), saveTimer:null,
 };
@@ -369,7 +374,7 @@ $("#testBtn").addEventListener("click", async () => {
       : "Palvelin hylkäsi: HTTP " + res.status + " · " + t.slice(0,180), !res.ok);
   } catch (err) {
     showDiag("Pyyntö ei lähtenyt selaimesta (" + err.message + "). Nykyinen osoite: " +
-      location.origin + ". Sovelluksen sisäinen esikatselu estää usein verkkopyynnöt — " +
+      location.origin + ". Sovelluksen sisäinen esikatselu estää usein verkkopyynnöt -- " +
       "avaa sivu tavallisessa selaimessa.", true);
   }
 });
@@ -508,11 +513,9 @@ function paintCell(btn) {
   const hasBase = a.mean_direction !== null && a.mean_direction !== undefined;
   const dir = mine ? state.overrides.get(key(p,l)) : (hasBase ? Number(a.mean_direction) : null);
   const cell = dir === null ? null : toCell(dir);
+  const changed = mine && hasBase && Math.abs(Number(dir) - Number(a.mean_direction)) > 0.001;
   btn.className = "heat " + (cell === null ? "blank" : "h" + cell) +
-    (mine ? " mine" : "") +
-    (!mine && hasBase && a.source === "seed" ? " seed" : "") +
-    (!mine && a.tier === "interpolated" ? " interpolated" : "") +
-    (!mine && (a.tier === "neighbour" || a.tier === "keyword") ? " weak" : "");
+    (mine ? " mine" : "") + (changed ? " changed" : "");
   btn.querySelector(".v").textContent = cell === null ? "·" : cell;
   btn.setAttribute("aria-label", ariaFor(a, mine, cell));
   updateCounts();
@@ -569,7 +572,7 @@ function visibleItems() {
 }
 function sortItems(list) {
   const s = state.filters.sort;
-  if (s === "year") return list;   // items on jo vuosijärjestyksessä
+  if (s === "year") return [...list].sort((a,b) => a.year - b.year || a.title.localeCompare(b.title,"fi"));
   const copy = [...list];
   if (s === "title") copy.sort((a,b) => a.title.localeCompare(b.title,"fi"));
   else if (s === "coverage")
@@ -578,61 +581,116 @@ function sortItems(list) {
     copy.sort((a,b) => rowStats(b).curated - rowStats(a).curated || a.year - b.year);
   return copy;
 }
+function eraLabel(year) {
+  if (year <= 1860) return "1800–1860 · varhainen rakennemuutos";
+  if (year <= 1917) return "1861–1917 · teollistuminen ja autonomian loppukausi";
+  if (year <= 1944) return "1918–1944 · itsenäistymisen ja kriisien kausi";
+  if (year <= 1989) return "1945–1989 · jälleenrakennus ja hyvinvointivaltio";
+  if (year <= 2025) return "1990–2025 · integraatio ja verkostoyhteiskunta";
+  return "2026–2050 · tulevaisuus";
+}
+function coverageLabel(it) {
+  const n = rowStats(it).base;
+  if (n === 0) return "0 · ei pohja-arvioita";
+  if (n <= 2) return "1–2 · niukka kattavuus";
+  if (n <= 5) return "3–5 · kohtalainen kattavuus";
+  if (n <= 8) return "6–8 · laaja kattavuus";
+  return "9–10 · erittäin laaja kattavuus";
+}
+function dominantLens(it) {
+  let best = null, score = -1;
+  for (const l of state.lenses) {
+    const a = state.agg.get(key(it.id,l));
+    if (!a || a.mean_direction === null || a.mean_direction === undefined) continue;
+    const v = Math.abs(Number(a.mean_direction));
+    if (v > score) { score = v; best = l; }
+  }
+  return best ? `${best} · ${LENS_NAMES[best] || best}` : "Ei päälinssiä";
+}
+function groupLabel(it) {
+  if (state.filters.group === "era") return eraLabel(it.year);
+  if (state.filters.group === "coverage") return coverageLabel(it);
+  if (state.filters.group === "lens") return dominantLens(it);
+  return "";
+}
+function groupRows(list) {
+  if (state.filters.group === "none") return [{ label:"", items:list }];
+  const map = new Map();
+  for (const it of list) {
+    const g = groupLabel(it);
+    if (!map.has(g)) map.set(g, []);
+    map.get(g).push(it);
+  }
+  let groups = [...map.entries()].map(([label,items]) => ({label,items:sortItems(items)}));
+  if (state.filters.group === "era") {
+    const order = ["1800–1860","1861–1917","1918–1944","1945–1989","1990–2025","2026–2050"];
+    groups.sort((a,b) => order.findIndex(x=>a.label.startsWith(x))-order.findIndex(x=>b.label.startsWith(x)));
+  } else if (state.filters.group === "coverage") {
+    const order = ["9–10","6–8","3–5","1–2","0"];
+    groups.sort((a,b) => order.findIndex(x=>a.label.startsWith(x))-order.findIndex(x=>b.label.startsWith(x)));
+  } else groups.sort((a,b) => a.label.localeCompare(b.label,"fi"));
+  return groups;
+}
+function renderRow(it) {
+  const cells = state.lenses.map((l) => {
+    const a = state.agg.get(key(it.id,l));
+    if (!a) return `<td class="cell"><button class="heat faded" disabled><span class="v">·</span></button></td>`;
+    const mine = state.overrides.has(key(it.id,l));
+    if (!cellPasses(a, mine))
+      return `<td class="cell"><button class="heat blank" data-p="${esc(it.id)}" data-l="${esc(l)}" ` +
+        `title="Piilotettu pohjan laatusuodattimella" aria-label="piilotettu"><span class="v"></span></button></td>`;
+    const hasBase = a.mean_direction !== null && a.mean_direction !== undefined;
+    const dir = mine ? state.overrides.get(key(it.id,l)) : (hasBase ? Number(a.mean_direction) : null);
+    const cell = dir === null ? null : toCell(dir);
+    const changed = mine && hasBase && Math.abs(Number(dir) - Number(a.mean_direction)) > 0.001;
+    const tip = `${LENS_NAMES[l]||l}\n${a.role||""}\n` +
+      (hasBase
+        ? `Koonti: ${Number(a.mean_direction).toFixed(2)} (${a.contributor_count} arviota`
+        : `Ei pohja-arviota -- tätä yhteyttä ei ole arvioitu (${a.contributor_count} käyttäjäarviota`) +
+      (a.source === "seed" ? ", " + TIER_TEXT[a.tier] : "") + ")" +
+      (mine ? `\nOma: ${dir >= 0 ? "+" : ""}${dir}` : "") +
+      (changed ? `\nPoikkeama koonnista: ${(Number(dir)-Number(a.mean_direction)>=0?"+":"")}${(Number(dir)-Number(a.mean_direction)).toFixed(2)}` : "") +
+      (a.spread ? `\nHajonta: ${Number(a.spread).toFixed(2)}` : "") +
+      (a.evidence_type === "scenario_assumption" ? "\nTulevaisuusoletus, ei havainto" : "");
+    return `<td class="cell"><button class="heat ${cell===null?"blank":"h"+cell}${mine?" mine":""}${changed?" changed":""}` +
+      `" data-p="${esc(it.id)}" data-l="${esc(l)}" title="${esc(tip)}" ` +
+      `aria-label="${esc(ariaFor(a,mine,cell))}"><span class="v">${cell===null?"·":cell}</span></button></td>`;
+  }).join("");
+  const off = state.excluded.has(it.id);
+  return `<tr class="${off ? "skipped" : ""}"><th class="row-head" title="${esc(it.title)}">` +
+    `<div class="row-label"><input class="skip" type="checkbox" data-skip="${esc(it.id)}" ${off ? "" : "checked"} ` +
+    `aria-label="${off ? "Ota mukaan" : "Jätä huomiotta"}: ${esc(it.title)}" ` +
+    `title="${off ? "Ota takaisin mukaan" : "Jätä huomiotta -- rivi siirtyy loppuun, merkinnät säilyvät"}">` +
+    `<span class="year">${it.year}</span><span class="row-title">${esc(it.title)}</span></div></th>${cells}</tr>`;
+}
+function applyZoom() {
+  const table = document.querySelector("#matrixShell table");
+  if (table) table.style.zoom = String(state.view.zoom);
+  $("#zoomReadout").textContent = `${Math.round(state.view.zoom*100)} %`;
+}
 function render() {
   const all = visibleItems();
-  // Järjestys säilyy alkuperäisenä molemmissa ryhmissä, joten takaisin
-  // otettu murros palaa täsmälleen omalle oletuspaikalleen.
   const sorted = sortItems(all);
   const active = sorted.filter((it) => !state.excluded.has(it.id));
   const skipped = sorted.filter((it) => state.excluded.has(it.id));
-  const rows = [...active, ...skipped];
-  $("#rowCount").textContent =
-    `${active.length} murrosta × ${state.lenses.length} linssiä` +
+  $("#rowCount").textContent = `${active.length} murrosta × ${state.lenses.length} linssiä` +
     (skipped.length ? ` · ${skipped.length} ohitettu` : "");
   updateCounts();
   const head = state.lenses.map((l) =>
     `<th class="lens-head"><div><span class="lens-label" title="${esc(LENS_NAMES[l]||l)}"><span class="lens-id">${esc(l)}</span> · ${esc(LENS_NAMES[l]||"")}</span></div></th>`).join("");
-  const body = rows.map((it) => {
-    const cells = state.lenses.map((l) => {
-      const a = state.agg.get(key(it.id,l));
-      if (!a) return `<td class="cell"><button class="heat faded" disabled><span class="v">·</span></button></td>`;
-      const mine = state.overrides.has(key(it.id,l));
-      if (!cellPasses(a, mine))
-        return `<td class="cell"><button class="heat blank" data-p="${esc(it.id)}" data-l="${esc(l)}" ` +
-          `title="Piilotettu pohjan laatusuodattimella" aria-label="piilotettu"><span class="v"></span></button></td>`;
-      const hasBase = a.mean_direction !== null && a.mean_direction !== undefined;
-      const dir = mine ? state.overrides.get(key(it.id,l)) : (hasBase ? Number(a.mean_direction) : null);
-      const cell = dir === null ? null : toCell(dir);
-      const tip = `${LENS_NAMES[l]||l}\n${a.role||""}\n` +
-        (hasBase
-          ? `Koonti: ${Number(a.mean_direction).toFixed(2)} (${a.contributor_count} arviota`
-          : `Ei pohja-arviota — tätä yhteyttä ei ole arvioitu (${a.contributor_count} käyttäjäarviota`) +
-        (a.source === "seed" ? ", " + TIER_TEXT[a.tier] : "") + ")" +
-        (mine ? `\nOma: ${dir >= 0 ? "+" : ""}${dir}` : "") +
-        (a.spread ? `\nHajonta: ${Number(a.spread).toFixed(2)}` : "") +
-        (a.evidence_type === "scenario_assumption" ? "\nTulevaisuusoletus, ei havainto" : "");
-      return `<td class="cell"><button class="heat ${cell===null?"blank":"h"+cell}${mine?" mine":""}${!mine&&hasBase&&a.source==="seed"?" seed":""}${!mine&&a.tier==="interpolated"?" interpolated":""}${!mine&&(a.tier==="neighbour"||a.tier==="keyword")?" weak":""}` +
-        `" data-p="${esc(it.id)}" data-l="${esc(l)}" title="${esc(tip)}" ` +
-        `aria-label="${esc(ariaFor(a,mine,cell))}"><span class="v">${cell===null?"·":cell}</span></button></td>`;
-    }).join("");
-    const off = state.excluded.has(it.id);
-    return `<tr class="${off ? "skipped" : ""}"><th class="row-head" title="${esc(it.title)}">` +
-      `<div class="row-label">` +
-      `<input class="skip" type="checkbox" data-skip="${esc(it.id)}" ${off ? "" : "checked"} ` +
-      `aria-label="${off ? "Ota mukaan" : "Jätä huomiotta"}: ${esc(it.title)}" ` +
-      `title="${off ? "Ota takaisin mukaan" : "Jätä huomiotta — rivi siirtyy loppuun, merkinnät säilyvät"}">` +
-      `<span class="year">${it.year}</span><span class="row-title">${esc(it.title)}</span></div></th>${cells}</tr>`;
-  }).join("");
-  const divider = skipped.length
-    ? `<tr class="divider"><th>Huomiotta jätetyt</th><td colspan="${state.lenses.length}">` +
-      `${skipped.length} murrosta · merkinnät säilyvät, ota takaisin täpästä</td></tr>`
-    : "";
-  const bodyRows = body.split("</tr>").filter(Boolean).map((r) => r + "</tr>");
-  const split = active.length;
-  const html = bodyRows.slice(0, split).join("") + divider + bodyRows.slice(split).join("");
-  $("#matrixShell").innerHTML = rows.length
+  let html = "";
+  for (const g of groupRows(active)) {
+    if (g.label) html += `<tr class="divider"><th>${esc(g.label)}</th><td colspan="${state.lenses.length}">${g.items.length} murrosta</td></tr>`;
+    html += g.items.map(renderRow).join("");
+  }
+  if (skipped.length) {
+    html += `<tr class="divider"><th>Huomiotta jätetyt</th><td colspan="${state.lenses.length}">${skipped.length} murrosta · merkinnät säilyvät</td></tr>`;
+    html += skipped.map(renderRow).join("");
+  }
+  $("#matrixShell").innerHTML = (active.length || skipped.length)
     ? `<table><thead><tr><th class="corner">Murros · vuosi</th>${head}</tr></thead><tbody>${html}</tbody></table>`
     : '<div class="empty-state">Rajauksella ei löytynyt murroksia.</div>';
+  applyZoom();
 }
 
 /* ---------- Paletti ---------- */
@@ -653,33 +711,54 @@ $("#eraser").addEventListener("click", () => {
   state.erasing = !state.erasing; renderPalette();
 });
 
-/* ---------- Veto: hiiri ja kosketus ---------- */
+/* ---------- Veto: maalaus tai pan ---------- */
 const shell = $("#matrixShell");
 shell.addEventListener("change", (e) => {
   const box = e.target.closest("[data-skip]");
   if (box) toggleExcluded(box.dataset.skip);
 });
 shell.addEventListener("pointerdown", (e) => {
-  if (e.target.closest("[data-skip]")) return;   // täppä ei aloita maalausta
+  if (state.view.pan) {
+    state.view.panDragging = true;
+    state.view.panX = e.clientX; state.view.panY = e.clientY;
+    state.view.scrollLeft = shell.scrollLeft; state.view.scrollTop = shell.scrollTop;
+    shell.classList.add("panning");
+    try { shell.setPointerCapture(e.pointerId); } catch {}
+    e.preventDefault(); return;
+  }
+  if (e.target.closest("[data-skip]")) return;
   const btn = e.target.closest(".heat[data-p]"); if (!btn || btn.disabled) return;
-  // Ohitettua riviä ei maalata: se olisi ristiriitainen ele.
   if (state.excluded.has(btn.dataset.p)) return;
   state.dragging = true; btn.classList.add("painting");
   if (applyPaint(btn.dataset.p, btn.dataset.l)) paintCell(btn);
-  // Kosketuksessa selain muuten vierittäisi taulukkoa maalauksen sijaan.
   e.preventDefault();
 });
 shell.addEventListener("pointermove", (e) => {
+  if (state.view.panDragging) {
+    shell.scrollLeft = state.view.scrollLeft - (e.clientX - state.view.panX);
+    shell.scrollTop = state.view.scrollTop - (e.clientY - state.view.panY);
+    e.preventDefault(); return;
+  }
   if (!state.dragging) return;
   paintFromPoint(e.clientX, e.clientY);
   e.preventDefault();
 });
-for (const ev of ["pointerup","pointercancel","pointerleave"])
-  window.addEventListener(ev, () => {
-    if (!state.dragging) return;
+function endPointer() {
+  state.view.panDragging = false; shell.classList.remove("panning");
+  if (state.dragging) {
     state.dragging = false;
     document.querySelectorAll(".heat.painting").forEach((x) => x.classList.remove("painting"));
-  });
+  }
+}
+for (const ev of ["pointerup","pointercancel"]) window.addEventListener(ev, endPointer);
+// Ctrl/⌘ + rulla zoomaa kohdistimen alla; tavallinen rulla panoroi normaalisti.
+shell.addEventListener("wheel", (e) => {
+  if (!(e.ctrlKey || e.metaKey)) return;
+  e.preventDefault();
+  const next = clamp(state.view.zoom + (e.deltaY < 0 ? .1 : -.1), .45, 2.2);
+  if (next === state.view.zoom) return;
+  state.view.zoom = Math.round(next*100)/100; saveViewPrefs(); applyZoom();
+}, {passive:false});
 
 /* ---------- Versiot ja toiminnot ---------- */
 function renderMatrixSelect() {
@@ -740,6 +819,44 @@ $("#exportBtn").addEventListener("click", async () => {
   a.download = `arviointi-${m.name.replace(/\W+/g,"-").toLowerCase()}-${new Date().toISOString().slice(0,10)}.json`;
   a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 500);
 });
+/* ---------- Ryhmittely, zoom ja pan ---------- */
+function saveViewPrefs() {
+  try {
+    localStorage.setItem("lampokartta.zoom", String(state.view.zoom));
+    localStorage.setItem("lampokartta.group", state.filters.group);
+    localStorage.setItem("lampokartta.pan", state.view.pan ? "1" : "0");
+  } catch {}
+}
+function setZoom(v) {
+  state.view.zoom = clamp(Math.round(v*100)/100, .45, 2.2);
+  saveViewPrefs(); applyZoom();
+}
+$("#zoomOut").addEventListener("click", () => setZoom(state.view.zoom - .1));
+$("#zoomIn").addEventListener("click", () => setZoom(state.view.zoom + .1));
+$("#zoomReset").addEventListener("click", () => setZoom(1));
+$("#panBtn").addEventListener("click", () => {
+  state.view.pan = !state.view.pan;
+  $("#panBtn").setAttribute("aria-pressed", String(state.view.pan));
+  shell.classList.toggle("pan-mode", state.view.pan);
+  saveViewPrefs();
+});
+$("#group").addEventListener("change", (e) => {
+  state.filters.group = e.target.value; saveViewPrefs(); render();
+});
+(() => {
+  try {
+    const z = Number(localStorage.getItem("lampokartta.zoom"));
+    if (Number.isFinite(z) && z >= .45 && z <= 2.2) state.view.zoom = z;
+    const g = localStorage.getItem("lampokartta.group");
+    if (["none","era","coverage","lens"].includes(g)) state.filters.group = g;
+    state.view.pan = localStorage.getItem("lampokartta.pan") === "1";
+  } catch {}
+  $("#group").value = state.filters.group;
+  $("#panBtn").setAttribute("aria-pressed", String(state.view.pan));
+  shell.classList.toggle("pan-mode", state.view.pan);
+  $("#zoomReadout").textContent = `${Math.round(state.view.zoom*100)} %`;
+})();
+
 /* Tiiviys muistetaan laitekohtaisesti: se on näyttöön liittyvä valinta,
    ei osa arviointia, joten sitä ei tallenneta tietokantaan. */
 function applyDensity(v) {
