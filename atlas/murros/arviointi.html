@@ -10,7 +10,7 @@
 /* Ruudukon mitat yhdessä paikassa, jotta tiiviys on yksi säädin eikä
    kymmenen erillistä sääntöä. Oletus on tiivis: lämpökartta hahmottuu
    kokonaisuutena vasta kun rivit mahtuvat ruudulle yhtä aikaa. */
---cw:30px;--ch:24px;--rw:200px;--fs:10px;--lh:120px;--nfs:9px;
+--cell:24px;--cw:var(--cell);--ch:var(--cell);--rw:200px;--fs:10px;--lh:120px;--nfs:9px;
 color-scheme:light dark;--bg:#f2ede3;--bg2:#e9e2d4;--paper:#fffdf8;--paper2:#faf6ee;--ink:#15293c;--ink2:#3c4d5e;--muted:#6d7883;--line:#d6cec0;--soft:#ece5d9;--hot:#ad4128;--ok:#2f6b4f;--shadow:0 1px 2px rgba(24,32,40,.05),0 18px 46px -22px rgba(24,32,40,.28);--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Inter,sans-serif}
 @media(prefers-color-scheme:dark){:root{--bg:#0e161e;--bg2:#121d27;--paper:#17222c;--paper2:#1c2833;--ink:#f0f2ee;--ink2:#cfd7dd;--muted:#9fa9b2;--line:#33414c;--soft:#22303b;--hot:#e8795a;--ok:#5fbf8f;--shadow:0 20px 50px -28px rgba(0,0,0,.9)}}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:var(--sans);color:var(--ink);background:linear-gradient(180deg,var(--bg),var(--bg2));-webkit-text-size-adjust:100%}
@@ -83,8 +83,8 @@ tr.skipped .heat{cursor:not-allowed}
 
 /* Lämpökartan ruutu. Väri kertoo vain arvon 0–6.
    Käyttäjän poikkeama koonnista merkitään ainoastaan himmeällä pisteellä. */
-.cell{width:var(--cw);min-width:var(--cw);height:var(--ch);padding:0;border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent);border-right:1px solid color-mix(in srgb,var(--line) 55%,transparent)}
-.heat{width:100%;height:var(--ch);border:0;background:transparent;cursor:crosshair;position:relative;
+.cell{width:var(--cell);min-width:var(--cell);height:var(--cell);padding:0;border-bottom:1px solid color-mix(in srgb,var(--line) 55%,transparent);border-right:1px solid color-mix(in srgb,var(--line) 55%,transparent)}
+.heat{width:var(--cell);height:var(--cell);border:0;background:transparent;cursor:crosshair;position:relative;
   font-size:var(--nfs);font-weight:750;font-variant-numeric:tabular-nums;touch-action:none;color:inherit}
 .heat[disabled]{cursor:default}
 .heat .v{position:relative;z-index:2;opacity:.92}
@@ -109,11 +109,12 @@ tr.skipped .heat{cursor:not-allowed}
 /* Tiheystasot. Tiiveimmässä numerot jätetään pois: 30 pikselin ruudussa
    luku on lukukelvoton ja vie huomion väriltä, joka on varsinainen viesti.
    Arvo säilyy silti aria-labelissa ja työkaluvihjeessä. */
-body.d-tight{--cw:22px;--ch:18px;--rw:170px;--fs:9px;--lh:100px;--nfs:0px}
-body.d-tight .heat .v{display:none}
+body.d-tight{--cell:18px;--rw:170px;--fs:9px;--lh:100px;--nfs:9px}
 body.d-tight .skip{flex:0 0 11px;width:11px;height:11px}
-body.d-normal{--cw:30px;--ch:24px;--rw:200px;--fs:10px;--lh:120px;--nfs:9px}
-body.d-wide{--cw:44px;--ch:32px;--rw:250px;--fs:11px;--lh:140px;--nfs:11px}
+body.d-normal{--cell:24px;--rw:200px;--fs:10px;--lh:120px;--nfs:9px}
+body.d-wide{--cell:32px;--rw:250px;--fs:11px;--lh:140px;--nfs:11px}
+body.values-hidden .heat .v,body.analysis-mode .heat .v{display:none!important}
+#analysisBtn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .zoom-controls{display:flex;align-items:center;gap:4px;border:1px solid var(--line);background:var(--paper2);border-radius:999px;padding:2px 4px}
 .zoom-controls .btn{padding:5px 8px;border:0;background:transparent}
 .zoom-readout{min-width:42px;text-align:center;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums}
@@ -195,7 +196,7 @@ body.heatmap-only .corner{background:var(--paper2)}
      yläreunasta arvo ja maalaa se ruutuihin -- vedä sormea tai hiirtä useamman
      ruudun yli kerralla. Himmennettu piste kertoo, että oma arviosi poikkeaa koonnista.
      Kumi palauttaa ruudun koontiarvoon. Työkalupalkista voit rajata, ryhmitellä,
-     zoomata ja panoroida lämpökarttaa kokonaisvaikutelman hahmottamiseksi.</p>
+     säätää neliösolujen kokoa, käyttää analyysitilaa ja panoroida lämpökarttaa kokonaisvaikutelman hahmottamiseksi.</p>
   <div class="stats">
     <span class="badge" id="rowCount">–</span>
     <span class="badge" id="mineBadge">0 omaa merkintää</span>
@@ -280,18 +281,14 @@ body.heatmap-only .corner{background:var(--paper2)}
   </div>
   <button class="btn heatmap-primary" id="restoreOrderBtn" type="button" disabled
           title="Palauta rivien ja sarakkeiden alkuperäinen järjestys">↺ Palauta järjestys</button>
-  <div class="zoom-controls heatmap-primary" role="group" aria-label="Lämpökartan akselikohtainen zoomaus">
-    <span class="zoom-axis" title="Sarakkeiden leveys">X</span>
-    <button class="btn" id="zoomXOut" type="button" title="Kavenna sarakkeita">−</button>
-    <span class="zoom-readout" id="zoomXReadout">100 %</span>
-    <button class="btn" id="zoomXIn" type="button" title="Levennä sarakkeita">+</button>
-    <span class="zoom-sep" aria-hidden="true"></span>
-    <span class="zoom-axis" title="Rivien korkeus">Y</span>
-    <button class="btn" id="zoomYOut" type="button" title="Mataloi rivejä">−</button>
-    <span class="zoom-readout" id="zoomYReadout">100 %</span>
-    <button class="btn" id="zoomYIn" type="button" title="Korota rivejä">+</button>
-    <button class="btn" id="zoomReset" type="button" title="Palauta X ja Y 100 %">↺</button>
+  <div class="zoom-controls heatmap-primary" role="group" aria-label="Lämpökartan solukoko">
+    <span class="zoom-axis" title="Neliösolun koko">Ruutu</span>
+    <button class="btn" id="zoomOut" type="button" title="Pienennä neliösoluja">−</button>
+    <span class="zoom-readout" id="zoomReadout">100 %</span>
+    <button class="btn" id="zoomIn" type="button" title="Suurenna neliösoluja">+</button>
+    <button class="btn" id="zoomReset" type="button" title="Palauta solukoko 100 %">↺</button>
   </div>
+  <button class="btn heatmap-primary" id="analysisBtn" type="button" aria-pressed="false" title="Piilota solujen numerot ja tarkastele vain värirakennetta">Analyysitila</button>
   <button class="btn heatmap-primary" id="panBtn" type="button" aria-pressed="false" title="Kun Pan on päällä, vedä karttaa hiirellä tai sormella">Pan</button>
 </section>
 
@@ -371,7 +368,7 @@ const state = {
   matrices:[], matrixId:null, overrides:new Map(), excluded:new Set(),
   filters:{search:"",period:"all",changed:"all",coverage:0,quality:"all",sort:"year",group:"none"},
   order:{columnRow:null,columnDir:"asc",rowLens:null,rowDir:"asc",cluster:"none",clusterRows:[],clusterCols:[]},
-  view:{zoomX:1,zoomY:1,pan:false,panDragging:false,panX:0,panY:0,scrollLeft:0,scrollTop:0},
+  view:{zoom:1,analysis:false,pan:false,panDragging:false,panX:0,panY:0,scrollLeft:0,scrollTop:0},
   paint:4, erasing:false, dragging:false,
   pending:new Map(), saveTimer:null,
 };
@@ -837,18 +834,25 @@ function renderRow(it, lenses) {
 }
 function densityBase() {
   const body = document.body;
-  if (body.classList.contains("d-tight")) return { cw:22, ch:18 };
-  if (body.classList.contains("d-wide")) return { cw:44, ch:32 };
-  return { cw:30, ch:24 };
+  if (body.classList.contains("d-tight")) return 18;
+  if (body.classList.contains("d-wide")) return 32;
+  return 24;
 }
 function applyZoom() {
   const base = densityBase();
-  const cw = Math.max(12, Math.round(base.cw * state.view.zoomX));
-  const ch = Math.max(10, Math.round(base.ch * state.view.zoomY));
-  document.body.style.setProperty("--cw", cw + "px");
-  document.body.style.setProperty("--ch", ch + "px");
-  $("#zoomXReadout").textContent = `${Math.round(state.view.zoomX*100)} %`;
-  $("#zoomYReadout").textContent = `${Math.round(state.view.zoomY*100)} %`;
+  const size = Math.max(12, Math.round(base * state.view.zoom));
+  document.body.style.setProperty("--cell", size + "px");
+  document.body.classList.toggle("values-hidden", size < 20);
+  document.body.classList.toggle("analysis-mode", state.view.analysis);
+  $("#zoomReadout").textContent = `${Math.round(state.view.zoom*100)} % · ${size}px`;
+  const analysis = $("#analysisBtn");
+  if (analysis) {
+    analysis.setAttribute("aria-pressed", String(state.view.analysis));
+    analysis.textContent = state.view.analysis ? "Lukutila" : "Analyysitila";
+    analysis.title = state.view.analysis
+      ? "Näytä solujen numerot, kun solukoko on vähintään 20 px"
+      : "Piilota solujen numerot ja tarkastele vain värirakennetta";
+  }
 }
 function render() {
   const all = visibleItems();
@@ -965,14 +969,13 @@ function endPointer() {
   }
 }
 for (const ev of ["pointerup","pointercancel"]) window.addEventListener(ev, endPointer);
-// Ctrl/⌘ + rulla zoomaa sarakkeita. Ctrl/⌘ + Alt + rulla zoomaa rivejä.
-// Tavallinen rulla ja trackpad säilyvät vieritykseen/panorointiin.
+// Ctrl/⌘ + rulla muuttaa neliösolun kokoa. Tavallinen rulla ja trackpad
+// säilyvät vieritykseen/panorointiin. Rivikorkeus ja sarakeleveys muuttuvat aina yhdessä.
 shell.addEventListener("wheel", (e) => {
   if (!(e.ctrlKey || e.metaKey)) return;
   e.preventDefault();
   const delta = e.deltaY < 0 ? .1 : -.1;
-  if (e.altKey) state.view.zoomY = clamp(Math.round((state.view.zoomY + delta)*100)/100, .45, 2.2);
-  else state.view.zoomX = clamp(Math.round((state.view.zoomX + delta)*100)/100, .45, 2.2);
+  state.view.zoom = clamp(Math.round((state.view.zoom + delta)*100)/100, .5, 2.5);
   saveViewPrefs(); applyZoom();
 }, {passive:false});
 
@@ -1038,24 +1041,22 @@ $("#exportBtn").addEventListener("click", async () => {
 /* ---------- Ryhmittely, zoom ja pan ---------- */
 function saveViewPrefs() {
   try {
-    localStorage.setItem("lampokartta.zoomX", String(state.view.zoomX));
-    localStorage.setItem("lampokartta.zoomY", String(state.view.zoomY));
+    localStorage.setItem("lampokartta.zoom", String(state.view.zoom));
+    localStorage.setItem("lampokartta.analysis", state.view.analysis ? "1" : "0");
     localStorage.setItem("lampokartta.group", state.filters.group);
     localStorage.setItem("lampokartta.pan", state.view.pan ? "1" : "0");
   } catch {}
 }
-function setAxisZoom(axis, v) {
-  const value = clamp(Math.round(v*100)/100, .45, 2.2);
-  if (axis === "x") state.view.zoomX = value;
-  else state.view.zoomY = value;
+function setZoom(v) {
+  state.view.zoom = clamp(Math.round(v*100)/100, .5, 2.5);
   saveViewPrefs(); applyZoom();
 }
-$("#zoomXOut").addEventListener("click", () => setAxisZoom("x", state.view.zoomX - .1));
-$("#zoomXIn").addEventListener("click", () => setAxisZoom("x", state.view.zoomX + .1));
-$("#zoomYOut").addEventListener("click", () => setAxisZoom("y", state.view.zoomY - .1));
-$("#zoomYIn").addEventListener("click", () => setAxisZoom("y", state.view.zoomY + .1));
-$("#zoomReset").addEventListener("click", () => {
-  state.view.zoomX = 1; state.view.zoomY = 1; saveViewPrefs(); applyZoom();
+$("#zoomOut").addEventListener("click", () => setZoom(state.view.zoom - .1));
+$("#zoomIn").addEventListener("click", () => setZoom(state.view.zoom + .1));
+$("#zoomReset").addEventListener("click", () => setZoom(1));
+$("#analysisBtn").addEventListener("click", () => {
+  state.view.analysis = !state.view.analysis;
+  saveViewPrefs(); applyZoom();
 });
 $("#panBtn").addEventListener("click", () => {
   state.view.pan = !state.view.pan;
@@ -1087,13 +1088,16 @@ $("#group").addEventListener("change", (e) => {
 });
 (() => {
   try {
-    const legacy = Number(localStorage.getItem("lampokartta.zoom"));
+    const z = Number(localStorage.getItem("lampokartta.zoom"));
     const zx = Number(localStorage.getItem("lampokartta.zoomX"));
     const zy = Number(localStorage.getItem("lampokartta.zoomY"));
-    if (Number.isFinite(zx) && zx >= .45 && zx <= 2.2) state.view.zoomX = zx;
-    else if (Number.isFinite(legacy) && legacy >= .45 && legacy <= 2.2) state.view.zoomX = legacy;
-    if (Number.isFinite(zy) && zy >= .45 && zy <= 2.2) state.view.zoomY = zy;
-    else if (Number.isFinite(legacy) && legacy >= .45 && legacy <= 2.2) state.view.zoomY = legacy;
+    if (Number.isFinite(z) && z >= .5 && z <= 2.5) state.view.zoom = z;
+    else {
+      // Siirrä vanhan X/Y-zoomauksen keskiarvo uuteen neliösolun kokoon.
+      const old = [zx,zy].filter(v => Number.isFinite(v) && v >= .45 && v <= 2.2);
+      if (old.length) state.view.zoom = clamp(old.reduce((a,b)=>a+b,0)/old.length, .5, 2.5);
+    }
+    state.view.analysis = localStorage.getItem("lampokartta.analysis") === "1";
     const g = localStorage.getItem("lampokartta.group");
     if (["none","era","coverage","lens"].includes(g)) state.filters.group = g;
     state.view.pan = localStorage.getItem("lampokartta.pan") === "1";
