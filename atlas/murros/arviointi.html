@@ -86,6 +86,13 @@ tr.skipped .heat{cursor:not-allowed}
 @media(prefers-color-scheme:dark){.heat.interpolated::before{
   background:repeating-linear-gradient(45deg,transparent 0 4px,rgba(0,0,0,.30) 4px 6px)}}
 .heat.mine.interpolated::before{display:none}
+/* Naapurista ja sanastosta johdetut ovat heikoin pohjataso: pisteviivoitus
+   erottaa ne interpoloidusta, joka nojaa saman linssin omaan polkuun. */
+.heat.weak::before{content:"";position:absolute;inset:0;z-index:1;
+  background:radial-gradient(currentColor .8px,transparent .8px);background-size:5px 5px;opacity:.32}
+.heat.weak .v{opacity:.45}
+.heat.mine.weak::before{display:none}
+.heat.mine.weak .v{opacity:1}
 /* Tyhjä ruutu: ei pohja-arviota. Ei sama asia kuin neutraali 3 -- siksi
    ruutu on väritön ja arvo näkyy pisteenä, ei numerona. */
 .heat.blank{background:transparent;color:var(--muted)}
@@ -141,7 +148,9 @@ tr.skipped .heat{cursor:not-allowed}
   <p class="lead">Pohjana on koonti kaikkien käyttäjien arvioista. Valitse
      yläreunasta väri ja maalaa se ruutuihin — vedä sormea tai hiirtä useamman
      ruudun yli kerralla. Omat merkintäsi näkyvät vahvempina kuin koontiarvo.
-     Kumi palauttaa ruudun koontiarvoon.</p>
+     Kumi palauttaa ruudun koontiarvoon. Työkalupalkista voit rajata näkyviin
+     vain riittävän katetut rivit tai vain lähteistetyt solut, ja järjestää
+     rivit kattavuuden mukaan.</p>
   <div class="stats">
     <span class="badge" id="rowCount">–</span>
     <span class="badge" id="mineBadge">0 omaa merkintää</span>
@@ -187,6 +196,24 @@ tr.skipped .heat{cursor:not-allowed}
     <option value="all">Kaikki rivit</option>
     <option value="mine">Vain omat merkinnät</option>
     <option value="untouched">Vain koskemattomat</option>
+  </select>
+  <select id="coverage" aria-label="Rajaa kattavuuden mukaan">
+    <option value="0">Kaikki kattavuudet</option>
+    <option value="1">Vähintään 1 arvio</option>
+    <option value="3">Vähintään 3 arviota</option>
+    <option value="5">Vähintään 5 arviota</option>
+    <option value="8">Vähintään 8 arviota</option>
+  </select>
+  <select id="quality" aria-label="Rajaa pohjan laadun mukaan">
+    <option value="all">Kaikki pohjat</option>
+    <option value="curated">Vain lähteistetyt solut</option>
+    <option value="strong">Lähteistetyt ja interpoloidut</option>
+  </select>
+  <select id="sort" aria-label="Järjestys">
+    <option value="year">Järjestys: vuosi</option>
+    <option value="coverage">Järjestys: kattavuus</option>
+    <option value="curated">Järjestys: lähteistetyt ensin</option>
+    <option value="title">Järjestys: nimi</option>
   </select>
 </section>
 
@@ -247,13 +274,24 @@ const LENS_NAMES = {
   M36:"Häiriöstä uudistumiseen", M37:"Oikeutuksen ketju",
   M38:"Kyvykkyyden uusiutuminen", M39:"Sukupolvien jatkuvuus",
 };
+const TIER_TEXT = {
+  curated: "lähteistetty pohja",
+  interpolated: "interpoloitu polun naapureista",
+  neighbour: "johdettu relaatioverkon naapureista",
+  keyword: "johdettu sanastosta ja murroksen luonteesta",
+  none: "ei pohja-arviota",
+};
+const TIER_LABEL = {
+  curated: "Lähteistetty", interpolated: "Interpoloitu",
+  neighbour: "Naapureista", keyword: "Sanastosta", none: "Ei arviota",
+};
 const SCALE_TEXT = ["voimakkaasti heikentävä","selvästi heikentävä","lievästi heikentävä",
   "ristiriitainen tai neutraali","lievästi vahvistava","selvästi vahvistava","voimakkaasti vahvistava"];
 
 const state = {
   session:null, agg:new Map(), lenses:[], items:[],
   matrices:[], matrixId:null, overrides:new Map(), excluded:new Set(),
-  filters:{search:"",period:"all",changed:"all"},
+  filters:{search:"",period:"all",changed:"all",coverage:0,quality:"all",sort:"year"},
   paint:4, erasing:false, dragging:false,
   pending:new Map(), saveTimer:null,
 };
@@ -448,7 +486,8 @@ function paintCell(btn) {
   btn.className = "heat " + (cell === null ? "blank" : "h" + cell) +
     (mine ? " mine" : "") +
     (!mine && hasBase && a.source === "seed" ? " seed" : "") +
-    (!mine && a.tier === "interpolated" ? " interpolated" : "");
+    (!mine && a.tier === "interpolated" ? " interpolated" : "") +
+    (!mine && (a.tier === "neighbour" || a.tier === "keyword") ? " weak" : "");
   btn.querySelector(".v").textContent = cell === null ? "·" : cell;
   btn.setAttribute("aria-label", ariaFor(a, mine, cell));
   updateCounts();
@@ -463,6 +502,26 @@ function ariaFor(a, mine, cell) {
   return `${a.title}, ${a.lens_id}: ${cell} (${SCALE_TEXT[cell]})` +
     (mine ? ", oma merkintä" : ", koontiarvo");
 }
+/* Rivin kattavuus = montako solua sillä on jotain pohjaa tai omaa merkintää.
+   Tämä on se luku, jonka perusteella harvat rivit voi rajata pois. */
+function rowStats(it) {
+  let base = 0, curated = 0, mine = 0;
+  for (const l of state.lenses) {
+    const a = state.agg.get(key(it.id, l));
+    if (!a) continue;
+    if (state.overrides.has(key(it.id, l))) mine++;
+    if (a.mean_direction !== null && a.mean_direction !== undefined) base++;
+    if (a.tier === "curated") curated++;
+  }
+  return { base, curated, mine, total: base + (mine ? 0 : 0) };
+}
+function cellPasses(a, mine) {
+  if (state.filters.quality === "all") return true;
+  if (mine) return true;
+  if (!a) return false;
+  if (state.filters.quality === "curated") return a.tier === "curated";
+  return a.tier === "curated" || a.tier === "interpolated";
+}
 function visibleItems() {
   const q = state.filters.search.trim().toLocaleLowerCase("fi");
   return state.items.filter((it) => {
@@ -476,15 +535,31 @@ function visibleItems() {
       if (state.filters.changed === "mine" && !has) return false;
       if (state.filters.changed === "untouched" && has) return false;
     }
+    if (state.filters.coverage > 0) {
+      const st = rowStats(it);
+      if (Math.max(st.base, st.mine) < state.filters.coverage) return false;
+    }
     return true;
   });
+}
+function sortItems(list) {
+  const s = state.filters.sort;
+  if (s === "year") return list;   // items on jo vuosijärjestyksessä
+  const copy = [...list];
+  if (s === "title") copy.sort((a,b) => a.title.localeCompare(b.title,"fi"));
+  else if (s === "coverage")
+    copy.sort((a,b) => rowStats(b).base - rowStats(a).base || a.year - b.year);
+  else if (s === "curated")
+    copy.sort((a,b) => rowStats(b).curated - rowStats(a).curated || a.year - b.year);
+  return copy;
 }
 function render() {
   const all = visibleItems();
   // Järjestys säilyy alkuperäisenä molemmissa ryhmissä, joten takaisin
   // otettu murros palaa täsmälleen omalle oletuspaikalleen.
-  const active = all.filter((it) => !state.excluded.has(it.id));
-  const skipped = all.filter((it) => state.excluded.has(it.id));
+  const sorted = sortItems(all);
+  const active = sorted.filter((it) => !state.excluded.has(it.id));
+  const skipped = sorted.filter((it) => state.excluded.has(it.id));
   const rows = [...active, ...skipped];
   $("#rowCount").textContent =
     `${active.length} murrosta × ${state.lenses.length} linssiä` +
@@ -497,6 +572,9 @@ function render() {
       const a = state.agg.get(key(it.id,l));
       if (!a) return `<td class="cell"><button class="heat faded" disabled><span class="v">·</span></button></td>`;
       const mine = state.overrides.has(key(it.id,l));
+      if (!cellPasses(a, mine))
+        return `<td class="cell"><button class="heat blank" data-p="${esc(it.id)}" data-l="${esc(l)}" ` +
+          `title="Piilotettu pohjan laatusuodattimella" aria-label="piilotettu"><span class="v"></span></button></td>`;
       const hasBase = a.mean_direction !== null && a.mean_direction !== undefined;
       const dir = mine ? state.overrides.get(key(it.id,l)) : (hasBase ? Number(a.mean_direction) : null);
       const cell = dir === null ? null : toCell(dir);
@@ -504,15 +582,11 @@ function render() {
         (hasBase
           ? `Koonti: ${Number(a.mean_direction).toFixed(2)} (${a.contributor_count} arviota`
           : `Ei pohja-arviota — tätä yhteyttä ei ole arvioitu (${a.contributor_count} käyttäjäarviota`) +
-        (a.source === "seed"
-          ? (a.tier === "interpolated"
-              ? ", interpoloitu pohja — laskettu polun naapureista"
-              : ", lähteistetty pohja")
-          : "") + ")" +
+        (a.source === "seed" ? ", " + TIER_TEXT[a.tier] : "") + ")" +
         (mine ? `\nOma: ${dir >= 0 ? "+" : ""}${dir}` : "") +
         (a.spread ? `\nHajonta: ${Number(a.spread).toFixed(2)}` : "") +
         (a.evidence_type === "scenario_assumption" ? "\nTulevaisuusoletus, ei havainto" : "");
-      return `<td class="cell"><button class="heat ${cell===null?"blank":"h"+cell}${mine?" mine":""}${!mine&&hasBase&&a.source==="seed"?" seed":""}${!mine&&a.tier==="interpolated"?" interpolated":""}` +
+      return `<td class="cell"><button class="heat ${cell===null?"blank":"h"+cell}${mine?" mine":""}${!mine&&hasBase&&a.source==="seed"?" seed":""}${!mine&&a.tier==="interpolated"?" interpolated":""}${!mine&&(a.tier==="neighbour"||a.tier==="keyword")?" weak":""}` +
         `" data-p="${esc(it.id)}" data-l="${esc(l)}" title="${esc(tip)}" ` +
         `aria-label="${esc(ariaFor(a,mine,cell))}"><span class="v">${cell===null?"·":cell}</span></button></td>`;
     }).join("");
@@ -641,9 +715,11 @@ $("#exportBtn").addEventListener("click", async () => {
   a.download = `arviointi-${m.name.replace(/\W+/g,"-").toLowerCase()}-${new Date().toISOString().slice(0,10)}.json`;
   a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 500);
 });
-for (const [id,k] of [["#search","search"],["#period","period"],["#changed","changed"]])
+for (const [id,k] of [["#search","search"],["#period","period"],["#changed","changed"],
+                      ["#coverage","coverage"],["#quality","quality"],["#sort","sort"]])
   $(id).addEventListener(id === "#search" ? "input" : "change", (e) => {
-    state.filters[k] = e.target.value; render();
+    state.filters[k] = k === "coverage" ? Number(e.target.value) : e.target.value;
+    render();
   });
 window.addEventListener("beforeunload", (e) => {
   if (state.pending.size) { e.preventDefault(); e.returnValue = ""; }
