@@ -10,7 +10,7 @@
 /* Ruudukon mitat yhdessä paikassa, jotta tiiviys on yksi säädin eikä
    kymmenen erillistä sääntöä. Oletus on tiivis: lämpökartta hahmottuu
    kokonaisuutena vasta kun rivit mahtuvat ruudulle yhtä aikaa. */
---cell:24px;--cw:var(--cell);--ch:var(--cell);--rw:200px;--fs:10px;--lh:120px;--nfs:9px;
+--cell:26px;--cw:var(--cell);--ch:var(--cell);--rw:200px;--fs:10px;--lh:120px;--nfs:9px;
 color-scheme:light dark;--bg:#f2ede3;--bg2:#e9e2d4;--paper:#fffdf8;--paper2:#faf6ee;--ink:#15293c;--ink2:#3c4d5e;--muted:#6d7883;--line:#d6cec0;--soft:#ece5d9;--hot:#ad4128;--ok:#2f6b4f;--shadow:0 1px 2px rgba(24,32,40,.05),0 18px 46px -22px rgba(24,32,40,.28);--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Inter,sans-serif}
 @media(prefers-color-scheme:dark){:root{--bg:#0e161e;--bg2:#121d27;--paper:#17222c;--paper2:#1c2833;--ink:#f0f2ee;--ink2:#cfd7dd;--muted:#9fa9b2;--line:#33414c;--soft:#22303b;--hot:#e8795a;--ok:#5fbf8f;--shadow:0 20px 50px -28px rgba(0,0,0,.9)}}
 *{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:var(--sans);color:var(--ink);background:linear-gradient(180deg,var(--bg),var(--bg2));-webkit-text-size-adjust:100%}
@@ -113,7 +113,7 @@ tr.skipped .heat{cursor:not-allowed}
    Arvo säilyy silti aria-labelissa ja työkaluvihjeessä. */
 body.d-tight{--cell:18px;--rw:170px;--fs:9px;--lh:100px;--nfs:9px}
 body.d-tight .skip{flex:0 0 11px;width:11px;height:11px}
-body.d-normal{--cell:24px;--rw:200px;--fs:10px;--lh:120px;--nfs:9px}
+body.d-normal{--cell:26px;--rw:200px;--fs:10px;--lh:120px;--nfs:9px}
 body.d-wide{--cell:32px;--rw:250px;--fs:11px;--lh:140px;--nfs:11px}
 body.values-hidden .heat .v,body.analysis-mode .heat .v{display:none!important}
 #analysisBtn[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
@@ -159,12 +159,45 @@ body.heatmap-only .palette-bar,
 body.heatmap-only .legend{display:none!important}
 body.heatmap-only .toolbar{max-width:none;width:100%;margin:0 0 6px;flex:0 0 auto;padding:0 2px}
 body.heatmap-only .matrix-shell{max-width:none;width:100%;max-height:none;height:auto;flex:1 1 auto;margin:0;border-radius:10px}
+/* Kun neliömatriisi on näyttöä kapeampi, se keskitetään lämpökarttatilassa.
+   Sarakkeita ei venytetä: jokainen solu säilyy täsmälleen --cell × --cell. */
+body.heatmap-only #matrixShell>table{margin-left:auto;margin-right:auto}
 body.heatmap-only .toolbar .heatmap-secondary{display:none}
 body.heatmap-only .toolbar .heatmap-primary{display:inline-flex}
 body.heatmap-only .toolbar select.heatmap-primary{display:block}
 body.heatmap-only .toolbar input.heatmap-primary{display:block}
 body.heatmap-only .toolbar #search{max-width:260px;min-width:150px}
 body.heatmap-only .corner{background:var(--paper2)}
+
+
+/* Lämpökartan käyttöohje vasemmassa reunassa. Paneeli on oma flex-kaistansa,
+   joten se ei koskaan muuta --cell-arvoa eikä venytä neliösoluja. */
+.heatmap-workspace{max-width:1800px;margin:0 auto;display:flex;gap:10px;align-items:stretch;min-height:0}
+.help-panel{display:none;width:268px;min-width:268px;max-width:268px;border:1px solid var(--line);border-radius:14px;background:var(--paper);box-shadow:var(--shadow);overflow:hidden}
+.help-panel-inner{height:100%;overflow:auto;padding:14px 14px 18px}
+.help-head{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.help-title{font-size:11px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);flex:1}
+.help-close{width:28px;height:28px;border:1px solid var(--line);border-radius:50%;background:var(--paper2);cursor:pointer;font-weight:800}
+.help-section{margin:0 0 16px}
+.help-section:last-child{margin-bottom:0}
+.help-section h3{margin:0 0 8px;font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--hot)}
+.help-item{display:grid;grid-template-columns:22px 1fr;gap:7px;margin:0 0 9px;font-size:11px;line-height:1.42;color:var(--ink2)}
+.help-item:last-child{margin-bottom:0}
+.help-icon{font-size:15px;line-height:1.15;text-align:center;color:var(--ink)}
+.help-item strong{color:var(--ink);font-weight:800}
+.help-note{margin-top:7px;padding:8px 9px;border-radius:9px;background:var(--paper2);border:1px solid var(--line);font-size:10px;line-height:1.45;color:var(--muted)}
+.help-reopen{display:none;align-self:flex-start;width:34px;min-width:34px;height:34px;border:1px solid var(--line);border-radius:10px;background:var(--paper);cursor:pointer;font-weight:900;color:var(--ink)}
+body.heatmap-only .heatmap-workspace{max-width:none;width:100%;flex:1 1 auto;margin:0;min-height:0}
+body.heatmap-only .help-panel{display:block;flex:0 0 268px}
+body.heatmap-only .heatmap-workspace .matrix-shell{flex:1 1 auto;width:auto;min-width:0;height:100%;max-height:none;margin:0}
+body.heatmap-only #matrixShell>table{margin-left:auto;margin-right:auto}
+body.heatmap-only.help-collapsed .help-panel{display:none}
+body.heatmap-only.help-collapsed .help-reopen{display:block}
+@media(max-width:980px){
+  body.heatmap-only .help-panel{width:232px;min-width:232px;max-width:232px;flex-basis:232px}
+  .help-panel-inner{padding:11px}
+  .help-item{font-size:10px}
+}
 
 </style>
 </head>
@@ -294,9 +327,51 @@ body.heatmap-only .corner{background:var(--paper2)}
   <button class="btn heatmap-primary" id="panBtn" type="button" aria-pressed="false" title="Kun Pan on päällä, vedä karttaa hiirellä tai sormella">Pan</button>
 </section>
 
-<section class="matrix-shell" id="matrixShell" aria-label="Arviointilämpökartta">
-  <div class="empty-state">Ladataan…</div>
-</section>
+<div class="heatmap-workspace">
+  <aside class="help-panel" id="helpPanel" aria-label="Lämpökartan käyttöohje">
+    <div class="help-panel-inner">
+      <div class="help-head">
+        <span class="help-title">Käyttöohje</span>
+        <button class="help-close" id="helpClose" type="button" title="Piilota käyttöohje" aria-label="Piilota käyttöohje">‹</button>
+      </div>
+
+      <section class="help-section">
+        <h3>1 · Näkymä</h3>
+        <div class="help-item"><span class="help-icon">▦</span><div><strong>Lukutila</strong><br>Solussa näkyy arvo 0–6, kun ruutu on riittävän suuri.</div></div>
+        <div class="help-item"><span class="help-icon">◉</span><div><strong>Analyysitila</strong><br>Numerot väistyvät ja värirakenne sekä klusterit korostuvat.</div></div>
+        <div class="help-item"><span class="help-icon">✋</span><div><strong>Pan</strong><br>Vedä karttaa hiirellä tai sormella. Tavallinen vieritys toimii ilman Pan-tilaa.</div></div>
+        <div class="help-item"><span class="help-icon">□</span><div><strong>Ruutu − / +</strong><br>Muuttaa neliösolun kokoa. 100 % = 26 × 26 px.</div></div>
+      </section>
+
+      <section class="help-section">
+        <h3>2 · Järjestäminen</h3>
+        <div class="help-item"><span class="help-icon">↔</span><div><strong>Klikkaa rivin nimeä</strong><br>Sarakkeet järjestyvät rivin arvon mukaan. Seuraava klikkaus vaihtaa 0→6 / 6→0.</div></div>
+        <div class="help-item"><span class="help-icon">↕</span><div><strong>Klikkaa sarakeotsikkoa</strong><br>Rivit järjestyvät sarakkeen arvon mukaan. Seuraava klikkaus vaihtaa suunnan.</div></div>
+        <div class="help-item"><span class="help-icon">↺</span><div><strong>Palauta järjestys</strong><br>Poistaa tilapäiset rivi- ja sarakelajittelut sekä klusteroinnin.</div></div>
+      </section>
+
+      <section class="help-section">
+        <h3>3 · Klusterointi</h3>
+        <div class="help-item"><span class="help-icon">≋</span><div><strong>Rivit</strong><br>Ryhmittelee samankaltaisen väriprofiilin murrokset vierekkäin.</div></div>
+        <div class="help-item"><span class="help-icon">⋮</span><div><strong>Sarakkeet</strong><br>Ryhmittelee samankaltaiset linssit vierekkäin.</div></div>
+        <div class="help-item"><span class="help-icon">⊞</span><div><strong>Molemmat</strong><br>Järjestää sekä rivit että sarakkeet ja tuo väriblokit näkyviin.</div></div>
+      </section>
+
+      <section class="help-section">
+        <h3>4 · Merkinnät</h3>
+        <div class="help-item"><span class="help-icon">•</span><div><strong>Himmeä piste solussa</strong><br>Oma arviosi poikkeaa koontiarvosta.</div></div>
+        <div class="help-item"><span class="help-icon">✓</span><div><strong>Rivin valintamerkki</strong><br>Poistamalla sen rivi siirtyy huomiotta jätettyihin; arvioinnit säilyvät.</div></div>
+        <div class="help-note">Arvojen maalaus ja muut arvioinnin hallintatoiminnot löytyvät <strong>Normaali näkymä</strong> -tilasta.</div>
+      </section>
+    </div>
+  </aside>
+
+  <button class="help-reopen" id="helpReopen" type="button" title="Näytä käyttöohje" aria-label="Näytä käyttöohje">?</button>
+
+  <section class="matrix-shell" id="matrixShell" aria-label="Arviointilämpökartta">
+    <div class="empty-state">Ladataan…</div>
+  </section>
+</div>
 
 <div class="legend">
   <span><i class="h0"></i>0 = −3 voimakkaasti heikentävä</span>
@@ -838,7 +913,7 @@ function densityBase() {
   const body = document.body;
   if (body.classList.contains("d-tight")) return 18;
   if (body.classList.contains("d-wide")) return 32;
-  return 24;
+  return 26;
 }
 function applyZoom() {
   const base = densityBase();
@@ -1108,6 +1183,19 @@ $("#group").addEventListener("change", (e) => {
   $("#panBtn").setAttribute("aria-pressed", String(state.view.pan));
   shell.classList.toggle("pan-mode", state.view.pan);
   applyZoom();
+})();
+
+/* ---------- Käyttöohjepaneeli ---------- */
+function setHelpCollapsed(on) {
+  document.body.classList.toggle("help-collapsed", on);
+  try { localStorage.setItem("lampokartta.helpCollapsed", on ? "1" : "0"); } catch {}
+}
+$("#helpClose").addEventListener("click", () => setHelpCollapsed(true));
+$("#helpReopen").addEventListener("click", () => setHelpCollapsed(false));
+(() => {
+  let collapsed = false;
+  try { collapsed = localStorage.getItem("lampokartta.helpCollapsed") === "1"; } catch {}
+  setHelpCollapsed(collapsed);
 })();
 
 /* ---------- Kokoruutuinen lämpökarttatila ---------- */
