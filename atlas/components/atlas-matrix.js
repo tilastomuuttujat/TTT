@@ -7,7 +7,11 @@ import {
 } from "./atlas-data.js";
 
 const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
-const num = (value) => Number.isFinite(Number(value)) ? Number(value) : null;
+const num = (value) => {
+  if (value === null || value === undefined || String(value).trim() === "") return null;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+};
 
 function yearLabel(item) {
   const start = item.year_start ?? "";
@@ -267,7 +271,7 @@ class AtlasMatrix extends HTMLElement {
       this.period = this.period === year ? null : year;
       this.applySelection();
     }));
-    this.shadowRoot.querySelector("#periods").innerHTML = `<button data-period="all" class="${this.period == null ? "active" : ""}">Koko ajanjakso</button>${decades.filter((_,i)=>counts[i]>0).map((d,i)=>`<button data-period="${d}" class="${this.period===d?"active":""}">${d}–${d+9}</button>`).join("")}`;
+    this.shadowRoot.querySelector("#periods").innerHTML = `<button data-period="all" class="${this.period == null ? "active" : ""}">Koko ajanjakso</button>${decades.filter((_,i)=>counts[i]>0).map((d)=>`<button data-period="${d}" class="${this.period===d?"active":""}">${d}–${d+9}</button>`).join("")}`;
     this.shadowRoot.querySelectorAll("#periods [data-period]").forEach((b) => b.addEventListener("click", () => {
       this.period = b.dataset.period === "all" ? null : Number(b.dataset.period);
       this.applySelection();
