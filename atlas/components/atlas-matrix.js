@@ -21,7 +21,7 @@ function yearLabel(item) {
 
 function primaryDomain(item, domains) {
   const list = Array.isArray(item.domains) ? item.domains : [];
-  return list.find((d) => domains.includes(d)) ?? list[0] ?? "muu";
+  return list.find((d) => domains.includes(d)) ?? "muu";
 }
 
 function relationEnds(relation) {
@@ -99,7 +99,7 @@ class AtlasMatrix extends HTMLElement {
   styles() {
     return `
       ${commonStyles()}
-      :host { --matrix-cell: clamp(14px,1.45vw,23px); display:block; }
+      :host { --matrix-cell:clamp(14px,1.45vw,23px); --matrix-node-h:12px; display:block; }
       * { box-sizing:border-box; } button { font:inherit;color:inherit; }
       .wrap { padding:clamp(18px,3vw,34px); }
       .head { display:flex;justify-content:space-between;align-items:flex-end;gap:24px; }
@@ -134,16 +134,16 @@ class AtlasMatrix extends HTMLElement {
       .selection small { display:block;margin-top:2px;color:#6c766f; }
       .open { flex-shrink:0;padding:6px 10px;border:1px solid #3a6b64;border-radius:999px;color:#1f4642;font-size:11px;font-weight:600; }
       .open:hover { background:#1f4642;color:#fffdf7; }
-      .scroller { overflow:auto;border:1px solid #ded8ca;border-radius:13px;background:#fdfcf7;scrollbar-width:thin; }
+      .scroller { overflow:auto;border:1px solid #ded8ca;border-radius:13px;background:#fdfcf7;scrollbar-width:thin;max-height:min(62vh,720px); }
       .matrix { position:relative;display:grid;min-width:780px; }
       .corner,.year,.label { position:sticky;z-index:4;background:#f7f4ec; }
       .corner { left:0;top:0;border-right:1px solid #ded8ca;border-bottom:1px solid #ded8ca; }
       .year { top:0;min-width:var(--matrix-cell);padding:7px 1px;border-bottom:1px solid #ded8ca;color:#6c766f;font:500 8px var(--atlas-mono,monospace);text-align:center; }
-      .label { left:0;display:flex;align-items:center;min-width:140px;padding:5px 9px;border-right:1px solid #ded8ca;border-bottom:1px solid rgba(222,216,202,.7);color:#1f4642;font-size:10px;font-weight:650; }
-      .cell { position:relative;min-width:var(--matrix-cell);min-height:var(--matrix-cell);border-right:1px solid rgba(226,220,206,.34);border-bottom:1px solid rgba(226,220,206,.34); }
+      .label { left:0;display:flex;align-items:flex-start;min-width:140px;padding:8px 9px;border-right:1px solid #ded8ca;border-bottom:1px solid rgba(222,216,202,.7);color:#1f4642;font-size:10px;font-weight:650;line-height:1.2; }
+      .cell { position:relative;min-width:var(--matrix-cell);min-height:100%;border-right:1px solid rgba(226,220,206,.34);border-bottom:1px solid rgba(226,220,206,.34); }
       .cell:nth-child(5n) { background:rgba(58,107,100,.025); }
-      .node { position:absolute;inset:2px;z-index:3;border:0;border-radius:3px;background:linear-gradient(150deg,#4a9088,#1f4642);outline:1px solid rgba(253,252,247,.7);cursor:pointer;transition:opacity .2s,filter .2s,transform .2s; }
-      .node:hover { z-index:8;filter:brightness(1.18);transform:scale(1.25)!important; }
+      .node { position:absolute;left:2px;right:2px;top:var(--node-y,4px);height:var(--matrix-node-h);z-index:3;border:0;border-radius:3px;background:linear-gradient(150deg,#4a9088,#1f4642);outline:1px solid rgba(253,252,247,.78);cursor:pointer;transition:opacity .2s,filter .2s,transform .2s;box-shadow:0 1px 2px rgba(18,51,47,.08); }
+      .node:hover { z-index:8;filter:brightness(1.18);transform:scale(1.18); }
       .node.selected { background:linear-gradient(150deg,#f1c36d,#b56a34);outline:2px solid #12332f; }
       .node.predecessor { background:linear-gradient(150deg,#2f6b64,#12332f); }
       .node.successor { background:linear-gradient(150deg,#d69642,#b56a34); }
@@ -160,7 +160,7 @@ class AtlasMatrix extends HTMLElement {
       .legend .before { background:#12332f; }.legend .after { background:#b56a34; }.legend .mixed { background:#79608d; }
       .tooltip { position:fixed;z-index:9999;display:none;max-width:320px;padding:9px 11px;border-radius:8px;background:#1f4642;color:#fffdf7;pointer-events:none;box-shadow:0 12px 30px rgba(0,0,0,.2);font-size:11px;line-height:1.4; }
       .tooltip.visible { display:block; }.tooltip small { color:#d69642;display:block;margin-bottom:2px; }
-      @media(max-width:720px){ .head{display:block}.stats{margin-top:14px}.reset{margin-left:0}.selection{align-items:flex-start;flex-direction:column}.matrix{min-width:700px}.label{min-width:120px} }
+      @media(max-width:720px){ .head{display:block}.stats{margin-top:14px}.reset{margin-left:0}.selection{align-items:flex-start;flex-direction:column}.matrix{min-width:700px}.label{min-width:120px}.scroller{max-height:68vh} }
     `;
   }
 
@@ -208,8 +208,24 @@ class AtlasMatrix extends HTMLElement {
     const years = [];
     for (let year = firstYear; year <= to; year += binSize) years.push(year);
 
+    const domainOrder = domains.filter((d) => d !== "muu");
+    const occupancy = new Map();
+    const rowLaneCounts = Array(domains.length).fill(1);
+    const placements = items.map((item) => {
+      const domain = primaryDomain(item, domainOrder);
+      const row = Math.max(0, domains.indexOf(domain));
+      const col = clamp(Math.round((num(item.year_start) - firstYear) / binSize), 0, years.length - 1);
+      const key = `${row}:${col}`;
+      const stack = occupancy.get(key) ?? 0;
+      occupancy.set(key, stack + 1);
+      rowLaneCounts[row] = Math.max(rowLaneCounts[row], stack + 1);
+      return { item, row, col, stack };
+    });
+
+    const rowHeights = rowLaneCounts.map((lanes) => clamp(12 + lanes * 14, 34, 124));
     matrix.style.gridTemplateColumns = `140px repeat(${years.length}, minmax(var(--matrix-cell), 1fr))`;
-    matrix.style.gridTemplateRows = `28px repeat(${domains.length}, var(--matrix-cell))`;
+    matrix.style.gridTemplateRows = `28px ${rowHeights.map((h) => `${h}px`).join(" ")}`;
+
     const fragments = ["<div class=\"corner\"></div>"];
     years.forEach((year, i) => {
       const show = i === 0 || i === years.length - 1 || i % Math.max(1, Math.ceil(years.length / 9)) === 0;
@@ -221,24 +237,17 @@ class AtlasMatrix extends HTMLElement {
     });
     matrix.innerHTML = `<svg class="links" aria-hidden="true"></svg>${fragments.join("")}`;
 
-    const occupied = new Map();
-    const domainOrder = domains.filter((d) => d !== "muu");
     this.positions = new Map();
-    items.forEach((item) => {
-      const domain = primaryDomain(item, domainOrder);
-      const row = Math.max(0, domains.indexOf(domain));
-      const col = clamp(Math.round((num(item.year_start) - firstYear) / binSize), 0, years.length - 1);
+    placements.forEach(({ item, row, col, stack }) => {
       const cell = matrix.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
       if (!cell) return;
-      const key = `${row}:${col}`;
-      const stack = occupied.get(key) ?? 0;
-      occupied.set(key, stack + 1);
       const node = document.createElement("button");
       node.type = "button";
       node.className = "node";
       node.dataset.id = String(item.id);
       node.setAttribute("aria-label", `${item.title ?? item.id}, ${yearLabel(item)}`);
-      node.style.transform = `translate(${Math.min(stack,3)*2}px,${Math.min(stack,3)*-2}px)`;
+      node.style.setProperty("--node-y", `${4 + Math.min(stack, 7) * 14}px`);
+      if (stack > 7) node.style.transform = `translateX(${Math.min(stack - 7, 4)}px)`;
       node.addEventListener("click", () => {
         if (this.selectedId === String(item.id)) this.openSelected();
         else { this.selectedId = String(item.id); this.applySelection(); }
@@ -247,7 +256,7 @@ class AtlasMatrix extends HTMLElement {
       node.addEventListener("pointermove", (e) => this.moveTooltip(e));
       node.addEventListener("pointerleave", () => this.hideTooltip());
       cell.appendChild(node);
-      this.positions.set(String(item.id), { row, col, node, item });
+      this.positions.set(String(item.id), { row, col, stack, node, item });
     });
 
     this.shadowRoot.querySelector("#visible").textContent = String(items.length);
