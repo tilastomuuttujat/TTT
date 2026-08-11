@@ -58,6 +58,60 @@ export function commonStyles() {
     :host([appearance="frameless"]) .surface { background:transparent; border-color:transparent; border-radius:0; box-shadow:none; overflow:visible; }
     :host([appearance="frameless"]) .loading,
     :host([appearance="frameless"]) .error { border-color:transparent; border-radius:0; background:transparent; box-shadow:none; }
+
+    /* Frameless Atlas embeds: hierarchy comes from spacing and data, not nested cards. */
+    :host([appearance="frameless"]) .decades {
+      margin-top:20px;
+      padding:12px 0 14px;
+      border:0;
+      border-radius:0;
+      border-bottom:1px solid rgba(222,216,202,.72);
+      background:transparent;
+    }
+    :host([appearance="frameless"]) .bars { height:58px; }
+    :host([appearance="frameless"]) .periods { gap:5px 12px; }
+    :host([appearance="frameless"]) .periods button {
+      padding:4px 2px;
+      border:0;
+      border-radius:0;
+      background:transparent;
+    }
+    :host([appearance="frameless"]) .periods button.active {
+      color:#b56a34;
+      background:transparent;
+      box-shadow:inset 0 -1px 0 #b56a34;
+    }
+    :host([appearance="frameless"]) .tools {
+      gap:18px;
+      padding:2px 0 10px;
+      border-bottom:1px solid rgba(222,216,202,.55);
+    }
+    :host([appearance="frameless"]) .group {
+      gap:4px;
+      padding:0;
+      border:0;
+      border-radius:0;
+      background:transparent;
+    }
+    :host([appearance="frameless"]) .group > span { padding-left:0; margin-right:3px; }
+    :host([appearance="frameless"]) .chip { padding:5px 8px; }
+    :host([appearance="frameless"]) .chip.active { border-radius:999px; }
+    :host([appearance="frameless"]) .reset {
+      border:0;
+      border-radius:0;
+      padding:5px 0;
+      border-bottom:1px solid rgba(101,113,107,.35);
+    }
+    :host([appearance="frameless"]) .scroller {
+      border:0;
+      border-radius:0;
+      background:transparent;
+    }
+    :host([appearance="frameless"]) .corner,
+    :host([appearance="frameless"]) .year,
+    :host([appearance="frameless"]) .label { background:var(--atlas-paper,#fdfcf7); }
+    :host([appearance="frameless"]) .legend { margin-top:9px; }
+
     .loading,.error { padding:24px; border:1px solid var(--atlas-line,#ded8ca); border-radius:var(--atlas-radius,16px); background:var(--atlas-paper,#fdfcf7); }
     .error { color:#9b392c; }
     h2,h3 { color:var(--atlas-title,#1f4642); font-family:var(--atlas-serif,Georgia,serif); }
