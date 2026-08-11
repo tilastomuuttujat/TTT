@@ -6,9 +6,8 @@ import {
   renderState,
 } from "./atlas-data.js";
 
-function clamp(value, min, max) {
-  return Math.max(min, Math.min(max, value));
-}
+const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+const num = (value) => Number.isFinite(Number(value)) ? Number(value) : null;
 
 function yearLabel(item) {
   const start = item.year_start ?? "";
@@ -16,20 +15,24 @@ function yearLabel(item) {
   return end && end !== start ? `${start}–${end}` : `${start}`;
 }
 
-function primaryDomain(item, domainOrder) {
-  const domains = Array.isArray(item.domains) ? item.domains : [];
-  return domains.find((domain) => domainOrder.includes(domain)) ?? domains[0] ?? "muu";
+function primaryDomain(item, domains) {
+  const list = Array.isArray(item.domains) ? item.domains : [];
+  return list.find((d) => domains.includes(d)) ?? list[0] ?? "muu";
+}
+
+function relationEnds(relation) {
+  const source = relation.source ?? relation.from ?? relation.source_id ?? relation.from_id ?? relation.parent ?? relation.predecessor;
+  const target = relation.target ?? relation.to ?? relation.target_id ?? relation.to_id ?? relation.child ?? relation.successor;
+  return source != null && target != null ? [String(source), String(target)] : null;
+}
+
+function relationType(relation) {
+  return String(relation.rel_class ?? relation.type ?? relation.relation_type ?? "").toLowerCase();
 }
 
 class AtlasMatrix extends HTMLElement {
   static observedAttributes = [
-    "data-base",
-    "atlas-url",
-    "from",
-    "to",
-    "domains",
-    "depth",
-    "limit-domains",
+    "data-base", "atlas-url", "from", "to", "domains", "depth", "limit-domains",
   ];
 
   constructor() {
@@ -38,7 +41,8 @@ class AtlasMatrix extends HTMLElement {
     this.model = null;
     this.selectedId = null;
     this.direction = "both";
-    this.depth = 2;
+    this.depth = clamp(Number(this.getAttribute("depth") || 2), 1, 3);
+    this.period = null;
     this.resizeObserver = new ResizeObserver(() => this.drawLinks());
   }
 
@@ -57,113 +61,102 @@ class AtlasMatrix extends HTMLElement {
 
   async load() {
     renderState(this.shadowRoot, "loading", "Ladataan rakennematriisia…");
-
     try {
       const atlas = await fetchJson(resolveUrl(this, "atlas-url", "murrosatlas.json"));
-      const allItems = (atlas.items ?? []).filter((item) => Number.isFinite(Number(item.year_start)));
-      const relations = atlas.relations ?? [];
+      const allItems = (atlas.items ?? []).filter((item) => num(item.year_start) !== null);
+      const relations = Array.isArray(atlas.relations) ? atlas.relations : [];
+      if (!allItems.length) throw new Error("Murrosatlaksessa ei ole matriisiin sijoitettavia kohteita.");
 
-      if (!allItems.length) {
-        throw new Error("Murrosatlaksessa ei ole matriisiin sijoitettavia kohteita.");
-      }
-
-      const minDataYear = Math.min(...allItems.map((item) => Number(item.year_start)));
-      const maxDataYear = Math.max(...allItems.map((item) => Number(item.year_start)));
-      const from = Number(this.getAttribute("from") ?? minDataYear);
-      const to = Number(this.getAttribute("to") ?? maxDataYear);
-      const requestedDomains = (this.getAttribute("domains") || "")
-        .split(",")
-        .map((value) => value.trim())
-        .filter(Boolean);
-      const limitDomains = clamp(Number(this.getAttribute("limit-domains") || 10), 3, 20);
-
-      const items = allItems.filter((item) => {
-        const year = Number(item.year_start);
-        return year >= from && year <= to;
-      });
+      const minDataYear = Math.min(...allItems.map((i) => num(i.year_start)));
+      const maxDataYear = Math.max(...allItems.map((i) => num(i.year_start)));
+      const from = num(this.getAttribute("from")) ?? minDataYear;
+      const to = num(this.getAttribute("to")) ?? maxDataYear;
+      const requestedDomains = (this.getAttribute("domains") || "").split(",").map((v) => v.trim()).filter(Boolean);
+      const limitDomains = clamp(Number(this.getAttribute("limit-domains") || 12), 3, 24);
+      const items = allItems.filter((item) => num(item.year_start) >= from && num(item.year_start) <= to);
 
       const counts = new Map();
-      for (const item of items) {
-        for (const domain of item.domains ?? ["muu"]) {
-          counts.set(domain, (counts.get(domain) ?? 0) + 1);
-        }
-      }
-
+      items.forEach((item) => (item.domains ?? ["muu"]).forEach((d) => counts.set(d, (counts.get(d) ?? 0) + 1)));
       const domains = requestedDomains.length
         ? requestedDomains
-        : [...counts.entries()]
-            .sort((a, b) => b[1] - a[1] || String(a[0]).localeCompare(String(b[0]), "fi"))
-            .slice(0, limitDomains)
-            .map(([domain]) => domain);
-
+        : [...counts.entries()].sort((a, b) => b[1] - a[1] || String(a[0]).localeCompare(String(b[0]), "fi")).slice(0, limitDomains).map(([d]) => d);
       if (!domains.includes("muu")) domains.push("muu");
 
       this.depth = clamp(Number(this.getAttribute("depth") || 2), 1, 3);
-      this.model = { items, relations, domains, from, to };
+      this.model = { items, allItems, relations, domains, from, to, minDataYear, maxDataYear };
       this.renderShell();
       this.renderMatrix();
     } catch (error) {
       console.error("atlas-matrix:", error);
-      renderState(
-        this.shadowRoot,
-        "error",
-        error.message || "Rakennematriisia ei voitu ladata."
-      );
+      renderState(this.shadowRoot, "error", error.message || "Rakennematriisia ei voitu ladata.");
     }
   }
 
   styles() {
     return `
       ${commonStyles()}
-      :host { --matrix-cell: clamp(13px, 1.55vw, 22px); }
-      button { font: inherit; color: inherit; }
-      .wrap { padding: clamp(17px, 3vw, 26px); }
-      .head { display:flex; justify-content:space-between; gap:18px; align-items:flex-end; }
-      h2 { margin:0; font-size:clamp(1.45rem,3vw,2.2rem); line-height:1.05; }
-      .intro { max-width:72ch; margin:7px 0 0; color:#66716b; font-size:13px; }
-      .stats { display:flex; gap:16px; flex-shrink:0; }
-      .stat { text-align:right; color:#6c766f; font-size:9px; text-transform:uppercase; letter-spacing:.1em; }
-      .stat strong { display:block; color:#1f4642; font:600 1.45rem var(--atlas-serif,Georgia,serif); line-height:1; }
-      .tools { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:18px 0 12px; }
-      .group { display:flex; align-items:center; gap:3px; padding:3px; border:1px solid #ded8ca; border-radius:999px; background:#fdfcf7; }
-      .group > span { padding-left:7px; color:#6c766f; font-size:9px; text-transform:uppercase; letter-spacing:.11em; }
-      .chip,.reset { border:0; padding:6px 9px; border-radius:999px; background:transparent; color:#65716b; cursor:pointer; font-size:10px; }
-      .chip.active { background:#1f4642; color:#fffdf7; }
-      .reset { margin-left:auto; border:1px solid #ded8ca; }
-      .selection { display:none; margin:0 0 12px; padding:10px 12px; border-left:3px solid #b56a34; background:#f7f4ec; border-radius:0 9px 9px 0; }
-      .selection.visible { display:block; }
-      .selection strong { font-family:var(--atlas-serif,Georgia,serif); }
-      .selection small { display:block; margin-top:2px; color:#6c766f; }
-      .scroller { overflow:auto; border:1px solid #ded8ca; border-radius:13px; background:#fdfcf7; }
-      .matrix { position:relative; display:grid; min-width:760px; }
-      .corner,.year,.label { position:sticky; z-index:4; background:#f7f4ec; }
-      .corner { left:0; top:0; border-right:1px solid #ded8ca; border-bottom:1px solid #ded8ca; }
-      .year { top:0; min-width:var(--matrix-cell); padding:7px 1px; border-bottom:1px solid #ded8ca; color:#6c766f; font-size:8px; text-align:center; }
-      .label { left:0; display:flex; align-items:center; min-width:130px; padding:5px 9px; border-right:1px solid #ded8ca; border-bottom:1px solid rgba(222,216,202,.7); color:#1f4642; font-size:10px; font-weight:650; }
-      .cell { position:relative; min-width:var(--matrix-cell); min-height:var(--matrix-cell); border-right:1px solid rgba(226,220,206,.34); border-bottom:1px solid rgba(226,220,206,.34); }
+      :host { --matrix-cell: clamp(14px,1.45vw,23px); display:block; }
+      * { box-sizing:border-box; } button { font:inherit;color:inherit; }
+      .wrap { padding:clamp(18px,3vw,34px); }
+      .head { display:flex;justify-content:space-between;align-items:flex-end;gap:24px; }
+      h2 { margin:0;color:#1f4642;font-size:clamp(1.55rem,3vw,2.45rem);line-height:1.04; }
+      .intro { max-width:790px;margin:8px 0 0;color:#6c766f;font-size:13px;line-height:1.55; }
+      .stats { display:flex;gap:18px;flex-shrink:0; }
+      .stat { text-align:right;color:#6c766f;font-size:9px;text-transform:uppercase;letter-spacing:.1em; }
+      .stat strong { display:block;color:#1f4642;font:600 1.55rem var(--atlas-serif,Georgia,serif);line-height:1; }
+      .decades { margin:22px 0 16px;padding:14px 14px 10px;border:1px solid #e2dcce;border-radius:12px;background:rgba(247,244,236,.72); }
+      .decades-head { display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px; }
+      .decades-head strong { color:#1f4642;font:600 1rem var(--atlas-serif,Georgia,serif); }
+      .decades-head span { color:#6c766f;font-size:9px;text-transform:uppercase;letter-spacing:.12em; }
+      .bars { display:flex;align-items:flex-end;gap:2px;height:72px; }
+      .bar-button { position:relative;display:flex;flex:1;flex-direction:column;justify-content:flex-end;height:100%;min-width:4px; }
+      .bar { width:100%;min-height:2px;border-radius:3px 3px 0 0;background:#3a6b64;transition:.18s ease; }
+      .bar-button:hover .bar,.bar-button.active .bar { background:#b56a34;transform:translateY(-2px); }
+      .bar-count { position:absolute;top:-14px;left:50%;transform:translateX(-50%);font:500 8px var(--atlas-mono,monospace);color:#1f4642;opacity:0; }
+      .bar-button:hover .bar-count,.bar-button.active .bar-count { opacity:1; }
+      .axis { display:flex;justify-content:space-between;margin-top:5px;color:#6c766f;font:500 9px var(--atlas-mono,monospace); }
+      .periods { display:flex;flex-wrap:wrap;gap:7px;margin-top:12px; }
+      .periods button { padding:5px 10px;border:1px solid #e2dcce;border-radius:999px;background:#fdfcf7;color:#53605a;font:500 10px var(--atlas-mono,monospace); }
+      .periods button.active { border-color:#b56a34;background:#b56a34;color:#fffdf7; }
+      .tools { display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 12px; }
+      .group { display:flex;align-items:center;gap:3px;padding:3px;border:1px solid #ded8ca;border-radius:999px;background:#fdfcf7; }
+      .group > span { padding-left:7px;color:#6c766f;font-size:9px;text-transform:uppercase;letter-spacing:.11em; }
+      .chip,.reset { border:0;padding:6px 9px;border-radius:999px;background:transparent;color:#65716b;cursor:pointer;font-size:10px; }
+      .chip.active { background:#1f4642;color:#fffdf7; }
+      .reset { margin-left:auto;border:1px solid #ded8ca; }
+      .selection { display:none;align-items:center;justify-content:space-between;gap:18px;margin:0 0 12px;padding:10px 12px;border-left:3px solid #b56a34;background:#f7f4ec;border-radius:0 9px 9px 0; }
+      .selection.visible { display:flex; }
+      .selection strong { font:600 1.05rem var(--atlas-serif,Georgia,serif); }
+      .selection small { display:block;margin-top:2px;color:#6c766f; }
+      .open { flex-shrink:0;padding:6px 10px;border:1px solid #3a6b64;border-radius:999px;color:#1f4642;font-size:11px;font-weight:600; }
+      .open:hover { background:#1f4642;color:#fffdf7; }
+      .scroller { overflow:auto;border:1px solid #ded8ca;border-radius:13px;background:#fdfcf7;scrollbar-width:thin; }
+      .matrix { position:relative;display:grid;min-width:780px; }
+      .corner,.year,.label { position:sticky;z-index:4;background:#f7f4ec; }
+      .corner { left:0;top:0;border-right:1px solid #ded8ca;border-bottom:1px solid #ded8ca; }
+      .year { top:0;min-width:var(--matrix-cell);padding:7px 1px;border-bottom:1px solid #ded8ca;color:#6c766f;font:500 8px var(--atlas-mono,monospace);text-align:center; }
+      .label { left:0;display:flex;align-items:center;min-width:140px;padding:5px 9px;border-right:1px solid #ded8ca;border-bottom:1px solid rgba(222,216,202,.7);color:#1f4642;font-size:10px;font-weight:650; }
+      .cell { position:relative;min-width:var(--matrix-cell);min-height:var(--matrix-cell);border-right:1px solid rgba(226,220,206,.34);border-bottom:1px solid rgba(226,220,206,.34); }
       .cell:nth-child(5n) { background:rgba(58,107,100,.025); }
-      .node { position:absolute; inset:2px; z-index:3; border:0; border-radius:2px; background:linear-gradient(150deg,#4a9088,#1f4642); outline:1px solid rgba(253,252,247,.7); cursor:pointer; transition:opacity .2s,filter .2s,transform .2s; }
-      .node:hover { z-index:8; filter:brightness(1.18); transform:scale(1.25); }
-      .node.selected { background:linear-gradient(150deg,#f1c36d,#b56a34); outline:2px solid #12332f; }
+      .node { position:absolute;inset:2px;z-index:3;border:0;border-radius:3px;background:linear-gradient(150deg,#4a9088,#1f4642);outline:1px solid rgba(253,252,247,.7);cursor:pointer;transition:opacity .2s,filter .2s,transform .2s; }
+      .node:hover { z-index:8;filter:brightness(1.18);transform:scale(1.25)!important; }
+      .node.selected { background:linear-gradient(150deg,#f1c36d,#b56a34);outline:2px solid #12332f; }
       .node.predecessor { background:linear-gradient(150deg,#2f6b64,#12332f); }
       .node.successor { background:linear-gradient(150deg,#d69642,#b56a34); }
       .node.mixed { background:linear-gradient(150deg,#967eaa,#79608d); }
-      .node.unrelated { opacity:.13; }
+      .node.unrelated { opacity:.11; }
       .node.depth-2 { opacity:.72; }
-      .node.depth-3 { opacity:.48; }
-      .links { position:absolute; inset:0; z-index:2; pointer-events:none; overflow:visible; }
-      .link { stroke:rgba(31,70,66,.15); stroke-width:1; }
-      .link.active { stroke:rgba(181,106,52,.8); stroke-width:2; }
-      .legend { display:flex; flex-wrap:wrap; gap:12px; margin-top:12px; color:#66716b; font-size:10px; }
-      .legend span { display:inline-flex; align-items:center; gap:5px; }
-      .legend i { width:10px; height:10px; border-radius:2px; background:#2f6f68; }
-      .legend .before { background:#12332f; }
-      .legend .after { background:#b56a34; }
-      .legend .mixed { background:#79608d; }
-      .tooltip { position:fixed; z-index:9999; display:none; max-width:280px; padding:8px 10px; border-radius:8px; background:#1f4642; color:#fffdf7; pointer-events:none; box-shadow:0 12px 30px rgba(0,0,0,.2); }
-      .tooltip.visible { display:block; }
-      .tooltip small { color:#d69642; }
-      @media(max-width:720px){ .head{display:block}.stats{margin-top:14px}.reset{margin-left:0} }
+      .node.depth-3 { opacity:.45; }
+      .links { position:absolute;inset:0;z-index:2;width:100%;height:100%;pointer-events:none;overflow:visible; }
+      .link { fill:none;stroke:rgba(31,70,66,.16);stroke-width:1; }
+      .link.active { stroke:rgba(181,106,52,.85);stroke-width:2; }
+      .legend { display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;color:#66716b;font-size:10px; }
+      .legend span { display:inline-flex;align-items:center;gap:5px; }
+      .legend i { width:10px;height:10px;border-radius:2px;background:#2f6f68; }
+      .legend .before { background:#12332f; }.legend .after { background:#b56a34; }.legend .mixed { background:#79608d; }
+      .tooltip { position:fixed;z-index:9999;display:none;max-width:320px;padding:9px 11px;border-radius:8px;background:#1f4642;color:#fffdf7;pointer-events:none;box-shadow:0 12px 30px rgba(0,0,0,.2);font-size:11px;line-height:1.4; }
+      .tooltip.visible { display:block; }.tooltip small { color:#d69642;display:block;margin-bottom:2px; }
+      @media(max-width:720px){ .head{display:block}.stats{margin-top:14px}.reset{margin-left:0}.selection{align-items:flex-start;flex-direction:column}.matrix{min-width:700px}.label{min-width:120px} }
     `;
   }
 
@@ -174,238 +167,247 @@ class AtlasMatrix extends HTMLElement {
         <div class="head">
           <div>
             <h2><slot name="title">Murrosten rakennematriisi</slot></h2>
-            <p class="intro">Vaaka-akseli näyttää ajan ja pystyakseli rakenteellisen teeman. Valitse ruutu nähdäksesi dokumentoidut edeltäjät ja seuraajat.</p>
+            <p class="intro"><slot name="intro">Vaaka-akseli näyttää ajan ja pystyakseli rakenteellisen teeman. Valitse murros nähdäksesi dokumentoidut edeltäjät ja seuraajat.</slot></p>
           </div>
-          <div class="stats">
-            <div class="stat"><strong id="visible">–</strong>murrosta</div>
-            <div class="stat"><strong id="span">–</strong>vuotta</div>
-          </div>
+          <div class="stats"><div class="stat"><strong id="visible">–</strong>murrosta</div><div class="stat"><strong id="span">–</strong>vuotta</div></div>
         </div>
+        <div class="decades"><div class="decades-head"><strong>Murrosten ajoittuminen</strong><span>valitse vuosikymmen</span></div><div class="bars" id="bars"></div><div class="axis"><span id="axisStart">–</span><span id="axisEnd">–</span></div><div class="periods" id="periods"></div></div>
         <div class="tools">
-          <div class="group">
-            <span>Suunta</span>
-            <button class="chip active" data-direction="both">Molemmat</button>
-            <button class="chip" data-direction="in">Edeltäjät</button>
-            <button class="chip" data-direction="out">Seuraajat</button>
-          </div>
-          <div class="group">
-            <span>Syvyys</span>
-            <button class="chip" data-depth="1">1</button>
-            <button class="chip active" data-depth="2">2</button>
-            <button class="chip" data-depth="3">3</button>
-          </div>
+          <div class="group"><span>Suunta</span><button class="chip active" data-direction="both">Molemmat</button><button class="chip" data-direction="in">Edeltäjät</button><button class="chip" data-direction="out">Seuraajat</button></div>
+          <div class="group"><span>Syvyys</span><button class="chip" data-depth="1">1</button><button class="chip active" data-depth="2">2</button><button class="chip" data-depth="3">3</button></div>
           <button class="reset" type="button">Palauta kokonaiskuva</button>
         </div>
-        <div class="selection" aria-live="polite"></div>
-        <div class="scroller">
-          <div class="matrix"><svg class="links"></svg></div>
-        </div>
-        <div class="legend">
-          <span><i></i> murros</span>
-          <span><i class="before"></i> edeltäjä</span>
-          <span><i class="after"></i> seuraaja</span>
-          <span><i class="mixed"></i> molemmat</span>
-        </div>
-      </section>
-      <div class="tooltip"></div>`;
+        <div class="selection" aria-live="polite"><div><strong class="selection-title"></strong><small class="selection-meta"></small></div><button class="open" type="button">Avaa murros</button></div>
+        <div class="scroller"><div class="matrix"><svg class="links" aria-hidden="true"></svg></div></div>
+        <div class="legend"><span><i></i> murros</span><span><i class="before"></i> edeltäjä</span><span><i class="after"></i> seuraaja</span><span><i class="mixed"></i> molemmat</span></div>
+      </section><div class="tooltip"></div>`;
 
-    this.shadowRoot.querySelectorAll("[data-direction]").forEach((button) => {
-      button.addEventListener("click", () => {
-        this.direction = button.dataset.direction;
-        this.shadowRoot.querySelectorAll("[data-direction]").forEach((item) => item.classList.toggle("active", item === button));
-        this.applySelection();
-      });
-    });
-
-    this.shadowRoot.querySelectorAll("[data-depth]").forEach((button) => {
-      button.classList.toggle("active", Number(button.dataset.depth) === this.depth);
-      button.addEventListener("click", () => {
-        this.depth = Number(button.dataset.depth);
-        this.shadowRoot.querySelectorAll("[data-depth]").forEach((item) => item.classList.toggle("active", item === button));
-        this.applySelection();
-      });
-    });
-
-    this.shadowRoot.querySelector(".reset").addEventListener("click", () => {
-      this.selectedId = null;
+    this.shadowRoot.querySelectorAll("[data-direction]").forEach((button) => button.addEventListener("click", () => {
+      this.direction = button.dataset.direction;
+      this.shadowRoot.querySelectorAll("[data-direction]").forEach((b) => b.classList.toggle("active", b === button));
       this.applySelection();
-    });
+    }));
+    this.shadowRoot.querySelectorAll("[data-depth]").forEach((button) => button.addEventListener("click", () => {
+      this.depth = Number(button.dataset.depth);
+      this.shadowRoot.querySelectorAll("[data-depth]").forEach((b) => b.classList.toggle("active", b === button));
+      this.applySelection();
+    }));
+    this.shadowRoot.querySelector(".reset").addEventListener("click", () => { this.selectedId = null; this.period = null; this.applySelection(); });
+    this.shadowRoot.querySelector(".open").addEventListener("click", () => this.openSelected());
   }
 
   renderMatrix() {
     const { items, domains, from, to } = this.model;
     const matrix = this.shadowRoot.querySelector(".matrix");
     const binSize = Math.max(5, Math.ceil((to - from + 1) / 60));
+    const firstYear = Math.floor(from / binSize) * binSize;
     const years = [];
-    for (let year = Math.floor(from / binSize) * binSize; year <= to; year += binSize) years.push(year);
+    for (let year = firstYear; year <= to; year += binSize) years.push(year);
 
-    matrix.style.gridTemplateColumns = `130px repeat(${years.length}, minmax(var(--matrix-cell), 1fr))`;
+    matrix.style.gridTemplateColumns = `140px repeat(${years.length}, minmax(var(--matrix-cell), 1fr))`;
     matrix.style.gridTemplateRows = `28px repeat(${domains.length}, var(--matrix-cell))`;
-
     const fragments = ["<div class=\"corner\"></div>"];
-    years.forEach((year, index) => {
-      const show = index === 0 || index === years.length - 1 || index % Math.max(1, Math.ceil(years.length / 8)) === 0;
+    years.forEach((year, i) => {
+      const show = i === 0 || i === years.length - 1 || i % Math.max(1, Math.ceil(years.length / 9)) === 0;
       fragments.push(`<div class="year">${show ? year : ""}</div>`);
     });
-
-    domains.forEach((domain, rowIndex) => {
+    domains.forEach((domain, row) => {
       fragments.push(`<div class="label">${escapeHtml(domain)}</div>`);
-      years.forEach((year, colIndex) => {
-        fragments.push(`<div class="cell" data-row="${rowIndex}" data-col="${colIndex}" data-domain="${escapeHtml(domain)}" data-year="${year}"></div>`);
-      });
+      years.forEach((year, col) => fragments.push(`<div class="cell" data-row="${row}" data-col="${col}" data-year="${year}"></div>`));
     });
-
-    const svg = matrix.querySelector(".links");
-    matrix.innerHTML = `${svg.outerHTML}${fragments.join("")}`;
+    matrix.innerHTML = `<svg class="links" aria-hidden="true"></svg>${fragments.join("")}`;
 
     const occupied = new Map();
-    const domainOrder = domains.filter((domain) => domain !== "muu");
-
-    for (const item of items) {
+    const domainOrder = domains.filter((d) => d !== "muu");
+    this.positions = new Map();
+    items.forEach((item) => {
       const domain = primaryDomain(item, domainOrder);
       const row = Math.max(0, domains.indexOf(domain));
-      const col = clamp(Math.round((Number(item.year_start) - years[0]) / binSize), 0, years.length - 1);
-      let cell = matrix.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+      const col = clamp(Math.round((num(item.year_start) - firstYear) / binSize), 0, years.length - 1);
+      const cell = matrix.querySelector(`.cell[data-row="${row}"][data-col="${col}"]`);
+      if (!cell) return;
       const key = `${row}:${col}`;
       const stack = occupied.get(key) ?? 0;
       occupied.set(key, stack + 1);
-
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "node";
-      button.dataset.id = item.id;
-      button.setAttribute("aria-label", `${item.title}, ${yearLabel(item)}`);
-      button.style.transform = `translate(${Math.min(stack, 3) * 2}px, ${Math.min(stack, 3) * -2}px)`;
-      button.addEventListener("click", () => {
-        if (this.selectedId === item.id) {
-          this.dispatchEvent(new CustomEvent("atlas-open-item", { detail: { item }, bubbles: true, composed: true }));
-        } else {
-          this.selectedId = item.id;
-          this.applySelection();
-        }
+      const node = document.createElement("button");
+      node.type = "button";
+      node.className = "node";
+      node.dataset.id = String(item.id);
+      node.setAttribute("aria-label", `${item.title ?? item.id}, ${yearLabel(item)}`);
+      node.style.transform = `translate(${Math.min(stack,3)*2}px,${Math.min(stack,3)*-2}px)`;
+      node.addEventListener("click", () => {
+        if (this.selectedId === String(item.id)) this.openSelected();
+        else { this.selectedId = String(item.id); this.applySelection(); }
       });
-      button.addEventListener("pointerenter", (event) => this.showTooltip(event, item));
-      button.addEventListener("pointermove", (event) => this.moveTooltip(event));
-      button.addEventListener("pointerleave", () => this.hideTooltip());
-      cell.appendChild(button);
-    }
+      node.addEventListener("pointerenter", (e) => this.showTooltip(e, item));
+      node.addEventListener("pointermove", (e) => this.moveTooltip(e));
+      node.addEventListener("pointerleave", () => this.hideTooltip());
+      cell.appendChild(node);
+      this.positions.set(String(item.id), { row, col, node, item });
+    });
 
-    this.shadowRoot.getElementById("visible").textContent = items.length;
-    this.shadowRoot.getElementById("span").textContent = Math.max(0, to - from);
-    this.grid = { years, binSize };
-    requestAnimationFrame(() => this.drawLinks());
+    this.shadowRoot.querySelector("#visible").textContent = String(items.length);
+    this.shadowRoot.querySelector("#span").textContent = String(Math.max(0, to - from));
+    this.renderDecades();
+    this.applySelection();
   }
 
-  relationNeighborhood() {
-    if (!this.selectedId) return new Map();
-    const { relations } = this.model;
-    const distances = new Map([[this.selectedId, { depth: 0, in: false, out: false }]]);
-    let frontier = new Set([this.selectedId]);
+  renderDecades() {
+    const { items, from, to } = this.model;
+    const start = Math.floor(from / 10) * 10;
+    const end = Math.floor(to / 10) * 10;
+    const decades = [];
+    for (let year = start; year <= end; year += 10) decades.push(year);
+    const counts = decades.map((d) => items.filter((i) => num(i.year_start) >= d && num(i.year_start) < d + 10).length);
+    const max = Math.max(1, ...counts);
+    const bars = this.shadowRoot.querySelector("#bars");
+    bars.innerHTML = counts.map((count, i) => `<button class="bar-button ${this.period === decades[i] ? "active" : ""}" data-period="${decades[i]}" title="${decades[i]}–${decades[i]+9}: ${count} murrosta"><span class="bar-count">${count}</span><span class="bar" style="height:${Math.max(3,(count/max)*100)}%"></span></button>`).join("");
+    bars.querySelectorAll("[data-period]").forEach((b) => b.addEventListener("click", () => {
+      const year = Number(b.dataset.period);
+      this.period = this.period === year ? null : year;
+      this.applySelection();
+    }));
+    this.shadowRoot.querySelector("#periods").innerHTML = `<button data-period="all" class="${this.period == null ? "active" : ""}">Koko ajanjakso</button>${decades.filter((_,i)=>counts[i]>0).map((d,i)=>`<button data-period="${d}" class="${this.period===d?"active":""}">${d}–${d+9}</button>`).join("")}`;
+    this.shadowRoot.querySelectorAll("#periods [data-period]").forEach((b) => b.addEventListener("click", () => {
+      this.period = b.dataset.period === "all" ? null : Number(b.dataset.period);
+      this.applySelection();
+    }));
+    this.shadowRoot.querySelector("#axisStart").textContent = start;
+    this.shadowRoot.querySelector("#axisEnd").textContent = end + 9;
+  }
 
-    for (let level = 1; level <= this.depth; level += 1) {
-      const next = new Set();
-      for (const relation of relations) {
-        if ((this.direction === "both" || this.direction === "out") && frontier.has(relation.from)) {
-          const old = distances.get(relation.to) ?? { depth: level, in: false, out: false };
-          distances.set(relation.to, { ...old, depth: Math.min(old.depth, level), out: true });
-          next.add(relation.to);
-        }
-        if ((this.direction === "both" || this.direction === "in") && frontier.has(relation.to)) {
-          const old = distances.get(relation.from) ?? { depth: level, in: false, out: false };
-          distances.set(relation.from, { ...old, depth: Math.min(old.depth, level), in: true });
-          next.add(relation.from);
-        }
+  relationGraph() {
+    const byId = new Map(this.model.items.map((i) => [String(i.id), i]));
+    const graph = new Map();
+    this.model.relations.forEach((relation) => {
+      const ends = relationEnds(relation);
+      if (!ends) return;
+      const [source, target] = ends;
+      if (!byId.has(source) || !byId.has(target)) return;
+      if (!graph.has(source)) graph.set(source, new Set());
+      if (!graph.has(target)) graph.set(target, new Set());
+      graph.get(source).add(target);
+      graph.get(target).add(source);
+    });
+    return graph;
+  }
+
+  relatedIds(id) {
+    const graph = this.relationGraph();
+    const distances = new Map([[String(id), 0]]);
+    const queue = [String(id)];
+    while (queue.length) {
+      const current = queue.shift();
+      const d = distances.get(current);
+      if (d >= this.depth) continue;
+      for (const next of graph.get(current) ?? []) {
+        if (!distances.has(next)) { distances.set(next, d + 1); queue.push(next); }
       }
-      frontier = next;
     }
     return distances;
   }
 
-  applySelection() {
-    const distances = this.relationNeighborhood();
-    const itemMap = new Map(this.model.items.map((item) => [item.id, item]));
-    const selection = this.shadowRoot.querySelector(".selection");
-
-    this.shadowRoot.querySelectorAll(".node").forEach((node) => {
-      node.className = "node";
-      if (!this.selectedId) return;
-      if (node.dataset.id === this.selectedId) {
-        node.classList.add("selected");
-        return;
-      }
-      const relation = distances.get(node.dataset.id);
-      if (!relation) {
-        node.classList.add("unrelated");
-        return;
-      }
-      if (relation.in && relation.out) node.classList.add("mixed");
-      else if (relation.in) node.classList.add("predecessor");
-      else node.classList.add("successor");
-      node.classList.add(`depth-${relation.depth}`);
+  directionalSets(id) {
+    const incoming = new Set();
+    const outgoing = new Set();
+    this.model.relations.forEach((r) => {
+      const ends = relationEnds(r); if (!ends) return;
+      const [source, target] = ends;
+      if (target === id) incoming.add(source);
+      if (source === id) outgoing.add(target);
     });
-
-    if (!this.selectedId) {
-      selection.classList.remove("visible");
-      selection.innerHTML = "";
-    } else {
-      const item = itemMap.get(this.selectedId);
-      const relatedCount = Math.max(0, distances.size - 1);
-      selection.classList.add("visible");
-      selection.innerHTML = `<strong>${escapeHtml(item?.title ?? this.selectedId)}</strong><small>${escapeHtml(yearLabel(item ?? {}))} · ${relatedCount} yhteyttä valitulla suunnalla ja syvyydellä</small>`;
-    }
-
-    this.drawLinks(distances);
+    return { incoming, outgoing };
   }
 
-  drawLinks(distances = this.relationNeighborhood()) {
+  applySelection() {
     if (!this.model) return;
+    const period = this.period;
+    const distances = this.selectedId ? this.relatedIds(this.selectedId) : new Map();
+    const { incoming, outgoing } = this.selectedId ? this.directionalSets(this.selectedId) : { incoming:new Set(), outgoing:new Set() };
+    this.positions?.forEach(({ node, item }) => {
+      node.classList.remove("selected","predecessor","successor","mixed","unrelated","depth-2","depth-3");
+      const year = num(item.year_start);
+      const inPeriod = period == null || (year >= period && year < period + 10);
+      if (!inPeriod) node.classList.add("unrelated");
+      if (this.selectedId) {
+        const id = String(item.id);
+        if (id === this.selectedId) node.classList.add("selected");
+        else if (distances.has(id)) {
+          if (this.direction === "in" && !incoming.has(id)) node.classList.add("unrelated");
+          else if (this.direction === "out" && !outgoing.has(id)) node.classList.add("unrelated");
+          else if (incoming.has(id) && outgoing.has(id)) node.classList.add("mixed");
+          else if (incoming.has(id)) node.classList.add("predecessor");
+          else if (outgoing.has(id)) node.classList.add("successor");
+          if (distances.get(id) === 2) node.classList.add("depth-2");
+          if (distances.get(id) >= 3) node.classList.add("depth-3");
+        } else node.classList.add("unrelated");
+      }
+    });
+    this.renderSelection();
+    this.drawLinks();
+  }
+
+  renderSelection() {
+    const box = this.shadowRoot.querySelector(".selection");
+    if (!this.selectedId) { box.classList.remove("visible"); return; }
+    const position = this.positions.get(this.selectedId);
+    if (!position) { box.classList.remove("visible"); return; }
+    const { item } = position;
+    box.classList.add("visible");
+    box.querySelector(".selection-title").textContent = item.title ?? String(item.id);
+    box.querySelector(".selection-meta").textContent = `${yearLabel(item)} · ${(item.domains ?? []).join(" · ")}`;
+  }
+
+  drawLinks() {
+    if (!this.model || !this.positions) return;
     const matrix = this.shadowRoot.querySelector(".matrix");
-    const svg = matrix?.querySelector(".links");
-    if (!matrix || !svg) return;
-
+    const svg = matrix?.querySelector(".links"); if (!svg) return;
     const rect = matrix.getBoundingClientRect();
-    const width = matrix.scrollWidth;
-    const height = matrix.scrollHeight;
-    svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
-    svg.setAttribute("width", width);
-    svg.setAttribute("height", height);
-
-    const nodeById = new Map([...matrix.querySelectorAll(".node")].map((node) => [node.dataset.id, node]));
-    const activeIds = new Set(distances.keys());
-
-    svg.innerHTML = this.model.relations.map((relation) => {
-      const from = nodeById.get(relation.from);
-      const to = nodeById.get(relation.to);
-      if (!from || !to) return "";
-      const a = from.getBoundingClientRect();
-      const b = to.getBoundingClientRect();
-      const x1 = a.left - rect.left + matrix.scrollLeft + a.width / 2;
-      const y1 = a.top - rect.top + matrix.scrollTop + a.height / 2;
-      const x2 = b.left - rect.left + matrix.scrollLeft + b.width / 2;
-      const y2 = b.top - rect.top + matrix.scrollTop + b.height / 2;
-      const active = this.selectedId && activeIds.has(relation.from) && activeIds.has(relation.to);
-      return `<line class="link ${active ? "active" : ""}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"><title>${escapeHtml(relation.type || relation.rel_class || "yhteys")}</title></line>`;
-    }).join("");
+    svg.setAttribute("viewBox", `0 0 ${Math.max(1,rect.width)} ${Math.max(1,rect.height)}`);
+    svg.innerHTML = "";
+    const visibleIds = new Set();
+    this.positions.forEach(({ node }) => { if (!node.classList.contains("unrelated")) visibleIds.add(node.dataset.id); });
+    const selected = this.selectedId;
+    this.model.relations.forEach((relation) => {
+      const ends = relationEnds(relation); if (!ends) return;
+      const [source, target] = ends;
+      const a = this.positions.get(source), b = this.positions.get(target); if (!a || !b) return;
+      if (!visibleIds.has(source) || !visibleIds.has(target)) return;
+      const ar = a.node.getBoundingClientRect(), br = b.node.getBoundingClientRect();
+      const x1 = ar.left - rect.left + ar.width/2, y1 = ar.top - rect.top + ar.height/2;
+      const x2 = br.left - rect.left + br.width/2, y2 = br.top - rect.top + br.height/2;
+      const dx = Math.max(8, Math.abs(x2-x1)*.35);
+      const path = document.createElementNS("http://www.w3.org/2000/svg","path");
+      path.setAttribute("d", `M ${x1} ${y1} C ${x1+dx} ${y1}, ${x2-dx} ${y2}, ${x2} ${y2}`);
+      path.setAttribute("class", selected && (source === selected || target === selected) ? "link active" : "link");
+      if (relationType(relation).includes("negative")) path.setAttribute("stroke-dasharray","4 3");
+      svg.appendChild(path);
+    });
   }
 
   showTooltip(event, item) {
     const tooltip = this.shadowRoot.querySelector(".tooltip");
-    tooltip.innerHTML = `<small>${escapeHtml(yearLabel(item))}</small><br><strong>${escapeHtml(item.title)}</strong><br><span>${escapeHtml((item.domains ?? []).join(" · "))}</span>`;
+    tooltip.innerHTML = `<small>${escapeHtml(yearLabel(item))}</small><strong>${escapeHtml(item.title ?? item.id)}</strong>${item.description ? `<div>${escapeHtml(String(item.description).slice(0,220))}</div>` : ""}`;
     tooltip.classList.add("visible");
     this.moveTooltip(event);
   }
 
   moveTooltip(event) {
-    const tooltip = this.shadowRoot.querySelector(".tooltip");
-    tooltip.style.left = `${event.clientX + 12}px`;
-    tooltip.style.top = `${event.clientY + 12}px`;
+    const tooltip = this.shadowRoot.querySelector(".tooltip"); if (!tooltip?.classList.contains("visible")) return;
+    const x = Math.min(event.clientX + 14, window.innerWidth - tooltip.offsetWidth - 12);
+    const y = Math.min(event.clientY + 14, window.innerHeight - tooltip.offsetHeight - 12);
+    tooltip.style.left = `${Math.max(8,x)}px`; tooltip.style.top = `${Math.max(8,y)}px`;
   }
 
-  hideTooltip() {
-    this.shadowRoot.querySelector(".tooltip")?.classList.remove("visible");
+  hideTooltip() { this.shadowRoot.querySelector(".tooltip")?.classList.remove("visible"); }
+
+  openSelected() {
+    if (!this.selectedId) return;
+    const position = this.positions?.get(this.selectedId); if (!position) return;
+    this.dispatchEvent(new CustomEvent("atlas-open-item", { detail: { item: position.item }, bubbles:true, composed:true }));
   }
 }
 
-if (!customElements.get("atlas-matrix")) {
-  customElements.define("atlas-matrix", AtlasMatrix);
-}
+if (!customElements.get("atlas-matrix")) customElements.define("atlas-matrix", AtlasMatrix);
+
+export { AtlasMatrix };
