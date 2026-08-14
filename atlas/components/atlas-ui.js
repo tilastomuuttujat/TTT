@@ -5,6 +5,7 @@ import "./atlas-timeline.js";
 import "./atlas-network.js";
 import "./atlas-matrix.js";
 import "./atlas-content-browser.js";
+import "./atlas-society-network.js";
 
 export const ATLAS_COMPONENTS = [
   "atlas-stat-card",
@@ -14,6 +15,7 @@ export const ATLAS_COMPONENTS = [
   "atlas-network",
   "atlas-matrix",
   "atlas-content-browser",
+  "atlas-society-network",
 ];
 
 const EMBED_SELECTOR = ".atlas-stage";
