@@ -68,6 +68,14 @@ Näyttää valitun murroskohteen lähimmät relaatiot.
 <atlas-network focus="1990-luvun-lama" depth="1"></atlas-network>
 ```
 
+### `atlas-society-network`
+
+Kevennetty, kosketusohjattu puhelinnäkymä yhteiskunnan rakenteiden verkostosta.
+
+```html
+<atlas-society-network></atlas-society-network>
+```
+
 ## Käyttö hyvinvointivaltio-repositoriossa
 
 ```html
@@ -128,6 +136,7 @@ atlas-network {
 - `atlas-topic.js`: yhdistetty aihekortti
 - `atlas-timeline.js`: aikajana
 - `atlas-network.js`: relaatiokartta
+- `atlas-society-network.js`: puhelimelle optimoitu yhteiskunnan rakenteiden verkosto
 - `ui-demo.html`: kaikkien komponenttien demonäkymä
 
 ## Demo
