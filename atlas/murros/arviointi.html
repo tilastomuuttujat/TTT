@@ -523,11 +523,13 @@ const TIER_TEXT = {
   interpolated: "interpoloitu polun naapureista",
   neighbour: "johdettu relaatioverkon naapureista",
   keyword: "johdettu sanastosta ja murroksen luonteesta",
+  fallback: "lähdeaineistoon perustuva täydentävä tulkinta",
   none: "ei pohja-arviota",
 };
 const TIER_LABEL = {
   curated: "Lähteistetty", interpolated: "Interpoloitu",
-  neighbour: "Naapureista", keyword: "Sanastosta", none: "Ei arviota",
+  neighbour: "Naapureista", keyword: "Sanastosta",
+  fallback: "Lähdetulkinta", none: "Ei arviota",
 };
 const SCALE_TEXT = ["voimakkaasti heikentävä","selvästi heikentävä","lievästi heikentävä",
   "ristiriitainen tai neutraali","lievästi vahvistava","selvästi vahvistava","voimakkaasti vahvistava"];
@@ -667,10 +669,11 @@ async function loadAggregate() {
   const itp = data.filter((a) => a.tier === "interpolated").length;
   const nei = data.filter((a) => a.tier === "neighbour").length;
   const kw = data.filter((a) => a.tier === "keyword").length;
+  const fb = data.filter((a) => a.tier === "fallback").length;
   const none = data.filter((a) => a.tier === "none").length;
   $("#aggBadge").textContent = users
-    ? `${users} solua käyttäjädatasta · pohja: ${cur} lähteistettyä, ${itp} interpoloitua, ${nei} naapureista, ${kw} sanastosta, ${none} tyhjää`
-    : `pohja: ${cur} lähteistettyä · ${itp} interpoloitua · ${nei} naapureista · ${kw} sanastosta · ${none} arvioimatta`;  scheduleLocalAssessmentSnapshot();
+    ? `${users} solua käyttäjädatasta · pohja: ${cur} lähteistettyä, ${itp} interpoloitua, ${nei} naapureista, ${kw} sanastosta, ${fb} lähdetulkintaa, ${none} tyhjää`
+    : `pohja: ${cur} lähteistettyä · ${itp} interpoloitua · ${nei} naapureista · ${kw} sanastosta · ${fb} lähdetulkintaa · ${none} arvioimatta`;  scheduleLocalAssessmentSnapshot();
 }
 async function loadMatrices() {
   const { data, error } = await db.from("matrices").select("id,name").order("created_at");
