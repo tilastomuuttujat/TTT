@@ -285,14 +285,13 @@ body.heatmap-only .lens-head>div{height:190px;overflow:visible}
   <p>Koonti kaikkien käyttäjien arvioista on julkinen. Kun kirjaudut
      sähköpostilla, maalauksesi ja ohituksesi tallentuvat pysyvästi ja
      löytyvät samalla osoitteella miltä tahansa laitteelta.</p>
-  <p style="font-size:12px;color:var(--muted)"><strong>Huomaa:</strong>
-     kirjautumaton istunto luo uuden tunnuksen joka kerta. Merkinnät katoavat
-     kun selain suljetaan tai laite vaihtuu. Käytä sitä vain kokeiluun.</p>
+  <p style="font-size:12px;color:var(--muted)"><strong>Kirjautuminen:</strong>
+     saat sähköpostiisi kertakäyttöisen kirjautumislinkin. Jos käytät paikallista
+     esikatselua, linkki avaa turvallisesti julkaistun arviointisivun.</p>
   <label for="email">Sähköposti</label>
   <input id="email" type="email" autocomplete="email" placeholder="nimi@esimerkki.fi">
   <div class="row">
     <button class="btn hot" id="magicBtn" type="button">Lähetä kirjautumislinkki</button>
-    <button class="btn" id="anonBtn" type="button">Jatka kirjautumatta</button>
     <button class="btn" id="testBtn" type="button">Testaa yhteys</button>
   </div>
   <div id="authMsg"></div>
@@ -509,7 +508,12 @@ const SUPABASE_KEY = "sb_publishable_YNqxZI4Oj-DSjVBoTKhQ2Q_4DchUIBb";
 
 const db = createClient(SUPABASE_URL, SUPABASE_KEY, {
   db: { schema: "arviointi" },
-  auth: { persistSession: true, autoRefreshToken: true },
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: true,
+    flowType: "implicit",
+  },
 });
 
 const LENS_NAMES = {
@@ -554,33 +558,100 @@ const toDirection = (v) => clamp(v, 0, 6) - 3;
 const setMsg = (el, t, ok) => { el.innerHTML = t ? `<div class="notice${ok?" ok":""}">${esc(t)}</div>` : ""; };
 
 /* ---------- Kirjautuminen ---------- */
-async function initAuth() {
-  const { data } = await db.auth.getSession();
-  state.session = data.session;
-  db.auth.onAuthStateChange((_e, s) => {
-    const was = !!state.session; state.session = s;
-    if (!was && s) start();
-    if (was && !s) location.reload();
-  });
-  if (state.session) start();
-  else showDiag("Yhteys muodostettu. Valitse kirjautumistapa.", false);
+const PUBLISHED_AUTH_URL = "https://harrikayhko.fi/atlas/murros/arviointi.html";
+let appStarted = false;
+let authRequestRunning = false;
+
+function cleanAuthUrl() {
+  if (!location.hash && !location.search) return;
+  const params = new URLSearchParams(location.search);
+  const authParams = ["code", "token_hash", "type", "error", "error_code", "error_description"];
+  if (!location.hash.includes("access_token") && !authParams.some((name) => params.has(name))) return;
+  history.replaceState(null, "", location.pathname);
 }
-$("#magicBtn").addEventListener("click", async () => {
+
+function startOnce() {
+  if (appStarted || !state.session) return;
+  appStarted = true;
+  cleanAuthUrl();
+  start().catch((error) => {
+    appStarted = false;
+    showDiag("Arviointinäkymän käynnistys epäonnistui: " + error.message, true);
+  });
+}
+
+async function initAuth() {
+  const { data, error } = await db.auth.getSession();
+  if (error) {
+    showDiag("Tallennetun kirjautumisen lukeminen epäonnistui: " + error.message, true);
+  }
+  state.session = data?.session || null;
+
+  if (state.session) {
+    const validation = await db.auth.getUser();
+    if (validation.error) {
+      await db.auth.signOut({ scope: "local" });
+      state.session = null;
+      showDiag("Aiempi kirjautuminen oli vanhentunut. Lähetä uusi kirjautumislinkki.", false);
+    }
+  }
+
+  db.auth.onAuthStateChange((event, session) => {
+    const hadSession = !!state.session;
+    state.session = session;
+    if (session && (event === "SIGNED_IN" || event === "INITIAL_SESSION" || !hadSession))
+      setTimeout(startOnce, 0);
+    if (hadSession && !session && event === "SIGNED_OUT")
+      location.reload();
+  });
+
+  if (state.session) startOnce();
+  else if (!document.getElementById("diag").textContent)
+    showDiag("Yhteys muodostettu. Lähetä kirjautumislinkki sähköpostiisi.", false);
+}
+
+async function sendMagicLink() {
+  if (authRequestRunning) return;
   const email = $("#email").value.trim();
-  if (!email) return setMsg($("#authMsg"), "Anna sähköpostiosoite.");
+  if (!email || !$("#email").checkValidity())
+    return setMsg($("#authMsg"), "Anna kelvollinen sähköpostiosoite.");
+
+  authRequestRunning = true;
   $("#magicBtn").disabled = true;
-  const { error } = await db.auth.signInWithOtp({
-    email, options:{ emailRedirectTo: location.href.split("#")[0] } });
-  $("#magicBtn").disabled = false;
-  if (error) { setMsg($("#authMsg"), `Lähetys epäonnistui: ${error.message}`);
-    showDiag("Auth-virhe: " + error.message + " · Paluuosoite: " +
-      location.href.split("#")[0] + " · Osoitteen on oltava Redirect URLs -listassa.", true);
-  } else setMsg($("#authMsg"), `Kirjautumislinkki lähetettiin osoitteeseen ${email}.`, true);
-});
-$("#anonBtn").addEventListener("click", async () => {
-  const { error } = await db.auth.signInAnonymously();
-  if (error) showDiag("Anonyymi kirjautuminen ei onnistunut: " + error.message +
-    " · Supabase → Authentication → Providers → Anonymous sign-ins.", true);
+  $("#magicBtn").textContent = "Lähetetään…";
+  const localPreview = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  const redirectTo = localPreview ? PUBLISHED_AUTH_URL : location.origin + location.pathname;
+
+  try {
+    const { error } = await db.auth.signInWithOtp({
+      email,
+      options: {
+        emailRedirectTo: redirectTo,
+        shouldCreateUser: false,
+      },
+    });
+    if (error) throw error;
+    setMsg($("#authMsg"),
+      `Kirjautumislinkki lähetettiin osoitteeseen ${email}. ` +
+      (localPreview ? "Linkki avaa julkaistun arviointisivun." : "Tarkista myös roskapostikansio."),
+      true);
+    showDiag("Kirjautumislinkki lähetetty. Linkki on kertakäyttöinen.", false);
+  } catch (error) {
+    setMsg($("#authMsg"), `Lähetys epäonnistui: ${error.message}`);
+    showDiag("Kirjautumislinkkiä ei voitu lähettää. " + error.message, true);
+  } finally {
+    authRequestRunning = false;
+    $("#magicBtn").disabled = false;
+    $("#magicBtn").textContent = "Lähetä kirjautumislinkki";
+  }
+}
+
+$("#magicBtn").addEventListener("click", sendMagicLink);
+$("#email").addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    sendMagicLink();
+  }
 });
 $("#testBtn").addEventListener("click", async () => {
   showDiag("Testataan yhteyttä…", false);
