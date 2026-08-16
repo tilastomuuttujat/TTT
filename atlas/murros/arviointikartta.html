@@ -1773,9 +1773,9 @@
           wellbeing: "../hyvinvointikerros.json",
         };
 
-        // Arviointilämpökartan julkinen koonti. Koonti on ensisijainen
-        // vaikutussuunnan lähde; paikalliset JSON-arviot jäävät varmistavaksi
-        // fallbackiksi, joten kartta toimii myös jos Supabase ei ole saatavilla.
+        // Arviointilämpökartan julkinen koonti haetaan aina ensin palvelimelta.
+        // Selaimeen tallennetut käyttäjän omat arviot yhdistetään tuoreen koonnin
+        // päälle. Koko paikallista tilannekuvaa käytetään vain verkkovirheen varalla.
         const AGGREGATE_API =
           "https://zzbubbrsgiqsvsovkkmf.supabase.co/rest/v1/lens_aggregate";
         const AGGREGATE_KEY =
@@ -2157,32 +2157,32 @@
               const local = overrides.get(aggregateKey(row.lens_id, row.phenomenon_id));
               return Number.isFinite(local) ? { ...row, local_user_direction: local } : row;
             });
-            return { snapshot, rows, overrideCount: overrides.size };
+            return { snapshot, rows, overrides, overrideCount: overrides.size };
           } catch (error) {
             console.warn("Murroskartta: laitteen arviointivälimuistia ei voitu lukea.", error);
             return null;
           }
         }
 
+        function mergeLocalOverrides(rows, local) {
+          if (!local?.overrides?.size) return rows;
+          return rows.map((row) => {
+            const localDirection = local.overrides.get(aggregateKey(row.lens_id, row.phenomenon_id));
+            return Number.isFinite(localDirection)
+              ? { ...row, local_user_direction: localDirection }
+              : row;
+          });
+        }
+
         async function loadLensAggregate() {
           const local = readLocalAssessmentSnapshot();
-          if (local?.rows?.length) {
-            aggregateStatus = {
-              loaded: true,
-              rows: local.rows.length,
-              userRows: local.rows.filter((row) => row.source === "users" || Number(row.contributor_count) > 0).length,
-              localOverrides: local.overrideCount,
-              source: "localStorage",
-              savedAt: local.snapshot.saved_at || null,
-            };
-            return local.rows;
-          }
 
           try {
             const params = new URLSearchParams({
               select: "phenomenon_id,lens_id,mean_direction,mean_cell,contributor_count,spread,source,seed_direction,tier",
             });
             const response = await fetch(`${AGGREGATE_API}?${params}`, {
+              cache: "no-store",
               headers: {
                 apikey: AGGREGATE_KEY,
                 Authorization: `Bearer ${AGGREGATE_KEY}`,
@@ -2190,17 +2190,31 @@
               },
             });
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
-            const rows = await response.json();
+            const serverRows = await response.json();
+            const rows = mergeLocalOverrides(serverRows, local);
             aggregateStatus = {
               loaded: true,
               rows: rows.length,
               userRows: rows.filter((row) => row.source === "users" || Number(row.contributor_count) > 0).length,
-              localOverrides: 0,
+              localOverrides: local?.overrideCount || 0,
               source: "server",
+              savedAt: local?.snapshot?.saved_at || null,
             };
             return rows;
           } catch (error) {
-            console.warn("Murroskartta: arviointikoontia ei voitu ladata; käytetään paikallista pohjaa.", error);
+            if (local?.rows?.length) {
+              console.warn("Murroskartta: tuoretta arviointikoontia ei voitu ladata; käytetään laitteen varakopiota.", error);
+              aggregateStatus = {
+                loaded: true,
+                rows: local.rows.length,
+                userRows: local.rows.filter((row) => row.source === "users" || Number(row.contributor_count) > 0).length,
+                localOverrides: local.overrideCount,
+                source: "localStorageFallback",
+                savedAt: local.snapshot.saved_at || null,
+              };
+              return local.rows;
+            }
+            console.warn("Murroskartta: arviointikoontia ei voitu ladata eikä paikallista varakopiota löytynyt.", error);
             aggregateStatus = { loaded: false, rows: 0, userRows: 0, localOverrides: 0, source: "none" };
             return [];
           }
@@ -4597,14 +4611,16 @@
         window.addEventListener("storage", (event) => {
           if (event.key !== LOCAL_ASSESSMENT_KEY || !chains) return;
           const local = readLocalAssessmentSnapshot();
-          if (!local?.rows?.length) return;
-          aggregate = new Map(local.rows.map((row) => [aggregateKey(row.lens_id, row.phenomenon_id), row]));
+          if (!local) return;
+          const currentRows = [...aggregate.values()].map(({ local_user_direction, ...row }) => row);
+          const rows = mergeLocalOverrides(currentRows, local);
+          aggregate = new Map(rows.map((row) => [aggregateKey(row.lens_id, row.phenomenon_id), row]));
           aggregateStatus = {
-            loaded: true,
-            rows: local.rows.length,
-            userRows: local.rows.filter((row) => row.source === "users" || Number(row.contributor_count) > 0).length,
+            ...aggregateStatus,
+            loaded: rows.length > 0,
+            rows: rows.length,
+            userRows: rows.filter((row) => row.source === "users" || Number(row.contributor_count) > 0).length,
             localOverrides: local.overrideCount,
-            source: "localStorage",
             savedAt: local.snapshot.saved_at || null,
           };
           render();
