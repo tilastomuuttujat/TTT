@@ -286,13 +286,25 @@ body.heatmap-only .lens-head>div{height:190px;overflow:visible}
      sähköpostilla, maalauksesi ja ohituksesi tallentuvat pysyvästi ja
      löytyvät samalla osoitteella miltä tahansa laitteelta.</p>
   <p style="font-size:12px;color:var(--muted)"><strong>Kirjautuminen:</strong>
-     saat sähköpostiisi kertakäyttöisen kirjautumislinkin. Jos käytät paikallista
-     esikatselua, linkki avaa turvallisesti julkaistun arviointisivun.</p>
+     saat sähköpostiisi kuusinumeroisen kertakäyttökoodin. Syötä koodi alle
+     samalla selaimella. Koodi toimii myös paikallisessa esikatselussa.</p>
   <label for="email">Sähköposti</label>
   <input id="email" type="email" autocomplete="email" placeholder="nimi@esimerkki.fi">
   <div class="row">
-    <button class="btn hot" id="magicBtn" type="button">Lähetä kirjautumislinkki</button>
+    <button class="btn hot" id="magicBtn" type="button">Lähetä koodi</button>
     <button class="btn" id="testBtn" type="button">Testaa yhteys</button>
+  </div>
+  <div id="otpStep" class="hidden" style="margin-top:14px">
+    <label for="otp">Kuusinumeroinen koodi</label>
+    <input id="otp" type="text" inputmode="numeric" autocomplete="one-time-code"
+           pattern="[0-9]{6}" maxlength="6" placeholder="000000"
+           aria-describedby="otpHint">
+    <div class="row">
+      <button class="btn hot" id="verifyOtpBtn" type="button">Vahvista koodi</button>
+      <span id="otpHint" style="font-size:11px;color:var(--muted);align-self:center">
+        Koodi vanhenee Supabasen asetusten mukaisesti.
+      </span>
+    </div>
   </div>
   <div id="authMsg"></div>
   <div id="diag" class="notice" style="display:none"></div>
@@ -558,7 +570,7 @@ const toDirection = (v) => clamp(v, 0, 6) - 3;
 const setMsg = (el, t, ok) => { el.innerHTML = t ? `<div class="notice${ok?" ok":""}">${esc(t)}</div>` : ""; };
 
 /* ---------- Kirjautuminen ---------- */
-const PUBLISHED_AUTH_URL = "https://harrikayhko.fi/atlas/murros/arviointi.html";
+const PENDING_OTP_EMAIL_KEY = "arviointi.pendingOtpEmail";
 let appStarted = false;
 let authRequestRunning = false;
 
@@ -610,7 +622,13 @@ async function initAuth() {
     showDiag("Yhteys muodostettu. Lähetä kirjautumislinkki sähköpostiisi.", false);
 }
 
-async function sendMagicLink() {
+function showOtpStep(email) {
+  $("#email").value = email;
+  $("#otpStep").classList.remove("hidden");
+  $("#otp").focus();
+}
+
+async function sendOtpCode() {
   if (authRequestRunning) return;
   const email = $("#email").value.trim();
   if (!email || !$("#email").checkValidity())
@@ -619,40 +637,85 @@ async function sendMagicLink() {
   authRequestRunning = true;
   $("#magicBtn").disabled = true;
   $("#magicBtn").textContent = "Lähetetään…";
-  const localPreview = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-  const redirectTo = localPreview ? PUBLISHED_AUTH_URL : location.origin + location.pathname;
 
   try {
     const { error } = await db.auth.signInWithOtp({
       email,
-      options: {
-        emailRedirectTo: redirectTo,
-        shouldCreateUser: false,
-      },
+      options: { shouldCreateUser: false },
     });
     if (error) throw error;
+    sessionStorage.setItem(PENDING_OTP_EMAIL_KEY, email);
+    showOtpStep(email);
     setMsg($("#authMsg"),
-      `Kirjautumislinkki lähetettiin osoitteeseen ${email}. ` +
-      (localPreview ? "Linkki avaa julkaistun arviointisivun." : "Tarkista myös roskapostikansio."),
+      `Kuusinumeroinen kirjautumiskoodi lähetettiin osoitteeseen ${email}. Tarkista myös roskapostikansio.`,
       true);
-    showDiag("Kirjautumislinkki lähetetty. Linkki on kertakäyttöinen.", false);
+    showDiag("Koodi lähetetty. Syötä sähköpostissa oleva kuusinumeroinen koodi.", false);
   } catch (error) {
-    setMsg($("#authMsg"), `Lähetys epäonnistui: ${error.message}`);
-    showDiag("Kirjautumislinkkiä ei voitu lähettää. " + error.message, true);
+    setMsg($("#authMsg"), `Koodin lähetys epäonnistui: ${error.message}`);
+    showDiag("Kirjautumiskoodia ei voitu lähettää. " + error.message, true);
   } finally {
     authRequestRunning = false;
     $("#magicBtn").disabled = false;
-    $("#magicBtn").textContent = "Lähetä kirjautumislinkki";
+    $("#magicBtn").textContent = "Lähetä koodi uudelleen";
   }
 }
 
-$("#magicBtn").addEventListener("click", sendMagicLink);
+async function verifyEmailOtp() {
+  if (authRequestRunning) return;
+  const email = ($("#email").value.trim() || sessionStorage.getItem(PENDING_OTP_EMAIL_KEY) || "").trim();
+  const token = $("#otp").value.replace(/\D/g, "");
+
+  if (!email || !$("#email").checkValidity())
+    return setMsg($("#authMsg"), "Anna ensin sähköpostiosoite.");
+  if (!/^\d{6}$/.test(token))
+    return setMsg($("#authMsg"), "Syötä sähköpostissa oleva kuusinumeroinen koodi.");
+
+  authRequestRunning = true;
+  $("#verifyOtpBtn").disabled = true;
+  $("#verifyOtpBtn").textContent = "Vahvistetaan…";
+
+  try {
+    const { data, error } = await db.auth.verifyOtp({
+      email,
+      token,
+      type: "email",
+    });
+    if (error) throw error;
+    if (!data?.session) throw new Error("Istuntoa ei muodostettu.");
+    sessionStorage.removeItem(PENDING_OTP_EMAIL_KEY);
+    state.session = data.session;
+    setMsg($("#authMsg"), "Kirjautuminen onnistui.", true);
+    startOnce();
+  } catch (error) {
+    setMsg($("#authMsg"), `Koodia ei hyväksytty: ${error.message}`);
+    showDiag("Koodi on virheellinen tai vanhentunut. Voit lähettää uuden koodin.", true);
+    $("#otp").select();
+  } finally {
+    authRequestRunning = false;
+    $("#verifyOtpBtn").disabled = false;
+    $("#verifyOtpBtn").textContent = "Vahvista koodi";
+  }
+}
+
+$("#magicBtn").addEventListener("click", sendOtpCode);
+$("#verifyOtpBtn").addEventListener("click", verifyEmailOtp);
 $("#email").addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     event.preventDefault();
-    sendMagicLink();
+    sendOtpCode();
   }
 });
+$("#otp").addEventListener("input", () => {
+  $("#otp").value = $("#otp").value.replace(/\D/g, "").slice(0, 6);
+});
+$("#otp").addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    verifyEmailOtp();
+  }
+});
+const pendingOtpEmail = sessionStorage.getItem(PENDING_OTP_EMAIL_KEY);
+if (pendingOtpEmail) showOtpStep(pendingOtpEmail);
 $("#testBtn").addEventListener("click", async () => {
   showDiag("Testataan yhteyttä…", false);
   try {
