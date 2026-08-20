@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Murroskartta 1800–2050 · diagnoositila</title>
+<meta name="description" content="Murroskartan rinnakkainen diagnoositila näyttää, missä verkostoituminen alkaa muuttua korjaavaksi kerrostumiseksi.">
+<style>
+:root{
+  --paper:#fffdf8;--paper2:#faf6ee;--ink:#15293c;--ink2:#3c4d5e;--muted:#6d7883;
+  --line:#d6cec0;--soft:#ece5d9;--hot:#ad4128;--good:#2f6b4f;--purple:#74568c;
+  --shadow:0 1px 2px rgba(24,32,40,.05),0 18px 46px -22px rgba(24,32,40,.35);
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Inter,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#f2ede3;font-family:var(--sans);color:var(--ink)}
+.base{position:fixed;inset:0;width:100%;height:100%;border:0;background:var(--paper)}
+.diagnose-toggle{
+  position:fixed;right:18px;bottom:18px;z-index:1002;border:1px solid color-mix(in srgb,var(--hot) 55%,var(--line));
+  background:var(--hot);color:#fff;border-radius:999px;padding:10px 15px;box-shadow:var(--shadow);
+  font:700 11px var(--sans);letter-spacing:.04em;cursor:pointer
+}
+.diagnose-toggle:hover{transform:translateY(-1px)}
+.drawer{
+  position:fixed;z-index:1001;top:0;right:0;height:100%;width:min(560px,96vw);
+  background:color-mix(in srgb,var(--paper) 97%,transparent);backdrop-filter:blur(18px);
+  border-left:1px solid var(--line);box-shadow:-18px 0 46px -28px rgba(24,32,40,.55);
+  transform:translateX(102%);transition:transform .24s ease;display:flex;flex-direction:column
+}
+.drawer.open{transform:translateX(0)}
+.drawer-head{padding:18px 18px 12px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,var(--paper2),transparent)}
+.drawer-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.kicker{font-size:9px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--hot)}
+.drawer h1{font:400 29px/1.08 var(--serif);margin:6px 0}
+.drawer .lede{margin:0;color:var(--ink2);font-size:11px;line-height:1.55}
+.close{border:1px solid var(--line);background:var(--paper2);border-radius:999px;width:34px;height:34px;cursor:pointer}
+.sync{margin-top:10px;display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.sync button,.filter button{border:1px solid var(--line);background:var(--paper2);border-radius:999px;padding:6px 9px;font-size:9.5px;cursor:pointer}
+.sync .status{font-size:9px;color:var(--muted)}
+.filter{padding:10px 18px;border-bottom:1px solid var(--line);display:flex;gap:6px;flex-wrap:wrap}
+.filter button[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.body{overflow:auto;padding:14px 18px 28px}
+.chartbox{border:1px solid var(--line);border-radius:12px;background:var(--paper);overflow:hidden;margin-bottom:12px}
+.charthead{padding:9px 11px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.charthead b{font:400 15px var(--serif)}.charthead span{font-size:8.5px;color:var(--muted)}
+#diagChart{width:100%;height:190px;display:block}
+.axis{stroke:var(--line);stroke-width:1}.curve{fill:none;stroke:var(--hot);stroke-width:2.7;stroke-linecap:round;stroke-linejoin:round}
+.curve2{fill:none;stroke:var(--purple);stroke-width:1.8;stroke-dasharray:5 5;stroke-linecap:round}
+.ytxt,.xtxt{fill:var(--muted);font:8px var(--mono)}.mark{fill:var(--paper);stroke:var(--ink2);stroke-width:1.2;cursor:pointer}
+.mark.repair{stroke:var(--hot);stroke-width:2}.mark.lock{stroke:var(--purple);stroke-width:2}.mark.selected{fill:var(--hot);stroke:#fff;stroke-width:2}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px}
+.card{border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--paper2)}
+.card b{display:block;font:400 19px var(--serif)}.card span{display:block;font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.items{display:grid;gap:7px}.row{border:1px solid var(--line);border-radius:10px;padding:9px 10px;background:var(--paper);cursor:pointer}
+.row:hover,.row.active{border-color:var(--ink)}.row-top{display:flex;justify-content:space-between;gap:8px}.row strong{font-size:10.5px}.row .year{font:9px var(--mono);color:var(--muted)}
+.row p{margin:4px 0 0;color:var(--muted);font-size:9.5px;line-height:1.4}
+.role{display:inline-block;margin-top:5px;border-radius:999px;padding:2px 6px;font-size:8px;background:var(--soft);color:var(--ink2)}
+.detail{margin-top:12px;border:1px solid var(--line);border-radius:12px;background:var(--paper);padding:12px}
+.detail[hidden]{display:none}.detail h2{font:400 22px/1.15 var(--serif);margin:4px 0}.detail .meta{font:9px var(--mono);color:var(--muted)}
+.story{margin:9px 0;padding:9px 10px;border-left:2px solid var(--hot);background:var(--paper2);font-size:10px;line-height:1.5}
+.story b{display:block;margin-bottom:3px}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:10px 0}
+.metric{border:1px solid var(--line);border-radius:8px;padding:7px}.metric span{display:block;font-size:7.5px;color:var(--muted)}.metric b{font:400 15px var(--serif)}
+.action{border:1px solid color-mix(in srgb,var(--good) 30%,var(--line));background:color-mix(in srgb,var(--good) 4%,var(--paper2));border-radius:9px;padding:9px}
+.action b{font-size:8px;text-transform:uppercase;letter-spacing:.09em;color:var(--good)}.action p{font-size:10px;line-height:1.5;margin:4px 0 0}
+.note{margin-top:10px;font-size:8.5px;line-height:1.45;color:var(--muted)}
+@media(max-width:620px){.drawer{width:100vw}.diagnose-toggle{right:10px;bottom:10px}.metrics{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){.drawer{transition:none}}
+</style>
+</head>
+<body>
+<iframe id="baseMap" class="base" src="./arviointikartta.html" title="Murroskartta"></iframe>
+<button id="diagToggle" class="diagnose-toggle" aria-expanded="false" aria-controls="diagnosis">Diagnoosi · korjausketju</button>
+<aside id="diagnosis" class="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <div class="drawer-top">
+      <div>
+        <div class="kicker">Paine · korjauskierre · vipupiste</div>
+        <h1>Missä verkko alkaa korjata itseään?</h1>
+        <p class="lede">Diagnoosi erottaa hyödyllisen verkostoitumisen kohdista, joissa uusi säädös tai uudistus alkaa ennen kaikkea sovittaa yhteen aikaisempien ratkaisujen synnyttämiä riippuvuuksia.</p>
+      </div>
+      <button id="diagClose" class="close" aria-label="Sulje diagnoosi">×</button>
+    </div>
+    <div class="sync">
+      <button id="syncBtn">Kohdista Murroskartan valintaan</button>
+      <span id="syncStatus" class="status">Ei valintaa.</span>
+    </div>
+  </div>
+  <div class="filter" id="filters">
+    <button data-filter="all" aria-pressed="true">Kaikki</button>
+    <button data-filter="repair" aria-pressed="false">Korjaavat kerrokset</button>
+    <button data-filter="carry" aria-pressed="false">Kantavat solmut</button>
+    <button data-filter="lock" aria-pressed="false">Toimeenpanolukot</button>
+  </div>
+  <div class="body">
+    <div class="summary">
+      <div class="card"><b id="nAll">–</b><span>linkitettyä tapausta</span></div>
+      <div class="card"><b id="nRepair">–</b><span>korjaavaa kerrosta</span></div>
+      <div class="card"><b id="nHigh">–</b><span>korkea kerrostumisriski</span></div>
+    </div>
+    <div class="chartbox">
+      <div class="charthead"><b>Kerrostumispaine historiassa</b><span>punainen = paine · violetti = korjaavien kerrosten osuus</span></div>
+      <svg id="diagChart" viewBox="0 0 520 190" preserveAspectRatio="none"></svg>
+    </div>
+    <div id="items" class="items"></div>
+    <section id="detail" class="detail" hidden></section>
+    <p id="methodNote" class="note"></p>
+  </div>
+</aside>
+<script>
+const DATA_FILE="./painekartta-data.json";
+const S={data:[],filter:"all",selected:null};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const fmt=v=>Number.isFinite(v)?Number(v).toFixed(1):"–";
+
+function actionFor(r){
+  const n=Number(r.network)||0,c=Number(r.change)||0,d=Number(r.delegation)||0,co=Number(r.coamend)||0;
+  if(r.repair_signal && (r.layering_risk||0)>=60) return "Tutki, voidaanko tämä korjaava kerros korvata muuttamalla sitä aikaisempaa rakennetta, jonka sivuvaikutusta ratkaisu joutuu sovittamaan. Tavoite on vähentää poikkeuksia ja rinnakkaisia reittejä.";
+  if(d>=70) return "Lyhennä toimeenpanoketjua: yhdistä vastuita, vakioi rajapintoja ja poista sellaisia menettelykerroksia, joita muutos ei aidosti tarvitse.";
+  if(co>=45) return "Erota välttämättömät yhteismuutokset tarpeettomista riippuvuuksista. Tavoite on, ettei yhden lain muuttaminen automaattisesti pakota muuttamaan useita muita.";
+  if(n>=65) return "Kyse on kantavasta solmusta. Tee ennen parametrimuutosta vaikutusketjutesti ja suojaa ne rajapinnat, joiden varassa muu järjestelmä toimii.";
+  return "Säilytä paikallinen muutoskyky. Vältä uusien riippuvuuksien lisäämistä, ellei niiden hyöty ole suurempi kuin tuleva yhteensovittamisen kustannus.";
+}
+function roleClass(r){
+  if(r.role==="korjaava kerros") return "repair";
+  if(r.role==="toimeenpanolukko") return "lock";
+  if(r.role==="kantava solmu") return "carry";
+  return "base";
+}
+function visible(r){
+  if(S.filter==="all") return true;
+  if(S.filter==="repair") return r.role==="korjaava kerros";
+  if(S.filter==="carry") return r.role==="kantava solmu";
+  if(S.filter==="lock") return r.role==="toimeenpanolukko";
+  return true;
+}
+function openDiag(){
+  $("#diagnosis").classList.add("open"); $("#diagnosis").setAttribute("aria-hidden","false");
+  $("#diagToggle").setAttribute("aria-expanded","true");
+}
+function closeDiag(){
+  $("#diagnosis").classList.remove("open"); $("#diagnosis").setAttribute("aria-hidden","true");
+  $("#diagToggle").setAttribute("aria-expanded","false");
+}
+$("#diagToggle").onclick=openDiag; $("#diagClose").onclick=closeDiag;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDiag()});
+
+function series(){
+  const years=[]; for(let y=1880;y<=2025;y+=5) years.push(y);
+  return years.map(year=>{
+    const active=S.data.filter(r=>r.year_start<=year && Number.isFinite(r.layering_risk));
+    const weight=active.reduce((s,r)=>s+(r.importance||3),0)||1;
+    const pressure=active.reduce((s,r)=>s+r.layering_risk*(r.importance||3),0)/weight;
+    const recent=S.data.filter(r=>r.year_start<=year && r.year_start>=year-20);
+    const repair=recent.length?100*recent.filter(r=>r.repair_signal).length/recent.length:0;
+    return {year,pressure,repair};
+  });
+}
+function curve(points){
+  if(points.length<2)return "";
+  let d=`M ${points[0][0]} ${points[0][1]}`;
+  for(let i=1;i<points.length;i++){
+    const [x0,y0]=points[i-1],[x1,y1]=points[i],mx=(x0+x1)/2;
+    d+=` C ${mx} ${y0}, ${mx} ${y1}, ${x1} ${y1}`;
+  }
+  return d;
+}
+function drawChart(){
+  const W=520,H=190,L=30,R=10,T=14,B=24;
+  const X=y=>L+(y-1880)/(2025-1880)*(W-L-R),Y=v=>T+(100-v)/100*(H-T-B);
+  let out="";
+  for(let y=1880;y<=2020;y+=20) out+=`<line class="axis" x1="${X(y)}" x2="${X(y)}" y1="${T}" y2="${H-B}"/><text class="xtxt" x="${X(y)}" y="${H-7}" text-anchor="middle">${y}</text>`;
+  for(let v=0;v<=100;v+=25) out+=`<line class="axis" x1="${L}" x2="${W-R}" y1="${Y(v)}" y2="${Y(v)}"/><text class="ytxt" x="${L-4}" y="${Y(v)+3}" text-anchor="end">${v}</text>`;
+  const s=series(),p=s.map(x=>[X(x.year),Y(x.pressure||0)]),q=s.map(x=>[X(x.year),Y(x.repair||0)]);
+  out+=`<path class="curve" d="${curve(p)}"/><path class="curve2" d="${curve(q)}"/>`;
+  S.data.filter(visible).forEach(r=>{
+    const x=X(r.year_start),y=Y(Math.max(4,Math.min(96,r.layering_risk||35))),cls=roleClass(r)+(S.selected===r.item_id?" selected":"");
+    out+=`<circle class="mark ${cls}" data-id="${esc(r.item_id)}" cx="${x}" cy="${y}" r="4.5"/>`;
+  });
+  $("#diagChart").innerHTML=out;
+  $("#diagChart").querySelectorAll(".mark").forEach(n=>n.onclick=()=>select(n.dataset.id,true));
+}
+function renderList(){
+  const a=S.data.filter(visible).sort((x,y)=>(y.layering_risk||0)-(x.layering_risk||0));
+  $("#items").innerHTML=a.map(r=>`<article class="row ${S.selected===r.item_id?"active":""}" data-id="${esc(r.item_id)}"><div class="row-top"><strong>${esc(r.statute_title||r.item_title)}</strong><span class="year">${r.year_start}</span></div><p>${esc(r.problem)}</p><span class="role">${esc(r.role)} · riski ${fmt(r.layering_risk)}</span></article>`).join("");
+  $("#items").querySelectorAll(".row").forEach(n=>n.onclick=()=>select(n.dataset.id,true));
+}
+function renderDetail(r){
+  if(!r){$("#detail").hidden=true;return}
+  $("#detail").hidden=false;
+  const metrics=[["verkosto",r.network],["muutostahti",r.change],["delegaatio",r.delegation],["yhteismuutos",r.coamend],["järjestelmäpaino",r.system_weight],["kerrostumisriski",r.layering_risk]];
+  $("#detail").innerHTML=`<div class="kicker">${esc(r.role)}</div><h2>${esc(r.statute_title||r.item_title)}</h2><div class="meta">${r.year_start} · ${esc(r.statute_id)}</div>
+    <div class="story"><b>1 · Alkuperäinen ongelma</b>${esc(r.problem)}</div>
+    <div class="story"><b>2 · Ratkaisu ja uusi kytkentä</b>${esc(r.mechanism)}</div>
+    <div class="story"><b>3 · Pitkä vaikutus</b>${esc(r.long_effect)}</div>
+    <div class="metrics">${metrics.map(([k,v])=>`<div class="metric"><span>${k}</span><b>${fmt(v)}</b></div>`).join("")}</div>
+    <div class="action"><b>Mitä voisi purkaa?</b><p>${esc(actionFor(r))}</p></div>`;
+}
+function select(id,scroll=false){
+  const r=S.data.find(x=>x.item_id===id || x.statute_id===id);
+  if(!r)return false;
+  S.selected=r.item_id; renderList(); drawChart(); renderDetail(r); openDiag();
+  $("#syncStatus").textContent=`Kohdistettu: ${r.item_title}`;
+  if(scroll) $("#detail").scrollIntoView({behavior:"smooth",block:"nearest"});
+  return true;
+}
+function updateSummary(){
+  $("#nAll").textContent=S.data.length;
+  $("#nRepair").textContent=S.data.filter(r=>r.role==="korjaava kerros").length;
+  $("#nHigh").textContent=S.data.filter(r=>(r.layering_risk||0)>=70).length;
+}
+$("#filters").querySelectorAll("button").forEach(b=>b.onclick=()=>{
+  S.filter=b.dataset.filter;
+  $("#filters").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false"));
+  renderList();drawChart();
+});
+
+function currentBaseSelection(){
+  try{
+    const doc=$("#baseMap").contentDocument;
+    if(!doc)return null;
+    const active=doc.querySelector(".node.active,[data-id].active,.active[data-key],.active[data-node-id]");
+    if(!active)return null;
+    return active.dataset.id||active.dataset.key||active.dataset.nodeId||active.getAttribute("data-id")||null;
+  }catch(e){return null}
+}
+function syncFromBase(){
+  const id=currentBaseSelection();
+  if(!id){$("#syncStatus").textContent="Murroskartasta ei löytynyt aktiivista solmua.";return}
+  if(!select(id)) $("#syncStatus").textContent=`Valinta ${id} ei vielä sisälly Lakikartta-diagnoosiaineistoon.`;
+}
+$("#syncBtn").onclick=syncFromBase;
+$("#baseMap").addEventListener("load",()=>{
+  try{
+    const doc=$("#baseMap").contentDocument;
+    const obs=new MutationObserver(()=>{const id=currentBaseSelection();if(id && S.data.some(r=>r.item_id===id))select(id)});
+    obs.observe(doc.body,{subtree:true,attributes:true,attributeFilter:["class"]});
+  }catch(e){}
+});
+
+fetch(DATA_FILE,{cache:"no-store"}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(j=>{
+  S.data=Array.isArray(j)?j:(j.items||[]);
+  $("#methodNote").textContent=j.method_note||"Diagnoosi on tutkimuksellinen tulkinta, ei kausaalinen vaikutusarvio.";
+  updateSummary();renderList();drawChart();
+}).catch(err=>{
+  $("#items").innerHTML=`<div class="row"><strong>Diagnoosiaineisto ei latautunut</strong><p>${esc(err.message)} · varmista että ${esc(DATA_FILE)} on samassa hakemistossa.</p></div>`;
+});
+</script>
+</body>
+</html>
