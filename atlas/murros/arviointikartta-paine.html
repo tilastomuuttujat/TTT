@@ -3,318 +3,100 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Murroskartta 1800–2050 · diagnoositila</title>
-<meta name="description" content="Murroskartta ja avautuva Atlas–Lakikartta-diagnoosi samassa DOM-näkymässä.">
+<title>Murroskartta 1800–2050 · painekartta</title>
+<meta name="description" content="Murroskartta ja Atlas–Lakikartta-painediagnoosi samassa näkymässä.">
 <style id="diag-bootstrap-style">
-  html.diag-loading body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#f2ede3;color:#15293c}
-  #diagBootstrap{min-height:100vh;display:grid;place-items:center;padding:30px}
-  #diagBootstrap .box{padding:18px 22px;border:1px solid #d6cec0;border-radius:14px;background:#fffdf8}
-  #diagBootstrap strong{display:block;margin-bottom:5px}
+html.diag-loading body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:#f2ede3;color:#15293c}
+#diagBootstrap{min-height:100vh;display:grid;place-items:center;padding:30px}
+#diagBootstrap .box{padding:18px 22px;border:1px solid #d6cec0;border-radius:14px;background:#fffdf8}
+#diagBootstrap strong{display:block;margin-bottom:5px}
 </style>
 </head>
 <body>
-<div id="diagBootstrap"><div class="box"><strong>Ladataan Murroskarttaa…</strong><span>Arviointikartta ja diagnoosiaineisto yhdistetään samaan näkymään.</span></div></div>
-
+<div id="diagBootstrap"><div class="box"><strong>Ladataan painekarttaa…</strong><span>Murroskartta ja painediagnoosi yhdistetään samaan näkymään.</span></div></div>
 <script>
 (() => {
-  "use strict";
-
-  const BASE_HTML = "./arviointikartta.html";
-  const DIAG_DATA = "./painekartta-data.json";
-
-  const DIAG_CSS = `
-  #diagToggle{
-    position:fixed;right:18px;bottom:18px;z-index:10020;
-    border:1px solid var(--line,#d6cec0);border-radius:999px;
-    padding:10px 15px;background:var(--ink,#15293c);color:var(--paper,#fffdf8);
-    box-shadow:0 12px 34px -18px rgba(0,0,0,.55);cursor:pointer;
-    font:700 11px/1 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
-    letter-spacing:.03em
-  }
-  #diagToggle:hover{transform:translateY(-1px)}
-  #diagDrawer{
-    position:fixed;z-index:10010;right:14px;top:14px;bottom:14px;
-    width:min(560px,calc(100vw - 28px));display:flex;flex-direction:column;
-    background:var(--paper,#fffdf8);border:1px solid var(--line,#d6cec0);
-    border-radius:18px;box-shadow:0 24px 70px -28px rgba(0,0,0,.62);
-    transform:translateX(calc(100% + 35px));transition:transform .25s ease;
-    overflow:hidden;color:var(--ink,#15293c)
-  }
-  #diagDrawer[data-open="true"]{transform:translateX(0)}
-  .diag-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;
-    padding:15px 16px 13px;border-bottom:1px solid var(--line,#d6cec0);
-    background:linear-gradient(180deg,var(--paper2,#faf6ee),transparent)}
-  .diag-kicker{font:800 9px/1.3 ui-sans-serif,system-ui;letter-spacing:.16em;text-transform:uppercase;color:var(--hot,#ad4128)}
-  .diag-head h2{font:400 23px/1.08 "Iowan Old Style",Georgia,serif;margin:5px 0 3px}
-  .diag-head p{margin:0;max-width:47ch;font-size:10px;line-height:1.45;color:var(--muted,#6d7883)}
-  .diag-close{border:1px solid var(--line,#d6cec0);background:var(--paper,#fffdf8);
-    width:31px;height:31px;border-radius:50%;cursor:pointer;font-size:16px}
-  .diag-tabs{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--line,#d6cec0)}
-  .diag-tab{border:1px solid var(--line,#d6cec0);border-radius:999px;background:var(--paper2,#faf6ee);
-    padding:5px 8px;font-size:9.5px;cursor:pointer;color:var(--muted,#6d7883)}
-  .diag-tab[aria-pressed="true"]{background:var(--ink,#15293c);border-color:var(--ink,#15293c);color:var(--paper,#fffdf8)}
-  .diag-content{display:grid;grid-template-columns:205px minmax(0,1fr);min-height:0;flex:1}
-  .diag-list{overflow:auto;border-right:1px solid var(--line,#d6cec0);padding:7px}
-  .diag-item{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid color-mix(in srgb,var(--line,#d6cec0) 60%,transparent);
-    background:transparent;padding:8px 7px;cursor:pointer}
-  .diag-item:hover,.diag-item[aria-current="true"]{background:var(--paper2,#faf6ee)}
-  .diag-item b{display:block;font-size:10px;line-height:1.3}
-  .diag-item span{display:flex;justify-content:space-between;gap:6px;margin-top:3px;font-size:8.5px;color:var(--muted,#6d7883)}
-  .diag-item i{display:block;height:3px;margin-top:5px;border-radius:9px;background:var(--soft,#ece5d9);overflow:hidden}
-  .diag-item i:after{content:"";display:block;height:100%;width:var(--w,0%);background:var(--hot,#ad4128)}
-  .diag-detail{overflow:auto;padding:14px 15px}
-  .diag-role{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--hot,#ad4128)}
-  .diag-detail h3{font:400 24px/1.08 "Iowan Old Style",Georgia,serif;margin:5px 0 3px}
-  .diag-meta{font-size:9px;color:var(--muted,#6d7883);margin-bottom:10px}
-  .diag-story{border-left:2px solid var(--line,#d6cec0);padding:7px 9px;margin:7px 0;background:var(--paper2,#faf6ee);font-size:10px;line-height:1.48}
-  .diag-story b{display:block;margin-bottom:2px;color:var(--ink,#15293c)}
-  .diag-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:10px}
-  .diag-metric{padding:7px;border:1px solid var(--line,#d6cec0);border-radius:8px}
-  .diag-metric span{display:block;font-size:8px;color:var(--muted,#6d7883)}
-  .diag-metric b{font:400 16px/1.1 "Iowan Old Style",Georgia,serif}
-  .diag-action{margin-top:10px;padding:10px;border:1px solid var(--line,#d6cec0);border-radius:10px;
-    background:color-mix(in srgb,var(--future,#2f6b4f) 5%,var(--paper2,#faf6ee))}
-  .diag-action b{font-size:9px;text-transform:uppercase;letter-spacing:.1em;color:var(--future,#2f6b4f)}
-  .diag-action p{margin:5px 0 0;font-size:10px;line-height:1.5;color:var(--ink2,#3c4d5e)}
-  .diag-note{margin-top:10px;font-size:8.5px;line-height:1.45;color:var(--muted,#6d7883)}
-  .diag-sync{margin-top:8px;padding-top:8px;border-top:1px solid var(--line,#d6cec0);
-    font:italic 12px/1.45 "Iowan Old Style",Georgia,serif}
-  @media(max-width:720px){
-    #diagDrawer{right:7px;left:7px;top:7px;bottom:7px;width:auto}
-    .diag-content{grid-template-columns:1fr}
-    .diag-list{max-height:190px;border-right:0;border-bottom:1px solid var(--line,#d6cec0)}
-  }`;
-
-  let diagData = [];
-  let selectedId = null;
-  let filter = "all";
-
-  const esc = s => String(s ?? "").replace(/[&<>"']/g, m => ({
-    "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"
-  }[m]));
-  const fmt = v => Number.isFinite(+v) ? (+v).toFixed(1) : "–";
-
-  function normalize(raw){
-    const arr = Array.isArray(raw) ? raw : (raw?.items || raw?.data || []);
-    return arr.map(r => ({
-      ...r,
-      item_id: r.item_id || r.id,
-      item_title: r.item_title || r.title || r.label || r.statute_title || r.item_id,
-      statute_title: r.statute_title || r.law_title || r.item_title || r.title,
-      year_start: +(r.year_start ?? r.year ?? r.statute_year ?? 0),
-      network: +(r.network ?? r.network_component ?? NaN),
-      change: +(r.change ?? r.legislative_change_intensity ?? NaN),
-      delegation: +(r.delegation ?? r.delegation_depth_score ?? NaN),
-      coamend: +(r.coamend ?? r.co_amendment_centrality ?? NaN),
-      budget: +(r.budget ?? r.budget_component ?? NaN),
-      system_weight: +(r.system_weight ?? r.institutional_system_weight ?? NaN),
-      layering_risk: +(r.layering_risk ?? r.pressure ?? NaN),
-      repair_signal: !!(r.repair_signal ?? (r.role === "korjaava kerros")),
-      role: r.role || "perusrakenne"
-    })).filter(r => r.item_id);
-  }
-
-  function roleOf(r){
-    if(r.role) return r.role;
-    if(r.repair_signal) return "korjaava kerros";
-    if(Number.isFinite(r.delegation) && r.delegation >= 70) return "toimeenpanolukko";
-    if(Number.isFinite(r.network) && r.network >= 65) return "kantava solmu";
-    return "perusrakenne";
-  }
-
-  function filtered(){
-    return diagData.filter(r => {
-      const role = roleOf(r);
-      if(filter === "repair") return role === "korjaava kerros";
-      if(filter === "carry") return role === "kantava solmu";
-      if(filter === "lock") return role === "toimeenpanolukko";
-      return true;
-    }).sort((a,b) => (b.layering_risk||0) - (a.layering_risk||0));
-  }
-
-  function actionFor(r){
-    const n=r.network||0,c=r.change||0,d=r.delegation||0,co=r.coamend||0;
-    if(r.repair_signal && (r.layering_risk||0)>=60)
-      return "Tutki, voidaanko myöhempi korjaava kerros korvata muuttamalla sitä aiempaa rakennetta, jonka sivuvaikutusta tai yhteensovitusongelmaa se joutuu paikkaamaan.";
-    if(d>=70)
-      return "Lyhennä toimeenpanoketjua: yhdistä vastuita, vakioi rajapintoja ja poista sellaisia delegaatiokerroksia, jotka tekevät muutoksesta järjestelmätasoisen.";
-    if(co>=45)
-      return "Erota välttämättömät yhteismuutokset sellaisista kytkennöistä, jotka voidaan korvata vakaalla rajapinnalla tai yhteisellä perussäännöllä.";
-    if(n>=65)
-      return "Suojaa kantavan solmun rajapinnat ja tee vaikutusketjutesti ennen parametrimuutosta. Tavoite ei ole purkaa hyödyllistä verkkoa vaan vähentää pakollista kytkentää.";
-    if(c>=65)
-      return "Korkea muutostahti viittaa jatkuvaan säätämiseen. Selvitä, onko toistuvien parametrikorjausten taustalla yksi pysyvä mekanismi, jota voisi muuttaa kerralla.";
-    return "Säilytä paikallinen muutoskyky. Vältä uuden poikkeuksen tai rinnakkaisen reitin lisäämistä ilman, että jokin vanha riippuvuus samalla poistuu.";
-  }
-
-  function injectDiagUI(){
-    const style = document.createElement("style");
-    style.id = "diagIntegratedStyle";
-    style.textContent = DIAG_CSS;
-    document.head.appendChild(style);
-
-    const toggle = document.createElement("button");
-    toggle.id = "diagToggle";
-    toggle.type = "button";
-    toggle.textContent = "Diagnoosi · korjausketju";
-
-    const drawer = document.createElement("aside");
-    drawer.id = "diagDrawer";
-    drawer.dataset.open = "false";
-    drawer.setAttribute("aria-label","Verkoston korjausketjun diagnoosi");
-    drawer.innerHTML = `
-      <div class="diag-head">
-        <div><div class="diag-kicker">Atlas × Lakikartta</div>
-          <h2>Missä verkosto alkaa korjata itseään?</h2>
-          <p>Valitse Murroskartan solmu tai selaa säädöksiä. Diagnoosi erottaa alkuperäisen ongelman, syntyneen kytkennän ja mahdollisen myöhemmän korjauskerroksen.</p>
-        </div>
-        <button class="diag-close" type="button" aria-label="Sulje diagnoosi">×</button>
-      </div>
-      <div class="diag-tabs">
-        <button class="diag-tab" data-filter="all" aria-pressed="true">Kaikki</button>
-        <button class="diag-tab" data-filter="repair" aria-pressed="false">Korjaavat kerrokset</button>
-        <button class="diag-tab" data-filter="carry" aria-pressed="false">Kantavat solmut</button>
-        <button class="diag-tab" data-filter="lock" aria-pressed="false">Toimeenpanolukot</button>
-      </div>
-      <div class="diag-content">
-        <div class="diag-list" id="diagList"></div>
-        <div class="diag-detail" id="diagDetail"></div>
-      </div>`;
-
-    document.body.append(toggle, drawer);
-    toggle.onclick = () => drawer.dataset.open = drawer.dataset.open === "true" ? "false" : "true";
-    drawer.querySelector(".diag-close").onclick = () => drawer.dataset.open = "false";
-    drawer.querySelectorAll(".diag-tab").forEach(b => b.onclick = () => {
-      filter = b.dataset.filter;
-      drawer.querySelectorAll(".diag-tab").forEach(x =>
-        x.setAttribute("aria-pressed", x === b ? "true" : "false"));
-      renderDiagList();
-    });
-
-    document.addEventListener("keydown", e => {
-      if(e.key === "Escape" && drawer.dataset.open === "true") drawer.dataset.open = "false";
-    });
-
-    document.addEventListener("click", e => {
-      const node = e.target.closest?.(".node");
-      if(!node || node.closest("#diagDrawer")) return;
-      const id = node.dataset?.id || node.getAttribute("data-id") ||
-                 node.id || node.querySelector?.("[data-id]")?.dataset?.id;
-      if(id) syncFromAtlas(id);
-    }, true);
-
-    renderDiagList();
-  }
-
-  function syncFromAtlas(id){
-    const exact = diagData.find(r => r.item_id === id);
-    const loose = exact || diagData.find(r =>
-      r.item_id?.includes(id) || id.includes?.(r.item_id) ||
-      r.statute_id === id
-    );
-    if(!loose) return;
-    selectedId = loose.item_id;
-    renderDiagList();
-    renderDiagDetail(loose, true);
-    document.getElementById("diagDrawer").dataset.open = "true";
-  }
-
-  function renderDiagList(){
-    const list = document.getElementById("diagList");
-    if(!list) return;
-    const arr = filtered();
-    if(!selectedId || !arr.some(r => r.item_id === selectedId)) selectedId = arr[0]?.item_id || null;
-    list.innerHTML = arr.map(r => `
-      <button class="diag-item" data-id="${esc(r.item_id)}" aria-current="${r.item_id===selectedId}">
-        <b>${esc(r.statute_title || r.item_title)}</b>
-        <span><span>${esc(roleOf(r))}</span><span>${r.year_start||""}</span></span>
-        <i style="--w:${Math.max(0,Math.min(100,r.layering_risk||0))}%"></i>
-      </button>`).join("");
-    list.querySelectorAll(".diag-item").forEach(b => b.onclick = () => {
-      selectedId = b.dataset.id;
-      const r = diagData.find(x => x.item_id === selectedId);
-      renderDiagList();
-      renderDiagDetail(r, false);
-    });
-    renderDiagDetail(diagData.find(r => r.item_id === selectedId), false);
-  }
-
-  function renderDiagDetail(r, synced){
-    const el = document.getElementById("diagDetail");
-    if(!el) return;
-    if(!r){
-      el.innerHTML = `<div class="diag-role">Diagnoosi</div><h3>Ei osumaa</h3>
-      <div class="diag-note">Valitulle Murroskartan solmulle ei vielä ole Atlas–Lakikartta-linkitystä painekartta-data.json-aineistossa.</div>`;
-      return;
-    }
-    const metrics = [
-      ["verkostokeskeisyys",r.network],["muutosintensiteetti",r.change],
-      ["delegaatiosyvyys",r.delegation],["yhteismuutos",r.coamend],
-      ["resurssipaino",r.budget],["kerrostumisriski",r.layering_risk]
-    ];
-    el.innerHTML = `
-      <div class="diag-role">${esc(roleOf(r))}</div>
-      <h3>${esc(r.statute_title || r.item_title)}</h3>
-      <div class="diag-meta">${esc(r.year_start || "")} · ${esc(r.statute_id || "")}</div>
-      <div class="diag-story"><b>1 · Alkuperäinen ongelma</b>${esc(r.problem || "Ei vielä kuvattu.")}</div>
-      <div class="diag-story"><b>2 · Ratkaisu ja uusi kytkentä</b>${esc(r.mechanism || "Ei vielä kuvattu.")}</div>
-      <div class="diag-story"><b>3 · Pitkä vaikutus</b>${esc(r.long_effect || "Ei vielä kuvattu.")}</div>
-      <div class="diag-metrics">${metrics.map(([k,v]) =>
-        `<div class="diag-metric"><span>${k}</span><b>${fmt(v)}</b></div>`).join("")}</div>
-      <div class="diag-action"><b>Mitä voisi yrittää purkaa?</b><p>${esc(actionFor(r))}</p></div>
-      ${synced?`<div class="diag-sync">Tämä diagnoosi avautui Murroskartassa valitusta solmusta.</div>`:""}
-      <div class="diag-note">Diagnostinen tulkinta, ei todistettu kausaalisuhde. Tavoitteena on tunnistaa kohdat, joissa uusi sääntely näyttää korjaavan aiemman rakenteen yhteensovitusongelmaa.</div>`;
-  }
-
-  async function executeScripts(scripts){
-    for(const old of scripts){
-      const s=document.createElement("script");
-      [...old.attributes].forEach(a => s.setAttribute(a.name,a.value));
-      if(old.src){
-        await new Promise((resolve,reject)=>{
-          s.onload=resolve;s.onerror=reject;
-          document.body.appendChild(s);
-        }).catch(err => console.warn("Murroskartan skriptin lataus epäonnistui",old.src,err));
-      }else{
-        s.textContent=old.textContent;
-        document.body.appendChild(s);
-      }
-    }
-  }
-
-  async function boot(){
-    document.documentElement.classList.add("diag-loading");
-    try{
-      const [htmlResp,dataResp] = await Promise.all([fetch(BASE_HTML),fetch(DIAG_DATA)]);
-      if(!htmlResp.ok) throw new Error(`arviointikartta.html: ${htmlResp.status}`);
-      if(!dataResp.ok) throw new Error(`painekartta-data.json: ${dataResp.status}`);
-
-      const source = await htmlResp.text();
-      diagData = normalize(await dataResp.json());
-
-      const doc = new DOMParser().parseFromString(source,"text/html");
-      document.title = "Murroskartta 1800–2050 · diagnoositila";
-
-      doc.head.querySelectorAll('style,link[rel="stylesheet"]').forEach(n =>
-        document.head.appendChild(n.cloneNode(true)));
-
-      const scripts = [...doc.querySelectorAll("script")];
-      doc.querySelectorAll("script").forEach(s => s.remove());
-
-      document.body.innerHTML = doc.body.innerHTML;
-      await executeScripts(scripts);
-      document.dispatchEvent(new Event("DOMContentLoaded",{bubbles:true}));
-
-      injectDiagUI();
-      document.documentElement.classList.remove("diag-loading");
-    }catch(err){
-      console.error(err);
-      document.getElementById("diagBootstrap").innerHTML =
-        `<div class="box"><strong>Murroskartan lataus epäonnistui</strong><span>${esc(err.message)}</span></div>`;
-    }
-  }
-
-  boot();
+"use strict";
+const BASE_HTML="./arviointikartta.html";
+const DIAG_DATA="./painekartta-data.json";
+const ROLE={
+  "perusrakenne":{c:"#71808d",label:"Perusrakenne"},
+  "kantava solmu":{c:"#245b78",label:"Kantava solmu"},
+  "korjaava kerros":{c:"#ad4128",label:"Korjaava kerros"},
+  "toimeenpanolukko":{c:"#76558f",label:"Toimeenpanolukko"}
+};
+const DIAG_CSS=`
+#pressureMode{margin:0 0 15px;border:1px solid var(--line,#d6cec0);border-radius:18px;background:var(--paper,#fffdf8);box-shadow:var(--shadow);overflow:hidden}
+.pressure-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22px;padding:18px 20px 14px;border-bottom:1px solid var(--line,#d6cec0);background:var(--paper2,#faf6ee)}
+.pressure-kicker,.diag-kicker{font:800 10px/1.3 ui-sans-serif,system-ui;letter-spacing:.16em;text-transform:uppercase;color:var(--hot,#ad4128)}
+.pressure-head h2{font:400 25px/1.1 "Iowan Old Style",Georgia,serif;margin:5px 0 4px}
+.pressure-head p{margin:0;max-width:80ch;font-size:12px;line-height:1.55;color:var(--muted,#6d7883)}
+.pressure-summary{display:flex;gap:9px;align-items:stretch}
+.pressure-stat{min-width:92px;padding:9px 11px;border-left:1px solid var(--line,#d6cec0)}
+.pressure-stat b{display:block;font:400 24px/1 "Iowan Old Style",Georgia,serif}
+.pressure-stat span{display:block;margin-top:5px;font-size:9px;line-height:1.25;text-transform:uppercase;letter-spacing:.08em;color:var(--muted,#6d7883)}
+.pressure-controls{display:flex;gap:7px;flex-wrap:wrap;padding:10px 20px;border-bottom:1px solid var(--line,#d6cec0)}
+.pressure-filter{border:1px solid var(--line,#d6cec0);border-radius:999px;background:var(--paper,#fffdf8);padding:7px 10px;font-size:11px;cursor:pointer}
+.pressure-filter[aria-pressed="true"]{background:var(--ink,#15293c);border-color:var(--ink,#15293c);color:var(--paper,#fffdf8)}
+.pressure-legend{margin-left:auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:10px;color:var(--muted,#6d7883)}
+.pressure-legend i{display:inline-block;width:10px;height:10px;margin-right:4px;border:2px solid var(--rc);border-radius:50%;vertical-align:-2px}
+.pressure-track-wrap{overflow-x:auto;padding:18px 20px 20px}
+.pressure-track{position:relative;min-width:980px;height:205px;border-bottom:1px solid var(--strong,#b9ae9c);background:linear-gradient(to top,color-mix(in srgb,var(--hot,#ad4128) 5%,transparent),transparent 72%)}
+.pressure-track:before{content:"korjaava kerrostuminen";position:absolute;left:0;top:2px;font-size:9px;text-transform:uppercase;letter-spacing:.11em;color:var(--hot,#ad4128)}
+.pressure-year{position:absolute;bottom:-17px;transform:translateX(-50%);font:9px ui-monospace,monospace;color:var(--muted,#6d7883)}
+.pressure-dot{--risk:30;--role:#71808d;position:absolute;bottom:21px;transform:translateX(-50%);width:calc(12px + var(--risk)*.13px);height:calc(12px + var(--risk)*.13px);border:2px solid var(--role);border-radius:50%;background:var(--paper,#fffdf8);box-shadow:0 0 0 calc(var(--risk)*.045px) color-mix(in srgb,var(--role) 18%,transparent);cursor:pointer;transition:.18s}
+.pressure-dot:before{content:"";position:absolute;left:50%;top:100%;height:calc(12px + var(--risk)*1.15px);border-left:1px solid color-mix(in srgb,var(--role) 48%,transparent)}
+.pressure-dot:hover,.pressure-dot[aria-current="true"]{z-index:4;transform:translateX(-50%) scale(1.18);background:var(--role);box-shadow:0 0 0 5px color-mix(in srgb,var(--role) 22%,transparent)}
+.pressure-dot span{position:absolute;left:50%;bottom:calc(100% + 8px);width:118px;transform:translateX(-50%);font-size:9.5px;font-weight:700;line-height:1.25;text-align:center;color:var(--ink,#15293c);opacity:0;pointer-events:none}
+.pressure-dot:hover span,.pressure-dot[aria-current="true"] span{opacity:1}
+.pressure-dot.is-dim{opacity:.1;pointer-events:none}
+.node.pressure-linked circle{stroke:var(--pressure-role)!important;stroke-width:calc(1.2px + var(--pressure-risk)*.018px)!important;filter:drop-shadow(0 0 calc(var(--pressure-risk)*.045px) color-mix(in srgb,var(--pressure-role) 45%,transparent))}
+.node.pressure-selected circle{fill:var(--pressure-role)!important;stroke:var(--paper,#fffdf8)!important;stroke-width:3px!important}
+#diagToggle{position:fixed;right:18px;bottom:18px;z-index:10020;border:1px solid var(--line,#d6cec0);border-radius:999px;padding:11px 16px;background:var(--ink,#15293c);color:var(--paper,#fffdf8);box-shadow:0 12px 34px -18px rgba(0,0,0,.55);cursor:pointer;font:700 11px/1 ui-sans-serif,system-ui;letter-spacing:.03em}
+#diagDrawer{position:fixed;z-index:10010;right:14px;top:14px;bottom:14px;width:min(610px,calc(100vw - 28px));display:flex;flex-direction:column;background:var(--paper,#fffdf8);border:1px solid var(--line,#d6cec0);border-radius:18px;box-shadow:0 24px 70px -28px rgba(0,0,0,.62);transform:translateX(calc(100% + 35px));transition:transform .25s ease;overflow:hidden;color:var(--ink,#15293c)}
+#diagDrawer[data-open="true"]{transform:translateX(0)}
+.diag-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;padding:17px 18px 14px;border-bottom:1px solid var(--line,#d6cec0);background:var(--paper2,#faf6ee)}
+.diag-head h2{font:400 25px/1.08 "Iowan Old Style",Georgia,serif;margin:5px 0 4px}.diag-head p{margin:0;max-width:52ch;font-size:12px;line-height:1.5;color:var(--muted,#6d7883)}
+.diag-close{border:1px solid var(--line,#d6cec0);background:var(--paper,#fffdf8);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:18px}
+.diag-tabs{display:flex;gap:6px;flex-wrap:wrap;padding:10px 14px;border-bottom:1px solid var(--line,#d6cec0)}
+.diag-tab{border:1px solid var(--line,#d6cec0);border-radius:999px;background:var(--paper2,#faf6ee);padding:7px 9px;font-size:10.5px;cursor:pointer;color:var(--muted,#6d7883)}
+.diag-tab[aria-pressed="true"]{background:var(--ink,#15293c);border-color:var(--ink,#15293c);color:var(--paper,#fffdf8)}
+.diag-content{display:grid;grid-template-columns:218px minmax(0,1fr);min-height:0;flex:1}.diag-list{overflow:auto;border-right:1px solid var(--line,#d6cec0);padding:7px}
+.diag-item{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid color-mix(in srgb,var(--line,#d6cec0) 60%,transparent);background:transparent;padding:10px 8px;cursor:pointer}.diag-item:hover,.diag-item[aria-current="true"]{background:var(--paper2,#faf6ee)}
+.diag-item b{display:block;font-size:11px;line-height:1.35}.diag-item-meta{display:flex;justify-content:space-between;gap:6px;margin-top:4px;font-size:9.5px;color:var(--muted,#6d7883)}
+.diag-item-bar{display:block;height:4px;margin-top:6px;border-radius:9px;background:var(--soft,#ece5d9);overflow:hidden}.diag-item-bar:after{content:"";display:block;height:100%;width:var(--w,0%);background:var(--rc,var(--hot,#ad4128))}
+.diag-detail{overflow:auto;padding:16px 18px 22px}.diag-role{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--rc,var(--hot,#ad4128))}.diag-detail h3{font:400 25px/1.1 "Iowan Old Style",Georgia,serif;margin:5px 0 4px}.diag-meta{font-size:10px;color:var(--muted,#6d7883);margin-bottom:12px}
+.diag-path{position:relative;margin:12px 0 15px;padding-left:22px}.diag-path:before{content:"";position:absolute;left:6px;top:10px;bottom:10px;border-left:1px solid var(--strong,#b9ae9c)}
+.diag-step{position:relative;padding:0 0 13px;font-size:11.5px;line-height:1.5}.diag-step:before{content:"";position:absolute;left:-20px;top:5px;width:8px;height:8px;border:2px solid var(--rc,var(--hot,#ad4128));border-radius:50%;background:var(--paper,#fffdf8)}.diag-step b{display:block;margin-bottom:2px;font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted,#6d7883)}
+.diag-profile{padding:11px 12px;border:1px solid var(--line,#d6cec0);border-radius:12px;background:var(--paper2,#faf6ee)}.diag-profile h4{margin:0 0 8px;font-size:10px;text-transform:uppercase;letter-spacing:.1em}.profile-row{display:grid;grid-template-columns:112px 1fr 30px;gap:7px;align-items:center;margin:6px 0;font-size:10px}.profile-bar{height:5px;border-radius:8px;background:var(--soft,#ece5d9);overflow:hidden}.profile-bar i{display:block;height:100%;width:var(--w);background:var(--rc,var(--hot,#ad4128))}.profile-row output{text-align:right;font:10px ui-monospace,monospace}
+.risk-total{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin-top:10px;padding-top:10px;border-top:1px solid var(--line,#d6cec0)}.risk-total span{font-size:10px;text-transform:uppercase;letter-spacing:.09em}.risk-total b{font:400 28px/1 "Iowan Old Style",Georgia,serif;color:var(--rc,var(--hot,#ad4128))}
+.diag-action{margin-top:12px;padding:12px;border:1px solid color-mix(in srgb,var(--future,#2f6b4f) 30%,var(--line,#d6cec0));border-radius:11px;background:color-mix(in srgb,var(--future,#2f6b4f) 6%,var(--paper2,#faf6ee))}.diag-action b{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--future,#2f6b4f)}.diag-action p{margin:6px 0 0;font-size:11.5px;line-height:1.55;color:var(--ink2,#3c4d5e)}
+.diag-note{margin-top:11px;font-size:10px;line-height:1.5;color:var(--muted,#6d7883)}
+@media(max-width:900px){.pressure-head{grid-template-columns:1fr}.pressure-summary{overflow-x:auto}.pressure-legend{width:100%;margin-left:0}.pressure-dot span{display:none}}
+@media(max-width:720px){#diagDrawer{right:7px;left:7px;top:7px;bottom:7px;width:auto}.diag-content{grid-template-columns:1fr}.diag-list{max-height:180px;border-right:0;border-bottom:1px solid var(--line,#d6cec0)}.pressure-head,.pressure-controls{padding-left:14px;padding-right:14px}}
+`;
+let diagData=[],selectedId=null,filter="all";
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[m]));
+const num=v=>Number.isFinite(+v)?+v:null;
+const fmt=v=>num(v)===null?"–":num(v).toFixed(1);
+const clamp=v=>Math.max(0,Math.min(100,num(v)??0));
+function normalize(raw){const arr=Array.isArray(raw)?raw:(raw?.items||raw?.data||[]);return arr.map(r=>({...r,item_id:r.item_id||r.id,item_title:r.item_title||r.title||r.label||r.statute_title||r.item_id,statute_title:r.statute_title||r.law_title||r.item_title||r.title,year_start:+(r.year_start??r.year??r.statute_year??0),network:num(r.network??r.network_component),change:num(r.change??r.legislative_change_intensity),delegation:num(r.delegation??r.delegation_depth_score),coamend:num(r.coamend??r.co_amendment_centrality),budget:num(r.budget??r.budget_component),system_weight:num(r.system_weight??r.institutional_system_weight),layering_risk:num(r.layering_risk??r.pressure),repair_signal:!!(r.repair_signal??(r.role==="korjaava kerros")),role:r.role||"perusrakenne"})).filter(r=>r.item_id)}
+function roleOf(r){if(r.role)return r.role;if(r.repair_signal)return"korjaava kerros";if((r.delegation||0)>=70)return"toimeenpanolukko";if((r.network||0)>=65)return"kantava solmu";return"perusrakenne"}
+function roleMeta(r){return ROLE[roleOf(r)]||ROLE.perusrakenne}
+function filtered(){return diagData.filter(r=>filter==="all"||roleOf(r)===filter).sort((a,b)=>(b.layering_risk||0)-(a.layering_risk||0))}
+function actionFor(r){const n=r.network||0,c=r.change||0,d=r.delegation||0,co=r.coamend||0;if(r.repair_signal&&(r.layering_risk||0)>=60)return"Tutki, voidaanko myöhempi korjaava kerros korvata muuttamalla sitä aiempaa rakennetta, jonka sivuvaikutusta tai yhteensovitusongelmaa se paikkaa.";if(d>=70)return"Lyhennä toimeenpanoketjua: yhdistä vastuita, vakioi rajapintoja ja poista tarpeettomia delegaatiokerroksia.";if(co>=45)return"Erota välttämättömät yhteismuutokset kytkennöistä, jotka voidaan korvata vakaalla rajapinnalla tai yhteisellä perussäännöllä.";if(n>=65)return"Suojaa kantavan solmun rajapinnat ja tee vaikutusketjutesti ennen muutosta. Tavoite on vähentää pakollista kytkentää.";if(c>=65)return"Selvitä, onko toistuvien parametrikorjausten taustalla yksi pysyvä mekanismi, jota voisi muuttaa kerralla.";return"Säilytä paikallinen muutoskyky. Älä lisää uutta poikkeusta tai rinnakkaista reittiä poistamatta samalla vanhaa riippuvuutta."}
+function addPressureMode(){const map=document.querySelector(".map");if(!map)return;const section=document.createElement("section");section.id="pressureMode";section.setAttribute("aria-label","Kerrostumispaineen yleiskuva");map.before(section);renderPressureMode()}
+function renderPressureMode(){const el=document.getElementById("pressureMode");if(!el)return;const repairs=diagData.filter(r=>roleOf(r)==="korjaava kerros").length,locks=diagData.filter(r=>roleOf(r)==="toimeenpanolukko").length,high=diagData.filter(r=>(r.layering_risk||0)>=65).length;const years=diagData.map(r=>r.year_start).filter(Boolean),min=Math.min(...years),max=Math.max(...years),range=Math.max(1,max-min);const ticks=[min,1900,1950,2000,max].filter((v,i,a)=>v>=min&&v<=max&&a.indexOf(v)===i);el.innerHTML=`<div class="pressure-head"><div><div class="pressure-kicker">Painekartta · rakenteellinen diagnoosi</div><h2>Missä verkosto alkaa korjata itseään?</h2><p>Solmun koko kuvaa kerrostumisriskiä, korkeus paineen voimakkuutta ja väri rakenteellista roolia. Valitse solmu nähdäksesi ongelmasta purkukohtaan kulkevan vaikutuspolun.</p></div><div class="pressure-summary"><div class="pressure-stat"><b>${diagData.length}</b><span>tarkasteltua solmua</span></div><div class="pressure-stat"><b>${repairs}</b><span>korjaavaa kerrosta</span></div><div class="pressure-stat"><b>${locks+high}</b><span>kriittistä kohtaa</span></div></div></div><div class="pressure-controls">${[["all","Kaikki"],["korjaava kerros","Korjaavat kerrokset"],["kantava solmu","Kantavat solmut"],["toimeenpanolukko","Toimeenpanolukot"]].map(([v,l])=>`<button class="pressure-filter" data-filter="${v}" aria-pressed="${filter===v}">${l}</button>`).join("")}<div class="pressure-legend">${Object.entries(ROLE).map(([k,m])=>`<span><i style="--rc:${m.c}"></i>${m.label}</span>`).join("")}</div></div><div class="pressure-track-wrap"><div class="pressure-track">${ticks.map(y=>`<span class="pressure-year" style="left:${((y-min)/range)*100}%">${y}</span>`).join("")}${diagData.map(r=>{const meta=roleMeta(r),x=((r.year_start-min)/range)*100,risk=clamp(r.layering_risk),dim=filter!=="all"&&roleOf(r)!==filter;return`<button class="pressure-dot ${dim?"is-dim":""}" data-id="${esc(r.item_id)}" aria-label="${esc(r.item_title)}, kerrostumisriski ${fmt(r.layering_risk)}" aria-current="${r.item_id===selectedId}" style="left:${x}%;bottom:${18+risk*1.08}px;--risk:${risk};--role:${meta.c}"><span>${esc(r.item_title)}</span></button>`}).join("")}</div></div>`;el.querySelectorAll(".pressure-filter").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;renderPressureMode();renderDiagList();applyMapPressure()});el.querySelectorAll(".pressure-dot:not(.is-dim)").forEach(b=>b.onclick=()=>selectItem(b.dataset.id,true))}
+function injectDiagUI(){const style=document.createElement("style");style.id="diagIntegratedStyle";style.textContent=DIAG_CSS;document.head.appendChild(style);const toggle=document.createElement("button");toggle.id="diagToggle";toggle.type="button";toggle.textContent="Avaa painediagnoosi";const drawer=document.createElement("aside");drawer.id="diagDrawer";drawer.dataset.open="false";drawer.setAttribute("aria-label","Verkoston korjausketjun diagnoosi");drawer.innerHTML=`<div class="diag-head"><div><div class="diag-kicker">Atlas × Lakikartta</div><h2>Korjausketjun diagnoosi</h2><p>Valitse solmu paineen aikajanalta, Murroskartasta tai luettelosta.</p></div><button class="diag-close" type="button" aria-label="Sulje diagnoosi">×</button></div><div class="diag-tabs">${[["all","Kaikki"],["korjaava kerros","Korjaavat"],["kantava solmu","Kantavat"],["toimeenpanolukko","Lukot"]].map(([v,l])=>`<button class="diag-tab" data-filter="${v}" aria-pressed="${filter===v}">${l}</button>`).join("")}</div><div class="diag-content"><div class="diag-list" id="diagList"></div><div class="diag-detail" id="diagDetail"></div></div>`;document.body.append(toggle,drawer);toggle.onclick=()=>drawer.dataset.open=drawer.dataset.open==="true"?"false":"true";drawer.querySelector(".diag-close").onclick=()=>drawer.dataset.open="false";drawer.querySelectorAll(".diag-tab").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;drawer.querySelectorAll(".diag-tab").forEach(x=>x.setAttribute("aria-pressed",x===b));renderDiagList();renderPressureMode();applyMapPressure()});document.addEventListener("keydown",e=>{if(e.key==="Escape")drawer.dataset.open="false"});document.addEventListener("click",e=>{const node=e.target.closest?.(".node");if(!node||node.closest("#diagDrawer"))return;const id=node.dataset?.id||node.getAttribute("data-id")||node.id||node.querySelector?.("[data-id]")?.dataset?.id;if(id)syncFromAtlas(id)},true);addPressureMode();renderDiagList();setTimeout(applyMapPressure,100)}
+function findRecord(id){return diagData.find(r=>r.item_id===id)||diagData.find(r=>r.item_id?.includes(id)||id.includes?.(r.item_id)||r.statute_id===id)}
+function syncFromAtlas(id){const r=findRecord(id);if(r)selectItem(r.item_id,true)}
+function selectItem(id,open){selectedId=id;renderPressureMode();renderDiagList();applyMapPressure();if(open)document.getElementById("diagDrawer").dataset.open="true"}
+function applyMapPressure(){document.querySelectorAll(".node").forEach(node=>{const id=node.dataset?.id||node.getAttribute("data-id")||node.id||node.querySelector?.("[data-id]")?.dataset?.id,r=id&&findRecord(id);node.classList.remove("pressure-linked","pressure-selected");if(!r)return;const meta=roleMeta(r);node.classList.add("pressure-linked");if(r.item_id===selectedId)node.classList.add("pressure-selected");node.style.setProperty("--pressure-role",meta.c);node.style.setProperty("--pressure-risk",clamp(r.layering_risk));node.style.opacity=filter==="all"||roleOf(r)===filter?"":"0.12"})}
+function renderDiagList(){const list=document.getElementById("diagList");if(!list)return;const arr=filtered();if(!selectedId||!arr.some(r=>r.item_id===selectedId))selectedId=arr[0]?.item_id||null;list.innerHTML=arr.map(r=>{const m=roleMeta(r);return`<button class="diag-item" data-id="${esc(r.item_id)}" aria-current="${r.item_id===selectedId}"><b>${esc(r.statute_title||r.item_title)}</b><span class="diag-item-meta"><span style="color:${m.c}">${esc(m.label)}</span><span>${r.year_start||""}</span></span><i class="diag-item-bar" style="--w:${clamp(r.layering_risk)}%;--rc:${m.c}"></i></button>`}).join("");list.querySelectorAll(".diag-item").forEach(b=>b.onclick=()=>selectItem(b.dataset.id,false));renderDiagDetail(diagData.find(r=>r.item_id===selectedId))}
+function renderDiagDetail(r){const el=document.getElementById("diagDetail");if(!el)return;if(!r){el.innerHTML=`<div class="diag-role">Diagnoosi</div><h3>Ei osumaa</h3><div class="diag-note">Valitulle solmulle ei vielä ole Atlas–Lakikartta-linkitystä.</div>`;return}const m=roleMeta(r),metrics=[["Verkostokeskeisyys",r.network],["Muutosintensiteetti",r.change],["Delegaatiosyvyys",r.delegation],["Yhteismuutos",r.coamend],["Resurssipaino",r.budget],["Järjestelmäpaino",r.system_weight]];el.innerHTML=`<div style="--rc:${m.c}"><div class="diag-role">${esc(m.label)}</div><h3>${esc(r.statute_title||r.item_title)}</h3><div class="diag-meta">${esc(r.year_start||"")} · ${esc(r.statute_id||"")}</div><div class="diag-path"><div class="diag-step"><b>1 · Alkuperäinen ongelma</b>${esc(r.problem||"Ei vielä kuvattu.")}</div><div class="diag-step"><b>2 · Ratkaisu</b>${esc(r.mechanism||"Ei vielä kuvattu.")}</div><div class="diag-step"><b>3 · Syntynyt riippuvuus</b>${esc(r.long_effect||"Ei vielä kuvattu.")}</div><div class="diag-step"><b>4 · Diagnostinen rooli</b>${esc(m.label)}: säädöksen paikka nykyisessä verkostossa.</div></div><div class="diag-profile"><h4>Paineen osatekijät</h4>${metrics.map(([k,v])=>`<div class="profile-row"><span>${k}</span><span class="profile-bar"><i style="--w:${clamp(v)}%"></i></span><output>${fmt(v)}</output></div>`).join("")}<div class="risk-total"><span>Kerrostumisriski</span><b>${fmt(r.layering_risk)}</b></div></div><div class="diag-action"><b>Purkukohta</b><p>${esc(actionFor(r))}</p></div><div class="diag-note">Diagnostinen tulkinta, ei todistettu kausaalisuhde. Korkea arvo osoittaa tutkimisen tarpeen, ei automaattisesti tarpeetonta sääntelyä.</div></div>`}
+async function executeScripts(scripts){for(const old of scripts){const s=document.createElement("script");[...old.attributes].forEach(a=>s.setAttribute(a.name,a.value));if(old.src){await new Promise((resolve,reject)=>{s.onload=resolve;s.onerror=reject;document.body.appendChild(s)}).catch(err=>console.warn("Murroskartan skriptin lataus epäonnistui",old.src,err))}else{s.textContent=old.textContent;document.body.appendChild(s)}}}
+async function boot(){document.documentElement.classList.add("diag-loading");try{const[htmlResp,dataResp]=await Promise.all([fetch(BASE_HTML),fetch(DIAG_DATA)]);if(!htmlResp.ok)throw new Error(`arviointikartta.html: ${htmlResp.status}`);if(!dataResp.ok)throw new Error(`painekartta-data.json: ${dataResp.status}`);const source=await htmlResp.text();diagData=normalize(await dataResp.json());const doc=new DOMParser().parseFromString(source,"text/html");document.title="Murroskartta 1800–2050 · painekartta";doc.head.querySelectorAll('style,link[rel="stylesheet"]').forEach(n=>document.head.appendChild(n.cloneNode(true)));const scripts=[...doc.querySelectorAll("script")];doc.querySelectorAll("script").forEach(s=>s.remove());document.body.innerHTML=doc.body.innerHTML;await executeScripts(scripts);document.dispatchEvent(new Event("DOMContentLoaded",{bubbles:true}));injectDiagUI();document.documentElement.classList.remove("diag-loading")}catch(err){console.error(err);document.getElementById("diagBootstrap").innerHTML=`<div class="box"><strong>Painekartan lataus epäonnistui</strong><span>${esc(err.message)}</span></div>`}}
+boot();
 })();
 </script>
 </body>
