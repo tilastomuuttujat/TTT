@@ -4910,7 +4910,8 @@
           }
           if (state.analysis && resilienceCompareModes[state.analysis]) {
             resilienceCompareMode = state.analysis;
-            analysisBrowseIndex = analysisModeOrder.indexOf(state.analysis);
+            const restoredPerspectiveIndex = analysisModeOrder.indexOf(state.analysis);
+            if (restoredPerspectiveIndex >= 0) analysisBrowseIndex = restoredPerspectiveIndex;
           }
           const loader = document.getElementById("loading");
           if (loader) loader.remove();
