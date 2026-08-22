@@ -128,13 +128,14 @@ function wrapWords(text,max=42,lines=3){const words=String(text||"").trim().spli
 function normText(v){return String(v||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[_-]+/g," ").replace(/[^a-z0-9åäö ]/g," ").replace(/\s+/g," ").trim()}
 function selectedLensKeys(){return lensState().labels.map(normText).filter(Boolean)}
 const PERSPECTIVE_TERMS={
-  "tyollisyys":["työllisyys","työttömyys","nuorisotyöttömyys","neet","osa-aikatyö","työkyky","koulutus"],
-  "gini":["gini","tuloero","eriarvoisuus","toimeentulo","asumisrasitus"],
-  "julkinen velka":["velka","julkiset menot","sosiaaliturvamenot","veropohja"],
-  "huoltosuhde":["huoltosuhde","syntyvyys","hedelmällisyys","ikääntyneet","eläke"],
-  "luottamus":["luottamus","demokratia","osallistuminen","poliitikot","oikeusjärjestelmä"],
-  "terveet elinvuodet":["terveys","mielenterveys","kuolleisuus","sairaanhoitajat","lääkärit"],
-  "vaesto":["väestö","syntyvyys","hedelmällisyys","ikääntyneet"]
+  "tyollisyys ja tyokyky":["työllisyys","työttömyys","nuorisotyöttömyys","neet","osa-aikatyö","työkyky","työkyvyttömyys","koulutus"],
+  "toimeentulo ja eriarvoisuus":["gini","tuloero","eriarvoisuus","toimeentulo","köyhyys","asumisrasitus"],
+  "julkisen talouden kestavyys":["velka","julkiset menot","sosiaaliturvamenot","veropohja","alijäämä","tuottavuus"],
+  "vaestollinen kestavyys":["huoltosuhde","syntyvyys","hedelmällisyys","ikääntyneet","eläke","muuttoliike"],
+  "terveys ja toimintakyky":["terveys","mielenterveys","kuolleisuus","toimintakyky","työkyky","sairaanhoitajat","lääkärit"],
+  "osaaminen ja mahdollisuudet":["osaaminen","koulutus","oppimistulokset","tutkimus","neet","syrjäytyminen"],
+  "luottamus ja osallisuus":["luottamus","demokratia","osallistuminen","osallisuus","poliitikot","oikeusjärjestelmä"],
+  "hoivan ja palvelujen kantokyky":["hoiva","palvelut","sote","terveydenhuolto","sosiaalipalvelut","henkilöstö","ikääntyneet"]
 };
 function analysisPerspective(){const toggle=document.getElementById("analysisToggle"),label=toggle?.querySelector(".analysis-copy b")?.textContent?.trim()||"";return{active:toggle?.getAttribute("aria-pressed")==="true",label,key:normText(label)}}
 function perspectiveTerms(){const p=analysisPerspective();if(!p.active)return[];const direct=PERSPECTIVE_TERMS[p.key];if(direct)return direct.map(normText);const match=Object.entries(PERSPECTIVE_TERMS).find(([key])=>p.key.includes(key)||key.includes(p.key));return(match?.[1]||[p.label]).map(normText)}
