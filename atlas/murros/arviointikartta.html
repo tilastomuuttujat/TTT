@@ -2888,7 +2888,11 @@
         }
         function syncResilienceCompareControls() {
           const toggle = document.getElementById("analysisToggle");
-          const definition = resilienceCompareModes[analysisModeOrder[analysisBrowseIndex]];
+          if (!Number.isInteger(analysisBrowseIndex) || analysisBrowseIndex < 0 || analysisBrowseIndex >= analysisModeOrder.length) {
+            analysisBrowseIndex = 0;
+          }
+          const definition = resilienceCompareModes[analysisModeOrder[analysisBrowseIndex]]
+            || resilienceCompareModes[analysisModeOrder[0]];
           if (!toggle || !definition) return;
           toggle.setAttribute("aria-pressed", String(resilienceCompareMode === analysisModeOrder[analysisBrowseIndex]));
           toggle.setAttribute("aria-label", `${definition.label}. ${resilienceCompareMode === analysisModeOrder[analysisBrowseIndex] ? "Poista tarkastelu käytöstä" : "Ota tarkastelu käyttöön"}.`);
@@ -2899,7 +2903,9 @@
         }
         function browseAnalysis(delta) {
           const wasEnabled = resilienceCompareMode !== null;
-
+          if (!Number.isInteger(analysisBrowseIndex) || analysisBrowseIndex < 0 || analysisBrowseIndex >= analysisModeOrder.length) {
+            analysisBrowseIndex = 0;
+          }
           analysisBrowseIndex =
             (analysisBrowseIndex + delta + analysisModeOrder.length) %
             analysisModeOrder.length;
@@ -3309,7 +3315,17 @@
           toggle.type = "button";
           toggle.id = "analysisToggle";
           toggle.className = "analysis-toggle";
-          toggle.addEventListener("click", () => toggleResilienceComparison(analysisModeOrder[analysisBrowseIndex]));
+          const initialPerspective = resilienceCompareModes[analysisModeOrder[0]];
+          toggle.setAttribute("aria-pressed", "false");
+          toggle.setAttribute("aria-label", `${initialPerspective.label}. Ota tarkastelu käyttöön.`);
+          toggle.innerHTML = `${analysisIcon(analysisModeOrder[0])}<span class="analysis-copy"><b>${S(initialPerspective.label)}</b><small>${S(initialPerspective.group)} · passiivinen</small></span><span class="analysis-state" aria-hidden="true"></span>`;
+          toggle.addEventListener("click", () => {
+            const safeIndex = Number.isInteger(analysisBrowseIndex) && analysisBrowseIndex >= 0 && analysisBrowseIndex < analysisModeOrder.length
+              ? analysisBrowseIndex
+              : 0;
+            analysisBrowseIndex = safeIndex;
+            toggleResilienceComparison(analysisModeOrder[safeIndex]);
+          });
 
           const next = document.createElement("button");
           next.type = "button";
