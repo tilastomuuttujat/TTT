@@ -184,12 +184,11 @@ function installSubvariableControl(){
   if(document.getElementById("subvariableBrowser")){syncSubvariableControl();return true}
   const methods=document.querySelector(".analysis-methods"),chips=methods?.parentElement;
   if(!methods||!chips)return false;
-  const label=document.createElement("span");label.className="control-kind-label subvariable-label";label.textContent="Alimuuttuja";
   const browser=document.createElement("div");browser.id="subvariableBrowser";browser.className="analysis-browser subvariable-browser";browser.setAttribute("role","group");browser.setAttribute("aria-label","Tarkastelukulman alimuuttuja");
   const previous=document.createElement("button");previous.id="indicatorPrevious";previous.type="button";previous.className="analysis-step";previous.textContent="‹";previous.setAttribute("aria-label","Edellinen alimuuttuja");previous.onclick=()=>browseSubvariable(-1);
   const toggle=document.createElement("button");toggle.id="indicatorToggle";toggle.type="button";toggle.className="analysis-toggle";toggle.onclick=toggleSubvariable;
   const next=document.createElement("button");next.id="indicatorNext";next.type="button";next.className="analysis-step";next.textContent="›";next.setAttribute("aria-label","Seuraava alimuuttuja");next.onclick=()=>browseSubvariable(1);
-  browser.append(previous,toggle,next);chips.insertBefore(label,methods);chips.insertBefore(browser,methods);syncSubvariableControl();return true;
+  browser.append(previous,toggle,next);chips.insertBefore(browser,methods);syncSubvariableControl();return true;
 }
 function watchSubvariableControl(){
   if(installSubvariableControl())return;
