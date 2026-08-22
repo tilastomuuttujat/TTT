@@ -1531,6 +1531,7 @@
       .analysis-toggle[aria-pressed="true"] { color:var(--hot); background:color-mix(in srgb,var(--hot) 10%,var(--paper)); }
       .analysis-toggle[aria-pressed="true"] .analysis-copy b { color:var(--hot); }
       .analysis-toggle[aria-pressed="true"] .analysis-state { border-color:var(--hot); background:var(--hot); box-shadow:0 0 0 3px color-mix(in srgb,var(--hot) 15%,transparent); }
+      .analysis-toggle:empty::before { content:"Työllisyys ja työkyky"; display:block; padding:0 10px; color:var(--ink2); font-size:10px; font-weight:700; white-space:nowrap; }
       .control-kind-label { align-self:center; margin-left:8px; color:var(--muted); font-size:8px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
       .analysis-methods { flex:1 0 100%; display:flex; align-items:center; gap:6px; padding-top:8px; margin-top:3px; border-top:1px solid var(--line); overflow-x:auto; }
       .analysis-methods > span { flex:0 0 auto; color:var(--muted); font-size:8px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
