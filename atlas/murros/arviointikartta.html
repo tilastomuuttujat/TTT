@@ -3337,10 +3337,7 @@
 
           browser.append(previous, toggle, next);
 
-          const perspectiveLabel = document.createElement("span");
-          perspectiveLabel.className = "control-kind-label";
-          perspectiveLabel.textContent = "Tarkastelukulma";
-          chips.append(perspectiveLabel, browser);
+          chips.appendChild(browser);
 
           const secondary = document.createElement("div");
           secondary.className = "analysis-methods";
