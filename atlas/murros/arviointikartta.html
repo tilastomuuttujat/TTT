@@ -669,6 +669,7 @@
       .detail-line.strengthened b {
         color: var(--future);
       }
+      .perspective-reading{display:grid;gap:4px;margin:12px 0;padding:11px 12px;border:1px solid var(--line);border-left:4px solid #76558f;border-radius:10px;background:var(--paper2)}.perspective-reading.is-strengthens{border-left-color:#2f6b4f}.perspective-reading.is-weakens{border-left-color:#ad4128}.perspective-reading b{font-size:11px}.perspective-reading span{font-size:10.5px;line-height:1.45}.perspective-reading em,.perspective-reading small{font-size:9px;color:var(--muted);font-style:normal}
       .detail-line.weakened b,
       .detail-line.burdened b {
         color: var(--hot);
@@ -2514,14 +2515,14 @@
           impact: { label: "Vaikutuksen suuruus", group: "Resilienssi", kind: "resilience", metric: "peak", description: "Kriisin suurin havaittu poikkeama lähtötasosta." },
           recovery: { label: "Palautumisaika", group: "Resilienssi", kind: "resilience", metric: "recovery", description: "Vuodet kriisihuipusta lähtötason tuntumaan." },
           persistence: { label: "Pysyvyys", group: "Resilienssi", kind: "resilience", metric: "latest", description: "Kuinka suuri poikkeama on jäljellä viimeisessä havainnossa." },
-          nordic: { label: "Pohjoismaapoikkeama", group: "Vertailu", kind: "series", series: "brief.gini", description: "Pohjoismaiseen aineistoperheeseen kuuluva Gini-sarja. Erillistä mediaanisarjaa ei toimitetussa JSON:ssa ole." },
-          gini: { label: "Gini", group: "Hyvinvointi", kind: "series", series: "brief.gini", description: "Tuloerojen taso murroksen ajankohtana." },
-          employment: { label: "Työllisyys", group: "Hyvinvointi", kind: "series", series: "brief.industrial_employment_share", description: "Teollisen työllisyyden osuus murroksen ajankohtana." },
-          dependency: { label: "Huoltosuhde", group: "Hyvinvointi", kind: "series", series: "indicator.ttt_huoltosuhde", description: "Demografinen huoltosuhde; vuodesta 2025 ennuste." },
-          debt: { label: "Julkinen velka", group: "Hyvinvointi", kind: "series", series: "brief.public_debt_gdp", description: "Julkinen velka suhteessa BKT:hen." },
-          trust: { label: "Luottamus", group: "Hyvinvointi", kind: "series", series: "ess_sosiaalinen_luottamus", description: "Sosiaalisen luottamuksen taso." },
-          healthy: { label: "Terveet elinvuodet", group: "Hyvinvointi", kind: "seriesMean", series: ["hly_syntymasta_miehet", "hly_syntymasta_naiset"], description: "Naisten ja miesten terveiden elinvuosien keskiarvo." },
-          population: { label: "Väestö", group: "Hyvinvointi", kind: "series", series: "brief.median_age", description: "Väestörakennetta kuvaava mediaani-ikä." },
+          nordic: { label: "Pohjoismaapoikkeama", group: "Vertailu", kind: "series", series: "brief.gini", perspective: true, objectiveLabel: "taloudellista yhdenvertaisuutta", higherIsBetter: false, keywords: ["gini", "tuloero", "eriarvo"], positiveTerms: ["tuloerojen kavent", "yhdenvertais", "progressiiv", "tasaav"], negativeTerms: ["tuloerojen kasv", "eriarvoist", "köyhyys", "syrjäytym"], description: "Gini-sarja toimii havaintokontekstina; pisteiden suunta tulkitaan linssien vaikutustiedosta." },
+          gini: { label: "Gini", group: "Hyvinvointi", kind: "series", series: "brief.gini", perspective: true, objectiveLabel: "taloudellista yhdenvertaisuutta", higherIsBetter: false, keywords: ["gini", "tuloero", "eriarvo"], positiveTerms: ["tuloerojen kavent", "yhdenvertais", "progressiiv", "tasaav"], negativeTerms: ["tuloerojen kasv", "eriarvoist", "köyhyys", "syrjäytym"], description: "Tuloerojen kehitys on havaintokonteksti, ei yksin kausaalitodiste." },
+          employment: { label: "Työllisyys", group: "Hyvinvointi", kind: "series", series: "brief.industrial_employment_share", perspective: true, objectiveLabel: "työllisyyttä", higherIsBetter: true, keywords: ["työllisyys", "työllist", "työpaik", "työvoima"], positiveTerms: ["työllisyyden kasvu", "uudet työpaikat", "työvoiman kysyntä", "työllistym", "työkyky", "varhaiskasvatus", "koulutus"], negativeTerms: ["työttömy", "työpaikkojen menet", "irtisan", "lama", "työkyvyttömy", "syrjäytym"], description: "Kartta tulkitsee työllisyyttä vahvistavat ja heikentävät mekanismit. Teollisen työllisyyden osuus toimii historiallisena havaintokontekstina." },
+          dependency: { label: "Huoltosuhde", group: "Hyvinvointi", kind: "series", series: "indicator.ttt_huoltosuhde", perspective: true, objectiveLabel: "huoltosuhteen kestävyyttä", higherIsBetter: false, keywords: ["huoltosuh", "työikä", "ikääntym", "syntyvy"], positiveTerms: ["työikäisten osuus", "syntyvyyden kasvu", "maahanmuutto", "työurien pident"], negativeTerms: ["väestön ikääntym", "syntyvyyden lasku", "huollettavien kasvu"], description: "Demografinen huoltosuhde; vuodesta 2025 ennuste. Suunta erotetaan arvon tasosta." },
+          debt: { label: "Julkinen velka", group: "Hyvinvointi", kind: "series", series: "brief.public_debt_gdp", perspective: true, objectiveLabel: "julkisen talouden kestävyyttä", higherIsBetter: false, keywords: ["julkinen talous", "velka", "alijääm", "rahoitus"], positiveTerms: ["ylijääm", "veropohjan vahvist", "menojen hillint", "velkasuhteen lask"], negativeTerms: ["velkaantum", "alijääm", "rahoitusvaje", "menopaine"], description: "Velkasuhde toimii havaintokontekstina; kartta arvioi mekanismien suuntaa erikseen." },
+          trust: { label: "Luottamus", group: "Hyvinvointi", kind: "series", series: "ess_sosiaalinen_luottamus", perspective: true, objectiveLabel: "yhteiskunnallista luottamusta", higherIsBetter: true, keywords: ["luottamus", "legitim", "osallistum", "demokrat"], positiveTerms: ["luottamuksen kasvu", "osallistum", "avoimuus", "yhdenvertais"], negativeTerms: ["luottamuksen heikken", "polarisaat", "korrupt", "ulkopuolisuus"], description: "Sosiaalisen luottamuksen taso antaa havaintokontekstin vaikutustulkinnalle." },
+          healthy: { label: "Terveet elinvuodet", group: "Hyvinvointi", kind: "seriesMean", series: ["hly_syntymasta_miehet", "hly_syntymasta_naiset"], perspective: true, objectiveLabel: "terveitä elinvuosia", higherIsBetter: true, keywords: ["terveys", "elinvu", "sairast", "työkyky"], positiveTerms: ["terveyden paran", "ennaltaehkäis", "työkyky", "elinajanodotteen kasvu"], negativeTerms: ["sairastavu", "kuolleisu", "mielenterveyskriisi", "hoitovaje"], description: "Naisten ja miesten terveiden elinvuosien keskiarvo toimii havaintokontekstina." },
+          population: { label: "Väestö", group: "Hyvinvointi", kind: "series", series: "brief.median_age", perspective: true, objectiveLabel: "väestöllistä tasapainoa", higherIsBetter: null, keywords: ["väestö", "syntyvy", "muuttoliik", "ikääntym"], positiveTerms: ["väestön kasvu", "syntyvyyden kasvu", "tasapainoinen muuttoliike"], negativeTerms: ["väestökato", "syntyvyyden lasku", "ikääntymisen kiihty"], description: "Mediaani-ikä on havaintokonteksti; korkeampi arvo ei itsessään ole hyvä tai huono." },
           resilience: { label: "Resilienssi", group: "Resilienssi", kind: "composite", description: "Vaikutuksen syvyyden, palautumisajan ja pysyvyyden yhdistelmä." },
           time: { label: "Aikasuodatin", group: "Rajaus", kind: "time", description: "Korostaa valitun aikavälin sisällä myöhempiä murroksia ja himmentää ulkopuoliset." },
           scenario2050: { label: "2050-skenaario", group: "Tulevaisuus", kind: "scenario", description: "Korostaa vuoden 2025 jälkeiset skenaariomurrokset." },
@@ -2557,6 +2558,100 @@
           return best && distance <= 12 ? best : null;
         }
 
+        function normalizePerspectiveText(value) {
+          return String(value || "")
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase();
+        }
+        function includesPerspectiveTerm(text, terms = []) {
+          const normalized = normalizePerspectiveText(text);
+          return terms.some((term) => normalized.includes(normalizePerspectiveText(term)));
+        }
+        function seriesContext(seriesId, year) {
+          const series = wellbeing.series?.[seriesId];
+          const points = (series?.points || [])
+            .map(([pointYear, value]) => ({ year: Number(pointYear), value: Number(value) }))
+            .filter((point) => Number.isFinite(point.year) && Number.isFinite(point.value))
+            .sort((a, b) => a.year - b.year);
+          if (!points.length) return null;
+          const nearest = points.reduce((best, point) =>
+            !best || Math.abs(point.year - year) < Math.abs(best.year - year) ? point : best, null);
+          if (!nearest || Math.abs(nearest.year - year) > 12) return null;
+          const before = [...points].reverse().find((point) => point.year <= nearest.year - 3);
+          const after = points.find((point) => point.year >= nearest.year + 3);
+          const left = before || nearest;
+          const right = after || nearest;
+          const delta = right.year !== left.year ? right.value - left.value : null;
+          return { value: nearest.value, year: nearest.year, delta, spanYears: right.year - left.year, series };
+        }
+        function perspectiveSignalForNode(id, definition, contexts) {
+          const item = itemMap.get(id) || {};
+          const rows = [...selected]
+            .map((chainId) => roleMap.get(chainId + "|" + id))
+            .filter(Boolean);
+          const strengthened = rows.flatMap((row) => row.strengthened || []);
+          const weakened = rows.flatMap((row) => row.weakened || []);
+          const directStrength = includesPerspectiveTerm(strengthened.join(" "), definition.keywords);
+          const directWeakness = includesPerspectiveTerm(weakened.join(" "), definition.keywords);
+          const narrative = [item.title, item.problem, item.phase, item.mechanism, item.long_effect, item.current_relevance]
+            .filter(Boolean).join(" ");
+          const semanticStrength = includesPerspectiveTerm(narrative, definition.positiveTerms);
+          const semanticWeakness = includesPerspectiveTerm(narrative, definition.negativeTerms);
+          const roleDirections = rows.map((row) => Number(row.direction)).filter(Number.isFinite);
+          const roleDirection = roleDirections.length
+            ? roleDirections.reduce((sum, value) => sum + value, 0) / roleDirections.length / 3
+            : null;
+
+          let direction = 0;
+          let weight = 0;
+          const reasons = [];
+          let confidence = 0.22;
+
+          if (directStrength || directWeakness) {
+            direction += directStrength ? 1 : 0;
+            direction -= directWeakness ? 1 : 0;
+            weight += Number(directStrength) + Number(directWeakness);
+            reasons.push("linssin kuratoitu vahvistui/heikkeni-tieto");
+            confidence = 0.86;
+          }
+          if (semanticStrength || semanticWeakness) {
+            direction += (semanticStrength ? 0.65 : 0) - (semanticWeakness ? 0.65 : 0);
+            weight += (semanticStrength ? 0.65 : 0) + (semanticWeakness ? 0.65 : 0);
+            reasons.push("murroksen sanallinen mekanismi");
+            confidence = Math.max(confidence, 0.62);
+          }
+          if (Number.isFinite(roleDirection)) {
+            direction += roleDirection * 0.38;
+            weight += 0.38;
+            reasons.push("valittujen linssien yleinen vaikutussuunta");
+            confidence = Math.max(confidence, 0.46);
+          }
+
+          const contextualDeltas = contexts
+            .map((context) => context?.delta)
+            .filter(Number.isFinite);
+          if (contextualDeltas.length && typeof definition.higherIsBetter === "boolean") {
+            const delta = contextualDeltas.reduce((sum, value) => sum + value, 0) / contextualDeltas.length;
+            const contextualDirection = Math.sign(delta) * (definition.higherIsBetter ? 1 : -1);
+            direction += contextualDirection * 0.2;
+            weight += 0.2;
+            reasons.push("samanaikainen indikaattorikehitys");
+            confidence = Math.max(confidence, 0.34);
+          }
+
+          if (!weight) return null;
+          const value = Math.max(-1, Math.min(1, direction / weight));
+          const conflicting = (directStrength && directWeakness) || (semanticStrength && semanticWeakness);
+          return {
+            direction: conflicting ? value * 0.35 : value,
+            confidence: conflicting ? Math.min(confidence, 0.5) : confidence,
+            reason: reasons.join(" · "),
+            caveat: reasons.length === 1 && reasons[0] === "samanaikainen indikaattorikehitys"
+              ? "Ajallinen yhteys, ei osoitettu kausaalivaikutus."
+              : "Tulkinta yhdistää linssiaineiston ja havaintokontekstin; se ei yksin todista kausaalisuutta.",
+          };
+        }
         function deriveComparisonEffects(mode) {
           const definition = resilienceCompareModes[mode];
           if (!definition) return { effects: new Map(), label: null, definition: null };
@@ -2582,10 +2677,23 @@
             nodeMap.forEach((node,id) => {
               const year = inferredDisplayYear(node);
               const ids = Array.isArray(definition.series) ? definition.series : [definition.series];
-              const hits = ids.map(seriesId => nearestSeriesValue(seriesId,year)).filter(Boolean);
-              if (!hits.length) return;
-              const value = hits.reduce((sum,item)=>sum+item.value,0)/hits.length;
-              raw.set(id,{ value, observationYear: Math.round(hits.reduce((sum,item)=>sum+item.year,0)/hits.length), unit: hits[0].series.unit || "", seriesName: hits.map(item=>item.series.name).join(" + ") });
+              const contexts = ids.map((seriesId) => seriesContext(seriesId, year)).filter(Boolean);
+              if (!contexts.length) return;
+              const signal = definition.perspective
+                ? perspectiveSignalForNode(id, definition, contexts)
+                : null;
+              if (definition.perspective && !signal) return;
+              const value = contexts.reduce((sum,item)=>sum+item.value,0)/contexts.length;
+              raw.set(id,{
+                value,
+                observationYear: Math.round(contexts.reduce((sum,item)=>sum+item.year,0)/contexts.length),
+                unit: contexts[0].series.unit || "",
+                seriesName: contexts.map(item=>item.series.name).join(" + "),
+                perspectiveDirection: signal?.direction,
+                perspectiveConfidence: signal?.confidence,
+                perspectiveReason: signal?.reason,
+                perspectiveCaveat: signal?.caveat,
+              });
             });
           } else if (definition.kind === "time") {
             nodeMap.forEach((node,id) => {
@@ -2599,16 +2707,40 @@
             });
           }
 
-          const values=[...raw.values()].map(item=>Number(item.value)).filter(Number.isFinite);
-          const minValue=Math.min(...values,0), maxValue=Math.max(...values,1), span=Math.max(1e-9,maxValue-minValue);
           const effects=new Map();
-          raw.forEach((item,id)=>{
-            const normalized=Math.max(0,Math.min(1,(item.value-minValue)/span));
-            effects.set(id,{...item,normalized,comparisonY:.82-normalized*.64,radiusMultiplier:1.05+normalized*1.15,opacity:.28+normalized*.7,strokeWidth:1.1+normalized*2.7});
-          });
+          if (definition.perspective) {
+            raw.forEach((item,id)=>{
+              const direction = Math.max(-1, Math.min(1, Number(item.perspectiveDirection) || 0));
+              const magnitude = Math.abs(direction);
+              const directionClass = direction > .16 ? "strengthens" : direction < -.16 ? "weakens" : "mixed";
+              const directionLabel = directionClass === "strengthens"
+                ? "vahvistaa"
+                : directionClass === "weakens"
+                  ? "heikentää"
+                  : "ristiriitainen tai epäselvä";
+              effects.set(id,{
+                ...item,
+                normalized:(direction+1)/2,
+                comparisonY:.5-direction*.38,
+                radiusMultiplier:1.04+magnitude*.9,
+                opacity:.38+(item.perspectiveConfidence || .25)*.55,
+                strokeWidth:1.2+(item.perspectiveConfidence || .25)*2.6,
+                direction,
+                directionClass,
+                directionLabel,
+                color:directionClass === "strengthens" ? "#2f6b4f" : directionClass === "weakens" ? "#ad4128" : "#76558f",
+              });
+            });
+          } else {
+            const values=[...raw.values()].map(item=>Number(item.value)).filter(Number.isFinite);
+            const minValue=Math.min(...values,0), maxValue=Math.max(...values,1), span=Math.max(1e-9,maxValue-minValue);
+            raw.forEach((item,id)=>{
+              const normalized=Math.max(0,Math.min(1,(item.value-minValue)/span));
+              effects.set(id,{...item,normalized,comparisonY:.82-normalized*.64,radiusMultiplier:1.05+normalized*1.15,opacity:.28+normalized*.7,strokeWidth:1.1+normalized*2.7,color:"#ad4128"});
+            });
+          }
           return { effects, label: definition.label, definition };
         }
-
         /**
          * Yksi ainoa renderöinnin lähtöpiste. Ensin lasketaan linssien
          * vaikutus, sitten vertailun vaikutus, lopuksi ne yhdistetään
@@ -3059,6 +3191,24 @@
             : "";
           return `<div class="impact"><b>${S(row.chain_id)}</b><span>${S(row.role)}${localMeta}${aggregateMeta}<em class="${badgeClass}">${badgeText} · ${meta}</em>${rationale}${fallback}${detailHtml(row)}</span></div>`;
         }
+        function perspectiveBlock(id) {
+          const definition = resilienceCompareModes[resilienceCompareMode];
+          if (!definition?.perspective) return "";
+          const effect = deriveComparisonEffects(resilienceCompareMode).effects.get(id);
+          if (!effect) {
+            return `<div class="perspective-reading is-unknown"><b>${S(definition.label)} tarkastelukulmana</b><span>Vaikutussuuntaa ei voida päätellä nykyisestä linssi- ja indikaattoriaineistosta.</span></div>`;
+          }
+          const confidence = Math.round((effect.perspectiveConfidence || 0) * 100);
+          const value = Number.isFinite(Number(effect.value))
+            ? `${Number(effect.value).toLocaleString("fi-FI", { maximumFractionDigits: 1 })} ${S(effect.unit || "")} · ${effect.observationYear || "–"}`
+            : "";
+          return `<div class="perspective-reading is-${S(effect.directionClass)}">
+            <b>${S(definition.label)}: ${S(effect.directionLabel)} ${S(definition.objectiveLabel || "")}</b>
+            <span>${S(effect.perspectiveReason || "Tulkintaperustetta ei ole kuvattu.")}</span>
+            <em>Varmuus ${confidence} %${value ? ` · havaintokonteksti ${value}` : ""}</em>
+            <small>${S(effect.perspectiveCaveat || "")}</small>
+          </div>`;
+        }
         function showNode(id) {
           const it = itemMap.get(id),
             n = nodeMap.get(id),
@@ -3078,7 +3228,7 @@
             `Murrosatlas · ${yearOf(n)}`,
             `${S(it.type || "ilmiö")}<br>${S((it.domains || []).slice(0, 5).join(" · "))}`,
             S(it.title),
-            `<p>${S(it.problem || it.phase || it.current_relevance || "")}</p>${consensusHtml}${j ? `<p class="sub">Nivelperuste: ${S(j.reasons.join(" · "))}</p>` : ""}`,
+            `<p>${S(it.problem || it.phase || it.current_relevance || "")}</p>${perspectiveBlock(id)}${consensusHtml}${j ? `<p class="sub">Nivelperuste: ${S(j.reasons.join(" · "))}</p>` : ""}`,
             caption,
             basis.length
               ? basis.map(basisRowHtml).join("")
@@ -3523,6 +3673,12 @@
           const comparisonAxis = resilienceCompareMode
             ? resilienceCompareModes[resilienceCompareMode]?.label
             : null;
+          const perspectiveDefinition = resilienceCompareMode
+            ? resilienceCompareModes[resilienceCompareMode]
+            : null;
+          const perspectiveTarget = perspectiveDefinition?.perspective
+            ? perspectiveDefinition.objectiveLabel
+            : null;
 
           const nowX = xForYear(NOW_YEAR);
           bg.appendChild(
@@ -3578,7 +3734,9 @@
             E(
               "text",
               { x: P.l + 10, y: top + 18, class: "semantic-label" },
-              "VAHVISTAA JÄRJESTELMÄN TOIMINTAKYKYÄ",
+              perspectiveTarget
+                ? `VAHVISTAA ${perspectiveTarget.toUpperCase()}`
+                : "VAHVISTAA JÄRJESTELMÄN TOIMINTAKYKYÄ",
             ),
           );
           bg.appendChild(
@@ -3592,7 +3750,9 @@
             E(
               "text",
               { x: P.l + 10, y: bottom - 10, class: "semantic-label" },
-              "HEIKENTÄÄ JÄRJESTELMÄN TOIMINTAKYKYÄ",
+              perspectiveTarget
+                ? `HEIKENTÄÄ ${perspectiveTarget.toUpperCase()}`
+                : "HEIKENTÄÄ JÄRJESTELMÄN TOIMINTAKYKYÄ",
             ),
           );
           // Akselin merkitys sanotaan ääneen: pystysuunta ei ole yksi mitattu
@@ -3607,9 +3767,11 @@
                 transform: `rotate(-90 16 ${center})`,
                 "text-anchor": "middle",
               },
-              comparisonAxis
-                ? `Pystyakseli = linssivaikutus + vertailu: ${comparisonAxis}`
-                : "Pystyakseli = valitun linssin mukainen vaikutus järjestelmän toimintakykyyn",
+              perspectiveTarget
+                ? `Pystyakseli = arvioitu vaikutussuunta tarkastelukulmaan: ${comparisonAxis}`
+                : comparisonAxis
+                  ? `Pystyakseli = linssivaikutus + vertailu: ${comparisonAxis}`
+                  : "Pystyakseli = valitun linssin mukainen vaikutus järjestelmän toimintakykyyn",
             ),
           );
 
@@ -3847,7 +4009,7 @@
               const group = E("g", {
                 "data-id": node.id,
                 tabindex: "0",
-                class: `node imp${node.importance} on-path ${active ? "active" : ""} ${pulseId === node.id ? "pulse" : ""} ${consensus ? "agree-" + consensus.kind : ""} ${comparisonEffect ? "comparison-active comparison-" + resilienceCompareMode : ""} ${offFocus && !comparisonEffect ? "off-focus" : ""}`,
+                class: `node imp${node.importance} on-path ${active ? "active" : ""} ${pulseId === node.id ? "pulse" : ""} ${consensus ? "agree-" + consensus.kind : ""} ${comparisonEffect ? "comparison-active comparison-" + resilienceCompareMode + " perspective-" + (comparisonEffect.directionClass || "level") : ""} ${offFocus && !comparisonEffect ? "off-focus" : ""}`,
                 role: "button",
                 "aria-label": item.title,
               });
@@ -3867,13 +4029,13 @@
                   cx: point.x,
                   cy: point.y,
                   r: radius,
-                  fill: comparisonEffect ? "var(--hot)" : color(primary),
+                  fill: comparisonEffect ? comparisonEffect.color : color(primary),
                   "fill-opacity": active
                     ? 0.92
                     : comparisonEffect
                       ? comparisonEffect.opacity
                       : 0.13,
-                  stroke: comparisonEffect ? "var(--hot)" : color(primary),
+                  stroke: comparisonEffect ? comparisonEffect.color : color(primary),
                   "stroke-width": comparisonEffect?.strokeWidth || 1,
                 }),
               );
@@ -3894,7 +4056,7 @@
               bindTip(
                 group,
                 () =>
-                  `<b>${S(item.title)}</b><em>${yearOf(node)} · ${uses.join(" + ")}</em>${comparisonEffect ? `<em class="tip-agree">${S(resilienceCompareModes[resilienceCompareMode]?.label || "Vertailu")}: ${S(Number(comparisonEffect.value).toLocaleString("fi-FI", { maximumFractionDigits: 1 }))}</em>` : ""}${consensus ? `<em class="tip-agree">${agreementLabel(consensus)}</em>` : ""}<br>${S(short(item.problem || item.phase || "", 170))}`,
+                  `<b>${S(item.title)}</b><em>${yearOf(node)} · ${uses.join(" + ")}</em>${comparisonEffect ? `<em class="tip-agree">${S(resilienceCompareModes[resilienceCompareMode]?.label || "Tarkastelukulma")}: ${S(comparisonEffect.directionLabel || Number(comparisonEffect.value).toLocaleString("fi-FI", { maximumFractionDigits: 1 }))}${comparisonEffect.perspectiveConfidence ? ` · varmuus ${Math.round(comparisonEffect.perspectiveConfidence * 100)} %` : ""}</em>` : ""}${consensus ? `<em class="tip-agree">${agreementLabel(consensus)}</em>` : ""}<br>${S(short(item.problem || item.phase || "", 170))}`,
               );
               nodes.appendChild(group);
               const isShared = uses.length > 1;
@@ -3981,7 +4143,7 @@
             overlay.appendChild(E("text", {
               x: badgeX + 16, y: badgeY + 14,
               class: "resilience-map-status-kicker",
-            }, "VERTAILUTILA · KOKO NÄKYMÄ"));
+            }, comparison.perspective ? "TARKASTELUKULMA · VAHVISTAA / HEIKENTÄÄ" : "VERTAILUTILA · KOKO NÄKYMÄ"));
             overlay.appendChild(E("text", {
               x: badgeX + 16, y: badgeY + 29,
               class: "resilience-map-status-label",
