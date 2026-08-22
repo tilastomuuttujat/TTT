@@ -1531,7 +1531,15 @@
       .analysis-toggle[aria-pressed="true"] { color:var(--hot); background:color-mix(in srgb,var(--hot) 10%,var(--paper)); }
       .analysis-toggle[aria-pressed="true"] .analysis-copy b { color:var(--hot); }
       .analysis-toggle[aria-pressed="true"] .analysis-state { border-color:var(--hot); background:var(--hot); box-shadow:0 0 0 3px color-mix(in srgb,var(--hot) 15%,transparent); }
-      @media (max-width: 760px) { .analysis-browser { grid-template-columns:30px minmax(118px,1fr) 30px; } }
+      .control-kind-label { align-self:center; margin-left:8px; color:var(--muted); font-size:8px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+      .analysis-methods { flex:1 0 100%; display:flex; align-items:center; gap:6px; padding-top:8px; margin-top:3px; border-top:1px solid var(--line); overflow-x:auto; }
+      .analysis-methods > span { flex:0 0 auto; color:var(--muted); font-size:8px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+      .analysis-methods > i { width:1px; height:22px; margin:0 2px; background:var(--line); }
+      .analysis-method { flex:0 0 auto; border:1px solid var(--line); border-radius:999px; padding:6px 9px; background:var(--paper); color:var(--ink2); cursor:pointer; font-size:9px; font-weight:700; }
+      .analysis-method:hover { border-color:var(--ink); }
+      .analysis-method[aria-pressed="true"] { border-color:var(--hot); background:color-mix(in srgb,var(--hot) 11%,var(--paper)); color:var(--hot); }
+      .analysis-view { color:var(--muted); }
+      @media (max-width: 760px) { .analysis-browser { grid-template-columns:30px minmax(118px,1fr) 30px; } .control-kind-label { flex-basis:100%; margin:4px 0 -2px; } }
       #chart.interaction-pulse { animation: interactionPulse .28s ease-out; transform-origin: 50% 50%; }
       @keyframes interactionPulse {
         0% { opacity: .82; transform: scale(.998); }
@@ -2512,22 +2520,26 @@
         let resilienceCompareMode = null;
         let analysisBrowseIndex = 0;
         const resilienceCompareModes = {
-          impact: { label: "Vaikutuksen suuruus", group: "Resilienssi", kind: "resilience", metric: "peak", description: "Kriisin suurin havaittu poikkeama lähtötasosta." },
-          recovery: { label: "Palautumisaika", group: "Resilienssi", kind: "resilience", metric: "recovery", description: "Vuodet kriisihuipusta lähtötason tuntumaan." },
-          persistence: { label: "Pysyvyys", group: "Resilienssi", kind: "resilience", metric: "latest", description: "Kuinka suuri poikkeama on jäljellä viimeisessä havainnossa." },
-          nordic: { label: "Pohjoismaapoikkeama", group: "Vertailu", kind: "series", series: "brief.gini", perspective: true, objectiveLabel: "taloudellista yhdenvertaisuutta", higherIsBetter: false, keywords: ["gini", "tuloero", "eriarvo"], positiveTerms: ["tuloerojen kavent", "yhdenvertais", "progressiiv", "tasaav"], negativeTerms: ["tuloerojen kasv", "eriarvoist", "köyhyys", "syrjäytym"], description: "Gini-sarja toimii havaintokontekstina; pisteiden suunta tulkitaan linssien vaikutustiedosta." },
-          gini: { label: "Gini", group: "Hyvinvointi", kind: "series", series: "brief.gini", perspective: true, objectiveLabel: "taloudellista yhdenvertaisuutta", higherIsBetter: false, keywords: ["gini", "tuloero", "eriarvo"], positiveTerms: ["tuloerojen kavent", "yhdenvertais", "progressiiv", "tasaav"], negativeTerms: ["tuloerojen kasv", "eriarvoist", "köyhyys", "syrjäytym"], description: "Tuloerojen kehitys on havaintokonteksti, ei yksin kausaalitodiste." },
-          employment: { label: "Työllisyys", group: "Hyvinvointi", kind: "series", series: "brief.industrial_employment_share", perspective: true, objectiveLabel: "työllisyyttä", higherIsBetter: true, keywords: ["työllisyys", "työllist", "työpaik", "työvoima"], positiveTerms: ["työllisyyden kasvu", "uudet työpaikat", "työvoiman kysyntä", "työllistym", "työkyky", "varhaiskasvatus", "koulutus"], negativeTerms: ["työttömy", "työpaikkojen menet", "irtisan", "lama", "työkyvyttömy", "syrjäytym"], description: "Kartta tulkitsee työllisyyttä vahvistavat ja heikentävät mekanismit. Teollisen työllisyyden osuus toimii historiallisena havaintokontekstina." },
-          dependency: { label: "Huoltosuhde", group: "Hyvinvointi", kind: "series", series: "indicator.ttt_huoltosuhde", perspective: true, objectiveLabel: "huoltosuhteen kestävyyttä", higherIsBetter: false, keywords: ["huoltosuh", "työikä", "ikääntym", "syntyvy"], positiveTerms: ["työikäisten osuus", "syntyvyyden kasvu", "maahanmuutto", "työurien pident"], negativeTerms: ["väestön ikääntym", "syntyvyyden lasku", "huollettavien kasvu"], description: "Demografinen huoltosuhde; vuodesta 2025 ennuste. Suunta erotetaan arvon tasosta." },
-          debt: { label: "Julkinen velka", group: "Hyvinvointi", kind: "series", series: "brief.public_debt_gdp", perspective: true, objectiveLabel: "julkisen talouden kestävyyttä", higherIsBetter: false, keywords: ["julkinen talous", "velka", "alijääm", "rahoitus"], positiveTerms: ["ylijääm", "veropohjan vahvist", "menojen hillint", "velkasuhteen lask"], negativeTerms: ["velkaantum", "alijääm", "rahoitusvaje", "menopaine"], description: "Velkasuhde toimii havaintokontekstina; kartta arvioi mekanismien suuntaa erikseen." },
-          trust: { label: "Luottamus", group: "Hyvinvointi", kind: "series", series: "ess_sosiaalinen_luottamus", perspective: true, objectiveLabel: "yhteiskunnallista luottamusta", higherIsBetter: true, keywords: ["luottamus", "legitim", "osallistum", "demokrat"], positiveTerms: ["luottamuksen kasvu", "osallistum", "avoimuus", "yhdenvertais"], negativeTerms: ["luottamuksen heikken", "polarisaat", "korrupt", "ulkopuolisuus"], description: "Sosiaalisen luottamuksen taso antaa havaintokontekstin vaikutustulkinnalle." },
-          healthy: { label: "Terveet elinvuodet", group: "Hyvinvointi", kind: "seriesMean", series: ["hly_syntymasta_miehet", "hly_syntymasta_naiset"], perspective: true, objectiveLabel: "terveitä elinvuosia", higherIsBetter: true, keywords: ["terveys", "elinvu", "sairast", "työkyky"], positiveTerms: ["terveyden paran", "ennaltaehkäis", "työkyky", "elinajanodotteen kasvu"], negativeTerms: ["sairastavu", "kuolleisu", "mielenterveyskriisi", "hoitovaje"], description: "Naisten ja miesten terveiden elinvuosien keskiarvo toimii havaintokontekstina." },
-          population: { label: "Väestö", group: "Hyvinvointi", kind: "series", series: "brief.median_age", perspective: true, objectiveLabel: "väestöllistä tasapainoa", higherIsBetter: null, keywords: ["väestö", "syntyvy", "muuttoliik", "ikääntym"], positiveTerms: ["väestön kasvu", "syntyvyyden kasvu", "tasapainoinen muuttoliike"], negativeTerms: ["väestökato", "syntyvyyden lasku", "ikääntymisen kiihty"], description: "Mediaani-ikä on havaintokonteksti; korkeampi arvo ei itsessään ole hyvä tai huono." },
-          resilience: { label: "Resilienssi", group: "Resilienssi", kind: "composite", description: "Vaikutuksen syvyyden, palautumisajan ja pysyvyyden yhdistelmä." },
+          employment: { label: "Työllisyys ja työkyky", group: "Tarkastelukulma", kind: "series", series: "brief.industrial_employment_share", perspective: true, objectiveLabel: "työllisyyttä ja työkykyä", higherIsBetter: true, keywords: ["työllisyys", "työllist", "työpaik", "työvoima", "työkyky", "työkyvyttömy"], positiveTerms: ["työllisyyden kasvu", "uudet työpaikat", "työvoiman kysyntä", "työllistym", "työkyvyn vahvist", "koulutus"], negativeTerms: ["työttömy", "työpaikkojen menet", "irtisan", "lama", "työkyvyttömy", "syrjäytym"], description: "Tarkastelee työllistymistä, työmarkkinoille osallistumista ja työkykyä yhtenä tavoitteena. Teollisen työllisyyden osuus on vain historiallinen havaintokonteksti." },
+          equality: { label: "Toimeentulo ja eriarvoisuus", group: "Tarkastelukulma", kind: "series", series: "brief.gini", perspective: true, objectiveLabel: "toimeentuloa ja taloudellista yhdenvertaisuutta", higherIsBetter: false, keywords: ["toimeentulo", "gini", "tuloero", "eriarvo", "köyhyys"], positiveTerms: ["tuloerojen kavent", "yhdenvertais", "progressiiv", "köyhyyden vähent", "toimeentulon paran"], negativeTerms: ["tuloerojen kasv", "eriarvoist", "köyhyys", "syrjäytym", "toimeentulon heikken"], description: "Gini toimii havaintokontekstina, mutta tulkinta kattaa myös toimeentulon, köyhyyden ja jakaumavaikutukset." },
+          fiscal: { label: "Julkisen talouden kestävyys", group: "Tarkastelukulma", kind: "series", series: "brief.public_debt_gdp", perspective: true, objectiveLabel: "julkisen talouden kestävyyttä", higherIsBetter: false, keywords: ["julkinen talous", "velka", "alijääm", "veropohja", "rahoitus"], positiveTerms: ["ylijääm", "veropohjan vahvist", "menojen hillint", "velkasuhteen lask", "tuottavuuden kasvu"], negativeTerms: ["velkaantum", "alijääm", "rahoitusvaje", "menopaine", "veropohjan heikken"], description: "Velkasuhde toimii havaintokontekstina; tavoite sisältää myös veropohjan, menot ja rahoituskyvyn." },
+          demography: { label: "Väestöllinen kestävyys", group: "Tarkastelukulma", kind: "series", series: "indicator.ttt_huoltosuhde", perspective: true, objectiveLabel: "väestöllistä kestävyyttä", higherIsBetter: false, keywords: ["huoltosuh", "väestö", "työikä", "ikääntym", "syntyvy", "muuttoliik"], positiveTerms: ["työikäisten osuus", "syntyvyyden kasvu", "tasapainoinen muuttoliike", "työurien pident"], negativeTerms: ["väestön ikääntym", "syntyvyyden lasku", "väestökato", "huollettavien kasvu"], description: "Huoltosuhde on havaintokonteksti; tulkinta huomioi syntyvyyden, ikääntymisen ja muuttoliikkeen mekanismit." },
+          health: { label: "Terveys ja toimintakyky", group: "Tarkastelukulma", kind: "seriesMean", series: ["hly_syntymasta_miehet", "hly_syntymasta_naiset"], perspective: true, objectiveLabel: "terveyttä ja toimintakykyä", higherIsBetter: true, keywords: ["terveys", "elinvu", "sairast", "toimintakyky", "mielenterveys", "työkyky"], positiveTerms: ["terveyden paran", "ennaltaehkäis", "toimintakyvyn vahvist", "työkyky", "elinajanodotteen kasvu"], negativeTerms: ["sairastavu", "kuolleisu", "mielenterveyskriisi", "hoitovaje", "työkyvyttömy"], description: "Terveet elinvuodet antavat havaintokontekstin fyysiselle, psyykkiselle ja sosiaaliselle toimintakyvylle." },
+          education: { label: "Osaaminen ja mahdollisuudet", group: "Tarkastelukulma", kind: "perspective", perspective: true, objectiveLabel: "osaamista ja mahdollisuuksien yhdenvertaisuutta", higherIsBetter: true, keywords: ["osaaminen", "koulutus", "oppiminen", "sivistys", "mahdollisu", "tutkimus"], positiveTerms: ["osaamisen kasvu", "koulutustason nousu", "oppimistulosten paran", "yhdenvertaiset mahdollisuudet", "tutkimuspanost"], negativeTerms: ["osaamisvaje", "oppimistulosten lasku", "koulutusleikka", "eriytyminen", "syrjäytym"], description: "Tulkinta perustuu murrosten ja linssien mekanismeihin; yhtenäistä pitkää indikaattorisarjaa ei käytetä näennäisen tarkkuuden välttämiseksi." },
+          trust: { label: "Luottamus ja osallisuus", group: "Tarkastelukulma", kind: "series", series: "ess_sosiaalinen_luottamus", perspective: true, objectiveLabel: "yhteiskunnallista luottamusta ja osallisuutta", higherIsBetter: true, keywords: ["luottamus", "legitim", "osallistum", "osallisuus", "demokrat"], positiveTerms: ["luottamuksen kasvu", "osallistum", "avoimuus", "yhdenvertais", "demokratian vahvist"], negativeTerms: ["luottamuksen heikken", "polarisaat", "korrupt", "ulkopuolisuus", "demokratian heikken"], description: "Sosiaalinen luottamus antaa havaintokontekstin osallisuuden, legitimiteetin ja demokratian mekanismeille." },
+          services: { label: "Hoivan ja palvelujen kantokyky", group: "Tarkastelukulma", kind: "perspective", perspective: true, objectiveLabel: "hoivan ja palvelujen kantokykyä", higherIsBetter: true, keywords: ["hoiva", "palvelu", "sote", "terveyspalvel", "sosiaalipalvel", "varhaiskasvatus"], positiveTerms: ["palvelujen saatavuuden paran", "hoivan vahvist", "ennaltaehkäis", "palvelukyvyn kasvu"], negativeTerms: ["hoitovaje", "palvelujen heikken", "henkilöstöpula", "jonojen kasvu", "kantokyvyn heikken"], description: "Tulkinta kokoaa saatavuuden, henkilöstön, rahoituksen ja palvelutarpeen mekanismit ilman yhtä hallitsevaa mittaria." },
+          impact: { label: "Vaikutuksen suuruus", group: "Analyysitapa", kind: "resilience", metric: "peak", description: "Kriisin suurin havaittu poikkeama lähtötasosta." },
+          recovery: { label: "Palautumisaika", group: "Analyysitapa", kind: "resilience", metric: "recovery", description: "Vuodet kriisihuipusta lähtötason tuntumaan." },
+          persistence: { label: "Pysyvyys", group: "Analyysitapa", kind: "resilience", metric: "latest", description: "Kuinka suuri poikkeama on jäljellä viimeisessä havainnossa." },
+          resilience: { label: "Resilienssi", group: "Analyysitapa", kind: "composite", description: "Vaikutuksen syvyyden, palautumisajan ja pysyvyyden yhdistelmä." },
+          nordic: { label: "Pohjoismaavertailu", group: "Rajaus", kind: "series", series: "brief.gini", description: "Vertaa Suomen havaintoa pohjoismaiseen kehykseen saatavilla olevalla vertailusarjalla." },
           time: { label: "Aikasuodatin", group: "Rajaus", kind: "time", description: "Korostaa valitun aikavälin sisällä myöhempiä murroksia ja himmentää ulkopuoliset." },
-          scenario2050: { label: "2050-skenaario", group: "Tulevaisuus", kind: "scenario", description: "Korostaa vuoden 2025 jälkeiset skenaariomurrokset." },
+          scenario2050: { label: "2050-skenaario", group: "Rajaus", kind: "scenario", description: "Korostaa vuoden 2025 jälkeiset skenaariomurrokset." },
         };
-        const analysisModeOrder = Object.keys(resilienceCompareModes);
+        const perspectiveModeOrder = ["employment", "equality", "fiscal", "demography", "health", "education", "trust", "services"];
+        const analysisMethodOrder = ["impact", "recovery", "persistence", "resilience"];
+        const viewModeOrder = ["nordic", "time", "scenario2050"];
+        const analysisModeOrder = perspectiveModeOrder;
         function median(values) {
           const numbers = values.filter(Number.isFinite).sort((a, b) => a - b);
           if (!numbers.length) return null;
@@ -2672,6 +2684,21 @@
                 value = (impact || 0) * .38 + (recovery || 0) * .34 + (persistence || 0) * .28 + open * 4;
               }
               if (Number.isFinite(value) && nodeMap.has(crisis.id)) raw.set(crisis.id,{ value, crisis, unit: definition.metric === "recovery" ? "vuotta" : "%" });
+            });
+          } else if (definition.kind === "perspective") {
+            nodeMap.forEach((node,id) => {
+              const signal = perspectiveSignalForNode(id, definition, []);
+              if (!signal) return;
+              raw.set(id,{
+                value: signal.direction,
+                observationYear: inferredDisplayYear(node),
+                unit: "",
+                seriesName: "Murros- ja linssiaineiston mekanismit",
+                perspectiveDirection: signal.direction,
+                perspectiveConfidence: signal.confidence,
+                perspectiveReason: signal.reason,
+                perspectiveCaveat: signal.caveat,
+              });
             });
           } else if (definition.kind === "series" || definition.kind === "seriesMean") {
             nodeMap.forEach((node,id) => {
@@ -2866,6 +2893,9 @@
           toggle.setAttribute("aria-pressed", String(resilienceCompareMode === analysisModeOrder[analysisBrowseIndex]));
           toggle.setAttribute("aria-label", `${definition.label}. ${resilienceCompareMode === analysisModeOrder[analysisBrowseIndex] ? "Poista tarkastelu käytöstä" : "Ota tarkastelu käyttöön"}.`);
           toggle.innerHTML = `${analysisIcon(analysisModeOrder[analysisBrowseIndex])}<span class="analysis-copy"><b>${S(definition.label)}</b><small>${S(definition.group)} · ${resilienceCompareMode === analysisModeOrder[analysisBrowseIndex] ? "aktiivinen" : "passiivinen"}</small></span><span class="analysis-state" aria-hidden="true"></span>`;
+          document.querySelectorAll("[data-analysis-mode]").forEach((button) => {
+            button.setAttribute("aria-pressed", String(button.dataset.analysisMode === resilienceCompareMode));
+          });
         }
         function browseAnalysis(delta) {
           const wasEnabled = resilienceCompareMode !== null;
@@ -3288,8 +3318,40 @@
           next.setAttribute("aria-label", "Seuraava tarkastelutila");
           next.addEventListener("click", () => browseAnalysis(1));
 
-          browser.append(previous, toggle, next);
-          chips.appendChild(browser);
+          const perspectiveLabel = document.createElement("span");
+          perspectiveLabel.className = "control-kind-label";
+          perspectiveLabel.textContent = "Tarkastelukulma";
+          chips.append(perspectiveLabel, browser);
+
+          const secondary = document.createElement("div");
+          secondary.className = "analysis-methods";
+          secondary.setAttribute("role", "group");
+          secondary.setAttribute("aria-label", "Analyysitapa ja näkymärajaus");
+          const methodLabel = document.createElement("span");
+          methodLabel.textContent = "Analyysitapa";
+          secondary.appendChild(methodLabel);
+          analysisMethodOrder.forEach((mode) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "analysis-method";
+            button.dataset.analysisMode = mode;
+            button.textContent = resilienceCompareModes[mode].label;
+            button.addEventListener("click", () => toggleResilienceComparison(mode));
+            secondary.appendChild(button);
+          });
+          const divider = document.createElement("i");
+          divider.setAttribute("aria-hidden", "true");
+          secondary.appendChild(divider);
+          viewModeOrder.forEach((mode) => {
+            const button = document.createElement("button");
+            button.type = "button";
+            button.className = "analysis-method analysis-view";
+            button.dataset.analysisMode = mode;
+            button.textContent = resilienceCompareModes[mode].label;
+            button.addEventListener("click", () => toggleResilienceComparison(mode));
+            secondary.appendChild(button);
+          });
+          chips.appendChild(secondary);
           syncResilienceCompareControls();
         }
         function applyScenarioPreset(mode) {
@@ -4848,7 +4910,8 @@
           }
           if (state.analysis && resilienceCompareModes[state.analysis]) {
             resilienceCompareMode = state.analysis;
-            analysisBrowseIndex = analysisModeOrder.indexOf(state.analysis);
+            const restoredPerspectiveIndex = analysisModeOrder.indexOf(state.analysis);
+            if (restoredPerspectiveIndex >= 0) analysisBrowseIndex = restoredPerspectiveIndex;
           }
           const loader = document.getElementById("loading");
           if (loader) loader.remove();
