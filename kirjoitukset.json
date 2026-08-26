@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "kirjoitukset": [
+    {
+      "id": "siilot-ja-sisapiirit",
+      "slug": "siilot-ja-sisapiirit",
+      "title": "Suomen kompastuskivinä siilot ja sisäpiirit",
+      "titleParts": ["Suomen kompastuskivinä", "siilot ja sisäpiirit"],
+      "subtitle": "Kuinka Suomen yhteinen rakentaminen muuttui järjestelmäksi, joka korjaa toimintaansa mutta ei suuntaansa.",
+      "tags": ["Yhteiskunta", "Rakenteet", "Korjauskyky"],
+      "readingTime": "14 MIN",
+      "image": "siilot-aikajana.png",
+      "imageAlt": "Aikajana yhteisestä rakentamisesta siiloihin, sisäpiireihin ja korjaavan palautteen heikkenemiseen",
+      "imageCaption": "Sama rakenne, joka kokosi Suomen voimavarat, saattoi vähitellen sulkeutua omia toimintatapojaan uusintavaksi järjestelmäksi.",
+      "ogImage": "siilot-ja-sisapiirit-og.png",
+      "intro": [
+        "Suomen yhteiskunnallinen menestys perustui pitkään kykyyn koota pieni maa yhteisten tavoitteiden ympärille. Valtio, kunnat, työmarkkinajärjestöt, yritykset ja kansalaisjärjestöt rakensivat yhdessä infrastruktuuria, koulutusta, teollisuutta ja sosiaalista turvaa. Niukat voimavarat yhdistettiin, ristiriitoja soviteltiin ja päätöksiä toteutettiin pitkäjänteisesti.",
+        "Tämän mallin vahvuuksia olivat luottamus ja koordinaatio. Kun keskeiset toimijat tunsivat toisensa ja kykenivät sopimaan, yhteiskunta pystyi tekemään ratkaisuja, joihin hajautunut ja köyhä maa ei muuten olisi kyennyt. Julkinen valta ei ainoastaan korjannut markkinoiden puutteita vaan rakensi koko yhteiskunnan toimintakykyä.",
+        "Ajan myötä yhteisten ratkaisujen ympärille syntyivät kuitenkin pysyvät organisaatiot, ammattiryhmät, rahoituskanavat ja edustukselliset asemat. Se, mikä aluksi yhdisti yhteiskuntaa, alkoi samalla jakaa sitä hallinnollisiin ja ammatillisiin alueisiin. Yhteinen tehtävä hajosi vähitellen siiloiksi, ja siilojen sisälle muodostui vakiintuneita verkostoja.",
+        "Näin syntyi suomalaisen järjestelmän vaikeasti havaittava paradoksi. Suomi on edelleen kansainvälisesti korkean luottamuksen, ammattimaisen hallinnon ja vähäisen avoimen korruption maa. Samalla yhteiskunnallinen pääsy, asiantuntijuus ja päätösten valmistelu voivat kasautua suhteellisen pieniin institutionaalisiin piireihin.",
+        "Siilot erottavat tehtävät toisistaan. Sisäpiirit ratkaisevat, ketkä pääsevät siilojen sisällä käyttämään valtaa. Yhdessä ne voivat muodostaa järjestelmän, joka toimii tehokkaasti omien rajojensa sisällä mutta kykenee yhä heikommin korjaamaan kokonaisuutensa suuntaa."
+      ],
+      "sections": [
+        {
+          "id": "yhteisen-rakentamisen-aika",
+          "title": "Yhteisen rakentamisen aika",
+          "paragraphs": [
+            "Sodan jälkeisessä Suomessa valtiojohtoisuus, järjestöllinen sopiminen ja keskitetty koordinaatio vastasivat todelliseen tarpeeseen. Suomelta puuttuivat pääomat, infrastruktuuri ja laajat hyvinvointipalvelut. Markkinat eivät olisi yksin rakentaneet sähköverkkoja, kouluja, sairaaloita ja teollista perustaa tasaisesti koko maahan.",
+            "Valtion vahva rooli laajensi yhteiskunnallista pääsyä. Koulutus, terveydenhuolto ja sosiaaliturva vähensivät riippuvuutta syntyperästä, varallisuudesta ja paikallisista suhteista. Valtakunnalliset säännöt saattoivat myös suojata kansalaisia kuntien, puolueiden ja paikallisten valtaryhmien suosimiselta.",
+            "Keskittäminen ei siis merkinnyt pelkästään vallan kokoamista. Se mahdollisti voimavarojen jakamisen aikaisempaa yhdenvertaisemmin. Luottamus instituutioihin vahvistui, koska järjestelmä tuotti näkyviä parannuksia ihmisten elämään.",
+            "Tässä vaiheessa instituutiot olivat ennen kaikkea välineitä yhteiskunnallisen tehtävän toteuttamiseen. Niiden oikeutus perustui siihen, että ne rakensivat kansalaisten toimintakykyä ja laajensivat mahdollisuuksia osallistua yhteiskuntaan.",
+            "Suomen alkuperäinen vahvuus ei siten ollut valtiojohtoisuus yksin. Se oli valtiojohtoisuuden, laajenevan demokratian, järjestäytyneiden kansanliikkeiden ja yhteisen kehitystavoitteen yhdistelmä."
+          ]
+        },
+        {
+          "id": "kun-yhteistyo-vakiintui-rakenteeksi",
+          "title": "Kun yhteistyö vakiintui rakenteeksi",
+          "paragraphs": [
+            "Onnistunut toimintamalli synnyttää ympärilleen jatkuvuutta. Yhteistyöhön osallistuvat organisaatiot saavat kokemusta, resursseja ja asemaa. Niiden edustajat kutsutaan seuraaviin työryhmiin, koska he tuntevat järjestelmän ja kykenevät neuvottelemaan keskenään.",
+            "Tämä on aluksi järkevää. Monimutkaisten asioiden hoitaminen edellyttää institutionaalista muistia ja keskinäistä luottamusta. Jokaisen uudistuksen valmistelua ei voida aloittaa tyhjästä eikä yhteiskunnallisia ratkaisuja rakentaa jatkuvasti vaihtuvien osallistujien varaan.",
+            "Vakiintuminen alkaa muuttua lukkiutumiseksi silloin, kun aikaisempi osallistuminen ratkaisee, kuka saa osallistua myös tulevaisuudessa. Vakiintuneet toimijat eivät enää ainoastaan tuo päätöksentekoon tietoa, vaan ne alkavat määritellä, millaista tietoa päätöksenteossa tarvitaan ja ketä pidetään uskottavana asiantuntijana.",
+            "Näin syntyy itseään vahvistava kehä. Sisäpuolella oleva saa tehtäviä, kokemusta ja näkyviä näyttöjä. Kertynyt kokemus tekee hänestä seuraavassa valinnassa ansioituneemman kuin ulkopuolisesta. Järjestelmä voi silloin valita hänet muodollisesti pätevyyden perusteella, vaikka pätevyyden kasautuminen olisi alun perin ollut seurausta sisäänpääsystä.",
+            "Tätä ei tarvitse ohjata tietoinen suosiminen. Jokainen yksittäinen ratkaisu voi vaikuttaa perustellulta. Tuttuun ja kokeneeseen toimijaan luottaminen vähentää riskiä, nopeuttaa valmistelua ja helpottaa yhteistyötä. Toistuvana käytäntönä se kuitenkin muuttaa luottamuksen pääsyä rajoittavaksi rakenteeksi.",
+            "Luottamus ei enää perustu vain siihen, mitä ihminen osaa. Se alkaa perustua myös siihen, tunnetaanko hänet oikeissa instituutioissa ja onko hän osoittanut osaamisensa järjestelmän hyväksymillä tavoilla."
+          ]
+        },
+        {
+          "id": "siilojen-synty",
+          "title": "Siilojen synty",
+          "paragraphs": [
+            "Yhteiskunnan monimutkaistuessa hallinnon oli erikoistuttava. Terveydenhuolto, sosiaaliturva, työllisyys, koulutus, asuminen ja aluekehitys vaativat kukin oman lainsäädäntönsä, ammattitaitonsa ja organisaationsa.",
+            "Erikoistuminen oli välttämätöntä, mutta se synnytti myös siiloja. Jokaiselle toimijalle muodostui oma tehtävä, budjetti, tietojärjestelmä, käsitteistö ja onnistumisen mittari. Kokonaisongelmat pilkottiin hallittaviksi osiksi, jotta joku voisi kantaa niistä vastuun.",
+            "Ihmisten elämä ei kuitenkaan jakaudu hallinnonalojen mukaisesti. Työttömyys voi liittyä terveyteen, osaamiseen, asumiseen, velkaantumiseen, perhetilanteeseen ja alueen työmarkkinoihin. Hallinto näkee näissä useita erillisiä tehtäviä, vaikka ihminen kokee vain yhden elämäntilanteen.",
+            "Kun kokonaisuus jaetaan siiloihin, myös syy ja seuraus voivat irrota toisistaan. Yhden toimijan säästö kasvattaa toisen menoja. Perustason palvelun heikkeneminen lisää korjaavan palvelun tarvetta. Koulutuksesta leikattu euro voi palata myöhemmin työttömyyden, terveyden tai sosiaaliturvan kustannuksena.",
+            "Ensimmäinen organisaatio näyttää saavuttaneen tavoitteensa, koska sen budjetti pieneni. Kokonaisjärjestelmä kuitenkin maksaa enemmän, eikä kustannuksen kasvu palaudu muuttamaan alkuperäistä päätöstä.",
+            "Tällöin siilo ei ole enää vain työnjaon väline. Siitä tulee mekanismi, joka katkaisee järjestelmän korjaavan palautteen."
+          ]
+        },
+        {
+          "id": "sisapiirit-siilojen-sisalla",
+          "title": "Sisäpiirit siilojen sisällä",
+          "paragraphs": [
+            "Siilon sisälle muodostuu helposti oma ammatillinen ja sosiaalinen piirinsä. Samat ihmiset kohtaavat työryhmissä, johtotehtävissä, hankkeissa, järjestöissä ja arviointiprosesseissa. He tuntevat toistensa osaamisen, oppivat yhteisen kielen ja rakentavat keskinäistä luottamusta.",
+            "Sisäinen luottamus on toiminnan kannalta hyödyllistä. Ongelma syntyy, jos siilon ulkopuolelta tuleva tieto tunnistetaan epävarmemmaksi vain siksi, ettei sen esittäjä hallitse samoja käsitteitä tai kuulu tunnettuun organisaatioon.",
+            "Tällöin muodollinen avoimuus ei vielä takaa tosiasiallista avoimuutta. Kuuleminen voidaan järjestää, hakumenettely toteuttaa ja arviointi julkaista. Jos ongelman määritelmä, osallistujapiiri ja hyväksyttävät vaihtoehdot on kuitenkin rajattu etukäteen, avoimuus toimii valmiiksi asetettujen rajojen sisällä.",
+            "Sisäpiiri ei välttämättä kiellä ulkopuolista osallistumasta. Se voi hyväksyä uuden toimijan, jos tämä oppii järjestelmän kielen, toimintatavan ja realismin rajat. Henkilö vaihtuu, mutta ajattelutapa säilyy.",
+            "Tästä syystä institutionaalinen sisäpiiriytyminen on vaikeampi havaita kuin perinteinen puoluepoliittinen suosiminen. Aikaisemmin jäsenkirja tai yhteiskuntaluokka saattoi toimia näkyvänä pääsylippuna. Nykyisin vastaava etu voi rakentua institutionaalisesta sopivuudesta: tunnetuista urapoluista, oikeasta kokemuksesta, verkostoista ja kyvystä toimia vakiintuneiden oletusten sisällä."
+          ],
+          "bullets": [
+            "mikä on ratkaisemisen arvoinen ongelma",
+            "millainen tieto on pätevää",
+            "ketkä ovat uskottavia asiantuntijoita",
+            "millaisia ratkaisuja pidetään realistisina",
+            "miten toiminnan onnistumista mitataan",
+            "ketkä arvioivat lopputuloksia"
+          ]
+        },
+        {
+          "id": "sisapiiri-ei-ole-salaliitto",
+          "title": "Sisäpiiri ei ole salaliitto",
+          "paragraphs": [
+            "Sisäpiiristä puhuminen voi antaa kuvan pienestä ryhmästä, joka tietoisesti hallitsee järjestelmää oman etunsa vuoksi. Todellisuudessa institutionaalinen sisäpiiriytyminen voi syntyä ilman salaista sopimista ja jopa ilman selvää väärinkäytöstä.",
+            "Sisäpiirin jäsenet voivat toimia vilpittömästi ja tavoitella yhteistä hyvää. Heidät on valittu tehtäviinsä koulutuksen, kokemuksen ja näyttöjen perusteella. He voivat myös aidosti uskoa, että jatkuvuuden turvaaminen ja tuttujen toimijoiden käyttäminen ovat vastuullisia ratkaisuja.",
+            "Juuri tämä tekee ilmiöstä rakenteellisen. Jos ongelma olisi pelkästään yksittäisten henkilöiden moraalissa, se voitaisiin ratkaista vaihtamalla ihmiset. Rakenteellinen sisäpiiri voi kuitenkin tuottaa saman toimintatavan myös uusilla henkilöillä, koska järjestelmän urapolut, arviointikriteerit ja kannustimet säilyvät.",
+            "Kyse ei siis ole ensisijaisesti siitä, että väärät ihmiset pääsisivät valtaan. Kyse on siitä, että järjestelmä tuottaa tietynlaista pätevyyttä, nostaa sen kantajat vaikutusvaltaisiin asemiin ja antaa heidän määritellä seuraavien valintojen ehdot."
+          ],
+          "quote": "Sisäpiiri voi vaihtaa jäsenensä ja silti säilyä sisäpiirinä."
+        },
+        {
+          "id": "kun-palaute-muuttuu-raportiksi",
+          "title": "Kun palaute muuttuu raportiksi",
+          "paragraphs": [
+            "Suomessa tuotetaan runsaasti tietoa yhteiskunnan ongelmista. Tutkimukset, kuulemiset, vaikutusarviot, tarkastukset ja tilastot tuovat esiin järjestelmän puutteita. Ongelmana ei useinkaan ole palautteen puuttuminen vaan se, mitä palautteelle tapahtuu.",
+            "Siiloutuneessa järjestelmässä palaute kulkee sen organisaation läpi, jonka toimintaa se koskee. Organisaatio tulkitsee palautteen oman tehtävänsä, toimivaltansa ja käytettävissä olevien keinojensa näkökulmasta. Rakenteellinen kritiikki muuttuu silloin helposti kehittämiskohteeksi, joka voidaan hoitaa uudella prosessilla, hankkeella tai mittarilla.",
+            "Jos kansalaiset kertovat palvelupolun olevan pirstaleinen, järjestelmä voi rakentaa uuden koordinointiryhmän. Jos mittarit eivät kuvaa ihmisten todellista tilannetta, voidaan kehittää lisää mittareita. Jos useat toimijat siirtävät vastuuta toisilleen, niiden väliin voidaan perustaa uusi yhteensovittava rakenne.",
+            "Jokainen ratkaisu voi olla hyödyllinen. Samalla kokonaisuus saa uuden kerroksen purkamatta sitä työnjakoa, joka alkuperäisen ongelman tuotti. Kun uuden kerroksen sivuvaikutukset alkavat näkyä, niiden ympärille rakennetaan jälleen uusi korjaava mekanismi.",
+            "Näin syntyy organisoituneiden ongelmien kerrostuma. Suuri osa järjestelmän kapasiteetista alkaa kulua sen omien rajojen, siirtymien ja sivuvaikutusten hallintaan."
+          ],
+          "quote": "Järjestelmä ei välttämättä torju kritiikkiä. Se kesyttää sen."
+        },
+        {
+          "id": "mittarit-siilojen-peileina",
+          "title": "Mittarit siilojen peileinä",
+          "paragraphs": [
+            "Siilot tarvitsevat mittareita osoittaakseen, että ne hoitavat oman tehtävänsä. Hallinnon on pystyttävä seuraamaan käsittelyaikoja, asiakasmääriä, päätöksiä, kustannuksia ja toimenpiteitä. Ilman mittaamista toiminnasta tulisi mielivaltaista ja vaikeasti valvottavaa.",
+            "Ongelma syntyy, jos siilon mittari irtoaa yhteiskunnallisesta tarkoituksesta. Organisaatio voi parantaa tulostaan lyhentämällä käsittelyaikaa, vaikka asiakkaan ongelma siirtyisi toiseen palveluun. Työllisyyspalvelu voi lisätä toimenpiteitä ilman, että syntyy kestävää työllistymistä. Palvelun kustannus voi laskea, vaikka perheiden tai muiden julkisten järjestelmien kustannukset kasvavat.",
+            "Siilo näkee oman peilikuvansa mutta ei kokonaisuutta ympärillään.",
+            "Kun mittari muuttuu toiminnan kohteeksi, järjestelmä alkaa optimoida sitä, mikä voidaan helposti osoittaa. Vaikeammin mitattavat asiat, kuten luottamus, toimintakyky, elämän ennakoitavuus ja ongelmien ehkäisy, jäävät heikompaan asemaan.",
+            "Tällöin suoritteet voivat parantua samaan aikaan, kun yhteiskunnallinen tilanne heikkenee. Järjestelmä näyttää toimivan yhä tehokkaammin, mutta sen tehokkuus kohdistuu yhä kapeampaan tavoitteeseen."
+          ]
+        },
+        {
+          "id": "kun-hyvinvointivaltio-jaa-laskun-maksajaksi",
+          "title": "Kun hyvinvointivaltio jää laskun maksajaksi",
+          "paragraphs": [
+            "Siilot ja sisäpiirit auttavat ymmärtämään myös hyvinvointivaltion kuormittumista. Työmarkkinoiden, asumisen, koulutuksen, terveyden ja toimeentulon rakenteet tuottavat seurauksia, jotka päätyvät sosiaaliturvan ja julkisten palvelujen käsiteltäviksi.",
+            "Jos työelämän epävarmuus lisääntyy, asuminen kallistuu ja perustason palvelut heikkenevät, ihmisten toimintakyky joutuu koetukselle. Vaikutukset näkyvät lopulta kasvavana palvelujen ja etuuksien tarpeena.",
+            "Koska hyvinvointijärjestelmä on näkyvä julkinen meno, kasvanut tarve voidaan tulkita merkiksi sen liiallisesta koosta. Vähemmän näkyväksi jäävät ne rakenteet, jotka tuottavat korjaavan avun tarvetta.",
+            "Tällöin korjaavaa mekanismia leikataan, koska se on kuormittunut. Leikkaaminen ei kuitenkaan poista kuormituksen alkuperää, vaan vähentää kykyä estää ongelmien vaikeutuminen. Lyhyen aikavälin säästö palaa myöhemmin kalliimpana tarpeena, mutta eri siilon kautta."
+          ],
+          "quote": "Hyvinvointivaltio alkaa maksaa muiden järjestelmien tuottamia laskuja. Kun laskut kasvavat, syylliseksi nimetään laskun maksaja."
+        },
+        {
+          "id": "luottamuksen-suomalainen-paradoksi",
+          "title": "Luottamuksen suomalainen paradoksi",
+          "paragraphs": [
+            "Suomessa luottamus julkisiin instituutioihin on kansainvälisesti korkeaa. Se on todellinen yhteiskunnallinen vahvuus. Luottamus helpottaa yhteistyötä, sääntöjen noudattamista ja kriiseistä selviytymistä.",
+            "Samalla korkea luottamus voi vähentää tarvetta tarkastella epävirallisia valtasuhteita. Koska järjestelmän oletetaan toimivan rehellisesti, ei aina kysytä, miksi juuri tietyt organisaatiot ja asiantuntijat pääsevät toistuvasti määrittelemään politiikan lähtökohdat.",
+            "Luottamus ja vaikutusvalta eivät myöskään ole sama asia. Kansalainen voi luottaa viranomaiseen ja silti kokea, ettei hänen tietonsa muuta päätöksenteon suuntaa. Hän voi osallistua kuulemiseen mutta huomata, että hyväksyttävät vaihtoehdot oli rajattu ennen osallistumista.",
+            "Tästä muodostuu korkean luottamuksen sisäpiirijärjestelmän paradoksi. Päätöksenteko voi olla lainmukaista, ammattimaista ja vilpitöntä mutta samalla sosiaalisesti ja tiedollisesti sulkeutunutta.",
+            "Avoimen korruption vähäisyys ei todista, että yhteiskunnallinen pääsy olisi tasaisesti jakautunut."
+          ]
+        },
+        {
+          "id": "miksi-vahvuus-muuttui-heikkoudeksi",
+          "title": "Miksi vahvuus muuttui heikkoudeksi?",
+          "paragraphs": [
+            "Suomen kehitystä voidaan tarkastella viiden vaiheen kautta.",
+            "Ensimmäisessä vaiheessa, sodanjälkeisen jälleenrakentamisen aikana, valtiojohtoisuus ja yhteinen koordinaatio kokosivat niukat voimavarat. Järjestelmä laajensi mahdollisuuksia ja rakensi yhteiskunnan kapasiteettia.",
+            "Toisessa vaiheessa luottamus ja neuvottelukyky vahvistivat hyvinvointivaltiota, teollisuutta ja koulutusta. Yhteinen suunta mahdollisti pitkäjänteiset ratkaisut.",
+            "Kolmannessa vaiheessa onnistumisen tuottamat rakenteet vakiintuivat. Organisaatiot, ammattiryhmät ja edustukselliset asemat muodostivat pysyvän osan yhteiskunnallista vallankäyttöä.",
+            "Neljännessä vaiheessa erikoistuneet rakenteet alkoivat toimia yhä selvemmin siiloina. Samat institutionaaliset verkostot kiersivät siilojen johtamisessa, valmistelussa, rahoituksessa ja arvioinnissa.",
+            "Viidennessä vaiheessa järjestelmä säilytti kykynsä reagoida mutta menetti osan kyvystään korjata suuntaansa. Palaute tuotti uusia hankkeita, prosesseja ja organisaatiomuutoksia, mutta järjestelmän peruslogiikka säilyi.",
+            "Vahvuus muuttui siis heikkoudeksi, kun luottamuksesta tuli tuttujen ensisijaisuutta, koordinaatiosta vallan keskittymistä, erikoistumisesta siiloutumista ja jatkuvuudesta institutionaalista lukkiutumista.",
+            "Kyse ei ollut äkillisestä muutoksesta eikä alkuperäisen mallin virheellisyydestä. Sama rakenne jatkoi toimintaansa olosuhteissa, joissa sen sivuvaikutukset alkoivat ylittää hyödyt."
+          ]
+        },
+        {
+          "id": "mita-pitaisi-avata",
+          "title": "Mitä pitäisi avata?",
+          "paragraphs": [
+            "Siilojen purkaminen kokonaan ei olisi mahdollista eikä järkevää. Yhteiskunta tarvitsee erityisosaamista, selkeitä vastuita ja toisistaan riippumattomia instituutioita. Myöskään verkostoja ei pidä hajottaa vain siksi, että ne ovat tiiviitä. Luottamus, institutionaalinen muisti ja yhteistyökyky ovat edelleen Suomen tärkeimpiä voimavaroja.",
+            "Tavoitteena pitäisi olla luja mutta läpäisevä järjestelmä. Sen sisäisen yhteistyön on oltava vahvaa, mutta uusien ihmisten ja tiedon on päästävä muuttamaan myös sen lähtökohtia.",
+            "Tämä edellyttäisi päätösten arviointia yli siilojen ja budjettikausien. Yhden organisaation säästöä ei pitäisi pitää onnistumisena, jos se kasvattaa toisen kustannuksia tai heikentää kansalaisten toimintakykyä. Uudistusten valmistelijoiden, toteuttajien ja arvioijien rooleja pitäisi erottaa nykyistä selvemmin.",
+            "Työryhmien avoimuutta ei pitäisi arvioida vain sillä perusteella, kuinka monta henkilöä kuultiin. Olennaisempaa on, pääsivätkö uudet näkökulmat muuttamaan ongelman määrittelyä ja käytettävissä olevien ratkaisujen joukkoa.",
+            "Myös pätevyyden kasautumiseen pitäisi kiinnittää huomiota. Jos johtamiskokemusta voi saada vain tulemalla ensin valituksi johtamistehtävään, avoin kilpailu ei yksin takaa avointa pääsyä. Uusille toimijoille on luotava todellisia väyliä hankkia niitä näyttöjä, joilla tulevia valintoja perustellaan.",
+            "Kaikkein tärkeintä olisi palauttaa yhteys toiminnan ja sen kokonaisvaikutusten välille. Järjestelmän pitäisi pystyä seuraamaan, minne päätöksen kustannus siirtyy, milloin se ilmenee ja kuka lopulta kantaa sen."
+          ]
+        },
+        {
+          "id": "uusi-yhteinen-tehtava",
+          "title": "Uusi yhteinen tehtävä",
+          "paragraphs": [
+            "Suomen vanha vahvuus oli kyky rakentaa yhdessä. Nykyinen haaste ei ole tämän kyvyn hävittäminen vaan sen avaaminen uudelleen.",
+            "Yhteinen rakentaminen muuttui vähitellen rakenteiden ylläpitämiseksi, koska onnistuneille instituutioille ei muodostettu riittävän vahvaa tapaa kyseenalaistaa omaa tarpeellisuuttaan. Siilot vahvistivat sisäistä tehokkuutta, mutta heikensivät kokonaisvastuuta. Sisäpiirit säilyttivät luottamuksen, mutta kavensivat pääsyä ja hyväksyttävien vaihtoehtojen joukkoa.",
+            "Suomen uusi yhteinen tehtävä voisi olla korjauskyvyn rakentaminen. Se tarkoittaisi yhteiskuntaa, jossa instituutioiden arvo ei perustu niiden pysyvyyteen vaan niiden kykyyn toteuttaa tehtäväänsä muuttuvissa oloissa.",
+            "Korjauskykyinen järjestelmä ei ole jatkuvasti epävakaa. Se suojaa oikeuksia, ennakoitavuutta ja institutionaalista muistia. Samalla se tunnistaa, että myös onnistunut rakenne voi vanhentua ja että ulkopuolelta tuleva havainto voi paljastaa jotakin, mitä sisäinen asiantuntemus ei enää näe.",
+            "Siilot ovat tarpeellisia niin kauan kuin ne jakavat vastuuta eivätkä todellisuutta. Verkostot ovat hyödyllisiä niin kauan kuin ne välittävät luottamusta eivätkä rajaa pääsyä. Instituutiot ovat vahvoja niin kauan kuin ne pystyvät muuttumaan myös tavalla, joka vähentää niiden omaa valtaa.",
+            "Suomen ongelma ei ehkä ole se, että järjestelmä olisi lakannut toimimasta. Vaikeampi ongelma on, että se voi toimia tehokkaasti myös silloin, kun sen osat vievät kokonaisuutta eri suuntiin.",
+            "Siksi ratkaiseva kysymys ei ole vain, kuinka hyvin kukin siilo hoitaa oman tehtävänsä. On kysyttävä, kykenevätkö siilot ja niiden sisäpiirit näkemään yhteiskunnan myös omien rajojensa ulkopuolelta."
+          ],
+          "quote": "Suomen vanha vahvuus oli kyky toimia yhdessä. Sen seuraava vahvuus riippuu siitä, kykeneekö se avaamaan yhteistyönsä myös niille ihmisille, tiedolle ja vaihtoehdoille, jotka eivät vielä kuulu sisäpiiriin.",
+          "closing": true
+        }
+      ]
+    }
+  ]
+}
