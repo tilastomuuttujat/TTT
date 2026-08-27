@@ -1,252 +1,125 @@
 <!doctype html>
 <html lang="fi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Suomen kompastuskivinä siilot ja sisäpiirit</title>
-  <meta name="description" content="Kuinka Suomen yhteinen rakentaminen muuttui järjestelmäksi, joka korjaa toimintaansa mutta ei suuntaansa.">
-  <link rel="canonical" href="https://harrikayhko.fi/artikkeli.html?id=siilot-ja-sisapiirit">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TTT · Laajennettu artikkeli</title>
+<meta name="description" content="TTT-artikkeli, jossa narratiivia voidaan täydentää kevyillä interaktiivisilla visualisoinneilla.">
+<meta name="theme-color" content="#f4f0e7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#142631;--paper:#f4f0e7;--teal:#1f6f71;--blue:#245878;--ochre:#b57a22;--rust:#b54c2a;--red:#912e27;--line:rgba(20,38,49,.18);--soft:#e7dfd1;--white:#fffdf8}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 18% 4%,rgba(255,255,255,.72),transparent 32rem),var(--paper);color:var(--ink);font-family:Fraunces,Georgia,serif;text-rendering:optimizeLegibility}a{color:inherit}.hidden{display:none!important}
+.masthead{display:flex;align-items:center;justify-content:space-between;max-width:1240px;margin:auto;padding:28px 32px;border-bottom:1px solid var(--line);font:700 11px/1.2 Inter,sans-serif;letter-spacing:.16em}.brand{display:flex;align-items:center;gap:12px;text-decoration:none}.brand-mark{display:grid;width:30px;height:30px;place-items:center;border-radius:50%;background:var(--ink);color:var(--paper);font-size:14px;letter-spacing:0}.masthead-actions{display:flex;align-items:center;gap:24px}.masthead-meta{color:rgba(20,38,49,.62)}.copy-link{display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--line);background:transparent;color:var(--ink);font:800 10px/1 Inter,sans-serif;letter-spacing:.12em;cursor:pointer}.copy-link:hover,.copy-link:focus-visible{border-color:var(--ink);background:var(--ink);color:var(--paper);outline:0}.copy-link.copied{border-color:var(--teal);background:var(--teal);color:#fff}
+.hero{max-width:1100px;margin:auto;padding:104px 32px 88px;text-align:center}.kicker,.num{margin:0 0 25px;color:var(--rust);font:800 12px/1.2 Inter,sans-serif;letter-spacing:.2em}.hero h1{max-width:1000px;margin:auto;font-size:clamp(3.1rem,8.4vw,7.5rem);font-weight:500;line-height:.89;letter-spacing:-.055em}.hero h1 em{display:block;color:var(--red);font-weight:500}.dek{max-width:760px;margin:38px auto 0;color:rgba(20,38,49,.76);font-size:clamp(1.25rem,2.2vw,1.8rem);line-height:1.42}.spectrum{display:flex;justify-content:center;gap:5px;margin-top:55px}.spectrum i{display:block;width:54px;height:5px}.spectrum i:nth-child(1){background:var(--teal)}.spectrum i:nth-child(2){background:var(--blue)}.spectrum i:nth-child(3){background:var(--ochre)}.spectrum i:nth-child(4){background:var(--rust)}.spectrum i:nth-child(5){background:var(--red)}
+.shell{display:grid;grid-template-columns:230px minmax(0,720px);gap:76px;max-width:1100px;margin:auto;padding:0 32px 120px;align-items:start}.toc{position:sticky;top:28px;padding-top:8px;font-family:Inter,sans-serif}.toc>p{margin:0 0 18px;font-size:10px;font-weight:800;letter-spacing:.18em}.toc nav{border-top:1px solid var(--line)}.toc a{display:grid;grid-template-columns:28px 1fr;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);color:rgba(20,38,49,.69);font-size:11px;line-height:1.3;text-decoration:none}.toc a:hover{color:var(--red)}.infographic-thumb{display:block;width:100%;margin:0 0 22px;padding:8px;border:1px solid var(--line);background:var(--soft);font:700 10px/1.35 Inter,sans-serif;letter-spacing:.06em;text-align:left;cursor:zoom-in}.infographic-thumb img{display:block;width:100%;height:auto}.infographic-thumb span{display:flex;justify-content:space-between;gap:8px;padding:9px 2px 1px}.infographic-thumb span::after{content:'↗';color:var(--rust);font-size:14px}
+.prose{min-width:0}.prose>p,.prose section>p{margin:0 0 1.45em;font-size:1.19rem;line-height:1.78;hyphens:auto}.prose>.lead{font-size:1.5rem;line-height:1.62}.lead:first-child::first-letter{float:left;margin:.08em .12em 0 0;color:var(--red);font-size:5.2rem;font-weight:600;line-height:.75}.prose section{scroll-margin-top:28px;padding-top:78px}.prose h2{margin:0 0 32px;font-size:clamp(2.15rem,4.2vw,3.35rem);font-weight:500;line-height:1.03;letter-spacing:-.035em}.prose .num{margin-bottom:13px;font-size:12px;line-height:1.2}.bullets{margin:40px 0;padding:30px 34px;background:var(--ink);color:var(--paper)}.bullets li{margin:.75em 0;line-height:1.5}blockquote{margin:48px 0;padding:8px 0 8px 30px;border-left:5px solid var(--rust);color:var(--blue);font-size:1.55rem;font-style:italic;line-height:1.48}.closing{margin-top:55px;padding:42px 46px;border:0;background:var(--ink);color:var(--paper)}
+/* Narratiivinen visualisointimoduuli */
+.story-viz{margin:64px 0 8px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:28px 0 30px;font-family:Inter,sans-serif}.story-viz__eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:12px;color:var(--rust);font-size:10px;font-weight:800;letter-spacing:.17em;text-transform:uppercase}.story-viz__eyebrow::before{content:'';width:26px;height:3px;background:var(--rust)}.story-viz h3{margin:0;max-width:650px;font:500 clamp(1.8rem,4vw,2.8rem)/1.03 Fraunces,serif;letter-spacing:-.035em}.story-viz__intro{margin:14px 0 24px!important;max-width:620px;color:rgba(20,38,49,.72);font:500 14px/1.6 Inter,sans-serif!important}.story-viz__canvas{position:relative;overflow:hidden;background:rgba(255,253,248,.54);border:1px solid var(--line);padding:22px}.story-viz__chain{display:grid;gap:10px}.chain-step{position:relative;display:grid;grid-template-columns:42px minmax(0,1fr);gap:13px;align-items:start;padding:13px 14px;border:1px solid rgba(20,38,49,.14);background:rgba(255,255,255,.54);opacity:.32;transition:opacity .25s,border-color .25s,transform .25s,background .25s}.chain-step.is-visible{opacity:1}.chain-step.is-current{border-color:var(--rust);background:#fffaf2;transform:translateX(3px)}.chain-step:not(:last-child)::after{content:'';position:absolute;left:34px;bottom:-11px;width:1px;height:11px;background:rgba(20,38,49,.3)}.chain-step__n{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ink);color:var(--paper);font-size:11px;font-weight:800}.chain-step__label{margin:1px 0 3px;color:var(--rust);font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.chain-step__title{font:700 14px/1.3 Inter,sans-serif}.chain-step__text{margin:4px 0 0!important;color:rgba(20,38,49,.72);font:500 12px/1.48 Inter,sans-serif!important}.story-viz__controls{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:16px}.story-viz__progress{font-size:10px;font-weight:800;letter-spacing:.12em;color:rgba(20,38,49,.58)}.story-viz__buttons{display:flex;gap:8px}.story-viz button{min-height:42px;padding:0 15px;border:1px solid var(--ink);background:transparent;color:var(--ink);font:800 10px/1 Inter,sans-serif;letter-spacing:.09em;cursor:pointer}.story-viz button.primary{background:var(--ink);color:var(--paper)}.story-viz button:disabled{opacity:.35;cursor:not-allowed}.story-viz__takeaway{margin:18px 0 0!important;padding:16px 18px;border-left:4px solid var(--teal);background:rgba(31,111,113,.08);font:600 13px/1.55 Inter,sans-serif!important}.story-viz__atlas{display:inline-flex;margin-top:15px;color:var(--blue);font:800 10px/1.2 Inter,sans-serif;letter-spacing:.1em;text-decoration:none}.story-viz__atlas:hover{text-decoration:underline}
+.timeline-viz__years{display:flex;gap:8px;overflow:auto;padding-bottom:4px}.timeline-viz__years button{flex:1;min-width:72px;border-color:var(--line)}.timeline-viz__years button.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}.timeline-viz__panel{margin-top:15px;padding:19px;border-left:4px solid var(--ochre);background:rgba(181,122,34,.08)}.timeline-viz__year{font:800 11px/1 Inter,sans-serif;letter-spacing:.12em;color:var(--rust)}.timeline-viz__title{margin:8px 0 5px!important;font:600 22px/1.15 Fraunces,serif!important}.timeline-viz__text{margin:0!important;font:500 13px/1.55 Inter,sans-serif!important;color:rgba(20,38,49,.72)}
+/* Rinnakkainen muuttujavertailu */
+.compare-viz__selector{display:grid;grid-template-columns:48px minmax(0,1fr) 48px;align-items:center;gap:10px;margin:20px 0 18px}.compare-viz__selector button{width:48px;height:48px;padding:0;border:1px solid var(--ink);background:transparent;font-size:20px}.compare-viz__variable{text-align:center}.compare-viz__variable small{display:block;margin-bottom:5px;color:rgba(20,38,49,.55);font:800 9px/1 Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase}.compare-viz__variable strong{display:block;font:600 clamp(1.35rem,3vw,2rem)/1.1 Fraunces,serif;letter-spacing:-.02em}.compare-viz__question{margin:7px auto 0!important;max-width:560px;color:rgba(20,38,49,.68);font:500 12px/1.5 Inter,sans-serif!important}.compare-viz__grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.compare-lane{min-width:0;border:1px solid var(--line);background:rgba(255,253,248,.55);padding:16px}.compare-lane--a{border-top:4px solid var(--teal)}.compare-lane--b{border-top:4px solid var(--rust)}.compare-lane__head{min-height:78px;padding-bottom:12px;border-bottom:1px solid var(--line)}.compare-lane__tag{margin-bottom:7px;color:rgba(20,38,49,.55);font:800 9px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase}.compare-lane__title{font:700 14px/1.3 Inter,sans-serif}.compare-lane__sub{margin:5px 0 0!important;color:rgba(20,38,49,.62);font:500 11px/1.45 Inter,sans-serif!important}.compare-chain{display:grid;gap:0;padding-top:10px}.compare-step{position:relative;display:grid;grid-template-columns:26px minmax(0,1fr);gap:9px;padding:10px 0 14px;opacity:.18;transform:translateY(5px);transition:opacity .35s,transform .35s}.compare-step.is-visible{opacity:1;transform:none}.compare-step.is-current .compare-step__dot{transform:scale(1.16);box-shadow:0 0 0 4px rgba(20,38,49,.08)}.compare-step:not(:last-child)::after{content:'';position:absolute;left:12px;top:35px;bottom:-1px;width:1px;background:var(--line);transform:scaleY(0);transform-origin:top;transition:transform .45s}.compare-step.is-visible:not(:last-child)::after{transform:scaleY(1)}.compare-step__dot{display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:var(--ink);color:var(--paper);font:800 9px/1 Inter,sans-serif;transition:.25s}.compare-lane--a .compare-step.is-current .compare-step__dot{background:var(--teal)}.compare-lane--b .compare-step.is-current .compare-step__dot{background:var(--rust)}.compare-step__kicker{margin:1px 0 4px;color:rgba(20,38,49,.52);font:800 8px/1 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase}.compare-step__title{font:700 12px/1.35 Inter,sans-serif}.compare-step__text{margin:3px 0 0!important;color:rgba(20,38,49,.68);font:500 10.5px/1.48 Inter,sans-serif!important}.compare-viz__synthesis{display:grid;grid-template-columns:92px 1fr;gap:12px;margin-top:14px;padding:14px 16px;background:var(--ink);color:var(--paper)}.compare-viz__synthesis b{font:800 9px/1.25 Inter,sans-serif;letter-spacing:.13em;text-transform:uppercase;color:#d9c8a8}.compare-viz__synthesis p{margin:0!important;font:500 12px/1.55 Inter,sans-serif!important}.compare-viz__dots{display:flex;justify-content:center;gap:6px;margin-top:12px}.compare-viz__dots i{display:block;width:6px;height:6px;border-radius:50%;background:rgba(20,38,49,.2)}.compare-viz__dots i.active{background:var(--rust);transform:scale(1.3)}
+@media(max-width:600px){.compare-viz__grid{grid-template-columns:1fr}.compare-lane__head{min-height:0}.compare-viz__synthesis{grid-template-columns:1fr;gap:6px}.compare-viz__selector{grid-template-columns:44px minmax(0,1fr) 44px}.compare-viz__selector button{width:44px;height:44px}.compare-step__text{font-size:11px!important}}
+@media(prefers-reduced-motion:reduce){.compare-step,.compare-step::after{transition:none}}
 
-  <!-- Oletusartikkelin staattinen Open Graph -kortti. Somebotit eivät yleensä suorita JavaScriptiä. -->
-  <meta property="og:type" content="article">
-  <meta property="og:site_name" content="TTT — Taakka · Totuus · Teko">
-  <meta property="og:locale" content="fi_FI">
-  <meta property="og:url" content="https://harrikayhko.fi/artikkeli.html?id=siilot-ja-sisapiirit">
-  <meta property="og:title" content="Suomen kompastuskivinä siilot ja sisäpiirit">
-  <meta property="og:description" content="Kuinka Suomen yhteinen rakentaminen muuttui järjestelmäksi, joka korjaa toimintaansa mutta ei suuntaansa.">
-  <meta property="og:image" content="https://harrikayhko.fi/images/siilot-ja-sisapiirit-og.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Suomen kompastuskivinä siilot ja sisäpiirit">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Suomen kompastuskivinä siilot ja sisäpiirit">
-  <meta name="twitter:description" content="Kuinka Suomen yhteinen rakentaminen muuttui järjestelmäksi, joka korjaa toimintaansa mutta ei suuntaansa.">
-  <meta name="twitter:image" content="https://harrikayhko.fi/images/siilot-ja-sisapiirit-og.png">
-  <meta name="theme-color" content="#f4f0e7">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{--ink:#142631;--paper:#f4f0e7;--teal:#1f6f71;--blue:#245878;--ochre:#b57a22;--rust:#b54c2a;--red:#912e27;--line:rgba(20,38,49,.18)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 18% 4%,rgba(255,255,255,.72),transparent 32rem),var(--paper);color:var(--ink);font-family:Fraunces,Georgia,serif;text-rendering:optimizeLegibility}a{color:inherit}.hidden{display:none!important}
-    .masthead{display:flex;align-items:center;justify-content:space-between;max-width:1240px;margin:auto;padding:28px 32px;border-bottom:1px solid var(--line);font:700 11px/1.2 Inter,sans-serif;letter-spacing:.16em}.brand{display:flex;align-items:center;gap:12px;text-decoration:none}.brand-mark{display:grid;width:30px;height:30px;place-items:center;border-radius:50%;background:var(--ink);color:var(--paper);font-size:14px;letter-spacing:0}.masthead-actions{display:flex;align-items:center;gap:24px}.masthead-meta{color:rgba(20,38,49,.62)}.copy-link{display:flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--line);background:transparent;color:var(--ink);font:800 10px/1 Inter,sans-serif;letter-spacing:.12em;cursor:pointer;transition:background .2s,color .2s,border-color .2s}.copy-link:hover,.copy-link:focus-visible{border-color:var(--ink);background:var(--ink);color:var(--paper);outline:0}.copy-link.copied{border-color:var(--teal);background:var(--teal);color:#fff}.copy-link svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.8}
-    .hero{max-width:1100px;margin:auto;padding:104px 32px 88px;text-align:center}.kicker,.num{margin:0 0 25px;color:var(--rust);font:800 12px/1.2 Inter,sans-serif;letter-spacing:.2em}.hero h1{max-width:1000px;margin:auto;font-size:clamp(3.1rem,8.4vw,7.5rem);font-weight:500;line-height:.89;letter-spacing:-.055em}.hero h1 em{display:block;color:var(--red);font-weight:500}.dek{max-width:760px;margin:38px auto 0;color:rgba(20,38,49,.76);font-size:clamp(1.25rem,2.2vw,1.8rem);line-height:1.42}.spectrum{display:flex;justify-content:center;gap:5px;margin-top:55px}.spectrum i{display:block;width:54px;height:5px}.spectrum i:nth-child(1){background:var(--teal)}.spectrum i:nth-child(2){background:var(--blue)}.spectrum i:nth-child(3){background:var(--ochre)}.spectrum i:nth-child(4){background:var(--rust)}.spectrum i:nth-child(5){background:var(--red)}
-    .shell{display:grid;grid-template-columns:230px minmax(0,720px);gap:76px;max-width:1100px;margin:auto;padding:0 32px 120px;align-items:start}.toc{position:sticky;top:28px;padding-top:8px;font-family:Inter,sans-serif}.toc>p{margin:0 0 18px;font-size:10px;font-weight:800;letter-spacing:.18em}.toc nav{border-top:1px solid var(--line)}.toc a{display:grid;grid-template-columns:28px 1fr;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);color:rgba(20,38,49,.69);font-size:11px;line-height:1.3;text-decoration:none;transition:.2s}.toc a:hover{color:var(--red);padding-left:4px}.toc a span{color:var(--rust);font-weight:800}.infographic-thumb{display:block;width:100%;margin:0 0 22px;padding:8px;border:1px solid var(--line);background:#e7dfd1;color:var(--ink);font:700 10px/1.35 Inter,sans-serif;letter-spacing:.06em;text-align:left;cursor:zoom-in;transition:transform .2s,border-color .2s}.infographic-thumb:hover,.infographic-thumb:focus-visible{transform:translateY(-2px);border-color:var(--rust);outline:0}.infographic-thumb img{display:block;width:100%;height:auto}.infographic-thumb span{display:flex;justify-content:space-between;gap:8px;padding:9px 2px 1px}.infographic-thumb span::after{content:'↗';color:var(--rust);font-size:14px}
-    .prose{min-width:0}.prose p{margin:0 0 1.45em;font-size:1.19rem;line-height:1.78;hyphens:auto}.prose .lead{font-size:1.5rem;line-height:1.62}.lead:first-child::first-letter{float:left;margin:.08em .12em 0 0;color:var(--red);font-size:5.2rem;font-weight:600;line-height:.75}.prose section{scroll-margin-top:28px;padding-top:78px}.prose h2{margin:0 0 32px;font-size:clamp(2.15rem,4.2vw,3.35rem);font-weight:500;line-height:1.03;letter-spacing:-.035em}.prose .num{margin-bottom:13px;font-size:12px;line-height:1.2}
-    figure{margin:70px 0 16px;padding:14px;background:#e7dfd1;border:1px solid rgba(20,38,49,.12)}figure img{display:block;width:100%;height:auto}figcaption{padding:14px 6px 3px;color:rgba(20,38,49,.68);font:12px/1.5 Inter,sans-serif}blockquote{margin:48px 0;padding:8px 0 8px 30px;border-left:5px solid var(--rust);color:var(--blue);font-size:1.55rem;font-style:italic;line-height:1.48}.bullets{margin:40px 0;padding:30px 34px;background:var(--ink);color:var(--paper)}.bullets li{margin:.75em 0;line-height:1.5}.closing{margin-top:55px;padding:42px 46px;border:0;background:var(--ink);color:var(--paper);font-size:clamp(1.45rem,2.8vw,2rem);line-height:1.45}
-    .lightbox{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:28px;background:rgba(10,22,29,.91);cursor:zoom-out;opacity:0;visibility:hidden;transition:opacity .22s,visibility .22s}.lightbox.open{opacity:1;visibility:visible}.lightbox-inner{position:relative;display:grid;max-width:min(94vw,960px);max-height:94vh;cursor:default}.lightbox img{display:block;max-width:100%;max-height:90vh;width:auto;height:auto;box-shadow:0 20px 70px rgba(0,0,0,.42)}.lightbox-close{position:absolute;top:10px;right:10px;display:grid;width:44px;height:44px;place-items:center;border:1px solid rgba(255,255,255,.5);border-radius:50%;background:rgba(20,38,49,.86);color:#fff;font:500 25px/1 Inter,sans-serif;cursor:pointer}.lightbox-close:focus-visible{outline:3px solid #fff;outline-offset:3px}body.lightbox-open{overflow:hidden}
-    .status{max-width:720px;margin:80px auto;padding:24px;border:1px solid var(--line);font:600 14px/1.6 Inter,sans-serif}.status.error{border-color:var(--red);color:var(--red)}footer{display:flex;justify-content:space-between;max-width:1240px;margin:auto;padding:30px 32px 42px;border-top:1px solid var(--line);font:800 10px/1.2 Inter,sans-serif;letter-spacing:.16em}footer a{text-decoration:none}
-    @media(max-width:880px){.shell{grid-template-columns:1fr;gap:0;max-width:760px}.toc{position:static;margin-bottom:54px;padding-top:0}.toc>p,.toc nav{display:none}.infographic-thumb{max-width:260px;margin:0 auto}.hero{padding-top:78px}}
-    @media(max-width:600px){.masthead{padding:16px 20px}.brand{gap:8px}.brand-mark{width:28px;height:28px}.brand>span:last-child{display:none}.masthead-actions{gap:0}.masthead-meta{display:none}.copy-link{padding:9px 10px}.hero{padding:66px 20px 58px;text-align:left}.hero h1{font-size:clamp(3rem,15vw,5rem)}.dek{margin-top:28px;font-size:1.18rem}.spectrum{justify-content:flex-start;margin-top:36px}.spectrum i{width:34px}.shell{padding:0 20px 80px}.prose p{font-size:1.08rem;line-height:1.72}.prose .lead{font-size:1.27rem}.prose section{padding-top:62px}figure{margin:50px -20px 0;padding:8px}blockquote{font-size:1.3rem}.bullets,.closing{margin-left:-20px;margin-right:-20px;padding:30px 24px}.lightbox{padding:10px}.lightbox img{max-height:96vh}.lightbox-close{top:7px;right:7px}footer{padding:24px 20px 32px}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  </style>
+/* Ajallinen kerrostumisverkko */
+.layer-viz__nav{display:flex;align-items:center;justify-content:center;gap:8px;margin:18px 0 14px}.layer-viz__nav button{min-width:62px;border-color:var(--line)}.layer-viz__nav button.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}.layer-viz__stage{position:relative;min-height:360px;border:1px solid var(--line);background:rgba(255,253,248,.56);overflow:hidden}.layer-viz__stage svg{display:block;width:100%;height:auto;min-height:360px}.layer-edge{stroke:rgba(20,38,49,.22);stroke-width:1.4;transition:opacity .45s,stroke-width .45s}.layer-edge.repair{stroke:var(--rust);stroke-dasharray:5 5}.layer-node circle{fill:var(--paper);stroke:var(--ink);stroke-width:1.4;transition:r .35s,opacity .35s}.layer-node.core circle{fill:var(--ink)}.layer-node.core text{fill:var(--paper)}.layer-node text{font:700 10px Inter,sans-serif;fill:var(--ink);text-anchor:middle;pointer-events:none}.layer-viz__meta{display:grid;grid-template-columns:1fr 140px;gap:16px;align-items:end;margin-top:14px}.layer-viz__caption{font:500 12px/1.55 Inter,sans-serif;color:rgba(20,38,49,.72)}.pressure__label{display:flex;justify-content:space-between;font:800 9px/1 Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase}.pressure__bar{height:8px;margin-top:7px;background:rgba(20,38,49,.1);overflow:hidden}.pressure__fill{height:100%;background:var(--rust);transition:width .5s}.layer-viz__toggle{display:flex;align-items:center;gap:9px;margin-top:15px;font:700 10px/1.3 Inter,sans-serif}.layer-viz__toggle input{width:18px;height:18px;accent-color:var(--rust)}
+/* Purkamissimulaatio */
+.intervention-viz__choices{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 14px}.intervention-viz__choices button{border-color:var(--line)}.intervention-viz__choices button.active{background:var(--ink);color:var(--paper);border-color:var(--ink)}.intervention-flow{display:grid;grid-template-columns:1fr 42px 1fr 42px 1fr;align-items:stretch;gap:8px}.impact-card{padding:15px 13px;border:1px solid var(--line);background:rgba(255,253,248,.62);opacity:.2;transform:translateY(5px);transition:opacity .4s,transform .4s,border-color .4s}.impact-card.visible{opacity:1;transform:none}.impact-card.primary{border-top:4px solid var(--teal)}.impact-card.secondary{border-top:4px solid var(--ochre)}.impact-card.tradeoff{border-top:4px solid var(--rust)}.impact-card small{display:block;margin-bottom:7px;color:rgba(20,38,49,.52);font:800 8px/1 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase}.impact-card strong{display:block;font:700 12px/1.35 Inter,sans-serif}.impact-card p{margin:5px 0 0!important;color:rgba(20,38,49,.67);font:500 10.5px/1.48 Inter,sans-serif!important}.impact-arrow{display:grid;place-items:center;color:rgba(20,38,49,.4);font:500 24px/1 Fraunces,serif}.intervention-viz__balance{margin-top:14px;padding:14px 16px;border-left:4px solid var(--blue);background:rgba(36,88,120,.07);font:600 12px/1.55 Inter,sans-serif}.intervention-viz__note{margin-top:10px!important;color:rgba(20,38,49,.58);font:500 10px/1.45 Inter,sans-serif!important}
+@media(max-width:600px){.layer-viz__nav{justify-content:flex-start;overflow:auto}.layer-viz__meta{grid-template-columns:1fr}.intervention-flow{grid-template-columns:1fr}.impact-arrow{height:24px;transform:rotate(90deg)}.layer-viz__stage{min-height:320px}.layer-viz__stage svg{min-height:320px}}
+@media(prefers-reduced-motion:reduce){.layer-edge,.layer-node circle,.pressure__fill,.impact-card{transition:none}}
+
+.viz-placeholder{margin:42px 0;padding:20px;border:1px dashed var(--line);font:600 12px/1.5 Inter,sans-serif;color:rgba(20,38,49,.65)}
+.lightbox{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:28px;background:rgba(10,22,29,.91);opacity:0;visibility:hidden;transition:.2s}.lightbox.open{opacity:1;visibility:visible}.lightbox img{display:block;max-width:94vw;max-height:90vh}.lightbox-close{position:absolute;top:18px;right:18px;width:44px;height:44px;border:1px solid rgba(255,255,255,.5);border-radius:50%;background:rgba(20,38,49,.86);color:#fff;font-size:25px;cursor:pointer}body.lightbox-open{overflow:hidden}.status{max-width:720px;margin:80px auto;padding:24px;border:1px solid var(--line);font:600 14px/1.6 Inter,sans-serif}.status.error{border-color:var(--red);color:var(--red)}footer{display:flex;justify-content:space-between;max-width:1240px;margin:auto;padding:30px 32px 42px;border-top:1px solid var(--line);font:800 10px/1.2 Inter,sans-serif;letter-spacing:.16em}
+@media(max-width:880px){.shell{grid-template-columns:1fr;gap:0;max-width:760px}.toc{position:static;margin-bottom:54px}.toc>p,.toc nav{display:none}.infographic-thumb{max-width:260px;margin:0 auto}.hero{padding-top:78px}}
+@media(max-width:600px){.masthead{padding:16px 20px}.brand>span:last-child,.masthead-meta{display:none}.hero{padding:66px 20px 58px;text-align:left}.hero h1{font-size:clamp(3rem,15vw,5rem)}.spectrum{justify-content:flex-start}.shell{padding:0 20px 80px}.prose>p,.prose section>p{font-size:1.08rem;line-height:1.72}.prose>.lead{font-size:1.27rem}.story-viz{margin:48px -20px 8px;padding:24px 20px}.story-viz__canvas{padding:13px}.chain-step{grid-template-columns:36px minmax(0,1fr);padding:12px 10px}.chain-step__n{width:30px;height:30px}.story-viz__controls{align-items:flex-start;flex-direction:column}.story-viz__buttons{width:100%}.story-viz__buttons button{flex:1}.closing,.bullets{margin-left:-20px;margin-right:-20px}.lightbox{padding:10px}footer{padding:24px 20px 32px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.chain-step{transition:none}}
+</style>
 </head>
 <body>
-  <header class="masthead">
-    <a class="brand" href="./"><span class="brand-mark">T</span><span>TTT · KIRJOITUKSET</span></a>
-    <div class="masthead-actions">
-      <button class="copy-link" id="copy-link" type="button" aria-label="Kopioi artikkelin linkki">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 15l6-6M7.5 12.5l-2 2a4 4 0 105.7 5.7l2-2M16.5 11.5l2-2a4 4 0 10-5.7-5.7l-2 2"/></svg>
-        <span>KOPIOI LINKKI</span>
-      </button>
-      <span class="masthead-meta" id="reading-time">LADATAAN…</span>
-    </div>
-  </header>
+<header class="masthead"><a class="brand" href="./"><span class="brand-mark">T</span><span>TTT · KIRJOITUKSET</span></a><div class="masthead-actions"><button class="copy-link" id="copy-link" type="button">KOPIOI LINKKI</button><span class="masthead-meta" id="reading-time">LADATAAN…</span></div></header>
+<main id="app" class="hidden"><article id="alku"><header class="hero"><p class="kicker" id="kicker"></p><h1 id="title"></h1><p class="dek" id="subtitle"></p><div class="spectrum" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></header><div class="shell"><aside class="toc"><div id="infographic-slot"></div><p>SISÄLTÖ</p><nav id="toc"></nav></aside><div class="prose" id="article-content"></div></div></article></main>
+<p id="status" class="status">Ladataan kirjoitusta…</p>
+<div class="lightbox" id="infographic-lightbox" role="dialog" aria-modal="true" aria-hidden="true"><img id="infographic-large" alt=""><button class="lightbox-close" id="infographic-close" type="button" aria-label="Sulje">×</button></div>
+<footer><span>TTT · TAAKKA · TOTUUS · TEKO</span><a href="#alku">TAKAISIN ALKUUN ↑</a></footer>
+<script>
+(() => {
+'use strict';
+const DATA_URL='./kirjoitukset.json';
+const VIZ_DATA_URL='./artikkeli-visualisoinnit.json';
+const DEFAULT_ID='siilot-ja-sisapiirit';
+const requestedId=new URLSearchParams(location.search).get('id')||DEFAULT_ID;
+const $=id=>document.getElementById(id);
+const text=v=>document.createTextNode(v==null?'':String(v));
+const el=(tag,cls,val)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(val!=null)n.append(text(val));return n};
+const assetUrl=value=>{if(!value)return'';const source=/^(?:https?:\/\/|images\/|\.\/images\/)/.test(value)?value:`./images/${String(value).replace(/^\/+/, '')}`;try{return new URL(source,location.href).href}catch{return''}};
+function appendParagraphs(target,paragraphs,lead=false){(paragraphs||[]).forEach((p,i)=>target.append(el('p',lead&&i===0?'lead':'',p)))}
+function setupInfographic(article){const slot=$('infographic-slot');slot.replaceChildren();if(!article.image)return;const src=assetUrl(article.image),alt=article.imageAlt||article.title;const b=el('button','infographic-thumb');b.type='button';const img=document.createElement('img');img.src=src;img.alt=alt;b.append(img,el('span','', 'AVAA INFOGRAFIIKKA'));slot.append(b);const box=$('infographic-lightbox'),large=$('infographic-large'),close=$('infographic-close');large.src=src;large.alt=alt;const open=()=>{box.classList.add('open');box.setAttribute('aria-hidden','false');document.body.classList.add('lightbox-open')};const shut=()=>{box.classList.remove('open');box.setAttribute('aria-hidden','true');document.body.classList.remove('lightbox-open')};b.addEventListener('click',open);close.addEventListener('click',shut);box.addEventListener('click',e=>{if(e.target===box||e.target===large)shut()});document.addEventListener('keydown',e=>{if(e.key==='Escape')shut()})}
+function storyChain(config){const root=el('aside','story-viz');root.setAttribute('aria-label',config.title||'Päättelyketju');root.append(el('div','story-viz__eyebrow',config.eyebrow||'Näe mekanismi'),el('h3','',config.title||'Näin mekanismi etenee'));if(config.intro)root.append(el('p','story-viz__intro',config.intro));const canvas=el('div','story-viz__canvas'),chain=el('div','story-viz__chain');const steps=(config.steps||[]).slice(0,8);steps.forEach((s,i)=>{const row=el('div','chain-step');row.dataset.index=i;const num=el('div','chain-step__n',String(i+1));const body=el('div');body.append(el('div','chain-step__label',s.label||`Vaihe ${i+1}`),el('div','chain-step__title',s.title||''));if(s.text)body.append(el('p','chain-step__text',s.text));row.append(num,body);chain.append(row)});canvas.append(chain);root.append(canvas);const controls=el('div','story-viz__controls'),progress=el('div','story-viz__progress');const buttons=el('div','story-viz__buttons'),prev=el('button','', 'EDELLINEN'),next=el('button','primary','SEURAAVA');prev.type=next.type='button';buttons.append(prev,next);controls.append(progress,buttons);root.append(controls);if(config.takeaway)root.append(el('p','story-viz__takeaway',config.takeaway));if(config.atlasUrl){const a=el('a','story-viz__atlas',config.atlasLabel||'Tutki syvemmin Murrosatlaksessa →');a.href=config.atlasUrl;root.append(a)}let current=0;const rows=[...chain.children];function update(){rows.forEach((r,i)=>{r.classList.toggle('is-visible',i<=current);r.classList.toggle('is-current',i===current)});progress.textContent=`VAIHE ${Math.min(current+1,steps.length)} / ${steps.length}`;prev.disabled=current===0;next.disabled=current>=steps.length-1;next.textContent=current>=steps.length-1?'KETJU VALMIS':'SEURAAVA'}prev.addEventListener('click',()=>{if(current>0){current--;update()}});next.addEventListener('click',()=>{if(current<steps.length-1){current++;update()}});if(steps.length)update();return root}
+function timeline(config){const root=el('aside','story-viz');root.append(el('div','story-viz__eyebrow',config.eyebrow||'Aikamuutos'),el('h3','',config.title||'Miten rakenne muuttui'));if(config.intro)root.append(el('p','story-viz__intro',config.intro));const canvas=el('div','story-viz__canvas timeline-viz'),years=el('div','timeline-viz__years'),panel=el('div','timeline-viz__panel'),year=el('div','timeline-viz__year'),title=el('p','timeline-viz__title'),body=el('p','timeline-viz__text');panel.append(year,title,body);canvas.append(years,panel);root.append(canvas);const points=(config.points||[]).slice(0,10);function select(i){[...years.children].forEach((b,j)=>b.classList.toggle('active',i===j));const p=points[i]||{};year.textContent=p.year||'';title.textContent=p.title||'';body.textContent=p.text||''}points.forEach((p,i)=>{const b=el('button','',p.year||String(i+1));b.type='button';b.addEventListener('click',()=>select(i));years.append(b)});if(points.length)select(0);if(config.takeaway)root.append(el('p','story-viz__takeaway',config.takeaway));return root}
+function compareChains(config){
+ const root=el('aside','story-viz compare-viz');root.setAttribute('aria-label',config.title||'Muuttujavertailu');
+ root.append(el('div','story-viz__eyebrow',config.eyebrow||'Vertaa kehityspolkuja'),el('h3','',config.title||'Sama muuttuja, kaksi mahdollista ketjua'));
+ if(config.intro)root.append(el('p','story-viz__intro',config.intro));
+ const vars=(config.variables||[]).slice(0,10);let vi=0,timer=null;
+ const selector=el('div','compare-viz__selector'),prev=el('button','', '←'),center=el('div','compare-viz__variable'),next=el('button','', '→');prev.type=next.type='button';prev.setAttribute('aria-label','Edellinen muuttuja');next.setAttribute('aria-label','Seuraava muuttuja');
+ const small=el('small','', 'Selattava muuttuja'),vname=el('strong'),question=el('p','compare-viz__question');center.append(small,vname,question);selector.append(prev,center,next);root.append(selector);
+ const canvas=el('div','story-viz__canvas'),grid=el('div','compare-viz__grid');canvas.append(grid);root.append(canvas);
+ const dots=el('div','compare-viz__dots');root.append(dots);const synthesis=el('div','compare-viz__synthesis');synthesis.append(el('b','', 'Mitä vertailu paljastaa'),el('p'));root.append(synthesis);
+ function lane(data,side){const box=el('div',`compare-lane compare-lane--${side}`),head=el('div','compare-lane__head');head.append(el('div','compare-lane__tag',data.label||''),el('div','compare-lane__title',data.title||''));if(data.subtitle)head.append(el('p','compare-lane__sub',data.subtitle));box.append(head);const chain=el('div','compare-chain');(data.steps||[]).slice(0,6).forEach((s,i)=>{const row=el('div','compare-step');const dot=el('div','compare-step__dot',String(i+1)),body=el('div');body.append(el('div','compare-step__kicker',s.label||`Vaihe ${i+1}`),el('div','compare-step__title',s.title||''));if(s.text)body.append(el('p','compare-step__text',s.text));row.append(dot,body);chain.append(row)});box.append(chain);return box}
+ function stop(){if(timer){clearTimeout(timer);timer=null}}
+ function animate(){stop();const steps=[...grid.querySelectorAll('.compare-step')];steps.forEach(x=>x.classList.remove('is-visible','is-current'));const lanes=[...grid.querySelectorAll('.compare-chain')].map(x=>[...x.children]);const max=Math.max(0,...lanes.map(x=>x.length));let i=0;const tick=()=>{lanes.forEach(arr=>{arr.forEach(x=>x.classList.remove('is-current'));if(arr[i]){arr[i].classList.add('is-visible','is-current')}});i++;if(i<max)timer=setTimeout(tick,520)};tick()}
+ function render(){stop();const v=vars[vi]||{};vname.textContent=v.name||'';question.textContent=v.question||'';grid.replaceChildren(lane(v.left||{},'a'),lane(v.right||{},'b'));synthesis.querySelector('p').textContent=v.synthesis||'';dots.replaceChildren();vars.forEach((_,i)=>{const d=document.createElement('i');d.classList.toggle('active',i===vi);dots.append(d)});animate()}
+ prev.addEventListener('click',()=>{if(vars.length){vi=(vi-1+vars.length)%vars.length;render()}});next.addEventListener('click',()=>{if(vars.length){vi=(vi+1)%vars.length;render()}});if(vars.length)render();return root}
 
-  <main id="app" class="hidden">
-    <article id="alku">
-      <header class="hero">
-        <p class="kicker" id="kicker"></p>
-        <h1 id="title"></h1>
-        <p class="dek" id="subtitle"></p>
-        <div class="spectrum" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-      </header>
-      <div class="shell">
-        <aside class="toc"><div id="infographic-slot"></div><p>SISÄLTÖ</p><nav id="toc"></nav></aside>
-        <div class="prose" id="article-content"></div>
-      </div>
-    </article>
-  </main>
-  <p id="status" class="status">Ladataan kirjoitusta…</p>
-  <div class="lightbox" id="infographic-lightbox" role="dialog" aria-modal="true" aria-label="Infografiikka suurennettuna" aria-hidden="true">
-    <div class="lightbox-inner">
-      <img id="infographic-large" alt="">
-      <button class="lightbox-close" id="infographic-close" type="button" aria-label="Sulje suurennettu kuva">×</button>
-    </div>
-  </div>
-  <footer><span>TTT · TAAKKA · TOTUUS · TEKO</span><a href="#alku">TAKAISIN ALKUUN ↑</a></footer>
+function layeredNetwork(config){
+ const root=el('aside','story-viz layer-viz');root.append(el('div','story-viz__eyebrow',config.eyebrow||'Ymmärrä historia'),el('h3','',config.title||'Kun ratkaisut alkavat muodostaa järjestelmän'));
+ if(config.intro)root.append(el('p','story-viz__intro',config.intro));
+ const periods=config.periods||[];let pi=0;const nav=el('div','layer-viz__nav'),stage=el('div','layer-viz__stage'),svg=document.createElementNS('http://www.w3.org/2000/svg','svg');svg.setAttribute('viewBox','0 0 680 390');svg.setAttribute('role','img');svg.setAttribute('aria-label','Rakenteiden ja korjauskerrosten verkko');stage.append(svg);root.append(nav,stage);
+ const toggle=el('label','layer-viz__toggle');const cb=document.createElement('input');cb.type='checkbox';cb.checked=true;toggle.append(cb,text('Näytä korjaus- ja koordinointikerrokset'));root.append(toggle);
+ const meta=el('div','layer-viz__meta'),caption=el('div','layer-viz__caption'),pressure=el('div','pressure'),plabel=el('div','pressure__label'),pbar=el('div','pressure__bar'),pfill=el('div','pressure__fill');plabel.append(el('span','', 'Rakenteellinen paine'),el('span'));pbar.append(pfill);pressure.append(plabel,pbar);meta.append(caption,pressure);root.append(meta);
+ const NS='http://www.w3.org/2000/svg';
+ function draw(){const d=periods[pi]||{};nav.querySelectorAll('button').forEach((b,i)=>b.classList.toggle('active',i===pi));svg.replaceChildren();const nodes=d.nodes||[],map=new Map(nodes.map(n=>[n.id,n]));(d.edges||[]).forEach(e=>{if(e.repair&&!cb.checked)return;const a=map.get(e.a),b=map.get(e.b);if(!a||!b)return;const line=document.createElementNS(NS,'line');line.setAttribute('x1',a.x);line.setAttribute('y1',a.y);line.setAttribute('x2',b.x);line.setAttribute('y2',b.y);line.setAttribute('class','layer-edge'+(e.repair?' repair':''));svg.append(line)});nodes.forEach(n=>{if(n.repair&&!cb.checked)return;const g=document.createElementNS(NS,'g');g.setAttribute('class','layer-node'+(n.core?' core':'')+(n.repair?' repair':''));const c=document.createElementNS(NS,'circle');c.setAttribute('cx',n.x);c.setAttribute('cy',n.y);c.setAttribute('r',n.core?34:28);const t=document.createElementNS(NS,'text');t.setAttribute('x',n.x);t.setAttribute('y',n.y+4);t.textContent=n.label;g.append(c,t);svg.append(g)});caption.textContent=d.caption||'';const val=Math.max(0,Math.min(100,d.pressure||0));pfill.style.width=val+'%';plabel.lastChild.textContent=val+'/100'}
+ periods.forEach((d,i)=>{const b=el('button','',d.year||String(i+1));b.type='button';b.addEventListener('click',()=>{pi=i;draw()});nav.append(b)});cb.addEventListener('change',draw);draw();return root}
+function intervention(config){
+ const root=el('aside','story-viz intervention-viz');root.append(el('div','story-viz__eyebrow',config.eyebrow||'Kokeile muutosta'),el('h3','',config.title||'Jos voisit muuttaa vain yhtä kohtaa'));
+ if(config.intro)root.append(el('p','story-viz__intro',config.intro));const opts=config.options||[];let oi=0,timer=null;const choices=el('div','intervention-viz__choices'),flow=el('div','intervention-flow'),balance=el('div','intervention-viz__balance'),note=el('p','intervention-viz__note',config.note||'Havainnollistava päättelyketju, ei ennustemalli.');root.append(choices,flow,balance,note);
+ function card(cls,kicker,title,body){const c=el('div','impact-card '+cls);c.append(el('small','',kicker),el('strong','',title));if(body)c.append(el('p','',body));return c}
+ function render(){if(timer)clearTimeout(timer);const o=opts[oi]||{};choices.querySelectorAll('button').forEach((b,i)=>b.classList.toggle('active',i===oi));flow.replaceChildren();const cards=[card('primary','1. kertaluku',o.first?.title||'',o.first?.text||''),card('secondary','2. kertaluku',o.second?.title||'',o.second?.text||''),card('tradeoff','3. kertaluku / vastavaikutus',o.third?.title||'',o.third?.text||'')];flow.append(cards[0],el('div','impact-arrow','→'),cards[1],el('div','impact-arrow','→'),cards[2]);balance.textContent=o.balance||'';cards.forEach((c,i)=>{timer=setTimeout(()=>c.classList.add('visible'),120+i*430)})}
+ opts.forEach((o,i)=>{const b=el('button','',o.name||String(i+1));b.type='button';b.addEventListener('click',()=>{oi=i;render()});choices.append(b)});render();return root}
 
-  <noscript><p class="status error">Sivu tarvitsee JavaScriptin kirjoituksen lataamiseen.</p></noscript>
-  <script>
-  (() => {
-    'use strict';
-    const DATA_URL = './kirjoitukset.json';
-    const DEFAULT_ID = 'siilot-ja-sisapiirit';
-    const qs = new URLSearchParams(location.search);
-    const requestedId = qs.get('id') || qs.get('slug') || DEFAULT_ID;
-    const $ = id => document.getElementById(id);
-    let copyResetTimer;
+function renderVisualization(config){if(!config)return null;switch(config.type){case'causal-chain':return storyChain(config);case'timeline':return timeline(config);case'compare-chains':return compareChains(config);case'layered-network':return layeredNetwork(config);case'intervention':return intervention(config);default:return el('div','viz-placeholder',`Visualisointityyppiä “${config.type||'?'}” ei vielä tunnisteta.`)}}
 
-    const text = value => document.createTextNode(value == null ? '' : String(value));
-    const el = (tag, className, value) => {
-      const node = document.createElement(tag);
-      if (className) node.className = className;
-      if (value != null) node.append(text(value));
-      return node;
-    };
-    const setMeta = (selector, value) => {
-      const node = document.querySelector(selector);
-      if (node && value) node.setAttribute('content', value);
-    };
-    const assetUrl = value => {
-      if (!value) return '';
-      const source = /^(?:https?:\/\/|images\/|\.\/images\/)/.test(value)
-        ? value
-        : `./images/${String(value).replace(/^\/+/, '')}`;
-      try { const url = new URL(source, location.href); return /^(https?:)$/.test(url.protocol) ? url.href : ''; }
-      catch { return ''; }
-    };
+function applyVisualizationConfig(article,configData){
+ const entries=Array.isArray(configData)?configData:(configData&&configData.articles)||[];
+ const entry=entries.find(x=>x&&(x.id===article.id||x.slug===article.slug));
+ if(!entry||!entry.sections)return article;
+ const byId=entry.sections;
+ (article.sections||[]).forEach(section=>{
+   const extra=byId[section.id];
+   if(!extra)return;
+   const list=Array.isArray(extra)?extra:[extra];
+   section.visualizations=[...(section.visualizations||[]),...list];
+ });
+ return article;
+}
 
-    function updateMetadata(article) {
-      document.title = article.title;
-      setMeta('meta[name="description"]', article.subtitle);
-      setMeta('meta[property="og:title"]', article.title);
-      setMeta('meta[property="og:description"]', article.subtitle);
-      setMeta('meta[property="og:url"]', location.href);
-      setMeta('meta[property="og:image"]', assetUrl(article.ogImage || article.image));
-      setMeta('meta[property="og:image:alt"]', article.imageAlt || article.title);
-      setMeta('meta[name="twitter:title"]', article.title);
-      setMeta('meta[name="twitter:description"]', article.subtitle);
-      setMeta('meta[name="twitter:image"]', assetUrl(article.ogImage || article.image));
-      const canonical = document.querySelector('link[rel="canonical"]');
-      if (canonical) canonical.href = location.href.split('#')[0];
-    }
-
-    function appendParagraphs(target, paragraphs, firstLead = false) {
-      (paragraphs || []).forEach((paragraph, index) => {
-        target.append(el('p', firstLead && index === 0 ? 'lead' : '', paragraph));
-      });
-    }
-
-    async function copyArticleLink() {
-      const button = $('copy-link');
-      const label = button.querySelector('span');
-      const url = location.href.split('#')[0];
-      try {
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(url);
-        } else {
-          const field = document.createElement('textarea');
-          field.value = url; field.setAttribute('readonly', '');
-          field.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
-          document.body.append(field); field.select();
-          if (!document.execCommand('copy')) throw new Error('Kopiointi ei onnistunut');
-          field.remove();
-        }
-        clearTimeout(copyResetTimer);
-        label.textContent = 'LINKKI KOPIOITU';
-        button.classList.add('copied');
-        copyResetTimer = setTimeout(() => {
-          label.textContent = 'KOPIOI LINKKI'; button.classList.remove('copied');
-        }, 2400);
-      } catch {
-        label.textContent = 'KOPIOINTI EPÄONNISTUI';
-        setTimeout(() => { label.textContent = 'KOPIOI LINKKI'; }, 2400);
-      }
-    }
-
-    function setupInfographic(article) {
-      const slot = $('infographic-slot');
-      slot.replaceChildren();
-      if (!article.image) return;
-      const source = assetUrl(article.image);
-      const alt = article.imageAlt || article.title || 'Artikkelin infografiikka';
-      const button = el('button', 'infographic-thumb');
-      button.type = 'button';
-      button.setAttribute('aria-label', 'Suurenna artikkelin infografiikka');
-      const thumb = document.createElement('img');
-      thumb.src = source; thumb.alt = alt; thumb.loading = 'eager'; thumb.decoding = 'async';
-      button.append(thumb, el('span', '', 'AVAA INFOGRAFIIKKA'));
-      slot.append(button);
-
-      const lightbox = $('infographic-lightbox');
-      const large = $('infographic-large');
-      const close = $('infographic-close');
-      large.src = source; large.alt = alt;
-      const open = () => {
-        lightbox.classList.add('open'); lightbox.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('lightbox-open'); close.focus();
-      };
-      const shut = () => {
-        lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('lightbox-open'); button.focus();
-      };
-      button.addEventListener('click', open);
-      close.addEventListener('click', shut);
-      large.addEventListener('click', shut);
-      lightbox.addEventListener('click', event => { if (event.target === lightbox) shut(); });
-      document.addEventListener('keydown', event => { if (event.key === 'Escape' && lightbox.classList.contains('open')) shut(); });
-    }
-
-    function render(article) {
-      updateMetadata(article);
-      $('reading-time').textContent = `LUKUAIKA ${article.readingTime || '—'}`;
-      $('kicker').textContent = (article.tags || []).join(' · ');
-      $('subtitle').textContent = article.subtitle || '';
-
-      const title = $('title');
-      title.replaceChildren();
-      const parts = article.titleParts || [article.title];
-      title.append(text(parts[0] || article.title));
-      if (parts[1]) title.append(el('em', '', parts[1]));
-
-      const content = $('article-content');
-      const toc = $('toc');
-      content.replaceChildren(); toc.replaceChildren();
-      appendParagraphs(content, article.intro, true);
-
-      (article.sections || []).forEach((section, index) => {
-        const id = section.id || `osa-${index + 1}`;
-        const number = String(index + 1).padStart(2, '0');
-        const link = el('a'); link.href = `#${id}`;
-        link.append(el('span', '', number), text(section.title));
-        toc.append(link);
-
-        const node = el('section'); node.id = id;
-        node.append(el('p', 'num', number), el('h2', '', section.title));
-        appendParagraphs(node, section.paragraphs);
-        if (section.bullets?.length) {
-          const list = el('ul', 'bullets');
-          section.bullets.forEach(item => list.append(el('li', '', item)));
-          node.append(list);
-        }
-        if (section.quote) node.append(el('blockquote', section.closing ? 'closing' : '', section.quote));
-        content.append(node);
-      });
-      setupInfographic(article);
-
-      const schema = { '@context':'https://schema.org', '@type':'Article', headline:article.title, description:article.subtitle, image:assetUrl(article.ogImage || article.image), inLanguage:'fi-FI' };
-      const script = document.createElement('script'); script.type = 'application/ld+json'; script.textContent = JSON.stringify(schema); document.head.append(script);
-      $('status').classList.add('hidden'); $('app').classList.remove('hidden');
-    }
-
-    $('copy-link').addEventListener('click', copyArticleLink);
-
-    fetch(DATA_URL, { cache: 'no-store' })
-      .then(response => { if (!response.ok) throw new Error(`HTTP ${response.status}`); return response.json(); })
-      .then(data => {
-        const articles = Array.isArray(data) ? data : data.kirjoitukset;
-        if (!Array.isArray(articles)) throw new Error('kirjoitukset-taulukko puuttuu');
-        const article = articles.find(item => item.id === requestedId || item.slug === requestedId);
-        if (!article) throw new Error(`Kirjoitusta “${requestedId}” ei löytynyt`);
-        render(article);
-      })
-      .catch(error => {
-        $('status').classList.add('error');
-        $('status').textContent = `Kirjoituksen lataaminen epäonnistui: ${error.message}. Avaa sivu verkkopalvelimen kautta, ei suoraan tiedostona.`;
-      });
-  })();
-  </script>
+function render(article){document.title=article.title;$('reading-time').textContent=`LUKUAIKA ${article.readingTime||'—'}`;$('kicker').textContent=(article.tags||[]).join(' · ');$('subtitle').textContent=article.subtitle||'';const title=$('title');title.replaceChildren();const parts=article.titleParts||[article.title];title.append(text(parts[0]||article.title));if(parts[1])title.append(el('em','',parts[1]));const content=$('article-content'),toc=$('toc');content.replaceChildren();toc.replaceChildren();appendParagraphs(content,article.intro,true);(article.sections||[]).forEach((section,index)=>{const id=section.id||`osa-${index+1}`,number=String(index+1).padStart(2,'0');const link=el('a');link.href=`#${id}`;link.append(el('span','',number),text(section.title));toc.append(link);const node=el('section');node.id=id;node.append(el('p','num',number),el('h2','',section.title));appendParagraphs(node,section.paragraphs);if(section.bullets?.length){const ul=el('ul','bullets');section.bullets.forEach(x=>ul.append(el('li','',x)));node.append(ul)}if(section.quote)node.append(el('blockquote',section.closing?'closing':'',section.quote));content.append(node);const configs=[];if(Array.isArray(section.visualizations))configs.push(...section.visualizations);else if(section.visualization)configs.push(section.visualization);configs.forEach(cfg=>{const v=renderVisualization(cfg);if(v)content.append(v)})});setupInfographic(article);$('status').classList.add('hidden');$('app').classList.remove('hidden')}
+$('copy-link').addEventListener('click',async()=>{const b=$('copy-link');try{await navigator.clipboard.writeText(location.href.split('#')[0]);b.textContent='LINKKI KOPIOITU';b.classList.add('copied');setTimeout(()=>{b.textContent='KOPIOI LINKKI';b.classList.remove('copied')},1800)}catch{b.textContent='KOPIOINTI EI ONNISTUNUT';setTimeout(()=>b.textContent='KOPIOI LINKKI',1800)}});
+Promise.all([
+ fetch(DATA_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}),
+ fetch(VIZ_DATA_URL,{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)
+]).then(([data,vizData])=>{
+ const articles=Array.isArray(data)?data:data.kirjoitukset;
+ if(!Array.isArray(articles))throw new Error('kirjoitukset-taulukko puuttuu');
+ const article=articles.find(x=>x.id===requestedId||x.slug===requestedId);
+ if(!article)throw new Error(`Kirjoitusta “${requestedId}” ei löytynyt`);
+ render(applyVisualizationConfig(article,vizData));
+}).catch(error=>{$('status').classList.add('error');$('status').textContent=`Kirjoituksen lataaminen epäonnistui: ${error.message}`});
+})();
+</script>
 </body>
 </html>
