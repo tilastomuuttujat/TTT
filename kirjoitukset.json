@@ -5,9 +5,16 @@
       "id": "siilot-ja-sisapiirit",
       "slug": "siilot-ja-sisapiirit",
       "title": "Suomen kompastuskivinä siilot ja sisäpiirit",
-      "titleParts": ["Suomen kompastuskivinä", "siilot ja sisäpiirit"],
+      "titleParts": [
+        "Suomen kompastuskivinä",
+        "siilot ja sisäpiirit"
+      ],
       "subtitle": "Kuinka Suomen yhteinen rakentaminen muuttui järjestelmäksi, joka korjaa toimintaansa mutta ei suuntaansa.",
-      "tags": ["Yhteiskunta", "Rakenteet", "Korjauskyky"],
+      "tags": [
+        "Yhteiskunta",
+        "Rakenteet",
+        "Korjauskyky"
+      ],
       "readingTime": "14 MIN",
       "image": "siilot-aikajana.png",
       "imageAlt": "Aikajana yhteisestä rakentamisesta siiloihin, sisäpiireihin ja korjaavan palautteen heikkenemiseen",
@@ -394,6 +401,174 @@
             "Tämän kierroksen uudistajat eivät peri tyhjää rakennustyömaata. He perivät täyteen rakennetun yhteiskunnan, jonka järjestelmät toimivat mutta jonka osat eivät enää välttämättä osoita samaan suuntaan. Heidän tehtävänsä ei ole vain rakentaa lisää. Heidän on ratkaistava, mitä voidaan säilyttää, mitä on avattava ja mistä on osattava luopua."
           ],
           "quote": "Jokainen sukupolvi syntyy edellisen ratkaisujen sisälle. Noin 20–25 vuotta myöhemmin sen valinnat kertovat, välittivätkö ratkaisut lupauksen jatkuvuudesta vai varoituksen järjestelmän rajasta. Sukupolvikello ei ennusta tätä vastausta. Se näyttää, milloin meidän pitäisi osata kuunnella sitä.",
+          "closing": true
+        }
+      ]
+    },
+    {
+      "id": "sakset-ja-sateenvarjo",
+      "slug": "sakset-ja-sateenvarjo",
+      "title": "Sakset ja sateenvarjo",
+      "titleParts": [
+        "Sakset ja",
+        "sateenvarjo"
+      ],
+      "subtitle": "Kun talousennuste alkaa muuttaa ennustamaansa tulevaisuutta",
+      "tags": [
+        "Talous",
+        "Ennusteet",
+        "Päätöksenteko"
+      ],
+      "readingTime": "18 MIN",
+      "image": "sakset-ja-sateenvarjo.png",
+      "imageAlt": "Infografiikka talouspolitiikan suojaavasta sateenvarjokehästä ja heikentävästä saksikehästä",
+      "imageCaption": "Talousennusteen perusteella tehty päätös voi suojata toimintakykyä tai heikentää sitä ja siten muuttaa ennustamaansa tulevaisuutta.",
+      "ogImage": "sakset-ja-sateenvarjo-og.png",
+      "intro": [
+        "Talousennuste näyttää helposti sääennusteelta. Molemmat yrittävät kertoa jotakin tulevasta, molempiin liittyy epävarmuutta ja molempien perusteella varaudutaan siihen, mitä ehkä tapahtuu. Kun meteorologi ennustaa sadetta, ihminen ottaa mukaansa sateenvarjon. Kun talousennuste kertoo kasvun hidastumisesta, julkisen talouden alijäämästä tai velkasuhteen noususta, päättäjät alkavat etsiä keinoja tilanteen korjaamiseksi.",
+        "Vertaus on hyödyllinen, mutta ratkaisevassa kohdassa se pettää. Sateenvarjon avaaminen ei muuta pilvien liikkeitä eikä estä sadetta. Talousennusteen perusteella tehty päätös sen sijaan voi muuttaa työllisyyttä, kulutusta, investointeja, verotuloja, palvelujen tarvetta ja ihmisten luottamusta tulevaisuuteen. Ennuste ei silloin jää todellisuuden ulkopuoliseksi havainnoksi, vaan siitä tulee osa tapahtumaketjua, jota se yrittää kuvata.",
+        "Tämän vuoksi sama ennuste voi johtaa kahteen vastakkaiseen kehään. Sateenvarjo suojaa yhteiskunnan toimintakykyä heikon vaiheen yli ja auttaa sitä palautumaan. Sakset pienentävät menoja nopeasti, mutta voivat samalla leikata juuri niitä edellytyksiä, joiden varassa talous ja julkinen rahoitus myöhemmin vahvistuisivat. Kumpikaan väline ei ole itsessään aina oikea tai väärä. Ratkaisevaa on se, mihin väline kohdistetaan, missä tilanteessa sitä käytetään ja millaisen palautteen se synnyttää.",
+        "Siksi julkisen talouden vaikein kysymys ei ole yksinkertaisesti, pitäisikö leikata vai elvyttää. Vaikeampi kysymys kuuluu: vähentääkö päätös tulevaisuuden kustannuksia vai ainoastaan siirtääkö se niitä toiseen paikkaan, toiselle ihmiselle ja myöhempään ajankohtaan?"
+      ],
+      "sections": [
+        {
+          "id": "ennuste-ei-ole-tulevaisuus",
+          "title": "Ennuste ei ole tulevaisuus",
+          "paragraphs": [
+            "Ennuste muodostetaan aina rajallisen tiedon varassa. Siihen sisältyy oletuksia talouskasvusta, työllisyydestä, korkotasosta, hinnoista, väestöstä, käyttäytymisestä ja poliittisista ratkaisuista. Osa oletuksista perustuu havaittuihin kehityskulkuihin, osa historiallisiin yhteyksiin ja osa arvioihin siitä, miten ihmiset ja instituutiot reagoivat muuttuviin oloihin.",
+            "Ennusteen täytyy yksinkertaistaa todellisuutta, koska kaikkea ei voida sisällyttää samaan malliin. Se voi kuvata melko hyvin suoraviivaisia taloudellisia yhteyksiä mutta heikommin luottamuksen, pelon, oppimisen ja poliittisten reaktioiden kaltaisia ilmiöitä. Se voi laskea päätetyn menoleikkauksen välittömän budjettivaikutuksen, mutta sen on vaikeampi tietää, kuinka moni yritys jättää investoimatta, kuinka moni perhe vähentää kulutustaan tai kuinka monen ihmisen ongelma vaikeutuu palvelun heikentyessä.",
+            "Tästä ei seuraa, että ennusteet olisivat hyödyttömiä. Ilman niitä päätöksenteko perustuisi helposti toiveisiin, yksittäisiin havaintoihin ja poliittiseen vaistoon. Ennuste kokoaa hajallaan olevan tiedon johdonmukaiseksi näkymäksi ja pakottaa tekemään oletukset ainakin osittain näkyviksi. Ongelma alkaa vasta silloin, kun ehdollinen arvio muuttuu päätöksenteossa väistämättömän tulevaisuuden kuvaukseksi.",
+            "Kun ennusteeseen suhtaudutaan kuin toteutuneeseen tosiasiaan, epävarmuus katoaa puheesta mutta ei todellisuudesta. Päättäjät voivat silloin tehdä peruuttamattomia ratkaisuja sellaisen tulevaisuuden perusteella, joka oli alun perin vain yksi mahdollinen kehityskulku. Ennusteen käyttötapa muuttuu sitä vaarallisemmaksi, mitä vähemmän päätös jättää myöhemmälle korjaukselle tilaa."
+          ]
+        },
+        {
+          "id": "talouden-refleksiivinen-luonne",
+          "title": "Talouden refleksiivinen luonne",
+          "paragraphs": [
+            "Taloudessa toimijat tarkkailevat samoja ennusteita ja reagoivat toistensa odotuksiin. Kotitalous voi lykätä hankintaa, jos se pelkää työttömyyttä. Yritys voi keskeyttää investoinnin, jos se odottaa kysynnän heikkenevän. Pankki voi kiristää lainaehtoja, jos se arvioi riskien kasvavan. Julkinen valta voi leikata menoja, jos se odottaa verotulojen jäävän ennakoitua pienemmiksi.",
+            "Jokainen yksittäinen ratkaisu voi näyttää varovaiselta. Yhdessä ne voivat kuitenkin tuottaa juuri sen taantuman, johon kukin toimija yritti varautua. Kun moni säästää samanaikaisesti, yhden toimijan turva muuttuu toisen tulonmenetykseksi. Kotitalouden vähentynyt kulutus pienentää yrityksen myyntiä, yrityksen säästö vähentää työtä ja julkisen sektorin leikkaus heikentää sekä kysyntää että palvelujen saatavuutta.",
+            "Tätä voidaan kutsua ennusteen refleksiivisyydeksi. Tulevaisuutta koskeva arvio vaikuttaa nykyhetken käyttäytymiseen, nykyhetken käyttäytyminen muuttaa tulevaisuutta ja muuttuneesta tulevaisuudesta tehdään uusi ennuste. Ennuste ja todellisuus muodostavat palautekehän, jossa syytä ja seurausta ei voi enää täysin erottaa toisistaan.",
+            "Tällainen kehä voi vahvistaa itseään, mutta se voi myös kumota alkuperäisen ennusteen. Jos heikkenevään suhdanteeseen vastataan onnistuneesti, ennustettua taantumaa ei ehkä synny. Jälkikäteen voidaan silloin väittää, että varautuminen oli tarpeetonta, koska pahin ei toteutunut. Todellisuudessa toteutumatta jäänyt kriisi voi olla juuri onnistuneen päätöksen tulos."
+          ]
+        },
+        {
+          "id": "sakset-nakyva-saasto-ja-nakymaton-jalkilasku",
+          "title": "Sakset: näkyvä säästö ja näkymätön jälkilasku",
+          "paragraphs": [
+            "Sakset kuvaavat päätöstä, joka pienentää menoa, etuutta, palvelua tai investointia. Leikkaus voidaan toteuttaa nopeasti, ja sen välitön vaikutus on yleensä helppo laskea. Jos määrärahaa vähennetään sadalla miljoonalla eurolla, budjetissa näkyy sadan miljoonan euron pienennys. Tämä tekee saksista hallinnollisesti houkuttelevan välineen: päätös on rajattavissa, mitattavissa ja osoitettavissa.",
+            "Budjetin selkeys voi kuitenkin peittää yhteiskunnallisen vaikutuksen. Jos peruspalvelusta säästetty euro kasvattaa myöhemmin erikoissairaanhoidon, toimeentulotuen, työkyvyttömyyden tai rikosoikeudellisen järjestelmän menoja, alkuperäinen säästö ei ollut koko järjestelmän säästö. Se oli kustannuksen siirto. Ensimmäisen organisaation tulos parani, mutta toinen organisaatio ja lopulta koko yhteiskunta maksoivat enemmän.",
+            "Sama mekanismi toimii kansantalouden tasolla. Jos julkisia hankintoja, rakentamista, koulutusta tai palveluja vähennetään tilanteessa, jossa yksityinen kysyntä on jo heikkoa, päätös voi vähentää työtä ja yritysten liikevaihtoa. Verotuloja kertyy vähemmän ja työttömyyteen liittyvät menot kasvavat. Nimellinen menoleikkaus toteutuu, mutta julkisen talouden tasapaino paranee vähemmän kuin alkuperäinen laskelma oletti.",
+            "Saksien ongelma ei siis ole leikkaaminen sinänsä. Järjestelmässä on varmasti myös vanhentuneita tehtäviä, tehottomia tukia, päällekkäisiä rakenteita ja menoja, jotka ylläpitävät itse tuottamaansa ongelmaa. Niiden vähentäminen voi aidosti vahvistaa julkista taloutta ja vapauttaa voimavaroja tärkeämpiin tarkoituksiin. Vaarallinen leikkaus kohdistuu sen sijaan yhteiskunnan tuotannolliseen, inhimilliseen tai institutionaaliseen perustaan ja tulkitsee syntyvän vaurion uudeksi perusteeksi leikata lisää.",
+            "Tällöin syntyy heikentävä kehä. Heikko ennuste johtaa leikkaavaan päätökseen. Päätös heikentää kysyntää tai toimintakykyä. Verotulot laskevat ja korjaavien palvelujen tarve kasvaa. Julkinen talous näyttää jälleen ennustettua heikommalta, minkä perusteella tehdään uusi leikkaus. Jokainen kierros voidaan perustella edellisen kierroksen tuottamalla tilanteella."
+          ]
+        },
+        {
+          "id": "sateenvarjo-suojaa-joka-ostaa-aikaa",
+          "title": "Sateenvarjo: suojaa, joka ostaa aikaa",
+          "paragraphs": [
+            "Sateenvarjo kuvaa päätöstä, jolla yhteiskunnan toimintakykyä suojataan tilapäisen tai hallittavissa olevan häiriön yli. Se voi tarkoittaa työttömyysturvaa, peruspalvelujen ylläpitämistä, yrityksen väliaikaista rahoitusta, koulutusta, infrastruktuuri-investointia tai muuta ratkaisua, joka estää lyhytaikaista ongelmaa muuttumasta pitkäaikaiseksi menetykseksi.",
+            "Sateenvarjon tarkoitus ei ole tehdä sateesta pysyvää eikä teeskennellä, ettei sopeutumista tarvita. Sen tehtävä on estää ihmisiä, yrityksiä ja instituutioita menettämästä toimintakykyään ennen kuin olosuhteet paranevat tai uusi suunta ehtii muodostua. Oikein suunnattu suoja ostaa aikaa sopeutumiselle ja säilyttää ne voimavarat, joita muutoksessa tarvitaan.",
+            "Talouspoliittinen sateenvarjo voi parhaimmillaan synnyttää suojaavan kehän. Heikko ennuste johtaa vakauttavaan päätökseen. Kysyntä ja toimintakyky säilyvät riittävinä. Yritykset eivät joudu purkamaan elinkelpoista tuotantoa, ihmiset eivät menetä tarpeettomasti työkykyään ja palvelujärjestelmä pystyy ehkäisemään ongelmien vaikeutumista. Palautuminen nopeutuu, verotulot vahvistuvat ja korjaavien menojen tarve jää pienemmäksi.",
+            "Myös sateenvarjo voi kuitenkin epäonnistua. Väliaikaiseksi tarkoitettu tuki voi muuttua pysyväksi oikeudeksi, joka estää tarpeellisen rakennemuutoksen. Huonosti kohdennettu suoja voi ylläpitää kannattamatonta toimintaa, lukita pääomia vanhaan teknologiaan tai suojata vahvoja toimijoita kilpailulta. Jos tuen jatkuminen alkaa riippua tuen saajan poliittisesta vaikutusvallasta, sateenvarjo muuttuu suojaksi muutosta vastaan.",
+            "Siksi sateenvarjon on oltava paitsi riittävän vahva myös läpäisevä ja ehdollinen. Sen pitää suojata toimintakykyä, ei jokaista olemassa olevaa rakennetta. Tavoitteena ei ole palauttaa maailmaa ennalleen vaan estää tarpeeton tuhoutuminen samalla, kun voimavaroja siirretään kestävään suuntaan."
+          ]
+        },
+        {
+          "id": "menon-ja-investoinnin-valinen-raja",
+          "title": "Menon ja investoinnin välinen raja",
+          "paragraphs": [
+            "Julkisessa keskustelussa menot ja investoinnit erotetaan usein toisistaan sen perusteella, mihin kohtaan kirjanpitoa ne merkitään. Yhteiskunnallisen vaikutuksen kannalta raja ei kuitenkaan kulje näin yksinkertaisesti. Rakennus voidaan kirjata investoinniksi, vaikka se jäisi vähälle käytölle. Hoitajan työ kirjataan menoksi, vaikka se ehkäisisi kalliin sairaalahoidon ja palauttaisi ihmisen työkyvyn.",
+            "Todellinen ero syntyy vaikutuksesta tulevaan toimintakykyyn. Investointi kasvattaa tai säilyttää kykyä tuottaa hyvinvointia, tuloja ja yhteiskunnallista vakautta. Kulutus käyttää voimavaroja ilman vastaavaa tulevaa vaikutusta. Sama meno voi olla yhdessä tilanteessa investointi ja toisessa tilanteessa tehottoman rakenteen ylläpitoa.",
+            "Koulutukseen käytetty raha ei automaattisesti ole hyvä investointi, jos koulutus ei vastaa oppimisen tai yhteiskunnan tarpeisiin. Koulutuksesta leikattu raha ei myöskään automaattisesti ole säästö, jos osaamisen heikkeneminen vähentää myöhempää tuottavuutta ja lisää syrjäytymisen kustannuksia. Päätöstä pitäisi siksi arvioida sen perusteella, mitä kyvykkyyttä se rakentaa, kuinka kauan vaikutus kestää ja kenelle hyödyt tai menetykset kertyvät.",
+            "Tämä tarkastelu muuttaa myös kysymyksen julkisen sektorin koosta. Olennaisempaa kuin menojen kokonaismäärä on niiden rakenne ja palautetuotto: kuinka paljon tämän päivän meno vähentää huomisen korjaavaa tarvetta tai kasvattaa huomisen yhteisiä voimavaroja? Ilman tätä tietoa voidaan leikata tuottavaa menoa ja säilyttää kustannuksia tuottava rakenne vain siksi, että ensimmäisen vaikutukset ovat helposti mitattavissa ja jälkimmäisen hajautuvat useille vuosille."
+          ]
+        },
+        {
+          "id": "ajan-epasymmetria",
+          "title": "Ajan epäsymmetria",
+          "paragraphs": [
+            "Leikkauksen hyöty näkyy usein ennen sen haittaa. Määräraha pienenee heti, mutta palvelun heikkeneminen, osaamisvaje, terveysongelma tai investointien vähentyminen voi tulla näkyväksi vasta vuosien kuluttua. Kun seuraus lopulta ilmenee, päätöksen tekijät, budjettikausi ja ehkä koko hallinnollinen rakenne ovat vaihtuneet.",
+            "Suojaavan päätöksen aikajärjestys on usein päinvastainen. Meno näkyy heti, mutta vältetty työttömyys, ehkäisty sairaus tai säilynyt tuotantokapasiteetti ei näy samalla tavoin tilinpäätöksessä. On vaikea osoittaa sellaista tapahtumaa, jota ei onnistuneen päätöksen vuoksi koskaan syntynyt.",
+            "Tästä seuraa päätöksenteon rakenteellinen vinouma saksien hyväksi. Sakset tuottavat nopeasti näkyvän suoritteen, kun taas sateenvarjon onnistuminen jää osittain näkymättömäksi. Jos arviointi rajoittuu yhteen vuoteen tai yhteen organisaatioon, pitkäaikainen suoja näyttää kululta ja lyhytaikainen leikkaus tehokkuudelta.",
+            "Ajan epäsymmetria tekee myös vastuusta epätasaisen. Tulevat sukupolvet eivät osallistu päätökseen, vaikka ne perivät sen vaikutukset. Nykyinen veronmaksaja näkee välittömän menon, mutta tuleva veronmaksaja kantaa rapautuneen infrastruktuurin, osaamisen tai terveyden kustannuksen. Vastuullinen talouspolitiikka ei voi tarkoittaa vain nykyisen alijäämän pienentämistä, jos samalla kasvatetaan tulevaisuuden piilevää velkaa."
+          ]
+        },
+        {
+          "id": "kun-yksi-saastaa-ja-toinen-maksaa",
+          "title": "Kun yksi säästää ja toinen maksaa",
+          "paragraphs": [
+            "Julkinen talous jakautuu ministeriöihin, hyvinvointialueisiin, kuntiin, virastoihin, rahastoihin ja palveluihin. Jokaisella on oma tehtävänsä, budjettinsa ja tulosmittarinsa. Tämä työnjako on välttämätön, mutta se voi katkaista yhteyden päätöksen ja sen kokonaisvaikutuksen väliltä.",
+            "Jos kunta säästää nuorten ennaltaehkäisevästä tuesta, kustannus voi myöhemmin näkyä hyvinvointialueen mielenterveyspalveluissa tai valtion maksamassa sosiaaliturvassa. Jos terveydenhuollon perustaso ruuhkautuu, säästö voi palata kalliimpana päivystyksenä ja työkyvyttömyytenä. Jos työllisyyspalvelu optimoi toimenpiteiden määrää, ihminen voi siirtyä tilastosta toiseen ilman, että hänen todellinen mahdollisuutensa työllistyä paranee.",
+            "Siilossa tarkasteltuna jokainen organisaatio voi toimia rationaalisesti. Kokonaisuus muuttuu epärationaaliseksi, koska kustannuksen vastaanottaja ei pysty palauttamaan laskua sen aiheuttaneelle päätökselle. Järjestelmä mittaa menosäästön siellä, missä se syntyi, mutta ei yhdistä myöhempää menolisäystä samaan päätösketjuun.",
+            "Talouspolitiikan sakset osuvat tämän vuoksi usein kohtiin, joissa vastustus on heikkoa ja seuraukset hitaita. Ennaltaehkäisy, perustason palvelut, paikallinen infrastruktuuri ja vaikeasti mitattava toimintakyky ovat alttiita leikkauksille juuri siksi, etteivät niiden hyödyt näy yhden budjettivuoden suoritteina. Järjestelmä voi siten leikata pois oman sateenvarjonsa ja päätellä myöhemmin kastumisesta, että tarvitaan suuremmat sakset."
+          ]
+        },
+        {
+          "id": "velka-ei-ole-vain-rahaa",
+          "title": "Velka ei ole vain rahaa",
+          "paragraphs": [
+            "Julkinen velka on todellinen rajoite. Korkomenot vievät tilaa muilta menoilta, rahoittajien luottamus vaikuttaa toimintavapauteen ja jatkuva alijäämä voi tehdä yhteiskunnasta haavoittuvan. Velan merkitystä ei pidä vähätellä eikä jokaisen menon puolustamista voi perustella sillä, että se ehkä joskus maksaa itsensä takaisin.",
+            "Rahallinen velka ei kuitenkaan ole yhteiskunnan ainoa velka. Korjausvelka syntyy, kun rakennuksia, verkkoja ja palvelujärjestelmiä ei ylläpidetä. Osaamisvelka kasvaa, kun koulutus ei tuota muuttuvissa oloissa tarvittavia valmiuksia. Terveysvelka kertyy, kun hoito viivästyy ja ehkäistävissä olevat ongelmat vaikeutuvat. Luottamusvelka syntyy, kun ihmiset eivät enää usko sääntöjen, palvelujen tai päätöksenteon olevan oikeudenmukaisia.",
+            "Näitä velkoja ei kirjata samalla tavoin valtion taseeseen, mutta ne rajoittavat tulevaisuuden päätöksiä aivan kuten rahallinen velka. Niiden korko maksetaan heikompana tuottavuutena, kasvavina korjaavina menoina, poliittisena epävakautena ja vähentyneenä kykynä kohdata uusia kriisejä.",
+            "Sakset voivat pienentää rahallista velkaa ja kasvattaa samanaikaisesti muita velkoja. Sateenvarjo voi kasvattaa rahallista velkaa lyhyellä aikavälillä mutta pienentää terveys-, osaamis- tai korjausvelkaa. Vastuullinen päätöksenteko joutuu vertaamaan näitä vaikutuksia keskenään eikä voi kohdella vain yhtä velkalajia todellisena."
+          ]
+        },
+        {
+          "id": "epavarmuus-ei-oikeuta-toimettomuutta",
+          "title": "Epävarmuus ei oikeuta toimettomuutta",
+          "paragraphs": [
+            "Koska ennusteisiin liittyy epävarmuutta, voisi olla houkuttelevaa päätellä, ettei niiden perusteella pitäisi tehdä mitään. Tämä olisi väärä johtopäätös. Myös tekemättä jättäminen on päätös, jolla on seurauksia. Jos heikkenevään tilanteeseen ei reagoida, vaurio voi kasvaa. Jos kestämätöntä rakennetta suojataan loputtomasti, tarvittava muutos kallistuu.",
+            "Epävarmuus pitäisi sen sijaan ottaa päätöksen rakenteeseen. Päätös voidaan vaiheistaa, sille voidaan asettaa tarkistuspisteitä ja sen jatkuminen voidaan sitoa havaittuihin vaikutuksiin. Yhden suuren ja peruuttamattoman ratkaisun sijasta voidaan tehdä pienempiä toimia, joiden perusteella opitaan järjestelmän todellisesta käyttäytymisestä.",
+            "Tällainen politiikka ei ole päättämättömyyttä vaan hallittua kokeilemista. Se tunnustaa, ettei monimutkaisen yhteiskunnan kaikkia reaktioita voida tietää etukäteen. Samalla se edellyttää, että päätöksentekijät suostuvat muuttamaan suuntaa, jos todellisuus ei käyttäydy oletetulla tavalla.",
+            "Vaikeinta ei usein ole tiedon puute vaan päätöksen institutionaalinen peruuttamattomuus. Kun poliittinen arvovalta, hallinnollinen valmistelu ja julkinen viestintä on sidottu yhteen ratkaisuun, virheen myöntämisestä tulee kallista. Siksi korjausmekanismi pitäisi rakentaa päätökseen jo ennen kuin tiedetään, tarvitaanko sitä."
+          ]
+        },
+        {
+          "id": "kolme-valinetta-kahden-sijasta",
+          "title": "Kolme välinettä kahden sijasta",
+          "paragraphs": [
+            "Sakset ja sateenvarjo muodostavat ymmärrettävän vastaparin, mutta hyvä talouspolitiikka tarvitsee myös kolmannen välineen: neulan ja langan. Sakset poistavat, sateenvarjo suojaa, mutta neula ja lanka muuttavat rakenteen niin, ettei sama repeämä synny jatkuvasti uudelleen.",
+            "Rakenteellinen uudistus ei ole sama asia kuin menoleikkaus. Leikkaus voi vähentää järjestelmän resursseja muuttamatta sen toimintalogiikkaa. Uudistus muuttaa vastuita, kannustimia, palveluketjuja tai rahoitusta niin, että ongelma syntyy harvemmin, havaitaan aikaisemmin tai ratkaistaan kevyemmin.",
+            "Jos palvelujärjestelmä on pirstaleinen, määrärahan vähentäminen ei yhdistä sitä. Jos väärä kannustin ohjaa kustannuksia toisen organisaation maksettavaksi, yleinen säästövelvoite ei korjaa kannustinta. Jos tuki ylläpitää vanhentunutta tuotantoa, tuen loputon jatkaminen ei auta, mutta äkillinen poistaminenkaan ei välttämättä rakenna uutta kapasiteettia tilalle.",
+            "Neula ja lanka tarkoittavat tällöin siirtymää. Vanhaa suojaa voidaan purkaa vaiheittain samalla, kun ihmisille, yrityksille ja alueille luodaan todellinen mahdollisuus siirtyä uuteen. Rakenteellinen uudistus voi vaatia aluksi enemmän rahaa, koska vanha ja uusi järjestelmä toimivat hetken rinnakkain. Sen onnistumista ei siksi voi arvioida vain ensimmäisen vuoden säästön perusteella."
+          ]
+        },
+        {
+          "id": "millainen-paatos-kestaa-vaaran-ennusteen",
+          "title": "Millainen päätös kestää väärän ennusteen?",
+          "paragraphs": [
+            "Hyvän päätöksen pitäisi toimia kohtuullisesti myös silloin, kun ennuste osoittautuu vääräksi. Jos kasvu on odotettua vahvempaa, päätös ei saisi synnyttää tarpeetonta pysyvää menoa. Jos kasvu on odotettua heikompaa, päätös ei saisi syventää taantumaa tai romahduttaa välttämätöntä toimintakykyä.",
+            "Tätä voidaan arvioida viiden kysymyksen avulla:",
+            "Näiden kysymysten tarkoitus ei ole estää päätöksiä vaan tehdä niiden todellinen riskijako näkyväksi. Usein julkisen talouden riskiä vähennetään siirtämällä se kotitalouksille, kunnille, järjestöille tai tuleville sukupolville. Valtion budjetti voi silloin näyttää vakaammalta samalla, kun koko yhteiskunta muuttuu haavoittuvammaksi."
+          ],
+          "bullets": [
+            "Mihin päätös kohdistuu? Poistaako se kustannusta tuottavan rakenteen vai heikentääkö se kykyä ehkäistä kustannuksia?",
+            "Missä vaikutus näkyy? Syntyykö säästö samassa organisaatiossa, jossa mahdollinen jälkilasku myöhemmin maksetaan?",
+            "Milloin vaikutus näkyy? Onko välitön hyöty suurempi vain siksi, että haitta ilmenee seuraavan budjettikauden jälkeen?",
+            "Voidaanko päätös korjata? Sisältääkö ratkaisu tarkistuspisteen, vaikutuskynnyksen ja mahdollisuuden muuttaa suuntaa?",
+            "Mitä tapahtuu, jos ennuste on väärä? Säilyttääkö päätös toimintakyvyn sekä paremmassa että huonommassa kehityksessä?"
+          ]
+        },
+        {
+          "id": "uusi-tapa-kasitella-ennusteita",
+          "title": "Uusi tapa käsitellä ennusteita",
+          "paragraphs": [
+            "Ennustetta ei pitäisi tuoda päätöksentekoon yhtenä lukuna vaan vaihtoehtoisten kehityskulkujen joukkona. Perusuran rinnalla tarvitaan ainakin heikompi ja vahvempi polku sekä kuvaus siitä, mitkä oletukset erottavat ne toisistaan. Vielä tärkeämpää on arvioida, kuinka ehdotettu päätös muuttaa kutakin polkua.",
+            "Tällöin päätöksen vaikutusarvio ei kysy vain, kuinka paljon meno pienenee, vaan myös kuinka työllisyys, verotulot, palvelutarve ja yksityinen käyttäytyminen voivat muuttua. Arvioon pitäisi sisällyttää sekin mahdollisuus, että politiikka vahvistaa alkuperäisen ennusteen tai kumoaa sen.",
+            "Päätösten seurantaa pitäisi jatkaa yli hallinnonalojen ja budjettikausien. Jos säästö yhdessä kohdassa kasvattaa kustannuksia toisessa, yhteyden pitää tulla näkyväksi. Jos oletettu vaikutus ei toteudu, päätöstä ei pitäisi puolustaa alkuperäisellä laskelmalla vaan muuttaa uuden tiedon perusteella.",
+            "Tällainen järjestelmä tarvitsee myös poliittisen kulttuurin, jossa korjaaminen ei ole tappio. Ennusteeseen liittyvän epävarmuuden tunnustaminen ei heikennä päätöksentekoa, jos samalla osoitetaan, miten epävarmuutta hallitaan. Todellinen heikkous on päätös, joka esitetään varmana mutta jota ei voida korjata sen osoittautuessa vääräksi."
+          ]
+        },
+        {
+          "id": "sakset-sateenvarjo-ja-yhteiskunnan-suunta",
+          "title": "Sakset, sateenvarjo ja yhteiskunnan suunta",
+          "paragraphs": [
+            "Yhteiskunta tarvitsee sekä kykyä luopua vanhasta että kykyä suojata arvokasta. Ilman saksia järjestelmä kerrostuu, menettää liikkumavaransa ja käyttää yhä enemmän voimavaroja oman menneisyytensä ylläpitämiseen. Ilman sateenvarjoa jokainen häiriö voi tuhota sellaista osaamista, luottamusta ja tuotantokykyä, jonka uudelleenrakentaminen maksaa enemmän kuin sen suojaaminen olisi maksanut.",
+            "Välineiden järjestys ratkaisee. Jos ensin leikataan toimintakyky ja vasta sitten yritetään uudistaa, muutos tehdään heikentynein voimavaroin. Jos ensin suojataan kaikki olemassa oleva eikä koskaan avata rakenteita, sateenvarjosta tulee pysyvyyden suoja. Kestävä politiikka suojaa sen, mitä tulevaisuudessa tarvitaan, leikkaa sen, mikä tuottaa tarpeettomia kustannuksia, ja ompelee vastuut uudelleen niin, ettei sama ongelma palaa toisen budjetin kautta.",
+            "Talousennuste on tässä työssä välttämätön apuväline, mutta se ei ole päätöksen korvike. Se kertoo, mihin suuntaan maailma voi olla menossa nykyisillä oletuksilla. Se ei yksin kerro, millainen maailma pitäisi rakentaa eikä sitä, miten päätös muuttaa reittiä.",
+            "Siksi vastuullisuuden mitta ei ole se, kuinka uskollisesti politiikka toteuttaa ennusteen vaatiman sopeutuksen. Vastuullisuus näkyy siinä, ymmärtääkö päätöksenteko oman vaikutuksensa ennustettuun todellisuuteen ja säilyttääkö se kyvyn korjata suuntaa."
+          ],
+          "quote": "Ennuste on epävarma. Päätöksen palaute on todellinen. Hyvä politiikka ei valitse saksia tai sateenvarjoa niiden symbolisen arvon vuoksi, vaan sen perusteella, mikä vahvistaa yhteiskunnan kykyä selviytyä myös sellaisesta tulevaisuudesta, jota ennuste ei osannut nähdä.",
           "closing": true
         }
       ]
