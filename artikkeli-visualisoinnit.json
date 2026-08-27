@@ -1,0 +1,852 @@
+{
+  "schemaVersion": 1,
+  "articles": [
+    {
+      "id": "siilot-ja-sisapiirit",
+      "sections": {
+        "kun-yhteistyo-vakiintui-rakenteeksi": {
+          "type": "compare-chains",
+          "eyebrow": "Narratiivinen vertailu",
+          "title": "Missä kohdassa sama rakenne alkaa tuottaa eri lopputuloksen?",
+          "intro": "Selaa muuttujia nuolilla. Kaksi ketjua käynnistyy rinnakkain samasta yhteiskunnallisesta tarpeesta, mutta näyttää, kuinka rakenteen toimintatapa voi johtaa joko korjaavaan tai kerrostuvaan kehitykseen.",
+          "variables": [
+            {
+              "name": "Palaute",
+              "question": "Pystyykö järjestelmä muuttamaan rakennettaan vai vain toimintatapaansa?",
+              "left": {
+                "label": "Avoin palautekierto",
+                "title": "Palaute korjaa rakennetta",
+                "subtitle": "Virhe voi muuttaa myös itse järjestelmää.",
+                "steps": [
+                  {
+                    "label": "Havainto",
+                    "title": "Ongelma tunnistetaan",
+                    "text": "Kokemus ja tulokset tuottavat poikkeaman."
+                  },
+                  {
+                    "label": "Tulkinta",
+                    "title": "Syy etsitään rakenteesta",
+                    "text": "Kysytään, mikä järjestely tuottaa ongelman."
+                  },
+                  {
+                    "label": "Korjaus",
+                    "title": "Rakennetta voidaan purkaa",
+                    "text": "Tarpeeton sääntö tai rajapinta voidaan poistaa."
+                  },
+                  {
+                    "label": "Seuranta",
+                    "title": "Vaikutus näkyy takaisin",
+                    "text": "Korjauksen tulos palautuu päätöksentekoon."
+                  }
+                ]
+              },
+              "right": {
+                "label": "Suljettu palautekierto",
+                "title": "Palaute kiertyy järjestelmän sisään",
+                "subtitle": "Virhe synnyttää uuden korjauksen vanhan päälle.",
+                "steps": [
+                  {
+                    "label": "Havainto",
+                    "title": "Ongelma tunnistetaan",
+                    "text": "Sama poikkeama tulee näkyviin."
+                  },
+                  {
+                    "label": "Tulkinta",
+                    "title": "Syy paikannetaan suoritukseen",
+                    "text": "Huomio siirtyy rakenteesta yksittäisen toimijan toimintaan."
+                  },
+                  {
+                    "label": "Korjaus",
+                    "title": "Lisätään ohjausta",
+                    "text": "Syntyy uusi mittari, menettely tai valvontakerros."
+                  },
+                  {
+                    "label": "Seuraus",
+                    "title": "Rajapintoja tulee lisää",
+                    "text": "Korjaus kasvattaa koordinaation tarvetta."
+                  }
+                ]
+              },
+              "synthesis": "Ero syntyy siinä, saako palaute kyseenalaistaa rakenteen vai ainoastaan säätää sen sisäistä toimintaa."
+            },
+            {
+              "name": "Työnjako",
+              "question": "Vähentääkö erikoistuminen epäselvyyttä vai kasvattaako se rajapintoja?",
+              "left": {
+                "label": "Täydentävä työnjako",
+                "title": "Erikoistuminen kokoaa osaamista",
+                "subtitle": "Vastuu pysyy näkyvänä.",
+                "steps": [
+                  {
+                    "label": "Tarve",
+                    "title": "Ongelma vaatii osaamista"
+                  },
+                  {
+                    "label": "Jako",
+                    "title": "Tehtävä annetaan erikoistuneelle toimijalle"
+                  },
+                  {
+                    "label": "Yhteys",
+                    "title": "Rajapinta määritellään selkeästi"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Kokonaisvastuu säilyy näkyvänä"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Siiloutuva työnjako",
+                "title": "Erikoistuminen pilkkoo kokonaisvastuun",
+                "subtitle": "Jokainen osa optimoi omaa tehtäväänsä.",
+                "steps": [
+                  {
+                    "label": "Tarve",
+                    "title": "Ongelma vaatii osaamista"
+                  },
+                  {
+                    "label": "Jako",
+                    "title": "Tehtävä irrotetaan omaksi vastuualueeksi"
+                  },
+                  {
+                    "label": "Raja",
+                    "title": "Toimijoiden välille syntyy uusi rajapinta"
+                  },
+                  {
+                    "label": "Seuraus",
+                    "title": "Kukaan ei enää omista koko ketjua"
+                  }
+                ]
+              },
+              "synthesis": "Työnjako ei itsessään muodosta siiloa. Ratkaisevaa on, säilyykö vastuu kokonaisuudesta vai katkeaako se organisaatiorajaan."
+            },
+            {
+              "name": "Ohjaus",
+              "question": "Yksinkertaistaako ohjaus toimintaa vai synnyttääkö se uuden ohjauskerroksen?",
+              "left": {
+                "label": "Poistava ohjaus",
+                "title": "Ohjaus vähentää epäselvyyttä",
+                "steps": [
+                  {
+                    "label": "Ongelma",
+                    "title": "Toiminta hajautuu"
+                  },
+                  {
+                    "label": "Valinta",
+                    "title": "Poistetaan ristiriitaisia sääntöjä"
+                  },
+                  {
+                    "label": "Selkeys",
+                    "title": "Tavoitteita on vähemmän"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Toimintavara kasvaa"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Kerrostuva ohjaus",
+                "title": "Ohjaus lisää yhteensovittamista",
+                "steps": [
+                  {
+                    "label": "Ongelma",
+                    "title": "Toiminta hajautuu"
+                  },
+                  {
+                    "label": "Valinta",
+                    "title": "Lisätään uusi ohje tai mittari"
+                  },
+                  {
+                    "label": "Rajapinta",
+                    "title": "Vanha ohjaus jää voimaan uuden rinnalle"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Ohjauksen yhteensovittamisesta tulee uusi tehtävä"
+                  }
+                ]
+              },
+              "synthesis": "Ohjauksen määrä ei yksin ratkaise. Keskeistä on, korvaako uusi ohjaus vanhaa vai kasautuuko se sen päälle."
+            },
+            {
+              "name": "Rahoitus",
+              "question": "Seuraako raha tarkoitusta vai alkaako tarkoitus seurata rahoituskanavaa?",
+              "left": {
+                "label": "Tarkoitus ohjaa rahaa",
+                "title": "Rahoitus mukautuu tarpeeseen",
+                "steps": [
+                  {
+                    "label": "Tarve",
+                    "title": "Tavoite määritellään ensin"
+                  },
+                  {
+                    "label": "Rahoitus",
+                    "title": "Resurssi seuraa tavoitetta"
+                  },
+                  {
+                    "label": "Arviointi",
+                    "title": "Rahoituksen tarve voidaan arvioida uudelleen"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Rakenne voi myös päättyä"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Raha ohjaa rakennetta",
+                "title": "Rahoituskanava alkaa ylläpitää tehtävää",
+                "steps": [
+                  {
+                    "label": "Tarve",
+                    "title": "Tavoite synnyttää rahoituskanavan"
+                  },
+                  {
+                    "label": "Vakiintuminen",
+                    "title": "Kanava saa omat ehtonsa ja prosessinsa"
+                  },
+                  {
+                    "label": "Sopeutuminen",
+                    "title": "Toiminta muotoillaan rahoitusehtoihin"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Rahoituksen jatkuvuudesta tulee osa tavoitetta"
+                  }
+                ]
+              },
+              "synthesis": "Kun rahoitus muuttuu välineestä institutionaaliseksi rakenteeksi, sen lopettaminen voi olla vaikeampaa kuin alkuperäisen ongelman ratkaiseminen."
+            },
+            {
+              "name": "Portinvartijuus",
+              "question": "Välittääkö asiantuntijarakenne tietoa vai rajaako se pääsyn päätöksiin?",
+              "left": {
+                "label": "Välittävä asiantuntijuus",
+                "title": "Portti avaa tietoa",
+                "steps": [
+                  {
+                    "label": "Tieto",
+                    "title": "Erityisosaaminen kokoaa näyttöä"
+                  },
+                  {
+                    "label": "Käännös",
+                    "title": "Tieto tehdään ymmärrettäväksi muille"
+                  },
+                  {
+                    "label": "Päätös",
+                    "title": "Vaihtoehdot pysyvät avoimina"
+                  },
+                  {
+                    "label": "Palaute",
+                    "title": "Ulkopuolinen kritiikki pääsee takaisin sisään"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Sulkeva portinvartijuus",
+                "title": "Portti alkaa rajata vaihtoehtoja",
+                "steps": [
+                  {
+                    "label": "Tieto",
+                    "title": "Erityisosaaminen kokoaa näyttöä"
+                  },
+                  {
+                    "label": "Raja",
+                    "title": "Pääsy keskusteluun edellyttää sisäpiirin kieltä ja asemaa"
+                  },
+                  {
+                    "label": "Päätös",
+                    "title": "Vaihtoehtojen joukko kapenee ennen avointa arviointia"
+                  },
+                  {
+                    "label": "Palaute",
+                    "title": "Ulkopuolinen kritiikki tulkitaan helposti häiriöksi"
+                  }
+                ]
+              },
+              "synthesis": "Portinvartijuus muuttuu ongelmaksi vasta silloin, kun tiedon laadun varmistamisen lisäksi se alkaa määrittää, ketkä saavat kyseenalaistaa lähtökohdat."
+            }
+          ]
+        },
+        "miksi-vahvuus-muuttui-heikkoudeksi": {
+          "type": "layered-network",
+          "eyebrow": "Rakenteen kerrostuminen",
+          "title": "Milloin työnjako muuttuu verkoksi, jota täytyy alkaa koordinoida?",
+          "intro": "Selaa aikatasoja. Tummat yhteydet kuvaavat perustehtävää; katkoviivaiset yhteydet ovat myöhemmin syntyneitä ohjaus-, rahoitus- ja koordinointikerroksia.",
+          "periods": [
+            {
+              "year": "1970",
+              "pressure": 22,
+              "caption": "Perusrakenne on vielä suhteellisen luettava: tehtävä, vastuu ja palvelu ovat lähellä toisiaan.",
+              "nodes": [
+                {
+                  "id": "v",
+                  "label": "VALTIO",
+                  "x": 340,
+                  "y": 70,
+                  "core": true
+                },
+                {
+                  "id": "k",
+                  "label": "KUNTA",
+                  "x": 210,
+                  "y": 190
+                },
+                {
+                  "id": "p",
+                  "label": "PALVELU",
+                  "x": 470,
+                  "y": 190
+                },
+                {
+                  "id": "c",
+                  "label": "IHMINEN",
+                  "x": 340,
+                  "y": 315,
+                  "core": true
+                }
+              ],
+              "edges": [
+                {
+                  "a": "v",
+                  "b": "k"
+                },
+                {
+                  "a": "v",
+                  "b": "p"
+                },
+                {
+                  "a": "k",
+                  "b": "c"
+                },
+                {
+                  "a": "p",
+                  "b": "c"
+                }
+              ]
+            },
+            {
+              "year": "1990",
+              "pressure": 43,
+              "caption": "Erikoistuminen ja uusi ohjaus lisäävät hyödyllisiä kyvykkyyksiä, mutta samalla rajapintojen määrä kasvaa.",
+              "nodes": [
+                {
+                  "id": "v",
+                  "label": "VALTIO",
+                  "x": 340,
+                  "y": 55,
+                  "core": true
+                },
+                {
+                  "id": "k",
+                  "label": "KUNTA",
+                  "x": 155,
+                  "y": 170
+                },
+                {
+                  "id": "p",
+                  "label": "PALVELU",
+                  "x": 525,
+                  "y": 170
+                },
+                {
+                  "id": "r",
+                  "label": "RAHOITUS",
+                  "x": 340,
+                  "y": 155,
+                  "repair": true
+                },
+                {
+                  "id": "o",
+                  "label": "OHJAUS",
+                  "x": 245,
+                  "y": 265,
+                  "repair": true
+                },
+                {
+                  "id": "c",
+                  "label": "IHMINEN",
+                  "x": 435,
+                  "y": 315,
+                  "core": true
+                }
+              ],
+              "edges": [
+                {
+                  "a": "v",
+                  "b": "k"
+                },
+                {
+                  "a": "v",
+                  "b": "p"
+                },
+                {
+                  "a": "k",
+                  "b": "c"
+                },
+                {
+                  "a": "p",
+                  "b": "c"
+                },
+                {
+                  "a": "v",
+                  "b": "r",
+                  "repair": true
+                },
+                {
+                  "a": "r",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "r",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "o",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "o",
+                  "b": "p",
+                  "repair": true
+                }
+              ]
+            },
+            {
+              "year": "2010",
+              "pressure": 67,
+              "caption": "Koordinoinnista tulee oma tehtävänsä. Osa uusista suhteista ei enää tuota palvelua suoraan vaan sovittaa muita rakenteita yhteen.",
+              "nodes": [
+                {
+                  "id": "v",
+                  "label": "VALTIO",
+                  "x": 340,
+                  "y": 48,
+                  "core": true
+                },
+                {
+                  "id": "k",
+                  "label": "KUNTA",
+                  "x": 120,
+                  "y": 155
+                },
+                {
+                  "id": "p",
+                  "label": "PALVELU",
+                  "x": 560,
+                  "y": 155
+                },
+                {
+                  "id": "r",
+                  "label": "RAHOITUS",
+                  "x": 245,
+                  "y": 135,
+                  "repair": true
+                },
+                {
+                  "id": "o",
+                  "label": "OHJAUS",
+                  "x": 435,
+                  "y": 135,
+                  "repair": true
+                },
+                {
+                  "id": "h",
+                  "label": "HANKINTA",
+                  "x": 170,
+                  "y": 270,
+                  "repair": true
+                },
+                {
+                  "id": "m",
+                  "label": "MITTARIT",
+                  "x": 340,
+                  "y": 245,
+                  "repair": true
+                },
+                {
+                  "id": "j",
+                  "label": "JÄRJESTÖT",
+                  "x": 510,
+                  "y": 270
+                },
+                {
+                  "id": "c",
+                  "label": "IHMINEN",
+                  "x": 340,
+                  "y": 350,
+                  "core": true
+                }
+              ],
+              "edges": [
+                {
+                  "a": "v",
+                  "b": "k"
+                },
+                {
+                  "a": "v",
+                  "b": "p"
+                },
+                {
+                  "a": "k",
+                  "b": "c"
+                },
+                {
+                  "a": "p",
+                  "b": "c"
+                },
+                {
+                  "a": "j",
+                  "b": "c"
+                },
+                {
+                  "a": "v",
+                  "b": "r",
+                  "repair": true
+                },
+                {
+                  "a": "v",
+                  "b": "o",
+                  "repair": true
+                },
+                {
+                  "a": "r",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "r",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "o",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "o",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "h",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "h",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "m",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "m",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "m",
+                  "b": "r",
+                  "repair": true
+                }
+              ]
+            },
+            {
+              "year": "2025",
+              "pressure": 84,
+              "caption": "Järjestelmä on kykenevä mutta vaikeasti luettava. Korjaaminen tapahtuu yhä useammin lisäämällä yhteys olemassa olevaan verkkoon.",
+              "nodes": [
+                {
+                  "id": "v",
+                  "label": "VALTIO",
+                  "x": 340,
+                  "y": 42,
+                  "core": true
+                },
+                {
+                  "id": "k",
+                  "label": "KUNTA",
+                  "x": 90,
+                  "y": 135
+                },
+                {
+                  "id": "p",
+                  "label": "PALVELU",
+                  "x": 590,
+                  "y": 135
+                },
+                {
+                  "id": "r",
+                  "label": "RAHOITUS",
+                  "x": 205,
+                  "y": 112,
+                  "repair": true
+                },
+                {
+                  "id": "o",
+                  "label": "OHJAUS",
+                  "x": 475,
+                  "y": 112,
+                  "repair": true
+                },
+                {
+                  "id": "h",
+                  "label": "HANKINTA",
+                  "x": 120,
+                  "y": 250,
+                  "repair": true
+                },
+                {
+                  "id": "m",
+                  "label": "MITTARIT",
+                  "x": 270,
+                  "y": 230,
+                  "repair": true
+                },
+                {
+                  "id": "q",
+                  "label": "KOORD.",
+                  "x": 410,
+                  "y": 230,
+                  "repair": true
+                },
+                {
+                  "id": "j",
+                  "label": "JÄRJESTÖT",
+                  "x": 560,
+                  "y": 250
+                },
+                {
+                  "id": "s",
+                  "label": "SÄÄNTELY",
+                  "x": 205,
+                  "y": 330,
+                  "repair": true
+                },
+                {
+                  "id": "g",
+                  "label": "VALVONTA",
+                  "x": 475,
+                  "y": 330,
+                  "repair": true
+                },
+                {
+                  "id": "c",
+                  "label": "IHMINEN",
+                  "x": 340,
+                  "y": 350,
+                  "core": true
+                }
+              ],
+              "edges": [
+                {
+                  "a": "v",
+                  "b": "k"
+                },
+                {
+                  "a": "v",
+                  "b": "p"
+                },
+                {
+                  "a": "k",
+                  "b": "c"
+                },
+                {
+                  "a": "p",
+                  "b": "c"
+                },
+                {
+                  "a": "j",
+                  "b": "c"
+                },
+                {
+                  "a": "v",
+                  "b": "r",
+                  "repair": true
+                },
+                {
+                  "a": "v",
+                  "b": "o",
+                  "repair": true
+                },
+                {
+                  "a": "r",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "r",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "o",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "o",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "h",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "h",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "m",
+                  "b": "r",
+                  "repair": true
+                },
+                {
+                  "a": "m",
+                  "b": "o",
+                  "repair": true
+                },
+                {
+                  "a": "q",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "q",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "q",
+                  "b": "j",
+                  "repair": true
+                },
+                {
+                  "a": "s",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "s",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "g",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "g",
+                  "b": "q",
+                  "repair": true
+                }
+              ]
+            }
+          ]
+        },
+        "mita-pitaisi-avata": {
+          "type": "intervention",
+          "eyebrow": "Purkamiskoe",
+          "title": "Jos vain yksi mekanismi muuttuisi, mitä tapahtuisi seuraavaksi?",
+          "intro": "Valitse kohta, johon puututaan. Moduuli näyttää ensimmäisen vaikutuksen, siitä seuraavan järjestelmävaikutuksen sekä mahdollisen vastavaikutuksen — juuri sen, joka helposti jää uudistuskeskustelussa näkymättömäksi.",
+          "note": "Tämä on artikkelin argumenttia havainnollistava mekanismikartta, ei numeerinen vaikutusarvio.",
+          "options": [
+            {
+              "name": "Palaute",
+              "first": {
+                "title": "Rakenteellinen palaute vahvistuu",
+                "text": "Poikkeama voi kohdistua myös sääntöön tai organisaatiorajaan."
+              },
+              "second": {
+                "title": "Tarpeettomia korjauskerroksia voidaan purkaa",
+                "text": "Kaikkea ei tarvitse korjata uudella ohjeella."
+              },
+              "third": {
+                "title": "Päätöksenteko altistuu suuremmalle epävarmuudelle",
+                "text": "Avoimempi palaute tuo myös ristiriitaisempaa tietoa."
+              },
+              "balance": "Hyöty syntyy oppimiskyvystä, mutta se edellyttää kykyä sietää epävarmuutta ja palautteen ristiriitaisuutta."
+            },
+            {
+              "name": "Siilot",
+              "first": {
+                "title": "Rajapintoja yhdistetään",
+                "text": "Kokonaisvastuu voidaan palauttaa näkyvämmäksi."
+              },
+              "second": {
+                "title": "Koordinointitarve vähenee",
+                "text": "Osa väliportaista menettää tehtävänsä."
+              },
+              "third": {
+                "title": "Erikoisosaamisen suoja voi heikentyä",
+                "text": "Liiallinen yhdistäminen voi hukata tarpeellista eriytymistä."
+              },
+              "balance": "Tavoite ei ole poistaa työnjakoa vaan poistaa sellaisia rajoja, jotka eivät enää lisää osaamista."
+            },
+            {
+              "name": "Rahoitus",
+              "first": {
+                "title": "Raha seuraa tavoitetta joustavammin",
+                "text": "Rahoituskanava ei yksin määritä toimintamuotoa."
+              },
+              "second": {
+                "title": "Toimijat voivat yhdistellä ratkaisuja",
+                "text": "Rakenteellinen lukkiutuminen heikkenee."
+              },
+              "third": {
+                "title": "Ennakoitavuus voi heikentyä",
+                "text": "Pitkäjänteinen toiminta tarvitsee silti vakautta."
+              },
+              "balance": "Joustavuuden ja jatkuvuuden välinen jännite pitää ratkaista erikseen; kumpikaan ei yksin riitä."
+            },
+            {
+              "name": "Portinvartijuus",
+              "first": {
+                "title": "Useampi reitti päätöksentekoon",
+                "text": "Tieto ja kritiikki pääsevät sisään useammasta kohdasta."
+              },
+              "second": {
+                "title": "Sisäpiirin informaatiovalta heikkenee",
+                "text": "Vaihtoehtoja ei karsita yhtä aikaisin."
+              },
+              "third": {
+                "title": "Laadunvarmistuksen tarve kasvaa",
+                "text": "Avoimuus lisää myös heikkolaatuisen tiedon määrää."
+              },
+              "balance": "Porttien avaaminen ei tarkoita porttien poistamista: laadun arviointi ja vaihtoehtojen avoimuus pitää erottaa toisistaan."
+            },
+            {
+              "name": "Ohjaus",
+              "first": {
+                "title": "Päällekkäisiä tavoitteita poistetaan",
+                "text": "Toimijoille jää vähemmän keskenään ristiriitaisia signaaleja."
+              },
+              "second": {
+                "title": "Paikallinen toimintavara kasvaa",
+                "text": "Ratkaisu voidaan sovittaa tilanteeseen."
+              },
+              "third": {
+                "title": "Vertailtavuus voi heiketä",
+                "text": "Yhdenmukaisuus vähenee, jos kaikkea ei standardoida."
+              },
+              "balance": "Ohjauksen purkaminen toimii vain, jos samalla päätetään, mikä yhdenmukaisuus on todella välttämätöntä."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
