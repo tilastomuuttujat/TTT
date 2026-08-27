@@ -173,6 +173,230 @@
           "closing": true
         }
       ]
+    },
+    {
+      "id": "sukupolvikello",
+      "slug": "sukupolvikello",
+      "title": "Sukupolvikello",
+      "titleParts": [
+        "Sukupolvikello"
+      ],
+      "subtitle": "Kuinka murros kulkee yhteiskunnan läpi 20–25 vuoden askelin.",
+      "tags": [
+        "Sukupolvet",
+        "Historia",
+        "Yhteiskunnallinen muutos"
+      ],
+      "readingTime": "18 MIN",
+      "image": "sukupolvikello.png",
+      "imageAlt": "Neljä sisäkkäistä aikakehää kuvaavat 12,5, 25, 50 ja 100 vuoden yhteiskunnallista sukupolvirytmiä",
+      "imageCaption": "Sukupolvikello ei ennusta tapahtumia määrävuosina, vaan tekee näkyväksi viiveen, jolla yhden aikakauden ratkaisut muuttuvat seuraavan sukupolven elinympäristöksi.",
+      "ogImage": "sukupolvikello-og.png",
+      "intro": [
+        "Historia ei toistu samalla tavalla kuin kello kiertää tauluaan. Sodat eivät syty määrävuosina, talouskriisit eivät odota vuoroaan eivätkä sukupolvet vaihdu yhdessä yössä. Silti yhteiskunnan kehityksessä näyttää esiintyvän rytmi, joka on liian hidas näkyäkseen vaalikausissa mutta liian nopea ollakseen vain vuosisatojen taustaliikettä.",
+        "Suomen historiasta voidaan hahmotella noin 20–25 vuoden välein toistuvia taitevaiheita: 1795, 1820, 1845, 1870, 1895, 1920, 1945, 1970, 1995 ja 2020. Vuosiluvut eivät osu kaikki täsmälleen suurimpaan tapahtumaan. Ne toimivat pikemminkin havaintoikkunoiden keskuksina, joiden ympärillä yhteiskunnan suunta, instituutiot tai sukupolvien asema muuttuvat.",
+        "Sarjan kiinnostavin ominaisuus ei ole se, että jokaisen vuosiluvun läheltä löytyy historiallinen tapahtuma. Olennaisempaa on, että jokaisessa pisteessä edellisen murroksen oloihin syntynyt sukupolvi saavuttaa suunnilleen sen iän, jolloin se siirtyy työelämään, perustaa perheitä, muuttaa työn perässä ja alkaa osallistua yhteiskunnan suunnan määrittelyyn.",
+        "Vuonna 1945 syntyneet täyttivät 25 vuotta vuonna 1970. Vuonna 1970 syntyneet olivat saman ikäisiä vuoden 1995 murroksessa. Vuonna 1995 syntyneet saavuttivat 25 vuoden iän pandemian alkaessa vuonna 2020. Vuonna 2020 syntyneet tulevat samaan vaiheeseen vuoden 2045 ympärillä.",
+        "Tässä mielessä yhteiskunnallinen murros ei pääty tapahtumahetkeen. Sen varsinainen tulos paljastuu vasta seuraavan sukupolven valinnoissa."
+      ],
+      "sections": [
+        {
+          "id": "nelja-paallekkaista-aikaa",
+          "title": "Neljä päällekkäistä aikaa",
+          "paragraphs": [
+            "Sukupolvikellossa yhteiskuntaa tarkastellaan neljällä aikamittakaavalla.",
+            "Uloimmalla kehällä on noin 12,5 vuoden ennakkosignaali. Sen aikana uusi suunta ei ole vielä vakiintunut, mutta vanhan järjestyksen oireet alkavat näkyä. Keskustelun aiheet muuttuvat, nuorten käyttäytyminen poikkeaa aiemmasta, instituutiot käynnistävät selvityksiä ja ratkaisuja etsitään olemassa olevien mallien reunoilta.",
+            "Seuraava kehä kuvaa 20–25 vuoden sukupolvitaivetta. Murroksen oloihin syntyneet ihmiset tulevat aikuisuuteen ja kohtaavat järjestelmän sellaisena kuin edellinen sukupolvi sen rakensi. Heidän työhön, asumiseen, muuttamiseen, perheeseen ja osallistumiseen liittyvät valintansa muodostavat yhteiskunnallisen palautteen.",
+            "Kolmas kehä kuvaa noin 50 vuoden mittaista murroksen ja jälleenrakennuksen kokonaisuutta. Sen ensimmäisellä puoliskolla vanha järjestys kohtaa rajansa. Toisella puoliskolla rajaan rakennetaan institutionaalinen vastaus. Kriisi ja ratkaisu kuuluvat tällöin samaan pitkään tapahtumaketjuun.",
+            "Kaikkein sisin kehä kuvaa noin sadan vuoden kiertoa. Neljä peräkkäistä sukupolvea ehtii syntyä, kasvaa, ottaa instituutiot käyttöönsä ja siirtää ne eteenpäin. Kierroksen lopussa alkuperäisen murroksen omakohtaisesti muistavat ihmiset ovat poistumassa yhteiskunnan johtavista asemista. Instituutiot säilyvät, mutta niiden syntytilanteen muisto heikkenee.",
+            "Juuri tässä kohdassa järjestelmän välineestä voi tulla itseisarvo. Seuraava suuri murros ei silloin välttämättä johdu siitä, että instituutiot olisivat alun perin olleet väärin rakennettuja. Se voi johtua siitä, että ne jatkavat vanhan tehtävänsä hoitamista maailmassa, jossa tehtävä on jo muuttunut."
+          ],
+          "quote": "Sukupolvikello ei mittaa sitä, milloin historia toistaa itsensä. Se mittaa viivettä, jolla yhden aikakauden ratkaisut muuttuvat seuraavan sukupolven elinympäristöksi."
+        },
+        {
+          "id": "miksi-juuri-20-25-vuotta",
+          "title": "Miksi juuri 20–25 vuotta?",
+          "paragraphs": [
+            "Kaksikymmentäviisi vuotta ei ole taianomainen historiallinen vakio. Se on kuitenkin yhteiskunnallisesti merkityksellinen aikaväli.",
+            "Siinä ajassa lapsi ehtii kasvaa aikuiseksi. Koulutukseen tehdyt ratkaisut alkavat näkyä työmarkkinoilla. Asumisen, aluekehityksen ja perhepolitiikan ehdot vaikuttavat siihen, mihin nuoret muuttavat ja uskaltavatko he perustaa perheen. Lapsuudessa koettu kriisi muuttuu nuoren aikuisen käsitykseksi siitä, millainen maailma on ja mihin instituutioihin kannattaa luottaa.",
+            "Sosiologi Karl Mannheim esitti jo vuonna 1928, ettei sukupolvi muodostu pelkästä samanikäisyydestä. Ihmisillä täytyy olla yhteinen sijainti historiallisessa ajassa, ja merkittävien tapahtumien täytyy osua heidän elämänkulussaan samankaltaiseen vaiheeseen. Samakaan kriisi ei siksi merkitse lapselle, nuorelle aikuiselle ja eläkeikäiselle samaa asiaa.",
+            "Sukupolven yhteiskunnallinen vaikutus ei kuitenkaan ala eikä pääty 25-vuotispäivänä. Muutos etenee liukuvasti. Osa tulee työelämään aikaisemmin, osa opiskelee pidempään, ja merkittävät johtamis- ja päätöksentekoasemat saavutetaan yleensä myöhemmin. Tästä syystä on parempi puhua 20–25 vuoden jaksosta kuin täsmällisestä neljännesvuosisadasta.",
+            "Sukupolvikellon vuosi ei siis ole määräpäivä. Se on kohta, jonka ympärillä uuden ikäluokan valinnat alkavat näkyä yhteiskunnallisena voimana."
+          ]
+        },
+        {
+          "id": "strauss-howen-nelja-kaannetta",
+          "title": "Strauss–Howen neljä käännettä",
+          "paragraphs": [
+            "William Straussin ja Neil Howen sukupolviteoria tarjoaa kiinnostavan vertailukohdan. He kuvasivat angloamerikkalaista historiaa noin 80–90 vuoden mittaisina kiertoina, jotka muodostuvat neljästä suunnilleen 20–22 vuoden vaiheesta. Pitkä kierto vastaa heidän ajattelussaan yhden pitkän ihmiselämän mittaa.",
+            "Teorian mukaan historialliset olosuhteet muokkaavat sukupolvia niiden lapsuudessa ja nuoruudessa. Kun nämä sukupolvet siirtyvät vanhemmiksi, johtajiksi ja instituutioiden käyttäjiksi, ne puolestaan muokkaavat historiaa. Yhteiskunnan tila tuottaa siis sukupolven, joka myöhemmin muuttaa yhteiskunnan tilaa.",
+            "Ajatus muistuttaa sukupolvikellon kaksisuuntaista palautetta. Ulkoinen maailma vaikuttaa ihmisten kokemuksiin, mutta kokemusten muokkaamat ihmiset palaavat myöhemmin instituutioihin työntekijöinä, vanhempina, päättäjinä, kuluttajina ja kansalaisina.",
+            "Strauss–Howen mallia ei silti pidä siirtää sellaisenaan Suomeen. Se on rakennettu Yhdysvaltain ja angloamerikkalaisen historian pohjalta. Sen sukupolviarkkityypit ovat hyvin yleistäviä, ja teoriaa on arvosteltu deterministisyydestä, vaikeasta testattavuudesta ja siitä, että historiallisia rajoja voidaan venyttää malliin sopiviksi. Myös luokka, sukupuoli, alue, koulutus ja muut ihmisten asemaa eriyttävät tekijät voivat olla sukupolvea merkittävämpiä.",
+            "Sukupolvikello ei siksi väitä, että kaikki samaan aikaan syntyneet ajattelisivat samalla tavalla. Se hyödyntää Strauss–Howelta vain käyttökelpoisen perusidean: pitkä yhteiskunnallinen kierto voi muodostua neljästä elämänvaiheen mittaisesta jaksosta. Teoria ei ole tässä ennustuskone vaan vertailupeili."
+          ],
+          "bullets": [
+            "kriisin jälkeen syntyvä yhteinen rakentamisen aika",
+            "instituutioiden vahvistumista seuraava arvojen ja yksilöllisyyden herääminen",
+            "yhteisen järjestyksen purkautuminen ja ristiriitojen kasautuminen",
+            "kriisi, jossa instituutioita jälleen rakennetaan"
+          ]
+        },
+        {
+          "id": "sukupolvet-eivat-ole-luonteita",
+          "title": "Sukupolvet eivät ole luonteita vaan asemia",
+          "paragraphs": [
+            "Neljän pylvään malli nimeää sukupolvet rakentajiksi, hyötyjiksi, kriitikoiksi ja uudistajiksi. Jaottelussa on vahva oivallus, jos nimityksiä ei tulkita moraalisiksi arvioiksi.",
+            "Rakentajat eivät ole luonnostaan muita uhrautuvampia. He joutuvat rakentamaan, koska vanha järjestys on murtunut. Hyötyjät eivät ole välttämättä ahneita, vaan he syntyvät maailmaan, jossa rakentajien luomat instituutiot alkavat tuottaa turvallisuutta ja mahdollisuuksia. Kriitikot eivät ole automaattisesti kyynisiä, vaan he näkevät järjestelmän sivuvaikutukset, joita rakentajat eivät vielä voineet havaita. Uudistajat eivät myöskään ole väistämättä viisaita. He joutuvat ottamaan vastuun tilanteessa, jossa kritiikki pitäisi muuttaa uudeksi rakenteeksi.",
+            "Sama ihminen voi eri elämänvaiheissa kuulua useaan rooliin. Sotien jälkeen syntynyt saattoi nuorena arvostella vanhaa moraalia, keski-iässä johtaa hyvinvointivaltion instituutioita ja eläkeiässä puolustaa niiden jatkuvuutta. Sukupolvi ei siis kanna yhtä muuttumatonta ominaisuutta läpi elämänsä.",
+            "Tämän vuoksi ikävaikutus, ajankohtavaikutus ja varsinainen sukupolvivaikutus täytyy erottaa toisistaan. Nuoret voivat suhtautua instituutioihin kriittisesti siksi, että he ovat nuoria. Kaikki ikäryhmät voivat muuttua saman kriisin vaikutuksesta. Vasta sellainen ero, joka säilyy ikäluokan mukana elämänvaiheesta toiseen, viittaa vahvemmin sukupolvivaikutukseen."
+          ],
+          "bullets": [
+            "Rakentajat perivät rikkoutuneen järjestyksen ja luovat yhteisiä rakenteita. Varjopuolena voivat olla kontrolli ja keskittäminen.",
+            "Vakiinnuttajat perivät laajenevat mahdollisuudet ja tekevät rakenteista yleisiä. Varjopuolena voi olla saavutettujen etujen lukitseminen.",
+            "Kriitikot perivät kypsän mutta jäykistyvän järjestelmän ja tunnistavat sen sivuvaikutukset. Varjopuolena voivat olla vetäytyminen ja kyynistyminen.",
+            "Uudistajat perivät kasautuneen ristiriidan ja rakentavat uuden yhteensopivuuden. Varjopuolena voivat olla uusi ankaruus ja yliohjaus."
+          ]
+        },
+        {
+          "id": "1795-1870-vanhasta-jarjestyksesta-rakennemurrokseen",
+          "title": "1795–1870: vanhasta järjestyksestä rakennemurrokseen",
+          "paragraphs": [
+            "Vuoden 1795 ympärille ei osu yhtä selvää suomalaista käännekohtaa kuin vuosiin 1945 tai 1995. Siksi se on sarjan heikoimpia kohtia, eikä sitä pidä väittää yksittäiseksi historialliseksi murrosvuodeksi. Ajanjakso kuului kuitenkin Ruotsin valtakunnan vanhan järjestyksen loppuvaiheeseen. Suomen sota vuosina 1808–1809 irrotti Suomen Ruotsista ja liitti sen autonomisena suuriruhtinaskuntana Venäjän yhteyteen.",
+            "Vuoteen 1820 mennessä uusi hallinnollinen järjestys oli alkanut vakiintua. Suomi ei ollut itsenäinen valtio, mutta sille rakentui erillinen keskushallinto, senaatti ja oma institutionaalinen asema. Ensimmäinen 25 vuoden jakso kuvaa siirtymää, jossa vanhan järjestyksen epävarmuudesta syntyi vähitellen uusi institutionaalinen kehys.",
+            "Autonomisen Suomen ensimmäinen sukupolvi kasvoi yhteiskunnassa, jolla oli jo erillisiä instituutioita mutta jonka kansallinen identiteetti oli vasta muodostumassa. Vuoden 1845 ympärillä kansallinen herääminen, kielikysymys, koulutus ja kirjallinen julkisuus olivat vahvistumassa. Samalla väestönkasvu lisäsi maatalousyhteiskunnan painetta.",
+            "Vuoden 1845 jälkeen Suomi kulki kohti yhtä historiansa ankarimmista murroksista. Väestö kasvoi, mutta tuotannon, kuljetusten ja sosiaalisen suojan kapasiteetti ei kehittynyt samaa tahtia. Nälkävuodet 1866–1868 paljastivat järjestelmän haurauden.",
+            "Samaan aikaan tapahtui institutionaalinen avautuminen. Säätyvaltiopäivät kokoontuivat jälleen vuonna 1863. Markka, kunnallishallinnon uudistuminen, rautatiet, elinkeinovapauden laajeneminen ja muut uudistukset loivat perustaa teolliselle Suomelle. Vuosi 1870 on siksi ensimmäinen erityisen vahva sukupolvikellon taite."
+          ]
+        },
+        {
+          "id": "1870-1920-kansallisesta-laajenemisesta-tasavallaksi",
+          "title": "1870–1920: kansallisesta laajenemisesta tasavallaksi",
+          "paragraphs": [
+            "Vuoden 1870 jälkeen Suomi teollistui, liikenneyhteydet paranivat ja kansallinen järjestäytyminen vahvistui. Koulutus, yhdistykset, työväenliike, osuustoiminta ja kieliryhmien poliittinen mobilisaatio laajensivat yhteiskunnallista osallistumista.",
+            "Mitä vahvemmaksi Suomen institutionaalinen ja kansallinen erillisyys kasvoi, sitä voimakkaammin se joutui vastakkain Venäjän valtakunnan yhtenäistämispyrkimysten kanssa. Vuoden 1895 ympärillä rajan kohtaaminen oli jo näkyvissä. Vuoden 1899 helmikuun manifesti teki siitä avoimen.",
+            "Vuosisadan vaihteen sortokaudet, vuoden 1905 suurlakko, vuoden 1906 eduskuntauudistus, Venäjän vallankumous, Suomen itsenäistyminen ja vuoden 1918 sisällissota muodostivat yhden pitkän järjestyskriisin.",
+            "Vuosi 1920 ei ollut rauhallinen nollapiste. Sisällissodan haavat olivat avoimia ja uuden valtion asema epävarma. Silti tasavaltainen hallitusmuoto, torpparivapautus, oppivelvollisuus ja muut uudistukset alkoivat muuttaa valtiollisen itsenäisyyden yhteiskunnalliseksi rakenteeksi. Valtiollinen vapautuminen ei vielä ratkaissut yhteiskunnan sisäisiä jakolinjoja. Se siirsi kamppailun uuteen kehykseen."
+          ]
+        },
+        {
+          "id": "1920-1970-tasavallasta-hyvinvointivaltioon",
+          "title": "1920–1970: tasavallasta hyvinvointivaltioon",
+          "paragraphs": [
+            "Itsenäisen Suomen ensimmäinen neljännesvuosisata sisälsi demokratian vakiinnuttamista, koulutuksen laajentamista, poliittisia ääriliikkeitä, taloudellisia vaikeuksia ja lopulta sodan. Vuonna 1920 syntynyt sukupolvi tuli täysi-ikäiseksi aikana, jolloin valtion olemassaolo joutui konkreettisesti koetukselle.",
+            "Vuosi 1945 oli sekä päätepiste että alku. Suomi oli säilyttänyt itsenäisyytensä mutta menettänyt alueita, koteja ja ihmisiä. Siirtoväki oli asutettava, sotakorvaukset maksettava ja yhteiskunnan aineellinen perusta rakennettava uudelleen.",
+            "Sodan päättyminen lähetti samalla poikkeuksellisen vahvan jatkuvuussignaalin. Aineellista turvaa oli vähän, mutta tulevaisuuden suunta oli ymmärrettävä: jälleenrakentaminen, työ, koti ja perhe. Vuosina 1945–1949 Suomessa syntyi vuosittain yli 100 000 lasta.",
+            "Kun suuret ikäluokat saavuttivat aikuisiän vuoden 1970 ympärillä, heidän määränsä ylitti vanhan yhteiskunnan kapasiteetin. Kaikille ei löytynyt toimeentuloa pientiloilta eikä työtä kotiseudulta. Paine purkautui kaupunkeihin ja Ruotsiin suuntautuneena muuttoliikkeenä. Vuosina 1969–1970 siirtolaisuus vähensi Suomen väkilukua yli 50 000 hengellä.",
+            "Vuosi 1970 oli todellinen sukupolvitaite. Vuonna 1945 syntynyt sukupolvi ei ainoastaan tullut työmarkkinoille. Sen määrä pakotti yhteiskunnan laajentamaan koulutusta, asumista, palveluja ja työmahdollisuuksia."
+          ]
+        },
+        {
+          "id": "1970-2020-hyvinvointivaltiosta-jatkuvaan-murrokseen",
+          "title": "1970–2020: hyvinvointivaltiosta jatkuvaan murrokseen",
+          "paragraphs": [
+            "Vuoden 1970 jälkeen hyvinvointivaltio laajeni ja vakiintui. Koulutus, sosiaaliturva, terveydenhuolto, päivähoito ja eläkejärjestelmät tekivät kansalaisten elämästä aikaisempaa ennakoitavampaa. Samalla talous kansainvälistyi, rahoitusmarkkinoita vapautettiin ja kotitalouksien sekä yritysten riskinotto kasvoi.",
+            "Vuonna 1970 syntynyt sukupolvi saavutti 20–25 vuoden iän keskellä 1990-luvun lamaa. Työmarkkinoille siirtyminen tapahtui konkurssien, massatyöttömyyden ja julkisen talouden leikkausten aikana. Samalla Neuvostoliiton hajoaminen muutti Suomen ulkopoliittisen ja taloudellisen ympäristön.",
+            "Vuonna 1995 Suomi liittyi Euroopan unioniin. EU-jäsenyys merkitsi Suomen institutionaalisen kehän laajenemista kansallisesta eurooppalaiseksi. Vanha talousmalli oli kriisiytynyt ja uusi järjestys avautui, mutta sen pitkäaikaisia seurauksia ei vielä tunnettu.",
+            "Vuoden 1995 jälkeen koulutuksen, tietoverkkojen, kansainvälisen liikkuvuuden ja kulutuksen mahdollisuudet laajenivat. Samalla kansalaisen odotettiin rakentavan jatkuvasti omaa osaamistaan, työllistettävyyttään ja kilpailukykyään. Riskit eivät kadonneet, vaan niiden hallinta siirtyi aikaisempaa enemmän yksilöille.",
+            "Vuonna 1995 syntyneet kasvoivat tämän järjestyksen sisällä. Kun he saavuttivat aikuisuuden vuoden 2020 ympärillä, pandemia pysäytti liikkumisen ja paljasti samanaikaisesti globaalin keskinäisriippuvuuden sekä instituutioiden haurauden.",
+            "Pandemia ei kuitenkaan yksin muodostanut vuoden 2020 taitekohtaa. Syntyvyys oli laskenut jo 2010-luvun alusta, ilmastokriisi oli muuttunut tulevaisuuden taustasta nykyhetken kysymykseksi ja tekoälyn kehitys alkoi horjuttaa käsitystä työn pysyvyydestä. Vuoden 2020 sukupolvitaite saattoi olla hetki, jolloin useiden järjestelmien tulevaisuus muuttui yhtä aikaa epäselväksi."
+          ]
+        },
+        {
+          "id": "rakentajat-vakiinnuttajat-kriitikot-ja-uudistajat",
+          "title": "Rakentajat, vakiinnuttajat, kriitikot ja uudistajat",
+          "paragraphs": [
+            "Suomen viimeistä sadan vuoden jaksoa voidaan hahmottaa neljän sukupolviaseman kautta.",
+            "Vuosina 1920–1945 syntyneet rakentajat kohtasivat nuorena itsenäisen valtion haurauden, laman ja sodan. Heidän vahvuuksiaan olivat yhteisvastuu, säästäväisyys, pitkäjänteisyys ja kyky asettaa yhteinen tehtävä yksilöllisten toiveiden edelle. Sama toimintatapa saattoi myöhemmin muuttua kontrolliksi, hierarkkisuudeksi ja turvallisuushakuisuudeksi.",
+            "Vuosina 1945–1970 syntyneet vakiinnuttajat saivat käyttöönsä rakentajien luoman kasvusuunnan. Heidän aikanaan koulutus laajeni, tasa-arvo vahvistui, elintaso nousi ja hyvinvointivaltiosta tuli yleinen järjestelmä. He hyötyivät laajenevasta järjestelmästä mutta myös rakensivat ja rahoittivat sen kypsän vaiheen.",
+            "Vuosina 1970–1995 syntyneet kriitikot tulivat aikuisuuteen laman ja globalisaation murroksessa. Heidän vahvuudekseen muodostui sopeutuminen, kansainvälisyys ja kyky hyödyntää digitalisaatiota. Varjopuolena voi olla kyynisyys: jos järjestelmä näyttäytyy kilpailuna, järkeväksi strategiaksi tulee oman aseman suojaaminen.",
+            "Vuoden 1995 jälkeen syntyneet uudistajat ovat siirtymässä yhteiskunnan aktiivisiin rooleihin. Heidän perimänsä tehtävä on sovittaa yhteen ekologinen kestävyys, teknologinen murros, väestön ikääntyminen ja oikeudenmukaisuus. Varjopuolena voi olla uusi ankaruus, jos kestävyyden pakosta syntyy joustamatonta sääntelyä ja ihmisten moraalista luokittelua."
+          ]
+        },
+        {
+          "id": "ennakkosignaalin-keha",
+          "title": "12,5 vuotta: ennakkosignaalin kehä",
+          "paragraphs": [
+            "Sukupolvikellon uloin kehä jakaa 25 vuoden vaiheen kahteen osaan. Noin 12,5 vuoden kohdalla uusi sukupolvi ei vielä kanna laajaa institutionaalista valtaa, mutta sen maailma alkaa erota edellisestä.",
+            "Oire voi näkyä käyttäytymisessä ennen kuin sille on yhteistä käsitettä. Nuoret muuttavat pois, syntyvyys laskee, luottamus heikkenee, työuria lykätään tai uusi teknologia leviää epävirallisesti.",
+            "Havaintovaiheessa ilmiö tunnistetaan. Tilastot, tutkimus, media ja ihmisten kokemukset alkavat kertoa samansuuntaisesta muutoksesta. Ennakointivaiheessa järjestelmä tuottaa tulevaisuuskuvia: väestöennusteita, kestävyyslaskelmia, teknologiastrategioita ja riskiarvioita.",
+            "Suunnan haussa vanha järjestelmä yrittää sopeutua. Se käynnistää hankkeita, muuttaa sääntöjä ja etsii uusia käsitteitä. Vielä ei kuitenkaan tiedetä, korjataanko oiretta vai rakennetaanko aidosti uutta suuntaa.",
+            "Näin 12,5 vuoden rytmi ei tarkoita pientä historiallista kriisiä jokaisen suuremman kriisin välissä. Se tarkoittaa hetkeä, jolloin seuraava taite alkaa lähettää merkkejä itsestään."
+          ],
+          "bullets": [
+            "oire",
+            "havainto",
+            "ennakointi",
+            "suunnan haku"
+          ]
+        },
+        {
+          "id": "syntyvyys-yhteiskunnan-palautteena",
+          "title": "Syntyvyys yhteiskunnan palautteena",
+          "paragraphs": [
+            "Sukupolvikello auttaa tarkastelemaan myös syntyvyyttä uudella tavalla. Sodan jälkeen aineelliset olot olivat niukat, mutta yhteiskunta välitti vahvan jatkuvuussignaalin. Sota oli päättynyt, koteja rakennettiin, työtä riitti ja lasten uskottiin elävän vanhempiaan paremmassa maailmassa.",
+            "Vuoden 1970 ympärillä suuren ikäluokan paine purkautui muuttoliikkeenä. Suomessa ei ollut kaikille paikkaa, mutta Ruotsissa oli. Järjestelmän ulkoinen paisuntaväylä säilytti kokemuksen siitä, että elämässä oli edettävä suunta.",
+            "1990-luvun lama välitti toisenlaisen viestin. Esikoisten saaminen lykkääntyi, mutta kokonaishedelmällisyys ei Suomessa romahtanut. Olemassa oleville perheille rakennetut tuet ja käsitys laman ohimenevyydestä säilyttivät osan jatkuvuudesta.",
+            "2020-luvun epävarmuus on erilainen. Sillä ei ole selvää loppua eikä yksittäistä poistumistietä. Ilmastonmuutos, tekoäly, velka, ikääntyminen ja geopoliittinen epävarmuus muodostavat päällekkäisiä tulevaisuuksia, joihin yksilön odotetaan sopeutuvan.",
+            "Syntyvyyden lasku voi tällöin olla hajautunut palaute. Yksittäinen ihminen ei tunne järjestelmän kokonaisuutta, mutta hän kohtaa sen seuraukset työssä, asumisessa, palveluissa ja tulevaisuuden suunnittelussa. Miljoonat yksilölliset päätökset muodostavat yhteisen viestin, jota kukaan ei ole tietoisesti lähettänyt."
+          ],
+          "quote": "Syntyvyys ei ehkä mittaa vain halua saada lapsia. Se mittaa sitä, kuinka uskottavana seuraavan 20–25 vuoden jatkuvuus koetaan."
+        },
+        {
+          "id": "vuosi-2045-ennuste-vai-seuraus",
+          "title": "Vuosi 2045: ennuste vai seuraus?",
+          "paragraphs": [
+            "Sukupolvikellossa vuosi 2045 ei ole ennustettu kriisivuosi. Se on havaintoikkuna, jossa vuonna 2020 syntynyt sukupolvi tulee aikuisuuteen.",
+            "Sen kohtaama maailma riippuu tämän päivän ratkaisuista. Onko koulutus edelleen väylä toimintakykyyn? Ovatko asuminen ja perheen perustaminen mahdollisia? Jaetaanko automaation tuottama hyöty laajasti vai kasautuuko se? Onko hoivavastuu järjestetty yhteisesti vai siirretty perheille? Onko ilmastosiirtymä muuttunut hallituksi jälleenrakennukseksi vai jatkuvaksi poikkeustilaksi?",
+            "Vuoden 2045 taite voidaan nähdä jo nyt ennakkosignaaleissa. Syntyvyyden lasku pienentää ikäluokkia. Koulutusverkko sopeutuu väheneviin lapsimääriin. Ikääntyminen kasvattaa hoivan tarvetta. Tekoäly muuttaa käsityksiä työn arvosta ja tarpeesta. Julkisen talouden ennusteet kertovat nuorille ennen kaikkea tulevista velvollisuuksista.",
+            "Tässä on vaarallinen takaisinkytkentä. Matala syntyvyys tuottaa synkän vuoden 2045 tai 2050 ennusteen. Synkkä ennuste lisää nuorten kokemaa tulevaisuuden taakkaa. Kasvava taakka voi edelleen vähentää halua sitoutua vanhemmuuteen. Ennuste auttaa silloin toteuttamaan itseään.",
+            "Tulevaisuus ei lähetä viestiä taaksepäin ajassa. Nykyinen järjestelmä tuottaa tulevaisuudesta kertomuksen, johon ihmiset reagoivat jo nyt."
+          ]
+        },
+        {
+          "id": "vuosi-2070-seuraavan-jarjestyksen-mahdollisuus",
+          "title": "Vuosi 2070: seuraavan järjestyksen mahdollisuus",
+          "paragraphs": [
+            "Jos 2045 muodostaa rajan kohtaamisen, vuoden 2070 ympärille voisi sijoittua uuden rakentamisen vaihe. Silloin vuonna 2045 syntyneet saavuttaisivat aikuisiän ja vuoden 2020 sukupolvi olisi siirtynyt yhteiskunnan johtaviin tehtäviin.",
+            "Emme voi tietää, millainen järjestys tuolloin vakiintuu. Mahdollisia suuntia ovat ainakin vahvemmin yhteinen omistus, työn ja toimeentulon uudenlainen erottaminen, toimintakykytalous, hajautunut paikallinen tuotanto tai entistä voimakkaammin algoritmien ohjaama niukkuuden hallinta.",
+            "Sukupolvikello ei kerro, mikä vaihtoehto toteutuu. Se osoittaa, milloin nykyisten valintojen seuraukset siirtyvät uuden sukupolven ratkaistaviksi. Vuosi 2070 ei ole kaukainen abstraktio. Se on nykyisten lasten keski-ikä."
+          ]
+        },
+        {
+          "id": "historian-kelloa-ei-pida-ottaa-kirjaimellisesti",
+          "title": "Historian kelloa ei pidä ottaa kirjaimellisesti",
+          "paragraphs": [
+            "Sukupolvikellon suurin vaara on sama kuin kaikkien historiallisten syklien: kun rytmi on löydetty, aineistoa aletaan sovittaa siihen.",
+            "Jos taitekohdan sallitaan siirtyä kymmenen vuotta kumpaankin suuntaan, jokaiselle vuosiluvulle löytyy merkittävä tapahtuma. Jos kaikki saman ikäiset kuvataan yhtenäiseksi ryhmäksi, yhteiskuntaluokan, sukupuolen, alueen ja henkilökohtaisen elämän erot katoavat. Jos tulevaisuuden pisteet esitetään menneisyyden jatkona, hypoteesi muuttuu ennustukseksi ilman riittävää perustaa.",
+            "Siksi mallia pitäisi käyttää kolmen säännön varassa. Taitekohta on aina havaintoikkuna, ei tarkka vuosi. Sukupolven asema ei ole pysyvä luonteenpiirre. Tulevaisuuden vaiheet ovat vaihtoehtoisia kehityspolkuja, eivät historian määräämiä tapahtumia.",
+            "Mallin arvo ei ole sen kyvyssä ennustaa kriisin päivämäärää. Sen arvo on kyvyssä pakottaa katsomaan päätöksen ja seurauksen välistä viivettä."
+          ]
+        },
+        {
+          "id": "sukupolvien-valinen-sopimus-uudessa-valossa",
+          "title": "Sukupolvien välinen sopimus uudessa valossa",
+          "paragraphs": [
+            "Sukupolvien välinen oikeudenmukaisuus ymmärretään usein tulonsiirtojen kysymykseksi. Kuka maksaa eläkkeet, kuka rahoittaa koulutuksen ja kuinka julkinen velka jakautuu?",
+            "Sukupolvikello laajentaa kysymystä. Jokainen sukupolvi siirtää seuraavalle myös instituutioita, ympäristöä, osaamista, velvollisuuksia, odotuksia ja ratkaisemattomia ristiriitoja.",
+            "Rakentajien sukupolvi siirtää rakenteen. Vakiinnuttajien sukupolvi siirtää rakenteen laajuuden ja kustannukset. Kriitikoiden sukupolvi siirtää tiedon sivuvaikutuksista. Uudistajien sukupolvi ratkaisee, muuttuuko kritiikki uudeksi järjestykseksi vai jääkö se pysyväksi epäluottamukseksi.",
+            "Oikeudenmukainen sukupolvisopimus ei tarkoita, että jokainen saisi saman määrän etuja. Historialliset olosuhteet tekevät siitä mahdotonta. Se tarkoittaa, ettei yksi sukupolvi käytä tulevien sukupolvien liikkumavaraa kokonaan oman järjestyksensä ylläpitämiseen.",
+            "Instituutio on sukupolvien välisesti oikeudenmukainen silloin, kun se pystyy toteuttamaan tehtävänsä ja samalla muuttumaan tavalla, joka jättää seuraavalle sukupolvelle todellisia vaihtoehtoja."
+          ]
+        },
+        {
+          "id": "kello-nayttaa-palautteen-ei-kohtaloa",
+          "title": "Kello näyttää palautteen, ei kohtaloa",
+          "paragraphs": [
+            "Sukupolvikellon tärkein havainto ei lopulta ole 25, 50 tai 100 vuoden matemaattinen rytmi. Tärkeintä on ymmärtää, että yhteiskunnallinen palaute kulkee ihmisten elämänvaiheiden kautta.",
+            "Lapsuudessa koettu maailma muuttuu aikuisuuden odotuksiksi. Odotukset muuttuvat muutto-, työ-, perhe- ja osallistumispäätöksiksi. Päätökset muuttavat väestöä, taloutta ja instituutioita. Instituutiot rakentavat seuraavan lapsuuden maailman.",
+            "Tämä kierto voi kestää niin kauan, että alkuperäinen päätös ja sen lopullinen seuraus näyttävät toisistaan riippumattomilta. Juuri siksi yhteiskunta voi toistaa virheensä. Päätöksen tekijät näkevät välittömän hyödyn, mutta seurauksen kohtaa sukupolvi, joka ei ollut mukana päätöksessä.",
+            "Historia ei ehkä kulje ympyrää. Se voi muistuttaa spiraalia: samat peruskysymykset palaavat, mutta eri olosuhteissa ja eri tasolla.",
+            "Vuonna 1920 rakennettiin valtiollista jatkuvuutta. Vuonna 1945 aineellista jatkuvuutta. Vuonna 1970 sosiaalista jatkuvuutta. Vuonna 1995 taloudellista ja eurooppalaista jatkuvuutta. Vuoden 2020 jälkeen ratkaistavana on, voidaanko ekologinen, teknologinen, sosiaalinen ja demokraattinen jatkuvuus rakentaa samanaikaisesti.",
+            "Tämän kierroksen uudistajat eivät peri tyhjää rakennustyömaata. He perivät täyteen rakennetun yhteiskunnan, jonka järjestelmät toimivat mutta jonka osat eivät enää välttämättä osoita samaan suuntaan. Heidän tehtävänsä ei ole vain rakentaa lisää. Heidän on ratkaistava, mitä voidaan säilyttää, mitä on avattava ja mistä on osattava luopua."
+          ],
+          "quote": "Jokainen sukupolvi syntyy edellisen ratkaisujen sisälle. Noin 20–25 vuotta myöhemmin sen valinnat kertovat, välittivätkö ratkaisut lupauksen jatkuvuudesta vai varoituksen järjestelmän rajasta. Sukupolvikello ei ennusta tätä vastausta. Se näyttää, milloin meidän pitäisi osata kuunnella sitä.",
+          "closing": true
+        }
+      ]
     }
   ]
 }
