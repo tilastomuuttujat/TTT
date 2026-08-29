@@ -572,6 +572,198 @@
           "closing": true
         }
       ]
+    },
+    {
+      "id": "parlamentaarinen-taloussaannosto",
+      "slug": "parlamentaarinen-taloussaannosto",
+      "title": "Onko parlamentaarinen taloussäännöstö perusteltu?",
+      "titleParts": [
+        "Onko parlamentaarinen",
+        "taloussäännöstö perusteltu?"
+      ],
+      "subtitle": "Julkisen talouden tasapaino, historia ja demokratian liikkumavara",
+      "tags": [
+        "Julkinen talous",
+        "Velka",
+        "Demokratia"
+      ],
+      "readingTime": "22 MIN",
+      "image": "parlamentaarinen-taloussaannosto.png",
+      "imageAlt": "Pystysuuntainen infografiikka parlamentaarisen taloussäännöstön historiallisesta kehityksestä, velkajarrusta ja tasapainosäännöstä",
+      "imageCaption": "Julkisen talouden itsehillintä on muuttunut niukkuudesta budjettikuriin, menokehyksiin ja EU-sääntöihin. Seuraava kysymys on, mitä taloudesta pitäisi sopia yli vaalikausien.",
+      "ogImage": "parlamentaarinen-taloussaannosto-og.png",
+      "intro": [
+        "Suomen julkisesta taloudesta keskustellaan usein ikään kuin ratkaistavana olisi yksi suuri laskutoimitus. Menot ovat tuloja suuremmat, velkaa kertyy ja erotus pitäisi saada umpeen. Tästä näkökulmasta ratkaisu näyttää yksinkertaiselta: menoja vähennetään, veroja korotetaan tai talouskasvun toivotaan tuovan lisää tuloja. Todellisuudessa julkisen talouden tasapainottaminen on vaikeampi tehtävä, sillä menot ja tulot eivät ole toisistaan riippumattomia eivätkä tämän päivän päätökset pääty tämän päivän budjettiin.",
+        "Leikkaus voi vähentää menoja nyt mutta kasvattaa niitä myöhemmin. Veronkorotus voi vahvistaa tuloja mutta samalla muuttaa käyttäytymistä. Julkinen investointi kasvattaa tämän päivän menoja mutta voi parhaimmillaan vahvistaa huomisen tulopohjaa. Indeksijäädytys ei välttämättä pienennä nimellistä menoa lainkaan, mutta muuttaa tulevien vuosien menouraa. Hallinnollisen rakenteen muuttaminen voi puolestaan tuottaa hitaasti alkavan mutta pysyvän säästön.",
+        "Siksi julkisen talouden tasapaino ei löydy vain kysymällä, kuinka monta miljardia pitäisi sopeuttaa. Ensin pitäisi kysyä, millaisen kehityskulun päätökset synnyttävät.",
+        "Tämän jälkeen eteen tulee vielä vaikeampi kysymys. Jos julkisen talouden tasapainottaminen vaatii vuosikymmenten mittaista politiikkaa, kuinka paljon yhden vaalikauden hallituksen pitäisi saada poiketa edeltäjiensä linjasta? Pitäisikö puolueiden sopia yhteisistä taloussäännöistä, joita myös tulevat hallitukset noudattavat? Ja jos pitäisi, mistä oikeastaan pitäisi sopia?"
+      ],
+      "sections": [
+        {
+          "id": "jokainen-aikakausi-rakentanut-jarrunsa",
+          "title": "Jokainen aikakausi on rakentanut oman jarrunsa",
+          "paragraphs": [
+            "Julkisen talouden sääntöjä voi tarkastella pitkänä historiallisena jatkumona. Nykyinen velkajarrukeskustelu ei syntynyt tyhjästä. 1800-luvulla julkisen vallan taloudellinen liikkumavara oli jo lähtökohtaisesti nykyistä paljon pienempi. Julkisen sektorin tehtävät olivat rajallisemmat, veropohja kapeampi ja rahoituksen saatavuus asetti käytännöllisiä rajoja toiminnalle. Niukkuus itsessään toimi jarruna.",
+            "1900-luvulla asetelma muuttui. Sodat, jälleenrakennus, kaupungistuminen ja hyvinvointivaltion rakentaminen kasvattivat julkisen vallan tehtäviä. Valtion budjetti ei ollut enää vain kirjanpitoa siitä, kuinka olemassa olevat tulot jaettiin, vaan julkisella taloudella voitiin myös vakauttaa suhdanteita, rakentaa infrastruktuuria ja muuttaa yhteiskunnan rakenteita.",
+            "Hyvinvointivaltion kasvaessa tämän päivän päätökset alkoivat yhä voimakkaammin määrätä huomisen menoja. Eläkkeet, sosiaaliturva, palvelujärjestelmät ja indeksisidonnaiset menot muodostivat pitkäaikaisia sitoumuksia. Poliittinen päätös ei enää välttämättä tarkoittanut vain yhden vuoden määrärahaa, vaan tulevaisuuteen ulottuvaa menouraa.",
+            "1990-luvun lama toi toisenlaisen jarrun. Velka, korot, rahoituksen saatavuus ja kansainvälisten markkinoiden luottamus osoittivat konkreettisesti, ettei julkisella vallalla ole rajatonta taloudellista liikkumavaraa. EU-jäsenyys ja myöhemmin euro toivat tämän päälle uuden sääntökerroksen. Menokehykset puolestaan institutionalisoivat kansallista poliittista itsehillintää.",
+            "Finanssikriisi, eurokriisi ja pandemia osoittivat sääntöjen toisen puolen. Jos sääntö on täysin joustamaton, se voi pakottaa kiristämään finanssipolitiikkaa juuri silloin, kun talous tarvitsisi julkisen vallan vakauttavaa vaikutusta. Historiallinen jatkumo voidaan tiivistää näin: niukkuus → budjettikuri → suunnittelu → markkinakuri → menokehykset → EU-säännöt → ylivaalikautinen taloussäännöstö."
+          ],
+          "quote": "Jokainen aikakausi on yrittänyt ratkaista saman perusongelman: kuinka nykyhetken päätösvaltaa rajoitetaan niin, ettei sen laskua siirretä kohtuuttomasti tulevaisuuteen."
+        },
+        {
+          "id": "velka-syntyy-menojen-ja-tulojen-valiin",
+          "title": "Velka syntyy menojen ja tulojen väliin",
+          "paragraphs": [
+            "Velkajarru kuulostaa intuitiivisesti järkevältä. Jos ongelmana on kasvava velka, asetetaan velalle raja. Mutta velka on lopputulos. Sen taustalla on ketju: tulot → menot → alijäämä → velka → korkomenot → tuleva liikkumavara.",
+            "Jos menot kasvavat jatkuvasti tuloja nopeammin, niiden väliin syntyy alijäämä. Jos tämä jatkuu, alijäämää rahoitetaan velalla. Kasvava velka puolestaan kasvattaa korkomenoja, jolloin yhä suurempi osa tulevista tuloista on sidottu ennen kuin tulevaisuuden eduskunta on tehnyt ensimmäistäkään päätöstään.",
+            "Tästä näkökulmasta velka ei ole vain taloudellinen suure vaan myös ajallinen mekanismi. Velalla voidaan siirtää tämän päivän kustannuksia tulevaisuuteen. Tämä ei tee velasta automaattisesti huonoa. Jos velalla rahoitetaan tuottava investointi, jonka hyöty ulottuu vuosikymmeniksi, kustannusten jakautuminen ajassa voi olla perusteltua. Jos velalla rahoitetaan pysyvää rakenteellista epätasapainoa ilman uskottavaa mekanismia sen poistumiselle, tuleville veronmaksajille jää lasku ilman vastaavaa hyötyä."
+          ],
+          "quote": "Hyvä taloussääntö ei kysy vain, kuinka paljon velkaa on. Sen pitää kysyä myös, miksi velkaa syntyy."
+        },
+        {
+          "id": "sopeutus-ei-ole-sama-kuin-leikkaus",
+          "title": "Sopeutus ei ole sama asia kuin leikkaus",
+          "paragraphs": [
+            "Leikkaus on toimenpide. Sopeutus on tavoiteltu vaikutus julkisen talouden tasapainoon. Jos etuutta pienennetään sadalla miljoonalla eurolla, kyseessä on menoleikkaus. Mutta jos päätös kasvattaa esimerkiksi toisen etuuden, terveydenhuollon tai muun julkisen palvelun menoja 60 miljoonalla, koko julkisen talouden sopeutus ei ole sata miljoonaa.",
+            "Vastaavasti menoa ei tarvitse välttämättä leikata nykyisestä tasosta, jotta tulevaa menouraa voidaan alentaa. Indeksijäädytys on tästä erityisen havainnollinen esimerkki. Jos etuus on tänään 1 000 euroa ja indeksitarkistus nostaisi sen ensi vuonna 1 030 euroon, jäädytyksessä etuus voi pysyä nimellisesti 1 000 eurossa. Menon nimellistasoa ei ole leikattu, mutta menoura on 30 euroa alempana kuin ilman päätöstä. Inflaation jatkuessa etuuden reaaliarvo samalla pienenee.",
+            "Tästä syntyy kolme toisistaan erotettavaa menopuolen sopeutustapaa: nykyisen menon leikkaaminen, tulevan menokasvun hillitseminen sekä menotarvetta synnyttävän rakenteen muuttaminen. Juuri kolmas on pitkän aikavälin kannalta kiinnostavin. Jos menon taustalla oleva mekanismi jatkaa kasvuaan, kertaluonteinen leikkaus voi vain siirtää ongelmaa muutaman vuoden eteenpäin."
+          ],
+          "quote": "Leikkaus muuttaa menoa. Sopeutus muuttaa tulojen ja menojen tulevaa kehityspolkua."
+        },
+        {
+          "id": "myos-tulopuolella-kaksi-tieta",
+          "title": "Myös tulopuolella on kaksi eri tietä",
+          "paragraphs": [
+            "Sama erottelu pitäisi tehdä tuloihin. Julkisen talouden tuloja voidaan kasvattaa muuttamalla veroja, maksuja tai muita välittömiä tulolähteitä. Tämä on tulopuolen suora sopeutustoimi. Mutta tulopohjaa voidaan myös yrittää kasvattaa.",
+            "Työllisyyden paraneminen, tuottavuuden kasvu, investoinnit, osaaminen ja kannattavan yritystoiminnan lisääntyminen voivat kasvattaa verotettavaa taloudellista toimintaa ilman, että verokantaa välttämättä nostetaan. Julkisen talouden tasapainottamisesta muodostuu siten nelikenttä: nykyiset menot alas, tuleva menokasvu alas, nykyiset tulot ylös ja tuleva tulopohja ylös.",
+            "Mikään näistä ei yksin ratkaise kysymystä siitä, mikä politiikka on oikea. Jokaisella vaihtoehdolla on käyttäytymis-, kasvu-, tulonjako- ja palveluvaikutuksia. Juuri siksi taloussäännön pitäisi olla varovainen siinä, mitä se määrää keinoksi."
+          ]
+        },
+        {
+          "id": "menot-ja-tulot-vaikuttavat-toisiinsa",
+          "title": "Menot ja tulot vaikuttavat toisiinsa",
+          "paragraphs": [
+            "Budjettikirjassa meno ja tulo ovat eri sarakkeissa. Yhteiskunnassa ne eivät ole. Koulutukseen käytetty euro on meno, mutta koulutus vaikuttaa osaamiseen ja tulevaan tulopohjaan. Työttömyyden pitkittyminen kasvattaa menoja mutta voi samalla pienentää verotuloja. Terveyspalvelun säästö voi olla tehokkuuden paranemista tai kustannuksen lykkäämistä riippuen siitä, mitä palvelutarpeelle myöhemmin tapahtuu.",
+            "Sama pätee verotukseen. Veromuutos voi tuottaa julkiselle taloudelle tuloja, mutta se voi myös muuttaa työntekoa, kulutusta, investointeja tai verosuunnittelua. Todellinen vaikutusketju on siksi lähempänä tätä: päätös → välitön budjettivaikutus → käyttäytyminen → talous → verotulot → palvelutarve → tulevat menot → velka.",
+            "Mitä pidemmälle ketjussa mennään, sitä epävarmemmaksi arvio luonnollisesti muuttuu. Epävarmuus ei kuitenkaan ole peruste olla arvioimatta vaikutuksia. Päinvastoin sen pitäisi näkyä avoimesti arvioissa."
+          ]
+        },
+        {
+          "id": "50-miljoonan-saanto",
+          "title": "50 miljoonan sääntö voisi muuttaa sopeutuksen logiikkaa",
+          "paragraphs": [
+            "Kun merkittävän julkisen talouden päätöksen arvioitu vaikutus ylittää esimerkiksi 50 miljoonaa euroa, siitä voitaisiin edellyttää standardoitua ennakkoarviointia. Raja olisi poliittisesti määriteltävä, mutta periaatteen pitäisi koskea symmetrisesti menoleikkauksia, indeksijäädytyksiä, merkittäviä veromuutoksia, uusia pysyviä menoja ja muita julkiseen talouteen vaikuttavia ratkaisuja.",
+            "Arviossa ei ilmoitettaisi vain ensimmäisen vuoden budjettivaikutusta. Tarkasteluun otettaisiin esimerkiksi vaikutukset yhden, viiden ja kymmenen vuoden kohdalla, kustannusten siirtyminen julkisen sektorin sisällä, verotulojen muutokset, keskeiset käyttäytymisvaikutukset ja arvioon liittyvä epävarmuus. Samaa päätöskokonaisuutta ei saisi pilkkoa useiksi alle rajan jääviksi päätöksiksi.",
+            "Vielä olennaisempaa olisi jälkiarviointi. Kun päätöksestä on kulunut riittävästi aikaa, pitäisi tarkistaa, toteutuiko ennustettu säästö tai tulolisäys. Jos 200 miljoonan euron säästö osoittautuisi koko julkisen talouden tasolla 70 miljoonan nettosäästöksi, seuraavien päätösten pitäisi perustua toteutuneeseen 70 miljoonaan eikä alkuperäiseen poliittiseen 200 miljoonan lukuun."
+          ],
+          "quote": "50 miljoonan euron leikkaus ei välttämättä ole 50 miljoonan euron sopeutus."
+        },
+        {
+          "id": "riittaako-velkajarru",
+          "title": "Riittääkö velkajarru?",
+          "paragraphs": [
+            "Velkajarrun suurin vahvuus on samalla sen suurin heikkous: se on yksinkertainen. Se kertoo, että velkaantumiselle on asetettava raja tai vähintään suunta. Tämä on tärkeää, koska ilman pitkäaikaista tavoitetta hallitukselle syntyy helposti kannustin lykätä vaikeita päätöksiä. Päätösten hyödyt voidaan saada nykyisellä vaalikaudella ja osa kustannuksista jättää seuraaville.",
+            "Mutta velkajarru ei itsessään kerro, miten tavoite pitäisi saavuttaa. Sama velkaura voidaan teoriassa saavuttaa vähentämällä sosiaaliturvaa, karsimalla hallintoa, poistamalla yritystukia, nostamalla veroja, jäädyttämällä indeksejä, kasvattamalla työllisyyttä, myymällä omaisuutta tai lykkäämällä investointeja. Näiden vaikutukset tulevaisuuden yhteiskuntaan eivät ole samoja.",
+            "Tästä seuraa vaara: jos poliittisen järjestelmän tärkeimmäksi mittariksi asetetaan yksi helposti mitattava suure, järjestelmä alkaa optimoida sitä. Velkasääntö voi estää velkaantumista, mutta huonosti suunniteltu velkasääntö voi samalla kannustaa lykkäämään investointeja, tekemään tilapäisiä ratkaisuja tai siirtämään kustannuksia järjestelmän sisällä."
+          ],
+          "quote": "Kysymys ei ehkä ole siitä, tarvitaanko velkajarrua, vaan siitä, mitä muita sääntöjä sen ympärille tarvitaan."
+        },
+        {
+          "id": "velkajarrusta-taloussaannostoon",
+          "title": "Velkajarrusta taloussäännöstöön",
+          "paragraphs": [
+            "Parlamentaarisen taloussäännöstön voisi ajatella muodostuvan useammasta toisiaan tasapainottavasta periaatteesta. Velkasääntö määrittelisi pitkän aikavälin suunnan: velkasuhde ei saisi jatkuvasti kasvaa nopeammin kuin talouden maksukyky. Menosääntö estäisi menouran irtoamisen kestävän tulopohjan kehityksestä.",
+            "Tasapainosääntö kohdistuisi rakenteelliseen epätasapainoon eikä vaatisi jokaisen yksittäisen vuoden budjetilta nollatulosta. Investointisääntö pakottaisi erottamaan aidosti pitkän aikavälin hyötyä tuottavat investoinnit tavallisesta juoksevasta menosta, mutta ei antaisi automaattista oikeutta nimetä mitä tahansa menoa investoinniksi.",
+            "Vaikutus- ja jälkiarviointisääntö velvoittaisi suuret päätökset osoittamaan sekä arvioidun että myöhemmin toteutuneen nettovaikutuksensa. Suhdannepuskurisääntö loisi vastapainon kiristämiselle: hyvinä vuosina julkista taloutta vahvistettaisiin ja liikkumavaraa rakennettaisiin, jotta sitä voitaisiin käyttää huonoina vuosina. Tällainen kokonaisuus olisi aivan eri asia kuin yksi mekaaninen velkaraja."
+          ],
+          "bullets": [
+            "Velkasääntö – velkasuhteelle pitkän aikavälin suunta",
+            "Menosääntö – menouran yhteys kestävään tulopohjaan",
+            "Tasapainosääntö – rakenteellinen tasapaino yli suhdanteiden",
+            "Investointisääntö – pitkän aikavälin hyödyt näkyviksi ilman vapaalippua velalle",
+            "Vaikutussääntö – suuret päätökset arvioidaan ennen ja jälkeen",
+            "Suhdannepuskuri – hyvinä aikoina rakennetaan liikkumavaraa"
+          ]
+        },
+        {
+          "id": "hyvina-aikoina-rakennetaan-puskuria",
+          "title": "Hyvinä aikoina pitäisi rakentaa puskuria",
+          "paragraphs": [
+            "Julkisen talouden yksi perustavanlaatuisista poliittisista ongelmista on epäsymmetria. Huonoina aikoina on helppo perustella velkaa: talous tarvitsee tukea, työttömyys kasvaa tai yhteiskunta kohtaa kriisin. Hyvinä aikoina puolestaan syntyy helposti vaatimus käyttää lisääntyneet tulot uusiin menoihin tai veronalennuksiin.",
+            "Jos molemmat tapahtuvat, velkaantumisen dynamiikka muuttuu yksisuuntaiseksi. Siksi toimiva suhdannepuskuri olisi enemmän kuin tekninen finanssipoliittinen sääntö. Se olisi poliittisen itsehillinnän sääntö."
+          ],
+          "quote": "Hyvinä vuosina osa liikkumavarasta jätetään käyttämättä, jotta huonoina vuosina kaikkea ei tarvitse leikata."
+        },
+        {
+          "id": "saannon-pitaa-kestaa-kriisi",
+          "title": "Taloussäännön pitää myös kestää kriisi",
+          "paragraphs": [
+            "Täysin joustamaton sääntö rikkoutuu ensimmäisessä riittävän suuressa kriisissä. Jos poikkeuksellisessa tilanteessa yhteiskunnan toimintakyvyn turvaaminen edellyttää huomattavaa julkista rahoitusta, sääntöjärjestelmän täytyy pystyä tunnistamaan poikkeus.",
+            "Mutta tästä syntyy toinen ongelma. Jos poikkeuksen määritelmä on liian väljä, lähes jokainen poliittisesti vaikea tilanne voidaan julistaa poikkeukseksi. Hyvässä taloussäännöstössä pitäisi siksi olla sekä poikkeuslauseke että paluusääntö. Poikkeustilanteessa tavoitteesta voidaan väliaikaisesti poiketa, mutta samalla määritellään, millä ehdoilla ja millä aikavälillä normaalille uralle palataan."
+          ]
+        },
+        {
+          "id": "kuinka-paljon-demokratiaa-voidaan-sitoa",
+          "title": "Mutta kuinka paljon demokratiaa voidaan sitoa?",
+          "paragraphs": [
+            "Tässä parlamentaarisen taloussäännöstön vaikein kysymys tulee vastaan. Jos kaikki suuret puolueet sopivat ennen vaaleja siitä, kuinka paljon menoja saa olla, kuinka paljon veroja voidaan kerätä, millainen velkasuhteen pitää olla ja mitä menoja pitää suojata, mitä vaaleissa enää päätetään?",
+            "Liian yksityiskohtainen parlamentaarinen sopimus voi muuttua taloudellisesta itsehillinnästä poliittiseksi lukoksi. Demokratiaan kuuluu mahdollisuus vaihtaa talouspolitiikan suuntaa. Yksi hallitus voi painottaa julkisia palveluja ja korkeampaa verotusta, toinen pienempää julkista sektoria ja matalampaa verotusta. Jos molemmat pystyvät rahoittamaan valintansa kestävällä tavalla, taloussäännön ei pitäisi ratkaista niiden välistä poliittista kiistaa.",
+            "Parlamentaarisesti voidaan sopia esimerkiksi siitä, ettei velkasuhde saa pitkällä aikavälillä karata, että rakenteellista epätasapainoa korjataan, että hyvinä aikoina rakennetaan puskuria ja että suurten päätösten todelliset vaikutukset arvioidaan. Sen sijaan vaaleissa pitää voida edelleen päättää, millä keinoin nämä tavoitteet saavutetaan."
+          ],
+          "quote": "Säännöt sitovat tavoitteisiin, eivät samoihin keinoihin."
+        },
+        {
+          "id": "tulevien-sukupolvien-liikkumavara",
+          "title": "Myös tulevilla sukupolvilla on liikkumavara",
+          "paragraphs": [
+            "Velasta puhuttaessa tulevat sukupolvet esitetään helposti vain velan maksajina. Kysymys on laajempi. Tuleville sukupolville voidaan jättää velkaa, mutta niille voidaan jättää myös rapautunut infrastruktuuri, heikko koulutustaso, ympäristöongelmia, korkea rakenteellinen työttömyys tai järjestelmä, jonka pysyvät menositoumukset ovat kasvaneet vaikeasti rahoitettaviksi.",
+            "Siksi sukupolvien välistä oikeudenmukaisuutta ei voida mitata yhdellä velkaluvulla. Parempi käsite voisi olla tulevien sukupolvien liikkumavara. Hyvä julkinen talous jättää seuraaville mahdollisuuden tehdä omia päätöksiään.",
+            "Liian suuri velka kaventaa tätä mahdollisuutta korkomenojen ja sopeutuspaineen kautta. Mutta myös tarpeellisten investointien jatkuva lykkääminen voi kaventaa sitä, jos tuleva hallitus joutuu korjaamaan rapautuneen omaisuuden tai tekemään tekemättä jätetyt investoinnit kalliimmalla. Taloussäännöstön pitäisi siis suojella velkakestävyyden lisäksi päätöksenteon liikkumavaraa."
+          ]
+        },
+        {
+          "id": "saantoja-opitaan-kiertamaan",
+          "title": "Sääntöjäkin opitaan kiertämään",
+          "paragraphs": [
+            "Kun järjestelmään asetetaan raja, toimijat alkavat sopeutua siihen. Tämä ei välttämättä tarkoita sääntöjen tahallista rikkomista. Usein kyse on täysin rationaalisesta toiminnasta. Jos yksi meno kuuluu kehykseen ja toinen ei, paine siirtää toimintaa kehyksen ulkopuolelle kasvaa. Jos velka on tärkein mittari, omaisuuden myynti voi näyttää houkuttelevalta. Jos yhden vuoden alijäämä ratkaisee, menoja voidaan siirtää seuraavalle vuodelle.",
+            "Siksi jokainen uusi sääntö synnyttää myös uuden optimointiongelman. Tästä syystä hyvä taloussäännöstö ei voi perustua vain mekaanisiin raja-arvoihin. Tarvitaan riippumatonta arviointia, läpinäkyvyyttä ja jälkiarviointia."
+          ],
+          "quote": "Jokainen jarru muuttaa myös sitä, miten järjestelmä oppii kiertämään jarrua."
+        },
+        {
+          "id": "velkajarru-vai-tasapainosaanto",
+          "title": "Velkajarru vai tasapainosääntö?",
+          "paragraphs": [
+            "Velkajarru on ymmärrettävä poliittinen käsite. Se kertoo yhdellä sanalla, mitä halutaan estää. Silti pidemmällä aikavälillä tasapainosääntö voisi kuvata tavoitetta paremmin. Velka on seuraus siitä, mitä tuloille ja menoille tapahtuu. Jos keskitymme vain velkaan, tulemme järjestelmään liian myöhään.",
+            "Tasapainosääntö tarkastelisi ketjua aikaisemmin: menot ↔ tulot → rakenteellinen tasapaino → velkasuhde → korkomenot → tuleva liikkumavara. Tällaisessa ajattelussa velkajarru olisi yksi osa suurempaa kokonaisuutta, ei koko järjestelmä.",
+            "Tämä ei tarkoittaisi velkaongelman vähättelyä. Päinvastoin. Mitä suuremmaksi velka ja korkomenot kasvavat, sitä vähemmän tulevilla päätöksentekijöillä on mahdollisuuksia valita, mihin yhteisiä varoja käytetään. Mutta juuri siksi velkaongelmaa pitäisi korjata sen syntymekanismeista, ei vain lopputuloksesta."
+          ]
+        },
+        {
+          "id": "mista-parlamentaarisesti-pitaisi-sopia",
+          "title": "Mistä parlamentaarisesti pitäisi sitten sopia?",
+          "paragraphs": [
+            "Ehkä vastaus on lopulta yllättävän niukka. Puolueiden ei tarvitse sopia siitä, mikä on julkisen sektorin ihanteellinen koko. Niiden ei tarvitse sopia samasta veropolitiikasta, siitä mikä etuus tai yritystuki pitäisi säilyttää, eikä edes siitä, kuinka suuri osa sopeutuksesta tehdään menoilla ja kuinka suuri tuloilla.",
+            "Sen sijaan parlamentaarisesti voisi olla perusteltua sopia vastuullisen päätöksenteon pelisäännöistä: velkasuhdetta ei jätetä pysyvästi hallitsemattomalle uralle; rakenteellista epätasapainoa korjataan yli suhdanteiden; hyvinä aikoina rakennetaan liikkumavaraa; suurten päätösten nettovaikutukset arvioidaan; kustannusten siirtämistä julkisen sektorin taskusta toiseen ei kutsuta säästöksi; poikkeustilanteissa säännöistä voidaan joustaa mutta paluusta sovitaan; ja toteutuneita vaikutuksia verrataan myöhemmin siihen, mitä päätöksentekohetkellä luvattiin.",
+            "Tämä olisi vähemmän näyttävä sopimus kuin suuri miljardimääräinen velkajarru, mutta se voisi olla kestävämpi."
+          ]
+        },
+        {
+          "id": "taloussaannon-tehtava-on-jattaa-ovet-auki",
+          "title": "Taloussäännön tehtävä on jättää ovet auki",
+          "paragraphs": [
+            "Parlamentaarinen taloussäännöstö on perusteltu, jos sen tarkoituksena on ratkaista demokratian aikahorisonttiin liittyvä ongelma. Vaalikausi kestää muutaman vuoden. Julkisen talouden päätösten seuraukset voivat kestää vuosikymmeniä.",
+            "Ilman yhteisiä sääntöjä syntyy houkutus ottaa tulevaisuudesta liikkumavaraa nykyhetkeen. Liian tiukat säännöt voivat kuitenkin tehdä päinvastaisen virheen: nykyhetki alkaa määrätä liian tarkasti, mitä tulevaisuudessa saa tehdä. Hyvän taloussäännöstön pitäisi kulkea näiden ääripäiden välissä.",
+            "Sen pitäisi estää velkaantumisen muuttuminen helpoksi tavaksi ratkaista poliittisia ristiriitoja. Samalla sen pitäisi sallia investoinnit, suhdannepolitiikka, kriiseihin vastaaminen ja ennen kaikkea poliittisten vaihtoehtojen vaihtuminen vaaleissa. Siksi ehkä kaikkein tärkein kysymys ei ole, kuinka tiukka velkajarru Suomelle pitäisi rakentaa, vaan kuinka paljon nykyhetkeä pitää sitoa, jotta tulevaisuudella säilyy vapaus.",
+            "Parlamentaarisen taloussäännöstön tehtävä ei olisi päättää tulevien hallitusten politiikkaa. Sen tehtävä olisi estää nykyistä hallitusta käyttämästä kohtuuttomasti tulevien hallitusten taloudellista liikkumavaraa. Siksi hyvän taloussäännöstön ehkä tärkein ominaisuus ei lopulta ole sen ankaruus vaan symmetria.",
+            "Jos sääntö vaatii huonoina aikoina sopeutusta, sen pitää vaatia hyvinä aikoina puskurin rakentamista. Jos se arvioi menolisäyksiä, sen pitää arvioida myös leikkauksia. Jos se laskee veronkorotuksen vaikutukset käyttäytymiseen, saman vaatimuksen pitää koskea veronalennuksia. Jos se suojelee tulevia sukupolvia velalta, sen pitää huomioida myös niille jätettävä infrastruktuuri, osaaminen ja toimintakyky.",
+            "Ja jos se rajoittaa hallituksen vapautta käyttää rahaa, sen pitää jättää hallitukselle vapaus valita, miten yhteisesti sovittu taloudellinen vastuu toteutetaan. Tällöin velkajarru ei olisi päätepiste, vaan yksi osa suurempaa parlamentaarista sopimusta siitä, kuinka tämän päivän päätöksentekijät käyttävät valtaa, jonka kustannukset voivat ulottua pitkälle heidän oman valtakautensa jälkeen."
+          ],
+          "quote": "Säännöt sitoisivat tavoitteisiin. Demokratia valitsisi keinot.",
+          "closing": true
+        }
+      ]
     }
   ]
 }
