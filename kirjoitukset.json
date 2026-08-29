@@ -764,6 +764,217 @@
           "closing": true
         }
       ]
+    },
+    {
+      "id": "jakologiikka",
+      "slug": "jakologiikka",
+      "title": "Jakologiikka",
+      "titleParts": [
+        "Jakologiikka"
+      ],
+      "subtitle": "Kuinka yhteiskunta jakaa hyödyt, kustannukset, riskit ja vallan – ja voiko jako tuottaa tasapainoa?",
+      "tags": [
+        "Yhteiskunta",
+        "Jakologiikka",
+        "Tasapaino"
+      ],
+      "readingTime": "24 MIN",
+      "image": "jakologiikka.png",
+      "imageAlt": "Pystysuuntainen infografiikka yhteiskunnan jakologiikasta, jakoperusteista, hyödyistä, kustannuksista, riskeistä, vallasta ja tasapainoa korjaavasta palautteesta",
+      "imageCaption": "Yhteiskunta ei jaa vain rahaa. Se jakaa myös mahdollisuuksia, valtaa, vastuuta, riskejä, luonnonvaroja ja tulevaisuuden liikkumavaraa. Olennaista ei ole vain jaon lopputulos vaan se, millä perusteella jako syntyy ja pystyykö järjestelmä korjaamaan vinoutumiaan.",
+      "ogImage": "jakologiikka-og.png",
+      "intro": [
+        "Yhteiskunnasta puhutaan usein tuotannon, talouskasvun, tulonjaon, palvelujen ja päätöksenteon kautta. Näiden kaikkien alla toimii kuitenkin vielä perustavampi järjestys: jotakin jaetaan jatkuvasti. Jaossa eivät ole vain eurot. Jaossa ovat myös työ, omistus, koulutuspaikat, hoito, asuminen, luonnonvarojen käyttö, oikeudet, velvollisuudet, turvallisuus, vaikutusvalta ja tulevaisuuden liikkumavara.",
+        "Jakaminen ei tapahdu yhdellä periaatteella. Terveydenhuollossa hyväksymme tarpeen jakoperusteeksi, markkinoilla maksukyvyn, työelämässä osaamisen ja suorituksen, omistuksessa omistusoikeuden, demokratiassa äänet ja hallinnossa lain määrittämän toimivallan. Samassa yhteiskunnassa toimii siis useita jakologiikoita, joiden oikeutus perustuu siihen, mitä ollaan jakamassa ja mitä tehtävää jaon pitäisi palvella.",
+        "Tämä tekee jakamisesta kiinnostavamman kysymyksen kuin pelkkä tasa-arvo tai tulonjako. Olennaista ei ole vain, saavatko kaikki yhtä paljon. Olennaisempaa on, miksi erilainen jako on perusteltu, kuka saa määritellä jakoperusteen, kuka hyötyy, kuka maksaa, kuka kantaa riskin ja miten tämän päivän jako muuttaa huomisen lähtökohtia.",
+        "Jakologiikka on tämän näkymättömän järjestelmän nimi. Se tarkoittaa sääntöjen, instituutioiden ja takaisinkytkentöjen kokonaisuutta, jonka kautta resurssit, mahdollisuudet, kustannukset, riskit ja päätösvalta kohdistuvat ihmisille ja yhteisöille. Samalla se on tapa kysyä, voiko yhteiskunta jakamalla myös ylläpitää tasapainoaan."
+      ],
+      "sections": [
+        {
+          "id": "yhteiskunta-on-jakamisen-jarjestelma",
+          "title": "Yhteiskunta on myös jakamisen järjestelmä",
+          "paragraphs": [
+            "Kun yhteiskuntaa tarkastellaan jakamisen näkökulmasta, moni tuttu instituutio näyttää hieman erilaiselta. Verotus ei ole vain julkisten menojen rahoittamista, vaan yhteisten tehtävien rahoitusvastuun jakamista. Sosiaaliturva ei ole vain etuuksien maksamista, vaan elämän riskien jakamista yksilön ja yhteisön välillä. Koulutus ei ole vain opetusta, vaan osaamisen, tutkintojen ja myöhempien mahdollisuuksien jakamista. Kaavoitus ei ole vain maankäytön suunnittelua, vaan rakennusoikeuden, saavutettavuuden ja arvonnousun jakamista.",
+            "Samalla tavalla työmarkkinat jakavat palkkoja, työn epävarmuutta ja etenemismahdollisuuksia. Omistusjärjestelmä jakaa oikeuksia tuleviin tuottoihin. Hallinto jakaa toimivaltaa. Asiantuntijajärjestelmät jakavat oikeutta määritellä, mikä tieto katsotaan päätöksenteossa päteväksi. Ympäristöpolitiikka jakaa oikeutta käyttää luonnonvaroja ja ympäristön kantokykyä nykyhetken ja tulevaisuuden välillä.",
+            "Jakaminen ei siis ole yhteiskunnan erillinen osa. Se on läsnä lähes kaikissa rakenteissa. Kun jokin sääntö määrittää, kuka saa käyttää resurssia, kuka pääsee palveluun, kuka kantaa kustannuksen tai kuka saa tehdä päätöksen, sääntö sisältää samalla jonkin jakologiikan."
+          ],
+          "quote": "Yhteiskunta ei jaa vain rahaa. Se jakaa myös mahdollisuuksia, riskejä, vastuuta, valtaa ja tulevaisuutta."
+        },
+        {
+          "id": "eri-asioita-jaetaan-eri-perusteilla",
+          "title": "Eri asioita jaetaan eri perusteilla",
+          "paragraphs": [
+            "Jakologiikan ensimmäinen havainto on yksinkertainen: kaikkea ei pitäisi jakaa samalla tavalla. Markkinoilla tavaran saa yleensä se, joka on valmis maksamaan siitä. Terveydenhuollossa maksukyky ei kuitenkaan yksin ole hyväksyttävä peruste hoidon kiireellisyydelle, vaan ratkaisevaksi nousee tarve. Palkassa korostuvat työn sisältö, osaaminen, neuvotteluasema ja suoritus. Perusoikeudet eivät puolestaan lähtökohtaisesti riipu siitä, kuinka ansioitunut tai varakas ihminen on.",
+            "Keskeisiä jakoperusteita ovat esimerkiksi markkina, tarve, oikeus, ansio, omistus, vakuutus, universaalisuus, kilpailu, edustus ja perintö. Yksikään niistä ei ole sellaisenaan oikea tai väärä. Oikeutuksen ratkaisee se, millaiseen tehtävään periaatetta käytetään.",
+            "Tästä seuraa tärkeä ero. Jakologiikan tarkoitus ei ole etsiä yhtä yleispätevää oikeudenmukaista jakoa, vaan tehdä näkyväksi se, minkä ominaisuuden perusteella osuus syntyy. Kun tämä peruste tunnistetaan, voidaan kysyä, onko se juuri kyseisessä tilanteessa edelleen perusteltu."
+          ],
+          "quote": "Jakologiikan peruskysymys ei ole vain kuka saa, vaan miksi juuri tämä ominaisuus oikeuttaa saamaan."
+        },
+        {
+          "id": "jakologiikka-on-usein-nakymaton",
+          "title": "Vakiintunut jakologiikka muuttuu helposti näkymättömäksi",
+          "paragraphs": [
+            "Jakosääntö on helppo havaita silloin, kun siitä päätetään ensimmäistä kertaa. Sen sijaan vuosikymmeniä toistunut jako alkaa näyttää luonnolliselta. Omistus tuottaa oikeuden tuottoon, tutkinto kelpoisuuden tehtävään, vakiintunut järjestö paikan valmistelupöydässä ja aiempi johtamiskokemus uskottavuutta seuraavaan johtamistehtävään. Jokaisella näistä voi olla vahva peruste, mutta pitkä kesto tekee perusteesta helposti itsestäänselvyyden.",
+            "Prosessi voidaan kuvata ketjuna: yhteiskunnallinen valinta johtaa jakosääntöön, jakosääntö toistuvaan jakoon, toistuva jako vakiintuneeseen asemaan ja vakiintunut asema koettuun oikeuteen. Lopulta keskustelu käydään oikeudesta säilyttää asema, vaikka alkuperäinen kysymys siitä, miksi jakoperuste valittiin, on unohtunut.",
+            "Siksi jakologiikan arvioinnissa hyödyllinen kysymys on myös vastahistoriallinen: jos rakentaisimme järjestelmän nyt ensimmäistä kertaa, valitsisimmeko saman jakoperusteen? Jos vastaus on kyllä, järjestelmä saa uuden perustelun. Jos vastaus on epäselvä, kyse voi olla enemmän polkuriippuvuudesta kuin tarkoituksenmukaisuudesta."
+          ],
+          "quote": "Kun jako toistuu tarpeeksi kauan, yhteiskunnallinen valinta alkaa näyttää luonnonlailla."
+        },
+        {
+          "id": "jokainen-jako-tekee-useita-jakoja",
+          "title": "Jokainen jako tekee useita jakoja",
+          "paragraphs": [
+            "Julkisessa keskustelussa huomio kiinnittyy usein siihen, kuka saa. Se on vain yksi osa kokonaisuutta. Sama päätös jakaa tavallisesti samanaikaisesti hyötyä, kustannuksia ja riskiä. Lisäksi joku määrittelee säännön, jonka perusteella nämä kolme kohdistuvat.",
+            "Siksi jakologiikkaa kannattaa tarkastella neljän kysymyksen kautta. Kuka saa onnistumisen hyödyn? Kuka maksaa toiminnan kustannuksen? Kuka kantaa riskin, jos ratkaisu epäonnistuu? Ja kuka saa päättää näiden kolmen jaosta?",
+            "Nämä eivät välttämättä kohdistu samalle taholle. Yrityksen omistaja voi saada investoinnin tuoton, työntekijä kantaa osan rakennemuutoksen riskistä, rahoittaja osan taloudellisesta riskistä ja julkinen järjestelmä osan työttömyyden kustannuksista. Luonnonvaran käytön taloudellinen hyöty voi syntyä nyt, vaikka osa ympäristöriskistä siirtyy ihmisille, jotka eivät ole osallistuneet päätökseen lainkaan.",
+            "Jakologiikan kannalta erityisen kiinnostavia ovat tilanteet, joissa hyöty, kustannus, riski ja päätösvalta erkanevat järjestelmällisesti toisistaan. Epätasapaino ei silloin välttämättä näy yhdessä päätöksessä, vaan vasta siinä, mihin suuntaan toistuvat päätökset siirtävät näitä neljää virtaa."
+          ],
+          "quote": "Yksi voi saada hyödyn, toinen maksaa kustannuksen, kolmas kantaa riskin ja neljäs päättää jaosta."
+        },
+        {
+          "id": "valta-on-jakologiikan-jakologiikka",
+          "title": "Valta on jakologiikan jakologiikka",
+          "paragraphs": [
+            "Valta poikkeaa muista jaettavista asioista siinä, että se vaikuttaa myös tulevien jakojen sääntöihin. Raha, palvelu tai etuus voi tuottaa hyvinvointia, mutta päätösvalta antaa mahdollisuuden vaikuttaa siihen, millä perusteella seuraavat resurssit, velvollisuudet ja riskit jaetaan.",
+            "Tästä syystä työryhmien kokoonpano, kuulemiskäytännöt, hallitusten nimitykset, edustusoikeudet, asiantuntijavalta ja institutionaalinen pääsy ovat jakologiikan kannalta keskeisiä. Kyse ei ole vain siitä, kuka saa puheenvuoron, vaan siitä, ketkä pääsevät määrittelemään ongelman, hyväksyttävien ratkaisujen joukon ja ne mittarit, joilla onnistumista arvioidaan.",
+            "Jos jokin ryhmä saa toistuvasti muita enemmän mahdollisuuksia vaikuttaa jakosääntöihin ja samalla hyötyy niiden seurauksista, jakologiikasta voi tulla itseään suojaava. Tällöin muodollisesti avoin järjestelmä voi säilyä, mutta todellinen pääsy sääntöjen määrittelyyn alkaa kasautua."
+          ],
+          "quote": "Valta on oikeutta vaikuttaa siihen, millä logiikalla seuraava jako tapahtuu."
+        },
+        {
+          "id": "taman-paivan-jako-muuttaa-huomisen-lahtokohtia",
+          "title": "Tämän päivän jako muuttaa huomisen lähtökohtia",
+          "paragraphs": [
+            "Jakologiikka ei ole vain hetkellinen tapahtuma. Tämän päivän jaon seuraukset siirtyvät seuraavaan kierrokseen. Perheen resurssit vaikuttavat asuinalueeseen ja koulutusmahdollisuuksiin, koulutus työmarkkina-asemaan, työmarkkina-asema tuloihin, tulot mahdollisuuteen kerryttää varallisuutta ja varallisuus seuraavan sukupolven lähtöasemaan.",
+            "Tämä ei tarkoita, että ketju olisi väistämätön tai samanlainen kaikille. Se osoittaa kuitenkin, että yksittäinen jako ei ala tyhjästä. Se tapahtuu aina aikaisempien jakojen muovaamassa tilanteessa. Siksi muodollisesti samanlainen sääntö voi kohdella ihmisiä eri tavoin, jos heidän kykynsä käyttää tarjottua mahdollisuutta on syntynyt hyvin erilaisissa oloissa.",
+            "Sama ilmiö näkyy instituutioissa. Aiempi pääsy työryhmiin tuottaa kokemusta ja verkostoja. Kokemus lisää uskottavuutta seuraavaan nimitykseen. Uusi nimitys tuottaa lisää kokemusta. Jakologiikka voi näin muuttua kumulatiiviseksi myös ilman tietoista suosimista."
+          ],
+          "quote": "Tulonjako kuvaa yhtä lopputulosta. Jakologiikka kysyy, miten aikaisemmat jaot rakensivat seuraavan jaon lähtötilanteen."
+        },
+        {
+          "id": "korjaava-ja-vahvistava-palaute",
+          "title": "Ratkaiseva ero syntyy palautteesta",
+          "paragraphs": [
+            "Kaikki kumuloituminen ei ole ongelmallista. Osa yhteiskunnan toimivuudesta perustuu juuri siihen, että osaaminen, pääoma, luottamus ja kokemus voivat kasautua. Ratkaisevaa on se, millainen palaute järjestelmässä toimii.",
+            "Korjaavassa palautteessa jako tuottaa seurauksia, seurauksia mitataan, syntyvä epätasapaino havaitaan ja jakoperustetta voidaan muuttaa. Järjestelmä ei siis yritä estää kaikkia eroja vaan korjaa niitä silloin, kun ne alkavat vaarantaa järjestelmän tehtävää tai muiden toimijoiden mahdollisuuksia.",
+            "Vahvistavassa palautteessa aikaisempi etu kasvattaa kykyä saada seuraava etu. Omistus voi tuottaa lisää omistusta, markkina-asema mahdollisuuden rajoittaa kilpailua tai päätösvalta mahdollisuuden suojata oman aseman synnyttänyttä sääntöä. Kun palautetta ei kyetä katkaisemaan, pieni alkuero voi kasvaa suureksi rakenteelliseksi eroksi.",
+            "Tästä näkökulmasta hyvä jakologiikka ei ole sellainen, jossa eroja ei synny. Hyvä jakologiikka on sellainen, jossa järjestelmä erottaa hyödyllisen kumuloitumisen itseään lukitsevasta kumuloitumisesta."
+          ],
+          "quote": "Ongelmallisin jako ei välttämättä ole epätasainen jako, vaan jako, jossa edellisen kierroksen voittaminen antaa vallan sulkea seuraavan kierroksen kilpailu."
+        },
+        {
+          "id": "tasajako-ei-ole-sama-kuin-tasapaino",
+          "title": "Tasajako ei ole sama asia kuin tasapaino",
+          "paragraphs": [
+            "Jakologiikka johtaa helposti kysymykseen tasa-arvosta, mutta tasapainoa ei pidä sekoittaa tasajakoon. Kaikille yhtä paljon voi olla joissakin tilanteissa oikeudenmukaista, toisissa hyvin epäoikeudenmukaista. Sairas tarvitsee enemmän terveydenhuollon resursseja kuin terve. Lapsen koulutukseen voidaan käyttää enemmän yhteisiä resursseja kuin saman vuoden aikana sellaisen aikuisen koulutukseen, jonka perustaidot ovat jo vahvat. Suurempaa vastuuta tai riskiä kantava voi perustellusti saada suuremman korvauksen.",
+            "Voidaan erottaa kolme asiaa. Tasajako antaa kaikille saman osuuden. Oikeudenmukainen jako antaa erilaisia osuuksia hyväksyttävän jakoperusteen mukaan. Tasapainoinen jakologiikka puolestaan huolehtii siitä, etteivät jaon pitkäaikaiset seuraukset tuhoa niitä edellytyksiä, joiden varassa seuraavat jaot voivat tapahtua.",
+            "Juuri kolmas määritelmä vie keskustelun pidemmälle. Epätasainen jako voi tuottaa tasapainoa, jos se korjaa lähtökohtien eroja, vastaa erilaiseen tarpeeseen tai säilyttää järjestelmän toimintakykyä. Tasainen jako voi puolestaan kasvattaa epätasapainoa, jos ihmisten tarpeet, vastuut tai lähtötilanteet ovat hyvin erilaiset."
+          ],
+          "quote": "Tasapaino ei välttämättä synny jakamalla tasaisesti. Joskus juuri epätasainen jako palauttaa tasapainoa."
+        },
+        {
+          "id": "tasapainoa-on-useita",
+          "title": "Tasapainoa pitää tarkastella useassa suunnassa",
+          "paragraphs": [
+            "Yksi järjestely voi näyttää tasapainoiselta yhdellä mittarilla ja siirtää epätasapainon toiseen paikkaan. Taloudellinen ratkaisu voi olla tehokas mutta keskittää riskiä. Yhteiskunnallinen ratkaisu voi lisätä yhden ryhmän turvaa mutta siirtää kustannuksen tuleville. Demokraattisesti hyväksytty päätös voi olla lyhyellä aikavälillä legitiimi mutta kaventaa seuraavien päätöksentekijöiden vaihtoehtoja.",
+            "Jakologiikan tasapainoa voidaan siksi tarkastella ainakin neljästä suunnasta. Taloudellinen tasapaino kysyy, ovatko hyödyt, kustannukset ja riskit kestävällä tavalla suhteessa. Yhteiskunnallinen tasapaino kysyy, kasautuvatko mahdollisuudet tai haitat pysyvästi samoille ryhmille. Valtatasapaino kysyy, vastaavatko päätösvalta ja vastuu riittävästi toisiaan. Ajallinen tasapaino kysyy, tuotetaanko nykyinen hyvinvointi käyttämällä kohtuuttomasti tulevien sukupolvien liikkumavaraa.",
+            "Näitä ei voi palauttaa yhdeksi luvuksi ilman merkittävää tiedon menetystä. Jakologiikan tarkoitus ei siksi olisi tuottaa yhtä tasapainoindeksiä, vaan näyttää, missä suunnassa hyöty, kustannus, riski tai valta alkaa irrota vastinparistaan."
+          ],
+          "quote": "Paikallinen tasapaino voi olla koko järjestelmän epätasapainoa, jos kustannus on vain siirretty toiseen paikkaan tai aikaan."
+        },
+        {
+          "id": "nelja-vastinparia",
+          "title": "Neljä vastinparia paljastavat jakamisen jännitteet",
+          "paragraphs": [
+            "Jakologiikkaa voi tiivistää neljään vastinpariin: hyöty ja kustannus, valta ja vastuu, oikeus ja velvollisuus sekä nykyhetki ja tulevaisuus. Vastinparien ei tarvitse olla täydellisen symmetrisiä. Sosiaaliturvan tarkoitus on juuri jakaa riskiä niin, että yksilön saama hyöty ei vastaa jokaisena hetkenä hänen omaa maksuaan. Demokratian tehtävä taas ei ole antaa kaikille yksittäisille toimijoille yhtä paljon päätösvaltaa jokaisessa asiassa.",
+            "Ongelma alkaa silloin, kun vastinparit erkanevat toistuvasti samaan suuntaan ilman korjaavaa mekanismia. Jos päätösvalta kasvaa mutta vastuu päätösten seurauksista vähenee, syntyy valtavinouma. Jos oikeudet laajenevat mutta niiden rahoitukseen tai ylläpitoon liittyvät velvollisuudet jäävät avoimiksi, syntyy kestävyysongelma. Jos nykyhetki käyttää jatkuvasti tulevaisuuden resursseja ilman vastaavaa tulevaa hyötyä, syntyy ajallinen epätasapaino.",
+            "Näiden parien tehtävä ei olisi moralisoida yksittäistä päätöstä, vaan pakottaa tarkastelemaan jaon koko rakennetta. Kysymys kuuluu aina, mitä vastinparin toiselle puolelle tapahtuu."
+          ],
+          "quote": "Hyöty ilman kustannusta, valta ilman vastuuta, oikeus ilman velvollisuutta ja nykyhetki ilman tulevaisuutta ovat kaikki mahdollisia epätasapainon lähteitä."
+        },
+        {
+          "id": "tasapaino-on-seuraavan-kierroksen-mahdollisuus",
+          "title": "Tasapaino on seuraavan kierroksen mahdollisuuden säilymistä",
+          "paragraphs": [
+            "Jakologiikan tasapainolle voidaan esittää yksinkertainen mutta vaativa periaate: hyvä jako säilyttää myös muiden osapuolten kyvyn osallistua seuraavaan jakoon. Tämä ei tarkoita, että jokainen saisi aina saman aseman. Se tarkoittaa, ettei tämän päivän jako lukitse huomista tavalla, joka tekee korjaamisesta mahdotonta.",
+            "Markkinataloudessa kilpailu toimii vain niin kauan kuin tämän päivän voittaja ei pysty pysyvästi sulkemaan huomisen kilpailua. Demokratiassa enemmistöperiaate säilyy vain, jos tämän päivän enemmistö ei poista vähemmistöltä mahdollisuutta muodostaa huomisen enemmistöä. Neuvottelujärjestelmä toimii vain, jos osapuolten voimasuhteet eivät eriydy niin paljon, että neuvottelu muuttuu muodollisuudeksi.",
+            "Sukupolvien välillä sama periaate tarkoittaa sitä, ettei nykyinen sukupolvi käytä luonnonvaroja, velkakapasiteettia, infrastruktuuria tai institutionaalista liikkumavaraa tavalla, joka jättää seuraavalle sukupolvelle vain yhden mahdollisen reitin.",
+            "Tasapaino voidaan siksi ymmärtää dynaamisena ominaisuutena. Se ei ole täydellinen tila, joka kerran saavutetaan, vaan kyky pitää seuraava kierros aidosti avoimena."
+          ],
+          "quote": "Tasapaino tarkoittaa seuraavan kierroksen mahdollisuuden säilymistä."
+        },
+        {
+          "id": "epatasapaino-voi-kertya-varastoksi",
+          "title": "Epätasapaino voi kertyä varastoksi",
+          "paragraphs": [
+            "Jakamisen seuraukset eivät aina näy heti. Osa niistä kertyy varastoiksi, jotka vaikuttavat tulevien päätösten liikkumavaraan. Julkinen velka on tästä ilmeinen esimerkki, mutta sama rakenne voidaan nähdä muuallakin.",
+            "Varallisuuserot voivat kuvata aikaisempien omistus-, tulo- ja mahdollisuusjakojen kasautuneita seurauksia. Ympäristövelka voi tarkoittaa nykyhetkeen otettua hyötyä, jonka ekologiset kustannukset tulevat myöhemmin. Hoivavelka syntyy, jos palvelutarpeita lykätään niin, että ratkaisematon tarve kasautuu. Investointivelka syntyy, kun tämän päivän säästö tehdään infrastruktuurin tai osaamisen tulevan toimintakyvyn kustannuksella. Luottamusvelkaa voi syntyä, jos samat ryhmät kokevat toistuvasti kantavansa päätösten kustannuksia ilman vastaavaa vaikutusvaltaa.",
+            "Varastojen näkökulma muuttaa myös sitä, miten yksittäisiä päätöksiä pitäisi arvioida. Päätös voi näyttää vuoden tarkastelussa tasapainoiselta ja silti kasvattaa hitaasti sellaista epätasapainovarastoa, jonka purkaminen tulee myöhemmin kalliiksi."
+          ],
+          "quote": "Kaikki jakamisen kustannukset eivät näy silloin, kun jako tehdään."
+        },
+        {
+          "id": "jakologiikat-tormaavat-toisiinsa",
+          "title": "Yhteiskunnalliset kiistat ovat usein jakologiikkojen törmäyksiä",
+          "paragraphs": [
+            "Moni poliittinen kiista näyttää pintatasolla kiistalta rahasta, palvelusta tai sääntelystä. Syvemmällä kyse voi olla siitä, mikä jakoperuste pitäisi hyväksyä. Asumisessa törmäävät markkinahinta, asumisen tarve, omistusoikeus, kaavoitus ja alueellinen oikeudenmukaisuus. Koulutuksessa törmäävät universaalisuus, ansio, kilpailu ja perhetaustan vaikutus. Terveydenhuollossa kohtaavat tarve, jonotus, vakuutusasema, maksukyky ja ammatillinen priorisointi.",
+            "Työmarkkinoilla jakoperusteiksi tulevat osaaminen, työn kysyntä, sopimusjärjestelmä, neuvotteluvoima ja omistus. Luonnonvaroissa taas omistajan käyttöoikeus kohtaa yhteisen ympäristön, paikallisen elinkeinon ja tulevien sukupolvien aseman.",
+            "Kun kiistaa tarkastellaan vain lopputuloksena, osapuolet näyttävät tavoittelevan itselleen enemmän. Jakologiikan näkökulmasta voidaan kysyä tarkemmin, puolustavatko he itse asiassa eri käsityksiä siitä, minkä ominaisuuden pitäisi oikeuttaa osuuteen. Tämä ei poista arvoristiriitaa, mutta tekee sen näkyvämmäksi."
+          ],
+          "quote": "Moni jakokiista ei koske ensisijaisesti määrää vaan sitä, millä perusteella osuus pitäisi ansaita, saada tai taata."
+        },
+        {
+          "id": "hyva-jakologiikka-tarvitsee-korjauskyvyn",
+          "title": "Hyvä jakologiikka tarvitsee korjauskyvyn",
+          "paragraphs": [
+            "Täydellistä jakosääntöä ei ole mahdollista rakentaa etukäteen, koska yhteiskunta muuttuu. Väestö ikääntyy, teknologia muuttaa työn arvoa, uusia ympäristöriskejä syntyy, tuotantotavat vaihtuvat ja vanhojen instituutioiden tehtävät muuttuvat. Siksi jakologiikan tärkeämpi ominaisuus kuin täydellinen alkutila on kyky korjata itseään.",
+            "Korjauskyky edellyttää vähintään sitä, että jaon seurauksia voidaan havaita, hyötyjen ja kustannusten siirtymistä seurata ja sääntöjä muuttaa ilman, että jokainen muutos hajottaa järjestelmän ennakoitavuuden. Liian jäykkä järjestelmä ei korjaa vinoumia, mutta jatkuvasti muuttuva järjestelmä ei synnytä luottamusta. Tasapaino löytyy pysyvyyden ja korjattavuuden välistä.",
+            "Tässä mielessä hyvä jakologiikka muistuttaa toimivaa säätöjärjestelmää. Se ei pyri pitämään kaikkia suureita paikallaan vaan tunnistaa, milloin poikkeama on osa normaalia vaihtelua ja milloin siitä on tulossa itseään vahvistava rakenne."
+          ],
+          "quote": "Hyvä jakologiikka ei estä kaikkia epätasapainoja. Se estää epätasapainoa muuttumasta pysyväksi."
+        },
+        {
+          "id": "jakologiikan-perustelutesti",
+          "title": "Jakologiikalle voidaan rakentaa perustelutesti",
+          "paragraphs": [
+            "Jos jakologiikka halutaan muuttaa käytännölliseksi analyysivälineeksi, jokaiselle merkittävälle jakosäännölle voidaan esittää joukko samoja kysymyksiä. Mitä tässä todella jaetaan? Millä perusteella osuus määräytyy? Kuka määrittelee jakoperusteen? Kuka saa hyödyn, kuka maksaa ja kuka kantaa riskin? Muuttaako tämän päivän jako seuraavan jaon lähtökohtia? Onko järjestelmässä palaute, joka pystyy tunnistamaan vinouman? Ja säilyttääkö ratkaisu tuleville toimijoille aidon mahdollisuuden tehdä toisenlainen valinta?",
+            "Testin tarkoitus ei olisi vaatia kaikkien erojen poistamista. Päinvastoin se pakottaisi perustelemaan myös sen, miksi erilainen kohtelu on tarkoituksenmukaista. Tarve voi perustella erilaisen palvelumäärän, vastuu erilaisen korvauksen, omistus tietyn tuotto-oikeuden ja kilpailu rajallisen paikan jakamisen. Mutta perusteen pitäisi liittyä selvästi siihen tehtävään, jota järjestelmä palvelee.",
+            "Erityisen tärkeä olisi uudelleenarvioinnin kysymys. Jakoperuste, joka oli hyvä viisikymmentä vuotta sitten, ei saa oikeutustaan vain iästään. Samalla pitkäaikaisuus voi sisältää arvokasta institutionaalista muistia, jota ei pidä purkaa vain uutuuden vuoksi. Jakologiikan arviointi tarkoittaa siis jatkuvaa perustelemista, ei jatkuvaa kumoamista."
+          ],
+          "quote": "Perusteltu ero on eri asia kuin perustelematon etu."
+        },
+        {
+          "id": "jakologiikka-ei-ole-yksi-poliittinen-ohjelma",
+          "title": "Jakologiikka ei ole yksi poliittinen ohjelma",
+          "paragraphs": [
+            "Jakologiikka ei itsessään kerro, pitäisikö veroasteen olla korkea tai matala, julkisen sektorin suuri tai pieni, markkinoiden roolin laaja tai suppea. Samalla analyysillä voidaan tarkastella hyvin erilaisia järjestelmiä. Markkinaratkaisulta voidaan kysyä, vastaavatko hyöty ja riski toisiaan ja säilyykö kilpailu. Julkiselta järjestelmältä voidaan kysyä, vastaavatko valta ja vastuu toisiaan ja siirtyvätkö kustannukset hallinnon osasta toiseen. Universaalilta etuudelta voidaan kysyä, mitä tehtävää universaalisuus palvelee suhteessa tarveperusteisuuteen.",
+            "Tämä neutraalius on käsitteen vahvuus. Sen sijaan että keskustelu aloitettaisiin siitä, pitäisikö jotakin olla enemmän tai vähemmän, se aloitetaan kysymällä, millä logiikalla nykyinen lopputulos syntyy. Vasta sen jälkeen tulee poliittinen arvio siitä, pidetäänkö kyseistä jakoperustetta hyväksyttävänä.",
+            "Jakologiikka ei siis poista arvoja politiikasta. Se yrittää erottaa toisistaan järjestelmän toiminnan ja sen arvottamisen. Ensin tehdään näkyväksi, mitä jaetaan ja miten. Sen jälkeen voidaan keskustella siitä, millainen jako halutaan."
+          ],
+          "quote": "Jakologiikka ei ratkaise, mikä jako on oikea. Se tekee näkyväksi säännöt, joiden perusteella oikeasta jaosta kiistellään."
+        },
+        {
+          "id": "yhteiskunnan-jakologiikan-kierto",
+          "title": "Yhteiskunnan jakologiikan kierto",
+          "paragraphs": [
+            "Kokonaisuus voidaan kuvata kiertona. Ensin on resurssi, mahdollisuus, oikeus, riski tai valta, joka pitää kohdistaa. Sen jälkeen valitaan jakoperuste. Joku käyttää päätösvaltaa määritelläkseen säännön. Sääntö tuottaa jaon. Jako kohdistaa hyödyt, kustannukset ja riskit. Seuraukset muuttavat toimijoiden asemaa ja mahdollisuuksia. Nämä uudet lähtökohdat vaikuttavat seuraavaan jakoon.",
+            "Jos kiertoon sisältyy mittaus, avoimuus ja korjaava palaute, järjestelmä voi mukautua. Jos taas seuraukset vahvistavat samojen toimijoiden kykyä hallita sääntöjä eikä ulkopuolinen palaute pääse muuttamaan niitä, kierto voi muuttua lukitsevaksi.",
+            "Siksi jakologiikan ratkaisevin kohta ei välttämättä ole itse jakopäätös. Ratkaisevin kohta voi olla se hetki, jolloin jaon seuraukset palaavat järjestelmän sisään ja joko muuttavat sääntöä tai vahvistavat sitä."
+          ],
+          "quote": "Jako ei pääty siihen, kun resurssi on jaettu. Siitä alkaa seuraavan jaon valmistelu."
+        },
+        {
+          "id": "tasapaino-ei-ole-paatepiste",
+          "title": "Tasapaino ei ole päätepiste",
+          "paragraphs": [
+            "Yhteiskunta ei koskaan saavuta lopullista jakotasapainoa. Ihmisten tarpeet muuttuvat, teknologia luo uusia resursseja ja uusia niukkuuksia, väestö vaihtuu ja seuraava sukupolvi astuu järjestelmään eri lähtökohdista kuin edellinen. Myös jokainen korjaus muuttaa käyttäytymistä ja synnyttää uusia seurauksia.",
+            "Siksi tasapainoinen jakologiikka ei ole valmis jakauma vaan kyky palauttaa tasapainoa yhä uudelleen. Sen pitäisi sallia menestyminen mutta estää menestyksen muuttuminen pysyväksi oikeudeksi sulkea muut pois. Sen pitäisi suojata tarpeessa olevaa mutta samalla säilyttää järjestelmän kyky tuottaa tarvittavat resurssit. Sen pitäisi antaa päätösvaltaa mutta liittää valtaan vastuu. Sen pitäisi antaa nykyhetkelle mahdollisuus käyttää resursseja mutta jättää tulevaisuudelle todellisia vaihtoehtoja.",
+            "Tästä näkökulmasta yhteiskunnan vakaus ei synny siitä, että kaikki jaetaan kerran oikein. Se syntyy siitä, että jakamisen säännöt kykenevät kohtaamaan omat seurauksensa."
+          ],
+          "quote": "Hyvä yhteiskunnallinen jakologiikka ei pyri lopulliseen tasapainoon. Se rakentaa kyvyn palauttaa tasapainoa muuttuvissa olosuhteissa.",
+          "closing": true
+        }
+      ]
     }
   ]
 }
