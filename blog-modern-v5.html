@@ -195,7 +195,7 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const slug=a=>a.slug||a.id;
 const og=a=>(a.ogImage||a.image)?`./images/${encodeURIComponent(a.ogImage||a.image)}`:'';
-const articleUrl=a=>`./kirjoitukset/${encodeURIComponent(slug(a))}/`;
+const articleUrl=a=>`./reader.html?id=${encodeURIComponent(slug(a))}`;
 let allArticles=[];
 
 function featuredCard(a){
