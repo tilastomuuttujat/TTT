@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TTT · Lukija</title>
+<meta name="theme-color" content="#f3f1eb">
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#f3f1eb;font-family:Inter,system-ui,sans-serif}.frame{position:fixed;inset:0;border:0;width:100%;height:100%;background:#f3f1eb}.tab{position:fixed;left:0;top:50%;z-index:30;transform:translateY(-50%);width:32px;height:142px;border:1px solid rgba(255,255,255,.2);border-left:0;background:#10151d;color:#fff;cursor:pointer;display:grid;place-items:center;writing-mode:vertical-rl;font:800 8px/1 system-ui;letter-spacing:.17em}.tab span{transform:rotate(180deg)}.shade{position:fixed;inset:0;z-index:39;background:rgba(10,15,22,.38);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:.25s}.shade.open{opacity:1;pointer-events:auto}.drawer{position:fixed;inset:0 auto 0 0;z-index:40;width:min(410px,88vw);background:#f7f5ef;color:#10151d;border-right:1px solid rgba(16,21,29,.2);box-shadow:20px 0 70px rgba(0,0,0,.16);transform:translateX(-102%);transition:transform .28s;display:flex;flex-direction:column}.drawer.open{transform:none}.head{display:flex;align-items:center;justify-content:space-between;padding:20px 22px;border-bottom:1px solid rgba(16,21,29,.14)}.brand{display:flex;align-items:center;gap:10px;font-size:9px;font-weight:800;letter-spacing:.13em}.brand b{display:grid;place-items:center;width:36px;height:36px;background:#10151d;color:white}.close{width:40px;height:40px;border:1px solid rgba(16,21,29,.2);background:transparent;font-size:24px;cursor:pointer}.body{padding:18px 22px 30px;overflow:auto}.label{margin:18px 0 8px;color:#727780;font-size:7.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.drawer a,.drawer button.link{width:100%;display:flex;justify-content:space-between;align-items:center;padding:15px 0;border:0;border-bottom:1px solid rgba(16,21,29,.12);background:transparent;color:inherit;text-decoration:none;text-align:left;font:700 13px/1.2 system-ui;cursor:pointer}.drawer a:hover,.drawer button.link:hover{color:#3157ff}.drawer a i,.drawer button.link i{font-style:normal;color:#3157ff}.mode{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.mode a{justify-content:center;padding:12px;border:1px solid rgba(16,21,29,.2);font-size:9px}.note{margin-top:24px;padding:15px;border-left:3px solid #15a397;background:rgba(21,163,151,.07);color:#5d646d;font-size:10px;line-height:1.55}@media(max-width:700px){.tab{top:auto;left:12px;bottom:14px;transform:none;width:48px;height:48px;border:0;border-radius:50%;writing-mode:horizontal-tb}.tab span{font-size:0;transform:none}.tab span:after{content:'☰';font-size:18px}.drawer{width:min(370px,92vw)}}@media(prefers-reduced-motion:reduce){.drawer,.shade{transition:none}}
+</style>
+</head>
+<body>
+<iframe class="frame" id="frame" title="TTT artikkeli"></iframe>
+<button class="tab" id="tab" type="button" aria-label="Avaa navigaatio" aria-expanded="false"><span>NAVIGOI · TTT</span></button>
+<div class="shade" id="shade"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+ <div class="head"><div class="brand"><b>TTT</b><span>TAAKKA · TOTUUS · TEKO</span></div><button class="close" id="close" aria-label="Sulje">×</button></div>
+ <div class="body">
+  <div class="label">Julkaisu</div>
+  <a href="./blog-modern.html"><span>Etusivu</span><i>→</i></a>
+  <a href="./blog-modern.html#uusimmat"><span>Kirjoitukset</span><i>→</i></a>
+  <a href="./blog-modern.html#paattely"><span>Päättelyartikkelit</span><i>→</i></a>
+  <a href="./blog-modern.html#aiheet"><span>Aiheet</span><i>→</i></a>
+  <div class="label">Tämä kirjoitus</div>
+  <div class="mode" id="modes"></div>
+  <button class="link" id="top"><span>Artikkelin alkuun</span><i>↑</i></button>
+  <div class="label">Tutki</div>
+  <a href="./atlas/murros/index.html"><span>Murrosatlas</span><i>↗</i></a>
+  <a href="./blog-modern.html#tyokalut"><span>Visualisoinnit ja työkalut</span><i>→</i></a>
+  <div class="note">Navigaattori pysyy paikallaan myös silloin, kun varsinainen artikkeli vaihtuu. Näin lukeminen on yksi näkymä julkaisun sisällä eikä umpikuja.</div>
+ </div>
+</aside>
+<script>
+const q=new URLSearchParams(location.search),id=q.get('id')||'siilot-ja-sisapiirit',view=q.get('view')==='living'?'living':'article';
+const enc=encodeURIComponent(id),frame=document.getElementById('frame');frame.src=view==='living'?`./artikkeli-living.html?id=${enc}`:`./artikkeli.html?id=${enc}`;
+const modes=document.getElementById('modes');modes.innerHTML=`<a href="./reader.html?view=article&id=${enc}">LUE</a><a href="./reader.html?view=living&id=${enc}">TUTKI</a>`;
+const tab=document.getElementById('tab'),drawer=document.getElementById('drawer'),shade=document.getElementById('shade');function set(open){drawer.classList.toggle('open',open);shade.classList.toggle('open',open);drawer.setAttribute('aria-hidden',String(!open));tab.setAttribute('aria-expanded',String(open))}tab.onclick=()=>set(true);document.getElementById('close').onclick=()=>set(false);shade.onclick=()=>set(false);document.getElementById('top').onclick=()=>{try{frame.contentWindow.scrollTo({top:0,behavior:'smooth'})}catch(e){}set(false)};addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});
+</script>
+</body></html>
