@@ -179,7 +179,8 @@
           "quote": "Suomen vanha vahvuus oli kyky toimia yhdessä. Sen seuraava vahvuus riippuu siitä, kykeneekö se avaamaan yhteistyönsä myös niille ihmisille, tiedolle ja vaihtoehdoille, jotka eivät vielä kuulu sisäpiiriin.",
           "closing": true
         }
-      ]
+      ],
+      "ingress": "Suomen yhteiskunnallinen vahvuus on pitkään perustunut kykyyn rakentaa yhdessä, mutta samat rakenteet voivat ajan myötä muuttua siiloiksi, sisäpiireiksi ja itseään suojaaviksi järjestelmiksi. Artikkeli tarkastelee, miten toimiviksi tarkoitetut instituutiot alkavat menettää korjauskykyään – ja mitä niiden avaaminen uudelleen vaatisi."
     },
     {
       "id": "sukupolvikello",
@@ -403,7 +404,8 @@
           "quote": "Jokainen sukupolvi syntyy edellisen ratkaisujen sisälle. Noin 20–25 vuotta myöhemmin sen valinnat kertovat, välittivätkö ratkaisut lupauksen jatkuvuudesta vai varoituksen järjestelmän rajasta. Sukupolvikello ei ennusta tätä vastausta. Se näyttää, milloin meidän pitäisi osata kuunnella sitä.",
           "closing": true
         }
-      ]
+      ],
+      "ingress": "Yhteiskunnallinen murros ei etene tasaisesti, vaan usein sukupolvittaisina aaltoina. Sukupolvikello tarkastelee 20–25 vuoden rytmiä, jossa arvot, instituutiot ja päätöksenteon painopisteet vaihtuvat, ja kysyy, voiko historian toistuvista jaksoista oppia jotakin myös tulevista murroksista."
     },
     {
       "id": "sakset-ja-sateenvarjo",
@@ -571,7 +573,8 @@
           "quote": "Ennuste on epävarma. Päätöksen palaute on todellinen. Hyvä politiikka ei valitse saksia tai sateenvarjoa niiden symbolisen arvon vuoksi, vaan sen perusteella, mikä vahvistaa yhteiskunnan kykyä selviytyä myös sellaisesta tulevaisuudesta, jota ennuste ei osannut nähdä.",
           "closing": true
         }
-      ]
+      ],
+      "ingress": "Talousennuste ei ole neutraali sääennuste: sen perusteella tehdyt päätökset voivat muuttaa juuri sitä tulevaisuutta, jota ennuste yrittää kuvata. Artikkeli tarkastelee, milloin sopeutus toimii suojana, milloin se leikkaa kasvun edellytyksiä ja miksi päätösten palautetta pitäisi seurata ennustetta tarkemmin."
     },
     {
       "id": "parlamentaarinen-taloussaannosto",
@@ -763,7 +766,8 @@
           "quote": "Säännöt sitoisivat tavoitteisiin. Demokratia valitsisi keinot.",
           "closing": true
         }
-      ]
+      ],
+      "ingress": "Julkisen talouden kestävyys vaatii pitkäjänteisyyttä, mutta demokraattisen järjestelmän pitää samalla säilyttää vaalikausittainen liikkumavara. Artikkeli kysyy, mistä talouden pelisäännöistä pitäisi sopia yli vaalikausien, miksi velkajarru yksin ei riitä ja miten säännöt voidaan sitoa tavoitteisiin ilman että tulevien hallitusten keinot lukitaan."
     },
     {
       "id": "jakologiikka",
@@ -974,7 +978,8 @@
           "quote": "Hyvä yhteiskunnallinen jakologiikka ei pyri lopulliseen tasapainoon. Se rakentaa kyvyn palauttaa tasapainoa muuttuvissa olosuhteissa.",
           "closing": true
         }
-      ]
+      ],
+      "ingress": "Yhteiskunta ei jaa vain rahaa, vaan myös mahdollisuuksia, riskejä, vastuuta, valtaa ja tulevaisuuden liikkumavaraa. Artikkeli tekee näkyväksi nämä jakamisen säännöt ja kysyy, milloin erilainen jako on perusteltu, milloin se alkaa kasautua rakenteelliseksi eduksi ja voiko hyvä jakologiikka tuottaa yhteiskunnallista tasapainoa."
     }
   ]
 }
