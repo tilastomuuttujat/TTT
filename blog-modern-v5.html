@@ -124,6 +124,49 @@ body{overflow-x:hidden}
 @media(max-width:620px){.nav-drawer{width:min(92vw,390px)}.nav-drawer-body{padding-left:18px;padding-right:18px}}
 </style>
 
+
+<style id="drawer-layer-fix">
+/* Layer order: page < shade < drawer < controls */
+.nav-shade,#shade{
+  position:fixed!important;
+  inset:0!important;
+  z-index:900!important;
+  background:rgba(15,18,22,.36)!important;
+  backdrop-filter:blur(3px)!important;
+  -webkit-backdrop-filter:blur(3px)!important;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .22s ease;
+}
+.nav-shade.open,#shade.open{
+  opacity:1!important;
+  pointer-events:auto!important;
+}
+.nav-drawer,#drawer{
+  z-index:1000!important;
+  isolation:isolate;
+}
+.nav-tab,#nav-tab{
+  z-index:1100!important;
+}
+#drawer.open{
+  transform:translateX(0)!important;
+  visibility:visible!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+}
+#drawer:not(.open){
+  pointer-events:none;
+}
+#drawer .nav-drawer-head,
+#drawer .nav-drawer-body,
+#drawer .article-search,
+#drawer .article-index{
+  position:relative;
+  z-index:1001;
+}
+</style>
+
 </head>
 <body>
 <button class="nav-tab" id="nav-tab" type="button" aria-label="Avaa navigaatio" aria-expanded="false"><span>NAVIGOI · TTT</span></button>
@@ -190,12 +233,15 @@ function setDrawer(open){
   if(!drawer)return;
   drawer.classList.toggle('open',open);
   shade?.classList.toggle('open',open);
+  shade?.setAttribute('aria-hidden',String(!open));
   drawer.setAttribute('aria-hidden',String(!open));
   $('#nav-tab')?.setAttribute('aria-expanded',String(open));
   document.body.style.overflow=open?'hidden':'';
   if(open)setTimeout(()=>$('#article-search-input')?.focus(),120);
 }
-$('#nav-tab')?.addEventListener('click',()=>setDrawer(true));
+$('#nav-tab')?.addEventListener('click',()=>{
+  setDrawer(!drawer?.classList.contains('open'));
+});
 $('#nav-close')?.addEventListener('click',()=>setDrawer(false));
 shade?.addEventListener('click',()=>setDrawer(false));
 drawer?.addEventListener('click',e=>{if(e.target.closest('a'))setDrawer(false)});
