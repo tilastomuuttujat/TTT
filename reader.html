@@ -31,6 +31,7 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--paper
 .article-index a:hover .article-index-title,.article-index a.active .article-index-title{color:var(--blue)}
 .article-index-meta{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:5px;color:#8a8178;font-size:7.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
 .article-index-title{display:block;font:600 1.05rem/1.18 Georgia,serif;letter-spacing:-.015em}
+.article-index-ingress{display:block;margin-top:5px;color:#777a7f;font-size:9.5px;line-height:1.45}
 .article-index-empty{padding:26px 0;color:#7c7a75;font-size:11px}
 .home-link{display:block;margin-bottom:16px;padding:11px 0;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:9px;font-weight:800;letter-spacing:.08em}
 .home-link:hover{color:var(--blue)}
@@ -80,6 +81,7 @@ frame.src=currentView==='living'
 let allArticles=[];
 const slug=a=>a.slug||a.id;
 const readerUrl=a=>`./reader.html?id=${encodeURIComponent(slug(a))}`;
+const ingress=a=>a.ingress||(Array.isArray(a.intro)&&a.intro[0])||a.subtitle||'';
 
 function articleIndexItem(a){
   const tags=(a.tags||[]).slice(0,2).map(esc).join(' · ');
@@ -87,6 +89,7 @@ function articleIndexItem(a){
   return `<a class="${active.trim()}" href="${readerUrl(a)}">
     <span class="article-index-meta">${tags?`<span>${tags}</span>`:''}${a.readingTime?`<span>· ${esc(a.readingTime)}</span>`:''}</span>
     <span class="article-index-title">${esc(a.title)}</span>
+    <span class="article-index-ingress">${esc(ingress(a))}</span>
   </a>`;
 }
 function renderIndex(list){
@@ -110,7 +113,7 @@ addEventListener('keydown',e=>{if(e.key==='Escape')setDrawer(false)});
 $('#article-search-input').addEventListener('input',e=>{
   const q=e.target.value.trim().toLowerCase();
   renderIndex(!q?allArticles:allArticles.filter(a=>
-    [a.title,a.subtitle,...(a.tags||[])].filter(Boolean).join(' ').toLowerCase().includes(q)
+    [a.title,a.subtitle,ingress(a),...(a.tags||[])].filter(Boolean).join(' ').toLowerCase().includes(q)
   ));
 });
 
