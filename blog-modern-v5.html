@@ -126,9 +126,9 @@ body{overflow-x:hidden}
 
 </head>
 <body>
-<button class="nav-tab" id="global-nav-tab" type="button" aria-label="Avaa navigaatio" aria-expanded="false"><span>NAVIGOI · TTT</span></button>
-<div class="nav-backdrop" id="global-nav-backdrop" aria-hidden="true"></div>
-<aside class="nav-drawer" id="drawer" aria-label="Artikkelihakemisto">
+<button class="nav-tab" id="nav-tab" type="button" aria-label="Avaa navigaatio" aria-expanded="false"><span>NAVIGOI · TTT</span></button>
+<div class="nav-backdrop" id="shade" aria-hidden="true"></div>
+<aside class="nav-drawer" id="drawer" aria-label="Artikkelihakemisto" aria-hidden="true">
   <div class="nav-drawer-head">
     <div class="nav-drawer-title"><b>TTT</b><span>ARTIKKELIT</span></div>
     <button id="nav-close" aria-label="Sulje navigaatio">×</button>
@@ -187,13 +187,18 @@ function renderIndex(list){
 const drawer=$('#drawer');
 const shade=$('#shade');
 function setDrawer(open){
-  drawer?.classList.toggle('open',open);
+  if(!drawer)return;
+  drawer.classList.toggle('open',open);
   shade?.classList.toggle('open',open);
+  drawer.setAttribute('aria-hidden',String(!open));
+  $('#nav-tab')?.setAttribute('aria-expanded',String(open));
+  document.body.style.overflow=open?'hidden':'';
   if(open)setTimeout(()=>$('#article-search-input')?.focus(),120);
 }
 $('#nav-tab')?.addEventListener('click',()=>setDrawer(true));
 $('#nav-close')?.addEventListener('click',()=>setDrawer(false));
 shade?.addEventListener('click',()=>setDrawer(false));
+drawer?.addEventListener('click',e=>{if(e.target.closest('a'))setDrawer(false)});
 addEventListener('keydown',e=>{if(e.key==='Escape')setDrawer(false)});
 
 $('#article-search-input')?.addEventListener('input',e=>{
@@ -218,8 +223,5 @@ fetch('./kirjoitukset.json',{cache:'no-store'})
   });
 </script>
 
-<script id="global-drawer-script">
-(()=>{const tab=document.getElementById('global-nav-tab'),drawer=document.getElementById('global-nav-drawer'),back=document.getElementById('global-nav-backdrop'),close=document.getElementById('global-nav-close');if(!tab||!drawer)return;const set=open=>{drawer.classList.toggle('open',open);back?.classList.toggle('open',open);drawer.setAttribute('aria-hidden',String(!open));back?.setAttribute('aria-hidden',String(!open));tab.setAttribute('aria-expanded',String(open));document.body.style.overflow=open?'hidden':''};tab.addEventListener('click',()=>set(true));close?.addEventListener('click',()=>set(false));back?.addEventListener('click',()=>set(false));drawer.addEventListener('click',e=>{if(e.target.closest('a'))set(false)});addEventListener('keydown',e=>{if(e.key==='Escape')set(false)})})();
-</script>
 </body>
 </html>
