@@ -10,11 +10,840 @@
           "title": "Missä kohdassa sama rakenne alkaa tuottaa eri lopputuloksen?",
           "intro": "Selaa muuttujia nuolilla. Kaksi ketjua käynnistyy rinnakkain samasta yhteiskunnallisesta tarpeesta, mutta näyttää, kuinka rakenteen toimintatapa voi johtaa joko korjaavaan tai kerrostuvaan kehitykseen.",
           "variables": [
-            {"name":"Palaute","question":"Pystyykö järjestelmä muuttamaan rakennettaan vai vain toimintatapaansa?","left":{"label":"Avoin palautekierto","title":"Palaute korjaa rakennetta","subtitle":"Virhe voi muuttaa myös itse järjestelmää.","steps":[{"label":"Havainto","title":"Ongelma tunnistetaan","text":"Kokemus ja tulokset tuottavat poikkeaman."},{"label":"Tulkinta","title":"Syy etsitään rakenteesta","text":"Kysytään, mikä järjestely tuottaa ongelman."},{"label":"Korjaus","title":"Rakennetta voidaan purkaa","text":"Tarpeeton sääntö tai rajapinta voidaan poistaa."},{"label":"Seuranta","title":"Vaikutus näkyy takaisin","text":"Korjauksen tulos palautuu päätöksentekoon."}]},"right":{"label":"Suljettu palautekierto","title":"Palaute kiertyy järjestelmän sisään","subtitle":"Virhe synnyttää uuden korjauksen vanhan päälle.","steps":[{"label":"Havainto","title":"Ongelma tunnistetaan","text":"Sama poikkeama tulee näkyviin."},{"label":"Tulkinta","title":"Syy paikannetaan suoritukseen","text":"Huomio siirtyy rakenteesta yksittäisen toimijan toimintaan."},{"label":"Korjaus","title":"Lisätään ohjausta","text":"Syntyy uusi mittari, menettely tai valvontakerros."},{"label":"Seuraus","title":"Rajapintoja tulee lisää","text":"Korjaus kasvattaa koordinaation tarvetta."}]},"synthesis":"Ero syntyy siinä, saako palaute kyseenalaistaa rakenteen vai ainoastaan säätää sen sisäistä toimintaa."},
-            {"name":"Työnjako","question":"Vähentääkö erikoistuminen epäselvyyttä vai kasvattaako se rajapintoja?","left":{"label":"Täydentävä työnjako","title":"Erikoistuminen kokoaa osaamista","subtitle":"Vastuu pysyy näkyvänä.","steps":[{"label":"Tarve","title":"Ongelma vaatii osaamista"},{"label":"Jako","title":"Tehtävä annetaan erikoistuneelle toimijalle"},{"label":"Yhteys","title":"Rajapinta määritellään selkeästi"},{"label":"Tulos","title":"Kokonaisvastuu säilyy näkyvänä"}]},"right":{"label":"Siiloutuva työnjako","title":"Erikoistuminen pilkkoo kokonaisvastuun","subtitle":"Jokainen osa optimoi omaa tehtäväänsä.","steps":[{"label":"Tarve","title":"Ongelma vaatii osaamista"},{"label":"Jako","title":"Tehtävä irrotetaan omaksi vastuualueeksi"},{"label":"Raja","title":"Toimijoiden välille syntyy uusi rajapinta"},{"label":"Seuraus","title":"Kukaan ei enää omista koko ketjua"}]},"synthesis":"Työnjako ei itsessään muodosta siiloa. Ratkaisevaa on, säilyykö vastuu kokonaisuudesta vai katkeaako se organisaatiorajaan."},
-            {"name":"Ohjaus","question":"Yksinkertaistaako ohjaus toimintaa vai synnyttääkö se uuden ohjauskerroksen?","left":{"label":"Poistava ohjaus","title":"Ohjaus vähentää epäselvyyttä","steps":[{"label":"Ongelma","title":"Toiminta hajautuu"},{"label":"Valinta","title":"Poistetaan ristiriitaisia sääntöjä"},{"label":"Selkeys","title":"Tavoitteita on vähemmän"},{"label":"Tulos","title":"Toimintavara kasvaa"}]},"right":{"label":"Kerrostuva ohjaus","title":"Ohjaus lisää yhteensovittamista","steps":[{"label":"Ongelma","title":"Toiminta hajautuu"},{"label":"Valinta","title":"Lisätään uusi ohje tai mittari"},{"label":"Rajapinta","title":"Vanha ohjaus jää voimaan uuden rinnalle"},{"label":"Tulos","title":"Ohjauksen yhteensovittamisesta tulee uusi tehtävä"}]},"synthesis":"Ohjauksen määrä ei yksin ratkaise. Keskeistä on, korvaako uusi ohjaus vanhaa vai kasautuuko se sen päälle."},
-            {"name":"Rahoitus","question":"Seuraako raha tarkoitusta vai alkaako tarkoitus seurata rahoituskanavaa?","left":{"label":"Tarkoitus ohjaa rahaa","title":"Rahoitus mukautuu tarpeeseen","steps":[{"label":"Tarve","title":"Tavoite määritellään ensin"},{"label":"Rahoitus","title":"Resurssi seuraa tavoitetta"},{"label":"Arviointi","title":"Rahoituksen tarve voidaan arvioida uudelleen"},{"label":"Tulos","title":"Rakenne voi myös päättyä"}]},"right":{"label":"Raha ohjaa rakennetta","title":"Rahoituskanava alkaa ylläpitää tehtävää","steps":[{"label":"Tarve","title":"Tavoite synnyttää rahoituskanavan"},{"label":"Vakiintuminen","title":"Kanava saa omat ehtonsa ja prosessinsa"},{"label":"Sopeutuminen","title":"Toiminta muotoillaan rahoitusehtoihin"},{"label":"Tulos","title":"Rahoituksen jatkuvuudesta tulee osa tavoitetta"}]},"synthesis":"Kun rahoitus muuttuu välineestä institutionaaliseksi rakenteeksi, sen lopettaminen voi olla vaikeampaa kuin alkuperäisen ongelman ratkaiseminen."},
-            {"name":"Portinvartijuus","question":"Välittääkö asiantuntijarakenne tietoa vai rajaako se pääsyn päätöksiin?","left":{"label":"Välittävä asiantuntijuus","title":"Portti avaa tietoa","steps":[{"label":"Tieto","title":"Erityisosaaminen kokoaa näyttöä"},{"label":"Käännös","title":"Tieto tehdään ymmärrettäväksi muille"},{"label":"Päätös","title":"Vaihtoehdot pysyvät avoimina"},{"label":"Palaute","title":"Ulkopuolinen kritiikki pääsee takaisin sisään"}]},"right":{"label":"Sulkeva portinvartijuus","title":"Portti alkaa rajata vaihtoehtoja","steps":[{"label":"Tieto","title":"Erityisosaaminen kokoaa näyttöä"},{"label":"Raja","title":"Pääsy keskusteluun edellyttää sisäpiirin kieltä ja asemaa"},{"label":"Päätös","title":"Vaihtoehtojen joukko kapenee ennen avointa arviointia"},{"label":"Palaute","title":"Ulkopuolinen kritiikki tulkitaan helposti häiriöksi"}]},"synthesis":"Portinvartijuus muuttuu ongelmaksi vasta silloin, kun tiedon laadun varmistamisen lisäksi se alkaa määrittää, ketkä saavat kyseenalaistaa lähtökohdat."}
+            {
+              "name": "Palaute",
+              "question": "Pystyykö järjestelmä muuttamaan rakennettaan vai vain toimintatapaansa?",
+              "left": {
+                "label": "Avoin palautekierto",
+                "title": "Palaute korjaa rakennetta",
+                "subtitle": "Virhe voi muuttaa myös itse järjestelmää.",
+                "steps": [
+                  {
+                    "label": "Havainto",
+                    "title": "Ongelma tunnistetaan",
+                    "text": "Kokemus ja tulokset tuottavat poikkeaman."
+                  },
+                  {
+                    "label": "Tulkinta",
+                    "title": "Syy etsitään rakenteesta",
+                    "text": "Kysytään, mikä järjestely tuottaa ongelman."
+                  },
+                  {
+                    "label": "Korjaus",
+                    "title": "Rakennetta voidaan purkaa",
+                    "text": "Tarpeeton sääntö tai rajapinta voidaan poistaa."
+                  },
+                  {
+                    "label": "Seuranta",
+                    "title": "Vaikutus näkyy takaisin",
+                    "text": "Korjauksen tulos palautuu päätöksentekoon."
+                  }
+                ]
+              },
+              "right": {
+                "label": "Suljettu palautekierto",
+                "title": "Palaute kiertyy järjestelmän sisään",
+                "subtitle": "Virhe synnyttää uuden korjauksen vanhan päälle.",
+                "steps": [
+                  {
+                    "label": "Havainto",
+                    "title": "Ongelma tunnistetaan",
+                    "text": "Sama poikkeama tulee näkyviin."
+                  },
+                  {
+                    "label": "Tulkinta",
+                    "title": "Syy paikannetaan suoritukseen",
+                    "text": "Huomio siirtyy rakenteesta yksittäisen toimijan toimintaan."
+                  },
+                  {
+                    "label": "Korjaus",
+                    "title": "Lisätään ohjausta",
+                    "text": "Syntyy uusi mittari, menettely tai valvontakerros."
+                  },
+                  {
+                    "label": "Seuraus",
+                    "title": "Rajapintoja tulee lisää",
+                    "text": "Korjaus kasvattaa koordinaation tarvetta."
+                  }
+                ]
+              },
+              "synthesis": "Ero syntyy siinä, saako palaute kyseenalaistaa rakenteen vai ainoastaan säätää sen sisäistä toimintaa."
+            },
+            {
+              "name": "Työnjako",
+              "question": "Vähentääkö erikoistuminen epäselvyyttä vai kasvattaako se rajapintoja?",
+              "left": {
+                "label": "Täydentävä työnjako",
+                "title": "Erikoistuminen kokoaa osaamista",
+                "subtitle": "Vastuu pysyy näkyvänä.",
+                "steps": [
+                  {
+                    "label": "Tarve",
+                    "title": "Ongelma vaatii osaamista"
+                  },
+                  {
+                    "label": "Jako",
+                    "title": "Tehtävä annetaan erikoistuneelle toimijalle"
+                  },
+                  {
+                    "label": "Yhteys",
+                    "title": "Rajapinta määritellään selkeästi"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Kokonaisvastuu säilyy näkyvänä"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Siiloutuva työnjako",
+                "title": "Erikoistuminen pilkkoo kokonaisvastuun",
+                "subtitle": "Jokainen osa optimoi omaa tehtäväänsä.",
+                "steps": [
+                  {
+                    "label": "Tarve",
+                    "title": "Ongelma vaatii osaamista"
+                  },
+                  {
+                    "label": "Jako",
+                    "title": "Tehtävä irrotetaan omaksi vastuualueeksi"
+                  },
+                  {
+                    "label": "Raja",
+                    "title": "Toimijoiden välille syntyy uusi rajapinta"
+                  },
+                  {
+                    "label": "Seuraus",
+                    "title": "Kukaan ei enää omista koko ketjua"
+                  }
+                ]
+              },
+              "synthesis": "Työnjako ei itsessään muodosta siiloa. Ratkaisevaa on, säilyykö vastuu kokonaisuudesta vai katkeaako se organisaatiorajaan."
+            },
+            {
+              "name": "Ohjaus",
+              "question": "Yksinkertaistaako ohjaus toimintaa vai synnyttääkö se uuden ohjauskerroksen?",
+              "left": {
+                "label": "Poistava ohjaus",
+                "title": "Ohjaus vähentää epäselvyyttä",
+                "steps": [
+                  {
+                    "label": "Ongelma",
+                    "title": "Toiminta hajautuu"
+                  },
+                  {
+                    "label": "Valinta",
+                    "title": "Poistetaan ristiriitaisia sääntöjä"
+                  },
+                  {
+                    "label": "Selkeys",
+                    "title": "Tavoitteita on vähemmän"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Toimintavara kasvaa"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Kerrostuva ohjaus",
+                "title": "Ohjaus lisää yhteensovittamista",
+                "steps": [
+                  {
+                    "label": "Ongelma",
+                    "title": "Toiminta hajautuu"
+                  },
+                  {
+                    "label": "Valinta",
+                    "title": "Lisätään uusi ohje tai mittari"
+                  },
+                  {
+                    "label": "Rajapinta",
+                    "title": "Vanha ohjaus jää voimaan uuden rinnalle"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Ohjauksen yhteensovittamisesta tulee uusi tehtävä"
+                  }
+                ]
+              },
+              "synthesis": "Ohjauksen määrä ei yksin ratkaise. Keskeistä on, korvaako uusi ohjaus vanhaa vai kasautuuko se sen päälle."
+            },
+            {
+              "name": "Rahoitus",
+              "question": "Seuraako raha tarkoitusta vai alkaako tarkoitus seurata rahoituskanavaa?",
+              "left": {
+                "label": "Tarkoitus ohjaa rahaa",
+                "title": "Rahoitus mukautuu tarpeeseen",
+                "steps": [
+                  {
+                    "label": "Tarve",
+                    "title": "Tavoite määritellään ensin"
+                  },
+                  {
+                    "label": "Rahoitus",
+                    "title": "Resurssi seuraa tavoitetta"
+                  },
+                  {
+                    "label": "Arviointi",
+                    "title": "Rahoituksen tarve voidaan arvioida uudelleen"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Rakenne voi myös päättyä"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Raha ohjaa rakennetta",
+                "title": "Rahoituskanava alkaa ylläpitää tehtävää",
+                "steps": [
+                  {
+                    "label": "Tarve",
+                    "title": "Tavoite synnyttää rahoituskanavan"
+                  },
+                  {
+                    "label": "Vakiintuminen",
+                    "title": "Kanava saa omat ehtonsa ja prosessinsa"
+                  },
+                  {
+                    "label": "Sopeutuminen",
+                    "title": "Toiminta muotoillaan rahoitusehtoihin"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Rahoituksen jatkuvuudesta tulee osa tavoitetta"
+                  }
+                ]
+              },
+              "synthesis": "Kun rahoitus muuttuu välineestä institutionaaliseksi rakenteeksi, sen lopettaminen voi olla vaikeampaa kuin alkuperäisen ongelman ratkaiseminen."
+            },
+            {
+              "name": "Portinvartijuus",
+              "question": "Välittääkö asiantuntijarakenne tietoa vai rajaako se pääsyn päätöksiin?",
+              "left": {
+                "label": "Välittävä asiantuntijuus",
+                "title": "Portti avaa tietoa",
+                "steps": [
+                  {
+                    "label": "Tieto",
+                    "title": "Erityisosaaminen kokoaa näyttöä"
+                  },
+                  {
+                    "label": "Käännös",
+                    "title": "Tieto tehdään ymmärrettäväksi muille"
+                  },
+                  {
+                    "label": "Päätös",
+                    "title": "Vaihtoehdot pysyvät avoimina"
+                  },
+                  {
+                    "label": "Palaute",
+                    "title": "Ulkopuolinen kritiikki pääsee takaisin sisään"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Sulkeva portinvartijuus",
+                "title": "Portti alkaa rajata vaihtoehtoja",
+                "steps": [
+                  {
+                    "label": "Tieto",
+                    "title": "Erityisosaaminen kokoaa näyttöä"
+                  },
+                  {
+                    "label": "Raja",
+                    "title": "Pääsy keskusteluun edellyttää sisäpiirin kieltä ja asemaa"
+                  },
+                  {
+                    "label": "Päätös",
+                    "title": "Vaihtoehtojen joukko kapenee ennen avointa arviointia"
+                  },
+                  {
+                    "label": "Palaute",
+                    "title": "Ulkopuolinen kritiikki tulkitaan helposti häiriöksi"
+                  }
+                ]
+              },
+              "synthesis": "Portinvartijuus muuttuu ongelmaksi vasta silloin, kun tiedon laadun varmistamisen lisäksi se alkaa määrittää, ketkä saavat kyseenalaistaa lähtökohdat."
+            }
+          ]
+        },
+        "miksi-vahvuus-muuttui-heikkoudeksi": {
+          "type": "layered-network",
+          "eyebrow": "Rakenteen kerrostuminen",
+          "title": "Milloin työnjako muuttuu verkoksi, jota täytyy alkaa koordinoida?",
+          "intro": "Selaa aikatasoja. Tummat yhteydet kuvaavat perustehtävää; katkoviivaiset yhteydet ovat myöhemmin syntyneitä ohjaus-, rahoitus- ja koordinointikerroksia.",
+          "periods": [
+            {
+              "year": "1970",
+              "pressure": 22,
+              "caption": "Perusrakenne on vielä suhteellisen luettava: tehtävä, vastuu ja palvelu ovat lähellä toisiaan.",
+              "nodes": [
+                {
+                  "id": "v",
+                  "label": "VALTIO",
+                  "x": 340,
+                  "y": 70,
+                  "core": true
+                },
+                {
+                  "id": "k",
+                  "label": "KUNTA",
+                  "x": 210,
+                  "y": 190
+                },
+                {
+                  "id": "p",
+                  "label": "PALVELU",
+                  "x": 470,
+                  "y": 190
+                },
+                {
+                  "id": "c",
+                  "label": "IHMINEN",
+                  "x": 340,
+                  "y": 315,
+                  "core": true
+                }
+              ],
+              "edges": [
+                {
+                  "a": "v",
+                  "b": "k"
+                },
+                {
+                  "a": "v",
+                  "b": "p"
+                },
+                {
+                  "a": "k",
+                  "b": "c"
+                },
+                {
+                  "a": "p",
+                  "b": "c"
+                }
+              ]
+            },
+            {
+              "year": "1990",
+              "pressure": 43,
+              "caption": "Erikoistuminen ja uusi ohjaus lisäävät hyödyllisiä kyvykkyyksiä, mutta samalla rajapintojen määrä kasvaa.",
+              "nodes": [
+                {
+                  "id": "v",
+                  "label": "VALTIO",
+                  "x": 340,
+                  "y": 55,
+                  "core": true
+                },
+                {
+                  "id": "k",
+                  "label": "KUNTA",
+                  "x": 155,
+                  "y": 170
+                },
+                {
+                  "id": "p",
+                  "label": "PALVELU",
+                  "x": 525,
+                  "y": 170
+                },
+                {
+                  "id": "r",
+                  "label": "RAHOITUS",
+                  "x": 340,
+                  "y": 155,
+                  "repair": true
+                },
+                {
+                  "id": "o",
+                  "label": "OHJAUS",
+                  "x": 245,
+                  "y": 265,
+                  "repair": true
+                },
+                {
+                  "id": "c",
+                  "label": "IHMINEN",
+                  "x": 435,
+                  "y": 315,
+                  "core": true
+                }
+              ],
+              "edges": [
+                {
+                  "a": "v",
+                  "b": "k"
+                },
+                {
+                  "a": "v",
+                  "b": "p"
+                },
+                {
+                  "a": "k",
+                  "b": "c"
+                },
+                {
+                  "a": "p",
+                  "b": "c"
+                },
+                {
+                  "a": "v",
+                  "b": "r",
+                  "repair": true
+                },
+                {
+                  "a": "r",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "r",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "o",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "o",
+                  "b": "p",
+                  "repair": true
+                }
+              ]
+            },
+            {
+              "year": "2010",
+              "pressure": 67,
+              "caption": "Koordinoinnista tulee oma tehtävänsä. Osa uusista suhteista ei enää tuota palvelua suoraan vaan sovittaa muita rakenteita yhteen.",
+              "nodes": [
+                {
+                  "id": "v",
+                  "label": "VALTIO",
+                  "x": 340,
+                  "y": 48,
+                  "core": true
+                },
+                {
+                  "id": "k",
+                  "label": "KUNTA",
+                  "x": 120,
+                  "y": 155
+                },
+                {
+                  "id": "p",
+                  "label": "PALVELU",
+                  "x": 560,
+                  "y": 155
+                },
+                {
+                  "id": "r",
+                  "label": "RAHOITUS",
+                  "x": 245,
+                  "y": 135,
+                  "repair": true
+                },
+                {
+                  "id": "o",
+                  "label": "OHJAUS",
+                  "x": 435,
+                  "y": 135,
+                  "repair": true
+                },
+                {
+                  "id": "h",
+                  "label": "HANKINTA",
+                  "x": 170,
+                  "y": 270,
+                  "repair": true
+                },
+                {
+                  "id": "m",
+                  "label": "MITTARIT",
+                  "x": 340,
+                  "y": 245,
+                  "repair": true
+                },
+                {
+                  "id": "j",
+                  "label": "JÄRJESTÖT",
+                  "x": 510,
+                  "y": 270
+                },
+                {
+                  "id": "c",
+                  "label": "IHMINEN",
+                  "x": 340,
+                  "y": 350,
+                  "core": true
+                }
+              ],
+              "edges": [
+                {
+                  "a": "v",
+                  "b": "k"
+                },
+                {
+                  "a": "v",
+                  "b": "p"
+                },
+                {
+                  "a": "k",
+                  "b": "c"
+                },
+                {
+                  "a": "p",
+                  "b": "c"
+                },
+                {
+                  "a": "j",
+                  "b": "c"
+                },
+                {
+                  "a": "v",
+                  "b": "r",
+                  "repair": true
+                },
+                {
+                  "a": "v",
+                  "b": "o",
+                  "repair": true
+                },
+                {
+                  "a": "r",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "r",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "o",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "o",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "h",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "h",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "m",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "m",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "m",
+                  "b": "r",
+                  "repair": true
+                }
+              ]
+            },
+            {
+              "year": "2025",
+              "pressure": 84,
+              "caption": "Järjestelmä on kykenevä mutta vaikeasti luettava. Korjaaminen tapahtuu yhä useammin lisäämällä yhteys olemassa olevaan verkkoon.",
+              "nodes": [
+                {
+                  "id": "v",
+                  "label": "VALTIO",
+                  "x": 340,
+                  "y": 42,
+                  "core": true
+                },
+                {
+                  "id": "k",
+                  "label": "KUNTA",
+                  "x": 90,
+                  "y": 135
+                },
+                {
+                  "id": "p",
+                  "label": "PALVELU",
+                  "x": 590,
+                  "y": 135
+                },
+                {
+                  "id": "r",
+                  "label": "RAHOITUS",
+                  "x": 205,
+                  "y": 112,
+                  "repair": true
+                },
+                {
+                  "id": "o",
+                  "label": "OHJAUS",
+                  "x": 475,
+                  "y": 112,
+                  "repair": true
+                },
+                {
+                  "id": "h",
+                  "label": "HANKINTA",
+                  "x": 120,
+                  "y": 250,
+                  "repair": true
+                },
+                {
+                  "id": "m",
+                  "label": "MITTARIT",
+                  "x": 270,
+                  "y": 230,
+                  "repair": true
+                },
+                {
+                  "id": "q",
+                  "label": "KOORD.",
+                  "x": 410,
+                  "y": 230,
+                  "repair": true
+                },
+                {
+                  "id": "j",
+                  "label": "JÄRJESTÖT",
+                  "x": 560,
+                  "y": 250
+                },
+                {
+                  "id": "s",
+                  "label": "SÄÄNTELY",
+                  "x": 205,
+                  "y": 330,
+                  "repair": true
+                },
+                {
+                  "id": "g",
+                  "label": "VALVONTA",
+                  "x": 475,
+                  "y": 330,
+                  "repair": true
+                },
+                {
+                  "id": "c",
+                  "label": "IHMINEN",
+                  "x": 340,
+                  "y": 350,
+                  "core": true
+                }
+              ],
+              "edges": [
+                {
+                  "a": "v",
+                  "b": "k"
+                },
+                {
+                  "a": "v",
+                  "b": "p"
+                },
+                {
+                  "a": "k",
+                  "b": "c"
+                },
+                {
+                  "a": "p",
+                  "b": "c"
+                },
+                {
+                  "a": "j",
+                  "b": "c"
+                },
+                {
+                  "a": "v",
+                  "b": "r",
+                  "repair": true
+                },
+                {
+                  "a": "v",
+                  "b": "o",
+                  "repair": true
+                },
+                {
+                  "a": "r",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "r",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "o",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "o",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "h",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "h",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "m",
+                  "b": "r",
+                  "repair": true
+                },
+                {
+                  "a": "m",
+                  "b": "o",
+                  "repair": true
+                },
+                {
+                  "a": "q",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "q",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "q",
+                  "b": "j",
+                  "repair": true
+                },
+                {
+                  "a": "s",
+                  "b": "k",
+                  "repair": true
+                },
+                {
+                  "a": "s",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "g",
+                  "b": "p",
+                  "repair": true
+                },
+                {
+                  "a": "g",
+                  "b": "q",
+                  "repair": true
+                }
+              ]
+            }
+          ]
+        },
+        "mita-pitaisi-avata": {
+          "type": "intervention",
+          "eyebrow": "Purkamiskoe",
+          "title": "Jos vain yksi mekanismi muuttuisi, mitä tapahtuisi seuraavaksi?",
+          "intro": "Valitse kohta, johon puututaan. Moduuli näyttää ensimmäisen vaikutuksen, siitä seuraavan järjestelmävaikutuksen sekä mahdollisen vastavaikutuksen — juuri sen, joka helposti jää uudistuskeskustelussa näkymättömäksi.",
+          "note": "Tämä on artikkelin argumenttia havainnollistava mekanismikartta, ei numeerinen vaikutusarvio.",
+          "options": [
+            {
+              "name": "Palaute",
+              "first": {
+                "title": "Rakenteellinen palaute vahvistuu",
+                "text": "Poikkeama voi kohdistua myös sääntöön tai organisaatiorajaan."
+              },
+              "second": {
+                "title": "Tarpeettomia korjauskerroksia voidaan purkaa",
+                "text": "Kaikkea ei tarvitse korjata uudella ohjeella."
+              },
+              "third": {
+                "title": "Päätöksenteko altistuu suuremmalle epävarmuudelle",
+                "text": "Avoimempi palaute tuo myös ristiriitaisempaa tietoa."
+              },
+              "balance": "Hyöty syntyy oppimiskyvystä, mutta se edellyttää kykyä sietää epävarmuutta ja palautteen ristiriitaisuutta."
+            },
+            {
+              "name": "Siilot",
+              "first": {
+                "title": "Rajapintoja yhdistetään",
+                "text": "Kokonaisvastuu voidaan palauttaa näkyvämmäksi."
+              },
+              "second": {
+                "title": "Koordinointitarve vähenee",
+                "text": "Osa väliportaista menettää tehtävänsä."
+              },
+              "third": {
+                "title": "Erikoisosaamisen suoja voi heikentyä",
+                "text": "Liiallinen yhdistäminen voi hukata tarpeellista eriytymistä."
+              },
+              "balance": "Tavoite ei ole poistaa työnjakoa vaan poistaa sellaisia rajoja, jotka eivät enää lisää osaamista."
+            },
+            {
+              "name": "Rahoitus",
+              "first": {
+                "title": "Raha seuraa tavoitetta joustavammin",
+                "text": "Rahoituskanava ei yksin määritä toimintamuotoa."
+              },
+              "second": {
+                "title": "Toimijat voivat yhdistellä ratkaisuja",
+                "text": "Rakenteellinen lukkiutuminen heikkenee."
+              },
+              "third": {
+                "title": "Ennakoitavuus voi heikentyä",
+                "text": "Pitkäjänteinen toiminta tarvitsee silti vakautta."
+              },
+              "balance": "Joustavuuden ja jatkuvuuden välinen jännite pitää ratkaista erikseen; kumpikaan ei yksin riitä."
+            },
+            {
+              "name": "Portinvartijuus",
+              "first": {
+                "title": "Useampi reitti päätöksentekoon",
+                "text": "Tieto ja kritiikki pääsevät sisään useammasta kohdasta."
+              },
+              "second": {
+                "title": "Sisäpiirin informaatiovalta heikkenee",
+                "text": "Vaihtoehtoja ei karsita yhtä aikaisin."
+              },
+              "third": {
+                "title": "Laadunvarmistuksen tarve kasvaa",
+                "text": "Avoimuus lisää myös heikkolaatuisen tiedon määrää."
+              },
+              "balance": "Porttien avaaminen ei tarkoita porttien poistamista: laadun arviointi ja vaihtoehtojen avoimuus pitää erottaa toisistaan."
+            },
+            {
+              "name": "Ohjaus",
+              "first": {
+                "title": "Päällekkäisiä tavoitteita poistetaan",
+                "text": "Toimijoille jää vähemmän keskenään ristiriitaisia signaaleja."
+              },
+              "second": {
+                "title": "Paikallinen toimintavara kasvaa",
+                "text": "Ratkaisu voidaan sovittaa tilanteeseen."
+              },
+              "third": {
+                "title": "Vertailtavuus voi heiketä",
+                "text": "Yhdenmukaisuus vähenee, jos kaikkea ei standardoida."
+              },
+              "balance": "Ohjauksen purkaminen toimii vain, jos samalla päätetään, mikä yhdenmukaisuus on todella välttämätöntä."
+            }
           ]
         }
       }
@@ -31,37 +860,297 @@
             {
               "name": "Passiivinen turva",
               "question": "Mitä tapahtuu, jos toimeentulo turvataan mutta osallistumiseen ei rakenneta omaa väylää?",
-              "left": {"label":"IHMINEN","title":"Turva säilyy, mutta silta toimintaan jää heikoksi","subtitle":"Toimeentulo ei automaattisesti tuota osallisuutta.","steps":[{"label":"Turva","title":"Perusturva vakauttaa arkea","text":"Vähimmäistoimeentulo säilyttää toimintakyvyn perustaa."},{"label":"Väylä","title":"Osallistumista etsitään itse","text":"Yhteys järjestöihin ja yhteisöihin riippuu omista verkostoista."},{"label":"Toiminta","title":"Mahdollisuudet jakautuvat epätasaisesti","text":"Osa löytää tekemistä, osa jää järjestelmien väliin."},{"label":"Seuraus","title":"Toimintakyky ei välttämättä muutu mahdollisuudeksi","text":"Turva suojaa, mutta ei yksin rakenna seuraavaa askelta."}]},
-              "right":{"label":"KANSALAISYHTEISKUNTA","title":"Järjestöt ja sosiaaliturva pysyvät erillisinä","subtitle":"Käyttämätön toimintakyky ei kohtaa yhteiskunnallista tarvetta.","steps":[{"label":"Tarve","title":"Järjestöllä on tehtäviä","text":"Paikallista apua ja yhteisöllistä toimintaa tarvitaan."},{"label":"Resurssi","title":"Osallistujat löytyvät sattumanvaraisesti","text":"Toiminta nojaa nykyisiin vapaaehtoisiin ja verkostoihin."},{"label":"Kapasiteetti","title":"Rahoitus määrää toiminnan laajuutta","text":"Leikkaus näkyy nopeasti vähenevänä toimintana."},{"label":"Palaute","title":"Uusia osallistumispaikkoja syntyy vähän","text":"Järjestö ei saa uutta kapasiteettia pelkästä potentiaalista."}]},
-              "synthesis":"Passiivinen turva voi suojata ihmistä tehokkaasti, mutta se ei itsessään yhdistä käyttämätöntä toimintakykyä kansalaisyhteiskunnan tarpeisiin."
+              "left": {
+                "label": "IHMINEN",
+                "title": "Turva säilyy, mutta silta toimintaan jää heikoksi",
+                "subtitle": "Toimeentulo ei automaattisesti tuota osallisuutta.",
+                "steps": [
+                  {
+                    "label": "Turva",
+                    "title": "Perusturva vakauttaa arkea",
+                    "text": "Vähimmäistoimeentulo säilyttää toimintakyvyn perustaa."
+                  },
+                  {
+                    "label": "Väylä",
+                    "title": "Osallistumista etsitään itse",
+                    "text": "Yhteys järjestöihin ja yhteisöihin riippuu omista verkostoista."
+                  },
+                  {
+                    "label": "Toiminta",
+                    "title": "Mahdollisuudet jakautuvat epätasaisesti",
+                    "text": "Osa löytää tekemistä, osa jää järjestelmien väliin."
+                  },
+                  {
+                    "label": "Seuraus",
+                    "title": "Toimintakyky ei välttämättä muutu mahdollisuudeksi",
+                    "text": "Turva suojaa, mutta ei yksin rakenna seuraavaa askelta."
+                  }
+                ]
+              },
+              "right": {
+                "label": "KANSALAISYHTEISKUNTA",
+                "title": "Järjestöt ja sosiaaliturva pysyvät erillisinä",
+                "subtitle": "Käyttämätön toimintakyky ei kohtaa yhteiskunnallista tarvetta.",
+                "steps": [
+                  {
+                    "label": "Tarve",
+                    "title": "Järjestöllä on tehtäviä",
+                    "text": "Paikallista apua ja yhteisöllistä toimintaa tarvitaan."
+                  },
+                  {
+                    "label": "Resurssi",
+                    "title": "Osallistujat löytyvät sattumanvaraisesti",
+                    "text": "Toiminta nojaa nykyisiin vapaaehtoisiin ja verkostoihin."
+                  },
+                  {
+                    "label": "Kapasiteetti",
+                    "title": "Rahoitus määrää toiminnan laajuutta",
+                    "text": "Leikkaus näkyy nopeasti vähenevänä toimintana."
+                  },
+                  {
+                    "label": "Palaute",
+                    "title": "Uusia osallistumispaikkoja syntyy vähän",
+                    "text": "Järjestö ei saa uutta kapasiteettia pelkästä potentiaalista."
+                  }
+                ]
+              },
+              "synthesis": "Passiivinen turva voi suojata ihmistä tehokkaasti, mutta se ei itsessään yhdistä käyttämätöntä toimintakykyä kansalaisyhteiskunnan tarpeisiin."
             },
             {
               "name": "Sanktioiva vastikkeellisuus",
               "question": "Kasvaako toimintakyky, jos osallistumista vahvistetaan etuuden menettämisen uhalla?",
-              "left":{"label":"IHMINEN","title":"Osallistuminen kasvaa, autonomia heikkenee","subtitle":"Toimintaan tullaan velvoitteen kautta.","steps":[{"label":"Ehto","title":"Turva sidotaan osallistumiseen","text":"Osallistumatta jättäminen voi heikentää toimeentuloa."},{"label":"Osallistuminen","title":"Toimintaan tullaan nopeasti","text":"Hallinnollinen kannustin on voimakas."},{"label":"Kokemus","title":"Merkityksellisyys riippuu tehtävän sopivuudesta","text":"Pakko voi heikentää omistajuutta ja luottamusta."},{"label":"Seuraus","title":"Siirtymä voi syntyä tai jäädä ulkoiseksi","text":"Suorite ei vielä takaa toimintakyvyn vahvistumista."}]},
-              "right":{"label":"KANSALAISYHTEISKUNTA","title":"Järjestöstä voi tulla velvoitteen toteuttaja","subtitle":"Osallistujia tulee, mutta suhde kansalaistoimintaan muuttuu.","steps":[{"label":"Virta","title":"Osallistujamäärä kasvaa","text":"Järjestö saa uusia tekijöitä hallinnollisen ohjauksen kautta."},{"label":"Ohjaus","title":"Perehdytyksen tarve kasvaa","text":"Osallistuminen vaatii enemmän koordinointia ja valvontaa."},{"label":"Rooli","title":"Järjestön tehtävä voi siirtyä kohti työvoimapalvelua","text":"Kansalaistoiminnan ja viranomaisohjauksen raja hämärtyy."},{"label":"Riski","title":"Luottamus ja vapaaehtoisuus voivat heikentyä","text":"Järjestö voi saada työpanosta mutta menettää yhteisöllistä luonnettaan."}]},
-              "synthesis":"Sanktio voi lisätä osallistumisen määrää, mutta määrällinen osallistuminen ja toimintakyvyn vahvistuminen eivät ole sama asia."
+              "left": {
+                "label": "IHMINEN",
+                "title": "Osallistuminen kasvaa, autonomia heikkenee",
+                "subtitle": "Toimintaan tullaan velvoitteen kautta.",
+                "steps": [
+                  {
+                    "label": "Ehto",
+                    "title": "Turva sidotaan osallistumiseen",
+                    "text": "Osallistumatta jättäminen voi heikentää toimeentuloa."
+                  },
+                  {
+                    "label": "Osallistuminen",
+                    "title": "Toimintaan tullaan nopeasti",
+                    "text": "Hallinnollinen kannustin on voimakas."
+                  },
+                  {
+                    "label": "Kokemus",
+                    "title": "Merkityksellisyys riippuu tehtävän sopivuudesta",
+                    "text": "Pakko voi heikentää omistajuutta ja luottamusta."
+                  },
+                  {
+                    "label": "Seuraus",
+                    "title": "Siirtymä voi syntyä tai jäädä ulkoiseksi",
+                    "text": "Suorite ei vielä takaa toimintakyvyn vahvistumista."
+                  }
+                ]
+              },
+              "right": {
+                "label": "KANSALAISYHTEISKUNTA",
+                "title": "Järjestöstä voi tulla velvoitteen toteuttaja",
+                "subtitle": "Osallistujia tulee, mutta suhde kansalaistoimintaan muuttuu.",
+                "steps": [
+                  {
+                    "label": "Virta",
+                    "title": "Osallistujamäärä kasvaa",
+                    "text": "Järjestö saa uusia tekijöitä hallinnollisen ohjauksen kautta."
+                  },
+                  {
+                    "label": "Ohjaus",
+                    "title": "Perehdytyksen tarve kasvaa",
+                    "text": "Osallistuminen vaatii enemmän koordinointia ja valvontaa."
+                  },
+                  {
+                    "label": "Rooli",
+                    "title": "Järjestön tehtävä voi siirtyä kohti työvoimapalvelua",
+                    "text": "Kansalaistoiminnan ja viranomaisohjauksen raja hämärtyy."
+                  },
+                  {
+                    "label": "Riski",
+                    "title": "Luottamus ja vapaaehtoisuus voivat heikentyä",
+                    "text": "Järjestö voi saada työpanosta mutta menettää yhteisöllistä luonnettaan."
+                  }
+                ]
+              },
+              "synthesis": "Sanktio voi lisätä osallistumisen määrää, mutta määrällinen osallistuminen ja toimintakyvyn vahvistuminen eivät ole sama asia."
             },
             {
               "name": "Vapaaehtoismalli",
               "question": "Mitä syntyy, jos turva säilyy ja osallistuminen on täysin vapaaehtoista, mutta erillistä kannustinta ei ole?",
-              "left":{"label":"IHMINEN","title":"Autonomia on vahva, mutta osallistumisen kynnykset jäävät","subtitle":"Motivaatio syntyy ihmisestä itsestään.","steps":[{"label":"Turva","title":"Toimeentulo ei riipu osallistumisesta","text":"Valinta säilyy aidosti vapaaehtoisena."},{"label":"Valinta","title":"Ihminen etsii mielekkään tehtävän","text":"Oma kiinnostus voi vahvistaa sitoutumista."},{"label":"Kynnys","title":"Kulut, terveys ja verkostot vaikuttavat pääsyyn","text":"Kaikilla ei ole samanlaista mahdollisuutta osallistua."},{"label":"Seuraus","title":"Osallistuminen voi vahvistaa toimintakykyä","text":"Hyöty on suuri niille, jotka pääsevät mukaan."}]},
-              "right":{"label":"KANSALAISYHTEISKUNTA","title":"Toiminta säilyy kansalaislähtöisenä","subtitle":"Järjestö houkuttelee, ei vastaanota velvoitettuja.","steps":[{"label":"Kutsu","title":"Järjestö tarjoaa merkityksellisiä tehtäviä","text":"Osallistujan motivaatio ratkaisee."},{"label":"Yhteisö","title":"Sitoutuminen voi olla vahvaa","text":"Vapaaehtoisuus tukee omistajuutta."},{"label":"Raja","title":"Ohjausresurssi rajoittaa kasvua","text":"Uusien osallistujien vastaanottaminen maksaa myös järjestölle."},{"label":"Seuraus","title":"Kapasiteetti kasvaa valikoivasti","text":"Toiminta vahvistuu, mutta ei välttämättä tavoita heikoimmassa asemassa olevia."}]},
-              "synthesis":"Vapaaehtoisuus suojaa kansalaistoiminnan luonnetta, mutta ilman osallistumisen kustannusten ja kynnysten tasaamista mahdollisuus osallistua voi jakautua epätasaisesti."
+              "left": {
+                "label": "IHMINEN",
+                "title": "Autonomia on vahva, mutta osallistumisen kynnykset jäävät",
+                "subtitle": "Motivaatio syntyy ihmisestä itsestään.",
+                "steps": [
+                  {
+                    "label": "Turva",
+                    "title": "Toimeentulo ei riipu osallistumisesta",
+                    "text": "Valinta säilyy aidosti vapaaehtoisena."
+                  },
+                  {
+                    "label": "Valinta",
+                    "title": "Ihminen etsii mielekkään tehtävän",
+                    "text": "Oma kiinnostus voi vahvistaa sitoutumista."
+                  },
+                  {
+                    "label": "Kynnys",
+                    "title": "Kulut, terveys ja verkostot vaikuttavat pääsyyn",
+                    "text": "Kaikilla ei ole samanlaista mahdollisuutta osallistua."
+                  },
+                  {
+                    "label": "Seuraus",
+                    "title": "Osallistuminen voi vahvistaa toimintakykyä",
+                    "text": "Hyöty on suuri niille, jotka pääsevät mukaan."
+                  }
+                ]
+              },
+              "right": {
+                "label": "KANSALAISYHTEISKUNTA",
+                "title": "Toiminta säilyy kansalaislähtöisenä",
+                "subtitle": "Järjestö houkuttelee, ei vastaanota velvoitettuja.",
+                "steps": [
+                  {
+                    "label": "Kutsu",
+                    "title": "Järjestö tarjoaa merkityksellisiä tehtäviä",
+                    "text": "Osallistujan motivaatio ratkaisee."
+                  },
+                  {
+                    "label": "Yhteisö",
+                    "title": "Sitoutuminen voi olla vahvaa",
+                    "text": "Vapaaehtoisuus tukee omistajuutta."
+                  },
+                  {
+                    "label": "Raja",
+                    "title": "Ohjausresurssi rajoittaa kasvua",
+                    "text": "Uusien osallistujien vastaanottaminen maksaa myös järjestölle."
+                  },
+                  {
+                    "label": "Seuraus",
+                    "title": "Kapasiteetti kasvaa valikoivasti",
+                    "text": "Toiminta vahvistuu, mutta ei välttämättä tavoita heikoimmassa asemassa olevia."
+                  }
+                ]
+              },
+              "synthesis": "Vapaaehtoisuus suojaa kansalaistoiminnan luonnetta, mutta ilman osallistumisen kustannusten ja kynnysten tasaamista mahdollisuus osallistua voi jakautua epätasaisesti."
             },
             {
               "name": "Osallistumislisä",
               "question": "Muuttuuko kehä, jos perusturvan päälle tulee vapaaehtoiseen osallistumiseen sidottu lisä ja järjestölle ohjauskorvaus?",
-              "left":{"label":"IHMINEN","title":"Turvan päälle syntyy kannustettu osallistumisväylä","subtitle":"Osallistuminen tuottaa jotakin lisää, ei osallistumattomuus jotakin pois.","steps":[{"label":"Turva","title":"Perusturva säilyy","text":"Toimeentulon vähimmäissuoja ei riipu osallistumisesta."},{"label":"Kannustin","title":"Osallistumislisä madaltaa kynnystä","text":"Aika, matkat ja pienet kustannukset tunnistetaan."},{"label":"Toiminta","title":"Merkityksellinen tehtävä vahvistaa kokemusta kyvykkyydestä","text":"Osallistuminen voi tuottaa rytmiä, vastuuta ja yhteisön."},{"label":"Siirtymä","title":"Osaaminen ja verkostot kasvavat","text":"Seuraava askel voi olla koulutus, työ tai jatkuva kansalaistoiminta."}]},
-              "right":{"label":"KANSALAISYHTEISKUNTA","title":"Raha alkaa seurata toteutunutta toimintaa","subtitle":"Järjestö saa kapasiteettia myös osallistujan ohjaamiseen.","steps":[{"label":"Tehtävä","title":"Järjestö avaa yhteiskunnallisen tehtävän","text":"Tehtävä kuvataan ja erotetaan palkkatyöstä."},{"label":"Osallistuja","title":"Uusi ihminen tulee mukaan","text":"Valinta perustuu vapaaehtoisuuteen ja sopivuuteen."},{"label":"Tuki","title":"Ohjauskorvaus kattaa osan vastaanottamisen kustannuksista","text":"Perehdytys ei jää kokonaan järjestön omalle vastuulle."},{"label":"Kehä","title":"Toiminta synnyttää uusia osallistumispaikkoja","text":"Kasvanut kapasiteetti voi vahvistaa seuraavaa osallistumiskierrosta."}]},
-              "synthesis":"Osallistumislisä muuttaa logiikan sanktiosta positiiviseksi palautteeksi: turva mahdollistaa osallistumisen ja toteutunut osallistuminen vahvistaa sekä ihmistä että järjestöä."
+              "left": {
+                "label": "IHMINEN",
+                "title": "Turvan päälle syntyy kannustettu osallistumisväylä",
+                "subtitle": "Osallistuminen tuottaa jotakin lisää, ei osallistumattomuus jotakin pois.",
+                "steps": [
+                  {
+                    "label": "Turva",
+                    "title": "Perusturva säilyy",
+                    "text": "Toimeentulon vähimmäissuoja ei riipu osallistumisesta."
+                  },
+                  {
+                    "label": "Kannustin",
+                    "title": "Osallistumislisä madaltaa kynnystä",
+                    "text": "Aika, matkat ja pienet kustannukset tunnistetaan."
+                  },
+                  {
+                    "label": "Toiminta",
+                    "title": "Merkityksellinen tehtävä vahvistaa kokemusta kyvykkyydestä",
+                    "text": "Osallistuminen voi tuottaa rytmiä, vastuuta ja yhteisön."
+                  },
+                  {
+                    "label": "Siirtymä",
+                    "title": "Osaaminen ja verkostot kasvavat",
+                    "text": "Seuraava askel voi olla koulutus, työ tai jatkuva kansalaistoiminta."
+                  }
+                ]
+              },
+              "right": {
+                "label": "KANSALAISYHTEISKUNTA",
+                "title": "Raha alkaa seurata toteutunutta toimintaa",
+                "subtitle": "Järjestö saa kapasiteettia myös osallistujan ohjaamiseen.",
+                "steps": [
+                  {
+                    "label": "Tehtävä",
+                    "title": "Järjestö avaa yhteiskunnallisen tehtävän",
+                    "text": "Tehtävä kuvataan ja erotetaan palkkatyöstä."
+                  },
+                  {
+                    "label": "Osallistuja",
+                    "title": "Uusi ihminen tulee mukaan",
+                    "text": "Valinta perustuu vapaaehtoisuuteen ja sopivuuteen."
+                  },
+                  {
+                    "label": "Tuki",
+                    "title": "Ohjauskorvaus kattaa osan vastaanottamisen kustannuksista",
+                    "text": "Perehdytys ei jää kokonaan järjestön omalle vastuulle."
+                  },
+                  {
+                    "label": "Kehä",
+                    "title": "Toiminta synnyttää uusia osallistumispaikkoja",
+                    "text": "Kasvanut kapasiteetti voi vahvistaa seuraavaa osallistumiskierrosta."
+                  }
+                ]
+              },
+              "synthesis": "Osallistumislisä muuttaa logiikan sanktiosta positiiviseksi palautteeksi: turva mahdollistaa osallistumisen ja toteutunut osallistuminen vahvistaa sekä ihmistä että järjestöä."
             },
             {
               "name": "Toimintakykymalli",
               "question": "Mitä tapahtuu, jos osallistuminen rakennetaan pysyväksi kansalaisyhteiskunnan infrastruktuuriksi eikä vain sosiaaliturvan toimenpiteeksi?",
-              "left":{"label":"IHMINEN","title":"Osallistuminen alkaa kerryttää toimintakyvyn pääomaa","subtitle":"Tavoitteena ei ole suorite vaan seuraavan mahdollisuuden syntyminen.","steps":[{"label":"Oikeus","title":"Turva ja osallistumisoikeus kulkevat rinnakkain","text":"Ihmisellä on sekä vähimmäisturva että näkyvä väylä yhteiseen toimintaan."},{"label":"Tehtävä","title":"Toiminta sovitetaan kykyyn ja kiinnostukseen","text":"Osallistuminen voi alkaa pienestä ja muuttua elämäntilanteen mukana."},{"label":"Pääoma","title":"Osaaminen, verkostot ja luottamus kertyvät","text":"Osallistuminen jättää ihmiselle jotakin pysyvää."},{"label":"Uusi kierros","title":"Toimintakyky avaa uusia vaihtoehtoja","text":"Työ, koulutus, vapaaehtoisuus tai oma kansalaistoiminta voivat kaikki olla onnistuneita siirtymiä."}]},
-              "right":{"label":"KANSALAISYHTEISKUNTA","title":"Järjestöistä muodostuu osallistumisen infrastruktuuria","subtitle":"Toiminta ei ole sivutuote vaan yhteiskunnallinen kapasiteetti.","steps":[{"label":"Tarve","title":"Paikallinen tekemätön tehtävä tehdään näkyväksi","text":"Yhteisö tunnistaa tarpeen, jota markkina tai julkinen palvelu ei riittävästi täytä."},{"label":"Kohtaanto","title":"Tehtävä ja osallistuja kohtaavat","text":"Avoin tehtäväverkosto madaltaa järjestäytymisen kynnystä."},{"label":"Arvo","title":"Toiminta tuottaa yhteiskunnallista hyötyä","text":"Samalla syntyy yhteisöjä, osaamista ja ehkäisevää toimintaa."},{"label":"Takaisinkytkentä","title":"Hyöty vahvistaa seuraavan kierroksen kapasiteettia","text":"Rahoitus, tieto ja uudet osallistujat palaavat järjestelmän käyttöön."}]},
-              "synthesis":"Toimintakykymallissa ratkaiseva muutos on kehän sulkeutuminen: ihmisen vahvistuminen kasvattaa kansalaisyhteiskunnan kapasiteettia, joka puolestaan avaa uusia mahdollisuuksia ihmisille."
+              "left": {
+                "label": "IHMINEN",
+                "title": "Osallistuminen alkaa kerryttää toimintakyvyn pääomaa",
+                "subtitle": "Tavoitteena ei ole suorite vaan seuraavan mahdollisuuden syntyminen.",
+                "steps": [
+                  {
+                    "label": "Oikeus",
+                    "title": "Turva ja osallistumisoikeus kulkevat rinnakkain",
+                    "text": "Ihmisellä on sekä vähimmäisturva että näkyvä väylä yhteiseen toimintaan."
+                  },
+                  {
+                    "label": "Tehtävä",
+                    "title": "Toiminta sovitetaan kykyyn ja kiinnostukseen",
+                    "text": "Osallistuminen voi alkaa pienestä ja muuttua elämäntilanteen mukana."
+                  },
+                  {
+                    "label": "Pääoma",
+                    "title": "Osaaminen, verkostot ja luottamus kertyvät",
+                    "text": "Osallistuminen jättää ihmiselle jotakin pysyvää."
+                  },
+                  {
+                    "label": "Uusi kierros",
+                    "title": "Toimintakyky avaa uusia vaihtoehtoja",
+                    "text": "Työ, koulutus, vapaaehtoisuus tai oma kansalaistoiminta voivat kaikki olla onnistuneita siirtymiä."
+                  }
+                ]
+              },
+              "right": {
+                "label": "KANSALAISYHTEISKUNTA",
+                "title": "Järjestöistä muodostuu osallistumisen infrastruktuuria",
+                "subtitle": "Toiminta ei ole sivutuote vaan yhteiskunnallinen kapasiteetti.",
+                "steps": [
+                  {
+                    "label": "Tarve",
+                    "title": "Paikallinen tekemätön tehtävä tehdään näkyväksi",
+                    "text": "Yhteisö tunnistaa tarpeen, jota markkina tai julkinen palvelu ei riittävästi täytä."
+                  },
+                  {
+                    "label": "Kohtaanto",
+                    "title": "Tehtävä ja osallistuja kohtaavat",
+                    "text": "Avoin tehtäväverkosto madaltaa järjestäytymisen kynnystä."
+                  },
+                  {
+                    "label": "Arvo",
+                    "title": "Toiminta tuottaa yhteiskunnallista hyötyä",
+                    "text": "Samalla syntyy yhteisöjä, osaamista ja ehkäisevää toimintaa."
+                  },
+                  {
+                    "label": "Takaisinkytkentä",
+                    "title": "Hyöty vahvistaa seuraavan kierroksen kapasiteettia",
+                    "text": "Rahoitus, tieto ja uudet osallistujat palaavat järjestelmän käyttöön."
+                  }
+                ]
+              },
+              "synthesis": "Toimintakykymallissa ratkaiseva muutos on kehän sulkeutuminen: ihmisen vahvistuminen kasvattaa kansalaisyhteiskunnan kapasiteettia, joka puolestaan avaa uusia mahdollisuuksia ihmisille."
             }
           ]
         },
@@ -72,13 +1161,236 @@
           "intro": "Valitse raja, jota tarkastellaan. Moduuli näyttää, miksi osallistumisen ja työn välinen raja ei voi perustua vain tuntimäärään.",
           "note": "Tämä on periaatteellinen rajatesti, ei työoikeudellinen luokittelu.",
           "options": [
-            {"name":"Säännöllisyys","first":{"title":"Tehtävä toistuu sovitusti","text":"Satunnainen osallistuminen alkaa muistuttaa työvuoroa."},"second":{"title":"Organisaatio alkaa luottaa työpanokseen","text":"Poissaolo vaikuttaa toiminnan toteutumiseen."},"third":{"title":"Palkkatyön korvaamisen riski kasvaa","text":"Mitä välttämättömämpi säännöllinen panos on, sitä vahvempi peruste palkkasuhteelle syntyy."},"balance":"Säännöllisyys ei yksin tee tehtävästä työtä, mutta se on tärkeä merkki organisaation riippuvuudesta osallistujan panoksesta."},
-            {"name":"Vastuu","first":{"title":"Osallistuja saa itsenäistä vastuuta","text":"Tehtävä ei ole enää vain avustava tai täydentävä."},"second":{"title":"Virheillä voi olla merkittäviä seurauksia","text":"Vastuu asiakkaista, rahasta tai turvallisuudesta kasvaa."},"third":{"title":"Työntekijän suojaa tarvitaan enemmän","text":"Vastuun kasvaessa myös korvauksen, vakuutusten ja oikeuksien pitäisi vahvistua."},"balance":"Vastuun ja suojan pitäisi kasvaa yhdessä. Suuri vastuu pienellä osallistumiskorvauksella on rakenteellinen varoitusmerkki."},
-            {"name":"Työnjohto","first":{"title":"Tehtävästä annetaan tarkat määräykset","text":"Osallistujan autonomia vähenee."},"second":{"title":"Aika, paikka ja tapa määräytyvät organisaatiosta","text":"Suhde alkaa muistuttaa työnjohto-oikeuden alaista tekemistä."},"third":{"title":"Vapaaehtoisuuden sisältö ohenee","text":"Muodollisesti vapaaehtoinen tehtävä voi käytännössä toimia työnä."},"balance":"Mitä vahvemmin organisaatio määrää työn tekemisen tavan, sitä vaikeampi tehtävää on perustella vapaana kansalaistoimintana."},
-            {"name":"Välttämättömyys","first":{"title":"Tehtävästä tulee osa perustoimintaa","text":"Toimintaa ei pystytä toteuttamaan ilman osallistujia."},"second":{"title":"Osallistujat korvaavat pysyvää henkilöstötarvetta","text":"Säästö syntyy työvoimakustannuksen välttämisestä."},"third":{"title":"Malli alkaa syrjäyttää palkkatyötä","text":"Kansalaistoiminnan vahvistamisen sijasta syntyy halvemman työn järjestelmä."},"balance":"Selkein raja kulkee siinä, onko tehtävä täydentävää yhteiskunnallista toimintaa vai organisaation normaalin toiminnan välttämätön työpanos."},
-            {"name":"Korvaus","first":{"title":"Tehtävän vaativuus kasvaa","text":"Pieni osallistumislisä ei enää vastaa tehtävän luonnetta."},"second":{"title":"Korvauksen ja vastuun väli erkanee","text":"Yhteiskunnallinen hyöty voi peittää alleen työn todellisen arvon."},"third":{"title":"Palkkasuhde palauttaa vastinparin","text":"Palkka, työaika, vakuutukset ja työntekijän oikeudet tulevat samaan rakenteeseen."},"balance":"Mitä enemmän tehtävä muistuttaa tavallista työtä, sitä enemmän myös korvauksen ja oikeuksien pitäisi muistuttaa tavallista työsuhdetta."}
+            {
+              "name": "Säännöllisyys",
+              "first": {
+                "title": "Tehtävä toistuu sovitusti",
+                "text": "Satunnainen osallistuminen alkaa muistuttaa työvuoroa."
+              },
+              "second": {
+                "title": "Organisaatio alkaa luottaa työpanokseen",
+                "text": "Poissaolo vaikuttaa toiminnan toteutumiseen."
+              },
+              "third": {
+                "title": "Palkkatyön korvaamisen riski kasvaa",
+                "text": "Mitä välttämättömämpi säännöllinen panos on, sitä vahvempi peruste palkkasuhteelle syntyy."
+              },
+              "balance": "Säännöllisyys ei yksin tee tehtävästä työtä, mutta se on tärkeä merkki organisaation riippuvuudesta osallistujan panoksesta."
+            },
+            {
+              "name": "Vastuu",
+              "first": {
+                "title": "Osallistuja saa itsenäistä vastuuta",
+                "text": "Tehtävä ei ole enää vain avustava tai täydentävä."
+              },
+              "second": {
+                "title": "Virheillä voi olla merkittäviä seurauksia",
+                "text": "Vastuu asiakkaista, rahasta tai turvallisuudesta kasvaa."
+              },
+              "third": {
+                "title": "Työntekijän suojaa tarvitaan enemmän",
+                "text": "Vastuun kasvaessa myös korvauksen, vakuutusten ja oikeuksien pitäisi vahvistua."
+              },
+              "balance": "Vastuun ja suojan pitäisi kasvaa yhdessä. Suuri vastuu pienellä osallistumiskorvauksella on rakenteellinen varoitusmerkki."
+            },
+            {
+              "name": "Työnjohto",
+              "first": {
+                "title": "Tehtävästä annetaan tarkat määräykset",
+                "text": "Osallistujan autonomia vähenee."
+              },
+              "second": {
+                "title": "Aika, paikka ja tapa määräytyvät organisaatiosta",
+                "text": "Suhde alkaa muistuttaa työnjohto-oikeuden alaista tekemistä."
+              },
+              "third": {
+                "title": "Vapaaehtoisuuden sisältö ohenee",
+                "text": "Muodollisesti vapaaehtoinen tehtävä voi käytännössä toimia työnä."
+              },
+              "balance": "Mitä vahvemmin organisaatio määrää työn tekemisen tavan, sitä vaikeampi tehtävää on perustella vapaana kansalaistoimintana."
+            },
+            {
+              "name": "Välttämättömyys",
+              "first": {
+                "title": "Tehtävästä tulee osa perustoimintaa",
+                "text": "Toimintaa ei pystytä toteuttamaan ilman osallistujia."
+              },
+              "second": {
+                "title": "Osallistujat korvaavat pysyvää henkilöstötarvetta",
+                "text": "Säästö syntyy työvoimakustannuksen välttämisestä."
+              },
+              "third": {
+                "title": "Malli alkaa syrjäyttää palkkatyötä",
+                "text": "Kansalaistoiminnan vahvistamisen sijasta syntyy halvemman työn järjestelmä."
+              },
+              "balance": "Selkein raja kulkee siinä, onko tehtävä täydentävää yhteiskunnallista toimintaa vai organisaation normaalin toiminnan välttämätön työpanos."
+            },
+            {
+              "name": "Korvaus",
+              "first": {
+                "title": "Tehtävän vaativuus kasvaa",
+                "text": "Pieni osallistumislisä ei enää vastaa tehtävän luonnetta."
+              },
+              "second": {
+                "title": "Korvauksen ja vastuun väli erkanee",
+                "text": "Yhteiskunnallinen hyöty voi peittää alleen työn todellisen arvon."
+              },
+              "third": {
+                "title": "Palkkasuhde palauttaa vastinparin",
+                "text": "Palkka, työaika, vakuutukset ja työntekijän oikeudet tulevat samaan rakenteeseen."
+              },
+              "balance": "Mitä enemmän tehtävä muistuttaa tavallista työtä, sitä enemmän myös korvauksen ja oikeuksien pitäisi muistuttaa tavallista työsuhdetta."
+            }
           ]
-        }
+        },
+        "mittarit": [
+          {
+            "type": "intervention",
+            "eyebrow": "Tasapainokartta",
+            "title": "Kenen näkökulmasta malli toimii?",
+            "intro": "Valitse toimija. Sama osallistumismalli näyttää erilaiselta sen mukaan, tarkastellaanko hyötyä, kustannusta, riskiä vai päätösvaltaa. Tarkoitus ei ole löytää yhtä voittajaa vaan nähdä, siirtyykö jokin hyöty toisen osapuolen kustannukseksi.",
+            "note": "Tasapainokartta on rakenteellinen päättelykoe, ei numeerinen vaikutusarvio.",
+            "options": [
+              {
+                "name": "Osallistuja",
+                "first": {
+                  "title": "Hyöty: toimintakyky ja yhteydet",
+                  "text": "Merkityksellinen tekeminen voi tuottaa rytmiä, osaamista, verkostoja ja pienen taloudellisen lisän."
+                },
+                "second": {
+                  "title": "Kustannus: aika ja sitoutuminen",
+                  "text": "Osallistuminen käyttää aikaa, liikkumista ja voimavaroja, joiden määrä vaihtelee elämäntilanteen mukaan."
+                },
+                "third": {
+                  "title": "Riski: vapaaehtoisuus ohenee",
+                  "text": "Kannustin voi muuttua tosiasialliseksi velvoitteeksi, jos muut vaihtoehdot tai toimeentulo kaventuvat."
+                },
+                "balance": "Valta: osallistujalla pitää säilyä oikeus valita tehtävä, vaihtaa sitä ja lopettaa ilman, että perusturvan vähimmäissuoja vaarantuu."
+              },
+              {
+                "name": "Järjestö",
+                "first": {
+                  "title": "Hyöty: lisää toimintakykyä",
+                  "text": "Uudet osallistujat voivat mahdollistaa toimintaa, jota järjestö ei muuten pystyisi toteuttamaan."
+                },
+                "second": {
+                  "title": "Kustannus: perehdytys ja ohjaus",
+                  "text": "Osallistujan vastaanottaminen vaatii aikaa, osaamista, vakuutuksia, välineitä ja koordinointia."
+                },
+                "third": {
+                  "title": "Riski: työ ja kansalaistoiminta sekoittuvat",
+                  "text": "Järjestö voi alkaa rakentaa perustoimintaansa tuetun osallistumisen varaan ja korvata palkattua työtä."
+                },
+                "balance": "Valta: järjestö määrittelee tehtäviä ja sopivuutta, joten tehtävien hyväksyntä ja palkkatyön suojaraja tarvitsevat läpinäkyvät vastapainot."
+              },
+              {
+                "name": "Julkinen valta",
+                "first": {
+                  "title": "Hyöty: käyttämätön kapasiteetti kohtaa tarpeen",
+                  "text": "Sosiaaliturvan rinnalle syntyy väylä, jossa ihmisten toimintakyky voi tuottaa yhteiskunnallista hyötyä."
+                },
+                "second": {
+                  "title": "Kustannus: lisä, ohjaus ja infrastruktuuri",
+                  "text": "Osallistumislisä, järjestöjen ohjauskorvaus, rekisteri ja valvonta vaativat rahoitusta."
+                },
+                "third": {
+                  "title": "Riski: syntyy uusi hallinnollinen kerros",
+                  "text": "Hyvä tarkoitus voi tuottaa uuden hyväksyntä-, mittaus- ja raportointijärjestelmän, joka alkaa kuluttaa omaa hyötyään."
+                },
+                "balance": "Valta: julkinen valta päättää hyväksymissäännöistä ja rahoituksesta. Siksi sen pitäisi määritellä suojarajat tarkasti mutta itse kansalaistoiminnan sisältö mahdollisimman väljästi."
+              },
+              {
+                "name": "Yhteiskunta",
+                "first": {
+                  "title": "Hyöty: enemmän yhteistä toimintaa",
+                  "text": "Yksinäisyyttä, osattomuutta ja paikallisia tarpeita voidaan kohdata ennen kuin ne muuttuvat raskaammiksi ongelmiksi."
+                },
+                "second": {
+                  "title": "Kustannus: yhteinen rahoitus ja huomio",
+                  "text": "Malliin sijoitettu euro ja hallinnollinen kapasiteetti ovat pois jostakin muusta käytöstä."
+                },
+                "third": {
+                  "title": "Riski: työn arvon raja hämärtyy",
+                  "text": "Yhteiskunnallisesti arvokkaan tekemisen tunnistaminen ei saa muuttua perusteeksi jättää välttämätöntä työtä palkatta."
+                },
+                "balance": "Valta: ratkaiseva kysymys on, kuka saa määritellä yhteiskunnallisesti arvokkaan tehtävän ja kuinka avoimena tämä määrittely säilyy uusille toimijoille."
+              }
+            ]
+          },
+          {
+            "type": "intervention",
+            "eyebrow": "Stressitesti",
+            "title": "Millä neljällä tavalla hyvä malli voi kääntyä itseään vastaan?",
+            "intro": "Valitse epäonnistumisreitti. Jokainen alkaa pieneltä näyttävästä muutoksesta, joka voi vähitellen muuttaa koko mallin logiikan. Stressitesti pakottaa arvioimaan järjestelmää myös silloin, kun alkuperäinen tavoite on hyvä.",
+            "note": "Epäonnistumisreitit ovat ennakollisia varoitusmekanismeja: niitä pitäisi seurata jo kokeiluvaiheessa.",
+            "options": [
+              {
+                "name": "Pakko",
+                "first": {
+                  "title": "Kannustin muuttuu ehdoksi",
+                  "text": "Osallistumislisän rinnalle alkaa syntyä seuraamuksia osallistumatta jättämisestä."
+                },
+                "second": {
+                  "title": "Valinnanvapaus kapenee",
+                  "text": "Ihminen osallistuu turvatakseen toimeentulonsa eikä siksi, että tehtävä sopii hänen tilanteeseensa."
+                },
+                "third": {
+                  "title": "Osallistumisoikeudesta tulee työvelvollisuus",
+                  "text": "Mallin positiivinen takaisinkytkentä vaihtuu kontrollin ja suoritteen logiikaksi."
+                },
+                "balance": "Varoitusraja: perusturvan vähimmäissuoja ja todellinen oikeus kieltäytyä on pystyttävä erottamaan osallistumisen kannustimesta."
+              },
+              {
+                "name": "Korvaaminen",
+                "first": {
+                  "title": "Tuettu tehtävä alkaa hoitaa pysyvää tarvetta",
+                  "text": "Osallistujan työpanos muuttuu organisaation normaalin toiminnan kannalta välttämättömäksi."
+                },
+                "second": {
+                  "title": "Palkkaamisen tarve vähenee",
+                  "text": "Sama työ voidaan toteuttaa osallistumiskorvauksella tai vapaaehtoisvoimin."
+                },
+                "third": {
+                  "title": "Kansalaistoiminnasta tulee halvemman työn järjestelmä",
+                  "text": "Järjestöjen toimintakyky vahvistuu näennäisesti palkkatyön ja työntekijän suojan kustannuksella."
+                },
+                "balance": "Varoitusraja: jos tehtävän poistuminen synnyttäisi normaalin rekrytointitarpeen, tehtävä kuuluu todennäköisemmin palkkatyön piiriin."
+              },
+              {
+                "name": "Hallinnollistuminen",
+                "first": {
+                  "title": "Väärinkäytöksiä torjutaan uusilla säännöillä",
+                  "text": "Hyväksyntään lisätään raportointia, luokituksia ja valvontaa."
+                },
+                "second": {
+                  "title": "Järjestöjen ohjausresurssi siirtyy hallintoon",
+                  "text": "Pienet toimijat käyttävät yhä enemmän aikaa järjestelmän vaatimuksiin itse toiminnan sijasta."
+                },
+                "third": {
+                  "title": "Osallistumisen mahdollistamiseen syntyy uusi siilo",
+                  "text": "Järjestelmä alkaa ylläpitää omaa koordinointiaan enemmän kuin alkuperäistä kansalaistoimintaa."
+                },
+                "balance": "Varoitusraja: jokaisen uuden kontrollin pitäisi joko korvata vanhaa sääntöä tai osoittaa, että sen ehkäisemä riski on hallinnollista kustannusta suurempi."
+              },
+              {
+                "name": "Valikoituminen",
+                "first": {
+                  "title": "Toimintakykyisimmät löytävät parhaat tehtävät",
+                  "text": "Verkostot, digitaidot ja itsevarmuus helpottavat kiinnostaviin osallistumispaikkoihin pääsyä."
+                },
+                "second": {
+                  "title": "Hyödyt alkavat kasautua samoille ihmisille",
+                  "text": "Parhaat tehtävät tuottavat lisää osaamista, suosituksia ja verkostoja."
+                },
+                "third": {
+                  "title": "Osallistumismalli alkaa vahvistaa lähtöeroja",
+                  "text": "Heikoimmassa asemassa oleville jäävät vähiten kehittävät tehtävät tai ei tehtävää lainkaan."
+                },
+                "balance": "Varoitusraja: onnistumista pitää mitata myös sillä, miten osallistumismahdollisuudet ja niiden laatu jakautuvat, ei vain osallistujamäärällä."
+              }
+            ]
+          }
+        ]
       }
     }
   ]
