@@ -22,12 +22,12 @@ for (const article of articles) {
   if (!slug) continue;
 
   const title = escapeHtml(article.title || slug);
-  const description = escapeHtml(article.subtitle || '');
+  const description = escapeHtml(article.ingress || article.subtitle || '');
   const alt = escapeHtml(article.imageAlt || article.title || 'Artikkelin kuva');
   const imageName = article.ogImage || article.image || '';
   const canonical = `${SITE}/kirjoitukset/${encodeURIComponent(slug)}/`;
   const image = imageName ? `${SITE}/images/${String(imageName).replace(/^\/+/, '')}` : '';
-  const target = `/artikkeli.html?id=${encodeURIComponent(slug)}`;
+  const target = `/reader.html?id=${encodeURIComponent(slug)}`;
 
   const imageMeta = image ? `\n<meta property="og:image" content="${escapeHtml(image)}">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta property="og:image:alt" content="${alt}">\n<meta name="twitter:image" content="${escapeHtml(image)}">` : '';
 
