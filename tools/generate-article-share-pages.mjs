@@ -19,11 +19,20 @@ if (!Array.isArray(articles)) throw new Error('kirjoitukset-taulukko puuttuu');
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
 
-// Generated share pages are flat: kirjoitukset/<slug>.html.
-// Remove only previously generated flat HTML files; other files/directories are left untouched.
+const slugs = new Set(
+  articles
+    .map(article => article.slug || article.id)
+    .filter(Boolean)
+);
+
+// Keep the generated share structure flat: kirjoitukset/<slug>.html.
+// Remove old generated flat files and legacy kirjoitukset/<slug>/index.html directories.
 for (const entry of fs.readdirSync(OUT_DIR, { withFileTypes: true })) {
+  const fullPath = path.join(OUT_DIR, entry.name);
   if (entry.isFile() && entry.name.endsWith('.html')) {
-    fs.rmSync(path.join(OUT_DIR, entry.name));
+    fs.rmSync(fullPath);
+  } else if (entry.isDirectory() && slugs.has(entry.name)) {
+    fs.rmSync(fullPath, { recursive: true, force: true });
   }
 }
 
