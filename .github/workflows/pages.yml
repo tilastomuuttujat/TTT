@@ -23,6 +23,164 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Add participation model article once
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const file = 'kirjoitukset.json';
+          const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const articles = Array.isArray(data) ? data : data.kirjoitukset;
+          const id = 'kansalaisyhteiskunnan-toimintakyky';
+          if (!articles.some(a => (a.slug || a.id) === id)) {
+            articles.push({
+              id,
+              slug: id,
+              title: 'Kansalaisyhteiskunnan toimintakykyä vahvistava osallistumismalli',
+              titleParts: ['Kansalaisyhteiskunnan toimintakykyä', 'vahvistava osallistumismalli'],
+              subtitle: 'Voisiko sosiaaliturva, vapaaehtoinen osallistuminen ja järjestöjen toimintakyky muodostaa uuden sillan toimeentulon turvan ja yhteiskunnallisesti arvokkaan tekemisen välille?',
+              ingress: 'Järjestökenttään kohdistuvat leikkaukset heikentävät toimintaa juuri aikana, jolloin yksinäisyys, osattomuus, pitkäaikaistyöttömyys ja palvelujen kuormitus lisäävät kansalaisyhteiskunnan tarvetta. Artikkeli hahmottelee osallistumismallia, jossa perusturva säilyy oikeutena, osallistuminen on vapaaehtoista ja yhteiskunnallisesti arvokas tekeminen voi vahvistaa sekä ihmisen että järjestöjen toimintakykyä ilman, että palkkatyötä korvataan ilmaisella työllä.',
+              tags: ['Kansalaisyhteiskunta', 'Sosiaaliturva', 'Järjestöt'],
+              readingTime: '24 MIN',
+              image: 'kansalaisyhteiskunnan-toimintakyky.png',
+              imageAlt: 'Pystysuuntainen infografiikka kansalaisyhteiskunnan toimintakykyä vahvistavasta osallistumismallista',
+              imageCaption: 'Osallistumismallissa perusturva turvaa toimeentulon, osallistuminen avaa mahdollisuuden yhteiskunnallisesti arvokkaaseen tekemiseen ja toiminta voi tuottaa osaamista, verkostoja sekä uusia siirtymiä koulutukseen, työhön ja muuhun osallisuuteen.',
+              ogImage: 'kansalaisyhteiskunnan-toimintakyky-og.png',
+              intro: [
+                'Suomalainen sosiaaliturva ja kansalaisyhteiskunta ovat pitkään kehittyneet rinnakkain mutta eri logiikoilla. Sosiaaliturvan tehtävänä on turvata toimeentulo silloin, kun työmarkkinat, terveys tai elämäntilanne eivät mahdollista riittävää ansiotuloa. Järjestöjen tehtävänä taas on ollut auttaa, organisoida, edustaa, rakentaa yhteisöjä ja tuottaa toimintaa sinne, missä julkinen järjestelmä tai markkinat eivät yksin riitä.',
+                'Kun julkista taloutta sopeutetaan, nämä kaksi järjestelmää voivat ajautua ristiriitaiseen tilanteeseen. Sosiaaliturvaa maksetaan ihmisille, joiden mahdollisuudet osallistua työelämään ovat rajalliset, samalla kun järjestöiltä leikataan resursseja toimintaan, jossa juuri heidän osaamiselleen, ajalleen ja kokemukselleen voisi olla käyttöä. Yhteiskunta voi tällöin yhtä aikaa rahoittaa toimettomuutta ja leikata ympäristöä, jossa mielekäs osallistuminen olisi mahdollista.',
+                'Tästä jännitteestä syntyy kysymys: voisiko osa sosiaaliturvan vastikkeellisuudesta rakentua uudella tavalla niin, ettei tavoitteena olisi pakottaa ihmistä tekemään ilmaista työtä, vaan vahvistaa kansalaisyhteiskunnan toimintakykyä ja samalla ihmisen omaa toimintakykyä? Tällöin vastikkeellisuuden sijaan olisi ehkä osuvampaa puhua osallistumisoikeudesta ja osallistumislisästä.',
+                'Mallin ratkaiseva lähtökohta on rajan vetäminen turvan, osallistumisen ja työn välille. Perusturvan tulee säilyä toimeentulon vähimmäissuojana. Vapaaehtoisesta yhteiskunnallisesta osallistumisesta voidaan maksaa pieni lisäkorvaus. Kun tehtävä muuttuu säännölliseksi, vaativaksi ja organisaation toiminnalle välttämättömäksi työksi, sen tulee muuttua palkkatyöksi.'
+              ],
+              sections: [
+                {
+                  id: 'kaksi-jarjestelmaa-yksi-aukko',
+                  title: 'Kaksi järjestelmää ja niiden väliin jäävä aukko',
+                  paragraphs: [
+                    'Työmarkkinoiden ulkopuolella oleminen kuvataan usein kaksijakoisesti. Ihminen on joko työssä tai ei ole työssä. Tämä jako sopii hallinnolliseen tilastointiin, mutta se kuvaa huonosti yhteiskunnallisen toiminnan todellisuutta. Ihminen voi hoitaa läheistään, auttaa naapuria, toimia vertaistukena, järjestää harrastuksia, ylläpitää yhdistystä, tehdä ympäristötyötä tai osallistua paikalliseen yhteisöön ilman, että toiminta näkyy palkkatyönä.',
+                    'Samaan aikaan monet järjestöt toimivat alueilla, joilla yhteiskunnallinen hyöty on suuri mutta markkina-arvo pieni. Yksinäisen vanhuksen seurana oleminen, digituki, yhteisöllinen ruoka-apu, vertaistoiminta tai lähiluonnon hoitaminen voivat ehkäistä paljon kalliimpia ongelmia. Niiden tuottamaa arvoa ei kuitenkaan ole helppo muuttaa maksukykyiseksi kysynnäksi.',
+                    'Kun järjestöjen rahoitus vähenee, ensimmäisenä eivät välttämättä katoa hallinnon rakenteet vaan juuri nämä matalan kynnyksen toiminnan muodot. Samalla työttömien, osatyökykyisten ja muiden työelämän ulkopuolella olevien joukossa on ihmisiä, joilla olisi aikaa, kokemusta ja osaamista mutta ei sopivaa väylää käyttää niitä.',
+                    'Osallistumismalli yrittäisi rakentaa sillan tämän aukon yli. Se ei tekisi sosiaaliturvan saajasta järjestön työntekijää eikä järjestöstä työvoimapalvelua. Se loisi kolmannen tilan, jossa yhteiskunnallisesti hyödyllinen osallistuminen tunnistettaisiin omaksi toimintamuodokseen.'
+                  ]
+                },
+                {
+                  id: 'perusturva-on-oikeus',
+                  title: 'Ensimmäinen periaate: perusturva on oikeus',
+                  paragraphs: [
+                    'Mallin uskottavuus riippuu siitä, ettei perusturvaa muuteta palkkioksi tottelevaisuudesta. Vähimmäistoimeentulon tehtävä on estää köyhyys, turvata ihmisarvoinen elämä ja säilyttää yksilön kyky tehdä valintoja. Jos perusturva voidaan menettää kokonaan siksi, ettei ihminen osallistu tiettyyn toimintaan, osallistumisesta tulee helposti pakkotyön kaltainen velvoite.',
+                    'Siksi perusturvan ja osallistumisen välillä pitäisi olla selvä ero. Perusturva turvaa toimeentulon. Osallistuminen voi tuoda sen päälle osallistumislisän, kulukorvauksen tai muun kannustimen. Mallin logiikka olisi tällöin myönteinen: osallistumisesta seuraa jotakin lisää, ei osallistumatta jättämisestä automaattisesti jotakin pois.',
+                    'Tämä muuttaa myös vallan asetelmaa. Ihminen ei saavu järjestöön etuuskäsittelijän lähettämänä työvelvollisena vaan henkilönä, jolla on oikeus valita itselleen sopiva yhteiskunnallinen tehtävä. Järjestön puolestaan täytyy tarjota niin mielekästä toimintaa, että siihen halutaan osallistua.'
+                  ],
+                  quote: 'Turvan pitäisi tehdä osallistuminen mahdolliseksi, ei osallistumisen tehdä turvasta ehdollista.'
+                },
+                {
+                  id: 'oikeus-osallistua',
+                  title: 'Toinen periaate: oikeus osallistua',
+                  paragraphs: [
+                    'Yhteiskunnallinen osallistuminen jakautuu epätasaisesti. Osa ihmisistä löytää helposti yhdistyksiä, vapaaehtoistehtäviä, verkostoja ja vaikuttamisen kanavia. Toiset jäävät niiden ulkopuolelle, vaikka kiinnostusta olisi. Esteenä voivat olla raha, liikkuminen, terveys, digitaidot, epävarmuus, kieli tai yksinkertaisesti se, ettei kukaan pyydä mukaan.',
+                    'Osallistumismalli tekisi osallistumismahdollisuudesta järjestelmällisemmän oikeuden. Ihmiselle voitaisiin tarjota alueellinen toimintaverkosto, josta hän näkisi avoimet tehtävät, niiden vaativuuden, ajankäytön ja mahdollisen tuen. Valittavana voisi olla järjestöjen lisäksi esimerkiksi kunnan, seurakuntien, kyläyhteisöjen, kulttuuritoimijoiden tai muiden yleishyödyllisten yhteisöjen tehtäviä, jos samat pelisäännöt täyttyvät.',
+                    'Oleellista olisi, että valinta säilyy aidosti henkilöllä. Osallistumisesta ei pitäisi rakentaa yhtä standardoitua polkua, koska toimintakyky, elämäntilanne ja kiinnostuksen kohteet vaihtelevat. Yhdelle sopii kaksi tuntia viikossa etätukea, toiselle yksi kokonainen päivä yhteisötoimintaa ja kolmannelle hetkellisesti ei mikään.'
+                  ]
+                },
+                {
+                  id: 'yhteiskunnallinen-tehtava',
+                  title: 'Kolmas periaate: yhteiskunnallinen tehtävä',
+                  paragraphs: [
+                    'Kaikki tekeminen ei tarvitse julkista tukijärjestelmää. Osallistumismalliin hyväksyttävän tehtävän pitäisi tuottaa tunnistettavaa yhteiskunnallista hyötyä, jota markkinat tai julkiset palvelut eivät riittävästi tuota. Tämä erottaa mallin tavallisesta harrastamisesta ja samalla ehkäisee sitä, ettei siitä muodostu yrityksille tai julkiselle sektorille ilmaisen työvoiman kanavaa.',
+                    'Hyväksyttävä tehtävä voisi liittyä esimerkiksi yksinäisyyden vähentämiseen, digitukeen, vertaistoimintaan, harrastusten mahdollistamiseen, luonto- ja ympäristötyöhön, ruoka-apuun, tapahtumiin, kulttuuriin tai paikallisen yhteisön ylläpitämiseen. Yhteistä olisi se, että toiminnan arvo syntyy ensisijaisesti yhteiskunnallisesta hyödystä eikä organisaation liiketaloudellisesta tuloksesta.',
+                    'Tehtävien hyväksyntä voisi tapahtua kevyen rekisterin kautta. Järjestö kuvaisi tehtävän, sen tavoitteen, ohjauksen ja sen, miksi tehtävä ei korvaa palkattua työtä. Samalla syntyisi avoin tietopohja siitä, millaista yhteiskunnallista tekemistä eri alueilla tarvitaan.'
+                  ]
+                },
+                {
+                  id: 'osallistumislisa-ja-ohjauskorvaus',
+                  title: 'Neljäs periaate: osallistumislisä ja ohjauskorvaus',
+                  paragraphs: [
+                    'Jos yhteiskunta pitää osallistumista arvokkaana, tämän pitäisi näkyä myös taloudellisesti. Osallistujalle maksettava pieni osallistumislisä tunnustaisi sen, että toiminnasta syntyy kustannuksia ja että hänen ajallaan on arvoa. Lisä voisi olla esimerkiksi päiväkohtainen korvaus, joka ei pienennä perusturvaa.',
+                    'Myös järjestölle syntyy kustannuksia. Vapaaehtoisen vastaanottaminen, perehdyttäminen, vakuutukset, tilat, välineet ja ohjaus vaativat resursseja. Jos järjestölle ei korvata mitään, osallistumismalli voi paradoksaalisesti lisätä jo valmiiksi kuormitetun järjestön työtä. Siksi järjestö voisi saada pienen ohjauskorvauksen toteutuneista osallistumispäivistä.',
+                    'Tällöin osa julkisesta rahoituksesta alkaisi seurata toteutunutta toimintaa. Perinteisessä mallissa valtio myöntää avustuksen organisaatiolle etukäteen. Uudessa mallissa osa rahoituksesta kulkisi osallistujan ja toteutuneen yhteiskunnallisen tehtävän mukana. Tämä ei korvaisi yleisavustuksia, mutta voisi täydentää niitä erityisesti pienille paikallisille toimijoille.'
+                  ],
+                  quote: 'Raha ei seuraisi vain organisaatiota. Osa siitä seuraisi ihmistä ja toteutunutta yhteiskunnallista toimintaa.'
+                },
+                {
+                  id: 'jarjestoleikkausten-kompensaatio',
+                  title: 'Voiko tällä kompensoida järjestöleikkauksia?',
+                  paragraphs: [
+                    'Osallistumismalli voisi kompensoida osan järjestökentän menettämästä toimintakyvystä, mutta se ei voi korvata leikattua rahoitusta yksi yhteen. Järjestö tarvitsee edelleen palkattuja ammattilaisia, hallintoa, tiloja, pitkäjänteistä suunnittelua ja osaamista. Vapaaehtoiset eivät voi kantaa vastuuta tehtävistä, joihin liittyy juridista, ammatillista tai jatkuvaa vastuuta.',
+                    'Mallin vahvin vaikutus olisi siellä, missä rahoitusleikkaus on vähentänyt toimintaa mutta ei poistanut sen tarvetta. Pieni yhdistys voisi esimerkiksi pitää kohtaamispaikan avoinna useammin, laajentaa vertaisryhmää tai järjestää tapahtumia, jos sillä olisi enemmän osallistujia ja pieni korvaus heidän ohjaamisestaan.',
+                    'Kompensaatio syntyisi siis ennen kaikkea toiminnan määrän, paikallisen läsnäolon ja yhteisöllisen kapasiteetin kautta. Se olisi huono peruste leikata järjestöavustuksia lisää. Parempi tulkinta on, että osallistumismalli rakentaisi järjestöille uuden rahoitus- ja toimintakerroksen nykyisten avustusten rinnalle.'
+                  ]
+                },
+                {
+                  id: 'ei-korvaa-palkkatyota',
+                  title: 'Tärkein suojamekanismi: osallistuminen ei saa korvata palkkatyötä',
+                  paragraphs: [
+                    'Mallin suurin riski on ilmeinen. Jos järjestö voi korvata palkatun työntekijän sosiaaliturvalla elävällä osallistujalla, julkinen valta alkaa käytännössä tukea työpaikkojen muuttamista palkattomaksi työksi. Sama riski koskee kuntia ja muita julkisia toimijoita.',
+                    'Raja voidaan tehdä näkyväksi tehtävän ominaisuuksien avulla. Jos työ on välttämätöntä organisaation jatkuvalle toiminnalle, siihen liittyy määrätty työaika, työnjohto, tulosvastuu tai ammattipätevyys, sen pitäisi lähtökohtaisesti olla palkkatyötä. Osallistumistehtävän pitäisi olla täydentävä, vapaaehtoinen ja sellainen, jonka puuttuminen ei merkitse palkatun henkilöstön normaalien tehtävien siirtämistä osallistujalle.',
+                    'Lisäksi voitaisiin käyttää ajallista rajaa. Jos sama henkilö tekee pitkään saman tehtävän samalla tuntimäärällä ja vastuut kasvavat, järjestelmän pitäisi tunnistaa siirtymä. Tällöin vaihtoehtona olisi palkkatyö, palkkatuettu työ, koulutus tai tehtävän muuttaminen.'
+                  ],
+                  quote: 'Mitä enemmän tehtävä muistuttaa tavallista työtä, sitä enemmän sen pitää muuttua tavalliseksi palkkatyöksi.'
+                },
+                {
+                  id: 'toimintakyky-ei-vain-tyollistyminen',
+                  title: 'Tavoitteena toimintakyky, ei vain nopea työllistyminen',
+                  paragraphs: [
+                    'Työllistyminen olisi monelle osallistujalle tärkeä tavoite, mutta mallin onnistumista ei pitäisi mitata vain sillä, kuinka moni siirtyy nopeasti avoimille työmarkkinoille. Osa ihmisistä on elämäntilanteessa, jossa täysi työkyky ei ole realistinen lyhyen ajan tavoite. Silti heidän osallistumisensa voi olla merkityksellistä sekä heille itselleen että muille.',
+                    'Osallistuminen voi rakentaa rytmiä, sosiaalisia suhteita, itsetuntoa, osaamista ja kokemusta omasta tarpeellisuudesta. Nämä ovat toimintakyvyn osia, jotka voivat myöhemmin helpottaa koulutukseen tai työhön siirtymistä mutta joilla on arvo myös ilman sitä.',
+                    'Tällainen näkökulma siirtää sosiaalipolitiikan mittaria hieman. Kysymys ei ole vain siitä, kuinka nopeasti etuusmeno poistuu, vaan siitä, kasvaako ihmisen kyky osallistua yhteiskuntaan ja väheneekö samalla muiden korjaavien palvelujen tarve.'
+                  ]
+                },
+                {
+                  id: 'jarjestot-toimintakykytalouden-infrastruktuurina',
+                  title: 'Järjestöt toimintakykytalouden infrastruktuurina',
+                  paragraphs: [
+                    'Järjestöjen erityinen vahvuus on siinä, että ne pystyvät organisoimaan toimintaa alueilla, joilla rahallinen tuotto ei kerro yhteiskunnallisesta arvosta. Ne yhdistävät vapaaehtoisuutta, kokemustietoa, paikallisia verkostoja ja ammatillista osaamista tavalla, jota julkinen hallinto tai markkinat eivät helposti jäljittele.',
+                    'Osallistumismallissa järjestökenttä voisi muodostaa toimintakykytalouden infrastruktuurin. Sen tehtävänä ei olisi säilyttää ihmisiä työmarkkinoiden ulkopuolisessa rinnakkaisjärjestelmässä, vaan tarjota erilaisia portaita osallistumiseen. Joku aloittaa kahdesta tunnista viikossa, toinen ottaa vastuullisemman vapaaehtoistehtävän, kolmas siirtyy koulutukseen ja neljäs löytää järjestöstä palkkatyön.',
+                    'Tämä tekee toimintakyvystä yhteiskunnallisen investoinnin kohteen. Sen sijaan että rahoitetaan vain lopputulosta – esimerkiksi työllistymistä – rahoitetaan myös niitä välivaiheita, joiden kautta ihminen pystyy ylipäätään rakentamaan valmiuksia seuraavaan askelmaan.'
+                  ]
+                },
+                {
+                  id: 'raha-seuraa-toimintaa',
+                  title: 'Rahoitusmalli: raha seuraa toimintaa',
+                  paragraphs: [
+                    'Osallistumismallin rahoitus voisi muodostua kolmesta osasta. Perusturva jatkuu ennallaan. Osallistujalle maksetaan pieni osallistumislisä hyväksytystä toiminnasta. Toimintaa järjestävä yhteisö saa ohjauskorvauksen toteutuneesta osallistumisesta.',
+                    'Rahoituksen etuna olisi keveys. Pienen paikallisyhdistyksen ei tarvitsisi rakentaa laajaa hanketta saadakseen muutaman tuhannen euron toimintaresurssin, jos se kykenee tarjoamaan aidosti hyödyllisiä tehtäviä ja ohjaamaan osallistujia. Samalla rahoitus jakautuisi osittain sen mukaan, missä ihmiset todella haluavat toimia.',
+                    'Täysin kysyntäperusteiseksi järjestelmä ei kuitenkaan saisi muuttua. Vaikeimpien kohderyhmien kanssa työskentelevä järjestö voi tehdä erittäin arvokasta työtä pienillä osallistujamäärillä. Siksi osallistumiskorvaus olisi yksi rahoituskanava perusrahoituksen, lahjoitusten, jäsenmaksujen ja muiden avustusten rinnalla.'
+                  ]
+                },
+                {
+                  id: 'valta-ja-valinnanvapaus',
+                  title: 'Kuka saa määritellä hyödyllisen toiminnan?',
+                  paragraphs: [
+                    'Kun julkinen valta alkaa maksaa yhteiskunnallisesta osallistumisesta, syntyy väistämättä kysymys vallasta. Kuka päättää, mikä toiminta on niin arvokasta, että siitä voidaan maksaa osallistumislisää? Jos hyväksyntä keskittyy liian tiukasti hallinnolle, kansalaisyhteiskunnan omaehtoisuus voi kaventua.',
+                    'Mallin pitäisi siksi käyttää mahdollisimman avointa ja yleistä kriteeristöä. Toiminnan tulisi olla yleishyödyllistä, laillista, turvallista ja palkkatyötä täydentävää. Sen sijaan valtion ei pitäisi määritellä yksityiskohtaisesti, millaiset kansalaisaloitteet, kulttuurimuodot tai paikalliset yhteisöt ovat toivottavia.',
+                    'Läpinäkyvä rekisteri voisi tehdä näkyväksi sekä hyväksytyt toimijat että tehtävät. Samalla voitaisiin seurata, kasaantuuko rahoitus suurille järjestöille vai avaako malli aidosti tilaa myös pienille ja uusille toimijoille.'
+                  ]
+                },
+                {
+                  id: 'mittarit',
+                  title: 'Mitä pitäisi mitata?',
+                  paragraphs: [
+                    'Jos mallia mitataan vain osallistumispäivillä, järjestelmä alkaa helposti optimoida osallistumispäiviä. Siksi mittareiden pitäisi kuvata myös osallistumisen laatua ja vaikutuksia. Olennaisia kysymyksiä ovat esimerkiksi se, kokeeko osallistuja toimintakykynsä vahvistuneen, syntyykö uusia sosiaalisia suhteita, lisääntyykö osaaminen ja pystyykö järjestö tuottamaan sellaista toimintaa, joka muuten jäisi toteutumatta.',
+                    'Pitkällä aikavälillä voidaan tarkastella myös siirtymiä koulutukseen ja työhön, palvelujen käytön muutoksia, yksinäisyyttä ja paikallisen yhteisön toimintakykyä. Vaikutuksia ei kuitenkaan pidä luvata liian yksinkertaisina säästöinä, koska yhteiskunnalliset vaikutusketjut ovat hitaita ja monet tekijät vaikuttavat samaan aikaan.',
+                    'Hyvä arviointi olisi kaksisuuntaista. Se kysyisi sekä mitä osallistujalle tapahtuu että mitä yhteisölle tapahtuu. Jos yksilön toimintakyky kasvaa mutta järjestö uupuu ohjaukseen, malli ei toimi. Jos järjestö vahvistuu mutta osallistuja jää pysyvästi ilmaisen työn tekijäksi, malli ei myöskään toimi.'
+                  ]
+                },
+                {
+                  id: 'uusi-sopimus',
+                  title: 'Kohti uutta sopimusta turvan ja osallistumisen välillä',
+                  paragraphs: [
+                    'Hyvinvointivaltion alkuperäinen ratkaisu oli erottaa toimeentulon turva markkinoiden hetkellisestä kysynnästä. Se oli suuri yhteiskunnallinen saavutus. Seuraava kysymys voi olla, pystymmekö erottamaan myös yhteiskunnallisesti arvokkaan tekemisen siitä, syntyykö tekemiselle markkinoilla palkallinen työpaikka.',
+                    'Tämä ei tarkoita työn merkityksen vähättelyä. Päinvastoin selvä raja palkkatyön ja osallistumisen välillä suojaa työmarkkinoita. Samalla se tunnustaa, että yhteiskunnassa syntyy valtava määrä arvoa myös alueilla, joilla maksajaa ei ole tai joissa maksukyky on heikko.',
+                    'Kansalaisyhteiskunnan toimintakykyä vahvistava osallistumismalli voisi olla yksi tapa yhdistää kolme tavoitetta, jotka nykyisin käsitellään erillään: sosiaaliturvan tarkoitus turvata ihmisarvoinen toimeentulo, järjestöjen tarve säilyttää toimintakykynsä ja ihmisten tarve kokea olevansa osa yhteistä yhteiskuntaa.'
+                  ],
+                  quote: 'Turvasta toimintaan – yhdessä rakennetaan hyvinvointia.',
+                  closing: true
+                }
+              ]
+            });
+            fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n', 'utf8');
+          }
+          NODE
+
       - name: Generate article share pages
         run: node tools/generate-article-share-pages.mjs
 
@@ -42,7 +200,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add kirjoitukset/*.html artikkeli.html
+          git add kirjoitukset.json kirjoitukset/*.html artikkeli.html
           git add -u kirjoitukset
           if ! git diff --cached --quiet; then
             git commit -m "Update generated article share pages [skip ci]"
