@@ -22,20 +22,31 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Generate article share pages
         run: node tools/generate-article-share-pages.mjs
 
-      - name: Persist generated share pages
+      - name: Fix copied article share URLs
         run: |
-          if git status --short -- kirjoitukset | grep -q .; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add -A kirjoitukset
+          node - <<'NODE'
+          const fs = require('fs');
+          const file = 'artikkeli.html';
+          let s = fs.readFileSync(file, 'utf8');
+          const before = s;
+          s = s.replace(/\/kirjoitukset\/\$\{encodeURIComponent\(slug\)\}\//g, '/kirjoitukset/${encodeURIComponent(slug)}.html');
+          s = s.replace(/\/kirjoitukset\/\$\{encodeURIComponent\(article\.slug\|\|article\.id\)\}\//g, '/kirjoitukset/${encodeURIComponent(article.slug||article.id)}.html');
+          if (s !== before) fs.writeFileSync(file, s, 'utf8');
+          NODE
+
+      - name: Persist generated article share pages to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kirjoitukset/*.html artikkeli.html
+          git add -u kirjoitukset
+          if ! git diff --cached --quiet; then
             git commit -m "Update generated article share pages [skip ci]"
-            git push origin HEAD:main
+            git push
           fi
 
       - name: Configure GitHub Pages
