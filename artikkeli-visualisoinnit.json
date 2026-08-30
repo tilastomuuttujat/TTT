@@ -1392,6 +1392,430 @@
           }
         ]
       }
+    },
+    {
+      "id": "liikkumavaran-hyvinvointivaltio",
+      "sections": {
+        "mita-liikkumavara-tarkoittaa": {
+          "type": "compare-chains",
+          "eyebrow": "Liikkumavaratesti",
+          "title": "Mistä yhteiskunnan pitäisi päättää – ja mitä jättää ihmiselle?",
+          "intro": "Selaa elämäntilanteita. Vertailu ei aseta turvaa ja vapautta vastakkain, vaan näyttää kaksi tapaa ohjata samaa tavoitetta.",
+          "variables": [
+            {
+              "name": "Työllistyminen",
+              "question": "Kuka päättää, miten 1 200 euron tuki käytetään työllistymisedellytysten vahvistamiseen?",
+              "left": {
+                "label": "Keino-ohjaus",
+                "title": "Järjestelmä valitsee keinon",
+                "subtitle": "Oikeus tukeen toteutuu hyväksytyn toimenpiteen kautta.",
+                "steps": [
+                  {
+                    "label": "Tavoite",
+                    "title": "Työllistymisen edellytyksiä vahvistetaan"
+                  },
+                  {
+                    "label": "Sääntö",
+                    "title": "Hyväksytyt koulutukset määritellään ennalta"
+                  },
+                  {
+                    "label": "Valvonta",
+                    "title": "Käyttö tarkastetaan menettelyn mukaan"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Sääntö täyttyy – vaikutus voi silti vaihdella"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Tavoiteohjaus",
+                "title": "Ihminen valitsee reitin",
+                "subtitle": "Yhteinen tavoite säilyy, mutta keinossa on liikkumavaraa.",
+                "steps": [
+                  {
+                    "label": "Tavoite",
+                    "title": "Työllistymisen edellytyksiä vahvistetaan"
+                  },
+                  {
+                    "label": "Vaihtoehdot",
+                    "title": "Koulutus, työväline, ajokortti tai muu perusteltu reitti"
+                  },
+                  {
+                    "label": "Valinta",
+                    "title": "Ihminen valitsee tilanteeseensa sopivan keinon"
+                  },
+                  {
+                    "label": "Arviointi",
+                    "title": "Katsotaan, vahvistuiko toimintakyky ja etenikö tavoite"
+                  }
+                ]
+              },
+              "synthesis": "Liikkumavara ei poista julkista ohjausta. Ohjaus siirtyy yksityiskohtaisesta keinosta yhteisesti määriteltyyn tavoitteeseen."
+            },
+            {
+              "name": "Kuntoutuminen",
+              "question": "Pitääkö kuntoutuksen muoto määritellä samalla tavalla kaikille?",
+              "left": {
+                "label": "Palvelulähtöinen",
+                "title": "Valitaan järjestelmän palvelu",
+                "steps": [
+                  {
+                    "label": "Luokka",
+                    "title": "Tilanne sovitetaan palveluluokkaan"
+                  },
+                  {
+                    "label": "Päätös",
+                    "title": "Palvelumuoto määräytyy"
+                  },
+                  {
+                    "label": "Suoritus",
+                    "title": "Osallistuminen dokumentoidaan"
+                  },
+                  {
+                    "label": "Arvio",
+                    "title": "Seurataan palvelun toteutumista"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Toimintakykylähtöinen",
+                "title": "Valitaan tavoitetta tukeva yhdistelmä",
+                "steps": [
+                  {
+                    "label": "Tilanne",
+                    "title": "Tunnistetaan arjen todellinen este"
+                  },
+                  {
+                    "label": "Tavoite",
+                    "title": "Sovitaan tavoiteltu toimintakyky"
+                  },
+                  {
+                    "label": "Reitti",
+                    "title": "Yhdistetään tilanteeseen sopivat keinot"
+                  },
+                  {
+                    "label": "Arvio",
+                    "title": "Seurataan arjessa syntyvää muutosta"
+                  }
+                ]
+              },
+              "synthesis": "Sama oikeus ei välttämättä tarkoita samaa palvelua. Yhdenvertaisuus voi tarkoittaa yhtäläistä oikeutta tavoiteltuun toimintakykyyn."
+            },
+            {
+              "name": "Ikääntyneen arki",
+              "question": "Kumpi on tärkeämpi: palveluvalikon yhdenmukaisuus vai mahdollisuus rakentaa turvallinen arki?",
+              "left": {
+                "label": "Palveluvalikko",
+                "title": "Tarve jaetaan palveluiksi",
+                "steps": [
+                  {
+                    "label": "Arvio",
+                    "title": "Tarpeet luokitellaan"
+                  },
+                  {
+                    "label": "Palvelu",
+                    "title": "Myönnetään valikoimassa oleva palvelu"
+                  },
+                  {
+                    "label": "Tuotanto",
+                    "title": "Palvelu toteutetaan sovitusti"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Suorite syntyy"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Arjen tavoite",
+                "title": "Resurssit kootaan tavoitteen ympärille",
+                "steps": [
+                  {
+                    "label": "Tavoite",
+                    "title": "Turvallinen ja mielekäs arki kotona"
+                  },
+                  {
+                    "label": "Voimavarat",
+                    "title": "Omat kyvyt, läheiset ja palvelut tunnistetaan"
+                  },
+                  {
+                    "label": "Valinta",
+                    "title": "Ratkaisut yhdistetään joustavasti"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Arjen toimintakyky ratkaisee"
+                  }
+                ]
+              },
+              "synthesis": "Liikkumavara tekee palvelusta välineen. Lopputulosta arvioidaan sen mukaan, pystyykö ihminen elämään tavoiteltua arkea."
+            },
+            {
+              "name": "Opiskelu ja osaaminen",
+              "question": "Pitäisikö oppimista ohjata tutkinnon, hyväksytyn kurssin vai syntyvän kyvykkyyden kautta?",
+              "left": {
+                "label": "Ennalta määrätty reitti",
+                "title": "Järjestelmä tunnistaa tutut suoritukset",
+                "steps": [
+                  {
+                    "label": "Kelpoisuus",
+                    "title": "Hyväksytty koulutus määritellään"
+                  },
+                  {
+                    "label": "Osallistuminen",
+                    "title": "Opiskelija seuraa määrättyä reittiä"
+                  },
+                  {
+                    "label": "Todistus",
+                    "title": "Suoritus kirjataan"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Muodollinen pätevyys kasvaa"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Kyvykkyysreitti",
+                "title": "Oppiminen rakennetaan tarpeen ympärille",
+                "steps": [
+                  {
+                    "label": "Tarve",
+                    "title": "Tunnistetaan puuttuva kyvykkyys"
+                  },
+                  {
+                    "label": "Valinta",
+                    "title": "Sopiva oppimistapa valitaan"
+                  },
+                  {
+                    "label": "Näyttö",
+                    "title": "Osaaminen osoitetaan käytännössä"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Kyky toimia vahvistuu"
+                  }
+                ]
+              },
+              "synthesis": "Liikkumavara ei vähennä osaamisen vaatimusta. Se voi erottaa tavoitellun osaamisen siitä, millä yhdellä tavalla se on hankittava."
+            }
+          ]
+        },
+        "luottamus-ei-tarkoita-valvonnan-loppua": {
+          "type": "intervention",
+          "eyebrow": "Sääntöparadoksi",
+          "title": "Mitä tapahtuu, kun kontrollin kohdetta muutetaan?",
+          "intro": "Valitse ohjaustapa. Kolme kertalukua näyttävät, miksi liikkumavara ei ole sama asia kuin sääntöjen poistaminen.",
+          "note": "Havainnollistava mekanismivertailu. Vaikutukset riippuvat toteutuksesta ja elämäntilanteesta.",
+          "options": [
+            {
+              "name": "Keinoa valvotaan",
+              "first": {
+                "title": "Käyttö rajataan",
+                "text": "Hyväksytyt toimenpiteet määritellään tarkasti."
+              },
+              "second": {
+                "title": "Valvonta on suoraviivaista",
+                "text": "Järjestelmä näkee, noudatettiinko sääntöä."
+              },
+              "third": {
+                "title": "Sopivuus voi heikentyä",
+                "text": "Oikea menettely ei takaa oikeaa vaikutusta."
+              },
+              "balance": "Vahva menettelykontrolli · pieni liikkumavara · vaikutuksen vaihtelu jää helposti piiloon."
+            },
+            {
+              "name": "Tavoitetta valvotaan",
+              "first": {
+                "title": "Tulos sovitaan",
+                "text": "Tavoite ja reunaehdot määritellään yhdessä."
+              },
+              "second": {
+                "title": "Keinoja voidaan sovittaa",
+                "text": "Ihminen voi valita tilanteeseensa toimivan reitin."
+              },
+              "third": {
+                "title": "Arviointi vaikeutuu",
+                "text": "Vaikutusta on mitattava pelkän sääntönoudattamisen sijasta."
+              },
+              "balance": "Suurempi liikkumavara vaatii parempaa vaikutusten arviointia ja selkeitä oikeuksia."
+            },
+            {
+              "name": "Ei seurantaa",
+              "first": {
+                "title": "Liikkumavara kasvaa",
+                "text": "Keinoja ei juuri rajata."
+              },
+              "second": {
+                "title": "Hallinto kevenee",
+                "text": "Etukäteinen tarkastus vähenee."
+              },
+              "third": {
+                "title": "Legitimiteettiriski kasvaa",
+                "text": "Ilman tavoitetta ja palautetta väärinkäytöksiä tai epäonnistumisia on vaikea havaita."
+              },
+              "balance": "Liikkumavara ilman palautetta ei ole tavoiteohjausta vaan ohjauksen puuttumista."
+            },
+            {
+              "name": "Liian vähän resursseja",
+              "first": {
+                "title": "Valinta luvataan",
+                "text": "Ihminen saa teoriassa päättää keinosta."
+              },
+              "second": {
+                "title": "Todelliset vaihtoehdot puuttuvat",
+                "text": "Raha, palvelut tai aika eivät riitä."
+              },
+              "third": {
+                "title": "Vapaus muuttuu näennäiseksi",
+                "text": "Vastuu siirtyy ihmiselle ilman vastaavaa toimintakykyä."
+              },
+              "balance": "Liikkumavara toimii vain, jos oikeudet, resurssit ja todelliset vaihtoehdot kulkevat sen mukana."
+            }
+          ]
+        },
+        "miksi-liikkumavara-on-tulevaisuuden-hyvinvointia": {
+          "type": "compare-chains",
+          "eyebrow": "Oma hyvinvointivaltiomallisi",
+          "title": "Vahva turva vai suuri liikkumavara? Väärä kysymys.",
+          "intro": "Selaa neljää mallia. Olennaista on huomata, että yhteisen turvan vahvuus ja henkilökohtainen liikkumavara ovat kaksi eri akselia.",
+          "variables": [
+            {
+              "name": "Palveluvaltio",
+              "question": "Vahva turva + pieni liikkumavara",
+              "left": {
+                "label": "Turva",
+                "title": "Oikeudet ja palvelut ovat vahvoja",
+                "steps": [
+                  {
+                    "label": "Oikeus",
+                    "title": "Yhteiskunta takaa paljon"
+                  },
+                  {
+                    "label": "Resurssi",
+                    "title": "Palvelut ovat käytettävissä"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Liikkumavara",
+                "title": "Reitti määritellään pitkälti järjestelmässä",
+                "steps": [
+                  {
+                    "label": "Keino",
+                    "title": "Hyväksytyt ratkaisut ovat rajattuja"
+                  },
+                  {
+                    "label": "Valinta",
+                    "title": "Ihminen sovittautuu palvelurakenteeseen"
+                  }
+                ]
+              },
+              "synthesis": "Vahva turva ei automaattisesti tarkoita suurta henkilökohtaista toimintavaraa."
+            },
+            {
+              "name": "Liikkumavaravaltio",
+              "question": "Vahva turva + suuri liikkumavara",
+              "left": {
+                "label": "Turva",
+                "title": "Perusoikeudet ja vähimmäistaso ovat vahvoja",
+                "steps": [
+                  {
+                    "label": "Pohja",
+                    "title": "Turvaa ei tarvitse ansaita oikealla valinnalla"
+                  },
+                  {
+                    "label": "Resurssi",
+                    "title": "Todelliset vaihtoehdot mahdollistetaan"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Liikkumavara",
+                "title": "Ihminen voi valita reitin",
+                "steps": [
+                  {
+                    "label": "Tavoite",
+                    "title": "Yhteinen tavoite sovitaan"
+                  },
+                  {
+                    "label": "Keino",
+                    "title": "Ratkaisu voidaan sovittaa elämäntilanteeseen"
+                  }
+                ]
+              },
+              "synthesis": "Tämä on artikkelin ydinyhdistelmä: vahvat yhteiset oikeudet ja suuri vapaus valita keinot."
+            },
+            {
+              "name": "Kontrollivaltio",
+              "question": "Heikko turva + pieni liikkumavara",
+              "left": {
+                "label": "Turva",
+                "title": "Tuki on niukka tai ehdollinen",
+                "steps": [
+                  {
+                    "label": "Ehto",
+                    "title": "Oikeus riippuu tarkasta kelpoisuudesta"
+                  },
+                  {
+                    "label": "Riski",
+                    "title": "Putoamisen seuraukset jäävät ihmiselle"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Liikkumavara",
+                "title": "Silti myös valintoja rajataan",
+                "steps": [
+                  {
+                    "label": "Sääntö",
+                    "title": "Menettelyä valvotaan tarkasti"
+                  },
+                  {
+                    "label": "Tulos",
+                    "title": "Vastuu kasvaa ilman toimintavaraa"
+                  }
+                ]
+              },
+              "synthesis": "Vähäinen turva ja vähäinen liikkumavara voivat yhdistyä: ihmisellä on sekä vähän resursseja että vähän vaihtoehtoja."
+            },
+            {
+              "name": "Omavastuumalli",
+              "question": "Heikko turva + suuri liikkumavara",
+              "left": {
+                "label": "Turva",
+                "title": "Yhteinen vähimmäistaso on ohut",
+                "steps": [
+                  {
+                    "label": "Vastuu",
+                    "title": "Ihminen kantaa suuren osan riskistä"
+                  },
+                  {
+                    "label": "Resurssi",
+                    "title": "Mahdollisuudet riippuvat omista voimavaroista"
+                  }
+                ]
+              },
+              "right": {
+                "label": "Liikkumavara",
+                "title": "Valinnanvapautta on paljon",
+                "steps": [
+                  {
+                    "label": "Markkina",
+                    "title": "Vaihtoehtoja voi olla runsaasti"
+                  },
+                  {
+                    "label": "Ehto",
+                    "title": "Niihin pääsy riippuu maksukyvystä ja asemasta"
+                  }
+                ]
+              },
+              "synthesis": "Valinnanvapaus ilman riittäviä resursseja ei vielä tuota yhdenvertaista liikkumavaraa."
+            }
+          ]
+        }
+      }
     }
   ]
 }
