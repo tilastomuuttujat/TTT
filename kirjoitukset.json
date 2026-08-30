@@ -980,6 +980,197 @@
         }
       ],
       "ingress": "Yhteiskunta ei jaa vain rahaa, vaan myös mahdollisuuksia, riskejä, vastuuta, valtaa ja tulevaisuuden liikkumavaraa. Artikkeli tekee näkyväksi nämä jakamisen säännöt ja kysyy, milloin erilainen jako on perusteltu, milloin se alkaa kasautua rakenteelliseksi eduksi ja voiko hyvä jakologiikka tuottaa yhteiskunnallista tasapainoa."
+    },
+    {
+      "id": "jarjestojen-rooli",
+      "slug": "jarjestojen-rooli",
+      "title": "Järjestöjen rooli yhteiskunnan muutoksessa",
+      "titleParts": [
+        "Järjestöjen rooli",
+        "yhteiskunnan muutoksessa"
+      ],
+      "subtitle": "Kuinka järjestöt ovat eri aikakausina tasanneet eriarvoisuutta – ja mitä tapahtuu, jos järjestäytyminen itsessään alkaa eriytyä?",
+      "ingress": "Järjestöt ovat eri aikoina paikanneet puutteita, järjestäneet ihmisiä, rakentaneet oikeuksia, osallistuneet hyvinvointivaltion toimintaan ja tuottaneet palveluja sekä asiantuntijuutta. Artikkeli kysyy, ovatko ne edelleen eriarvoisuuden tasaajia – vai onko järjestäytymisen kyky itsessään alkanut jakautua epätasaisesti.",
+      "tags": [
+        "Järjestöt",
+        "Eriarvoisuus",
+        "Kansalaisyhteiskunta"
+      ],
+      "readingTime": "26 MIN",
+      "image": "jarjestojen-rooli.png",
+      "imageAlt": "Pystysuuntainen infografiikka järjestöjen roolista eriarvoisuuden tasaajina eri aikakausina 1800-luvulta 2020-luvulle",
+      "imageCaption": "Järjestöjen yhteiskunnallinen tehtävä on muuttunut puutteen paikkaamisesta ihmisten järjestämiseen, oikeuksien rakentamiseen, järjestelmään osallistumiseen sekä palvelujen ja asiantuntijuuden tuottamiseen. Samalla yhä tärkeämmäksi on tullut kysymys siitä, ketä järjestöt todella edustavat.",
+      "ogImage": "jarjestojen-rooli-og.png",
+      "intro": [
+        "Järjestöjen historiaa voi lukea yhtenä kertomuksena siitä, kuinka yhteiskunta on yrittänyt tasata ihmisten välisiä eroja ennen hyvinvointivaltiota, sen rakentamisen aikana ja sen rinnalla. Ensin järjestöt vastasivat puutteisiin, joihin julkinen valta ei kyennyt vastaamaan. Myöhemmin ne järjestivät ihmisiä, nostivat ongelmia politiikan asialistalle, osallistuivat oikeuksien rakentamiseen ja muuttuivat osaksi julkisen järjestelmän kumppanuuksia.",
+        "Tämä historia ei kuitenkaan ole suoraviivainen etenemiskertomus. Jokainen vahvistumisen vaihe on samalla muuttanut järjestöjen asemaa. Vapaaehtoisista kansalaisliikkeistä tuli organisaatioita, organisaatioista ammatillisia toimijoita ja osasta niistä palveluntuottajia, hanketoimijoita sekä hallinnon ja päätöksenteon asiantuntijakumppaneita. Vaikutusvalta kasvoi, mutta samalla kasvoi myös kysymys edustamisesta: ketä järjestöjen ääni todella kantaa?",
+        "Tämän kysymyksen tekee erityisen tärkeäksi se, että järjestäytymiskyky ei jakaudu yhteiskunnassa tasaisesti. Kaikilla ryhmillä ei ole yhtä paljon aikaa, rahaa, osaamista, verkostoja tai institutionaalista pääsyä. Jos järjestöt ovat yksi väylä saada heikko ääni kuuluviin, järjestäytymisen eriarvoisuus voi samalla synnyttää uuden portin vaikutusvaltaan.",
+        "Siksi järjestöjä ei kannata tarkastella vain palveluntuottajina tai edunvalvojina. Ne ovat osa yhteiskunnan jakologiikkaa: ne vaikuttavat siihen, mitkä tarpeet tunnistetaan, kuka pääsee puhumaan niiden puolesta, miten ongelmat nimetään ja millä perusteella resursseja, oikeuksia ja huomiota jaetaan."
+      ],
+      "sections": [
+        {
+          "id": "ennen-hyvinvointivaltiota",
+          "title": "Ennen hyvinvointivaltiota järjestöt paikkasivat puutteita",
+          "paragraphs": [
+            "1800-luvulla julkinen turva oli ohut ja monen ihmisen toimeentulo, terveys, sivistys ja arjen turvallisuus riippuivat perheestä, paikallisyhteisöstä, seurakunnasta tai vapaaehtoisesta avusta. Järjestötoiminta syntyi tähän väliin. Hyväntekeväisyys, raittiusliike, kansansivistystyö, lapsi- ja köyhäinhoito sekä erilaiset yhdistykset vastasivat sellaisiin tarpeisiin, joita julkinen järjestelmä ei vielä kantanut.",
+            "Tässä vaiheessa järjestöjen tasaava vaikutus oli konkreettista ja välitöntä. Ne saattoivat jakaa ruokaa, järjestää suojaa, tarjota opetusta tai auttaa sairaita ja lapsia. Samalla niiden toimintaan liittyi myös aikakauden moraalisia ja hierarkkisia käsityksiä. Auttaminen ei aina tarkoittanut tasavertaista suhdetta, vaan siihen saattoi liittyä ajatus siitä, millainen apua tarvitsevan pitäisi olla.",
+            "Tästä huolimatta järjestötoiminta loi tärkeän välitilan yksityisen hädän ja julkisen vastuun väliin. Kun sama ongelma toistui monen ihmisen kohdalla, siitä saattoi vähitellen tulla yhteiskunnallinen kysymys."
+          ],
+          "quote": "Ensin järjestöt tasoittivat eriarvoisuutta paikkaamalla puutteita, joita julkinen järjestelmä ei vielä kantanut."
+        },
+        {
+          "id": "jarjestaytyminen-teki-yksityisesta-yhteista",
+          "title": "Järjestäytyminen teki yksityisestä ongelmasta yhteisen kysymyksen",
+          "paragraphs": [
+            "1900-luvun alkuun tultaessa järjestöjen tehtävä laajeni avun antamisesta ihmisten järjestämiseen. Työväenliike, ammattiyhdistykset, osuustoiminta, naisjärjestöt, kansanterveys- ja sosiaaliset yhdistykset sekä monet muut liikkeet eivät vain lievittäneet ongelmien seurauksia. Ne muuttivat käsitystä siitä, mistä ongelmat johtuvat ja kenellä on oikeus vaatia muutosta.",
+            "Tämä oli järjestöjen ehkä tärkein historiallinen tasausmekanismi. Yksittäinen työntekijä, pienviljelijä, nainen, vammainen ihminen tai köyhä perhe saattoi olla heikossa neuvotteluasemassa. Järjestäytyminen muutti yksilön kokemuksen kollektiiviseksi ääneksi. Kun tarpeesta tuli jaettu ja nimetty, siitä saattoi tulla myös poliittinen ongelma.",
+            "Eriarvoisuutta ei siis tasattu vain jakamalla resursseja uudelleen. Sitä tasattiin jakamalla mahdollisuutta tulla kuulluksi. Järjestäytymiskyky muutti heikon yksilöllisen aseman kollektiiviseksi neuvotteluvoimaksi."
+          ],
+          "quote": "Järjestöjen historiallinen voima ei ollut vain avussa, vaan kyvyssä muuttaa yksityinen kokemus yhteiseksi vaatimukseksi."
+        },
+        {
+          "id": "hyvinvointivaltion-rakentajat",
+          "title": "Järjestöistä tuli hyvinvointivaltion rakentajia",
+          "paragraphs": [
+            "Sotien jälkeisinä vuosikymmeninä järjestöjen vaatimuksia, osaamista ja toimintamalleja siirtyi osaksi julkista järjestelmää. Sosiaaliturva, terveyspalvelut, koulutus, vammaispolitiikka, mielenterveystyö ja monet muut alueet kehittyivät samalla, kun kansalaisjärjestöt tuottivat tietoa, rakensivat käytäntöjä ja nostivat esiin ryhmiä, joiden tarpeet olivat jääneet marginaaliin.",
+            "Tämä muutti järjestöjen tehtävää. Kun julkinen valta otti vastuulleen yhä suuremman osan hyvinvoinnin perustasta, järjestöjen ei tarvinnut enää yksin paikata puutteita. Ne saattoivat osallistua oikeuksien rakentamiseen, uuden tiedon tuottamiseen ja palvelujen kehittämiseen.",
+            "Samalla syntyi suomalaiselle yhteiskunnalle tyypillinen kumppanuusmalli. Järjestöt eivät olleet vain valtion ulkopuolisia kriitikoita, vaan yhä useammin myös sen yhteistyökumppaneita. Tämä lisäsi vaikutusvaltaa, mutta samalla se muutti järjestöjen suhdetta järjestelmään, jota niiden oli tarkoitus tarkastella myös ulkopuolelta."
+          ],
+          "quote": "Kun puutetta alettiin korjata oikeuksilla, järjestöjen tehtävä muuttui avun antamisesta yhteiskunnan rakentamiseen."
+        },
+        {
+          "id": "institutionalisoituminen",
+          "title": "Institutionalisoituminen toi vaikutusvaltaa ja uuden riippuvuuden",
+          "paragraphs": [
+            "1970-luvulta eteenpäin monet järjestöt ammatillistuivat, kasvoivat ja kytkeytyivät entistä tiiviimmin julkiseen hallintoon. Ne osallistuivat työryhmiin, kuulemisiin, valmisteluun ja palvelujärjestelmien kehittämiseen. Järjestöjen asiantuntijuus vahvistui ja niiden kautta päätöksentekoon tuli kokemustietoa, jota viranomaisilla ei välttämättä muuten ollut.",
+            "Institutionalisoituminen oli monella tavalla tasa-arvoa vahvistava kehitys. Se loi pysyviä kanavia ryhmille, joiden ääni olisi muuten saattanut jäädä heikoksi. Samalla se toi järjestöille resursseja, jatkuvuutta ja kykyä vaikuttaa pitkäjänteisesti.",
+            "Mutta vahvistuminen loi myös uuden jännitteen. Mitä enemmän järjestöstä tuli osa järjestelmää, sitä vaikeammaksi saattoi tulla järjestelmän ulkopuolinen haastaminen. Rahoitus, yhteistyösuhteet, hallinnolliset vaatimukset ja pitkäaikaiset verkostot saattoivat alkaa ohjata sitä, millä tavalla ongelmia sanoitettiin ja millaisia ratkaisuja pidettiin realistisina."
+          ],
+          "quote": "Järjestön vaikutusvalta kasvaa, kun se pääsee järjestelmään. Samalla sen riippuvuus järjestelmästä voi kasvaa."
+        },
+        {
+          "id": "palveluntuottajat-ja-asiantuntijat",
+          "title": "Järjestöistä tuli palveluntuottajia ja asiantuntijoita",
+          "paragraphs": [
+            "2000-luvulla järjestökenttää ovat muokanneet hankerahoitus, kilpailutukset, avustusjärjestelmät, raportointi, arviointi ja ammattimainen vaikuttamistyö. Moni järjestö tuottaa palveluja, koulutusta, tutkimustietoa ja asiantuntijalausuntoja. Järjestöjen rooli on siten sekä käytännöllinen että poliittinen.",
+            "Ammatillistuminen on vahvistanut toiminnan laatua ja tehnyt mahdolliseksi sellaisten palvelujen tuottamisen, joihin vapaaehtoistyö yksin ei riittäisi. Se on myös parantanut kykyä osallistua monimutkaiseen lainvalmisteluun ja hallinnolliseen päätöksentekoon.",
+            "Samalla syntyy helposti resurssikierre. Järjestö, jolla on jo henkilöstöä, taloushallintoa, hankehakemisen osaamista, viestintäkykyä ja päätöksentekoverkostoja, kykenee hakemaan lisää resursseja ja osallistumaan uusiin prosesseihin. Pieni tai vasta syntyvä toimija voi puolestaan jäädä niiden ulkopuolelle juuri siksi, ettei sillä vielä ole näitä valmiuksia."
+          ],
+          "quote": "Ammatillinen kapasiteetti voi tehdä järjestöstä tehokkaan tasaajan – mutta samalla siitä voi tulla pääsylippu vaikutusvaltaan."
+        },
+        {
+          "id": "jarjestaytymisen-eriarvoisuus",
+          "title": "Järjestäytymisen eriarvoisuus on oma eriarvoisuuden lajinsa",
+          "paragraphs": [
+            "Kaikilla yhteiskuntaryhmillä ei ole samanlaisia edellytyksiä organisoitua. Järjestön perustaminen ja ylläpitäminen vaatii aikaa, osaamista, hallintoa, viestintää, vapaaehtoisia, rahoitusta ja usein myös kykyä toimia viranomaisten käyttämällä kielellä. Näiden resurssien jakautuminen vaikuttaa siihen, ketkä pystyvät muodostamaan kestävän organisaation.",
+            "Hyvin toimeentulevalla, koulutetulla ja verkottuneella ryhmällä voi olla huomattavasti paremmat edellytykset rakentaa vaikuttava järjestö kuin ryhmällä, jonka jäsenet kamppailevat toimeentulon, terveyden, kielitaidon tai arjen epävarmuuden kanssa. Juuri ne ihmiset, joiden äänen vahvistamiseen järjestöjä eniten tarvittaisiin, voivat siis olla kaikkein heikoimmassa asemassa järjestäytymisen näkökulmasta.",
+            "Tällöin syntyy edustuksellinen paradoksi. Järjestökenttä voi kokonaisuutena näyttää laajalta ja pluralistiselta, mutta äänen voimakkuus ei silti jakaudu tasaisesti. Vahvimmin organisoituneet eivät välttämättä ole niitä, joilla on suurin tarve tulla kuulluiksi."
+          ],
+          "quote": "Jos järjestäytyminen on pääsyreitti vaikutusvaltaan, myös järjestäytymiskyvyn jakauma on osa eriarvoisuutta."
+        },
+        {
+          "id": "resurssit-osaaminen-verkostot",
+          "title": "Resurssit, osaaminen ja verkostot ratkaisevat enemmän kuin helposti huomataan",
+          "paragraphs": [
+            "Järjestöjen mahdollisuus vaikuttaa ei riipu vain jäsenmäärästä tai asian tärkeydestä. Se riippuu myös kyvystä muotoilla vaatimuksia, tuottaa tietoa, kirjoittaa lausuntoja, ylläpitää suhteita mediaan ja viranomaisiin sekä toimia päätöksenteon aikataulujen ja käytäntöjen mukaan.",
+            "Tämä tekee osaamisesta itsessään jakoresurssin. Hankehakemuksen laatiminen, vaikutusarvioiden lukeminen, taloushallinto, viestintä ja lainvalmisteluun osallistuminen vaativat taitoja, joita kaikilla yhteisöillä ei ole. Jos järjestelmä tarjoaa osallistumisen kanavia mutta niiden käyttäminen edellyttää vahvaa hallinnollista kapasiteettia, muodollinen avoimuus ei vielä merkitse todellista yhdenvertaisuutta.",
+            "Sama koskee verkostoja. Pitkäaikainen pääsy työryhmiin ja kuulemisiin tuottaa kokemusta ja luottamusta. Kokemus puolestaan helpottaa seuraavaa pääsyä. Näin vaikutusvalta voi kasautua ilman, että kukaan tietoisesti pyrkii sulkemaan muita ulkopuolelle."
+          ],
+          "quote": "Avoin ovi ei vielä takaa avointa pääsyä, jos vain osa toimijoista osaa kulkea siitä."
+        },
+        {
+          "id": "kenen-aani-kuuluu",
+          "title": "Kenen ääni kuuluu järjestön kautta?",
+          "paragraphs": [
+            "Järjestöjen legitimiteetti perustuu usein ajatukseen edustamisesta. Järjestö puhuu jonkin ryhmän, asian tai kokemuksen puolesta. Mutta edustaminen ei ole automaattinen suhde. Jäsenistö, aktiivitoimijat, johto, palkattu henkilöstö ja palvelujen käyttäjät voivat nähdä järjestön tehtävän eri tavoin.",
+            "Ammatillistuminen voi vahvistaa vaikuttamista mutta samalla siirtää painopistettä jäsenistä organisaation omiin toimintaehtoihin. Jos järjestön jatkuvuus riippuu hankerahoituksesta, raportointivelvoitteista tai palvelusopimuksista, nämä voivat alkaa vaikuttaa siihen, mitä asioita järjestö pystyy priorisoimaan.",
+            "Siksi järjestön edustavuutta ei pitäisi mitata vain jäsenmäärällä tai sillä, kuinka usein järjestöä kuullaan. Olennaisempaa on, kuinka suora yhteys sillä on niihin ihmisiin, joiden puolesta se puhuu, ja pystyvätkö nämä ihmiset muuttamaan järjestön kantaa."
+          ],
+          "quote": "Edustaminen ei tarkoita vain sitä, että joku puhuu puolestasi. Se tarkoittaa myös sitä, että voit vaikuttaa siihen, mitä puolestasi sanotaan."
+        },
+        {
+          "id": "jarjestot-jakologiikan-valittajina",
+          "title": "Järjestöt ovat jakologiikan välittäjiä",
+          "paragraphs": [
+            "Järjestöt eivät useimmiten päätä yksin yhteiskunnan suurista resurssivirroista, mutta ne vaikuttavat siihen, miten jakoa perustellaan. Ne voivat tehdä näkyväksi tarpeita, tuottaa tutkimusta, nimetä ongelmia, rakentaa käsitteitä ja saada tietyn kysymyksen poliittiseen keskusteluun.",
+            "Tässä mielessä ne ovat jakologiikan välittäjiä. Ne voivat siirtää keskustelua maksukyvystä tarpeeseen, yksilön vastuusta rakenteelliseen ongelmaan tai yksittäisestä kokemuksesta oikeuskysymykseen. Samalla ne voivat puolustaa vakiintunutta jakoperustetta, jos juuri se ylläpitää niiden jäsenistön tai oman organisaation asemaa.",
+            "Järjestöjen tasaava vaikutus ei siis synny vain siitä, kuinka paljon ne jakavat apua. Se syntyy myös siitä, onnistuvatko ne avaamaan niitä sääntöjä, joiden perusteella yhteiskunnallisia resursseja ja mahdollisuuksia alun perin jaetaan."
+          ],
+          "quote": "Järjestö voi tasata eriarvoisuutta muuttamalla paitsi jakoa myös jakamisen sääntöä."
+        },
+        {
+          "id": "rahoitus-on-muutakin-kuin-rahaa",
+          "title": "Rahoitus ratkaisee myös sen, millainen järjestökenttä voi syntyä",
+          "paragraphs": [
+            "Järjestörahoituksesta keskustellaan usein euromäärinä, vaikka kysymys on samalla rakenteesta. Rahoituksen ehdot, määräaikaisuus, raportointivaatimukset ja kilpailullisuus vaikuttavat siihen, minkälaiset toimijat selviävät ja minkälaisia toimintamuotoja syntyy.",
+            "Pitkäjänteinen perusrahoitus voi mahdollistaa jäsenlähtöisen työn, vapaaehtoisten tukemisen ja heikkojen signaalien seuraamisen. Lyhyet hankkeet voivat puolestaan kannustaa innovaatioihin mutta tehdä toiminnasta katkonaisempaa. Jos järjestöt joutuvat jatkuvasti osoittamaan nopeita ja helposti mitattavia tuloksia, vaikeimmin mitattava mutta yhteiskunnallisesti tärkeä työ voi jäädä sivuun.",
+            "Rahoitusjärjestelmä on siten myös järjestöjen valintajärjestelmä. Se ei vain anna rahaa olemassa oleville toimijoille, vaan muokkaa sitä, millaiset järjestöt ylipäätään pystyvät kasvamaan vahvoiksi."
+          ],
+          "quote": "Järjestöjen rahoitussääntö ei vain rahoita järjestökenttää. Se muovaa järjestökentän."
+        },
+        {
+          "id": "paluu-kansalaisyhteiskuntaan",
+          "title": "Paluu kansalaisyhteiskuntaan – vai keskittyminen vahvimpiin?",
+          "paragraphs": [
+            "2020-luvulla järjestökenttä joutuu uudelleen arvioimaan suhdettaan rahoitukseen, vapaaehtoisuuteen ja julkiseen järjestelmään. Rahoituksen kiristyminen voi pakottaa järjestöjä palaamaan lähemmäs jäseniä ja paikallista toimintaa. Se voi synnyttää uusia kevyitä kansalaisliikkeitä ja vahvistaa yhteisöllisyyttä.",
+            "Mutta sama kehitys voi johtaa myös päinvastaiseen tulokseen. Jos rahoitus niukkenee nopeasti, vahvimmat organisaatiot voivat selvitä helpommin kuin pienet, uudet tai haavoittuvia ryhmiä edustavat toimijat. Ammattimainen varainhankinta, vahva brändi ja hallinnollinen kapasiteetti voivat silloin ratkaista enemmän kuin edustettavan asian yhteiskunnallinen merkitys.",
+            "Siksi 'takaisin kansalaisyhteiskuntaan' ei ole automaattisesti tasa-arvoistava suunta. Olennaista on, onko ihmisillä aidosti mahdollisuus järjestäytyä vai jääkö kansalaisyhteiskunta käytännössä niiden käyttöön, joilla on jo valmiiksi resursseja."
+          ],
+          "quote": "Vapaaehtoisuus ei ole tasa-arvoista, jos vain osalla ihmisistä on aikaa ja turvaa tehdä vapaaehtoistyötä."
+        },
+        {
+          "id": "uudet-liikkeet-ja-kevyempi-jarjestaytyminen",
+          "title": "Uudet liikkeet haastavat perinteisen järjestömallin",
+          "paragraphs": [
+            "Kaikki kansalaisyhteiskunnallinen toiminta ei enää tarvitse yhdistystä, toimistoa tai pitkäaikaista organisaatiota. Sosiaalinen media, verkostot ja kevyet toimintaryhmät voivat synnyttää nopeasti näkyviä liikkeitä. Tämä alentaa järjestäytymisen kynnystä ja voi avata tilaa sellaisille äänille, jotka eivät mahdu perinteisiin rakenteisiin.",
+            "Kevyellä järjestäytymisellä on kuitenkin omat rajansa. Nopeasti syntyvä liike voi saada paljon huomiota mutta sillä ei välttämättä ole resursseja pitkäjänteiseen vaikuttamiseen, lakien seurantaan tai palvelujen rakentamiseen. Perinteisen järjestön vahvuus on juuri institutionaalinen muisti ja kyky pysyä mukana vuosien prosesseissa.",
+            "Tulevaisuuden tasaava kansalaisyhteiskunta tarvitsee todennäköisesti molempia: kevyitä väyliä tulla mukaan ja vahvoja rakenteita, jotka pystyvät kantamaan kokemuksen päätöksentekoon asti."
+          ],
+          "quote": "Matalan kynnyksen osallistuminen ja pitkäjänteinen vaikutusvalta eivät ole sama asia – hyvä järjestökenttä tarvitsee molemmat."
+        },
+        {
+          "id": "portinvartijuus",
+          "title": "Kun tasaajasta tulee portinvartija",
+          "paragraphs": [
+            "Järjestö voi syntyä avaamaan yhteiskuntaa ja myöhemmin itse muodostua osaksi sen portinvartijuutta. Tämä ei vaadi väärinkäytöstä tai tietoista sulkemista. Riittää, että sama organisaatio kutsutaan vuodesta toiseen samoihin pöytiin, sen asiantuntijuus muuttuu oletusarvoksi ja uusia toimijoita arvioidaan suhteessa vakiintuneen järjestön kokemukseen.",
+            "Portinvartijuus voi ilmetä myös rahoituksessa. Aikaisempi hanke tuottaa näyttöjä, näytöt parantavat mahdollisuutta saada seuraava hanke ja uusi hanke tuottaa lisää näyttöjä. Kokemuksesta tulee pätevyyden ehto, vaikka kokemusta voi saada vain tulemalla ensin valituksi.",
+            "Tämä tekee järjestökentän avoimuudesta dynaamisen kysymyksen. Avoimuus ei tarkoita vain sitä, että uusia järjestöjä saa perustaa, vaan sitä, että niillä on realistinen mahdollisuus päästä samoihin resursseihin, verkostoihin ja vaikuttamisen kanaviin."
+          ],
+          "quote": "Tasaava instituutio voi ajan myötä muuttua portiksi, jos sen kautta kulkemisesta tulee edellytys tulla kuulluksi."
+        },
+        {
+          "id": "tasapainoinen-jarjestokentta",
+          "title": "Millainen olisi tasapainoinen järjestökenttä?",
+          "paragraphs": [
+            "Tasapainoinen järjestökenttä ei tarkoittaisi sitä, että kaikille järjestöille annetaan yhtä paljon resursseja tai että kaikilla pitäisi olla yhtä suuri vaikutusvalta. Järjestöjen tehtävät, jäsenmäärät, vastuut ja toimintaympäristöt ovat erilaisia. Tärkeämpää on, että jakoperusteet ovat näkyviä ja korjattavia.",
+            "Tasaavaa vaikutusta vahvistaisivat matalat järjestäytymisen kynnykset, riittävä mutta ennakoitava rahoitus, osallistumisen ja monimuotoisuuden tukeminen, päätöksenteon läpinäkyvyys sekä erityiset keinot tuoda kaikkein heikoimmin järjestäytyneiden ihmisten kokemukset mukaan. Samalla tarvitaan mekanismeja, joilla vakiintuneita edustussuhteita voidaan arvioida uudelleen.",
+            "Epätasapainoa vahvistaisivat puolestaan monimutkaiset hakuprosessit, hyvin lyhyet rahoitusjaksot, hankkeiden pilkkoutuminen, portinvartijuus, resurssien keskittyminen samoille toimijoille ja oletus siitä, että järjestäytymätön ryhmä on myös vähämerkityksinen."
+          ],
+          "quote": "Tasapainoinen järjestökenttä ei takaa kaikille samaa asemaa. Se takaa, ettei järjestäytymättömyys tee ihmisestä näkymätöntä."
+        },
+        {
+          "id": "jarjestojen-tasaava-tehtava",
+          "title": "Järjestöjen tasaava tehtävä on yhä olemassa",
+          "paragraphs": [
+            "Järjestöjen historiallinen merkitys eriarvoisuuden tasaajina on syntynyt siitä, että ne ovat kyenneet toimimaan siellä, missä yksilön oma neuvotteluvoima on ollut heikko. Ne ovat tuoneet ihmisiä yhteen, muuntaneet kokemuksia yhteiseksi tiedoksi ja rakentaneet väyliä yksityisestä tarpeesta yhteiskunnalliseen muutokseen.",
+            "Tämä tehtävä ei ole kadonnut, vaikka hyvinvointivaltio on vahvempi ja järjestötoiminta ammattimaisempaa kuin 1800-luvulla. Päinvastoin monimutkaistuvassa yhteiskunnassa välittäviä instituutioita tarvitaan edelleen. Hallinto ei itse havaitse kaikkia uusia tarpeita, markkinat eivät automaattisesti edusta heikointa osapuolta ja yksittäisen ihmisen on vaikea päästä yksin mukaan päätöksentekoon.",
+            "Mutta järjestöjen tasaava vaikutus ei ole pysyvä ominaisuus. Se säilyy vain, jos järjestökenttä pystyy itse tarkastelemaan omaa jakologiikkaansa: kuka pääsee järjestäytymään, kuka saa resursseja, kenen ääni pääsee läpi ja kuka jää edelleen ulkopuolelle."
+          ],
+          "quote": "Järjestö ei ole eriarvoisuuden tasaaja nimensä tai historiansa vuoksi, vaan vain niin kauan kuin se pystyy avaamaan yhteiskuntaa myös niille, joilla on vähiten valtaa."
+        },
+        {
+          "id": "mahdollisuus-kaikille",
+          "title": "Järjestäytymisen pitäisi olla mahdollisuus – ei etuoikeus",
+          "paragraphs": [
+            "Järjestöjen pitkää historiaa voi tiivistää kuuteen muutokseen. Ensin autettiin ihmistä. Sitten järjestettiin ihmisiä. Seuraavaksi rakennettiin oikeuksia. Sen jälkeen osallistuttiin järjestelmään. Myöhemmin tuotettiin palveluja ja asiantuntijuutta. Nyt kysymys kuuluu, ketä järjestelmä todella edustaa.",
+            "Tässä kehityksessä ei ole kyse siitä, että aikaisemmat vaiheet olisivat kadonneet. Järjestöt auttavat edelleen, järjestävät ihmisiä, puolustavat oikeuksia ja tuottavat palveluja. Kerrokset ovat kasaantuneet toistensa päälle. Samalla järjestökentän tehtävä on vaikeutunut, koska sen on yhtä aikaa oltava kansalaisyhteiskuntaa, asiantuntija, palveluntuottaja ja vallan kriitikko.",
+            "Jos järjestöt haluavat säilyttää historiallisen tasaavan tehtävänsä, niiden tärkein yhteinen kysymys ei ehkä ole, kuinka paljon vaikutusvaltaa järjestöillä on. Ratkaisevampi kysymys on, kuinka tasaisesti mahdollisuus järjestäytyä ja tulla järjestöjen kautta kuulluksi jakautuu.",
+            "Järjestöt ovat olleet ja voivat olla yhteiskunnan omia tasausvoimia. Se edellyttää, ettei järjestäytyminen itsessään muutu etuoikeudeksi, vaan säilyy todellisena mahdollisuutena myös niille, joiden ääni kuuluu kaikkein heikoimmin."
+          ],
+          "quote": "Järjestöjen tasaava tehtävä säilyy vain, jos myös mahdollisuus järjestäytyä säilyy avoimena.",
+          "closing": true
+        }
+      ]
     }
   ]
 }
