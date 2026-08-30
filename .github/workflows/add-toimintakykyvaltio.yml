@@ -1,0 +1,198 @@
+name: Add toimintakykyvaltio article
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add article to kirjoitukset.json
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const file = 'kirjoitukset.json';
+          const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const list = Array.isArray(data) ? data : data.kirjoitukset;
+          if (!Array.isArray(list)) throw new Error('kirjoitukset-taulukkoa ei löytynyt');
+          const id = 'toimintakykyvaltio';
+          if (list.some(a => a && (a.id === id || a.slug === id))) {
+            console.log('Article already exists; nothing to do.');
+            process.exit(0);
+          }
+          const article = {
+            id,
+            slug: id,
+            title: 'Hyvinvointivaltio toimintakyvyn rakentajana',
+            titleParts: ['Hyvinvointivaltio', 'toimintakyvyn rakentajana'],
+            subtitle: 'Mitä muuttuu, jos hyvinvointivaltion perustehtäväksi asetetaan ihmisten ja yhteisöjen kyky toimia, osallistua ja rakentaa hyvää elämää?',
+            tags: ['Hyvinvointivaltio', 'Toimintakyky', 'Uudistaminen'],
+            readingTime: '24 MIN',
+            image: 'toimintakykyvaltio.png',
+            imageAlt: 'Pystysuuntainen infografiikka hyvinvointivaltiosta toimintakyvyn rakentajana',
+            imageCaption: 'Toimintakykyvaltiossa turva, palvelut, yhteisöt ja osallistuminen eivät ole erillisiä lopputuloksia vaan välineitä ihmisen ja yhteisön toimintakyvyn vahvistamiseen.',
+            ogImage: 'toimintakykyvaltio-og.png',
+            intro: [
+              'Hyvinvointivaltio syntyi vastaamaan puutteisiin, joita markkinat, perheet ja paikalliset yhteisöt eivät yksin pystyneet kantamaan. Sen ensimmäinen suuri lupaus oli turva: ketään ei jätetä kokonaan ilman toimeentuloa, hoivaa tai mahdollisuutta koulutukseen. Seuraavassa vaiheessa turvan ympärille rakentui laaja palveluvaltio, joka järjesti ihmisille terveydenhuoltoa, sosiaalipalveluja, koulutusta, työllisyyspalveluja ja muita arjen edellytyksiä.',
+              'Nämä saavutukset ovat edelleen hyvinvointivaltion perusta. Samalla järjestelmä on kasvanut yhä monimutkaisemmaksi. Ihminen tunnistetaan usein hallinnollisen tilanteensa kautta: työttömänä, potilaana, opiskelijana, kuntoutujana, eläkeläisenä tai etuudensaajana. Jokaisella luokalla on omat palvelunsa, ehtonsa, mittarinsa ja organisaationsa. Järjestelmä kykenee tuottamaan paljon, mutta sen on vaikeampi vastata yhteen yksinkertaiseen kysymykseen: paraneeko ihmisen tosiasiallinen kyky elää, toimia ja osallistua?',
+              'Tästä kysymyksestä voi alkaa hyvinvointivaltion seuraava kehitysvaihe. Toimintakykyvaltiossa palvelu ei ole lopputulos, etuus ei ole lopputulos eikä yksittäinen suorite ole lopputulos. Ne ovat välineitä, joiden onnistumista arvioidaan sen perusteella, avaavatko ne ihmiselle uusia mahdollisuuksia ja vahvistavatko ne samalla yhteisöjen kykyä toimia.',
+              'Ajatus ei tarkoita hyvinvointivaltion kaventamista eikä vastuun siirtämistä yksilölle. Päinvastoin se laajentaa hyvinvoinnin käsitettä. Toimintakyky ei ole vain terveyttä tai työkykyä, vaan kykyä tehdä valintoja, ylläpitää ihmissuhteita, oppia, liikkua, osallistua, vaikuttaa ja kokea oma elämä merkitykselliseksi.'
+            ],
+            sections: [
+              {
+                id: 'hyvinvointivaltion-kolme-sukupolvea',
+                title: 'Hyvinvointivaltion kolme sukupolvea',
+                paragraphs: [
+                  'Hyvinvointivaltion kehitystä voi hahmottaa kolmena päällekkäisenä sukupolvena. Ensimmäinen on turvaava hyvinvointivaltio. Sen keskeinen kysymys on, jääkö ihminen ilman välttämätöntä toimeentuloa, hoivaa tai suojaa. Toinen on palveluja tuottava hyvinvointivaltio. Sen kysymys kuuluu, saako ihminen tarvitsemansa palvelun riittävän yhdenvertaisesti ja oikea-aikaisesti.',
+                  'Kolmas sukupolvi olisi toimintakykyä rakentava hyvinvointivaltio. Se ei korvaa kahta aikaisempaa vaan lisää niiden päälle uuden onnistumisen kriteerin: mitä ihmiselle tapahtuu turvan ja palvelun jälkeen? Pystyykö hän tekemään enemmän asioita itse, osallistumaan yhteisöön, käyttämään osaamistaan tai vaikuttamaan oman elämänsä suuntaan?',
+                  'Muutos kuulostaa pieneltä, mutta se siirtää järjestelmän huomion tuotannosta vaikutukseen. Turvan tehtävä ei ole vain estää köyhyyttä, vaan myös luoda riittävä vakaus, jonka varassa ihminen voi tehdä valintoja. Palvelun tehtävä ei ole vain toteutua, vaan vähentää sellaista estettä, joka rajoittaa hyvää elämää.'
+                ],
+                quote: 'Palvelu ei olisi lopputulos. Etuus ei olisi lopputulos. Lopputulos olisi kasvanut toimintakyky.'
+              },
+              {
+                id: 'luokituksesta-elamantilanteeseen',
+                title: 'Hallinnollisesta luokituksesta elämäntilanteeseen',
+                paragraphs: [
+                  'Nykyinen järjestelmä tarvitsee luokituksia, koska lainsäädäntö, rahoitus ja vastuu on jaettu tehtäviin. Luokitukset tekevät monimutkaisuudesta hallittavaa, mutta ne voivat samalla peittää sen, että ihmisen ongelma ei noudata organisaatiorajoja. Työttömyyteen voi liittyä terveyttä, osaamista, velkaa, asumista, liikkumista, hoivavastuuta ja alueen työmarkkinoita samaan aikaan.',
+                  'Toimintakykyvaltio aloittaisi kysymällä, mikä tällä hetkellä estää ihmistä tekemästä sellaista, mitä hänellä olisi syytä tai halua pystyä tekemään. Vasta tämän jälkeen ratkaistaisiin, tarvitaanko etuutta, hoitoa, koulutusta, kuntoutusta, liikkumisen tukea, velkaneuvontaa, yhteisöllistä toimintaa vai useita näistä yhdessä.',
+                  'Hallinnolliset oikeudet eivät katoa. Niiden rinnalle tulee kokonaiskuva. Järjestelmän näkökulmasta ihminen ei olisi kokoelma erillisiä asiakkuuksia vaan yksi elämäntilanne, johon eri resurssit osallistuvat.'
+                ]
+              },
+              {
+                id: 'toimintakyky-ei-ole-tyokyky',
+                title: 'Toimintakyky ei ole sama asia kuin työkyky',
+                paragraphs: [
+                  'Toimintakykyajattelu voi helposti kaventua uudeksi työllisyyspolitiikan sanaksi. Silloin ihmisen edistymistä mitattaisiin edelleen ensisijaisesti sillä, siirtyykö hän avoimille työmarkkinoille. Työ on monelle tärkeä toimintakyvyn, toimeentulon ja osallisuuden lähde, mutta se ei voi olla ainoa mittari.',
+                  'Ikääntyneen toimintakyky voi vahvistua, vaikka hän ei koskaan palaa työelämään. Pitkäaikaissairaan onnistunut tavoite voi olla itsenäinen arki ja yhteys muihin ihmisiin. Nuoren ensimmäinen ratkaiseva askel voi olla luottamuksen, rytmin ja oppimiskyvyn palautuminen. Omaishoitoperheen toimintakyky voi kasvaa sillä, että vastuu jakautuu ja palautumiselle syntyy tilaa.',
+                  'Toimintakykyvaltio tunnustaisi useita onnistuneita siirtymiä: työhön, koulutukseen, kuntoutumiseen, vapaaehtoistoimintaan, yhteisölliseen osallistumiseen, itsenäisempään arkeen tai yksinkertaisesti vakaampaan elämään. Yhteinen nimittäjä olisi mahdollisuuksien laajeneminen.'
+                ]
+              },
+              {
+                id: 'resurssit-yhteen-tavoitteen-ymparille',
+                title: 'Resurssit yhteen tavoitteen ympärille',
+                paragraphs: [
+                  'Siiloutuneessa järjestelmässä eri toimijat voivat käyttää samaan ihmiseen huomattavia resursseja ilman yhteistä tavoitetta. Yksi järjestää hoitoa, toinen maksaa etuutta, kolmas tarjoaa työllisyyspalvelua ja neljäs kuntoutusta. Jokainen voi onnistua omassa tehtävässään, vaikka kokonaisuus ei liiku eteenpäin.',
+                  'Toimintakykyvaltiossa resurssit sidottaisiin mahdollisuuksien mukaan yhteiseen toimintakykytavoitteeseen. Tavoite voisi olla esimerkiksi kyky asua itsenäisesti, palata opiskeluun, ylläpitää arjen rytmiä, liikkua kodin ulkopuolella tai löytää ensimmäinen mielekäs osallistumisen paikka.',
+                  'Tämä ei edellytä yhden jättiorganisaation perustamista. Ratkaisevaa on, että toimijoiden oma optimointi ei voi irrota yhteisestä vaikutuksesta. Jos yhden yksikön säästö heikentää toimintakykyä ja kasvattaa toisen yksikön kustannuksia, palautteen pitäisi näkyä takaisin alkuperäiseen päätökseen.'
+                ]
+              },
+              {
+                id: 'oikeus-turvaan-ja-oikeus-toimia',
+                title: 'Oikeus turvaan ja oikeus toimia',
+                paragraphs: [
+                  'Toimintakyvyn korostaminen ei saa muuttaa sosiaalista oikeutta ansaittavaksi palkinnoksi. Perusturvan tehtävä on suojata ihmistä tilanteessa, jossa hänen neuvotteluvoimansa, terveytensä tai tulonhankintakykynsä on heikko. Jos turva sidotaan liian tiukasti suoritukseen, toimintakyvyn rakentamisen lähtökohta muuttuu helposti pakoksi.',
+                  'Parempi periaate on kaksiosainen: oikeus turvaan ja oikeus toimia. Turva vakauttaa elämän perustaa. Sen rinnalla yhteiskunnan pitäisi tarjota todellisia ja saavutettavia väyliä oppimiseen, osallistumiseen, yhteisöihin ja omaa tilannetta vastaavaan tekemiseen.',
+                  'Tällöin aktiivisuus ei tarkoita vain velvollisuutta hakea jotakin, vaan yhteiskunnan velvollisuutta rakentaa mahdollisuuksia, joihin ihminen voi tosiasiallisesti tarttua.'
+                ],
+                quote: 'Turvan tehtävä on tehdä toiminta mahdolliseksi, ei toiminnan tehtävä tehdä turvasta oikeutettua.'
+              },
+              {
+                id: 'yhteisot-osaksi-hyvinvointivaltion-infrastruktuuria',
+                title: 'Yhteisöt osaksi hyvinvointivaltion infrastruktuuria',
+                paragraphs: [
+                  'Hyvinvointivaltio on totuttu näkemään valtion, kuntien ja palvelujärjestelmien kokonaisuutena. Ihmisen toimintakyky rakentuu kuitenkin myös sellaisissa ympäristöissä, joita julkinen järjestelmä ei voi tuottaa samalla tavalla: naapurustoissa, yhdistyksissä, harrastuksissa, vertaissuhteissa, kulttuurissa ja epämuodollisissa verkostoissa.',
+                  'Jos yhteisöllisyys nähdään vain yksityisenä lisänä palvelujen päälle, järjestelmä voi vahingossa säästää juuri niistä rakenteista, jotka ehkäisevät raskaampien palvelujen tarvetta. Toimintakykyvaltiossa kansalaisyhteiskunta olisi osa yhteiskunnan toimintakykyinfrastruktuuria ilman, että siitä tehdään julkisen sektorin halpaa alihankkijaa.',
+                  'Julkisen vallan tehtävä olisi mahdollistaa yhteisöllinen kapasiteetti: tiloja, pieniä resursseja, avoimia osallistumisväyliä ja yhteistyön rakenteita. Samalla säilyisi raja kansalaistoiminnan ja palkkatyön välillä.'
+                ]
+              },
+              {
+                id: 'toimintakykytalous',
+                title: 'Toimintakyvystä talouden näkymätön perusrakenne',
+                paragraphs: [
+                  'Talous mittaa helposti sitä, mitä voidaan hinnoitella. Ihmisen kyky hoitaa itse asioitaan, auttaa läheistään, oppia uutta, liikkua, osallistua yhdistykseen tai ylläpitää sosiaalisia suhteita jää usein tilastojen reunoille. Silti juuri nämä kyvyt ratkaisevat, kuinka paljon yhteiskunta tarvitsee korjaavia palveluja ja kuinka paljon ihmiset pystyvät itse tuottamaan hyvinvointia.',
+                  'Toimintakykyvaltiossa investointi ei tarkoittaisi vain rakennusta, tietojärjestelmää tai koulutuspaikkaa. Myös toimintakyvyn vahvistaminen olisi investointi, jos se kasvattaa ihmisen tulevia mahdollisuuksia ja vähentää riippuvuutta raskaammista tukirakenteista.',
+                  'Tämän ajattelun taloudellinen ydin ei ole, että jokainen hyvinvointitoimi pitäisi perustella tulevalla säästöllä. Arvo syntyy myös ihmisarvosta, osallisuudesta ja paremmasta elämästä. Taloudellinen vaikutus on osa kokonaisuutta, ei sen ainoa oikeutus.'
+                ]
+              },
+              {
+                id: 'mittarit-jotka-eivat-kavenna-tavoitetta',
+                title: 'Mittarit, jotka eivät kavennna tavoitetta',
+                paragraphs: [
+                  'Järjestelmä alkaa väistämättä optimoida sitä, mitä siltä mitataan. Jos onnistuminen määritellään käyntimääriksi, tuotetaan käyntejä. Jos se määritellään aktivointipäiviksi, tuotetaan aktivointipäiviä. Jos se määritellään lyhyeksi käsittelyajaksi, käsitellään nopeasti.',
+                  'Toimintakykyä ei voida tiivistää yhteen lukuun ilman, että jotakin olennaista katoaa. Siksi mittaamisen pitäisi olla monisuuntaista. Onko ihmisen oma arvio mahdollisuuksistaan parantunut? Onko toimintakyvyn este pienentynyt? Onko uusia suhteita, osaamista tai osallistumisen paikkoja syntynyt? Onko yhteisö saanut lisää kapasiteettia vai siirtyikö kuormitus vain toisaalle?',
+                  'Mittarin tehtävä olisi tehdä vaikutus näkyväksi, ei määritellä ennalta yhtä oikeaa elämänpolkua. Järjestelmän pitää kyetä hyväksymään, että ihmiset käyttävät vahvistunutta toimintakykyään eri tavoin.'
+                ]
+              },
+              {
+                id: 'viisi-periaatetta',
+                title: 'Toimintakykyvaltion viisi periaatetta',
+                paragraphs: [
+                  'Toimintakykyvaltion käytännön rakennetta voi arvioida viidellä periaatteella. Ensimmäinen on oikeudenmukaisuus: mahdollisuus osallistua ja kehittyä ei saa riippua varallisuudesta, terveydestä, verkostoista tai asuinpaikasta. Toinen on vapaaehtoisuus: ihmisen omaa toimijuutta ei rakenneta pakolla.',
+                  'Kolmas on yhdessä tekeminen. Julkinen sektori, järjestöt, yhteisöt ja ihmiset eivät ole toistensa korvikkeita vaan eri kyvykkyyksiä tuottavia toimijoita. Neljäs on riittävä tuki ja korvaus. Osallistumisen kustannuksia ei voida sysätä yksin ihmiselle tai järjestölle.',
+                  'Viides on rajan kunnioitus. Tuettu osallistuminen ei saa korvata palkkatyötä eikä julkinen valta saa ulkoistaa lakisääteisiä velvoitteitaan ilmaisen kansalaistoiminnan varaan. Mitä enemmän tehtävä muistuttaa tavallista työtä, sitä enemmän sen tulee muuttua tavalliseksi työksi.'
+                ],
+                bullets: [
+                  'Oikeudenmukaisuus – jokaiselle todellinen mahdollisuus toimia ja kehittyä.',
+                  'Vapaaehtoisuus – osallistuminen vahvistaa toimijuutta vain, jos ihmisellä säilyy valinta.',
+                  'Yhdessä tekeminen – julkinen valta, yhteisöt ja ihmiset täydentävät toisiaan.',
+                  'Tuki ja korvaus – osallistumisen kustannukset ja ohjaus tunnistetaan.',
+                  'Rajan kunnioitus – kansalaistoiminta ei korvaa palkkatyötä tai lakisääteisiä palveluja.'
+                ]
+              },
+              {
+                id: 'mita-tama-tarkoittaisi-tyottomyydessa',
+                title: 'Mitä tämä tarkoittaisi työttömyydessä?',
+                paragraphs: [
+                  'Työttömyyspolitiikan perinteinen mittari on työllistyminen. Toimintakykyvaltio ei luopuisi siitä, mutta se tarkastelisi myös niitä tekijöitä, joiden kautta kestävä työllistyminen tulee mahdolliseksi. Jos työpaikkaa ei ole alueella, terveys estää tietyn työn tai osaaminen ei vastaa kysyntää, pelkkä työnhaun määrän lisääminen ei poista estettä.',
+                  'Uusi näkökulma kysyisi ensin, mikä rajoittaa ihmisen mahdollisuuksia. Sen jälkeen voisi yhdistyä koulutus, terveys, liikkuminen, velkojen hallinta, osallistuminen ja paikallisten verkostojen rakentaminen. Tavoitteena ei olisi pitää ihmistä toimenpiteessä vaan kasvattaa hänen todellista valikoimaansa seuraavassa päätöksessä.'
+                ]
+              },
+              {
+                id: 'mita-tama-tarkoittaisi-sairaudessa-ja-ikaantymisessa',
+                title: 'Mitä tämä tarkoittaisi sairaudessa ja ikääntymisessä?',
+                paragraphs: [
+                  'Terveydenhuollossa toimintakykyajattelu siirtää huomion yksittäisestä hoitotapahtumasta siihen, mitä ihminen pystyy hoidon jälkeen tekemään. Onnistunut operaatio on tärkeä, mutta ihmiselle ratkaisevaa on, palaako kyky liikkua, huolehtia arjesta, tavata muita tai jatkaa itselle merkityksellistä toimintaa.',
+                  'Ikääntymisessä sama periaate haastaa palvelujen määrään perustuvan ajattelun. Hyvä järjestelmä ei vain lisää apua tarpeen kasvaessa, vaan pyrkii säilyttämään itsenäisyyttä, turvallisuutta ja yhteyttä muihin niin pitkään kuin mahdollista. Teknologia, esteetön ympäristö, lähipalvelut ja yhteisöt ovat tällöin yhtä lailla toimintakyvyn politiikkaa kuin hoivapalvelut.'
+                ]
+              },
+              {
+                id: 'mita-tama-tarkoittaisi-nuorille-ja-perheille',
+                title: 'Mitä tämä tarkoittaisi nuorille ja perheille?',
+                paragraphs: [
+                  'Nuoren syrjäytymisriskiä ei voi kuvata vain sillä, onko hän koulussa tai työssä tiettynä päivänä. Taustalla voi olla oppimisvaikeuksia, mielenterveyttä, yksinäisyyttä, perheen kuormitusta tai kokemus siitä, ettei tulevaisuudessa ole paikkaa itselle. Toimintakykyvaltio etsisi näitä esteitä ennen kuin ne ehtivät muuttua pysyviksi institutionaalisiksi asiakkuuksiksi.',
+                  'Perheiden kohdalla näkökulma muistuttaa, että yhden jäsenen toimintakyky riippuu usein muiden voimavaroista. Omaishoitajan uupumus, vanhemman toimeentulo tai lapsen palvelujen katkonaisuus vaikuttavat koko perheen kykyyn selviytyä. Siksi yksilökohtainen palvelu voi joskus epäonnistua, vaikka se olisi teknisesti oikein toteutettu.'
+                ]
+              },
+              {
+                id: 'mita-valtion-pitaisi-lopettaa',
+                title: 'Mitä toimintakykyvaltion pitäisi myös lopettaa?',
+                paragraphs: [
+                  'Uudistus ei ole uskottava, jos uusi periaate vain lisätään vanhojen rakenteiden päälle. Jos toimintakyvystä syntyy uusi mittaristo, uusi koordinaatioryhmä ja uusi rahoituskanava ilman, että mitään vanhaa poistuu, seurauksena on jälleen yksi kerros lisää.',
+                  'Siksi jokaisen uuden toimintakykyratkaisun pitäisi sisältää myös purkukysymys: minkä vanhan menettelyn, päällekkäisen mittarin tai tarpeettoman rajapinnan tämä tekee tarpeettomaksi? Uudistamisen tavoite ei olisi lisätä järjestelmän kykyä hallita monimutkaisuutta vaan vähentää sellaista monimutkaisuutta, joka ei enää tuota ihmiselle arvoa.',
+                  'Toimintakykyvaltio tarvitsee siis myös institutionaalista itsekuria. Hyvä mekanismi osaa syntyä, muuttua ja tarvittaessa päättyä.'
+                ],
+                quote: 'Uusi hyvinvointivaltio ei synny lisäämällä vanhan päälle. Sen on myös osattava päästää irti.'
+              },
+              {
+                id: 'uusi-yhteiskuntasopimus',
+                title: 'Kohti uutta yhteiskuntasopimusta',
+                paragraphs: [
+                  'Hyvinvointivaltion alkuperäinen lupaus oli, ettei yksilön elämä saa romahtaa yhden sairauden, työttömyyden tai syntyperän vuoksi. Tuo lupaus on edelleen välttämätön, mutta muuttuva yhteiskunta tarvitsee sen rinnalle uuden kysymyksen: mitä yhteiskunta tekee sillä toimintakyvyllä, joka ihmisillä on tai joka heille voidaan palauttaa?',
+                  'Työn murros, väestön ikääntyminen, julkisen talouden paine ja teknologian nopea kehitys tekevät mahdottomaksi rakentaa tulevaisuutta vain lisäämällä palvelusuoritteita. Samalla olisi vaarallista vastata paineeseen vain leikkaamalla turvaa. Kolmas vaihtoehto on rakentaa järjestelmä, joka käyttää olemassa olevia resursseja niin, että ihmisten ja yhteisöjen oma toimintakyky kasvaa.',
+                  'Tässä mallissa hyvinvointivaltio ei ole vain turvaverkko, joka ottaa kiinni pudonneen ihmisen. Se on myös ponnahduslauta, joka rakentaa kyvyn nousta, osallistua ja löytää uusi paikka muuttuvassa yhteiskunnassa.',
+                  'Uudistuneen hyvinvointivaltion mitta ei olisi lopulta se, kuinka monta järjestelmää se ylläpitää, vaan kuinka paljon todellisia mahdollisuuksia se pystyy avaamaan ihmisille.'
+                ],
+                quote: 'Tavoitteena ei ole mahdollisimman suuri palvelujärjestelmä vaan mahdollisimman toimintakykyinen yhteiskunta.',
+                closing: true
+              }
+            ]
+          };
+          list.push(article);
+          fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
+          NODE
+      - name: Commit migration result
+        run: |
+          if git diff --quiet -- kirjoitukset.json; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kirjoitukset.json
+          git commit -m "Add toimintakykyvaltio article [skip ci]"
+          git push
