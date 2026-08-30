@@ -1676,48 +1676,58 @@
           ]
         },
         "miksi-tulevaisuuden-hyvinvointia": {
-          "type": "margin-lab",
-          "eyebrow": "Liikkumavaralaboratorio",
-          "title": "Rakenna oma hyvinvointivaltiosi – ja katso missä se alkaa kiristää",
-          "intro": "Säädä viittä ulottuvuutta. Laboratorio ei etsi yhtä oikeaa pistettä, vaan tunnistaa tilanteet, joissa vastuu, resurssit, turva, valinnanvara ja kontrolli joutuvat ristiriitaan.",
-          "repairLabel": "KORJAA PIENIMMÄLLÄ MUUTOKSELLA",
-          "controls": [
+          "type": "boundary-map",
+          "eyebrow": "Kenen pitää päättää?",
+          "title": "Missä kulkee liikkumavaran raja?",
+          "intro": "Vedä rajaa ylös tai alas. Mitä yhteiskunnan on taattava kaikille – ja missä kohdassa ihmisen pitäisi saada valita oma reittinsä?",
+          "systemLabel": "Yhteiskunta päättää",
+          "personLabel": "Ihminen päättää",
+          "value": 48,
+          "items": [
             {
-              "key": "security",
-              "label": "Turva",
-              "value": 78,
-              "low": "Ohut turva",
-              "high": "Vahva turva"
+              "label": "Vähimmäisturva",
+              "owner": "system"
             },
             {
-              "key": "choice",
-              "label": "Valinnanvara",
-              "value": 72,
-              "low": "Järjestelmä päättää",
-              "high": "Ihminen päättää"
+              "label": "Oikeudet ja syrjimättömyys",
+              "owner": "system"
             },
             {
-              "key": "resources",
-              "label": "Resurssit",
-              "value": 68,
-              "low": "Niukat",
-              "high": "Riittävät"
+              "label": "Turvallisuus ja vähimmäislaatu",
+              "owner": "system"
             },
             {
-              "key": "responsibility",
-              "label": "Vastuu",
-              "value": 58,
-              "low": "Vähän",
-              "high": "Paljon"
+              "label": "Tavoite ja käytettävä resurssi",
+              "owner": "shared"
             },
             {
-              "key": "control",
-              "label": "Kontrolli",
-              "value": 42,
-              "low": "Kevyt",
-              "high": "Tiukka"
+              "label": "Vaikutuksen arviointi",
+              "owner": "shared"
+            },
+            {
+              "label": "Oma reitti",
+              "owner": "person"
+            },
+            {
+              "label": "Palvelujen yhdistelmä",
+              "owner": "person"
+            },
+            {
+              "label": "Ajankäyttö ja oppimisen tapa",
+              "owner": "person"
             }
-          ]
+          ],
+          "principles": [
+            "TURVAA MINIMI",
+            "MÄÄRITÄ TAVOITE",
+            "ANNA LIIKKUMAVARAA"
+          ],
+          "messages": {
+            "low": "Kun yhteiskunta määrittää lähes kaikki keinot, turva alkaa helposti muuttua menettelyohjaukseksi. Oikeus säilyy, mutta oma reitti kapenee.",
+            "mid": "Tasapaino: yhteiskunta turvaa oikeudet ja vähimmäistason, tavoite sovitaan yhdessä ja ihminen saa valita suuren osan reitistään.",
+            "high": "Kun myös perusturva, turvallisuus tai oikeudet siirtyvät yksilön vastuulle, liikkumavara alkaa muuttua riskinsiirroksi."
+          },
+          "question": "Kuinka paljon yhteiskunnan täytyy päättää, jotta sen ei tarvitse päättää kaikkea?"
         }
       }
     }
