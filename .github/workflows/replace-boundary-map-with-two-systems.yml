@@ -1,4 +1,5 @@
 name: Replace boundary map with two systems
+# trigger registered workflow
 on:
   push:
     branches: [main]
