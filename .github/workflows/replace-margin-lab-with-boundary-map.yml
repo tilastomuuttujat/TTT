@@ -1,4 +1,5 @@
 name: Replace margin lab with boundary map
+# registered; trigger migration
 on:
   push:
     branches: [main]
