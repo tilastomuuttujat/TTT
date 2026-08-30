@@ -1,4 +1,5 @@
 name: Add liikkumavara laboratory
+# retrigger after workflow is present on main
 
 on:
   push:
