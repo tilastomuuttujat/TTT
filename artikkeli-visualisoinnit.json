@@ -1676,58 +1676,208 @@
           ]
         },
         "miksi-tulevaisuuden-hyvinvointia": {
-          "type": "boundary-map",
-          "eyebrow": "Kenen pitää päättää?",
-          "title": "Missä kulkee liikkumavaran raja?",
-          "intro": "Vedä rajaa ylös tai alas. Mitä yhteiskunnan on taattava kaikille – ja missä kohdassa ihmisen pitäisi saada valita oma reittinsä?",
-          "systemLabel": "Yhteiskunta päättää",
-          "personLabel": "Ihminen päättää",
-          "value": 48,
-          "items": [
+          "type": "two-systems",
+          "eyebrow": "Ajatuskoe",
+          "title": "Sama ihminen, kaksi järjestelmää",
+          "intro": "Valitse elämäntilanne. Tarve on molemmissa sama – vain tapa, jolla järjestelmä yrittää auttaa, muuttuu.",
+          "cases": [
             {
-              "label": "Vähimmäisturva",
-              "owner": "system"
+              "name": "Työllistyminen",
+              "kicker": "Sama tarve",
+              "situation": "Työpaikka olisi mahdollinen, mutta 35 kilometrin työmatka edellyttää ajokorttia.",
+              "system": {
+                "label": "Järjestelmä määrittää keinon",
+                "title": "Tuki kulkee hyväksytyn toimenpiteen kautta",
+                "steps": [
+                  {
+                    "title": "Tarve tunnistetaan"
+                  },
+                  {
+                    "title": "Etsitään sopiva etuus tai palvelu"
+                  },
+                  {
+                    "title": "Tarkistetaan hyväksytty käyttötarkoitus"
+                  },
+                  {
+                    "title": "Haetaan erillinen päätös"
+                  },
+                  {
+                    "title": "Toteutetaan sallittu toimenpide"
+                  }
+                ]
+              },
+              "margin": {
+                "label": "Järjestelmä turvaa tavoitteen",
+                "title": "Resurssi voidaan sovittaa todelliseen esteeseen",
+                "steps": [
+                  {
+                    "title": "Tarve tunnistetaan"
+                  },
+                  {
+                    "title": "Sovitaan tavoite: työpaikkaan pääseminen"
+                  },
+                  {
+                    "title": "Määritellään käytettävä resurssi ja rajat"
+                  },
+                  {
+                    "title": "Ihminen valitsee perustellun keinon"
+                  },
+                  {
+                    "title": "Arvioidaan, etenikö tavoite"
+                  }
+                ]
+              },
+              "question": "Kumpi järjestelmä tarvitsee enemmän hallintoa – ja kumpi tietää paremmin, mikä keino toimii?",
+              "insight": "Liikkumavara ei tarkoita, että tavoite tai julkisen rahan rajat katoavat. Ero on siinä, määrätäänkö myös keino ennalta."
             },
             {
-              "label": "Oikeudet ja syrjimättömyys",
-              "owner": "system"
+              "name": "Ikääntyneen arki",
+              "kicker": "Sama tarve",
+              "situation": "Ikääntynyt ihminen haluaa jatkaa turvallista asumista kotona, mutta arjen toimintakyky on heikentynyt.",
+              "system": {
+                "label": "Järjestelmä määrittää keinon",
+                "title": "Tarve jaetaan olemassa oleviksi palveluiksi",
+                "steps": [
+                  {
+                    "title": "Toimintakyky arvioidaan"
+                  },
+                  {
+                    "title": "Tarve luokitellaan"
+                  },
+                  {
+                    "title": "Myönnetään palveluvalikossa oleva ratkaisu"
+                  },
+                  {
+                    "title": "Palvelu tuotetaan"
+                  },
+                  {
+                    "title": "Suorite kirjataan"
+                  }
+                ]
+              },
+              "margin": {
+                "label": "Järjestelmä turvaa tavoitteen",
+                "title": "Ratkaisut kootaan turvallisen arjen ympärille",
+                "steps": [
+                  {
+                    "title": "Arjen este tunnistetaan"
+                  },
+                  {
+                    "title": "Sovitaan tavoite: turvallinen elämä kotona"
+                  },
+                  {
+                    "title": "Kootaan käytettävissä olevat voimavarat"
+                  },
+                  {
+                    "title": "Ihminen ja läheiset osallistuvat ratkaisun valintaan"
+                  },
+                  {
+                    "title": "Arvioidaan arjen toimintakykyä"
+                  }
+                ]
+              },
+              "question": "Onko onnistumisen mitta tuotettu palvelu vai se, että turvallinen arki todella onnistuu?",
+              "insight": "Sama oikeus ei aina edellytä kaikille samaa palvelua. Liikkumavara voi olla mahdollisuus sovittaa keinot samaan yhteiseen tavoitteeseen."
             },
             {
-              "label": "Turvallisuus ja vähimmäislaatu",
-              "owner": "system"
+              "name": "Opiskelu",
+              "kicker": "Sama tarve",
+              "situation": "Ihmiseltä puuttuu yksi käytännön osaaminen, joka estää siirtymisen uuteen tehtävään.",
+              "system": {
+                "label": "Järjestelmä määrittää keinon",
+                "title": "Osaaminen hankitaan tunnistetun koulutusreitin kautta",
+                "steps": [
+                  {
+                    "title": "Puute tunnistetaan"
+                  },
+                  {
+                    "title": "Etsitään hyväksytty koulutus"
+                  },
+                  {
+                    "title": "Osallistutaan määrättyyn kokonaisuuteen"
+                  },
+                  {
+                    "title": "Suoritus kirjataan"
+                  },
+                  {
+                    "title": "Kelpoisuus arvioidaan"
+                  }
+                ]
+              },
+              "margin": {
+                "label": "Järjestelmä turvaa tavoitteen",
+                "title": "Tavoitteena on todennettava osaaminen",
+                "steps": [
+                  {
+                    "title": "Puuttuva kyvykkyys tunnistetaan"
+                  },
+                  {
+                    "title": "Osaamistavoite määritellään"
+                  },
+                  {
+                    "title": "Oppimistapa voidaan valita"
+                  },
+                  {
+                    "title": "Osaaminen osoitetaan käytännössä"
+                  },
+                  {
+                    "title": "Tulos tunnistetaan riippumatta reitistä"
+                  }
+                ]
+              },
+              "question": "Tarvitseeko yhteiskunnan määrätä oppimisen reitti, jos se pystyy luotettavasti todentamaan lopputuloksen?",
+              "insight": "Liikkumavara on perusteltua vain siellä, missä vaihtoehtoinen reitti voi tuottaa yhtä luotettavan tai paremman lopputuloksen."
             },
             {
-              "label": "Tavoite ja käytettävä resurssi",
-              "owner": "shared"
-            },
-            {
-              "label": "Vaikutuksen arviointi",
-              "owner": "shared"
-            },
-            {
-              "label": "Oma reitti",
-              "owner": "person"
-            },
-            {
-              "label": "Palvelujen yhdistelmä",
-              "owner": "person"
-            },
-            {
-              "label": "Ajankäyttö ja oppimisen tapa",
-              "owner": "person"
+              "name": "Turvallisuus",
+              "kicker": "Vastatapaus",
+              "situation": "Lääkkeen turvallinen annostelu edellyttää täsmällistä osaamista ja virheen seuraukset voivat olla vakavia.",
+              "system": {
+                "label": "Yhteinen raja on tarpeen",
+                "title": "Kaikkea ei pidä jättää yksilöllisesti ratkaistavaksi",
+                "steps": [
+                  {
+                    "title": "Turvallisuusvaatimus määritellään"
+                  },
+                  {
+                    "title": "Osaaminen varmistetaan"
+                  },
+                  {
+                    "title": "Menettelylle asetetaan rajat"
+                  },
+                  {
+                    "title": "Poikkeamat havaitaan"
+                  },
+                  {
+                    "title": "Vastuu säilyy näkyvänä"
+                  }
+                ]
+              },
+              "margin": {
+                "label": "Liikkumavara rajojen sisällä",
+                "title": "Vapaus koskee vain sitä, mikä voidaan turvallisesti jättää valittavaksi",
+                "steps": [
+                  {
+                    "title": "Yhteinen turvallisuustaso säilyy"
+                  },
+                  {
+                    "title": "Pakolliset tarkistukset säilyvät"
+                  },
+                  {
+                    "title": "Työn organisoinnissa voi olla joustoa"
+                  },
+                  {
+                    "title": "Keinoja voidaan parantaa kokemuksen perusteella"
+                  },
+                  {
+                    "title": "Turvallisuus ratkaisee"
+                  }
+                ]
+              },
+              "question": "Missä kohdassa valinnanvapauden lisääminen ei enää tuota hyötyä vaan kasvattaa yhteistä riskiä?",
+              "insight": "Liikkumavaravaltio ei tarkoita mahdollisimman suurta vapautta. Se tarkoittaa liikkumavaraa siellä, missä keinon määräämiselle ei ole riittävää yhteistä perustetta."
             }
-          ],
-          "principles": [
-            "TURVAA MINIMI",
-            "MÄÄRITÄ TAVOITE",
-            "ANNA LIIKKUMAVARAA"
-          ],
-          "messages": {
-            "low": "Kun yhteiskunta määrittää lähes kaikki keinot, turva alkaa helposti muuttua menettelyohjaukseksi. Oikeus säilyy, mutta oma reitti kapenee.",
-            "mid": "Tasapaino: yhteiskunta turvaa oikeudet ja vähimmäistason, tavoite sovitaan yhdessä ja ihminen saa valita suuren osan reitistään.",
-            "high": "Kun myös perusturva, turvallisuus tai oikeudet siirtyvät yksilön vastuulle, liikkumavara alkaa muuttua riskinsiirroksi."
-          },
-          "question": "Kuinka paljon yhteiskunnan täytyy päättää, jotta sen ei tarvitse päättää kaikkea?"
+          ]
         }
       }
     }
