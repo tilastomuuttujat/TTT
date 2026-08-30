@@ -1,0 +1,180 @@
+name: Add liikkumavaran hyvinvointivaltio article
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add article to kirjoitukset.json
+        run: |
+          node - <<'NODE'
+          const fs = require('fs');
+          const file = 'kirjoitukset.json';
+          const data = JSON.parse(fs.readFileSync(file, 'utf8'));
+          const list = Array.isArray(data) ? data : data.kirjoitukset;
+          if (!Array.isArray(list)) throw new Error('kirjoitukset-taulukkoa ei löytynyt');
+          const id = 'liikkumavaran-hyvinvointivaltio';
+          if (list.some(a => a && (a.id === id || a.slug === id))) {
+            console.log('Article already exists; nothing to do.');
+            process.exit(0);
+          }
+          const article = {
+            id,
+            slug: id,
+            title: 'Liikkumavaran hyvinvointivaltio',
+            titleParts: ['Liikkumavaran', 'hyvinvointivaltio'],
+            subtitle: 'Entä jos hyvinvointivaltio turvaisi minimin, määrittäisi yhteisen tavoitteen ja jättäisi ihmiselle enemmän vapautta löytää oma reittinsä?',
+            tags: ['Hyvinvointivaltio', 'Liikkumavara', 'Luottamus'],
+            readingTime: '24 MIN',
+            image: 'liikkumavaran-hyvinvointivaltio.png',
+            imageAlt: 'Pystysuuntainen infografiikka liikkumavaran hyvinvointivaltiosta',
+            imageCaption: 'Liikkumavaran hyvinvointivaltiossa turva ei perustu jokaisen askeleen ennalta määrittämiseen vaan oikeuksiin, selkeään tavoitteeseen, tietoon ja todellisiin vaihtoehtoihin.',
+            ogImage: 'liikkumavaran-hyvinvointivaltio-og.png',
+            intro: [
+              'Hyvinvointivaltio on rakentunut ajatukselle, että ihmisten oikeuksia ei jätetä sattuman, markkinoiden tai paikallisen mielivallan varaan. Siksi järjestelmä on määritellyt ehtoja, palveluja, menettelyjä ja oikeuksia yksityiskohtaisesti. Tämä on ollut yhdenvertaisuuden kannalta historiallinen saavutus.',
+              'Sama rakenne voi kuitenkin muuttua ongelmaksi silloin, kun sääntö alkaa määritellä elämää tarkemmin kuin tavoite edellyttää. Ihmisen tilanteesta tulee hallinnollinen tapaus, johon tarjotaan ennalta määrättyä reittiä, vaikka toinen ratkaisu voisi olla nopeampi, halvempi ja vaikuttavampi.',
+              'Liikkumavaran hyvinvointivaltio lähtee toisesta kysymyksestä. Mitkä asiat yhteiskunnan pitää taata kaikille, ja missä asioissa ihmisen pitäisi saada käyttää enemmän omaa harkintaansa? Lähtökohtana ei ole julkisen vastuun vähentäminen vaan sen kohdentaminen olennaiseen: oikeuksiin, perusturvaan, tietoon, tavoitteisiin ja mahdollisuuksiin.',
+              'Periaate voidaan tiivistää kolmeen vaiheeseen: turvaa minimi, määritä tavoite ja anna liikkumavaraa. Hyvinvointia ei silloin rakenneta määräämällä jokainen askel etukäteen vaan tekemällä hyvä ratkaisu aidosti mahdolliseksi.'
+            ],
+            sections: [
+              {
+                id: 'mita-liikkumavara-tarkoittaa',
+                title: 'Mitä liikkumavara tarkoittaa?',
+                paragraphs: [
+                  'Liikkumavara ei tarkoita sääntöjen puuttumista. Se tarkoittaa eroa sen välillä, mitä yhteiskunnan täytyy määritellä ja mitä sen ei tarvitse määritellä. Oikeuksien, vähimmäisturvan, syrjimättömyyden ja turvallisuuden on oltava selkeitä. Sen sijaan kaikkien ihmisten ei tarvitse saavuttaa samaa tavoitetta samalla reitillä.',
+                  'Järjestelmä voi esimerkiksi määrittää, että ihmisellä on oikeus välttämättömään toimeentuloon, mahdollisuus ylläpitää toimintakykyään ja pääsy tarvittaviin palveluihin. Sen ei välttämättä tarvitse samalla määrätä yksityiskohtaisesti, missä järjestyksessä ihminen käyttää palveluja, millä hyväksytyllä tavalla hän kehittää osaamistaan tai minkä organisaation kautta jokainen ratkaisu toteutetaan.',
+                  'Liikkumavaran peruskysymys on siksi yksinkertainen: missä kohdassa sääntö suojaa ihmistä ja missä kohdassa se alkaa estää häntä ratkaisemasta omaa tilannettaan?'
+                ],
+                quote: 'Turvaa minimi. Määritä tavoite. Anna liikkumavaraa.'
+              },
+              {
+                id: 'miksi-jarjestelmat-saantelyvat-yksityiskohtia',
+                title: 'Miksi järjestelmät alkavat säädellä yksityiskohtia?',
+                paragraphs: [
+                  'Yksityiskohtainen sääntely syntyy yleensä hyvästä syystä. Yksi sääntö ehkäisee väärinkäytöksiä, toinen lisää yhdenvertaisuutta, kolmas helpottaa valvontaa ja neljäs täsmentää vastuuta. Jokainen yksittäinen lisäys voi olla perusteltu.',
+                  'Ongelma syntyy kerrostumisesta. Kun jokaisen poikkeuksen ympärille syntyy uusi sääntö, järjestelmä alkaa vähitellen optimoida omaa hallittavuuttaan. Ihmisen täytyy sopia luokkaan, palvelun prosessiin ja rahoituksen ehtoon, jotta järjestelmä kykenee käsittelemään hänen tilanteensa.',
+                  'Tällöin keinot voivat alkaa syrjäyttää tarkoituksen. Toimenpiteen toteuttaminen, määräajan noudattaminen tai lomakkeen oikea täyttäminen voidaan mitata tarkasti, mutta niiden yhteys ihmisen todelliseen toimintakykyyn jää heikommaksi.'
+                ]
+              },
+              {
+                id: 'oikeudet-edella',
+                title: 'Liikkumavara alkaa vahvoista oikeuksista',
+                paragraphs: [
+                  'Liikkumavaraa ei pidä rakentaa niin, että vastuu siirretään ihmiselle mutta resurssit poistetaan. Vapaus ilman turvaa voi merkitä vain sitä, että heikommassa asemassa oleva joutuu kantamaan enemmän riskiä.',
+                  'Siksi ensimmäinen periaate on oikeudet edellä. Perusturva, välttämättömät palvelut, turvallisuus ja yhdenvertaisuus muodostavat lattian, jonka alapuolelle ihminen ei putoa sen vuoksi, että hänen tekemänsä valinta ei vastannut hallinnon oletusta parhaasta reitistä.',
+                  'Mitä enemmän järjestelmä antaa vapautta, sitä tärkeämmäksi muuttuu oikeuksien selkeys. Liikkumavara toimii vain silloin, kun ihminen tietää, mikä on hänen varma perustansa ja missä kohdassa hän voi valita.'
+                ]
+              },
+              {
+                id: 'taloudellinen-liikkumavara',
+                title: 'Taloudellinen liikkumavara',
+                paragraphs: [
+                  'Monessa etuus- ja palvelujärjestelmässä raha on sidottu tarkasti ennalta määriteltyyn käyttötarkoitukseen. Tämä suojaa julkisia varoja, mutta samalla se voi estää pieniä ratkaisuja, jotka auttaisivat ihmistä etenemään nopeammin.',
+                  'Taloudellinen liikkumavara voisi tarkoittaa rajattua resurssia, jota ihminen voi käyttää sovitun tavoitteen saavuttamiseen usealla tavalla. Jos tavoitteena on esimerkiksi työ- tai opiskelukyvyn vahvistaminen, ratkaisu voi olla matkakulu, työväline, lyhyt koulutus, lastenhoito, kuntoutusta täydentävä palvelu tai jokin muu konkreettinen esteen poistaminen.',
+                  'Ratkaiseva ero olisi siinä, että järjestelmä ei yrittäisi ennustaa kaikkia mahdollisia tarpeita etukäteen. Se määrittäisi hyväksyttävän tavoitteen, resurssin rajat ja seurannan, mutta jättäisi keinon valinnassa tilaa tilanteen tuntevalle ihmiselle.'
+                ]
+              },
+              {
+                id: 'palvelujen-valinnan-liikkumavara',
+                title: 'Palvelujen valinnan liikkumavara',
+                paragraphs: [
+                  'Palvelujärjestelmä rakentuu helposti sen ympärille, mitä organisaatiot tuottavat. Ihminen ohjataan olemassa olevaan palveluun, koska sitä voidaan tarjota, rahoittaa ja kirjata järjestelmään. Liikkumavaramallissa lähtökohta olisi sen sijaan tavoiteltu vaikutus.',
+                  'Jos tavoite on esimerkiksi yksinäisyyden vähentäminen, työkyvyn palautuminen tai nuoren koulutuspolun jatkuvuus, ratkaisu voi syntyä useiden julkisten, yksityisten ja yhteisöllisten toimijoiden yhdistelmänä. Olennaista ei olisi yhden palvelupolun toteuttaminen vaan se, saadaanko tavoiteltu muutos aikaan.',
+                  'Tämä edellyttää palvelujen yhteentoimivuutta ja sitä, ettei rahoitus lukitse ihmistä tarpeettomasti yhteen tuottajaan tai hallinnonalaan.'
+                ]
+              },
+              {
+                id: 'ajan-liikkumavara',
+                title: 'Ajan liikkumavara',
+                paragraphs: [
+                  'Hyvinvointijärjestelmät käyttävät aikaa usein hallinnollisena kontrollin välineenä. Tapaamiset, kurssit, arvioinnit ja palvelut tapahtuvat silloin, kun organisaation prosessi niitä tarjoaa. Ihmisen muu elämä joutuu sopeutumaan tämän ympärille.',
+                  'Ajan liikkumavara tarkoittaisi mahdollisuutta sovittaa työtä, opiskelua, hoivaa, kuntoutusta ja muuta osallistumista yhteen nykyistä joustavammin. Kaikkien ei tarvitse edetä samalla tahdilla, jos tavoite ja vastuut ovat selvät.',
+                  'Erityisen tärkeää tämä on elämäntilanteissa, joissa toimintakyky vaihtelee. Joustavuus voi estää sen, että väliaikainen vaikeus muuttuu kokonaan katkenneeksi opiskelu-, työ- tai kuntoutuspoluksi.'
+                ]
+              },
+              {
+                id: 'luottamus-ja-vastuu',
+                title: 'Luottamus ei poista vastuuta',
+                paragraphs: [
+                  'Liikkumavaramallin vastakohdaksi voidaan helposti kuvitella valvonnan poistaminen. Todellisuudessa luottamukseen perustuva järjestelmä tarvitsee vastuuta ehkä jopa nykyistä selvemmin. Erona on se, mihin vastuu kohdistuu.',
+                  'Yksityiskohtaisen menettelyn sijasta voidaan arvioida tavoitetta, vaikutusta ja sovittujen rajojen noudattamista. Ihmisen ei tarvitse todistaa noudattaneensa jokaista ennalta määrättyä askelta, jos hän pystyy osoittamaan käyttäneensä resurssia tarkoituksenmukaisesti ja edenneensä kohti yhteisesti määriteltyä tavoitetta.',
+                  'Luottamus ei siis tarkoita sitä, ettei väärinkäytöksiin puututa. Se tarkoittaa, ettei kaikkia kohdella mahdollisina väärinkäyttäjinä ennen kuin mitään on tapahtunut.'
+                ]
+              },
+              {
+                id: 'riskit',
+                title: 'Liikkumavaran riskit',
+                paragraphs: [
+                  'Liikkumavaraa voidaan käyttää myös huonosti. Ihmisillä on erilaiset tiedot, verkostot ja kyky tehdä valintoja. Jos palvelujärjestelmä vain vetäytyy ja ilmoittaa ihmisen olevan vapaa valitsemaan, erot voivat kasvaa.',
+                  'Toinen riski on kustannusten siirtäminen yksilölle. Näennäinen valinnanvapaus voi tarkoittaa, että ihminen joutuu itse etsimään palvelut, vertailemaan vaihtoehdot ja kantamaan epäonnistumisen seuraukset ilman riittävää tukea.',
+                  'Kolmas riski liittyy markkinoihin. Jos liikkumavara toteutetaan vain palveluseteleinä tai henkilökohtaisina budjetteina ilman laadunvalvontaa, tiedon avoimuutta ja vaihtoehtoja, julkinen monopoli voidaan vain korvata vaikeasti hahmotettavalla palvelumarkkinalla. Siksi liikkumavaran rinnalle tarvitaan neuvontaa, yhteisiä laatukriteerejä ja tosiasiallisesti saavutettavia vaihtoehtoja.'
+                ]
+              },
+              {
+                id: 'mita-mallin-toteuttaminen-edellyttaa',
+                title: 'Mitä liikkumavaran hyvinvointivaltio edellyttää?',
+                paragraphs: [
+                  'Ensimmäiseksi on erotettava toisistaan oikeus, tavoite ja keino. Oikeuksista ei tingitä. Tavoite määritellään niin selvästi, että sen toteutumista voidaan arvioida. Keinot jätetään niin avoimiksi kuin turvallisuus, yhdenvertaisuus ja julkisten varojen asianmukainen käyttö sallivat.',
+                  'Toiseksi ihmisellä pitää olla riittävä resurssi ja ymmärrettävä tieto vaihtoehdoista. Muuten liikkumavara jää paperille. Kolmanneksi järjestelmän on kyettävä seuraamaan vaikutuksia suoritteiden sijasta: vahvistuiko toimintakyky, ratkesiko este ja syntyikö pysyvämpi mahdollisuus toimia?',
+                  'Neljänneksi tarvitaan jatkuvaa oppimista. Jos jokin liikkumavaran muoto tuottaa parempia tuloksia, järjestelmän pitää pystyä laajentamaan sitä. Jos se tuottaa eriarvoisuutta tai väärinkäytöksiä, ehtoja pitää pystyä muuttamaan ilman että koko periaatteesta luovutaan.'
+                ],
+                bullets: [
+                  'oikeudet ja vähimmäistaso kaikille',
+                  'riittävä resurssi todellisten vaihtoehtojen käyttämiseen',
+                  'selkeä ja saavutettava tieto',
+                  'luottamukseen yhdistetty vastuu',
+                  'vaikutusten arviointi suoritteiden sijasta',
+                  'järjestelmän kyky oppia ja korjata itseään'
+                ]
+              },
+              {
+                id: 'miksi-tulevaisuuden-hyvinvointia',
+                title: 'Miksi liikkumavara on tulevaisuuden hyvinvointia?',
+                paragraphs: [
+                  'Tulevaisuuden elämäntilanteet ovat vaikeammin standardoitavia kuin teollisen hyvinvointivaltion aikana. Työ, opiskelu, yrittäjyys, hoiva ja erilaiset osallistumisen muodot limittyvät. Ihmisen elämä ei välttämättä etene yhden koulutuksen, yhden ammatin ja yhden työuran kautta.',
+                  'Mitä nopeammin ympäristö muuttuu, sitä vaikeammaksi tulee kirjoittaa etukäteen sääntöjä kaikkiin mahdollisiin tilanteisiin. Järjestelmä, joka yrittää ratkaista tämän lisäämällä jatkuvasti uusia poikkeuksia, voi lopulta hidastua juuri silloin, kun sen pitäisi kyetä sopeutumaan.',
+                  'Liikkumavara vahvistaa itsemääräämisoikeutta, voi lisätä motivaatiota ja vastuuta, nopeuttaa palveluja, vähentää tarpeetonta hallintoa ja käyttää julkisia voimavaroja siellä, missä niillä on todellista vaikutusta. Samalla se voi vahvistaa luottamusta, koska kansalaisen ja järjestelmän suhde ei perustu lähtökohtaisesti epäilyyn.',
+                  'Tärkein hyöty on kuitenkin syvempi. Liikkumavara tekee hyvinvointivaltiosta sopeutumiskykyisemmän. Se ei yritä ennustaa kaikkia tulevia elämäntilanteita, vaan rakentaa ihmisille ja yhteisöille kykyä ratkaista niitä.'
+                ],
+                quote: 'Paras turva ei ole se, joka määrää mitä teet – vaan se, joka antaa sinulle mahdollisuuden tehdä oikein.'
+              },
+              {
+                id: 'liikkumavara-ja-toimintakykyvaltio',
+                title: 'Liikkumavara toimintakykyvaltion käytännön periaatteena',
+                paragraphs: [
+                  'Jos hyvinvointivaltion tavoitteeksi asetetaan toimintakyvyn rakentaminen, liikkumavara on yksi sen keskeisistä toimintaperiaatteista. Toimintakyky ei synny vain siitä, että ihmiselle annetaan palvelu. Se syntyy myös mahdollisuudesta käyttää omia voimavaroja, tehdä valintoja ja vaikuttaa oman elämänsä suuntaan.',
+                  'Tämä muuttaa julkisen vallan roolia. Julkinen valta ei vetäydy, vaan sen tehtävä tarkentuu: se rakentaa turvallisen perustan, suojaa oikeuksia, tarjoaa tietoa ja resursseja, estää vallan väärinkäyttöä ja huolehtii siitä, että myös heikoimmassa asemassa olevalla on todellisia vaihtoehtoja.',
+                  'Liikkumavaran hyvinvointivaltio ei olisi pienempi tai suurempi valtio yksinkertaisessa mielessä. Se olisi valtio, joka yrittää käyttää vähemmän energiaa ihmisen reitin määräämiseen ja enemmän siihen, että reittejä on aidosti mahdollista kulkea.'
+                ]
+              },
+              {
+                id: 'lopuksi',
+                title: 'Turva, joka jättää tilaa elää',
+                paragraphs: [
+                  'Hyvinvointivaltion historiallinen tehtävä oli vapauttaa ihminen köyhyyden, sairauden, sattuman ja syntyperän kohtuuttomasta vallasta. Seuraava tehtävä voi olla vapauttaa ihminen myös sellaisesta hallinnollisesta jäykkyydestä, joka ei enää lisää hänen turvaansa.',
+                  'Tämä ei tarkoita oikeuksien muuttamista harkinnanvaraisiksi. Päinvastoin: mitä vahvempi yhteinen perusta on, sitä enemmän sen päälle voidaan rakentaa vapautta. Turva ja liikkumavara eivät ole vastakohtia. Turva tekee liikkumavaran mahdolliseksi.',
+                  'Tulevaisuuden hyvinvointivaltio voisi siksi arvioida itseään uuden kysymyksen avulla. Ei vain: tarjosimmeko oikean palvelun ja noudatimmeko oikeaa sääntöä? Vaan myös: jäikö ihmiselle tämän jälkeen enemmän kykyä, vaihtoehtoja ja mahdollisuuksia rakentaa omaa elämäänsä?'
+                ],
+                quote: 'Liikkumavara ei vähennä turvaa. Parhaimmillaan se muuttaa turvan toimintakyvyksi.'
+              }
+            ]
+          };
+          list.push(article);
+          fs.writeFileSync(file, JSON.stringify(data, null, 2) + '\n');
+          NODE
+      - name: Commit article
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add kirjoitukset.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Add liikkumavaran hyvinvointivaltio article [skip ci]"
+            git push
+          fi
