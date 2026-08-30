@@ -1,4 +1,5 @@
 name: Fix margin lab section
+# trigger after workflow registration
 on:
   push:
     branches: [main]
