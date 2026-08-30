@@ -1,0 +1,35 @@
+name: Fix article copy link once
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-copy-link-once.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update copy link logic
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('artikkeli.html')
+          s = p.read_text(encoding='utf-8')
+          old = "await navigator.clipboard.writeText(location.href.split('#')[0]);"
+          new = "const slug=new URLSearchParams(location.search).get('id');const shareUrl=slug?`${location.origin}/kirjoitukset/${encodeURIComponent(slug)}/`:location.href.split('#')[0];await navigator.clipboard.writeText(shareUrl);"
+          if old not in s:
+              raise SystemExit('Expected copy-link code not found; no changes made')
+          p.write_text(s.replace(old, new, 1), encoding='utf-8')
+          PY
+      - name: Commit change and remove one-time workflow
+        run: |
+          rm .github/workflows/fix-copy-link-once.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add artikkeli.html .github/workflows/fix-copy-link-once.yml
+          git commit -m "Use canonical share URL for copy link"
+          git push
