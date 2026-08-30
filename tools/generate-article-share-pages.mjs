@@ -17,6 +17,16 @@ const data = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
 const articles = Array.isArray(data) ? data : data.kirjoitukset;
 if (!Array.isArray(articles)) throw new Error('kirjoitukset-taulukko puuttuu');
 
+fs.mkdirSync(OUT_DIR, { recursive: true });
+
+// Generated share pages are flat: kirjoitukset/<slug>.html.
+// Remove only previously generated flat HTML files; other files/directories are left untouched.
+for (const entry of fs.readdirSync(OUT_DIR, { withFileTypes: true })) {
+  if (entry.isFile() && entry.name.endsWith('.html')) {
+    fs.rmSync(path.join(OUT_DIR, entry.name));
+  }
+}
+
 for (const article of articles) {
   const slug = article.slug || article.id;
   if (!slug) continue;
@@ -25,7 +35,7 @@ for (const article of articles) {
   const description = escapeHtml(article.ingress || article.subtitle || '');
   const alt = escapeHtml(article.imageAlt || article.title || 'Artikkelin kuva');
   const imageName = article.ogImage || article.image || '';
-  const canonical = `${SITE}/kirjoitukset/${encodeURIComponent(slug)}/`;
+  const canonical = `${SITE}/kirjoitukset/${encodeURIComponent(slug)}.html`;
   const image = imageName ? `${SITE}/images/${String(imageName).replace(/^\/+/, '')}` : '';
   const target = `/reader.html?id=${encodeURIComponent(slug)}`;
 
@@ -57,8 +67,7 @@ for (const article of articles) {
 </body>
 </html>`;
 
-  const dir = path.join(OUT_DIR, slug);
-  fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'index.html'), html, 'utf8');
-  console.log(`generated kirjoitukset/${slug}/index.html`);
+  const file = path.join(OUT_DIR, `${slug}.html`);
+  fs.writeFileSync(file, html, 'utf8');
+  console.log(`generated kirjoitukset/${slug}.html`);
 }
