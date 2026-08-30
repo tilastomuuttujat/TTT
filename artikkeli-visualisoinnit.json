@@ -1675,192 +1675,50 @@
             }
           ]
         },
-        "miksi-liikkumavara-on-tulevaisuuden-hyvinvointia": [
-          {
-            "type": "compare-chains",
-            "eyebrow": "Oma hyvinvointivaltiomallisi",
-            "title": "Vahva turva vai suuri liikkumavara? Väärä kysymys.",
-            "intro": "Selaa neljää mallia. Olennaista on huomata, että yhteisen turvan vahvuus ja henkilökohtainen liikkumavara ovat kaksi eri akselia.",
-            "variables": [
-              {
-                "name": "Palveluvaltio",
-                "question": "Vahva turva + pieni liikkumavara",
-                "left": {
-                  "label": "Turva",
-                  "title": "Oikeudet ja palvelut ovat vahvoja",
-                  "steps": [
-                    {
-                      "label": "Oikeus",
-                      "title": "Yhteiskunta takaa paljon"
-                    },
-                    {
-                      "label": "Resurssi",
-                      "title": "Palvelut ovat käytettävissä"
-                    }
-                  ]
-                },
-                "right": {
-                  "label": "Liikkumavara",
-                  "title": "Reitti määritellään pitkälti järjestelmässä",
-                  "steps": [
-                    {
-                      "label": "Keino",
-                      "title": "Hyväksytyt ratkaisut ovat rajattuja"
-                    },
-                    {
-                      "label": "Valinta",
-                      "title": "Ihminen sovittautuu palvelurakenteeseen"
-                    }
-                  ]
-                },
-                "synthesis": "Vahva turva ei automaattisesti tarkoita suurta henkilökohtaista toimintavaraa."
-              },
-              {
-                "name": "Liikkumavaravaltio",
-                "question": "Vahva turva + suuri liikkumavara",
-                "left": {
-                  "label": "Turva",
-                  "title": "Perusoikeudet ja vähimmäistaso ovat vahvoja",
-                  "steps": [
-                    {
-                      "label": "Pohja",
-                      "title": "Turvaa ei tarvitse ansaita oikealla valinnalla"
-                    },
-                    {
-                      "label": "Resurssi",
-                      "title": "Todelliset vaihtoehdot mahdollistetaan"
-                    }
-                  ]
-                },
-                "right": {
-                  "label": "Liikkumavara",
-                  "title": "Ihminen voi valita reitin",
-                  "steps": [
-                    {
-                      "label": "Tavoite",
-                      "title": "Yhteinen tavoite sovitaan"
-                    },
-                    {
-                      "label": "Keino",
-                      "title": "Ratkaisu voidaan sovittaa elämäntilanteeseen"
-                    }
-                  ]
-                },
-                "synthesis": "Tämä on artikkelin ydinyhdistelmä: vahvat yhteiset oikeudet ja suuri vapaus valita keinot."
-              },
-              {
-                "name": "Kontrollivaltio",
-                "question": "Heikko turva + pieni liikkumavara",
-                "left": {
-                  "label": "Turva",
-                  "title": "Tuki on niukka tai ehdollinen",
-                  "steps": [
-                    {
-                      "label": "Ehto",
-                      "title": "Oikeus riippuu tarkasta kelpoisuudesta"
-                    },
-                    {
-                      "label": "Riski",
-                      "title": "Putoamisen seuraukset jäävät ihmiselle"
-                    }
-                  ]
-                },
-                "right": {
-                  "label": "Liikkumavara",
-                  "title": "Silti myös valintoja rajataan",
-                  "steps": [
-                    {
-                      "label": "Sääntö",
-                      "title": "Menettelyä valvotaan tarkasti"
-                    },
-                    {
-                      "label": "Tulos",
-                      "title": "Vastuu kasvaa ilman toimintavaraa"
-                    }
-                  ]
-                },
-                "synthesis": "Vähäinen turva ja vähäinen liikkumavara voivat yhdistyä: ihmisellä on sekä vähän resursseja että vähän vaihtoehtoja."
-              },
-              {
-                "name": "Omavastuumalli",
-                "question": "Heikko turva + suuri liikkumavara",
-                "left": {
-                  "label": "Turva",
-                  "title": "Yhteinen vähimmäistaso on ohut",
-                  "steps": [
-                    {
-                      "label": "Vastuu",
-                      "title": "Ihminen kantaa suuren osan riskistä"
-                    },
-                    {
-                      "label": "Resurssi",
-                      "title": "Mahdollisuudet riippuvat omista voimavaroista"
-                    }
-                  ]
-                },
-                "right": {
-                  "label": "Liikkumavara",
-                  "title": "Valinnanvapautta on paljon",
-                  "steps": [
-                    {
-                      "label": "Markkina",
-                      "title": "Vaihtoehtoja voi olla runsaasti"
-                    },
-                    {
-                      "label": "Ehto",
-                      "title": "Niihin pääsy riippuu maksukyvystä ja asemasta"
-                    }
-                  ]
-                },
-                "synthesis": "Valinnanvapaus ilman riittäviä resursseja ei vielä tuota yhdenvertaista liikkumavaraa."
-              }
-            ]
-          },
-          {
-            "type": "margin-lab",
-            "eyebrow": "Liikkumavaralaboratorio",
-            "title": "Rakenna oma hyvinvointivaltiosi – ja katso missä se alkaa kiristää",
-            "intro": "Säädä viittä ulottuvuutta. Laboratorio ei etsi yhtä oikeaa pistettä, vaan tunnistaa tilanteet, joissa vastuu, resurssit, turva, valinnanvara ja kontrolli joutuvat ristiriitaan.",
-            "repairLabel": "KORJAA PIENIMMÄLLÄ MUUTOKSELLA",
-            "controls": [
-              {
-                "key": "security",
-                "label": "Turva",
-                "value": 78,
-                "low": "Ohut turva",
-                "high": "Vahva turva"
-              },
-              {
-                "key": "choice",
-                "label": "Valinnanvara",
-                "value": 72,
-                "low": "Järjestelmä päättää",
-                "high": "Ihminen päättää"
-              },
-              {
-                "key": "resources",
-                "label": "Resurssit",
-                "value": 68,
-                "low": "Niukat",
-                "high": "Riittävät"
-              },
-              {
-                "key": "responsibility",
-                "label": "Vastuu",
-                "value": 58,
-                "low": "Vähän",
-                "high": "Paljon"
-              },
-              {
-                "key": "control",
-                "label": "Kontrolli",
-                "value": 42,
-                "low": "Kevyt",
-                "high": "Tiukka"
-              }
-            ]
-          }
-        ]
+        "miksi-tulevaisuuden-hyvinvointia": {
+          "type": "margin-lab",
+          "eyebrow": "Liikkumavaralaboratorio",
+          "title": "Rakenna oma hyvinvointivaltiosi – ja katso missä se alkaa kiristää",
+          "intro": "Säädä viittä ulottuvuutta. Laboratorio ei etsi yhtä oikeaa pistettä, vaan tunnistaa tilanteet, joissa vastuu, resurssit, turva, valinnanvara ja kontrolli joutuvat ristiriitaan.",
+          "repairLabel": "KORJAA PIENIMMÄLLÄ MUUTOKSELLA",
+          "controls": [
+            {
+              "key": "security",
+              "label": "Turva",
+              "value": 78,
+              "low": "Ohut turva",
+              "high": "Vahva turva"
+            },
+            {
+              "key": "choice",
+              "label": "Valinnanvara",
+              "value": 72,
+              "low": "Järjestelmä päättää",
+              "high": "Ihminen päättää"
+            },
+            {
+              "key": "resources",
+              "label": "Resurssit",
+              "value": 68,
+              "low": "Niukat",
+              "high": "Riittävät"
+            },
+            {
+              "key": "responsibility",
+              "label": "Vastuu",
+              "value": 58,
+              "low": "Vähän",
+              "high": "Paljon"
+            },
+            {
+              "key": "control",
+              "label": "Kontrolli",
+              "value": 42,
+              "low": "Kevyt",
+              "high": "Tiukka"
+            }
+          ]
+        }
       }
     }
   ]
