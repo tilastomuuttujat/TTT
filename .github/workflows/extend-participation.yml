@@ -1,0 +1,73 @@
+name: Extend participation article visuals
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/extend-participation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  extend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore full visual config and add participation stress tests
+        run: |
+          node - <<'NODE'
+          const fs=require('fs'),cp=require('child_process');
+          const file='artikkeli-visualisoinnit.json';
+          const current=JSON.parse(fs.readFileSync(file,'utf8'));
+          let base;
+          try { base=JSON.parse(cp.execSync('git show f3b5ac798a13e2ab29deda124ca6156a12185d59^:artikkeli-visualisoinnit.json',{encoding:'utf8'})); }
+          catch { base=current; }
+          const curArts=current.articles||[];
+          const participation=curArts.find(a=>a.id==='kansalaisyhteiskunnan-toimintakyky')||{id:'kansalaisyhteiskunnan-toimintakyky',sections:{}};
+          participation.sections=participation.sections||{};
+          const balance={
+            type:'intervention',
+            eyebrow:'Tasapainokartta',
+            title:'Kenen näkökulmasta malli toimii?',
+            intro:'Valitse toimija. Sama osallistumismalli näyttää erilaiselta sen mukaan, tarkastellaanko hyötyä, kustannusta, riskiä vai päätösvaltaa. Tarkoitus ei ole löytää yhtä voittajaa vaan nähdä, siirtyykö jokin hyöty toisen osapuolen kustannukseksi.',
+            note:'Tasapainokartta on rakenteellinen päättelykoe, ei numeerinen vaikutusarvio.',
+            options:[
+              {name:'Osallistuja',first:{title:'Hyöty: toimintakyky ja yhteydet',text:'Merkityksellinen tekeminen voi tuottaa rytmiä, osaamista, verkostoja ja pienen taloudellisen lisän.'},second:{title:'Kustannus: aika ja sitoutuminen',text:'Osallistuminen käyttää aikaa, liikkumista ja voimavaroja, joiden määrä vaihtelee elämäntilanteen mukaan.'},third:{title:'Riski: vapaaehtoisuus ohenee',text:'Kannustin voi muuttua tosiasialliseksi velvoitteeksi, jos muut vaihtoehdot tai toimeentulo kaventuvat.'},balance:'Valta: osallistujalla pitää säilyä oikeus valita tehtävä, vaihtaa sitä ja lopettaa ilman, että perusturvan vähimmäissuoja vaarantuu.'},
+              {name:'Järjestö',first:{title:'Hyöty: lisää toimintakykyä',text:'Uudet osallistujat voivat mahdollistaa toimintaa, jota järjestö ei muuten pystyisi toteuttamaan.'},second:{title:'Kustannus: perehdytys ja ohjaus',text:'Osallistujan vastaanottaminen vaatii aikaa, osaamista, vakuutuksia, välineitä ja koordinointia.'},third:{title:'Riski: työ ja kansalaistoiminta sekoittuvat',text:'Järjestö voi alkaa rakentaa perustoimintaansa tuetun osallistumisen varaan ja korvata palkattua työtä.'},balance:'Valta: järjestö määrittelee tehtäviä ja sopivuutta, joten tehtävien hyväksyntä ja palkkatyön suojaraja tarvitsevat läpinäkyvät vastapainot.'},
+              {name:'Julkinen valta',first:{title:'Hyöty: käyttämätön kapasiteetti kohtaa tarpeen',text:'Sosiaaliturvan rinnalle syntyy väylä, jossa ihmisten toimintakyky voi tuottaa yhteiskunnallista hyötyä.'},second:{title:'Kustannus: lisä, ohjaus ja infrastruktuuri',text:'Osallistumislisä, järjestöjen ohjauskorvaus, rekisteri ja valvonta vaativat rahoitusta.'},third:{title:'Riski: syntyy uusi hallinnollinen kerros',text:'Hyvä tarkoitus voi tuottaa uuden hyväksyntä-, mittaus- ja raportointijärjestelmän, joka alkaa kuluttaa omaa hyötyään.'},balance:'Valta: julkinen valta päättää hyväksymissäännöistä ja rahoituksesta. Siksi sen pitäisi määritellä suojarajat tarkasti mutta itse kansalaistoiminnan sisältö mahdollisimman väljästi.'},
+              {name:'Yhteiskunta',first:{title:'Hyöty: enemmän yhteistä toimintaa',text:'Yksinäisyyttä, osattomuutta ja paikallisia tarpeita voidaan kohdata ennen kuin ne muuttuvat raskaammiksi ongelmiksi.'},second:{title:'Kustannus: yhteinen rahoitus ja huomio',text:'Malliin sijoitettu euro ja hallinnollinen kapasiteetti ovat pois jostakin muusta käytöstä.'},third:{title:'Riski: työn arvon raja hämärtyy',text:'Yhteiskunnallisesti arvokkaan tekemisen tunnistaminen ei saa muuttua perusteeksi jättää välttämätöntä työtä palkatta.'},balance:'Valta: ratkaiseva kysymys on, kuka saa määritellä yhteiskunnallisesti arvokkaan tehtävän ja kuinka avoimena tämä määrittely säilyy uusille toimijoille.'}
+            ]
+          };
+          const failures={
+            type:'intervention',
+            eyebrow:'Stressitesti',
+            title:'Millä neljällä tavalla hyvä malli voi kääntyä itseään vastaan?',
+            intro:'Valitse epäonnistumisreitti. Jokainen alkaa pieneltä näyttävästä muutoksesta, joka voi vähitellen muuttaa koko mallin logiikan. Stressitesti pakottaa arvioimaan järjestelmää myös silloin, kun alkuperäinen tavoite on hyvä.',
+            note:'Epäonnistumisreitit ovat ennakollisia varoitusmekanismeja: niitä pitäisi seurata jo kokeiluvaiheessa.',
+            options:[
+              {name:'Pakko',first:{title:'Kannustin muuttuu ehdoksi',text:'Osallistumislisän rinnalle alkaa syntyä seuraamuksia osallistumatta jättämisestä.'},second:{title:'Valinnanvapaus kapenee',text:'Ihminen osallistuu turvatakseen toimeentulonsa eikä siksi, että tehtävä sopii hänen tilanteeseensa.'},third:{title:'Osallistumisoikeudesta tulee työvelvollisuus',text:'Mallin positiivinen takaisinkytkentä vaihtuu kontrollin ja suoritteen logiikaksi.'},balance:'Varoitusraja: perusturvan vähimmäissuoja ja todellinen oikeus kieltäytyä on pystyttävä erottamaan osallistumisen kannustimesta.'},
+              {name:'Korvaaminen',first:{title:'Tuettu tehtävä alkaa hoitaa pysyvää tarvetta',text:'Osallistujan työpanos muuttuu organisaation normaalin toiminnan kannalta välttämättömäksi.'},second:{title:'Palkkaamisen tarve vähenee',text:'Sama työ voidaan toteuttaa osallistumiskorvauksella tai vapaaehtoisvoimin.'},third:{title:'Kansalaistoiminnasta tulee halvemman työn järjestelmä',text:'Järjestöjen toimintakyky vahvistuu näennäisesti palkkatyön ja työntekijän suojan kustannuksella.'},balance:'Varoitusraja: jos tehtävän poistuminen synnyttäisi normaalin rekrytointitarpeen, tehtävä kuuluu todennäköisemmin palkkatyön piiriin.'},
+              {name:'Hallinnollistuminen',first:{title:'Väärinkäytöksiä torjutaan uusilla säännöillä',text:'Hyväksyntään lisätään raportointia, luokituksia ja valvontaa.'},second:{title:'Järjestöjen ohjausresurssi siirtyy hallintoon',text:'Pienet toimijat käyttävät yhä enemmän aikaa järjestelmän vaatimuksiin itse toiminnan sijasta.'},third:{title:'Osallistumisen mahdollistamiseen syntyy uusi siilo',text:'Järjestelmä alkaa ylläpitää omaa koordinointiaan enemmän kuin alkuperäistä kansalaistoimintaa.'},balance:'Varoitusraja: jokaisen uuden kontrollin pitäisi joko korvata vanhaa sääntöä tai osoittaa, että sen ehkäisemä riski on hallinnollista kustannusta suurempi.'},
+              {name:'Valikoituminen',first:{title:'Toimintakykyisimmät löytävät parhaat tehtävät',text:'Verkostot, digitaidot ja itsevarmuus helpottavat kiinnostaviin osallistumispaikkoihin pääsyä.'},second:{title:'Hyödyt alkavat kasautua samoille ihmisille',text:'Parhaat tehtävät tuottavat lisää osaamista, suosituksia ja verkostoja.'},third:{title:'Osallistumismalli alkaa vahvistaa lähtöeroja',text:'Heikoimmassa asemassa oleville jäävät vähiten kehittävät tehtävät tai ei tehtävää lainkaan.'},balance:'Varoitusraja: onnistumista pitää mitata myös sillä, miten osallistumismahdollisuudet ja niiden laatu jakautuvat, ei vain osallistujamäärällä.'}
+            ]
+          };
+          participation.sections.mittarit=[balance,failures];
+          const baseArts=base.articles||[];
+          const idx=baseArts.findIndex(a=>a.id==='kansalaisyhteiskunnan-toimintakyky');
+          if(idx>=0) baseArts[idx]=participation; else baseArts.push(participation);
+          base.articles=baseArts;
+          fs.writeFileSync(file,JSON.stringify(base,null,2)+'\n');
+          NODE
+      - name: Commit visual extension
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add artikkeli-visualisoinnit.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Add participation balance map and stress test [skip ci]"
+            git push
+          fi
