@@ -761,7 +761,7 @@
           "type": "intervention",
           "eyebrow": "Purkamiskoe",
           "title": "Jos vain yksi mekanismi muuttuisi, mitä tapahtuisi seuraavaksi?",
-          "intro": "Valitse kohta, johon puututaan. Moduuli näyttää ensimmäisen vaikutuksen, siitä seuraavan järjestelmävaikutuksen sekä mahdollisen vastavaikutuksen — juuri sen, joka helposti jää uudistuskeskustelussa näkymättömäksi.",
+          "intro": "Valitse kohta, johon puututaan. Moduuli näyttää ensimmäisen vaikutuksen, siitä seuraavan järjestelmävaikutuksen sekä mahdollisen vastavaikutuksen -- juuri sen, joka helposti jää uudistuskeskustelussa näkymättömäksi.",
           "note": "Tämä on artikkelin argumenttia havainnollistava mekanismikartta, ei numeerinen vaikutusarvio.",
           "options": [
             {
@@ -845,7 +845,434 @@
               "balance": "Ohjauksen purkaminen toimii vain, jos samalla päätetään, mikä yhdenmukaisuus on todella välttämätöntä."
             }
           ]
-        }
+        },
+        "kun-palaute-muuttuu-raportiksi": [
+          {
+            "type": "flow-split",
+            "eyebrow": "Palautteen virtaus",
+            "title": "Mihin havainto lopulta valuu?",
+            "intro": "Sama havainto voi päätyä rakenteen korjaukseen tai uuteen ohjauskerrokseen. Vaihda skenaariota ja klikkaa solmua nähdäksesi sen oman virran.",
+            "scenarios": [
+              {
+                "label": "Avoin palautekierto",
+                "readoutKicker": "Skenaario",
+                "note": "Kun palaute saa muuttaa rakennetta, suurin osa havainnoista päätyy korjaukseen ja vain osa katoaa matkalla.",
+                "columns": [
+                  "Havainnon lähde",
+                  "Käsittelytapa",
+                  "Lopputulos"
+                ],
+                "nodes": [
+                  {
+                    "id": "kansalainen",
+                    "label": "Kansalaisen kokemus",
+                    "column": 0,
+                    "value": 34,
+                    "tone": "blue",
+                    "meta": "PALVELUN KÄYTTÄJÄ",
+                    "note": "Kokemustieto saa oman kanavan valmisteluun eikä suodatu pelkäksi asiakastyytyväisyysluvuksi."
+                  },
+                  {
+                    "id": "tyontekija",
+                    "label": "Työntekijän havainto",
+                    "column": 0,
+                    "value": 33,
+                    "tone": "teal",
+                    "meta": "LÄHITASO",
+                    "note": "Lähityön havainto kulkee suoraan sinne, missä sääntöjä voidaan muuttaa."
+                  },
+                  {
+                    "id": "mittaus",
+                    "label": "Mittaustieto",
+                    "column": 0,
+                    "value": 33,
+                    "tone": "ochre",
+                    "meta": "SEURANTA",
+                    "note": "Numerotieto tulkitaan yhdessä kokemustiedon kanssa, ei sen sijasta."
+                  },
+                  {
+                    "id": "suora",
+                    "label": "Suora kanava valmisteluun",
+                    "column": 1,
+                    "value": 62,
+                    "tone": "teal",
+                    "meta": "EI VÄLIPORTAITA",
+                    "note": "Havainto kohtaa sen tahon, jolla on valta muuttaa rakennetta."
+                  },
+                  {
+                    "id": "raportti",
+                    "label": "Raportointi",
+                    "column": 1,
+                    "value": 38,
+                    "tone": "ochre",
+                    "meta": "MUOTOON PAKOTTAMINEN",
+                    "note": "Osa havainnoista muuttuu raportiksi, mutta raportti luetaan ja siihen palataan."
+                  },
+                  {
+                    "id": "korjaus",
+                    "label": "Rakenteen korjaus",
+                    "column": 2,
+                    "value": 55,
+                    "tone": "teal",
+                    "meta": "SÄÄNTÖ MUUTTUU",
+                    "note": "Tarpeeton sääntö tai rajapinta voidaan poistaa, ei vain täydentää."
+                  },
+                  {
+                    "id": "ohjaus",
+                    "label": "Uusi ohjauskerros",
+                    "column": 2,
+                    "value": 25,
+                    "tone": "ochre",
+                    "meta": "LISÄOHJE",
+                    "note": "Osa vastauksista on yhä uutta ohjausta vanhan päälle."
+                  },
+                  {
+                    "id": "katoaa",
+                    "label": "Katoaa matkalla",
+                    "column": 2,
+                    "value": 20,
+                    "tone": "rust",
+                    "meta": "EI VASTAUSTA",
+                    "note": "Kaikki havainnot eivät kanna perille edes avoimessa järjestelmässä."
+                  }
+                ],
+                "links": [
+                  {
+                    "from": "kansalainen",
+                    "to": "suora",
+                    "value": 20,
+                    "tone": "blue",
+                    "label": "Kokemus valmisteluun"
+                  },
+                  {
+                    "from": "kansalainen",
+                    "to": "raportti",
+                    "value": 14,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "tyontekija",
+                    "to": "suora",
+                    "value": 24,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "tyontekija",
+                    "to": "raportti",
+                    "value": 9,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "mittaus",
+                    "to": "suora",
+                    "value": 18,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "mittaus",
+                    "to": "raportti",
+                    "value": 15,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "suora",
+                    "to": "korjaus",
+                    "value": 44,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "suora",
+                    "to": "ohjaus",
+                    "value": 12,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "suora",
+                    "to": "katoaa",
+                    "value": 6,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "raportti",
+                    "to": "korjaus",
+                    "value": 11,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "raportti",
+                    "to": "ohjaus",
+                    "value": 13,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "raportti",
+                    "to": "katoaa",
+                    "value": 14,
+                    "tone": "rust"
+                  }
+                ]
+              },
+              {
+                "label": "Raportoiva palautekierto",
+                "readoutKicker": "Skenaario",
+                "note": "Kun palaute pitää ensin kääntää raportin kielelle, valtaosa havainnoista tuottaa uuden ohjauskerroksen tai katoaa. Rakenne pysyy koskemattomana, vaikka työtä tehdään enemmän.",
+                "columns": [
+                  "Havainnon lähde",
+                  "Käsittelytapa",
+                  "Lopputulos"
+                ],
+                "nodes": [
+                  {
+                    "id": "kansalainen",
+                    "label": "Kansalaisen kokemus",
+                    "column": 0,
+                    "value": 34,
+                    "tone": "blue",
+                    "meta": "PALVELUN KÄYTTÄJÄ",
+                    "note": "Kokemus mahtuu vain valmiisiin kysymyskenttiin ja menettää kontekstinsa."
+                  },
+                  {
+                    "id": "tyontekija",
+                    "label": "Työntekijän havainto",
+                    "column": 0,
+                    "value": 33,
+                    "tone": "teal",
+                    "meta": "LÄHITASO",
+                    "note": "Havainto kulkee esihenkilöportaiden läpi ja pehmenee jokaisella tasolla."
+                  },
+                  {
+                    "id": "mittaus",
+                    "label": "Mittaustieto",
+                    "column": 0,
+                    "value": 33,
+                    "tone": "ochre",
+                    "meta": "SEURANTA",
+                    "note": "Mittari kertoo suoritteesta, ei siitä mitä ihmiselle tapahtui."
+                  },
+                  {
+                    "id": "suora",
+                    "label": "Suora kanava valmisteluun",
+                    "column": 1,
+                    "value": 18,
+                    "tone": "teal",
+                    "meta": "KAPEA",
+                    "note": "Suora kanava on olemassa, mutta vain harvoille ja harvoin."
+                  },
+                  {
+                    "id": "raportti",
+                    "label": "Raportointi",
+                    "column": 1,
+                    "value": 82,
+                    "tone": "ochre",
+                    "meta": "PÄÄREITTI",
+                    "note": "Raportti on samalla vastaus: se osoittaa, että asiaa on käsitelty."
+                  },
+                  {
+                    "id": "korjaus",
+                    "label": "Rakenteen korjaus",
+                    "column": 2,
+                    "value": 16,
+                    "tone": "teal",
+                    "meta": "SÄÄNTÖ MUUTTUU",
+                    "note": "Rakenteeseen kajotaan harvoin, koska se vaatisi siilorajan ylittämistä."
+                  },
+                  {
+                    "id": "ohjaus",
+                    "label": "Uusi ohjauskerros",
+                    "column": 2,
+                    "value": 47,
+                    "tone": "ochre",
+                    "meta": "LISÄOHJE",
+                    "note": "Yleisin vastaus ongelmaan on uusi ohje, mittari tai raportointivelvoite."
+                  },
+                  {
+                    "id": "katoaa",
+                    "label": "Katoaa matkalla",
+                    "column": 2,
+                    "value": 37,
+                    "tone": "rust",
+                    "meta": "EI VASTAUSTA",
+                    "note": "Havainto kirjataan, käsitellään ja unohdetaan ilman että kukaan huomaa katoamista."
+                  }
+                ],
+                "links": [
+                  {
+                    "from": "kansalainen",
+                    "to": "raportti",
+                    "value": 30,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "kansalainen",
+                    "to": "suora",
+                    "value": 4,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "tyontekija",
+                    "to": "raportti",
+                    "value": 25,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "tyontekija",
+                    "to": "suora",
+                    "value": 8,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "mittaus",
+                    "to": "raportti",
+                    "value": 27,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "mittaus",
+                    "to": "suora",
+                    "value": 6,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "suora",
+                    "to": "korjaus",
+                    "value": 10,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "suora",
+                    "to": "ohjaus",
+                    "value": 6,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "suora",
+                    "to": "katoaa",
+                    "value": 2,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "raportti",
+                    "to": "korjaus",
+                    "value": 6,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "raportti",
+                    "to": "ohjaus",
+                    "value": 41,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "raportti",
+                    "to": "katoaa",
+                    "value": 35,
+                    "tone": "rust"
+                  }
+                ]
+              }
+            ],
+            "note": "Osuudet ovat argumentin havainnollistuksia, eivät tilastoja. Paksuus kuvaa suhteellista osuutta."
+          }
+        ],
+        "mittarit-siilojen-peileina": [
+          {
+            "type": "matrix-map",
+            "eyebrow": "Mittarikartta",
+            "title": "Mittaako mittari suoritetta vai lopputulosta?",
+            "intro": "Mittari ei ole neutraali kuvaus: se kertoo, mitä siilo pitää omana onnistumisenaan. Klikkaa palloa nähdäksesi, mitä kukin mittari tekee näkyväksi ja mitä se piilottaa.",
+            "x": {
+              "label": "Mitä mitataan",
+              "low": "Suorite",
+              "high": "Vaikutus ihmisen elämään"
+            },
+            "y": {
+              "label": "Kenen vastuulla",
+              "low": "Yhden siilon vastuu",
+              "high": "Jaettu vastuu"
+            },
+            "quadrants": [
+              "Jaettu mutta epämääräinen",
+              "Korjauskykyinen mittari",
+              "Siilon oma peili",
+              "Kapea tulosvastuu"
+            ],
+            "items": [
+              {
+                "label": "Käsittelyaika",
+                "x": 14,
+                "y": 18,
+                "tone": "rust",
+                "kicker": "Siilon oma peili",
+                "note": "Nopeus paranee, vaikka ihmisen tilanne ei muuttuisi. Mittari palkitsee päätöksen tekemisestä, ei sen osuvuudesta."
+              },
+              {
+                "label": "Asiakasmäärä",
+                "x": 22,
+                "y": 26,
+                "tone": "rust",
+                "kicker": "Siilon oma peili",
+                "note": "Volyymi kasvaa myös silloin, kun sama ihminen kiertää järjestelmässä yhä uudelleen."
+              },
+              {
+                "label": "Kustannus per suorite",
+                "x": 20,
+                "y": 42,
+                "tone": "ochre",
+                "kicker": "Kapea tulosvastuu",
+                "note": "Halventaa yksittäistä suoritetta ja siirtää kustannuksen naapurisiiloon, jossa sitä ei enää lasketa."
+              },
+              {
+                "label": "Työllistymisaste",
+                "x": 55,
+                "y": 33,
+                "tone": "ochre",
+                "kicker": "Kapea tulosvastuu",
+                "note": "Kertoo aidosta lopputuloksesta, mutta vastuu on yhdellä toimijalla, vaikka syyt ovat monessa."
+              },
+              {
+                "label": "Palvelupolun katkot",
+                "x": 68,
+                "y": 74,
+                "tone": "teal",
+                "kicker": "Korjauskykyinen mittari",
+                "note": "Näkyy vain, jos siilot mittaavat samaa ihmistä yhdessä. Paljastaa nimenomaan rajapinnan, ei toimijaa."
+              },
+              {
+                "label": "Toimintakyvyn muutos",
+                "x": 86,
+                "y": 82,
+                "tone": "teal",
+                "kicker": "Korjauskykyinen mittari",
+                "note": "Mittaa sitä, mitä järjestelmältä oikeasti halutaan. Vaatii yhteisen tavoitteen ja pitkän seurannan."
+              },
+              {
+                "label": "Kokonaiskustannus per ihminen",
+                "x": 74,
+                "y": 62,
+                "tone": "teal",
+                "kicker": "Korjauskykyinen mittari",
+                "note": "Tekee siirtolaskun näkyväksi: säästö yhdessä kohdassa ei enää katoa toisen budjetista."
+              },
+              {
+                "label": "Hyvinvointi-indeksi",
+                "x": 62,
+                "y": 90,
+                "tone": "blue",
+                "kicker": "Jaettu mutta epämääräinen",
+                "note": "Yhteinen tavoite ilman omistajaa: kaikki raportoivat, kukaan ei vastaa korjauksesta."
+              },
+              {
+                "label": "Strategiset tavoitteet",
+                "x": 40,
+                "y": 86,
+                "tone": "blue",
+                "kicker": "Jaettu mutta epämääräinen",
+                "note": "Kirjattu yhteiseksi, mutta niin väljä, ettei se ohjaa yhdenkään yksikön päätöksiä."
+              }
+            ],
+            "note": "Sijainnit ovat argumentin havainnollistuksia. Oikea yläneljännes on ainoa, jossa mittari voi korjata rakennetta."
+          }
+        ]
       }
     },
     {
@@ -1390,6 +1817,574 @@
               }
             ]
           }
+        ],
+        "kaksi-jarjestelmaa-yksi-aukko": [
+          {
+            "type": "flow-split",
+            "eyebrow": "Väliin jäävä aukko",
+            "title": "Mihin ihminen päätyy kahden järjestelmän välissä?",
+            "intro": "Turvajärjestelmä ja työmarkkinat toimivat kumpikin omalla logiikallaan. Aukko syntyy niiden väliin. Vertaa nykytilaa ja osallistumismallia.",
+            "scenarios": [
+              {
+                "label": "Nykytila",
+                "readoutKicker": "Skenaario",
+                "note": "Nykyisessä asetelmassa suuri osa ihmisistä ei ole työmarkkinoilla eikä missään toiminnassa, joka rakentaisi toimintakykyä. Odottaminen on järjestelmän oletustila.",
+                "columns": [
+                  "Lähtötilanne",
+                  "Reitti",
+                  "Missä ihminen on vuoden päästä"
+                ],
+                "nodes": [
+                  {
+                    "id": "tyoton",
+                    "label": "Pitkäaikaistyötön",
+                    "column": 0,
+                    "value": 40,
+                    "tone": "ochre",
+                    "meta": "TURVAN PIIRISSÄ",
+                    "note": "Turva kantaa toimeentulon mutta ei anna tehtävää, jonka kautta toimintakyky säilyisi."
+                  },
+                  {
+                    "id": "osatyokykyinen",
+                    "label": "Osatyökykyinen",
+                    "column": 0,
+                    "value": 32,
+                    "tone": "blue",
+                    "meta": "VÄLIINPUTOAJA",
+                    "note": "Liian työkykyinen eläkkeelle, liian rajoittunut kokoaikaiseen palkkatyöhön."
+                  },
+                  {
+                    "id": "nuori",
+                    "label": "Nuori ilman opiskelupaikkaa",
+                    "column": 0,
+                    "value": 28,
+                    "tone": "rust",
+                    "meta": "EI KIINNITY",
+                    "note": "Ratkaisevat vuodet kuluvat ilman rakennetta, joka tuottaisi kokemusta ja verkostoja."
+                  },
+                  {
+                    "id": "palkkatyo",
+                    "label": "Palkkatyö",
+                    "column": 1,
+                    "value": 26,
+                    "tone": "teal",
+                    "meta": "TAVOITELTU",
+                    "note": "Toimiva reitti niille, joilla työkyky ja työmarkkinoiden vaatimukset kohtaavat."
+                  },
+                  {
+                    "id": "palvelu",
+                    "label": "Työvoimapalvelu",
+                    "column": 1,
+                    "value": 30,
+                    "tone": "ochre",
+                    "meta": "MÄÄRÄAIKAINEN",
+                    "note": "Tuottaa aktiivisuutta mittariin mutta katkeaa ennen kuin muutos ehtii vakiintua."
+                  },
+                  {
+                    "id": "odotus",
+                    "label": "Odottaminen",
+                    "column": 1,
+                    "value": 44,
+                    "tone": "rust",
+                    "meta": "OLETUSTILA",
+                    "note": "Ei kielletty eikä valittu: se on se, mitä tapahtuu kun mitään ei tapahdu."
+                  },
+                  {
+                    "id": "tyossa",
+                    "label": "Työssä",
+                    "column": 2,
+                    "value": 25,
+                    "tone": "teal",
+                    "meta": "TAVOITE",
+                    "note": "Neljäsosa etenee työhön; muille järjestelmä ei tarjoa muuta polkua."
+                  },
+                  {
+                    "id": "kierto",
+                    "label": "Palaa samaan tilanteeseen",
+                    "column": 2,
+                    "value": 40,
+                    "tone": "ochre",
+                    "meta": "KIERTO",
+                    "note": "Sama ihminen aloittaa saman palvelun uudelleen, usein saman toimijan luona."
+                  },
+                  {
+                    "id": "etaantyy",
+                    "label": "Etääntyy kauemmas",
+                    "column": 2,
+                    "value": 35,
+                    "tone": "red",
+                    "meta": "TOIMINTAKYKY LASKEE",
+                    "note": "Toimintakyky ei säily itsestään: pitkä toimettomuus vie sen, mitä työllistyminen edellyttäisi."
+                  }
+                ],
+                "links": [
+                  {
+                    "from": "tyoton",
+                    "to": "odotus",
+                    "value": 20,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "tyoton",
+                    "to": "palvelu",
+                    "value": 13,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "tyoton",
+                    "to": "palkkatyo",
+                    "value": 7,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "osatyokykyinen",
+                    "to": "odotus",
+                    "value": 15,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "osatyokykyinen",
+                    "to": "palvelu",
+                    "value": 9,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "osatyokykyinen",
+                    "to": "palkkatyo",
+                    "value": 8,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "nuori",
+                    "to": "odotus",
+                    "value": 9,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "nuori",
+                    "to": "palvelu",
+                    "value": 8,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "nuori",
+                    "to": "palkkatyo",
+                    "value": 11,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "palkkatyo",
+                    "to": "tyossa",
+                    "value": 20,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "palkkatyo",
+                    "to": "kierto",
+                    "value": 6,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "palvelu",
+                    "to": "tyossa",
+                    "value": 5,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "palvelu",
+                    "to": "kierto",
+                    "value": 19,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "palvelu",
+                    "to": "etaantyy",
+                    "value": 6,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "odotus",
+                    "to": "kierto",
+                    "value": 15,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "odotus",
+                    "to": "etaantyy",
+                    "value": 29,
+                    "tone": "red"
+                  }
+                ]
+              },
+              {
+                "label": "Osallistumismalli",
+                "readoutKicker": "Skenaario",
+                "note": "Kun turvan rinnalle rakennetaan oikeus osallistua yhteiskunnallisesti hyödylliseen toimintaan, odottaminen lakkaa olemasta oletustila – eikä palkkatyö silti korvaudu.",
+                "columns": [
+                  "Lähtötilanne",
+                  "Reitti",
+                  "Missä ihminen on vuoden päästä"
+                ],
+                "nodes": [
+                  {
+                    "id": "tyoton",
+                    "label": "Pitkäaikaistyötön",
+                    "column": 0,
+                    "value": 40,
+                    "tone": "ochre",
+                    "meta": "TURVAN PIIRISSÄ",
+                    "note": "Turva säilyy oikeutena; osallistuminen on mahdollisuus, ei sen ehto."
+                  },
+                  {
+                    "id": "osatyokykyinen",
+                    "label": "Osatyökykyinen",
+                    "column": 0,
+                    "value": 32,
+                    "tone": "blue",
+                    "meta": "VÄLIINPUTOAJA",
+                    "note": "Voi osallistua omalla kapasiteetillaan ilman että joutuu todistamaan täyttä työkykyä."
+                  },
+                  {
+                    "id": "nuori",
+                    "label": "Nuori ilman opiskelupaikkaa",
+                    "column": 0,
+                    "value": 28,
+                    "tone": "rust",
+                    "meta": "EI KIINNITY",
+                    "note": "Saa rakenteen ja verkoston juuri siinä vaiheessa, jossa niiden puute maksaa eniten."
+                  },
+                  {
+                    "id": "palkkatyo",
+                    "label": "Palkkatyö",
+                    "column": 1,
+                    "value": 30,
+                    "tone": "teal",
+                    "meta": "ENSISIJAINEN",
+                    "note": "Pysyy ensisijaisena: osallistumislisä on selvästi pienempi kuin palkka."
+                  },
+                  {
+                    "id": "osallistuminen",
+                    "label": "Ohjattu osallistuminen",
+                    "column": 1,
+                    "value": 46,
+                    "tone": "blue",
+                    "meta": "UUSI REITTI",
+                    "note": "Järjestö tai yhteisö tarjoaa tehtävän ja ohjauksen; korvaus seuraa toteutunutta toimintaa."
+                  },
+                  {
+                    "id": "odotus",
+                    "label": "Odottaminen",
+                    "column": 1,
+                    "value": 24,
+                    "tone": "rust",
+                    "meta": "EI POISTU",
+                    "note": "Odottaminen ei katoa kokonaan – osa tarvitsee ensin hoitoa ja kuntoutusta."
+                  },
+                  {
+                    "id": "tyossa",
+                    "label": "Työssä",
+                    "column": 2,
+                    "value": 38,
+                    "tone": "teal",
+                    "meta": "TAVOITE",
+                    "note": "Työllistyminen paranee, mutta se on seuraus toimintakyvystä, ei sen ehto."
+                  },
+                  {
+                    "id": "kierto",
+                    "label": "Jatkaa osallistumista",
+                    "column": 2,
+                    "value": 41,
+                    "tone": "blue",
+                    "meta": "TOIMINTAKYKY SÄILYY",
+                    "note": "Osallistuminen ei ole epäonnistuminen: se ylläpitää sitä, mitä työllistyminen myöhemmin vaatii."
+                  },
+                  {
+                    "id": "etaantyy",
+                    "label": "Etääntyy kauemmas",
+                    "column": 2,
+                    "value": 21,
+                    "tone": "red",
+                    "meta": "TOIMINTAKYKY LASKEE",
+                    "note": "Osa etääntyy yhä – mutta harvemmin siksi, ettei mitään ollut tarjolla."
+                  }
+                ],
+                "links": [
+                  {
+                    "from": "tyoton",
+                    "to": "osallistuminen",
+                    "value": 21,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "tyoton",
+                    "to": "palkkatyo",
+                    "value": 9,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "tyoton",
+                    "to": "odotus",
+                    "value": 10,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "osatyokykyinen",
+                    "to": "osallistuminen",
+                    "value": 16,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "osatyokykyinen",
+                    "to": "palkkatyo",
+                    "value": 9,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "osatyokykyinen",
+                    "to": "odotus",
+                    "value": 7,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "nuori",
+                    "to": "osallistuminen",
+                    "value": 9,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "nuori",
+                    "to": "palkkatyo",
+                    "value": 12,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "nuori",
+                    "to": "odotus",
+                    "value": 7,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "palkkatyo",
+                    "to": "tyossa",
+                    "value": 26,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "palkkatyo",
+                    "to": "kierto",
+                    "value": 4,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "osallistuminen",
+                    "to": "tyossa",
+                    "value": 12,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "osallistuminen",
+                    "to": "kierto",
+                    "value": 29,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "osallistuminen",
+                    "to": "etaantyy",
+                    "value": 5,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "odotus",
+                    "to": "kierto",
+                    "value": 8,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "odotus",
+                    "to": "etaantyy",
+                    "value": 16,
+                    "tone": "red"
+                  }
+                ]
+              }
+            ],
+            "note": "Osuudet havainnollistavat mallin logiikkaa, eivät työllisyystilastoa."
+          }
+        ],
+        "raha-seuraa-toimintaa": [
+          {
+            "type": "model-sliders",
+            "eyebrow": "Rahoitusmalli",
+            "title": "Mitä osallistumismalli maksaa – ja mitä se palauttaa?",
+            "intro": "Malli maksaa vain toteutuneesta toiminnasta. Säädä oletuksia ja katso, missä kohtaa nettokustannus kääntyy.",
+            "inputs": [
+              {
+                "id": "osallistujat",
+                "label": "Osallistujia",
+                "min": 0,
+                "max": 60,
+                "step": 2,
+                "value": 20,
+                "unit": " 000",
+                "help": "Kuinka moni käyttää oikeutta osallistua vuoden aikana."
+              },
+              {
+                "id": "lisa",
+                "label": "Osallistumislisä",
+                "min": 0,
+                "max": 30,
+                "step": 1,
+                "value": 12,
+                "unit": " €/pv",
+                "help": "Turvan päälle maksettava lisä. Selvästi palkkaa pienempi, jotta palkkatyö säilyy ensisijaisena."
+              },
+              {
+                "id": "ohjaus",
+                "label": "Ohjauskorvaus järjestölle",
+                "min": 0,
+                "max": 4000,
+                "step": 100,
+                "value": 1800,
+                "unit": " €/hlö",
+                "help": "Korvaa ohjauksen todelliset kustannukset. Ilman tätä osallistuminen jää vahvojen järjestöjen varaan."
+              },
+              {
+                "id": "vaikutus",
+                "label": "Työllistymisvaikutus",
+                "min": 0,
+                "max": 30,
+                "step": 1,
+                "value": 12,
+                "unit": " %",
+                "help": "Kuinka moni osallistuja siirtyy palkkatyöhön vuoden sisällä."
+              }
+            ],
+            "presets": [
+              {
+                "label": "Varovainen käynnistys",
+                "values": {
+                  "osallistujat": 10,
+                  "lisa": 10,
+                  "ohjaus": 1500,
+                  "vaikutus": 8
+                }
+              },
+              {
+                "label": "Täysi malli",
+                "values": {
+                  "osallistujat": 40,
+                  "lisa": 14,
+                  "ohjaus": 2200,
+                  "vaikutus": 14
+                }
+              },
+              {
+                "label": "Ilman ohjausta",
+                "values": {
+                  "osallistujat": 40,
+                  "lisa": 14,
+                  "ohjaus": 0,
+                  "vaikutus": 4
+                }
+              }
+            ],
+            "outputs": [
+              {
+                "id": "brutto",
+                "label": "Bruttokustannus",
+                "min": 0,
+                "max": 600,
+                "base": 0,
+                "decimals": 0,
+                "unit": " M€/v",
+                "tone": "ochre",
+                "products": [
+                  {
+                    "inputs": [
+                      "osallistujat",
+                      "lisa"
+                    ],
+                    "weight": 0.25
+                  },
+                  {
+                    "inputs": [
+                      "osallistujat",
+                      "ohjaus"
+                    ],
+                    "weight": 0.001
+                  }
+                ],
+                "bands": [
+                  {
+                    "tone": "ochre",
+                    "caption": "Maksetaan vain toteutuneesta toiminnasta."
+                  }
+                ]
+              },
+              {
+                "id": "netto",
+                "label": "Nettokustannus työllistymisen jälkeen",
+                "lead": true,
+                "min": -200,
+                "max": 500,
+                "base": 0,
+                "decimals": 0,
+                "unit": " M€/v",
+                "target": 0,
+                "products": [
+                  {
+                    "inputs": [
+                      "osallistujat",
+                      "lisa"
+                    ],
+                    "weight": 0.25
+                  },
+                  {
+                    "inputs": [
+                      "osallistujat",
+                      "ohjaus"
+                    ],
+                    "weight": 0.001
+                  },
+                  {
+                    "inputs": [
+                      "osallistujat",
+                      "vaikutus"
+                    ],
+                    "weight": -0.42
+                  }
+                ],
+                "bands": [
+                  {
+                    "max": 0,
+                    "tone": "good",
+                    "kicker": "Tulkinta",
+                    "title": "Malli maksaa itsensä takaisin",
+                    "text": "Tällä työllistymisvaikutuksella säästyneet etuudet ja kertyneet verotulot ylittävät osallistumislisän ja ohjauskorvauksen. Huomaa kuitenkin, että malli on perusteltavissa myös ilman tätä: toimintakyky on tavoite, ei vain kustannuserä.",
+                    "caption": "Palautuvat verot ja etuussäästöt ylittävät kustannuksen."
+                  },
+                  {
+                    "min": 0,
+                    "max": 150,
+                    "tone": "warn",
+                    "kicker": "Tulkinta",
+                    "title": "Kohtuullinen hinta toimintakyvystä",
+                    "text": "Malli maksaa, mutta samassa kokoluokassa kuin yksittäiset työvoimapalveluohjelmat. Erona on, että osallistuminen ylläpitää toimintakykyä myös silloin kun työllistymistä ei tapahdu.",
+                    "caption": "Hinta on samaa luokkaa kuin nykyiset ohjelmat."
+                  },
+                  {
+                    "min": 150,
+                    "tone": "bad",
+                    "kicker": "Tulkinta",
+                    "title": "Mittakaava vaatii vaiheistuksen",
+                    "text": "Tällä osallistujamäärällä ja korvaustasolla malli on liian raskas käynnistettäväksi kerralla. Vaiheistus alueittain tai kohderyhmittäin antaa mahdollisuuden korjata mitoitusta matkan varrella.",
+                    "caption": "Käynnistys kannattaa vaiheistaa."
+                  }
+                ]
+              }
+            ],
+            "note": "Havainnollistava suuntamalli, ei kustannuslaskelma. Se näyttää, mitkä muuttujat ratkaisevat mitoituksen."
+          }
         ]
       }
     },
@@ -1878,7 +2873,3577 @@
               "insight": "Liikkumavaravaltio ei tarkoita mahdollisimman suurta vapautta. Se tarkoittaa liikkumavaraa siellä, missä keinon määräämiselle ei ole riittävää yhteistä perustetta."
             }
           ]
+        },
+        "taloudellinen-liikkumavara": [
+          {
+            "type": "model-sliders",
+            "eyebrow": "Liikkumavaramittari",
+            "title": "Mistä ihmisen todellinen liikkumavara syntyy?",
+            "intro": "Liikkumavara ei ole vain etuuden taso. Se on turvan, ennakoitavuuden ja kynnysten yhteistulos. Säädä oletuksia.",
+            "inputs": [
+              {
+                "id": "taso",
+                "label": "Perusturvan taso",
+                "min": 40,
+                "max": 120,
+                "step": 5,
+                "value": 75,
+                "unit": " ind.",
+                "help": "Suhteessa kohtuulliseen vähimmäiskulutukseen."
+              },
+              {
+                "id": "byrokratia",
+                "label": "Hakemisen kynnys",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "value": 60,
+                "unit": " ind.",
+                "help": "Selvitysvelvollisuus, odotusajat ja pelko takaisinperinnästä. Korkea kynnys syö liikkumavaraa myös silloin, kun etuus lopulta saadaan."
+              },
+              {
+                "id": "ennakoitavuus",
+                "label": "Tulojen ennakoitavuus",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "value": 45,
+                "unit": " ind.",
+                "help": "Tietääkö ihminen etukäteen, mitä lisätyö tai muutos tilanteessa tekee etuuteen."
+              },
+              {
+                "id": "valinta",
+                "label": "Valinnanvapaus palveluissa",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "value": 40,
+                "unit": " ind.",
+                "help": "Voiko ihminen valita tuen muodon vai määritelläänkö se puolesta."
+              }
+            ],
+            "presets": [
+              {
+                "label": "Nykytila",
+                "values": {
+                  "taso": 75,
+                  "byrokratia": 60,
+                  "ennakoitavuus": 45,
+                  "valinta": 40
+                }
+              },
+              {
+                "label": "Vain tasokorotus",
+                "values": {
+                  "taso": 105,
+                  "byrokratia": 60,
+                  "ennakoitavuus": 45,
+                  "valinta": 40
+                }
+              },
+              {
+                "label": "Liikkumavaramalli",
+                "values": {
+                  "taso": 90,
+                  "byrokratia": 20,
+                  "ennakoitavuus": 85,
+                  "valinta": 75
+                }
+              }
+            ],
+            "outputs": [
+              {
+                "id": "liikkumavara",
+                "label": "Koettu liikkumavara",
+                "lead": true,
+                "min": 0,
+                "max": 100,
+                "base": 8,
+                "decimals": 0,
+                "unit": " ind.",
+                "target": 65,
+                "terms": [
+                  {
+                    "input": "taso",
+                    "weight": 0.32
+                  },
+                  {
+                    "input": "byrokratia",
+                    "weight": -0.34
+                  },
+                  {
+                    "input": "ennakoitavuus",
+                    "weight": 0.3
+                  },
+                  {
+                    "input": "valinta",
+                    "weight": 0.22
+                  }
+                ],
+                "clampMin": 0,
+                "bands": [
+                  {
+                    "max": 40,
+                    "tone": "bad",
+                    "kicker": "Tulkinta",
+                    "title": "Turva ilman liikkumavaraa",
+                    "text": "Ihminen saa toimeentulon mutta ei voi suunnitella. Jokainen muutos tilanteessa on riski, joten järkevintä on olla muuttamatta mitään. Näin järjestelmä tuottaa juuri sitä passiivisuutta, jota se yrittää poistaa.",
+                    "caption": "Turvassa mutta kiinni tilanteessa."
+                  },
+                  {
+                    "min": 40,
+                    "max": 65,
+                    "tone": "warn",
+                    "kicker": "Tulkinta",
+                    "title": "Liikkumavaraa on – hyvässä tilanteessa",
+                    "text": "Malli antaa tilaa niille, joilla on voimavaroja hoitaa asiointi ja kantaa epävarmuutta. Heikoimmassa asemassa oleville kynnykset syövät korotuksen hyödyn.",
+                    "caption": "Vahvimmat hyötyvät ensin."
+                  },
+                  {
+                    "min": 65,
+                    "tone": "good",
+                    "kicker": "Tulkinta",
+                    "title": "Turva, joka jättää tilaa elää",
+                    "text": "Kun kynnykset ovat matalat ja seuraukset ennakoitavia, ihminen uskaltaa kokeilla työtä, opiskelua tai muuttoa menettämättä perustaansa. Tämä on liikkumavaran hyvinvointivaltion ydin.",
+                    "caption": "Kokeileminen ei enää ole riski."
+                  }
+                ]
+              },
+              {
+                "id": "hallinto",
+                "label": "Hallinnollinen kuormitus",
+                "min": 0,
+                "max": 100,
+                "base": 18,
+                "decimals": 0,
+                "unit": " ind.",
+                "tone": "ochre",
+                "terms": [
+                  {
+                    "input": "byrokratia",
+                    "weight": 0.62
+                  },
+                  {
+                    "input": "ennakoitavuus",
+                    "weight": -0.18
+                  }
+                ],
+                "bands": [
+                  {
+                    "max": 30,
+                    "tone": "good",
+                    "caption": "Työaika kohdistuu ihmiseen, ei selvittämiseen."
+                  },
+                  {
+                    "min": 30,
+                    "max": 55,
+                    "tone": "warn",
+                    "caption": "Merkittävä osa työstä on tarkistamista."
+                  },
+                  {
+                    "min": 55,
+                    "tone": "bad",
+                    "caption": "Valvonta maksaa enemmän kuin väärinkäytökset."
+                  }
+                ]
+              }
+            ],
+            "note": "Havainnollistava suuntamalli, ei etuuslaskuri. Se näyttää, että pelkkä tason nosto ei yksin tuota liikkumavaraa."
+          }
+        ],
+        "riskit": [
+          {
+            "type": "matrix-map",
+            "eyebrow": "Riskikartta",
+            "title": "Mitkä riskit ovat todellisia ja mihin niistä kannattaa varautua?",
+            "intro": "Liikkumavaran vastustus nojaa usein riskeihin, joiden todennäköisyys ja vakavuus eroavat toisistaan. Klikkaa palloa.",
+            "x": {
+              "label": "Todennäköisyys",
+              "low": "Epätodennäköinen",
+              "high": "Todennäköinen"
+            },
+            "y": {
+              "label": "Vahingon vakavuus",
+              "low": "Siedettävä",
+              "high": "Vakava"
+            },
+            "quadrants": [
+              "Seurattava",
+              "Vaatii suojamekanismin",
+              "Hyväksyttävä",
+              "Hallittava käytännössä"
+            ],
+            "items": [
+              {
+                "label": "Väärinkäyttö",
+                "x": 42,
+                "y": 22,
+                "tone": "blue",
+                "kicker": "Hallittava käytännössä",
+                "note": "Tapahtuu, mutta kokoluokka on pieni suhteessa valvonnan hintaan. Riskin torjuminen täysin maksaa enemmän kuin riski itse."
+              },
+              {
+                "label": "Palvelujen eriytyminen alueittain",
+                "x": 72,
+                "y": 64,
+                "tone": "rust",
+                "kicker": "Vaatii suojamekanismin",
+                "note": "Todennäköisin todellinen riski: liikkumavara toteutuu eri tavoin siellä, missä palveluja on, ja siellä missä ei ole. Vaatii valtakunnalliset vähimmäistasot."
+              },
+              {
+                "label": "Vahvimmat hyötyvät ensin",
+                "x": 80,
+                "y": 58,
+                "tone": "rust",
+                "kicker": "Vaatii suojamekanismin",
+                "note": "Valinnanvapaus hyödyttää ensin niitä, joilla on tietoa ja voimavaroja. Ilman tuettua valintaa liikkumavara kasvattaa eroja."
+              },
+              {
+                "label": "Kustannusten karkaaminen",
+                "x": 46,
+                "y": 70,
+                "tone": "ochre",
+                "kicker": "Vaatii suojamekanismin",
+                "note": "Mahdollista, jos liikkumavara toteutetaan lisäämällä eikä uudelleen kohdentamalla. Edellyttää, että vanhaa ohjausta myös puretaan."
+              },
+              {
+                "label": "Palkkatyön korvautuminen",
+                "x": 28,
+                "y": 66,
+                "tone": "ochre",
+                "kicker": "Seurattava",
+                "note": "Vakava jos toteutuu, mutta estettävissä rakenteella: liikkumavara ei saa tehdä osa-aikaisesta korvausta kokoaikaiselle työlle."
+              },
+              {
+                "label": "Luottamuksen väärinkäyttö laajassa mitassa",
+                "x": 18,
+                "y": 48,
+                "tone": "blue",
+                "kicker": "Seurattava",
+                "note": "Suomalaisessa kontekstissa epätodennäköinen. Silti se on yleisin peruste, jolla liikkumavaraa vastustetaan."
+              },
+              {
+                "label": "Hallinnon osaamisen kapeneminen",
+                "x": 55,
+                "y": 34,
+                "tone": "ochre",
+                "kicker": "Hallittava käytännössä",
+                "note": "Kun valvonta vähenee, tarvitaan uudenlaista osaamista: neuvontaa, tukea ja vaikutusten seurantaa."
+              },
+              {
+                "label": "Poliittinen peruutus",
+                "x": 66,
+                "y": 44,
+                "tone": "rust",
+                "kicker": "Hallittava käytännössä",
+                "note": "Yksittäinen väärinkäyttötapaus voi kääntää suunnan. Siksi malli tarvitsee etukäteen sovitun tavan käsitellä poikkeamat ilman koko rakenteen purkamista."
+              }
+            ],
+            "note": "Sijainnit ovat argumentin havainnollistuksia. Oikea yläneljännes vaatii suojamekanismin jo mallia rakennettaessa."
+          }
+        ],
+        "palvelujen-valinnan-liikkumavara": [
+          {
+            "type": "radar-compare",
+            "eyebrow": "Ohjausmallit",
+            "title": "Kuka päättää, millaista tukea ihminen saa?",
+            "intro": "Sama palvelubudjetti voidaan ohjata monella tavalla. Valitse profiileja päälle ja pois.",
+            "axes": [
+              {
+                "id": "osuvuus",
+                "label": "Osuvuus tilanteeseen"
+              },
+              {
+                "id": "yhdenvertaisuus",
+                "label": "Yhdenvertaisuus"
+              },
+              {
+                "id": "ennakoitavuus",
+                "label": "Ennakoitavuus"
+              },
+              {
+                "id": "kevyt",
+                "label": "Kevyt hallinto"
+              },
+              {
+                "id": "korjattavuus",
+                "label": "Korjattavuus"
+              },
+              {
+                "id": "toimijuus",
+                "label": "Ihmisen toimijuus"
+              }
+            ],
+            "profiles": [
+              {
+                "label": "Tarkka normiohjaus",
+                "tone": "ochre",
+                "kicker": "Ohjausmalli",
+                "note": "Yhdenvertainen ja ennakoitava paperilla, mutta osuu huonosti tilanteisiin, joita normia kirjoitettaessa ei osattu kuvitella. Poikkeus vaatii aina uuden normin.",
+                "values": {
+                  "osuvuus": 35,
+                  "yhdenvertaisuus": 80,
+                  "ennakoitavuus": 82,
+                  "kevyt": 30,
+                  "korjattavuus": 28,
+                  "toimijuus": 22
+                }
+              },
+              {
+                "label": "Ammattilaisen harkinta",
+                "tone": "blue",
+                "kicker": "Ohjausmalli",
+                "note": "Osuu tilanteeseen, kun ammattilaisella on aikaa ja osaamista. Riski on, että lopputulos riippuu siitä, kenen luo ihminen sattuu päätymään.",
+                "values": {
+                  "osuvuus": 78,
+                  "yhdenvertaisuus": 48,
+                  "ennakoitavuus": 45,
+                  "kevyt": 62,
+                  "korjattavuus": 62,
+                  "toimijuus": 45
+                }
+              },
+              {
+                "label": "Tuettu valinta",
+                "tone": "teal",
+                "kicker": "Ohjausmalli",
+                "note": "Ihminen valitsee tuen muodon, mutta ei yksin: neuvonta ja vähimmäistasot suojaavat siltä, että valinnanvapaus hyödyttäisi vain vahvimpia. Tämä on liikkumavaran käytännön muoto.",
+                "values": {
+                  "osuvuus": 82,
+                  "yhdenvertaisuus": 68,
+                  "ennakoitavuus": 70,
+                  "kevyt": 66,
+                  "korjattavuus": 78,
+                  "toimijuus": 88
+                }
+              },
+              {
+                "label": "Puhdas valinnanvapaus",
+                "tone": "rust",
+                "kicker": "Ohjausmalli",
+                "note": "Maksimaalinen toimijuus ja kevyt hallinto, mutta yhdenvertaisuus riippuu siitä, kuinka hyvin ihminen osaa arvioida vaihtoehtoja. Erot kasvavat hiljaisesti.",
+                "values": {
+                  "osuvuus": 65,
+                  "yhdenvertaisuus": 30,
+                  "ennakoitavuus": 42,
+                  "kevyt": 85,
+                  "korjattavuus": 55,
+                  "toimijuus": 92
+                }
+              }
+            ],
+            "note": "Arvot ovat argumentin havainnollistuksia (0–100), eivät mittaustuloksia."
+          }
+        ]
+      }
+    },
+    {
+      "id": "sukupolvikello",
+      "sections": {
+        "strauss-howen-nelja-kaannetta": {
+          "type": "generation-clock",
+          "eyebrow": "Neljä käännettä",
+          "title": "Missä kohtaa kelloa yhteiskunta juuri nyt on?",
+          "intro": "Kierrä kelloa. Jokainen käänne kestää noin 20–25 vuotta ja tuottaa seuraavalle käänteelle sen lähtöasetelman. Kello ei ennusta tapahtumia vaan näyttää palautteen suunnan.",
+          "note": "Vuosiluvut ovat tulkintoja, eivät tarkkoja rajoja.",
+          "turns": [
+            {
+              "label": "Nousu",
+              "years": "1945–1968",
+              "mood": "Vahvat instituutiot, heikko yksilöllisyys",
+              "caption": "Yhteinen tehtävä on kirkas ja instituutiot nauttivat laajaa luottamusta. Rakentaminen on itsestään selvää.",
+              "signals": [
+                "Yhteinen suunta sovitaan keskitetysti",
+                "Instituutioihin luotetaan ilman perusteluja",
+                "Poikkeavat äänet vaimenevat"
+              ]
+            },
+            {
+              "label": "Herääminen",
+              "years": "1968–1985",
+              "mood": "Vahvat instituutiot, kasvava yksilöllisyys",
+              "caption": "Rakennettu järjestys kyseenalaistetaan sisältäpäin. Kritiikki kohdistuu itse tehtävään, ei vain sen toteutukseen.",
+              "signals": [
+                "Auktoriteetti asetetaan kyseenalaiseksi",
+                "Uudet liikkeet syntyvät järjestöjen ulkopuolelle",
+                "Yksilön oikeudet nousevat keskiöön"
+              ]
+            },
+            {
+              "label": "Purkautuminen",
+              "years": "1985–2008",
+              "mood": "Heikkenevät instituutiot, vahva yksilöllisyys",
+              "caption": "Yhteinen kertomus hajoaa osiin. Järjestelmä optimoituu, mutta kokonaisuuden korjaaminen vaikeutuu.",
+              "signals": [
+                "Ohjaus korvaa yhteisen tavoitteen",
+                "Luottamus siirtyy instituutioista markkinoihin",
+                "Riskit yksilöllistyvät"
+              ]
+            },
+            {
+              "label": "Kriisi",
+              "years": "2008–2030",
+              "mood": "Heikot instituutiot, pakotettu yhteisyys",
+              "caption": "Kertyneet ongelmat tulevat yhtä aikaa näkyviin ja pakottavat ratkaisemaan sen, mitä edellinen käänne siirsi eteenpäin.",
+              "signals": [
+                "Rakenteita joudutaan avaamaan",
+                "Uusi yhteinen tehtävä etsii muotoaan",
+                "Seuraavan järjestyksen ehdot syntyvät nyt"
+              ]
+            }
+          ]
+        },
+        "rakentajat-vakiinnuttajat-kriitikot-ja-uudistajat": [
+          {
+            "type": "radar-compare",
+            "eyebrow": "Sukupolviasemat",
+            "title": "Neljä asemaa, neljä eri vahvuutta",
+            "intro": "Sukupolvi ei ole luonne vaan asema kierrossa. Valitse profiileja päälle ja pois: jokainen asema on vahva juuri siinä, missä edellinen jäi vajaaksi.",
+            "axes": [
+              {
+                "id": "rakentaminen",
+                "label": "Rakentamiskyky"
+              },
+              {
+                "id": "yllapito",
+                "label": "Ylläpito"
+              },
+              {
+                "id": "kritiikki",
+                "label": "Kritiikki"
+              },
+              {
+                "id": "riski",
+                "label": "Riskinotto"
+              },
+              {
+                "id": "kompromissi",
+                "label": "Sopimuskyky"
+              },
+              {
+                "id": "purku",
+                "label": "Purkamiskyky"
+              }
+            ],
+            "profiles": [
+              {
+                "label": "Rakentajat",
+                "tone": "teal",
+                "kicker": "Asema kierrossa",
+                "note": "Vahvimmillaan silloin, kun jotain puuttuu kokonaan. Heikoimmillaan silloin, kun pitäisi purkaa itse rakennettua.",
+                "values": {
+                  "rakentaminen": 95,
+                  "yllapito": 70,
+                  "kritiikki": 30,
+                  "riski": 72,
+                  "kompromissi": 80,
+                  "purku": 20
+                }
+              },
+              {
+                "label": "Vakiinnuttajat",
+                "tone": "blue",
+                "kicker": "Asema kierrossa",
+                "note": "Tekevät rakenteesta kestävän ja ennakoitavan. Samalla he tuottavat säännöt, jotka myöhemmin estävät korjaamisen.",
+                "values": {
+                  "rakentaminen": 55,
+                  "yllapito": 95,
+                  "kritiikki": 35,
+                  "riski": 30,
+                  "kompromissi": 88,
+                  "purku": 18
+                }
+              },
+              {
+                "label": "Kriitikot",
+                "tone": "ochre",
+                "kicker": "Asema kierrossa",
+                "note": "Tekevät näkyväksi sen, mitä rakenne sulkee ulos. Heikkous: kritiikki ei itsessään tuota uutta järjestelmää.",
+                "values": {
+                  "rakentaminen": 35,
+                  "yllapito": 30,
+                  "kritiikki": 95,
+                  "riski": 60,
+                  "kompromissi": 40,
+                  "purku": 72
+                }
+              },
+              {
+                "label": "Uudistajat",
+                "tone": "rust",
+                "kicker": "Asema kierrossa",
+                "note": "Joutuvat toimimaan kriisivaiheessa: rakentamaan uutta ja purkamaan vanhaa samaan aikaan, vähemmillä resursseilla.",
+                "values": {
+                  "rakentaminen": 78,
+                  "yllapito": 45,
+                  "kritiikki": 70,
+                  "riski": 85,
+                  "kompromissi": 52,
+                  "purku": 88
+                }
+              }
+            ],
+            "note": "Arvot ovat suhteellisia painotuksia (0–100), eivät mitattuja ominaisuuksia."
+          }
+        ],
+        "syntyvyys-yhteiskunnan-palautteena": [
+          {
+            "type": "model-sliders",
+            "eyebrow": "Suuntamalli",
+            "title": "Mikä oikeasti liikuttaa huoltosuhdetta?",
+            "intro": "Syntyvyys on hidas palaute: sen vaikutus työikäisiin näkyy vasta parinkymmenen vuoden päästä. Säädä oletuksia ja katso, mitkä muuttujat vaikuttavat 2045 ja mitkä vasta 2070.",
+            "inputs": [
+              {
+                "id": "syntyvyys",
+                "label": "Kokonaishedelmällisyys",
+                "min": 1.0,
+                "max": 2.1,
+                "step": 0.05,
+                "value": 1.25,
+                "decimals": 2,
+                "help": "Lapsia naista kohti. Vaikuttaa työikäisten määrään vasta ~25 vuoden viiveellä."
+              },
+              {
+                "id": "muutto",
+                "label": "Nettomaahanmuutto",
+                "min": 0,
+                "max": 60,
+                "step": 2,
+                "value": 20,
+                "unit": " 000/v",
+                "help": "Nopein vipu työikäisten määrään – mutta edellyttää, että työllistyminen onnistuu."
+              },
+              {
+                "id": "tyollisyys",
+                "label": "Työllisyysaste",
+                "min": 65,
+                "max": 85,
+                "step": 1,
+                "value": 74,
+                "unit": " %",
+                "help": "Ratkaisee, kuinka moni työikäinen tosiasiassa kantaa huoltosuhdetta."
+              },
+              {
+                "id": "elinvuodet",
+                "label": "Työuran pituus",
+                "min": 35,
+                "max": 45,
+                "step": 1,
+                "value": 38,
+                "unit": " v",
+                "help": "Työuran alku- ja loppupää yhdessä: opintojen kesto, työkyky, eläkeikä."
+              }
+            ],
+            "presets": [
+              {
+                "label": "Nykyura",
+                "values": {
+                  "syntyvyys": 1.25,
+                  "muutto": 20,
+                  "tyollisyys": 74,
+                  "elinvuodet": 38
+                }
+              },
+              {
+                "label": "Vain maahanmuutto",
+                "values": {
+                  "syntyvyys": 1.25,
+                  "muutto": 50,
+                  "tyollisyys": 74,
+                  "elinvuodet": 38
+                }
+              },
+              {
+                "label": "Toimintakykyura",
+                "values": {
+                  "syntyvyys": 1.55,
+                  "muutto": 35,
+                  "tyollisyys": 81,
+                  "elinvuodet": 42
+                }
+              }
+            ],
+            "outputs": [
+              {
+                "id": "huolto2045",
+                "label": "Huoltosuhteen paine 2045",
+                "lead": true,
+                "min": 0,
+                "max": 100,
+                "base": 253,
+                "decimals": 0,
+                "unit": " ind.",
+                "target": 60,
+                "terms": [
+                  {
+                    "input": "muutto",
+                    "weight": -0.6
+                  },
+                  {
+                    "input": "tyollisyys",
+                    "weight": -1.6
+                  },
+                  {
+                    "input": "elinvuodet",
+                    "weight": -1.4
+                  },
+                  {
+                    "input": "syntyvyys",
+                    "weight": -6
+                  }
+                ],
+                "bands": [
+                  {
+                    "max": 35,
+                    "tone": "good",
+                    "kicker": "Tulkinta",
+                    "title": "Paine hallittavissa",
+                    "text": "Tällä yhdistelmällä huoltosuhde ei ratkea yhdellä toimenpiteellä vaan siksi, että työikäisten määrä ja työllisyys liikkuvat samaan suuntaan. Kello ehtii kääntyä ennen kriisivaihetta.",
+                    "caption": "Työikäisten määrä ja työllisyys kantavat yhdessä."
+                  },
+                  {
+                    "min": 35,
+                    "max": 60,
+                    "tone": "warn",
+                    "kicker": "Tulkinta",
+                    "title": "Paine siirtyy eteenpäin",
+                    "text": "Järjestelmä selviää, mutta joustovara kuluu. Jokainen uusi kriisi joudutaan rahoittamaan tulevien sukupolvien liikkumavarasta.",
+                    "caption": "Liikkumavara ohenee vuosi vuodelta."
+                  },
+                  {
+                    "min": 60,
+                    "tone": "bad",
+                    "kicker": "Tulkinta",
+                    "title": "Rakenteellinen pakkotilanne",
+                    "text": "Kun syntyvyys on matala eikä työllisyys tai maahanmuutto kompensoi, 2045 ei ole ennuste vaan seuraus jo tehdyistä valinnoista. Silloin päätökset tehdään kriisin ehdoilla.",
+                    "caption": "Päätökset siirtyvät kriisivaiheeseen."
+                  }
+                ]
+              },
+              {
+                "id": "huolto2070",
+                "label": "Syntyvyyden vaikutus 2070",
+                "min": 0,
+                "max": 100,
+                "base": 92,
+                "decimals": 0,
+                "unit": " ind.",
+                "tone": "blue",
+                "terms": [
+                  {
+                    "input": "syntyvyys",
+                    "weight": -34
+                  },
+                  {
+                    "input": "muutto",
+                    "weight": -0.25
+                  }
+                ],
+                "bands": [
+                  {
+                    "max": 40,
+                    "tone": "good",
+                    "caption": "Väestöpohja uusiutuu itse."
+                  },
+                  {
+                    "min": 40,
+                    "max": 65,
+                    "tone": "warn",
+                    "caption": "Uusiutuminen nojaa muuttoliikkeeseen."
+                  },
+                  {
+                    "min": 65,
+                    "tone": "bad",
+                    "caption": "Väestöpohja kapenee myös pitkällä aikavälillä."
+                  }
+                ]
+              }
+            ],
+            "note": "Suuntamalli, ei väestöennuste. Kertoimet on valittu tekemään viiveen ja vipujen ero näkyväksi."
+          }
+        ]
+      }
+    },
+    {
+      "id": "sakset-ja-sateenvarjo",
+      "sections": {
+        "sakset-nakyva-saasto-ja-nakymaton-jalkilasku": [
+          {
+            "type": "flow-split",
+            "eyebrow": "Säästön anatomia",
+            "title": "Minne 100 miljoonan leikkaus todella menee?",
+            "intro": "Leikkaus näkyy heti yhdessä budjettikohdassa. Jälkilasku syntyy hitaasti muualla. Vaihda skenaariota ja klikkaa solmua.",
+            "scenarios": [
+              {
+                "label": "Kohdentamaton leikkaus",
+                "readoutKicker": "Skenaario",
+                "note": "Kun leikkaus kohdistuu ennalta ehkäisevään toimintaan, kirjattu säästö on täysimääräinen mutta suuri osa kustannuksesta palaa raskaampina palveluina toisen momentin alle.",
+                "columns": [
+                  "Päätös",
+                  "Vaikutuskanava",
+                  "Kirjautuu lopulta"
+                ],
+                "nodes": [
+                  {
+                    "id": "leikkaus",
+                    "label": "100 M€ leikkaus",
+                    "column": 0,
+                    "value": 100,
+                    "tone": "rust",
+                    "meta": "KIRJATTU SÄÄSTÖ",
+                    "note": "Säästö näkyy heti kehyksessä ja on poliittisesti todennettavissa."
+                  },
+                  {
+                    "id": "ehkaisy",
+                    "label": "Ehkäisevä palvelu supistuu",
+                    "column": 1,
+                    "value": 46,
+                    "tone": "rust",
+                    "meta": "VIIVE 2–6 V",
+                    "note": "Varhainen tuki katoaa ensin, koska sen tuloksia ei mitata samassa budjetissa."
+                  },
+                  {
+                    "id": "kysynta",
+                    "label": "Kysyntä siirtyy raskaampaan",
+                    "column": 1,
+                    "value": 30,
+                    "tone": "ochre",
+                    "meta": "SIIRTOVAIKUTUS",
+                    "note": "Sama ihminen palaa järjestelmään kalliimman oven kautta."
+                  },
+                  {
+                    "id": "aito",
+                    "label": "Aito toiminnan karsinta",
+                    "column": 1,
+                    "value": 24,
+                    "tone": "teal",
+                    "meta": "PYSYVÄ",
+                    "note": "Osa leikkauksesta poistaa toimintaa, jota ei tarvita – tämä on kestävää säästöä."
+                  },
+                  {
+                    "id": "pysyva",
+                    "label": "Pysyvä säästö",
+                    "column": 2,
+                    "value": 31,
+                    "tone": "teal",
+                    "meta": "JÄÄ VOIMAAN",
+                    "note": "Vain kolmasosa säilyy säästönä myös kymmenen vuoden päästä."
+                  },
+                  {
+                    "id": "jalkilasku",
+                    "label": "Jälkilasku toisella momentilla",
+                    "column": 2,
+                    "value": 48,
+                    "tone": "rust",
+                    "meta": "EI NÄY PÄÄTÖKSESSÄ",
+                    "note": "Erikoissairaanhoito, lastensuojelu, toimeentulotuki: kustannus tulee takaisin ilman että sitä yhdistetään alkuperäiseen päätökseen."
+                  },
+                  {
+                    "id": "inhimillinen",
+                    "label": "Inhimillinen ja tuotannollinen menetys",
+                    "column": 2,
+                    "value": 21,
+                    "tone": "red",
+                    "meta": "EI BUDJETISSA",
+                    "note": "Menetetty työura, keskeytynyt opinto tai heikentynyt toimintakyky ei kirjaudu mihinkään momenttiin."
+                  }
+                ],
+                "links": [
+                  {
+                    "from": "leikkaus",
+                    "to": "ehkaisy",
+                    "value": 46,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "leikkaus",
+                    "to": "kysynta",
+                    "value": 30,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "leikkaus",
+                    "to": "aito",
+                    "value": 24,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "ehkaisy",
+                    "to": "jalkilasku",
+                    "value": 28,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "ehkaisy",
+                    "to": "inhimillinen",
+                    "value": 14,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "ehkaisy",
+                    "to": "pysyva",
+                    "value": 4,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "kysynta",
+                    "to": "jalkilasku",
+                    "value": 20,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "kysynta",
+                    "to": "inhimillinen",
+                    "value": 7,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "kysynta",
+                    "to": "pysyva",
+                    "value": 3,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "aito",
+                    "to": "pysyva",
+                    "value": 24,
+                    "tone": "teal"
+                  }
+                ]
+              },
+              {
+                "label": "Kohdennettu karsinta",
+                "readoutKicker": "Skenaario",
+                "note": "Kun sama summa otetaan päällekkäisistä rakenteista ja hallinnollisista kerroksista, kirjattu säästö on pienempi mutta pysyvämpi – ja jälkilasku jää murto-osaan.",
+                "columns": [
+                  "Päätös",
+                  "Vaikutuskanava",
+                  "Kirjautuu lopulta"
+                ],
+                "nodes": [
+                  {
+                    "id": "leikkaus",
+                    "label": "100 M€ karsinta",
+                    "column": 0,
+                    "value": 100,
+                    "tone": "ochre",
+                    "meta": "KIRJATTU SÄÄSTÖ",
+                    "note": "Sama euromäärä, eri kohde: päällekkäinen ohjaus ja raportointi."
+                  },
+                  {
+                    "id": "hallinto",
+                    "label": "Päällekkäinen ohjaus poistuu",
+                    "column": 1,
+                    "value": 52,
+                    "tone": "teal",
+                    "meta": "RAKENNE MUUTTUU",
+                    "note": "Poistettu raportointikerros ei palaa takaisin kysyntänä."
+                  },
+                  {
+                    "id": "aito",
+                    "label": "Toiminnan uudelleenjärjestely",
+                    "column": 1,
+                    "value": 33,
+                    "tone": "teal",
+                    "meta": "PYSYVÄ",
+                    "note": "Sama tehtävä hoidetaan yhdellä rajapinnalla kahden sijaan."
+                  },
+                  {
+                    "id": "ehkaisy",
+                    "label": "Osuu myös palveluun",
+                    "column": 1,
+                    "value": 15,
+                    "tone": "rust",
+                    "meta": "VIIVE 2–6 V",
+                    "note": "Täysin puhdasta karsintaa ei ole: osa osuu aina asiakastyöhön."
+                  },
+                  {
+                    "id": "pysyva",
+                    "label": "Pysyvä säästö",
+                    "column": 2,
+                    "value": 74,
+                    "tone": "teal",
+                    "meta": "JÄÄ VOIMAAN",
+                    "note": "Kolme neljäsosaa säilyy, koska poistettu rakenne ei synnytä uutta kysyntää."
+                  },
+                  {
+                    "id": "jalkilasku",
+                    "label": "Jälkilasku toisella momentilla",
+                    "column": 2,
+                    "value": 17,
+                    "tone": "rust",
+                    "meta": "PIENI",
+                    "note": "Jälkilasku ei katoa kokonaan, mutta se on nyt kokoluokaltaan hallittava."
+                  },
+                  {
+                    "id": "inhimillinen",
+                    "label": "Inhimillinen menetys",
+                    "column": 2,
+                    "value": 9,
+                    "tone": "red",
+                    "meta": "EI BUDJETISSA",
+                    "note": "Pienempi, mutta on yhä olemassa – siksi kohdennuskin pitää perustella."
+                  }
+                ],
+                "links": [
+                  {
+                    "from": "leikkaus",
+                    "to": "hallinto",
+                    "value": 52,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "leikkaus",
+                    "to": "aito",
+                    "value": 33,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "leikkaus",
+                    "to": "ehkaisy",
+                    "value": 15,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "hallinto",
+                    "to": "pysyva",
+                    "value": 46,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "hallinto",
+                    "to": "jalkilasku",
+                    "value": 6,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "aito",
+                    "to": "pysyva",
+                    "value": 28,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "aito",
+                    "to": "jalkilasku",
+                    "value": 5,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "ehkaisy",
+                    "to": "jalkilasku",
+                    "value": 6,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "ehkaisy",
+                    "to": "inhimillinen",
+                    "value": 9,
+                    "tone": "red"
+                  }
+                ]
+              }
+            ],
+            "note": "Osuudet havainnollistavat mekanismia, eivät yksittäistä säästöpäätöstä."
+          }
+        ],
+        "ajan-epasymmetria": {
+          "type": "curve",
+          "eyebrow": "Ajan epäsymmetria",
+          "title": "Milloin säästö näkyy ja milloin sen jälkilasku?",
+          "intro": "Valitse ratkaisu ja seuraa kahta käyrää. Näkyvä vaikutus mitataan vaalikaudessa; jälkilasku kertyy hitaasti eikä palaudu samalle päätöksentekijälle.",
+          "note": "Käyrät ovat argumentin havainnollistus, eivät ennuste tai laskelma.",
+          "axis": {
+            "x": [
+              "Vuosi 0",
+              "5",
+              "10",
+              "15",
+              "20"
+            ],
+            "yTop": "Vahvistaa",
+            "yBottom": "Heikentää"
+          },
+          "series": [
+            {
+              "key": "visible",
+              "label": "Näkyvä vaikutus",
+              "kind": "solid"
+            },
+            {
+              "key": "hidden",
+              "label": "Kertyvä jälkilasku",
+              "kind": "dashed"
+            }
+          ],
+          "scenarios": [
+            {
+              "name": "Sakset",
+              "summary": "Nopea leikkaus tuottaa välittömän säästön ja siirtää kustannuksen ajassa eteenpäin.",
+              "visible": [
+                0,
+                62,
+                70,
+                58,
+                40
+              ],
+              "hidden": [
+                0,
+                -12,
+                -38,
+                -66,
+                -88
+              ],
+              "caption": "Säästö näkyy heti tilinpäätöksessä. Menetetty osaaminen, hoitovelka ja syrjään jääminen kertyvät hitaammin ja toisen päättäjän kaudelle.",
+              "verdict": "Vahva lyhyellä, heikko pitkällä aikavälillä."
+            },
+            {
+              "name": "Sateenvarjo",
+              "summary": "Suoja ostaa aikaa: kustannus tulee heti, hyöty myöhemmin.",
+              "visible": [
+                0,
+                -48,
+                -30,
+                6,
+                34
+              ],
+              "hidden": [
+                0,
+                14,
+                40,
+                62,
+                78
+              ],
+              "caption": "Suoja näyttää menolta juuri silloin, kun se on kalleimmillaan. Se estää kuitenkin pysyvän vaurion, jonka korjaaminen olisi myöhemmin kalliimpaa.",
+              "verdict": "Heikko lyhyellä, vahva pitkällä aikavälillä."
+            },
+            {
+              "name": "Kolmas väline",
+              "summary": "Ehdollinen suoja, joka purkautuu itsestään ja sitoo tuen toimintakykyyn.",
+              "visible": [
+                0,
+                -18,
+                14,
+                38,
+                52
+              ],
+              "hidden": [
+                0,
+                8,
+                26,
+                44,
+                58
+              ],
+              "caption": "Tuki mitoitetaan tilanteen mukaan ja päättyy, kun peruste poistuu. Näkyvä ja näkymätön vaikutus kulkevat samaan suuntaan, jolloin päätöstä voidaan myös korjata.",
+              "verdict": "Kohtalainen lyhyellä, vahva pitkällä aikavälillä."
+            }
+          ]
+        },
+        "millainen-paatos-kestaa-vaaran-ennusteen": [
+          {
+            "type": "matrix-map",
+            "eyebrow": "Robustisuuskartta",
+            "title": "Mikä päätös kestää sen, että ennuste on väärä?",
+            "intro": "Hyvä päätös ei ole se, joka voittaa oikean ennusteen kanssa, vaan se, joka ei romahda väärän kanssa. Klikkaa palloa.",
+            "x": {
+              "label": "Peruutettavuus",
+              "low": "Vaikea peruuttaa",
+              "high": "Helppo korjata"
+            },
+            "y": {
+              "label": "Vahinko, jos ennuste on väärä",
+              "low": "Pieni",
+              "high": "Suuri"
+            },
+            "quadrants": [
+              "Vältettävä: iso riski, lukittu",
+              "Vaatii varautumisen",
+              "Turvallinen kokeilu",
+              "Ensisijainen valinta"
+            ],
+            "items": [
+              {
+                "label": "Pysyvä rakenteen purku",
+                "x": 16,
+                "y": 84,
+                "tone": "red",
+                "kicker": "Vältettävä",
+                "note": "Jos ennuste osoittautuu vääräksi, menetettyä osaamista ja verkostoa ei saada takaisin päätöksellä. Suurin riski yhdistyy pienimpään peruutettavuuteen."
+              },
+              {
+                "label": "Indeksileikkaus",
+                "x": 34,
+                "y": 66,
+                "tone": "rust",
+                "kicker": "Vaatii varautumisen",
+                "note": "Teknisesti peruutettavissa, mutta kotitalouksien sopeutuminen ehtii tapahtua ennen korjausta."
+              },
+              {
+                "label": "Määräaikainen tuki",
+                "x": 78,
+                "y": 34,
+                "tone": "teal",
+                "kicker": "Turvallinen kokeilu",
+                "note": "Päättyy itsestään, jos ennuste oli väärä. Halpa tapa ostaa aikaa epävarmuudessa."
+              },
+              {
+                "label": "Automaattinen vakauttaja",
+                "x": 72,
+                "y": 72,
+                "tone": "teal",
+                "kicker": "Ensisijainen valinta",
+                "note": "Reagoi tilanteeseen itse: vahvistuu kriisissä ja purkautuu nousussa ilman uutta poliittista päätöstä."
+              },
+              {
+                "label": "Investointi osaamiseen",
+                "x": 58,
+                "y": 52,
+                "tone": "blue",
+                "kicker": "Ensisijainen valinta",
+                "note": "Tuottaa hyötyä useassa eri tulevaisuudessa. Väärä ennuste heikentää tuottoa mutta ei tee päätöksestä vahingollista."
+              },
+              {
+                "label": "Kertaluonteinen elvytys",
+                "x": 66,
+                "y": 26,
+                "tone": "ochre",
+                "kicker": "Turvallinen kokeilu",
+                "note": "Pieni vahinko, jos ennuste oli väärä – mutta myös pieni hyöty, jos rakenteellinen ongelma jää koskematta."
+              },
+              {
+                "label": "Verokannan pysyvä lasku",
+                "x": 26,
+                "y": 58,
+                "tone": "rust",
+                "kicker": "Vaatii varautumisen",
+                "note": "Poliittisesti vaikea peruuttaa, vaikka tuotto-oletus pettäisi. Lukitsee tulopuolen ennen kuin menopuoli on ratkaistu."
+              },
+              {
+                "label": "Kokeilu ja arviointi",
+                "x": 90,
+                "y": 20,
+                "tone": "teal",
+                "kicker": "Turvallinen kokeilu",
+                "note": "Halvin tapa hankkia tietoa. Ainoa riski on se, että kokeilusta ei koskaan tehdä päätöstä."
+              }
+            ],
+            "note": "Sijainnit havainnollistavat päättelyä. Oikea yläneljännes kestää sekä oikean että väärän ennusteen."
+          }
+        ]
+      }
+    },
+    {
+      "id": "parlamentaarinen-taloussaannosto",
+      "sections": {
+        "velka-syntyy-menojen-ja-tulojen-valiin": [
+          {
+            "type": "flow-split",
+            "eyebrow": "Alijäämän anatomia",
+            "title": "Mistä alijäämä koostuu ja mihin sääntö osuu?",
+            "intro": "Taloussääntö ei kohdistu velkaan vaan siihen, mistä velka syntyy. Vaihda skenaariota ja klikkaa solmua.",
+            "scenarios": [
+              {
+                "label": "Nykytila",
+                "readoutKicker": "Skenaario",
+                "note": "Kun sääntöä ei ole, alijäämä syntyy sekä rakenteesta että suhdanteesta, eikä päätöksentekijä joudu erottelemaan niitä toisistaan.",
+                "columns": [
+                  "Alijäämän lähde",
+                  "Käsittely",
+                  "Seuraus"
+                ],
+                "nodes": [
+                  {
+                    "id": "rakenne",
+                    "label": "Rakenteellinen alijäämä",
+                    "column": 0,
+                    "value": 45,
+                    "tone": "rust",
+                    "meta": "PYSYVÄ",
+                    "note": "Menot ja tulot eivät kohtaa myöskään hyvässä suhdanteessa. Tämä osa ei korjaannu kasvulla."
+                  },
+                  {
+                    "id": "suhdanne",
+                    "label": "Suhdannealijäämä",
+                    "column": 0,
+                    "value": 30,
+                    "tone": "ochre",
+                    "meta": "OHIMENEVÄ",
+                    "note": "Syntyy taantumassa ja sulaa nousussa. Tämän leikkaaminen kriisin pohjalla syventää kriisiä."
+                  },
+                  {
+                    "id": "korko",
+                    "label": "Korkomeno",
+                    "column": 0,
+                    "value": 25,
+                    "tone": "red",
+                    "meta": "KASVAA ITSESTÄÄN",
+                    "note": "Aiempien alijäämien hinta. Kasvaa ilman yhtään uutta päätöstä."
+                  },
+                  {
+                    "id": "leikkaus",
+                    "label": "Menoleikkaus",
+                    "column": 1,
+                    "value": 40,
+                    "tone": "rust",
+                    "meta": "NOPEA",
+                    "note": "Poliittisesti näkyvin väline, myös silloin kun ongelma ei ole menotasossa."
+                  },
+                  {
+                    "id": "vero",
+                    "label": "Verotuksen kiristys",
+                    "column": 1,
+                    "value": 22,
+                    "tone": "ochre",
+                    "meta": "TULOPUOLI",
+                    "note": "Vaikuttaa nopeasti mutta osuu myös veropohjan kasvuun."
+                  },
+                  {
+                    "id": "kasvu",
+                    "label": "Kasvua vahvistava toimi",
+                    "column": 1,
+                    "value": 18,
+                    "tone": "teal",
+                    "meta": "HIDAS",
+                    "note": "Ainoa väline, joka kasvattaa tulopohjaa pysyvästi – ja siksi ensimmäisenä karsittu."
+                  },
+                  {
+                    "id": "velkaan",
+                    "label": "Jätetään velaksi",
+                    "column": 1,
+                    "value": 20,
+                    "tone": "red",
+                    "meta": "SIIRTO",
+                    "note": "Ei päätös vaan päätöksen puute: siirretään ratkaisu seuraavalle kaudelle."
+                  },
+                  {
+                    "id": "vakaus",
+                    "label": "Velkasuhde vakautuu",
+                    "column": 2,
+                    "value": 38,
+                    "tone": "teal",
+                    "meta": "TAVOITE",
+                    "note": "Vakautuminen ei vaadi ylijäämää, vaan sen että velka kasvaa hitaammin kuin talous."
+                  },
+                  {
+                    "id": "kierto",
+                    "label": "Sopeutus toistuu",
+                    "column": 2,
+                    "value": 34,
+                    "tone": "ochre",
+                    "meta": "TOISTUVA",
+                    "note": "Sama sopeutus tehdään uudelleen joka kaudella, koska rakenteellinen osa ei liikkunut."
+                  },
+                  {
+                    "id": "kasvaa",
+                    "label": "Velkasuhde kasvaa",
+                    "column": 2,
+                    "value": 28,
+                    "tone": "red",
+                    "meta": "KUMULOITUU",
+                    "note": "Korkomeno syö tulevien kausien liikkumavaran ennen kuin ne alkavat."
+                  }
+                ],
+                "links": [
+                  {
+                    "from": "rakenne",
+                    "to": "leikkaus",
+                    "value": 22,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "rakenne",
+                    "to": "vero",
+                    "value": 10,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "rakenne",
+                    "to": "velkaan",
+                    "value": 13,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "suhdanne",
+                    "to": "leikkaus",
+                    "value": 13,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "suhdanne",
+                    "to": "kasvu",
+                    "value": 12,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "suhdanne",
+                    "to": "vero",
+                    "value": 5,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "korko",
+                    "to": "leikkaus",
+                    "value": 5,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "korko",
+                    "to": "vero",
+                    "value": 7,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "korko",
+                    "to": "velkaan",
+                    "value": 7,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "korko",
+                    "to": "kasvu",
+                    "value": 6,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "leikkaus",
+                    "to": "vakaus",
+                    "value": 15,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "leikkaus",
+                    "to": "kierto",
+                    "value": 20,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "leikkaus",
+                    "to": "kasvaa",
+                    "value": 5,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "vero",
+                    "to": "vakaus",
+                    "value": 11,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "vero",
+                    "to": "kierto",
+                    "value": 8,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "vero",
+                    "to": "kasvaa",
+                    "value": 3,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "kasvu",
+                    "to": "vakaus",
+                    "value": 12,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "kasvu",
+                    "to": "kierto",
+                    "value": 6,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "velkaan",
+                    "to": "kasvaa",
+                    "value": 20,
+                    "tone": "red"
+                  }
+                ]
+              },
+              {
+                "label": "Taloussäännöstö",
+                "readoutKicker": "Skenaario",
+                "note": "Sääntö ei kiellä velkaa. Se pakottaa erottamaan rakenteellisen alijäämän suhdanteesta ja suojaa kasvua vahvistavat menot sopeutuksen automaattiselta kohteelta.",
+                "columns": [
+                  "Alijäämän lähde",
+                  "Käsittely",
+                  "Seuraus"
+                ],
+                "nodes": [
+                  {
+                    "id": "rakenne",
+                    "label": "Rakenteellinen alijäämä",
+                    "column": 0,
+                    "value": 45,
+                    "tone": "rust",
+                    "meta": "SÄÄNNÖN KOHDE",
+                    "note": "Sääntö kohdistuu tähän: rakenteellinen osa on ainoa, joka ei korjaannu itsestään."
+                  },
+                  {
+                    "id": "suhdanne",
+                    "label": "Suhdannealijäämä",
+                    "column": 0,
+                    "value": 30,
+                    "tone": "ochre",
+                    "meta": "SALLITTU",
+                    "note": "Sääntö sallii suhdannealijäämän – muuten se pakottaisi syventämään kriisiä."
+                  },
+                  {
+                    "id": "korko",
+                    "label": "Korkomeno",
+                    "column": 0,
+                    "value": 25,
+                    "tone": "red",
+                    "meta": "PUSKURIN KOHDE",
+                    "note": "Hyvinä aikoina kerätty puskuri pienentää juuri tätä erää."
+                  },
+                  {
+                    "id": "leikkaus",
+                    "label": "Menoleikkaus",
+                    "column": 1,
+                    "value": 28,
+                    "tone": "rust",
+                    "meta": "KOHDENNETTU",
+                    "note": "Kohdistuu rakenteelliseen osaan, ei suhdanteeseen."
+                  },
+                  {
+                    "id": "vero",
+                    "label": "Verotuksen kiristys",
+                    "column": 1,
+                    "value": 20,
+                    "tone": "ochre",
+                    "meta": "TULOPUOLI",
+                    "note": "Sääntö tunnustaa, että tasapaino voidaan hakea myös tulopuolelta."
+                  },
+                  {
+                    "id": "kasvu",
+                    "label": "Kasvua vahvistava toimi",
+                    "column": 1,
+                    "value": 32,
+                    "tone": "teal",
+                    "meta": "SUOJATTU",
+                    "note": "Suojattu erä: investointia ei saa karsia vain siksi, että se on helpoin karsia."
+                  },
+                  {
+                    "id": "velkaan",
+                    "label": "Jätetään velaksi",
+                    "column": 1,
+                    "value": 20,
+                    "tone": "red",
+                    "meta": "PERUSTELTAVA",
+                    "note": "Sallittu, mutta vaatii erillisen perustelun ja takaisinmaksupolun."
+                  },
+                  {
+                    "id": "vakaus",
+                    "label": "Velkasuhde vakautuu",
+                    "column": 2,
+                    "value": 58,
+                    "tone": "teal",
+                    "meta": "TAVOITE",
+                    "note": "Vakautuminen syntyy siitä, että rakenteellinen osa kutistuu ja kasvupohja säilyy."
+                  },
+                  {
+                    "id": "kierto",
+                    "label": "Sopeutus toistuu",
+                    "column": 2,
+                    "value": 24,
+                    "tone": "ochre",
+                    "meta": "VÄHENEE",
+                    "note": "Toistuva sopeutus vähenee, kun oikea kohde on tunnistettu."
+                  },
+                  {
+                    "id": "kasvaa",
+                    "label": "Velkasuhde kasvaa",
+                    "column": 2,
+                    "value": 18,
+                    "tone": "red",
+                    "meta": "RAJATTU",
+                    "note": "Kriisissä velka kasvaa yhä – sääntö sallii sen tietoisesti."
+                  }
+                ],
+                "links": [
+                  {
+                    "from": "rakenne",
+                    "to": "leikkaus",
+                    "value": 20,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "rakenne",
+                    "to": "vero",
+                    "value": 14,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "rakenne",
+                    "to": "kasvu",
+                    "value": 11,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "suhdanne",
+                    "to": "velkaan",
+                    "value": 16,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "suhdanne",
+                    "to": "kasvu",
+                    "value": 14,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "korko",
+                    "to": "leikkaus",
+                    "value": 8,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "korko",
+                    "to": "vero",
+                    "value": 6,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "korko",
+                    "to": "kasvu",
+                    "value": 7,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "korko",
+                    "to": "velkaan",
+                    "value": 4,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "leikkaus",
+                    "to": "vakaus",
+                    "value": 20,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "leikkaus",
+                    "to": "kierto",
+                    "value": 8,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "vero",
+                    "to": "vakaus",
+                    "value": 14,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "vero",
+                    "to": "kierto",
+                    "value": 6,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "kasvu",
+                    "to": "vakaus",
+                    "value": 22,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "kasvu",
+                    "to": "kierto",
+                    "value": 10,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "velkaan",
+                    "to": "kasvaa",
+                    "value": 18,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "velkaan",
+                    "to": "vakaus",
+                    "value": 2,
+                    "tone": "teal"
+                  }
+                ]
+              }
+            ],
+            "note": "Osuudet ovat havainnollistuksia. Sääntö ei poista alijäämää vaan muuttaa sitä, mihin sopeutus kohdistuu."
+          }
+        ],
+        "50-miljoonan-saanto": [
+          {
+            "type": "model-sliders",
+            "eyebrow": "Sääntösimulaattori",
+            "title": "Mitä sopeutuksen kohdentaminen tekee velkasuhteelle?",
+            "intro": "Sama sopeutuseuro käyttäytyy eri tavoin sen mukaan, osuuko se kulutukseen vai kasvupohjaan. Säädä oletuksia ja katso, mihin velkasuhde asettuu kymmenessä vuodessa.",
+            "inputs": [
+              {
+                "id": "sopeutus",
+                "label": "Vuotuinen sopeutus",
+                "min": 0,
+                "max": 4,
+                "step": 0.1,
+                "value": 1.5,
+                "decimals": 1,
+                "unit": " mrd €",
+                "help": "Kuinka paljon rakenteellista alijäämää kavennetaan vuodessa."
+              },
+              {
+                "id": "kasvuosuus",
+                "label": "Kasvua vahvistava osuus",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "value": 20,
+                "unit": " %",
+                "help": "Kuinka suuri osa sopeutuksesta kohdistetaan investointeihin ja veropohjan kasvattamiseen leikkausten sijaan."
+              },
+              {
+                "id": "kasvu",
+                "label": "Talouskasvu",
+                "min": -1,
+                "max": 4,
+                "step": 0.1,
+                "value": 1.2,
+                "decimals": 1,
+                "unit": " %",
+                "help": "Velkasuhde paranee myös silloin, kun talous kasvaa nopeammin kuin velka."
+              },
+              {
+                "id": "korko",
+                "label": "Keskikorko",
+                "min": 0,
+                "max": 6,
+                "step": 0.1,
+                "value": 3.0,
+                "decimals": 1,
+                "unit": " %",
+                "help": "Kun korko ylittää kasvun, velkasuhde nousee ilman uusia päätöksiä."
+              }
+            ],
+            "presets": [
+              {
+                "label": "Pelkkä leikkauslinja",
+                "values": {
+                  "sopeutus": 2.5,
+                  "kasvuosuus": 0,
+                  "kasvu": 0.8,
+                  "korko": 3.5
+                }
+              },
+              {
+                "label": "Tasapainoinen sääntö",
+                "values": {
+                  "sopeutus": 1.5,
+                  "kasvuosuus": 40,
+                  "kasvu": 1.6,
+                  "korko": 3.0
+                }
+              },
+              {
+                "label": "Ei sopeutusta",
+                "values": {
+                  "sopeutus": 0,
+                  "kasvuosuus": 0,
+                  "kasvu": 1.2,
+                  "korko": 3.5
+                }
+              }
+            ],
+            "outputs": [
+              {
+                "id": "velka",
+                "label": "Velkasuhde 10 vuoden päästä",
+                "lead": true,
+                "min": 50,
+                "max": 130,
+                "base": 79,
+                "decimals": 0,
+                "unit": " % bkt",
+                "target": 80,
+                "terms": [
+                  {
+                    "input": "sopeutus",
+                    "weight": -4.0
+                  },
+                  {
+                    "input": "kasvu",
+                    "weight": -6.0
+                  },
+                  {
+                    "input": "korko",
+                    "weight": 5.0
+                  },
+                  {
+                    "input": "kasvuosuus",
+                    "weight": -0.12
+                  }
+                ],
+                "bands": [
+                  {
+                    "max": 75,
+                    "tone": "good",
+                    "kicker": "Tulkinta",
+                    "title": "Sääntö on tehnyt tehtävänsä",
+                    "text": "Velkasuhde laskee ilman että kasvupohja on syöty. Tässä yhdistelmässä sopeutus ja kasvua vahvistava osuus tukevat toisiaan – juuri sitä taloussäännöstöltä pitäisi vaatia.",
+                    "caption": "Liikkumavara kasvaa tuleville päättäjille."
+                  },
+                  {
+                    "min": 75,
+                    "max": 88,
+                    "tone": "warn",
+                    "kicker": "Tulkinta",
+                    "title": "Vakautuu, mutta ilman puskuria",
+                    "text": "Velkasuhde ei karkaa, mutta seuraava kriisi joudutaan kohtaamaan ilman etukäteen kerättyä liikkumavaraa. Sääntö toimii vain, jos hyvinä aikoina myös kerätään.",
+                    "caption": "Kriisivara jää rakentamatta."
+                  },
+                  {
+                    "min": 88,
+                    "tone": "bad",
+                    "kicker": "Tulkinta",
+                    "title": "Korko ajaa velkaa, ei politiikka",
+                    "text": "Kun korko ylittää kasvun eikä sopeutus osu rakenteelliseen osaan, velkasuhde nousee riippumatta siitä, kuinka paljon leikataan. Silloin sääntö ilman kasvupolitiikkaa ei riitä.",
+                    "caption": "Korkomeno syö tulevan liikkumavaran."
+                  }
+                ]
+              },
+              {
+                "id": "liikkumavara",
+                "label": "Tulevien päättäjien liikkumavara",
+                "min": 0,
+                "max": 100,
+                "base": 46,
+                "decimals": 0,
+                "unit": " ind.",
+                "tone": "blue",
+                "terms": [
+                  {
+                    "input": "kasvuosuus",
+                    "weight": 0.42
+                  },
+                  {
+                    "input": "kasvu",
+                    "weight": 6.0
+                  },
+                  {
+                    "input": "korko",
+                    "weight": -4.0
+                  },
+                  {
+                    "input": "sopeutus",
+                    "weight": 2.0
+                  }
+                ],
+                "bands": [
+                  {
+                    "max": 40,
+                    "tone": "bad",
+                    "caption": "Seuraava eduskunta perii sidotun budjetin."
+                  },
+                  {
+                    "min": 40,
+                    "max": 65,
+                    "tone": "warn",
+                    "caption": "Liikkumavaraa on, mutta vain yhteen kriisiin."
+                  },
+                  {
+                    "min": 65,
+                    "tone": "good",
+                    "caption": "Seuraava eduskunta voi yhä valita suunnan."
+                  }
+                ]
+              }
+            ],
+            "note": "Havainnollistava suuntamalli, ei ennuste. Kertoimet on valittu tekemään koron, kasvun ja kohdentamisen suhde näkyväksi."
+          }
+        ],
+        "velkajarru-vai-tasapainosaanto": [
+          {
+            "type": "matrix-map",
+            "eyebrow": "Sääntökartta",
+            "title": "Kuinka sitova sääntö kestää kriisin?",
+            "intro": "Sääntö on sitä hyödyllisempi, mitä paremmin se yhdistää sitovuuden ja kriisijouston. Klikkaa palloa.",
+            "x": {
+              "label": "Sitovuus",
+              "low": "Poliittinen lupaus",
+              "high": "Oikeudellisesti sitova"
+            },
+            "y": {
+              "label": "Kriisijousto",
+              "low": "Jäykkä",
+              "high": "Joustaa hallitusti"
+            },
+            "quadrants": [
+              "Joustava mutta löysä",
+              "Kestävä yhdistelmä",
+              "Kiertyy heti",
+              "Murtuu kriisissä"
+            ],
+            "items": [
+              {
+                "label": "Hallitusohjelmakirjaus",
+                "x": 12,
+                "y": 72,
+                "tone": "ochre",
+                "kicker": "Joustava mutta löysä",
+                "note": "Joustaa täydellisesti – myös silloin kun ei pitäisi. Sitoo vain sen hallituksen, joka sen kirjoitti."
+              },
+              {
+                "label": "Kehysmenettely",
+                "x": 42,
+                "y": 56,
+                "tone": "blue",
+                "kicker": "Kestävä yhdistelmä",
+                "note": "Toimiva perusrakenne, mutta kohdistuu vain menoihin: tulopuolen päätökset jäävät kehyksen ulkopuolelle."
+              },
+              {
+                "label": "Perustuslaillinen velkajarru",
+                "x": 88,
+                "y": 24,
+                "tone": "rust",
+                "kicker": "Murtuu kriisissä",
+                "note": "Vahva normaalioloissa, ongelmallinen kriisissä: joko sitä rikotaan tai se pakottaa syventämään taantumaa."
+              },
+              {
+                "label": "Rakenteellinen tasapainosääntö",
+                "x": 70,
+                "y": 76,
+                "tone": "teal",
+                "kicker": "Kestävä yhdistelmä",
+                "note": "Kohdistuu rakenteelliseen alijäämään ja sallii suhdannejouston. Vaatii uskottavan arvion siitä, mikä on rakenteellista."
+              },
+              {
+                "label": "Menokatto + poikkeuslauseke",
+                "x": 64,
+                "y": 68,
+                "tone": "teal",
+                "kicker": "Kestävä yhdistelmä",
+                "note": "Sitova pääsääntö ja ennalta määritelty poikkeus. Poikkeuksen käyttö on näkyvä poliittinen teko, ei hiljainen liukuma."
+              },
+              {
+                "label": "Numeerinen velkakatto",
+                "x": 78,
+                "y": 18,
+                "tone": "red",
+                "kicker": "Murtuu kriisissä",
+                "note": "Yksi luku ei erottele investointia kulutuksesta eikä kriisiä normaalioloista."
+              },
+              {
+                "label": "Puskurisääntö hyville ajoille",
+                "x": 52,
+                "y": 88,
+                "tone": "teal",
+                "kicker": "Kestävä yhdistelmä",
+                "note": "Ainoa sääntötyyppi, joka tekee jotain silloin kun kaikki menee hyvin – juuri silloin kun mitään ei yleensä tehdä."
+              },
+              {
+                "label": "Tulostavoite ilman mekanismia",
+                "x": 22,
+                "y": 34,
+                "tone": "rust",
+                "kicker": "Kiertyy heti",
+                "note": "Tavoite ilman seuraamusta muuttuu raportiksi: sitä seurataan, mutta se ei ohjaa yhtäkään päätöstä."
+              }
+            ],
+            "note": "Sijainnit havainnollistavat argumenttia. Oikea yläneljännes yhdistää sitovuuden ja kriisijouston."
+          }
+        ]
+      }
+    },
+    {
+      "id": "jakologiikka",
+      "sections": {
+        "tasapainoa-on-useita": [
+          {
+            "type": "radar-compare",
+            "eyebrow": "Jakologiikkojen profiilit",
+            "title": "Yksikään jakoperuste ei ole vahva joka suuntaan",
+            "intro": "Tasapaino ei ole yksi luku vaan usean suunnan yhdistelmä. Valitse profiileja päälle ja pois: jokainen jakologiikka on vahva siinä, missä toinen on heikko.",
+            "axes": [
+              {
+                "id": "tarve",
+                "label": "Tarvevastaavuus"
+              },
+              {
+                "id": "kannuste",
+                "label": "Kannustavuus"
+              },
+              {
+                "id": "ennakoitavuus",
+                "label": "Ennakoitavuus"
+              },
+              {
+                "id": "korjattavuus",
+                "label": "Korjattavuus"
+              },
+              {
+                "id": "legitimiteetti",
+                "label": "Koettu oikeudenmukaisuus"
+              },
+              {
+                "id": "hallinto",
+                "label": "Kevyt toimeenpano"
+              }
+            ],
+            "profiles": [
+              {
+                "label": "Tasajako",
+                "tone": "blue",
+                "kicker": "Jakologiikka",
+                "note": "Yksinkertainen, ennakoitava ja halpa toimeenpanna. Ei kuitenkaan tunnista sitä, että sama euro merkitsee eri ihmisille eri asiaa.",
+                "values": {
+                  "tarve": 40,
+                  "kannuste": 55,
+                  "ennakoitavuus": 95,
+                  "korjattavuus": 60,
+                  "legitimiteetti": 70,
+                  "hallinto": 92
+                }
+              },
+              {
+                "label": "Tarveperusteinen",
+                "tone": "teal",
+                "kicker": "Jakologiikka",
+                "note": "Osuu parhaiten sinne, missä puute on suurin. Hinta maksetaan hallinnossa: tarve pitää todentaa, ja todentaminen tuottaa kynnyksiä.",
+                "values": {
+                  "tarve": 95,
+                  "kannuste": 45,
+                  "ennakoitavuus": 55,
+                  "korjattavuus": 65,
+                  "legitimiteetti": 62,
+                  "hallinto": 32
+                }
+              },
+              {
+                "label": "Ansioperusteinen",
+                "tone": "ochre",
+                "kicker": "Jakologiikka",
+                "note": "Palkitsee panoksesta ja ylläpitää legitimiteettiä maksajien silmissä. Uusintaa kuitenkin lähtötilanteen eroja seuraavalle kierrokselle.",
+                "values": {
+                  "tarve": 35,
+                  "kannuste": 90,
+                  "ennakoitavuus": 78,
+                  "korjattavuus": 40,
+                  "legitimiteetti": 72,
+                  "hallinto": 68
+                }
+              },
+              {
+                "label": "Investoiva jako",
+                "tone": "rust",
+                "kicker": "Jakologiikka",
+                "note": "Jakaa tulevaisuuden mahdollisuuksia, ei vain nykyistä kakkua. Vaatii pitkän seurannan, koska tulos näkyy vasta myöhemmin.",
+                "values": {
+                  "tarve": 62,
+                  "kannuste": 72,
+                  "ennakoitavuus": 48,
+                  "korjattavuus": 88,
+                  "legitimiteetti": 55,
+                  "hallinto": 45
+                }
+              }
+            ],
+            "note": "Arvot ovat argumentin havainnollistuksia (0–100), eivät mittaustuloksia."
+          }
+        ],
+        "nelja-vastinparia": [
+          {
+            "type": "matrix-map",
+            "eyebrow": "Jännitekartta",
+            "title": "Missä jakologiikan jännitteet sijaitsevat?",
+            "intro": "Jokainen jako tekee samalla useita muita jakoja. Klikkaa palloa nähdäksesi, mikä jännite siihen liittyy.",
+            "x": {
+              "label": "Aikaulottuvuus",
+              "low": "Nyt jaettava",
+              "high": "Tulevaisuuden mahdollisuus"
+            },
+            "y": {
+              "label": "Kohde",
+              "low": "Yksilön saanto",
+              "high": "Rakenteen kyky"
+            },
+            "quadrants": [
+              "Yhteinen kapasiteetti tänään",
+              "Tulevien kierrosten ehdot",
+              "Välitön toimeentulo",
+              "Yksilön tuleva asema"
+            ],
+            "items": [
+              {
+                "label": "Toimeentulotuki",
+                "x": 12,
+                "y": 16,
+                "tone": "blue",
+                "kicker": "Välitön toimeentulo",
+                "note": "Vastaa akuuttiin puutteeseen. Ei kuitenkaan yksin muuta sitä asemaa, josta puute syntyi."
+              },
+              {
+                "label": "Eläkkeet",
+                "x": 26,
+                "y": 30,
+                "tone": "blue",
+                "kicker": "Välitön toimeentulo",
+                "note": "Aiemman kierroksen ansioiden jako nykyhetkessä. Sitoo ison osan jakovarasta ennen kuin muusta päätetään."
+              },
+              {
+                "label": "Varhaiskasvatus",
+                "x": 76,
+                "y": 62,
+                "tone": "teal",
+                "kicker": "Tulevien kierrosten ehdot",
+                "note": "Vaikuttaa yhtä aikaa yksilön tulevaan asemaan ja koko yhteiskunnan kykyyn – siksi sen leikkaus näkyy kahdessa suunnassa."
+              },
+              {
+                "label": "Koulutuspaikat",
+                "x": 82,
+                "y": 48,
+                "tone": "teal",
+                "kicker": "Yksilön tuleva asema",
+                "note": "Jakaa pääsyä seuraavan kierroksen asemiin. Kilpailu paikoista on samalla kilpailua tulevasta jakovallasta."
+              },
+              {
+                "label": "Terveydenhuollon jonot",
+                "x": 34,
+                "y": 58,
+                "tone": "ochre",
+                "kicker": "Yhteinen kapasiteetti tänään",
+                "note": "Kapasiteetin jakaminen on jakologiikka, vaikka sitä ei koskaan päätetty jakologiikaksi."
+              },
+              {
+                "label": "Infrastruktuuri",
+                "x": 68,
+                "y": 84,
+                "tone": "teal",
+                "kicker": "Tulevien kierrosten ehdot",
+                "note": "Määrittää, missä päin maata tuleva toiminta on ylipäätään mahdollista."
+              },
+              {
+                "label": "Verotuksen rakenne",
+                "x": 52,
+                "y": 78,
+                "tone": "rust",
+                "kicker": "Yhteinen kapasiteetti tänään",
+                "note": "Jakologiikan jakologiikka: ratkaisee, kuinka suuri jaettava ylipäätään on ja kuka sen kokoaa."
+              },
+              {
+                "label": "Velka",
+                "x": 92,
+                "y": 88,
+                "tone": "red",
+                "kicker": "Tulevien kierrosten ehdot",
+                "note": "Siirtää nykyisen jaon rahoituksen tuleville kierroksille ja kaventaa niiden valinnanvaraa."
+              },
+              {
+                "label": "Järjestöavustukset",
+                "x": 58,
+                "y": 40,
+                "tone": "ochre",
+                "kicker": "Yksilön tuleva asema",
+                "note": "Jakaa sitä, kenen ääni pääsee mukaan seuraavaan jakopäätökseen."
+              }
+            ],
+            "note": "Sijainnit ovat argumentin havainnollistuksia. Oikea yläneljännes on se, jossa tämän päivän jako muuttaa huomisen lähtökohtia."
+          }
+        ],
+        "korjaava-ja-vahvistava-palaute": {
+          "type": "feedback-loop",
+          "eyebrow": "Palautekierto",
+          "title": "Korjaako jako omaa lähtökohtaansa vai vahvistaako se sitä?",
+          "intro": "Vaihda kierron tyyppiä ja pysäytä se mihin tahansa vaiheeseen. Sama kierto voi joko tasata lähtökohtia tai kasvattaa niiden eroa – ero syntyy siitä, mihin palaute kohdistuu.",
+          "note": "Kierto kuvaa jakologiikan mekanismia, ei yksittäisen etuuden vaikutusarviota.",
+          "modes": [
+            {
+              "name": "Korjaava",
+              "kind": "corrective",
+              "caption": "Palaute kohdistuu lähtökohtiin: seuraavan kierroksen aloitusasetelma on tasaisempi kuin edellinen.",
+              "outcome": "Erot kapenevat kierros kierrokselta, koska jako muuttaa myös jaon perustetta.",
+              "nodes": [
+                {
+                  "label": "Lähtökohta",
+                  "title": "Erilaiset lähtötilanteet",
+                  "text": "Ihmisillä on eri määrä varallisuutta, osaamista ja verkostoja."
+                },
+                {
+                  "label": "Jako",
+                  "title": "Jako kohdistuu tarpeeseen",
+                  "text": "Voimavara ohjautuu sinne, missä se muuttaa toimintakykyä eniten."
+                },
+                {
+                  "label": "Toiminta",
+                  "title": "Toimintakyky kasvaa",
+                  "text": "Osallistuminen, oppiminen ja työ tulevat mahdollisiksi useammalle."
+                },
+                {
+                  "label": "Tuotos",
+                  "title": "Tuotos leviää laajemmalle",
+                  "text": "Hyöty ei kasaudu vain yhdelle ryhmälle."
+                },
+                {
+                  "label": "Palaute",
+                  "title": "Palaute muuttaa perustetta",
+                  "text": "Havainto epäonnistumisesta voi muuttaa myös jakosääntöä."
+                }
+              ]
+            },
+            {
+              "name": "Vahvistava",
+              "kind": "amplifying",
+              "caption": "Palaute kohdistuu tulokseen: se, joka menestyi, saa paremmat lähtökohdat seuraavalle kierrokselle.",
+              "outcome": "Erot kasvavat kierros kierrokselta, vaikka jokainen yksittäinen päätös näyttäisi perustellulta.",
+              "nodes": [
+                {
+                  "label": "Lähtökohta",
+                  "title": "Erilaiset lähtötilanteet",
+                  "text": "Sama ero on olemassa, mutta sitä ei käsitellä jaon perusteena."
+                },
+                {
+                  "label": "Jako",
+                  "title": "Jako kohdistuu tulokseen",
+                  "text": "Voimavara ohjautuu sinne, missä tulos on jo näkyvin."
+                },
+                {
+                  "label": "Toiminta",
+                  "title": "Etumatka kasvaa",
+                  "text": "Sama panos tuottaa enemmän sille, jolla on jo edellytykset."
+                },
+                {
+                  "label": "Tuotos",
+                  "title": "Tuotos kasautuu",
+                  "text": "Hyöty tiivistyy samoille toimijoille kuin edellisellä kierroksella."
+                },
+                {
+                  "label": "Palaute",
+                  "title": "Palaute vahvistaa perustetta",
+                  "text": "Menestys tulkitaan todisteeksi jaon oikeellisuudesta."
+                }
+              ]
+            }
+          ]
         }
+      }
+    },
+    {
+      "id": "jarjestojen-rooli",
+      "sections": {
+        "rahoitus-on-muutakin-kuin-rahaa": [
+          {
+            "type": "flow-split",
+            "eyebrow": "Rahoituksen muoto",
+            "title": "Millaisen järjestökentän rahoitusmalli synnyttää?",
+            "intro": "Rahoitus ei vain ylläpidä kenttää vaan valikoi sen. Vertaa hankerahoitusta ja toimintaan sidottua rahoitusta.",
+            "scenarios": [
+              {
+                "label": "Hankerahoitus",
+                "readoutKicker": "Skenaario",
+                "note": "Kun raha jaetaan hankkeina, hakemisen osaaminen muuttuu itsessään resurssiksi. Kenttä ei valikoidu sen mukaan, kuka tekee vaikuttavinta työtä, vaan sen mukaan, kuka osaa hakea.",
+                "columns": [
+                  "Rahoituksen muoto",
+                  "Kuka pystyy hakemaan",
+                  "Millainen kenttä syntyy"
+                ],
+                "nodes": [
+                  {
+                    "id": "hanke",
+                    "label": "Määräaikainen hankeraha",
+                    "column": 0,
+                    "value": 62,
+                    "tone": "ochre",
+                    "meta": "PÄÄREITTI",
+                    "note": "Hankkeen elinkaari on lyhyempi kuin ongelman, johon se vastaa."
+                  },
+                  {
+                    "id": "yleis",
+                    "label": "Yleisavustus",
+                    "column": 0,
+                    "value": 24,
+                    "tone": "teal",
+                    "meta": "KAPEA",
+                    "note": "Antaisi vakautta, mutta on vaikeimmin perusteltavissa juuri siksi, ettei se lupaa yksittäistä tulosta."
+                  },
+                  {
+                    "id": "oma",
+                    "label": "Oma varainhankinta",
+                    "column": 0,
+                    "value": 14,
+                    "tone": "blue",
+                    "meta": "EPÄTASAINEN",
+                    "note": "Riippuu jäsenistön varallisuudesta – siis juuri siitä erosta, jota järjestön pitäisi tasata."
+                  },
+                  {
+                    "id": "ammatti",
+                    "label": "Ammattimainen järjestö",
+                    "column": 1,
+                    "value": 54,
+                    "tone": "ochre",
+                    "meta": "OMA HAKUOSAAMINEN",
+                    "note": "Palkattu hakemusosaaminen on kilpailuetu, joka ei liity toiminnan laatuun."
+                  },
+                  {
+                    "id": "keski",
+                    "label": "Keskikokoinen yhdistys",
+                    "column": 1,
+                    "value": 30,
+                    "tone": "teal",
+                    "meta": "OSITTAIN",
+                    "note": "Pystyy hakemaan, mutta hakeminen syö juuri sen ajan, joka olisi ollut perustoimintaa."
+                  },
+                  {
+                    "id": "pieni",
+                    "label": "Pieni tai uusi toimija",
+                    "column": 1,
+                    "value": 16,
+                    "tone": "rust",
+                    "meta": "EI KAPASITEETTIA",
+                    "note": "Jää usein kokonaan ulos, vaikka olisi lähimpänä ratkaisematonta ongelmaa."
+                  },
+                  {
+                    "id": "keskitt",
+                    "label": "Keskittynyt kenttä",
+                    "column": 2,
+                    "value": 52,
+                    "tone": "rust",
+                    "meta": "HARVA JA SUURI",
+                    "note": "Muutama vahva toimija hoitaa yhä useamman tehtävän ja määrittelee, mistä puhutaan."
+                  },
+                  {
+                    "id": "monimuoto",
+                    "label": "Monimuotoinen kenttä",
+                    "column": 2,
+                    "value": 26,
+                    "tone": "teal",
+                    "meta": "MONIÄÄNINEN",
+                    "note": "Kaventuu, koska pienten toimijoiden uusiutuminen katkeaa."
+                  },
+                  {
+                    "id": "katoaa",
+                    "label": "Toiminta päättyy",
+                    "column": 2,
+                    "value": 22,
+                    "tone": "red",
+                    "meta": "EI JATKUVUUTTA",
+                    "note": "Hankkeen päättyessä katoaa myös verkosto, jonka rakentaminen oli sen tärkein tulos."
+                  }
+                ],
+                "links": [
+                  {
+                    "from": "hanke",
+                    "to": "ammatti",
+                    "value": 38,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "hanke",
+                    "to": "keski",
+                    "value": 17,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "hanke",
+                    "to": "pieni",
+                    "value": 7,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "yleis",
+                    "to": "ammatti",
+                    "value": 12,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "yleis",
+                    "to": "keski",
+                    "value": 9,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "yleis",
+                    "to": "pieni",
+                    "value": 3,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "oma",
+                    "to": "ammatti",
+                    "value": 4,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "oma",
+                    "to": "keski",
+                    "value": 4,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "oma",
+                    "to": "pieni",
+                    "value": 6,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "ammatti",
+                    "to": "keskitt",
+                    "value": 36,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "ammatti",
+                    "to": "monimuoto",
+                    "value": 10,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "ammatti",
+                    "to": "katoaa",
+                    "value": 8,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "keski",
+                    "to": "keskitt",
+                    "value": 12,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "keski",
+                    "to": "monimuoto",
+                    "value": 11,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "keski",
+                    "to": "katoaa",
+                    "value": 7,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "pieni",
+                    "to": "monimuoto",
+                    "value": 5,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "pieni",
+                    "to": "katoaa",
+                    "value": 7,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "pieni",
+                    "to": "keskitt",
+                    "value": 4,
+                    "tone": "rust"
+                  }
+                ]
+              },
+              {
+                "label": "Toimintaan sidottu rahoitus",
+                "readoutKicker": "Skenaario",
+                "note": "Kun raha seuraa toteutunutta toimintaa ja perusrahoitus on vakaa, hakuosaamisen merkitys pienenee ja kenttä valikoituu lähempänä sitä, missä työ tosiasiassa tehdään.",
+                "columns": [
+                  "Rahoituksen muoto",
+                  "Kuka pystyy hakemaan",
+                  "Millainen kenttä syntyy"
+                ],
+                "nodes": [
+                  {
+                    "id": "hanke",
+                    "label": "Määräaikainen hankeraha",
+                    "column": 0,
+                    "value": 30,
+                    "tone": "ochre",
+                    "meta": "TÄYDENTÄVÄ",
+                    "note": "Hankeraha säilyy kokeiluihin, mutta se ei enää kanna perustoimintaa."
+                  },
+                  {
+                    "id": "yleis",
+                    "label": "Vakaa perusrahoitus",
+                    "column": 0,
+                    "value": 46,
+                    "tone": "teal",
+                    "meta": "PÄÄREITTI",
+                    "note": "Mahdollistaa pitkäjänteisyyden ja sen, että työntekijät pysyvät."
+                  },
+                  {
+                    "id": "oma",
+                    "label": "Toimintaan sidottu korvaus",
+                    "column": 0,
+                    "value": 24,
+                    "tone": "blue",
+                    "meta": "TOTEUMAN MUKAAN",
+                    "note": "Raha seuraa tehtyä toimintaa, ei kirjoitettua hakemusta."
+                  },
+                  {
+                    "id": "ammatti",
+                    "label": "Ammattimainen järjestö",
+                    "column": 1,
+                    "value": 38,
+                    "tone": "ochre",
+                    "meta": "YHÄ VAHVA",
+                    "note": "Säilyy vahvana, mutta ei enää yksin hakuosaamisensa turvin."
+                  },
+                  {
+                    "id": "keski",
+                    "label": "Keskikokoinen yhdistys",
+                    "column": 1,
+                    "value": 38,
+                    "tone": "teal",
+                    "meta": "VAHVISTUU",
+                    "note": "Voi käyttää aikansa toimintaan hakemusten sijaan."
+                  },
+                  {
+                    "id": "pieni",
+                    "label": "Pieni tai uusi toimija",
+                    "column": 1,
+                    "value": 24,
+                    "tone": "blue",
+                    "meta": "PÄÄSEE MUKAAN",
+                    "note": "Matala kynnys tarkoittaa, että uusi toimija voi syntyä ilman valmista rahoitusosaamista."
+                  },
+                  {
+                    "id": "keskitt",
+                    "label": "Keskittynyt kenttä",
+                    "column": 2,
+                    "value": 28,
+                    "tone": "rust",
+                    "meta": "HARVA JA SUURI",
+                    "note": "Keskittyminen ei katoa, mutta se ei enää ole rahoitusmallin automaattinen seuraus."
+                  },
+                  {
+                    "id": "monimuoto",
+                    "label": "Monimuotoinen kenttä",
+                    "column": 2,
+                    "value": 58,
+                    "tone": "teal",
+                    "meta": "MONIÄÄNINEN",
+                    "note": "Erikokoiset toimijat voivat elää rinnakkain, mikä on kansalaisyhteiskunnan korjauskyvyn ehto."
+                  },
+                  {
+                    "id": "katoaa",
+                    "label": "Toiminta päättyy",
+                    "column": 2,
+                    "value": 14,
+                    "tone": "red",
+                    "meta": "EI JATKUVUUTTA",
+                    "note": "Toimintaa päättyy yhä, mutta harvemmin siksi että rahoituskausi loppui."
+                  }
+                ],
+                "links": [
+                  {
+                    "from": "hanke",
+                    "to": "ammatti",
+                    "value": 16,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "hanke",
+                    "to": "keski",
+                    "value": 9,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "hanke",
+                    "to": "pieni",
+                    "value": 5,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "yleis",
+                    "to": "ammatti",
+                    "value": 16,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "yleis",
+                    "to": "keski",
+                    "value": 19,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "yleis",
+                    "to": "pieni",
+                    "value": 11,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "oma",
+                    "to": "ammatti",
+                    "value": 6,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "oma",
+                    "to": "keski",
+                    "value": 10,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "oma",
+                    "to": "pieni",
+                    "value": 8,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "ammatti",
+                    "to": "keskitt",
+                    "value": 20,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "ammatti",
+                    "to": "monimuoto",
+                    "value": 14,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "ammatti",
+                    "to": "katoaa",
+                    "value": 4,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "keski",
+                    "to": "monimuoto",
+                    "value": 28,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "keski",
+                    "to": "keskitt",
+                    "value": 6,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "keski",
+                    "to": "katoaa",
+                    "value": 4,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "pieni",
+                    "to": "monimuoto",
+                    "value": 16,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "pieni",
+                    "to": "katoaa",
+                    "value": 6,
+                    "tone": "red"
+                  },
+                  {
+                    "from": "pieni",
+                    "to": "keskitt",
+                    "value": 2,
+                    "tone": "rust"
+                  }
+                ]
+              }
+            ],
+            "note": "Osuudet havainnollistavat rahoitusmallin valikoivaa vaikutusta, eivät avustustilastoa."
+          }
+        ],
+        "portinvartijuus": [
+          {
+            "type": "matrix-map",
+            "eyebrow": "Roolikartta",
+            "title": "Milloin tasaajasta tulee portinvartija?",
+            "intro": "Sama järjestö voi olla eri tehtävissä eri roolissa. Ratkaisevaa on, kuinka helppoa toimijan ohi on päästä. Klikkaa palloa.",
+            "x": {
+              "label": "Pääsy ilman järjestöä",
+              "low": "Vain järjestön kautta",
+              "high": "Useita reittejä"
+            },
+            "y": {
+              "label": "Vaikutusvalta päätöksiin",
+              "low": "Vähäinen",
+              "high": "Suuri"
+            },
+            "quadrants": [
+              "Portinvartija",
+              "Vahva mutta ohitettavissa",
+              "Marginaalinen toimija",
+              "Tasaava toimija"
+            ],
+            "items": [
+              {
+                "label": "Lausuntokierrokset",
+                "x": 24,
+                "y": 82,
+                "tone": "rust",
+                "kicker": "Portinvartija",
+                "note": "Kuulluksi tuleminen edellyttää järjestöasemaa. Se, kuka ei ole järjestäytynyt, ei ole olemassa valmistelun näkökulmasta."
+              },
+              {
+                "label": "Sopimusneuvottelut",
+                "x": 14,
+                "y": 90,
+                "tone": "red",
+                "kicker": "Portinvartija",
+                "note": "Vahvin portinvartijuuden muoto: neuvottelupöydän ulkopuolella olevalla ei ole vaihtoehtoista reittiä."
+              },
+              {
+                "label": "Palvelun tuottaminen",
+                "x": 38,
+                "y": 60,
+                "tone": "ochre",
+                "kicker": "Portinvartija",
+                "note": "Kun järjestö on ainoa tuottaja alueellaan, sen ehdoista tulee tosiasiallisia oikeuksia."
+              },
+              {
+                "label": "Vertaistuki",
+                "x": 82,
+                "y": 30,
+                "tone": "teal",
+                "kicker": "Tasaava toimija",
+                "note": "Matala kynnys ja rinnakkaiset reitit: toiminta lisää pääsyä ilman että se hallitsee pääsyä."
+              },
+              {
+                "label": "Neuvonta ja tuki hakemuksissa",
+                "x": 70,
+                "y": 46,
+                "tone": "teal",
+                "kicker": "Tasaava toimija",
+                "note": "Vahvistaa nimenomaan heikoimmassa asemassa olevan kykyä käyttää oikeuksiaan."
+              },
+              {
+                "label": "Harrastustoiminta",
+                "x": 88,
+                "y": 22,
+                "tone": "blue",
+                "kicker": "Tasaava toimija",
+                "note": "Tuottaa verkostoja ja luottamusta, joita ei näy missään avustusmittarissa."
+              },
+              {
+                "label": "Asiantuntijaroolit",
+                "x": 30,
+                "y": 70,
+                "tone": "rust",
+                "kicker": "Portinvartija",
+                "note": "Kun sama taho sekä määrittelee ongelman että tuottaa ratkaisun, korjaava palaute heikkenee."
+              },
+              {
+                "label": "Uudet kevyet liikkeet",
+                "x": 74,
+                "y": 66,
+                "tone": "blue",
+                "kicker": "Vahva mutta ohitettavissa",
+                "note": "Vaikuttavat julkiseen keskusteluun ilman että niiden ohi pääsy olisi kenellekään suljettu."
+              },
+              {
+                "label": "Jäsenetuudet",
+                "x": 40,
+                "y": 26,
+                "tone": "ochre",
+                "kicker": "Marginaalinen toimija",
+                "note": "Sitoo jäsenyyteen mutta ei ratkaise yhteiskunnallista pääsyä suuntaan tai toiseen."
+              }
+            ],
+            "note": "Sijainnit havainnollistavat argumenttia. Oikea alaneljännes on tasaavan järjestötoiminnan ydinaluetta."
+          }
+        ],
+        "tasapainoinen-jarjestokentta": [
+          {
+            "type": "radar-compare",
+            "eyebrow": "Kenttäprofiilit",
+            "title": "Millainen järjestökenttä kestää muutoksen?",
+            "intro": "Tasapainoinen kenttä ei ole yhden kokoinen. Valitse profiileja päälle ja pois ja katso, mitä kukin malli vahvistaa ja mitä se heikentää.",
+            "axes": [
+              {
+                "id": "kattavuus",
+                "label": "Alueellinen kattavuus"
+              },
+              {
+                "id": "aani",
+                "label": "Heikoimpien ääni"
+              },
+              {
+                "id": "uusiutuminen",
+                "label": "Uusiutumiskyky"
+              },
+              {
+                "id": "vakaus",
+                "label": "Toiminnan vakaus"
+              },
+              {
+                "id": "osaaminen",
+                "label": "Ammatillinen osaaminen"
+              },
+              {
+                "id": "riippumattomuus",
+                "label": "Riippumattomuus rahoittajasta"
+              }
+            ],
+            "profiles": [
+              {
+                "label": "Muutama suuri toimija",
+                "tone": "rust",
+                "kicker": "Kenttämalli",
+                "note": "Vahva osaaminen ja vakaus, mutta uusiutuminen hidastuu ja riippuvuus julkisesta rahoituksesta kasvaa. Kenttä alkaa muistuttaa hallintoa.",
+                "values": {
+                  "kattavuus": 55,
+                  "aani": 40,
+                  "uusiutuminen": 25,
+                  "vakaus": 85,
+                  "osaaminen": 90,
+                  "riippumattomuus": 30
+                }
+              },
+              {
+                "label": "Pirstoutunut hankekenttä",
+                "tone": "ochre",
+                "kicker": "Kenttämalli",
+                "note": "Uusia avauksia syntyy jatkuvasti, mutta mikään ei kanna riittävän pitkälle. Osaaminen katoaa hankkeen mukana.",
+                "values": {
+                  "kattavuus": 48,
+                  "aani": 52,
+                  "uusiutuminen": 72,
+                  "vakaus": 25,
+                  "osaaminen": 45,
+                  "riippumattomuus": 35
+                }
+              },
+              {
+                "label": "Monimuotoinen kenttä",
+                "tone": "teal",
+                "kicker": "Kenttämalli",
+                "note": "Erikokoiset toimijat rinnakkain: suuret kantavat osaamisen, pienet kantavat uusiutumisen. Tämä on kansalaisyhteiskunnan korjauskyvyn ehto.",
+                "values": {
+                  "kattavuus": 82,
+                  "aani": 80,
+                  "uusiutuminen": 76,
+                  "vakaus": 68,
+                  "osaaminen": 72,
+                  "riippumattomuus": 65
+                }
+              },
+              {
+                "label": "Vapaaehtoisuuden varassa",
+                "tone": "blue",
+                "kicker": "Kenttämalli",
+                "note": "Riippumaton ja uudistuva, mutta kattavuus ja vakaus riippuvat siitä, kenellä on aikaa ja varaa osallistua.",
+                "values": {
+                  "kattavuus": 42,
+                  "aani": 58,
+                  "uusiutuminen": 70,
+                  "vakaus": 30,
+                  "osaaminen": 38,
+                  "riippumattomuus": 88
+                }
+              }
+            ],
+            "note": "Arvot ovat argumentin havainnollistuksia (0–100), eivät järjestökentän mittaustuloksia."
+          }
+        ]
+      }
+    },
+    {
+      "id": "toimintakykyvaltio",
+      "sections": {
+        "hyvinvointivaltion-kolme-sukupolvea": {
+          "type": "layer-stack",
+          "eyebrow": "Kolme sukupolvea",
+          "title": "Mitä jokainen hyvinvointivaltion sukupolvi lisäsi edellisen päälle?",
+          "intro": "Avaa kerros kerrallaan. Uusi sukupolvi ei korvannut edellistä vaan rakentui sen päälle – myös silloin, kun edellisen ratkaisut olivat jo vanhentuneet.",
+          "note": "Kerrokset kuvaavat tehtävän muutosta, eivät hallinnollista organisaatiota.",
+          "layers": [
+            {
+              "era": "1945–1975",
+              "title": "Turvan sukupolvi",
+              "lead": "Puute poistetaan.",
+              "text": "Sosiaaliturva, terveydenhuolto ja koulutus rakennetaan kattamaan koko maa. Tehtävänä on estää se, että syntyperä ratkaisee elämän kulun.",
+              "tags": [
+                "Kattavuus",
+                "Oikeus",
+                "Rakentaminen"
+              ],
+              "gain": "Perusturva tuli kaikille.",
+              "cost": "Järjestelmä opittiin näkemään luokituksina."
+            },
+            {
+              "era": "1975–2000",
+              "title": "Palvelun sukupolvi",
+              "lead": "Oikeus muutetaan palveluksi.",
+              "text": "Etuuksien rinnalle syntyy laaja palvelujärjestelmä ja ammatillinen asiantuntijuus. Ihminen kohdataan tapauksena, jolla on määritelty tarve.",
+              "tags": [
+                "Palvelu",
+                "Asiantuntijuus",
+                "Luokitus"
+              ],
+              "gain": "Apu tuli lähemmäs ja ammattimaisemmaksi.",
+              "cost": "Elämäntilanne pilkkoutui erillisiksi tapauksiksi."
+            },
+            {
+              "era": "2000–2025",
+              "title": "Ohjauksen sukupolvi",
+              "lead": "Palvelua ohjataan mittarilla.",
+              "text": "Kustannuspaine tuo hankinnat, indikaattorit ja raportoinnin. Ohjauksesta tulee oma tehtävänsä, joka mittaa suoritetta mutta harvoin toimintakykyä.",
+              "tags": [
+                "Mittarit",
+                "Hankinta",
+                "Raportointi"
+              ],
+              "gain": "Toiminnasta tuli vertailtavaa.",
+              "cost": "Mittari alkoi määrittää tavoitteen."
+            },
+            {
+              "era": "2025–",
+              "title": "Toimintakyvyn sukupolvi",
+              "lead": "Tavoite palautetaan ihmiseen.",
+              "text": "Voimavarat kootaan yhden tavoitteen ympärille: kyvyn toimia, osallistua ja tehdä. Turva ja osallistuminen eivät ole toistensa vaihtoehtoja vaan saman tehtävän kaksi puolta.",
+              "tags": [
+                "Toimintakyky",
+                "Liikkumavara",
+                "Korjauskyky"
+              ],
+              "gain": "Yksi tavoite yhdistää hajonneet välineet.",
+              "cost": "Vaatii luopumaan mittareista, jotka kaventavat tavoitteen.",
+              "current": true
+            }
+          ]
+        },
+        "toimintakyky-ei-ole-tyokyky": [
+          {
+            "type": "radar-compare",
+            "eyebrow": "Käsitteiden ero",
+            "title": "Mitä työkykymittari näkee – ja mitä se ei näe?",
+            "intro": "Työkyky on toimintakyvyn osajoukko. Valitse profiileja päälle ja pois: sama ihminen näyttää eri mittarilla täysin eri asialta.",
+            "axes": [
+              {
+                "id": "ansio",
+                "label": "Ansiokyky"
+              },
+              {
+                "id": "arki",
+                "label": "Arjen hallinta"
+              },
+              {
+                "id": "oppiminen",
+                "label": "Oppimiskyky"
+              },
+              {
+                "id": "sosiaalinen",
+                "label": "Sosiaaliset suhteet"
+              },
+              {
+                "id": "osallisuus",
+                "label": "Osallisuus yhteisössä"
+              },
+              {
+                "id": "terveys",
+                "label": "Terveys ja jaksaminen"
+              }
+            ],
+            "profiles": [
+              {
+                "label": "Työkykymittari näkee",
+                "tone": "ochre",
+                "kicker": "Mittarin näkökenttä",
+                "note": "Työkykyarvio kohdistuu ansiokykyyn ja terveyteen. Muut ulottuvuudet eivät ole poissa ihmisen elämästä – ne ovat poissa mittarista.",
+                "values": {
+                  "ansio": 92,
+                  "arki": 30,
+                  "oppiminen": 38,
+                  "sosiaalinen": 15,
+                  "osallisuus": 12,
+                  "terveys": 78
+                }
+              },
+              {
+                "label": "Toimintakyky näkee",
+                "tone": "teal",
+                "kicker": "Mittarin näkökenttä",
+                "note": "Toimintakyky kysyy, mitä ihminen pystyy tekemään omassa tilanteessaan. Ansiokyky on yksi ulottuvuus muiden joukossa – tärkeä, muttei ainoa.",
+                "values": {
+                  "ansio": 70,
+                  "arki": 85,
+                  "oppiminen": 80,
+                  "sosiaalinen": 78,
+                  "osallisuus": 82,
+                  "terveys": 76
+                }
+              },
+              {
+                "label": "Esimerkki: osatyökykyinen",
+                "tone": "blue",
+                "kicker": "Yksittäinen tilanne",
+                "note": "Työkykyarviossa tulos on heikko, koska ansiokyky on rajoittunut. Toimintakyvyn näkökulmasta useimmat ulottuvuudet ovat vahvoja – ja juuri niistä myös ansiokyky voi rakentua takaisin.",
+                "values": {
+                  "ansio": 35,
+                  "arki": 72,
+                  "oppiminen": 68,
+                  "sosiaalinen": 74,
+                  "osallisuus": 65,
+                  "terveys": 45
+                }
+              }
+            ],
+            "note": "Arvot ovat argumentin havainnollistuksia (0–100), eivät kliinisiä arvioita."
+          }
+        ]
+      }
+    },
+    {
+      "id": "toimintakykytalous",
+      "sections": {
+        "arvon-kierto": {
+          "type": "feedback-loop",
+          "eyebrow": "Arvon kierto",
+          "title": "Mihin arvo palaa, kun se on kerran tuotettu?",
+          "intro": "Vertaa kahta kiertoa. Molemmat tuottavat mitattavaa arvoa, mutta ne palauttavat sen eri kohtaan järjestelmää.",
+          "note": "Kaavio kuvaa arvon kulkusuuntaa, ei kansantalouden tilinpitoa.",
+          "modes": [
+            {
+              "name": "Toimintakyky",
+              "kind": "corrective",
+              "caption": "Arvo palautuu ihmisen kykyyn toimia, jolloin seuraava kierros alkaa korkeammalta.",
+              "outcome": "Tuottavuus ja turva kasvavat samasta lähteestä.",
+              "nodes": [
+                {
+                  "label": "Panos",
+                  "title": "Osaaminen ja aika",
+                  "text": "Ihminen tuo kiertoon työtä, hoivaa, oppimista ja osallistumista."
+                },
+                {
+                  "label": "Tuotanto",
+                  "title": "Arvo syntyy yhdessä",
+                  "text": "Teknologia ja ihmistyö täydentävät toisiaan."
+                },
+                {
+                  "label": "Mittaus",
+                  "title": "Näkymätön arvo tunnistetaan",
+                  "text": "Myös hoiva ja yhteisötyö kirjautuvat tuotokseksi."
+                },
+                {
+                  "label": "Jako",
+                  "title": "Korvaus, turva ja oppiminen",
+                  "text": "Tuotos palautuu ihmiselle useampana kuin yhtenä muotona."
+                },
+                {
+                  "label": "Uusi kyky",
+                  "title": "Toimintakyky vahvistuu",
+                  "text": "Seuraava kierros alkaa paremmilla edellytyksillä."
+                }
+              ]
+            },
+            {
+              "name": "Siirtovaje",
+              "kind": "amplifying",
+              "caption": "Arvo palautuu pääomaan, jolloin työn ja turvan yhteys ohenee.",
+              "outcome": "Tuottavuus kasvaa, mutta turva irtoaa tuotannosta.",
+              "nodes": [
+                {
+                  "label": "Panos",
+                  "title": "Osaaminen ja aika",
+                  "text": "Sama panos, mutta sen osuus tuotoksesta pienenee."
+                },
+                {
+                  "label": "Tuotanto",
+                  "title": "Teknologia korvaa tehtäviä",
+                  "text": "Tuotos kasvaa ilman vastaavaa työpanoksen kasvua."
+                },
+                {
+                  "label": "Mittaus",
+                  "title": "Vain markkina-arvo näkyy",
+                  "text": "Näkymätön työ jää tilaston ulkopuolelle."
+                },
+                {
+                  "label": "Jako",
+                  "title": "Tuotto ohjautuu omistukseen",
+                  "text": "Korvaus irtoaa tehdystä työstä."
+                },
+                {
+                  "label": "Siirtovaje",
+                  "title": "Turva jää jälkeen",
+                  "text": "Turvan rahoituspohja kapenee, vaikka tuotanto kasvaa."
+                }
+              ]
+            }
+          ]
+        },
+        "tekoaly-ja-siirtovaje": [
+          {
+            "type": "model-sliders",
+            "eyebrow": "Siirtovaje",
+            "title": "Mihin tuottavuushyöty menee?",
+            "intro": "Tekoäly ei poista arvoa vaan siirtää sitä. Kysymys on siitä, kuinka suuri osa hyödystä palaa toimintakyvyksi. Säädä oletuksia.",
+            "inputs": [
+              {
+                "id": "automaatio",
+                "label": "Automaation kattavuus",
+                "min": 0,
+                "max": 60,
+                "step": 2,
+                "value": 22,
+                "unit": " % työtehtävistä",
+                "help": "Kuinka suuri osa nykyisistä työtehtävistä hoituu ilman ihmistä."
+              },
+              {
+                "id": "tuottavuus",
+                "label": "Tuottavuushyöty",
+                "min": 0,
+                "max": 40,
+                "step": 1,
+                "value": 14,
+                "unit": " %",
+                "help": "Kuinka paljon automaatio kasvattaa tuotantoa samalla panoksella."
+              },
+              {
+                "id": "paluu",
+                "label": "Paluukanavien osuus",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "value": 35,
+                "unit": " %",
+                "help": "Kuinka suuri osa hyödystä palautuu palkkoina, turvana, oppimisena tai omistuksena."
+              },
+              {
+                "id": "omistus",
+                "label": "Omistuksen hajautuminen",
+                "min": 0,
+                "max": 100,
+                "step": 5,
+                "value": 20,
+                "unit": " %",
+                "help": "Kuinka laajasti tuottavan pääoman omistus jakautuu kotitalouksiin."
+              }
+            ],
+            "presets": [
+              {
+                "label": "Nykysuunta",
+                "values": {
+                  "automaatio": 22,
+                  "tuottavuus": 14,
+                  "paluu": 35,
+                  "omistus": 20
+                }
+              },
+              {
+                "label": "Nopea automaatio, kapea paluu",
+                "values": {
+                  "automaatio": 48,
+                  "tuottavuus": 30,
+                  "paluu": 20,
+                  "omistus": 15
+                }
+              },
+              {
+                "label": "Toimintakykytalous",
+                "values": {
+                  "automaatio": 45,
+                  "tuottavuus": 28,
+                  "paluu": 70,
+                  "omistus": 55
+                }
+              }
+            ],
+            "outputs": [
+              {
+                "id": "vaje",
+                "label": "Siirtovaje",
+                "lead": true,
+                "min": 0,
+                "max": 100,
+                "base": 20,
+                "decimals": 0,
+                "unit": " ind.",
+                "target": 35,
+                "products": [
+                  {
+                    "inputs": [
+                      "automaatio",
+                      "tuottavuus"
+                    ],
+                    "weight": 0.09
+                  },
+                  {
+                    "inputs": [
+                      "automaatio",
+                      "tuottavuus",
+                      "paluu"
+                    ],
+                    "weight": -0.00105
+                  }
+                ],
+                "terms": [
+                  {
+                    "input": "omistus",
+                    "weight": -0.22
+                  }
+                ],
+                "clampMin": 0,
+                "bands": [
+                  {
+                    "max": 30,
+                    "tone": "good",
+                    "kicker": "Tulkinta",
+                    "title": "Kierto pysyy kiinni",
+                    "text": "Tuottavuushyöty palautuu riittävässä määrin kotitalouksille ja osaamiseen. Automaatio voi silloin edetä nopeastikin ilman että ostovoima ja toimintakyky irtoavat tuotannosta.",
+                    "caption": "Hyöty palaa toimintakyvyksi."
+                  },
+                  {
+                    "min": 30,
+                    "max": 55,
+                    "tone": "warn",
+                    "kicker": "Tulkinta",
+                    "title": "Vaje kasvaa hitaasti",
+                    "text": "Tuotanto kasvaa nopeammin kuin paluukanavat. Vaikutus ei näy vielä kriisinä vaan siinä, että kasvusta huolimatta yhä useampi kokee jäävänsä jälkeen.",
+                    "caption": "Kasvu ei enää tunnu kotitalouksissa."
+                  },
+                  {
+                    "min": 55,
+                    "tone": "bad",
+                    "kicker": "Tulkinta",
+                    "title": "Kierto katkeaa",
+                    "text": "Arvo kertyy pääomalle nopeammin kuin se palaa toimintakyvyksi. Silloin myös kysyntä, verokertymä ja lopulta itse tuotanto heikkenevät – vaje on rakenteellinen, ei suhdanteinen.",
+                    "caption": "Ostovoima ja verokertymä irtoavat tuotannosta."
+                  }
+                ]
+              },
+              {
+                "id": "ostovoima",
+                "label": "Kotitalouksien ostovoima",
+                "min": 0,
+                "max": 100,
+                "base": 48,
+                "decimals": 0,
+                "unit": " ind.",
+                "tone": "blue",
+                "terms": [
+                  {
+                    "input": "paluu",
+                    "weight": 0.34
+                  },
+                  {
+                    "input": "omistus",
+                    "weight": 0.2
+                  },
+                  {
+                    "input": "automaatio",
+                    "weight": -0.35
+                  }
+                ],
+                "bands": [
+                  {
+                    "max": 45,
+                    "tone": "bad",
+                    "caption": "Kysyntä ei kanna kasvanutta tuotantoa."
+                  },
+                  {
+                    "min": 45,
+                    "max": 65,
+                    "tone": "warn",
+                    "caption": "Ostovoima laahaa tuotannon perässä."
+                  },
+                  {
+                    "min": 65,
+                    "tone": "good",
+                    "caption": "Tuotanto ja kysyntä liikkuvat yhdessä."
+                  }
+                ]
+              }
+            ],
+            "note": "Havainnollistava suuntamalli, ei tuottavuusennuste. Se näyttää paluukanavien ratkaisevan merkityksen."
+          }
+        ],
+        "korvaus-turva-oppiminen-omistus": [
+          {
+            "type": "flow-split",
+            "eyebrow": "Neljä paluukanavaa",
+            "title": "Mitä kautta arvo palaa toimintakyvyksi?",
+            "intro": "Kun työn osuus arvonmuodostuksesta pienenee, palkka yksin ei enää riitä paluukanavaksi. Vertaa nykyistä ja hajautettua mallia.",
+            "scenarios": [
+              {
+                "label": "Työn varassa",
+                "readoutKicker": "Skenaario",
+                "note": "Nykyisessä mallissa lähes kaikki arvo palaa toimintakyvyksi yhden kanavan – palkan – kautta. Kun tämä kanava kapenee, koko paluu kapenee sen mukana.",
+                "columns": [
+                  "Arvon lähde",
+                  "Paluukanava",
+                  "Mihin päätyy"
+                ],
+                "nodes": [
+                  {
+                    "id": "tyo",
+                    "label": "Työn tuottama arvo",
+                    "column": 0,
+                    "value": 58,
+                    "tone": "teal",
+                    "meta": "KAPENEE",
+                    "note": "Yhä suurempi osa tuotannosta syntyy ilman lisätyötunteja."
+                  },
+                  {
+                    "id": "paaoma",
+                    "label": "Pääoman tuottama arvo",
+                    "column": 0,
+                    "value": 42,
+                    "tone": "ochre",
+                    "meta": "KASVAA",
+                    "note": "Automaatio siirtää arvonmuodostusta pääomalle, jonka omistus on keskittynyt."
+                  },
+                  {
+                    "id": "palkka",
+                    "label": "Palkka",
+                    "column": 1,
+                    "value": 55,
+                    "tone": "teal",
+                    "meta": "PÄÄKANAVA",
+                    "note": "Ainoa kanava, jonka kautta useimmat saavat osuutensa tuotannosta."
+                  },
+                  {
+                    "id": "turva",
+                    "label": "Turva",
+                    "column": 1,
+                    "value": 22,
+                    "tone": "blue",
+                    "meta": "JÄLKIKÄTEINEN",
+                    "note": "Korjaa vasta silloin, kun toimintakyky on jo menetetty."
+                  },
+                  {
+                    "id": "oppiminen",
+                    "label": "Oppiminen",
+                    "column": 1,
+                    "value": 15,
+                    "tone": "ochre",
+                    "meta": "OHUT",
+                    "note": "Aikuisen oppiminen on kytketty työsuhteeseen – siis juuri siihen, mikä on katkeamassa."
+                  },
+                  {
+                    "id": "omistus",
+                    "label": "Omistus",
+                    "column": 1,
+                    "value": 8,
+                    "tone": "rust",
+                    "meta": "KESKITTYNYT",
+                    "note": "Kapein kanava: kotitalouksien osuus tuottavasta pääomasta on pieni ja epätasainen."
+                  },
+                  {
+                    "id": "toimintakyky",
+                    "label": "Palaa toimintakyvyksi",
+                    "column": 2,
+                    "value": 54,
+                    "tone": "teal",
+                    "meta": "KIERTO JATKUU",
+                    "note": "Reilu puolet kiertää takaisin – riittää nyt, muttei enää automaation edetessä."
+                  },
+                  {
+                    "id": "kulutus",
+                    "label": "Kertakulutus",
+                    "column": 2,
+                    "value": 26,
+                    "tone": "ochre",
+                    "meta": "EI KERRY",
+                    "note": "Palautuu talouteen kysyntänä mutta ei kasvata toimintakykyä."
+                  },
+                  {
+                    "id": "kertyma",
+                    "label": "Kertyy pääomaksi",
+                    "column": 2,
+                    "value": 20,
+                    "tone": "rust",
+                    "meta": "EI PALAA",
+                    "note": "Kertyy sinne, missä sitä on jo – eikä palaudu kierron perustaan."
+                  }
+                ],
+                "links": [
+                  {
+                    "from": "tyo",
+                    "to": "palkka",
+                    "value": 44,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "tyo",
+                    "to": "turva",
+                    "value": 9,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "tyo",
+                    "to": "oppiminen",
+                    "value": 5,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "paaoma",
+                    "to": "palkka",
+                    "value": 11,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "paaoma",
+                    "to": "turva",
+                    "value": 13,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "paaoma",
+                    "to": "oppiminen",
+                    "value": 10,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "paaoma",
+                    "to": "omistus",
+                    "value": 8,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "palkka",
+                    "to": "toimintakyky",
+                    "value": 30,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "palkka",
+                    "to": "kulutus",
+                    "value": 18,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "palkka",
+                    "to": "kertyma",
+                    "value": 7,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "turva",
+                    "to": "toimintakyky",
+                    "value": 14,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "turva",
+                    "to": "kulutus",
+                    "value": 8,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "oppiminen",
+                    "to": "toimintakyky",
+                    "value": 13,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "oppiminen",
+                    "to": "kertyma",
+                    "value": 2,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "omistus",
+                    "to": "kertyma",
+                    "value": 6,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "omistus",
+                    "to": "toimintakyky",
+                    "value": 2,
+                    "tone": "teal"
+                  }
+                ]
+              },
+              {
+                "label": "Neljä kanavaa",
+                "readoutKicker": "Skenaario",
+                "note": "Kun turva, oppiminen ja omistus vahvistetaan palkan rinnalle, paluu ei enää riipu yhdestä kanavasta. Kierto kestää sen, että työn osuus arvonmuodostuksesta pienenee.",
+                "columns": [
+                  "Arvon lähde",
+                  "Paluukanava",
+                  "Mihin päätyy"
+                ],
+                "nodes": [
+                  {
+                    "id": "tyo",
+                    "label": "Työn tuottama arvo",
+                    "column": 0,
+                    "value": 45,
+                    "tone": "teal",
+                    "meta": "PIENENEE",
+                    "note": "Työ säilyy keskeisenä mutta ei enää ainoana arvonmuodostuksen lähteenä."
+                  },
+                  {
+                    "id": "paaoma",
+                    "label": "Pääoman tuottama arvo",
+                    "column": 0,
+                    "value": 55,
+                    "tone": "ochre",
+                    "meta": "KASVAA",
+                    "note": "Kasvava osuus – siksi sen paluukanavat ratkaisevat koko kierron."
+                  },
+                  {
+                    "id": "palkka",
+                    "label": "Palkka",
+                    "column": 1,
+                    "value": 40,
+                    "tone": "teal",
+                    "meta": "YHÄ TÄRKEIN",
+                    "note": "Pysyy tärkeimpänä yksittäisenä kanavana, mutta ei kanna enää yksin."
+                  },
+                  {
+                    "id": "turva",
+                    "label": "Turva",
+                    "column": 1,
+                    "value": 22,
+                    "tone": "blue",
+                    "meta": "KULKEE MUKANA",
+                    "note": "Sidottu ihmiseen eikä työsuhteeseen: kantaa myös siirtymien yli."
+                  },
+                  {
+                    "id": "oppiminen",
+                    "label": "Oppiminen",
+                    "column": 1,
+                    "value": 20,
+                    "tone": "ochre",
+                    "meta": "JATKUVA",
+                    "note": "Oikeus uudistaa osaamista kesken työuran, ei vain sen alussa."
+                  },
+                  {
+                    "id": "omistus",
+                    "label": "Omistus",
+                    "column": 1,
+                    "value": 18,
+                    "tone": "rust",
+                    "meta": "HAJAUTETTU",
+                    "note": "Kun pääoma tuottaa yhä suuremman osan arvosta, omistuksen laajuus on hyvinvointikysymys."
+                  },
+                  {
+                    "id": "toimintakyky",
+                    "label": "Palaa toimintakyvyksi",
+                    "column": 2,
+                    "value": 72,
+                    "tone": "teal",
+                    "meta": "KIERTO JATKUU",
+                    "note": "Paluu ei enää katkea siitä, että yksi kanava kapenee."
+                  },
+                  {
+                    "id": "kulutus",
+                    "label": "Kertakulutus",
+                    "column": 2,
+                    "value": 18,
+                    "tone": "ochre",
+                    "meta": "EI KERRY",
+                    "note": "Kulutus säilyy, mutta se ei ole enää ainoa tapa, jolla arvo palaa ihmisille."
+                  },
+                  {
+                    "id": "kertyma",
+                    "label": "Kertyy pääomaksi",
+                    "column": 2,
+                    "value": 10,
+                    "tone": "rust",
+                    "meta": "EI PALAA",
+                    "note": "Kertymä ei katoa – mutta se ei enää määrää kierron kohtaloa."
+                  }
+                ],
+                "links": [
+                  {
+                    "from": "tyo",
+                    "to": "palkka",
+                    "value": 30,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "tyo",
+                    "to": "turva",
+                    "value": 8,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "tyo",
+                    "to": "oppiminen",
+                    "value": 7,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "paaoma",
+                    "to": "palkka",
+                    "value": 10,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "paaoma",
+                    "to": "turva",
+                    "value": 14,
+                    "tone": "blue"
+                  },
+                  {
+                    "from": "paaoma",
+                    "to": "oppiminen",
+                    "value": 13,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "paaoma",
+                    "to": "omistus",
+                    "value": 18,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "palkka",
+                    "to": "toimintakyky",
+                    "value": 26,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "palkka",
+                    "to": "kulutus",
+                    "value": 11,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "palkka",
+                    "to": "kertyma",
+                    "value": 3,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "turva",
+                    "to": "toimintakyky",
+                    "value": 17,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "turva",
+                    "to": "kulutus",
+                    "value": 5,
+                    "tone": "ochre"
+                  },
+                  {
+                    "from": "oppiminen",
+                    "to": "toimintakyky",
+                    "value": 18,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "oppiminen",
+                    "to": "kertyma",
+                    "value": 2,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "omistus",
+                    "to": "toimintakyky",
+                    "value": 11,
+                    "tone": "teal"
+                  },
+                  {
+                    "from": "omistus",
+                    "to": "kertyma",
+                    "value": 5,
+                    "tone": "rust"
+                  },
+                  {
+                    "from": "omistus",
+                    "to": "kulutus",
+                    "value": 2,
+                    "tone": "ochre"
+                  }
+                ]
+              }
+            ],
+            "note": "Osuudet havainnollistavat rakenteellista logiikkaa, eivät kansantalouden tilinpitoa."
+          }
+        ]
       }
     }
   ]
