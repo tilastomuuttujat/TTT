@@ -25,3 +25,4 @@ jobs:
             git commit -m "Add talouspolitiikkaa siteet silmilla article"
             git push
           fi
+# trigger
