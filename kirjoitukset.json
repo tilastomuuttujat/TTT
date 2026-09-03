@@ -2,6 +2,168 @@
   "schemaVersion": 1,
   "kirjoitukset": [
     {
+      "id": "historia-ei-toistu-toimintalogiikka-toistuu",
+      "slug": "historia-ei-toistu-toimintalogiikka-toistuu",
+      "title": "Historia ei toistu – mutta toimintalogiikka toistuu",
+      "titleParts": [
+        "Historia ei toistu –",
+        "mutta toimintalogiikka toistuu"
+      ],
+      "subtitle": "Miksi yhteiskunnat muuttuvat pienin korjauksin, ajautuvat vastaliikkeisiin ja joutuvat toisinaan muuttamaan koko toimintatapansa?",
+      "tags": [
+        "Yhteiskunnallinen muutos",
+        "Palaute",
+        "Korjauskyky"
+      ],
+      "readingTime": "17 MIN",
+      "image": "kehityksen-toimintalogiikka.png",
+      "imageAlt": "Infografiikka yhteiskunnallisen kehityksen toimintalogiikasta, jossa vuorottelu, kierto, sykli ja spiraali yhdistyvät paineeseen, kasautumiseen, korjauskykyyn ja koheesioon",
+      "imageCaption": "Yhteiskunnallinen kehitys ei ole suora viiva eikä samanlaisena toistuva kehä. Jokainen kierros alkaa edellisen kierroksen muuttamasta tilanteesta.",
+      "ogImage": "kehityksen-toimintalogiikka-og.png",
+      "intro": [
+        "Historiaa kuvataan usein joko suorana kehityksenä tai sykleinä. Ensimmäinen kuva antaa helposti vaikutelman jatkuvasta edistymisestä, toinen taas siitä, että samat tapahtumat palaavat määräajoin. Kumpikaan ei yksin tavoita sitä, miten yhteiskunnat tavallisesti muuttuvat.",
+        "Yhteiskunta jatkaa pääosin sillä rakenteella, joka sillä jo on. Lait, instituutiot, taloudelliset suhteet, infrastruktuuri, arvot ja toimintatavat siirtyvät vuodesta toiseen. Kun ympäristö muuttuu, järjestelmä ei tavallisesti rakennu uudelleen alusta, vaan se yrittää ensin korjata olemassa olevaa rakennetta.",
+        "Siksi yhteiskunnallinen muutos muistuttaa enemmän palautteen ohjaamaa spiraalia. Päätökset tuottavat seurauksia, seurauksia arvioidaan ja niiden perusteella tehdään uusia korjauksia. Jokainen kierros alkaa kuitenkin hieman eri tilanteesta, koska edellisten kierrosten velat, oikeudet, investoinnit, instituutiot, osaaminen, ympäristövaikutukset ja kokemukset jäävät seuraavan kierroksen lähtökohdiksi.",
+        "Tämän näkökulman tarkoituksena ei ole ennustaa, mitä täsmälleen tapahtuu vuonna 2035 tai 2050. Kiinnostavampi kysymys on, voidaanko nykytilasta päätellä, minkä tyyppinen muutos on tulossa: jatkuvuutta, asteittaista sopeutumista, vastaliikettä, syklisesti uusiutuvaa ongelmaa vai rakenteellista murrosta."
+      ],
+      "sections": [
+        {
+          "id": "nelja-muutoksen-muotoa",
+          "title": "Neljä muutoksen muotoa",
+          "paragraphs": [
+            "Yhteiskunnallista kehitystä voidaan tarkastella neljän toisiaan täydentävän muodon avulla: vuorotteluna, kiertona, syklinä ja spiraalina. Ne eivät ole neljä kilpailevaa teoriaa, vaan neljä eri tapaa kuvata saman järjestelmän dynamiikkaa.",
+            "Vuorottelu tarkoittaa painopisteen siirtymistä kahden vastakkaisen tai täydentävän toimintatavan välillä. Keskittäminen voi synnyttää myöhemmin hajauttamisen tarvetta, sääntelyn lisääminen voi johtaa vapauttamista vaativaan vastaliikkeeseen ja yksityistämisen pitkä kausi voi vahvistaa vaatimuksia julkisesta vastuusta. Vastaliike ei kuitenkaan tarkoita, että yhteiskunta palaisi täsmälleen aiempaan tilaan.",
+            "Kierto tarkoittaa palautekehää. Ongelma johtaa päätökseen, päätös vaikuttaa todellisuuteen, seurauksia arvioidaan ja arviointi johtaa uuteen päätökseen. Yhteiskunta pysyy toimintakykyisenä juuri siksi, että samaa ketjua käydään läpi jatkuvasti.",
+            "Sykli syntyy, kun samankaltainen palautekehä toistuu ajassa. Budjettivuodet, vaalikaudet, suhdanteet ja sukupolvenvaihdokset muodostavat erilaisia rytmejä. Niiden merkitys ei ole siinä, että ne määräisivät tapahtumat, vaan siinä, että ne tahdistavat päätöksiä, odotuksia ja reagointia.",
+            "Spiraali kuvaa sitä, että jokainen uusi kierros tapahtuu muuttuneessa maailmassa. Historia ei palaa lähtöpisteeseen. Yhteiskunta kantaa mukanaan aikaisempien päätösten seurauksia, joten toistuva ongelma kohdataan aina hieman erilaisella rakenteella."
+          ],
+          "quote": "Historia ei toistu samanlaisena. Sen toimintalogiikka voi silti toistaa tuttuja palautekehien, vastaliikkeiden ja kasautumisen muotoja."
+        },
+        {
+          "id": "virtaus-rakenne-toiminta-palaute",
+          "title": "Yhteiskunnan perusprosessi",
+          "paragraphs": [
+            "Neljä muutoksen muotoa voidaan yhdistää yhdeksi perusprosessiksi: virtaus, rakenne, toiminta, seuraukset, palaute, korjaus ja muuttunut rakenne.",
+            "Virtaus tarkoittaa kaikkea sitä, mikä pitää yhteiskunnan liikkeessä ja muuttaa sen ympäristöä: ihmisiä, energiaa, rahaa, tietoa, teknologiaa, luonnonvaroja, kauppaa, muuttoliikettä ja uusia ajatuksia. Rakenne puolestaan koostuu instituutioista, laeista, omistuksesta, infrastruktuurista, normeista ja vakiintuneista toimintatavoista.",
+            "Rakenne ohjaa toimintaa. Päätöksenteko, palvelut, tuotanto, investoinnit ja ihmisten valinnat tapahtuvat olemassa olevien mahdollisuuksien ja rajoitteiden sisällä. Toiminnasta syntyy seurauksia, jotka voivat kohdistua talouteen, hyvinvointiin, ympäristöön, luottamukseen tai tulevien sukupolvien liikkumavaraan.",
+            "Palaute ratkaisee, pystyykö järjestelmä oppimaan seurauksistaan. Jos seuraukset tunnistetaan ja niillä on kyky muuttaa seuraavaa päätöstä, rakenne voi sopeutua. Jos palaute jää raportiksi, siirtyy toiseen hallinnonhaaraan tai tulee näkyviin vasta vuosikymmenten kuluttua, järjestelmä voi jatkaa samaa toimintaa vaikka sen kokonaisvaikutus heikkenee.",
+            "Korjaus ei palauta yhteiskuntaa vanhaan lähtöpisteeseen. Jokainen päätös muuttaa lähtötilannetta. Siksi uusi kierros alkaa muuttuneesta rakenteesta."
+          ]
+        },
+        {
+          "id": "miksi-yhteiskunta-toistaa-vanhaa",
+          "title": "Miksi yhteiskunta toistaa vanhaa?",
+          "paragraphs": [
+            "Yhteiskunta ei voi tehdä jokaista päätöstä tyhjästä. Aikaisemmin toimineet ratkaisut muuttuvat rutiineiksi, organisaatioiksi, ammattitaidoksi, laeiksi ja odotuksiksi. Jatkuvuus säästää aikaa ja tekee elämästä ennakoitavaa.",
+            "Sama ominaisuus, joka tekee järjestelmästä vakaan, voi kuitenkin tehdä siitä hitaan muuttumaan. Kun ympäristö muuttuu, ensimmäinen reaktio on tavallisesti vanhan rakenteen hienosäätö. Muutetaan määrärahaa, veroprosenttia, kelpoisuusehtoa, palveluprosessia tai organisaatiorajaa sen sijaan, että kysyttäisiin, onko itse toimintalogiikka edelleen tarkoituksenmukainen.",
+            "Tätä voidaan ajatella pienimmän muutoksen periaatteena. Niin kauan kuin pieni korjaus palauttaa järjestelmän hyväksyttävälle alueelle, suureen muutokseen ei ole tarvetta. Rakenteellinen murros tulee ajankohtaiseksi vasta silloin, kun vanhan järjestelmän sisäiset korjaukset eivät enää pysty ratkaisemaan kasautuvaa ristiriitaa."
+          ]
+        },
+        {
+          "id": "nelja-tilamuuttujaa",
+          "title": "Neljä tilamuuttujaa kertovat, mihin suuntaan järjestelmä on menossa",
+          "paragraphs": [
+            "Muutoksen tyyppiä voidaan arvioida neljän tilamuuttujan avulla: paineen, kasautumisen, korjauskyvyn ja koheesion.",
+            "Paine kertoo, kuinka voimakkaasti nykyinen rakenne on ristiriidassa muuttuneen ympäristön kanssa. Paine voi syntyä esimerkiksi väestörakenteesta, teknologiasta, julkisesta taloudesta, energiasta, työmarkkinoista, geopoliittisesta muutoksesta tai ekologisista rajoista.",
+            "Kasautuminen kertoo, kuinka paljon aikaisempien kierrosten seurauksia siirtyy ratkaisemattomina seuraaville kierroksille. Velka, korjausvelka, monimutkaistuva sääntely, ympäristökuormitus, investointivaje tai eriarvoisuuden pitkäaikaiset vaikutukset voivat kaikki toimia kasautuvina tekijöinä.",
+            "Korjauskyky tarkoittaa järjestelmän kykyä havaita ongelma, tunnistaa sen syy, tehdä päätös ja muuttaa rakennetta riittävän ajoissa. Hyvä korjauskyky ei tarkoita jatkuvaa uudistamista, vaan kykyä tehdä tarpeeksi suuri muutos silloin, kun pieni säätö ei enää riitä.",
+            "Koheesio kuvaa luottamusta, yhteistyökykyä ja valmiutta hyväksyä myös sellaisia ratkaisuja, joissa kaikki eivät saa kaikkea haluamaansa. Se on erityisen tärkeä silloin, kun muutospaine kasvaa ja politiikka muuttuu kysymykseksi kustannusten ja hyötyjen jakamisesta."
+          ],
+          "bullets": [
+            "Paine: kuinka suuri ristiriita nykyisen rakenteen ja ympäristön välillä on?",
+            "Kasautuminen: kuinka paljon ratkaisemattomia seurauksia siirtyy kierrokselta toiselle?",
+            "Korjauskyky: pystyykö järjestelmä muuttamaan toimintaansa riittävän ajoissa ja riittävän syvästi?",
+            "Koheesio: säilyvätkö luottamus, yhteistyö ja kompromissikyky paineen kasvaessa?"
+          ]
+        },
+        {
+          "id": "rakentava-ja-hajottava-palaute",
+          "title": "Rakentava palaute voi muuttua hajottavaksi",
+          "paragraphs": [
+            "Paine ei itsessään ratkaise sitä, päätyykö yhteiskunta uudistukseen vai kriisiin. Ratkaisevaa on, mitä paine tekee järjestelmän korjauskyvylle.",
+            "Rakentavassa palautekehässä ongelma tunnistetaan, siitä syntyy yhteinen käsitys, osapuolet tekevät kompromissin ja korjaus vähentää painetta. Onnistuminen vahvistaa samalla luottamusta siihen, että yhteisiä ongelmia voidaan ratkaista.",
+            "Hajottavassa palautekehässä sama paine tuottaa toisenlaisen tapahtumaketjun. Ongelman ratkaisemisen sijasta etsitään syyllisiä, poliittinen nokittelu ja vastakkainasettelu lisääntyvät, luottamus heikkenee ja päätöksenteko vaikeutuu. Kun korjaus viivästyy, alkuperäinen ongelma kasvaa ja seuraava päätös joudutaan tekemään vielä vaikeammassa tilanteessa.",
+            "Tällainen kehä on vaarallinen juuri siksi, että järjestelmän kyky ratkaista ongelma heikkenee samaan aikaan kun ratkaisun tarve kasvaa. Kriittinen muutos ei siis välttämättä ala ongelman koosta, vaan siitä, että ongelma alkaa syödä järjestelmän omaa korjauskykyä."
+          ],
+          "quote": "Kriisi muuttuu todennäköisemmäksi silloin, kun ongelmat kasvavat nopeammin kuin yhteiskunnan kyky korjata niitä – ja erityisesti silloin, kun ongelmat alkavat heikentää itse korjauskykyä."
+        },
+        {
+          "id": "julkinen-velka-esimerkkina",
+          "title": "Julkinen velka esimerkkinä kasautuvasta paineesta",
+          "paragraphs": [
+            "Julkinen velka havainnollistaa mallia hyvin, koska velalla voi olla kierroksen eri vaiheissa täysin erilainen tehtävä. Taantumassa tai poikkeustilanteessa velka voi toimia puskurina, joka estää suuremman vaurion ja säilyttää yhteiskunnan toimintakyvyn.",
+            "Jos velka ja korkomenot kuitenkin kasvavat pitkään suhteessa järjestelmän kykyyn rahoittaa niitä, velasta tulee vähitellen seuraavien kierrosten liikkumavaraa rajoittava rakenne. Silloin yhä suurempi osa politiikasta muuttuu kysymykseksi siitä, kuka maksaa sopeutuksen.",
+            "Jakokamppailun kiristyessä talousongelma voi muuttua poliittiseksi ja sosiaaliseksi ongelmaksi. Jos eri ryhmät kokevat kustannusten jakautuvan epäoikeudenmukaisesti, vastakkainasettelu voi vahvistua. Jos vastakkainasettelu puolestaan vaikeuttaa päätöksentekoa, sopeutus lykkääntyy ja taloudellinen paine voi edelleen kasvaa.",
+            "Velkasuhde yksin ei siksi ole riittävä murrosmittari. Kiinnostavampi varoitussignaali on kasvavan taloudellisen paineen, vähenevän liikkumavaran, kiristyvän jakokonfliktin, heikkenevän luottamuksen ja heikkenevän päätöksentekokyvyn yhdistelmä."
+          ]
+        },
+        {
+          "id": "viisi-muutostyyppia",
+          "title": "Viisi muutostyyppiä",
+          "paragraphs": [
+            "Kun paine, kasautuminen, korjauskyky ja koheesio yhdistetään, voidaan arvioida muutoksen luonnetta ilman väitettä yksittäisten tapahtumien ennustamisesta.",
+            "Pienen paineen, hyvän korjauskyvyn ja vahvan koheesion oloissa todennäköisin tulos on jatkuvuus. Järjestelmä tekee pieniä korjauksia mutta pysyy samalla uralla.",
+            "Kun paine kasvaa mutta korjauskyky ja yhteistyö toimivat, syntyy asteittaista sopeutumista. Rakenne muuttuu vaiheittain ilman suurta katkoa.",
+            "Pitkään yksisuuntaisesti jatkunut kehitys voi synnyttää vastaliikkeen. Painopiste siirtyy esimerkiksi keskittämisestä hajauttamiseen tai sääntelyn lisäämisestä yksinkertaistamiseen. Tämä on vuorottelua, mutta uusi ratkaisu rakentuu edellisen vaiheen perinnölle.",
+            "Jos sama ongelma palaa uudessa muodossa, kyse on syklisestä uusiutumisesta. Järjestelmä tunnistaa ongelman mutta ei poista sen tuottavaa mekanismia, jolloin uusi korjauskierros alkaa myöhemmin.",
+            "Kun paine ja kasautuminen ovat korkeita, korjauskyky heikkenee ja koheesio murenee, kasvaa rakenteellisen murroksen tai kriisin riski. Tällöin muutos ei enää koske vain yksittäistä sääntöä, vaan itse toimintalogiikkaa."
+          ]
+        },
+        {
+          "id": "1850-2050-spiraalina",
+          "title": "1850–2050: historia spiraalina",
+          "paragraphs": [
+            "Pitkä aikaväli tekee spiraalin näkyväksi. Vuoden 1850 Suomi ei rakentanut vuoden 1900 lähtötilannetta tietoisena kokonaisuutena, mutta sen lait, väestökehitys, elinkeinorakenne, koulutus ja infrastruktuuri vaikuttivat siihen, millaisessa maailmassa seuraava sukupolvi toimi.",
+            "Sama pätee myöhempiin murroksiin. Teollistuminen, itsenäistyminen, jälleenrakennus, hyvinvointivaltion laajeneminen, 1990-luvun lama, eurooppalainen integraatio ja digitalisaatio eivät ole toisistaan irrallisia pisteitä. Jokainen vaihe jätti instituutioita, oikeuksia, velvollisuuksia, osaamista ja uusia riippuvuuksia seuraaville vaiheille.",
+            "Tämän vuoksi 1850–2050-jaksoa ei pitäisi piirtää ympyräksi, jossa historia palaa lähtökohtaan, vaan spiraaliksi. Samankaltaiset kysymykset voivat palata – kuka kantaa riskin, mitä keskitetään, mitä hajautetaan, kuinka resurssit jaetaan ja miten yhteinen järjestys legitimoidaan – mutta vastaus annetaan joka kerta erilaisessa yhteiskunnassa.",
+            "Vuosi 2050 ei tällaisessa mallissa ole ennustettu päätepiste. Se on mahdollinen havaintoikkuna, johon nykyisten päätösten, demografian, teknologian, velan, investointien ja ekologisten ratkaisujen seuraukset ulottuvat."
+          ]
+        },
+        {
+          "id": "eri-kierrot-eri-nopeuksilla",
+          "title": "Yhteiskunnan kellot käyvät eri nopeuksilla",
+          "paragraphs": [
+            "Yhteiskunta ei elä yhden syklin varassa. Markkinat ja mielipiteet voivat muuttua päivissä, budjetit vuosittain, hallitukset vaalikausittain, infrastruktuuri vuosikymmenissä ja väestörakenne sukupolvissa.",
+            "Monet yhteiskunnalliset ongelmat syntyvät siitä, että nämä aikaskaalat eivät sovi yhteen. Päätös voidaan optimoida yhden budjettivuoden näkökulmasta, vaikka kustannus näkyy terveyden, koulutuksen, väestön tai infrastruktuurin kautta vasta vuosien päästä.",
+            "Lyhyen kierron toimija voi siis näyttää onnistuvan samalla kun pitkän kierron järjestelmä heikkenee. Siksi ennakoinnissa pitäisi tarkastella paitsi painetta myös sitä, kuinka pitkä viive päätöksen ja sen kokonaisvaikutuksen välillä on."
+          ]
+        },
+        {
+          "id": "arvot-ja-normatiivinen-palaute",
+          "title": "Yhteiskunta tarvitsee myös normatiivisen palautekehän",
+          "paragraphs": [
+            "Toimiva järjestelmä ei kysy vain, saavuttiko päätös sille asetetun teknisen tavoitteen. Sen on myös pystyttävä arvioimaan, olivatko seuraukset hyväksyttäviä.",
+            "Tässä arvot, moraali, ihanteet ja oikeudenmukaisuus tulevat osaksi toimintalogiikkaa. Taloudellisesti tehokas ratkaisu voi olla sosiaalisesti kestämätön. Hallinnollisesti onnistunut uudistus voi heikentää luottamusta. Lyhyellä aikavälillä saavutettu säästö voi siirtää kustannuksia tuleville sukupolville.",
+            "Yhteiskunnallinen korjauskyky tarvitsee siksi kaksi palautekysymystä: toimiiko järjestelmä ja tuottaako se edelleen sitä, mitä pidämme tavoittelemisen arvoisena. Ensimmäinen kysymys tuottaa optimointia. Jälkimmäinen mahdollistaa myös tavoitteiden ja rakenteiden uudelleenarvioinnin."
+          ],
+          "quote": "Järjestelmän vahvuus ei ole vain kyky saavuttaa tavoitteensa, vaan kyky huomata, milloin itse tavoitetta tai toimintalogiikkaa on muutettava."
+        },
+        {
+          "id": "mita-malli-voi-ennakoida",
+          "title": "Mitä mallilla voidaan ennakoida?",
+          "paragraphs": [
+            "Mallin ei pitäisi yrittää kertoa, mikä puolue voittaa seuraavat vaalit, milloin taantuma alkaa tai minä vuonna rakenteellinen kriisi toteutuu. Sellainen tarkkuus loisi enemmän varmuuden vaikutelmaa kuin todellista tietoa.",
+            "Sen sijaan mallilla voidaan arvioida kehityksen laatua. Kasvaako järjestelmässä paine? Kertyvätkö ratkaisemattomat seuraukset? Toimiiko palaute? Pystytäänkö korjauksia tekemään? Säilyykö yhteistyökyky? Onko pitkä yksisuuntainen kehitys synnyttämässä vastaliikettä?",
+            "Kun nämä kysymykset toistetaan eri yhteiskunnallisille rakenteille, voidaan rakentaa muutosprofiili. Jokin järjestelmä voi olla vakaassa jatkuvuudessa, toinen asteittaisessa sopeutumisessa ja kolmas lähestyä tilannetta, jossa vanhat korjaukset alkavat menettää tehonsa.",
+            "Tulevaisuutta ei silloin kuvata yhtenä ennusteviivana vaan joukkona mekanismeja, joiden tila kertoo, millainen muutos on muuttumassa todennäköisemmäksi."
+          ]
+        },
+        {
+          "id": "historia-ei-ole-kohtalo",
+          "title": "Historia ei ole kohtalo",
+          "paragraphs": [
+            "Sykliajattelun suurin vaara on determinismi. Kun historiasta löydetään rytmi, seuraavaa kriisiä voidaan alkaa pitää väistämättömänä. Tässä mallissa ajatus on päinvastainen.",
+            "Jos paine, kasautuminen, korjauskyky ja koheesio voidaan havaita, niihin voidaan myös vaikuttaa. Kasautumista voidaan purkaa ennen kriisiä. Palautekanavia voidaan vahvistaa. Päätösten pitkäaikaisia seurauksia voidaan tehdä näkyvämmiksi. Jakokonfliktia voidaan lieventää tavalla, joka säilyttää kokemuksen oikeudenmukaisuudesta.",
+            "Historia tarjoaa silloin vertailuaineiston, ei käsikirjoitusta. Menneisyydestä voidaan etsiä tilanteita, joissa pieni korjaus riitti, tilanteita joissa vanhaa toimintatapaa jatkettiin liian pitkään ja tilanteita joissa kriisi avasi tien kokonaan uudelle rakenteelle.",
+            "Tärkein ennakointikysymys ei ole, toistuuko historia. Se on, tunnistammeko ajoissa sen toimintalogiikan, joka on muuttamassa nykyisen ongelman seuraavan kierroksen rakenteeksi."
+          ],
+          "quote": "Rakentava tulevaisuus syntyy ymmärrettyinä prosesseina, ei arvaamattomina kohtaloina.",
+          "closing": true
+        }
+      ],
+      "ingress": "Yhteiskunta ei muutu suoraviivaisesti eikä historia toistu samanlaisena. Kehitystä voidaan tarkastella vuorotteluna, palautekiertona, syklinä ja ennen kaikkea spiraalina, jossa jokainen kierros alkaa edellisten päätösten muuttamasta tilanteesta. Artikkeli esittelee mallin, jonka avulla voidaan arvioida, onko odotettavissa jatkuvuutta, sopeutumista, vastaliikettä, uusiutuvaa sykliä vai rakenteellista murrosta."
+    },
+    {
       "id": "siilot-ja-sisapiirit",
       "slug": "siilot-ja-sisapiirit",
       "title": "Suomen kompastuskivinä siilot ja sisäpiirit",
