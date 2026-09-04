@@ -143,21 +143,24 @@ input[type=range]:active{cursor:grabbing}
 .legend em{margin-left:auto;font-style:normal;font-weight:400;color:#82918b}
 .chart-wrap{position:relative;height:420px;margin-top:12px}
 .chart-wrap svg{width:100%;height:100%;overflow:visible}
-.delta-stage{margin:18px 0 22px;padding:16px 16px 12px;border:1px solid #d9e3df;border-radius:13px;background:#f8faf9}
+.delta-stage{margin:18px 0 22px;padding:18px 18px 14px;border:1px solid #473d55;border-radius:13px;background:#302a3d;color:#eee8f1}
 .delta-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:8px}
-.delta-head small{display:block;color:#71827b;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
-.delta-head h3{margin:3px 0 0;font-size:18px;color:var(--ink)}
+.delta-head small{display:block;color:#b8aec2;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.delta-head h3{margin:3px 0 0;font-size:20px;color:#f4eff7}
 .delta-readout{text-align:right;white-space:nowrap}
-.delta-readout b{display:block;font-size:22px;color:var(--teal-deep)}
-.delta-readout span{font-size:11px;color:#71827b}
+.delta-readout b{display:block;font-size:22px;color:#fff1b7}
+.delta-readout span{font-size:11px;color:#b8aec2}
 .delta-chart{height:210px}
 .delta-chart svg{display:block;width:100%;height:100%;overflow:visible}
 .contour-wrap{position:relative;margin-top:10px}
-.contour-wrap canvas{display:block;width:100%;height:auto;border-radius:8px;background:#f8faf9}
-.contour-axis{display:flex;justify-content:space-between;gap:12px;margin:5px 18px 0 62px;color:#71827b;font-size:10px;font-weight:700}
-.contour-legend{display:flex;align-items:center;gap:8px;margin-top:9px;color:#607069;font-size:10.5px}
+.contour-wrap canvas{display:block;width:100%;height:auto;border-radius:8px;background:#302a3d}
+.contour-axis{display:flex;justify-content:space-between;gap:12px;margin:5px 18px 0 142px;color:#b8aec2;font-size:10px;font-weight:700}
+.contour-legend{display:flex;align-items:center;gap:8px;margin-top:10px;color:#cfc6d5;font-size:10.5px}
 .contour-gradient{width:170px;height:8px;border-radius:9px;background:linear-gradient(90deg,#c66a2b,#f3eee9 50%,#0a8a7f)}
-.contour-empty{position:absolute;inset:20px 25px 43px 62px;display:grid;place-content:center;text-align:center;background:#f8faf9dd;color:#607069;font-size:12px;line-height:1.5;border-radius:8px}
+.contour-empty{position:absolute;inset:20px 25px 43px 142px;display:grid;place-content:center;text-align:center;background:#302a3ddd;color:#cfc6d5;font-size:12px;line-height:1.5;border-radius:8px}
+.map-tabs{display:flex;gap:5px;margin:12px 0 4px}
+.map-tabs button{border:1px solid #5c506b;background:#3a3247;color:#bfb5c8;border-radius:7px;padding:7px 11px;font-size:10px;font-weight:800;letter-spacing:.08em;cursor:pointer}
+.map-tabs button.active{background:#f1ebf4;color:#302a3d;border-color:#f1ebf4}
 .delta-zero{stroke:#778781;stroke-width:1.2}
 .delta-grid{stroke:#dce5e1;stroke-width:1}
 .delta-line{fill:none;stroke:var(--teal);stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
@@ -167,7 +170,7 @@ input[type=range]:active{cursor:grabbing}
 .delta-controls button{border:0;border-radius:9px;background:var(--teal-deep);color:#fff;padding:9px 14px;font-weight:800;cursor:pointer}
 .delta-controls input{width:100%}
 .delta-controls output{min-width:34px;font-weight:800;color:var(--ink);text-align:right}
-.phase{display:flex;align-items:center;gap:8px;margin-top:9px;color:#53645e;font-size:12px}
+.phase{display:flex;align-items:center;gap:8px;margin-top:9px;color:#cfc6d5;font-size:12px}
 .phase i{width:8px;height:8px;border-radius:50%;background:#9aa8a3}
 .phase.active i{background:#c4662a;box-shadow:0 0 0 5px #c4662a18}
 .overview-title{margin:4px 0 -4px;color:#71827b;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
@@ -248,7 +251,7 @@ footer{display:flex;justify-content:space-between;gap:8px;margin-top:18px;
   .workspace{grid-template-columns:1fr;padding:10px}
   .panel{min-height:0;padding:16px}
 .selector{display:block}.variable-nav{width:100%;margin-top:16px}.variable-nav label{display:block;width:100%;margin-top:0}
-.delta-head{display:block}.delta-readout{text-align:left;margin-top:8px}.delta-controls{grid-template-columns:1fr auto}.delta-controls button{grid-column:1/-1}.delta-chart{height:185px}.contour-axis{margin-left:48px}.contour-gradient{width:110px}
+.delta-head{display:block}.delta-readout{text-align:left;margin-top:8px}.delta-controls{grid-template-columns:1fr auto}.delta-controls button{grid-column:1/-1}.delta-chart{height:185px}.contour-axis{margin-left:82px}.contour-gradient{width:110px}.contour-empty{left:82px}
   .metrics{grid-template-columns:1fr 1fr}
   .metric:nth-child(2){border-right:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}
   .legend em{display:none}footer{flex-direction:column;gap:4px}}
@@ -268,48 +271,44 @@ function groupItems(g){return levers.filter(l=>g.matches.some(m=>l.policy_area.i
 function calculate(){scenario={};baselines.forEach(b=>{let delta=0;effects.forEach(e=>{if(e.series_key!==b.series_key)return;const i=(values[e.lever_key]||0)/100;delta+=i*e.effect_direction*(norms[e.series_key]||1)*+e.relative_strength*+e.implementation_coefficient*weight(+b.year,reformYear,+e.lag_min_years,+e.lag_max_years,+e.persistence_years)*10});const score=+b.score_0_100,s=Math.max(0,Math.min(100,score+delta));(scenario[b.series_key]||=[]).push({...b,score,delta,scenario:s,lo:Math.max(0,s-Math.abs(delta)*.35),hi:Math.min(100,s+Math.abs(delta)*.35)})})}
 function val(n){return `<output class="value ${n>0?'pos':n<0?'neg':''}">${n>0?'+':''}${Math.abs(n)<10?fmt(n):Math.round(n)}</output>`}function head(step,title,side=''){return `<div class="panel-head"><div><span class="kicker">${step}</span><h2>${esc(title)}</h2></div>${side?`<b class="count">${side}</b>`:''}</div>`}
 function chart(data){const W=800,H=380,L=42,R=15,T=15,B=32,x=y=>L+(y-2025)/(2050-2025)*(W-L-R),yy=v=>T+(100-v)/100*(H-T-B),pts=k=>data.map(p=>`${x(+p.year)},${yy(p[k])}`).join(' '),band=data.map(p=>`${x(+p.year)},${yy(p.hi)}`).concat(data.slice().reverse().map(p=>`${x(+p.year)},${yy(p.lo)}`)).join(' ');const zone=data.map((p,i)=>`<rect data-zone="${i}" x="${x(+p.year)-(W-L-R)/25/2}" y="${T}" width="${(W-L-R)/25}" height="${H-T-B}" fill="transparent"/>`).join('');return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Perusuran ja säädösskenaarion kuvaaja"><defs><linearGradient id="bandGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a8a7f" stop-opacity=".18"/><stop offset="1" stop-color="#0a8a7f" stop-opacity=".04"/></linearGradient></defs>${[0,25,50,75,100].map(v=>`<line class="axis" x1="${L}" x2="${W-R}" y1="${yy(v)}" y2="${yy(v)}"/><text class="chart-label" x="4" y="${yy(v)+4}">${v}</text>`).join('')}<polygon class="band" points="${band}"/><polyline class="base-line" points="${pts('score')}"/><polyline class="scenario-line" points="${pts('scenario')}"/><line class="reform" x1="${x(reformYear)}" x2="${x(reformYear)}" y1="${T}" y2="${H-B}"/><text class="chart-label" x="${x(reformYear)+5}" y="28" fill="#c4662a">muutos</text>${[2025,2030,2035,2040,2045,2050].map(v=>`<text class="chart-label" text-anchor="middle" x="${x(v)}" y="${H-6}">${v}</text>`).join('')}<g id="hover" style="display:none"><line class="crosshair" id="ch" y1="${T}" y2="${H-B}"/><circle class="dot" id="d1" r="4.5"/><circle class="dot" id="d2" r="4.5" fill="#93a19c"/></g>${zone}</svg><div class="tip" id="tip"></div>`}
-function packageImpact(year,strength,maxStrength){
-  if(!maxStrength)return 0;
-  return effects.filter(e=>e.series_key===selected&&(values[e.lever_key]||0)).reduce((sum,e)=>{
-    const relative=(values[e.lever_key]||0)/maxStrength,level=relative*strength/100;
-    return sum+level*e.effect_direction*(norms[e.series_key]||1)*+e.relative_strength*+e.implementation_coefficient*weight(year,reformYear,+e.lag_min_years,+e.lag_max_years,+e.persistence_years)*10;
-  },0);
-}
 function buildContourModel(){
-  const years=Array.from({length:26},(_,i)=>2025+i),strengths=Array.from({length:41},(_,i)=>100-i*5);
-  const maxStrength=Math.max(0,...Object.values(values).map(v=>Math.abs(v||0)));
-  const grid=strengths.map(s=>years.map(y=>packageImpact(y,s,maxStrength)));
-  const maxAbs=Math.max(.25,...grid.flat().map(Math.abs));
-  return {years,strengths,grid,maxAbs,maxStrength};
+  const order=['safe_corridor.employment_rate_25_29','safe_corridor.employment_rate_30_34','safe_corridor.unemployment_rate_25_29','safe_corridor.unemployment_rate_30_34','safe_corridor.long_term_unemployment_share_25_29','safe_corridor.long_term_unemployment_share_30_34','safe_corridor.arope_25_29','safe_corridor.housing_cost_overburden_25_29','safe_corridor.living_with_parents_25_29','safe_corridor.leaving_parental_home_age','safe_corridor.fertility_rate_25_29','safe_corridor.fertility_rate_30_34'];
+  const available=[...new Set(effects.map(e=>e.series_key))],rows=[...order.filter(k=>available.includes(k)),...available.filter(k=>!order.includes(k)).sort((a,b)=>(NAMES[a]||a).localeCompare(NAMES[b]||b,'fi'))];
+  const years=Array.from({length:26},(_,i)=>2025+i),grid=rows.map(k=>years.map(y=>+(scenario[k]||[]).find(p=>+p.year===y)?.delta||0));
+  const maxAbs=Math.max(.25,...grid.flat().map(Math.abs)),active=Object.values(values).some(Boolean);
+  const gw=190,gh=126,field=new Float32Array(gw*gh);
+  for(let py=0;py<gh;py++){const ry=py/(gh-1)*(rows.length-1),r0=Math.floor(ry),r1=Math.min(rows.length-1,r0+1),rf=ry-r0;for(let px=0;px<gw;px++){const yf=px/(gw-1)*25,y0=Math.floor(yf),y1=Math.min(25,y0+1),f=yf-y0,a=grid[r0][y0]*(1-f)+grid[r0][y1]*f,b=grid[r1][y0]*(1-f)+grid[r1][y1]*f;field[py*gw+px]=a*(1-rf)+b*rf}}
+  const peaks=rows.map((key,ri)=>{let best={value:0,year:2025};grid[ri].forEach((value,i)=>{if(Math.abs(value)>Math.abs(best.value))best={value,year:years[i]}});return {...best,key,ri}}).filter(p=>Math.abs(p.value)>.05).sort((a,b)=>Math.abs(b.value)-Math.abs(a.value)).slice(0,5);
+  return {years,rows,grid,maxAbs,active,gw,gh,field,peaks};
 }
 function contourColor(v,max){
-  const t=Math.min(1,Math.abs(v)/(max||1)),a=.12+.78*t;
-  return v>=0?`rgba(10,138,127,${a})`:`rgba(198,106,43,${a})`;
+  const t=Math.min(1,Math.abs(v)/(max||1));
+  if(t<.06)return [48,42,61,255];
+  const stops=v>=0?[[58,64,94],[84,114,168],[108,178,207],[160,220,210],[255,241,183]]:[[66,48,67],[119,65,71],[188,91,65],[239,163,105],[255,223,169]];
+  const z=t*(stops.length-1),i=Math.min(stops.length-2,Math.floor(z)),f=z-i;
+  return [...stops[i].map((c,j)=>Math.round(c+(stops[i+1][j]-c)*f)),255];
+}
+function traceContour(ctx,m,level,L,T,pw,ph){
+  const {gw,gh,field,maxAbs}=m,x=i=>L+i/(gw-1)*pw,y=j=>T+j/(gh-1)*ph;
+  const pairs={1:[[3,0]],2:[[0,1]],3:[[3,1]],4:[[1,2]],5:[[3,2],[0,1]],6:[[0,2]],7:[[3,2]],8:[[2,3]],9:[[0,2]],10:[[0,3],[1,2]],11:[[1,2]],12:[[1,3]],13:[[0,1]],14:[[3,0]]};
+  const edge=(e,i,j)=>e===0?[(x(i)+x(i+1))/2,y(j)]:e===1?[x(i+1),(y(j)+y(j+1))/2]:e===2?[(x(i)+x(i+1))/2,y(j+1)]:[x(i),(y(j)+y(j+1))/2];
+  ctx.beginPath();for(let j=0;j<gh-1;j++)for(let i=0;i<gw-1;i++){const a=Math.abs(field[j*gw+i])/maxAbs,b=Math.abs(field[j*gw+i+1])/maxAbs,c=Math.abs(field[(j+1)*gw+i+1])/maxAbs,d=Math.abs(field[(j+1)*gw+i])/maxAbs,code=(a>=level?1:0)|(b>=level?2:0)|(c>=level?4:0)|(d>=level?8:0);(pairs[code]||[]).forEach(([e1,e2])=>{const p1=edge(e1,i,j),p2=edge(e2,i,j);ctx.moveTo(...p1);ctx.lineTo(...p2)})}ctx.stroke();
 }
 function drawContour(){
   const canvas=document.getElementById('contour-map');if(!canvas||!contourModel)return;
-  const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,L=62,R=18,T=16,B=38,m=contourModel;
-  const pw=W-L-R,ph=H-T-B,cw=pw/m.years.length,ch=ph/m.strengths.length;
-  ctx.clearRect(0,0,W,H);ctx.fillStyle='#f8faf9';ctx.fillRect(0,0,W,H);
-  const bands=m.grid.map(row=>row.map(v=>Math.round((v/m.maxAbs)*5)));
-  m.grid.forEach((row,ri)=>row.forEach((v,ci)=>{ctx.fillStyle=contourColor(v,m.maxAbs);ctx.fillRect(L+ci*cw,T+ri*ch,cw+.6,ch+.6)}));
-  ctx.strokeStyle='rgba(255,255,255,.72)';ctx.lineWidth=1;
-  bands.forEach((row,ri)=>row.forEach((b,ci)=>{
-    const x=L+ci*cw,y=T+ri*ch;
-    if(ci&&b!==row[ci-1]){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,y+ch);ctx.stroke()}
-    if(ri&&b!==bands[ri-1][ci]){ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+cw,y);ctx.stroke()}
-  }));
-  const xYear=y=>L+(y-2025)/25*pw,yStrength=s=>T+(100-s)/200*ph;
-  ctx.strokeStyle='rgba(43,58,52,.35)';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(L,yStrength(0));ctx.lineTo(W-R,yStrength(0));ctx.stroke();
-  ctx.fillStyle='#607069';ctx.font='11px Inter, sans-serif';ctx.textAlign='right';
-  [100,50,0,-50,-100].forEach(s=>ctx.fillText((s>0?'+':'')+s,L-8,yStrength(s)+4));
-  ctx.textAlign='center';[2025,2030,2035,2040,2045,2050].forEach(y=>ctx.fillText(y,xYear(y),H-12));
-  const activeStrength=m.maxStrength,cy=yStrength(activeStrength),cx=xYear(playPosition);
-  ctx.strokeStyle='#172d27';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(L,cy);ctx.lineTo(W-R,cy);ctx.stroke();
-  ctx.strokeStyle='#fff';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(cx,T);ctx.lineTo(cx,H-B);ctx.stroke();
-  ctx.strokeStyle='#c4662a';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(cx,T);ctx.lineTo(cx,H-B);ctx.stroke();
-  ctx.fillStyle='#c4662a';ctx.beginPath();ctx.arc(cx,cy,5,0,Math.PI*2);ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
+  const ctx=canvas.getContext('2d'),W=canvas.width,H=canvas.height,L=142,R=18,T=18,B=40,m=contourModel,pw=W-L-R,ph=H-T-B;
+  ctx.clearRect(0,0,W,H);ctx.fillStyle='#302a3d';ctx.fillRect(0,0,W,H);
+  const off=document.createElement('canvas');off.width=m.gw;off.height=m.gh;const oc=off.getContext('2d'),img=oc.createImageData(m.gw,m.gh);
+  for(let i=0;i<m.field.length;i++){const c=contourColor(m.field[i],m.maxAbs),o=i*4;img.data[o]=c[0];img.data[o+1]=c[1];img.data[o+2]=c[2];img.data[o+3]=c[3]}oc.putImageData(img,0,0);
+  ctx.imageSmoothingEnabled=true;ctx.drawImage(off,L,T,pw,ph);
+  ctx.strokeStyle='rgba(255,255,255,.34)';ctx.lineWidth=1.05;[.15,.25,.38,.52,.68,.84].forEach(level=>traceContour(ctx,m,level,L,T,pw,ph));
+  const xYear=y=>L+(y-2025)/25*pw,yRow=i=>T+(i+.5)/m.rows.length*ph;
+  const reveal=xYear(playPosition);ctx.fillStyle='rgba(48,42,61,.87)';ctx.fillRect(reveal,T,W-R-reveal,ph);
+  ctx.fillStyle='rgba(235,230,239,.55)';ctx.font='9px Inter, sans-serif';ctx.textAlign='right';m.rows.forEach((key,i)=>ctx.fillText((NAMES[key]||key).replace('safe_corridor.','').slice(0,22),L-8,yRow(i)+3));
+  ctx.fillStyle='rgba(235,230,239,.68)';ctx.font='10.5px Inter, sans-serif';ctx.textAlign='center';[2025,2030,2035,2040,2045,2050].forEach(y=>ctx.fillText(y,xYear(y),H-13));
+  const selectedRow=Math.max(0,m.rows.indexOf(selected)),sy=yRow(selectedRow);ctx.strokeStyle='rgba(255,255,255,.72)';ctx.lineWidth=1.4;ctx.beginPath();ctx.moveTo(L,sy);ctx.lineTo(reveal,sy);ctx.stroke();
+  m.peaks.filter(p=>p.year<=playPosition).forEach((p,i)=>{const px=xYear(p.year),py=yRow(p.ri);ctx.fillStyle='rgba(255,248,205,.96)';ctx.beginPath();ctx.arc(px,py,4.5,0,Math.PI*2);ctx.fill();ctx.fillStyle='rgba(255,248,225,.92)';ctx.font=i<2?'600 11px Inter, sans-serif':'10px Inter, sans-serif';ctx.textAlign=px>W-210?'right':'left';const dx=px>W-210?-8:8;ctx.fillText(`${p.value>=0?'+':''}${fmt(p.value)} · ${p.year}`,px+dx,py-4);if(i<3)ctx.fillText((NAMES[p.key]||p.key).split('·')[0].trim(),px+dx,py+9)});
+  const cx=xYear(playPosition);ctx.strokeStyle='#fff';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(cx,T);ctx.lineTo(cx,H-B);ctx.stroke();ctx.strokeStyle='#d8a13a';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(cx,T);ctx.lineTo(cx,H-B);ctx.stroke();
 }
 function updatePlayView(){
   drawContour();const data=scenario[selected]||[],current=data.find(p=>+p.year===playYear)||data.at(-1)||{delta:0};
@@ -340,11 +339,12 @@ function bind(){
   const data=scenario[selected]||[],current=data.find(p=>+p.year===playYear)||data.at(-1)||{delta:0};
   contourModel=buildContourModel();
   const metrics=document.querySelector('.metrics'),stage=document.createElement('section');
-  stage.className='delta-stage';stage.innerHTML=`<div class="delta-head"><div><small>PÄÄNÄKYMÄ · VAIKUTUSKARTTA</small><h3>Aika × säädöspaketin voimakkuus × ero perusuraan</h3></div><div class="delta-readout"><b data-play-value>${current.delta>=0?'+':''}${fmt(current.delta)} pistettä</b><span>vuonna <span data-play-year-output>${playYear}</span></span></div></div><div class="contour-wrap"><canvas id="contour-map" width="900" height="330" aria-label="Vaikutuksen korkeuskäyräkartta"></canvas>${contourModel.maxStrength?``:`<div class="contour-empty">Valitse säädösvipu tai valmis lähtökohta.<br>Kartta näyttää sen jälkeen vaikutusalueet.</div>`}</div><div class="contour-axis"><span>← vuodet →</span><span>vaakaviiva = valittu voimakkuus</span></div><div class="contour-legend"><span>heikentävä</span><i class="contour-gradient"></i><span>vahvistava</span><em>· väri = poikkeama perusurasta</em></div><div class="delta-controls"><button data-action="play">${playing?'❚❚ Pysäytä':'▶ Aja muutos'}</button><input data-action="play-year" type="range" min="2025" max="2050" value="${playYear}" aria-label="Tarkasteluvuosi"><output data-play-year-output>${playYear}</output></div><div class="phase" data-play-phase><i></i><span></span></div>`;
+  stage.className='delta-stage';stage.innerHTML=`<div class="delta-head"><div><small>MURROSMATRIISI · VAIKUTUSMAISEMA</small><h3>Säädösten vaikutukset turvallisen käytävän indikaattoreihin</h3></div><div class="delta-readout"><b data-play-value>${current.delta>=0?'+':''}${fmt(current.delta)} pistettä</b><span>${esc(NAMES[selected]||selected)} · <span data-play-year-output>${playYear}</span></span></div></div><div class="map-tabs"><button class="active" data-view="map">VAIKUTUSKARTTA</button><button data-view="trend">TARKKA URA</button></div><div class="contour-wrap"><canvas id="contour-map" width="900" height="430" role="img" aria-label="Säädöspaketin vaikutusmaisema indikaattoreittain vuosina 2025–2050"></canvas>${contourModel.active?``:`<div class="contour-empty">Valitse säädösvipu tai valmis lähtökohta.<br>Kartta näyttää vaikutushuiput, kasautumat ja niiden ajoituksen.</div>`}</div><div class="contour-axis"><span>← aika 2025–2050 →</span><span>pystyakseli = indikaattorit</span></div><div class="contour-legend"><span>heikentävä</span><i class="contour-gradient"></i><span>vahvistava</span><em>· vaalein alue = voimakkain vaikutus</em></div><div class="delta-controls"><button data-action="play">${playing?'❚❚ Pysäytä':'▶ Aja muutos'}</button><input data-action="play-year" type="range" min="2025" max="2050" value="${playYear}" aria-label="Tarkasteluvuosi"><output data-play-year-output>${playYear}</output></div><div class="phase" data-play-phase><i></i><span></span></div>`;
   metrics?.after(stage);
   updatePlayView();
   const legend=document.querySelector('.legend'),chartWrap=document.querySelector('.chart-wrap'),chartNote=document.querySelector('.chart-note');
   if(legend&&chartWrap){const details=document.createElement('details'),summary=document.createElement('summary');details.className='overview-details';summary.textContent='Avaa kokonaisura 0–100 · taustakonteksti';legend.before(details);details.append(summary,legend,chartWrap);if(chartNote)details.append(chartNote)}
+  document.querySelectorAll('[data-view]').forEach(button=>button.onclick=()=>{const trend=button.dataset.view==='trend',details=document.querySelector('.overview-details');document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b===button));stage.querySelectorAll('.contour-wrap,.contour-axis,.contour-legend,.delta-controls,.phase').forEach(el=>el.hidden=trend);if(details)details.open=trend;if(!trend)drawContour()});
   document.querySelectorAll('[data-group]').forEach(el=>el.oninput=e=>{const g=GROUPS.find(x=>x.key===e.target.dataset.group);groupItems(g).forEach(l=>values[l.lever_key]=+e.target.value);render()});
   document.querySelectorAll('[data-lever]').forEach(el=>el.oninput=e=>{values[e.target.dataset.lever]=+e.target.value;render()});
   document.querySelectorAll('[data-tab]').forEach(el=>el.onclick=e=>{tab=e.target.dataset.tab;render()});
