@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Murrosmatriisin säädössimulaattori</title>
+<meta name="description" content="Suomen säädösvalintojen vaikutuksia nuorten aikuisten turvalliseen käytävään kuvaava päätelmäsimulaattori.">
+<style>
+:root{
+  --ink:#10251f;--ink-soft:#33504a;--dark:#0d201b;--dark2:#12352d;
+  --teal:#0a8a7f;--teal-deep:#066a62;--orange:#c4662a;--red:#b23c2e;
+  --paper:#ffffff;--bg:#eef2f0;--line:#d9e2de;--muted:#667a73;
+  --radius:14px;--radius-sm:10px;
+  --shadow-sm:0 1px 3px #12352c12,0 4px 14px #12352c0d;
+  --shadow-md:0 2px 6px #12352c14,0 14px 40px #12352c14;
+  --font-d:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --font-s:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --font-m:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font:15px/1.5 var(--font-s);
+  background:radial-gradient(1200px 500px at 85% -10%,#d8e8e2 0%,transparent 60%),var(--bg);
+}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background-image:linear-gradient(#c8d4cf66 1px,transparent 1px),linear-gradient(90deg,#c8d4cf66 1px,transparent 1px);
+  background-size:30px 30px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 100%);
+          mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 100%);}
+button,select,input{font:inherit}button{cursor:pointer}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:4px}
+::selection{background:#0a8a7f33}
+
+/* ---------- Header ---------- */
+header{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:16px;
+  padding:14px 26px;color:#f2faf6;
+  background:linear-gradient(120deg,var(--dark) 0%,var(--dark2) 55%,#16473b 100%);
+  border-bottom:3px solid var(--orange);
+  box-shadow:0 8px 30px #0d201b55;backdrop-filter:saturate(1.2)}
+.logo{width:48px;height:48px;display:grid;place-items:center;flex:none;
+  border:1.5px solid #4f7a6d;border-radius:12px;
+  background:linear-gradient(145deg,#ffffff14,#ffffff05);
+  font:700 26px var(--font-d);color:#eaf6f0;
+  box-shadow:inset 0 1px 0 #ffffff22,0 4px 10px #00000033}
+.brand small{display:block;font-size:10.5px;font-weight:800;letter-spacing:.22em;color:#8fb0a5}
+.brand h1{margin:1px 0 0;font:700 22px var(--font-d);letter-spacing:.01em}
+.status{margin-left:auto;display:flex;align-items:center;gap:8px;color:#b7d0c8;font-size:12.5px}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:#3ecf9f;
+  box-shadow:0 0 0 0 #3ecf9f66;animation:pulse 2.4s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #3ecf9f66}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.reset{margin-left:10px;padding:8px 14px;border:1px solid #4a6a5f;border-radius:9px;
+  background:#ffffff10;color:#e8f3ee;font-size:12.5px;font-weight:700;
+  transition:background .18s,transform .12s}
+.reset:hover{background:#ffffff22}.reset:active{transform:scale(.96)}
+
+/* ---------- Scenario bar ---------- */
+.scenario{position:sticky;top:79px;z-index:30;display:grid;
+  grid-template-columns:170px minmax(220px,440px) 1fr;gap:20px;align-items:center;
+  min-height:78px;padding:12px 26px;background:#fffffff2;backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);box-shadow:var(--shadow-sm)}
+.year{display:flex;align-items:baseline;gap:10px}
+.year span{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.year b{font:700 28px var(--font-d);color:var(--orange);min-width:3.2ch;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;height:26px;accent-color:var(--teal);cursor:grab}
+input[type=range]:active{cursor:grabbing}
+.presets{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.presets button{padding:9px 14px;border:1px solid var(--line);border-radius:999px;
+  background:var(--paper);color:#2f4a43;font-size:12.5px;font-weight:700;white-space:nowrap;
+  box-shadow:0 1px 2px #12352c10;transition:all .18s}
+.presets button:hover{border-color:var(--teal);color:var(--teal-deep);
+  box-shadow:0 4px 14px #0a8a7f22;transform:translateY(-1px)}
+.presets button:active{transform:translateY(0)}
+
+/* ---------- Layout ---------- */
+.workspace{max-width:1740px;margin:auto;padding:18px;display:grid;
+  grid-template-columns:minmax(300px,350px) minmax(520px,1fr) minmax(290px,340px);
+  gap:18px;align-items:start}
+.panel{min-height:700px;padding:22px;background:var(--paper);
+  border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-md);
+  animation:rise .5s cubic-bezier(.2,.7,.3,1) both}
+.panel:nth-child(2){animation-delay:.06s}.panel:nth-child(3){animation-delay:.12s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.panel-head{display:flex;justify-content:space-between;gap:12px}
+.kicker{display:block;font-size:10.5px;font-weight:800;letter-spacing:.2em;color:var(--teal);text-transform:uppercase}
+.panel h2{margin:4px 0 0;font:700 24px var(--font-d);letter-spacing:-.01em}
+.count{align-self:start;padding:7px 11px;border-radius:8px;background:#e6f2ef;color:var(--teal-deep);
+  font:700 13px var(--font-m);font-variant-numeric:tabular-nums}
+.intro{margin:12px 0 0;color:var(--muted);font-size:13px}
+
+/* ---------- Tabs ---------- */
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin:16px 0;padding:4px;
+  background:#e8efec;border-radius:11px}
+.tabs button{border:0;padding:9px;border-radius:8px;background:transparent;
+  font-size:12.5px;font-weight:700;color:#5d716b;transition:all .18s}
+.tabs button.active{background:var(--paper);color:var(--ink);box-shadow:var(--shadow-sm)}
+
+/* ---------- Controls ---------- */
+.control{position:relative;padding:14px 14px 10px;margin:12px 0;
+  background:linear-gradient(180deg,#fbfcfc,#f6f9f8);
+  border:1px solid #e2eae7;border-left:4px solid var(--c,#0a8a7f);
+  border-radius:var(--radius-sm);transition:box-shadow .18s,border-color .18s}
+.control:hover{box-shadow:var(--shadow-sm);border-color:#c9d6d1;border-left-color:var(--c,#0a8a7f)}
+.control-row{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.icon{width:30px;height:30px;display:grid;place-items:center;flex:none;border-radius:8px;
+  background:color-mix(in srgb,var(--c) 12%,#fff);color:var(--c);font:800 14px var(--font-s)}
+.control strong{font-size:13.5px}
+.control small{display:block;color:#8b978f;font:10.5px var(--font-m)}
+.value{margin-left:auto;min-width:46px;padding:4px 8px;text-align:center;border-radius:7px;
+  background:#e9edeb;color:#5d6b66;font:700 12.5px var(--font-m);font-variant-numeric:tabular-nums;
+  transition:background .2s,color .2s}
+.value.pos{color:var(--teal-deep);background:#dff0ec}
+.value.neg{color:var(--red);background:#f9e9e5}
+.ends{display:flex;justify-content:space-between;margin-top:2px;color:#93a19b;font-size:10px;font-weight:600}
+.detail-list{max-height:520px;overflow:auto;padding-right:6px;scrollbar-width:thin;scrollbar-color:#b9c8c2 transparent}
+.detail-list::-webkit-scrollbar{width:6px}.detail-list::-webkit-scrollbar-thumb{background:#b9c8c2;border-radius:3px}
+
+/* ---------- Selector & metrics ---------- */
+.selector{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}
+.selector label{width:min(300px,46%);font-size:10px;font-weight:800;color:#71827b;letter-spacing:.1em;text-transform:uppercase}
+.selector select{display:block;width:100%;margin-top:6px;padding:10px 12px;
+  border:1px solid #cfdbd6;border-radius:9px;background:#f8faf9;color:#223a33;
+  font-size:12.5px;font-weight:700;transition:border-color .15s,box-shadow .15s}
+.selector select:hover{border-color:var(--teal)}
+.selector select:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px #0a8a7f22}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);margin:20px 0;overflow:hidden;
+  border:1px solid var(--line);border-radius:var(--radius-sm)}
+.metric{position:relative;padding:14px 15px;border-right:1px solid var(--line);background:#fafcfc}
+.metric:last-child{border-right:0}
+.metric::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:#dfe7e3}
+.metric.good::before{background:var(--teal)}.metric.bad::before{background:var(--red)}
+.metric span,.metric small{display:block;font-size:10.5px;color:#71827b}
+.metric b{display:block;margin:4px 0 2px;font:700 23px var(--font-d);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.metric.good b{color:var(--teal-deep)}.metric.bad b{color:var(--red)}
+
+/* ---------- Chart ---------- */
+.legend{display:flex;gap:20px;align-items:center;color:#5f6f69;font-size:11.5px;font-weight:600}
+.legend i{display:inline-block;width:20px;margin-right:7px;vertical-align:middle;border-top:2px dashed #8b9994}
+.legend i.sc{border-top:3px solid var(--teal)}
+.legend em{margin-left:auto;font-style:normal;font-weight:400;color:#82918b}
+.chart-wrap{position:relative;height:420px;margin-top:12px}
+.chart-wrap svg{width:100%;height:100%;overflow:visible}
+.axis{stroke:#e0e6e3;stroke-dasharray:2 5}
+.base-line{fill:none;stroke:#93a19c;stroke-width:2;stroke-dasharray:5 6;stroke-linejoin:round}
+.scenario-line{fill:none;stroke:var(--teal);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+  filter:drop-shadow(0 3px 6px #0a8a7f44)}
+.band{fill:url(#bandGrad)}
+.reform{stroke:var(--orange);stroke-width:1.5;stroke-dasharray:3 4}
+.chart-label{font:600 11px var(--font-s);fill:#6d7c76}
+.dot{fill:var(--teal);stroke:#fff;stroke-width:2}
+.crosshair{stroke:#9fb2ab;stroke-width:1;stroke-dasharray:3 3;pointer-events:none}
+.tip{position:absolute;display:none;min-width:150px;padding:10px 12px;pointer-events:none;z-index:5;
+  background:#0e231eee;color:#e9f4ef;border-radius:10px;font-size:11.5px;line-height:1.5;
+  box-shadow:0 10px 30px #0d201b55;backdrop-filter:blur(4px)}
+.tip b{color:#fff;font-family:var(--font-m)}
+.tip .yr{font:700 13px var(--font-d);color:#ffd9b8;display:block;margin-bottom:3px}
+.chart-note{display:flex;gap:10px;margin-top:14px;padding:14px 16px;
+  border:1px solid #dce6e1;border-radius:var(--radius-sm);background:#f4f8f6;
+  font-size:12px;color:#5a6c66;line-height:1.55}
+.chart-note b{color:#2c463f}
+
+/* ---------- Insight panel ---------- */
+.empty{min-height:470px;display:grid;place-content:center;justify-items:center;text-align:center;color:var(--muted)}
+.orb{width:112px;height:112px;display:grid;place-items:center;border-radius:50%;
+  border:1.5px solid #b3ccc4;font:700 30px var(--font-d);color:var(--teal);
+  background:radial-gradient(circle at 35% 30%,#e8f4f0,#f7fbfa);
+  box-shadow:0 10px 30px #0a8a7f1c,inset 0 0 0 10px #ffffffcc;animation:float 5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.empty h3{margin:22px 0 6px;font:700 21px var(--font-d);color:var(--ink)}
+.empty p{max-width:30ch;font-size:13px}
+.direction{display:flex;gap:14px;align-items:center;padding:16px;margin:20px 0;
+  background:linear-gradient(120deg,#ecf8f3,#f5fbf8);border:1px solid #cde3db;border-radius:var(--radius-sm)}
+.direction.down{background:linear-gradient(120deg,#fdf0ec,#fdf8f6);border-color:#efd2ca}
+.direction .arrow{font-size:30px;color:var(--teal)}
+.direction.down .arrow{color:var(--red)}
+.direction span,.direction small{display:block;color:#5f706a;font-size:10.5px;font-weight:600}
+.direction b{display:block;margin:2px 0;font:700 21px var(--font-d);font-variant-numeric:tabular-nums}
+.contributors h3,.chain h3{margin:18px 0 4px;font:700 15.5px var(--font-d)}
+.contributor{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;
+  padding:11px 0;border-bottom:1px solid #e2e9e5;animation:fadeIn .3s both}
+.contributor strong{display:block;font-size:12.5px}
+.contributor small{color:#76847f;font-size:11px}
+@keyframes fadeIn{from{opacity:0;transform:translateX(6px)}to{opacity:1;transform:none}}
+.chain{margin-top:22px;padding:16px;border-radius:var(--radius-sm);background:#edf2f0;border:1px solid #dde6e2}
+.chain div{display:flex;justify-content:space-between;font-size:10px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.05em;color:#3f5a52}
+.chain div span:nth-child(even){color:#9db4ac}
+.chain p,.method{font-size:10.5px;color:#67756f;line-height:1.6}
+.method{margin-top:20px;padding-top:14px;border-top:1px solid var(--line)}
+
+/* ---------- Footer & loading ---------- */
+footer{display:flex;justify-content:space-between;gap:8px;margin-top:18px;
+  padding:14px 26px;background:linear-gradient(120deg,var(--dark),var(--dark2));
+  color:#87a298;font-size:10.5px;letter-spacing:.04em}
+.loading{min-height:100vh;display:grid;place-content:center;justify-items:center;gap:16px;
+  text-align:center;color:#3f5f55;font-family:var(--font-d)}
+.spinner{width:46px;height:46px;margin:auto;border-radius:50%;
+  border:3px solid #cfe0da;border-top-color:var(--teal);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(1turn)}}
+.error-box{max-width:420px;margin:auto;padding:32px;text-align:center}
+.error-box button{margin-top:12px;padding:10px 20px;border:0;border-radius:9px;
+  background:var(--teal);color:#fff;font-weight:700}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:1180px){
+  .workspace{grid-template-columns:310px 1fr}
+  .insight{grid-column:1/-1;min-height:0}
+  .scenario{grid-template-columns:150px 1fr;top:80px}
+  .presets{grid-column:1/-1;justify-content:flex-start}}
+@media(max-width:760px){
+  header{padding:12px 14px}.status{display:none}.brand h1{font-size:18px}.logo{width:40px;height:40px;font-size:21px}
+  .scenario{position:static;padding:12px 14px;grid-template-columns:120px 1fr}
+  .presets{grid-column:1/-1}
+  .workspace{grid-template-columns:1fr;padding:10px}
+  .panel{min-height:0;padding:16px}
+  .selector{display:block}.selector label{display:block;width:100%;margin-top:16px}
+  .metrics{grid-template-columns:1fr 1fr}
+  .metric:nth-child(2){border-right:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .legend em{display:none}footer{flex-direction:column;gap:4px}}
+</style>
+</head>
+<body><div id="app" class="loading"><div class="spinner"></div><b>Ladataan Murrosmatriisin laskentamallia…</b></div>
+<script>
+const API='https://zzbubbrsgiqsvsovkkmf.supabase.co',KEY='sb_publishable_YNqxZI4Oj-DSjVBoTKhQ2Q_4DchUIBb';
+const GROUPS=[{key:'work',label:'Työmarkkinat',icon:'T',color:'#087f77',matches:['työmarkkinat']},{key:'security',label:'Sosiaaliturva',icon:'S',color:'#2470a0',matches:['sosiaaliturva','sosiaalipalvelut','verotus']},{key:'housing',label:'Asuminen',icon:'A',color:'#c66a2b',matches:['asuminen']},{key:'future',label:'Koulutus & perhe',icon:'K',color:'#7558a6',matches:['koulutus','perhepolitiikka']}];
+const NAMES={'safe_corridor.arope_25_29':'Köyhyys- tai syrjäytymisriski · 25–29','safe_corridor.employment_rate_25_29':'Työllisyysaste · 25–29','safe_corridor.employment_rate_30_34':'Työllisyysaste · 30–34','safe_corridor.fertility_rate_25_29':'Hedelmällisyys · 25–29','safe_corridor.fertility_rate_30_34':'Hedelmällisyys · 30–34','safe_corridor.housing_cost_overburden_25_29':'Asumiskustannusrasitus · 25–29','safe_corridor.leaving_parental_home_age':'Kotoamuuttoikä','safe_corridor.living_with_parents_25_29':'Vanhempien kanssa asuvat · 25–29','safe_corridor.long_term_unemployment_share_25_29':'Pitkäaikaistyöttömyys · 25–29','safe_corridor.long_term_unemployment_share_30_34':'Pitkäaikaistyöttömyys · 30–34','safe_corridor.unemployment_rate_25_29':'Työttömyysaste · 25–29','safe_corridor.unemployment_rate_30_34':'Työttömyysaste · 30–34'};
+const PRESETS={balance:{employment_services:45,vocational_education:35,student_aid:30,rental_housing_supply:35,unemployment_security:25,early_childhood_education:30},work:{employment_services:65,vocational_education:55,employment_contracts:35,collective_agreements:25,income_tax:25},pressure:{unemployment_security:-45,student_aid:-40,rental_housing_supply:-35,social_services:-30,early_childhood_education:-25}};
+let levers=[],effects=[],baselines=[],norms={},values={},reformYear=2027,selected='safe_corridor.arope_25_29',tab='groups',scenario={};
+const fmt=n=>new Intl.NumberFormat('fi-FI',{minimumFractionDigits:1,maximumFractionDigits:1}).format(n||0),esc=s=>String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+function weight(y,start,min,max,d){const a=y-start;if(a<min)return 0;if(a<=max)return max===min?1:Math.min(1,(a-min+1)/(max-min+1));if(a<=max+d)return Math.max(0,1-(a-max)/d);return 0}
+function groupItems(g){return levers.filter(l=>g.matches.some(m=>l.policy_area.includes(m)))}function groupValue(g){const a=groupItems(g);return a.length?Math.round(a.reduce((s,l)=>s+(values[l.lever_key]||0),0)/a.length):0}
+function calculate(){scenario={};baselines.forEach(b=>{let delta=0;effects.forEach(e=>{if(e.series_key!==b.series_key)return;const i=(values[e.lever_key]||0)/100;delta+=i*e.effect_direction*(norms[e.series_key]||1)*+e.relative_strength*+e.implementation_coefficient*weight(+b.year,reformYear,+e.lag_min_years,+e.lag_max_years,+e.persistence_years)*10});const score=+b.score_0_100,s=Math.max(0,Math.min(100,score+delta));(scenario[b.series_key]||=[]).push({...b,score,delta,scenario:s,lo:Math.max(0,s-Math.abs(delta)*.35),hi:Math.min(100,s+Math.abs(delta)*.35)})})}
+function val(n){return `<output class="value ${n>0?'pos':n<0?'neg':''}">${n>0?'+':''}${Math.abs(n)<10?fmt(n):Math.round(n)}</output>`}function head(step,title,side=''){return `<div class="panel-head"><div><span class="kicker">${step}</span><h2>${esc(title)}</h2></div>${side?`<b class="count">${side}</b>`:''}</div>`}
+function chart(data){const W=800,H=380,L=42,R=15,T=15,B=32,x=y=>L+(y-2025)/(2050-2025)*(W-L-R),yy=v=>T+(100-v)/100*(H-T-B),pts=k=>data.map(p=>`${x(+p.year)},${yy(p[k])}`).join(' '),band=data.map(p=>`${x(+p.year)},${yy(p.hi)}`).concat(data.slice().reverse().map(p=>`${x(+p.year)},${yy(p.lo)}`)).join(' ');const zone=data.map((p,i)=>`<rect data-zone="${i}" x="${x(+p.year)-(W-L-R)/25/2}" y="${T}" width="${(W-L-R)/25}" height="${H-T-B}" fill="transparent"/>`).join('');return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Perusuran ja säädösskenaarion kuvaaja"><defs><linearGradient id="bandGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0a8a7f" stop-opacity=".18"/><stop offset="1" stop-color="#0a8a7f" stop-opacity=".04"/></linearGradient></defs>${[0,25,50,75,100].map(v=>`<line class="axis" x1="${L}" x2="${W-R}" y1="${yy(v)}" y2="${yy(v)}"/><text class="chart-label" x="4" y="${yy(v)+4}">${v}</text>`).join('')}<polygon class="band" points="${band}"/><polyline class="base-line" points="${pts('score')}"/><polyline class="scenario-line" points="${pts('scenario')}"/><line class="reform" x1="${x(reformYear)}" x2="${x(reformYear)}" y1="${T}" y2="${H-B}"/><text class="chart-label" x="${x(reformYear)+5}" y="28" fill="#c4662a">muutos</text>${[2025,2030,2035,2040,2045,2050].map(v=>`<text class="chart-label" text-anchor="middle" x="${x(v)}" y="${H-6}">${v}</text>`).join('')}<g id="hover" style="display:none"><line class="crosshair" id="ch" y1="${T}" y2="${H-B}"/><circle class="dot" id="d1" r="4.5"/><circle class="dot" id="d2" r="4.5" fill="#93a19c"/></g>${zone}</svg><div class="tip" id="tip"></div>`}
+function render(){calculate();const active=Object.values(values).filter(Boolean).length,data=scenario[selected]||[],end=data.at(-1)||{},peak=data.reduce((a,p)=>!a||Math.abs(p.delta)>Math.abs(a.delta)?p:a,null)||{},series=[...new Set(effects.map(e=>e.series_key))].sort((a,b)=>(NAMES[a]||a).localeCompare(NAMES[b]||b,'fi'));const core=[...new Set(effects.filter(e=>e.include_in_composite).map(e=>e.series_key))],comp=[];for(let y=2025;y<=2050;y++){const ps=core.map(k=>(scenario[k]||[]).find(p=>+p.year===y)).filter(Boolean);comp.push({year:y,baseline:ps.reduce((s,p)=>s+p.score,0)/(ps.length||1),scenario:ps.reduce((s,p)=>s+p.scenario,0)/(ps.length||1)})}const cp=comp.reduce((a,p)=>Math.abs(p.scenario-p.baseline)>Math.abs(a.scenario-a.baseline)?p:a,comp[0]);const cs=effects.filter(e=>e.series_key===selected&&(values[e.lever_key]||0)).map(e=>({...e,impact:(values[e.lever_key]/100)*e.effect_direction*(norms[e.series_key]||1)*+e.relative_strength*+e.implementation_coefficient*weight(+peak.year,reformYear,+e.lag_min_years,+e.lag_max_years,+e.persistence_years)*10})).sort((a,b)=>Math.abs(b.impact)-Math.abs(a.impact));
+document.getElementById('app').className='shell';document.getElementById('app').innerHTML=`<header><div class="logo">M</div><div class="brand"><small>MURROSMATRIISI</small><h1>Säädössimulaattori</h1></div><div class="status">Suomen säädös- ja indikaattoriaineisto · v2</div><button class="reset" data-action="reset">↻ Nollaa</button></header><section class="scenario"><div class="year"><span>Skenaarion alku</span><b>${reformYear}</b></div><input data-action="year" type="range" min="2025" max="2035" value="${reformYear}" aria-label="Skenaarion aloitusvuosi"><div class="presets"><button data-preset="balance">✦ Tasapainottava</button><button data-preset="work">Työhön kiinnittyminen</button><button data-preset="pressure">Heikkenevä turva</button></div></section><div class="workspace"><aside class="panel">${head('01 · VALINNAT','Mitä muutetaan?',`${active} / 12`)}<p class="intro">Nolla säilyttää perusuran. Oikealle siirtäminen vahvistaa turvaa tai toimintakykyä, vasemmalle heikentää sitä.</p><div class="tabs"><button data-tab="groups" class="${tab==='groups'?'active':''}">Neljä kokonaisuutta</button><button data-tab="detail" class="${tab==='detail'?'active':''}">Tarkat säädökset</button></div>${tab==='groups'?GROUPS.map(g=>{const n=groupValue(g);return `<div class="control" style="--c:${g.color}"><div class="control-row"><span class="icon">${g.icon}</span><strong>${g.label}</strong>${val(n)}</div><input type="range" min="-100" max="100" step="5" value="${n}" data-group="${g.key}" aria-label="${g.label}"><div class="ends"><span>heikentää</span><span>0</span><span>vahvistaa</span></div></div>`}).join(''):`<div class="detail-list">${levers.map(l=>{const n=values[l.lever_key]||0;return `<div class="control" style="--c:#087f77"><div class="control-row"><span><small>${esc(l.statute_id)}</small><strong>${esc(l.title)}</strong></span>${val(n)}</div><input type="range" min="-100" max="100" step="5" value="${n}" data-lever="${l.lever_key}"></div>`}).join('')}</div>`}</aside><section class="panel"><div class="selector">${head('02 · VAIKUTUSURA',NAMES[selected]||selected)}<label>Tarkasteltava mittari<select data-action="series">${series.map(k=>`<option value="${k}" ${k===selected?'selected':''}>${esc(NAMES[k]||k)}</option>`).join('')}</select></label></div><div class="metrics"><div class="metric"><span>Perusura 2050</span><b>${fmt(end.score)}</b><small>pistettä / 100</small></div><div class="metric ${end.delta>=0?'good':'bad'}"><span>Skenaario 2050</span><b>${fmt(end.scenario)}</b><small>${end.delta>=0?'+':''}${fmt(end.delta)} pistettä</small></div><div class="metric"><span>Suurin vaikutus</span><b>${peak.year||'—'}</b><small>${peak.delta>=0?'+':''}${fmt(peak.delta)} pistettä</small></div><div class="metric"><span>Kokonaiskuvan huippu</span><b>${cp.year}</b><small>${cp.scenario-cp.baseline>=0?'+':''}${fmt(cp.scenario-cp.baseline)} pistettä</small></div></div><div class="legend"><span><i></i>Perusura</span><span><i class="sc"></i>Skenaario</span><em>Varjostus = parametriepävarmuus ±35 %</em></div><div class="chart-wrap">${chart(data)}</div><div class="chart-note"><b>Korkeampi pistemäärä tarkoittaa turvallisempaa suuntaa.</b><span>Sarjat on suhteutettu Pohjoismaiden historialliseen vaihteluun. Perusura on vaimeneva trendiprojektio, ei ennuste. Vie osoitin kuvaajan päälle nähdäksesi vuosikohtaiset arvot.</span></div></section><aside class="panel insight">${head('03 · TULKINTA','Mistä ero syntyy?')}${active===0?`<div class="empty"><div class="orb">M</div><h3>Perusura on näkyvissä</h3><p>Valitse säädösvipu tai valmis lähtökohta. Näet täällä vaikutusketjun ja ajoituksen.</p></div>`:`<div class="direction ${peak.delta<0?'down':''}"><span class="arrow">${peak.delta>=0?'↗':'↘'}</span><div><span>Voimakkain poikkeama</span><b>${peak.delta>=0?'+':''}${fmt(peak.delta)} pistettä</b><small>vuonna ${peak.year}</small></div></div><div class="contributors"><h3>Vaikuttavat säädökset</h3>${cs.length?cs.slice(0,5).map((c,i)=>`<div class="contributor" style="animation-delay:${i*40}ms"><div><strong>${esc(c.lever_title)}</strong><small>${c.relationship_type==='direct'?'suora':c.relationship_type==='indirect'?'välillinen':'tulos'} vaikutus · viive ${c.lag_min_years}–${c.lag_max_years} v</small></div>${val(c.impact)}</div>`).join(''):'<p>Valitut vivut eivät kohdistu tähän mittariin suoraan.</p>'}</div><div class="chain"><h3>Vaikutusketju</h3><div><span>Säädös</span><span>→</span><span>toimeenpano</span><span>→</span><span>viive</span><span>→</span><span>mittari</span></div><p>Toimeenpanokerroin vaimentaa vaikutusta, jos säädös on verkostoltaan kytkeytynyt tai delegoinniltaan syvä.</p></div>`}<p class="method"><b>Tämä on päätelmäsimulaatio.</b> Se näyttää oletettujen mekanismien seuraukset, ei todista yksittäisen lain aiheuttavan muutosta.</p></aside></div><footer><span>Murrosmatriisi · Suomen säädöskerros</span><span>12 säädösvipua · 46 vaikutuskytkentää · 2025–2050</span></footer>`;bind()}
+function bind(){
+  document.querySelectorAll('[data-group]').forEach(el=>el.oninput=e=>{const g=GROUPS.find(x=>x.key===e.target.dataset.group);groupItems(g).forEach(l=>values[l.lever_key]=+e.target.value);render()});
+  document.querySelectorAll('[data-lever]').forEach(el=>el.oninput=e=>{values[e.target.dataset.lever]=+e.target.value;render()});
+  document.querySelectorAll('[data-tab]').forEach(el=>el.onclick=e=>{tab=e.target.dataset.tab;render()});
+  document.querySelectorAll('[data-preset]').forEach(el=>el.onclick=e=>{values=Object.fromEntries(levers.map(l=>[l.lever_key,PRESETS[e.target.dataset.preset]?.[l.lever_key]||0]));render()});
+  document.querySelector('[data-action=year]').oninput=e=>{reformYear=+e.target.value;render()};
+  document.querySelector('[data-action=series]').onchange=e=>{selected=e.target.value;render()};
+  document.querySelector('[data-action=reset]').onclick=()=>{values=Object.fromEntries(levers.map(l=>[l.lever_key,0]));reformYear=2027;render()};
+  // Chart hover tooltip
+  const wrap=document.querySelector('.chart-wrap'),tip=document.getElementById('tip'),hover=document.getElementById('hover');
+  if(wrap&&tip&&hover){const data=scenario[selected]||[];const W=800,L=42,R=15,T=15,B=32,x=y=>L+(y-2025)/25*(W-L-R),yy=v=>T+(100-v)/100*(380-T-B);
+    wrap.querySelectorAll('[data-zone]').forEach(z=>{z.addEventListener('mouseenter',()=>{const p=data[+z.dataset.zone];if(!p)return;
+      hover.style.display='';document.getElementById('ch').setAttribute('x1',x(+p.year));document.getElementById('ch').setAttribute('x2',x(+p.year));
+      const d1=document.getElementById('d1'),d2=document.getElementById('d2');d1.setAttribute('cx',x(+p.year));d1.setAttribute('cy',yy(p.scenario));d2.setAttribute('cx',x(+p.year));d2.setAttribute('cy',yy(p.score));
+      tip.style.display='block';tip.innerHTML=`<span class="yr">${p.year}</span>Skenaario <b>${fmt(p.scenario)}</b><br>Perusura <b>${fmt(p.score)}</b><br>Ero <b>${p.delta>=0?'+':''}${fmt(p.delta)}</b>`;
+      const r=wrap.getBoundingClientRect(),px=(x(+p.year)/W)*r.width;tip.style.left=Math.min(Math.max(px+12,4),r.width-160)+'px';tip.style.top='10px'});
+      z.addEventListener('mouseleave',()=>{hover.style.display='none';tip.style.display='none'})})}
+}
+async function load(){try{const h={apikey:KEY,Authorization:`Bearer ${KEY}`},get=p=>fetch(API+'/rest/v1/'+p,{headers:h}).then(r=>{if(!r.ok)throw Error(r.status);return r.json()});let n;[levers,effects,baselines,n]=await Promise.all([get('simulation_statute_levers?select=*&active=eq.true'),get('simulation_statute_effect_matrix?select=*'),get('simulation_indicator_baselines?select=series_key,year,raw_value,score_0_100,value_kind&order=year.asc'),get('simulation_normalization_params?select=series_key,favorable_direction')]);levers.sort((a,b)=>(a.metadata?.display_order||99)-(b.metadata?.display_order||99));norms=Object.fromEntries(n.map(x=>[x.series_key,+x.favorable_direction]));values=Object.fromEntries(levers.map(l=>[l.lever_key,0]));render()}catch(e){document.getElementById('app').innerHTML='<div class="error-box"><b>Tietoja ei saatu ladattua.</b><p>Tiedosto tarvitsee internet-yhteyden Murrosmatriisin julkisen aineiston lukemiseen.</p><button onclick="location.reload()">Yritä uudelleen</button></div>'}}load();
+</script></body></html>
