@@ -175,7 +175,15 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 .landscape-tip b{color:#fff0b7}.landscape-legend{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:10.5px;color:#cfc6d5;flex-wrap:wrap}
 .landscape-grad{width:180px;height:9px;border-radius:9px;background:linear-gradient(90deg,#d37a53,#eee6df 50%,#fff0b7)}
 .landscape-legend em{margin-left:auto;font-style:normal;color:#a99daf}.landscape-empty{position:absolute;inset:14px 18px 30px min(220px,35%);display:grid;place-content:center;text-align:center;background:#302a3ddd;color:#cfc6d5;font-size:11.5px;line-height:1.55;border-radius:9px}
+.profile-stage,.grid-stage{padding:18px;border-radius:var(--r);background:#302a3d;color:#efeaf3;border:1px solid #493e57}
+.profile-stage h3,.grid-stage h3{margin:0;font:700 17px var(--fd);color:#f5eff7}.profile-stage>p,.grid-stage>p{margin:4px 0 10px;font-size:11px;color:#b9aec5;line-height:1.5}
+.profile-host svg{display:block;width:100%;height:auto;max-height:520px}.profile-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:8px}
+.profile-card{padding:8px 9px;border:1px solid #4c405b;border-radius:8px;background:#373044}.profile-card span{display:block;color:#b9aec5;font-size:9px}.profile-card b{display:block;margin-top:2px;font:700 12px var(--fm)}
+.profile-method{margin-top:9px;color:#b9aec5;font-size:9.5px}.profile-method summary{cursor:pointer;color:#d7cddd;font-weight:700}.profile-method ul{margin:7px 0 0;padding-left:18px;line-height:1.55}
+.indicator-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:9px}.indicator-mini{appearance:none;text-align:left;padding:10px;border:1px solid #493e57;border-radius:9px;background:#373044;color:#efeaf3;cursor:pointer}
+.indicator-mini:hover,.indicator-mini.active{border-color:#d8a13a;background:#40364d}.indicator-mini strong{display:block;min-height:30px;font-size:10.5px;line-height:1.35}.indicator-mini svg{display:block;width:100%;height:42px;margin:5px 0}.indicator-mini small{display:block;color:#b9aec5;font-size:9.5px}.indicator-mini b{font:700 11px var(--fm)}
 @media(max-width:820px){.landscape{padding:14px}.landscape-head{display:block}.landscape-kpi{text-align:left;margin:8px 0}.landscape-legend em{width:100%;margin-left:0}.landscape-empty{left:105px}}
+@media(max-width:620px){.profile-cards{grid-template-columns:1fr 1fr}.profile-stage,.grid-stage{padding:13px}.indicator-grid{grid-template-columns:1fr 1fr}}
 
 /* insight */
 .direction{display:flex;gap:14px;align-items:center;padding:15px;margin-bottom:16px;
@@ -285,6 +293,14 @@ const LANDSCAPE_ORDER = [
   'safe_corridor.arope_25_29','safe_corridor.housing_cost_overburden_25_29',
   'safe_corridor.living_with_parents_25_29','safe_corridor.leaving_parental_home_age',
   'safe_corridor.fertility_rate_25_29','safe_corridor.fertility_rate_30_34'
+];
+const PROFILE_AXES = [
+  {label:'Työllisyys',keys:['safe_corridor.employment_rate_25_29','safe_corridor.employment_rate_30_34']},
+  {label:'Työttömyys',keys:['safe_corridor.unemployment_rate_25_29','safe_corridor.unemployment_rate_30_34']},
+  {label:'Pitkittynyt työttömyys',keys:['safe_corridor.long_term_unemployment_share_25_29','safe_corridor.long_term_unemployment_share_30_34']},
+  {label:'Toimeentulo & asuminen',keys:['safe_corridor.arope_25_29','safe_corridor.housing_cost_overburden_25_29']},
+  {label:'Itsenäistyminen',keys:['safe_corridor.living_with_parents_25_29','safe_corridor.leaving_parental_home_age']},
+  {label:'Perheellistyminen',keys:['safe_corridor.fertility_rate_25_29','safe_corridor.fertility_rate_30_34']}
 ];
 
 const PRESETS = {
@@ -400,8 +416,9 @@ function sensitivity(seriesKey, year) {
 function activeCount() { return Object.values(values).filter(Boolean).length; }
 function orderedSeries() { return Object.keys(scenario).sort((a,b)=>{const ai=LANDSCAPE_ORDER.indexOf(a),bi=LANDSCAPE_ORDER.indexOf(b);return (ai<0?999:ai)-(bi<0?999:bi)||(NAMES[a]||a).localeCompare(NAMES[b]||b,'fi');}); }
 function stepSeries(direction) { const list=orderedSeries(),i=list.indexOf(selected);if(!list.length)return;selected=list[(Math.max(0,i)+direction+list.length)%list.length];update(); }
-const VIZ_VIEWS=['heat','landscape'],VIZ_NAMES={heat:'Vaikutuskartta',landscape:'Vaikutusmaisema'};
-function syncViz(){document.querySelectorAll('[data-viz-panel]').forEach(el=>el.hidden=el.dataset.vizPanel!==vizView);const title=$('viz-title'),index=$('viz-index');if(title)title.textContent=VIZ_NAMES[vizView];if(index)index.textContent=`SELATTAVA NÄKYMÄ · ${VIZ_VIEWS.indexOf(vizView)+1} / ${VIZ_VIEWS.length}`;requestAnimationFrame(()=>vizView==='heat'?drawHeat():drawLandscape());}
+const VIZ_VIEWS=['heat','landscape','profile','grid'],VIZ_NAMES={heat:'Vaikutuskartta',landscape:'Vaikutusmaisema',profile:'Tasapainoprofiili',grid:'Indikaattoriristikko'};
+function drawActiveViz(){if(vizView==='heat')drawHeat();else if(vizView==='landscape')drawLandscape();else if(vizView==='profile')drawProfile();else drawIndicatorGrid();}
+function syncViz(){document.querySelectorAll('[data-viz-panel]').forEach(el=>el.hidden=el.dataset.vizPanel!==vizView);const title=$('viz-title'),index=$('viz-index');if(title)title.textContent=VIZ_NAMES[vizView];if(index)index.textContent=`SELATTAVA NÄKYMÄ · ${VIZ_VIEWS.indexOf(vizView)+1} / ${VIZ_VIEWS.length}`;requestAnimationFrame(drawActiveViz);}
 function stepViz(direction){const i=VIZ_VIEWS.indexOf(vizView);vizView=VIZ_VIEWS[(i+direction+VIZ_VIEWS.length)%VIZ_VIEWS.length];syncViz();}
 function groupItems(g) { return levers.filter(l => g.matches.some(m => (l.policy_area || '').includes(m))); }
 function groupValue(g) {
@@ -514,6 +531,13 @@ function landscapeGeometry(canvas){const cssW=Math.max(280,Math.min(canvas.paren
 function buildLandscapeBase(g){const m=landscape,base=document.createElement('canvas');base.width=g.cssW;base.height=g.cssH;const ctx=base.getContext('2d');ctx.fillStyle='#302a3d';ctx.fillRect(0,0,g.cssW,g.cssH);const raw=document.createElement('canvas');raw.width=m.gw;raw.height=m.gh;const rc=raw.getContext('2d'),img=rc.createImageData(m.gw,m.gh);for(let i=0;i<m.field.length;i++){const c=landscapeColor(m.field[i],m.maxAbs),o=i*4;img.data[o]=c[0];img.data[o+1]=c[1];img.data[o+2]=c[2];img.data[o+3]=255}rc.putImageData(img,0,0);ctx.imageSmoothingEnabled=true;ctx.drawImage(raw,g.L,g.T,g.pw,g.ph);ctx.strokeStyle='rgba(255,255,255,.33)';ctx.lineWidth=1;[.12,.22,.34,.48,.63,.79,.91].forEach(level=>contourLines(ctx,m,level,g.L,g.T,g.pw,g.ph));return base}
 function drawLandscape(){const canvas=$('landscape');if(!canvas||!landscape)return;const g=landscapeGeometry(canvas),dpr=Math.min(2,window.devicePixelRatio||1),key=`${g.cssW}x${g.cssH}`;canvas.style.width=g.cssW+'px';canvas.style.height=g.cssH+'px';if(canvas.width!==g.cssW*dpr||canvas.height!==g.cssH*dpr){canvas.width=g.cssW*dpr;canvas.height=g.cssH*dpr}if(landscape.baseKey!==key){landscape.base=buildLandscapeBase(g);landscape.baseKey=key}const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,g.cssW,g.cssH);ctx.drawImage(landscape.base,0,0);const xYear=y=>g.L+(y-Y0)/(Y1-Y0)*g.pw,yRow=i=>g.T+(i+.5)/landscape.rows.length*g.ph,reveal=xYear(playPos);if(playPos<Y1){ctx.fillStyle='rgba(48,42,61,.88)';ctx.fillRect(reveal,g.T,g.cssW-g.R-reveal,g.ph)}ctx.font='10px '+getComputedStyle(document.body).fontFamily;ctx.textBaseline='middle';ctx.textAlign='left';landscape.rows.forEach((key,i)=>{let label=NAMES[key]||key;while(ctx.measureText(label).width>g.L-13&&label.length>7)label=label.slice(0,-2);ctx.fillStyle=key===selected?'#fff0b7':'#b9aec5';ctx.fillText(label,6,yRow(i))});ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillStyle='#9d92aa';[2025,2030,2035,2040,2045,2050].forEach(y=>ctx.fillText(y,xYear(y),g.cssH-10));const sy=yRow(Math.max(0,landscape.rows.indexOf(selected)));ctx.strokeStyle='rgba(255,240,183,.76)';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(g.L,sy);ctx.lineTo(reveal,sy);ctx.stroke();landscape.peaks.filter(p=>p.year<=playPos).forEach((p,i)=>{const x=xYear(p.year),y=yRow(p.ri),right=x>g.cssW-175;ctx.fillStyle='#fff0b7';ctx.beginPath();ctx.arc(x,y,4.5,0,Math.PI*2);ctx.fill();ctx.font=(i<3?'600 10.5px ':'10px ')+getComputedStyle(document.body).fontFamily;ctx.textAlign=right?'right':'left';ctx.fillText(`${sign(p.value)} p. · ${p.year}`,x+(right?-7:7),y-5);if(i<3)ctx.fillText((NAMES[p.key]||p.key).split('·')[0].trim(),x+(right?-7:7),y+9)});ctx.strokeStyle='#fff';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(reveal,g.T);ctx.lineTo(reveal,g.T+g.ph);ctx.stroke();ctx.strokeStyle='#d8a13a';ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(reveal,g.T);ctx.lineTo(reveal,g.T+g.ph);ctx.stroke()}
 function bindLandscape(){const canvas=$('landscape'),tip=$('landscape-tip');if(!canvas||!tip)return;const locate=e=>{const g=landscapeGeometry(canvas),r=canvas.getBoundingClientRect(),px=(e.clientX-r.left)/r.width*g.cssW,py=(e.clientY-r.top)/r.height*g.cssH;if(px<g.L||px>g.cssW-g.R||py<g.T||py>g.cssH-g.B){tip.style.display='none';return null}const year=clamp(Math.round(Y0+(px-g.L)/g.pw*(Y1-Y0)),Y0,Y1),ri=clamp(Math.floor((py-g.T)/g.ph*landscape.rows.length),0,landscape.rows.length-1),key=landscape.rows[ri],point=(scenario[key]||[]).find(p=>p.year===year)||{delta:0};tip.style.display='block';tip.style.left=clamp(e.clientX-r.left+12,4,r.width-190)+'px';tip.style.top=clamp(e.clientY-r.top+10,4,r.height-72)+'px';tip.innerHTML=`<b>${esc(NAMES[key]||key)}</b><br>${year} · ero ${sign(point.delta)} pistettä`;return key};canvas.onpointermove=locate;canvas.onpointerleave=()=>tip.style.display='none';canvas.onclick=e=>{const key=locate(e);if(key){selected=key;update()}}}
+
+/* ---------- kuuden ulottuvuuden tasapainoprofiili ---------- */
+function profileValues(year){return PROFILE_AXES.map(axis=>{const points=axis.keys.map(k=>(scenario[k]||[]).find(p=>p.year===year)).filter(Boolean),avg=key=>points.length?points.reduce((s,p)=>s+p[key],0)/points.length:0;return {...axis,base:avg('score'),scenario:avg('scenario'),delta:avg('scenario')-avg('score')}})}
+function drawProfile(){const host=$('profile-host'),cards=$('profile-cards');if(!host||!cards)return;const axes=profileValues(focusYear),W=700,H=510,cx=350,cy=250,R=164,pt=(i,v,extra=0)=>{const a=-Math.PI/2+i/axes.length*Math.PI*2,r=(clamp(v,0,100)/100)*R+extra;return[cx+Math.cos(a)*r,cy+Math.sin(a)*r]},poly=key=>axes.map((a,i)=>pt(i,a[key]).map(n=>n.toFixed(1)).join(',')).join(' '),rings=[25,50,75,100].map(v=>`<polygon points="${axes.map((a,i)=>pt(i,v).map(n=>n.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="#554967" stroke-width="1" stroke-dasharray="3 5"/>`).join(''),spokes=axes.map((a,i)=>{const [x,y]=pt(i,100),[lx,ly]=pt(i,100,30),anchor=lx>cx+8?'start':lx<cx-8?'end':'middle',active=a.keys.includes(selected);return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#554967"/><text data-profile-pick="${esc(a.keys[0])}" x="${lx}" y="${ly}" text-anchor="${anchor}" fill="${active?'#fff0b7':'#c7bbcf'}" font-size="12" font-weight="${active?700:600}" style="cursor:pointer">${esc(a.label)} <tspan fill="${a.delta>=.05?'#7be0ce':a.delta<=-.05?'#f2a47c':'#8f839a'}">${Math.abs(a.delta)>=.05?sign(a.delta):''}</tspan></text>`}).join('');host.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Kuuden ulottuvuuden tasapainoprofiili vuonna ${focusYear}"><defs><radialGradient id="profileFill"><stop offset="0" stop-color="#38c9ad" stop-opacity=".36"/><stop offset="1" stop-color="#38c9ad" stop-opacity=".09"/></radialGradient></defs>${rings}${spokes}<polygon points="${poly('base')}" fill="none" stroke="#9d92aa" stroke-width="2" stroke-dasharray="6 6"/><polygon points="${poly('scenario')}" fill="url(#profileFill)" stroke="#4bd2b7" stroke-width="2.6"/>${axes.map((a,i)=>{const[x,y]=pt(i,a.scenario);return`<circle cx="${x}" cy="${y}" r="4" fill="#fff0b7" stroke="#302a3d" stroke-width="2"/>`}).join('')}<text x="${cx}" y="${cy-2}" text-anchor="middle" fill="#f5eff7" font-size="18" font-weight="700">${focusYear}</text><text x="${cx}" y="${cy+16}" text-anchor="middle" fill="#a99daf" font-size="10">0–100 · suurempi = turvallisempi</text></svg>`;host.querySelectorAll('[data-profile-pick]').forEach(el=>el.onclick=()=>{selected=el.dataset.profilePick;update()});cards.innerHTML=axes.map(a=>`<div class="profile-card"><span>${esc(a.label)}</span><b style="color:${a.delta>=.05?'#7be0ce':a.delta<=-.05?'#f2a47c':'#c7bbcf'}">${nf(a.scenario)} · ${sign(a.delta)} p.</b></div>`).join('')}
+
+/* ---------- indikaattoriristikko ---------- */
+function drawIndicatorGrid(){const host=$('indicator-grid');if(!host)return;host.innerHTML=orderedSeries().map(k=>{const rows=scenario[k]||[],W=150,H=42,x=y=>(y-Y0)/(Y1-Y0)*W,yy=v=>H-clamp(v,0,100)/100*H,line=key=>rows.map((p,i)=>`${i?'L':'M'}${x(p.year).toFixed(1)} ${yy(p[key]).toFixed(1)}`).join(' '),p=rows.find(r=>r.year===focusYear)||rows.at(-1)||{delta:0,scenario:0},cx=x(focusYear);return `<button class="indicator-mini ${k===selected?'active':''}" data-series-pick="${esc(k)}"><strong>${esc(NAMES[k]||k)}</strong><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><path d="${line('score')}" fill="none" stroke="#847890" stroke-width="1.4" stroke-dasharray="4 4"/><path d="${line('scenario')}" fill="none" stroke="${p.delta>=.05?'#4bd2b7':p.delta<=-.05?'#e98b67':'#a99daf'}" stroke-width="2.2"/><line x1="${cx}" x2="${cx}" y1="0" y2="${H}" stroke="#fff0b7" stroke-opacity=".55"/></svg><small>${focusYear} · <b style="color:${p.delta>=.05?'#7be0ce':p.delta<=-.05?'#f2a47c':'#c7bbcf'}">${sign(p.delta)} p.</b> · ${esc(rawLabel(k,p.scenario))}</small></button>`}).join('')}
 
 /* ---------- rendering ---------- */
 function head(step, title, side = '') {
@@ -667,6 +691,14 @@ function chartPanel() {
       <div class="landscape-wrap"><canvas id="landscape" role="img" aria-label="Contour-vaikutusmaisema turvallisen käytävän indikaattoreista vuosina 2025–2050"></canvas><div class="landscape-tip" id="landscape-tip"></div><div class="landscape-empty" id="landscape-empty" ${landscape && landscape.active ? 'hidden' : ''}>Valitse vähintään yksi säädösvipu.<br>Vaikutusmaisema muodostuu Murrosmatriisin lasketuista poikkeamista.</div></div>
       <div class="landscape-legend"><span>heikkenee</span><i class="landscape-grad"></i><span>kohenee</span><em>vaalea huippu = voimakkain vaikutus · valkoinen viiva = valittu indikaattori</em></div>
     </div>
+    <div class="profile-stage" data-viz-panel="profile" ${vizView==='profile'?'':'hidden'}>
+      <h3>Tasapainoprofiili · kuusi ulottuvuutta</h3><p>Katkoviiva on perusura ja täytetty muoto säädösskenaario. Jokainen akseli on kahden läpinäkyvästi nimetyn indikaattorin keskiarvo.</p>
+      <div class="profile-host" id="profile-host"></div><div class="profile-cards" id="profile-cards"></div><details class="profile-method"><summary>Näytä akselien muodostus</summary><ul>${PROFILE_AXES.map(a=>`<li><b>${esc(a.label)}:</b> ${a.keys.map(k=>esc(NAMES[k]||k)).join(' + ')}</li>`).join('')}</ul></details>
+    </div>
+    <div class="grid-stage" data-viz-panel="grid" ${vizView==='grid'?'':'hidden'}>
+      <h3>Indikaattoriristikko</h3><p>Kaikkien muuttujien kehityspolut rinnakkain. Katkoviiva on perusura; napsauta korttia avataksesi muuttujan tarkkaan tarkasteluun.</p>
+      <div class="indicator-grid" id="indicator-grid"></div>
+    </div>
     </div>
   </section>`;
 }
@@ -756,9 +788,7 @@ function render() {
       <span>Aineisto luetaan julkisesta tietokannasta. Skenaario-oletuksia, ei ennusteita.</span>
     </footer>`;
   bind();
-  drawHeat();
-  drawLandscape();
-  bindLandscape();
+  syncViz();
 }
 
 /* pieni päivitys ilman koko DOMin uudelleenrakennusta */
@@ -770,9 +800,8 @@ function update() {
   if (panels[2]) panels[2].outerHTML = insightPanel();
   refreshMetrics();
   bindChart();
-  drawHeat();
-  drawLandscape();
   bindLandscape();
+  syncViz();
   syncUrl();
 }
 
@@ -833,7 +862,7 @@ function bindOnce() { if (bound) return; bound = true;
   document.addEventListener('input', onInput);
   document.addEventListener('change', onChange);
   document.addEventListener('click', onClick);
-  window.addEventListener('resize', debounce(()=>{drawHeat();drawLandscape();},120));
+  window.addEventListener('resize', debounce(drawActiveViz,120));
 }
 
 function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
@@ -865,6 +894,7 @@ function onChange(e) {
 
 function onClick(e) {
   const b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.seriesPick) { selected=b.dataset.seriesPick; update(); return; }
   if (b.dataset.seriesStep) { stepSeries(+b.dataset.seriesStep); return; }
   if (b.dataset.vizStep) { stepViz(+b.dataset.vizStep); return; }
   if (b.dataset.tab) { tab = b.dataset.tab; render(); return; }
@@ -900,8 +930,8 @@ function togglePlay() {
     const p = Math.min(1, (now - started) / 5600);
     playPos = Y0 + (Y1 - Y0) * p;
     const year = Math.min(Y1, Math.floor(playPos));
-    if (year !== shownYear) { shownYear = focusYear = year; const f = $('focus'); if (f) f.value = year; const out = $('focus-out'); if (out) out.textContent = year; }
-    drawHeat(); drawLandscape();
+    if (year !== shownYear) { shownYear = focusYear = year; const f = $('focus'); if (f) f.value = year; const out = $('focus-out'); if (out) out.textContent = year; if(vizView==='profile'||vizView==='grid')drawActiveViz(); }
+    if(vizView==='heat'||vizView==='landscape')drawActiveViz();
     if (p < 1) playRaf = requestAnimationFrame(step);
     else { playing = false; playPos = focusYear = Y1; $('play').textContent = '▶ Toista 2025→2050'; update(); }
   };
