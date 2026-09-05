@@ -156,6 +156,13 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 .heat-legend{display:flex;align-items:center;gap:9px;margin-top:10px;font-size:10.5px;color:#cfc6d5}
 .heat-grad{width:170px;height:8px;border-radius:9px;background:linear-gradient(90deg,#c66a2b,#efe9e4 50%,#3fa89b)}
 .heat-empty{margin-top:10px;font-size:11.5px;color:#c3b8ce}
+.viz-switch{display:grid;grid-template-columns:42px minmax(0,1fr) 42px;gap:8px;align-items:stretch;margin-top:16px}
+.viz-switch button{border:1px solid #cbd9d4;border-radius:9px;background:#f7faf9;color:var(--teal-deep);font-size:22px;font-weight:800;transition:background .15s,border-color .15s,transform .1s}
+.viz-switch button:hover{background:#e9f4f0;border-color:var(--teal)}.viz-switch button:active{transform:scale(.95)}
+.viz-title{display:grid;place-content:center;min-height:44px;padding:6px 12px;border:1px solid var(--line);border-radius:9px;background:#f7faf9;text-align:center}
+.viz-title small{display:block;color:#7c8d87;font-size:8.5px;font-weight:800;letter-spacing:.12em}.viz-title strong{display:block;color:var(--ink);font:700 14px var(--fd)}
+.viz-carousel{margin-top:9px}.viz-carousel>.heat,.viz-carousel>.landscape{margin-top:0}
+[data-viz-panel][hidden],.heat-empty[hidden],.landscape-empty[hidden]{display:none!important}
 
 /* smooth contour -vaikutusmaisema */
 .landscape{margin-top:16px;padding:18px;border-radius:var(--r);background:#302a3d;color:#efeaf3;border:1px solid #493e57}
@@ -293,6 +300,7 @@ let values = {}, reformYear = 2027, selected = 'safe_corridor.arope_25_29';
 let tab = 'groups', scenario = {}, composite = [], focusYear = 2032;
 let playing = false, playRaf = null, playPos = Y1, heat = null, landscape = null;
 let hoverIdx = null;
+let vizView = 'heat';
 
 /* ---------- helpers ---------- */
 const nf = (n, d = 1) => new Intl.NumberFormat('fi-FI', {minimumFractionDigits: d, maximumFractionDigits: d}).format(n || 0);
@@ -392,6 +400,9 @@ function sensitivity(seriesKey, year) {
 function activeCount() { return Object.values(values).filter(Boolean).length; }
 function orderedSeries() { return Object.keys(scenario).sort((a,b)=>{const ai=LANDSCAPE_ORDER.indexOf(a),bi=LANDSCAPE_ORDER.indexOf(b);return (ai<0?999:ai)-(bi<0?999:bi)||(NAMES[a]||a).localeCompare(NAMES[b]||b,'fi');}); }
 function stepSeries(direction) { const list=orderedSeries(),i=list.indexOf(selected);if(!list.length)return;selected=list[(Math.max(0,i)+direction+list.length)%list.length];update(); }
+const VIZ_VIEWS=['heat','landscape'],VIZ_NAMES={heat:'Vaikutuskartta',landscape:'Vaikutusmaisema'};
+function syncViz(){document.querySelectorAll('[data-viz-panel]').forEach(el=>el.hidden=el.dataset.vizPanel!==vizView);const title=$('viz-title'),index=$('viz-index');if(title)title.textContent=VIZ_NAMES[vizView];if(index)index.textContent=`SELATTAVA NÄKYMÄ · ${VIZ_VIEWS.indexOf(vizView)+1} / ${VIZ_VIEWS.length}`;requestAnimationFrame(()=>vizView==='heat'?drawHeat():drawLandscape());}
+function stepViz(direction){const i=VIZ_VIEWS.indexOf(vizView);vizView=VIZ_VIEWS[(i+direction+VIZ_VIEWS.length)%VIZ_VIEWS.length];syncViz();}
 function groupItems(g) { return levers.filter(l => g.matches.some(m => (l.policy_area || '').includes(m))); }
 function groupValue(g) {
   const a = groupItems(g);
@@ -499,7 +510,7 @@ function buildLandscape() {
 }
 function landscapeColor(v,max){const t=Math.min(1,Math.abs(v)/(max||1));if(t<.045)return[48,42,61,255];const stops=v>=0?[[55,59,88],[77,103,157],[91,157,196],[132,207,207],[205,232,190],[255,241,183]]:[[65,47,65],[107,58,68],[166,76,67],[211,112,76],[244,178,116],[255,225,177]],z=t*(stops.length-1),i=Math.min(stops.length-2,Math.floor(z)),f=z-i;return[...stops[i].map((c,j)=>Math.round(c+(stops[i+1][j]-c)*f)),255]}
 function contourLines(ctx,m,level,L,T,pw,ph){const {gw,gh,field,maxAbs}=m,x=i=>L+i/(gw-1)*pw,y=j=>T+j/(gh-1)*ph,pairs={1:[[3,0]],2:[[0,1]],3:[[3,1]],4:[[1,2]],5:[[3,2],[0,1]],6:[[0,2]],7:[[3,2]],8:[[2,3]],9:[[0,2]],10:[[0,3],[1,2]],11:[[1,2]],12:[[1,3]],13:[[0,1]],14:[[3,0]]},edge=(e,i,j)=>e===0?[(x(i)+x(i+1))/2,y(j)]:e===1?[x(i+1),(y(j)+y(j+1))/2]:e===2?[(x(i)+x(i+1))/2,y(j+1)]:[x(i),(y(j)+y(j+1))/2];ctx.beginPath();for(let j=0;j<gh-1;j++)for(let i=0;i<gw-1;i++){const a=Math.abs(field[j*gw+i])/maxAbs,b=Math.abs(field[j*gw+i+1])/maxAbs,c=Math.abs(field[(j+1)*gw+i+1])/maxAbs,d=Math.abs(field[(j+1)*gw+i])/maxAbs,code=(a>=level?1:0)|(b>=level?2:0)|(c>=level?4:0)|(d>=level?8:0);(pairs[code]||[]).forEach(([e1,e2])=>{const p1=edge(e1,i,j),p2=edge(e2,i,j);ctx.moveTo(...p1);ctx.lineTo(...p2)})}ctx.stroke()}
-function landscapeGeometry(canvas){const cssW=Math.max(280,Math.min(canvas.parentElement.clientWidth,document.documentElement.clientWidth-48)),cssH=Math.max(340,Math.min(500,70+(landscape?.rows.length||10)*28)),L=Math.min(220,Math.max(108,cssW*.31)),R=14,T=12,B=30;return{cssW,cssH,L,R,T,B,pw:cssW-L-R,ph:cssH-T-B}}
+function landscapeGeometry(canvas){const cssW=Math.max(280,Math.min(canvas.parentElement.clientWidth,document.documentElement.clientWidth-48)),cssH=Math.max(360,Math.min(520,78+(landscape?.rows.length||10)*29)),L=Math.min(180,Math.max(104,cssW*.25)),R=14,T=12,B=30;return{cssW,cssH,L,R,T,B,pw:cssW-L-R,ph:cssH-T-B}}
 function buildLandscapeBase(g){const m=landscape,base=document.createElement('canvas');base.width=g.cssW;base.height=g.cssH;const ctx=base.getContext('2d');ctx.fillStyle='#302a3d';ctx.fillRect(0,0,g.cssW,g.cssH);const raw=document.createElement('canvas');raw.width=m.gw;raw.height=m.gh;const rc=raw.getContext('2d'),img=rc.createImageData(m.gw,m.gh);for(let i=0;i<m.field.length;i++){const c=landscapeColor(m.field[i],m.maxAbs),o=i*4;img.data[o]=c[0];img.data[o+1]=c[1];img.data[o+2]=c[2];img.data[o+3]=255}rc.putImageData(img,0,0);ctx.imageSmoothingEnabled=true;ctx.drawImage(raw,g.L,g.T,g.pw,g.ph);ctx.strokeStyle='rgba(255,255,255,.33)';ctx.lineWidth=1;[.12,.22,.34,.48,.63,.79,.91].forEach(level=>contourLines(ctx,m,level,g.L,g.T,g.pw,g.ph));return base}
 function drawLandscape(){const canvas=$('landscape');if(!canvas||!landscape)return;const g=landscapeGeometry(canvas),dpr=Math.min(2,window.devicePixelRatio||1),key=`${g.cssW}x${g.cssH}`;canvas.style.width=g.cssW+'px';canvas.style.height=g.cssH+'px';if(canvas.width!==g.cssW*dpr||canvas.height!==g.cssH*dpr){canvas.width=g.cssW*dpr;canvas.height=g.cssH*dpr}if(landscape.baseKey!==key){landscape.base=buildLandscapeBase(g);landscape.baseKey=key}const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,g.cssW,g.cssH);ctx.drawImage(landscape.base,0,0);const xYear=y=>g.L+(y-Y0)/(Y1-Y0)*g.pw,yRow=i=>g.T+(i+.5)/landscape.rows.length*g.ph,reveal=xYear(playPos);if(playPos<Y1){ctx.fillStyle='rgba(48,42,61,.88)';ctx.fillRect(reveal,g.T,g.cssW-g.R-reveal,g.ph)}ctx.font='10px '+getComputedStyle(document.body).fontFamily;ctx.textBaseline='middle';ctx.textAlign='left';landscape.rows.forEach((key,i)=>{let label=NAMES[key]||key;while(ctx.measureText(label).width>g.L-13&&label.length>7)label=label.slice(0,-2);ctx.fillStyle=key===selected?'#fff0b7':'#b9aec5';ctx.fillText(label,6,yRow(i))});ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillStyle='#9d92aa';[2025,2030,2035,2040,2045,2050].forEach(y=>ctx.fillText(y,xYear(y),g.cssH-10));const sy=yRow(Math.max(0,landscape.rows.indexOf(selected)));ctx.strokeStyle='rgba(255,240,183,.76)';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(g.L,sy);ctx.lineTo(reveal,sy);ctx.stroke();landscape.peaks.filter(p=>p.year<=playPos).forEach((p,i)=>{const x=xYear(p.year),y=yRow(p.ri),right=x>g.cssW-175;ctx.fillStyle='#fff0b7';ctx.beginPath();ctx.arc(x,y,4.5,0,Math.PI*2);ctx.fill();ctx.font=(i<3?'600 10.5px ':'10px ')+getComputedStyle(document.body).fontFamily;ctx.textAlign=right?'right':'left';ctx.fillText(`${sign(p.value)} p. · ${p.year}`,x+(right?-7:7),y-5);if(i<3)ctx.fillText((NAMES[p.key]||p.key).split('·')[0].trim(),x+(right?-7:7),y+9)});ctx.strokeStyle='#fff';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(reveal,g.T);ctx.lineTo(reveal,g.T+g.ph);ctx.stroke();ctx.strokeStyle='#d8a13a';ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(reveal,g.T);ctx.lineTo(reveal,g.T+g.ph);ctx.stroke()}
 function bindLandscape(){const canvas=$('landscape'),tip=$('landscape-tip');if(!canvas||!tip)return;const locate=e=>{const g=landscapeGeometry(canvas),r=canvas.getBoundingClientRect(),px=(e.clientX-r.left)/r.width*g.cssW,py=(e.clientY-r.top)/r.height*g.cssH;if(px<g.L||px>g.cssW-g.R||py<g.T||py>g.cssH-g.B){tip.style.display='none';return null}const year=clamp(Math.round(Y0+(px-g.L)/g.pw*(Y1-Y0)),Y0,Y1),ri=clamp(Math.floor((py-g.T)/g.ph*landscape.rows.length),0,landscape.rows.length-1),key=landscape.rows[ri],point=(scenario[key]||[]).find(p=>p.year===year)||{delta:0};tip.style.display='block';tip.style.left=clamp(e.clientX-r.left+12,4,r.width-190)+'px';tip.style.top=clamp(e.clientY-r.top+10,4,r.height-72)+'px';tip.innerHTML=`<b>${esc(NAMES[key]||key)}</b><br>${year} · ero ${sign(point.delta)} pistettä`;return key};canvas.onpointermove=locate;canvas.onpointerleave=()=>tip.style.display='none';canvas.onclick=e=>{const key=locate(e);if(key){selected=key;update()}}}
@@ -641,7 +652,9 @@ function chartPanel() {
       <b>${esc(NAMES[selected] || selected)}</b>
       <span>Vuonna ${focusYear} skenaario on <b>${nf(focus.scenario)}</b> pistettä (${rawLabel(selected, focus.scenario)}), perusura ${nf(focus.score)} pistettä (${rawLabel(selected, focus.score)}). Yksikkö: ${u.name}. Pistemäärä on normalisoitu pohjoismaiseen vaihteluväliin, jossa 100 = paras havaittu taso.</span>
     </div>
-    <div class="heat">
+    <div class="viz-switch" aria-label="Visualisointinäkymän selaus"><button type="button" data-viz-step="-1" aria-label="Edellinen näkymä" title="Edellinen näkymä">←</button><div class="viz-title"><small id="viz-index">SELATTAVA NÄKYMÄ · ${VIZ_VIEWS.indexOf(vizView)+1} / ${VIZ_VIEWS.length}</small><strong id="viz-title">${VIZ_NAMES[vizView]}</strong></div><button type="button" data-viz-step="1" aria-label="Seuraava näkymä" title="Seuraava näkymä">→</button></div>
+    <div class="viz-carousel">
+    <div class="heat" data-viz-panel="heat" ${vizView==='heat'?'':'hidden'}>
       <h3>Vaikutuskartta · indikaattori × vuosi</h3>
       <p>Jokainen rivi on indikaattori, jokainen sarake vuosi. Vihreä = kohenee, oranssi = heikkenee.</p>
       <canvas id="heatmap"></canvas>
@@ -649,10 +662,11 @@ function chartPanel() {
         <span style="margin-left:auto">huippupoikkeama ±${nf(heat ? heat.maxAbs : 0)} p.</span></div>
       <p class="heat-empty" id="heat-empty" ${heat && heat.active ? 'hidden' : ''}>Kartta aktivoituu, kun säädät vähintään yhtä vipua.</p>
     </div>
-    <div class="landscape">
+    <div class="landscape" data-viz-panel="landscape" ${vizView==='landscape'?'':'hidden'}>
       <div class="landscape-head"><div><h3>Contour-vaikutusmaisema</h3><p>Sama laskennallinen aineisto silotettuna jatkuvaksi kentäksi. Sisäkkäiset viivat näyttävät saman vaikutustason alueet; pinta-ala ei tarkoita havaintomäärää tai todennäköisyyttä.</p></div><div class="landscape-kpi"><b id="landscape-scale">±${nf(landscape ? landscape.maxAbs : 0)} p.</b><span>kentän asteikko</span></div></div>
       <div class="landscape-wrap"><canvas id="landscape" role="img" aria-label="Contour-vaikutusmaisema turvallisen käytävän indikaattoreista vuosina 2025–2050"></canvas><div class="landscape-tip" id="landscape-tip"></div><div class="landscape-empty" id="landscape-empty" ${landscape && landscape.active ? 'hidden' : ''}>Valitse vähintään yksi säädösvipu.<br>Vaikutusmaisema muodostuu Murrosmatriisin lasketuista poikkeamista.</div></div>
       <div class="landscape-legend"><span>heikkenee</span><i class="landscape-grad"></i><span>kohenee</span><em>vaalea huippu = voimakkain vaikutus · valkoinen viiva = valittu indikaattori</em></div>
+    </div>
     </div>
   </section>`;
 }
@@ -852,6 +866,7 @@ function onChange(e) {
 function onClick(e) {
   const b = e.target.closest('button'); if (!b) return;
   if (b.dataset.seriesStep) { stepSeries(+b.dataset.seriesStep); return; }
+  if (b.dataset.vizStep) { stepViz(+b.dataset.vizStep); return; }
   if (b.dataset.tab) { tab = b.dataset.tab; render(); return; }
   if (b.dataset.preset) {
     const k = b.dataset.preset;
