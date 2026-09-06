@@ -183,9 +183,9 @@ input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;bac
 .profile-method{margin-top:9px;color:#b9aec5;font-size:9.5px}.profile-method summary{cursor:pointer;color:#d7cddd;font-weight:700}.profile-method ul{margin:7px 0 0;padding-left:18px;line-height:1.55}
 .indicator-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:9px}.indicator-mini{appearance:none;text-align:left;padding:10px;border:1px solid #493e57;border-radius:9px;background:#373044;color:#efeaf3;cursor:pointer}
 .indicator-mini:hover,.indicator-mini.active{border-color:#d8a13a;background:#40364d}.indicator-mini strong{display:block;min-height:30px;font-size:10.5px;line-height:1.35}.indicator-mini svg{display:block;width:100%;height:42px;margin:5px 0}.indicator-mini small{display:block;color:#b9aec5;font-size:9.5px}.indicator-mini b{font:700 11px var(--fm)}
-.path-stage{padding:18px;border-radius:var(--r);background:#302a3d;color:#efeaf3;border:1px solid #493e57}.path-stage h3{margin:0;font:700 17px var(--fd);color:#f5eff7}.path-stage>p{margin:4px 0 10px;font-size:11px;color:#b9aec5;line-height:1.5}.path-summary{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:9px}.path-summary span{padding:6px 9px;border:1px solid #4c405b;border-radius:8px;background:#373044;color:#cfc6d5;font-size:10px}.path-summary b{color:#fff0b7}.path-host{overflow-x:auto}.path-host svg{display:block;width:100%;min-width:680px;height:auto}.path-method{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;margin-top:8px;color:#a99daf;font-size:9.5px;line-height:1.45}.path-method b{color:#cfc6d5}
+.path-stage{padding:18px;border-radius:var(--r);background:#302a3d;color:#efeaf3;border:1px solid #493e57}.path-stage h3{margin:0;font:700 17px var(--fd);color:#f5eff7}.path-stage>p{margin:4px 0 10px;font-size:11px;color:#b9aec5;line-height:1.5}.path-range{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:end;margin:12px 0;padding:10px 12px;border:1px solid #4c405b;border-radius:9px;background:#373044}.path-range label{display:grid;gap:5px;color:#b9aec5;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}.path-range output{color:#fff0b7;font:700 12px var(--fm)}.path-range input{width:100%;accent-color:#51bca9}.path-range-arrow{align-self:center;padding-top:14px;color:#fff0b7;font:700 18px var(--fd)}.path-periods{display:flex;gap:5px;flex-wrap:wrap;margin:-3px 0 10px}.path-periods button{border:1px solid #554967;border-radius:7px;background:#373044;color:#cfc6d5;padding:6px 9px;font-size:9.5px;font-weight:700}.path-periods button:hover{border-color:#8f7ba2;color:#fff0b7}.path-summary{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:9px}.path-summary span{padding:6px 9px;border:1px solid #4c405b;border-radius:8px;background:#373044;color:#cfc6d5;font-size:10px}.path-summary b{color:#fff0b7}.path-host{overflow-x:auto}.path-host svg{display:block;width:100%;min-width:680px;height:auto}.path-method{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;margin-top:8px;color:#a99daf;font-size:9.5px;line-height:1.45}.path-method b{color:#cfc6d5}
 @media(max-width:820px){.landscape{padding:14px}.landscape-head{display:block}.landscape-kpi{text-align:left;margin:8px 0}.landscape-legend em{width:100%;margin-left:0}.landscape-empty{left:105px}}
-@media(max-width:620px){.profile-cards,.cluster-summary{grid-template-columns:1fr 1fr}.profile-stage,.grid-stage,.path-stage{padding:13px}.indicator-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.profile-cards,.cluster-summary{grid-template-columns:1fr 1fr}.profile-stage,.grid-stage,.path-stage{padding:13px}.indicator-grid{grid-template-columns:1fr 1fr}.path-range{grid-template-columns:1fr}.path-range-arrow{display:none}}
 
 /* insight */
 .direction{display:flex;gap:14px;align-items:center;padding:15px;margin-bottom:16px;
@@ -367,6 +367,7 @@ let tab = 'groups', scenario = {}, composite = [], focusYear = 2032;
 let playing = false, playRaf = null, playPos = Y1, mapYear = 2025, heat = null, landscape = null;
 let hoverIdx = null;
 let vizView = 'heat';
+let pathStart = MAP_Y0, pathEnd = 2025;
 
 /* ---------- helpers ---------- */
 const nf = (n, d = 1) => new Intl.NumberFormat('fi-FI', {minimumFractionDigits: d, maximumFractionDigits: d}).format(n || 0);
@@ -468,7 +469,7 @@ function orderedSeries() { return Object.keys(scenario).sort((a,b)=>{const ai=LA
 function stepSeries(direction) { const list=orderedSeries(),i=list.indexOf(selected);if(!list.length)return;selected=list[(Math.max(0,i)+direction+list.length)%list.length];update(); }
 const VIZ_VIEWS=['heat','landscape','profile','pathways','grid'],VIZ_NAMES={heat:'Vaikutuskartta',landscape:'Vaikutusmaisema',profile:'Tasapainoprofiili',pathways:'Elämänpolut',grid:'Indikaattoriristikko'};
 function drawActiveViz(){if(vizView==='heat')drawHeat();else if(vizView==='landscape')drawLandscape();else if(vizView==='profile')drawProfile();else if(vizView==='pathways')drawPathways();else drawIndicatorGrid();}
-function syncViz(){document.querySelectorAll('[data-viz-panel]').forEach(el=>el.hidden=el.dataset.vizPanel!==vizView);const title=$('viz-title'),index=$('viz-index'),focus=$('focus'),out=$('focus-out'),play=$('play');if(title)title.textContent=VIZ_NAMES[vizView];if(index)index.textContent=`SELATTAVA NÄKYMÄ · ${VIZ_VIEWS.indexOf(vizView)+1} / ${VIZ_VIEWS.length}`;if(focus){focus.min=vizView==='landscape'?MAP_Y0:Y0;focus.value=vizView==='landscape'?mapYear:focusYear}if(out)out.textContent=vizView==='landscape'?mapYear:focusYear;if(play&&!playing)play.textContent=vizView==='landscape'?`▶ Toista ${MAP_Y0}→${Y1}`:`▶ Toista ${Y0}→${Y1}`;requestAnimationFrame(drawActiveViz);}
+function syncViz(){document.querySelectorAll('[data-viz-panel]').forEach(el=>el.hidden=el.dataset.vizPanel!==vizView);const title=$('viz-title'),index=$('viz-index'),focus=$('focus'),out=$('focus-out'),play=$('play');if(title)title.textContent=VIZ_NAMES[vizView];if(index)index.textContent=`SELATTAVA NÄKYMÄ · ${VIZ_VIEWS.indexOf(vizView)+1} / ${VIZ_VIEWS.length}`;if(focus){focus.min=(vizView==='landscape'||vizView==='pathways')?MAP_Y0:Y0;focus.value=vizView==='landscape'?mapYear:vizView==='pathways'?pathEnd:focusYear}if(out)out.textContent=vizView==='landscape'?mapYear:vizView==='pathways'?`${pathStart}→${pathEnd}`:focusYear;if(play&&!playing)play.textContent=vizView==='landscape'?`▶ Toista ${MAP_Y0}→${Y1}`:vizView==='pathways'?'▶ Siirrä aikaväliä':`▶ Toista ${Y0}→${Y1}`;requestAnimationFrame(drawActiveViz);}
 function stepViz(direction){const i=VIZ_VIEWS.indexOf(vizView);vizView=VIZ_VIEWS[(i+direction+VIZ_VIEWS.length)%VIZ_VIEWS.length];syncViz();}
 function groupItems(g) { return levers.filter(l => g.matches.some(m => (l.policy_area || '').includes(m))); }
 function groupValue(g) {
@@ -677,8 +678,12 @@ function drawProfile(){const host=$('profile-host'),cards=$('profile-cards');if(
 function drawIndicatorGrid(){const host=$('indicator-grid');if(!host)return;host.innerHTML=orderedSeries().map(k=>{const rows=scenario[k]||[],W=150,H=42,x=y=>(y-Y0)/(Y1-Y0)*W,yy=v=>H-clamp(v,0,100)/100*H,line=key=>rows.map((p,i)=>`${i?'L':'M'}${x(p.year).toFixed(1)} ${yy(p[key]).toFixed(1)}`).join(' '),p=rows.find(r=>r.year===focusYear)||rows.at(-1)||{delta:0,scenario:0},cx=x(focusYear);return `<button class="indicator-mini ${k===selected?'active':''}" data-series-pick="${esc(k)}"><strong>${esc(NAMES[k]||k)}</strong><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><path d="${line('score')}" fill="none" stroke="#847890" stroke-width="1.4" stroke-dasharray="4 4"/><path d="${line('scenario')}" fill="none" stroke="${p.delta>=.05?'#4bd2b7':p.delta<=-.05?'#e98b67':'#a99daf'}" stroke-width="2.2"/><line x1="${cx}" x2="${cx}" y1="0" y2="${H}" stroke="#fff0b7" stroke-opacity=".55"/></svg><small>${focusYear} · <b style="color:${p.delta>=.05?'#7be0ce':p.delta<=-.05?'#f2a47c':'#c7bbcf'}">${sign(p.delta)} p.</b> · ${esc(rawLabel(k,p.scenario))}</small></button>`}).join('')}
 
 /* ---------- elämänpolut: turvallinen käytävä → vuotuiset tilasiirtymät ---------- */
+function lifeProfile(year,useScenario){
+  if(year>=Y0)return profileValues(year).map(a=>({...a,value:useScenario?a.scenario:a.base}));
+  return PROFILE_AXES.map(axis=>{const points=axis.keys.map(key=>{const item=MAP_ITEMS.find(x=>x.key===key);return item?seriesScore({...item,safe:false},year):null}).filter(Boolean);return{...axis,value:points.length?points.reduce((s,p)=>s+p.score,0)/points.length:50}});
+}
 function lifeMatrix(year, useScenario=true){
-  const axes=profileValues(year),d=Object.fromEntries(axes.map(a=>[a.label,(useScenario?a.scenario:a.base)-a.base]));
+  const d=Object.fromEntries(lifeProfile(year,useScenario).map(a=>[a.label,a.value-50]));
   const work=((d['Työllisyys']||0)+(d['Työttömyys']||0)+(d['Pitkittynyt työttömyys']||0)/2)/2.5;
   const income=d['Toimeentulo & asuminen']||0, independence=d['Itsenäistyminen']||0, family=d['Perheellistyminen']||0;
   const m=LIFE_BASE.map(r=>r.slice()),ix=Object.fromEntries(LIFE_STATES.map((s,i)=>[s.key,i]));
@@ -690,22 +695,28 @@ function lifeMatrix(year, useScenario=true){
   return m.map((r,i)=>{const sum=r.reduce((a,b)=>a+b,0);return sum?r.map(v=>v/sum):r.map((_,j)=>i===j?1:0)});
 }
 function lifeStep(dist,m){return m[0].map((_,j)=>dist.reduce((s,v,i)=>s+v*m[i][j],0))}
-function lifeModel(year){
-  let base=LIFE_STATES.map(s=>s.share),scen=base.slice();
-  for(let y=Y0;y<year;y++){base=lifeStep(base,lifeMatrix(y,false));scen=lifeStep(scen,lifeMatrix(y,true))}
-  const mb=lifeMatrix(year,false),ms=lifeMatrix(year,true),next=lifeStep(scen,ms);
-  const flows=[];scen.forEach((share,i)=>ms[i].forEach((p,j)=>{const value=share*p;if(value>.00035)flows.push({i,j,value})}));
-  return{base,scen,next,mb,ms,flows};
+function lifeIdentity(){return LIFE_STATES.map((_,i)=>LIFE_STATES.map((_,j)=>i===j?1:0))}
+function lifeMultiply(a,b){return a.map((row,i)=>b[0].map((_,j)=>row.reduce((s,v,k)=>s+v*b[k][j],0)))}
+function lifeDistribution(year,useScenario){let d=LIFE_STATES.map(s=>s.share);for(let y=MAP_Y0;y<year;y++)d=lifeStep(d,lifeMatrix(y,useScenario));return d}
+function lifeModel(start,end){
+  start=clamp(Math.round(start),MAP_Y0,Y1-1);end=clamp(Math.round(end),start+1,Y1);
+  const startBase=lifeDistribution(start,false),startScen=lifeDistribution(start,true);let baseProduct=lifeIdentity(),scenProduct=lifeIdentity();
+  for(let y=start;y<end;y++){baseProduct=lifeMultiply(baseProduct,lifeMatrix(y,false));scenProduct=lifeMultiply(scenProduct,lifeMatrix(y,true))}
+  const baseEnd=lifeStep(startBase,baseProduct),scenEnd=lifeStep(startScen,scenProduct),flows=[];
+  startScen.forEach((share,i)=>scenProduct[i].forEach((p,j)=>{const value=share*p;if(value>.00035)flows.push({i,j,value})}));
+  return{start,end,startBase,startScen,baseEnd,scenEnd,baseProduct,scenProduct,flows};
 }
 function drawPathways(){
-  const host=$('path-host'),summary=$('path-summary');if(!host)return;const year=focusYear,m=lifeModel(year),W=820,H=455,LX=178,RX=650,NW=17,TOP=25,GAP=7,usable=H-TOP*2-GAP*(LIFE_STATES.length-1);
-  const stack=dist=>{let y=TOP;return dist.map(v=>{const h=Math.max(3,v*usable),o={y,h};y+=h+GAP;return o})},left=stack(m.scen),right=stack(m.next),out=left.map(x=>x.y),inc=right.map(x=>x.y);
+  const host=$('path-host'),summary=$('path-summary');if(!host)return;const m=lifeModel(pathStart,pathEnd),W=820,H=455,LX=178,RX=650,NW=17,TOP=25,GAP=7,usable=H-TOP*2-GAP*(LIFE_STATES.length-1);
+  const stack=dist=>{let y=TOP;return dist.map(v=>{const h=Math.max(3,v*usable),o={y,h};y+=h+GAP;return o})},left=stack(m.startScen),right=stack(m.scenEnd),out=left.map(x=>x.y),inc=right.map(x=>x.y);
   const defs=LIFE_STATES.map((s,i)=>`<linearGradient id="life-${i}" x1="0" x2="1"><stop stop-color="${s.color}" stop-opacity=".7"/><stop offset="1" stop-color="${s.color}" stop-opacity=".22"/></linearGradient>`).join('');
-  const paths=[...m.flows].sort((a,b)=>b.value-a.value).map(f=>{const a=left[f.i],b=right[f.j],h1=Math.max(.7,f.value/Math.max(.0001,m.scen[f.i])*a.h),h2=Math.max(.7,f.value/Math.max(.0001,m.next[f.j])*b.h),sy=out[f.i],ty=inc[f.j];out[f.i]+=h1;inc[f.j]+=h2;const mid=(LX+NW+RX)/2;return`<path d="M${LX+NW},${sy} C${mid},${sy} ${mid},${ty} ${RX},${ty} L${RX},${ty+h2} C${mid},${ty+h2} ${mid},${sy+h1} ${LX+NW},${sy+h1}Z" fill="url(#life-${f.i})"><title>${esc(LIFE_STATES[f.i].label)} → ${esc(LIFE_STATES[f.j].label)}: ${nf(f.value*100)} % ikäryhmästä</title></path>`}).join('');
-  const nodes=LIFE_STATES.map((s,i)=>{const delta=(m.scen[i]-m.base[i])*100,c=delta>.04?'#7be0ce':delta<-.04?'#f2a47c':'#a99daf';return`<rect x="${LX}" y="${left[i].y}" width="${NW}" height="${left[i].h}" rx="4" fill="${s.color}"/><rect x="${RX}" y="${right[i].y}" width="${NW}" height="${right[i].h}" rx="4" fill="${s.color}"/><text x="${LX-9}" y="${left[i].y+left[i].h/2+4}" text-anchor="end" fill="#eee8f1" font-size="11">${esc(s.label)}</text><text x="${RX+NW+9}" y="${right[i].y+right[i].h/2+3}" fill="#eee8f1" font-size="10">${nf(m.next[i]*100)} %</text><text x="${LX-9}" y="${left[i].y+left[i].h/2+16}" text-anchor="end" fill="${c}" font-size="9">${Math.abs(delta)>.04?sign(delta)+' p. vs perusura':''}</text>`}).join('');
-  host.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="25–34-vuotiaiden simuloidut elämäntilasiirtymät vuodesta ${year} vuoteen ${Math.min(Y1,year+1)}"><defs>${defs}</defs><text x="${LX}" y="14" fill="#fff0b7" font-size="11" font-weight="700">${year}</text><text x="${RX}" y="14" fill="#fff0b7" font-size="11" font-weight="700">${Math.min(Y1,year+1)}</text>${paths}${nodes}</svg>`;
-  const stable=(m.scen[1]+m.scen[3])*100,fragile=(m.scen[2]+m.scen[4]+m.scen[6])*100,largest=[...m.flows].filter(f=>f.i!==f.j).sort((a,b)=>b.value-a.value)[0];
+  const paths=[...m.flows].sort((a,b)=>b.value-a.value).map(f=>{const a=left[f.i],b=right[f.j],h1=Math.max(.7,f.value/Math.max(.0001,m.startScen[f.i])*a.h),h2=Math.max(.7,f.value/Math.max(.0001,m.scenEnd[f.j])*b.h),sy=out[f.i],ty=inc[f.j];out[f.i]+=h1;inc[f.j]+=h2;const mid=(LX+NW+RX)/2;return`<path d="M${LX+NW},${sy} C${mid},${sy} ${mid},${ty} ${RX},${ty} L${RX},${ty+h2} C${mid},${ty+h2} ${mid},${sy+h1} ${LX+NW},${sy+h1}Z" fill="url(#life-${f.i})"><title>${esc(LIFE_STATES[f.i].label)} → ${esc(LIFE_STATES[f.j].label)}: ${nf(f.value*100)} % ikäryhmästä aikavälillä ${m.start}–${m.end}</title></path>`}).join('');
+  const nodes=LIFE_STATES.map((s,i)=>{const delta=(m.scenEnd[i]-m.baseEnd[i])*100,c=delta>.04?'#7be0ce':delta<-.04?'#f2a47c':'#a99daf';return`<rect x="${LX}" y="${left[i].y}" width="${NW}" height="${left[i].h}" rx="4" fill="${s.color}"/><rect x="${RX}" y="${right[i].y}" width="${NW}" height="${right[i].h}" rx="4" fill="${s.color}"/><text x="${LX-9}" y="${left[i].y+left[i].h/2+4}" text-anchor="end" fill="#eee8f1" font-size="11">${esc(s.label)}</text><text x="${RX+NW+9}" y="${right[i].y+right[i].h/2+3}" fill="#eee8f1" font-size="10">${nf(m.scenEnd[i]*100)} %</text><text x="${RX+NW+9}" y="${right[i].y+right[i].h/2+15}" fill="${c}" font-size="9">${Math.abs(delta)>.04?sign(delta)+' p. vs perusura':''}</text>`}).join('');
+  const boundaryX=LX+NW+(Y0-m.start)/(m.end-m.start)*(RX-LX-NW),boundary=m.start<Y0&&m.end>Y0?`<line x1="${boundaryX}" x2="${boundaryX}" y1="20" y2="${H-16}" stroke="#fff0b7" stroke-opacity=".42" stroke-dasharray="4 5"/><text x="${boundaryX}" y="14" text-anchor="middle" fill="#fff0b7" font-size="9">2025 · havaittu → skenaario</text>`:'';
+  host.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="25–34-vuotiaiden mallinnetut elämäntilasiirtymät vuodesta ${m.start} vuoteen ${m.end}"><defs>${defs}</defs><text x="${LX}" y="14" fill="#fff0b7" font-size="11" font-weight="700">${m.start}</text><text x="${RX}" y="14" fill="#fff0b7" font-size="11" font-weight="700">${m.end}</text>${boundary}${paths}${nodes}</svg>`;
+  const stable=(m.scenEnd[1]+m.scenEnd[3])*100,fragile=(m.scenEnd[2]+m.scenEnd[4]+m.scenEnd[6])*100,largest=[...m.flows].filter(f=>f.i!==f.j).sort((a,b)=>b.value-a.value)[0];
   if(summary)summary.innerHTML=`<span>Vakaa työasema <b>${nf(stable)} %</b></span><span>Haavoittuva asema <b>${nf(fragile)} %</b></span><span>Suurin siirtymä <b>${largest?esc(LIFE_STATES[largest.i].label)+' → '+esc(LIFE_STATES[largest.j].label):'–'}</b></span>`;
+  const ps=$('path-start'),pe=$('path-end'),pso=$('path-start-out'),peo=$('path-end-out');if(ps)ps.value=pathStart;if(pe)pe.value=pathEnd;if(pso)pso.textContent=pathStart;if(peo)peo.textContent=pathEnd;
 }
 
 /* ---------- rendering ---------- */
@@ -867,8 +878,10 @@ function chartPanel() {
     </div>
     <div class="path-stage" data-viz-panel="pathways" ${vizView==='pathways'?'':'hidden'}>
       <h3>Elämänpolut · 25–34-vuotiaiden tilasiirtymät</h3><p>Virrat näyttävät, kuinka sama säädösskenaario muuttaa siirtymiä opiskelun, työn, työttömyyden, perhevapaan ja muiden elämäntilanteiden välillä. Nauhan leveys vastaa osuutta koko ikäryhmästä.</p>
+      <div class="path-range"><label>Alkuvuosi <output id="path-start-out">${pathStart}</output><input type="range" id="path-start" min="${MAP_Y0}" max="${Y1-1}" step="1" value="${pathStart}" aria-label="Elämänpolkujen alkuvuosi"></label><span class="path-range-arrow">→</span><label>Loppuvuosi <output id="path-end-out">${pathEnd}</output><input type="range" id="path-end" min="${MAP_Y0+1}" max="${Y1}" step="1" value="${pathEnd}" aria-label="Elämänpolkujen loppuvuosi"></label></div>
+      <div class="path-periods" aria-label="Aikavälin pikavalinnat"><button type="button" data-path-range="2000,2025">Historia 2000–2025</button><button type="button" data-path-years="5">5 vuotta</button><button type="button" data-path-years="10">10 vuotta</button><button type="button" data-path-range="2025,2050">Tulevaisuus 2025–2050</button></div>
       <div class="path-summary" id="path-summary" aria-live="polite"></div><div class="path-host" id="path-host"></div>
-      <div class="path-method"><span><b>Turvallinen käytävä → siirtymät:</b> työllisyys, toimeentulo, asuminen, itsenäistyminen ja perheellistyminen muuttavat vuotuisia todennäköisyyksiä.</span><span>Mekanismiskenaario, ei havaittu yksilöaineisto eikä ennuste.</span></div>
+      <div class="path-method"><span><b>2000–2025:</b> indikaattoreilla kalibroitu historiallinen mallinnus. <b>2026–2050:</b> perusura ja säädösskenaario.</span><span>Mekanismiskenaario, ei havaittu yksilöaineisto eikä ennuste.</span></div>
     </div>
     <div class="grid-stage" data-viz-panel="grid" ${vizView==='grid'?'':'hidden'}>
       <h3>Indikaattoriristikko</h3><p>Kaikkien muuttujien kehityspolut rinnakkain. Katkoviiva on perusura; napsauta korttia avataksesi muuttujan tarkkaan tarkasteluun.</p>
@@ -1059,7 +1072,9 @@ function onInput(e) {
     }
     update();
   }
-  if (t.id === 'focus') { if(vizView==='landscape'){mapYear=+t.value;$('focus-out').textContent=mapYear;drawLandscape()}else{focusYear=+t.value;$('focus-out').textContent=focusYear;update()} }
+  if(t.id==='path-start'){pathStart=Math.min(+t.value,pathEnd-1);t.value=pathStart;$('path-start-out').textContent=pathStart;$('focus-out').textContent=`${pathStart}→${pathEnd}`;drawPathways()}
+  if(t.id==='path-end'){pathEnd=Math.max(+t.value,pathStart+1);$('path-end-out').textContent=pathEnd;$('focus').value=pathEnd;$('focus-out').textContent=`${pathStart}→${pathEnd}`;drawPathways()}
+  if (t.id === 'focus') { if(vizView==='landscape'){mapYear=+t.value;$('focus-out').textContent=mapYear;drawLandscape()}else if(vizView==='pathways'){pathEnd=Math.max(+t.value,pathStart+1);$('focus').value=pathEnd;$('focus-out').textContent=`${pathStart}→${pathEnd}`;drawPathways()}else{focusYear=+t.value;$('focus-out').textContent=focusYear;update()} }
   if (t.id === 'reform') { reformYear = clamp(+t.value || 2027, Y0, 2045); update(); }
 }
 
@@ -1071,6 +1086,8 @@ function onClick(e) {
   if (b.dataset.seriesPick) { selected=b.dataset.seriesPick; update(); return; }
   if (b.dataset.seriesStep) { stepSeries(+b.dataset.seriesStep); return; }
   if (b.dataset.vizStep) { stepViz(+b.dataset.vizStep); return; }
+  if(b.dataset.pathRange){const [a,z]=b.dataset.pathRange.split(',').map(Number);pathStart=a;pathEnd=z;syncViz();return}
+  if(b.dataset.pathYears){const span=+b.dataset.pathYears;pathEnd=Math.min(Y1,pathStart+span);if(pathEnd-pathStart<span)pathStart=Math.max(MAP_Y0,pathEnd-span);syncViz();return}
   if (b.dataset.tab) { tab = b.dataset.tab; render(); return; }
   if (b.dataset.preset) {
     const k = b.dataset.preset;
@@ -1095,6 +1112,10 @@ function togglePlay() {
   if(vizView==='landscape'){
     if(playing){playing=false;cancelAnimationFrame(playRaf);mapYear=Math.round(playPos);$('play').textContent=`▶ Toista ${MAP_Y0}→${Y1}`;drawLandscape();return}
     playing=true;playPos=MAP_Y0;mapYear=MAP_Y0;$('play').textContent='❚❚ Pysäytä';let started=null,shown=MAP_Y0;const step=now=>{if(!playing)return;if(started===null)started=now;const p=Math.min(1,(now-started)/9000);playPos=MAP_Y0+(Y1-MAP_Y0)*p;const year=Math.min(Y1,Math.floor(playPos));if(year!==shown){shown=mapYear=year;const f=$('focus');if(f)f.value=year;const out=$('focus-out');if(out)out.textContent=year}drawLandscape();if(p<1)playRaf=requestAnimationFrame(step);else{playing=false;playPos=mapYear=Y1;$('play').textContent=`▶ Toista ${MAP_Y0}→${Y1}`;drawLandscape()}};playRaf=requestAnimationFrame(step);return;
+  }
+  if(vizView==='pathways'){
+    if(playing){playing=false;cancelAnimationFrame(playRaf);$('play').textContent='▶ Siirrä aikaväliä';drawPathways();return}
+    const span=pathEnd-pathStart,maxStart=Y1-span;playing=true;pathStart=MAP_Y0;pathEnd=MAP_Y0+span;$('play').textContent='❚❚ Pysäytä';let started=null,shown=pathStart;const step=now=>{if(!playing)return;if(started===null)started=now;const p=Math.min(1,(now-started)/7600),start=Math.min(maxStart,Math.floor(MAP_Y0+(maxStart-MAP_Y0)*p));if(start!==shown){shown=pathStart=start;pathEnd=start+span;const f=$('focus');if(f)f.value=pathEnd;const out=$('focus-out');if(out)out.textContent=`${pathStart}→${pathEnd}`;drawPathways()}if(p<1)playRaf=requestAnimationFrame(step);else{playing=false;$('play').textContent='▶ Siirrä aikaväliä';drawPathways()}};playRaf=requestAnimationFrame(step);return;
   }
   if (playing) {
     playing = false; cancelAnimationFrame(playRaf); focusYear = Math.round(playPos);
