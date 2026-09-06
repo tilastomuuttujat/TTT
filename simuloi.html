@@ -1,0 +1,1133 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Murrosmatriisi – yhteiskunnan suunnan simulaattori</title>
+<meta name="description" content="Vaihtoehtoisten kehityspolkujen tutkimiseen tarkoitettu visuaalinen simulaattori: indikaattorit, säädösvivut ja 25–34-vuotiaiden elämänpolut." />
+<style>
+  :root{
+    --bg:#f4f2ee; --panel:#ffffff; --ink:#161a1d; --ink-2:#4a5359; --line:#ddd8d0;
+    --dark:#10161b; --dark-2:#182129; --dark-line:#27333d;
+    --up:#17a89a; --up-soft:#7fd3ca; --down:#e07a2f; --down-soft:#f0b487;
+    --neutral:#8a949b; --corridor:#ffffff;
+    --r:14px; --tap:44px;
+    font-synthesis-weight:none;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--ink);
+    font:16px/1.5 ui-sans-serif,-apple-system,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  h1,h2,h3{margin:0;font-weight:650;letter-spacing:-0.01em}
+  button{font:inherit;color:inherit}
+  .wrap{max-width:1360px;margin:0 auto;padding:16px 16px 64px}
+  header.top{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start;justify-content:space-between;padding:8px 0 16px}
+  .brand h1{font-size:20px}
+  .brand p{margin:4px 0 0;color:var(--ink-2);font-size:13px;max-width:56ch}
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px}
+  .btn{
+    min-height:var(--tap);min-width:var(--tap);padding:10px 14px;border-radius:11px;
+    border:1px solid var(--line);background:var(--panel);cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14px;
+  }
+  .btn:hover{border-color:#bdb5a9}
+  .btn:focus-visible{outline:3px solid var(--up);outline-offset:2px}
+  .btn[aria-pressed="true"]{background:var(--dark);color:#fff;border-color:var(--dark)}
+  .btn.primary{background:var(--dark);color:#fff;border-color:var(--dark)}
+  .layout{display:grid;grid-template-columns:320px 1fr;gap:16px;align-items:start}
+  @media (max-width:1040px){ .layout{grid-template-columns:1fr} }
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+  .panel h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-2)}
+  .stage{background:var(--dark);border:1px solid var(--dark-line);border-radius:var(--r);color:#e9eef2;padding:16px;min-height:520px;position:relative}
+  .stage h2{font-size:19px;color:#fff}
+  .stage .q{margin:6px 0 14px;color:#9fb0bc;font-size:14px;max-width:80ch}
+  .navrow{display:flex;align-items:center;gap:10px;justify-content:space-between;margin-bottom:10px}
+  .navrow .dots{display:flex;gap:6px;flex-wrap:wrap}
+  .dot{width:auto;min-height:36px;padding:6px 10px;border-radius:9px;border:1px solid var(--dark-line);background:#0d1318;color:#9fb0bc;font-size:12px;cursor:pointer}
+  .dot[aria-current="true"]{background:#fff;color:#10161b;border-color:#fff}
+  .navbtn{min-height:var(--tap);min-width:var(--tap);border-radius:11px;border:1px solid var(--dark-line);background:#0d1318;color:#e9eef2;cursor:pointer;font-size:18px}
+  .field{margin:14px 0}
+  .field label{display:block;font-size:13px;color:var(--ink-2);margin-bottom:6px}
+  input[type=range]{width:100%;height:var(--tap);accent-color:#17a89a}
+  select,input[type=text]{width:100%;min-height:var(--tap);padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:#fff}
+  .lever{border-top:1px solid var(--line);padding:10px 0}
+  .lever:first-of-type{border-top:0}
+  .lever .lv-top{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+  .lever .lv-name{font-size:14px;font-weight:600}
+  .lever .lv-val{font-variant-numeric:tabular-nums;font-size:13px;color:var(--ink-2)}
+  .lever .lv-meta{font-size:12px;color:var(--ink-2)}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:#9fb0bc;margin-top:10px}
+  .swatch{display:inline-block;width:14px;height:8px;border-radius:2px;vertical-align:middle;margin-right:6px}
+  .tag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:999px;border:1px solid var(--dark-line);color:#9fb0bc}
+  .notice{border:1px dashed #b4553a;background:#fdf3ee;color:#7c3a20;border-radius:12px;padding:12px;font-size:13px;margin:10px 0}
+  .notice.dark{background:#1b1410;border-color:#7a4326;color:#f0c3a6}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--dark-line)}
+  th{color:#9fb0bc;font-weight:600}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+  .grid-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+  .card{background:#0d1318;border:1px solid var(--dark-line);border-radius:12px;padding:10px;cursor:pointer;text-align:left;min-height:120px}
+  .card:focus-visible{outline:3px solid var(--up);outline-offset:2px}
+  .card .c-name{font-size:13px;font-weight:600;color:#e9eef2;line-height:1.25}
+  .card .c-val{font-variant-numeric:tabular-nums;font-size:12px;color:#9fb0bc;margin-top:4px}
+  .card.corridor{border-color:#ffffff}
+  dialog{border:0;border-radius:var(--r);padding:0;max-width:820px;width:calc(100% - 32px)}
+  dialog::backdrop{background:rgba(10,14,18,.55)}
+  .dlg{padding:22px}
+  .dlg h3{font-size:18px;margin-bottom:8px}
+  .dlg h4{margin:18px 0 4px;font-size:14px}
+  .dlg p,.dlg li{font-size:14px;color:#2c343a}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .loading{display:flex;align-items:center;gap:10px;color:#9fb0bc;font-size:14px}
+  .pulse{width:10px;height:10px;border-radius:50%;background:var(--up);animation:p 1.6s ease-in-out infinite}
+  @keyframes p{0%,100%{opacity:.25}50%{opacity:1}}
+  @media (prefers-reduced-motion:reduce){ .pulse{animation:none;opacity:.7} }
+  svg text{font-family:inherit}
+  .foot{margin-top:18px;color:var(--ink-2);font-size:12px}
+  .kv{display:grid;grid-template-columns:1fr auto;gap:4px 10px;font-size:13px;color:#c6d2da}
+  .kv b{font-variant-numeric:tabular-nums;color:#fff;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="brand">
+    <h1>Murrosmatriisi – yhteiskunnan suunnan simulaattori</h1>
+    <p>Työkalu vaihtoehtoisten kehityspolkujen tutkimiseen. Ei virallinen ennuste. Historia 2000–2025, päätössimulaatio 2026–2035, rakenteellinen skenaario 2036–2050.</p>
+  </div>
+  <div class="toolbar">
+    <button class="btn" id="btnMethod">Menetelmäseloste</button>
+    <button class="btn" id="btnCsv">Vie CSV</button>
+    <button class="btn" id="btnShare">Kopioi jaettava linkki</button>
+    <button class="btn primary" id="btnDl">Lataa HTML</button>
+  </div>
+</header>
+
+<div id="setup" class="panel" hidden>
+  <h2>Tietokantayhteys</h2>
+  <p style="font-size:14px;color:var(--ink-2)">Sovellus lukee aineiston Supabasen julkiselta Data API:lta vain luku -tilassa. Anna projektin osoite ja <b>julkinen</b> (publishable / anon) avain. Älä koskaan syötä salaista service_role-avainta.</p>
+  <div class="field"><label for="cfgUrl">Projektin URL</label><input type="text" id="cfgUrl" placeholder="https://xxxx.supabase.co" /></div>
+  <div class="field"><label for="cfgKey">Julkinen avain</label><input type="text" id="cfgKey" placeholder="sb_publishable_… tai anon-avain" /></div>
+  <button class="btn primary" id="cfgSave">Yhdistä ja lataa aineisto</button>
+</div>
+
+<div class="layout">
+  <aside class="panel" id="controls" aria-label="Ohjaimet">
+    <h2>Aika</h2>
+    <div class="field">
+      <label for="yearSlider">Tarkasteluvuosi: <b id="yearOut">2030</b></label>
+      <input type="range" id="yearSlider" min="2000" max="2050" step="1" value="2030" aria-describedby="yearHint" />
+      <div id="yearHint" style="font-size:12px;color:var(--ink-2)">2000–2025 havaittu/kalibroitu · 2026–2035 päätössimulaatio · 2036–2050 rakenteellinen skenaario</div>
+    </div>
+    <div class="toolbar">
+      <button class="btn" id="btnPlay" aria-pressed="false">▶ Toista vuodet</button>
+      <button class="btn" id="btnReset">Nollaa vivut</button>
+    </div>
+
+    <h2 style="margin-top:22px">Säädösvivut</h2>
+    <div id="levers"><div class="loading"><span class="pulse"></span> Ladataan…</div></div>
+    <div class="foot">Vivun voimakkuus 0–100 % kuvaa toimeenpanon laajuutta. Kertoimet tulevat tietokannan vaikutusmatriisista ja näkyvät sellaisinaan.</div>
+  </aside>
+
+  <main class="stage" id="stage" aria-live="polite">
+    <div class="navrow">
+      <button class="navbtn" id="prevView" aria-label="Edellinen näkymä">←</button>
+      <div class="dots" id="dots" role="tablist" aria-label="Näkymät"></div>
+      <button class="navbtn" id="nextView" aria-label="Seuraava näkymä">→</button>
+    </div>
+    <div id="viewHead"></div>
+    <div id="viewBody"><div class="loading"><span class="pulse"></span> Ladataan aineistoa…</div></div>
+  </main>
+</div>
+
+<p class="foot">Simulaattori on tutkiva työkalu. Skenaariot eivät ole ennusteita eivätkä kertoimet empiirisesti estimoituja kausaalivaikutuksia, ellei niin ole tietokannassa erikseen merkitty.</p>
+</div>
+
+<dialog id="methodDlg"><div class="dlg" id="methodBody"></div></dialog>
+
+<script>
+"use strict";
+/* ============================================================
+   0. Asetukset ja tila
+   ============================================================ */
+/* Julkinen, vain lukuun tarkoitettu yhteys. Publishable-avain saa olla selaimessa;
+   tietoturva perustuu taulujen SELECT-oikeuksiin ja RLS-käytäntöihin. */
+const EMBEDDED = {
+  url: "https://zzbubbrsgiqsvsovkkmf.supabase.co",
+  key: "sb_publishable_YNqxZI4Oj-DSjVBoTKhQ2Q_4DchUIBb"
+};
+const LS = "murrosmatriisi.cfg";
+const CLUSTERS = [
+  "Julkinen kantokyky","Työ ja osallisuus","Toimeentulo ja asuminen",
+  "Osaaminen ja toimintakyky","Itsenäistyminen ja uusiutuminen","Perheet ja yhteiskunnallinen kudos"
+];
+const STATES = ["Opiskelu","Vakituinen työ","Pätkä- ja osa-aikatyö","Yrittäjyys","Työttömyys","Perhevapaa","Työkyvyttömyys","Ulkomailla"];
+const STABLE = [1,3], VULNERABLE = [4,6];
+const SAFE_KEYS = new Set([
+  "safe_corridor.arope_25_29","safe_corridor.employment_rate_25_29","safe_corridor.employment_rate_30_34",
+  "safe_corridor.fertility_rate_25_29","safe_corridor.fertility_rate_30_34","safe_corridor.housing_cost_overburden_25_29",
+  "safe_corridor.leaving_parental_home_age","safe_corridor.living_with_parents_25_29",
+  "safe_corridor.long_term_unemployment_share_25_29","safe_corridor.long_term_unemployment_share_30_34",
+  "safe_corridor.unemployment_rate_25_29","safe_corridor.unemployment_rate_30_34"
+]);
+const VIEWS = [
+  {id:"A", label:"A · Suunta", title:"Mihin suuntaan Suomi on kehittymässä?",
+   q:"Koko järjestelmän suunnanosoitin: havaittu historia, perusura ja valittu säädösskenaario samalla asteikolla."},
+  {id:"B", label:"B · Vaikutusmaisema", title:"Missä paineet kasautuvat?",
+   q:"Tiheyskenttä kuvaa indikaattorien vaikutusvoimakkuutta ja järjestelmäjännitettä – ei havaintomäärää."},
+  {id:"C", label:"C · Klusteriprofiili", title:"Mitkä kokonaisuudet vahvistuvat, mitkä heikkenevät?",
+   q:"Kuuden klusterin profiili: perusura ja säädösskenaario valittuna vuonna."},
+  {id:"D", label:"D · Indikaattorit", title:"Miltä yksittäiset mittarit näyttävät?",
+   q:"Kaikki indikaattorit pieninä kehityspolkuina, alkuperäinen arvo ja normalisoitu pistemäärä."},
+  {id:"E", label:"E · Elämänpolut", title:"Miten 25–34-vuotiaiden elämäntilanteet siirtyvät?",
+   q:"Indikaattoreilla kalibroitu mekanismimalli kahdeksan elämäntilan välisistä siirtymistä."},
+  {id:"F", label:"F · Vaikutusketju", title:"Miten säädös muuttaa kehitystä?",
+   q:"Säädös → mekanismi → indikaattori → klusteri → elämänpolku → yhteiskunnallinen seuraus."}
+];
+
+const state = {
+  view:"A", year:2030, levers:{}, indicator:null,
+  lifeStart:2000, lifeEnd:2025, playing:false
+};
+const DB = { ok:false, tables:{}, indicators:[], years:[], levers:[], effects:[], norm:{}, gaps:[] };
+let cfg = readCfg();
+
+function readCfg(){
+  const p = new URLSearchParams(location.search);
+  if (p.get("db") && p.get("key")) return { url:p.get("db"), key:p.get("key") };
+  if (!EMBEDDED.url.startsWith("__")) return EMBEDDED;
+  try { const s = JSON.parse(localStorage.getItem(LS)||"null"); if (s && s.url && s.key) return s; } catch(e){}
+  return null;
+}
+
+/* ============================================================
+   1. URL-tila
+   ============================================================ */
+function stateToUrl(){
+  const u = new URL(location.href), p = u.searchParams;
+  p.delete("db"); p.delete("key");
+  p.set("view", state.view); p.set("year", state.year);
+  p.set("ls", state.lifeStart); p.set("le", state.lifeEnd);
+  const on = Object.entries(state.levers).filter(([,v])=>v>0).map(([k,v])=>k+":"+Math.round(v*100));
+  if (on.length) p.set("lev", on.join(",")); else p.delete("lev");
+  u.search = p.toString(); return u.href;
+}
+function urlToState(){
+  const p = new URLSearchParams(location.search);
+  if (p.get("view")) state.view = p.get("view");
+  if (p.get("year")) state.year = clamp(+p.get("year"),2000,2050);
+  if (p.get("ls")) state.lifeStart = clamp(+p.get("ls"),2000,2049);
+  if (p.get("le")) state.lifeEnd = clamp(+p.get("le"),state.lifeStart+1,2050);
+  if (p.get("lev")) p.get("lev").split(",").forEach(s=>{
+    const [k,v]=s.split(":"); if(k) state.levers[k] = clamp((+v||0)/100,0,1);
+  });
+}
+function syncUrl(){ try{ history.replaceState(null,"",stateToUrl()); }catch(e){ /* file:// voi estää URL-tilan; sovellus jatkaa */ } }
+
+/* ============================================================
+   2. Apufunktiot
+   ============================================================ */
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const num=v=>{const n=typeof v==="number"?v:parseFloat(v);return Number.isFinite(n)?n:null;};
+const fmt=(v,d=1)=>v==null?"–":v.toLocaleString("fi-FI",{minimumFractionDigits:d,maximumFractionDigits:d});
+const pick=(row,names)=>{ for(const n of names){ if(row && row[n]!=null && row[n]!=="") return row[n]; } return null; };
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function el(tag,attrs,txt){const e=document.createElementNS(tag==="svg"||SVGTAGS.has(tag)?"http://www.w3.org/2000/svg":"http://www.w3.org/1999/xhtml",tag);
+  for(const k in (attrs||{})) e.setAttribute(k,attrs[k]); if(txt!=null) e.textContent=txt; return e;}
+const SVGTAGS=new Set(["svg","g","path","rect","circle","line","text","polyline","polygon","defs","clipPath","tspan","title"]);
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ============================================================
+   3. Tiedonhaku (vain GET)
+   ============================================================ */
+async function getRows(table, query){
+  const url = `${cfg.url.replace(/\/$/,"")}/rest/v1/${table}?${query||"select=*"}`;
+  const rows=[], page=1000;
+  for(let from=0;;from+=page){
+    const res = await fetch(url, { method:"GET", headers:{ apikey:cfg.key, Authorization:"Bearer "+cfg.key, Accept:"application/json", Range:`${from}-${from+page-1}` }});
+    if(!res.ok){ const t = await res.text(); throw new Error(`${table} [${res.status}]: ${t.slice(0,180)}`); }
+    const batch=await res.json(); rows.push(...batch);
+    if(batch.length<page) break;
+  }
+  return rows;
+}
+async function tryTable(name, query){
+  try { const rows = await getRows(name, query); DB.tables[name] = { ok:true, n:rows.length }; return rows; }
+  catch(e){ DB.tables[name] = { ok:false, error:e.message }; DB.gaps.push(`${name}: ${e.message}`); return []; }
+}
+
+async function loadAll(){
+  const [levers, effects, baselines, normp, series, values] = await Promise.all([
+    tryTable("simulation_statute_levers","select=*&active=eq.true"),
+    tryTable("simulation_statute_effect_matrix","select=*"),
+    tryTable("simulation_indicator_baselines","select=*&order=year.asc"),
+    tryTable("simulation_normalization_params","select=*"),
+    tryTable("indicator_series","select=*&published=eq.true&status=eq.curated"),
+    tryTable("indicator_values","select=*&is_published=eq.true&or=(group_key.eq.FI,group_key.eq._,group_key.is.null)&order=year.asc")
+  ]);
+  buildModel({levers,effects,baselines,normp,series,values});
+}
+
+/* ============================================================
+   4. Mallin rakentaminen tietokannan riveistä
+   ============================================================ */
+function buildModel(raw){
+  // -- normalisointiparametrit
+  raw.normp.forEach(r=>{
+    const key = pick(r,["series_key","indicator_key","indicator","key","code","slug"]);
+    if(!key) return;
+    const favorable = num(pick(r,["favorable_direction"]));
+    DB.norm[key] = {
+      direction: favorable!=null?favorable:(pick(r,["direction","polarity","orientation"])||"higher_better"),
+      min: num(pick(r,["lower_anchor","min_value","anchor_min","p_min","low","min"])),
+      max: num(pick(r,["upper_anchor","max_value","anchor_max","p_max","high","max"])),
+      unit: pick(r,["unit","unit_label","yksikko"])
+    };
+  });
+
+  // -- sarjojen metatiedot
+  const meta = {};
+  raw.series.forEach(r=>{
+    const key = pick(r,["series_key","indicator_key","key","code","slug","id"]);
+    if(!key) return;
+    meta[key] = {
+      name: pick(r,["title","name_fi","label_fi","title_fi","name","label"]) || key,
+      cluster: pick(r,["pressure_domain","theme","cluster","cluster_name","domain","category"]),
+      unit: pick(r,["unit","unit_label","yksikko"]),
+      corridor: SAFE_KEYS.has(String(key)) || pick(r,["safe_corridor","is_corridor","corridor","in_safe_corridor"]),
+      published: pick(r,["published","is_published","status"])
+    };
+  });
+
+  // -- perusurat
+  const byKey = new Map();
+  const addPoint = (key,year,value,score,kind)=>{
+    if(!key||!Number.isFinite(year)) return;
+    if(!byKey.has(key)) byKey.set(key,{key,points:new Map()});
+    const rec = byKey.get(key).points;
+    const prev = rec.get(year) || {};
+    rec.set(year,{ value: value!=null?value:prev.value, score: score!=null?score:prev.score, kind: kind||prev.kind });
+  };
+
+  raw.baselines.forEach(r=>{
+    const key = pick(r,["series_key","indicator_key","indicator","key","code","slug"]);
+    const year = num(pick(r,["year","vuosi","period","t"]));
+    addPoint(key, year,
+      num(pick(r,["raw_value","value","baseline_value","original_value"])),
+      num(pick(r,["score_0_100","score","normalized_score","norm_score","baseline_score","normalized"])),
+      pick(r,["value_kind","kind","source_type","data_state"]) || (year<=2025?"havainto":"projektio"));
+  });
+
+  raw.values.forEach(r=>{
+    const group = String(pick(r,["group_key","area","region","geo","breakdown"]) ?? "").trim();
+    if(!(group==="" || group==="FI" || group==="_" )) return;
+    if(String(pick(r,["is_published","published"]) ?? "true").toLowerCase()==="false") return;
+    const key = pick(r,["series_key","indicator_key","series","key","code","slug"]);
+    const year = num(pick(r,["year","vuosi","period","t"]));
+    addPoint(key, year, num(pick(r,["value","val","amount","observation"])), null, pick(r,["value_kind"])||"havainto");
+  });
+
+  // -- indikaattorien kokoaminen
+  const list = [];
+  byKey.forEach(rec=>{
+    const m = meta[rec.key] || {};
+    const years = [...rec.points.keys()].sort((a,b)=>a-b);
+    if(!years.length) return;
+    const name = m.name || rec.key;
+    const nrm = DB.norm[rec.key] || {};
+    // pisteytys, jos tietokanta ei anna valmista pistettä
+    const vals = years.map(y=>rec.points.get(y).value).filter(v=>v!=null);
+    const lo = nrm.min!=null?nrm.min:Math.min(...vals), hi = nrm.max!=null?nrm.max:Math.max(...vals);
+    const lowerBetter = nrm.direction===-1 || String(nrm.direction||"").includes("lower");
+    const scoreOf = v => {
+      if(v==null||!Number.isFinite(lo)||!Number.isFinite(hi)||hi===lo) return null;
+      const s = clamp((v-lo)/(hi-lo),0,1)*100;
+      return lowerBetter ? 100-s : s;
+    };
+    const base = new Map();
+    years.forEach(y=>{
+      const p = rec.points.get(y);
+      base.set(y, { value:p.value, score: p.score!=null?clamp(p.score,0,100):scoreOf(p.value), kind:p.kind||"projektio" });
+    });
+    const cluster = CLUSTERS.includes(m.cluster) ? m.cluster : guessCluster(name, m.cluster);
+    const corridor = SAFE_KEYS.has(String(rec.key));
+    list.push({ key:rec.key, name, unit:m.unit||nrm.unit||"", cluster, corridor, base,
+                lowerBetter, hasScore:[...base.values()].some(p=>p.score!=null) });
+  });
+
+  list.sort((a,b)=> CLUSTERS.indexOf(a.cluster)-CLUSTERS.indexOf(b.cluster) || a.name.localeCompare(b.name,"fi"));
+  DB.indicators = list.filter(i=>i.hasScore);
+  const noScore = list.length - DB.indicators.length;
+  if(noScore) DB.gaps.push(`${noScore} indikaattoria jätettiin pois: normalisointiin ei löytynyt ankkureita eikä valmista pistemäärää.`);
+
+  DB.corridorCount = DB.indicators.filter(i=>i.corridor).length;
+
+  // vuodet
+  const ys = new Set(); DB.indicators.forEach(i=>i.base.forEach((_,y)=>ys.add(y)));
+  DB.years = [...ys].sort((a,b)=>a-b);
+
+  // -- säädösvivut
+  DB.levers = raw.levers.filter(r=>{
+    const a = pick(r,["active","is_active","enabled"]);
+    return a==null || a===true || String(a).toLowerCase()==="true";
+  }).map(r=>({
+    id: String(pick(r,["lever_key","lever_id","id","key","code","slug"])),
+    name: pick(r,["title","name_fi","label_fi","name","label"]) || String(pick(r,["lever_key","lever_id","id"])),
+    desc: pick(r,["intervention_definition","description_fi","description","summary","notes"]) || "",
+    cluster: pick(r,["policy_area","cluster","domain","theme","category"]) || "",
+    def: clamp(num(pick(r,["default_strength","default_intensity","default_value"]))??0,0,1)
+  })).filter(l=>l.id && l.id!=="null");
+
+  // -- vaikutusmatriisi
+  DB.effects = raw.effects.map(r=>({
+    lever: String(pick(r,["lever_key","lever_id","statute_id","lever","id_lever"])),
+    indicator: String(pick(r,["series_key","indicator_key","indicator","target_indicator"])),
+    direction: (num(pick(r,["effect_direction","direction","sign"])) ?? (String(pick(r,["direction"])||"").includes("neg")?-1:1)) >= 0 ? 1 : -1,
+    magnitude: num(pick(r,["relative_strength","magnitude","relative_magnitude","effect_size","strength","weight"])) ?? 0,
+    impl: num(pick(r,["implementation_coefficient","implementation_factor","implementation","impl_factor","feasibility"])) ?? 1,
+    dmin: num(pick(r,["lag_min_years","delay_min_years","delay_min","lag_min"])) ?? 0,
+    dmax: num(pick(r,["lag_max_years","delay_max_years","delay_max","lag_max"])) ?? 3,
+    persist: num(pick(r,["persistence_years","persistence","decay","half_life"])) ?? 10,
+    tradeoff: pick(r,["tradeoff_warning","tradeoff","trade_off","tradeoff_note"]) || "",
+    uncertainty: num(pick(r,["uncertainty","uncertainty_band","ci"])) ?? 0.35,
+    mechanism: pick(r,["mechanism","mechanism_fi","channel","pathway"]) || ""
+  })).filter(e=>e.lever && e.indicator && e.indicator!=="null");
+
+  DB.levers.forEach(l=>{ if(state.levers[l.id]==null) state.levers[l.id]=l.def; });
+  DB.ok = DB.indicators.length>0;
+  if(!DB.ok) DB.gaps.push("Yhtään normalisoitavissa olevaa indikaattoria ei löytynyt – kaikki laskennalliset näkymät ovat tyhjiä.");
+}
+
+function guessCluster(name, given){
+  const n=(name+" "+(given||"")).toLowerCase();
+  if(/velka|julkis|vero|menot|kesta|kantokyk|huoltosuhde|bkt/.test(n)) return CLUSTERS[0];
+  if(/työll|työttö|osalli|neet|työvoima/.test(n)) return CLUSTERS[1];
+  if(/tulo|köyh|asum|asunt|vuokra|toimeentulo|pienituloi/.test(n)) return CLUSTERS[2];
+  if(/osaam|koulut|tutkinto|oppim|terveys|toimintakyk|mielenterv/.test(n)) return CLUSTERS[3];
+  if(/itsenäis|muutto|ensiasun|nuort|opiskel/.test(n)) return CLUSTERS[4];
+  if(/perhe|syntyv|hedelmäll|avio|lapsi|luottamus|yksinäis/.test(n)) return CLUSTERS[5];
+  return CLUSTERS[1];
+}
+
+/* ============================================================
+   5. Simulaatio
+   ============================================================ */
+function baseAt(ind, year){
+  if(ind.base.has(year)) return ind.base.get(year);
+  const ys=[...ind.base.keys()].sort((a,b)=>a-b);
+  if(!ys.length) return {value:null,score:null,kind:"puuttuu"};
+  if(year<ys[0]) return {...ind.base.get(ys[0]), kind:"vaimennettu jatkumo"};
+  if(year>ys[ys.length-1]){
+    const last=ind.base.get(ys[ys.length-1]);
+    return {...last, kind:"vaimennettu jatkumo"};
+  }
+  let lo=ys[0],hi=ys[ys.length-1];
+  for(const y of ys){ if(y<=year) lo=y; if(y>=year){ hi=y; break; } }
+  const a=ind.base.get(lo), b=ind.base.get(hi), t=(year-lo)/(hi-lo||1);
+  const mix=(x,y)=> (x==null||y==null)?(x??y):x+(y-x)*t;
+  return { value:mix(a.value,b.value), score:mix(a.score,b.score), kind:"projektio" };
+}
+
+// viive- ja persistenssifunktio: 0 ennen dmin, lineaarinen ramppi dmin→dmax, sitten vaimeneva persistenssi
+function timeShape(t, e){
+  if(t<=0) return 0;
+  const dmin=Math.max(0,e.dmin), dmax=Math.max(dmin+0.001,e.dmax);
+  let f = t<=dmin ? 0 : t>=dmax ? 1 : (t-dmin)/(dmax-dmin);
+  if(e.persist>0){ const over=Math.max(0,t-dmax); f *= Math.exp(-over/Math.max(1,e.persist)); }
+  return f;
+}
+const START = 2026; // säädösten voimaantulovuosi
+
+function effectFor(indKey, year){
+  let d=0, unc=0;
+  for(const e of DB.effects){
+    if(e.indicator!==indKey) continue;
+    const s = state.levers[e.lever]||0; if(s<=0) continue;
+    const f = timeShape(year-START+1, e);
+    const c = s * e.direction * e.magnitude * e.impl * f;
+    d += c; unc += Math.abs(c)*e.uncertainty;
+  }
+  return { delta:d, unc };
+}
+function scenarioScore(ind, year){
+  const b = baseAt(ind, year);
+  if(b.score==null) return { base:null, scen:null, delta:0, unc:0, value:b.value, kind:b.kind };
+  const ef = effectFor(ind.key, year);
+  const scen = clamp(b.score + ef.delta, 0, 100);
+  return { base:b.score, scen, delta:scen-b.score, unc:ef.unc, value:b.value, kind:b.kind };
+}
+function clusterScores(year){
+  const out = {};
+  CLUSTERS.forEach(c=>out[c]={base:[],scen:[]});
+  DB.indicators.forEach(i=>{
+    const s = scenarioScore(i, year);
+    if(s.base==null) return;
+    out[i.cluster].base.push(s.base); out[i.cluster].scen.push(s.scen);
+  });
+  const res={};
+  CLUSTERS.forEach(c=>{
+    const b=out[c].base, s=out[c].scen;
+    const mean=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
+    const sd=a=>{ if(a.length<2) return 0; const m=mean(a); return Math.sqrt(a.reduce((x,y)=>x+(y-m)**2,0)/a.length); };
+    res[c]={ base:mean(b), scen:mean(s), n:b.length, tension:sd(s) };
+  });
+  return res;
+}
+function systemScore(year){
+  const cs=clusterScores(year); const b=[],s=[];
+  CLUSTERS.forEach(c=>{ if(cs[c].base!=null){ b.push(cs[c].base); s.push(cs[c].scen); }});
+  const m=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:null;
+  let unc=0; DB.indicators.forEach(i=>{ unc+=effectFor(i.key,year).unc; });
+  unc = DB.indicators.length ? unc/DB.indicators.length : 0;
+  const structural = year>2035 ? (year-2035)*0.35 : 0;
+  return { base:m(b), scen:m(s), unc: unc + structural, clusters:cs };
+}
+
+/* -------- elämänpolut: indikaattoreilla kalibroitu mekanismimalli -------- */
+function clusterScoreYear(year, name){
+  const cs = clusterScores(year); return cs[name] ? cs[name].scen : null;
+}
+function transitionMatrix(year, useBaseline){
+  const g = (name, def)=>{
+    const cs = clusterScores(year); const v = cs[name] ? (useBaseline?cs[name].base:cs[name].scen) : null;
+    return v==null? def : v/100;
+  };
+  const work = g(CLUSTERS[1],0.5), income = g(CLUSTERS[2],0.5),
+        skill = g(CLUSTERS[3],0.5), indep = g(CLUSTERS[4],0.5), family = g(CLUSTERS[5],0.5);
+  // rivit = lähtötila, sarakkeet = päätetila
+  const M = STATES.map(()=>STATES.map(()=>0));
+  const set=(i,j,v)=>{M[i][j]=Math.max(0.0005,v)};
+  // Opiskelu
+  set(0,0,.55-.10*skill); set(0,1,.14+.20*work); set(0,2,.14+.05*(1-work)); set(0,3,.02+.02*indep);
+  set(0,4,.07+.10*(1-work)); set(0,5,.03+.02*family); set(0,6,.01+.01*(1-skill)); set(0,7,.02+.02*indep);
+  // Vakituinen työ
+  set(1,0,.02+.02*skill); set(1,1,.83+.07*work); set(1,2,.04+.05*(1-work)); set(1,3,.02+.02*indep);
+  set(1,4,.03+.06*(1-work)); set(1,5,.03+.04*family); set(1,6,.01+.02*(1-skill)); set(1,7,.01+.02*indep);
+  // Pätkä- ja osa-aikatyö
+  set(2,0,.05+.03*skill); set(2,1,.16+.22*work); set(2,2,.48-.05*work); set(2,3,.03+.03*indep);
+  set(2,4,.13+.12*(1-work)); set(2,5,.04+.03*family); set(2,6,.01+.02*(1-income)); set(2,7,.02+.02*indep);
+  // Yrittäjyys
+  set(3,0,.02); set(3,1,.08+.08*work); set(3,2,.07+.04*(1-work)); set(3,3,.70+.06*indep);
+  set(3,4,.06+.08*(1-work)); set(3,5,.02+.02*family); set(3,6,.01+.01*(1-income)); set(3,7,.02+.02*indep);
+  // Työttömyys
+  set(4,0,.08+.06*skill); set(4,1,.12+.22*work); set(4,2,.16+.12*work); set(4,3,.02+.02*indep);
+  set(4,4,.50-.20*work); set(4,5,.04+.03*family); set(4,6,.04+.06*(1-income)); set(4,7,.02+.03*indep);
+  // Perhevapaa
+  set(5,0,.04); set(5,1,.24+.22*family); set(5,2,.14+.06*(1-work)); set(5,3,.02);
+  set(5,4,.09+.10*(1-work)); set(5,5,.42-.06*family); set(5,6,.02+.02*(1-income)); set(5,7,.01);
+  // Työkyvyttömyys
+  set(6,0,.02+.02*skill); set(6,1,.05+.08*skill); set(6,2,.06+.06*skill); set(6,3,.01);
+  set(6,4,.07+.05*(1-work)); set(6,5,.02); set(6,6,.75-.10*skill); set(6,7,.01);
+  // Ulkomailla
+  set(7,0,.05); set(7,1,.10+.10*work); set(7,2,.05+.03*work); set(7,3,.02);
+  set(7,4,.03+.03*(1-work)); set(7,5,.02); set(7,6,.01); set(7,7,.70-.10*work);
+  return M.map(r=>{ const s=r.reduce((a,b)=>a+b,0); return r.map(v=>v/s); });
+}
+function matMul(A,B){
+  const n=A.length,m=B[0].length,k=B.length,C=[];
+  for(let i=0;i<n;i++){const row=new Array(m).fill(0);
+    for(let x=0;x<k;x++){const a=A[i][x]; if(!a)continue; for(let j=0;j<m;j++) row[j]+=a*B[x][j];}
+    C.push(row);}
+  return C;
+}
+const matCache = new Map();
+function pathMatrix(a,b,useBaseline){
+  const ck = a+"-"+b+"-"+(useBaseline?"b":"s")+"-"+JSON.stringify(state.levers);
+  if(matCache.has(ck)) return matCache.get(ck);
+  let M = STATES.map((_,i)=>STATES.map((_,j)=>i===j?1:0));
+  for(let y=a;y<b;y++) M = matMul(M, transitionMatrix(y,useBaseline));
+  if(matCache.size>60) matCache.clear();
+  matCache.set(ck,M); return M;
+}
+function startDistribution(year){
+  // lähtöjakauma kalibroidaan työ-, itsenäistymis- ja perheklusterin pisteillä
+  const cs = clusterScores(year);
+  const w = cs[CLUSTERS[1]] && cs[CLUSTERS[1]].scen!=null ? cs[CLUSTERS[1]].scen/100 : .5;
+  const f = cs[CLUSTERS[5]] && cs[CLUSTERS[5]].scen!=null ? cs[CLUSTERS[5]].scen/100 : .5;
+  const i = cs[CLUSTERS[4]] && cs[CLUSTERS[4]].scen!=null ? cs[CLUSTERS[4]].scen/100 : .5;
+  const raw=[.19-.04*w, .34+.14*w, .18-.03*w, .05+.02*i, .09-.05*w, .08+.04*f, .04-.01*w, .03+.03*i];
+  const s=raw.reduce((a,b)=>a+Math.max(.005,b),0);
+  return raw.map(v=>Math.max(.005,v)/s);
+}
+
+/* ============================================================
+   6. Käyttöliittymän rakentaminen
+   ============================================================ */
+const $ = s=>document.querySelector(s);
+const viewBody = $("#viewBody"), viewHead = $("#viewHead");
+let built = null; // { view, refs }
+
+function renderDots(){
+  const d=$("#dots"); d.innerHTML="";
+  VIEWS.forEach(v=>{
+    const b=el("button",{class:"dot",role:"tab","aria-current":String(v.id===state.view),"aria-label":v.title},v.label);
+    b.onclick=()=>go(v.id); d.appendChild(b);
+  });
+}
+function renderHead(){
+  const v = VIEWS.find(x=>x.id===state.view);
+  viewHead.innerHTML = `<h2>${esc(v.title)}</h2><p class="q">${esc(v.q)}</p>`;
+}
+function go(id){
+  state.view=id; built=null; renderDots(); renderHead(); render(); syncUrl();
+}
+function shiftView(d){
+  const i = VIEWS.findIndex(v=>v.id===state.view);
+  go(VIEWS[(i+d+VIEWS.length)%VIEWS.length].id);
+}
+
+function renderLevers(){
+  const box=$("#levers");
+  if(!DB.levers.length){ box.innerHTML=`<div class="notice">Aineistopuute: aktiivisia säädösvipuja ei löytynyt taulusta <code>simulation_statute_levers</code>. Skenaario on sama kuin perusura.</div>`; return; }
+  box.innerHTML="";
+  DB.levers.forEach(l=>{
+    const n = DB.effects.filter(e=>e.lever===l.id).length;
+    const w=el("div",{class:"lever"});
+    w.innerHTML = `<div class="lv-top"><span class="lv-name">${esc(l.name)}</span><span class="lv-val" id="lvv-${esc(l.id)}">${Math.round((state.levers[l.id]||0)*100)} %</span></div>
+      <div class="lv-meta">${esc(l.cluster||"")}${l.cluster&&n?" · ":""}${n} indikaattorivaikutusta${n?"":" (ei kertoimia matriisissa)"}</div>`;
+    const r=el("input",{type:"range",min:"0",max:"100",step:"5",value:String(Math.round((state.levers[l.id]||0)*100)),
+      "aria-label":`Säädösvipu: ${l.name}, voimakkuus prosentteina`});
+    r.oninput=()=>{ state.levers[l.id]=(+r.value)/100; $("#lvv-"+CSS.escape(l.id)).textContent=r.value+" %"; matCache.clear(); update(); syncUrl(); };
+    w.appendChild(r);
+    if(l.desc) w.appendChild(el("div",{class:"lv-meta"},l.desc));
+    box.appendChild(w);
+  });
+}
+
+/* ---------------- yhteiset piirtoapurit ---------------- */
+function svgBox(w,h,label){
+  const s=el("svg",{viewBox:`0 0 ${w} ${h}`,width:"100%",role:"img","aria-label":label,style:"display:block"});
+  return s;
+}
+const YMIN=2000, YMAX=2050;
+function xOf(y,w,pad){ return pad + (y-YMIN)/(YMAX-YMIN)*(w-pad*2); }
+function yOf(v,h,pad){ return h-pad - (v/100)*(h-pad*2); }
+function axes(svg,w,h,pad,scaleNote){
+  for(let v=0;v<=100;v+=25){
+    svg.appendChild(el("line",{x1:pad,x2:w-pad,y1:yOf(v,h,pad),y2:yOf(v,h,pad),stroke:"#27333d","stroke-width":"1"}));
+    svg.appendChild(el("text",{x:pad-8,y:yOf(v,h,pad)+4,fill:"#7d8b96","font-size":"11","text-anchor":"end"},String(v)));
+  }
+  [2000,2010,2020,2025,2035,2050].forEach(y=>{
+    svg.appendChild(el("text",{x:xOf(y,w,pad),y:h-pad+18,fill:"#7d8b96","font-size":"11","text-anchor":"middle"},String(y)));
+  });
+  const bx=xOf(2025.5,w,pad);
+  svg.appendChild(el("line",{x1:bx,x2:bx,y1:pad-6,y2:h-pad,stroke:"#ffffff","stroke-width":"1.5","stroke-dasharray":"5 4"}));
+  svg.appendChild(el("text",{x:bx+6,y:pad+6,fill:"#ffffff","font-size":"11"},"2025 · havainnon ja simulaation raja"));
+  const bx2=xOf(2035.5,w,pad);
+  svg.appendChild(el("line",{x1:bx2,x2:bx2,y1:pad-6,y2:h-pad,stroke:"#5c6b76","stroke-width":"1","stroke-dasharray":"2 5"}));
+  svg.appendChild(el("text",{x:bx2+6,y:pad+22,fill:"#7d8b96","font-size":"11"},"2036 → rakenteellinen skenaario"));
+  svg.appendChild(el("text",{x:pad,y:14,fill:"#7d8b96","font-size":"11"},scaleNote||"Asteikko 0–100, kiinteä kaikissa vuosissa"));
+}
+function pathOf(pts){ return pts.map((p,i)=>(i?"L":"M")+p[0].toFixed(1)+" "+p[1].toFixed(1)).join(" "); }
+
+/* ---------------- A. Yhteiskunnan suunta ---------------- */
+function buildA(){
+  viewBody.innerHTML="";
+  const w=940,h=420,pad=44;
+  const svg=svgBox(w,h,"Yhteiskunnan suunnan aikasarja: perusura, säädösskenaario ja epävarmuusalue asteikolla 0–100");
+  axes(svg,w,h,pad);
+  const band=el("path",{fill:"rgba(23,168,154,.16)",stroke:"none"});
+  const hist=el("path",{fill:"none",stroke:"#cfdae2","stroke-width":"2.5"});
+  const base=el("path",{fill:"none",stroke:"#8a949b","stroke-width":"2","stroke-dasharray":"6 5"});
+  const scen=el("path",{fill:"none",stroke:"#17a89a","stroke-width":"3"});
+  const mark=el("circle",{r:"6",fill:"#fff"});
+  const mtxt=el("text",{fill:"#fff","font-size":"13","text-anchor":"middle"});
+  svg.append(band,hist,base,scen,mark,mtxt);
+  viewBody.appendChild(svg);
+  const legend=el("div",{class:"legend"});
+  legend.innerHTML=`<span><i class="swatch" style="background:#cfdae2"></i>Havaittu / kalibroitu historia</span>
+    <span><i class="swatch" style="background:#8a949b"></i>Perusura (katkoviiva)</span>
+    <span><i class="swatch" style="background:#17a89a"></i>Säädösskenaario</span>
+    <span><i class="swatch" style="background:rgba(23,168,154,.35)"></i>Epävarmuusalue</span>`;
+  viewBody.appendChild(legend);
+  const box=el("div",{style:"display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:16px"});
+  const s1=el("div"),s2=el("div"),s3=el("div");
+  box.append(s1,s2,s3); viewBody.appendChild(box);
+  built={view:"A",refs:{band,hist,base,scen,mark,mtxt,s1,s2,s3,w,h,pad}};
+}
+function updateA(){
+  const {band,hist,base,scen,mark,mtxt,s1,s2,s3,w,h,pad}=built.refs;
+  const yrs=[]; for(let y=YMIN;y<=YMAX;y++) yrs.push(y);
+  const S=yrs.map(y=>systemScore(y));
+  const hp=[],bp=[],sp=[],up=[],lo=[];
+  yrs.forEach((y,i)=>{
+    const s=S[i]; if(s.base==null) return;
+    const x=xOf(y,w,pad);
+    if(y<=2025) hp.push([x,yOf(s.base,h,pad)]);
+    if(y>=2025){ bp.push([x,yOf(s.base,h,pad)]); sp.push([x,yOf(s.scen,h,pad)]);
+      up.push([x,yOf(clamp(s.scen+s.unc,0,100),h,pad)]); lo.push([x,yOf(clamp(s.scen-s.unc,0,100),h,pad)]); }
+  });
+  hist.setAttribute("d",pathOf(hp)); base.setAttribute("d",pathOf(bp)); scen.setAttribute("d",pathOf(sp));
+  band.setAttribute("d", up.length? pathOf(up)+" "+pathOf(lo.slice().reverse()).replace("M","L")+" Z" : "");
+  const cur=systemScore(state.year);
+  if(cur.base!=null){
+    mark.setAttribute("cx",xOf(state.year,w,pad)); mark.setAttribute("cy",yOf(cur.scen,h,pad));
+    mtxt.setAttribute("x",xOf(state.year,w,pad)); mtxt.setAttribute("y",yOf(cur.scen,h,pad)-14);
+    mtxt.textContent=`${state.year}: ${fmt(cur.scen)} (${cur.scen>=cur.base?"+":""}${fmt(cur.scen-cur.base)})`;
+  }
+  const d = cur.base==null?0:cur.scen-cur.base;
+  const dir = d>0.5?"vahvistuva":d<-0.5?"heikkenevä":"lähes muuttumaton";
+  const trend10 = cur.base==null?0: cur.scen - (systemScore(Math.max(2000,state.year-10)).scen||cur.scen);
+  s1.innerHTML=`<h3 style="font-size:14px;color:#9fb0bc">Suunta ja voimakkuus</h3>
+    <div class="kv"><span>Järjestelmäpiste ${state.year}</span><b>${fmt(cur.scen)}</b>
+    <span>Perusura</span><b>${fmt(cur.base)}</b>
+    <span>Säädösvaikutus</span><b style="color:${d>=0?'var(--up)':'var(--down)'}">${d>=0?"+":""}${fmt(d)}</b>
+    <span>Muutos 10 v aikana</span><b>${trend18(trend10)}</b>
+    <span>Epävarmuusalue</span><b>±${fmt(cur.unc)}</b>
+    <span>Suunta</span><b>${dir}</b></div>
+    <p style="font-size:12px;color:#7d8b96">Kokonaispiste on kuuden klusterin keskiarvo. Koostumus näkyy alla ja näkymässä C.</p>`;
+  const rank = DB.indicators.map(i=>({i,s:scenarioScore(i,state.year)})).filter(r=>r.s.base!=null);
+  const byDelta=[...rank].sort((a,b)=>b.s.delta-a.s.delta);
+  const byLevel=[...rank].sort((a,b)=>a.s.scen-b.s.scen);
+  s2.innerHTML=`<h3 style="font-size:14px;color:#9fb0bc">Kolme tärkeintä vahvistajaa</h3>` +
+    (byDelta.slice(0,3).map(r=>`<div class="kv"><span>${esc(r.i.name)}</span><b style="color:var(--up)">+${fmt(r.s.delta)}</b></div>`).join("")||"<p style='font-size:13px;color:#7d8b96'>Ei aktiivisia myönteisiä vaikutuksia.</p>");
+  s3.innerHTML=`<h3 style="font-size:14px;color:#9fb0bc">Kolme suurinta riskitekijää</h3>` +
+    byLevel.slice(0,3).map(r=>`<div class="kv"><span>${esc(r.i.name)}</span><b style="color:var(--down)">${fmt(r.s.scen)}</b></div>`).join("");
+}
+const trend18 = v => (v>=0?"+":"")+fmt(v);
+
+/* ---------------- B. Density contour ---------------- */
+function buildB(){
+  viewBody.innerHTML="";
+  const c=el("canvas",{width:"960",height:"520",style:"width:100%;height:auto;border-radius:10px","aria-label":"Vaikutusmaisema: indikaattorien tilallinen jännitekartta"});
+  viewBody.appendChild(c);
+  const ov=el("div",{id:"bLabels",style:"margin-top:12px"});
+  viewBody.appendChild(ov);
+  const legend=el("div",{class:"legend"});
+  legend.innerHTML=`<span><i class="swatch" style="background:#17a89a"></i>Turkoosi kenttä = vahvistuva painekenttä (säädösvaikutus + taso)</span>
+   <span><i class="swatch" style="background:#e07a2f"></i>Oranssi kenttä = heikkenevä painekenttä</span>
+   <span><i class="swatch" style="background:#fff"></i>Valkoinen kehä = turvallisen käytävän indikaattori</span>
+   <span>Kenttä kuvaa <b>vaikutusvoimakkuutta ja järjestelmäjännitettä</b>, ei havaintomäärää. Väriasteikko on kiinteä ±12 pistettä.</span>`;
+  viewBody.appendChild(legend);
+  built={view:"B",refs:{canvas:c,ov}};
+}
+function layoutB(){
+  // klusterit kehälle, indikaattorit klusterin ympärille – deterministinen asettelu
+  const pts=[];
+  CLUSTERS.forEach((cl,ci)=>{
+    const a = -Math.PI/2 + ci*(Math.PI*2/6);
+    const cx = 480 + Math.cos(a)*230, cy = 260 + Math.sin(a)*170;
+    const list = DB.indicators.filter(i=>i.cluster===cl);
+    list.forEach((ind,k)=>{
+      const ang = a + (k - (list.length-1)/2) * 0.42;
+      const rad = 46 + (k%3)*30;
+      pts.push({ind, x:cx+Math.cos(ang)*rad, y:cy+Math.sin(ang)*rad, cx, cy, cl});
+    });
+  });
+  return pts;
+}
+function updateB(){
+  const {canvas,ov}=built.refs, ctx=canvas.getContext("2d");
+  const W=canvas.width,H=canvas.height;
+  ctx.fillStyle="#0d1318"; ctx.fillRect(0,0,W,H);
+  const pts=layoutB();
+  if(!pts.length){ ctx.fillStyle="#9fb0bc"; ctx.font="16px sans-serif"; ctx.fillText("Aineistopuute: indikaattoreita ei ole ladattu.",30,40); ov.innerHTML=""; return; }
+  const vals=pts.map(p=>{ const s=scenarioScore(p.ind,state.year);
+    return { ...p, d:s.delta, lvl:s.scen, base:s.base }; });
+  // kenttä: gaussinen summa vaikutusvoimakkuudesta, kiinteä asteikko ±12
+  const img=ctx.createImageData(W,H); const data=img.data; const SC=12, step=1;
+  const sig=70, inv=1/(2*sig*sig);
+  for(let y=0;y<H;y+=step){
+    for(let x=0;x<W;x+=step){
+      let f=0;
+      for(const p of vals){
+        const dx=x-p.x, dy=y-p.y, q=dx*dx+dy*dy;
+        if(q>60000) continue;
+        f += (p.d + (p.lvl-50)*0.10) * Math.exp(-q*inv);
+      }
+      const t=clamp(f/SC,-1,1);
+      const i=(y*W+x)*4;
+      const up=[23,168,154], dn=[224,122,47], bg=[13,19,24];
+      const mix = t>=0? up:dn, a=Math.abs(t);
+      data[i]  = bg[0]+(mix[0]-bg[0])*a;
+      data[i+1]= bg[1]+(mix[1]-bg[1])*a;
+      data[i+2]= bg[2]+(mix[2]-bg[2])*a;
+      data[i+3]=255;
+    }
+  }
+  ctx.putImageData(img,0,0);
+  // kontuurit
+  ctx.globalAlpha=.5; ctx.strokeStyle="#0d1318"; ctx.lineWidth=1;
+  vals.forEach(p=>{ for(let r=30;r<=110;r+=26){ ctx.beginPath(); ctx.arc(p.x,p.y,r*Math.min(1.4,0.6+Math.abs(p.d)/6),0,7); ctx.stroke(); } });
+  ctx.globalAlpha=1;
+  // pisteet
+  vals.forEach(p=>{
+    ctx.beginPath(); ctx.arc(p.x,p.y,6,0,7);
+    ctx.fillStyle = p.d>0.2?"#7fd3ca": p.d<-0.2?"#f0b487":"#9fb0bc"; ctx.fill();
+    if(p.ind.corridor){ ctx.lineWidth=2.5; ctx.strokeStyle="#fff"; ctx.stroke(); }
+  });
+  // klusteriotsikot
+  ctx.font="600 13px ui-sans-serif,sans-serif"; ctx.textAlign="center";
+  CLUSTERS.forEach((cl,ci)=>{
+    const a=-Math.PI/2+ci*(Math.PI*2/6), cx=480+Math.cos(a)*230, cy=260+Math.sin(a)*170;
+    ctx.fillStyle="rgba(13,19,24,.75)"; const tw=ctx.measureText(cl).width+14;
+    ctx.fillRect(cx-tw/2, cy-116, tw, 20);
+    ctx.fillStyle="#e9eef2"; ctx.fillText(cl, cx, cy-102);
+  });
+  ctx.fillStyle="#fff"; ctx.textAlign="left"; ctx.font="600 14px ui-sans-serif,sans-serif";
+  ctx.fillText(`Järjestelmätila ${state.year}`, 20, 28);
+  const cs=clusterScores(state.year);
+  ov.innerHTML = `<table><thead><tr><th>Klusteri</th><th class="num">Perusura</th><th class="num">Skenaario</th><th class="num">Muutos</th><th class="num">Sisäinen hajonta</th><th class="num">Indikaattoreita</th></tr></thead><tbody>`+
+    CLUSTERS.map(c=>{const r=cs[c]; if(r.base==null) return `<tr><td>${esc(c)}</td><td colspan="5">Aineistopuute</td></tr>`;
+      const d=r.scen-r.base;
+      return `<tr><td>${esc(c)}</td><td class="num">${fmt(r.base)}</td><td class="num">${fmt(r.scen)}</td><td class="num" style="color:${d>=0?'var(--up-soft)':'var(--down-soft)'}">${d>=0?"+":""}${fmt(d)}</td><td class="num">${fmt(r.tension)}</td><td class="num">${r.n}</td></tr>`;}).join("")+
+    `</tbody></table>`;
+}
+
+/* ---------------- C. Klusteriprofiili ---------------- */
+function buildC(){
+  viewBody.innerHTML="";
+  const wrap=el("div",{style:"display:grid;grid-template-columns:minmax(280px,460px) 1fr;gap:18px;align-items:start"});
+  const svg=svgBox(460,430,"Klusteriprofiili tutkakuvaajana: perusura ja säädösskenaario");
+  const gGrid=el("g"),gBase=el("path",{fill:"rgba(138,148,155,.16)",stroke:"#8a949b","stroke-width":"2","stroke-dasharray":"6 5"}),
+        gScen=el("path",{fill:"rgba(23,168,154,.22)",stroke:"#17a89a","stroke-width":"3"}), gLab=el("g");
+  svg.append(gGrid,gBase,gScen,gLab);
+  const tbl=el("div");
+  wrap.append(svg,tbl); viewBody.appendChild(wrap);
+  const cx=230,cy=210,R=140;
+  for(let v=25;v<=100;v+=25){
+    const pts=CLUSTERS.map((_,i)=>{const a=-Math.PI/2+i*Math.PI/3;return [cx+Math.cos(a)*R*v/100, cy+Math.sin(a)*R*v/100];});
+    gGrid.appendChild(el("polygon",{points:pts.map(p=>p.join(",")).join(" "),fill:"none",stroke:"#27333d"}));
+  }
+  CLUSTERS.forEach((c,i)=>{
+    const a=-Math.PI/2+i*Math.PI/3, x=cx+Math.cos(a)*(R+30), y=cy+Math.sin(a)*(R+26);
+    gGrid.appendChild(el("line",{x1:cx,y1:cy,x2:cx+Math.cos(a)*R,y2:cy+Math.sin(a)*R,stroke:"#27333d"}));
+    const t=el("text",{x,y,fill:"#c6d2da","font-size":"12","text-anchor":Math.cos(a)>0.3?"start":Math.cos(a)<-0.3?"end":"middle"});
+    c.split(" ").forEach((word,k)=>t.appendChild(el("tspan",{x,dy:k?"13":"0"},word)));
+    gLab.appendChild(t);
+  });
+  built={view:"C",refs:{gBase,gScen,tbl,cx,cy,R}};
+}
+function updateC(){
+  const {gBase,gScen,tbl,cx,cy,R}=built.refs;
+  const cs=clusterScores(state.year);
+  const poly=k=>CLUSTERS.map((c,i)=>{const v=cs[c][k]??0;const a=-Math.PI/2+i*Math.PI/3;
+    return [cx+Math.cos(a)*R*v/100, cy+Math.sin(a)*R*v/100];});
+  gBase.setAttribute("d",pathOf(poly("base"))+" Z");
+  gScen.setAttribute("d",pathOf(poly("scen"))+" Z");
+  tbl.innerHTML = `<p style="font-size:13px;color:#9fb0bc">Vuosi ${state.year}. Katkoviiva = perusura, täytetty = säädösskenaario. Tarkat arvot pisteinä 0–100.</p>
+   <table><thead><tr><th>Klusteri</th><th class="num">Perusura</th><th class="num">Skenaario</th><th class="num">Muutos</th><th class="num">Jännite</th></tr></thead><tbody>`+
+   CLUSTERS.map(c=>{const r=cs[c]; if(r.base==null)return `<tr><td>${esc(c)}</td><td colspan="4">Aineistopuute</td></tr>`;
+     const d=r.scen-r.base;
+     return `<tr><td>${esc(c)}</td><td class="num">${fmt(r.base)}</td><td class="num">${fmt(r.scen)}</td><td class="num" style="color:${d>=0?'var(--up-soft)':'var(--down-soft)'}">${d>=0?"+":""}${fmt(d)}</td><td class="num">${fmt(r.tension)}</td></tr>`;}).join("")+
+   `</tbody></table>`;
+}
+
+/* ---------------- D. Indikaattoriristikko ---------------- */
+function buildD(){
+  viewBody.innerHTML="";
+  const g=el("div",{class:"grid-cards"});
+  viewBody.appendChild(g);
+  if(!DB.indicators.length){ viewBody.innerHTML=`<div class="notice dark">Aineistopuute: indikaattoreita ei löytynyt.</div>`; built={view:"D",refs:{cards:[]}}; return; }
+  const cards = DB.indicators.map(ind=>{
+    const b=el("button",{class:"card"+(ind.corridor?" corridor":""),type:"button","aria-label":`Indikaattori ${ind.name}, avaa tarkastelu`});
+    const nm=el("div",{class:"c-name"},ind.name);
+    const spark=svgBox(190,44,`${ind.name} kehityspolku`);
+    const pB=el("path",{fill:"none",stroke:"#8a949b","stroke-width":"1.5","stroke-dasharray":"4 3"});
+    const pS=el("path",{fill:"none",stroke:"#17a89a","stroke-width":"2"});
+    const vline=el("line",{stroke:"#fff","stroke-width":"1","stroke-dasharray":"3 3",y1:"2",y2:"42"});
+    spark.append(pB,pS,vline);
+    const v1=el("div",{class:"c-val"}), v2=el("div",{class:"c-val"});
+    b.append(nm,spark,v1,v2);
+    b.onclick=()=>{ state.indicator=ind.key; go("F"); };
+    g.appendChild(b);
+    return {ind,pB,pS,vline,v1,v2};
+  });
+  const note=el("p",{class:"legend"});
+  note.innerHTML=`<span>${DB.indicators.length} indikaattoria · ${DB.corridorCount||0} turvallisen käytävän mittaria valkoisella kehällä · napsauta indikaattoria avataksesi vaikutusketjun</span>`;
+  viewBody.appendChild(note);
+  built={view:"D",refs:{cards}};
+}
+function updateD(){
+  const {cards}=built.refs;
+  cards.forEach(c=>{
+    const W=190,H=44, xs=y=>4+(y-YMIN)/(YMAX-YMIN)*(W-8), ys=v=>H-4-(v/100)*(H-8);
+    const bp=[],sp=[];
+    for(let y=YMIN;y<=YMAX;y+=1){
+      const s=scenarioScore(c.ind,y); if(s.base==null) continue;
+      bp.push([xs(y),ys(s.base)]); sp.push([xs(y),ys(s.scen)]);
+    }
+    c.pB.setAttribute("d",pathOf(bp)); c.pS.setAttribute("d",pathOf(sp));
+    c.vline.setAttribute("x1",xs(2025.5)); c.vline.setAttribute("x2",xs(2025.5));
+    const s=scenarioScore(c.ind,state.year);
+    c.v1.textContent = `${state.year}: ${s.value==null?"–":fmt(s.value,2)} ${c.ind.unit||""} · piste ${fmt(s.scen)}`;
+    c.v2.innerHTML = `<span style="color:${s.delta>=0?'var(--up-soft)':'var(--down-soft)'}">${s.delta>=0?"+":""}${fmt(s.delta)} vs. perusura</span> · <span class="tag">${esc(s.kind)}</span>`;
+  });
+}
+
+/* ---------------- E. Elämänpolut ---------------- */
+function buildE(){
+  viewBody.innerHTML="";
+  const ctr=el("div",{style:"display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin-bottom:12px"});
+  ctr.innerHTML=`
+   <div style="flex:1 1 220px"><label for="lsA" style="font-size:13px;color:#9fb0bc">Alkuvuosi <b id="lsAv">${state.lifeStart}</b></label>
+     <input type="range" id="lsA" min="2000" max="2049" step="1" value="${state.lifeStart}" style="width:100%" aria-label="Elämänpolun alkuvuosi"></div>
+   <div style="flex:1 1 220px"><label for="lsB" style="font-size:13px;color:#9fb0bc">Loppuvuosi <b id="lsBv">${state.lifeEnd}</b></label>
+     <input type="range" id="lsB" min="2001" max="2050" step="1" value="${state.lifeEnd}" style="width:100%" aria-label="Elämänpolun loppuvuosi"></div>
+   <div class="toolbar" id="quick">
+     <button class="btn" data-a="2000" data-b="2025">Historia 2000–2025</button>
+     <button class="btn" data-a="" data-b="5">5 vuotta</button>
+     <button class="btn" data-a="" data-b="10">10 vuotta</button>
+     <button class="btn" data-a="2025" data-b="2050">Tulevaisuus 2025–2050</button>
+   </div>`;
+  viewBody.appendChild(ctr);
+  const svg=svgBox(960,520,"Elämänpolkujen virtakaavio kahdeksan elämäntilan välillä");
+  const gFlow=el("g"),gNode=el("g");
+  svg.append(gFlow,gNode); viewBody.appendChild(svg);
+  const info=el("div"); viewBody.appendChild(info);
+  const note=el("div",{class:"notice dark"},"Historiallinen elämänpolku on indikaattoreilla kalibroitu mekanismimalli, ei havaittu yksilöaineisto. Nauhan leveys = osuus koko ikäryhmästä 25–34 v.");
+  viewBody.appendChild(note);
+
+  const a=ctr.querySelector("#lsA"), b=ctr.querySelector("#lsB");
+  a.oninput=()=>{ state.lifeStart=+a.value; if(state.lifeEnd<=state.lifeStart){ state.lifeEnd=Math.min(2050,state.lifeStart+1); b.value=state.lifeEnd; } syncE(); };
+  b.oninput=()=>{ state.lifeEnd=+b.value; if(state.lifeEnd<=state.lifeStart){ state.lifeStart=Math.max(2000,state.lifeEnd-1); a.value=state.lifeStart; } syncE(); };
+  ctr.querySelectorAll("#quick .btn").forEach(btn=>btn.onclick=()=>{
+    const da=btn.dataset.a, db=btn.dataset.b;
+    if(da){ state.lifeStart=+da; state.lifeEnd=+db; }
+    else { state.lifeEnd=Math.min(2050,state.lifeStart+ +db); if(state.lifeEnd<=state.lifeStart) state.lifeStart=state.lifeEnd-1; }
+    a.value=state.lifeStart; b.value=state.lifeEnd; syncE();
+  });
+  function syncE(){ ctr.querySelector("#lsAv").textContent=state.lifeStart; ctr.querySelector("#lsBv").textContent=state.lifeEnd; updateE(); syncUrl(); }
+  built={view:"E",refs:{gFlow,gNode,info,a,b,ctr}};
+}
+function updateE(){
+  const {gFlow,gNode,info,a,b,ctr}=built.refs;
+  a.value=state.lifeStart; b.value=state.lifeEnd;
+  ctr.querySelector("#lsAv").textContent=state.lifeStart; ctr.querySelector("#lsBv").textContent=state.lifeEnd;
+  const A=state.lifeStart,B=state.lifeEnd;
+  const P=pathMatrix(A,B,false), Pb=pathMatrix(A,B,true);
+  const d0=startDistribution(A);
+  const dEnd=STATES.map((_,j)=>d0.reduce((s,p,i)=>s+p*P[i][j],0));
+  const dEndB=STATES.map((_,j)=>d0.reduce((s,p,i)=>s+p*Pb[i][j],0));
+  const W=960,H=520,padT=40,padB=30, colL=250, colR=710, bh=H-padT-padB;
+  gFlow.innerHTML=""; gNode.innerHTML="";
+  const yL=[],yR=[]; let acc=padT;
+  d0.forEach((v,i)=>{ const hh=Math.max(3,v*bh); yL.push([acc,hh]); acc+=hh+4; });
+  acc=padT; dEnd.forEach((v,i)=>{ const hh=Math.max(3,v*bh); yR.push([acc,hh]); acc+=hh+4; });
+  const offL=d0.map(()=>0), offR=dEnd.map(()=>0);
+  let maxFlow={v:0,i:0,j:0};
+  for(let i=0;i<8;i++) for(let j=0;j<8;j++){
+    const f=d0[i]*P[i][j]; if(f<0.0025) continue;
+    if(f>maxFlow.v && i!==j) maxFlow={v:f,i,j};
+    const h1=Math.max(1.2,f*bh), y1=yL[i][0]+offL[i], y2=yR[j][0]+offR[j];
+    offL[i]+=h1; offR[j]+=h1;
+    const fb=d0[i]*Pb[i][j], diff=f-fb;
+    const col = diff>0.0015?"rgba(23,168,154,.55)": diff<-0.0015?"rgba(224,122,47,.5)":"rgba(159,176,188,.22)";
+    const p=el("path",{d:`M${colL} ${y1} C ${(colL+colR)/2} ${y1}, ${(colL+colR)/2} ${y2}, ${colR} ${y2}`,
+      fill:"none",stroke:col,"stroke-width":h1.toFixed(2),"stroke-linecap":"butt"});
+    p.appendChild(el("title",null,`${STATES[i]} → ${STATES[j]}: ${(f*100).toFixed(1)} % (perusura ${(fb*100).toFixed(1)} %)`));
+    gFlow.appendChild(p);
+  }
+  STATES.forEach((s,i)=>{
+    gNode.appendChild(el("rect",{x:colL-12,y:yL[i][0],width:12,height:yL[i][1],fill:"#cfdae2",rx:"2"}));
+    gNode.appendChild(el("rect",{x:colR,y:yR[i][0],width:12,height:yR[i][1],fill:"#17a89a",rx:"2"}));
+    gNode.appendChild(el("text",{x:colL-20,y:yL[i][0]+yL[i][1]/2+4,fill:"#c6d2da","font-size":"12","text-anchor":"end"},`${s} ${(d0[i]*100).toFixed(1)} %`));
+    gNode.appendChild(el("text",{x:colR+20,y:yR[i][0]+yR[i][1]/2+4,fill:"#c6d2da","font-size":"12"},`${s} ${(dEnd[i]*100).toFixed(1)} %`));
+  });
+  gNode.appendChild(el("text",{x:colL-12,y:24,fill:"#fff","font-size":"13","text-anchor":"end"},`Lähtöjakauma ${A}`));
+  gNode.appendChild(el("text",{x:colR,y:24,fill:"#fff","font-size":"13"},`Päätejakauma ${B}`));
+  const stable=STABLE.reduce((s,i)=>s+dEnd[i],0), stableB=STABLE.reduce((s,i)=>s+dEndB[i],0);
+  const vuln=VULNERABLE.reduce((s,i)=>s+dEnd[i],0), vulnB=VULNERABLE.reduce((s,i)=>s+dEndB[i],0);
+  info.innerHTML=`<div class="kv" style="grid-template-columns:1fr auto 1fr auto;margin-top:8px">
+    <span>Vakaa työasema (vakituinen työ + yrittäjyys)</span><b>${(stable*100).toFixed(1)} % (${((stable-stableB)*100>=0?"+":"")}${((stable-stableB)*100).toFixed(1)} pp)</b>
+    <span>Haavoittuva asema (työttömyys + työkyvyttömyys)</span><b>${(vuln*100).toFixed(1)} % (${((vuln-vulnB)*100>=0?"+":"")}${((vuln-vulnB)*100).toFixed(1)} pp)</b>
+    <span>Suurin tilojen välinen siirtymä</span><b>${maxFlow.v?`${STATES[maxFlow.i]} → ${STATES[maxFlow.j]} ${(maxFlow.v*100).toFixed(1)} %`:"–"}</b>
+    <span>Aikaväli</span><b>${A}–${B} (${B-A} v, ${B-A} siirtymämatriisia kerrottuna)</b></div>`;
+}
+
+/* ---------------- F. Vaikutusketju ---------------- */
+function buildF(){
+  viewBody.innerHTML="";
+  const sel=el("div",{style:"display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:14px"});
+  sel.innerHTML=`<div><label for="fLever" style="font-size:13px;color:#9fb0bc">Säädösvipu</label>
+     <select id="fLever">${DB.levers.map(l=>`<option value="${esc(l.id)}">${esc(l.name)}</option>`).join("")||`<option>Ei vipuja</option>`}</select></div>
+   <div><label for="fInd" style="font-size:13px;color:#9fb0bc">Indikaattori</label>
+     <select id="fInd">${DB.indicators.map(i=>`<option value="${esc(i.key)}"${i.key===state.indicator?" selected":""}>${esc(i.name)}</option>`).join("")||`<option>Ei indikaattoreita</option>`}</select></div>`;
+  viewBody.appendChild(sel);
+  const chain=el("div"); viewBody.appendChild(chain);
+  const svg=svgBox(940,300,"Valitun indikaattorin perusura ja säädösskenaario");
+  viewBody.appendChild(svg);
+  const detail=el("div"); viewBody.appendChild(detail);
+  sel.querySelector("#fLever").onchange=updateF;
+  sel.querySelector("#fInd").onchange=e=>{ state.indicator=e.target.value; updateF(); };
+  built={view:"F",refs:{sel,chain,svg,detail}};
+}
+function updateF(){
+  const {sel,chain,svg,detail}=built.refs;
+  const leverId = sel.querySelector("#fLever").value;
+  const indKey = state.indicator || (sel.querySelector("#fInd") && sel.querySelector("#fInd").value);
+  const ind = DB.indicators.find(i=>i.key===indKey);
+  const lever = DB.levers.find(l=>l.id===leverId);
+  if(!ind||!lever){ chain.innerHTML=`<div class="notice dark">Aineistopuute: säädösvipuja tai indikaattoreita ei ole käytettävissä.</div>`; svg.innerHTML=""; detail.innerHTML=""; return; }
+  const e = DB.effects.find(x=>x.lever===leverId && x.indicator===indKey);
+  const s = scenarioScore(ind, state.year);
+  const strength = state.levers[leverId]||0;
+  const steps = [
+    ["Säädös", lever.name],
+    ["Mekanismi", e && e.mechanism ? e.mechanism : "Mekanismia ei ole kirjattu vaikutusmatriisiin"],
+    ["Indikaattori", `${ind.name} · ${state.year}: ${fmt(s.scen)} p (${s.delta>=0?"+":""}${fmt(s.delta)})`],
+    ["Klusteri", ind.cluster],
+    ["Elämänpolku", `${ind.corridor?"Turvallisen käytävän mittari – ":""}vaikuttaa 25–34-v. siirtymämatriisiin klusterin kautta`],
+    ["Yhteiskunnallinen seuraus", s.delta>0.2?"Vahvistava painekenttä":s.delta<-0.2?"Heikentävä painekenttä":"Ei merkittävää muutosta tällä voimakkuudella"]
+  ];
+  chain.innerHTML = `<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:stretch">`+
+    steps.map((st,i)=>`<div style="flex:1 1 150px;background:#0d1318;border:1px solid var(--dark-line);border-radius:12px;padding:10px">
+       <div style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:#7d8b96">${esc(st[0])}</div>
+       <div style="font-size:13px;color:#e9eef2;margin-top:4px">${esc(st[1])}</div></div>
+       ${i<steps.length-1?`<div style="align-self:center;color:#7d8b96">→</div>`:""}`).join("")+`</div>`;
+  // kuvaaja
+  svg.innerHTML=""; const w=940,h=300,pad=40;
+  axes(svg,w,h,pad,`${ind.name} – normalisoitu piste 0–100 (kiinteä asteikko)`);
+  const bp=[],sp=[];
+  for(let y=YMIN;y<=YMAX;y++){ const r=scenarioScore(ind,y); if(r.base==null) continue;
+    bp.push([xOf(y,w,pad),yOf(r.base,h,pad)]); sp.push([xOf(y,w,pad),yOf(r.scen,h,pad)]); }
+  svg.appendChild(el("path",{d:pathOf(bp),fill:"none",stroke:"#8a949b","stroke-width":"2","stroke-dasharray":"6 5"}));
+  svg.appendChild(el("path",{d:pathOf(sp),fill:"none",stroke: s.delta>=0?"#17a89a":"#e07a2f","stroke-width":"3"}));
+  detail.innerHTML = e ? `<table style="margin-top:12px"><tbody>
+     <tr><th>Voimakkuus (käyttäjän valinta)</th><td class="num">${Math.round(strength*100)} %</td>
+         <th>Suunta</th><td class="num">${e.direction>0?"vahvistava (+)":"heikentävä (−)"}</td></tr>
+     <tr><th>Suhteellinen voimakkuus</th><td class="num">${fmt(e.magnitude,2)}</td>
+         <th>Toteutuskerroin</th><td class="num">${fmt(e.impl,2)}</td></tr>
+     <tr><th>Viive (min–max)</th><td class="num">${fmt(e.dmin,0)}–${fmt(e.dmax,0)} v</td>
+         <th>Persistenssi</th><td class="num">${fmt(e.persist,0)} v</td></tr>
+     <tr><th>Epävarmuus</th><td class="num">±${fmt(e.uncertainty*100,0)} % vaikutuksesta</td>
+         <th>Vaihtokauppa</th><td>${esc(e.tradeoff||"ei kirjattu")}</td></tr>
+     </tbody></table>
+     <p style="font-size:12px;color:#7d8b96">Vaikutus vuonna t = voimakkuus × suunta × suhteellinen voimakkuus × toteutuskerroin × viivefunktio(t). Kertoimet ovat suoraan taulusta simulation_statute_effect_matrix.</p>`
+   : `<div class="notice dark">Tälle säädös–indikaattori-parille ei ole kerrointa vaikutusmatriisissa. Yhteyttä ei muodosteta keinotekoisesti.</div>`;
+}
+
+/* ============================================================
+   7. Renderöinti ja päivitys
+   ============================================================ */
+function render(){
+  if(!DB.ok && DB.gaps.length && state.view!=="D"){ /* näytetään silti, tyhjänä */ }
+  const b={A:buildA,B:buildB,C:buildC,D:buildD,E:buildE,F:buildF}[state.view];
+  b(); update();
+  if(DB.gaps.length){
+    const n=el("div",{class:"notice dark"});
+    n.innerHTML = "<b>Aineistopuutteet:</b><br>"+DB.gaps.map(esc).join("<br>");
+    viewBody.appendChild(n);
+  }
+}
+function update(){
+  if(!built) return;
+  ({A:updateA,B:updateB,C:updateC,D:updateD,E:updateE,F:updateF}[built.view])();
+}
+
+/* ---- vuosi & toisto ---- */
+const yearSlider=$("#yearSlider"), yearOut=$("#yearOut");
+yearSlider.value=state.year; yearOut.textContent=state.year;
+yearSlider.oninput=()=>{ state.year=+yearSlider.value; yearOut.textContent=state.year; update(); syncUrl(); };
+let timer=null;
+$("#btnPlay").onclick=()=>{
+  state.playing=!state.playing;
+  const b=$("#btnPlay"); b.setAttribute("aria-pressed",String(state.playing));
+  b.textContent = state.playing? "⏸ Pysäytä":"▶ Toista vuodet";
+  if(timer){clearInterval(timer);timer=null;}
+  if(state.playing){
+    timer=setInterval(()=>{
+      if(state.view==="E"){
+        const span=state.lifeEnd-state.lifeStart;
+        if(state.lifeEnd>=2050){ state.lifeStart=2000; state.lifeEnd=2000+span; }
+        else { state.lifeStart++; state.lifeEnd++; }
+      } else {
+        state.year = state.year>=2050?2000:state.year+1;
+        yearSlider.value=state.year; yearOut.textContent=state.year;
+      }
+      update(); syncUrl();
+    }, reduceMotion? 1400 : 650);
+  }
+};
+$("#btnReset").onclick=()=>{ DB.levers.forEach(l=>state.levers[l.id]=l.def); matCache.clear(); renderLevers(); update(); syncUrl(); };
+$("#prevView").onclick=()=>shiftView(-1);
+$("#nextView").onclick=()=>shiftView(1);
+document.addEventListener("keydown",e=>{
+  if(e.target.matches("input,select,textarea")) return;
+  if(e.key==="ArrowLeft") shiftView(-1);
+  if(e.key==="ArrowRight") shiftView(1);
+});
+
+/* ---- vienti, jako, lataus ---- */
+$("#btnShare").onclick=async()=>{
+  const u=stateToUrl();
+  try{ await navigator.clipboard.writeText(u); alert("Jaettava linkki kopioitu leikepöydälle."); }
+  catch(e){ prompt("Kopioi linkki:", u); }
+};
+$("#btnDl").onclick=()=>{
+  const html="<!doctype html>\n"+document.documentElement.outerHTML;
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([html],{type:"text/html"}));
+  a.download="murrosmatriisi-simulaattori.html"; a.click(); URL.revokeObjectURL(a.href);
+};
+$("#btnCsv").onclick=()=>{
+  const rows=[["indikaattori","klusteri","turvallinen_kaytava","vuosi","alkuperainen_arvo","yksikko","perusura_piste","skenaario_piste","ero","aineiston_tila"]];
+  DB.indicators.forEach(i=>{
+    for(let y=YMIN;y<=YMAX;y++){
+      const s=scenarioScore(i,y); if(s.base==null) continue;
+      rows.push([i.name,i.cluster,i.corridor?"kyllä":"ei",y,s.value==null?"":s.value,i.unit||"",s.base.toFixed(2),s.scen.toFixed(2),s.delta.toFixed(2),s.kind]);
+    }
+  });
+  const csv=rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(";")).join("\n");
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv"}));
+  a.download=`murrosmatriisi-skenaario-${state.year}.csv`; a.click(); URL.revokeObjectURL(a.href);
+};
+
+/* ---- menetelmäseloste ---- */
+$("#btnMethod").onclick=()=>{
+  const t=Object.entries(DB.tables).map(([k,v])=>`<li><code>${esc(k)}</code> – ${v.ok?`luettu, ${v.n} riviä`:`<b>ei saatavilla</b>: ${esc(v.error)}`}</li>`).join("");
+  $("#methodBody").innerHTML=`
+   <h3>Menetelmäseloste</h3>
+   <p><b>Simulaattori on vaihtoehtoisten kehityspolkujen tutkimiseen tarkoitettu työkalu, ei virallinen ennuste.</b> Skenaariot eivät ole ennusteita eivätkä kertoimet empiirisesti estimoituja kausaalivaikutuksia, ellei tietokanta niin erikseen kerro.</p>
+   <h4>Käytetyt tietokantataulut (vain luku, vain GET-kutsut)</h4><ul>${t}</ul>
+   <h4>Indikaattorien normalisointi</h4><p>Ensisijaisesti käytetään tietokannan valmista normalisoitua pistemäärää. Jos sitä ei ole, arvo skaalataan taulun <code>simulation_normalization_params</code> ankkureiden väliin 0–100 ja käännetään, jos suunta on "pienempi parempi". Suurempi piste = parempi tai turvallisempi tila. Alkuperäinen arvo ja yksikkö näkyvät aina näkymässä D ja CSV-viennissä.</p>
+   <h4>Klusterien muodostus</h4><p>Klusteri luetaan sarjan metatiedosta. Jos kenttää ei ole, klusteri päätellään nimestä avainsanoilla ja tämä on merkitty rajoitteeksi. Klusteripiste on sen indikaattorien keskiarvo, jännite = hajonta.</p>
+   <h4>Säädösvaikutusten laskenta</h4><p>vaikutus(t) = voimakkuus × suunta × suhteellinen voimakkuus × toteutuskerroin × viivefunktio(t). Summa lisätään perusuran pisteeseen ja rajataan välille 0–100.</p>
+   <h4>Viivefunktio</h4><p>Vaikutus on nolla ennen vähimmäisviivettä, kasvaa lineaarisesti vähimmäis- ja enimmäisviiveen välillä ja vaimenee sen jälkeen eksponentiaalisesti persistenssiparametrilla. Säädösten voimaantulovuosi on ${START}.</p>
+   <h4>Elämänpolkujen siirtymämatriisi</h4><p>Kahdeksan elämäntilan vuosittainen matriisi kalibroidaan klusteripisteillä (työ ja osallisuus, toimeentulo ja asuminen, osaaminen, itsenäistyminen, perheet) ja rivit normalisoidaan summaksi 1. Monivuotinen siirtymä on välivuosien matriisien tulo P(a→b) = P(a) × … × P(b−1). Kyseessä on mekanismimalli, ei havaittu yksilöaineisto – myös historiallinen osuus.</p>
+   <h4>Historiallisen ja tulevan aineiston raja</h4><p>Vuosi 2025 on merkitty valkoisella katkoviivalla kaikissa aikasarjoissa. 2036 alkaa rakenteellinen skenaario, jossa epävarmuus kasvaa vuosittain.</p>
+   <h4>Epävarmuuden muodostaminen</h4><p>Epävarmuus on vaikutusmatriisin epävarmuuskertoimien painotettu summa, jota kasvatetaan 0,35 pistettä jokaista vuotta kohti vuoden 2035 jälkeen.</p>
+   <h4>Aineistopuutteet</h4>${DB.gaps.length?`<ul>${DB.gaps.map(g=>`<li>${esc(g)}</li>`).join("")}</ul>`:"<p>Ei havaittuja puutteita ladatussa aineistossa.</p>"}
+   <h4>Mallin keskeiset rajoitukset</h4>
+   <ul><li>Kertoimet ovat asiantuntija-arvioita tai kalibrointeja, eivät estimoituja kausaalivaikutuksia.</li>
+   <li>Klusterin keskiarvo painottaa kaikkia indikaattoreita samalla painolla.</li>
+   <li>Elämänpolkujen matriisi on mekanismi, ei rekisteriaineiston siirtymä.</li>
+   <li>Vuoden 2035 jälkeinen jakso on rakenteellinen skenaario, jonka epävarmuus kasvaa.</li>
+   <li>Vaimennettu jatkumo tarkoittaa, että aineisto loppuu ja viimeistä arvoa jatketaan ilman uutta informaatiota.</li></ul>
+   <div style="margin-top:18px"><button class="btn primary" onclick="document.getElementById('methodDlg').close()">Sulje</button></div>`;
+  $("#methodDlg").showModal();
+};
+
+/* ============================================================
+   8. Käynnistys
+   ============================================================ */
+function showSetup(msg){
+  $("#setup").hidden=false;
+  if(msg) viewBody.innerHTML=`<div class="notice dark">${esc(msg)}</div>`;
+  if(cfg){ $("#cfgUrl").value=cfg.url; $("#cfgKey").value=cfg.key; }
+}
+$("#cfgSave").onclick=()=>{
+  const url=$("#cfgUrl").value.trim(), key=$("#cfgKey").value.trim();
+  if(!/^https?:\/\//.test(url) || !key){ alert("Anna kelvollinen projektin URL ja julkinen avain."); return; }
+  if(/service_role/i.test(key)){ alert("Älä käytä service_role-avainta. Käytä julkista publishable- tai anon-avainta."); return; }
+  cfg={url,key}; localStorage.setItem(LS,JSON.stringify(cfg)); $("#setup").hidden=true; boot();
+};
+
+async function boot(){
+  urlToState(); renderDots(); renderHead();
+  yearSlider.value=state.year; yearOut.textContent=state.year;
+  if(!cfg){ showSetup("Tietokantayhteyttä ei ole määritetty. Anna projektin osoite ja julkinen avain yllä – sovellus ei näytä keksittyä aineistoa."); return; }
+  viewBody.innerHTML=`<div class="loading"><span class="pulse"></span> Luetaan aineistoa Data API:sta…</div>`;
+  DB.gaps=[]; DB.tables={};
+  try{ await loadAll(); }
+  catch(e){ showSetup("Yhteys epäonnistui: "+e.message); return; }
+  renderLevers(); render(); syncUrl();
+}
+boot();
+</script>
+</body>
+</html>
