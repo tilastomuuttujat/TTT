@@ -1,0 +1,1222 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Murrosmatriisi · Säädössimulaattori v4</title>
+<meta name="description" content="Säädösvalintojen vaikutukset nuorten aikuisten turvalliseen käytävään 2025–2050. Avoin laskentamalli, viivevaikutukset ja herkkyysanalyysi.">
+<style>
+:root{
+  --ink:#10251f;--ink-2:#33504a;--dark:#0d201b;--dark-2:#12352d;
+  --teal:#0a8a7f;--teal-deep:#066a62;--teal-soft:#e6f3ef;
+  --sand:#c4662a;--red:#b23c2e;--plum:#302a3d;
+  --paper:#fff;--bg:#eef2f0;--line:#d9e2de;--muted:#66807a;
+  --r:14px;--r-sm:10px;
+  --sh-1:0 1px 3px #12352c14,0 4px 16px #12352c0d;
+  --sh-2:0 2px 8px #12352c14,0 18px 46px #12352c1a;
+  --fd:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --fs:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --fm:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font:15px/1.55 var(--fs);
+  background:radial-gradient(1200px 520px at 85% -10%,#d8e8e2 0,transparent 60%),var(--bg)}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background-image:linear-gradient(#c8d4cf5c 1px,transparent 1px),linear-gradient(90deg,#c8d4cf5c 1px,transparent 1px);
+  background-size:32px 32px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0,#000 30%,transparent 100%);
+          mask-image:radial-gradient(ellipse 90% 70% at 50% 0,#000 30%,transparent 100%)}
+button,select,input{font:inherit}button{cursor:pointer}
+:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:5px}
+::selection{background:#0a8a7f33}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* header */
+header{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:16px;
+  padding:13px 24px;color:#f2faf6;
+  background:linear-gradient(120deg,var(--dark) 0,var(--dark-2) 55%,#16473b 100%);
+  border-bottom:3px solid var(--sand);box-shadow:0 8px 30px #0d201b55}
+.logo{width:46px;height:46px;display:grid;place-items:center;flex:none;border:1.5px solid #4f7a6d;border-radius:12px;
+  background:linear-gradient(145deg,#ffffff14,#ffffff05);font:700 25px var(--fd);color:#eaf6f0;
+  box-shadow:inset 0 1px 0 #ffffff22,0 4px 10px #0003}
+.brand small{display:block;font-size:10px;font-weight:800;letter-spacing:.22em;color:#8fb0a5}
+.brand h1{margin:2px 0 0;font:700 21px var(--fd);letter-spacing:.01em}
+.htools{margin-left:auto;display:flex;align-items:center;gap:8px}
+.htools button{border:1px solid #4f7a6d;background:#ffffff12;color:#dcefe7;border-radius:9px;
+  padding:8px 12px;font-size:11.5px;font-weight:700;letter-spacing:.03em;transition:.15s}
+.htools button:hover{background:#ffffff22;color:#fff}
+.htools .live{display:flex;align-items:center;gap:7px;color:#b7d0c8;font-size:11.5px;padding-right:4px}
+.htools .live::before{content:"";width:8px;height:8px;border-radius:50%;background:#3ecf9f;box-shadow:0 0 0 4px #3ecf9f26}
+
+/* scenario bar */
+.scenario-bar{position:sticky;top:72px;z-index:30;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;
+  padding:11px 24px;background:#ffffffe8;backdrop-filter:blur(8px);border-bottom:1px solid var(--line);box-shadow:var(--sh-1)}
+.sb-field{display:flex;align-items:center;gap:9px}
+.sb-field label{font-size:10px;font-weight:800;letter-spacing:.11em;text-transform:uppercase;color:#6b7f79}
+.sb-field select,.sb-field input[type=number]{border:1px solid var(--line);border-radius:9px;padding:7px 10px;
+  background:var(--paper);color:var(--ink);font-size:13px;font-weight:600}
+.presets{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.presets button{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:7px 13px;
+  font-size:11.5px;font-weight:700;color:var(--ink-2);transition:.15s}
+.presets button:hover{border-color:var(--teal);color:var(--teal-deep);background:var(--teal-soft)}
+.presets button.reset{color:var(--red);border-color:#eccfca}
+
+/* layout */
+.workspace{display:grid;grid-template-columns:360px minmax(0,1fr) 340px;gap:16px;padding:16px 24px 26px;align-items:start}
+.panel{min-width:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh-1);padding:20px}
+.panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}
+.kicker{display:block;font-size:9.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--sand)}
+.panel-head h2{margin:3px 0 0;font:700 18px var(--fd)}
+.count{font-family:var(--fm);font-size:11px;color:var(--muted);white-space:nowrap;padding-top:12px}
+
+/* levers */
+.tabs{display:flex;gap:4px;margin-bottom:14px;padding:4px;background:#f1f5f3;border-radius:11px}
+.tabs button{flex:1;border:0;background:transparent;border-radius:8px;padding:8px 6px;font-size:11px;font-weight:800;
+  letter-spacing:.05em;color:#6b7f79;transition:.15s}
+.tabs button.active{background:var(--paper);color:var(--ink);box-shadow:var(--sh-1)}
+.group{border:1px solid var(--line);border-radius:var(--r-sm);margin-bottom:10px;overflow:hidden}
+.group>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:12px 13px;background:#f7faf9}
+.group>summary::-webkit-details-marker{display:none}
+.g-icon{width:26px;height:26px;flex:none;display:grid;place-items:center;border-radius:8px;color:#fff;font:700 13px var(--fd)}
+.g-name{display:block;font-size:13px;font-weight:700}
+.g-sub{display:block;font-size:10.5px;color:var(--muted)}
+.g-val{margin-left:auto;font:700 13px var(--fm);font-variant-numeric:tabular-nums}
+.g-val.pos{color:var(--teal-deep)}.g-val.neg{color:var(--red)}
+.group[open]>summary{border-bottom:1px solid var(--line)}
+.lever{padding:13px}
+.lever+.lever{border-top:1px dashed #e5ece9}
+.lever-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.lever-top strong{font-size:12.8px;font-weight:700;line-height:1.3}
+.lever-top .st{font:600 10px var(--fm);color:#9aa8a3}
+.value{font:700 14px var(--fm);font-variant-numeric:tabular-nums;color:#8d9b96}
+.value.pos{color:var(--teal-deep)}.value.neg{color:var(--red)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:22px;background:transparent;margin:6px 0 0}
+input[type=range]::-webkit-slider-runnable-track{height:5px;border-radius:5px;
+  background:linear-gradient(90deg,#f0d9d2 0,#e8eeeb 50%,#cfe8e0 100%)}
+input[type=range]::-moz-range-track{height:5px;border-radius:5px;background:linear-gradient(90deg,#f0d9d2,#e8eeeb 50%,#cfe8e0)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:17px;height:17px;margin-top:-6px;border-radius:50%;
+  background:var(--paper);border:2px solid var(--teal-deep);box-shadow:0 2px 6px #0d201b33;cursor:grab}
+input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:var(--paper);
+  border:2px solid var(--teal-deep);box-shadow:0 2px 6px #0d201b33;cursor:grab}
+.lever-meta{display:flex;justify-content:space-between;gap:8px;margin-top:3px;font-size:10px;color:#8b9994}
+.lever p{margin:7px 0 0;font-size:11.2px;line-height:1.55;color:#66766f}
+.badge{display:inline-block;padding:2px 7px;border-radius:999px;font-size:9px;font-weight:800;letter-spacing:.06em;
+  text-transform:uppercase;background:#f0ece4;color:#8a7550}
+.badge.warn{background:#fbeee7;color:#a4551f}
+
+/* chart panel */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:var(--r-sm);
+  overflow:hidden;margin-bottom:16px;background:#fbfdfc}
+.metric{padding:12px 13px;border-right:1px solid var(--line)}
+.metric:last-child{border-right:0}
+.metric span{display:block;font-size:9.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:#7c8d87}
+.metric b{display:block;margin-top:4px;font:700 21px var(--fd);font-variant-numeric:tabular-nums}
+.metric small{font-size:10.5px;color:var(--muted)}
+.metric b.pos{color:var(--teal-deep)}.metric b.neg{color:var(--red)}
+.selector{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:12px}
+.selector select{flex:1;min-width:220px;border:1px solid var(--line);border-radius:9px;padding:9px 11px;
+  background:var(--paper);font-size:13.5px;font-weight:600}
+.series-nav{display:grid;grid-template-columns:40px minmax(190px,1fr) 40px;align-items:stretch;gap:7px;flex:1;min-width:260px}
+.series-nav button{border:1px solid #cbd9d4;border-radius:9px;background:#f7faf9;color:var(--teal-deep);font-size:22px;font-weight:800;line-height:1;transition:background .15s,border-color .15s,transform .1s}
+.series-nav button:hover{background:#e9f4f0;border-color:var(--teal)}.series-nav button:active{transform:scale(.95)}
+.series-name{display:grid;place-items:center;min-height:40px;padding:7px 12px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);font-size:12px;font-weight:800;text-align:center;line-height:1.25}
+.chart-wrap{position:relative}
+.chart-wrap svg{display:block;width:100%;height:auto}
+.axis{stroke:#e2e8e5;stroke-dasharray:2 5}
+.base-line{fill:none;stroke:#93a19c;stroke-width:2;stroke-dasharray:5 6;stroke-linejoin:round}
+.scenario-line{fill:none;stroke:var(--teal);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+  filter:drop-shadow(0 3px 6px #0a8a7f44)}
+.band{fill:url(#bandGrad)}
+.reform{stroke:var(--sand);stroke-width:1.5;stroke-dasharray:3 4}
+.chart-label{font:600 11px var(--fs);fill:#6d7c76}
+.dot{fill:var(--teal);stroke:#fff;stroke-width:2}
+.crosshair{stroke:#9fb2ab;stroke-width:1;stroke-dasharray:3 3;pointer-events:none}
+.tip{position:absolute;display:none;min-width:170px;padding:10px 12px;pointer-events:none;z-index:5;
+  background:#0e231eee;color:#e9f4ef;border-radius:10px;font-size:11.5px;line-height:1.55;box-shadow:0 10px 30px #0d201b55}
+.tip b{color:#fff;font-family:var(--fm)}
+.tip .yr{font:700 13px var(--fd);color:#ffd9b8;display:block;margin-bottom:3px}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:12px;font-size:11.5px;color:#5d6d67}
+.legend i{display:inline-block;width:22px;height:0;border-top:3px solid;vertical-align:middle;margin-right:6px;border-radius:2px}
+.chart-note{display:flex;gap:10px;margin-top:14px;padding:13px 15px;border:1px solid #dce6e1;border-radius:var(--r-sm);
+  background:#f4f8f6;font-size:11.8px;color:#5a6c66;line-height:1.6}
+.chart-note b{color:#2c463f}
+
+/* timeline */
+.timeline{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;margin-top:14px;
+  padding:12px 14px;border:1px solid var(--line);border-radius:var(--r-sm);background:#fbfdfc}
+.timeline button{border:0;border-radius:9px;background:var(--teal-deep);color:#fff;padding:9px 15px;font-weight:800;font-size:12px}
+.timeline output{min-width:44px;font:700 13px var(--fm);text-align:right}
+
+/* heatmap */
+.heat{margin-top:16px;padding:16px;border-radius:var(--r);background:var(--plum);color:#efeaf3}
+.heat h3{margin:0;font:700 15px var(--fd);color:#f3eef6}
+.heat p{margin:3px 0 12px;font-size:11px;color:#b9aec5}
+.heat canvas{display:block;max-width:100%;height:auto;border-radius:9px}
+.heat-legend{display:flex;align-items:center;gap:9px;margin-top:10px;font-size:10.5px;color:#cfc6d5}
+.heat-grad{width:170px;height:8px;border-radius:9px;background:linear-gradient(90deg,#c66a2b,#efe9e4 50%,#3fa89b)}
+.heat-empty{margin-top:10px;font-size:11.5px;color:#c3b8ce}
+.viz-switch{display:grid;grid-template-columns:42px minmax(0,1fr) 42px;gap:8px;align-items:stretch;margin-top:16px}
+.viz-switch button{border:1px solid #cbd9d4;border-radius:9px;background:#f7faf9;color:var(--teal-deep);font-size:22px;font-weight:800;transition:background .15s,border-color .15s,transform .1s}
+.viz-switch button:hover{background:#e9f4f0;border-color:var(--teal)}.viz-switch button:active{transform:scale(.95)}
+.viz-title{display:grid;place-content:center;min-height:44px;padding:6px 12px;border:1px solid var(--line);border-radius:9px;background:#f7faf9;text-align:center}
+.viz-title small{display:block;color:#7c8d87;font-size:8.5px;font-weight:800;letter-spacing:.12em}.viz-title strong{display:block;color:var(--ink);font:700 14px var(--fd)}
+.viz-carousel{margin-top:9px}.viz-carousel>.heat,.viz-carousel>.landscape{margin-top:0}
+[data-viz-panel][hidden],.heat-empty[hidden],.landscape-empty[hidden]{display:none!important}
+
+/* yhden muuttujan skenaariotiheys */
+.landscape{margin-top:16px;padding:18px;border-radius:var(--r);background:#302a3d;color:#efeaf3;border:1px solid #493e57}
+.landscape-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.landscape h3{margin:0;font:700 17px var(--fd);color:#f5eff7}
+.landscape p{margin:4px 0 12px;font-size:11px;color:#b9aec5;line-height:1.5}
+.landscape-kpi{text-align:right;white-space:nowrap}.landscape-kpi b{display:block;font:700 18px var(--fm);color:#fff0b7}.landscape-kpi span{font-size:10px;color:#b9aec5}
+.landscape-wrap{position:relative}.landscape canvas{display:block;max-width:100%;height:auto;border-radius:10px;touch-action:none}
+.landscape-tip{position:absolute;display:none;pointer-events:none;z-index:3;min-width:175px;padding:9px 11px;border-radius:8px;background:#17131fef;color:#eee8f1;font-size:10.5px;line-height:1.45;box-shadow:0 8px 28px #0007}
+.landscape-tip b{color:#fff0b7}.landscape-legend{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:10.5px;color:#cfc6d5;flex-wrap:wrap}
+.landscape-grad{width:180px;height:9px;border-radius:9px;background:linear-gradient(90deg,#f0a06f,#6b4150 36%,#302a3d 50%,#4f9aa5 72%,#fff0b7)}
+.landscape-legend em{margin-left:auto;font-style:normal;color:#a99daf}.landscape-empty{position:absolute;inset:14px 18px 30px min(220px,35%);display:grid;place-content:center;text-align:center;background:#302a3ddd;color:#cfc6d5;font-size:11.5px;line-height:1.55;border-radius:9px}
+.cluster-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.cluster-card{padding:8px 9px;border:1px solid #4c405b;border-radius:8px;background:#373044}.cluster-card span{display:block;color:#b9aec5;font-size:9px}.cluster-card b{display:block;margin-top:2px;font:700 11px var(--fm)}
+.profile-stage,.grid-stage{padding:18px;border-radius:var(--r);background:#302a3d;color:#efeaf3;border:1px solid #493e57}
+.profile-stage h3,.grid-stage h3{margin:0;font:700 17px var(--fd);color:#f5eff7}.profile-stage>p,.grid-stage>p{margin:4px 0 10px;font-size:11px;color:#b9aec5;line-height:1.5}
+.profile-host svg{display:block;width:100%;height:auto;max-height:520px}.profile-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:8px}
+.profile-card{padding:8px 9px;border:1px solid #4c405b;border-radius:8px;background:#373044}.profile-card span{display:block;color:#b9aec5;font-size:9px}.profile-card b{display:block;margin-top:2px;font:700 12px var(--fm)}
+.profile-method{margin-top:9px;color:#b9aec5;font-size:9.5px}.profile-method summary{cursor:pointer;color:#d7cddd;font-weight:700}.profile-method ul{margin:7px 0 0;padding-left:18px;line-height:1.55}
+.indicator-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:9px}.indicator-mini{appearance:none;text-align:left;padding:10px;border:1px solid #493e57;border-radius:9px;background:#373044;color:#efeaf3;cursor:pointer}
+.indicator-mini:hover,.indicator-mini.active{border-color:#d8a13a;background:#40364d}.indicator-mini strong{display:block;min-height:30px;font-size:10.5px;line-height:1.35}.indicator-mini svg{display:block;width:100%;height:42px;margin:5px 0}.indicator-mini small{display:block;color:#b9aec5;font-size:9.5px}.indicator-mini b{font:700 11px var(--fm)}
+.path-stage{padding:18px;border-radius:var(--r);background:#302a3d;color:#efeaf3;border:1px solid #493e57}.path-stage h3{margin:0;font:700 17px var(--fd);color:#f5eff7}.path-stage>p{margin:4px 0 10px;font-size:11px;color:#b9aec5;line-height:1.5}.path-summary{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:9px}.path-summary span{padding:6px 9px;border:1px solid #4c405b;border-radius:8px;background:#373044;color:#cfc6d5;font-size:10px}.path-summary b{color:#fff0b7}.path-host{overflow-x:auto}.path-host svg{display:block;width:100%;min-width:680px;height:auto}.path-method{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;margin-top:8px;color:#a99daf;font-size:9.5px;line-height:1.45}.path-method b{color:#cfc6d5}
+@media(max-width:820px){.landscape{padding:14px}.landscape-head{display:block}.landscape-kpi{text-align:left;margin:8px 0}.landscape-legend em{width:100%;margin-left:0}.landscape-empty{left:105px}}
+@media(max-width:620px){.profile-cards,.cluster-summary{grid-template-columns:1fr 1fr}.profile-stage,.grid-stage,.path-stage{padding:13px}.indicator-grid{grid-template-columns:1fr 1fr}}
+
+/* insight */
+.direction{display:flex;gap:14px;align-items:center;padding:15px;margin-bottom:16px;
+  background:linear-gradient(120deg,#ecf8f3,#f5fbf8);border:1px solid #cde3db;border-radius:var(--r-sm)}
+.direction.down{background:linear-gradient(120deg,#fdf0ec,#fdf8f6);border-color:#efd2ca}
+.direction .arrow{font-size:29px;color:var(--teal)}
+.direction.down .arrow{color:var(--red)}
+.direction span,.direction small{display:block;color:#5f706a;font-size:10.5px;font-weight:600}
+.direction b{display:block;margin:2px 0;font:700 20px var(--fd);font-variant-numeric:tabular-nums}
+.ins h3{margin:16px 0 6px;font:700 14.5px var(--fd)}
+.contrib{padding:9px 0;border-bottom:1px solid #e9efec}
+.contrib-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.contrib strong{font-size:12.2px}
+.contrib small{color:#78867f;font-size:10.5px}
+.bar{height:5px;border-radius:5px;background:#eef2f0;margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:5px}
+.chain{margin-top:16px;padding:14px;border-radius:var(--r-sm);background:#edf2f0;border:1px solid #dde6e2}
+.chain div{display:flex;justify-content:space-between;font-size:9.5px;font-weight:800;text-transform:uppercase;
+  letter-spacing:.05em;color:#3f5a52}
+.chain div span:nth-child(even){color:#9db4ac}
+.chain p{margin:8px 0 0;font-size:10.5px;color:#67756f;line-height:1.6}
+.empty{min-height:320px;display:grid;place-content:center;justify-items:center;text-align:center;color:var(--muted)}
+.orb{width:104px;height:104px;display:grid;place-items:center;border-radius:50%;border:1.5px solid #b3ccc4;
+  font:700 28px var(--fd);color:var(--teal);background:radial-gradient(circle at 35% 30%,#e8f4f0,#f7fbfa);
+  box-shadow:0 10px 30px #0a8a7f1c,inset 0 0 0 10px #ffffffcc;animation:float 5s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.empty h3{margin:20px 0 6px;font:700 19px var(--fd);color:var(--ink)}
+.empty p{max-width:30ch;font-size:12.5px}
+.method{margin-top:18px;padding-top:13px;border-top:1px solid var(--line);font-size:10.5px;color:#6b7a74;line-height:1.65}
+
+footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;padding:15px 24px;
+  background:linear-gradient(120deg,var(--dark),var(--dark-2));color:#87a298;font-size:10.5px;letter-spacing:.04em}
+.loading{min-height:100vh;display:grid;place-content:center;justify-items:center;gap:16px;text-align:center;
+  color:#3f5f55;font-family:var(--fd)}
+.spinner{width:44px;height:44px;border-radius:50%;border:3px solid #cfe0da;border-top-color:var(--teal);
+  animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(1turn)}}
+.error-box{max-width:440px;margin:12vh auto;padding:30px;text-align:center;background:var(--paper);
+  border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh-2)}
+.error-box button{margin-top:14px;padding:10px 20px;border:0;border-radius:9px;background:var(--teal);color:#fff;font-weight:700}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:80;
+  padding:11px 18px;border-radius:11px;background:#0e231eef;color:#e9f4ef;font-size:12.5px;font-weight:600;
+  box-shadow:0 12px 34px #0d201b55;transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:1240px){
+  .workspace{grid-template-columns:330px minmax(0,1fr)}
+  .insight{grid-column:1/-1}
+}
+@media(max-width:820px){
+  header{padding:11px 14px}.brand h1{font-size:17px}.logo{width:38px;height:38px;font-size:20px}
+  .htools .live{display:none}
+  .scenario-bar{position:static;padding:11px 14px}
+  .presets{margin-left:0}
+  .workspace{grid-template-columns:1fr;padding:12px}
+  .panel{padding:15px}
+  .metrics{grid-template-columns:1fr 1fr}
+  .metric:nth-child(2){border-right:0}
+  .metric:nth-child(-n+2){border-bottom:1px solid var(--line)}
+  .timeline{grid-template-columns:1fr auto}.timeline button{grid-column:1/-1}
+  footer{flex-direction:column;gap:4px}
+}
+</style>
+</head>
+<body>
+<div id="app" class="loading"><div class="spinner"></div><b>Ladataan Murrosmatriisin laskentamallia…</b></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   Murrosmatriisi · Säädössimulaattori v4
+   Yksitiedostoinen sovellus. Lukee julkisen aineiston suoraan
+   Murrosmatriisin tietokannasta (vain luku, julkinen avain).
+   ============================================================ */
+
+const API = 'https://zzbubbrsgiqsvsovkkmf.supabase.co';
+const KEY = 'sb_publishable_YNqxZI4Oj-DSjVBoTKhQ2Q_4DchUIBb';
+const Y0 = 2025, Y1 = 2050, YEARS = Array.from({length: Y1 - Y0 + 1}, (_, i) => Y0 + i);
+
+const GROUPS = [
+  {key:'work',     label:'Työmarkkinat',      icon:'T', color:'#087f77', matches:['työmarkkinat']},
+  {key:'security', label:'Sosiaaliturva & verotus', icon:'S', color:'#2470a0', matches:['sosiaaliturva','sosiaalipalvelut','verotus']},
+  {key:'housing',  label:'Asuminen',          icon:'A', color:'#c66a2b', matches:['asuminen']},
+  {key:'future',   label:'Koulutus & perhe',  icon:'K', color:'#7558a6', matches:['koulutus','perhepolitiikka']}
+];
+
+const NAMES = {
+  'safe_corridor.arope_25_29':'Köyhyys- tai syrjäytymisriski · 25–29',
+  'safe_corridor.employment_rate_25_29':'Työllisyysaste · 25–29',
+  'safe_corridor.employment_rate_30_34':'Työllisyysaste · 30–34',
+  'safe_corridor.fertility_rate_25_29':'Hedelmällisyysluku · 25–29',
+  'safe_corridor.fertility_rate_30_34':'Hedelmällisyysluku · 30–34',
+  'safe_corridor.housing_cost_overburden_25_29':'Asumiskustannusrasitus · 25–29',
+  'safe_corridor.leaving_parental_home_age':'Kotoamuuttoikä',
+  'safe_corridor.living_with_parents_25_29':'Vanhempien kanssa asuvat · 25–29',
+  'safe_corridor.long_term_unemployment_share_25_29':'Pitkäaikaistyöttömyys · 25–29',
+  'safe_corridor.long_term_unemployment_share_30_34':'Pitkäaikaistyöttömyys · 30–34',
+  'safe_corridor.unemployment_rate_25_29':'Työttömyysaste · 25–29',
+  'safe_corridor.unemployment_rate_30_34':'Työttömyysaste · 30–34'
+};
+const ORDER = Object.keys(NAMES);
+const LANDSCAPE_ORDER = [
+  'safe_corridor.employment_rate_25_29','safe_corridor.employment_rate_30_34',
+  'safe_corridor.unemployment_rate_25_29','safe_corridor.unemployment_rate_30_34',
+  'safe_corridor.long_term_unemployment_share_25_29','safe_corridor.long_term_unemployment_share_30_34',
+  'safe_corridor.arope_25_29','safe_corridor.housing_cost_overburden_25_29',
+  'safe_corridor.living_with_parents_25_29','safe_corridor.leaving_parental_home_age',
+  'safe_corridor.fertility_rate_25_29','safe_corridor.fertility_rate_30_34'
+];
+const PROFILE_AXES = [
+  {label:'Työllisyys',keys:['safe_corridor.employment_rate_25_29','safe_corridor.employment_rate_30_34']},
+  {label:'Työttömyys',keys:['safe_corridor.unemployment_rate_25_29','safe_corridor.unemployment_rate_30_34']},
+  {label:'Pitkittynyt työttömyys',keys:['safe_corridor.long_term_unemployment_share_25_29','safe_corridor.long_term_unemployment_share_30_34']},
+  {label:'Toimeentulo & asuminen',keys:['safe_corridor.arope_25_29','safe_corridor.housing_cost_overburden_25_29']},
+  {label:'Itsenäistyminen',keys:['safe_corridor.living_with_parents_25_29','safe_corridor.leaving_parental_home_age']},
+  {label:'Perheellistyminen',keys:['safe_corridor.fertility_rate_25_29','safe_corridor.fertility_rate_30_34']}
+];
+
+/* 25–34-vuotiaiden mekanistinen elämänpolkumalli. Lähtöosuudet ja
+   siirtymät ovat läpinäkyviä skenaario-oletuksia, eivät havaittuja yksilöpolkuja. */
+const LIFE_STATES = [
+  {key:'study',label:'Opiskelu',color:'#63c7cc',share:.20},
+  {key:'stable',label:'Vakituinen työ',color:'#58bd8b',share:.34},
+  {key:'precarious',label:'Pätkä- ja osa-aikatyö',color:'#d7b35c',share:.17},
+  {key:'entrepreneur',label:'Yrittäjyys',color:'#8e79c5',share:.07},
+  {key:'unemployed',label:'Työttömyys',color:'#d36f58',share:.09},
+  {key:'family',label:'Perhevapaa',color:'#cf7dad',share:.08},
+  {key:'disabled',label:'Työkyvyttömyys',color:'#83748e',share:.03},
+  {key:'abroad',label:'Ulkomailla',color:'#687b91',share:.02}
+];
+const LIFE_BASE = [
+  [.55,.18,.14,.02,.05,.04,.005,.015],
+  [.01,.84,.04,.015,.045,.035,.01,.005],
+  [.03,.18,.52,.04,.16,.05,.01,.01],
+  [.01,.12,.07,.70,.06,.03,.005,.005],
+  [.10,.13,.19,.03,.45,.05,.03,.02],
+  [.03,.28,.12,.02,.11,.42,.01,.01],
+  [.02,.06,.07,.005,.12,.02,.70,.005],
+  [.02,.07,.02,.01,.01,0,0,.88]
+];
+
+/* Vaikutusmaiseman rakenneklusterit. dir: 1 = suurempi vahvistaa, -1 = suurempi heikentää. */
+const MAP_Y0=2000;
+const INDICATOR_CLUSTERS=[
+  {key:'public',label:'Julkinen kantokyky',x:.20,y:.25,color:'#d5aa55',items:[
+    ['indicator_import.valtionvelka_bktsta','Julkinen velka / BKT',-1],['indicator_import.julkiset_menot_bktsta','Julkiset menot / BKT',0],['nordics.govexp_social_protection_gdp_1995_2024','Sosiaaliturvamenot / BKT',0],['nordics2.old_age_expenditure_gdp_1995_2024','Vanhuusmenot / BKT',-1],['indicator_import.ttt_huoltosuhde','Demografinen huoltosuhde',-1]
+  ]},
+  {key:'work',label:'Työ ja osallisuus',x:.50,y:.20,color:'#55b9ad',items:[
+    ['safe_corridor.employment_rate_25_29','Työllisyys 25–29',1],['safe_corridor.employment_rate_30_34','Työllisyys 30–34',1],['safe_corridor.unemployment_rate_25_29','Työttömyys 25–29',-1],['safe_corridor.unemployment_rate_30_34','Työttömyys 30–34',-1],['safe_corridor.long_term_unemployment_share_25_29','Pitkäaikaistyöttömyys 25–29',-1],['safe_corridor.long_term_unemployment_share_30_34','Pitkäaikaistyöttömyys 30–34',-1],['indicator_import.neet_osuus','NEET 15–24',-1],['indicator_import.nuorisotyottomyys_1524','Nuorisotyöttömyys 15–24',-1],['indicator_import.osa_aikatyo_25_34_pct','Osa-aikatyö 25–34',-1]
+  ]},
+  {key:'security',label:'Toimeentulo ja asuminen',x:.79,y:.31,color:'#e08a63',items:[
+    ['safe_corridor.arope_25_29','Köyhyys- tai syrjäytymisriski 25–29',-1],['safe_corridor.housing_cost_overburden_25_29','Asumiskustannusrasitus 25–29',-1],['indicator_import.alle35_vuokra_asumisrasitus_netto','Alle 35-v. asumisrasitus',-1],['indicator_import.alle35_vuokra_jaljella_eur','Tulot asumisen jälkeen',1],['debt.enforcement_open_natural_persons_2008_2025','Ulosotossa olevat henkilöt',-1],['debt.enforcement_open_balance_eur_2008_2025','Ulosoton velkasaldo',-1]
+  ]},
+  {key:'capacity',label:'Osaaminen ja toimintakyky',x:.76,y:.69,color:'#8b78bd',items:[
+    ['indicator_import.kou_koulupudokkaat','Koulutuksen ulkopuolelle jääneet',-1],['indicator_import.erityinen_tuki_perusopetus','Erityistä tukea saaneet',-1],['youth.mh_rehab_total_0_24','Mielenterveyskuntoutujat',-1],['youth.psychiatric_wait_u23','Yli 3 kk psykiatriseen hoitoon odottaneet',-1],['youth.substance_mortality_15_34','Nuorten päihdekuolleisuus',-1],['nordics.health_nurses_per100k_2000_2023','Sairaanhoitajat / 100 000',1]
+  ]},
+  {key:'renewal',label:'Itsenäistyminen ja uusiutuminen',x:.47,y:.80,color:'#6fc0d2',items:[
+    ['safe_corridor.living_with_parents_25_29','Vanhempien kanssa asuvat 25–29',-1],['safe_corridor.leaving_parental_home_age','Kotoamuuttoikä',-1],['safe_corridor.fertility_rate_25_29','Hedelmällisyys 25–29',1],['safe_corridor.fertility_rate_30_34','Hedelmällisyys 30–34',1],['indicator_import.syntyvyys_tfr','Kokonaishedelmällisyysluku',1],['indicator_import.ttt_elavanasyntyneet','Elävänä syntyneet',1]
+  ]},
+  {key:'fabric',label:'Perheet ja yhteiskunnallinen kudos',x:.18,y:.67,color:'#79aa7a',items:[
+    ['indicator_import.lastensuojelu_sijoitetut_pct','Kodin ulkopuolelle sijoitetut',-1],['nordics2.daycare_3_5_1990_2024','Varhaiskasvatukseen osallistuminen',1],['nordics2.family_children_expenditure_gdp_1995_2024','Perhe- ja lapsimenot / BKT',0],['social.civic_participation','Järjestötoimintaan osallistuminen',1],['nordics2.alcohol_sales_1960_2024','Alkoholimyynti',-1]
+  ]}
+];
+const SAFE_KEYS=new Set(ORDER);
+const MAP_ITEMS=INDICATOR_CLUSTERS.flatMap(c=>c.items.map(([key,label,dir])=>({key,label,dir,cluster:c.key})));
+
+const PRESETS = {
+  balance:  {label:'Tasapaino',      set:{employment_services:45,vocational_education:35,student_aid:30,rental_housing_supply:35,unemployment_security:25,early_childhood_education:30}},
+  work:     {label:'Työlinja',       set:{employment_services:65,vocational_education:55,employment_contracts:35,collective_agreements:25,income_tax:25}},
+  housing:  {label:'Asumislinja',    set:{rental_housing_supply:70,housing_allowance:45,social_services:20}},
+  pressure: {label:'Sopeutuspaine',  set:{unemployment_security:-45,student_aid:-40,rental_housing_supply:-35,social_services:-30,early_childhood_education:-25}}
+};
+
+/* ---------- state ---------- */
+let levers = [], effects = [], baselines = [], norms = {}, anchors = {}, indicatorMeta = {}, indicatorHistory = {};
+let values = {}, reformYear = 2027, selected = 'safe_corridor.arope_25_29';
+let tab = 'groups', scenario = {}, composite = [], focusYear = 2032;
+let playing = false, playRaf = null, playPos = Y1, mapYear = 2025, heat = null, landscape = null;
+let hoverIdx = null;
+let vizView = 'heat';
+
+/* ---------- helpers ---------- */
+const nf = (n, d = 1) => new Intl.NumberFormat('fi-FI', {minimumFractionDigits: d, maximumFractionDigits: d}).format(n || 0);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const sign = n => (n > 0 ? '+' : '') + nf(n);
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const $ = id => document.getElementById(id);
+
+function unitOf(key) {
+  if (key.includes('fertility')) return {suffix:'', digits:2, name:'lasta/nainen'};
+  if (key.includes('age')) return {suffix:' v', digits:1, name:'vuotta'};
+  return {suffix:' %', digits:1, name:'%'};
+}
+/* pistemäärä (0–100, suurempi = parempi) takaisin alkuperäiseen yksikköön */
+function toRaw(key, score) {
+  const a = anchors[key];
+  if (!a) return null;
+  const span = a.upper_anchor - a.lower_anchor;
+  return a.favorable_direction === 1
+    ? a.lower_anchor + (score / 100) * span
+    : a.upper_anchor - (score / 100) * span;
+}
+function rawLabel(key, score) {
+  const r = toRaw(key, score); if (r == null) return '–';
+  const u = unitOf(key);
+  return nf(r, u.digits) + u.suffix;
+}
+
+/* viivepaino: vaikutus kasvaa lag-ikkunassa ja hiipuu persistenssin jälkeen */
+function weight(year, start, lagMin, lagMax, persist) {
+  const a = year - start;
+  if (a < lagMin) return 0;
+  if (a <= lagMax) return lagMax === lagMin ? 1 : Math.min(1, (a - lagMin + 1) / (lagMax - lagMin + 1));
+  if (a <= lagMax + persist) return Math.max(0, 1 - (a - lagMax) / persist);
+  return 0;
+}
+
+/* ---------- model ---------- */
+function contribution(effect, year) {
+  const intensity = (values[effect.lever_key] || 0) / 100;
+  if (!intensity) return 0;
+  return intensity
+    * effect.effect_direction
+    * (norms[effect.series_key] || 1)
+    * (+effect.relative_strength)
+    * (+effect.implementation_coefficient)
+    * weight(+year, reformYear, +effect.lag_min_years, +effect.lag_max_years, +effect.persistence_years)
+    * 10;
+}
+
+function calculate() {
+  scenario = {};
+  const bySeries = {};
+  effects.forEach(e => (bySeries[e.series_key] ||= []).push(e));
+
+  baselines.forEach(b => {
+    const list = bySeries[b.series_key] || [];
+    let delta = 0;
+    for (const e of list) delta += contribution(e, +b.year);
+    const score = +b.score_0_100;
+    const s = clamp(score + delta, 0, 100);
+    const spread = Math.abs(delta) * 0.35;
+    (scenario[b.series_key] ||= []).push({
+      year: +b.year, score, delta: s - score, scenario: s,
+      lo: clamp(s - spread, 0, 100), hi: clamp(s + spread, 0, 100),
+      kind: b.value_kind
+    });
+  });
+  Object.values(scenario).forEach(a => a.sort((x, y) => x.year - y.year));
+
+  const keys = Object.keys(scenario);
+  composite = YEARS.map(y => {
+    let base = 0, scen = 0, n = 0;
+    keys.forEach(k => {
+      const p = scenario[k].find(r => r.year === y);
+      if (p) { base += p.score; scen += p.scenario; n++; }
+    });
+    return n ? {year: y, base: base / n, scen: scen / n} : {year: y, base: 0, scen: 0};
+  });
+  heat = buildHeat();
+  landscape = buildLandscape();
+}
+
+/* herkkyys: mikä vipu selittää muutoksen valitussa indikaattorissa */
+function sensitivity(seriesKey, year) {
+  const rows = effects.filter(e => e.series_key === seriesKey);
+  const map = {};
+  rows.forEach(e => {
+    const c = contribution(e, year);
+    if (!c) return;
+    map[e.lever_key] ||= {key: e.lever_key, title: e.lever_title, area: e.policy_area, value: 0, statute: e.statute_id, lag: `${e.lag_min_years}–${e.lag_max_years}`};
+    map[e.lever_key].value += c;
+  });
+  return Object.values(map).sort((a, b) => Math.abs(b.value) - Math.abs(a.value));
+}
+
+function activeCount() { return Object.values(values).filter(Boolean).length; }
+function orderedSeries() { return Object.keys(scenario).sort((a,b)=>{const ai=LANDSCAPE_ORDER.indexOf(a),bi=LANDSCAPE_ORDER.indexOf(b);return (ai<0?999:ai)-(bi<0?999:bi)||(NAMES[a]||a).localeCompare(NAMES[b]||b,'fi');}); }
+function stepSeries(direction) { const list=orderedSeries(),i=list.indexOf(selected);if(!list.length)return;selected=list[(Math.max(0,i)+direction+list.length)%list.length];update(); }
+const VIZ_VIEWS=['heat','landscape','profile','pathways','grid'],VIZ_NAMES={heat:'Vaikutuskartta',landscape:'Vaikutusmaisema',profile:'Tasapainoprofiili',pathways:'Elämänpolut',grid:'Indikaattoriristikko'};
+function drawActiveViz(){if(vizView==='heat')drawHeat();else if(vizView==='landscape')drawLandscape();else if(vizView==='profile')drawProfile();else if(vizView==='pathways')drawPathways();else drawIndicatorGrid();}
+function syncViz(){document.querySelectorAll('[data-viz-panel]').forEach(el=>el.hidden=el.dataset.vizPanel!==vizView);const title=$('viz-title'),index=$('viz-index'),focus=$('focus'),out=$('focus-out'),play=$('play');if(title)title.textContent=VIZ_NAMES[vizView];if(index)index.textContent=`SELATTAVA NÄKYMÄ · ${VIZ_VIEWS.indexOf(vizView)+1} / ${VIZ_VIEWS.length}`;if(focus){focus.min=vizView==='landscape'?MAP_Y0:Y0;focus.value=vizView==='landscape'?mapYear:focusYear}if(out)out.textContent=vizView==='landscape'?mapYear:focusYear;if(play&&!playing)play.textContent=vizView==='landscape'?`▶ Toista ${MAP_Y0}→${Y1}`:`▶ Toista ${Y0}→${Y1}`;requestAnimationFrame(drawActiveViz);}
+function stepViz(direction){const i=VIZ_VIEWS.indexOf(vizView);vizView=VIZ_VIEWS[(i+direction+VIZ_VIEWS.length)%VIZ_VIEWS.length];syncViz();}
+function groupItems(g) { return levers.filter(l => g.matches.some(m => (l.policy_area || '').includes(m))); }
+function groupValue(g) {
+  const a = groupItems(g);
+  return a.length ? Math.round(a.reduce((s, l) => s + (values[l.lever_key] || 0), 0) / a.length) : 0;
+}
+function colorFor(area) {
+  const g = GROUPS.find(x => x.matches.some(m => (area || '').includes(m)));
+  return g ? g.color : '#66807a';
+}
+
+/* ---------- heat model (indikaattori × vuosi) ---------- */
+function buildHeat() {
+  const available = [...new Set(effects.map(e => e.series_key))];
+  const rows = [...ORDER.filter(k => available.includes(k)),
+                ...available.filter(k => !ORDER.includes(k)).sort((a, b) => (NAMES[a] || a).localeCompare(NAMES[b] || b, 'fi'))];
+  const grid = rows.map(k => YEARS.map(y => (scenario[k] || []).find(p => p.year === y)?.delta || 0));
+  const maxAbs = Math.max(0.25, ...grid.flat().map(Math.abs));
+  const peaks = rows.map((key, ri) => {
+    let best = {value: 0, year: Y0};
+    grid[ri].forEach((v, i) => { if (Math.abs(v) > Math.abs(best.value)) best = {value: v, year: YEARS[i]}; });
+    return {...best, key};
+  }).filter(p => Math.abs(p.value) > 0.05).sort((a, b) => Math.abs(b.value) - Math.abs(a.value));
+  return {rows, grid, maxAbs, peaks, active: activeCount() > 0};
+}
+
+function heatColor(v, max) {
+  const t = Math.min(1, Math.abs(v) / (max || 1));
+  if (t < 0.05) return [48, 42, 61];
+  const stops = v >= 0
+    ? [[54, 62, 76], [40, 108, 108], [63, 168, 155], [150, 214, 196], [232, 246, 232]]
+    : [[66, 48, 67], [124, 66, 60], [188, 91, 65], [232, 158, 100], [252, 226, 192]];
+  const z = t * (stops.length - 1), i = Math.min(stops.length - 2, Math.floor(z)), f = z - i;
+  return stops[i].map((c, j) => Math.round(c + (stops[i + 1][j] - c) * f));
+}
+
+function drawHeat() {
+  const canvas = $('heatmap'); if (!canvas || !heat) return;
+  const dpr = Math.min(2, window.devicePixelRatio || 1);
+  const cssW = Math.max(260, Math.min(canvas.parentElement.clientWidth - 32, document.documentElement.clientWidth - 60));
+  const rowsN = heat.rows.length;
+  const cssH = 40 + rowsN * 17;
+  canvas.style.width = cssW + 'px'; canvas.style.height = cssH + 'px';
+  canvas.width = cssW * dpr; canvas.height = cssH * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const L = Math.min(210, Math.max(96, cssW * 0.34)), R = 14, T = 8, B = 26;
+  const pw = cssW - L - R, ph = cssH - T - B;
+  ctx.clearRect(0, 0, cssW, cssH);
+  ctx.fillStyle = '#302a3d'; ctx.fillRect(0, 0, cssW, cssH);
+
+  const cw = pw / YEARS.length, rh = ph / rowsN;
+  heat.grid.forEach((row, ri) => row.forEach((v, ci) => {
+    const c = heatColor(v, heat.maxAbs);
+    ctx.fillStyle = `rgb(${c[0]},${c[1]},${c[2]})`;
+    ctx.fillRect(L + ci * cw, T + ri * rh, Math.ceil(cw) + 0.5, Math.ceil(rh) + 0.5);
+  }));
+
+  /* uudistusvuoden viiva */
+  const xYear = y => L + ((y - Y0) + 0.5) / YEARS.length * pw;
+  ctx.strokeStyle = 'rgba(244,170,110,.9)'; ctx.lineWidth = 1; ctx.setLineDash([3, 3]);
+  ctx.beginPath(); ctx.moveTo(xYear(reformYear), T); ctx.lineTo(xYear(reformYear), T + ph); ctx.stroke();
+  ctx.setLineDash([]);
+
+  /* aikajanan verho */
+  if (playPos < Y1) {
+    const rv = xYear(playPos);
+    ctx.fillStyle = 'rgba(48,42,61,.85)';
+    ctx.fillRect(rv, T, cssW - R - rv, ph);
+  }
+
+  /* rivinimet */
+  ctx.fillStyle = '#cfc6d5'; ctx.font = '10px ' + getComputedStyle(document.body).fontFamily;
+  ctx.textBaseline = 'middle';
+  heat.rows.forEach((k, ri) => {
+    let label = NAMES[k] || k;
+    while (ctx.measureText(label).width > L - 12 && label.length > 6) label = label.slice(0, -2);
+    ctx.fillStyle = k === selected ? '#ffd9b8' : '#b9aec5';
+    ctx.fillText(label, 6, T + ri * rh + rh / 2);
+  });
+  /* vuosiakseli */
+  ctx.fillStyle = '#9d92aa'; ctx.textAlign = 'center'; ctx.font = '10px ' + getComputedStyle(document.body).fontFamily;
+  [2025, 2030, 2035, 2040, 2045, 2050].forEach(y => ctx.fillText(String(y), xYear(y), cssH - 12));
+  ctx.textAlign = 'left';
+}
+
+/* ---------- smooth contour -vaikutusmaisema ---------- */
+function blurField(source, w, h) {
+  const k = [1, 4, 6, 4, 1], tmp = new Float32Array(source.length), out = new Float32Array(source.length);
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { let s = 0, ws = 0; for (let q = -2; q <= 2; q++) { const xx = clamp(x + q, 0, w - 1), kw = k[q + 2]; s += source[y*w + xx] * kw; ws += kw; } tmp[y*w+x] = s/ws; }
+  for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { let s = 0, ws = 0; for (let q = -2; q <= 2; q++) { const yy = clamp(y + q, 0, h - 1), kw = k[q + 2]; s += tmp[yy*w + x] * kw; ws += kw; } out[y*w+x] = s/ws; }
+  return out;
+}
+function buildLandscape() {
+  const available=[...new Set(effects.map(e=>e.series_key))],rows=[...LANDSCAPE_ORDER.filter(k=>available.includes(k)),...available.filter(k=>!LANDSCAPE_ORDER.includes(k)).sort((a,b)=>(NAMES[a]||a).localeCompare(NAMES[b]||b,'fi'))];
+  const grid=rows.map(k=>YEARS.map(y=>(scenario[k]||[]).find(p=>p.year===y)?.delta||0)),gw = 220, gh = 154;
+  let field = new Float32Array(gw * gh);
+  if (rows.length) for (let py = 0; py < gh; py++) { const ry = py/(gh-1)*(rows.length-1), r0 = Math.floor(ry), r1 = Math.min(rows.length-1,r0+1), rf = ry-r0;
+    for (let px = 0; px < gw; px++) { const yf = px/(gw-1)*(YEARS.length-1), y0 = Math.floor(yf), y1 = Math.min(YEARS.length-1,y0+1), f = yf-y0;
+      const a=(grid[r0]?.[y0]||0)*(1-f)+(grid[r0]?.[y1]||0)*f,b=(grid[r1]?.[y0]||0)*(1-f)+(grid[r1]?.[y1]||0)*f;field[py*gw+px]=a*(1-rf)+b*rf; }}
+  field = blurField(blurField(field,gw,gh),gw,gh);
+  const maxAbs = Math.max(.25,...field.map(Math.abs));
+  const peaks = rows.map((key,ri)=>{let best={value:0,year:Y0};(grid[ri]||[]).forEach((value,i)=>{if(Math.abs(value)>Math.abs(best.value))best={value,year:YEARS[i]}});return {...best,key,ri};})
+    .filter(p=>Math.abs(p.value)>.05).sort((a,b)=>Math.abs(b.value)-Math.abs(a.value)).slice(0,6);
+  return {rows,grid,gw,gh,field,maxAbs,peaks,active:activeCount()>0,base:null,baseKey:''};
+}
+function landscapeColor(v,max){const t=Math.min(1,Math.abs(v)/(max||1));if(t<.045)return[48,42,61,255];const stops=v>=0?[[55,59,88],[77,103,157],[91,157,196],[132,207,207],[205,232,190],[255,241,183]]:[[65,47,65],[107,58,68],[166,76,67],[211,112,76],[244,178,116],[255,225,177]],z=t*(stops.length-1),i=Math.min(stops.length-2,Math.floor(z)),f=z-i;return[...stops[i].map((c,j)=>Math.round(c+(stops[i+1][j]-c)*f)),255]}
+function contourLines(ctx,m,level,L,T,pw,ph){const {gw,gh,field,maxAbs}=m,x=i=>L+i/(gw-1)*pw,y=j=>T+j/(gh-1)*ph,pairs={1:[[3,0]],2:[[0,1]],3:[[3,1]],4:[[1,2]],5:[[3,2],[0,1]],6:[[0,2]],7:[[3,2]],8:[[2,3]],9:[[0,2]],10:[[0,3],[1,2]],11:[[1,2]],12:[[1,3]],13:[[0,1]],14:[[3,0]]},edge=(e,i,j)=>e===0?[(x(i)+x(i+1))/2,y(j)]:e===1?[x(i+1),(y(j)+y(j+1))/2]:e===2?[(x(i)+x(i+1))/2,y(j+1)]:[x(i),(y(j)+y(j+1))/2];ctx.beginPath();for(let j=0;j<gh-1;j++)for(let i=0;i<gw-1;i++){const a=Math.abs(field[j*gw+i])/maxAbs,b=Math.abs(field[j*gw+i+1])/maxAbs,c=Math.abs(field[(j+1)*gw+i+1])/maxAbs,d=Math.abs(field[(j+1)*gw+i])/maxAbs,code=(a>=level?1:0)|(b>=level?2:0)|(c>=level?4:0)|(d>=level?8:0);(pairs[code]||[]).forEach(([e1,e2])=>{const p1=edge(e1,i,j),p2=edge(e2,i,j);ctx.moveTo(...p1);ctx.lineTo(...p2)})}ctx.stroke()}
+function landscapeGeometry(canvas){const cssW=Math.max(280,Math.min(canvas.parentElement.clientWidth,document.documentElement.clientWidth-48)),cssH=Math.max(360,Math.min(520,78+(landscape?.rows.length||10)*29)),L=Math.min(180,Math.max(104,cssW*.25)),R=14,T=12,B=30;return{cssW,cssH,L,R,T,B,pw:cssW-L-R,ph:cssH-T-B}}
+function buildLandscapeBase(g){const m=landscape,base=document.createElement('canvas');base.width=g.cssW;base.height=g.cssH;const ctx=base.getContext('2d');ctx.fillStyle='#302a3d';ctx.fillRect(0,0,g.cssW,g.cssH);const raw=document.createElement('canvas');raw.width=m.gw;raw.height=m.gh;const rc=raw.getContext('2d'),img=rc.createImageData(m.gw,m.gh);for(let i=0;i<m.field.length;i++){const c=landscapeColor(m.field[i],m.maxAbs),o=i*4;img.data[o]=c[0];img.data[o+1]=c[1];img.data[o+2]=c[2];img.data[o+3]=255}rc.putImageData(img,0,0);ctx.imageSmoothingEnabled=true;ctx.drawImage(raw,g.L,g.T,g.pw,g.ph);ctx.strokeStyle='rgba(255,255,255,.33)';ctx.lineWidth=1;[.12,.22,.34,.48,.63,.79,.91].forEach(level=>contourLines(ctx,m,level,g.L,g.T,g.pw,g.ph));return base}
+function drawLandscape(){const canvas=$('landscape');if(!canvas||!landscape)return;const g=landscapeGeometry(canvas),dpr=Math.min(2,window.devicePixelRatio||1),key=`${g.cssW}x${g.cssH}`;canvas.style.width=g.cssW+'px';canvas.style.height=g.cssH+'px';if(canvas.width!==g.cssW*dpr||canvas.height!==g.cssH*dpr){canvas.width=g.cssW*dpr;canvas.height=g.cssH*dpr}if(landscape.baseKey!==key){landscape.base=buildLandscapeBase(g);landscape.baseKey=key}const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,g.cssW,g.cssH);ctx.drawImage(landscape.base,0,0);const xYear=y=>g.L+(y-Y0)/(Y1-Y0)*g.pw,yRow=i=>g.T+(i+.5)/landscape.rows.length*g.ph,reveal=xYear(playPos);if(playPos<Y1){ctx.fillStyle='rgba(48,42,61,.88)';ctx.fillRect(reveal,g.T,g.cssW-g.R-reveal,g.ph)}ctx.font='10px '+getComputedStyle(document.body).fontFamily;ctx.textBaseline='middle';ctx.textAlign='left';landscape.rows.forEach((key,i)=>{let label=NAMES[key]||key;while(ctx.measureText(label).width>g.L-13&&label.length>7)label=label.slice(0,-2);ctx.fillStyle=key===selected?'#fff0b7':'#b9aec5';ctx.fillText(label,6,yRow(i))});ctx.textAlign='center';ctx.textBaseline='alphabetic';ctx.fillStyle='#9d92aa';[2025,2030,2035,2040,2045,2050].forEach(y=>ctx.fillText(y,xYear(y),g.cssH-10));const sy=yRow(Math.max(0,landscape.rows.indexOf(selected)));ctx.strokeStyle='rgba(255,240,183,.76)';ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(g.L,sy);ctx.lineTo(reveal,sy);ctx.stroke();landscape.peaks.filter(p=>p.year<=playPos).forEach((p,i)=>{const x=xYear(p.year),y=yRow(p.ri),right=x>g.cssW-175;ctx.fillStyle='#fff0b7';ctx.beginPath();ctx.arc(x,y,4.5,0,Math.PI*2);ctx.fill();ctx.font=(i<3?'600 10.5px ':'10px ')+getComputedStyle(document.body).fontFamily;ctx.textAlign=right?'right':'left';ctx.fillText(`${sign(p.value)} p. · ${p.year}`,x+(right?-7:7),y-5);if(i<3)ctx.fillText((NAMES[p.key]||p.key).split('·')[0].trim(),x+(right?-7:7),y+9)});ctx.strokeStyle='#fff';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(reveal,g.T);ctx.lineTo(reveal,g.T+g.ph);ctx.stroke();ctx.strokeStyle='#d8a13a';ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(reveal,g.T);ctx.lineTo(reveal,g.T+g.ph);ctx.stroke()}
+function bindLandscape(){const canvas=$('landscape'),tip=$('landscape-tip');if(!canvas||!tip)return;const locate=e=>{const g=landscapeGeometry(canvas),r=canvas.getBoundingClientRect(),px=(e.clientX-r.left)/r.width*g.cssW,py=(e.clientY-r.top)/r.height*g.cssH;if(px<g.L||px>g.cssW-g.R||py<g.T||py>g.cssH-g.B){tip.style.display='none';return null}const year=clamp(Math.round(Y0+(px-g.L)/g.pw*(Y1-Y0)),Y0,Y1),ri=clamp(Math.floor((py-g.T)/g.ph*landscape.rows.length),0,landscape.rows.length-1),key=landscape.rows[ri],point=(scenario[key]||[]).find(p=>p.year===year)||{delta:0};tip.style.display='block';tip.style.left=clamp(e.clientX-r.left+12,4,r.width-190)+'px';tip.style.top=clamp(e.clientY-r.top+10,4,r.height-72)+'px';tip.innerHTML=`<b>${esc(NAMES[key]||key)}</b><br>${year} · ero ${sign(point.delta)} pistettä`;return key};canvas.onpointermove=locate;canvas.onpointerleave=()=>tip.style.display='none';canvas.onclick=e=>{const key=locate(e);if(key){selected=key;update()}}}
+
+/* ---------- yhden muuttujan density contour / herkkyyskäytävä ---------- */
+function seededRandom(seed){let s=seed>>>0;return()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296}}
+function normalPair(rand){const u=Math.max(1e-9,rand()),v=rand(),r=Math.sqrt(-2*Math.log(u));return[r*Math.cos(2*Math.PI*v),r*Math.sin(2*Math.PI*v)]}
+function interpRows(rows,year,key){if(!rows.length)return 0;const a=rows[Math.max(0,Math.min(rows.length-1,Math.floor(year-Y0)))],b=rows[Math.max(0,Math.min(rows.length-1,Math.ceil(year-Y0)))];if(!a||!b)return 0;const f=year-Math.floor(year);return a[key]*(1-f)+b[key]*f}
+function quantile(sorted,q){if(!sorted.length)return 0;const p=(sorted.length-1)*q,i=Math.floor(p),f=p-i;return sorted[i]*(1-f)+(sorted[Math.min(sorted.length-1,i+1)]||sorted[i])*f}
+function buildLandscape(){
+  const rows=scenario[selected]||[],runs=600,rand=seededRandom(20250905),samples=YEARS.map(()=>[]);
+  for(let r=0;r<runs;r++){
+    const [z1,z2]=normalPair(rand),[z3]=normalPair(rand),strength=clamp(1+z1*.24,.35,1.75),shift=clamp(z2*1.35,-3,3),persistence=clamp(1+z3*.12,.7,1.3);
+    YEARS.forEach((year,i)=>{const base=interpRows(rows,year,'score'),d=interpRows(rows,clamp(year-shift,Y0,Y1),'delta'),age=Math.max(0,year-reformYear)/(Y1-reformYear||1),value=clamp(base+d*strength*(1+(persistence-1)*age),0,100);samples[i].push(value)});
+  }
+  samples.forEach(a=>a.sort((a,b)=>a-b));
+  const bands=YEARS.map((year,i)=>({year,p10:quantile(samples[i],.1),p25:quantile(samples[i],.25),median:quantile(samples[i],.5),p75:quantile(samples[i],.75),p90:quantile(samples[i],.9),base:rows[i]?.score||0,scenario:rows[i]?.scenario||0}));
+  const gh=180,gw=YEARS.length,bandwidth=Math.max(.45,Math.min(2.4,Math.max(...bands.map(b=>b.p90-b.p10))/.75||.45)),field=new Float32Array(gw*gh);let maxDensity=0;
+  for(let x=0;x<gw;x++)for(let y=0;y<gh;y++){const score=100-y/(gh-1)*100;let density=0;for(const v of samples[x]){const z=(score-v)/bandwidth;density+=Math.exp(-.5*z*z)}density/=samples[x].length*bandwidth;field[y*gw+x]=density;maxDensity=Math.max(maxDensity,density)}
+  return {rows,bands,samples,field,gw,gh,maxDensity,maxAbs:maxDensity,active:activeCount()>0,runs,bandwidth,base:null,baseKey:'',selected};
+}
+function densityColor(v,max){const t=Math.pow(clamp(v/(max||1),0,1),.46),stops=[[48,42,61],[65,65,94],[75,101,151],[91,157,190],[125,207,201],[255,240,183]],z=t*(stops.length-1),i=Math.min(stops.length-2,Math.floor(z)),f=z-i;return [...stops[i].map((c,j)=>Math.round(c+(stops[i+1][j]-c)*f)),255]}
+function densityGeometry(canvas){const cssW=Math.max(280,Math.min(canvas.parentElement.clientWidth,document.documentElement.clientWidth-48)),cssH=Math.max(350,Math.min(480,cssW*.67)),L=Math.min(62,Math.max(48,cssW*.1)),R=16,T=14,B=38;return{cssW,cssH,L,R,T,B,pw:cssW-L-R,ph:cssH-T-B}}
+function buildDensityBase(g){const m=landscape,base=document.createElement('canvas');base.width=g.cssW;base.height=g.cssH;const ctx=base.getContext('2d');ctx.fillStyle='#302a3d';ctx.fillRect(0,0,g.cssW,g.cssH);const raw=document.createElement('canvas');raw.width=m.gw;raw.height=m.gh;const rc=raw.getContext('2d'),img=rc.createImageData(m.gw,m.gh);for(let i=0;i<m.field.length;i++){const c=densityColor(m.field[i],m.maxDensity),o=i*4;img.data[o]=c[0];img.data[o+1]=c[1];img.data[o+2]=c[2];img.data[o+3]=255}rc.putImageData(img,0,0);ctx.imageSmoothingEnabled=true;ctx.drawImage(raw,g.L,g.T,g.pw,g.ph);ctx.strokeStyle='rgba(255,255,255,.27)';ctx.lineWidth=1;[.12,.22,.34,.48,.64,.8].forEach(level=>contourLines(ctx,m,level,g.L,g.T,g.pw,g.ph));return base}
+function drawLandscape(){
+  const canvas=$('landscape');if(!canvas||!landscape)return;const g=densityGeometry(canvas),dpr=Math.min(2,window.devicePixelRatio||1),key=`${g.cssW}x${g.cssH}:${selected}`;canvas.style.width=g.cssW+'px';canvas.style.height=g.cssH+'px';canvas.width=Math.round(g.cssW*dpr);canvas.height=Math.round(g.cssH*dpr);if(landscape.baseKey!==key){landscape.base=buildDensityBase(g);landscape.baseKey=key}const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.drawImage(landscape.base,0,0);
+  const x=y=>g.L+(y-Y0)/(Y1-Y0)*g.pw,yy=v=>g.T+(100-v)/100*g.ph,path=(key,stroke,width,dash=[])=>{ctx.beginPath();landscape.bands.forEach((b,i)=>(i?ctx.lineTo(x(b.year),yy(b[key])):ctx.moveTo(x(b.year),yy(b[key]))));ctx.strokeStyle=stroke;ctx.lineWidth=width;ctx.setLineDash(dash);ctx.stroke();ctx.setLineDash([])};
+  ctx.strokeStyle='rgba(255,255,255,.11)';ctx.lineWidth=1;[0,25,50,75,100].forEach(v=>{ctx.beginPath();ctx.moveTo(g.L,yy(v));ctx.lineTo(g.L+g.pw,yy(v));ctx.stroke()});
+  path('p10','rgba(207,198,213,.5)',1,[3,4]);path('p90','rgba(207,198,213,.5)',1,[3,4]);path('p25','rgba(255,240,183,.6)',1);path('p75','rgba(255,240,183,.6)',1);path('base','#b9aec5',1.8,[6,5]);path('median','#fff0b7',2.8);
+  const reveal=x(playPos);if(playPos<Y1){ctx.fillStyle='rgba(48,42,61,.91)';ctx.fillRect(reveal,g.T,g.cssW-reveal-g.R,g.ph)}ctx.strokeStyle='#d8a13a';ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(reveal,g.T);ctx.lineTo(reveal,g.T+g.ph);ctx.stroke();
+  ctx.font='10px '+getComputedStyle(document.body).fontFamily;ctx.fillStyle='#a99daf';ctx.textAlign='right';ctx.textBaseline='middle';[0,25,50,75,100].forEach(v=>ctx.fillText(v,g.L-8,yy(v)));ctx.textAlign='center';ctx.textBaseline='alphabetic';[2025,2030,2035,2040,2045,2050].forEach(v=>ctx.fillText(v,x(v),g.cssH-12));ctx.save();ctx.translate(13,g.T+g.ph/2);ctx.rotate(-Math.PI/2);ctx.fillText('turvallisen käytävän pisteet',0,0);ctx.restore();
+}
+function bindLandscape(){const canvas=$('landscape'),tip=$('landscape-tip');if(!canvas||!tip)return;const locate=e=>{const g=densityGeometry(canvas),r=canvas.getBoundingClientRect(),px=(e.clientX-r.left)/r.width*g.cssW;if(px<g.L||px>g.L+g.pw){tip.style.display='none';return}const year=clamp(Math.round(Y0+(px-g.L)/g.pw*(Y1-Y0)),Y0,Y1),b=landscape.bands[year-Y0];tip.style.display='block';tip.style.left=clamp(e.clientX-r.left+12,4,r.width-205)+'px';tip.style.top=clamp(e.clientY-r.top+10,4,r.height-88)+'px';tip.innerHTML=`<b>${year} · mediaani ${nf(b.median)} p.</b><br>50 % ajoista ${nf(b.p25)}–${nf(b.p75)}<br>80 % ajoista ${nf(b.p10)}–${nf(b.p90)}`};canvas.onpointermove=locate;canvas.onpointerleave=()=>tip.style.display='none'}
+
+/* ---------- pysyvä 2D-vaikutusmaisema: vivut ovat kartan kohteita ---------- */
+function unitVector(v){const n=Math.hypot(...v)||1;return v.map(x=>x/n)}
+function principalVector(matrix,avoid=null,phase=.37){let v=unitVector(matrix.map((_,i)=>Math.sin((i+1)*1.71+phase)));for(let k=0;k<70;k++){let w=matrix.map(row=>row.reduce((s,x,j)=>s+x*v[j],0));if(avoid){const d=w.reduce((s,x,i)=>s+x*avoid[i],0);w=w.map((x,i)=>x-d*avoid[i])}v=unitVector(w)}return v}
+function leverPositions(){
+  const series=[...new Set(effects.map(e=>e.series_key))].sort(),nodes=levers.map(l=>({key:l.lever_key,title:l.title,area:l.policy_area||'',statute:l.statute_id||'',vector:series.map(sk=>effects.filter(e=>e.lever_key===l.lever_key&&e.series_key===sk).reduce((s,e)=>s+(+e.effect_direction||0)*(+e.favorable_direction||0)*(+e.relative_strength||0)*(+e.implementation_coefficient||1),0))}));
+  if(nodes.length<3)return nodes.map((n,i)=>({...n,x:.5+.34*Math.cos(i/nodes.length*Math.PI*2),y:.5+.34*Math.sin(i/nodes.length*Math.PI*2)}));
+  series.forEach((_,j)=>{const mean=nodes.reduce((s,n)=>s+n.vector[j],0)/nodes.length,sd=Math.sqrt(nodes.reduce((s,n)=>s+(n.vector[j]-mean)**2,0)/nodes.length)||1;nodes.forEach(n=>n.vector[j]=(n.vector[j]-mean)/sd)});
+  const gram=nodes.map(a=>nodes.map(b=>a.vector.reduce((s,x,j)=>s+x*b.vector[j],0))),vx=principalVector(gram),vy=principalVector(gram,vx,1.19),scale=a=>{const lo=Math.min(...a),hi=Math.max(...a),d=hi-lo||1;return a.map(v=>.12+(v-lo)/d*.76)},xs=scale(vx),ys=scale(vy);
+  return nodes.map((n,i)=>({...n,x:xs[i],y:ys[i]}));
+}
+function buildLandscape(){return{nodes:leverPositions(),active:activeCount()>0,maxAbs:0,field:null,gw:0,gh:0,year:focusYear,selected}}
+function landscapeWeights(year){return landscape.nodes.map(n=>{const value=effects.filter(e=>e.lever_key===n.key&&e.series_key===selected).reduce((s,e)=>s+contribution(e,year),0);return{...n,value}})}
+function influenceField(nodes,gw,gh){const field=new Float32Array(gw*gh),sigma=.125,cut=sigma*3.2;for(const n of nodes){if(Math.abs(n.value)<.001)continue;for(let py=0;py<gh;py++){const y=py/(gh-1),dy=y-n.y;if(Math.abs(dy)>cut)continue;for(let px=0;px<gw;px++){const x=px/(gw-1),dx=x-n.x;if(Math.abs(dx)>cut)continue;field[py*gw+px]+=n.value*Math.exp(-(dx*dx+dy*dy)/(2*sigma*sigma))}}}return field}
+function influenceColor(v,max){const t=Math.pow(clamp(Math.abs(v)/(max||1),0,1),.5),neutral=[48,42,61],stops=v>=0?[[49,51,73],[62,87,132],[75,142,170],[117,202,197],[255,240,183]]:[[57,43,59],[105,56,66],[170,78,67],[222,129,82],[255,224,176]],z=t*(stops.length-1),i=Math.min(stops.length-2,Math.floor(z)),f=z-i,c=t<.035?neutral:stops[i].map((q,j)=>Math.round(q+(stops[i+1][j]-q)*f));return[...c,255]}
+function influenceGeometry(canvas){const cssW=Math.max(280,Math.min(canvas.parentElement.clientWidth,document.documentElement.clientWidth-48)),cssH=Math.max(390,Math.min(570,cssW*.72)),pad=Math.max(20,Math.min(38,cssW*.055));return{cssW,cssH,L:pad,R:pad,T:pad,B:pad,pw:cssW-pad*2,ph:cssH-pad*2}}
+function currentLandscapeYear(){return playing?playPos:focusYear}
+function drawLandscape(){
+  const canvas=$('landscape');if(!canvas||!landscape)return;const g=influenceGeometry(canvas),dpr=Math.min(2,window.devicePixelRatio||1),year=currentLandscapeYear(),nodes=landscapeWeights(year),gw=150,gh=Math.max(100,Math.round(150*g.ph/g.pw)),field=influenceField(nodes,gw,gh),maxAbs=Math.max(.01,...field.map(Math.abs));landscape.field=field;landscape.gw=gw;landscape.gh=gh;landscape.maxAbs=maxAbs;landscape.year=year;landscape.liveNodes=nodes;
+  canvas.style.width=g.cssW+'px';canvas.style.height=g.cssH+'px';if(canvas.width!==Math.round(g.cssW*dpr)||canvas.height!==Math.round(g.cssH*dpr)){canvas.width=Math.round(g.cssW*dpr);canvas.height=Math.round(g.cssH*dpr)}const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,g.cssW,g.cssH);ctx.fillStyle='#302a3d';ctx.fillRect(0,0,g.cssW,g.cssH);
+  const raw=document.createElement('canvas');raw.width=gw;raw.height=gh;const rc=raw.getContext('2d'),img=rc.createImageData(gw,gh);for(let i=0;i<field.length;i++){const c=influenceColor(field[i],maxAbs),o=i*4;img.data[o]=c[0];img.data[o+1]=c[1];img.data[o+2]=c[2];img.data[o+3]=255}rc.putImageData(img,0,0);ctx.imageSmoothingEnabled=true;ctx.drawImage(raw,g.L,g.T,g.pw,g.ph);ctx.strokeStyle='rgba(255,255,255,.31)';ctx.lineWidth=1;[.12,.22,.34,.48,.64,.8].forEach(level=>contourLines(ctx,{gw,gh,field,maxAbs},level,g.L,g.T,g.pw,g.ph));
+  const ranked=[...nodes].sort((a,b)=>Math.abs(b.value)-Math.abs(a.value)),labelKeys=new Set(ranked.slice(0,Math.min(8,nodes.length)).map(n=>n.key));ctx.font='10px '+getComputedStyle(document.body).fontFamily;ctx.textBaseline='middle';nodes.forEach(n=>{const x=g.L+n.x*g.pw,y=g.T+n.y*g.ph,active=Math.abs(n.value)>.01,r=active?4+Math.min(6,Math.sqrt(Math.abs(n.value))*2.1):3;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=active?(n.value>=0?'#fff0b7':'#ffd3b5'):'#70657c';ctx.fill();ctx.strokeStyle='#302a3d';ctx.lineWidth=2;ctx.stroke();if(labelKeys.has(n.key)){const right=n.x<.7,tx=x+(right?r+4:-r-4),maxW=Math.min(145,right?g.cssW-tx-g.R:tx-g.L),title=n.title||n.key;ctx.textAlign=right?'left':'right';ctx.fillStyle=active?'#f3edf5':'#a99daf';let label=title;while(ctx.measureText(label).width>maxW&&label.length>8)label=label.slice(0,-2);ctx.fillText(label,tx,y-6);if(active){ctx.fillStyle=n.value>=0?'#8de0d0':'#f2a47c';ctx.fillText(`${sign(n.value)} p.`,tx,y+7)}}});
+  ctx.textAlign='left';ctx.textBaseline='alphabetic';ctx.fillStyle='#fff0b7';ctx.font='700 22px '+getComputedStyle(document.body).fontFamily;ctx.fillText(String(Math.round(year)),g.L+8,g.T+28);ctx.font='10px '+getComputedStyle(document.body).fontFamily;ctx.fillStyle='#b9aec5';ctx.fillText(NAMES[selected]||selected,g.L+8,g.T+45);
+  const scale=$('landscape-scale');if(scale)scale.textContent=`±${nf(Math.max(0,...nodes.map(n=>Math.abs(n.value))))} p.`;const empty=$('landscape-empty');if(empty)empty.hidden=nodes.some(n=>Math.abs(n.value)>.01);
+}
+function bindLandscape(){const canvas=$('landscape'),tip=$('landscape-tip');if(!canvas||!tip)return;const locate=e=>{if(!landscape?.liveNodes)return;const g=influenceGeometry(canvas),r=canvas.getBoundingClientRect(),px=(e.clientX-r.left)/r.width*g.cssW,py=(e.clientY-r.top)/r.height*g.cssH;let best=null,dist=Infinity;landscape.liveNodes.forEach(n=>{const dx=px-(g.L+n.x*g.pw),dy=py-(g.T+n.y*g.ph),d=Math.hypot(dx,dy);if(d<dist){dist=d;best=n}});if(!best||dist>44){tip.style.display='none';return}tip.style.display='block';tip.style.left=clamp(e.clientX-r.left+12,4,r.width-215)+'px';tip.style.top=clamp(e.clientY-r.top+10,4,r.height-92)+'px';tip.innerHTML=`<b>${esc(best.title||best.key)}</b><br>${Math.round(landscape.year)} · vaikutus ${sign(best.value)} p.<br>${esc(best.area)}${best.statute?` · ${esc(best.statute)}`:''}`};canvas.onpointermove=locate;canvas.onpointerleave=()=>tip.style.display='none'}
+
+/* ---------- indikaattoriklusterien historiallinen ja simuloitu jännitekartta ---------- */
+function buildHistory(metaRows,valueRows){
+  indicatorMeta=Object.fromEntries(metaRows.map(m=>[m.series_key,m]));indicatorHistory={};
+  valueRows.forEach(v=>{if(!MAP_ITEMS.some(i=>i.key===v.series_key)||v.value==null)return;(indicatorHistory[v.series_key]||=[]).push({year:+v.year,value:+v.value,kind:v.value_kind||'observed'})});
+  Object.values(indicatorHistory).forEach(a=>a.sort((x,y)=>x.year-y.year));
+}
+function mapNodes(){return INDICATOR_CLUSTERS.flatMap((c,ci)=>{const items=c.items.filter(([key])=>indicatorHistory[key]?.length||SAFE_KEYS.has(key)),n=items.length;return items.map(([key,label,dir],i)=>{const a=-Math.PI/2+i/Math.max(1,n)*Math.PI*2+(ci%2)*.18,r=.055+.018*(i%2);return{key,label,dir,cluster:c.key,clusterLabel:c.label,color:c.color,x:clamp(c.x+Math.cos(a)*r,0.06,.94),y:clamp(c.y+Math.sin(a)*r,0.08,.92),safe:SAFE_KEYS.has(key)}})})}
+function seriesScore(node,year){
+  if(node.safe&&year>=Y0){const p=(scenario[node.key]||[]).find(x=>x.year===Math.round(year));if(p)return{score:p.scenario,kind:'simulated'}}
+  const rows=indicatorHistory[node.key]||[];if(rows.length<2)return null;const hist=rows.filter(r=>r.year>=MAP_Y0&&r.year<=2025&&Number.isFinite(r.value)),vals=hist.map(r=>r.value).sort((a,b)=>a-b);if(vals.length<2)return null;const lo=quantile(vals,.08),hi=quantile(vals,.92),span=hi-lo||1,toScore=v=>clamp((node.dir<0?(hi-v):(v-lo))/span*100,0,100);
+  const scoreValue=v=>node.dir===0?clamp(50+(v-quantile(vals,.5))/span*35,0,100):toScore(v),direct=rows.find(r=>r.year===Math.round(year));if(direct)return{score:scoreValue(direct.value),kind:direct.kind==='observed'?'observed':'projected'};
+  if(year<rows[0].year)return null;if(year<rows.at(-1).year){const before=[...rows].reverse().find(r=>r.year<year),after=rows.find(r=>r.year>year);if(before&&after){const f=(year-before.year)/(after.year-before.year);return{score:scoreValue(before.value+(after.value-before.value)*f),kind:before.kind==='observed'&&after.kind==='observed'?'observed':'projected'}}}
+  const past=hist.slice(-6),last=past.at(-1);if(!last)return null;const scored=past.map(r=>({year:r.year,score:scoreValue(r.value)})),first=scored[0],slope=(scored.at(-1).score-first.score)/Math.max(1,scored.at(-1).year-first.year),ahead=Math.max(0,year-last.year),growth=slope*Math.min(ahead,10)*(1-Math.min(ahead,10)/20);return{score:clamp(scored.at(-1).score+growth,0,100),kind:'continuation'};
+}
+function buildLandscape(){return{nodes:mapNodes(),active:true,liveNodes:[],year:mapYear,maxAbs:0}}
+function clusterState(year){
+  const nodes=landscape.nodes.map(n=>{const s=seriesScore(n,year);return s?{...n,...s}:null}).filter(Boolean),clusters=INDICATOR_CLUSTERS.map(c=>{const a=nodes.filter(n=>n.cluster===c.key),avg=a.length?a.reduce((s,n)=>s+n.score,0)/a.length:50,tension=a.length?Math.sqrt(a.reduce((s,n)=>s+(n.score-avg)**2,0)/a.length):0;return{...c,n:a.length,avg,tension}});nodes.forEach(n=>{const c=clusters.find(x=>x.key===n.cluster);n.value=(n.score-50)*.72+(n.score-c.avg)*.28});return{nodes,clusters,tension:nodes.length?Math.sqrt(nodes.reduce((s,n)=>s+n.value*n.value,0)/nodes.length):0}
+}
+function currentLandscapeYear(){return playing&&vizView==='landscape'?playPos:mapYear}
+function drawLandscape(){
+  const canvas=$('landscape');if(!canvas||!landscape)return;const g=influenceGeometry(canvas),dpr=Math.min(2,window.devicePixelRatio||1),year=currentLandscapeYear(),state=clusterState(year),nodes=state.nodes,gw=160,gh=Math.max(105,Math.round(160*g.ph/g.pw)),field=influenceField(nodes,gw,gh),maxAbs=Math.max(.01,...field.map(Math.abs));landscape.liveNodes=nodes;landscape.year=year;landscape.maxAbs=maxAbs;
+  canvas.style.width=g.cssW+'px';canvas.style.height=g.cssH+'px';if(canvas.width!==Math.round(g.cssW*dpr)||canvas.height!==Math.round(g.cssH*dpr)){canvas.width=Math.round(g.cssW*dpr);canvas.height=Math.round(g.cssH*dpr)}const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,g.cssW,g.cssH);ctx.fillStyle='#302a3d';ctx.fillRect(0,0,g.cssW,g.cssH);
+  INDICATOR_CLUSTERS.forEach(c=>{ctx.beginPath();ctx.arc(g.L+c.x*g.pw,g.T+c.y*g.ph,Math.min(g.pw,g.ph)*.115,0,Math.PI*2);ctx.fillStyle=c.color+'10';ctx.fill();ctx.strokeStyle=c.color+'35';ctx.lineWidth=1;ctx.stroke()});
+  const raw=document.createElement('canvas');raw.width=gw;raw.height=gh;const rc=raw.getContext('2d'),img=rc.createImageData(gw,gh);for(let i=0;i<field.length;i++){const c=influenceColor(field[i],maxAbs),o=i*4;img.data[o]=c[0];img.data[o+1]=c[1];img.data[o+2]=c[2];img.data[o+3]=235}rc.putImageData(img,0,0);ctx.globalAlpha=.9;ctx.drawImage(raw,g.L,g.T,g.pw,g.ph);ctx.globalAlpha=1;ctx.strokeStyle='rgba(255,255,255,.28)';ctx.lineWidth=1;[.14,.26,.4,.56,.72,.87].forEach(level=>contourLines(ctx,{gw,gh,field,maxAbs},level,g.L,g.T,g.pw,g.ph));
+  ctx.font='700 10px '+getComputedStyle(document.body).fontFamily;ctx.textAlign='center';ctx.textBaseline='middle';INDICATOR_CLUSTERS.forEach(c=>{ctx.fillStyle='#d8cfdf';ctx.fillText(c.label,g.L+c.x*g.pw,g.T+(c.y-.112)*g.ph)});
+  const ranked=[...nodes].sort((a,b)=>Math.abs(b.value)-Math.abs(a.value)),labels=new Set([...ranked.slice(0,7).map(n=>n.key),selected]);ctx.font='9.5px '+getComputedStyle(document.body).fontFamily;nodes.forEach(n=>{const x=g.L+n.x*g.pw,y=g.T+n.y*g.ph,r=n.safe?5:3.5;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fillStyle=n.score>=50?'#fff0b7':'#ffd1b1';ctx.fill();ctx.strokeStyle=n.safe?'#ffffff':'#302a3d';ctx.lineWidth=n.safe?2.2:1.5;ctx.stroke();if(labels.has(n.key)){const right=n.x<.68,tx=x+(right?8:-8),mw=Math.min(138,right?g.cssW-tx-g.R:tx-g.L);ctx.textAlign=right?'left':'right';ctx.fillStyle=n.key===selected?'#fff0b7':'#eee8f1';let label=n.label;while(ctx.measureText(label).width>mw&&label.length>8)label=label.slice(0,-2);ctx.fillText(label,tx,y-5);ctx.fillStyle=n.value>=0?'#82dac9':'#f2a47c';ctx.fillText(`${nf(n.score)} · ${sign(n.value)}`,tx,y+7)}});
+  ctx.textAlign='left';ctx.fillStyle='#fff0b7';ctx.font='700 22px '+getComputedStyle(document.body).fontFamily;ctx.fillText(String(Math.round(year)),g.L+7,g.T+26);ctx.font='700 9px '+getComputedStyle(document.body).fontFamily;ctx.fillStyle='#b9aec5';ctx.fillText(year<=2025?'HAVAITTU':nodes.some(n=>n.kind==='simulated')?'SIMULOITU + JATKUMO':'JATKUMO',g.L+8,g.T+42);
+  const cards=$('cluster-summary');if(cards)cards.innerHTML=state.clusters.filter(c=>c.n).map(c=>`<div class="cluster-card"><span>${esc(c.label)} · ${c.n}</span><b style="color:${c.avg>=50?'#7be0ce':'#f2a47c'}">${nf(c.avg)} p. · jännite ${nf(c.tension)}</b></div>`).join('');const scale=$('landscape-scale');if(scale)scale.textContent=nf(state.tension);const empty=$('landscape-empty');if(empty)empty.hidden=!!nodes.length;
+}
+function bindLandscape(){const canvas=$('landscape'),tip=$('landscape-tip');if(!canvas||!tip)return;const locate=e=>{const g=influenceGeometry(canvas),r=canvas.getBoundingClientRect(),px=(e.clientX-r.left)/r.width*g.cssW,py=(e.clientY-r.top)/r.height*g.cssH;let best=null,dist=Infinity;(landscape.liveNodes||[]).forEach(n=>{const d=Math.hypot(px-(g.L+n.x*g.pw),py-(g.T+n.y*g.ph));if(d<dist){dist=d;best=n}});if(!best||dist>38){tip.style.display='none';return null}tip.style.display='block';tip.style.left=clamp(e.clientX-r.left+12,4,r.width-225)+'px';tip.style.top=clamp(e.clientY-r.top+10,4,r.height-98)+'px';const kind={observed:'havainto',projected:'aineiston projektio',simulated:'säädösskenaario',continuation:'vaimennettu jatkumo'}[best.kind]||best.kind;tip.innerHTML=`<b>${esc(best.label)}</b><br>${esc(best.clusterLabel)}<br>${Math.round(landscape.year)} · ${nf(best.score)} p. · ${kind}${best.safe?'<br>Turvallisen käytävän indikaattori':''}`;return best};canvas.onpointermove=locate;canvas.onpointerleave=()=>tip.style.display='none';canvas.onclick=e=>{const n=locate(e);if(n?.safe){selected=n.key;update()}}}
+
+/* ---------- kuuden ulottuvuuden tasapainoprofiili ---------- */
+function profileValues(year){return PROFILE_AXES.map(axis=>{const points=axis.keys.map(k=>(scenario[k]||[]).find(p=>p.year===year)).filter(Boolean),avg=key=>points.length?points.reduce((s,p)=>s+p[key],0)/points.length:0;return {...axis,base:avg('score'),scenario:avg('scenario'),delta:avg('scenario')-avg('score')}})}
+function drawProfile(){const host=$('profile-host'),cards=$('profile-cards');if(!host||!cards)return;const axes=profileValues(focusYear),W=700,H=510,cx=350,cy=250,R=164,pt=(i,v,extra=0)=>{const a=-Math.PI/2+i/axes.length*Math.PI*2,r=(clamp(v,0,100)/100)*R+extra;return[cx+Math.cos(a)*r,cy+Math.sin(a)*r]},poly=key=>axes.map((a,i)=>pt(i,a[key]).map(n=>n.toFixed(1)).join(',')).join(' '),rings=[25,50,75,100].map(v=>`<polygon points="${axes.map((a,i)=>pt(i,v).map(n=>n.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="#554967" stroke-width="1" stroke-dasharray="3 5"/>`).join(''),spokes=axes.map((a,i)=>{const [x,y]=pt(i,100),[lx,ly]=pt(i,100,30),anchor=lx>cx+8?'start':lx<cx-8?'end':'middle',active=a.keys.includes(selected);return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#554967"/><text data-profile-pick="${esc(a.keys[0])}" x="${lx}" y="${ly}" text-anchor="${anchor}" fill="${active?'#fff0b7':'#c7bbcf'}" font-size="12" font-weight="${active?700:600}" style="cursor:pointer">${esc(a.label)} <tspan fill="${a.delta>=.05?'#7be0ce':a.delta<=-.05?'#f2a47c':'#8f839a'}">${Math.abs(a.delta)>=.05?sign(a.delta):''}</tspan></text>`}).join('');host.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Kuuden ulottuvuuden tasapainoprofiili vuonna ${focusYear}"><defs><radialGradient id="profileFill"><stop offset="0" stop-color="#38c9ad" stop-opacity=".36"/><stop offset="1" stop-color="#38c9ad" stop-opacity=".09"/></radialGradient></defs>${rings}${spokes}<polygon points="${poly('base')}" fill="none" stroke="#9d92aa" stroke-width="2" stroke-dasharray="6 6"/><polygon points="${poly('scenario')}" fill="url(#profileFill)" stroke="#4bd2b7" stroke-width="2.6"/>${axes.map((a,i)=>{const[x,y]=pt(i,a.scenario);return`<circle cx="${x}" cy="${y}" r="4" fill="#fff0b7" stroke="#302a3d" stroke-width="2"/>`}).join('')}<text x="${cx}" y="${cy-2}" text-anchor="middle" fill="#f5eff7" font-size="18" font-weight="700">${focusYear}</text><text x="${cx}" y="${cy+16}" text-anchor="middle" fill="#a99daf" font-size="10">0–100 · suurempi = turvallisempi</text></svg>`;host.querySelectorAll('[data-profile-pick]').forEach(el=>el.onclick=()=>{selected=el.dataset.profilePick;update()});cards.innerHTML=axes.map(a=>`<div class="profile-card"><span>${esc(a.label)}</span><b style="color:${a.delta>=.05?'#7be0ce':a.delta<=-.05?'#f2a47c':'#c7bbcf'}">${nf(a.scenario)} · ${sign(a.delta)} p.</b></div>`).join('')}
+
+/* ---------- indikaattoriristikko ---------- */
+function drawIndicatorGrid(){const host=$('indicator-grid');if(!host)return;host.innerHTML=orderedSeries().map(k=>{const rows=scenario[k]||[],W=150,H=42,x=y=>(y-Y0)/(Y1-Y0)*W,yy=v=>H-clamp(v,0,100)/100*H,line=key=>rows.map((p,i)=>`${i?'L':'M'}${x(p.year).toFixed(1)} ${yy(p[key]).toFixed(1)}`).join(' '),p=rows.find(r=>r.year===focusYear)||rows.at(-1)||{delta:0,scenario:0},cx=x(focusYear);return `<button class="indicator-mini ${k===selected?'active':''}" data-series-pick="${esc(k)}"><strong>${esc(NAMES[k]||k)}</strong><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" aria-hidden="true"><path d="${line('score')}" fill="none" stroke="#847890" stroke-width="1.4" stroke-dasharray="4 4"/><path d="${line('scenario')}" fill="none" stroke="${p.delta>=.05?'#4bd2b7':p.delta<=-.05?'#e98b67':'#a99daf'}" stroke-width="2.2"/><line x1="${cx}" x2="${cx}" y1="0" y2="${H}" stroke="#fff0b7" stroke-opacity=".55"/></svg><small>${focusYear} · <b style="color:${p.delta>=.05?'#7be0ce':p.delta<=-.05?'#f2a47c':'#c7bbcf'}">${sign(p.delta)} p.</b> · ${esc(rawLabel(k,p.scenario))}</small></button>`}).join('')}
+
+/* ---------- elämänpolut: turvallinen käytävä → vuotuiset tilasiirtymät ---------- */
+function lifeMatrix(year, useScenario=true){
+  const axes=profileValues(year),d=Object.fromEntries(axes.map(a=>[a.label,(useScenario?a.scenario:a.base)-a.base]));
+  const work=((d['Työllisyys']||0)+(d['Työttömyys']||0)+(d['Pitkittynyt työttömyys']||0)/2)/2.5;
+  const income=d['Toimeentulo & asuminen']||0, independence=d['Itsenäistyminen']||0, family=d['Perheellistyminen']||0;
+  const m=LIFE_BASE.map(r=>r.slice()),ix=Object.fromEntries(LIFE_STATES.map((s,i)=>[s.key,i]));
+  const tilt=(from,to,z)=>{m[ix[from]][ix[to]]*=Math.exp(clamp(z,-1.6,1.6))};
+  LIFE_STATES.forEach(s=>{tilt(s.key,'stable',work/22);tilt(s.key,'unemployed',-work/20);tilt(s.key,'precarious',-work/35);});
+  ['stable','precarious','unemployed','study'].forEach(s=>tilt(s,'family',(family*.65+income*.35)/24));
+  ['study','precarious','unemployed'].forEach(s=>tilt(s,'abroad',-(independence*.55+income*.45)/28));
+  tilt('unemployed','study',-work/42);tilt('precarious','study',-work/55);tilt('family','stable',(work+family)/45);
+  return m.map((r,i)=>{const sum=r.reduce((a,b)=>a+b,0);return sum?r.map(v=>v/sum):r.map((_,j)=>i===j?1:0)});
+}
+function lifeStep(dist,m){return m[0].map((_,j)=>dist.reduce((s,v,i)=>s+v*m[i][j],0))}
+function lifeModel(year){
+  let base=LIFE_STATES.map(s=>s.share),scen=base.slice();
+  for(let y=Y0;y<year;y++){base=lifeStep(base,lifeMatrix(y,false));scen=lifeStep(scen,lifeMatrix(y,true))}
+  const mb=lifeMatrix(year,false),ms=lifeMatrix(year,true),next=lifeStep(scen,ms);
+  const flows=[];scen.forEach((share,i)=>ms[i].forEach((p,j)=>{const value=share*p;if(value>.00035)flows.push({i,j,value})}));
+  return{base,scen,next,mb,ms,flows};
+}
+function drawPathways(){
+  const host=$('path-host'),summary=$('path-summary');if(!host)return;const year=focusYear,m=lifeModel(year),W=820,H=455,LX=178,RX=650,NW=17,TOP=25,GAP=7,usable=H-TOP*2-GAP*(LIFE_STATES.length-1);
+  const stack=dist=>{let y=TOP;return dist.map(v=>{const h=Math.max(3,v*usable),o={y,h};y+=h+GAP;return o})},left=stack(m.scen),right=stack(m.next),out=left.map(x=>x.y),inc=right.map(x=>x.y);
+  const defs=LIFE_STATES.map((s,i)=>`<linearGradient id="life-${i}" x1="0" x2="1"><stop stop-color="${s.color}" stop-opacity=".7"/><stop offset="1" stop-color="${s.color}" stop-opacity=".22"/></linearGradient>`).join('');
+  const paths=[...m.flows].sort((a,b)=>b.value-a.value).map(f=>{const a=left[f.i],b=right[f.j],h1=Math.max(.7,f.value/Math.max(.0001,m.scen[f.i])*a.h),h2=Math.max(.7,f.value/Math.max(.0001,m.next[f.j])*b.h),sy=out[f.i],ty=inc[f.j];out[f.i]+=h1;inc[f.j]+=h2;const mid=(LX+NW+RX)/2;return`<path d="M${LX+NW},${sy} C${mid},${sy} ${mid},${ty} ${RX},${ty} L${RX},${ty+h2} C${mid},${ty+h2} ${mid},${sy+h1} ${LX+NW},${sy+h1}Z" fill="url(#life-${f.i})"><title>${esc(LIFE_STATES[f.i].label)} → ${esc(LIFE_STATES[f.j].label)}: ${nf(f.value*100)} % ikäryhmästä</title></path>`}).join('');
+  const nodes=LIFE_STATES.map((s,i)=>{const delta=(m.scen[i]-m.base[i])*100,c=delta>.04?'#7be0ce':delta<-.04?'#f2a47c':'#a99daf';return`<rect x="${LX}" y="${left[i].y}" width="${NW}" height="${left[i].h}" rx="4" fill="${s.color}"/><rect x="${RX}" y="${right[i].y}" width="${NW}" height="${right[i].h}" rx="4" fill="${s.color}"/><text x="${LX-9}" y="${left[i].y+left[i].h/2+4}" text-anchor="end" fill="#eee8f1" font-size="11">${esc(s.label)}</text><text x="${RX+NW+9}" y="${right[i].y+right[i].h/2+3}" fill="#eee8f1" font-size="10">${nf(m.next[i]*100)} %</text><text x="${LX-9}" y="${left[i].y+left[i].h/2+16}" text-anchor="end" fill="${c}" font-size="9">${Math.abs(delta)>.04?sign(delta)+' p. vs perusura':''}</text>`}).join('');
+  host.innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="25–34-vuotiaiden simuloidut elämäntilasiirtymät vuodesta ${year} vuoteen ${Math.min(Y1,year+1)}"><defs>${defs}</defs><text x="${LX}" y="14" fill="#fff0b7" font-size="11" font-weight="700">${year}</text><text x="${RX}" y="14" fill="#fff0b7" font-size="11" font-weight="700">${Math.min(Y1,year+1)}</text>${paths}${nodes}</svg>`;
+  const stable=(m.scen[1]+m.scen[3])*100,fragile=(m.scen[2]+m.scen[4]+m.scen[6])*100,largest=[...m.flows].filter(f=>f.i!==f.j).sort((a,b)=>b.value-a.value)[0];
+  if(summary)summary.innerHTML=`<span>Vakaa työasema <b>${nf(stable)} %</b></span><span>Haavoittuva asema <b>${nf(fragile)} %</b></span><span>Suurin siirtymä <b>${largest?esc(LIFE_STATES[largest.i].label)+' → '+esc(LIFE_STATES[largest.j].label):'–'}</b></span>`;
+}
+
+/* ---------- rendering ---------- */
+function head(step, title, side = '') {
+  return `<div class="panel-head"><div><span class="kicker">${step}</span><h2>${esc(title)}</h2></div>${side ? `<b class="count">${side}</b>` : ''}</div>`;
+}
+
+function leverCard(l) {
+  const v = values[l.lever_key] || 0;
+  const warn = l.metadata && l.metadata.tradeoff_warning;
+  return `<div class="lever">
+    <div class="lever-top">
+      <div><strong>${esc(l.title)}</strong><div class="st">${esc(l.statute_id || '')}</div></div>
+      <output class="value ${v > 0 ? 'pos' : v < 0 ? 'neg' : ''}">${v > 0 ? '+' : ''}${v}</output>
+    </div>
+    <input type="range" min="-100" max="100" step="5" value="${v}" data-lever="${esc(l.lever_key)}"
+      aria-label="${esc(l.title)} · vaikutusvoimakkuus">
+    <div class="lever-meta"><span>heikennys</span><span>ennallaan</span><span>vahvistus</span></div>
+    <p>${esc(l.intervention_definition || '')}</p>
+    <div style="margin-top:7px;display:flex;gap:6px;flex-wrap:wrap">
+      <span class="badge">toteutuskerroin ${nf(+l.implementation_coefficient, 2)}</span>
+      ${warn ? '<span class="badge warn">vaihtokauppa</span>' : ''}
+    </div>
+  </div>`;
+}
+
+function leverPanel() {
+  let body;
+  if (tab === 'groups') {
+    body = GROUPS.map(g => {
+      const items = groupItems(g); if (!items.length) return '';
+      const gv = groupValue(g);
+      return `<details class="group" ${items.some(l => values[l.lever_key]) ? 'open' : ''}>
+        <summary>
+          <span class="g-icon" style="background:${g.color}">${g.icon}</span>
+          <span><span class="g-name">${esc(g.label)}</span><span class="g-sub">${items.length} säädösvipua</span></span>
+          <span class="g-val ${gv > 0 ? 'pos' : gv < 0 ? 'neg' : ''}">${gv > 0 ? '+' : ''}${gv}</span>
+        </summary>
+        ${items.map(leverCard).join('')}
+      </details>`;
+    }).join('');
+  } else {
+    const act = levers.filter(l => values[l.lever_key]);
+    body = act.length
+      ? act.map(leverCard).join('')
+      : `<div class="empty" style="min-height:180px"><div class="orb">0</div><h3>Ei muutoksia</h3><p>Säädä vipuja tai valitse valmis linjaus yläpalkista.</p></div>`;
+  }
+  return `<section class="panel">
+    ${head('Vaihe 1', 'Säädösvivut', `${activeCount()}/${levers.length} aktiivista`)}
+    <div class="tabs" role="tablist">
+      <button data-tab="groups" class="${tab === 'groups' ? 'active' : ''}" role="tab">POLITIIKKA-ALUEET</button>
+      <button data-tab="active" class="${tab === 'active' ? 'active' : ''}" role="tab">MUUTETUT (${activeCount()})</button>
+    </div>
+    ${body}
+  </section>`;
+}
+
+function chartSvg(data) {
+  const W = 800, H = 360, L = 42, R = 16, T = 14, B = 30;
+  const x = y => L + (y - Y0) / (Y1 - Y0) * (W - L - R);
+  const yy = v => T + (100 - v) / 100 * (H - T - B);
+  const pts = k => data.map(p => `${x(p.year)},${yy(p[k])}`).join(' ');
+  const band = data.map(p => `${x(p.year)},${yy(p.hi)}`)
+    .concat(data.slice().reverse().map(p => `${x(p.year)},${yy(p.lo)}`)).join(' ');
+  const zones = data.map((p, i) =>
+    `<rect data-zone="${i}" x="${x(p.year) - (W - L - R) / (Y1 - Y0) / 2}" y="${T}" width="${(W - L - R) / (Y1 - Y0)}" height="${H - T - B}" fill="transparent"/>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Perusuran ja säädösskenaarion kehitys 2025–2050">
+    <defs><linearGradient id="bandGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a8a7f" stop-opacity=".2"/><stop offset="1" stop-color="#0a8a7f" stop-opacity=".04"/>
+    </linearGradient></defs>
+    ${[0, 25, 50, 75, 100].map(v => `<line class="axis" x1="${L}" x2="${W - R}" y1="${yy(v)}" y2="${yy(v)}"/><text class="chart-label" x="4" y="${yy(v) + 4}">${v}</text>`).join('')}
+    <polygon class="band" points="${band}"/>
+    <polyline class="base-line" points="${pts('score')}"/>
+    <polyline class="scenario-line" points="${pts('scenario')}"/>
+    <line class="reform" x1="${x(reformYear)}" x2="${x(reformYear)}" y1="${T}" y2="${H - B}"/>
+    <text class="chart-label" x="${x(reformYear) + 5}" y="26" fill="#c4662a">muutos ${reformYear}</text>
+    ${[2025, 2030, 2035, 2040, 2045, 2050].map(v => `<text class="chart-label" text-anchor="middle" x="${x(v)}" y="${H - 6}">${v}</text>`).join('')}
+    <g id="hover" style="display:none">
+      <line class="crosshair" id="ch" y1="${T}" y2="${H - B}"/>
+      <circle class="dot" id="d1" r="4.5"/><circle class="dot" id="d2" r="4.5" fill="#93a19c"/>
+    </g>
+    ${zones}
+  </svg><div class="tip" id="tip"></div>`;
+}
+
+function peakOf(key) {
+  const data = scenario[key] || [];
+  let best = {year: Y0, delta: 0, scenario: 0, score: 0};
+  data.forEach(p => { if (Math.abs(p.delta) > Math.abs(best.delta)) best = p; });
+  return best;
+}
+
+function metricsHtml() {
+  const data = scenario[selected] || [];
+  const f = data.find(d => d.year === focusYear) || data[data.length - 1] || {score: 0, scenario: 0, delta: 0};
+  const peak = peakOf(selected);
+  const comp = composite.find(c => c.year === focusYear) || {base: 0, scen: 0};
+  const cd = comp.scen - comp.base;
+  const cls = n => n > 0 ? 'pos' : n < 0 ? 'neg' : '';
+  return `
+    <div class="metric"><span>Perusura ${focusYear}</span><b>${nf(f.score)}</b><small>${rawLabel(selected, f.score)}</small></div>
+    <div class="metric"><span>Skenaario ${focusYear}</span><b class="${cls(f.delta)}">${nf(f.scenario)}</b><small>${rawLabel(selected, f.scenario)}</small></div>
+    <div class="metric"><span>Huippuvaikutus</span><b class="${cls(peak.delta)}">${sign(peak.delta)}</b><small>vuonna ${peak.year}</small></div>
+    <div class="metric"><span>Yhdistelmäindeksi</span><b class="${cls(cd)}">${nf(comp.scen)}</b><small>perusura ${nf(comp.base)} · ${sign(cd)}</small></div>`;
+}
+
+function chartPanel() {
+  const data = scenario[selected] || [];
+  const end = data[data.length - 1] || {score: 0, scenario: 0, delta: 0};
+  const focus = data.find(d => d.year === focusYear) || end;
+  const comp = composite[composite.length - 1] || {base: 0, scen: 0};
+  const u = unitOf(selected);
+  return `<section class="panel">
+    ${head('Vaihe 2', 'Turvallisen käytävän kehitys', `${Y0}–${Y1}`)}
+    <div class="metrics">${metricsHtml()}</div>
+    <div class="selector">
+      <div class="series-nav" aria-label="Tarkasteltavan muuttujan selaus">
+        <button type="button" data-series-step="-1" aria-label="Edellinen muuttuja" title="Edellinen muuttuja">←</button>
+        <div class="series-name" id="series-name" aria-live="polite">${esc(NAMES[selected] || selected)}</div>
+        <button type="button" data-series-step="1" aria-label="Seuraava muuttuja" title="Seuraava muuttuja">→</button>
+      </div>
+      <button id="csv" class="badge" style="border:1px solid var(--line);background:#fff;padding:8px 12px;border-radius:9px;font-size:11px;color:var(--ink-2);text-transform:none;letter-spacing:0">Lataa CSV</button>
+    </div>
+    <div class="chart-wrap" id="chart">${chartSvg(data)}</div>
+    <div class="legend">
+      <span><i style="border-color:#93a19c;border-top-style:dashed"></i>Perusura</span>
+      <span><i style="border-color:var(--teal)"></i>Säädösskenaario</span>
+      <span><i style="border-color:#bcd9d1"></i>Epävarmuusväli ±35 %</span>
+      <span><i style="border-color:var(--sand);border-top-style:dashed"></i>Uudistusvuosi</span>
+    </div>
+    <div class="timeline">
+      <button id="play">${playing ? '❚❚ Pysäytä' : '▶ Toista 2025→2050'}</button>
+      <input type="range" id="focus" min="${Y0}" max="${Y1}" step="1" value="${focusYear}" aria-label="Tarkasteluvuosi">
+      <output id="focus-out">${focusYear}</output>
+    </div>
+    <div class="chart-note">
+      <b>${esc(NAMES[selected] || selected)}</b>
+      <span>Vuonna ${focusYear} skenaario on <b>${nf(focus.scenario)}</b> pistettä (${rawLabel(selected, focus.scenario)}), perusura ${nf(focus.score)} pistettä (${rawLabel(selected, focus.score)}). Yksikkö: ${u.name}. Pistemäärä on normalisoitu pohjoismaiseen vaihteluväliin, jossa 100 = paras havaittu taso.</span>
+    </div>
+    <div class="viz-switch" aria-label="Visualisointinäkymän selaus"><button type="button" data-viz-step="-1" aria-label="Edellinen näkymä" title="Edellinen näkymä">←</button><div class="viz-title"><small id="viz-index">SELATTAVA NÄKYMÄ · ${VIZ_VIEWS.indexOf(vizView)+1} / ${VIZ_VIEWS.length}</small><strong id="viz-title">${VIZ_NAMES[vizView]}</strong></div><button type="button" data-viz-step="1" aria-label="Seuraava näkymä" title="Seuraava näkymä">→</button></div>
+    <div class="viz-carousel">
+    <div class="heat" data-viz-panel="heat" ${vizView==='heat'?'':'hidden'}>
+      <h3>Vaikutuskartta · indikaattori × vuosi</h3>
+      <p>Jokainen rivi on indikaattori, jokainen sarake vuosi. Vihreä = kohenee, oranssi = heikkenee.</p>
+      <canvas id="heatmap"></canvas>
+      <div class="heat-legend"><span>heikkenee</span><span class="heat-grad"></span><span>kohenee</span>
+        <span style="margin-left:auto">huippupoikkeama ±${nf(heat ? heat.maxAbs : 0)} p.</span></div>
+      <p class="heat-empty" id="heat-empty" ${heat && heat.active ? 'hidden' : ''}>Kartta aktivoituu, kun säädät vähintään yhtä vipua.</p>
+    </div>
+    <div class="landscape" data-viz-panel="landscape" ${vizView==='landscape'?'':'hidden'}>
+      <div class="landscape-head"><div><h3>Density contour · indikaattorijärjestelmän jännitekartta</h3><p id="landscape-description">Kuusi rakenneklusteria ja turvallisen käytävän korostetut indikaattorit. Play alkaa vuodesta 2000 ja näyttää siirtymän havainnoista vuoden 2025 jälkeiseen säädösskenaarioon.</p></div><div class="landscape-kpi"><b id="landscape-scale">0,0</b><span>järjestelmän jännite</span></div></div>
+      <div class="landscape-wrap"><canvas id="landscape" role="img" aria-label="Indikaattoriklusterien historiallinen ja simuloitu jännitekartta"></canvas><div class="landscape-tip" id="landscape-tip"></div><div class="landscape-empty" id="landscape-empty" hidden>Indikaattoriaineistoa ei ole käytettävissä.</div></div>
+      <div class="landscape-legend"><span>turvaa heikentävä</span><i class="landscape-grad"></i><span>turvaa vahvistava</span><em>valkoinen kehä = turvallinen käytävä · 2000–2025 havaittu · 2026–2050 skenaario ja vaimennettu jatkumo</em></div>
+      <div class="cluster-summary" id="cluster-summary"></div>
+    </div>
+    <div class="profile-stage" data-viz-panel="profile" ${vizView==='profile'?'':'hidden'}>
+      <h3>Tasapainoprofiili · kuusi ulottuvuutta</h3><p>Katkoviiva on perusura ja täytetty muoto säädösskenaario. Jokainen akseli on kahden läpinäkyvästi nimetyn indikaattorin keskiarvo.</p>
+      <div class="profile-host" id="profile-host"></div><div class="profile-cards" id="profile-cards"></div><details class="profile-method"><summary>Näytä akselien muodostus</summary><ul>${PROFILE_AXES.map(a=>`<li><b>${esc(a.label)}:</b> ${a.keys.map(k=>esc(NAMES[k]||k)).join(' + ')}</li>`).join('')}</ul></details>
+    </div>
+    <div class="path-stage" data-viz-panel="pathways" ${vizView==='pathways'?'':'hidden'}>
+      <h3>Elämänpolut · 25–34-vuotiaiden tilasiirtymät</h3><p>Virrat näyttävät, kuinka sama säädösskenaario muuttaa siirtymiä opiskelun, työn, työttömyyden, perhevapaan ja muiden elämäntilanteiden välillä. Nauhan leveys vastaa osuutta koko ikäryhmästä.</p>
+      <div class="path-summary" id="path-summary" aria-live="polite"></div><div class="path-host" id="path-host"></div>
+      <div class="path-method"><span><b>Turvallinen käytävä → siirtymät:</b> työllisyys, toimeentulo, asuminen, itsenäistyminen ja perheellistyminen muuttavat vuotuisia todennäköisyyksiä.</span><span>Mekanismiskenaario, ei havaittu yksilöaineisto eikä ennuste.</span></div>
+    </div>
+    <div class="grid-stage" data-viz-panel="grid" ${vizView==='grid'?'':'hidden'}>
+      <h3>Indikaattoriristikko</h3><p>Kaikkien muuttujien kehityspolut rinnakkain. Katkoviiva on perusura; napsauta korttia avataksesi muuttujan tarkkaan tarkasteluun.</p>
+      <div class="indicator-grid" id="indicator-grid"></div>
+    </div>
+    </div>
+  </section>`;
+}
+
+function insightPanel() {
+  if (!activeCount()) {
+    return `<section class="panel insight">
+      ${head('Vaihe 3', 'Päätelmä')}
+      <div class="empty"><div class="orb">?</div><h3>Ei vielä skenaariota</h3>
+      <p>Valitse säädösvipuja vasemmalta. Malli laskee viiveet, toteutuskertoimet ja vaikutusketjut reaaliajassa.</p></div>
+      <p class="method">Malli: <b>statute_sim_v1</b>. Kertoimet ovat skenaario-oletuksia, eivät empiirisiä kausaalivaikutuksia.</p>
+    </section>`;
+  }
+  const data = scenario[selected] || [];
+  const focus = data.find(d => d.year === focusYear) || data[data.length - 1] || {delta: 0, scenario: 0, score: 0};
+  const up = focus.delta >= 0;
+  const contribs = sensitivity(selected, focusYear);
+  const maxAbs = Math.max(0.01, ...contribs.map(c => Math.abs(c.value)));
+
+  return `<section class="panel insight">
+    ${head('Vaihe 3', 'Päätelmä', String(focusYear))}
+    <div class="direction ${up ? '' : 'down'}">
+      <span class="arrow">${up ? '↗' : '↘'}</span>
+      <div>
+        <span>${esc(NAMES[selected] || selected)}</span>
+        <b>${sign(focus.delta)} pistettä</b>
+        <small>${rawLabel(selected, focus.score)} → ${rawLabel(selected, focus.scenario)} vuonna ${focusYear}</small>
+      </div>
+    </div>
+    <div class="ins">
+      <h3>Mikä muutosta selittää</h3>
+      ${contribs.length ? contribs.slice(0, 6).map(c => `
+        <div class="contrib">
+          <div class="contrib-top"><strong>${esc(c.title)}</strong>
+            <span class="value ${c.value > 0 ? 'pos' : 'neg'}">${sign(c.value)}</span></div>
+          <small>${esc(c.area)} · ${esc(c.statute)} · viive ${esc(c.lag)} v</small>
+          <div class="bar"><i style="width:${Math.abs(c.value) / maxAbs * 100}%;background:${c.value > 0 ? 'var(--teal)' : 'var(--sand)'}"></i></div>
+        </div>`).join('')
+        : `<p style="font-size:12px;color:var(--muted)">${focusYear < reformYear + 1 ? 'Vaikutukset eivät ole vielä realisoituneet – viive alkaa uudistusvuodesta ' + reformYear + '.' : 'Vaikutukset ovat jo hiipuneet tähän vuoteen mennessä. Siirrä tarkasteluvuosi lähemmäs uudistusta nähdäksesi vaikutushuipun.'}</p>`}
+
+      <h3>Suurimmat siirtymät koko kartalla</h3>
+      ${heat && heat.peaks.length ? heat.peaks.slice(0, 4).map(p => `
+        <div class="contrib"><div class="contrib-top">
+          <strong style="font-size:11.8px">${esc(NAMES[p.key] || p.key)}</strong>
+          <span class="value ${p.value > 0 ? 'pos' : 'neg'}">${sign(p.value)}</span></div>
+          <small>huippu vuonna ${p.year}</small></div>`).join('')
+        : '<p style="font-size:12px;color:var(--muted)">Ei merkittäviä siirtymiä.</p>'}
+
+      <div class="chain">
+        <div><span>Säädös</span><span>→</span><span>Mekanismi</span><span>→</span><span>Indikaattori</span></div>
+        <p>Vaikutus etenee viiveellä: <b>${esc(contribs[0]?.lag || '0–2')} vuotta</b> ensivaikutukseen ja hiipuu persistenssin päätyttyä. Toteutuskerroin leikkaa vaikutusta säädöksen kytkeytyneisyyden ja delegoinnin mukaan.</p>
+      </div>
+    </div>
+    <p class="method">Malli: <b>statute_sim_v1</b>. Pistemäärä normalisoitu pohjoismaisiin p05–p95-ankkureihin. Kertoimet ovat läpinäkyviä skenaario-oletuksia, eivät empiirisiä kausaalivaikutuksia – lukuja ei tule esittää ennusteina.</p>
+  </section>`;
+}
+
+function render() {
+  calculate();
+  $('app').className = '';
+  $('app').innerHTML = `
+    <header>
+      <div class="logo">M</div>
+      <div class="brand"><small>MURROSMATRIISI</small><h1>Säädössimulaattori</h1></div>
+      <div class="htools">
+        <span class="live">Aineisto: ${Object.values(indicatorHistory).reduce((s,a)=>s+a.length,0)} historiallista havaintoa · ${landscape?.nodes?.length||12} indikaattoria · ${levers.length} vipua</span>
+        <button id="share">Jaa linkki</button>
+        <button id="download">Lataa HTML</button>
+      </div>
+    </header>
+    <div class="scenario-bar">
+      <div class="sb-field"><label for="reform">Uudistusvuosi</label>
+        <input type="number" id="reform" min="${Y0}" max="2045" step="1" value="${reformYear}"></div>
+      <div class="sb-field"><label>Aktiivisia vipuja</label><b style="font:700 15px var(--fm)">${activeCount()}</b></div>
+      <div class="presets">
+        ${Object.entries(PRESETS).map(([k, p]) => `<button data-preset="${k}">${esc(p.label)}</button>`).join('')}
+        <button data-preset="reset" class="reset">Nollaa</button>
+      </div>
+    </div>
+    <main class="workspace">
+      ${leverPanel()}
+      ${chartPanel()}
+      ${insightPanel()}
+    </main>
+    <footer>
+      <span>Murrosmatriisi · säädössimulaattori v4 · malli statute_sim_v1</span>
+      <span>Aineisto luetaan julkisesta tietokannasta. Skenaario-oletuksia, ei ennusteita.</span>
+    </footer>`;
+  bind();
+  syncViz();
+}
+
+/* pieni päivitys ilman koko DOMin uudelleenrakennusta */
+function update() {
+  calculate();
+  const chart = $('chart');
+  if (chart) chart.innerHTML = chartSvg(scenario[selected] || []);
+  const panels = document.querySelectorAll('.workspace > .panel');
+  if (panels[2]) panels[2].outerHTML = insightPanel();
+  refreshMetrics();
+  bindChart();
+  bindLandscape();
+  syncViz();
+  syncUrl();
+}
+
+function refreshMetrics() {
+  const data = scenario[selected] || [];
+  const focus = data.find(d => d.year === focusYear) || data[data.length - 1] || {score: 0, scenario: 0, delta: 0};
+  const box = document.querySelector('.metrics');
+  if (box) box.innerHTML = metricsHtml();
+  const sn = $('series-name'); if (sn) sn.textContent = NAMES[selected] || selected;
+  const note = document.querySelector('.chart-note span');
+  if (note) note.innerHTML = `Vuonna ${focusYear} skenaario on <b>${nf(focus.scenario)}</b> pistettä (${rawLabel(selected, focus.scenario)}), perusura ${nf(focus.score)} pistettä (${rawLabel(selected, focus.score)}). Yksikkö: ${unitOf(selected).name}. Pistemäärä on normalisoitu pohjoismaiseen vaihteluväliin, jossa 100 = paras havaittu taso.`;
+  const legend = document.querySelector('.heat-legend span:last-child');
+  if (legend) legend.textContent = `huippupoikkeama ±${nf(heat ? heat.maxAbs : 0)} p.`;
+  const hs = $('heat-empty'); if (hs) hs.hidden = !!heat?.active;
+  const le = $('landscape-empty'); if (le) le.hidden = !!landscape?.active;
+}
+
+/* ---------- interaction ---------- */
+function bindChart() {
+  const wrap = $('chart'); if (!wrap) return;
+  const svg = wrap.querySelector('svg'), tip = $('tip'), hover = $('hover');
+  const data = scenario[selected] || [];
+  const W = 800, H = 360, L = 42, R = 16, T = 14, B = 30;
+  const x = y => L + (y - Y0) / (Y1 - Y0) * (W - L - R);
+  const yy = v => T + (100 - v) / 100 * (H - T - B);
+
+  const show = i => {
+    const p = data[i]; if (!p) return;
+    hover.style.display = '';
+    $('ch').setAttribute('x1', x(p.year)); $('ch').setAttribute('x2', x(p.year));
+    $('d1').setAttribute('cx', x(p.year)); $('d1').setAttribute('cy', yy(p.scenario));
+    $('d2').setAttribute('cx', x(p.year)); $('d2').setAttribute('cy', yy(p.score));
+    tip.style.display = 'block';
+    tip.innerHTML = `<span class="yr">${p.year}</span>
+      Skenaario <b>${nf(p.scenario)}</b> · ${rawLabel(selected, p.scenario)}<br>
+      Perusura <b>${nf(p.score)}</b> · ${rawLabel(selected, p.score)}<br>
+      Ero <b>${sign(p.delta)}</b> p.`;
+    const rect = wrap.getBoundingClientRect();
+    const px = x(p.year) / W * rect.width;
+    tip.style.left = clamp(px + 14, 0, rect.width - tip.offsetWidth - 4) + 'px';
+    tip.style.top = clamp(yy(p.scenario) / H * rect.height - 20, 0, rect.height - 90) + 'px';
+  };
+  svg.querySelectorAll('[data-zone]').forEach(z => {
+    z.addEventListener('mouseenter', () => { hoverIdx = +z.dataset.zone; show(hoverIdx); });
+  });
+  svg.addEventListener('mouseleave', () => { hover.style.display = 'none'; tip.style.display = 'none'; });
+}
+
+function bind() {
+  bindOnce();
+  bindChart();
+  bindLandscape();
+}
+
+let bound = false;
+function bindOnce() { if (bound) return; bound = true;
+  document.addEventListener('input', onInput);
+  document.addEventListener('change', onChange);
+  document.addEventListener('click', onClick);
+  window.addEventListener('resize', debounce(drawActiveViz,120));
+}
+
+function debounce(fn, ms) { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; }
+
+function onInput(e) {
+  const t = e.target;
+  if (t.dataset && t.dataset.lever) {
+    values[t.dataset.lever] = +t.value;
+    const out = t.previousElementSibling?.querySelector('output');
+    if (out) {
+      const v = +t.value;
+      out.textContent = (v > 0 ? '+' : '') + v;
+      out.className = 'value ' + (v > 0 ? 'pos' : v < 0 ? 'neg' : '');
+    }
+    const det = t.closest('details');
+    if (det) {
+      const g = GROUPS.find(x => det.querySelector('.g-name')?.textContent === x.label);
+      if (g) { const gv = groupValue(g), el = det.querySelector('.g-val');
+        el.textContent = (gv > 0 ? '+' : '') + gv; el.className = 'g-val ' + (gv > 0 ? 'pos' : gv < 0 ? 'neg' : ''); }
+    }
+    update();
+  }
+  if (t.id === 'focus') { if(vizView==='landscape'){mapYear=+t.value;$('focus-out').textContent=mapYear;drawLandscape()}else{focusYear=+t.value;$('focus-out').textContent=focusYear;update()} }
+  if (t.id === 'reform') { reformYear = clamp(+t.value || 2027, Y0, 2045); update(); }
+}
+
+function onChange(e) {
+}
+
+function onClick(e) {
+  const b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.seriesPick) { selected=b.dataset.seriesPick; update(); return; }
+  if (b.dataset.seriesStep) { stepSeries(+b.dataset.seriesStep); return; }
+  if (b.dataset.vizStep) { stepViz(+b.dataset.vizStep); return; }
+  if (b.dataset.tab) { tab = b.dataset.tab; render(); return; }
+  if (b.dataset.preset) {
+    const k = b.dataset.preset;
+    values = Object.fromEntries(levers.map(l => [l.lever_key, 0]));
+    if (k !== 'reset') {
+      Object.entries(PRESETS[k].set).forEach(([lk, v]) => { if (lk in values) values[lk] = v; });
+      calculate();
+      const pk = peakOf(selected);
+      if (pk.delta) focusYear = pk.year;
+    } else { focusYear = 2032; }
+    render(); syncUrl();
+    toast(k === 'reset' ? 'Skenaario nollattu' : `Linjaus: ${PRESETS[k].label}`);
+    return;
+  }
+  if (b.id === 'play') togglePlay();
+  if (b.id === 'csv') exportCsv();
+  if (b.id === 'share') shareLink();
+  if (b.id === 'download') downloadSelf();
+}
+
+function togglePlay() {
+  if(vizView==='landscape'){
+    if(playing){playing=false;cancelAnimationFrame(playRaf);mapYear=Math.round(playPos);$('play').textContent=`▶ Toista ${MAP_Y0}→${Y1}`;drawLandscape();return}
+    playing=true;playPos=MAP_Y0;mapYear=MAP_Y0;$('play').textContent='❚❚ Pysäytä';let started=null,shown=MAP_Y0;const step=now=>{if(!playing)return;if(started===null)started=now;const p=Math.min(1,(now-started)/9000);playPos=MAP_Y0+(Y1-MAP_Y0)*p;const year=Math.min(Y1,Math.floor(playPos));if(year!==shown){shown=mapYear=year;const f=$('focus');if(f)f.value=year;const out=$('focus-out');if(out)out.textContent=year}drawLandscape();if(p<1)playRaf=requestAnimationFrame(step);else{playing=false;playPos=mapYear=Y1;$('play').textContent=`▶ Toista ${MAP_Y0}→${Y1}`;drawLandscape()}};playRaf=requestAnimationFrame(step);return;
+  }
+  if (playing) {
+    playing = false; cancelAnimationFrame(playRaf); focusYear = Math.round(playPos);
+    $('play').textContent = '▶ Toista 2025→2050'; update(); return;
+  }
+  playing = true; playPos = Y0; focusYear = Y0; $('play').textContent = '❚❚ Pysäytä';
+  let started = null, shownYear = Y0;
+  const step = now => {
+    if (!playing) return;
+    if (started === null) started = now;
+    const p = Math.min(1, (now - started) / 5600);
+    playPos = Y0 + (Y1 - Y0) * p;
+    const year = Math.min(Y1, Math.floor(playPos));
+    if (year !== shownYear) { shownYear = focusYear = year; const f = $('focus'); if (f) f.value = year; const out = $('focus-out'); if (out) out.textContent = year; if(vizView==='profile'||vizView==='grid')drawActiveViz(); }
+    if(vizView==='heat'||vizView==='landscape'||vizView==='pathways')drawActiveViz();
+    if (p < 1) playRaf = requestAnimationFrame(step);
+    else { playing = false; playPos = focusYear = Y1; $('play').textContent = '▶ Toista 2025→2050'; update(); }
+  };
+  playRaf = requestAnimationFrame(step);
+}
+
+/* ---------- export & share ---------- */
+function exportCsv() {
+  const keys = Object.keys(scenario).sort((a, b) => ORDER.indexOf(a) - ORDER.indexOf(b));
+  const rows = [['series_key', 'indikaattori', 'vuosi', 'perusura_score', 'skenaario_score', 'ero', 'perusura_raw', 'skenaario_raw']];
+  keys.forEach(k => (scenario[k] || []).forEach(p => rows.push([
+    k, NAMES[k] || k, p.year, p.score.toFixed(3), p.scenario.toFixed(3), p.delta.toFixed(3),
+    (toRaw(k, p.score) ?? '').toString().slice(0, 8), (toRaw(k, p.scenario) ?? '').toString().slice(0, 8)
+  ])));
+  const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n');
+  saveBlob(new Blob(['\ufeff' + csv], {type: 'text/csv;charset=utf-8'}), 'murrosmatriisi-skenaario.csv');
+  toast('CSV ladattu');
+}
+
+function saveBlob(blob, name) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+
+async function downloadSelf() {
+  try {
+    const res = await fetch(location.href.split('#')[0]);
+    const text = await res.text();
+    saveBlob(new Blob([text], {type: 'text/html;charset=utf-8'}), 'murrosmatriisi-saadossimulaattori-v4.html');
+    toast('HTML-tiedosto ladattu');
+  } catch { toast('Lataus ei onnistunut – tallenna sivu selaimesta.'); }
+}
+
+function encodeState() {
+  const active = Object.entries(values).filter(([, v]) => v).map(([k, v]) => `${k}:${v}`).join(',');
+  return `y=${reformYear}&s=${encodeURIComponent(selected)}&f=${focusYear}&v=${encodeURIComponent(active)}`;
+}
+function syncUrl() { history.replaceState(null, '', '#' + encodeState()); }
+function readState() {
+  const h = new URLSearchParams(location.hash.slice(1));
+  if (h.get('y')) reformYear = clamp(+h.get('y'), Y0, 2045);
+  if (h.get('s') && NAMES[h.get('s')]) selected = h.get('s');
+  if (h.get('f')) focusYear = clamp(+h.get('f'), Y0, Y1);
+  if (h.get('v')) h.get('v').split(',').filter(Boolean).forEach(pair => {
+    const [k, v] = pair.split(':'); if (k in values) values[k] = clamp(+v || 0, -100, 100);
+  });
+}
+async function shareLink() {
+  syncUrl();
+  try { await navigator.clipboard.writeText(location.href); toast('Linkki kopioitu leikepöydälle'); }
+  catch { toast('Kopioi osoiterivin linkki'); }
+}
+
+let toastT;
+function toast(msg) {
+  const el = $('toast'); el.textContent = msg; el.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('show'), 2400);
+}
+
+/* ---------- load ---------- */
+async function get(path, tries = 2) {
+  const h = {apikey: KEY, Authorization: `Bearer ${KEY}`};
+  for (let i = 0; i <= tries; i++) {
+    try {
+      const r = await fetch(API + '/rest/v1/' + path, {headers: h});
+      if (!r.ok) throw new Error(r.status);
+      return await r.json();
+    } catch (err) {
+      if (i === tries) throw err;
+      await new Promise(r => setTimeout(r, 400 * (i + 1)));
+    }
+  }
+}
+
+async function load() {
+  try {
+    const [lv, ef, bl, nm, im, iv] = await Promise.all([
+      get('simulation_statute_levers?select=*&active=eq.true'),
+      get('simulation_statute_effect_matrix?select=*'),
+      get('simulation_indicator_baselines?select=series_key,year,raw_value,score_0_100,value_kind&order=year.asc&limit=5000'),
+      get('simulation_normalization_params?select=*'),
+      get('indicator_series?select=series_key,title,theme,pressure_domain,indicator_role,unit,status&published=eq.true&status=eq.curated&limit=500').catch(()=>[]),
+      get('indicator_values?select=series_key,year,group_key,value,value_kind&is_published=eq.true&or=(group_key.eq.FI,group_key.eq._,group_key.is.null)&order=year.asc&limit=10000').catch(()=>[])
+    ]);
+    levers = lv; effects = ef; baselines = bl;
+    levers.sort((a, b) => (a.metadata?.display_order || 99) - (b.metadata?.display_order || 99));
+    norms = Object.fromEntries(nm.map(x => [x.series_key, +x.favorable_direction]));
+    anchors = Object.fromEntries(nm.map(x => [x.series_key, {
+      favorable_direction: +x.favorable_direction,
+      lower_anchor: +x.lower_anchor,
+      upper_anchor: +x.upper_anchor
+    }]));
+    buildHistory(im,iv);
+    values = Object.fromEntries(levers.map(l => [l.lever_key, 0]));
+    readState();
+    render();
+  } catch (e) {
+    $('app').className = '';
+    $('app').innerHTML = `<div class="error-box">
+      <b style="font:700 18px var(--fd)">Aineistoa ei saatu ladattua</b>
+      <p style="font-size:13px;color:#66807a">Simulaattori tarvitsee internet-yhteyden Murrosmatriisin julkisen aineiston lukemiseen.</p>
+      <button onclick="location.reload()">Yritä uudelleen</button></div>`;
+  }
+}
+load();
+</script>
+</body>
+</html>
