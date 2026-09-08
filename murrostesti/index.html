@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="fi" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Murrosatlas · Suomen murrosvaiheet 1800–2050</title>
+<meta name="description" content="Interaktiivinen atlas Suomen yhteiskunnallisista murroksista: murrosrengas, vaikutusverkko ja rakennematriisi samassa näkymässä.">
+<meta property="og:title" content="Murrosatlas · Suomen murrosvaiheet 1800–2050">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/theme.css">
+<style>
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;font:15px/1.55 var(--t-sans);color:var(--t-ink);
+  background:
+    radial-gradient(900px 520px at 88% -12%, color-mix(in oklab, var(--t-ochre) 16%, transparent) 0%, transparent 62%),
+    radial-gradient(760px 460px at -8% 4%, color-mix(in oklab, var(--t-forest) 14%, transparent) 0%, transparent 60%),
+    var(--t-paper);
+  background-attachment:fixed;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  display:flex;flex-direction:column;overflow:hidden;
+}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:where(button,a,input):focus-visible{outline:2px solid var(--t-forest);outline-offset:2px;border-radius:8px}
+
+/* ---------- yläpalkki ---------- */
+.topbar{
+  position:relative;z-index:10;display:flex;align-items:center;gap:18px;
+  min-height:var(--t-nav-h);padding:10px 20px;
+  background:var(--t-veil);backdrop-filter:blur(14px) saturate(1.2);
+  border-bottom:1px solid var(--t-line);
+}
+.brand{display:flex;align-items:baseline;gap:10px;min-width:0}
+.brand .mark{
+  width:26px;height:26px;flex:none;border-radius:50%;align-self:center;
+  background:conic-gradient(from 210deg, var(--t-forest), var(--t-ochre), var(--t-copper), var(--t-forest));
+  box-shadow:var(--t-glow);
+}
+.brand h1{margin:0;font-family:var(--t-serif);font-size:19px;font-weight:600;letter-spacing:-.015em;white-space:nowrap}
+.brand .sub{font-family:var(--t-mono);font-size:10.5px;letter-spacing:.06em;color:var(--t-muted);text-transform:uppercase}
+
+/* ---------- näkymävalitsin ---------- */
+.tabs{
+  display:flex;gap:2px;margin-left:auto;padding:3px;
+  background:var(--t-surface-sunk);border:1px solid var(--t-line-soft);border-radius:999px;
+}
+.tab{
+  position:relative;display:flex;align-items:center;gap:8px;
+  padding:7px 15px;border-radius:999px;font-size:13px;font-weight:500;color:var(--t-muted);
+  transition:color .18s, background .18s, box-shadow .18s;white-space:nowrap;
+}
+.tab:hover{color:var(--t-ink)}
+.tab[aria-selected="true"]{background:var(--t-surface);color:var(--t-ink);box-shadow:var(--t-shadow-1)}
+.tab .dot{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.5}
+.tab[aria-selected="true"] .dot{opacity:1}
+.tab[data-view="rengas"] .dot{color:var(--t-copper)}
+.tab[data-view="verkko"] .dot{color:var(--t-lake)}
+.tab[data-view="matriisi"] .dot{color:var(--t-forest)}
+.tab kbd{
+  font-family:var(--t-mono);font-size:9.5px;color:var(--t-faint);
+  border:1px solid var(--t-line);border-radius:4px;padding:0 4px;line-height:15px;
+}
+
+.tools{display:flex;align-items:center;gap:8px}
+.icon-btn{
+  display:grid;place-items:center;width:36px;height:36px;border-radius:10px;
+  border:1px solid var(--t-line);background:var(--t-surface);color:var(--t-ink-2);
+  transition:border-color .18s, color .18s, transform .18s;
+}
+.icon-btn:hover{border-color:var(--t-forest);color:var(--t-forest);transform:translateY(-1px)}
+.icon-btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+[data-theme="light"] .icon-btn .moon{display:block}
+[data-theme="light"] .icon-btn .sun{display:none}
+[data-theme="dark"] .icon-btn .moon{display:none}
+[data-theme="dark"] .icon-btn .sun{display:block}
+
+/* ---------- selite ---------- */
+.strip{
+  display:flex;align-items:center;gap:22px;padding:7px 22px;
+  font-family:var(--t-mono);font-size:10.5px;letter-spacing:.05em;color:var(--t-muted);
+  background:var(--t-surface-2);border-bottom:1px solid var(--t-line-soft);
+}
+.strip b{color:var(--t-ink);font-weight:500}
+.strip .view-blurb{color:var(--t-ink-2);font-family:var(--t-sans);font-size:12px;letter-spacing:0}
+.strip .spacer{margin-left:auto}
+
+/* ---------- näyttämö ---------- */
+.stage{position:relative;flex:1;min-height:0}
+.frame{
+  position:absolute;inset:0;width:100%;height:100%;border:0;opacity:0;
+  transition:opacity .32s var(--t-ease);pointer-events:none;
+}
+.frame.active{opacity:1;pointer-events:auto}
+.loader{
+  position:absolute;inset:0;display:grid;place-items:center;gap:14px;
+  background:var(--t-paper);color:var(--t-muted);font-family:var(--t-mono);font-size:11.5px;
+  letter-spacing:.08em;text-transform:uppercase;transition:opacity .3s;
+}
+.loader[hidden]{display:none}
+.loader .ring{
+  width:34px;height:34px;border-radius:50%;
+  border:2px solid var(--t-line);border-top-color:var(--t-forest);
+  animation:spin .9s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media (max-width:860px){
+  .brand .sub{display:none}
+  .tab kbd{display:none}
+  .strip{display:none}
+  .tab{padding:7px 11px;font-size:12px}
+}
+@media (max-width:560px){
+  .topbar{flex-wrap:wrap;gap:10px}
+  .tabs{margin-left:0;order:3;width:100%;justify-content:space-between}
+  .tools{margin-left:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="mark" aria-hidden="true"></span>
+    <h1>Murrosatlas</h1>
+    <span class="sub">Suomi 1800–2050</span>
+  </div>
+
+  <nav class="tabs" role="tablist" aria-label="Näkymä">
+    <button class="tab" role="tab" data-view="rengas"   aria-selected="false" aria-controls="frame-rengas"><span class="dot"></span>Rengas<kbd>1</kbd></button>
+    <button class="tab" role="tab" data-view="verkko"   aria-selected="false" aria-controls="frame-verkko"><span class="dot"></span>Verkko<kbd>2</kbd></button>
+    <button class="tab" role="tab" data-view="matriisi" aria-selected="false" aria-controls="frame-matriisi"><span class="dot"></span>Matriisi<kbd>3</kbd></button>
+  </nav>
+
+  <div class="tools">
+    <button class="icon-btn" id="themeBtn" type="button" title="Vaihda vaalean ja tumman välillä" aria-label="Vaihda teema">
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4 17 7M7 17l-1.6 1.6"/></svg>
+    </button>
+    <button class="icon-btn" id="fsBtn" type="button" title="Koko näyttö" aria-label="Koko näyttö">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="strip">
+  <span><b id="stat-count">340</b> murrosta</span>
+  <span><b id="stat-links">642</b> yhteyttä</span>
+  <span><b>1800–2050</b></span>
+  <span class="view-blurb" id="viewBlurb"></span>
+  <span class="spacer"></span>
+  <span>Työversio · lähteistys kesken</span>
+</div>
+
+<main class="stage" id="stage">
+  <div class="loader" id="loader"><span class="ring" aria-hidden="true"></span><span>Ladataan näkymää…</span></div>
+</main>
+
+<script src="assets/shell.js"></script>
+</body>
+</html>
