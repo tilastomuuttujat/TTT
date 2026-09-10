@@ -530,9 +530,13 @@
 }
 
 </style>
+<style>
+.edit-link{display:flex;align-items:center;padding:9px 12px;border:1px solid var(--line);background:transparent;color:var(--ink);font:800 10px/1 Inter,sans-serif;letter-spacing:.12em;cursor:pointer}.edit-link:hover,.edit-link:focus-visible,.edit-link.active{border-color:var(--rust);background:var(--rust);color:#fff;outline:0}.editor-bar{position:sticky;top:0;z-index:40;display:none;align-items:center;gap:14px;padding:13px 24px;background:var(--ink);color:var(--paper);font:700 12px/1.4 Inter,sans-serif;box-shadow:0 8px 30px rgba(20,38,49,.25)}.editor-bar.open{display:flex}.editor-bar span{flex:1}.editor-bar button{padding:9px 12px;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;font:800 10px/1 Inter,sans-serif;letter-spacing:.1em;cursor:pointer}.editor-bar .save-json{background:var(--rust);border-color:var(--rust)}body.editing [data-editable="true"]{outline:1px dashed var(--rust);outline-offset:5px;background:rgba(190,81,54,.045);cursor:text}body.editing [data-editable="true"]:focus{outline:2px solid var(--rust);background:#fff}.source-chip{color:rgba(255,255,255,.7);font-weight:500}@media(max-width:760px){.masthead-actions{gap:8px}.masthead-meta{display:none}.editor-bar{align-items:stretch;flex-wrap:wrap}.editor-bar span{flex-basis:100%}}
+</style>
 </head>
 <body>
-<header class="masthead"><a class="brand" href="./"><span class="brand-mark">T</span><span>TTT · KIRJOITUKSET</span></a><div class="masthead-actions"><button class="copy-link" id="copy-link" type="button">KOPIOI LINKKI</button><span class="masthead-meta" id="reading-time">LADATAAN…</span></div></header>
+<header class="masthead"><a class="brand" href="./"><span class="brand-mark">T</span><span>TTT · KIRJOITUKSET</span></a><div class="masthead-actions"><button class="edit-link" id="edit-article" type="button">MUOKKAA</button><button class="copy-link" id="copy-link" type="button">KOPIOI LINKKI</button><span class="masthead-meta" id="reading-time">LADATAAN…</span></div></header>
+<div class="editor-bar" id="editor-bar"><span>Muokkaat aineistoa <b id="editor-source"></b>. <span class="source-chip">Tallennus lataa koko päivitetyn JSON-tiedoston.</span></span><button type="button" id="cancel-edit">PERUUTA</button><button class="save-json" type="button" id="save-json">LATAA PÄIVITETTY JSON</button></div>
 <main id="app" class="hidden"><article id="alku"><header class="hero"><p class="kicker" id="kicker"></p><h1 id="title"></h1><p class="dek" id="subtitle"></p><div class="spectrum" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div></header><div class="shell"><aside class="toc"><div id="infographic-slot"></div><p>SISÄLTÖ</p><nav id="toc"></nav></aside><div class="prose" id="article-content"></div></div></article></main>
 <p id="status" class="status">Ladataan kirjoitusta…</p>
 <div class="lightbox" id="infographic-lightbox" role="dialog" aria-modal="true" aria-hidden="true"><img id="infographic-large" alt=""><button class="lightbox-close" id="infographic-close" type="button" aria-label="Sulje">×</button></div>
@@ -540,15 +544,23 @@
 <script>
 (() => {
 'use strict';
-const DATA_URL='./kirjoitukset.json';
 const VIZ_DATA_URL='./artikkeli-visualisoinnit.json';
-const DEFAULT_ID='siilot-ja-sisapiirit';
-const requestedId=new URLSearchParams(location.search).get('id')||DEFAULT_ID;
+const SOURCE_CONFIGS={
+ kirjoitukset:{url:'./kirjoitukset.json',file:'kirjoitukset.json',defaultId:'siilot-ja-sisapiirit'},
+ 'laajenemisen-logiikka':{url:'./laajenemisen-logiikka.json',file:'laajenemisen-logiikka.json',defaultId:'johdanto'}
+};
+const params=new URLSearchParams(location.search);
+const requestedSourceKey=params.get('source')||'kirjoitukset';
+const sourceKey=SOURCE_CONFIGS[requestedSourceKey]?requestedSourceKey:'kirjoitukset';
+const sourceConfig=SOURCE_CONFIGS[sourceKey];
+const DATA_URL=sourceConfig.url;
+const requestedId=params.get('id')||sourceConfig.defaultId;
+let loadedDataset=null,activeArticle=null,editingSnapshot='';
 const $=id=>document.getElementById(id);
 const text=v=>document.createTextNode(v==null?'':String(v));
 const el=(tag,cls,val)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(val!=null)n.append(text(val));return n};
 const assetUrl=value=>{if(!value)return'';const source=/^(?:https?:\/\/|images\/|\.\/images\/)/.test(value)?value:`./images/${String(value).replace(/^\/+/, '')}`;try{return new URL(source,location.href).href}catch{return''}};
-function appendParagraphs(target,paragraphs,lead=false){(paragraphs||[]).forEach((p,i)=>target.append(el('p',lead&&i===0?'lead':'',p)))}
+function appendParagraphs(target,paragraphs,lead=false,field='paragraphs',sectionIndex=''){(paragraphs||[]).forEach((p,i)=>{const node=el('p',lead&&i===0?'lead':'',p);node.dataset.editable='true';node.dataset.field=field;node.dataset.index=i;if(sectionIndex!=='')node.dataset.sectionIndex=sectionIndex;target.append(node)})}
 function setupInfographic(article){const slot=$('infographic-slot');slot.replaceChildren();if(!article.image)return;const src=assetUrl(article.image),alt=article.imageAlt||article.title;const b=el('button','infographic-thumb');b.type='button';const img=document.createElement('img');img.src=src;img.alt=alt;b.append(img,el('span','', 'AVAA INFOGRAFIIKKA'));slot.append(b);const box=$('infographic-lightbox'),large=$('infographic-large'),close=$('infographic-close');large.src=src;large.alt=alt;const open=()=>{box.classList.add('open');box.setAttribute('aria-hidden','false');document.body.classList.add('lightbox-open')};const shut=()=>{box.classList.remove('open');box.setAttribute('aria-hidden','true');document.body.classList.remove('lightbox-open')};b.addEventListener('click',open);close.addEventListener('click',shut);box.addEventListener('click',e=>{if(e.target===box||e.target===large)shut()});document.addEventListener('keydown',e=>{if(e.key==='Escape')shut()})}
 function storyChain(config){const root=el('aside','story-viz');root.setAttribute('aria-label',config.title||'Päättelyketju');root.append(el('div','story-viz__eyebrow',config.eyebrow||'Näe mekanismi'),el('h3','',config.title||'Näin mekanismi etenee'));if(config.intro)root.append(el('p','story-viz__intro',config.intro));const canvas=el('div','story-viz__canvas'),chain=el('div','story-viz__chain');const steps=(config.steps||[]).slice(0,8);steps.forEach((s,i)=>{const row=el('div','chain-step');row.dataset.index=i;const num=el('div','chain-step__n',String(i+1));const body=el('div');body.append(el('div','chain-step__label',s.label||`Vaihe ${i+1}`),el('div','chain-step__title',s.title||''));if(s.text)body.append(el('p','chain-step__text',s.text));row.append(num,body);chain.append(row)});canvas.append(chain);root.append(canvas);const controls=el('div','story-viz__controls'),progress=el('div','story-viz__progress');const buttons=el('div','story-viz__buttons'),prev=el('button','', 'EDELLINEN'),next=el('button','primary','SEURAAVA');prev.type=next.type='button';buttons.append(prev,next);controls.append(progress,buttons);root.append(controls);if(config.takeaway)root.append(el('p','story-viz__takeaway',config.takeaway));if(config.atlasUrl){const a=el('a','story-viz__atlas',config.atlasLabel||'Tutki syvemmin Murrosatlaksessa →');a.href=config.atlasUrl;root.append(a)}let current=0;const rows=[...chain.children];function update(){rows.forEach((r,i)=>{r.classList.toggle('is-visible',i<=current);r.classList.toggle('is-current',i===current)});progress.textContent=`VAIHE ${Math.min(current+1,steps.length)} / ${steps.length}`;prev.disabled=current===0;next.disabled=current>=steps.length-1;next.textContent=current>=steps.length-1?'KETJU VALMIS':'SEURAAVA'}prev.addEventListener('click',()=>{if(current>0){current--;update()}});next.addEventListener('click',()=>{if(current<steps.length-1){current++;update()}});if(steps.length)update();return root}
 function timeline(config){const root=el('aside','story-viz');root.append(el('div','story-viz__eyebrow',config.eyebrow||'Aikamuutos'),el('h3','',config.title||'Miten rakenne muuttui'));if(config.intro)root.append(el('p','story-viz__intro',config.intro));const canvas=el('div','story-viz__canvas timeline-viz'),years=el('div','timeline-viz__years'),panel=el('div','timeline-viz__panel'),year=el('div','timeline-viz__year'),title=el('p','timeline-viz__title'),body=el('p','timeline-viz__text');panel.append(year,title,body);canvas.append(years,panel);root.append(canvas);const points=(config.points||[]).slice(0,10);function select(i){[...years.children].forEach((b,j)=>b.classList.toggle('active',i===j));const p=points[i]||{};year.textContent=p.year||'';title.textContent=p.title||'';body.textContent=p.text||''}points.forEach((p,i)=>{const b=el('button','',p.year||String(i+1));b.type='button';b.addEventListener('click',()=>select(i));years.append(b)});if(points.length)select(0);if(config.takeaway)root.append(el('p','story-viz__takeaway',config.takeaway));return root}
@@ -938,12 +950,51 @@ function applyVisualizationConfig(article,configData){
  return article;
 }
 
-function render(article){document.title=article.title;$('reading-time').textContent=`LUKUAIKA ${article.readingTime||'--'}`;$('kicker').textContent=(article.tags||[]).join(' · ');$('subtitle').textContent=article.subtitle||'';const title=$('title');title.replaceChildren();const parts=article.titleParts||[article.title];title.append(text(parts[0]||article.title));if(parts[1])title.append(el('em','',parts[1]));const content=$('article-content'),toc=$('toc');content.replaceChildren();toc.replaceChildren();appendParagraphs(content,article.intro,true);(article.sections||[]).forEach((section,index)=>{const id=section.id||`osa-${index+1}`,number=String(index+1).padStart(2,'0');const link=el('a');link.href=`#${id}`;link.append(el('span','',number),text(section.title));toc.append(link);const node=el('section');node.id=id;node.append(el('p','num',number),el('h2','',section.title));appendParagraphs(node,section.paragraphs);if(section.bullets?.length){const ul=el('ul','bullets');section.bullets.forEach(x=>ul.append(el('li','',x)));node.append(ul)}if(section.quote)node.append(el('blockquote',section.closing?'closing':'',section.quote));content.append(node);const configs=[];if(Array.isArray(section.visualizations))configs.push(...section.visualizations);else if(section.visualization)configs.push(section.visualization);configs.forEach(cfg=>{const v=renderVisualization(cfg);if(v)content.append(v)})});setupInfographic(article);$('status').classList.add('hidden');$('app').classList.remove('hidden')}
-$('copy-link').addEventListener('click',async()=>{const b=$('copy-link');try{const slug=new URLSearchParams(location.search).get('id');const shareUrl=slug?`${location.origin}/kirjoitukset/${encodeURIComponent(slug)}.html`:location.href.split('#')[0];await navigator.clipboard.writeText(shareUrl);b.textContent='LINKKI KOPIOITU';b.classList.add('copied');setTimeout(()=>{b.textContent='KOPIOI LINKKI';b.classList.remove('copied')},1800)}catch{b.textContent='KOPIOINTI EI ONNISTUNUT';setTimeout(()=>b.textContent='KOPIOI LINKKI',1800)}});
+function setEditing(on){
+ document.body.classList.toggle('editing',on);
+ $('editor-bar').classList.toggle('open',on);
+ $('edit-article').classList.toggle('active',on);
+ $('edit-article').textContent=on?'MUOKKAUS PÄÄLLÄ':'MUOKKAA';
+ document.querySelectorAll('[data-editable="true"]').forEach(node=>node.setAttribute('contenteditable',on?'true':'false'));
+ if(on){editingSnapshot=JSON.stringify(loadedDataset);$('editor-source').textContent=sourceConfig.file}
+}
+
+function collectArticleEdits(){
+ if(!activeArticle)return;
+ activeArticle.title=$('title').innerText.replace(/\s+/g,' ').trim();
+ activeArticle.titleParts=[activeArticle.title];
+ activeArticle.subtitle=$('subtitle').innerText.trim();
+ activeArticle.intro=[...document.querySelectorAll('#article-content > p[data-field="intro"]')].map(n=>n.innerText.trim()).filter(Boolean);
+ document.querySelectorAll('#article-content > section[data-section-index]').forEach(node=>{
+   const index=Number(node.dataset.sectionIndex),section=activeArticle.sections[index];if(!section)return;
+   section.title=node.querySelector(':scope > h2')?.innerText.trim()||section.title;
+   section.paragraphs=[...node.querySelectorAll(':scope > p[data-field="paragraphs"]')].map(n=>n.innerText.trim()).filter(Boolean);
+   const bullets=[...node.querySelectorAll(':scope > ul > li[data-field="bullet"]')].map(n=>n.innerText.trim()).filter(Boolean);
+   if(bullets.length||section.bullets) section.bullets=bullets;
+   const quote=node.querySelector(':scope > blockquote[data-field="quote"]');
+   if(quote)section.quote=quote.innerText.trim();
+ });
+}
+
+function downloadUpdatedDataset(){
+ collectArticleEdits();
+ const blob=new Blob([JSON.stringify(loadedDataset,null,2)+'\n'],{type:'application/json'}),a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);a.download=sourceConfig.file;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+ setEditing(false)
+}
+
+function cancelEditing(){render(activeArticle);setEditing(false)}
+
+function render(article){activeArticle=article;document.title=article.title;$('reading-time').textContent=`LUKUAIKA ${article.readingTime||'--'}`;$('kicker').textContent=(article.tags||[]).join(' · ');$('subtitle').textContent=article.subtitle||'';$('subtitle').dataset.editable='true';const title=$('title');title.replaceChildren();title.dataset.editable='true';const parts=article.titleParts||[article.title];title.append(text(parts[0]||article.title));if(parts[1])title.append(el('em','',parts[1]));const content=$('article-content'),toc=$('toc');content.replaceChildren();toc.replaceChildren();appendParagraphs(content,article.intro,true,'intro');(article.sections||[]).forEach((section,index)=>{const id=section.id||`osa-${index+1}`,number=String(index+1).padStart(2,'0');const link=el('a');link.href=`#${id}`;link.append(el('span','',number),text(section.title));toc.append(link);const node=el('section');node.id=id;node.dataset.sectionIndex=index;const heading=el('h2','',section.title);heading.dataset.editable='true';node.append(el('p','num',number),heading);appendParagraphs(node,section.paragraphs,false,'paragraphs',index);if(section.bullets?.length){const ul=el('ul','bullets');section.bullets.forEach((x,bulletIndex)=>{const item=el('li','',x);item.dataset.editable='true';item.dataset.field='bullet';item.dataset.sectionIndex=index;item.dataset.index=bulletIndex;ul.append(item)});node.append(ul)}if(section.quote){const quote=el('blockquote',section.closing?'closing':'',section.quote);quote.dataset.editable='true';quote.dataset.field='quote';quote.dataset.sectionIndex=index;node.append(quote)}content.append(node);const configs=[];if(Array.isArray(section.visualizations))configs.push(...section.visualizations);else if(section.visualization)configs.push(section.visualization);configs.forEach(cfg=>{const v=renderVisualization(cfg);if(v)content.append(v)})});setupInfographic(article);$('status').classList.add('hidden');$('app').classList.remove('hidden')}
+$('copy-link').addEventListener('click',async()=>{const b=$('copy-link');try{const shareUrl=new URL(location.pathname,location.origin);shareUrl.searchParams.set('source',sourceKey);shareUrl.searchParams.set('id',requestedId);await navigator.clipboard.writeText(shareUrl.href);b.textContent='LINKKI KOPIOITU';b.classList.add('copied');setTimeout(()=>{b.textContent='KOPIOI LINKKI';b.classList.remove('copied')},1800)}catch{b.textContent='KOPIOINTI EI ONNISTUNUT';setTimeout(()=>b.textContent='KOPIOI LINKKI',1800)}});
+$('edit-article').addEventListener('click',()=>setEditing(!document.body.classList.contains('editing')));
+$('cancel-edit').addEventListener('click',cancelEditing);
+$('save-json').addEventListener('click',downloadUpdatedDataset);
 Promise.all([
  fetch(DATA_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`HTTP ${r.status}`);return r.json()}),
  fetch(VIZ_DATA_URL,{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null)
 ]).then(([data,vizData])=>{
+ loadedDataset=data;
  const articles=Array.isArray(data)?data:data.kirjoitukset;
  if(!Array.isArray(articles))throw new Error('kirjoitukset-taulukko puuttuu');
  const article=articles.find(x=>x.id===requestedId||x.slug===requestedId);

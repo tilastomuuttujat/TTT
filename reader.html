@@ -1,9 +1,114 @@
 <!doctype html><html lang="fi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TTT · Lukija</title><meta name="theme-color" content="#f3f1eb"><style>
-:root{--ink:#10151d;--paper:#f3f1eb;--surface:#f7f5ef;--line:rgba(16,21,29,.14);--blue:#1e4bd1;--muted:#787873}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--paper);font-family:Inter,system-ui,sans-serif}.frame{position:fixed;inset:0;width:100%;height:100%;border:0;background:var(--paper)}.reader-tabs{position:fixed;left:0;top:50%;z-index:1100;display:flex;flex-direction:column;gap:1px;transform:translateY(-50%)}.reader-tab{width:31px;height:140px;border:0;background:var(--ink);color:white;writing-mode:vertical-rl;cursor:pointer;font:800 8px/1 system-ui;letter-spacing:.16em}.reader-tab span{display:block;transform:rotate(180deg)}.reader-tab--animate{background:#245878}.reader-tab--simulate{background:#1f6f71}.reader-tab:hover,.reader-tab:focus-visible{filter:brightness(1.14);outline:0}.reader-tab.active{box-shadow:inset -3px 0 0 #fff}.nav-shade{position:fixed;inset:0;z-index:900;background:rgba(15,18,22,.36);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .22s}.nav-shade.open{opacity:1;pointer-events:auto}.nav-drawer{position:fixed;inset:0 auto 0 0;z-index:1000;width:min(440px,92vw);background:var(--surface);transform:translateX(-102%);transition:transform .26s;box-shadow:18px 0 60px rgba(0,0,0,.14);overflow:auto}.nav-drawer.open{transform:none}.nav-drawer-head{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line)}.nav-drawer-title{display:flex;align-items:center;gap:11px;font-size:9px;font-weight:800;letter-spacing:.13em}.nav-drawer-title b{display:grid;place-items:center;width:36px;height:36px;background:var(--ink);color:white}.nav-drawer-head button{width:40px;height:40px;border:1px solid var(--line);background:transparent;font-size:23px;cursor:pointer}.nav-drawer-body{padding:20px 22px 34px}.publication-help{margin:0 0 14px;padding:11px 12px;border:1px solid var(--line);background:#fff;font-size:10px;line-height:1.45;color:#666}.article-search{display:block;position:sticky;top:0;z-index:2;padding:0 0 16px;background:var(--surface)}.article-search input{width:100%;height:46px;padding:0 14px;border:1px solid rgba(16,21,29,.28);background:white;font:600 12px/1 system-ui}.article-index{border-top:1px solid var(--line)}.article-row{position:relative;border-bottom:1px solid var(--line)}.article-index a{display:block;padding:15px 0 14px;text-decoration:none;color:inherit}.admin-mode .article-index a{padding-right:42px}.article-index a.active{padding-left:10px;border-left:3px solid var(--blue)}.article-index-title{display:block;font:600 1.05rem/1.18 Georgia,serif}.article-index-ingress{display:block;margin-top:5px;color:#777a7f;font-size:9.5px;line-height:1.45}.article-index-meta{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:5px;color:#8a8178;font-size:7.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}.publish-check{position:absolute;right:0;top:16px;display:grid;place-items:center;width:30px;height:30px;cursor:pointer}.publish-check input{width:18px;height:18px;accent-color:#1f6f71;cursor:pointer}.publish-check span{position:absolute;right:32px;top:8px;font-size:7px;font-weight:800;letter-spacing:.08em;color:#777;opacity:0;pointer-events:none}.publish-check:hover span{opacity:1}.article-row.unpublished .article-index-title{opacity:.45}.article-row.unpublished:after{content:'LUONNOS';position:absolute;right:40px;top:20px;font-size:7px;font-weight:800;letter-spacing:.1em;color:#9a6b55}.hidden{display:none!important}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0)}.home-link{display:block;margin-bottom:16px;padding:11px 0;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:9px;font-weight:800}.article-index-empty{padding:26px 0;color:#777;font-size:11px}@media(max-width:620px){.reader-tabs{top:auto;left:12px;bottom:14px;transform:none;flex-direction:row;gap:6px}.reader-tab{width:48px;height:48px;border-radius:50%;writing-mode:horizontal-tb}.reader-tab span{font-size:0;transform:none}.reader-tab--nav span:after{content:'☰';font-size:18px}.reader-tab--animate span:after{content:'▶';font-size:15px}.reader-tab--simulate span:after{content:'↝';font-size:19px}}
+:root{--ink:#10151d;--paper:#f3f1eb;--surface:#f7f5ef;--line:rgba(16,21,29,.14);--blue:#1e4bd1;--muted:#787873}*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--paper);font-family:Inter,system-ui,sans-serif}.frame{position:fixed;inset:0;width:100%;height:100%;border:0;background:var(--paper)}.reader-tabs{position:fixed;left:0;top:50%;z-index:1100;display:flex;flex-direction:column;gap:1px;transform:translateY(-50%)}.reader-tab{width:31px;height:140px;border:0;background:var(--ink);color:white;writing-mode:vertical-rl;cursor:pointer;font:800 8px/1 system-ui;letter-spacing:.16em}.reader-tab span{display:block;transform:rotate(180deg)}.reader-tab--animate{background:#245878}.reader-tab--simulate{background:#1f6f71}.reader-tab:hover,.reader-tab:focus-visible{filter:brightness(1.14);outline:0}.reader-tab.active{box-shadow:inset -3px 0 0 #fff}.nav-shade{position:fixed;inset:0;z-index:900;background:rgba(15,18,22,.36);backdrop-filter:blur(3px);opacity:0;pointer-events:none;transition:opacity .22s}.nav-shade.open{opacity:1;pointer-events:auto}.nav-drawer{position:fixed;inset:0 auto 0 0;z-index:1000;width:min(440px,92vw);background:var(--surface);transform:translateX(-102%);transition:transform .26s;box-shadow:18px 0 60px rgba(0,0,0,.14);overflow:auto}.nav-drawer.open{transform:none}.nav-drawer-head{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line)}.nav-drawer-title{display:flex;align-items:center;gap:11px;font-size:9px;font-weight:800;letter-spacing:.13em}.nav-drawer-title b{display:grid;place-items:center;width:36px;height:36px;background:var(--ink);color:white}.nav-drawer-head button{width:40px;height:40px;border:1px solid var(--line);background:transparent;font-size:23px;cursor:pointer}.nav-drawer-body{padding:20px 22px 34px}.publication-help{margin:0 0 14px;padding:11px 12px;border:1px solid var(--line);background:#fff;font-size:10px;line-height:1.45;color:#666}.article-search{display:block;position:sticky;top:0;z-index:2;padding:0 0 16px;background:var(--surface)}.article-search input{width:100%;height:46px;padding:0 14px;border:1px solid rgba(16,21,29,.28);background:white;font:600 12px/1 system-ui}.article-index{border-top:1px solid var(--line)}.article-row{position:relative;border-bottom:1px solid var(--line)}.article-index a{display:block;padding:15px 0 16px;text-decoration:none;color:inherit;transition:background .16s,transform .16s}.article-index a:hover{background:rgba(255,255,255,.58)}.admin-mode .article-index a{padding-right:42px}.article-index a.active{padding-left:10px;border-left:3px solid var(--blue)}.article-index-image{display:block;position:relative;width:100%;aspect-ratio:1.91/1;margin-bottom:12px;overflow:hidden;border:1px solid var(--line);background:#e8e4da}.article-index-image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .28s ease}.article-index a:hover .article-index-image img{transform:scale(1.018)}.article-index-copy{display:block}.article-index-title{display:block;font:600 1.05rem/1.18 Georgia,serif}.article-index-ingress{display:-webkit-box;margin-top:5px;overflow:hidden;color:#777a7f;font-size:9.5px;line-height:1.45;-webkit-box-orient:vertical;-webkit-line-clamp:3}.article-index-meta{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:5px;color:#8a8178;font-size:7.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase}.collection-label{color:#1f6f71}.publish-check{position:absolute;right:8px;top:22px;z-index:1;display:grid;place-items:center;width:30px;height:30px;background:rgba(247,245,239,.92);cursor:pointer}.publish-check input{width:18px;height:18px;accent-color:#1f6f71;cursor:pointer}.publish-check span{position:absolute;right:32px;top:8px;font-size:7px;font-weight:800;letter-spacing:.08em;color:#777;opacity:0;pointer-events:none}.publish-check:hover span{opacity:1}.article-row.unpublished .article-index-image,.article-row.unpublished .article-index-title{opacity:.45}.article-row.unpublished:after{content:'LUONNOS';position:absolute;right:44px;top:29px;padding:4px 6px;background:rgba(247,245,239,.92);font-size:7px;font-weight:800;letter-spacing:.1em;color:#9a6b55}.hidden{display:none!important}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0)}.home-link{display:block;margin-bottom:16px;padding:11px 0;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:9px;font-weight:800}.article-index-empty{padding:26px 0;color:#777;font-size:11px}@media(max-width:620px){.reader-tabs{top:auto;left:12px;bottom:14px;transform:none;flex-direction:row;gap:6px}.reader-tab{width:48px;height:48px;border-radius:50%;writing-mode:horizontal-tb}.reader-tab span{font-size:0;transform:none}.reader-tab--nav span:after{content:'☰';font-size:18px}.reader-tab--animate span:after{content:'▶';font-size:15px}.reader-tab--simulate span:after{content:'↝';font-size:19px}}
 </style><link rel="stylesheet" href="./article-admin.css"></head><body><iframe class="frame" id="frame" title="TTT artikkeli"></iframe><div class="reader-tabs"><button class="reader-tab reader-tab--nav" id="nav-tab"><span>NAVIGOI</span></button><button class="reader-tab reader-tab--animate" id="animate-tab"><span>ANIMOI</span></button><button class="reader-tab reader-tab--simulate" id="simulate-tab"><span>SIMULOI</span></button></div><div class="nav-shade" id="shade"></div><aside class="nav-drawer" id="drawer"><div class="nav-drawer-head"><div class="nav-drawer-title"><b>TTT</b><span>ARTIKKELIT</span></div><button id="nav-close">×</button></div><div class="nav-drawer-body"><a class="home-link" href="./blog-modern-v5.html">← TOIMITUKSEN NOSTOT</a><div class="publication-help hidden" id="publication-help">ADMIN · Täppä tarkoittaa, että artikkeli on julkaistu. Poista täppä piilottaaksesi artikkelin julkisista listoista. Muutos tallentuu vasta painikkeella <b>JULKAISE MUUTOKSET</b>.</div><label class="article-search"><span class="sr-only">Hae artikkeleita</span><input id="article-search-input" type="search" placeholder="Hae artikkeleita…"></label><nav class="article-index" id="article-index"></nav><div class="article-index-empty hidden" id="article-index-empty">Ei hakua vastaavia artikkeleita.</div></div></aside><script>
-const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const params=new URLSearchParams(location.search),currentId=params.get('id')||'siilot-ja-sisapiirit',currentView=params.get('view')==='living'?'living':'article',adminMode=params.get('admin')==='1',frame=$('#frame');if(adminMode){document.body.classList.add('admin-mode');$('#publication-help').classList.remove('hidden')}frame.src=currentView==='living'?`./artikkeli-living.html?id=${encodeURIComponent(currentId)}`:`./artikkeli.html?id=${encodeURIComponent(currentId)}`;let allArticles=[];const slug=a=>a.slug||a.id,readerUrl=a=>`./reader.html?id=${encodeURIComponent(slug(a))}${adminMode?'&admin=1':''}`,ingress=a=>a.ingress||(Array.isArray(a.intro)&&a.intro[0])||a.subtitle||'',isPublished=a=>a.published!==false;
-function item(a){const tags=(a.tags||[]).slice(0,2).map(esc).join(' · '),active=slug(a)===currentId?' active':'',pub=isPublished(a);return `<div class="article-row${pub?'':' unpublished'}" data-slug="${esc(slug(a))}"><a class="${active.trim()}" href="${readerUrl(a)}"><span class="article-index-meta">${tags?`<span>${tags}</span>`:''}${a.readingTime?`<span>· ${esc(a.readingTime)}</span>`:''}</span><span class="article-index-title">${esc(a.title)}</span><span class="article-index-ingress">${esc(ingress(a))}</span></a>${adminMode?`<label class="publish-check" title="Julkaistu"><input type="checkbox" data-publish="${esc(slug(a))}" ${pub?'checked':''}><span>JULKAISE</span></label>`:''}</div>`}
-function renderIndex(list){$('#article-index').innerHTML=list.map(item).join('');$('#article-index-empty').classList.toggle('hidden',list.length>0);if(adminMode)document.querySelectorAll('[data-publish]').forEach(cb=>cb.addEventListener('change',e=>{const s=e.target.dataset.publish,p=e.target.checked,a=allArticles.find(x=>slug(x)===s);if(a)a.published=p;e.target.closest('.article-row').classList.toggle('unpublished',!p);document.dispatchEvent(new CustomEvent('ttt-publication-change',{detail:{slug:s,published:p}}))}))}
-const drawer=$('#drawer'),shade=$('#shade'),tab=$('#nav-tab');function setDrawer(open){drawer.classList.toggle('open',open);shade.classList.toggle('open',open);tab.setAttribute('aria-expanded',String(open));if(open)setTimeout(()=>$('#article-search-input')?.focus(),100)}tab.onclick=()=>setDrawer(!drawer.classList.contains('open'));$('#nav-close').onclick=()=>setDrawer(false);shade.onclick=()=>setDrawer(false);addEventListener('keydown',e=>{if(e.key==='Escape')setDrawer(false)});function switchView(v){const adm=adminMode?'&admin=1':'';if(v==='article')location.href=`./reader.html?id=${encodeURIComponent(currentId)}${adm}`;else if(v==='living')location.href=`./reader.html?id=${encodeURIComponent(currentId)}&view=living${adm}`;else{const d=frame.contentDocument,t=d?.querySelector('[data-simulation],.simulation,.simulator,[data-viz-type="model-sliders"],.model-sliders-viz');if(t)t.scrollIntoView({behavior:'smooth',block:'center'});else location.href=`./reader.html?id=${encodeURIComponent(currentId)}&view=living${adm}#simulate`}}$('#animate-tab').onclick=()=>switchView(currentView==='living'?'article':'living');$('#simulate-tab').onclick=()=>switchView('simulate');if(currentView==='living')$('#animate-tab').classList.add('active');$('#article-search-input').oninput=e=>{const q=e.target.value.trim().toLowerCase(),base=adminMode?allArticles:allArticles.filter(isPublished);renderIndex(!q?base:base.filter(a=>[a.title,a.subtitle,ingress(a),...(a.tags||[])].filter(Boolean).join(' ').toLowerCase().includes(q)))};
-fetch('./kirjoitukset.json',{cache:'no-store'}).then(r=>r.json()).then(d=>{allArticles=Array.isArray(d)?d:(d.kirjoitukset||[]);if(!adminMode){const current=allArticles.find(a=>slug(a)===currentId);if(current&&!isPublished(current)){location.replace('./blog-modern-v5.html');return}}renderIndex(adminMode?allArticles:allArticles.filter(isPublished))}).catch(()=>{});
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const SOURCES={
+  kirjoitukset:{url:'./kirjoitukset.json',label:'Kirjoitukset',defaultId:'siilot-ja-sisapiirit'},
+  'laajenemisen-logiikka':{url:'./laajenemisen-logiikka.json',label:'Laajenemisen logiikka',defaultId:'johdanto'}
+};
+const params=new URLSearchParams(location.search);
+const requestedSource=params.get('source');
+let currentSource=SOURCES[requestedSource]?requestedSource:'kirjoitukset';
+let currentId=params.get('id')||SOURCES[currentSource].defaultId;
+const currentView=params.get('view')==='living'?'living':'article';
+const adminMode=params.get('admin')==='1';
+const frame=$('#frame');
+let allArticles=[];
+
+if(adminMode){
+  document.body.classList.add('admin-mode');
+  $('#publication-help').classList.remove('hidden');
+}
+
+const slug=a=>a.slug||a.id;
+const key=a=>`${a._source}:${slug(a)}`;
+const ingress=a=>a.ingress||(Array.isArray(a.intro)&&a.intro[0])||a.subtitle||'';
+const isPublished=a=>a.published!==false;
+const assetUrl=value=>{
+  if(!value)return'';
+  const path=/^(?:https?:\/\/|data:|\/|\.\/|images\/)/.test(value)?value:`./images/${String(value).replace(/^\/+/, '')}`;
+  try{return new URL(path,location.href).href}catch{return''}
+};
+const readerUrl=a=>{
+  const q=new URLSearchParams({source:a._source,id:slug(a)});
+  if(adminMode)q.set('admin','1');
+  return `./reader.html?${q}`;
+};
+const currentUrl=(view=currentView)=>{
+  const q=new URLSearchParams({source:currentSource,id:currentId});
+  if(view==='living')q.set('view','living');
+  if(adminMode)q.set('admin','1');
+  return `./reader.html?${q}`;
+};
+function openArticle(){
+  const page=currentView==='living'?'./artikkeli-living.html':'./artikkeli.html';
+  const q=new URLSearchParams({source:currentSource,id:currentId});
+  if(adminMode)q.set('admin','1');
+  frame.src=`${page}?${q}`;
+}
+function item(a){
+  const tags=(a.tags||[]).slice(0,2).map(esc).join(' · ');
+  const active=a._source===currentSource&&slug(a)===currentId?' active':'';
+  const pub=isPublished(a);
+  const og=assetUrl(a.ogImage||a.image),alt=a.ogAlt||a.imageAlt||`${a.title} – artikkelin jakokuva`;
+  const visual=og?`<span class="article-index-image"><img src="${esc(og)}" alt="${esc(alt)}" loading="lazy" decoding="async"></span>`:'';
+  return `<div class="article-row${pub?'':' unpublished'}" data-key="${esc(key(a))}"><a class="${active.trim()}" href="${readerUrl(a)}">${visual}<span class="article-index-copy"><span class="article-index-meta"><span class="collection-label">${esc(SOURCES[a._source].label)}</span>${tags?`<span>· ${tags}</span>`:''}${a.readingTime?`<span>· ${esc(a.readingTime)}</span>`:''}</span><span class="article-index-title">${esc(a.title)}</span><span class="article-index-ingress">${esc(ingress(a))}</span></span></a>${adminMode?`<label class="publish-check" title="Julkaistu"><input type="checkbox" data-publish="${esc(key(a))}" ${pub?'checked':''}><span>JULKAISE</span></label>`:''}</div>`;
+}
+function renderIndex(list){
+  $('#article-index').innerHTML=list.map(item).join('');
+  $('#article-index-empty').classList.toggle('hidden',list.length>0);
+  if(adminMode)document.querySelectorAll('[data-publish]').forEach(cb=>cb.addEventListener('change',e=>{
+    const articleKey=e.target.dataset.publish,published=e.target.checked;
+    const article=allArticles.find(a=>key(a)===articleKey);
+    if(article)article.published=published;
+    e.target.closest('.article-row').classList.toggle('unpublished',!published);
+    document.dispatchEvent(new CustomEvent('ttt-publication-change',{detail:{source:article?._source,slug:article&&slug(article),published}}));
+  }));
+}
+const drawer=$('#drawer'),shade=$('#shade'),tab=$('#nav-tab');
+function setDrawer(open){drawer.classList.toggle('open',open);shade.classList.toggle('open',open);tab.setAttribute('aria-expanded',String(open));if(open)setTimeout(()=>$('#article-search-input')?.focus(),100)}
+tab.onclick=()=>setDrawer(!drawer.classList.contains('open'));
+$('#nav-close').onclick=()=>setDrawer(false);
+shade.onclick=()=>setDrawer(false);
+addEventListener('keydown',e=>{if(e.key==='Escape')setDrawer(false)});
+function switchView(view){
+  if(view==='article'||view==='living'){location.href=currentUrl(view);return}
+  const target=frame.contentDocument?.querySelector('[data-simulation],.simulation,.simulator,[data-viz-type="model-sliders"],.model-sliders-viz');
+  if(target)target.scrollIntoView({behavior:'smooth',block:'center'});
+  else location.href=`${currentUrl('living')}#simulate`;
+}
+$('#animate-tab').onclick=()=>switchView(currentView==='living'?'article':'living');
+$('#simulate-tab').onclick=()=>switchView('simulate');
+if(currentView==='living')$('#animate-tab').classList.add('active');
+$('#article-search-input').oninput=e=>{
+  const q=e.target.value.trim().toLowerCase(),base=adminMode?allArticles:allArticles.filter(isPublished);
+  renderIndex(!q?base:base.filter(a=>[SOURCES[a._source].label,a.title,a.subtitle,ingress(a),...(a.tags||[])].filter(Boolean).join(' ').toLowerCase().includes(q)));
+};
+
+async function loadCurrentSource(){
+  const config=SOURCES[currentSource];
+  const response=await fetch(config.url,{cache:'no-store'});
+  if(!response.ok)throw new Error(`${config.url}: HTTP ${response.status}`);
+  const data=await response.json();
+  const articles=Array.isArray(data)?data:data.kirjoitukset;
+  if(!Array.isArray(articles))throw new Error(`${config.url}: kirjoitukset-taulukko puuttuu`);
+  allArticles=articles.map(article=>({...article,_source:currentSource}));
+  let current=allArticles.find(a=>slug(a)===currentId);
+  if(!current){
+    currentId=config.defaultId;
+    current=allArticles.find(a=>slug(a)===currentId)||allArticles[0];
+    if(current)currentId=slug(current);
+  }
+  if(!adminMode&&current&&!isPublished(current)){location.replace('./blog-modern-v5.html');return}
+  $('.nav-drawer-title span').textContent=config.label.toUpperCase();
+  history.replaceState(null,'',currentUrl(currentView));
+  openArticle();
+  renderIndex(adminMode?allArticles:allArticles.filter(isPublished));
+}
+loadCurrentSource().catch(error=>{
+  console.error(error);
+  $('#article-index-empty').textContent='Aineistoa ei voitu ladata. Tarkista lähdetiedoston nimi ja palvelinyhteys.';
+  $('#article-index-empty').classList.remove('hidden');
+});
 </script><script src="./article-admin.js"></script></body></html>

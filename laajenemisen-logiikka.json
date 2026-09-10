@@ -268,6 +268,10 @@
         "Luku 2"
       ],
       "readingTime": "16 MIN",
+      "image": "laajenemisen-logiikka-luku-ii.png",
+      "ogImage": "laajenemisen-logiikka-luku-ii-og.png",
+      "imageAlt": "Infografiikka tietoisuuden selittämisrajasta: mitattava valon, näköhavainnon, aivotoiminnan ja raportoinnin ketju erotetaan siitä, miltä punainen tuntuu kokijalle",
+      "imageCaption": "Mittaus voi kuvata kokemukseen liittyvän prosessin, mutta koettu näkökulma jää pääteltäväksi. Biologinen ehto, toiminnallinen rakenne ja vielä tuntematon periaate säilyvät avoimina vaihtoehtoina.",
       "intro": [
         "Kuvittele punainen. Älä ajattele sanaa, liikennevaloa tai ruusua, vaan sitä välitöntä laatua, joka ilmestyy näkökenttään värin mukana. Fysiikka voi kuvata valon aallonpituuksia, silmän reseptoreita ja hermoston signaaleja. Mikään näistä kuvauksista ei kuitenkaan sellaisenaan anna toiselle ihmiselle juuri sinun kokemustasi punaisesta.",
         "Kokemus on samaan aikaan arkisin ja arvoituksellisin asia, jonka tunnemme. Emme voi epäillä, etteikö jotakin tuntuisi, koska epäileminenkin on kokemus. Silti emme tiedä, miksi aineen järjestäytyminen aivoiksi synnyttää sisäisen näkökulman – tai onko kysymys lopulta asetettu oikein."
@@ -435,6 +439,10 @@
         "Luku 3"
       ],
       "readingTime": "15 MIN",
+      "image": "laajenemisen-logiikka-luku-iii.png",
+      "ogImage": "laajenemisen-logiikka-luku-iii-og.png",
+      "imageAlt": "Infografiikka älykkyyden ja tietoisuuden erosta: kaksiakseliseen nelikenttään sijoitetaan ihminen, eläin, tekoäly ja automaatti kyvykkyyden sekä mahdollisen koetun maailman mukaan",
+      "imageCaption": "Älykkyys kuvaa järjestelmän kykyä toimia ja muuttaa maailmaa, tietoisuus mahdollista koettua näkökulmaa. Kyvykkyys ei todista tietoisuutta, eikä tietoisuus yksin takaa turvallisuutta.",
       "intro": [
         "Kun ihminen ratkaisee ongelman, emme tavallisesti erottele hänen päättelykykyään siitä kokemuksesta, joka päättelyyn liittyy. Sama olento suunnittelee, epäröi, muistaa, tuntee onnistumisen iloa ja kantaa seuraukset. Arjessa älykkyys ja tietoisuus näyttävät muodostavan yhden kokonaisuuden.",
         "Luonto tarjoaa kuitenkin vihjeitä siitä, etteivät nämä ominaisuudet asetu yhdelle suoralle asteikolle. Vauvan, koiran tai mustekalan kokemuksesta voidaan esittää perusteltuja päätelmiä, vaikka niiden kyvyt poikkeavat ihmisen kyvyistä. Toisaalta laskennallinen järjestelmä voi voittaa maailmanmestarin, tunnistaa kasvaimen tai tuottaa vakuuttavaa kieltä ilman, että suorituksesta voidaan päätellä, miltä järjestelmästä tuntuu — tai tuntuuko miltään. Juuri tämä epäsuhta tekee tekoälystä enemmän kuin uuden työkalun. Se tekee näkyväksi eron, jonka biologinen elämä on tähän asti enimmäkseen peittänyt."
@@ -552,6 +560,10 @@
         "Luku 4"
       ],
       "readingTime": "20 MIN",
+      "image": "laajenemisen-logiikka-luku-iv.png",
+      "ogImage": "laajenemisen-logiikka-luku-iv-og.png",
+      "imageAlt": "Infografiikka minuudesta kudelmana: ruumis, muisti, toimijuus ja seuraukset sitovat yhden elämän, jota kieli, toisten palaute, yhteisö ja teknologia muovaavat",
+      "imageCaption": "Minuus ei näyttäydy muuttumattomana ytimenä vaan ajallisena kudelmana. Ihmisessä muistot ja tekojen seuraukset palaavat samaan haavoittuvaan elämään, kun taas koneen minä-puhe voidaan tuottaa, kopioida ja palauttaa ilman varmaa näyttöä kokijasta.",
       "intro": [
         "Järjestelmä käyttää sanaa minä ja tekee sen luontevasti. Se kertoo, mitä se tietää, kuvaa rajojaan, viittaa keskustelun aiempiin vaiheisiin ja korjaa vastaustaan. Kun vuorovaikutus jatkuu riittävän pitkään, kieleen muodostuu vaikutelma samasta puhujasta, joka muistaa, harkitsee ja palaa aikaisempiin ajatuksiinsa.",
         "Vaikutelma paljastaa jotakin sekä koneesta että meistä. Ensimmäisen persoonan kieli voidaan tuottaa ilman varmaa näyttöä ensimmäisen persoonan kokemuksesta, mutta samalla huomaamme, kuinka paljon tunnistamme minuuden juuri kielestä, muistista ja jatkuvuudesta. Kone ei ratkaise kysymystä siitä, kuka puhuu. Se tekee näkyväksi kysymyksen, jonka tuttuus on peittänyt: mitä sana minä oikeastaan kokoaa yhteen?"
@@ -795,6 +807,10 @@
         "Luku 5"
       ],
       "readingTime": "20 MIN",
+      "image": "laajenemisen-logiikka-luku-v.png",
+      "ogImage": "laajenemisen-logiikka-luku-v-og.png",
+      "imageAlt": "Infografiikka optimoinnin sokeudesta: tavoite, mittari ja optimointi kasvattavat näkyvää tehokkuutta, kun mittarin ulkopuolelle jäävä ihminen, viiveellä näkyvä haitta ja toiselle siirtyvä kustannus uhkaavat jäädä huomaamatta",
+      "imageCaption": "Paikallinen onnistuminen voi tuottaa laajamittaisen sivuvaikutuksen, jos palaute rajautuu yhteen mittariin. Optimoinnin vastakohta ei ole tehottomuus vaan korjattavuus: havainto, ristiriita ja vastavoima on voitava palauttaa uudeksi tavoitteeksi.",
       "intro": [
         "Kuvittele järjestelmä, jonka tehtävänä on lisätä lyhyiden videoiden katseluaikaa. Se oppii nopeasti, millaiset otsikot pysäyttävät, millainen rytmi estää sulkemasta sovellusta ja mitkä tunteet saavat jakamaan sisällön eteenpäin. Jokainen parannus näyttää tavoitteen kannalta onnistumiselta: katselukerrat kasvavat ja käyttäjä palaa palveluun.",
         "Kukaan ei silti ehkä päättänyt heikentää keskittymiskykyä, kärjistää vastakkainasettelua tai täyttää arkea jatkuvalla ärsyketulvalla. Tällaiset seuraukset voivat syntyä, jos järjestelmä oppii tavoittelemaan näkyvää mittaria nopeammin kuin yhteiskunta oppii tunnistamaan mittarin ulkopuolelle jäävät kustannukset. Optimoinnin sokeus ei tarkoita älyn puutetta. Se tarkoittaa kyvykkyyttä, jonka näkökentän tavoite rajaa."
@@ -1004,6 +1020,10 @@
         "Luku 6"
       ],
       "readingTime": "15 MIN",
+      "image": "laajenemisen-logiikka-luku-vi.png",
+      "ogImage": "laajenemisen-logiikka-luku-vi-og.png",
+      "imageAlt": "Infografiikka kahdesta tekoälyn tulevaisuuspolusta: kokemuksen mahdollinen jatkuminen keinotekoisessa järjestelmässä ja kyvykkyyden kasvu ilman koettua näkökulmaa johtavat yhteiseen kaksinkertaisen varovaisuuden periaatteeseen",
+      "imageCaption": "Emme tiedä, voiko keinotekoisesta järjestelmästä tulla uusi kokija vai kasvaako kyvykkyys ilman kokemusta. Siksi on yhtä aikaa vältettävä mahdollisen kokemuksen sivuuttamista ja tunnettujen kokijoiden alistamista kokemuksettomalle optimoinnille.",
       "intro": [
         "Kaakkois-Sulawesin Muna-saarella on säilynyt käden ympärille puhalletusta väristä muodostunut kuvajainen, joka on ajoitettu vähintään noin 67 800 vuoden ikäiseksi. Käsi oli joskus kalliota vasten, pigmentti levisi sen ympärille ja poissa oleva ruumis jätti jälkeensä tyhjän muodon. Tekijän nimeä, ikää tai ajatuksia emme tunne.",
         "Emme voi tietää, merkitsikö kuva omistajuutta, rituaalia, yhteyttä ryhmään, leikkiä vai jotakin meille vierasta. Siksi olisi liian varmaa kääntää se lauseeksi ‘minä olin täällä’. Silti jälki kertoo tarkoituksellisesta teosta, joka ylitti oman hetkensä. Kun katsomme sitä nyt, kahden ajan välille muodostuu yhteys: kerran elänyt ihminen kosketti kiveä, ja kymmenientuhansien vuosien kuluttua toinen ihminen tunnistaa käden omakseen."
@@ -1158,6 +1178,10 @@
         "Päätösluku"
       ],
       "readingTime": "10 MIN",
+      "image": "laajenemisen-logiikka-paatosluku.png",
+      "ogImage": "laajenemisen-logiikka-paatosluku-og.png",
+      "imageAlt": "Infografiikka hetkestä ennen suunnan lukkiutumista: investointi, prosessi, luokitus ja riippuvuus kaventavat vaihtoehtoja, mutta korjauksen ikkuna voi palauttaa kokemuksen ja seuraukset uuden tavoitteen muodostamiseen",
+      "imageCaption": "Näytön vahvistuessa liikkumavara usein kapenee. Korjattavuus säilyy, jos seuraukset palaavat tavoitteeseen ennen lukkiutumista avoimen tiedon, muutoksenhaun, määräaikaisuuden ja todellisen lopettamisvallan kautta.",
       "intro": [
         "Tämä kirja on kirjoitettu hetkellä, joka myöhemmin voi näyttää selvältä käännekohdalta tai vain yhdeltä vaiheelta pitkässä muutoksessa. Me emme vielä tiedä kumpi tulkinta on oikea. Näemme nopeasti kasvavaa koneellista kyvykkyyttä, ekologisia rajoja, väestöjen ja talouksien keskinäisriippuvuutta sekä instituutioita, joiden pitäisi sopeutua muutokseen samalla kun ne ylläpitävät arjen jatkuvuutta.",
         "Nykyhetken erityisyys ei perustu siihen, että juuri meidän aikamme olisi historian ennalta määrätty huipentuma. Se perustuu mittakaavaan ja nopeuteen: ihmisten rakentamat järjestelmät voivat vaikuttaa yhä useampiin ihmisiin ennen kuin niiden seuraukset ehditään ymmärtää. Samalla tiedämme aiempaa enemmän sivuvaikutuksista ja palautekehistä. Emme ole kaikkitietäviä, mutta emme myöskään täysin tietämättömiä."

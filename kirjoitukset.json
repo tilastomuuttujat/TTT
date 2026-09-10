@@ -161,7 +161,9 @@
           "closing": true
         }
       ],
-      "ingress": "Yhteiskunta ei muutu suoraviivaisesti eikä historia toistu samanlaisena. Kehitystä voidaan tarkastella vuorotteluna, palautekiertona, syklinä ja ennen kaikkea spiraalina, jossa jokainen kierros alkaa edellisten päätösten muuttamasta tilanteesta. Artikkeli esittelee mallin, jonka avulla voidaan arvioida, onko odotettavissa jatkuvuutta, sopeutumista, vastaliikettä, uusiutuvaa sykliä vai rakenteellista murrosta."
+      "ingress": "Yhteiskunta ei muutu suoraviivaisesti eikä historia toistu samanlaisena. Kehitystä voidaan tarkastella vuorotteluna, palautekiertona, syklinä ja ennen kaikkea spiraalina, jossa jokainen kierros alkaa edellisten päätösten muuttamasta tilanteesta. Artikkeli esittelee mallin, jonka avulla voidaan arvioida, onko odotettavissa jatkuvuutta, sopeutumista, vastaliikettä, uusiutuvaa sykliä vai rakenteellista murrosta.",
+      "source": "kirjoitukset",
+      "href": "./artikkeli.html?source=kirjoitukset&id=historia-ei-toistu-toimintalogiikka-toistuu"
     },
     {
       "id": "siilot-ja-sisapiirit",
@@ -342,7 +344,9 @@
           "closing": true
         }
       ],
-      "ingress": "Suomen yhteiskunnallinen vahvuus on pitkään perustunut kykyyn rakentaa yhdessä, mutta samat rakenteet voivat ajan myötä muuttua siiloiksi, sisäpiireiksi ja itseään suojaaviksi järjestelmiksi. Artikkeli tarkastelee, miten toimiviksi tarkoitetut instituutiot alkavat menettää korjauskykyään – ja mitä niiden avaaminen uudelleen vaatisi."
+      "ingress": "Suomen yhteiskunnallinen vahvuus on pitkään perustunut kykyyn rakentaa yhdessä, mutta samat rakenteet voivat ajan myötä muuttua siiloiksi, sisäpiireiksi ja itseään suojaaviksi järjestelmiksi. Artikkeli tarkastelee, miten toimiviksi tarkoitetut instituutiot alkavat menettää korjauskykyään – ja mitä niiden avaaminen uudelleen vaatisi.",
+      "source": "kirjoitukset",
+      "href": "./artikkeli.html?source=kirjoitukset&id=siilot-ja-sisapiirit"
     },
     {
       "id": "sukupolvikello",
@@ -567,7 +571,9 @@
           "closing": true
         }
       ],
-      "ingress": "Yhteiskunnallinen murros ei etene tasaisesti, vaan usein sukupolvittaisina aaltoina. Sukupolvikello tarkastelee 20–25 vuoden rytmiä, jossa arvot, instituutiot ja päätöksenteon painopisteet vaihtuvat, ja kysyy, voiko historian toistuvista jaksoista oppia jotakin myös tulevista murroksista."
+      "ingress": "Yhteiskunnallinen murros ei etene tasaisesti, vaan usein sukupolvittaisina aaltoina. Sukupolvikello tarkastelee 20–25 vuoden rytmiä, jossa arvot, instituutiot ja päätöksenteon painopisteet vaihtuvat, ja kysyy, voiko historian toistuvista jaksoista oppia jotakin myös tulevista murroksista.",
+      "source": "kirjoitukset",
+      "href": "./artikkeli.html?source=kirjoitukset&id=sukupolvikello"
     },
     {
       "id": "sakset-ja-sateenvarjo",
@@ -736,7 +742,9 @@
           "closing": true
         }
       ],
-      "ingress": "Talousennuste ei ole neutraali sääennuste: sen perusteella tehdyt päätökset voivat muuttaa juuri sitä tulevaisuutta, jota ennuste yrittää kuvata. Artikkeli tarkastelee, milloin sopeutus toimii suojana, milloin se leikkaa kasvun edellytyksiä ja miksi päätösten palautetta pitäisi seurata ennustetta tarkemmin."
+      "ingress": "Talousennuste ei ole neutraali sääennuste: sen perusteella tehdyt päätökset voivat muuttaa juuri sitä tulevaisuutta, jota ennuste yrittää kuvata. Artikkeli tarkastelee, milloin sopeutus toimii suojana, milloin se leikkaa kasvun edellytyksiä ja miksi päätösten palautetta pitäisi seurata ennustetta tarkemmin.",
+      "source": "kirjoitukset",
+      "href": "./artikkeli.html?source=kirjoitukset&id=sakset-ja-sateenvarjo"
     },
     {
       "id": "parlamentaarinen-taloussaannosto",
@@ -929,7 +937,9 @@
           "closing": true
         }
       ],
-      "ingress": "Julkisen talouden kestävyys vaatii pitkäjänteisyyttä, mutta demokraattisen järjestelmän pitää samalla säilyttää vaalikausittainen liikkumavara. Artikkeli kysyy, mistä talouden pelisäännöistä pitäisi sopia yli vaalikausien, miksi velkajarru yksin ei riitä ja miten säännöt voidaan sitoa tavoitteisiin ilman että tulevien hallitusten keinot lukitaan."
+      "ingress": "Julkisen talouden kestävyys vaatii pitkäjänteisyyttä, mutta demokraattisen järjestelmän pitää samalla säilyttää vaalikausittainen liikkumavara. Artikkeli kysyy, mistä talouden pelisäännöistä pitäisi sopia yli vaalikausien, miksi velkajarru yksin ei riitä ja miten säännöt voidaan sitoa tavoitteisiin ilman että tulevien hallitusten keinot lukitaan.",
+      "source": "kirjoitukset",
+      "href": "./artikkeli.html?source=kirjoitukset&id=parlamentaarinen-taloussaannosto"
     },
     {
       "id": "jakologiikka",
@@ -1141,7 +1151,9 @@
           "closing": true
         }
       ],
-      "ingress": "Yhteiskunta ei jaa vain rahaa, vaan myös mahdollisuuksia, riskejä, vastuuta, valtaa ja tulevaisuuden liikkumavaraa. Artikkeli tekee näkyväksi nämä jakamisen säännöt ja kysyy, milloin erilainen jako on perusteltu, milloin se alkaa kasautua rakenteelliseksi eduksi ja voiko hyvä jakologiikka tuottaa yhteiskunnallista tasapainoa."
+      "ingress": "Yhteiskunta ei jaa vain rahaa, vaan myös mahdollisuuksia, riskejä, vastuuta, valtaa ja tulevaisuuden liikkumavaraa. Artikkeli tekee näkyväksi nämä jakamisen säännöt ja kysyy, milloin erilainen jako on perusteltu, milloin se alkaa kasautua rakenteelliseksi eduksi ja voiko hyvä jakologiikka tuottaa yhteiskunnallista tasapainoa.",
+      "source": "kirjoitukset",
+      "href": "./artikkeli.html?source=kirjoitukset&id=jakologiikka"
     },
     {
       "id": "jarjestojen-rooli",
@@ -1332,7 +1344,9 @@
           "quote": "Järjestöjen tasaava tehtävä säilyy vain, jos myös mahdollisuus järjestäytyä säilyy avoimena.",
           "closing": true
         }
-      ]
+      ],
+      "source": "kirjoitukset",
+      "href": "./artikkeli.html?source=kirjoitukset&id=jarjestojen-rooli"
     },
     {
       "id": "kansalaisyhteiskunnan-toimintakyky",
@@ -1484,7 +1498,9 @@
           "quote": "Turvasta toimintaan – yhdessä rakennetaan hyvinvointia.",
           "closing": true
         }
-      ]
+      ],
+      "source": "kirjoitukset",
+      "href": "./artikkeli.html?source=kirjoitukset&id=kansalaisyhteiskunnan-toimintakyky"
     },
     {
       "id": "toimintakykyvaltio",
@@ -1648,7 +1664,9 @@
           "quote": "Tavoitteena ei ole mahdollisimman suuri palvelujärjestelmä vaan mahdollisimman toimintakykyinen yhteiskunta.",
           "closing": true
         }
-      ]
+      ],
+      "source": "kirjoitukset",
+      "href": "./artikkeli.html?source=kirjoitukset&id=toimintakykyvaltio"
     },
     {
       "id": "toimintakykytalous",
@@ -1819,7 +1837,9 @@
           "quote": "Talouden tärkein pääoma ei ehkä ole se, mitä se omistaa, vaan se, mihin ihmiset ja yhteiskunta seuraavaksi kykenevät.",
           "closing": true
         }
-      ]
+      ],
+      "source": "kirjoitukset",
+      "href": "./artikkeli.html?source=kirjoitukset&id=toimintakykytalous"
     },
     {
       "id": "liikkumavaran-hyvinvointivaltio",
@@ -1967,7 +1987,9 @@
           ],
           "quote": "Liikkumavara ei vähennä turvaa. Parhaimmillaan se muuttaa turvan toimintakyvyksi."
         }
-      ]
+      ],
+      "source": "kirjoitukset",
+      "href": "./artikkeli.html?source=kirjoitukset&id=liikkumavaran-hyvinvointivaltio"
     },
     {
       "id": "talouspolitiikkaa-siteet-silmilla",
@@ -2123,7 +2145,9 @@
           "quote": "Parempi mittaaminen ei poista poliittisia valintoja. Se auttaa näkemään, mitä todella olemme valitsemassa."
         }
       ],
-      "closing": "Hyvinvointivaltion ongelma ei välttämättä ole se, että päätämme väärin – vaan se, että mittaamme liian kapeasti sitä, mitä pidämme onnistumisena."
+      "closing": "Hyvinvointivaltion ongelma ei välttämättä ole se, että päätämme väärin – vaan se, että mittaamme liian kapeasti sitä, mitä pidämme onnistumisena.",
+      "source": "kirjoitukset",
+      "href": "./artikkeli.html?source=kirjoitukset&id=talouspolitiikkaa-siteet-silmilla"
     }
   ]
 }
