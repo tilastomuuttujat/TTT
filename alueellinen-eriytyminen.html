@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="fi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Alueellinen eriytyminen · Murrosverkosto</title><meta name="description" content="Suomen maakuntien väestökehitys 1990–2025: aika, paikka ja tulkinnalliset vaikutuspolut."><style>
+:root{--ink:#18313b;--muted:#536b73;--paper:#fff;--sea:#edf3f5;--line:#d5e0e4;--teal:#126b79;--rust:#b95e3d}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,sans-serif}button,input,select{font:inherit}button,select{color:inherit;background:white;border:1px solid var(--line);border-radius:8px;padding:9px 12px}button{cursor:pointer}button:hover{border-color:var(--teal)}button:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid #d09836;outline-offset:3px}a{color:var(--teal)}header{padding:20px 28px;display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);align-items:center}h1{font:400 clamp(24px,3vw,34px)/1.15 Georgia,serif;margin:5px 0}h2{font:400 30px/1.2 Georgia,serif;margin:8px 0}h3{font-size:16px;margin:0 0 10px}p{margin:8px 0}.eyebrow{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}.subtitle{color:var(--muted);font-size:14px}.timebar{padding:16px 28px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:180px 1fr 1fr;gap:28px;background:#f8fafb;align-items:center}.timebar strong{font-size:24px;font-weight:500}.timebar label{font-size:14px;display:block}.timebar input{display:block;width:100%;accent-color:var(--teal);margin-top:10px}.layout{display:grid;grid-template-columns:minmax(300px,1.05fr) minmax(350px,1fr);max-width:1500px;margin:auto}.maparea{position:relative;background:var(--sea);padding:22px 22px 12px;border-right:1px solid var(--line)}.maphead{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}.maphead label{font-size:14px}.maphead select{max-width:100%;font-size:14px}#map{display:block;width:100%;height:590px;max-height:72vh}.region{stroke:#fff;stroke-width:1.3;cursor:pointer;vector-effect:non-scaling-stroke;transition:fill .2s}.region:hover{stroke:#18313b;stroke-width:2}.region.selected{stroke:#18313b;stroke-width:3}.maphint{font-size:13px;color:var(--muted);min-height:23px;text-align:center}.legend{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-size:12px;margin:10px 0}.legend span{display:inline-flex;align-items:center;gap:5px}.legend i{width:14px;height:14px;display:inline-block}.detail{padding:26px 30px;min-width:0}.regionpick{display:flex;gap:16px;justify-content:space-between;align-items:center}.regionpick select{max-width:58%;font-size:14px}.numbers{display:flex;gap:30px;align-items:baseline;margin:14px 0}.big{font-size:36px;letter-spacing:-.04em}.small{font-size:13px;color:var(--muted)}#chart{width:100%;height:auto;display:block;margin-top:12px}.chartlegend{display:flex;gap:18px;font-size:13px;margin-bottom:20px}.chartlegend i{display:inline-block;width:20px;border-top:3px solid var(--teal);margin-right:5px;vertical-align:middle}.chartlegend .national{border-top:2px dashed #728791}.section{border-top:1px solid var(--line);padding-top:18px;margin-top:18px}.flow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0}.flow .observed{grid-column:1/-1;border-left:4px solid var(--teal);background:#edf5f6;padding:12px 15px}.flow button{text-align:left;padding:12px;border-radius:10px;background:#fafbfc;font-size:14px;min-height:90px}.flow button[aria-pressed=true]{border:2px solid var(--teal);background:#edf5f6}.flow small{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.arrow{font-size:13px;color:var(--muted);margin:4px 0}.flowdetail{border-left:2px solid var(--line);padding-left:16px;font-size:14px}.flowdetail strong{display:block}.flowdetail p{margin:6px 0 12px}.events{display:flex;gap:8px;flex-wrap:wrap}.events a{font-size:13px;text-decoration:none;padding:5px 8px;background:#f1f5f6;border-radius:5px}details{max-width:1440px;margin:20px auto;padding:0 28px;font-size:14px;color:var(--muted)}summary{cursor:pointer;color:var(--ink)}#loader{padding:40px;max-width:700px;margin:30px auto;border:1px solid var(--line)}[hidden]{display:none!important}#file{display:block;margin:18px 0}.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:8px;text-align:right;border-bottom:1px solid var(--line)}th:first-child,td:first-child{text-align:left}@media(max-width:800px){header{padding:16px;align-items:flex-start}header a{font-size:13px}.timebar{padding:14px 16px;grid-template-columns:1fr 1fr;gap:12px}.timebar>div:first-child{grid-column:1/-1}.layout{grid-template-columns:1fr}.maparea{padding:16px;border-right:0}#map{height:510px;max-height:65vh}.detail{padding:20px 18px}.regionpick{flex-wrap:wrap}.numbers{gap:20px}details{padding:0 18px}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.maparea.contour{background:#302c40;color:#f4f0f7}.contour .eyebrow,.contour .small,.contour .maphint{color:#d5d0df}.contour .region{stroke:#ffffff28;stroke-width:.7}.contour .region.selected,.contour .region:hover{stroke:#fff;stroke-width:2.5}.viewchoice{display:flex;gap:8px;margin:12px 0}.viewchoice button{font-size:14px}.viewchoice button[aria-pressed=true]{background:#216a7a;color:white;border-color:#216a7a}#contournote{font-size:13px;max-width:540px;margin:10px auto;color:inherit}
+.maparea.contour .region,.maparea.contour .region.selected,.maparea.contour .region:hover{stroke:none}.maparea{padding:20px 8px}#map{height:740px;max-height:90vh}.panelmetric{border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:20px}.panelmetric label{display:block;font-size:14px;font-weight:500;margin-bottom:6px}.panelmetric select{width:100%;font-size:14px;margin-bottom:12px}.panelmetric .legend{justify-content:flex-start}.panelmetric .maphint{text-align:left;font-size:14px;min-height:22px}.peak-label{pointer-events:none}@media(max-width:800px){#map{height:570px;max-height:75vh}.maparea{padding:10px 4px}}
+
+.layout{max-width:none;grid-template-columns:minmax(0,1fr) minmax(360px,1fr);align-items:start}
+.maparea{padding:0;border:0;position:sticky;top:0;height:100dvh;display:flex;align-items:center;justify-content:center}
+#map{height:100%;max-height:none;width:100%}
+.detail{padding:24px 30px}
+.detail .timebar{padding:0 0 22px;margin:0 0 22px;background:transparent;grid-template-columns:1fr 1fr;gap:14px}
+.detail .timebar>div:first-child{grid-column:1/-1}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.maparea{position:relative;height:70dvh;min-height:420px}.detail{padding:20px 18px}#map{height:100%;max-height:none}}
+.detail header{padding:0 0 22px;margin-bottom:22px;flex-wrap:wrap}.detail details{padding:0;margin:20px 0}.detail .regionpick{gap:8px}
+.timemode{display:flex;gap:8px;flex-wrap:wrap}.timemode button{font-size:14px}.timemode button[aria-pressed=true]{background:var(--teal);color:white}.yearcontrol{grid-column:1/-1}.mapyear{position:absolute;top:22px;left:24px;font-size:30px;color:#fff9d5;pointer-events:none}.yearcontrol output{font-weight:600}.timebar{margin-top:12px!important}#timehelp{min-height:40px}
+.maparea{padding-left:64px;padding-right:64px}.timerail{position:absolute;top:20px;bottom:20px;width:58px;display:flex;flex-direction:column;align-items:center;gap:9px;color:#f4f0f7;z-index:3}.timerail.left{left:3px}.timerail.right{right:3px}.timerail label{font-size:14px}.timerail output{font-size:17px;font-variant-numeric:tabular-nums}.rail-bound{font-size:12px;color:#d5d0df}.timerail input[type=range]{writing-mode:vertical-lr;direction:ltr;flex:1;min-height:80px;width:30px;accent-color:#e6d590;cursor:pointer}.mapyear{left:76px;font-size:25px;top:18px}@media(max-width:800px){.maparea{padding-left:50px;padding-right:50px}.timerail{width:46px;top:12px;bottom:12px}.timerail output{font-size:15px}.mapyear{left:58px;font-size:20px}}
+
+/* Rotate a native horizontal range: consistent orientation in older Safari too. */
+.maparea>.timerail{position:absolute!important;display:flex!important;top:20px;bottom:20px;margin:0!important;padding:0!important}
+.maparea>.timerail.left{left:3px!important;right:auto!important}
+.maparea>.timerail.right{right:3px!important;left:auto!important}
+.rail-track{position:relative;flex:1;min-height:120px;width:44px}
+.timerail .rail-track input[type=range]{position:absolute;left:50%;top:50%;width:var(--rail-length,400px);height:32px;max-width:none;min-height:0;margin:0;padding:0;writing-mode:horizontal-tb!important;direction:ltr;transform:translate(-50%,-50%) rotate(90deg);transform-origin:center;flex:none;touch-action:none;accent-color:#e6d590}
+#year{width:7rem;margin-top:8px;padding:7px;border:1px solid var(--line);border-radius:6px}
+
+/* Overlay controls do not reserve any of the map's drawing width. */
+.layout>.maparea{padding:0!important;min-width:0;overflow:hidden}
+.maparea>#map{width:100%;height:100%;max-height:none;flex:1;min-width:0}
+.maparea>.timerail{width:42px;top:14px;bottom:14px;gap:6px;pointer-events:none}
+.maparea>.timerail.left{left:4px!important}.maparea>.timerail.right{right:4px!important}
+.timerail label,.timerail output,.timerail .rail-bound{text-shadow:none;color:var(--ink)}
+.timerail label{font-size:13px}.timerail output{font-size:15px}.timerail .rail-bound{font-size:11px}
+.timerail .rail-track{width:36px}.timerail .rail-track input[type=range]{pointer-events:auto;height:28px;opacity:.85}
+.timerail .rail-track input[type=range]:hover,.timerail .rail-track input[type=range]:focus-visible{opacity:1}
+.mapyear{left:55px;top:15px;font-size:23px;text-shadow:none;color:var(--ink)}
+@media(max-width:800px){.maparea>.timerail{width:36px}.maparea>.timerail.left{left:1px!important}.maparea>.timerail.right{right:1px!important}.mapyear{left:43px;font-size:19px}}
+.timerail .rail-track{min-height:0;flex:1 1 0}.timerail .rail-track input[type=range]{min-width:0}.maparea>.timerail{gap:4px}
+.metricnav{display:flex;align-items:center;gap:8px}.metricnav select{flex:1;min-width:0;margin:0}.metricnav button{flex:0 0 42px}.single-time{margin:18px 0}.yearheading,.yearbounds{display:flex;justify-content:space-between;align-items:center}.yearheading output{font-size:24px;font-variant-numeric:tabular-nums;margin-left:8px}.single-time input{width:100%;accent-color:var(--teal);margin:12px 0;cursor:pointer}.yearbounds{font-size:12px;color:var(--muted)}.maparea{padding:0!important}.mapyear{left:22px!important}button:disabled{opacity:.4;cursor:default}.mapcaption{position:absolute;top:18px;left:22px;right:22px;z-index:4;pointer-events:none;color:#fff9d5;text-shadow:0 1px 4px #302c40}.mapcaption #mapyear{font-size:25px}.mapcaption #mapcomparison{font-size:14px;line-height:1.35;max-width:460px;margin-top:4px}.themes{display:flex;gap:7px;flex-wrap:wrap;margin:18px 0 8px}.themes button{font-size:13px}.themes button[aria-pressed=true]{background:var(--teal);color:white}
+.drawer-open,.drawer-close,.drawer-shade{display:none}#year{width:100%}
+@media(max-width:800px){
+ html,body{height:100%;overflow:hidden;overscroll-behavior:none}#app,.layout{height:100dvh;overflow:hidden}.layout{display:block}.layout>.maparea{position:fixed;inset:0;height:100dvh;min-height:0;touch-action:none}#map{height:100%;max-height:none}.mapcaption{right:90px;top:max(18px,env(safe-area-inset-top))}
+ .detail{position:fixed;inset:0 0 0 auto;width:min(90vw,440px);height:100dvh;background:var(--paper);z-index:30;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;touch-action:pan-y;-webkit-overflow-scrolling:touch;padding:16px 18px max(24px,env(safe-area-inset-bottom));transform:translateX(100%);visibility:hidden;transition:transform .25s ease,visibility .25s}.drawer-visible .detail{transform:translateX(0);visibility:visible}
+ .drawer-open{display:block;position:fixed;right:0;top:45%;z-index:20;border-radius:10px 0 0 10px;padding:18px 8px;touch-action:pan-y}.drawer-close{display:block;margin:0 0 14px auto}.drawer-shade{display:block;position:fixed;inset:0;background:#0005;border:0;border-radius:0;z-index:25}.drawer-visible .drawer-open{visibility:hidden}#loader{position:fixed;inset:12px;z-index:50;background:white;overflow:auto;margin:0;padding:24px}
+}
+@media(prefers-reduced-motion:reduce){.detail{transition:none}}
+.dual-range{position:relative;height:44px;margin:6px 0}.dual-track{position:absolute;left:12px;right:12px;top:20px;height:4px;background:#b4c8ce;border-radius:4px}.dual-range input[type=range]{position:absolute!important;inset:0;width:100%!important;height:44px;margin:0!important;padding:0!important;border:0!important;background:transparent;appearance:none;-webkit-appearance:none;pointer-events:none}.dual-range input::-webkit-slider-runnable-track{height:4px;background:transparent}.dual-range input::-moz-range-track{height:4px;background:transparent}.dual-range input::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:24px;height:24px;margin-top:-10px;border-radius:50%;background:var(--teal);border:3px solid white;box-shadow:0 0 0 1px var(--teal);pointer-events:auto;cursor:ew-resize;touch-action:none}.dual-range input::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--teal);border:3px solid white;pointer-events:auto;cursor:ew-resize;touch-action:none}.dual-range input:focus-visible{outline:2px solid #d09836;outline-offset:2px}</style>
+<style id="editorial-redesign">
+:root{
+ --ink:#1a1712;--muted:#6b6455;--paper:#f3efe7;--sea:#2b3b40;--line:#cfc7b6;--teal:#c24e23;--rust:#c24e23;
+ --cream:#e7e1d4;--soft:#ded6c7;--gold:#d09836;--cool:#2e7d75;--cool-soft:#d7e5df;--warm-soft:#ead6c7;--charcoal:#2b3b40;
+}
+*{letter-spacing:0}html{background:var(--sea)}body{font-family:Arial,"Helvetica Neue",sans-serif;background:var(--paper);color:var(--ink)}
+button,select,input{font-family:inherit}button,select{border-color:var(--line);background:var(--paper);border-radius:4px}
+button{transition:background-color .18s ease,color .18s ease,border-color .18s ease,transform .18s ease}
+button:hover{border-color:var(--rust)}button:active{transform:translateY(1px)}
+a{color:var(--rust);font-weight:700;text-underline-offset:4px}h1,h2,.big,.numbers strong{font-family:Georgia,"Times New Roman",serif}
+.layout{background:var(--paper);grid-template-columns:minmax(0,1.2fr) minmax(390px,.8fr)}
+.layout>.maparea{background:var(--paper)!important;isolation:isolate}
+.layout>.maparea:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;background:linear-gradient(180deg,rgba(255,255,255,.035),transparent 24%,rgba(0,0,0,.05));mix-blend-mode:soft-light}
+#map{position:relative;z-index:1;filter:drop-shadow(0 24px 35px rgba(0,0,0,.2));transform:translateY(-3%)}
+.maparea.contour{background:var(--paper)!important}.maparea.contour .region{stroke:none!important}
+.mapcaption{z-index:4!important;top:18px!important;right:24px!important;text-align:right;color:var(--ink)}
+#mapyear{font:500 clamp(34px,5vw,68px)/.9 Georgia,serif;color:var(--ink);text-shadow:none}
+#mapcomparison{margin-top:10px;padding-top:8px;color:var(--ink);font:italic 400 15px/1.3 Georgia,serif;text-transform:none;letter-spacing:.01em;border-top:1px solid color-mix(in oklab,var(--rust) 55%,transparent);display:inline-block}
+.maplegend{position:absolute;z-index:5;top:64px;right:24px;width:92px;padding:0;color:var(--ink);pointer-events:none;background:none;border:0;backdrop-filter:none}
+.maplegend .legend{display:grid;grid-template-columns:1fr;gap:3px;justify-content:start;margin:0;font-size:10px;line-height:1}.maplegend .legend span{display:grid;grid-template-columns:1fr 18px;gap:6px;align-items:center}.maplegend .legend span b{font-weight:400;text-align:right;font-variant-numeric:tabular-nums}.maplegend .legend i{width:18px;height:5px;border-radius:1px}
+.detail{background:color-mix(in oklab,var(--paper) 86%,var(--cream));padding:26px 34px 52px;border-left:1px solid color-mix(in oklab,var(--charcoal) 18%,transparent);box-shadow:-22px 0 60px rgba(10,15,16,.1)}
+.detail header{align-items:flex-start;border-bottom:2px solid var(--ink);padding-bottom:18px;margin-bottom:18px}
+.eyebrow{color:var(--rust);font-size:10px;font-weight:700;letter-spacing:.16em}.detail h1{font-size:clamp(30px,3vw,47px);line-height:.98;margin:8px 0 10px;font-weight:500}.subtitle{font-size:13px;color:var(--muted)}
+.themes{display:flex;gap:0;border-bottom:1px solid var(--line);overflow:auto;margin:0 -34px 16px;padding:0 34px;background:color-mix(in oklab,var(--cream) 58%,transparent);scrollbar-width:none}.themes::-webkit-scrollbar{display:none}.themes button{border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;padding:13px 12px 11px;white-space:nowrap;font-size:11px;font-weight:700;color:var(--muted)}.themes button[aria-pressed=true]{background:color-mix(in oklab,var(--warm-soft) 72%,transparent);color:var(--ink);border-bottom-color:var(--rust)}
+#themestatus{font-size:10px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px}
+.panelmetric{border-bottom:1px solid var(--line);padding:18px 18px 20px;margin:0 -18px 22px;background:color-mix(in oklab,var(--cool-soft) 44%,transparent)}.panelmetric>label,.single-time label{font-size:10px;text-transform:uppercase;letter-spacing:.13em;font-weight:700;color:var(--muted)}
+.metricnav{margin-top:7px}.metricnav select{border-width:1px 0;border-color:color-mix(in oklab,var(--cool) 42%,var(--line));border-radius:0;background:color-mix(in oklab,var(--paper) 78%,var(--cool-soft));font:500 18px Georgia,serif;padding:10px}.metricnav button{border-radius:0;border-color:color-mix(in oklab,var(--cool) 42%,var(--line));font-size:20px;background:var(--cool-soft);color:var(--charcoal)}
+.single-time{margin-top:18px}.yearheading output{font:500 28px Georgia,serif;color:var(--rust)}
+#play{background:transparent;color:var(--rust);border:1px solid var(--rust);border-radius:0;font:700 10px/1 ui-sans-serif,system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:9px 13px;transition:background .25s ease,color .25s ease,box-shadow .25s ease}
+#play:hover{background:color-mix(in oklab,var(--rust) 12%,transparent)}
+#play:focus-visible{outline:none;box-shadow:0 0 0 2px var(--paper),0 0 0 3px var(--rust)}
+#play[aria-pressed="true"]{background:var(--rust);color:var(--paper);box-shadow:inset 0 0 0 1px var(--rust)}
+
+.dual-track{background:var(--line)}.dual-range input::-webkit-slider-thumb{background:var(--rust);border-color:var(--paper);box-shadow:0 0 0 1px var(--rust)}.dual-range input::-moz-range-thumb{background:var(--rust);border-color:var(--paper)}
+.regionpick{border-bottom:1px solid var(--line);padding-bottom:15px}.regionpick select{background:var(--warm-soft);border-color:color-mix(in oklab,var(--rust) 35%,var(--line))}.regionpick h2{font-size:31px}.numbers{margin:17px 0;display:grid;grid-template-columns:1fr 1fr;gap:8px}.numbers>div{border-left:3px solid var(--rust);padding-left:12px}.numbers>div+div{border-left-color:var(--cool)}.big{font-size:34px;letter-spacing:0}.small{color:var(--muted)}
+#chart{background:color-mix(in oklab,var(--cool-soft) 42%,var(--paper));border-top:1px solid color-mix(in oklab,var(--cool) 30%,var(--line));border-bottom:1px solid color-mix(in oklab,var(--cool) 30%,var(--line));padding:8px 0}
+.section{border-top:1px solid var(--line);padding-top:20px!important;margin-top:22px!important}.section h3,details summary{font-family:Georgia,serif;font-size:18px;font-weight:500}
+.flow{gap:8px}.flow>*{border-radius:4px!important}.flow .observed{border-left-color:var(--cool);background:var(--cool-soft)}.flow button{background:color-mix(in oklab,var(--paper) 68%,var(--warm-soft));border-color:color-mix(in oklab,var(--rust) 24%,var(--line))}.flow button[aria-pressed=true]{background:var(--charcoal)!important;color:var(--paper)!important;border-color:var(--charcoal)!important}.flow button[aria-pressed=true] small{color:color-mix(in oklab,var(--paper) 70%,var(--cool-soft))}.flowdetail{border-left:3px solid var(--rust);background:var(--warm-soft)!important;border-radius:0!important}
+.events>div{border-color:var(--line)!important}.events>div:nth-child(odd){background:var(--warm-soft)!important}.events>div:nth-child(even){background:var(--cool-soft)!important}.events time{color:var(--rust);font-family:Georgia,serif}
+details{border-top:1px solid var(--line);padding:16px 0!important}table th{background:var(--ink);color:var(--paper)}
+.drawer-open{background:var(--rust);color:var(--paper);border:0;border-radius:4px 0 0 4px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.18)}.drawer-close{background:var(--ink);color:var(--paper)}
+#loader{background:var(--paper)!important;color:var(--ink);font-family:Georgia,serif}
+@media(max-width:800px){
+ .detail{width:min(92vw,440px);padding:18px 20px max(30px,env(safe-area-inset-bottom));box-shadow:-18px 0 50px rgba(0,0,0,.25)}
+ .detail h1{font-size:34px}.themes{margin-left:-20px;margin-right:-20px;padding-left:20px;padding-right:20px}
+  .mapcaption{right:18px!important;top:max(42px,calc(env(safe-area-inset-top) + 34px))!important}.maparea:before{content:"ALUEELLINEN ERIYTYMINEN";position:absolute;z-index:5;left:18px;top:max(42px,calc(env(safe-area-inset-top) + 34px));color:var(--ink);font-size:9px;font-weight:700;letter-spacing:.17em}
+  .maplegend{top:max(96px,calc(env(safe-area-inset-top) + 86px));right:12px;width:78px;padding:0}.maplegend .legend{font-size:9px;gap:2px}.maplegend .legend span{grid-template-columns:1fr 16px;gap:4px}.maplegend .legend i{width:16px;height:4px}
+ #mapyear{font-size:38px}.drawer-open{top:auto;bottom:max(22px,env(safe-area-inset-bottom));right:0;padding:14px 10px}
+}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+<style id="network-bridge">
+.viewnav{display:flex;border:1px solid var(--line);flex:0 0 auto}
+.viewnav a{padding:6px 12px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;color:var(--muted);border-right:1px solid var(--line)}
+.viewnav a:last-child{border-right:0}
+.viewnav a.cur{background:var(--rust);color:var(--paper)}
+.linkback{position:absolute;z-index:6;left:22px;right:22px;top:0;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;font-size:13px;color:var(--ink);border-left:3px solid var(--rust);padding:6px 10px;background:color-mix(in oklab,var(--paper) 82%,transparent);backdrop-filter:blur(4px)}
+.linkback strong{font:italic 400 15px Georgia,serif}
+.linkback a{color:var(--rust)}
+.linkback .linkmeta{font:italic 400 14px Georgia,serif;color:var(--ink)}
+.linkback[hidden]{display:none}
+@media(max-width:800px){.linkback{left:10px;right:10px;top:env(safe-area-inset-top);font-size:12px}}
+</style>
+<style id="centered-map-heading">
+.layout>.maparea{display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;min-height:0}
+.map-heading{flex:0 0 auto;position:relative;z-index:6;padding:max(6px,env(safe-area-inset-top)) 18px 8px;text-align:center;color:var(--ink)}
+.map-heading .mapcaption,.map-heading .linkback{position:static!important;inset:auto!important;width:100%;margin:0;padding:0;border:0;background:none;backdrop-filter:none;text-align:center!important;color:var(--ink);text-shadow:none}
+.map-heading .linkback{display:flex;flex-direction:column;align-items:center;gap:4px}
+.map-heading #mapyear,.map-heading .heading-years{font:500 clamp(27px,3.5vw,46px)/1.05 Georgia,serif;position:static!important;margin:0;text-align:center}
+.map-heading #mapcomparison,.map-heading .heading-title{display:block;max-width:640px;margin:5px auto 0;padding:0;border:0;font:italic 400 clamp(14px,1.4vw,18px)/1.25 Georgia,serif;overflow-wrap:anywhere}
+.map-heading .linkmeta{font:400 11px/1.25 system-ui,sans-serif;max-width:640px;overflow-wrap:anywhere}.map-heading .linkback a{font-size:11px;line-height:1.4}
+.layout>.maparea>#map{flex:1 1 0;height:0;min-height:0;width:100%;transform:none;max-height:none}
+.maparea:before{display:none!important}.maplegend{top:auto!important;bottom:18px;right:16px}
+@media(max-width:800px){.map-heading{padding-left:12px;padding-right:12px}.map-heading #mapyear,.map-heading .heading-years{font-size:30px}.map-heading #mapcomparison,.map-heading .heading-title{font-size:14px}.maplegend{bottom:76px;right:10px}}
+</style></head><body>
+
+<div id="loader"><strong>Ladataan maakuntien aikasarjat…</strong><p id="loadtext"></p><label>Valitse alueellinen-eriytyminen.json<input id="file" type="file" accept=".json,application/json"></label></div>
+<div id="app" hidden>
+
+<main class="layout"><section class="maparea" aria-label="Suomen maakunnat"><div class="map-heading"><div class="mapcaption"><div id="mapyear" aria-live="off"></div><div id="mapcomparison"></div></div><div id="linkback" class="linkback" hidden></div></div><aside class="maplegend" aria-label="Kartan väriselite"><div id="legend" class="legend"></div></aside><svg id="map" viewBox="0 0 500 750" role="img" aria-label="Suomen maakuntakartta. Valitse maakunta kartalta tai viereisestä luettelosta."></svg></section>
+<button id="drawer-open" class="drawer-open" aria-controls="controls-panel" aria-expanded="false">‹ Säätimet</button><button id="drawer-shade" class="drawer-shade" aria-label="Sulje säädinpaneeli" hidden></button><section class="detail" id="controls-panel"><button id="drawer-close" class="drawer-close" aria-label="Sulje säädinpaneeli">Sulje ›</button><header><div><div class="eyebrow">Murrosverkosto · Teema 01 · v8</div><h1>Alueellinen eriytyminen</h1><div class="subtitle">Väestökehitys, paikka ja mahdolliset vaikutuspolut</div></div><nav class="viewnav" aria-label="Näkymä"><a class="cur" href="alueellinen-eriytyminen.html" aria-current="page">Kartta</a><a href="murrosverkosto.html">Verkosto</a></nav></header><div id="themes" class="themes" aria-label="Aineiston teema"></div><p id="themestatus" class="small" role="status"></p><div class="panelmetric"><label for="metric">Kartalla näytettävä muuttuja</label><div class="metricnav"><button id="previous-metric" aria-label="Edellinen muuttuja">←</button><select id="metric"></select><button id="next-metric" aria-label="Seuraava muuttuja">→</button></div><div id="yearcontrol" class="single-time"><div class="yearheading"><label for="year">Lähtövuosi <output id="yearlabel" aria-live="polite"></output></label><button id="play" aria-pressed="false">▶ Animoi</button></div><label for="compare-year">Vertailuvuosi <output id="compare-label"></output></label><div class="dual-range"><div class="dual-track"></div><input id="year" type="range" step="1" aria-label="Lähtövuosi"><input id="compare-year" type="range" step="1" aria-label="Vertailuvuosi"></div><div class="yearbounds"><span id="firstyear"></span><span id="lastyear"></span></div><p id="timehelp" class="small"></p></div><p id="contournote" class="small">Korkeuskäyrät ovat maakuntalukujen tasoitettu esitys. Kartan luvut ovat maakuntien tarkkoja arvoja. Kartalla näkyvät vuosiarvot tai animaatiossa muutos lähtövuodesta; ne eivät ole paikallisia huippuarvoja.</p><p class="small" id="unithelp"></p><div id="maphint" class="maphint" aria-live="polite"></div></div><div class="regionpick"><div class="eyebrow">Valittu maakunta</div><label><span class="visually-hidden">Maakunta</span><select id="region"></select></label></div><h2 id="regionname"></h2><div class="numbers" aria-live="polite"><div><div class="big" id="change"></div><div class="small" id="changecaption"></div></div><div><div id="counts"></div><div class="small" id="national"></div></div></div><svg id="chart" viewBox="0 0 520 195" role="img"></svg><div class="chartlegend"><span><i></i><span id="seriesname"></span></span><span><i class="national"></i>Koko maa</span></div>
+<div class="section"><div class="eyebrow">Havainto → tutkittava yhteys → mahdollinen haavoittuvuus</div><h3 style="margin-top:7px">Mitä tämän kehityksen taustalta ja seurauksista voi tutkia?</h3><div class="flow"><div class="observed"><small>01 · Havainto valitulla ajanjaksolla</small><strong id="observation"></strong></div><button id="services" aria-pressed="true"><small>02 · Tutki palvelujen näkökulmaa</small><span id="servicetitle"></span></button><button id="age" aria-pressed="false"><small>02 · Tutki ikärakenteen näkökulmaa</small>Ikärakenne ja palvelutarpeiden muutos</button></div><div id="flowdetail" class="flowdetail" aria-live="polite"></div><p class="small">Tulkinnallinen polku. Väestöluvut eivät yksin osoita palvelujen, työllisyyden tai julkisen talouden vaikutusta.</p></div>
+<div class="section"><h3>Ajanjaksoon liittyviä murroksia</h3><div id="events" class="events"></div><p class="small">Valtakunnallista taustaa murrosaineistosta. Ajallinen osuminen ei osoita alueellista syy-yhteyttä.</p></div><details><summary>Aineisto, laskenta ja rajaukset</summary><p>Havainto- ja ennustesarjat valitaan erikseen. Prosenttiosuuksien muutos ilmoitetaan prosenttiyksikköinä. Lukumäärien ja rahamäärien muutos on suhteellinen muutos prosentteina; nollasta alkavaa suhteellista muutosta ei lasketa. Huoltosuhteiden, ikien ja indeksien muutos on erotus alkuperäisessä yksikössä.</p><p>Kuvaaja näyttää alkuperäiset arvot. Koko maan katkoviiva näkyy, jos sarjassa on kansallinen arvo. Ennustepisteitä yhdistävät viivat eivät ole uusia havaintoja. Animaatio käyttää vain saatavilla olevia vuosia. Rahasarjojen yksiköstä selviää hintaperusta.</p><p id="areanote"></p><p id="sources"></p><p>Korkeuskäyrät ovat maakuntalukujen Gauss-tasoitus; ne eivät lisää alueellista tarkkuutta. Puuttuvat maakunta-arvot näkyvät harmaina. Väriskaala lasketaan valitusta sarjasta ja aikaikkunasta ja pysyy samana animaation ajan.</p></details><details><summary>Maakuntien luvut valitulla ajanjaksolla</summary><div style="overflow:auto"><table><thead id="tablehead"><tr><th>Maakunta</th><th>Alku</th><th>Loppu</th><th>Muutos</th></tr></thead><tbody id="table"></tbody></table></div></details></section></main>
+
+
+</div><script>
+window.addEventListener('resize',()=>{if(DATA)render();});
+let DATA;const $=id=>document.getElementById(id);const state={start:1990,end:2025,region:'MK18',metric:'population',branch:'services',view:'contour',mode:'year',year:1990};
+const num=(x,d=0)=>x==null?'Ei tietoa':x.toLocaleString('fi-FI',{minimumFractionDigits:d,maximumFractionDigits:d});
+const signed=(x,d=1)=>x==null?'Ei tietoa':(x>0?'+':'')+num(x,d);
+const safe=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const delta=(r,key=state.metric)=>{
+ const a=r[key]?.[state.start-1990],b=r[key]?.[state.end-1990];
+ if(a==null||b==null)return null;
+ return key==='population'?(b/a-1)*100:b-a;
+};
+function setupMetrics(d){
+ const sel=$('metric');
+ const sample=d.regions[0]||{};
+ const ignore=new Set(['id','name','path']);
+ const keys=Object.keys(sample).filter(k=>Array.isArray(sample[k])&&!ignore.has(k));
+ const ordered=keys.includes('population')?['population',...keys.filter(k=>k!=='population')]:keys;
+ sel.innerHTML=ordered.map(k=>{
+   const label=(d.indicators&&d.indicators[k]) || (d.indicatorNames&&d.indicatorNames[k]) || k;
+   return `<option value="${k}">${safe(label)}</option>`;
+ }).join('');
+ if(!ordered.includes(state.metric))state.metric=ordered[0]||'population';
+ sel.value=state.metric;
+}
+function shade(v){if(v==null)return '#b5bcc0';const bins=state.metric==='population'?[-15,-5,5,15]:[-5,0,5,10];const colors=['#a74b30','#d7987d','#e1e8eb','#82b3bd','#216a7a'];return colors[bins.filter(n=>v>=n).length];}
+function selectRegion(id){state.region=id;$('region').value=id;render();}
+function drawChart(r){const width=Math.max(280,$('chart').clientWidth||520);$('chart').setAttribute('viewBox','0 0 '+width+' 195');const start=state.start-1990,end=state.end-1990,key=state.metric;const norm=(a,i)=>a[i]==null?null:key==='population'?a[i]/a[start]*100:a[i];const a=Array.from({length:end-start+1},(_,j)=>norm(r[key],j+start)),b=Array.from({length:end-start+1},(_,j)=>norm(DATA.national[key],j+start));const all=[...a,...b].filter(x=>x!=null),lo=Math.min(...all),hi=Math.max(...all),pad=Math.max(1,(hi-lo)*.15),min=lo-pad,max=hi+pad;const x=i=>52+i/(a.length-1)*(width-78),y=v=>152-(v-min)/(max-min)*120;let svg='';for(let j=0;j<4;j++){const v=min+j*(max-min)/3;svg+=`<line x1="52" x2="${width-26}" y1="${y(v)}" y2="${y(v)}" stroke="#dce5e8"/><text x="44" y="${y(v)+4}" text-anchor="end" font-size="12" fill="#536b73">${num(v,0)}</text>`;}for(const [vals,color,dash]of [[b,'#728791','5 4'],[a,'#126b79','']]){let pen=false;let p='';vals.forEach((v,i)=>{if(v==null){pen=false;return;}p+=(pen?'L':'M')+x(i)+','+y(v);pen=true});svg+=`<path d="${p}" fill="none" stroke="${color}" stroke-width="2.5" stroke-dasharray="${dash}"/>`;}for(const i of [...new Set([0,Math.round((a.length-1)/2),a.length-1])])svg+=`<text x="${x(i)}" y="177" text-anchor="middle" font-size="12" fill="#536b73">${state.start+i}</text>`;svg+=`<text x="52" y="16" font-size="12" fill="#536b73">${key==='population'?state.start+' = 100':'65 vuotta täyttäneet, %'}</text>`;if(state.mode==='year'){const cx=x(state.year-state.start);svg+=`<line x1="${cx}" x2="${cx}" y1="28" y2="155" stroke="#b95e3d" stroke-dasharray="3 3"/><text x="${cx}" y="28" text-anchor="middle" font-size="12" fill="#b95e3d">${state.year}</text>`;}$('chart').innerHTML=svg;$('chart').setAttribute('aria-label',r.name+' ja koko maa, '+state.start+'–'+state.end+', '+(key==='population'?'väestöindeksi':'65 vuotta täyttäneiden osuus'));}
+function drawFlow(r){if(state.mode==='year'){annualFlow(r);return;}const p=delta(r,'population'),a=r.elderly[state.start-1990],b=r.elderly[state.end-1990];$('observation').textContent=r.name+': '+(state.metric==='population'?'väestömäärä '+signed(p)+' %':'65 vuotta täyttäneiden osuus '+num(a,1)+' → '+num(b,1)+' %');$('servicetitle').textContent=p<0?'Väestöpohja ja palveluverkon ylläpito':'Väestönkasvu ja palvelujen kapasiteetti';$('services').setAttribute('aria-pressed',state.branch==='services');$('age').setAttribute('aria-pressed',state.branch==='age');let body;if(state.branch==='age'){body=`<strong>Havaittu ikärakenne: ${num(a,1)} → ${num(b,1)} %</strong><p>65 vuotta täyttäneiden osuus muuttui ${signed(b-a)} prosenttiyksikköä. Ikäosuus ei yksin kerro terveydestä tai hoivan tarpeesta.</p><div class="arrow">↓ jos palvelutarpeet ja käytettävissä oleva kapasiteetti eriytyvät</div><strong>03 · Tutkittava haavoittuvuus: tarpeen ja tarjonnan kohtaaminen</strong><p>Selvitä toimintakyvyn, hoivan tarpeen ja henkilöstön saatavuuden alueellinen kehitys. Näitä tietoja ei vielä ole tässä näkymässä.</p>`;}else if(p<0){body='<strong>Palveluverkon kiinteät kustannukset</strong><p>Jos väestö vähenee mutta palveluverkon kiinteät kustannukset eivät sopeudu, kustannus asukasta kohti voi kasvaa. Väestömäärä ei yksin osoita, onko näin tapahtunut.</p><div class="arrow">↓ jos sopeutuminen heikentää saavutettavuutta</div><strong>03 · Tutkittava haavoittuvuus: palvelujen etääntyminen</strong><p>Seuraavaksi tarvitaan tietoa palvelupisteistä, matka-ajoista, kustannuksista ja palvelutarpeesta.</p>';}else{body='<strong>Palvelujen ja infrastruktuurin kapasiteetti</strong><p>Jos väestö kasvaa palvelukapasiteettia nopeammin, palveluihin voi syntyä ruuhkaa ja investointitarvetta. Kasvu voi myös vahvistaa alueen voimavaroja.</p><div class="arrow">↓ jos kapasiteetin lisääminen viivästyy</div><strong>03 · Tutkittava haavoittuvuus: kasvun ja palvelujen eritahtisuus</strong><p>Seuraavaksi tarvitaan tietoa palvelujen käyttöasteesta, investoinneista, asumisesta ja väestön tarpeista.</p>';}$('flowdetail').innerHTML=body;}
+function render(){
+ const r=DATA.regions.find(r=>r.id===state.region),i=state.start-1990,j=state.end-1990,key=state.metric,v=mapValue(r),annual=state.mode==='year';
+ $('period').textContent=state.start+'–'+state.end;$('startlabel').textContent=state.start;$('endlabel').textContent=state.end;
+ $('yearcontrol').hidden=!annual;$('year').min=state.start;$('year').max=state.end;$('year').value=state.year;$('yearlabel').textContent=state.year;
+ $('mapyear').textContent=annual?state.year:state.start+'–'+state.end;
+ $('mode-change').setAttribute('aria-pressed',!annual);$('mode-year').setAttribute('aria-pressed',annual);
+ $('timehelp').textContent=annual?'Rajaus määrittää animaation ensimmäisen ja viimeisen vuoden. Kartta näyttää yhden vuoden tilanteen kerrallaan.':'Kartta näyttää alku- ja loppuvuoden välisen muutoksen. Animoi vaihtaa vuositilanteeseen.';
+ $('unithelp').textContent=annual?'Vuositilanne: väestömäärä asukkaina, 65 vuotta täyttäneiden osuus prosentteina. Väri ei kuvaa riskin vakavuutta.':'Jakson muutos: väestömäärä prosentteina, ikäosuus prosenttiyksikköinä. Väri ei kuvaa riskin vakavuutta.';
+ $('metric').options[0].textContent=annual?'Väestömäärä':'Väestömäärän muutos';$('metric').options[1].textContent=annual?'65 vuotta täyttäneiden osuus':'65 vuotta täyttäneiden osuuden muutos';
+ $('regionname').textContent=r.name;$('seriesname').textContent=r.name;$('change').textContent=formatValue(v);
+ $('changecaption').textContent=annual?(key==='population'?'asukasta vuoden '+state.year+' lopussa':'65 vuotta täyttäneiden osuus vuonna '+state.year):(key==='population'?'väestönmuutos':'65 vuotta täyttäneiden osuuden muutos');
+ $('counts').textContent=annual?'Vuosi '+state.year:(key==='population'?num(r.population[i])+' → '+num(r.population[j])+' asukasta':num(r.elderly[i],1)+' → '+num(r.elderly[j],1)+' %');
+ $('national').textContent='Koko maa '+(annual?state.year:'samalla jaksolla')+': '+formatValue(mapValue(DATA.national));
+ 
+ if(!hasData()){renderMissing();return;}
+ DATA.regions.forEach(r=>{const el=$('map-'+r.id);el.setAttribute('fill','transparent');el.classList.toggle('selected',r.id===state.region);el.querySelector('title').textContent=r.name+': '+formatValue(mapValue(r));});
+ $('maphint').textContent=r.name+' · '+formatValue(v);drawSurface();drawPeaks();drawChart(r);drawFlow(r);
+ const first=annual?state.year:state.baseline,last=state.year;
+ $('events').innerHTML=DATA.events.filter(n=>n.yearStart<=last&&n.yearEnd>=first).map(n=>`<a href="murrosverkosto.html#linssi=sukupolvet&valinta=${encodeURIComponent('solmu:'+n.id)}">${safe(n.label)} · ${safe(n.timeframe)}</a>`).join('')||'<span class="small">Ei valittuja murroskortteja tähän ajankohtaan.</span>';
+ $('tablehead').innerHTML=annual?`<tr><th>Maakunta</th><th>${state.year}${key==='population'?', asukasta':', %'}</th></tr>`:'<tr><th>Maakunta</th><th>Alku</th><th>Loppu</th><th>Muutos</th></tr>';
+ $('table').innerHTML=DATA.regions.map(r=>annual?`<tr><th scope="row">${safe(r.name)}</th><td>${formatValue(mapValue(r))}</td></tr>`:`<tr><th scope="row">${safe(r.name)}</th><td>${num(r[key][i],key==='population'?0:1)}</td><td>${num(r[key][j],key==='population'?0:1)}</td><td>${formatValue(delta(r))}</td></tr>`).join('');
+}
+function hasData(){return state.mode==='year'?(state.year>=1990&&state.year<=2025):(state.start>=1990&&state.end<=2025);}
+function renderMissing(){
+ $('map').closest('.maparea').classList.toggle('contour',true);
+ for(const id of ['surface-layer','peak-layer']){const layer=$(id);if(layer)layer.innerHTML='';}lastSurface='';
+ DATA.regions.forEach(r=>{$('map-'+r.id).setAttribute('fill','#747184');$('map-'+r.id).querySelector('title').textContent=r.name+': ei aineistoa valittuun aikaan';});
+ $('change').textContent='Ei aineistoa';$('counts').textContent=state.mode==='year'?'Vuosi '+state.year:'Valittu jakso '+state.start+'–'+state.end;$('national').textContent='Saatavilla 1990–2025';$('maphint').textContent='Harmaa kartta = puuttuva tieto, ei nollamuutos.';
+ $('legend').innerHTML='<span><i style="background:#747184"></i>Ei aineistoa</span>';
+ $('chart').innerHTML='<text x="30" y="55" fill="#536b73" font-size="14">Valitulle ajalle ei ole kattavaa väestöaineistoa.</text><text x="30" y="85" fill="#536b73" font-size="14">Valitse vuodet väliltä 1990–2025.</text>';
+ $('observation').textContent='Valittu aika jää havaintoaineiston ulkopuolelle.';$('flowdetail').innerHTML='<p>Tälle ajalle ei muodosteta vaikutuspolkua puuttuvien havaintojen perusteella.</p>';$('servicetitle').textContent='Palveluverkon näkökulma';
+ $('services').setAttribute('aria-pressed',state.branch==='services');$('age').setAttribute('aria-pressed',state.branch==='age');
+ $('tablehead').innerHTML='<tr><th>Maakunta</th><th>Valittu aika</th></tr>';$('table').innerHTML=DATA.regions.map(r=>`<tr><th scope="row">${safe(r.name)}</th><td>Ei aineistoa</td></tr>`).join('');
+ const first=state.mode==='year'?state.year:state.start,last=state.mode==='year'?state.year:state.end;
+ $('events').innerHTML=DATA.events.filter(n=>n.yearStart<=last&&n.yearEnd>=first).map(n=>`<a href="murrosverkosto.html#linssi=talous&valinta=${encodeURIComponent('solmu:'+n.id)}">${safe(n.label)} · ${safe(n.timeframe)}</a>`).join('')||'<span class="small">Ei valittuja murroskortteja tälle ajalle.</span>';
+}
+
+let timer=null;
+function stop(){if(timer!==null){clearTimeout(timer);timer=null;}$('play').textContent='▶ Animoi';$('play').setAttribute('aria-pressed',false);}
+function setMode(mode){stop();state.mode=mode;state.year=Math.max(state.start,Math.min(state.end,state.year));render();}
+function tick(){timer=null;if(state.year>=state.end){stop();return;}state.year++;render();if(state.year>=state.end)stop();else timer=setTimeout(tick,1100);}
+function play(){if(timer!==null){stop();return;}state.mode='year';if(state.year<state.start||state.year>=state.end)state.year=state.start;$('play').textContent='■ Pysäytä';$('play').setAttribute('aria-pressed',true);render();timer=setTimeout(tick,1100);}
+function mapValue(r){return state.mode==='year'?r[state.metric][state.year-1990]:delta(r);}
+function formatValue(v){
+ if(v==null)return 'Ei tietoa';
+ return state.mode==='year'?num(v,1):signed(v,1);
+}
+function scaleTicks(){return state.mode==='year'?(state.metric==='population'?[0,100000,250000,500000,1000000,2000000]:[0,10,15,20,25,35]):state.metric==='population'?[-40,-20,0,20,40,60]:[-10,-5,0,5,10,20];}
+function annualFlow(r){const y=state.year-1990;$('observation').textContent=r.name+' '+state.year+': '+formatValue(mapValue(r));$('servicetitle').textContent='Väestömäärä ja palveluverkon mitoitus';$('services').setAttribute('aria-pressed',state.branch==='services');$('age').setAttribute('aria-pressed',state.branch==='age');$('flowdetail').innerHTML=state.branch==='age'?`<strong>65 vuotta täyttäneitä: ${num(r.elderly[y],1)} %</strong><p>Ikäosuus kuvaa väestörakennetta. Se ei yksin kerro toimintakyvystä, hoivan tarpeesta tai palvelujen riittävyydestä.</p><div class="arrow">↓ tutkittava yhteys</div><strong>03 · Palvelutarpeen ja tarjonnan kohtaaminen</strong><p>Arviointi tarvitsee lisäksi tietoa terveydestä, henkilöstöstä ja palvelujen saavutettavuudesta.</p>`:`<strong>Väestömäärä: ${num(r.population[y])} asukasta</strong><p>Yhden vuoden väestömäärä ei osoita kasvua tai supistumista. Tarkastele kehityssuuntaa kuvaajasta tai Jakson muutos -tilassa.</p><div class="arrow">↓ tutkittava yhteys</div><strong>03 · Palveluverkon mitoitus ja saavutettavuus</strong><p>Selvitä, miten palvelujen kapasiteetti ja sijainti vastaavat väestön tarpeita. Maakunnan väkiluku ei yksin osoita rahoituspainetta.</p>`;}
+
+let surfaceBase=null,lastSurface='',cachedSurface='';
+function blurField(a,w,h){
+ const sigma=8,rad=24,k=Array.from({length:rad*2+1},(_,i)=>Math.exp(-.5*((i-rad)/sigma)**2));
+ const tmp=new Float64Array(a.length),out=new Float64Array(a.length);
+ for(let y=0;y<h;y++)for(let x=0;x<w;x++){let n=0;for(let j=-rad;j<=rad;j++)if(x+j>=0&&x+j<w)n+=a[y*w+x+j]*k[j+rad];tmp[y*w+x]=n;}
+ for(let y=0;y<h;y++)for(let x=0;x<w;x++){let n=0;for(let j=-rad;j<=rad;j++)if(y+j>=0&&y+j<h)n+=tmp[(y+j)*w+x]*k[j+rad];out[y*w+x]=n;}
+ return out;
+}
+function hexToRgb(hex){const n=parseInt(hex.slice(1),16);return[(n>>16)&255,(n>>8)&255,n&255];}
+function surfaceColor(v){
+  const stops=scaleTicks();
+  const colors=[hexToRgb('#d45a35'),hexToRgb('#e88f5f'),hexToRgb('#f3efe7'),hexToRgb('#5fb3a8'),hexToRgb('#2e7d75'),hexToRgb('#0f4a45')];
+  let i=0;while(i<stops.length-2&&v>stops[i+1])i++;
+  const t=Math.max(0,Math.min(1,(v-stops[i])/(stops[i+1]-stops[i])));
+  return colors[i].map((c,j)=>Math.round(c+(colors[i+1][j]-c)*t));
+}
+function drawSurface(){
+ const map=$('map'),area=map.closest('.maparea');area.classList.toggle('contour',state.view==='contour');
+ 
+ let layer=$('surface-layer');
+ if(!layer){layer=document.createElementNS('http://www.w3.org/2000/svg','g');layer.id='surface-layer';layer.setAttribute('pointer-events','none');map.insertBefore(layer,map.firstChild);}
+ layer.style.display=state.view==='contour'?'':'none';if(state.view!=='contour')return;
+ const ticks=scaleTicks();
+ $('legend').innerHTML=ticks.map(v=>`<span><b>${num(v,state.mode==='year'&&state.metric==='population'?0:1)}</b><i style="background:rgb(${surfaceColor(v).join(',')})"></i></span>`).join('');
+ const key=[state.start,state.end,state.metric,state.mode,state.year,state.baseline??''].join('/');if(key===lastSurface)return;
+ const w=200,h=300,can=document.createElement('canvas');can.width=w;can.height=h;const ctx=can.getContext('2d');
+ if(!surfaceBase){ctx.save();ctx.scale(.4,.4);DATA.regions.forEach((r,i)=>{ctx.fillStyle=`rgb(${(i+1)*10},0,0)`;ctx.fill(new Path2D(r.path),'evenodd');});ctx.restore();surfaceBase=ctx.getImageData(0,0,w,h).data;}
+ const nums=new Float64Array(w*h),weights=new Float64Array(w*h),vals=DATA.regions.map(r=>mapValue(r));
+ for(let i=0;i<nums.length;i++){const id=Math.round(surfaceBase[i*4]/10)-1;if(id>=0&&id<vals.length&&surfaceBase[i*4+3]>250&&vals[id]!=null){nums[i]=vals[id];weights[i]=1;}}
+ const bn=blurField(nums,w,h),bw=blurField(weights,w,h),field=bn.map((v,i)=>bw[i]>1e-8?v/bw[i]:NaN),step=(ticks[5]-ticks[0])/18;
+ const img=ctx.createImageData(w,h);
+ for(let i=0;i<field.length;i++){if(!Number.isFinite(field[i]))continue;const rgb=surfaceColor(Math.round(field[i]/step)*step);img.data.set([...rgb,255],i*4);}ctx.putImageData(img,0,0);
+  const valid=vals.filter(v=>v!=null),lo=Math.floor(Math.min(...valid)/step)*step,hi=Math.ceil(Math.max(...valid)/step)*step;
+  let lines='';
+  for(let level=lo;level<=hi;level+=step){let path='';for(let y=0;y<h-1;y++)for(let x=0;x<w-1;x++){
+   const v=[field[y*w+x],field[y*w+x+1],field[(y+1)*w+x+1],field[(y+1)*w+x]],pts=[[x,y],[x+1,y],[x+1,y+1],[x,y+1]],cross=[];
+   for(let j=0;j<4;j++){const j2=(j+1)%4;if(!Number.isFinite(v[j])||!Number.isFinite(v[j2]))continue;if((v[j]<level)!==(v[j2]<level)){const t=(level-v[j])/(v[j2]-v[j]);cross.push([(pts[j][0]+(pts[j2][0]-pts[j][0])*t+.5)*2.5,(pts[j][1]+(pts[j2][1]-pts[j][1])*t+.5)*2.5]);}}
+   for(let j=0;j+1<cross.length;j+=2)path+=`M${cross[j][0].toFixed(1)},${cross[j][1].toFixed(1)}L${cross[j+1][0].toFixed(1)},${cross[j+1][1].toFixed(1)}`;
+  }lines+=`<path d="${path}" fill="none" stroke="${level===0?'#c24e23':'#1a1712'}" stroke-opacity="${level===0?.5:.14}" stroke-width="${level===0?1.1:.5}"/>`;}
+  layer.innerHTML=`<defs><clipPath id="finland-clip">${DATA.regions.filter(r=>mapValue(r)!==null).map(r=>`<path d="${r.path}" clip-rule="evenodd"/>`).join('')}</clipPath></defs><g clip-path="url(#finland-clip)"><image width="500" height="750" opacity="0.88" href="${can.toDataURL()}"/>${lines}</g>`;
+ lastSurface=key;
+}
+
+
+function drawPeaks(){
+ const map=$('map');let layer=$('peak-layer');if(!layer){layer=document.createElementNS('http://www.w3.org/2000/svg','g');layer.id='peak-layer';layer.setAttribute('pointer-events','none');map.appendChild(layer);}
+ const candidates=DATA.regions.filter(r=>mapValue(r)!=null).map(r=>{
+  const idx=DATA.regions.indexOf(r)+1;let sx=0,sy=0,n=0;
+  for(let i=0;i<60000;i++)if(surfaceBase[i*4]===idx*10&&surfaceBase[i*4+3]>250){sx+=i%200;sy+=Math.floor(i/200);n++;}
+  if(!n)return null;const cx=sx/n,cy=sy/n;let best=Infinity,px=cx,py=cy;
+  for(let i=0;i<60000;i++)if(surfaceBase[i*4]===idx*10&&surfaceBase[i*4+3]>250){const x=i%200,y=Math.floor(i/200),dist=(x-cx)**2+(y-cy)**2;if(dist<best){best=dist;px=x;py=y;}}
+  return{r,value:mapValue(r),x:(px+.5)*2.5,y:(py+.5)*2.5};
+ }).filter(Boolean).sort((a,b)=>b.value-a.value);
+ const picks=[];if(candidates.length)picks.push(candidates[0]);if(candidates.length>1)picks.push(candidates.at(-1));
+ const valueRange=Math.max(1e-9,(candidates[0]?.value??0)-(candidates.at(-1)?.value??0));
+ const target=Math.min(5,candidates.length);
+ while(picks.length<target){
+  const remaining=candidates.filter(c=>!picks.includes(c));if(!remaining.length)break;
+  const ranked=remaining.map(c=>{
+   const valueGap=Math.min(...picks.map(p=>Math.abs(c.value-p.value)))/valueRange;
+   const spatialGap=Math.min(...picks.map(p=>Math.hypot(c.x-p.x,c.y-p.y)))/500;
+   const rankGap=Math.min(candidates.indexOf(c),candidates.length-1-candidates.indexOf(c))/Math.max(1,candidates.length-1);
+   return{c,score:valueGap*.48+Math.min(1,spatialGap)*.4+rankGap*.12,valueGap,spatialGap};
+  }).sort((a,b)=>b.score-a.score);
+  const next=ranked.find(x=>x.valueGap>.035||x.spatialGap>.2);if(!next)break;picks.push(next.c);
+ }
+ const boxes=[],labels=[];
+ for(const pick of picks){
+  const{r,px=pick.x,py=pick.y}= {r:pick.r,px:pick.x,py:pick.y};
+  let pos=null;const width=Math.max(state.mode==='year'&&state.metric==='population'?145:122,r.name.length*7.4+16),height=46;
+  for(const [dx,dy]of [[0,-22],[-82,-26],[82,-26],[0,-70],[-94,-72],[94,-72],[0,42],[-92,38],[92,38],[-72,-118],[72,-118],[-110,84],[110,84]]){
+   const x=Math.max(width/2+7,Math.min(493-width/2,px+dx)),y=Math.max(28,Math.min(700,py+dy));
+    const b={x1:x-width/2-4,x2:x+width/2+4,y1:y-height/2-4,y2:y+height/2+4};if(boxes.some(o=>!(b.x2<o.x1||b.x1>o.x2||b.y2<o.y1||b.y1>o.y2)))continue;pos={x,y,b};break;
+  }
+   if(!pos)continue;boxes.push(pos.b);const{x,y}=pos;const unit=state.metric==='population'?' %':' %-yks.';
+   labels.push(`<g class="peak-label"><line x1="${px}" y1="${py}" x2="${x}" y2="${y+10}" stroke="#1a1712" stroke-width="1" stroke-opacity="0.4"/><circle cx="${px}" cy="${py}" r="3" fill="#c24e23" stroke="#f3efe7" stroke-width="1.5"/><text x="${x}" y="${y-3}" text-anchor="middle" fill="#c24e23" font-size="19" font-weight="500" stroke="#f3efe7" stroke-width="2.5" paint-order="stroke">${formatValue(mapValue(r))}</text><text x="${x}" y="${y+16}" text-anchor="middle" fill="#1a1712" font-size="13" stroke="#f3efe7" stroke-width="2.5" paint-order="stroke">${safe(r.name)}</text></g>`);
+ }
+ layer.innerHTML=labels.join('');
+}
+
+function sizeRails(){
+ const map=$('map'),area=map.closest('.maparea');
+ const box=map.getBoundingClientRect(),ab=area.getBoundingClientRect();
+ // The SVG preserves its 500:750 aspect ratio; align to its actual drawing.
+ const scale=Math.min(box.width/500,box.height/750);
+ const drawingTop=box.top-ab.top+(box.height-750*scale)/2;
+ const top=Math.max(10,drawingTop+20*scale);
+ const bottom=Math.max(10,ab.height-(drawingTop+730*scale));
+ document.querySelectorAll('.timerail').forEach(rail=>{rail.style.top=top+'px';rail.style.bottom=bottom+'px';});
+ document.querySelectorAll('.rail-track').forEach(track=>{track.style.setProperty('--rail-length',Math.max(0,track.getBoundingClientRect().height-32)+'px');});
+}
+function setupRails(){sizeRails();if(typeof ResizeObserver!=='undefined'){const ro=new ResizeObserver(sizeRails);ro.observe($('map'));ro.observe($('map').closest('.maparea'));}window.addEventListener('resize',sizeRails);for(const id of ['start','end'])$(id).addEventListener('keydown',e=>{if(e.key==='ArrowUp'||e.key==='ArrowDown'){e.preventDefault();const el=e.currentTarget;el.value=Math.max(+el.min,Math.min(+el.max,+el.value+(e.key==='ArrowDown'?1:-1)));el.dispatchEvent(new Event('input',{bubbles:true}));}});}
+
+function init(d){if(DATA)return;if(!d.regions||d.regions.length!==19||!d.years||d.years.length!==36)throw Error('Aineiston rakenne ei vastaa tätä näkymää.');setupMetrics(d);DATA=d;$('loader').hidden=true;$('app').hidden=false;fitSeriesYear();$('region').innerHTML=d.regions.map(r=>`<option value="${r.id}">${safe(r.name)}</option>`).join('');$('region').value=state.region;$('map').innerHTML=d.regions.map(r=>`<path id="map-${r.id}" class="region" d="${r.path}" fill-rule="evenodd"><title>${safe(r.name)}</title></path>`).join('');d.regions.forEach(r=>{$('map-'+r.id).onclick=()=>selectRegion(r.id);$('map-'+r.id).onpointerenter=()=>{$('maphint').textContent=r.name+' · '+formatValue(mapValue(r));};});$('region').onchange=e=>selectRegion(e.target.value);$('metric').onchange=e=>{state.metric=e.target.value;render();};$('previous-metric').onclick=()=>browseMetric(-1);$('next-metric').onclick=()=>browseMetric(1);$('play').onclick=play;$('year').oninput=e=>adjustWindow('baseline',+e.target.value);$('compare-year').oninput=e=>adjustWindow('limit',+e.target.value);document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});['services','age'].forEach(id=>$(id).onclick=()=>{state.branch=id;render();});$('areanote').textContent=d.source.areaNote;$('sources').innerHTML=`<a href="${d.source.url}" target="_blank" rel="noopener">Tilastotaulukko 11ra ↗</a> · <a href="https://stat.fi/tilasto/dokumentaatio/vaerak" target="_blank" rel="noopener">Menetelmät ↗</a> · Haettu ${d.source.retrieved}.`;render();}
+function fail(e){$('loadtext').textContent='Aineistoa ei voitu ladata automaattisesti. Pidä HTML ja JSON samassa verkkokansiossa tai valitse JSON-tiedosto alta. '+e.message;}
+// Regional adapter: original layout, map surface and vertical rails are preserved.
+let regionalCatalog=new Map(),regionalRows=new Map(),metricBound=false;
+function setupMetrics(d){
+ if(!d.regional?.series?.length||!Array.isArray(d.regional.values))throw Error('Tämä HTML tarvitsee kaikki aluesarjat sisältävän JSON-tiedoston (regional-osio).');
+ const catalog=d.regional.series;
+ regionalCatalog=new Map(catalog.map(s=>[s.series_key,s]));
+ regionalRows=new Map(catalog.map(s=>[s.series_key,new Map()]));
+ for(const v of d.regional.values){const s=catalog[v[0]];if(!s||!Number.isInteger(v[3])||(v[4]!==null&&!Number.isFinite(v[4])))throw Error('Virheellinen aluesarjan arvorivi.');regionalRows.get(s.series_key).set(v[1]+'/'+v[3],v[4]);}
+ for(const s of catalog){s.availableYears=[...new Set(d.regional.values.filter(v=>catalog[v[0]]===s&&v[4]!==null).map(v=>v[3]))].sort((a,b)=>a-b);}
+ const groups=new Map();for(const s of catalog){const name=s.data_class==='projection'?'Ennusteet · '+s.source:'Havainnot · '+s.source;if(!groups.has(name))groups.set(name,[]);groups.get(name).push(s);}
+ $('metric').innerHTML=[...groups].map(([name,ss])=>`<optgroup label="${safe(name)}">${ss.map(s=>`<option value="${safe(s.series_key)}">${safe(s.title)} · ${safe(s.unit)}</option>`).join('')}</optgroup>`).join('');
+ state.metric=catalog.find(s=>s.series_key==='fi.regional.population_observed_a2026')?.series_key||catalog[0].series_key;$('metric').value=state.metric;
+ if(!metricBound){metricBound=true;$('metric').addEventListener('change',()=>{const running=timer!==null;stop();state.metric=$('metric').value;fitSeriesYear(running);lastSurface='';if(running)play();});}
+}
+function selectedSeries(){return regionalCatalog.get(state.metric);}
+function valueAt(r,year,key=state.metric){return regionalRows.get(key)?.get((r.id||'FI')+'/'+year)??null;}
+function differenceUnit(){const u=selectedSeries().unit;return u==='%'?'%-yks.':/100|Gini|vuotta|EU27=100/.test(u)?u:'%';}
+function regionalDelta(r,key=state.metric){const a=valueAt(r,state.start,key),b=valueAt(r,state.end,key);if(a===null||b===null)return null;return differenceUnit()==='%'?(a===0?null:100*(b/a-1)):b-a;}
+function baselineChange(r,year=state.year){const a=valueAt(r,state.baseline),b=valueAt(r,year);if(a===null||b===null)return null;return differenceUnit()==='%'?(a===0?null:100*(b/a-1)):b-a;}
+function mapValue(r){return state.mode==='year'?valueAt(r,state.year):baselineChange(r);}
+function formatValue(v){if(v===null||v===undefined||!Number.isFinite(v))return 'Ei tietoa';const u=state.mode==='year'?selectedSeries().unit:differenceUnit();return (state.mode==='change'?signed(v):num(v,1))+(u==='%'?' %':u==='%-yks.'?' %-yks.':'');}
+function availableWindow(inWindow=true){return selectedSeries().availableYears.filter(y=>!inWindow||(y>=state.start&&y<=state.end));}
+let regionalScale=[0,1,2,3,4,5];
+function updateRegionalScale(){const vals=[];for(const r of DATA.regions){if(state.mode==='change'){for(const y of availableWindow().filter(y=>y>=state.baseline&&y<=state.limit)){const v=baselineChange(r,y);if(v!==null)vals.push(v);}}else for(const y of availableWindow()){const v=valueAt(r,y);if(v!==null)vals.push(v);}}let lo=vals.length?Math.min(...vals):0,hi=vals.length?Math.max(...vals):1;if(state.mode==='change'){const m=Math.max(Math.abs(lo),Math.abs(hi),1);lo=-m;hi=m;}if(hi===lo)hi=lo+1;regionalScale=Array.from({length:6},(_,i)=>lo+(hi-lo)*i/5);}
+function scaleTicks(){return regionalScale;}
+function loopYears(){return availableWindow().filter(y=>y>=state.baseline&&y<=state.limit);}
+function tick(){const ys=loopYears();if(ys.length<2){stop();return;}state.year=ys.find(y=>y>state.year)??ys[0];render();timer=setTimeout(tick,1100);}
+function play(){if(timer!==null){stop();return;}const ys=loopYears();if(ys.length<2)return;if(!ys.includes(state.year)||state.year===state.limit)state.year=state.baseline;state.mode='change';lastSurface='';$('play').textContent='■ Pysäytä';$('play').setAttribute('aria-pressed',true);render();timer=setTimeout(tick,1100);}
+function adjustWindow(key,index){stop();const ys=availableWindow();if(ys.length<2)return;const i=Math.max(0,Math.min(ys.length-1,index));if(key==='baseline')state.baseline=ys[Math.min(i,ys.indexOf(state.limit)-1)];else state.limit=ys[Math.max(i,ys.indexOf(state.baseline)+1)];state.year=state.limit;state.mode='change';lastSurface='';render();}
+
+function drawChart(r){
+ const s=selectedSeries(),W=Math.max(280,$('chart').clientWidth||520);$('chart').setAttribute('viewBox','0 0 '+W+' 195');
+ const ys=s.frequency==='5-year'||s.metadata?.source_step_years===5?s.availableYears.filter(y=>y>=state.start&&y<=state.end):Array.from({length:state.end-state.start+1},(_,i)=>state.start+i);
+ const vals=ys.flatMap(y=>[valueAt(r,y),valueAt(DATA.national,y)]).filter(v=>v!==null);
+ if(!vals.length){$('chart').innerHTML='<text x="25" y="65" fill="#536b73" font-size="14">Ei arvoja valitulla aikavälillä.</text>';return;}
+ const lo=Math.min(...vals),hi=Math.max(...vals),pad=Math.max(1,(hi-lo)*.15),x=y=>55+(y-state.start)/Math.max(1,state.end-state.start)*(W-80),Y=v=>153-(v-lo+pad)/(hi-lo+2*pad)*120;let svg='';
+ for(let j=0;j<4;j++){const v=lo+(hi-lo)*j/3;svg+=`<line x1="55" x2="${W-25}" y1="${Y(v)}" y2="${Y(v)}" stroke="#dce5e8"/><text x="49" y="${Y(v)+4}" text-anchor="end" font-size="11" fill="#536b73">${num(v,0)}</text>`;}
+ for(const [region,col,dash]of [[DATA.national,'#728791','5 4'],[r,'#126b79','']]){let path='',pen=false;for(const y of ys){const v=valueAt(region,y);if(v===null){pen=false;continue;}path+=(pen?'L':'M')+x(y)+','+Y(v);pen=true;svg+=`<circle cx="${x(y)}" cy="${Y(v)}" r="2" fill="${col}"/>`;}svg+=`<path d="${path}" fill="none" stroke="${col}" stroke-width="2.5" stroke-dasharray="${dash}"/>`;}
+ for(const y of [state.start,state.end])svg+=`<text x="${x(y)}" y="178" text-anchor="middle" font-size="12" fill="#536b73">${y}</text>`;
+ svg+=`<line x1="${x(state.year)}" x2="${x(state.year)}" y1="28" y2="155" stroke="#b95e3d" stroke-dasharray="3 3"/>`;
+ if(state.mode==='change')svg+=`<line x1="${x(state.baseline)}" x2="${x(state.baseline)}" y1="28" y2="155" stroke="#126b79" stroke-dasharray="5 4"/><text x="${x(state.baseline)}" y="20" text-anchor="middle" font-size="11">Lähtö ${state.baseline}</text>`;
+ $('chart').innerHTML=svg;$('chart').setAttribute('aria-label',r.name+': '+s.title+', '+s.unit+', '+state.start+'–'+state.end);
+}
+function drawFlow(r){
+ const missing=mapValue(r)===null,s=selectedSeries();$('observation').textContent=r.name+': '+formatValue(mapValue(r))+(s.data_class==='projection'?' (ennuste)':'');
+ $('services').setAttribute('aria-pressed',state.branch==='services');$('age').setAttribute('aria-pressed',state.branch==='age');$('servicetitle').textContent='Palvelutarpeet ja rahoituspohja';
+ $('flowdetail').innerHTML=missing?'<p>Valituilta vuosilta puuttuu tietoa. Puuttuvasta arvosta ei muodosteta vaikutustulkintaa.</p>':state.branch==='age'?'<strong>Ikärakenne ja palvelutarpeet</strong><p>Vertaa valittua kehitystä lasten, työikäisten ja ikääntyneiden osuuksiin. Ikäjakauma ei yksin osoita toimintakykyä tai hoivan tarvetta.</p>':'<strong>Palvelujen tarve ja alueen voimavarat</strong><p>Vertaa valittua sarjaa työllisyyteen, pienituloisuuteen ja väestökehitykseen. Yksittäinen sarja ei osoita alueen julkisen talouden tasapainoa tai muutoksen syytä.</p>';
+}
+function render(){if(!DATA||!selectedSeries())return;const s=selectedSeries(),r=DATA.regions.find(r=>r.id===state.region),annual=state.mode==='year';updateRegionalScale();
+ const ys=availableWindow();$('region').value=state.region;$('mapyear').textContent=annual?(state.year??'Ei tietoa'):state.baseline+' → '+state.year;
+ $('year').min=0;$('year').max=Math.max(0,ys.length-1);$('year').value=Math.max(0,ys.indexOf(state.baseline??state.year));$('year').disabled=ys.length<2;$('year').setAttribute('aria-valuetext',String(state.baseline??state.year??'Ei tietoa'));$('yearlabel').textContent=state.baseline??state.year??'Ei tietoa';$('firstyear').textContent=ys[0]??'';$('lastyear').textContent=ys.at(-1)??'';$('play').disabled=loopYears().length<2;$('compare-year').min=0;$('compare-year').max=Math.max(0,ys.length-1);$('compare-year').value=Math.max(0,ys.indexOf(state.limit));$('compare-year').disabled=ys.length<2;$('compare-year').setAttribute('aria-valuetext',String(state.limit));$('compare-label').textContent=state.limit;
+ $('timehelp').textContent=(s.data_class==='projection'?'Ennuste':'Havainnot')+' · '+s.start_year+'–'+s.end_year+'. '+(annual?'Animoi näyttää muutoksen valitusta vuodesta eteenpäin.':'Muutos '+state.baseline+' → '+state.year+'. Animaatio kiertää välillä '+state.baseline+'–'+state.limit+'. Vetimet säilyttävät valitun aikavälin.');
+ $('unithelp').textContent='Yksikkö: '+(annual?s.unit:differenceUnit())+'. Kuvaajassa alkuperäiset arvot: '+s.unit+'. Väriskaala pysyy samana animaation ajan.';
+ $('mapcomparison').textContent=s.title;const _lb=$('linkback'),_lm=$('linkmeta');if(_lb&&!_lb.hidden){if(_lm)_lm.textContent=s.title;const ly=$('linkyear');if(ly)ly.textContent=$('mapyear').textContent;}$('regionname').textContent=r.name;$('seriesname').textContent=r.name;$('change').textContent=formatValue(mapValue(r));$('changecaption').textContent=annual?s.unit:differenceUnit();
+ $('counts').textContent=annual?'Vuosi '+state.year:num(valueAt(r,state.baseline),1)+' → '+num(valueAt(r,state.year),1)+' '+s.unit;
+ $('national').textContent='Koko maa: '+formatValue(mapValue(DATA.national));$('maphint').textContent=r.name+' · '+formatValue(mapValue(r));
+ DATA.regions.forEach(r=>{const el=$('map-'+r.id);el.setAttribute('fill',mapValue(r)===null?'#747184':'transparent');el.classList.toggle('selected',r.id===state.region);el.querySelector('title').textContent=r.name+': '+formatValue(mapValue(r));});
+ if(DATA.regions.some(r=>mapValue(r)!==null)){drawSurface();drawPeaks();}else{for(const id of ['surface-layer','peak-layer'])if($(id))$(id).innerHTML='';lastSurface='';$('legend').textContent='Ei tietoa valituilta vuosilta';$('maphint').textContent='Harmaa kartta tarkoittaa puuttuvaa tietoa.';}
+ drawChart(r);drawFlow(r);
+ const first=annual?state.year:state.baseline,last=state.year;$('events').innerHTML=DATA.events.filter(n=>n.yearStart<=last&&n.yearEnd>=first).map(n=>`<a href="murrosverkosto.html#linssi=talous&valinta=${encodeURIComponent('solmu:'+n.id)}">${safe(n.label)}</a>`).join('');
+ $('tablehead').innerHTML=annual?'<tr><th>Maakunta</th><th>Arvo</th></tr>':'<tr><th>Maakunta</th><th>Alku</th><th>Loppu</th><th>Muutos</th></tr>';
+ $('table').innerHTML=DATA.regions.map(r=>`<tr><th scope="row">${safe(r.name)}</th>${annual?'':`<td>${num(valueAt(r,state.baseline),1)}</td><td>${num(valueAt(r,state.year),1)}</td>`}<td>${formatValue(mapValue(r))}</td></tr>`).join('');
+ const m=s.metadata||{};$('areanote').textContent='Lähteen aluejako: '+(m.area_classification_year||m.area_note||s.geography)+'. Karttapohja: 2026. Eri lähteiden aluerajoja ei ole harmonisoitu.';
+ $('sources').innerHTML=`<a href="${safe(s.source_url)}" target="_blank" rel="noopener">${safe(s.source)} · ${safe(m.table||'')}</a>`+(m.price_year?' · Vuoden '+m.price_year+' rahassa.':'')+(m.comparability_break?' · Vertailukelpoisuuskatkos: '+m.comparability_break:'');
+}
+
+function fitSeriesYear(keepYear=false){
+ const ys=availableWindow(false),base=state.baseline??state.year,limit=state.limit,year=state.year;state.mode='change';state.start=ys[0]??0;state.end=ys.at(-1)??0;
+ if(!ys.length){state.baseline=null;state.limit=null;state.year=null;return;}
+ const nearest=v=>ys.reduce((a,b)=>Math.abs(b-v)<Math.abs(a-v)?b:a);
+ state.baseline=nearest(base);state.limit=limit==null?ys.at(-1):nearest(limit);
+ if(state.limit<=state.baseline&&ys.length>1){const i=ys.indexOf(state.baseline);if(i===ys.length-1)state.baseline=ys[i-1];state.limit=ys[ys.indexOf(state.baseline)+1];}
+ state.year=Math.max(state.baseline,Math.min(state.limit,nearest(year)));if(timer===null&&!keepYear)state.year=state.limit;
+}
+
+function browseMetric(direction){
+ const options=Array.from($('metric').options);if(!options.length)return;
+ const i=options.findIndex(o=>o.value===state.metric);
+ $('metric').value=options[(i+direction+options.length)%options.length].value;
+ $('metric').dispatchEvent(new Event('change',{bubbles:true}));
+}
+
+function setupDrawer(){
+ const media=window.matchMedia('(max-width:800px)'),panel=$('controls-panel'),opener=$('drawer-open');let open=false,gesture=null;
+ function toggle(value){open=value;document.body.classList.toggle('drawer-visible',open);opener.setAttribute('aria-expanded',String(open));$('drawer-shade').hidden=!open;if(media.matches)panel.inert=!open;else panel.inert=false;if(open)$('drawer-close').focus();else if(media.matches)opener.focus();}
+ opener.onclick=()=>toggle(true);$('drawer-close').onclick=()=>toggle(false);$('drawer-shade').onclick=()=>toggle(false);
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&open)toggle(false);});
+ document.addEventListener('touchstart',e=>{if(!media.matches||e.touches.length!==1)return;const t=e.touches[0];if(e.target.closest('input,select,a'))return;gesture=(open||t.clientX>window.innerWidth-48||e.target===opener)?{x:t.clientX,y:t.clientY}:null;},{passive:true});
+ document.addEventListener('touchend',e=>{if(!gesture||!e.changedTouches.length)return;const t=e.changedTouches[0],dx=t.clientX-gesture.x,dy=t.clientY-gesture.y;gesture=null;if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.5){if(dx<0&&!open)toggle(true);else if(dx>0&&open)toggle(false);}},{passive:true});
+ document.addEventListener('touchcancel',()=>{gesture=null;},{passive:true});
+ const resize=()=>{panel.inert=media.matches&&!open;if(!media.matches){document.body.classList.remove('drawer-visible');$('drawer-shade').hidden=true;open=false;opener.setAttribute('aria-expanded','false');}};
+ media.addEventListener('change',resize);resize();
+}
+setupDrawer();
+
+const THEMES=[{"id": "vaesto", "title": "Väestö ja ikärakenne", "file": "alueellinen-vaesto.json", "count": 11}, {"id": "tyo", "title": "Työ ja työllisyys", "file": "alueellinen-tyo.json", "count": 25}, {"id": "tulot", "title": "Tulot ja eriarvoisuus", "file": "alueellinen-tulot.json", "count": 34}, {"id": "talous", "title": "Aluetalous", "file": "alueellinen-talous.json", "count": 14}, {"id": "ennusteet", "title": "Väestöennusteet", "file": "alueellinen-ennusteet.json", "count": 23}];
+let themeRequest=0;
+function showThemes(){ $('themes').innerHTML=THEMES.map(t=>`<button data-theme="${t.id}" aria-pressed="${DATA?.theme===t.id}">${safe(t.title)} · ${t.count}</button>`).join('');$('themes').querySelectorAll('button').forEach(b=>b.onclick=()=>loadTheme(b.dataset.theme)); }
+async function loadTheme(id,link=null){
+ const t=THEMES.find(t=>t.id===id);if(!t)return;stop();const request=++themeRequest;$('themestatus').textContent='Ladataan: '+t.title;
+ try{const response=await fetch(t.file);if(!response.ok)throw Error('HTTP '+response.status);const d=await response.json();if(request!==themeRequest)return;
+ activeTheme=t.id;if(!DATA)init(d);else{setupMetrics(d);DATA=d;fitSeriesYear();lastSurface='';render();}showThemes();$('themestatus').textContent=t.title+' · '+d.regional.series.length+' sarjaa';if(link)applyDeepLink(link);return true;
+ }catch(e){if(request!==themeRequest)return;$('themestatus').textContent='Aineiston lataus epäonnistui. Valitse teeman JSON-tiedosto alta.';$('loader').hidden=false;fail(e);return false;}
+}
+$('file').onchange=async e=>{try{if(e.target.files[0]){const d=JSON.parse(await e.target.files[0].text());++themeRequest;stop();if(!DATA)init(d);else{setupMetrics(d);DATA=d;fitSeriesYear();lastSurface='';render();$('loader').hidden=true;}showThemes();$('themestatus').textContent=(d.title||'Aineisto')+' · '+d.regional.series.length+' sarjaa';if(pendingLink)applyDeepLink();}}catch(e){fail(e);}};
+function readDeepLink(){
+ const p=new URLSearchParams(location.hash.slice(1)),o={};
+ o.theme=p.get('teema');o.region=p.get('maakunta');o.node=p.get('murros');o.label=p.get('nimi');o.lens=p.get('linssi');o.series=p.get('sarja');
+ const j=(p.get('jakso')||'').match(/^(\d{4})-(\d{4})$/);if(j){o.from=+j[1];o.to=+j[2];}
+ return (o.theme||o.from||o.node||o.series||o.label)?o:null;
+}
+let pendingLink=null,activeTheme=null;
+function applyDeepLink(link=pendingLink){
+ const o=link;if(!o||!DATA)return;pendingLink=null;
+ if(o.series){if(!regionalCatalog.has(o.series))throw Error('Linkin sarjaa ei löydy valitusta teemasta: '+o.series);state.metric=o.series;$('metric').value=o.series;}
+ stop();
+ if(o.region&&DATA.regions.some(r=>r.id===o.region)){state.region=o.region;$('region').value=o.region;}
+ if(o.from){state.baseline=o.from;state.limit=o.to;state.year=o.to;state.mode='change';}
+ fitSeriesYear(true);lastSurface='';render();
+ const el=$('linkback');
+ if(o.label){el.hidden=false;el.innerHTML='<div id="linkyear" class="heading-years"></div><strong class="heading-title">'+safe(o.label)+'</strong><span id="linkmeta" class="linkmeta"></span><a href="murrosverkosto.html#linssi='+encodeURIComponent(o.lens||'talous')+'&valinta='+encodeURIComponent('solmu:'+(o.node||''))+'">Takaisin verkostoon ↩</a>';}
+
+ else el.hidden=true;
+ document.querySelector('.mapcaption').style.display=el.hidden?'':'none';
+ render();
+
+}
+function openLink(link){
+ pendingLink=link;
+ const id=link&&link.theme&&THEMES.some(t=>t.id===link.theme)?link.theme:'vaesto';
+ return loadTheme(id,link);
+}
+window.addEventListener('hashchange',()=>{const l=readDeepLink();if(l)openLink(l);else{$('linkback').hidden=true;document.querySelector('.mapcaption').style.display='';}});
+showThemes();
+if(location.protocol==='file:'){pendingLink=readDeepLink();fail(Error('Paikallinen tiedosto: valitse linkin teeman JSON-aineisto.'));}
+else openLink(readDeepLink());
+</script></body></html>
