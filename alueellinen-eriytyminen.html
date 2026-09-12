@@ -116,8 +116,8 @@ details{border-top:1px solid var(--line);padding:16px 0!important}table th{backg
 .map-heading #mapcomparison,.map-heading .heading-title{display:block;max-width:640px;margin:5px auto 0;padding:0;border:0;font:italic 400 clamp(14px,1.4vw,18px)/1.25 Georgia,serif;overflow-wrap:anywhere}
 .map-heading .linkmeta{font:400 11px/1.25 system-ui,sans-serif;max-width:640px;overflow-wrap:anywhere}.map-heading .linkback a{font-size:11px;line-height:1.4}
 .layout>.maparea>#map{flex:1 1 0;height:0;min-height:0;width:100%;transform:none;max-height:none}
-.maparea:before{display:none!important}.maplegend{top:auto!important;bottom:18px;right:16px}
-@media(max-width:800px){.map-heading{padding-left:12px;padding-right:12px}.map-heading #mapyear,.map-heading .heading-years{font-size:30px}.map-heading #mapcomparison,.map-heading .heading-title{font-size:14px}.maplegend{bottom:76px;right:10px}}
+.maparea:before{display:none!important}.maplegend{top:calc(var(--map-heading-height,110px) + 8px)!important;bottom:auto!important;right:16px}
+@media(max-width:800px){.map-heading{padding-left:12px;padding-right:12px}.map-heading #mapyear,.map-heading .heading-years{font-size:30px}.map-heading #mapcomparison,.map-heading .heading-title{font-size:14px}.maplegend{top:calc(var(--map-heading-height,110px) + 8px)!important;bottom:auto!important;right:10px}}
 </style></head><body>
 
 <div id="loader"><strong>Ladataan maakuntien aikasarjat…</strong><p id="loadtext"></p><label>Valitse alueellinen-eriytyminen.json<input id="file" type="file" accept=".json,application/json"></label></div>
@@ -356,7 +356,7 @@ function render(){if(!DATA||!selectedSeries())return;const s=selectedSeries(),r=
  $('year').min=0;$('year').max=Math.max(0,ys.length-1);$('year').value=Math.max(0,ys.indexOf(state.baseline??state.year));$('year').disabled=ys.length<2;$('year').setAttribute('aria-valuetext',String(state.baseline??state.year??'Ei tietoa'));$('yearlabel').textContent=state.baseline??state.year??'Ei tietoa';$('firstyear').textContent=ys[0]??'';$('lastyear').textContent=ys.at(-1)??'';$('play').disabled=loopYears().length<2;$('compare-year').min=0;$('compare-year').max=Math.max(0,ys.length-1);$('compare-year').value=Math.max(0,ys.indexOf(state.limit));$('compare-year').disabled=ys.length<2;$('compare-year').setAttribute('aria-valuetext',String(state.limit));$('compare-label').textContent=state.limit;
  $('timehelp').textContent=(s.data_class==='projection'?'Ennuste':'Havainnot')+' · '+s.start_year+'–'+s.end_year+'. '+(annual?'Animoi näyttää muutoksen valitusta vuodesta eteenpäin.':'Muutos '+state.baseline+' → '+state.year+'. Animaatio kiertää välillä '+state.baseline+'–'+state.limit+'. Vetimet säilyttävät valitun aikavälin.');
  $('unithelp').textContent='Yksikkö: '+(annual?s.unit:differenceUnit())+'. Kuvaajassa alkuperäiset arvot: '+s.unit+'. Väriskaala pysyy samana animaation ajan.';
- $('mapcomparison').textContent=s.title;const _lb=$('linkback'),_lm=$('linkmeta');if(_lb&&!_lb.hidden){if(_lm)_lm.textContent=s.title;const ly=$('linkyear');if(ly)ly.textContent=$('mapyear').textContent;}$('regionname').textContent=r.name;$('seriesname').textContent=r.name;$('change').textContent=formatValue(mapValue(r));$('changecaption').textContent=annual?s.unit:differenceUnit();
+ $('mapcomparison').textContent=s.title;const _lb=$('linkback'),_lt=$('linktitle');if(_lb&&!_lb.hidden){if(_lt)_lt.textContent=s.title;const ly=$('linkyear');if(ly)ly.textContent=$('mapyear').textContent;}positionMapLegend();$('regionname').textContent=r.name;$('seriesname').textContent=r.name;$('change').textContent=formatValue(mapValue(r));$('changecaption').textContent=annual?s.unit:differenceUnit();
  $('counts').textContent=annual?'Vuosi '+state.year:num(valueAt(r,state.baseline),1)+' → '+num(valueAt(r,state.year),1)+' '+s.unit;
  $('national').textContent='Koko maa: '+formatValue(mapValue(DATA.national));$('maphint').textContent=r.name+' · '+formatValue(mapValue(r));
  DATA.regions.forEach(r=>{const el=$('map-'+r.id);el.setAttribute('fill',mapValue(r)===null?'#747184':'transparent');el.classList.toggle('selected',r.id===state.region);el.querySelector('title').textContent=r.name+': '+formatValue(mapValue(r));});
@@ -397,6 +397,11 @@ function setupDrawer(){
  media.addEventListener('change',resize);resize();
 }
 setupDrawer();
+// Keep the legend below the shared heading, on the map's upper right.
+function positionMapLegend(){const heading=document.querySelector('.map-heading');if(heading)heading.parentElement.style.setProperty('--map-heading-height',heading.getBoundingClientRect().height+'px');}
+if(typeof ResizeObserver!=='undefined'){const headingObserver=new ResizeObserver(positionMapLegend);headingObserver.observe(document.querySelector('.map-heading'));}
+window.addEventListener('resize',positionMapLegend);positionMapLegend();
+
 
 const THEMES=[{"id": "vaesto", "title": "Väestö ja ikärakenne", "file": "alueellinen-vaesto.json", "count": 11}, {"id": "tyo", "title": "Työ ja työllisyys", "file": "alueellinen-tyo.json", "count": 25}, {"id": "tulot", "title": "Tulot ja eriarvoisuus", "file": "alueellinen-tulot.json", "count": 34}, {"id": "talous", "title": "Aluetalous", "file": "alueellinen-talous.json", "count": 14}, {"id": "ennusteet", "title": "Väestöennusteet", "file": "alueellinen-ennusteet.json", "count": 23}];
 let themeRequest=0;
@@ -423,7 +428,7 @@ function applyDeepLink(link=pendingLink){
  if(o.from){if(o.series&&(!selectedSeries().availableYears.includes(o.from)||!selectedSeries().availableYears.includes(o.to)))throw Error('Linkin vuosilta ei löydy valitun sarjan aineistoa.');state.baseline=o.from;state.limit=o.to;state.year=o.to;state.mode='change';}
  fitSeriesYear(true);lastSurface='';render();
  const el=$('linkback');
- if(o.label){el.hidden=false;el.innerHTML='<div id="linkyear" class="heading-years"></div><strong class="heading-title">'+safe(o.label)+'</strong><span id="linkmeta" class="linkmeta"></span><a href="murrosverkosto.html#linssi='+encodeURIComponent(o.lens||'talous')+'&valinta='+encodeURIComponent('solmu:'+(o.node||''))+'">Takaisin verkostoon ↩</a>';}
+ if(o.label){el.hidden=false;el.innerHTML='<div id="linkyear" class="heading-years"></div><strong id="linktitle" class="heading-title"></strong><span id="linkmeta" class="linkmeta">Verkostosta: '+safe(o.label)+'</span><a href="murrosverkosto.html#linssi='+encodeURIComponent(o.lens||'talous')+'&valinta='+encodeURIComponent('solmu:'+(o.node||''))+'">Takaisin verkostoon ↩</a>';}
 
  else el.hidden=true;
  document.querySelector('.mapcaption').style.display=el.hidden?'':'none';
