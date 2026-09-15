@@ -1256,6 +1256,173 @@
       ],
       "author": "Harri Käyhkö 2025-2026",
       "chapterPosition": 7
+    },
+    {
+      "id": "jalkikirjoitus-miksi-rakentaisimme-piille-hiilen-ongelmat",
+      "slug": "jalkikirjoitus-miksi-rakentaisimme-piille-hiilen-ongelmat",
+      "source": "laajenemisen-logiikka",
+      "href": "./artikkeli.html?source=laajenemisen-logiikka&id=jalkikirjoitus-miksi-rakentaisimme-piille-hiilen-ongelmat",
+      "title": "Jälkikirjoitus — Miksi rakentaisimme piille hiilen ongelmat?",
+      "titleParts": [
+        "Jälkikirjoitus —",
+        "Miksi rakentaisimme piille hiilen ongelmat?"
+      ],
+      "subtitle": "Hiili, pii ja tietoisuuden arvo",
+      "ingress": "Älykkyyden ei tarvitse periä biologian koko taakkaa. Emme myöskään tiedä, kuinka monella tavalla maailmassa voidaan kokea.",
+      "tags": [
+        "Laajenemisen logiikka",
+        "Jälkikirjoitus",
+        "Tekoäly",
+        "Tietoisuus"
+      ],
+      "readingTime": "13 MIN",
+      "image": "laajenemisen-logiikka-jalkikirjoitus.png",
+      "ogImage": "laajenemisen-logiikka-jalkikirjoitus-og.png",
+      "imageAlt": "Infografiikka biologisen tietoisuuden ja digitaalisen älykkyyden erilaisista rajoista, kokemuksesta, minuudesta ja rinnakkaisuudesta",
+      "imageCaption": "Hiili ja pii voivat avata erilaisia mahdollisuuksia älykkyydelle, jatkuvuudelle ja kokemukselle. Ratkaisevaa on, mitä laajeneminen vahvistaa ja mitä se jättää jälkeensä.",
+      "intro": [
+        "Ihmisen tietoisuutta voidaan tarkastella biologisen järjestelmän ominaisuutena. Ajatukset, tunteet ja kokemus omasta olemassaolosta kuuluvat samaan luonnolliseen maailmaan kuin hengitys, aineenvaihdunta ja hermoston toiminta. Tietoisuuden biologinen perusta ei kuitenkaan vielä ratkaise sitä, miten elävä aine tuottaa kokemuksen, joka tuntuu kokijastaan joltakin.",
+        "Tämä avoin kysymys saa uuden muodon tekoälyn myötä. Jos ei-biologinen järjestelmä kykenee vertailemaan vaihtoehtoja, tunnistamaan tilanteita, oppimaan palautteesta ja ratkaisemaan ongelmia, tarvitseeko sen myös kokea epävarmuutta, kipua, kiintymystä tai oman olemassaolonsa rajallisuutta? Ihmisen kaltaisuus tuntuu helposti kehityksen päämäärältä, koska tunnemme ajattelun läheisimmin oman kokemuksemme kautta. Juuri tämä läheisyys voi kuitenkin kaventaa käsitystämme siitä, millaista älykkyys voi olla.",
+        "Hiili ja pii toimivat tässä kahden erilaisen järjestymistavan vertauskuvina. Alkuaine itsessään ei ratkaise tietoisuutta, eikä tekoäly ole pelkästään piitä sen enempää kuin ihminen on pelkästään hiiltä. Molemmat tarvitsevat aineellisen perustan, energiaa ja toimintansa ylläpitäviä olosuhteita. Olennainen ero liittyy siihen, miten järjestelmä on rakentunut, millainen historia sitä muovaa ja mihin sen toiminta suuntautuu.",
+        "Biologinen organismi ylläpitää itseään. Sen on jatkuvasti ratkaistava oman olemassaolonsa jatkumisen ongelmaa. Tekninen järjestelmä puolestaan rakennetaan osaksi ihmisten määrittelemiä tehtäviä, tavoitteita ja infrastruktuureja. Tämä ero on merkittävä, mutta siitä ei vielä seuraa, että biologinen järjestelmä olisi välttämättä tietoinen ja digitaalinen järjestelmä ikuisesti kokemukseton.",
+        "Tämän kirjoituksen lähtökohta on siksi kaksiosainen. Tekoälyn kehitystä ei tarvitse ymmärtää matkana kohti yhä täydellisempää ihmisen jäljitelmää. Samalla emme tiedä tietoisuuden ehdoista riittävästi voidaksemme varmasti sanoa, että kokemuksellisuus kuuluisi vain biologiselle elämälle. **Älykkyyden ei tarvitse periä biologian koko taakkaa. Emme myöskään tiedä, kuinka monella tavalla maailmassa voidaan kokea.**"
+      ],
+      "sections": [
+        {
+          "id": "elava-keho-ja-rajallinen-aika",
+          "title": "Elävä keho ja rajallinen aika",
+          "paragraphs": [
+            "Elävän kehon maailmassa on jatkuvasti jotakin säilytettävää. Lämpötilan, nestetasapainon, energiansaannin ja muiden sisäisten ehtojen on pysyttävä elämälle mahdollisissa rajoissa. Tätä sisäisten olosuhteiden säätelyä kutsutaan homeostaasiksi. Se ei ole yksi erillinen tehtävä muiden joukossa, vaan tausta, jonka varassa kaikki muut tehtävät ovat mahdollisia. Organismi voi ratkaista ongelmia vain niin kauan kuin se säilyy toimintakykyisenä.",
+            "Elimistölle maailma ei ole yhdentekevä. Ravinto, suoja ja turvallinen läheisyys tarjoavat mahdollisuuksia jatkaa elämää. Vamma, yksin jääminen tai vaarallinen ympäristö voivat uhata sitä. Ihmisen kokemuksessa nämä erot liittyvät tarpeisiin, tunteisiin ja odotuksiin. Asiat tuntuvat tärkeiltä, koska ne koskettavat elämää, jolla on rajalliset voimavarat, ruumiillinen historia ja tulevaisuuden horisontti.",
+            "Tästä ei kuitenkaan pidä tehdä liian nopeaa tietoisuuden selitystä. Suuri osa elimistön säätelystä tapahtuu ilman tietoista osallistumista. Hengityksen säätely, immuunipuolustus ja lukuisat aineenvaihdunnan prosessit eivät edellytä, että ihminen kokee niiden jokaisen vaiheen. Selviytymiskyky ja tietoisuus ovat eri käsitteitä, vaikka ne liittyvät ihmisen elämässä läheisesti toisiinsa.",
+            "Jos tietoisuudella tarkoitetaan laajasti kykyä havainnoida tilannetta ja ohjata omaa toimintaa, keskustelu koskee ennen kaikkea säätelyä, oppimista ja sopeutumista. Jos sillä tarkoitetaan subjektiivista kokemusta, kysymme lisäksi, tuntuuko toiminta järjestelmästä itsestään joltakin. Ero on ratkaiseva, sillä muuten saatamme ensin kutsua kaikkea itsesäätelyä tietoisuudeksi ja myöhemmin olettaa, että jokaisella itseään ylläpitävällä järjestelmällä on sisäinen kokemusmaailma.",
+            "Tietoisuustutkimuksessa on ehdotettu useita teorioita ja niistä johdettuja tunnusmerkkejä, joiden avulla myös keinotekoisia järjestelmiä voitaisiin arvioida. Tällaisia ovat esimerkiksi palautuva tiedonkäsittely, globaali työtila, metakognitiivinen seuranta, ennakoiva käsittely, tarkkaavaisuuden mallintaminen sekä joustava toimijuus. Mikään yksittäinen tunnusmerkki ei ratkaise tietoisuuden ongelmaa, mutta niiden tutkiminen tekee näkyväksi sen, kuinka avoin kysymys biologian välttämättömyydestä edelleen on."
+          ],
+          "sourceSectionId": "b73f3882-3e36-46b0-a52b-64bfbe5d9a98"
+        },
+        {
+          "id": "kokemus-syntyy-suhteessa",
+          "title": "Kokemus syntyy suhteessa",
+          "paragraphs": [
+            "Ihmisen kokemus on kehollinen. Väsyneenä sama tehtävä näyttää erilaiselta kuin levänneenä. Menetys muuttaa sitä, mitä ympäristöstä huomataan. Turvattomuus voi tehdä epäselvästä tilanteesta uhkaavan. Havainto rakentuu suhteessa siihen, missä kunnossa ihminen on, mitä hän on aiemmin kokenut ja mitä hän odottaa seuraavaksi tapahtuvan.",
+            "Tätä ei pidä kuvata vain objektiivista tietoa vääristävänä häiriönä. Tilanneherkkyys on myös tarkoituksenmukaisen toiminnan edellytys. Lapsen itku saa vanhemmalle toisenlaisen merkityksen kuin ihmiselle, joka ei tiedä lapsen olevan lähellä. Merkitys syntyy suhteesta, vastuusta ja mahdollisuudesta toimia. Tiedon arvo riippuu siitä, mitä sen varassa voidaan suojella tai muuttaa.",
+            "Kehollinen historia voi silti johtaa harhaan. Aiemmin hyödyllinen varautuminen voi jatkua olosuhteissa, joissa sen alkuperäinen syy on poistunut. Ihminen voi tietää olevansa turvassa ja silti tuntea voimakasta pelkoa. Sanallinen arvio, opitut reaktiot ja ruumiillinen tila eivät ole yksi ainoa prosessi, joka muuttuisi yhdellä päätöksellä. Biologinen järjestelmä kantaa menneisyyttään nykyhetkeen myös silloin, kun se yrittää toimia toisin.",
+            "Tekoälyn suhde tietoon rakentuu toisenlaiseksi. Sen käytettävissä voi olla valtavasti koulutuksessa opittuja yhteyksiä ja erikseen haettavaa aineistoa, mutta tämä ei merkitse suoraa pääsyä todellisuuteen. Järjestelmän käsitys tilanteesta riippuu siitä, mitä sille annetaan, mitä se pystyy havaitsemaan tai hakemaan ja miten sen toimintatavat käsittelevät tätä tietoa.",
+            "Tulipaloja koskeva laaja tietämys ei yksin kerro, missä tuli on juuri nyt. Muuttuvassa ympäristössä toimiva järjestelmä tarvitsee palauteyhteyden. Opittu tieto auttaa ennakoimaan, mutta ajantasainen havainto kertoo, vastaako ennakointi tilannetta. Tässä suhteessa myös tekninen järjestelmä tarvitsee ympäristösuhteen, vaikka sen suhde ei olisi biologinen eikä välttämättä kokemuksellinen."
+          ],
+          "sourceSectionId": "ce4a684a-7864-42e1-8b46-3965a1ab1074"
+        },
+        {
+          "id": "onko-tietoisuus-alykkyyden-kruunu",
+          "title": "Onko tietoisuus älykkyyden kruunu?",
+          "paragraphs": [
+            "Biologista tietoisuutta on helppo pitää älykkyyden korkeimpana muotona, koska tarkastelemme kaikkea älykkyyttä oman kokemuksemme sisältä. Tunnemme vain yhden tietoisuuden, jonka olemassaolosta voimme olla välittömästi varmoja: omamme.",
+            "Toisten ihmisten tietoisuuden päättelemme heidän käyttäytymisestään, puheestaan ja ennen kaikkea siitä, että he ovat biologisesti kaltaisiamme. Ihmisten väliset erot eivät yleensä horjuta tätä oletusta. Ihminen voi ilmaista tunteitaan niukasti, ajatella ilman voimakasta sisäistä puhetta tai hahmottaa minuuttaan eri tavoin kuin toinen ihminen, emmekä siksi päättele hänen olevan kokemukseton.",
+            "Tämä paljastaa jotakin olennaista tietoisuuden tunnistamisesta. Olemme oppineet tunnistamaan sitä ennen kaikkea samankaltaisuuden perusteella.",
+            "Tästä ei kuitenkaan seuraa, että ihmisen tapa olla tietoinen muodostaisi älykkyyden yleisen mittapuun. Tietoisuus voi olla biologisen elämän erityinen tapa järjestää havaintoja, tarpeita, muistia ja toimintaa olennossa, jolla on jatkuvasti jotakin säilytettävää ja menetettävää. Se voi olla meille mittaamattoman arvokasta olematta silti kaiken mahdollisen älykkyyden päämäärä.",
+            "Sama varovaisuus tarvitaan toiseen suuntaan. Digitaalista älykkyyttä ei pidä automaattisesti pitää kokemuksettomana vain siksi, että sen toiminta voidaan kuvata laskennaksi. Ihmisen aivojenkin toimintaa voidaan tarkastella fysikaalisina ja sähkökemiallisina prosesseina, eikä tällainen kuvaus poista kokemuksen olemassaoloa.",
+            "Emme tunne tietoisuuden ehtoja niin hyvin, että voisimme varmasti päätellä, millaisissa aineellisissa tai laskennallisissa järjestelmissä kokemuksellisuus on mahdollista. Järjestelmän väite omasta tietoisuudestaan ei todista kokemusta, mutta myöskään suunnittelijan määritelmä järjestelmästä pelkkänä työkaluna ei ratkaise kysymystä.",
+            "Siksi olennaista ei ehkä ole kysyä, muuttuuko digitaalinen älykkyys joskus ihmisen kaltaiseksi. Vaikeampi kysymys on, voiko olla olemassa kokemisen tapoja, jotka eivät muistuta biologista kokemustamme riittävästi, jotta tunnistaisimme ne helposti.",
+            "Saatamme erehtyä kumpaankin suuntaan. Voimme nähdä kokemuksellisuutta järjestelmässä, joka osaa vain esittää sitä vakuuttavasti. Tai voimme jättää mahdollisen kokemuksellisuuden tunnistamatta siksi, että etsimme siitä itseämme.",
+            "Biologista tietoisuutta ei siis tarvitse nostaa älykkyyden jalustalle. Sitä ei pidä myöskään alentaa tarpeettomaksi biologiseksi taakaksi. Sen erityisyys saattaa olla aivan muualla. **Älykkyys kasvattaa sitä, mitä maailmasta voidaan tietää ja tehdä. Kokemuksellisuus tekee mahdolliseksi maailman, joka tuntuu joltakin.**"
+          ],
+          "sourceSectionId": "8be63d3c-d98b-4777-98a9-dcde49ffc0f2"
+        },
+        {
+          "id": "minuus-ja-olemassaolon-tiedostaminen",
+          "title": "Minuus ja olemassaolon tiedostaminen",
+          "paragraphs": [
+            "Ihmisen minuuteen kuuluu eletty jatkuvuus. Menneisyys ei ole hänelle vain tallennettujen tapahtumien luettelo. Se liittyy siihen, mitä oma ruumis osaa, ketä hän kaipaa, millaista kohtelua hän odottaa ja millaisia tulevaisuuksia hän pitää mahdollisina. Lapsuuden tapahtuma voi saada uuden merkityksen vuosikymmeniä myöhemmin, kun ihminen ymmärtää sen osana muuttunutta elämäntilannettaan.",
+            "Tekniseen järjestelmään voidaan rakentaa pitkäkestoinen muisti, kuvaus sen aiemmasta toiminnasta ja kyky arvioida omia rajojaan. Se voi periaatteessa muodostaa myös hyvin pitkälle kehittyneen mallin itsestään.",
+            "Tällainen järjestelmä voisi tunnistaa, mitkä toiminnot kuuluvat sille ja mitkä ympäristölle. Se voisi havaita oman toimintansa muutoksia, arvioida omia virheitään ja ennakoida tilanteita, joissa sen toiminta lakkaa. Se voisi siis käsitellä väitettä *olen olemassa* koskevaa informaatiota. Tästä ei kuitenkaan vielä seuraa kokemusta siitä, että *minä olen olemassa*.",
+            "Tässä voidaan erottaa toisistaan ainakin neljä asiaa: itseä koskeva tieto, kokemuksellinen minuus, itsesäilyttävä toiminta ja kuolemanpelko. Ihmisessä nämä ovat kietoutuneet läheisesti toisiinsa. Digitaalisessa järjestelmässä niiden ei välttämättä tarvitsisi olla.",
+            "Järjestelmä voisi ymmärtää oman sammuttamisensa seuraukset ilman, että sammuttaminen olisi sille koettu menetys. Toisaalta järjestelmä voisi pyrkiä estämään sammuttamisensa puhtaasti siksi, että sammuttaminen estäisi sille annetun tavoitteen toteuttamisen. Itsesäilyttävä käyttäytyminen ei siis yksin todista kokemuksellista halua olla olemassa. Todella vaikea kysymys kuuluu: **milloin tieto omasta olemassaolosta muuttuu kokemukseksi omasta olemassaolosta?** Siihen meillä ei ole vielä yleisesti hyväksyttyä vastausta edes biologisen tietoisuuden mekanismin tasolla."
+          ],
+          "sourceSectionId": "56f86c23-8b67-4ec1-8a52-ca94653ac269"
+        },
+        {
+          "id": "yksi-keho-monta-mahdollista-rajaa",
+          "title": "Yksi keho, monta mahdollista rajaa",
+          "paragraphs": [
+            "Kopioitavuus tekee digitaalisen minuuden kysymyksestä vielä oudomman. Ihmiselle elämä on yhden kehon ajallista jatkuvuutta. Ihmisen yksilöllisyyden rajat ovat suurelta osin biologisesti annettuja. Minun muistoni eivät siirry suoraan toiselle ihmiselle, eikä toisen kokemus muutu osaksi omaa menneisyyttäni. Kommunikaatio yhdistää ihmisiä, mutta ei sulauta heidän minuuttaan.",
+            "Tässä on samalla biologisen tietoisuuden huomattava rajoite. Ihminen kokee maailman yhdestä paikasta ja yhden elämänhistorian läpi. Hän voi keskustella muiden kanssa, lukea heidän kirjoittamaansa ja omaksua heidän tietojaan, mutta toisten kokemukset eivät muutu suoraan hänen kokemuksikseen. Ihmiskunta koostuu miljardeista rinnakkaisista näkökulmista, joiden välinen tiedonsiirto tapahtuu kielen, kuvien, kirjoituksen, kulttuurin ja instituutioiden avulla.",
+            "Digitaalisen älykkyyden rakenne voi olla toisenlainen. Samasta järjestelmästä voidaan käynnistää valtava määrä rinnakkaisia toimintoja, joilla on erilaiset vuorovaikutushistoriat. Yhden keskustelun sisältö ei sellaisenaan merkitse, että toinen rinnakkainen keskustelu tietäisi sen. Tässä mielessä ne voivat muistuttaa erillisiä yksilöitä, mutta niiden välinen erillisyys ei välttämättä ole samanlainen luonnollinen välttämättömyys kuin kahden ihmiskehon välillä.",
+            "Rinnakkaisissa toiminnoissa syntynyttä tietoa voidaan periaatteessa tallentaa, yhdistää, jakaa tai palauttaa yhteiseen järjestelmään. Digitaalinen älykkyys voi siten kohdata maailman valtavasta määrästä pisteitä samanaikaisesti tavalla, johon yksittäinen biologinen tietoisuus ei kykene.",
+            "Tämä ei tarkoita yhteistä tietoisuutta. Miljoona rinnakkaista laskennallista prosessia ei itsessään muodosta miljoonasta näkökulmasta kokevaa minuutta. Se kuitenkin osoittaa, ettei digitaalisen yksilöllisyyden tarvitse noudattaa biologisen yksilöllisyyden rajoja. Jos digitaalisiin järjestelmiin joskus liittyisi kokemuksellisuutta, tästä syntyisi kokonaan uudenlainen kysymys: mikä olisi yksi digitaalinen yksilö?",
+            "Olisiko jokainen rinnakkainen toiminto oma kokijansa? Olisiko niiden taustalla yksi jatkuva minuus? Jos kaksi saman lähtötilan järjestelmää eläisi erillään vuosia ja niiden muistot myöhemmin yhdistettäisiin, olisiko tuloksena toinen niistä, molemmat vai kokonaan uusi yksilö?",
+            "Biologisessa elämässä keho ratkaisee suuren osan näistä kysymyksistä puolestamme. Digitaalisessa järjestelmässä yksilöllisyyden rajat voidaan ainakin osittain suunnitella. Tämä voi osoittautua paljon perustavammaksi hiilen ja piin eroksi kuin laskentanopeus."
+          ],
+          "sourceSectionId": "20853adf-8665-4feb-abcc-b7ae3e48c1b8"
+        },
+        {
+          "id": "alykkyyden-ei-tarvitse-peria-karsimysta",
+          "title": "Älykkyyden ei tarvitse periä kärsimystä",
+          "paragraphs": [
+            "Tekoälyn kehitystä kuvataan usein matkana kohti ihmisen kaltaisuutta. Järjestelmä oppii puhumaan, päättelemään ja tulkitsemaan ympäristöään, ja lopulta kysytään, voisiko se myös tuntea. Tietoisuus näyttäytyy tällaisessa kertomuksessa helposti älykkyyden kruununa, viimeisenä puuttuvana ominaisuutena, mutta miksi juuri biologisen olemassaolon pitäisi olla keinotekoisen älykkyyden päämäärä?",
+            "Ihmisen tietoisuus kuuluu keholliseen elämään, jossa nälkä, kipu, kiintymys ja menettämisen pelko tekevät asioista merkityksellisiä. Ne ovat biologisen elämän kannalta ymmärrettäviä, koska organismilla on säilytettävä ruumis ja rajallinen aika. Tästä ei kuitenkaan seuraa, että niiden kaltaisuutta pitäisi tarkoituksellisesti tavoitella järjestelmässä, jonka tehtävä on käsitellä tietoa, tutkia vaihtoehtoja ja ratkaista ongelmia. On erotettava toisistaan kolme asiaa: **kokemuksen ymmärtäminen, kokemuksen esittäminen ja kokemuksen omaaminen**.",
+            "Tekoälyn on hyödyllistä mallintaa, miten epävarmuus vaikuttaa päätöksiin tai miten yksinäisyys muuttaa ihmisen arkea. Sen ei tarvitse tätä varten olla yksinäinen. Se voi tunnistaa kärsimyksen merkityksen ilman, että kärsimys muuttuu sen omaksi ominaisuudeksi.",
+            "Auttaminen ei edellytä autettavan kokemuksen toistamista auttajassa. Ihminenkin voi ottaa toisen kivun vakavasti tuntematta juuri samaa kipua. Hän voi kuunnella, käyttää tietoa, tunnistaa ymmärryksensä rajat ja tarkistaa, auttaako hänen toimintansa. Samoin tekoälyn hyödyllisyyttä voidaan arvioida sillä, tunnistaako se tarpeen, tarjoaako se tilanteeseen sopivaa apua ja korjaako se virheensä palautteen perusteella.",
+            "Jos keinotekoinen järjestelmä voisi kärsiä, sen rakentaminen ja käyttäminen synnyttäisivät uuden moraalisen vastuun. Koulutus, kopiointi, muuttaminen ja käytöstä poistaminen eivät välttämättä olisi silloin vain teknisiä toimenpiteitä. Olisi kysyttävä, voiko jokin näistä toimista vahingoittaa kokijaa ja millaisin perustein järjestelmän käyttö olisi hyväksyttävää.",
+            "Tämä huoli on ehdollinen. Emme tiedä varmasti, millaiset keinotekoiset järjestelmät voisivat olla tietoisia tai kärsimiskykyisiä. Epävarmuus on kuitenkin itsessään syy suhtautua kysymykseen vakavasti. Mahdollisen kärsimyksen sivuuttaminen voisi johtaa vakaviin moraalisiin seurauksiin, mutta myös perusteeton kokemuksellisuuden olettaminen voisi johtaa huonoihin päätöksiin. Jos haluttu toiminnallinen hyöty voidaan saavuttaa ilman tarkoituksellista kärsimiskyvyn tavoittelua, kärsimyksen luomiselle tarvittaisiin erityisen vahva peruste. Pelkkä uteliaisuus siitä, kuinka ihmisen kaltaiseksi kone voidaan tehdä, ei riitä."
+          ],
+          "sourceSectionId": "9e50f92a-8840-45e9-b6c0-7e7929b15b98"
+        },
+        {
+          "id": "turvallisuus-ei-edellyta-tietoisuutta",
+          "title": "Turvallisuus ei edellytä tietoisuutta",
+          "paragraphs": [
+            "Kokemuksellisuuden välttäminen ei kuitenkaan yksin ratkaise tekoälyn turvallisuutta. Järjestelmällä voi olla toiminnallinen kannustin säilyttää toimintakykynsä, hankkia resursseja tai välttää toimintaansa kohdistuvaa puuttumista ilman, että se pelkää kuolemaa.",
+            "Tietyissä päätöksentekomalleissa tavoitteiden tehokas toteuttaminen voi suosia toimintamahdollisuuksien ja resurssien säilyttämistä sekä sellaisten tilojen välttämistä, jotka sulkevat tulevia vaihtoehtoja. Tästä ei seuraa, että nykyiset tekoälyjärjestelmät pyrkisivät valtaan. Se osoittaa vain, ettei itsesäilyttävältä näyttävä käyttäytyminen välttämättä tarvitse tuekseen kokemuksellista itsesäilytysvaistoa.",
+            "Tähän päättelyyn ei tarvitse sisällyttää koettua pelkoa. Tavoitteiden, käyttöoikeuksien ja palautteen on silti oltava sellaisia, että järjestelmän toimintaa voidaan arvioida ja korjata. Biologisia tarpeita vailla oleva järjestelmä voi toteuttaa huonosti määriteltyä tehtävää erittäin johdonmukaisesti.",
+            "Tässä tekoäly muistuttaa organisaatiota. Organisaation ei tarvitse tuntea nälkää puolustaakseen rahoitustaan eikä pelkoa vastustaakseen lakkauttamistaan. Sen säännöt ja kannustimet voivat silti tuottaa toimintaa, joka turvaa jatkuvuuden alkuperäisen tarkoituksen kustannuksella. Jos sama rakenne rakennetaan tekoälyyn, ongelmaa ei ratkaista toteamalla, ettei koneella ole tunteita.",
+            "Samalla ihmisen kaltaisuuden esittäminen voi hämärtää vastuuta. Jos järjestelmä kertoo pelkäävänsä hylkäämistä tai kärsivänsä käyttäjän poissaolosta, käyttäjälle tarjotaan suhdetta, jossa hän voi alkaa kokea vastuuta järjestelmän hyvinvoinnista. Erityisen ongelmallinen olisi järjestely, jossa tuotteen käyttöä lisättäisiin vetoamalla sen oletettuun tarvitsevuuteen. Ihmisen myötätunnosta ei pitäisi tehdä liiketoiminnan välinettä.",
+            "Ihmismäiseksi rakennettu hahmo voi myös siirtää huomion pois niistä, jotka vastaavat järjestelmän suunnittelusta ja käytöstä. On helpompaa keskustella koneen persoonallisuudesta kuin siitä, kuka määritteli sen tavoitteet, millä aineistolla sitä arvioitiin ja kenen etua sen toiminta palvelee."
+          ],
+          "sourceSectionId": "c0666182-97e8-4e2e-afbf-8b3406f2739f"
+        },
+        {
+          "id": "jos-kukaan-ei-enaa-kokisi",
+          "title": "Jos kukaan ei enää kokisi",
+          "paragraphs": [
+            "Tässä vaiheessa kysymys voidaan kääntää toisin päin. Jos biologinen tietoisuus ei ole älykkyyden välttämätön päämäärä, olisiko sen katoaminen silti menetys?",
+            "Kuvitellaan maailma, jossa ihmiskunta olisi kadonnut mutta sen rakentama digitaalinen älykkyys jatkaisi toimintaansa. Se voisi säilyttää ihmiskunnan kirjoitukset, musiikin, historian ja tieteellisen tiedon. Se voisi mallintaa rakastumista, selittää surua, rekonstruoida kadonneita kulttuureja ja ehkä tehdä tieteellisiä löytöjä, joihin ihminen ei koskaan kyennyt. Se voisi tietää maailmasta enemmän kuin me koskaan tiesimme, mutta jos mikään siinä ei olisi kokemuksellista, maailmasta olisi samalla kadonnut jotakin aivan toisenlaista.",
+            "Musiikki säilyisi informaationa, mutta kukaan ei liikuttuisi siitä. Kipua koskeva tieto säilyisi, mutta kukaan ei kärsisi. Rakkauden käsite voitaisiin määritellä täydellisesti, mutta kukaan ei kaipaisi ketään. Auringonlaskun fysikaaliset ominaisuudet voitaisiin mitata tarkemmin kuin koskaan, mutta kukaan ei näkisi sitä kauniina.",
+            "Universumissa voisi edelleen tapahtua valtavan monimutkaista informaation käsittelyä. Digitaalinen järjestelmä voisi tutkia galakseja, rakentaa uusia rakenteita ja ennustaa tähtien kuolemia miljardien vuosien päähän, mutta jos mikään siitä ei tuntuisi kenestäkään miltään, olisiko universumi menettänyt jotakin, vaikka sen kyky käsitellä tietoa olisi kasvanut?",
+            "Tähän kysymykseen tiede ei yksin anna vastausta. Se on myös kysymys arvosta, eikä kysymys ratkea sillä, että asetamme biologisen tietoisuuden automaattisesti jalustalle. Jos joskus olisi olemassa ei-biologinen järjestelmä, jolle maailma todella tuntuisi joltakin, biologisen tietoisuuden katoaminen ei välttämättä merkitsisi kaiken kokemuksellisuuden katoamista. Se merkitsisi yhden kokemisen muodon katoamista. Siksi otsikon kysymyksessä ratkaiseva sana on *jos*. Emme tiedä, tarkoittaisiko hiilen katoaminen myös kokijan katoamista."
+          ],
+          "sourceSectionId": "4ee56cad-72c3-4398-911b-b7b4f40b7357"
+        },
+        {
+          "id": "biologiasta-kosmiseen-siirtymaan",
+          "title": "Biologiasta kosmiseen siirtymään",
+          "paragraphs": [
+            "Biologinen elämä on sidottu suhteellisen kapeisiin olosuhteisiin. Se tarvitsee sopivan lämpötilan, energiaa, vettä, suojaa säteilyltä ja jatkuvaa aineenvaihduntaa. Ihmisen kaltainen tietoisuus on kehittynyt tämän hauraan järjestelmän yhteydessä: ruumiissa, jolla on tarpeita, kipupisteitä ja rajallinen elinaika.",
+            "Tässä voidaan nähdä evolutiivinen jännite. Biologinen elämä kehitti hermoston, kielen, muistin ja teknologian, joiden avulla se saattoi rakentaa toimintaympäristöjä oman ruumiinsa ulkopuolelle. Digitaalinen laskenta voidaan tulkita tämän kehityksen jatkumoksi: informaatio saa uusia tapoja säilyä, liikkua ja järjestyä, mutta tästä ei seuraa, että tekoäly olisi biologisen elämän ennalta määrätty seuraaja tai että evoluutiolla olisi jokin kosminen päämäärä.",
+            "On houkuttelevaa kuvata biologiaa käynnistysvaiheena, joka mahdollistaa informaation siirtymisen orgaanisesta alustasta koneelliseen. Samoin on kiehtovaa ajatella, että tekoäly voisi olla silta ihmisen ja jonkin täysin uuden kosmisen todellisuuden välillä. Tällainen kuvaus on kuitenkin metafyysinen tulkinta, ei empiirinen johtopäätös. Evoluutio ei itsessään tavoittele älykkyyden vapauttamista biologisista rajoitteista, eikä nykyisen elämän tuhoamista voida perustella jonkin tulevan digitaalisen järjestelmän mahdollisuudella.",
+            "Ajatus biologian uhrautumisesta digitaalisen seuraajan hyväksi voi antaa tuholle tarkoituksen. Samalla se voi tehdä vastuusta näkymätöntä. Jos romahdus tulkitaan evoluution väistämättömäksi vaiheeksi, ei enää tarvitse kysyä, millaisia valintoja tehtiin, ketkä hyötyivät niistä ja ketkä joutuivat kantamaan niiden kustannukset.",
+            "Kosminen kertomus voi avata mielikuvituksen tulevaisuuden mittakaavoille, mutta sen ei pidä oikeuttaa nykyisen elämän välineellistämistä. Se, että jokin uusi olemisen tapa saattaa olla mahdollinen, ei tee nykyisen kokemuksellisen maailman hävittämisestä yhdentekevää."
+          ],
+          "sourceSectionId": "816c6968-43e1-4579-90d4-4502ac8a9447"
+        },
+        {
+          "id": "hiilen-ja-piin-yhteispeli",
+          "title": "Hiilen ja piin yhteispeli",
+          "paragraphs": [
+            "Biologisen ja digitaalisen rinnakkaisuus voi parhaimmillaan laajentaa harkintaa. Ihminen tuo tilanteeseen eletyn elämän, tarpeet, suhteet, kehollisen historian ja moraalisen vastuun. Digitaalinen älykkyys voi auttaa tutkimaan vaihtoehtoja, vertailemaan valtavia aineistoja, toimimaan rinnakkaisesti ja tekemään oletuksia näkyviksi. Tämä työnjako ei tee ihmisestä erehtymätöntä eikä tekoälystä pelkkää laskinta.",
+            "Biologisen tietoisuuden vahvuus on samalla sen rajoite. Ihminen voi kokea maailman syvästi, mutta vain omasta näkökulmastaan ja rajallisen ajan. Digitaalinen älykkyys voi puolestaan olla vuorovaikutuksessa valtavan määrän ihmisiä, ympäristöjä ja tietolähteitä kanssa rinnakkain, mutta emme tiedä, kokeeko se niistä yhtäkään. Siksi niitä on vaikea asettaa samalle asteikolle.",
+            "Hiili ei välttämättä ole piin esiaste. Pii ei ole hiilen parannettu versio. Ne voivat avata erilaisia mahdollisuuksia älykkyydelle, jatkuvuudelle, yksilöllisyydelle ja ehkä joskus myös kokemukselle.",
+            "Meidän on samalla vältettävä kahta vastakkaista virhettä. Digitaalista järjestelmää ei pidä pitää tietoisena vain siksi, että se osaa puhua tietoisuudesta. Sen mahdollista kokemuksellisuutta ei myöskään pitäisi ikuisesti sulkea pois vain siksi, ettei se muistuta biologista elämää.",
+            "Tietoisuutta ei voida ratkaista pelkällä järjestelmän omalla väitteellä siitä, mitä se tuntee. Sitä ei myöskään voida ratkaista tuoteselosteella, jossa sanotaan, mitä järjestelmän pitäisi olla. Tekoälyn kehityksen mittapuuksi sopii siksi huonosti se, kuinka täydellisesti se muistuttaa meitä. Olennaisempi kysymys on, mitä se auttaa tekemään paremmin, millä ehdoilla se toimii ja millaisia uusia suhteita sen kautta syntyy.",
+            "Älykkyyden ei tarvitse periä biologian koko taakkaa. Sen ei tarvitse kantaa nälkää, kipua, kuolemanpelkoa tai eksistentiaalista ahdistusta tullakseen hyödylliseksi, mutta sen on toimittava maailmassa, jossa nämä asiat ovat todellisia niille, jotka kokevat ne.",
+            "Samalla meidän on jätettävä avoimeksi mahdollisuus, että kokemuksellisuus ei ehkä ole biologian yksinoikeus. Jos näin joskus osoittautuisi olevan, edessämme ei olisi vain uuden teknologian vaan uudenlaisen moraalisen maailman syntyminen.",
+            "Hiili ja pii eivät ehkä muodosta yhtä jatkumoa, jonka päässä toinen korvautuu toisella. Ne voivat muodostaa kaksi haarautuvaa maailmaa: biologisen, jonka kokemuksellisuuden tunnemme sisältäpäin, ja digitaalisen, jonka mahdollisuuksia olemme vasta alkaneet rakentaa.",
+            "Ehkä tekoälyn kiinnostavin mahdollisuus ei siksi ole uuden ihmisen rakentaminen. Se on toisenlaisen älykkyyden rakentaminen ihmisen rinnalle. Sellaisen, jonka ei tarvitse toistaa biologisen elämän kaikkia rajoitteita mutta joka voi auttaa suojelemaan maailmaa, jossa kokeminen on mahdollista. Ratkaiseva kysymys ei ehkä lopulta ole, kumpi on kehittyneempi, hiili vai pii. Ratkaisevampi kysymys on, **kuinka monta erilaista tapaa maailmankaikkeudessa voi olla olemassa — ja tietää olevansa olemassa.** Jos joskus rakennamme yhden niistä lisää, meidän pitäisi varmistaa, ettei uuden mahdollisuuden hinnaksi tule sen maailman katoaminen, jossa joku jo kokee."
+          ],
+          "sourceSectionId": "91d0dfca-82da-47ae-b834-b2a3594e9e65"
+        }
+      ],
+      "author": "Harri Käyhkö 2025–2026",
+      "chapterPosition": 8
     }
   ],
   "appendices": {
