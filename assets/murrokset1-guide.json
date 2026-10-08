@@ -27,6 +27,12 @@
           "title": "Ketkä hyötyivät, ja ketkä jäivät ulkopuolelle?",
           "text": "Avaa esimerkiksi jälleenrakennuksen tai suuren muuton ankkuri. Etsi ryhmittäistä näyttöä mahdollisuuksien avautumisesta ja sulkeutumisesta. Yhden ryhmän paraneminen ei osoita koko aikakauden onnistumista."
         }
+      ],
+      "loop_notes": [
+        "Tuotannon muuttuminen muuttaa työn, osaamisen ja sijainnin ehtoja. Seuraa ensin tätä lähtökohtaa; hyötyä ei oleteta vielä.",
+        "Seuraavaksi kysytään, saivatko eri ihmisryhmät työn, tulon tai muun toimeentulon mahdollisuuksia.",
+        "Asuminen, koulutus ja muut yhteiset järjestelyt voivat auttaa ihmisiä vastaamaan muutokseen. Tämän yhteyden toimivuus on tutkittava.",
+        "Kehän paluu nostaa kysymyksen: vahvistiko osallistuminen seuraavan muutoksen edellytyksiä? Kierre ei toteudu automaattisesti."
       ]
     },
     {
@@ -55,6 +61,12 @@
           "title": "Vertaa tuotannon ja eri ryhmien palautumista",
           "text": "Avaa laman ja erilaisten paluiden ankkurit. Tarkista aikajärjestys ja ryhmien lähtötilanne. Toimiala, ikä, koulutus ja suhdanne voivat selittää eroja ilman oletettua mekanismia."
         }
+      ],
+      "loop_notes": [
+        "Tuotannon elpyminen on yksi havainto. Se ei vielä kerro, palasivatko samat ihmiset työhön.",
+        "Työn sijainti, tehtävät ja osaamisvaatimukset voivat muuttua elpymisen aikana.",
+        "Vertaa ryhmien paluuta: joillekin muutos voi avata mahdollisuuksia, toisille jättää pitkäkestoisen jäljen.",
+        "Kuka auttaa palautumaan, ja millaisin ehdoin? Vastuun järjestäminen voi vaikuttaa seuraavaan kierrokseen."
       ]
     },
     {
@@ -83,6 +95,12 @@
           "title": "Seuraa samaa ryhmää päätöksen yli",
           "text": "Etsi päätöksen tavoite, toteutus ja ryhmittäinen seuraus. Vertaa myös sitä, mitä olisi tapahtunut ilman päätöstä. Pelkkä peräkkäisyys ei osoita, että sopeutus aiheutti muutoksen."
         }
+      ],
+      "loop_notes": [
+        "Rajaa yksi shokki kerrallaan. Sen suora vaikutus erotetaan päätösten vaikutuksista.",
+        "Osoita varsinainen sopeutuspäätös, sen ajankohta ja tavoite. Se ei ole sama asia kuin shokki.",
+        "Seuraa, mitä valitun ryhmän mahdollisuuksille tapahtui päätöksen jälkeen, myös suhteessa vertailuryhmään.",
+        "Kustannus voi vähentyä, siirtyä tai kasvaa viiveellä. Tarkista, kenen kannettavaksi se päätyi."
       ]
     },
     {
@@ -111,6 +129,12 @@
           "title": "Mikä havainto saisi muuttamaan suunnitelmaa?",
           "text": "Määrittele osallistujaryhmä, lähtötilanne, vertailu ja seuranta-aika. Tarkista osallistumisen lisäksi kustannukset ja kuormitus. Myös epäonnistuminen tai ryhmien eriytyminen kuuluu arviointiin."
         }
+      ],
+      "loop_notes": [
+        "Ehdollinen lähtökohta: tehtäviä järjestetään niin, että osallistuminen olisi mahdollista.",
+        "Kysytään, madaltuuko osallistumisen kynnys oikeasti ja kenelle. Tavoite ei ole vielä tulos.",
+        "Tuen pitäisi auttaa toimintakyvyn säilymistä. Tarkista myös kuormitus ja haitat.",
+        "Kehän paluu tarkoittaa toteutuksen arviointia: toimivatko ehdot, ja mikä havainto vaatisi suunnitelman muuttamista?"
       ]
     }
   ]
