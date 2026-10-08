@@ -1,0 +1,1776 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-08T11:54:52.785Z",
+  "cases": [
+    {
+      "id": "6834ad0b-b102-4fbe-b950-54f491fdb03f",
+      "title": "Toimeentulon haavoittuvuus",
+      "year_start": 1850,
+      "year_end": 1880,
+      "kind": "history",
+      "status": "hypothesis",
+      "published": true,
+      "primary_item_id": "nalkavuodet-1866",
+      "data": {
+        "actors": [
+          "Miten sadon menetys välittyi toimeentuloon ja kuolleisuuteen?",
+          "Miten kuljetukset, markkinat ja hankinta vastasivat häiriöön?",
+          "Miten avun tarpeet ja toteutus erosivat alueittain?",
+          "Millainen vastuu avun järjestämisestä otettiin?",
+          "Mitä varautumisen edellytyksiä jäi seuraavalle kaudelle?"
+        ],
+        "change": "Sadon häiriö ja toimeentulon haavoittuvuus.",
+        "legacy": "Mitä varautumiskykyä, luottamusta ja haavoittuvuuksia jäi?",
+        "limits": "Mekanismiketju on tutkimushypoteesi. Tapauskohtainen näyttö, vaihtoehdot ja vaikutusten suuruus on tarkistettava erikseen.",
+        "signal": "Valitse aineistosta varhainen signaali ja määrittele sen tulkinnan rajat.",
+        "sources": [
+          "suomen_murrokset.html · käsikirjoituksen tutkimuskysymykset (alustava kehys, ei vaikutusnäyttö)"
+        ],
+        "summary": "Sadon häiriö, kuolleisuus ja siemenvilja-avun dokumentoidut vaiheet.",
+        "trigger": "",
+        "capacity": "Mitä varautumiskykyä, luottamusta ja haavoittuvuuksia jäi?",
+        "item_ids": [],
+        "objective": "Tunnista, miten muutos välittyi toimeentuloon ja yhteiseen toimintakykyyn.",
+        "risk_type": "latency",
+        "correction": "Missä hankinnan tai avun viive havaittiin? Arvioi vaihtoehtoja aikalaisten tietojen ja resurssien varassa.",
+        "responsible": "",
+        "review_date": "",
+        "series_keys": [],
+        "alternatives": "Erota toteutunut ratkaisu, aikalaisten käsittelemät vaihtoehdot ja jälkikäteen muodostettu vaihtoehto.",
+        "distribution": "Toimijakohtaiset vaikutukset ovat alla avoimina tutkimuskysymyksinä.",
+        "transmission": "Tutkitaan hankinnan, kuljetusten, markkinoiden ja avun toimeenpanon yhteyttä toimeentuloon.",
+        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?"
+      },
+      "revision": 1,
+      "created_at": "2026-10-07T16:41:23.535449+00:00",
+      "updated_at": "2026-10-07T16:41:23.535449+00:00"
+    },
+    {
+      "id": "d61033b0-5750-41d9-9406-988a05b59bea",
+      "title": "Oikeudet ja mahdollisuudet",
+      "year_start": 1880,
+      "year_end": 1917,
+      "kind": "history",
+      "status": "hypothesis",
+      "published": true,
+      "primary_item_id": null,
+      "data": {
+        "actors": [
+          "Miten palkkatyö, järjestäytyminen ja oikeudet avasivat mahdollisuuksia?",
+          "Miten teollistuminen muutti työvoiman ja pääoman tarpeita?",
+          "Miten kaupunkien kasvu muutti asumisen ja palvelujen tarpeita?",
+          "Kenen vaatimukset pääsivät päätöksenteon piiriin?",
+          "Mitä uudistusvaatimuksia jäi ratkaisematta?"
+        ],
+        "change": "Teollistuminen, palkkatyö ja poliittisten oikeuksien laajeneminen.",
+        "legacy": "Mitä osallistumisen väyliä ja ratkaisemattomia omistuksen eroja jäi?",
+        "limits": "Mekanismiketju on tutkimushypoteesi. Tapauskohtainen näyttö, vaihtoehdot ja vaikutusten suuruus on tarkistettava erikseen.",
+        "signal": "Valitse aineistosta varhainen signaali ja määrittele sen tulkinnan rajat.",
+        "sources": [
+          "suomen_murrokset.html · käsikirjoituksen tutkimuskysymykset (alustava kehys, ei vaikutusnäyttö)"
+        ],
+        "summary": "Miten toimeentuloa koskevat vaatimukset etenivät valmisteluksi ja päätöksiksi?",
+        "trigger": "",
+        "capacity": "Mitä osallistumisen väyliä ja ratkaisemattomia omistuksen eroja jäi?",
+        "item_ids": [],
+        "objective": "Tunnista, miten muutos välittyi toimeentuloon ja yhteiseen toimintakykyyn.",
+        "risk_type": "power",
+        "correction": "Missä vaatimuksen eteneminen päätökseksi tai toimeenpanoksi katkesi?",
+        "responsible": "",
+        "review_date": "",
+        "series_keys": [],
+        "alternatives": "Erota toteutunut ratkaisu, aikalaisten käsittelemät vaihtoehdot ja jälkikäteen muodostettu vaihtoehto.",
+        "distribution": "Toimijakohtaiset vaikutukset ovat alla avoimina tutkimuskysymyksinä.",
+        "transmission": "Tutkitaan, miten järjestäytyminen ja oikeudet muuttuvat päätösvallaksi ja toimeentulon mahdollisuuksiksi.",
+        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?"
+      },
+      "revision": 1,
+      "created_at": "2026-10-07T16:41:23.535449+00:00",
+      "updated_at": "2026-10-07T16:41:23.535449+00:00"
+    },
+    {
+      "id": "0d1df2fc-938f-4fb6-8320-e4ba63a45038",
+      "title": "Päätöksestä toimeenpanoon",
+      "year_start": 1917,
+      "year_end": 1945,
+      "kind": "history",
+      "status": "hypothesis",
+      "published": true,
+      "primary_item_id": null,
+      "data": {
+        "actors": [
+          "Kenelle uudistus avasi omistuksen ja toimeentulon mahdollisuuksia?",
+          "Miten maan hallinta ja tuotannon ehdot muuttuivat?",
+          "Miten toimeenpano ja kriisien seuraukset vaihtelivat alueittain?",
+          "Miten päätös muuttui hallinnolliseksi toteutukseksi?",
+          "Mitä menetyksiä ja jälleenrakentamisen tehtäviä periytyi?"
+        ],
+        "change": "Maan hallinnan uudistaminen kriisien ja sotien keskellä.",
+        "legacy": "Mitä omistuksen mahdollisuuksia, velvoitteita ja menetyksiä periytyi?",
+        "limits": "Mekanismiketju on tutkimushypoteesi. Tapauskohtainen näyttö, vaihtoehdot ja vaikutusten suuruus on tarkistettava erikseen.",
+        "signal": "Valitse aineistosta varhainen signaali ja määrittele sen tulkinnan rajat.",
+        "sources": [
+          "suomen_murrokset.html · käsikirjoituksen tutkimuskysymykset (alustava kehys, ei vaikutusnäyttö)"
+        ],
+        "summary": "Maan hallinnan uudistuminen sekä kriisien ja sotien seuraukset.",
+        "trigger": "",
+        "capacity": "Mitä omistuksen mahdollisuuksia, velvoitteita ja menetyksiä periytyi?",
+        "item_ids": [],
+        "objective": "Tunnista, miten muutos välittyi toimeentuloon ja yhteiseen toimintakykyyn.",
+        "risk_type": "coupling",
+        "correction": "Missä toimeenpanon este voitiin tunnistaa ja muuttaa?",
+        "responsible": "",
+        "review_date": "",
+        "series_keys": [],
+        "alternatives": "Erota toteutunut ratkaisu, aikalaisten käsittelemät vaihtoehdot ja jälkikäteen muodostettu vaihtoehto.",
+        "distribution": "Toimijakohtaiset vaikutukset ovat alla avoimina tutkimuskysymyksinä.",
+        "transmission": "Tutkitaan valmistelun, päätösvallan, rahoituksen ja toimeenpanon ketju.",
+        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?"
+      },
+      "revision": 1,
+      "created_at": "2026-10-07T16:41:23.535449+00:00",
+      "updated_at": "2026-10-07T16:41:23.535449+00:00"
+    },
+    {
+      "id": "556e1396-e1ff-4522-8710-27cc253854ce",
+      "title": "Jälleenrakennuksen yhteensovittaminen",
+      "year_start": 1945,
+      "year_end": 1965,
+      "kind": "history",
+      "status": "hypothesis",
+      "published": true,
+      "primary_item_id": null,
+      "data": {
+        "actors": [
+          "Miten koti, työ ja toimeentulo järjestyivät eri kotitalouksille?",
+          "Mitä investoinnit ja sotakorvaustuotanto muuttivat kapasiteetissa?",
+          "Miten asuttaminen ja infrastruktuuri muuttivat alueita?",
+          "Miten omistajan, rahoittajan ja palvelujärjestäjän vastuut jaettiin?",
+          "Mitä osaamista, rakenteita ja riippuvuuksia syntyi?"
+        ],
+        "change": "Jälleenrakennuksen tuotanto-, työ- ja asumistarpeet.",
+        "legacy": "Mitä osaamista, infrastruktuuria ja paikallisia riippuvuuksia rakentui?",
+        "limits": "Mekanismiketju on tutkimushypoteesi. Tapauskohtainen näyttö, vaihtoehdot ja vaikutusten suuruus on tarkistettava erikseen.",
+        "signal": "Valitse aineistosta varhainen signaali ja määrittele sen tulkinnan rajat.",
+        "sources": [
+          "suomen_murrokset.html · käsikirjoituksen tutkimuskysymykset (alustava kehys, ei vaikutusnäyttö)"
+        ],
+        "summary": "Ihmisten, tuotannon, asumisen ja rahoituksen yhteensovittaminen.",
+        "trigger": "",
+        "capacity": "Mitä osaamista, infrastruktuuria ja paikallisia riippuvuuksia rakentui?",
+        "item_ids": [],
+        "objective": "Tunnista, miten muutos välittyi toimeentuloon ja yhteiseen toimintakykyyn.",
+        "risk_type": "capacity",
+        "correction": "Mikä yhdistävä ratkaisu poisti usean toimijan esteen samalla kertaa?",
+        "responsible": "",
+        "review_date": "",
+        "series_keys": [],
+        "alternatives": "Erota toteutunut ratkaisu, aikalaisten käsittelemät vaihtoehdot ja jälkikäteen muodostettu vaihtoehto.",
+        "distribution": "Toimijakohtaiset vaikutukset ovat alla avoimina tutkimuskysymyksinä.",
+        "transmission": "Tutkitaan työn, maan, asumisen, rahoituksen ja infrastruktuurin yhteensovittamista.",
+        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?"
+      },
+      "revision": 1,
+      "created_at": "2026-10-07T16:41:23.535449+00:00",
+      "updated_at": "2026-10-07T16:41:23.535449+00:00"
+    },
+    {
+      "id": "e59b2bc6-bae0-4ba5-a321-3b24c881da10",
+      "title": "Suuri muutto",
+      "year_start": 1960,
+      "year_end": 1975,
+      "kind": "history",
+      "status": "hypothesis",
+      "published": true,
+      "primary_item_id": "ruotsiin_muutto",
+      "data": {
+        "actors": [
+          "Miten muutto ja paluu muuttivat työn, asumisen ja perheiden mahdollisuuksia?",
+          "Miten työvoiman saatavuus ja yritysten sijoittuminen muuttuivat?",
+          "Mitä lähtöalueet menettivät ja vastaanottoalueet saivat tai tarvitsivat?",
+          "Miten palvelut ja aluepolitiikka vastasivat muutokseen?",
+          "Mitä väestö- ja elinkeinorakenteita jäi seuraavalle kaudelle?"
+        ],
+        "change": "Työmahdollisuuksien alueellinen muutos ja muuttoliike.",
+        "legacy": "Miten väestö-, palvelu- ja elinkeinorakenne muuttui seuraaville vuosikymmenille?",
+        "limits": "Mekanismiketju on tutkimushypoteesi. Tapauskohtainen näyttö, vaihtoehdot ja vaikutusten suuruus on tarkistettava erikseen.",
+        "signal": "Valitse aineistosta varhainen signaali ja määrittele sen tulkinnan rajat.",
+        "sources": [
+          "suomen_murrokset.html · käsikirjoituksen tutkimuskysymykset (alustava kehys, ei vaikutusnäyttö)"
+        ],
+        "summary": "Muuttajien sekä lähtö- ja vastaanottoalueiden mahdollisuudet ja kustannukset.",
+        "trigger": "",
+        "capacity": "Miten väestö-, palvelu- ja elinkeinorakenne muuttui seuraaville vuosikymmenille?",
+        "item_ids": [
+          "paluumuutto-ruotsista-1970"
+        ],
+        "objective": "Tunnista, miten muutos välittyi toimeentuloon ja yhteiseen toimintakykyyn.",
+        "risk_type": "average",
+        "correction": "Missä muuttajan tarpeet ja lähtöalueen sopeutuminen voitiin huomioida yhdessä?",
+        "responsible": "",
+        "review_date": "",
+        "series_keys": [],
+        "alternatives": "Erota toteutunut ratkaisu, aikalaisten käsittelemät vaihtoehdot ja jälkikäteen muodostettu vaihtoehto.",
+        "distribution": "Toimijakohtaiset vaikutukset ovat alla avoimina tutkimuskysymyksinä.",
+        "transmission": "Tutkitaan työmarkkinoiden, asuntotarjonnan, koulutuksen ja palvelujen välitystä.",
+        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?"
+      },
+      "revision": 1,
+      "created_at": "2026-10-07T16:41:23.535449+00:00",
+      "updated_at": "2026-10-07T16:41:23.535449+00:00"
+    },
+    {
+      "id": "a3455f9f-b057-42ac-8943-244552048b7c",
+      "title": "Tuotannon menestymisen ehdot",
+      "year_start": 1975,
+      "year_end": 1990,
+      "kind": "history",
+      "status": "hypothesis",
+      "published": true,
+      "primary_item_id": null,
+      "data": {
+        "actors": [
+          "Miten työn vaatimukset ja turva muuttuivat?",
+          "Miten omistus, teknologia ja kansainvälistyminen muuttivat investointeja?",
+          "Miten tuotannon sijainti ja paikalliset riippuvuudet muuttuivat?",
+          "Miten ohjausvalta ja sopeutumisvastuu jakautuivat?",
+          "Mitä kasvumahdollisuuksia ja haavoittuvuuksia periytyi?"
+        ],
+        "change": "Omistuksen, teknologian ja kansainvälistymisen muutos.",
+        "legacy": "Mitä investointikykyä, riippuvuuksia ja julkisia vastuita jäi?",
+        "limits": "Mekanismiketju on tutkimushypoteesi. Tapauskohtainen näyttö, vaihtoehdot ja vaikutusten suuruus on tarkistettava erikseen.",
+        "signal": "Valitse aineistosta varhainen signaali ja määrittele sen tulkinnan rajat.",
+        "sources": [
+          "suomen_murrokset.html · käsikirjoituksen tutkimuskysymykset (alustava kehys, ei vaikutusnäyttö)"
+        ],
+        "summary": "Valtion omistus, ohjausvalta ja rakennemuutoksen vastuut. Seuranta voi jatkua lukurajan yli.",
+        "trigger": "",
+        "capacity": "Mitä investointikykyä, riippuvuuksia ja julkisia vastuita jäi?",
+        "item_ids": [],
+        "objective": "Tunnista, miten muutos välittyi toimeentuloon ja yhteiseen toimintakykyyn.",
+        "risk_type": "power",
+        "correction": "Milloin investointipäätöksen seuraukset tulivat muiden toimijoiden näkyviin?",
+        "responsible": "",
+        "review_date": "",
+        "series_keys": [],
+        "alternatives": "Erota toteutunut ratkaisu, aikalaisten käsittelemät vaihtoehdot ja jälkikäteen muodostettu vaihtoehto.",
+        "distribution": "Toimijakohtaiset vaikutukset ovat alla avoimina tutkimuskysymyksinä.",
+        "transmission": "Tutkitaan, miten omistus ja ohjausvalta liittyvät investointien sijaintiin sekä sopeutumisvastuuseen.",
+        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?"
+      },
+      "revision": 1,
+      "created_at": "2026-10-07T16:41:23.535449+00:00",
+      "updated_at": "2026-10-07T16:41:23.535449+00:00"
+    },
+    {
+      "id": "b2fed371-e969-4612-b865-1287bfba06bd",
+      "title": "Lama muuttaa lähtötason",
+      "year_start": 1990,
+      "year_end": 1995,
+      "kind": "history",
+      "status": "hypothesis",
+      "published": true,
+      "primary_item_id": "1990-luvun-lama",
+      "data": {
+        "actors": [
+          "Mitä työpaikan menetys ja velkaongelmat muuttivat elämän mahdollisuuksissa?",
+          "Miten konkurssit ja rahoitusvaikeudet muuttivat yritysrakennetta?",
+          "Miten alueiden lähtötasot muuttuivat?",
+          "Miten järjestelmää ja ihmisten toimeentuloa suojattiin?",
+          "Mitkä seuraukset pitkittyivät?"
+        ],
+        "change": "Tuotannon ja rahoituksen kriisi.",
+        "legacy": "Mitkä työttömyys-, velka- ja kapasiteettivaikutukset pitkittyivät elpymisen jälkeen?",
+        "limits": "Mekanismiketju on tutkimushypoteesi. Tapauskohtainen näyttö, vaihtoehdot ja vaikutusten suuruus on tarkistettava erikseen.",
+        "signal": "Valitse aineistosta varhainen signaali ja määrittele sen tulkinnan rajat.",
+        "sources": [
+          "suomen_murrokset.html · käsikirjoituksen tutkimuskysymykset (alustava kehys, ei vaikutusnäyttö)"
+        ],
+        "summary": "Tuotannon romahdus, työttömyys, velkaongelmat ja julkiset vastaukset.",
+        "trigger": "",
+        "capacity": "Mitkä työttömyys-, velka- ja kapasiteettivaikutukset pitkittyivät elpymisen jälkeen?",
+        "item_ids": [],
+        "objective": "Tunnista, miten muutos välittyi toimeentuloon ja yhteiseen toimintakykyyn.",
+        "risk_type": "lockin",
+        "correction": "Milloin tilapäisen kriisitoimen tarve olisi pitänyt arvioida uudelleen?",
+        "responsible": "",
+        "review_date": "",
+        "series_keys": [
+          "fi.statfin15ai.total.b1gmh.b4193efcb2",
+          "indicator_import.nuorisotyottomyys_1524"
+        ],
+        "alternatives": "Erota toteutunut ratkaisu, aikalaisten käsittelemät vaihtoehdot ja jälkikäteen muodostettu vaihtoehto.",
+        "distribution": "Toimijakohtaiset vaikutukset ovat alla avoimina tutkimuskysymyksinä.",
+        "transmission": "Tutkitaan luottoehtojen, työttömyyden, velanhoidon ja julkisen sopeutuksen erillisiä ketjuja.",
+        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?"
+      },
+      "revision": 2,
+      "created_at": "2026-10-07T16:41:23.535449+00:00",
+      "updated_at": "2026-10-07T16:43:37.565976+00:00"
+    },
+    {
+      "id": "ec085864-d6f1-40fe-975b-d783ade46fef",
+      "title": "Sama kasvu, erilaiset paluut",
+      "year_start": 1995,
+      "year_end": 2008,
+      "kind": "history",
+      "status": "hypothesis",
+      "published": true,
+      "primary_item_id": "1990-luvun-lama",
+      "data": {
+        "actors": [
+          "Kenelle kasvun paluu tarjosi paluun työhön?",
+          "Miten vienti ja yritysten menestys liittyivät kotimaisiin investointeihin?",
+          "Miten kasvu ja osallistuminen erosivat alueittain?",
+          "Miten politiikka vastasi eriytymiseen?",
+          "Mitä keskittymiä ja osallistumisen esteitä jäi?"
+        ],
+        "change": "Tuotannon ja viennin elpyminen.",
+        "legacy": "Kenelle kasvu palautti mahdollisuudet ja mikä osallistumisen este jäi?",
+        "limits": "Mekanismiketju on tutkimushypoteesi. Tapauskohtainen näyttö, vaihtoehdot ja vaikutusten suuruus on tarkistettava erikseen.",
+        "signal": "Valitse aineistosta varhainen signaali ja määrittele sen tulkinnan rajat.",
+        "sources": [
+          "suomen_murrokset.html · käsikirjoituksen tutkimuskysymykset (alustava kehys, ei vaikutusnäyttö)"
+        ],
+        "summary": "Tuotannon, työpaikkojen ja työllisyyden eritahtisuus. Nykyisen tutkimusankkurin empiirinen ydin: 1989–2000.",
+        "trigger": "",
+        "capacity": "Kenelle kasvu palautti mahdollisuudet ja mikä osallistumisen este jäi?",
+        "item_ids": [],
+        "objective": "Tunnista, miten muutos välittyi toimeentuloon ja yhteiseen toimintakykyyn.",
+        "risk_type": "average",
+        "correction": "Milloin havaittiin, ettei tuotannon elpyminen palauttanut osallistumista?",
+        "responsible": "",
+        "review_date": "",
+        "series_keys": [
+          "fi.statfin15ai.total.b1gmh.b4193efcb2",
+          "indicator_import.nuorisotyottomyys_1524"
+        ],
+        "alternatives": "Erota toteutunut ratkaisu, aikalaisten käsittelemät vaihtoehdot ja jälkikäteen muodostettu vaihtoehto.",
+        "distribution": "Toimijakohtaiset vaikutukset ovat alla avoimina tutkimuskysymyksinä.",
+        "transmission": "Tutkitaan kasvun, kotimaisten investointien, työpaikkojen ja osallistumisen eritahtisuutta.",
+        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?"
+      },
+      "revision": 2,
+      "created_at": "2026-10-07T16:41:23.535449+00:00",
+      "updated_at": "2026-10-07T16:43:37.565976+00:00"
+    },
+    {
+      "id": "8aba1153-71e1-4c0a-b9b5-0b1ccce6cf50",
+      "title": "Pitkittyneen taantuman sopeutuminen",
+      "year_start": 2008,
+      "year_end": 2019,
+      "kind": "history",
+      "status": "hypothesis",
+      "published": true,
+      "primary_item_id": null,
+      "data": {
+        "actors": [
+          "Miten työehdot, koulutus ja toimeentulon ennakoitavuus muuttuivat?",
+          "Miten kustannukset, investoinnit ja työn organisointi muuttuivat?",
+          "Miten työmahdollisuudet ja palvelukyky eriytyivät?",
+          "Miten välittömät säästöt ja myöhemmät vastuut jakautuivat?",
+          "Mitä osaamista, puskureita ja korjaustarpeita periytyi?"
+        ],
+        "change": "Pitkittynyt taantuma ja kilpailukyvyn sekä julkisen rahoituksen paine.",
+        "legacy": "Miten osaamisen, työkyvyn ja varautumisen varannot muuttuivat?",
+        "limits": "Mekanismiketju on tutkimushypoteesi. Tapauskohtainen näyttö, vaihtoehdot ja vaikutusten suuruus on tarkistettava erikseen.",
+        "signal": "Valitse aineistosta varhainen signaali ja määrittele sen tulkinnan rajat.",
+        "sources": [
+          "suomen_murrokset.html · käsikirjoituksen tutkimuskysymykset (alustava kehys, ei vaikutusnäyttö)"
+        ],
+        "summary": "Kaksi erillistä päätösketjua: kilpailukykysopimus ja rajattu ammatillisen koulutuksen leikkaus. Syntyvyys ja alustatyö rinnakkaisteemoina.",
+        "trigger": "",
+        "capacity": "Miten osaamisen, työkyvyn ja varautumisen varannot muuttuivat?",
+        "item_ids": [],
+        "objective": "Tunnista, miten muutos välittyi toimeentuloon ja yhteiseen toimintakykyyn.",
+        "risk_type": "capacity",
+        "correction": "Millä aikataululla myöhemmät kapasiteettivaikutukset tulivat havaittaviksi?",
+        "responsible": "",
+        "review_date": "",
+        "series_keys": [],
+        "alternatives": "Erota toteutunut ratkaisu, aikalaisten käsittelemät vaihtoehdot ja jälkikäteen muodostettu vaihtoehto.",
+        "distribution": "Toimijakohtaiset vaikutukset ovat alla avoimina tutkimuskysymyksinä.",
+        "transmission": "Tutkitaan kilpailukykysopimuksen ja rajatun koulutusleikkauksen ketjut erikseen.",
+        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?"
+      },
+      "revision": 1,
+      "created_at": "2026-10-07T16:41:23.535449+00:00",
+      "updated_at": "2026-10-07T16:41:23.535449+00:00"
+    },
+    {
+      "id": "974ad739-b3ed-4537-b54f-a526e5538af2",
+      "title": "Shokit, rahoitus ja vastuut",
+      "year_start": 2020,
+      "year_end": 2025,
+      "kind": "history",
+      "status": "hypothesis",
+      "published": true,
+      "primary_item_id": null,
+      "data": {
+        "actors": [
+          "Miten terveys, reaalitulot, velanhoito ja palvelujen saatavuus muuttuivat?",
+          "Miten tuet, kustannukset ja luottoehdot vaikuttivat toimintaan?",
+          "Miten palvelutarpeet ja resurssit kohtasivat eri alueilla?",
+          "Miten suojan, rahoituksen ja sopeutuksen vastuut jaettiin?",
+          "Mitä kapasiteettia, sitoumuksia ja korjaustarpeita jäi?"
+        ],
+        "change": "Pandemian, sodan, inflaation ja korkojen erilliset vaikutusketjut.",
+        "legacy": "Mitä kapasiteettia, sitoumuksia ja palvelujen korjaustarpeita jäi?",
+        "limits": "Mekanismiketju on tutkimushypoteesi. Tapauskohtainen näyttö, vaihtoehdot ja vaikutusten suuruus on tarkistettava erikseen.",
+        "signal": "Valitse aineistosta varhainen signaali ja määrittele sen tulkinnan rajat.",
+        "sources": [
+          "suomen_murrokset.html · käsikirjoituksen tutkimuskysymykset (alustava kehys, ei vaikutusnäyttö)"
+        ],
+        "summary": "Pandemia, sota, inflaatio ja korot erotetaan toisistaan. Mahdollinen palvelurahoituksen ankkuri rajataan myöhemmin.",
+        "trigger": "",
+        "capacity": "Mitä kapasiteettia, sitoumuksia ja palvelujen korjaustarpeita jäi?",
+        "item_ids": [],
+        "objective": "Tunnista, miten muutos välittyi toimeentuloon ja yhteiseen toimintakykyyn.",
+        "risk_type": "transfer",
+        "correction": "Milloin suoja ja sopeutus olisi voitu kohdentaa uudelleen?",
+        "responsible": "",
+        "review_date": "",
+        "series_keys": [],
+        "alternatives": "Erota toteutunut ratkaisu, aikalaisten käsittelemät vaihtoehdot ja jälkikäteen muodostettu vaihtoehto.",
+        "distribution": "Toimijakohtaiset vaikutukset ovat alla avoimina tutkimuskysymyksinä.",
+        "transmission": "Tutkitaan kunkin shokin yhteyttä puskureihin, tukiin, luottoehtoihin ja palvelukykyyn.",
+        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?"
+      },
+      "revision": 1,
+      "created_at": "2026-10-07T16:41:23.535449+00:00",
+      "updated_at": "2026-10-07T16:41:23.535449+00:00"
+    },
+    {
+      "id": "f543783b-c05e-4e82-ac59-44a70ca4ab66",
+      "title": "Tuottavuuskasvun välittyminen",
+      "year_start": 2025,
+      "year_end": 2050,
+      "kind": "future",
+      "status": "hypothesis",
+      "published": true,
+      "primary_item_id": null,
+      "data": {
+        "actors": [
+          "Miten työn, toimeentulon ja perhe-elämän mahdollisuudet muuttuisivat?",
+          "Miten investoinnit, tuottavuus ja vastuut muuttuisivat?",
+          "Miten vaikutukset eroaisivat lähtö- ja vastaanottoalueilla?",
+          "Miten veropohja, rahoitus ja palvelukyky muuttuisivat?",
+          "Mitä toimintakykyä ja sitoumuksia siirtyisi vuoteen 2050?"
+        ],
+        "change": "Tuottavuus kasvaa, mutta hyödyn jakautuminen on avoin.",
+        "legacy": "Mitä kasvava tuotanto rakentaa osallistumisessa, osaamisessa ja yhteisessä rahoituksessa?",
+        "limits": "Teknologia, väestörakenne ja instituutiot eroavat historiallisista tapauksista. Analogian toimivuus on perusteltava. Kausaalista vaikutusta ei voi päätellä pelkästä samanaikaisesta trendistä.",
+        "signal": "",
+        "sources": [
+          "Atlas-keskustelu · ehdollinen tulevaisuuskehys",
+          "TTT — Taakka · Totuus · Teko · käsitteellinen vertailu, ei tämän polun vaikutusnäyttö",
+          "Elias Kunnas: Mekanismirealismi (2026), täyslaskenta, kapasiteetti ja aikahorisontti · käsitteellinen vertailu"
+        ],
+        "summary": "Ehdollinen päätöstesti. Polku ei ole ennuste eikä historiallisesti osoitettu vaikutus.",
+        "trigger": "",
+        "capacity": "Mitä kasvava tuotanto rakentaa osallistumisessa, osaamisessa ja yhteisessä rahoituksessa?",
+        "item_ids": [],
+        "objective": "Tuottavuuskasvun välittyminen",
+        "risk_type": "average",
+        "correction": "Määrittele seurattava signaali, vastuullinen toimija ja ajankohta, jolloin ratkaisua arvioidaan uudelleen.",
+        "responsible": "",
+        "review_date": "",
+        "series_keys": [
+          "fi.statfin15ai.total.b1gmh.b4193efcb2",
+          "indicator_import.nuorisotyottomyys_1524"
+        ],
+        "alternatives": "Vertaa nykyistä toimintatapaa, ehdotettua ratkaisua ja vähintään yhtä vaihtoehtoista toteutusta.",
+        "distribution": "Arvioi hyötyjen ja kustannusten jakautuminen erikseen kullekin toimijalle.",
+        "transmission": "Palkat, voitot, työaika, työllisyys, investoinnit ja veropohja välittävät hyödyn eri tavoin.",
+        "counterevidence": "Missä oloissa oletettu haitta ei syntyisi tai ratkaisu vahvistaisi toimintakykyä?"
+      },
+      "revision": 2,
+      "created_at": "2026-10-07T16:41:23.535449+00:00",
+      "updated_at": "2026-10-07T16:43:37.565976+00:00"
+    },
+    {
+      "id": "238146ea-9791-454d-a73b-22503b4b0ad4",
+      "title": "Julkisen talouden sopeutus",
+      "year_start": 2025,
+      "year_end": 2050,
+      "kind": "future",
+      "status": "hypothesis",
+      "published": true,
+      "primary_item_id": null,
+      "data": {
+        "actors": [
+          "Miten työn, toimeentulon ja perhe-elämän mahdollisuudet muuttuisivat?",
+          "Miten investoinnit, tuottavuus ja vastuut muuttuisivat?",
+          "Miten vaikutukset eroaisivat lähtö- ja vastaanottoalueilla?",
+          "Miten veropohja, rahoitus ja palvelukyky muuttuisivat?",
+          "Mitä toimintakykyä ja sitoumuksia siirtyisi vuoteen 2050?"
+        ],
+        "change": "Rahoituspainetta pyritään pienentämään menoja tai vastuita muuttamalla.",
+        "legacy": "Väheneekö kokonaiskustannus, vai siirtyykö se kotitalouksille, toiselle sektorille tai tulevaan aikaan?",
+        "limits": "Teknologia, väestörakenne ja instituutiot eroavat historiallisista tapauksista. Analogian toimivuus on perusteltava. Kausaalista vaikutusta ei voi päätellä pelkästä samanaikaisesta trendistä.",
+        "signal": "",
+        "sources": [
+          "Atlas-keskustelu · ehdollinen tulevaisuuskehys",
+          "TTT — Taakka · Totuus · Teko · käsitteellinen vertailu, ei tämän polun vaikutusnäyttö",
+          "Elias Kunnas: Mekanismirealismi (2026), täyslaskenta, kapasiteetti ja aikahorisontti · käsitteellinen vertailu"
+        ],
+        "summary": "Ehdollinen päätöstesti. Polku ei ole ennuste eikä historiallisesti osoitettu vaikutus.",
+        "trigger": "",
+        "capacity": "Väheneekö kokonaiskustannus, vai siirtyykö se kotitalouksille, toiselle sektorille tai tulevaan aikaan?",
+        "item_ids": [
+          "1990-luvun-lama"
+        ],
+        "objective": "Julkisen talouden sopeutus",
+        "risk_type": "transfer",
+        "correction": "Määrittele seurattava signaali, vastuullinen toimija ja ajankohta, jolloin ratkaisua arvioidaan uudelleen.",
+        "responsible": "",
+        "review_date": "",
+        "series_keys": [],
+        "alternatives": "Vertaa nykyistä toimintatapaa, ehdotettua ratkaisua ja vähintään yhtä vaihtoehtoista toteutusta.",
+        "distribution": "Arvioi hyötyjen ja kustannusten jakautuminen erikseen kullekin toimijalle.",
+        "transmission": "Palvelujen, etuuksien ja verotuksen muutokset voivat muuttaa muiden toimijoiden tehtäviä ja kustannuksia.",
+        "counterevidence": "Missä oloissa oletettu haitta ei syntyisi tai ratkaisu vahvistaisi toimintakykyä?"
+      },
+      "revision": 1,
+      "created_at": "2026-10-07T16:41:23.535449+00:00",
+      "updated_at": "2026-10-07T16:41:23.535449+00:00"
+    },
+    {
+      "id": "8719ade3-e005-4dd5-8cc2-16f24f7fbcd0",
+      "title": "Tekoäly ja työn tehtävärakenne",
+      "year_start": 2025,
+      "year_end": 2050,
+      "kind": "future",
+      "status": "hypothesis",
+      "published": true,
+      "primary_item_id": null,
+      "data": {
+        "actors": [
+          "Miten työn, toimeentulon ja perhe-elämän mahdollisuudet muuttuisivat?",
+          "Miten investoinnit, tuottavuus ja vastuut muuttuisivat?",
+          "Miten vaikutukset eroaisivat lähtö- ja vastaanottoalueilla?",
+          "Miten veropohja, rahoitus ja palvelukyky muuttuisivat?",
+          "Mitä toimintakykyä ja sitoumuksia siirtyisi vuoteen 2050?"
+        ],
+        "change": "Tekoäly muuttaa tehtäviä ja tuottavuuden mahdollisuuksia; työllisyyden suunta on avoin.",
+        "legacy": "Muuttuuko tehtävien siirtymä uudeksi osaamiseksi vai pitkittyväksi ulkopuolisuudeksi?",
+        "limits": "Teknologia, väestörakenne ja instituutiot eroavat historiallisista tapauksista. Analogian toimivuus on perusteltava. Kausaalista vaikutusta ei voi päätellä pelkästä samanaikaisesta trendistä.",
+        "signal": "",
+        "sources": [
+          "Atlas-keskustelu · ehdollinen tulevaisuuskehys",
+          "TTT — Taakka · Totuus · Teko · käsitteellinen vertailu, ei tämän polun vaikutusnäyttö",
+          "Elias Kunnas: Mekanismirealismi (2026), täyslaskenta, kapasiteetti ja aikahorisontti · käsitteellinen vertailu"
+        ],
+        "summary": "Ehdollinen päätöstesti. Polku ei ole ennuste eikä historiallisesti osoitettu vaikutus.",
+        "trigger": "",
+        "capacity": "Muuttuuko tehtävien siirtymä uudeksi osaamiseksi vai pitkittyväksi ulkopuolisuudeksi?",
+        "item_ids": [
+          "ruotsiin_muutto"
+        ],
+        "objective": "Tekoäly ja työn tehtävärakenne",
+        "risk_type": "latency",
+        "correction": "Määrittele seurattava signaali, vastuullinen toimija ja ajankohta, jolloin ratkaisua arvioidaan uudelleen.",
+        "responsible": "",
+        "review_date": "",
+        "series_keys": [
+          "fi.statfin15ai.total.b1gmh.b4193efcb2",
+          "indicator_import.nuorisotyottomyys_1524"
+        ],
+        "alternatives": "Vertaa nykyistä toimintatapaa, ehdotettua ratkaisua ja vähintään yhtä vaihtoehtoista toteutusta.",
+        "distribution": "Arvioi hyötyjen ja kustannusten jakautuminen erikseen kullekin toimijalle.",
+        "transmission": "Omistus, työn organisointi, koulutus ja työmarkkinasiirtymät välittävät muutoksen.",
+        "counterevidence": "Missä oloissa oletettu haitta ei syntyisi tai ratkaisu vahvistaisi toimintakykyä?"
+      },
+      "revision": 2,
+      "created_at": "2026-10-07T16:41:23.535449+00:00",
+      "updated_at": "2026-10-07T16:43:37.565976+00:00"
+    },
+    {
+      "id": "5d71941a-20f2-42c2-95ca-ea7f8f41084a",
+      "title": "Toimintakyvyn rakentaminen",
+      "year_start": 2025,
+      "year_end": 2050,
+      "kind": "future",
+      "status": "hypothesis",
+      "published": true,
+      "primary_item_id": null,
+      "data": {
+        "actors": [
+          "Miten työn, toimeentulon ja perhe-elämän mahdollisuudet muuttuisivat?",
+          "Miten investoinnit, tuottavuus ja vastuut muuttuisivat?",
+          "Miten vaikutukset eroaisivat lähtö- ja vastaanottoalueilla?",
+          "Miten veropohja, rahoitus ja palvelukyky muuttuisivat?",
+          "Mitä toimintakykyä ja sitoumuksia siirtyisi vuoteen 2050?"
+        ],
+        "change": "Koulutukseen, työkykyyn ja osallistumiseen kohdistetaan resursseja.",
+        "legacy": "Mitä osallistumis- ja tuotantokykyä muodostuu, millä viiveellä ja millä kustannuksella?",
+        "limits": "Teknologia, väestörakenne ja instituutiot eroavat historiallisista tapauksista. Analogian toimivuus on perusteltava. Kausaalista vaikutusta ei voi päätellä pelkästä samanaikaisesta trendistä.",
+        "signal": "",
+        "sources": [
+          "Atlas-keskustelu · ehdollinen tulevaisuuskehys",
+          "TTT — Taakka · Totuus · Teko · käsitteellinen vertailu, ei tämän polun vaikutusnäyttö",
+          "Elias Kunnas: Mekanismirealismi (2026), täyslaskenta, kapasiteetti ja aikahorisontti · käsitteellinen vertailu"
+        ],
+        "summary": "Ehdollinen päätöstesti. Polku ei ole ennuste eikä historiallisesti osoitettu vaikutus.",
+        "trigger": "",
+        "capacity": "Mitä osallistumis- ja tuotantokykyä muodostuu, millä viiveellä ja millä kustannuksella?",
+        "item_ids": [],
+        "objective": "Toimintakyvyn rakentaminen",
+        "risk_type": "capacity",
+        "correction": "Määrittele seurattava signaali, vastuullinen toimija ja ajankohta, jolloin ratkaisua arvioidaan uudelleen.",
+        "responsible": "",
+        "review_date": "",
+        "series_keys": [
+          "indicator_import.syntyvyys_tfr",
+          "indicator_import.nuorisotyottomyys_1524"
+        ],
+        "alternatives": "Vertaa nykyistä toimintatapaa, ehdotettua ratkaisua ja vähintään yhtä vaihtoehtoista toteutusta.",
+        "distribution": "Arvioi hyötyjen ja kustannusten jakautuminen erikseen kullekin toimijalle.",
+        "transmission": "Toimintakyvyn mahdollinen vahvistuminen välittyy osallistumiseen vain, jos myös työn, asumisen ja palvelujen esteet huomioidaan.",
+        "counterevidence": "Missä oloissa oletettu haitta ei syntyisi tai ratkaisu vahvistaisi toimintakykyä?"
+      },
+      "revision": 2,
+      "created_at": "2026-10-07T16:41:23.535449+00:00",
+      "updated_at": "2026-10-07T16:43:37.565976+00:00"
+    }
+  ],
+  "items": [
+    {
+      "id": "1990-luvun-lama",
+      "title": "1990-luvun lama",
+      "year_start": 1990,
+      "year_end": 1994,
+      "type": "kriisi",
+      "domains": [
+        "talous",
+        "työ",
+        "pankit",
+        "julkinen talous"
+      ],
+      "problem": "Ylikuumentunut luottotalous, Neuvostokaupan romahdus, korkea korkotaso ja pankkikriisi.",
+      "mechanism": "Rahoitusjärjestelmän kriisi johti massatyöttömyyteen, yrityskaatoihin ja julkisen talouden sopeutukseen.",
+      "effects": [
+        "pankkituki ja pankkikonsolidaatio",
+        "pitkäaikaistyöttömyys",
+        "julkisten menojen leikkaukset",
+        "ICT-vetoisen kasvun korostuminen"
+      ],
+      "long_effect": "Uusi finanssipoliittinen varovaisuus ja pysyvämpi työttömyysongelma.",
+      "importance": 5,
+      "sources": [
+        "Valtiovarainministeriö: 1990-luvun laman talouspoliittinen analyysi",
+        "Tilastokeskus: 1990-luvun talouskriisin tilastot"
+      ]
+    },
+    {
+      "id": "nalkavuodet-1866",
+      "title": "Suuret nälkävuodet",
+      "year_start": 1866,
+      "year_end": 1868,
+      "type": "kriisi",
+      "domains": [
+        "väestö",
+        "terveys",
+        "maatalous",
+        "hallinto"
+      ],
+      "problem": "Katovuodet, köyhyys, heikot kulkuyhteydet ja riittämätön kriisinhallinta.",
+      "mechanism": "Laaja kuolleisuus ja avun puutteet paljastivat maatalous-, terveys- ja hallintorakenteiden haavoittuvuuden.",
+      "effects": [
+        "köyhäinhoidon uudistamistarve",
+        "liikenneyhteyksien rakentaminen",
+        "maatalouden monipuolistuminen",
+        "muuttoliike ja siirtolaisuus",
+        "isorokkorokotusten lisääminen ja hygieniatietämyksen kasvu",
+        "valtion viljavarastojen avaaminen ensimmäistä kertaa valtakunnallisesti"
+      ],
+      "long_effect": "Valtion ja kuntien kriisivastuun asteittainen vahvistuminen.",
+      "importance": 5,
+      "sources": [
+        "Tilastokeskus: Historiallinen väestötilasto",
+        "SKS: Suomen historia 3",
+        "Heikki Waris: Nälkä ja yhteiskunta 1860-luvun Suomessa",
+        "THL: Kansanterveyden historia"
+      ]
+    },
+    {
+      "id": "paluumuutto-ruotsista-1970",
+      "title": "Paluumuutto ja Ruotsin-siirtolaisuuden perintö",
+      "year_start": 1970,
+      "year_end": 2000,
+      "type": "väestömuutos",
+      "domains": [
+        "muuttoliike",
+        "työ",
+        "kulttuuri",
+        "alueet"
+      ],
+      "problem": "Ruotsiin muuttaneiden asema, suhdanteet ja perhesiteet synnyttivät huomattavaa paluumuuttoa Suomeen.",
+      "mechanism": "Paluumuuttajat toivat mukanaan säästöjä, ammattitaitoa, kielitaitoa ja uusia kulutus- ja työelämäkäytäntöjä.",
+      "effects": [
+        "osaamisen palautuminen",
+        "rakentamisen ja yrittäjyyden kasvu",
+        "kahden maan identiteettien synty"
+      ],
+      "long_effect": "Siirtolaisuus ei ollut vain pysyvä väestömenetys vaan osa Suomen modernisoitumista.",
+      "importance": 3,
+      "sources": [
+        "Tilastokeskus: paluumuuton ja Ruotsin-siirtolaisuuden tilastot 1970-luvulta"
+      ]
+    },
+    {
+      "id": "ruotsiin_muutto",
+      "title": "Suuri muutto Ruotsiin",
+      "year_start": 1960,
+      "year_end": 1975,
+      "type": "väestömuutos",
+      "domains": [
+        "työ",
+        "väestö",
+        "Pohjoismaat"
+      ],
+      "problem": "Ruotsin teollisuus tarvitsi työvoimaa ja Suomessa oli rakennetyöttömyyttä.",
+      "mechanism": "Kymmenettuhannet suomalaiset muuttivat työn perässä Ruotsiin.",
+      "effects": [
+        "työttömyyden lievittyminen",
+        "rahalähetykset Suomeen",
+        "paluumuutto",
+        "Pohjoismaisen työmarkkina-alueen vahvistuminen"
+      ],
+      "long_effect": "Muutto vaikutti sekä Suomen että Ruotsin työmarkkinoihin ja väestörakenteeseen.",
+      "importance": 3,
+      "sources": [
+        "Tilastokeskus: siirtolaisuus Ruotsiin -tilastot 1960-luvulta"
+      ]
+    }
+  ],
+  "series": [
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "title": "Nuorisotyöttömyysaste 15–24v",
+      "unit": "%",
+      "source": "Nordic Statistics / Eurostat (WORK02)",
+      "source_url": "https://pxweb.nordicstatistics.org/api/v1/en/Nordic%20Statistics/Labour%20market/Unemployment/WORK02.px",
+      "interpretation": "Nuorisotyöttömyys mittaa ensimmäisen työmarkkinakiinnittymisen katkeamista."
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "title": "Kokonaishedelmällisyysluku (TFR)",
+      "unit": "lasta naista kohden",
+      "source": "Nordic Statistics (CHIL02)",
+      "source_url": "https://pxweb.nordicstatistics.org/api/v1/en/Nordic%20Statistics/Demography/Fertility/CHIL02.px",
+      "interpretation": "Pitkittynyt matala syntyvyys siirtää nykyisten ratkaisujen kustannuksia pienemmille ikäluokille."
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "title": "B1GMH Bruttokansantuote markkinahintaan — Yhteensä — Viitevuoden 2015 hinnoin, milj. euroa",
+      "unit": "Viitevuoden 2015 hinnoin, milj. euroa",
+      "source": "Tilastokeskus, kansantalouden tilinpito; Hjerppe (1988)",
+      "source_url": "https://pxdata.stat.fi/PxWeb/pxweb/fi/StatFin/StatFin__ntp/15ai.px/",
+      "interpretation": null
+    }
+  ],
+  "values": [
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1950,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 3.154,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1955,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 2.93,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1960,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 2.72,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1965,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 2.47,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1970,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.827,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1975,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.687,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1975,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 87588,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1976,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 87993,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1977,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 88322,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1978,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 91103,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1979,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 97656,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1980,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 103151,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1980,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.634,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1981,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 104481,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1982,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 107706,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1983,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 111049,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1984,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 114631,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1985,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.644,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1985,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 118690,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1986,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 121959,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1987,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 126302,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1988,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 132909,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1989,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 139666,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1990,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.782,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1990,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 140632,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1991,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.794,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1991,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 132363,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1992,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.847,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1992,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 127980,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1993,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.813,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1993,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 126982,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1994,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 132016,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1994,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.847,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 1995,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 41.2,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1995,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 137606,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1995,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.807,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 1996,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 41.6,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1996,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 142646,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1996,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.764,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1997,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.746,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 1997,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 35.4,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1997,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 151772,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1998,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 160049,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1998,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.7,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 1998,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 34.6,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1999,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.735,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 1999,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 28.6,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1999,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 167074,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2000,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 28.4,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2000,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 176687,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2000,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.729,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2001,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 26.6,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2001,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.726,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2001,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 181352,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2002,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 184412,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2002,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.718,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2002,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 28.2,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2003,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 188122,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2003,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 27.8,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2003,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.76,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2004,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 195657,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2004,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 27.5,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2004,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.8,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2005,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.803,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2005,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 201092,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2005,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 20.1,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2006,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 209175,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2006,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 18.7,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2006,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.837,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2007,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.829,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2007,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 220288,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2007,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 16.5,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2008,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.846,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2008,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 222016,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2008,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 16.5,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2009,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 21.5,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2009,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.864,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2009,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 204086,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2010,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 21.4,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2010,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 210552,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2010,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.87,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2011,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.827,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2011,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 215584,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2011,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 20.1,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2012,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 18.9,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2012,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 212301,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2012,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.801,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2013,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 19.9,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2013,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 210221,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2013,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.747,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2014,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 20.5,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2014,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.71,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2014,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 209216,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2015,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 22.4,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2015,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.65,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2015,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 210192,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2016,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.567,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2016,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 20.2,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2016,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 215598,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2017,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.489,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2017,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 20.1,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2017,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 222720,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2018,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 225377,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2018,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.407,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2018,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 17,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2019,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 228419,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2019,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 17.2,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2019,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.347,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2020,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 222729,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2020,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.37,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2020,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 21.4,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2021,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.458,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2021,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 17.1,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2021,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 228690,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2022,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 230007,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2022,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 14.2,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2022,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.316,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2023,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.257,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2023,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 227205,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2023,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 16.2,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2024,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 229463,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2024,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 18.8,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 2024,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 1.252,
+      "value_text": null
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2025,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 21.8,
+      "value_text": null
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2025,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "value": 231397,
+      "value_text": null
+    }
+  ],
+  "checksum": "6225b5f401ac404d010fe007ca8f756e392812ea3c8ec3a642cdc6d340925524"
+}
