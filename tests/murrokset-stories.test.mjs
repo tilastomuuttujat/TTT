@@ -56,12 +56,23 @@ test('flow geometry stays finite and branches for group comparison',async()=>{
 test('cockpit applies a question to the current period and returns to the canvas',async()=>{
  const source=await readFile(new URL('scripts/murrokset1-explorer.txt',root),'utf8');const states=[];let cursor=0,selected,paused=false;
  const S={useState(initial){const i=cursor++;if(!(i in states))states[i]=initial;return [states[i],value=>states[i]=typeof value==='function'?value(states[i]):value];},useRef(){return {current:null};},useLayoutEffect(){}};
- const L={jsx:(type,props)=>({type,props}),jsxs:(type,props)=>({type,props})};const render=new Function('S','L','Tn','window',source+';return MurrosExplorer;')(S,L,guide.chapters,{requestAnimationFrame(fn){fn();}});
+ const L={jsx:(type,props)=>({type,props}),jsxs:(type,props)=>({type,props})};const render=new Function('S','L','Tn','window','MurrosMatrix',source+';return MurrosExplorer;')(S,L,guide.chapters,{requestAnimationFrame(fn){fn();}},function MatrixStub(){});
  const walk=n=>!n||typeof n!=='object'?[]:[n,...[n.props?.children].flat(Infinity).flatMap(walk)];const props={index:1,onIndex(value){selected=value;},onPause(){paused=true;}};
  let nodes=walk(render(props));nodes.find(n=>n.props?.className==='murros-story-tab explorer-handle').props.onClick();cursor=0;nodes=walk(render(props));assert.ok(nodes.some(n=>n.type==='dialog'));
- nodes.find(n=>n.type==='button'&&n.props.children?.[0]?.props?.children==='Etsi pitkä jälki').props.onClick();assert.equal(selected,1);assert.equal(paused,true);cursor=0;nodes=walk(render(props));assert.ok(!nodes.some(n=>n.type==='dialog'));assert.ok(nodes.some(n=>n.props?.className?.startsWith('explorer-flow-layer')));assert.ok(nodes.some(n=>n.type==='p'&&n.props.children===guide.chapters[1].flows.trace.note));
+ nodes.find(n=>n.type==='button'&&n.props.children?.[0]?.props?.children==='Etsi pitkä jälki').props.onClick();assert.equal(selected,1);assert.equal(paused,true);cursor=0;nodes=walk(render(props));assert.ok(!nodes.some(n=>n.type==='dialog'));assert.ok(nodes.some(n=>n.props?.className?.startsWith('explorer-flow-layer')));assert.ok(nodes.some(n=>n.props?.question==='trace'&&n.props?.active===1));
 });
 
 test('each chapter provides maintained labels and limits for all flow questions',()=>{
  for(const chapter of guide.chapters)for(const key of ['response','trace','groups']){const f=chapter.flows[key];assert.equal(f.labels.length,key==='groups'?3:2);assert.ok(f.labels.every(label=>typeof label==='string'&&label.length<55));assert.ok(f.note.length>40);}
+});
+
+test('matrix relations resolve nodes and sources and distinguish unproven carry routes',async()=>{
+ const data=JSON.parse(await readFile(new URL('assets/murrokset1-matrix.json',root),'utf8'));const ids=new Set(data.nodes.map(n=>n.id));assert.equal(ids.size,data.nodes.length);assert.equal(data.levels.length,4);assert.equal(data.columns.length,4);
+ for(const edge of data.edges){assert.ok(ids.has(edge.source)&&ids.has(edge.target));assert.ok(['interpretation','question','scenario'].includes(edge.status));assert.ok(edge.mechanism&&edge.evidence&&edge.alternative&&edge.delay&&edge.transmission);for(const ref of edge.sources)assert.ok(content.stories[ref.story]?.sources[ref.ref-1]);if(edge.id.startsWith('carry')){assert.equal(edge.status,'question');assert.equal(edge.sources.length,0);}}
+});
+
+test('matrix follows successive levels and cross-period carry paths without inventing amounts',async()=>{
+ const source=await readFile(new URL('scripts/murrokset1-matrix.txt',root),'utf8'),data=JSON.parse(await readFile(new URL('assets/murrokset1-matrix.json',root),'utf8'));const [route,layout]=new Function(source+';return [murrosMatrixRoute,murrosMatrixLayout];')();
+ const trace=route(data,'trace','c0n0');assert.ok(trace.nodes.has('c0n3'));assert.ok(trace.nodes.has('c2n2'));assert.ok(trace.nodes.has('c3n3'));const response=route(data,'response','c0n0');assert.ok(response.nodes.has('c0n2'));assert.ok(!response.nodes.has('c2n2'));const groups=route(data,'groups','c1n0');assert.ok(groups.nodes.has('c1g0')&&groups.nodes.has('c1g1'));
+ const positions=layout(data);for(const edge of data.edges)assert.ok(!positions.path(edge).includes('NaN'));assert.ok(data.edges.every(e=>e.amount===undefined));
 });

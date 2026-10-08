@@ -1,0 +1,667 @@
+{
+  "schema_version": 1,
+  "levels": [
+    "Tuotanto ja työ",
+    "Yhteiskunnan ratkaisut",
+    "Ihmisten arki",
+    "Pitkä jälki"
+  ],
+  "columns": [
+    "1960–1975",
+    "1990–2008",
+    "2020–2022",
+    "2025 →"
+  ],
+  "nodes": [
+    {
+      "id": "c0n0",
+      "chapter": 0,
+      "level": 0,
+      "label": "Työ kaupungissa",
+      "offset": 0
+    },
+    {
+      "id": "c0n1",
+      "chapter": 0,
+      "level": 1,
+      "label": "Asunnot ja palvelut",
+      "offset": 0
+    },
+    {
+      "id": "c0n2",
+      "chapter": 0,
+      "level": 2,
+      "label": "Uusi arki",
+      "offset": 0
+    },
+    {
+      "id": "c0n3",
+      "chapter": 0,
+      "level": 3,
+      "label": "Rakennettu ympäristö",
+      "offset": 0
+    },
+    {
+      "id": "c0g0",
+      "chapter": 0,
+      "level": 2,
+      "label": "Muuttajat",
+      "offset": -1
+    },
+    {
+      "id": "c0g1",
+      "chapter": 0,
+      "level": 2,
+      "label": "Lähtöalueille jääneet",
+      "offset": 1
+    },
+    {
+      "id": "c1n0",
+      "chapter": 1,
+      "level": 0,
+      "label": "Työmarkkinoiden lama",
+      "offset": 0
+    },
+    {
+      "id": "c1n1",
+      "chapter": 1,
+      "level": 1,
+      "label": "Työhön paluun ehdot",
+      "offset": 0
+    },
+    {
+      "id": "c1n2",
+      "chapter": 1,
+      "level": 2,
+      "label": "Työuran alku",
+      "offset": 0
+    },
+    {
+      "id": "c1n3",
+      "chapter": 1,
+      "level": 3,
+      "label": "Myöhemmät työuraerot",
+      "offset": 0
+    },
+    {
+      "id": "c1g0",
+      "chapter": 1,
+      "level": 2,
+      "label": "1992 valmistuneet",
+      "offset": -1
+    },
+    {
+      "id": "c1g1",
+      "chapter": 1,
+      "level": 2,
+      "label": "Myöhemmin valmistuneet",
+      "offset": 1
+    },
+    {
+      "id": "c2n0",
+      "chapter": 2,
+      "level": 0,
+      "label": "Tulo- ja hintahäiriöt",
+      "offset": 0
+    },
+    {
+      "id": "c2n1",
+      "chapter": 2,
+      "level": 1,
+      "label": "Turva ja puskurit",
+      "offset": 0
+    },
+    {
+      "id": "c2n2",
+      "chapter": 2,
+      "level": 2,
+      "label": "Liikkumavara",
+      "offset": 0
+    },
+    {
+      "id": "c2n3",
+      "chapter": 2,
+      "level": 3,
+      "label": "Pysyvä jälki?",
+      "offset": 0
+    },
+    {
+      "id": "c2g0",
+      "chapter": 2,
+      "level": 2,
+      "label": "Pienet puskurit",
+      "offset": -1
+    },
+    {
+      "id": "c2g1",
+      "chapter": 2,
+      "level": 2,
+      "label": "Suuremmat puskurit",
+      "offset": 1
+    },
+    {
+      "id": "c3n0",
+      "chapter": 3,
+      "level": 0,
+      "label": "Työn vaatimukset",
+      "offset": 0
+    },
+    {
+      "id": "c3n1",
+      "chapter": 3,
+      "level": 1,
+      "label": "Työn mukautus",
+      "offset": 0
+    },
+    {
+      "id": "c3n2",
+      "chapter": 3,
+      "level": 2,
+      "label": "Osallistuminen",
+      "offset": 0
+    },
+    {
+      "id": "c3n3",
+      "chapter": 3,
+      "level": 3,
+      "label": "Jatkuvuus?",
+      "offset": 0
+    },
+    {
+      "id": "c3g0",
+      "chapter": 3,
+      "level": 2,
+      "label": "Sopiva järjestely",
+      "offset": -1
+    },
+    {
+      "id": "c3g1",
+      "chapter": 3,
+      "level": 2,
+      "label": "Ilman sopivaa järjestelyä",
+      "offset": 1
+    }
+  ],
+  "edges": [
+    {
+      "id": "c0e0",
+      "source": "c0n0",
+      "target": "c0n1",
+      "mechanism": "Muutto lisäsi asumisen ja palvelujen tarvetta.",
+      "modes": [
+        "response",
+        "groups",
+        "trace"
+      ],
+      "status": "interpretation",
+      "transmission": "välittyminen",
+      "period": "1960–1975",
+      "evidence": "Vuosaari konkretisoi rakentamisen; muuttoliiketilastot kuvaavat muuttoa. Ne eivät yksin osoita kaikkien ryhmien hyvinvoinnin muutosta.",
+      "alternative": "Myös ikärakenne ja ihmisten omat muuttovalinnat vaikuttivat alueiden eroihin.",
+      "sources": [
+        {
+          "story": 0,
+          "ref": 1
+        }
+      ],
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+    },
+    {
+      "id": "c0e1",
+      "source": "c0n1",
+      "target": "c0n2",
+      "mechanism": "Työpaikan rinnalle tarvittiin toimiva arki.",
+      "modes": [
+        "response",
+        "trace"
+      ],
+      "status": "interpretation",
+      "transmission": "välittyminen",
+      "period": "1960–1975",
+      "evidence": "Vuosaari konkretisoi rakentamisen; muuttoliiketilastot kuvaavat muuttoa. Ne eivät yksin osoita kaikkien ryhmien hyvinvoinnin muutosta.",
+      "alternative": "Myös ikärakenne ja ihmisten omat muuttovalinnat vaikuttivat alueiden eroihin.",
+      "sources": [
+        {
+          "story": 0,
+          "ref": 1
+        }
+      ],
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+    },
+    {
+      "id": "c0e2",
+      "source": "c0n2",
+      "target": "c0n3",
+      "mechanism": "Rakennettu ympäristö säilyi myöhempien sukupolvien käytössä.",
+      "modes": [
+        "trace"
+      ],
+      "status": "interpretation",
+      "transmission": "rakenteen säilyminen",
+      "period": "1960–1975",
+      "evidence": "Vuosaari konkretisoi rakentamisen; muuttoliiketilastot kuvaavat muuttoa. Ne eivät yksin osoita kaikkien ryhmien hyvinvoinnin muutosta.",
+      "alternative": "Myös ikärakenne ja ihmisten omat muuttovalinnat vaikuttivat alueiden eroihin.",
+      "sources": [
+        {
+          "story": 0,
+          "ref": 1
+        }
+      ],
+      "delay": "Myöhemmät vuosikymmenet"
+    },
+    {
+      "id": "c0group0",
+      "source": "c0n1",
+      "target": "c0g0",
+      "mechanism": "Haarat nimeävät vertailtavat ryhmät. Niiden samanlainen leveys ei kuvaa ryhmien kokoa tai kohtaloiden suuruuseroa.",
+      "modes": [
+        "groups"
+      ],
+      "status": "question",
+      "transmission": "ryhmien eriytyminen",
+      "period": "1960–1975",
+      "evidence": "Vuosaari konkretisoi rakentamisen; muuttoliiketilastot kuvaavat muuttoa. Ne eivät yksin osoita kaikkien ryhmien hyvinvoinnin muutosta.",
+      "alternative": "Myös ikärakenne ja ihmisten omat muuttovalinnat vaikuttivat alueiden eroihin.",
+      "sources": [
+        {
+          "story": 0,
+          "ref": 1
+        }
+      ],
+      "delay": "Ryhmien eroa on seurattava ajassa"
+    },
+    {
+      "id": "c0group1",
+      "source": "c0n1",
+      "target": "c0g1",
+      "mechanism": "Haarat nimeävät vertailtavat ryhmät. Niiden samanlainen leveys ei kuvaa ryhmien kokoa tai kohtaloiden suuruuseroa.",
+      "modes": [
+        "groups"
+      ],
+      "status": "question",
+      "transmission": "ryhmien eriytyminen",
+      "period": "1960–1975",
+      "evidence": "Vuosaari konkretisoi rakentamisen; muuttoliiketilastot kuvaavat muuttoa. Ne eivät yksin osoita kaikkien ryhmien hyvinvoinnin muutosta.",
+      "alternative": "Myös ikärakenne ja ihmisten omat muuttovalinnat vaikuttivat alueiden eroihin.",
+      "sources": [
+        {
+          "story": 0,
+          "ref": 1
+        }
+      ],
+      "delay": "Ryhmien eroa on seurattava ajassa"
+    },
+    {
+      "id": "c1e0",
+      "source": "c1n0",
+      "target": "c1n1",
+      "mechanism": "Työhön pääsyn mahdollisuudet kapenivat.",
+      "modes": [
+        "response",
+        "groups",
+        "trace"
+      ],
+      "status": "interpretation",
+      "transmission": "välittyminen",
+      "period": "1990–2008",
+      "evidence": "Artikkelin kohorttivertailut kuvaavat myöhempiä eroja. Ne eivät eristä laman vaikutusta kaikista ryhmien eroista.",
+      "alternative": "Koulutusala, alue ja myöhemmät työmarkkinamuutokset voivat selittää osan eroista.",
+      "sources": [
+        {
+          "story": 1,
+          "ref": 1
+        }
+      ],
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+    },
+    {
+      "id": "c1e1",
+      "source": "c1n1",
+      "target": "c1n2",
+      "mechanism": "Elpyminen ei yksin kerro jokaisen ryhmän paluusta työhön.",
+      "modes": [
+        "response",
+        "trace"
+      ],
+      "status": "interpretation",
+      "transmission": "välittyminen",
+      "period": "1990–2008",
+      "evidence": "Artikkelin kohorttivertailut kuvaavat myöhempiä eroja. Ne eivät eristä laman vaikutusta kaikista ryhmien eroista.",
+      "alternative": "Koulutusala, alue ja myöhemmät työmarkkinamuutokset voivat selittää osan eroista.",
+      "sources": [
+        {
+          "story": 1,
+          "ref": 1
+        }
+      ],
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+    },
+    {
+      "id": "c1e2",
+      "source": "c1n2",
+      "target": "c1n3",
+      "mechanism": "Valmistumiskohorttien myöhemmät työurat erosivat.",
+      "modes": [
+        "trace"
+      ],
+      "status": "interpretation",
+      "transmission": "kasautuminen",
+      "period": "1990–2008",
+      "evidence": "Artikkelin kohorttivertailut kuvaavat myöhempiä eroja. Ne eivät eristä laman vaikutusta kaikista ryhmien eroista.",
+      "alternative": "Koulutusala, alue ja myöhemmät työmarkkinamuutokset voivat selittää osan eroista.",
+      "sources": [
+        {
+          "story": 1,
+          "ref": 1
+        }
+      ],
+      "delay": "Myöhemmät vuosikymmenet"
+    },
+    {
+      "id": "c1group0",
+      "source": "c1n1",
+      "target": "c1g0",
+      "mechanism": "Vertaa ryhmien myöhempää kehitystä ja huomioi koulutusala, alue ja myöhemmät työmarkkinamuutokset.",
+      "modes": [
+        "groups"
+      ],
+      "status": "question",
+      "transmission": "ryhmien eriytyminen",
+      "period": "1990–2008",
+      "evidence": "Artikkelin kohorttivertailut kuvaavat myöhempiä eroja. Ne eivät eristä laman vaikutusta kaikista ryhmien eroista.",
+      "alternative": "Koulutusala, alue ja myöhemmät työmarkkinamuutokset voivat selittää osan eroista.",
+      "sources": [
+        {
+          "story": 1,
+          "ref": 1
+        }
+      ],
+      "delay": "Ryhmien eroa on seurattava ajassa"
+    },
+    {
+      "id": "c1group1",
+      "source": "c1n1",
+      "target": "c1g1",
+      "mechanism": "Vertaa ryhmien myöhempää kehitystä ja huomioi koulutusala, alue ja myöhemmät työmarkkinamuutokset.",
+      "modes": [
+        "groups"
+      ],
+      "status": "question",
+      "transmission": "ryhmien eriytyminen",
+      "period": "1990–2008",
+      "evidence": "Artikkelin kohorttivertailut kuvaavat myöhempiä eroja. Ne eivät eristä laman vaikutusta kaikista ryhmien eroista.",
+      "alternative": "Koulutusala, alue ja myöhemmät työmarkkinamuutokset voivat selittää osan eroista.",
+      "sources": [
+        {
+          "story": 1,
+          "ref": 1
+        }
+      ],
+      "delay": "Ryhmien eroa on seurattava ajassa"
+    },
+    {
+      "id": "c2e0",
+      "source": "c2n0",
+      "target": "c2n1",
+      "mechanism": "Turva ja puskurit välittivät häiriöiden vaikutuksia.",
+      "modes": [
+        "response",
+        "groups",
+        "trace"
+      ],
+      "status": "interpretation",
+      "transmission": "välittyminen",
+      "period": "2020–2022",
+      "evidence": "Etuus-, hinta- ja kulutustiedot kuvaavat eri puolia kriiseistä. Pysyvä jälki vaatii samojen ryhmien seurantaa.",
+      "alternative": "Kulutusrakenne ja kriisien erilainen osuminen toimialoihin vaikuttivat tilanteeseen.",
+      "sources": [
+        {
+          "story": 2,
+          "ref": 1
+        }
+      ],
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+    },
+    {
+      "id": "c2e1",
+      "source": "c2n1",
+      "target": "c2n2",
+      "mechanism": "Välttämättömät menot rajasivat sopeutumista.",
+      "modes": [
+        "response",
+        "trace"
+      ],
+      "status": "interpretation",
+      "transmission": "välittyminen",
+      "period": "2020–2022",
+      "evidence": "Etuus-, hinta- ja kulutustiedot kuvaavat eri puolia kriiseistä. Pysyvä jälki vaatii samojen ryhmien seurantaa.",
+      "alternative": "Kulutusrakenne ja kriisien erilainen osuminen toimialoihin vaikuttivat tilanteeseen.",
+      "sources": [
+        {
+          "story": 2,
+          "ref": 1
+        }
+      ],
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+    },
+    {
+      "id": "c2e2",
+      "source": "c2n2",
+      "target": "c2n3",
+      "mechanism": "Pysyvyyden osoittaminen vaatii ryhmien seurantaa.",
+      "modes": [
+        "trace"
+      ],
+      "status": "interpretation",
+      "transmission": "välittyminen",
+      "period": "2020–2022",
+      "evidence": "Etuus-, hinta- ja kulutustiedot kuvaavat eri puolia kriiseistä. Pysyvä jälki vaatii samojen ryhmien seurantaa.",
+      "alternative": "Kulutusrakenne ja kriisien erilainen osuminen toimialoihin vaikuttivat tilanteeseen.",
+      "sources": [
+        {
+          "story": 2,
+          "ref": 1
+        }
+      ],
+      "delay": "Myöhemmät vuosikymmenet"
+    },
+    {
+      "id": "c2group0",
+      "source": "c2n1",
+      "target": "c2g0",
+      "mechanism": "Haarat auttavat kysymään, miten sama häiriö kohtasi erilaiset lähtökohdat. Ryhmäkohtaisia vaikutuskokoja ei esitetä.",
+      "modes": [
+        "groups"
+      ],
+      "status": "question",
+      "transmission": "ryhmien eriytyminen",
+      "period": "2020–2022",
+      "evidence": "Etuus-, hinta- ja kulutustiedot kuvaavat eri puolia kriiseistä. Pysyvä jälki vaatii samojen ryhmien seurantaa.",
+      "alternative": "Kulutusrakenne ja kriisien erilainen osuminen toimialoihin vaikuttivat tilanteeseen.",
+      "sources": [
+        {
+          "story": 2,
+          "ref": 1
+        }
+      ],
+      "delay": "Ryhmien eroa on seurattava ajassa"
+    },
+    {
+      "id": "c2group1",
+      "source": "c2n1",
+      "target": "c2g1",
+      "mechanism": "Haarat auttavat kysymään, miten sama häiriö kohtasi erilaiset lähtökohdat. Ryhmäkohtaisia vaikutuskokoja ei esitetä.",
+      "modes": [
+        "groups"
+      ],
+      "status": "question",
+      "transmission": "ryhmien eriytyminen",
+      "period": "2020–2022",
+      "evidence": "Etuus-, hinta- ja kulutustiedot kuvaavat eri puolia kriiseistä. Pysyvä jälki vaatii samojen ryhmien seurantaa.",
+      "alternative": "Kulutusrakenne ja kriisien erilainen osuminen toimialoihin vaikuttivat tilanteeseen.",
+      "sources": [
+        {
+          "story": 2,
+          "ref": 1
+        }
+      ],
+      "delay": "Ryhmien eroa on seurattava ajassa"
+    },
+    {
+      "id": "c3e0",
+      "source": "c3n0",
+      "target": "c3n1",
+      "mechanism": "Tehtäviä, aikaa ja tukea voitaisiin muokata.",
+      "modes": [
+        "response",
+        "groups",
+        "trace"
+      ],
+      "status": "scenario",
+      "transmission": "välittyminen",
+      "period": "2025 →",
+      "evidence": "Työn muokkauksen ohjeet tukevat toteutustapoja. Ne eivät todista tämän tulevaisuuspolun taloudellista tai yhteiskunnallista tulosta.",
+      "alternative": "Työvoiman kysyntä, työn mielekkyys ja tuen jatkuvuus voivat ratkaista tuloksen.",
+      "sources": [
+        {
+          "story": 3,
+          "ref": 1
+        }
+      ],
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+    },
+    {
+      "id": "c3e1",
+      "source": "c3n1",
+      "target": "c3n2",
+      "mechanism": "Sopiva järjestely voisi mahdollistaa osallistumisen.",
+      "modes": [
+        "response",
+        "trace"
+      ],
+      "status": "scenario",
+      "transmission": "välittyminen",
+      "period": "2025 →",
+      "evidence": "Työn muokkauksen ohjeet tukevat toteutustapoja. Ne eivät todista tämän tulevaisuuspolun taloudellista tai yhteiskunnallista tulosta.",
+      "alternative": "Työvoiman kysyntä, työn mielekkyys ja tuen jatkuvuus voivat ratkaista tuloksen.",
+      "sources": [
+        {
+          "story": 3,
+          "ref": 1
+        }
+      ],
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+    },
+    {
+      "id": "c3e2",
+      "source": "c3n2",
+      "target": "c3n3",
+      "mechanism": "Hyvä alku ei osoita osallistumisen jatkuvuutta.",
+      "modes": [
+        "trace"
+      ],
+      "status": "scenario",
+      "transmission": "välittyminen",
+      "period": "2025 →",
+      "evidence": "Työn muokkauksen ohjeet tukevat toteutustapoja. Ne eivät todista tämän tulevaisuuspolun taloudellista tai yhteiskunnallista tulosta.",
+      "alternative": "Työvoiman kysyntä, työn mielekkyys ja tuen jatkuvuus voivat ratkaista tuloksen.",
+      "sources": [
+        {
+          "story": 3,
+          "ref": 1
+        }
+      ],
+      "delay": "Myöhemmät vuosikymmenet"
+    },
+    {
+      "id": "c3group0",
+      "source": "c3n1",
+      "target": "c3g0",
+      "mechanism": "Ryhmät kuvaavat skenaarion vertailukysymystä. Osallistuminen riippuu myös kysynnästä, mielekkyydestä ja tuen jatkuvuudesta.",
+      "modes": [
+        "groups"
+      ],
+      "status": "scenario",
+      "transmission": "ryhmien eriytyminen",
+      "period": "2025 →",
+      "evidence": "Työn muokkauksen ohjeet tukevat toteutustapoja. Ne eivät todista tämän tulevaisuuspolun taloudellista tai yhteiskunnallista tulosta.",
+      "alternative": "Työvoiman kysyntä, työn mielekkyys ja tuen jatkuvuus voivat ratkaista tuloksen.",
+      "sources": [
+        {
+          "story": 3,
+          "ref": 1
+        }
+      ],
+      "delay": "Ryhmien eroa on seurattava ajassa"
+    },
+    {
+      "id": "c3group1",
+      "source": "c3n1",
+      "target": "c3g1",
+      "mechanism": "Ryhmät kuvaavat skenaarion vertailukysymystä. Osallistuminen riippuu myös kysynnästä, mielekkyydestä ja tuen jatkuvuudesta.",
+      "modes": [
+        "groups"
+      ],
+      "status": "scenario",
+      "transmission": "ryhmien eriytyminen",
+      "period": "2025 →",
+      "evidence": "Työn muokkauksen ohjeet tukevat toteutustapoja. Ne eivät todista tämän tulevaisuuspolun taloudellista tai yhteiskunnallista tulosta.",
+      "alternative": "Työvoiman kysyntä, työn mielekkyys ja tuen jatkuvuus voivat ratkaista tuloksen.",
+      "sources": [
+        {
+          "story": 3,
+          "ref": 1
+        }
+      ],
+      "delay": "Ryhmien eroa on seurattava ajassa"
+    },
+    {
+      "id": "carry20",
+      "source": "c0n3",
+      "target": "c2n2",
+      "mechanism": "Voisiko aiemmin rakentunut asuin- ja palveluympäristö selittää osan myöhemmästä liikkumavarasta?",
+      "modes": [
+        "trace"
+      ],
+      "status": "question",
+      "transmission": "rakenteen säilyminen",
+      "period": "Ajanjaksojen välinen tutkittava reitti",
+      "evidence": "Tämä yhteys on tutkimuskysymys. Artikkelien lähteet kuvaavat lähtökohtia; ne eivät todista tätä ajanjaksojen välistä syy-yhteyttä.",
+      "alternative": "Sama myöhempi ilmiö voi syntyä myös uusista päätöksistä, väestörakenteesta tai muista häiriöistä.",
+      "sources": [],
+      "delay": "Pitkä aikaväli; viivettä ei mitattu"
+    },
+    {
+      "id": "carry21",
+      "source": "c1n3",
+      "target": "c2n2",
+      "mechanism": "Voisiko aiemman työuran katkos vaikuttaa myöhempään taloudelliseen puskuriin?",
+      "modes": [
+        "trace"
+      ],
+      "status": "question",
+      "transmission": "kasautuminen",
+      "period": "Ajanjaksojen välinen tutkittava reitti",
+      "evidence": "Tämä yhteys on tutkimuskysymys. Artikkelien lähteet kuvaavat lähtökohtia; ne eivät todista tätä ajanjaksojen välistä syy-yhteyttä.",
+      "alternative": "Sama myöhempi ilmiö voi syntyä myös uusista päätöksistä, väestörakenteesta tai muista häiriöistä.",
+      "sources": [],
+      "delay": "Pitkä aikaväli; viivettä ei mitattu"
+    },
+    {
+      "id": "carry22",
+      "source": "c2n3",
+      "target": "c3n1",
+      "mechanism": "Mitä aiempien häiriöiden kokemuksista pitäisi huomioida työn ja tuen järjestämisessä?",
+      "modes": [
+        "trace"
+      ],
+      "status": "question",
+      "transmission": "oppiminen",
+      "period": "Ajanjaksojen välinen tutkittava reitti",
+      "evidence": "Tämä yhteys on tutkimuskysymys. Artikkelien lähteet kuvaavat lähtökohtia; ne eivät todista tätä ajanjaksojen välistä syy-yhteyttä.",
+      "alternative": "Sama myöhempi ilmiö voi syntyä myös uusista päätöksistä, väestörakenteesta tai muista häiriöistä.",
+      "sources": [],
+      "delay": "Pitkä aikaväli; viivettä ei mitattu"
+    }
+  ]
+}

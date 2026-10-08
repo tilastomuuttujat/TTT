@@ -21,13 +21,13 @@ function MurrosExplorer({index,onIndex,onPause}){
  S.useLayoutEffect(()=>{if(!open)return;const node=drawer.current;node.showModal();if(node.animate&&!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)motion.current=node.animate([{transform:'translateX(-100%)'},{transform:'translateX(0)'}],{duration:550,easing:'cubic-bezier(.22,.75,.2,1)'});return()=>{motion.current?.cancel();node.close();};},[open]);
  S.useLayoutEffect(()=>{
   const parent=root.current?.parentElement,network=parent?.querySelector('.atlas-network');if(!network)return;
-  parent.classList.toggle('explorer-expanded',expanded);network.classList.toggle('explorer-filtered',!!question);
+  parent.classList.toggle('explorer-expanded',expanded);parent.classList.toggle('matrix-active',!!question);network.classList.toggle('explorer-filtered',!!question);
   const measure=()=>{const bounds=parent.getBoundingClientRect(),nodes=[...network.querySelectorAll('.atlas-node')];let source;
    nodes.forEach(node=>{const year=Number(node.dataset.year),match=year>=chapter.range[0]&&year<=chapter.range[1];node.classList.toggle('explorer-included',!!question&&match);if(match&&!source)source=node;});
    if(!question){setGeometry(null);return;}if(!source){setGeometry(null);return;}
    const b=source.querySelector('i')?.getBoundingClientRect()||source.getBoundingClientRect();setGeometry(murrosFlowGeometry(bounds.width,bounds.height,{x:b.left+b.width/2-bounds.left,y:b.top+b.height/2-bounds.top},question));
   };measure();const observer=typeof ResizeObserver==='function'?new ResizeObserver(measure):null;observer?.observe(parent);window.addEventListener('resize',measure);
-  return()=>{observer?.disconnect();window.removeEventListener('resize',measure);parent.classList.remove('explorer-expanded');network.classList.remove('explorer-filtered');network.querySelectorAll('.explorer-included').forEach(n=>n.classList.remove('explorer-included'));};
+  return()=>{observer?.disconnect();window.removeEventListener('resize',measure);parent.classList.remove('explorer-expanded','matrix-active');network.classList.remove('explorer-filtered');network.querySelectorAll('.explorer-included').forEach(n=>n.classList.remove('explorer-included'));};
  },[question,active,expanded]);
  const choose=key=>{onPause?.();onIndex(active);setQuestion(key);setRunning(true);close();};
  const questionMeta=murrosQuestions.find(q=>q.key===question);
@@ -40,8 +40,5 @@ function MurrosExplorer({index,onIndex,onPause}){
  L.jsx('div',{className:'explorer-questions',children:murrosQuestions.map(q=>L.jsxs('button',{type:'button','aria-pressed':q.key===question,onClick:()=>choose(q.key),children:[L.jsx('strong',{children:q.title}),L.jsx('span',{children:q.prompt})]},q.key))}),
  L.jsxs('label',{className:'explorer-expand-option',children:[L.jsx('input',{type:'checkbox',checked:expanded,onChange:event=>setExpanded(event.target.checked)}),' Laajenna kartan työskentelytilaa']}),
  L.jsx('button',{type:'button',className:'explorer-reset',onClick:()=>{setQuestion(null);setExpanded(false);close();},children:'Palauta ajanjaksojen kartta'})]})]}),
- question&&flow&&L.jsxs('section',{className:`explorer-flow-layer ${running?'':'flow-stopped'}`,'aria-label':questionMeta.prompt,children:[
- geometry&&L.jsxs('svg',{className:'explorer-streams','aria-hidden':true,children:[L.jsx('defs',{children:L.jsx('marker',{id:'murros-flow-arrow',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:5,markerHeight:5,orient:'auto-start-reverse',children:L.jsx('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:'currentColor'})})}),...geometry.paths.map((d,i)=>L.jsxs('g',{children:[L.jsx('path',{d,className:'explorer-stream-base',markerEnd:'url(#murros-flow-arrow)'}),L.jsx('path',{d,pathLength:100,className:'explorer-stream-motion',style:{animationDelay:`${i*.65}s`}})]},i))]}),
- geometry&&geometry.points.slice(1).map((point,i)=>L.jsxs('div',{className:'explorer-flow-label',style:{left:point.x,top:point.y},children:[L.jsx('small',{children:question==='groups'&&i>0?'Tarkasteltava ryhmä':i===0?'Välittävä tekijä':'Jälki / avoin tulos'}),L.jsx('span',{children:flow.labels[i]})]},i)),
- L.jsxs('div',{className:'explorer-flow-caption','aria-live':'polite',children:[L.jsx('strong',{children:questionMeta.prompt}),L.jsx('p',{children:flow.note}),!geometry&&L.jsx('p',{children:'Rajauksessa ei ole ankkuria. Valitse toinen ajanjakso ohjaamosta.'}),L.jsx('small',{children:'Tutkittava yhteys · tasapaksut virtaukset · ei mitattu vaikutus tai ennuste'}),L.jsx('button',{type:'button',onClick:()=>setRunning(v=>!v),children:running?'Pysäytä virtaus':'Jatka virtausta'}),L.jsx('button',{type:'button',onClick:()=>setQuestion(null),children:'Palaa karttaan'})]})]})]});
+ question&&L.jsx('section',{className:'explorer-flow-layer matrix-mode',children:L.jsx(MurrosMatrix,{active,question,running,onRunning:setRunning,onReset:()=>setQuestion(null)})})]});
 }

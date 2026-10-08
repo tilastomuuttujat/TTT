@@ -67,3 +67,16 @@
 .flow-stopped .explorer-stream-motion{animation-play-state:paused}@keyframes explorer-flow{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
 @media(prefers-reduced-motion:reduce){.explorer-stream-motion{animation:none;stroke-dasharray:none;opacity:.35}}
 @media(max-width:650px){.explorer-flow-caption{bottom:90px;font-size:12px}.explorer-flow-label{max-width:120px;font-size:11px}}
+
+.opening-map.matrix-active{min-height:790px!important}.opening-map.matrix-active.explorer-expanded{min-height:950px!important}
+.opening-map.matrix-active>.atlas-network{visibility:hidden}.opening-map.matrix-active .narrator-controls,.opening-map.matrix-active .tour-launch{visibility:hidden}
+.matrix-mode{pointer-events:auto}.matrix-view{position:absolute;inset:0;color:var(--foreground,#263e30);font:13px/1.5 var(--font-sans,"Avenir Next",Avenir,"Segoe UI",sans-serif);background:var(--background,#fffef7)}
+.matrix-heading{padding:16px 40px 10px}.matrix-heading strong{font-weight:550;font-size:17px;color:var(--primary,#215638)}.matrix-heading p{margin:5px 0;max-width:950px}.matrix-heading small{font-size:10px;color:var(--muted-foreground,#61705e)}
+.matrix-canvas{position:absolute;inset:115px 30px 65px;overflow:auto;overscroll-behavior:contain}.matrix-canvas svg{display:block;max-width:none!important;color:var(--primary,#215638)}
+.matrix-level-line{stroke:var(--border,#b5c9b9);stroke-width:1;opacity:.55}.matrix-level-name{font-size:11px;fill:var(--muted-foreground,#61705e)}.matrix-column-name{font-size:12px;fill:var(--primary,#215638)}
+.matrix-link{stroke:currentColor;stroke-width:1.8;fill:none;stroke-dasharray:7 5}.status-question .matrix-link{stroke-dasharray:2 6}.status-scenario .matrix-link{stroke-dasharray:10 4 2 4}
+.matrix-hit{stroke:transparent;stroke-width:22;fill:none;cursor:pointer}.matrix-hit:focus{stroke:#477b5344;outline:none}.matrix-edge.route-muted{opacity:.14}.matrix-edge.route-active{opacity:.85}
+.matrix-node{cursor:pointer}.matrix-node circle{fill:var(--primary,#215638)}.matrix-node text{font-size:11px;fill:var(--foreground,#263e30);paint-order:stroke;stroke:var(--background,#fffef7);stroke-width:5px;stroke-linejoin:round}.matrix-node.route-muted{opacity:.38}.matrix-node.route-start circle{r:8;stroke:#477b5370;stroke-width:8}.matrix-node:focus{outline:none}.matrix-node:focus circle{stroke:#387abd;stroke-width:4}
+.matrix-footer{position:absolute;bottom:12px;left:40px;right:35px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:11px}.matrix-footer button{background:none;border:0;color:var(--primary,#215638);font:inherit;text-decoration:underline;cursor:pointer}
+.murros-story-dialog .analysis-evidence{grid-template-columns:1fr}.murros-story-dialog .analysis-evidence dd{margin-bottom:12px}
+@media(max-width:650px){.matrix-heading{padding:12px 34px}.matrix-heading strong{font-size:15px}.matrix-heading p{font-size:11px}.matrix-canvas{inset:140px 30px 90px}.matrix-footer{left:34px;gap:8px}}
