@@ -1,0 +1,18 @@
+import fs from 'node:fs';
+let source=fs.readFileSync('assets/index--gBIk-ew.js','utf8');
+const defaults=JSON.parse(fs.readFileSync('assets/murrokset1-guide.json','utf8'));
+function replaceOnce(before,after){if(source.indexOf(before)<0||source.indexOf(before)!==source.lastIndexOf(before))throw Error('Patch mismatch: '+before.slice(0,60));source=source.replace(before,after);}
+const start=source.lastIndexOf('function kn({index:'),end=source.indexOf('var An=Object.defineProperty',start);
+if(start<0||end<0)throw Error('Original tour boundaries missing');
+source=source.slice(0,start)+fs.readFileSync('scripts/murrokset1-tour.txt','utf8')+source.slice(end);
+replaceOnce('],En=11e3;function Dn',`],En=27e3;Tn=Tn.map((chapter,i)=>({...chapter,...guideContent.chapters[i]}));function Dn`);
+replaceOnce('if(u||b||g||f!==void 0||n)return;',`if(u||b||g||f!==void 0||n||ne||ie||window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)return;`);
+replaceOnce('},[u,b,g,f,n]);function A', '},[u,b,g,f,n,ne,ie]);function A');
+replaceOnce('nettosuunta rajauksessa','luonnoksen pisteytys · ei mittaustulos');
+replaceOnce('↑ Toimintakyky vahvistuu','↑ Oletus: mahdollisuudet vahvistuvat');
+replaceOnce('↓ Taka-askel','↓ Oletus: mahdollisuudet heikkenevät');
+replaceOnce('"aria-label":`Syy–seuraus-kehä`','"aria-label":`Tutkittava yhteysketju`');
+const header=`let guideContent=${JSON.stringify(defaults)};\ntry{const response=await fetch(new URL('./murrokset1-guide.json',import.meta.url),{cache:'no-cache'});if(response.ok){const data=await response.json();if(data.schema_version===1&&Array.isArray(data.chapters)&&data.chapters.length===4&&data.chapters.every(c=>typeof c.title==='string'&&typeof c.text==='string'&&Array.isArray(c.phases)&&c.phases.length===3&&c.phases.every(p=>typeof p.title==='string'&&typeof p.text==='string')))guideContent=data;}}catch{}\n// END GUIDE LOADER\n`;
+fs.writeFileSync('assets/murrokset1-guided.js',header+source);
+const html=fs.readFileSync('murrokset1.html','utf8').replace('./assets/index--gBIk-ew.js','./assets/murrokset1-guided.js').replace('<link rel="stylesheet" href="./assets/murrokset1-guide.css">\n','').replace('</head>','<link rel="stylesheet" href="./assets/murrokset1-guide.css">\n</head>');
+fs.writeFileSync('murrokset1.html',html);

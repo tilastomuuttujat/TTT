@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "chapters": [
+    {
+      "era": "1850–1980",
+      "title": "Milloin tuotannon muutos avasi myös toimeentulon mahdollisuuksia?",
+      "text": "Tutkittava ajatus: työn, asumisen, koulutuksen ja yhteisten järjestelyjen yhteensovittaminen saattoi laajentaa mukaan pääsemistä.",
+      "loop": [
+        "Tuotannon muutos",
+        "Toimeentulon mahdollisuudet",
+        "Yhteiset järjestelyt",
+        "Osallistumisen ehdot"
+      ],
+      "phases": [
+        {
+          "label": "Katso",
+          "title": "Katso korostettua ajanjaksoa ja asetelman eri puolia",
+          "text": "Käyrä kokoaa ankkureista laadittua tulkintaa. Nouseva suunta havainnollistaa vahvistuvien mahdollisuuksien oletusta. Se ei kerro, kuinka paljon hyvinvointi kasvoi."
+        },
+        {
+          "label": "Ymmärrä",
+          "title": "Mahdollinen mekanismi: muutoksia sovitetaan yhteen",
+          "text": "Pelkkä tuotannon kasvu ei riitä selitykseksi. Asuminen, osaaminen ja työn saavutettavuus voivat vaikuttaa siihen, pääseekö ihminen mukaan. Kehässä liikkuva virtaus näyttää tämän tutkittavan yhteyden."
+        },
+        {
+          "label": "Koettele",
+          "title": "Ketkä hyötyivät, ja ketkä jäivät ulkopuolelle?",
+          "text": "Avaa esimerkiksi jälleenrakennuksen tai suuren muuton ankkuri. Etsi ryhmittäistä näyttöä mahdollisuuksien avautumisesta ja sulkeutumisesta. Yhden ryhmän paraneminen ei osoita koko aikakauden onnistumista."
+        }
+      ]
+    },
+    {
+      "era": "1990–2015",
+      "title": "Miksi tuotannon elpyminen ei välttämättä palauta kaikkien mahdollisuuksia?",
+      "text": "Tutkittava ajatus: tuotanto, työpaikat ja ihmisten toimeentulo voivat palautua eri tahtiin.",
+      "loop": [
+        "Tuotanto elpyy",
+        "Työn ehdot muuttuvat",
+        "Paluu voi eriytyä",
+        "Vastuu palautumisesta"
+      ],
+      "phases": [
+        {
+          "label": "Katso",
+          "title": "Suunta kuvaa eritahtisuuden oletusta",
+          "text": "Katso korostettua käyrän osaa. Sen lasku ei tarkoita, että jokainen asia tai jokaisen ihmisen tilanne heikkenisi. Luonnos nostaa esiin kysymyksen tuotannon ja osallistumisen eriytymisestä."
+        },
+        {
+          "label": "Ymmärrä",
+          "title": "Palautuminen voi jättää pysyvän jäljen",
+          "text": "Työttömyys, velat tai osaamisen ja työn sijainnin muutos voivat vaikeuttaa paluuta, vaikka tuotanto elpyy. Virtaus kuvaa mahdollista vaikutusketjua, jonka jokainen yhteys tarvitsee näyttöä."
+        },
+        {
+          "label": "Koettele",
+          "title": "Vertaa tuotannon ja eri ryhmien palautumista",
+          "text": "Avaa laman ja erilaisten paluiden ankkurit. Tarkista aikajärjestys ja ryhmien lähtötilanne. Toimiala, ikä, koulutus ja suhdanne voivat selittää eroja ilman oletettua mekanismia."
+        }
+      ]
+    },
+    {
+      "era": "2020–2025",
+      "title": "Korjaako sopeutus kuilua vai siirtääkö se kustannuksia?",
+      "text": "Tutkittava ajatus: rahoituksen ja palvelujen muutokset voivat vaikuttaa siihen, kuka kantaa shokkien seuraukset.",
+      "loop": [
+        "Erillinen shokki",
+        "Sopeutuspäätös",
+        "Ryhmän mahdollisuudet",
+        "Seuraukset myöhemmin"
+      ],
+      "phases": [
+        {
+          "label": "Katso",
+          "title": "Erota shokki sitä seuranneesta päätöksestä",
+          "text": "Korostettu jakso sisältää erilaisia tapahtumia. Pandemia, sota, hinnat ja korot eivät ole yksi vaikutusketju. Käyrä esittää kysymyksen, ei näiden tapahtumien yhteenlaskettua vaikutusta."
+        },
+        {
+          "label": "Ymmärrä",
+          "title": "Kustannus voi vähentyä tai siirtyä",
+          "text": "Rahoituksen muutos voi säästää yhdessä kohdassa ja lisätä menoja tai haavoittuvuutta toisessa. Kehän virtaus auttaa seuraamaan, kenen mahdollisuuksiin ratkaisu voisi vaikuttaa ja millä viiveellä."
+        },
+        {
+          "label": "Koettele",
+          "title": "Seuraa samaa ryhmää päätöksen yli",
+          "text": "Etsi päätöksen tavoite, toteutus ja ryhmittäinen seuraus. Vertaa myös sitä, mitä olisi tapahtunut ilman päätöstä. Pelkkä peräkkäisyys ei osoita, että sopeutus aiheutti muutoksen."
+        }
+      ]
+    },
+    {
+      "era": "2025 →",
+      "title": "Millä ehdoilla tuotannon ja osallistumisen yhteyttä voisi vahvistaa?",
+      "text": "Ehdollinen tulevaisuuspolku: työn ja tuen yhteensovittaminen voisi avata uusia osallistumisen mahdollisuuksia.",
+      "loop": [
+        "Tehtävien järjestäminen",
+        "Osallistumisen kynnys",
+        "Toimintakyvyn tuki",
+        "Toteutuksen ehdot"
+      ],
+      "phases": [
+        {
+          "label": "Katso",
+          "title": "Tulevaisuuden suunta on vaihtoehto, ei ennuste",
+          "text": "Tulevaisuustapaukset esittävät eri ratkaisuja. Luonnoksen nouseva suunta näyttää tavoitellun mekanismin; se ei lupaa vaikutusta tai arvioi sen todennäköisyyttä."
+        },
+        {
+          "label": "Ymmärrä",
+          "title": "Vaikutus riippuu toteutuksen ehdoista",
+          "text": "Työn räätälöinti, tuki ja osallistumisen kynnys voivat liittyä toisiinsa. Liikkuva kehä kuvaa ehdollista ajatusta: vaikutus syntyy vain, jos tarvittavat yhteydet toimivat käytännössä."
+        },
+        {
+          "label": "Koettele",
+          "title": "Mikä havainto saisi muuttamaan suunnitelmaa?",
+          "text": "Määrittele osallistujaryhmä, lähtötilanne, vertailu ja seuranta-aika. Tarkista osallistumisen lisäksi kustannukset ja kuormitus. Myös epäonnistuminen tai ryhmien eriytyminen kuuluu arviointiin."
+        }
+      ]
+    }
+  ]
+}
