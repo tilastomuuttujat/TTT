@@ -772,1005 +772,1417 @@
   ],
   "values": [
     {
-      "series_key": "indicator_import.syntyvyys_tfr",
-      "year": 1950,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 3.154,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.syntyvyys_tfr",
-      "year": 1955,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 2.93,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.syntyvyys_tfr",
-      "year": 1960,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 2.72,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.syntyvyys_tfr",
-      "year": 1965,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 2.47,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.syntyvyys_tfr",
-      "year": 1970,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 1.827,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.syntyvyys_tfr",
-      "year": 1975,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 1.687,
-      "value_text": null
-    },
-    {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1975,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 87588,
-      "value_text": null
+      "period": null,
+      "value": "87588.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1976,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 87993,
-      "value_text": null
+      "period": null,
+      "value": "87993.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1977,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 88322,
-      "value_text": null
+      "period": null,
+      "value": "88322.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1978,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 91103,
-      "value_text": null
+      "period": null,
+      "value": "91103.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1979,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 97656,
-      "value_text": null
+      "period": null,
+      "value": "97656.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1980,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 103151,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.syntyvyys_tfr",
-      "year": 1980,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 1.634,
-      "value_text": null
+      "period": null,
+      "value": "103151.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1981,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 104481,
-      "value_text": null
+      "period": null,
+      "value": "104481.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1982,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 107706,
-      "value_text": null
+      "period": null,
+      "value": "107706.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1983,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 111049,
-      "value_text": null
+      "period": null,
+      "value": "111049.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1984,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 114631,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.syntyvyys_tfr",
-      "year": 1985,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 1.644,
-      "value_text": null
+      "period": null,
+      "value": "114631.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1985,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 118690,
-      "value_text": null
+      "period": null,
+      "value": "118690.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1986,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 121959,
-      "value_text": null
+      "period": null,
+      "value": "121959.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1987,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 126302,
-      "value_text": null
+      "period": null,
+      "value": "126302.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1988,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 132909,
-      "value_text": null
+      "period": null,
+      "value": "132909.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1989,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 139666,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.syntyvyys_tfr",
-      "year": 1990,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 1.782,
-      "value_text": null
+      "period": null,
+      "value": "139666.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1990,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 140632,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.syntyvyys_tfr",
-      "year": 1991,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 1.794,
-      "value_text": null
+      "period": null,
+      "value": "140632.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1991,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 132363,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.syntyvyys_tfr",
-      "year": 1992,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 1.847,
-      "value_text": null
+      "period": null,
+      "value": "132363.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1992,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 127980,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.syntyvyys_tfr",
-      "year": 1993,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 1.813,
-      "value_text": null
+      "period": null,
+      "value": "127980.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1993,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 126982,
-      "value_text": null
+      "period": null,
+      "value": "126982.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
       "year": 1994,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 132016,
-      "value_text": null
+      "period": null,
+      "value": "132016.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1995,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "137606.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1996,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "142646.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1997,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "151772.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1998,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "160049.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 1999,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "167074.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2000,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "176687.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2001,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "181352.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2002,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "184412.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2003,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "188122.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2004,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "195657.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2005,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "201092.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2006,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "209175.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2007,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "220288.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2008,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "222016.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2009,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "204086.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2010,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "210552.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2011,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "215584.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2012,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "212301.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2013,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "210221.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2014,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "209216.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2015,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "210192.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2016,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "215598.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2017,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "222720.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2018,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "225377.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2019,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "228419.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2020,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "222729.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2021,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "228690.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2022,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "230007.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2023,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "227205.0",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2024,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "229463.0",
+      "value_text": null,
+      "value_kind": "estimate",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
+      "year": 2025,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": null,
+      "value": "231397.0",
+      "value_text": null,
+      "value_kind": "estimate",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 1995,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1995",
+      "value": "41.2",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 1996,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1996",
+      "value": "41.6",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 1997,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1997",
+      "value": "35.4",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 1998,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1998",
+      "value": "34.6",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 1999,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1999",
+      "value": "28.6",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2000,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2000",
+      "value": "28.4",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2001,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2001",
+      "value": "26.6",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2002,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2002",
+      "value": "28.2",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2003,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2003",
+      "value": "27.8",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2004,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2004",
+      "value": "27.5",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2005,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2005",
+      "value": "20.1",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2006,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2006",
+      "value": "18.7",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2007,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2007",
+      "value": "16.5",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2008,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2008",
+      "value": "16.5",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2009,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2009",
+      "value": "21.5",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2010,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2010",
+      "value": "21.4",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2011,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2011",
+      "value": "20.1",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2012,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2012",
+      "value": "18.9",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2013,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2013",
+      "value": "19.9",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2014,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2014",
+      "value": "20.5",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2015,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2015",
+      "value": "22.4",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2016,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2016",
+      "value": "20.2",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2017,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2017",
+      "value": "20.1",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2018,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2018",
+      "value": "17",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2019,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2019",
+      "value": "17.2",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2020,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2020",
+      "value": "21.4",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2021,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2021",
+      "value": "17.1",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2022,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2022",
+      "value": "14.2",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2023,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2023",
+      "value": "16.2",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2024,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2024",
+      "value": "18.8",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.nuorisotyottomyys_1524",
+      "year": 2025,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "2025",
+      "value": "21.8",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1950,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1950",
+      "value": "3.154",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1955,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1955",
+      "value": "2.930",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1960,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1960",
+      "value": "2.720",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1965,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1965",
+      "value": "2.470",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1970,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1970",
+      "value": "1.827",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1975,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1975",
+      "value": "1.687",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1980,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1980",
+      "value": "1.634",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1985,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1985",
+      "value": "1.644",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1990,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1990",
+      "value": "1.782",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1991,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1991",
+      "value": "1.794",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1992,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1992",
+      "value": "1.847",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
+    },
+    {
+      "series_key": "indicator_import.syntyvyys_tfr",
+      "year": 1993,
+      "group_key": "FI",
+      "group_label": "Suomi",
+      "period": "1993",
+      "value": "1.813",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 1994,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.847,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 1995,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 41.2,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 1995,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 137606,
-      "value_text": null
+      "period": "1994",
+      "value": "1.847",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 1995,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.807,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 1996,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 41.6,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 1996,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 142646,
-      "value_text": null
+      "period": "1995",
+      "value": "1.807",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 1996,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.764,
-      "value_text": null
+      "period": "1996",
+      "value": "1.764",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 1997,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.746,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 1997,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 35.4,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 1997,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 151772,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 1998,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 160049,
-      "value_text": null
+      "period": "1997",
+      "value": "1.746",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 1998,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.7,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 1998,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 34.6,
-      "value_text": null
+      "period": "1998",
+      "value": "1.700",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 1999,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.735,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 1999,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 28.6,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 1999,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 167074,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2000,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 28.4,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2000,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 176687,
-      "value_text": null
+      "period": "1999",
+      "value": "1.735",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2000,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.729,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2001,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 26.6,
-      "value_text": null
+      "period": "2000",
+      "value": "1.729",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2001,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.726,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2001,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 181352,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2002,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 184412,
-      "value_text": null
+      "period": "2001",
+      "value": "1.726",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2002,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.718,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2002,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 28.2,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2003,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 188122,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2003,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 27.8,
-      "value_text": null
+      "period": "2002",
+      "value": "1.718",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2003,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.76,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2004,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 195657,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2004,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 27.5,
-      "value_text": null
+      "period": "2003",
+      "value": "1.760",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2004,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.8,
-      "value_text": null
+      "period": "2004",
+      "value": "1.800",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2005,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.803,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2005,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 201092,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2005,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 20.1,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2006,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 209175,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2006,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 18.7,
-      "value_text": null
+      "period": "2005",
+      "value": "1.803",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2006,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.837,
-      "value_text": null
+      "period": "2006",
+      "value": "1.837",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2007,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.829,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2007,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 220288,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2007,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 16.5,
-      "value_text": null
+      "period": "2007",
+      "value": "1.829",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2008,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.846,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2008,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 222016,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2008,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 16.5,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2009,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 21.5,
-      "value_text": null
+      "period": "2008",
+      "value": "1.846",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2009,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.864,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2009,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 204086,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2010,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 21.4,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2010,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 210552,
-      "value_text": null
+      "period": "2009",
+      "value": "1.864",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2010,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.87,
-      "value_text": null
+      "period": "2010",
+      "value": "1.870",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2011,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.827,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2011,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 215584,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2011,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 20.1,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2012,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 18.9,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2012,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 212301,
-      "value_text": null
+      "period": "2011",
+      "value": "1.827",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2012,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.801,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2013,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 19.9,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2013,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 210221,
-      "value_text": null
+      "period": "2012",
+      "value": "1.801",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2013,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.747,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2014,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 20.5,
-      "value_text": null
+      "period": "2013",
+      "value": "1.747",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2014,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.71,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2014,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 209216,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2015,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 22.4,
-      "value_text": null
+      "period": "2014",
+      "value": "1.710",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2015,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.65,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2015,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 210192,
-      "value_text": null
+      "period": "2015",
+      "value": "1.650",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2016,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.567,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2016,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 20.2,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2016,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 215598,
-      "value_text": null
+      "period": "2016",
+      "value": "1.567",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2017,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.489,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2017,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 20.1,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2017,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 222720,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2018,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 225377,
-      "value_text": null
+      "period": "2017",
+      "value": "1.489",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2018,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.407,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2018,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 17,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2019,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 228419,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2019,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 17.2,
-      "value_text": null
+      "period": "2018",
+      "value": "1.407",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2019,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.347,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2020,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 222729,
-      "value_text": null
+      "period": "2019",
+      "value": "1.347",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2020,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.37,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2020,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 21.4,
-      "value_text": null
+      "period": "2020",
+      "value": "1.370",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2021,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.458,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2021,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 17.1,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2021,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 228690,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2022,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 230007,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2022,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 14.2,
-      "value_text": null
+      "period": "2021",
+      "value": "1.458",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2022,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.316,
-      "value_text": null
+      "period": "2022",
+      "value": "1.316",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2023,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.257,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2023,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 227205,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2023,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 16.2,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2024,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 229463,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2024,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 18.8,
-      "value_text": null
+      "period": "2023",
+      "value": "1.257",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     },
     {
       "series_key": "indicator_import.syntyvyys_tfr",
       "year": 2024,
       "group_key": "FI",
       "group_label": "Suomi",
-      "value": 1.252,
-      "value_text": null
-    },
-    {
-      "series_key": "indicator_import.nuorisotyottomyys_1524",
-      "year": 2025,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 21.8,
-      "value_text": null
-    },
-    {
-      "series_key": "fi.statfin15ai.total.b1gmh.b4193efcb2",
-      "year": 2025,
-      "group_key": "FI",
-      "group_label": "Suomi",
-      "value": 231397,
-      "value_text": null
+      "period": "2024",
+      "value": "1.252",
+      "value_text": null,
+      "value_kind": "observed",
+      "validation_status": "source_verified"
     }
   ],
-  "checksum": "6225b5f401ac404d010fe007ca8f756e392812ea3c8ec3a642cdc6d340925524"
+  "relations": [
+    {
+      "from": "0d1df2fc-938f-4fb6-8320-e4ba63a45038",
+      "to": "e59b2bc6-bae0-4ba5-a321-3b24c881da10",
+      "type": "hypothesis",
+      "label": "Maan hallinta kohtaa työn siirtymisen",
+      "rationale": "Tutkittava yhteys: miten aiemmin rakentuneet maan hallinnan ja toimeentulon ehdot liittyivät myöhempiin jäämisen ja lähtemisen vaihtoehtoihin? Ajallinen jatkumo ei osoita kausaalivaikutusta."
+    },
+    {
+      "from": "556e1396-e1ff-4522-8710-27cc253854ce",
+      "to": "e59b2bc6-bae0-4ba5-a321-3b24c881da10",
+      "type": "hypothesis",
+      "label": "Asutus ja infrastruktuuri muuton lähtöehtoina",
+      "rationale": "Mitä aiempi asutus- ja tuotantorakenne merkitsi myöhemmälle työn, asuntojen ja palvelujen sijainnille?"
+    },
+    {
+      "from": "e59b2bc6-bae0-4ba5-a321-3b24c881da10",
+      "to": "b2fed371-e969-4612-b865-1287bfba06bd",
+      "type": "hypothesis",
+      "label": "Alueiden rakenteet ja erilainen palautuminen",
+      "rationale": "Tutkitaan, miten aiemmat muuttovirrat ja elinkeinorakenteet liittyivät alueiden erilaiseen kriisikokemukseen ja palautumiseen."
+    },
+    {
+      "from": "b2fed371-e969-4612-b865-1287bfba06bd",
+      "to": "ec085864-d6f1-40fe-975b-d783ade46fef",
+      "type": "theme",
+      "label": "Tuotannon elpyminen ja ihmisten paluu",
+      "rationale": "Sama tutkimuskysymys eri vaiheissa: palautuivatko tuotanto ja osallistumisen edellytykset samalla tavalla?"
+    },
+    {
+      "from": "974ad739-b3ed-4537-b54f-a526e5538af2",
+      "to": "5d71941a-20f2-42c2-95ca-ea7f8f41084a",
+      "type": "scenario",
+      "label": "Peritty lähtötilanne ja ehdollinen korjaus",
+      "rationale": "Skenaariokysymys: mitä nykyiset resurssit ja sitoumukset merkitsevät toimintakykyyn panostamisen edellytyksille? Tämä on vaihtoehto, ei ennuste."
+    }
+  ],
+  "published_at": "2026-10-08T12:17:49.321Z"
 }

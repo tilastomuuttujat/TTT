@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {validatePackage,loadPublication,caseEvidence,chartModel,validRelations,allRows} from '../assets/murrokset-core.mjs';
+const packet=JSON.parse(await readFile(new URL('../murrosatlas-data.json',import.meta.url)));
+test('published package and relationship endpoints are valid',()=>{assert.equal(validatePackage(packet).cases.length,packet.cases.length);assert.equal(validRelations(packet.cases,packet.relations).length,5);assert.throws(()=>validatePackage({...packet,cases:[{...packet.cases[0],published:false}]}));});
+test('reader fetches only the publication JSON',async()=>{let calls=0;await loadPublication(async(url)=>{calls++;assert.match(url.pathname,/\/murrosatlas-data.json$/);return {ok:true,json:async()=>packet};});assert.equal(calls,1);});
+test('linked data alone never establishes measured causal evidence',()=>{assert.equal(caseEvidence({data:{series_keys:['births'],trigger:'kasvu'}}).level,'hypothesis');});
+test('chart separates groups, gaps and estimates, using calendar spacing',()=>{const point=(year,value,kind='observed',group='FI')=>({series_key:'s',year,value,value_kind:kind,group_key:group});const m=chartModel({series_key:'s'},[point(2000,1),point(2001,2),point(2003,3),point(2004,4,'estimate'),point(2004,20,'observed','SE'),point(2005,null)],'FI');assert.equal(m.rows.length,4);assert.equal(m.segments.length,1);assert.equal(m.x(2004)-m.x(2000),4*(m.x(2001)-m.x(2000)));});
+test('maintenance pagination retrieves beyond the server page limit',async()=>{const ranges=[];const rows=await allRows(()=>({range:async(a,b)=>{ranges.push([a,b]);return {data:Array.from({length:a===0?1000:2},(_,i)=>a+i)};}}));assert.equal(rows.length,1002);assert.deepEqual(ranges,[[0,999],[1000,1999]]);await assert.rejects(allRows(()=>({range:async()=>({error:Error('failed')})})));});
