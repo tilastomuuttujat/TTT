@@ -81,3 +81,20 @@ function kn({index,playing,onIndex,onToggle,onClose}){
  L.jsxs('article',{className:'murros-story-body',children:[L.jsx('small',{children:article.kind}),L.jsx('h1',{id:'murros-story-title',children:article.title}),L.jsx('p',{className:'murros-story-place',children:article.place}),L.jsx('p',{className:'murros-story-lead',children:article.lead}),...article.sections.map(([heading,paragraphs],i)=>L.jsxs('section',{children:[L.jsx('h2',{children:heading}),...paragraphs.map(([text,refs],j)=>L.jsxs('p',{children:[text,' ',...refs.map(ref=>L.jsx('sup',{children:L.jsx('a',{href:'#murros-source-'+ref,children:'['+ref+']'})},ref))]},j))]},i)),L.jsx('h2',{children:'Lähteet ja tulkinnan rajat'}),L.jsx('ol',{children:article.sources.map(([title,url],i)=>L.jsx('li',{id:'murros-source-'+(i+1),children:L.jsx('a',{href:url,target:'_blank',rel:'noopener noreferrer',children:title})},i))})]})]})
  ]});
 }
+
+function MurrosAnalysis({index,onIndex}){
+ const active=Number.isInteger(index)?index:0,chapter=Tn[active],a=chapter.analysis;
+ if(!a)return null;
+ const labels=['Muutos','Yhteiskunnan vastaus','Jälki'];
+ return L.jsxs('section',{className:'murros-analysis','aria-label':'Murrosten tulkinta ja vertailu',children:[
+ L.jsx('small',{children:'Tutkittava tulkinta'}),L.jsx('h1',{children:'Muutos avasi mahdollisuuksia. Pääsivätkö kaikki mukaan?'}),
+ L.jsx('p',{className:'analysis-premise',children:'Työn, arjen edellytysten ja yhteisen turvan erilainen muutosvauhti saattoi jättää pitkän jäljen. Vertaa tapauksia: milloin yhteiset ratkaisut auttoivat, milloin niiden vaikutus jäi puutteelliseksi?'}),
+ L.jsx('p',{className:'analysis-era',children:chapter.era}),
+ L.jsx('ol',{className:'analysis-chain',children:[a.change,a.response,a.trace].map((text,i)=>L.jsxs('li',{children:[L.jsx('small',{children:labels[i]}),L.jsx('p',{children:text})]},i))}),
+ L.jsxs('p',{className:'analysis-bridge',children:[L.jsx('strong',{children:active===3?'Tulevaisuudessa koeteltava ajatus: ':'Mitä tämä auttaa kysymään nyt? '}),a.today]}),
+ L.jsxs('details',{className:'analysis-depth',children:[L.jsx('summary',{children:'Vertaa tapauksia ja koettele selitystä'}),
+ L.jsx('p',{children:'Kolme vertailumallia: arjen edellytykset seuraavat työn muutosta viiveellä; tilapäinen kriisi voi jättää pitkän jäljen; sama häiriö voi kaventaa ryhmien liikkumavaraa eri tavoin. Näiden merkitys vaihtelee tapauksittain.'}),
+ L.jsx('div',{className:'analysis-table-scroll',children:L.jsxs('table',{children:[L.jsx('caption',{children:'Sama kysymys neljälle ajanjaksolle'}),L.jsx('thead',{children:L.jsx('tr',{children:['Ajanjakso','Muutos','Vastaus','Jälki / tavoite'].map(t=>L.jsx('th',{scope:'col',children:t},t))})}),L.jsx('tbody',{children:Tn.map((c,i)=>c.analysis&&L.jsxs('tr',{className:i===active?'analysis-active':'',children:[L.jsx('th',{scope:'row',children:L.jsx('button',{type:'button','aria-pressed':i===active,onClick:()=>onIndex(i),children:c.analysis.label})}),L.jsx('td',{children:c.analysis.change}),L.jsx('td',{children:c.analysis.response}),L.jsx('td',{children:c.analysis.trace})]},i))})]})}),
+ L.jsxs('dl',{className:'analysis-evidence',children:[L.jsx('dt',{children:'Keitä tarkastellaan?'}),L.jsx('dd',{children:a.groups}),L.jsx('dt',{children:'Mitä näyttö kertoo?'}),L.jsx('dd',{children:a.evidence}),L.jsx('dt',{children:'Mikä muu voisi selittää eroa?'}),L.jsx('dd',{children:a.alternative}),L.jsx('dt',{children:active===3?'Mitä pitäisi seurata?':'Mitä pitäisi selvittää seuraavaksi?'}),L.jsx('dd',{children:a.question})]}),
+ L.jsx('p',{className:'analysis-limit',children:'Käyrä on tulkinnallinen kartta: sen korkeus ei mittaa hyvinvointia eikä todista syy-yhteyttä. Historialliset havainnot auttavat muodostamaan kysymyksiä; tulevaisuuspolku on ehdollinen. Artikkelista löydät lähteet ja perustelut.'})]})]});
+}

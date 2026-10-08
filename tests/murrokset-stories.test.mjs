@@ -31,3 +31,11 @@ test('one edge handle opens the current animation article and changes to close',
   assert.equal(tree.find(n=>n.props?.className==='murros-story-tab murros-story-tab-closed').props.hidden,true);
  }
 });
+
+test('analysis compares all periods and separates evidence from future assumptions',async()=>{
+ const source=await readFile(new URL('scripts/murrokset1-tour.txt',root),'utf8');const L={jsx:(type,props)=>({type,props}),jsxs:(type,props)=>({type,props})};
+ const render=new Function('L','Tn',source+';return MurrosAnalysis;')(L,guide.chapters);
+ const walk=n=>!n||typeof n!=='object'?[]:[n,...[n.props?.children].flat(Infinity).flatMap(walk)];
+ for(let i=0;i<4;i++){let selected;const nodes=walk(render({index:i,onIndex:value=>selected=value}));const cells=nodes.filter(n=>n.type==='td');assert.equal(cells.length,12);assert.ok(nodes.some(n=>n.type==='dd'&&n.props.children===guide.chapters[i].analysis.alternative));assert.ok(nodes.some(n=>n.type==='dd'&&n.props.children===guide.chapters[i].analysis.evidence));const buttons=nodes.filter(n=>n.type==='button');assert.equal(buttons.length,4);buttons[3].props.onClick();assert.equal(selected,3);assert.ok(nodes.some(n=>n.props?.className==='analysis-limit'));}
+ assert.ok(guide.chapters[3].analysis.evidence.includes('eivät todista'));
+});

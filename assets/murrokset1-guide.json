@@ -53,7 +53,18 @@
       "range": [
         1960,
         1975
-      ]
+      ],
+      "analysis": {
+        "label": "1960–1975",
+        "change": "Työ siirtyi kaupunkeihin.",
+        "response": "Asuntoja ja palveluja rakennettiin työn ympärille.",
+        "trace": "Uusi arki syntyi eri tahtiin eri paikoissa.",
+        "groups": "Muuttajat, lähtöalueille jääneet ja kaupunkien asukkaat.",
+        "evidence": "Vuosaari konkretisoi rakentamisen; muuttoliiketilastot kuvaavat muuttoa. Ne eivät yksin osoita kaikkien ryhmien hyvinvoinnin muutosta.",
+        "today": "Työpaikan synty ei vielä kerro, voiko ihminen asua sen lähellä ja järjestää arkensa.",
+        "question": "Muuttuvatko työ, asuminen ja palvelut samaan tahtiin?",
+        "alternative": "Myös ikärakenne ja ihmisten omat muuttovalinnat vaikuttivat alueiden eroihin."
+      }
     },
     {
       "era": "Suomi · vuonna 1992 valmistuneet ja laman jälkeiset vuodet",
@@ -107,7 +118,18 @@
       "range": [
         1990,
         2008
-      ]
+      ],
+      "analysis": {
+        "label": "1990–2008",
+        "change": "Tutkinnosta piti siirtyä työhön keskellä lamaa.",
+        "response": "Työhön pääsy vaikeutui; elpyminen avasi uusia mahdollisuuksia.",
+        "trace": "Valmistumisajankohta liittyi myöhempiin työuraeroihin.",
+        "groups": "Lamassa valmistuneet verrattuna myöhemmin valmistuneisiin.",
+        "evidence": "Artikkelin kohorttivertailut kuvaavat myöhempiä eroja. Ne eivät eristä laman vaikutusta kaikista ryhmien eroista.",
+        "today": "Talouden elpyminen ja ihmisen työuran toipuminen voivat olla eri asioita.",
+        "question": "Pääsevätkö heikossa tilanteessa aloittaneet mukaan myös elpymiseen?",
+        "alternative": "Koulutusala, alue ja myöhemmät työmarkkinamuutokset voivat selittää osan eroista."
+      }
     },
     {
       "era": "Suomi ja Uusimaa · 2020–2022",
@@ -161,7 +183,18 @@
       "range": [
         2020,
         2025
-      ]
+      ],
+      "analysis": {
+        "label": "2020–2022",
+        "change": "Pandemia horjutti tuloja; myöhemmin hinnat nousivat.",
+        "response": "Toimeentuloturva ja kotitalouksien puskurit auttoivat eri tavoin.",
+        "trace": "Välttämättömät menot rajasivat sopeutumisen mahdollisuuksia.",
+        "groups": "Kotitaloudet, joiden tulot, menot ja säästöpuskurit erosivat.",
+        "evidence": "Etuus-, hinta- ja kulutustiedot kuvaavat eri puolia kriiseistä. Pysyvä jälki vaatii samojen ryhmien seurantaa.",
+        "today": "Sama hinnannousu voi viedä yhden kotitalouden säästöjä ja toisen välttämätöntä kulutusta.",
+        "question": "Kenelle jää liikkumavaraa seuraavan häiriön varalle?",
+        "alternative": "Kulutusrakenne ja kriisien erilainen osuminen toimialoihin vaikuttivat tilanteeseen."
+      }
     },
     {
       "era": "Suomi · ehdollinen tulevaisuuspolku vuodesta 2025 eteenpäin",
@@ -215,7 +248,18 @@
       "range": [
         2025,
         2060
-      ]
+      ],
+      "analysis": {
+        "label": "2025 →",
+        "change": "Työn ehdot eivät sovi kaikkien toimintakykyyn.",
+        "response": "Tehtäviä, työaikaa ja tukea voitaisiin sovittaa yhteen.",
+        "trace": "Kestävä osallistuminen on tavoite, jonka toteutuminen pitää osoittaa.",
+        "groups": "Ihmiset, jotka tarvitsevat työn mukautusta, sekä työyhteisöt.",
+        "evidence": "Työn muokkauksen ohjeet tukevat toteutustapoja. Ne eivät todista tämän tulevaisuuspolun taloudellista tai yhteiskunnallista tulosta.",
+        "today": "Osallistumisen este voi liittyä myös työn järjestämiseen.",
+        "question": "Lisääkö työn mukautus kestävää osallistumista ilman kohtuutonta kuormitusta?",
+        "alternative": "Työvoiman kysyntä, työn mielekkyys ja tuen jatkuvuus voivat ratkaista tuloksen."
+      }
     }
   ]
 }

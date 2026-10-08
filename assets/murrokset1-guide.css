@@ -34,3 +34,11 @@
 
 .murros-story-tab-closed{position:fixed;left:auto;right:0;top:50dvh;z-index:45}
 .murros-story-tab-closed[hidden]{display:none}
+
+.murros-analysis{padding:22px clamp(18px,4vw,56px) 12px;color:var(--foreground,#263e30);font:14px/1.55 var(--font-sans,"Avenir Next",Avenir,"Segoe UI",sans-serif);max-width:1200px;margin:auto}
+.murros-analysis>small{font-size:11px;color:var(--muted-foreground,#61705e)}
+.murros-analysis h1{font-size:20px;font-weight:550;line-height:1.4;margin:5px 0 8px;color:var(--primary,#215638)}
+.analysis-premise{max-width:850px;margin:0 0 12px}.analysis-era{font-size:11px;color:var(--muted-foreground,#61705e);margin:8px 0}
+.analysis-chain{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.analysis-chain li{border-top:2px solid var(--border,#b5c9b9);padding-top:7px}.analysis-chain small{font-size:11px;color:var(--muted-foreground,#61705e)}.analysis-chain p{margin:4px 0;font-size:14px}.analysis-bridge{margin:12px 0;font-size:13px}.analysis-bridge strong{font-weight:600}
+.analysis-depth summary{cursor:pointer;color:var(--primary,#215638);font-size:12px}.analysis-depth>p{max-width:880px;font-size:13px}.analysis-table-scroll{overflow:auto}.analysis-depth table{width:100%;border-collapse:collapse;font-size:12px;min-width:650px}.analysis-depth caption{text-align:left;padding:12px 0;font-weight:600}.analysis-depth td,.analysis-depth th{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid var(--border,#b5c9b9)}.analysis-depth th{font-weight:550}.analysis-active{background:var(--secondary,#edf3ec)}.analysis-depth button{font:inherit;color:var(--primary,#215638);background:none;border:0;text-decoration:underline;cursor:pointer;padding:0;white-space:nowrap}.analysis-evidence{font-size:13px;display:grid;grid-template-columns:190px 1fr;gap:8px 16px;margin:18px 0}.analysis-evidence dt{font-weight:600}.analysis-evidence dd{margin:0}.analysis-limit{font-size:11px!important;color:var(--muted-foreground,#61705e)}
+@media(max-width:650px){.murros-analysis h1{font-size:17px}.analysis-chain{grid-template-columns:1fr;gap:8px}.analysis-evidence{grid-template-columns:1fr;gap:4px}.analysis-evidence dd{margin-bottom:10px}}
