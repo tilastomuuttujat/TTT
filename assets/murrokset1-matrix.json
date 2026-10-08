@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "levels": [
     "Tuotanto ja työ",
     "Yhteiskunnan ratkaisut",
@@ -7,9 +7,19 @@
     "Pitkä jälki"
   ],
   "columns": [
-    "1960–1975",
-    "1990–2008",
-    "2020–2022",
+    "1850",
+    "1880",
+    "1917",
+    "1945",
+    "1960",
+    "1975",
+    "1990",
+    "1995",
+    "2008",
+    "2020",
+    "2025 →",
+    "2025 →",
+    "2025 →",
     "2025 →"
   ],
   "nodes": [
@@ -17,14 +27,18 @@
       "id": "c0anchor",
       "chapter": 0,
       "kind": "anchor",
-      "label": "Suuri muutto"
+      "label": "Suuri muutto",
+      "year": 1960,
+      "case_id": "e59b2bc6-bae0-4ba5-a321-3b24c881da10",
+      "summary": "Muuttajien sekä lähtö- ja vastaanottoalueiden mahdollisuudet ja kustannukset.",
+      "rank": 4
     },
     {
       "id": "c0pwork",
       "chapter": 0,
       "kind": "petal",
       "theme": "work",
-      "label": "Työ",
+      "label": "Työn perässä muutto",
       "parent": "c0anchor",
       "order": 0
     },
@@ -51,7 +65,7 @@
       "chapter": 0,
       "kind": "petal",
       "theme": "housing",
-      "label": "Asuminen",
+      "label": "Lähiörakentaminen",
       "parent": "c0anchor",
       "order": 1
     },
@@ -78,7 +92,7 @@
       "chapter": 0,
       "kind": "petal",
       "theme": "education",
-      "label": "Koulutus",
+      "label": "Uuden työn osaaminen",
       "parent": "c0anchor",
       "order": 2
     },
@@ -105,7 +119,7 @@
       "chapter": 0,
       "kind": "petal",
       "theme": "income",
-      "label": "Toimeentulo",
+      "label": "Uusi toimeentulo",
       "parent": "c0anchor",
       "order": 3
     },
@@ -132,7 +146,7 @@
       "chapter": 0,
       "kind": "petal",
       "theme": "services",
-      "label": "Palvelut",
+      "label": "Palvelujen rakentaminen",
       "parent": "c0anchor",
       "order": 4
     },
@@ -159,7 +173,7 @@
       "chapter": 0,
       "kind": "petal",
       "theme": "community",
-      "label": "Yhteisöt",
+      "label": "Lähtöalueiden muutos",
       "parent": "c0anchor",
       "order": 5
     },
@@ -185,14 +199,18 @@
       "id": "c1anchor",
       "chapter": 1,
       "kind": "anchor",
-      "label": "Laman työurat"
+      "label": "Lama muuttaa lähtötason",
+      "year": 1990,
+      "case_id": "b2fed371-e969-4612-b865-1287bfba06bd",
+      "summary": "Tuotannon romahdus, työttömyys, velkaongelmat ja julkiset vastaukset.",
+      "rank": 6
     },
     {
       "id": "c1pwork",
       "chapter": 1,
       "kind": "petal",
       "theme": "work",
-      "label": "Työ",
+      "label": "Työhön pääsyn vaikeus",
       "parent": "c1anchor",
       "order": 0
     },
@@ -219,7 +237,7 @@
       "chapter": 1,
       "kind": "petal",
       "theme": "housing",
-      "label": "Asuminen",
+      "label": "Velat ja asumismenot",
       "parent": "c1anchor",
       "order": 1
     },
@@ -246,7 +264,7 @@
       "chapter": 1,
       "kind": "petal",
       "theme": "education",
-      "label": "Koulutus",
+      "label": "Lamassa valmistuminen",
       "parent": "c1anchor",
       "order": 2
     },
@@ -273,7 +291,7 @@
       "chapter": 1,
       "kind": "petal",
       "theme": "income",
-      "label": "Toimeentulo",
+      "label": "Katkennut työura",
       "parent": "c1anchor",
       "order": 3
     },
@@ -300,7 +318,7 @@
       "chapter": 1,
       "kind": "petal",
       "theme": "services",
-      "label": "Palvelut",
+      "label": "Työhön paluu",
       "parent": "c1anchor",
       "order": 4
     },
@@ -327,7 +345,7 @@
       "chapter": 1,
       "kind": "petal",
       "theme": "community",
-      "label": "Yhteisöt",
+      "label": "Elpymisestä sivuun jääminen",
       "parent": "c1anchor",
       "order": 5
     },
@@ -353,14 +371,18 @@
       "id": "c2anchor",
       "chapter": 2,
       "kind": "anchor",
-      "label": "Pandemia ja hinnat"
+      "label": "Shokit, rahoitus ja vastuut",
+      "year": 2020,
+      "case_id": "974ad739-b3ed-4537-b54f-a526e5538af2",
+      "summary": "Pandemia, sota, inflaatio ja korot erotetaan toisistaan. Mahdollinen palvelurahoituksen ankkuri rajataan myöhemmin.",
+      "rank": 9
     },
     {
       "id": "c2pwork",
       "chapter": 2,
       "kind": "petal",
       "theme": "work",
-      "label": "Työ",
+      "label": "Toimialojen sulkeutuminen",
       "parent": "c2anchor",
       "order": 0
     },
@@ -387,7 +409,7 @@
       "chapter": 2,
       "kind": "petal",
       "theme": "housing",
-      "label": "Asuminen",
+      "label": "Arjen kallistuminen",
       "parent": "c2anchor",
       "order": 1
     },
@@ -414,7 +436,7 @@
       "chapter": 2,
       "kind": "petal",
       "theme": "education",
-      "label": "Koulutus",
+      "label": "Työn vaihtamisen mahdollisuus",
       "parent": "c2anchor",
       "order": 2
     },
@@ -441,7 +463,7 @@
       "chapter": 2,
       "kind": "petal",
       "theme": "income",
-      "label": "Toimeentulo",
+      "label": "Puskurien riittävyys",
       "parent": "c2anchor",
       "order": 3
     },
@@ -468,7 +490,7 @@
       "chapter": 2,
       "kind": "petal",
       "theme": "services",
-      "label": "Palvelut",
+      "label": "Toimeentuloturva",
       "parent": "c2anchor",
       "order": 4
     },
@@ -495,7 +517,7 @@
       "chapter": 2,
       "kind": "petal",
       "theme": "community",
-      "label": "Yhteisöt",
+      "label": "Läheisten tuki",
       "parent": "c2anchor",
       "order": 5
     },
@@ -521,14 +543,18 @@
       "id": "c3anchor",
       "chapter": 3,
       "kind": "anchor",
-      "label": "Joustava työ"
+      "label": "Toimintakyvyn rakentaminen",
+      "year": 2025,
+      "case_id": "5d71941a-20f2-42c2-95ca-ea7f8f41084a",
+      "summary": "Ehdollinen päätöstesti. Polku ei ole ennuste eikä historiallisesti osoitettu vaikutus.",
+      "rank": 10
     },
     {
       "id": "c3pwork",
       "chapter": 3,
       "kind": "petal",
       "theme": "work",
-      "label": "Työ",
+      "label": "Tehtävien mukautus",
       "parent": "c3anchor",
       "order": 0
     },
@@ -555,7 +581,7 @@
       "chapter": 3,
       "kind": "petal",
       "theme": "housing",
-      "label": "Asuminen",
+      "label": "Työn saavutettavuus",
       "parent": "c3anchor",
       "order": 1
     },
@@ -582,7 +608,7 @@
       "chapter": 3,
       "kind": "petal",
       "theme": "education",
-      "label": "Koulutus",
+      "label": "Tuettu oppiminen",
       "parent": "c3anchor",
       "order": 2
     },
@@ -609,7 +635,7 @@
       "chapter": 3,
       "kind": "petal",
       "theme": "income",
-      "label": "Toimeentulo",
+      "label": "Toimeentulon ennakoitavuus",
       "parent": "c3anchor",
       "order": 3
     },
@@ -636,7 +662,7 @@
       "chapter": 3,
       "kind": "petal",
       "theme": "services",
-      "label": "Palvelut",
+      "label": "Järjestelyn jatkuvuus",
       "parent": "c3anchor",
       "order": 4
     },
@@ -663,7 +689,7 @@
       "chapter": 3,
       "kind": "petal",
       "theme": "community",
-      "label": "Yhteisöt",
+      "label": "Oma paikka yhteisössä",
       "parent": "c3anchor",
       "order": 5
     },
@@ -948,6 +974,1266 @@
       "theme": "income",
       "parent": "c3pincome",
       "order": 3
+    },
+    {
+      "id": "c4anchor",
+      "chapter": 4,
+      "kind": "anchor",
+      "label": "Toimeentulon haavoittuvuus",
+      "year": 1850,
+      "case_id": "6834ad0b-b102-4fbe-b950-54f491fdb03f",
+      "summary": "Sadon häiriö, kuolleisuus ja siemenvilja-avun dokumentoidut vaiheet.",
+      "rank": 0
+    },
+    {
+      "id": "c4phen0",
+      "chapter": 4,
+      "kind": "petal",
+      "parent": "c4anchor",
+      "theme": "work",
+      "order": 0,
+      "label": "Sadon häiriö"
+    },
+    {
+      "id": "c4phen0m0",
+      "chapter": 4,
+      "kind": "mechanism",
+      "parent": "c4phen0",
+      "theme": "work",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten sadon menetys välittyi toimeentuloon ja kuolleisuuteen?"
+    },
+    {
+      "id": "c4phen0m1",
+      "chapter": 4,
+      "kind": "mechanism",
+      "parent": "c4phen0",
+      "theme": "work",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä varautumiskykyä, luottamusta ja haavoittuvuuksia jäi?"
+    },
+    {
+      "id": "c4phen1",
+      "chapter": 4,
+      "kind": "petal",
+      "parent": "c4anchor",
+      "theme": "services",
+      "order": 1,
+      "label": "Avun viive"
+    },
+    {
+      "id": "c4phen1m0",
+      "chapter": 4,
+      "kind": "mechanism",
+      "parent": "c4phen1",
+      "theme": "services",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten kuljetukset, markkinat ja hankinta vastasivat häiriöön?"
+    },
+    {
+      "id": "c4phen1m1",
+      "chapter": 4,
+      "kind": "mechanism",
+      "parent": "c4phen1",
+      "theme": "services",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä varautumiskykyä, luottamusta ja haavoittuvuuksia jäi?"
+    },
+    {
+      "id": "c4phen2",
+      "chapter": 4,
+      "kind": "petal",
+      "parent": "c4anchor",
+      "theme": "income",
+      "order": 2,
+      "label": "Siemenvilja-apu"
+    },
+    {
+      "id": "c4phen2m0",
+      "chapter": 4,
+      "kind": "mechanism",
+      "parent": "c4phen2",
+      "theme": "income",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten avun tarpeet ja toteutus erosivat alueittain?"
+    },
+    {
+      "id": "c4phen2m1",
+      "chapter": 4,
+      "kind": "mechanism",
+      "parent": "c4phen2",
+      "theme": "income",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä varautumiskykyä, luottamusta ja haavoittuvuuksia jäi?"
+    },
+    {
+      "id": "c4phen3",
+      "chapter": 4,
+      "kind": "petal",
+      "parent": "c4anchor",
+      "theme": "community",
+      "order": 3,
+      "label": "Varautuminen"
+    },
+    {
+      "id": "c4phen3m0",
+      "chapter": 4,
+      "kind": "mechanism",
+      "parent": "c4phen3",
+      "theme": "community",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Millainen vastuu avun järjestämisestä otettiin?"
+    },
+    {
+      "id": "c4phen3m1",
+      "chapter": 4,
+      "kind": "mechanism",
+      "parent": "c4phen3",
+      "theme": "community",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä varautumiskykyä, luottamusta ja haavoittuvuuksia jäi?"
+    },
+    {
+      "id": "c5anchor",
+      "chapter": 5,
+      "kind": "anchor",
+      "label": "Oikeudet ja mahdollisuudet",
+      "year": 1880,
+      "case_id": "d61033b0-5750-41d9-9406-988a05b59bea",
+      "summary": "Miten toimeentuloa koskevat vaatimukset etenivät valmisteluksi ja päätöksiksi?",
+      "rank": 1
+    },
+    {
+      "id": "c5phen0",
+      "chapter": 5,
+      "kind": "petal",
+      "parent": "c5anchor",
+      "theme": "work",
+      "order": 0,
+      "label": "Palkkatyön kasvu"
+    },
+    {
+      "id": "c5phen0m0",
+      "chapter": 5,
+      "kind": "mechanism",
+      "parent": "c5phen0",
+      "theme": "work",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten palkkatyö, järjestäytyminen ja oikeudet avasivat mahdollisuuksia?"
+    },
+    {
+      "id": "c5phen0m1",
+      "chapter": 5,
+      "kind": "mechanism",
+      "parent": "c5phen0",
+      "theme": "work",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä osallistumisen väyliä ja ratkaisemattomia omistuksen eroja jäi?"
+    },
+    {
+      "id": "c5phen1",
+      "chapter": 5,
+      "kind": "petal",
+      "parent": "c5anchor",
+      "theme": "services",
+      "order": 1,
+      "label": "Järjestäytyminen"
+    },
+    {
+      "id": "c5phen1m0",
+      "chapter": 5,
+      "kind": "mechanism",
+      "parent": "c5phen1",
+      "theme": "services",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten teollistuminen muutti työvoiman ja pääoman tarpeita?"
+    },
+    {
+      "id": "c5phen1m1",
+      "chapter": 5,
+      "kind": "mechanism",
+      "parent": "c5phen1",
+      "theme": "services",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä osallistumisen väyliä ja ratkaisemattomia omistuksen eroja jäi?"
+    },
+    {
+      "id": "c5phen2",
+      "chapter": 5,
+      "kind": "petal",
+      "parent": "c5anchor",
+      "theme": "income",
+      "order": 2,
+      "label": "Vaatimusten kuuleminen"
+    },
+    {
+      "id": "c5phen2m0",
+      "chapter": 5,
+      "kind": "mechanism",
+      "parent": "c5phen2",
+      "theme": "income",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten kaupunkien kasvu muutti asumisen ja palvelujen tarpeita?"
+    },
+    {
+      "id": "c5phen2m1",
+      "chapter": 5,
+      "kind": "mechanism",
+      "parent": "c5phen2",
+      "theme": "income",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä osallistumisen väyliä ja ratkaisemattomia omistuksen eroja jäi?"
+    },
+    {
+      "id": "c5phen3",
+      "chapter": 5,
+      "kind": "petal",
+      "parent": "c5anchor",
+      "theme": "community",
+      "order": 3,
+      "label": "Oikeuksien laajeneminen"
+    },
+    {
+      "id": "c5phen3m0",
+      "chapter": 5,
+      "kind": "mechanism",
+      "parent": "c5phen3",
+      "theme": "community",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Kenen vaatimukset pääsivät päätöksenteon piiriin?"
+    },
+    {
+      "id": "c5phen3m1",
+      "chapter": 5,
+      "kind": "mechanism",
+      "parent": "c5phen3",
+      "theme": "community",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä osallistumisen väyliä ja ratkaisemattomia omistuksen eroja jäi?"
+    },
+    {
+      "id": "c6anchor",
+      "chapter": 6,
+      "kind": "anchor",
+      "label": "Päätöksestä toimeenpanoon",
+      "year": 1917,
+      "case_id": "0d1df2fc-938f-4fb6-8320-e4ba63a45038",
+      "summary": "Maan hallinnan uudistuminen sekä kriisien ja sotien seuraukset.",
+      "rank": 2
+    },
+    {
+      "id": "c6phen0",
+      "chapter": 6,
+      "kind": "petal",
+      "parent": "c6anchor",
+      "theme": "work",
+      "order": 0,
+      "label": "Maan hallinta"
+    },
+    {
+      "id": "c6phen0m0",
+      "chapter": 6,
+      "kind": "mechanism",
+      "parent": "c6phen0",
+      "theme": "work",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Kenelle uudistus avasi omistuksen ja toimeentulon mahdollisuuksia?"
+    },
+    {
+      "id": "c6phen0m1",
+      "chapter": 6,
+      "kind": "mechanism",
+      "parent": "c6phen0",
+      "theme": "work",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä omistuksen mahdollisuuksia, velvoitteita ja menetyksiä periytyi?"
+    },
+    {
+      "id": "c6phen1",
+      "chapter": 6,
+      "kind": "petal",
+      "parent": "c6anchor",
+      "theme": "services",
+      "order": 1,
+      "label": "Uudistuksen toimeenpano"
+    },
+    {
+      "id": "c6phen1m0",
+      "chapter": 6,
+      "kind": "mechanism",
+      "parent": "c6phen1",
+      "theme": "services",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten maan hallinta ja tuotannon ehdot muuttuivat?"
+    },
+    {
+      "id": "c6phen1m1",
+      "chapter": 6,
+      "kind": "mechanism",
+      "parent": "c6phen1",
+      "theme": "services",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä omistuksen mahdollisuuksia, velvoitteita ja menetyksiä periytyi?"
+    },
+    {
+      "id": "c6phen2",
+      "chapter": 6,
+      "kind": "petal",
+      "parent": "c6anchor",
+      "theme": "income",
+      "order": 2,
+      "label": "Kriisien menetykset"
+    },
+    {
+      "id": "c6phen2m0",
+      "chapter": 6,
+      "kind": "mechanism",
+      "parent": "c6phen2",
+      "theme": "income",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten toimeenpano ja kriisien seuraukset vaihtelivat alueittain?"
+    },
+    {
+      "id": "c6phen2m1",
+      "chapter": 6,
+      "kind": "mechanism",
+      "parent": "c6phen2",
+      "theme": "income",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä omistuksen mahdollisuuksia, velvoitteita ja menetyksiä periytyi?"
+    },
+    {
+      "id": "c6phen3",
+      "chapter": 6,
+      "kind": "petal",
+      "parent": "c6anchor",
+      "theme": "community",
+      "order": 3,
+      "label": "Omistuksen mahdollisuudet"
+    },
+    {
+      "id": "c6phen3m0",
+      "chapter": 6,
+      "kind": "mechanism",
+      "parent": "c6phen3",
+      "theme": "community",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten päätös muuttui hallinnolliseksi toteutukseksi?"
+    },
+    {
+      "id": "c6phen3m1",
+      "chapter": 6,
+      "kind": "mechanism",
+      "parent": "c6phen3",
+      "theme": "community",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä omistuksen mahdollisuuksia, velvoitteita ja menetyksiä periytyi?"
+    },
+    {
+      "id": "c7anchor",
+      "chapter": 7,
+      "kind": "anchor",
+      "label": "Jälleenrakennuksen yhteensovittaminen",
+      "year": 1945,
+      "case_id": "556e1396-e1ff-4522-8710-27cc253854ce",
+      "summary": "Ihmisten, tuotannon, asumisen ja rahoituksen yhteensovittaminen.",
+      "rank": 3
+    },
+    {
+      "id": "c7phen0",
+      "chapter": 7,
+      "kind": "petal",
+      "parent": "c7anchor",
+      "theme": "work",
+      "order": 0,
+      "label": "Asuttaminen"
+    },
+    {
+      "id": "c7phen0m0",
+      "chapter": 7,
+      "kind": "mechanism",
+      "parent": "c7phen0",
+      "theme": "work",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten koti, työ ja toimeentulo järjestyivät eri kotitalouksille?"
+    },
+    {
+      "id": "c7phen0m1",
+      "chapter": 7,
+      "kind": "mechanism",
+      "parent": "c7phen0",
+      "theme": "work",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä osaamista, infrastruktuuria ja paikallisia riippuvuuksia rakentui?"
+    },
+    {
+      "id": "c7phen1",
+      "chapter": 7,
+      "kind": "petal",
+      "parent": "c7anchor",
+      "theme": "services",
+      "order": 1,
+      "label": "Sotakorvaustuotanto"
+    },
+    {
+      "id": "c7phen1m0",
+      "chapter": 7,
+      "kind": "mechanism",
+      "parent": "c7phen1",
+      "theme": "services",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Mitä investoinnit ja sotakorvaustuotanto muuttivat kapasiteetissa?"
+    },
+    {
+      "id": "c7phen1m1",
+      "chapter": 7,
+      "kind": "mechanism",
+      "parent": "c7phen1",
+      "theme": "services",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä osaamista, infrastruktuuria ja paikallisia riippuvuuksia rakentui?"
+    },
+    {
+      "id": "c7phen2",
+      "chapter": 7,
+      "kind": "petal",
+      "parent": "c7anchor",
+      "theme": "income",
+      "order": 2,
+      "label": "Tuotannon investoinnit"
+    },
+    {
+      "id": "c7phen2m0",
+      "chapter": 7,
+      "kind": "mechanism",
+      "parent": "c7phen2",
+      "theme": "income",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten asuttaminen ja infrastruktuuri muuttivat alueita?"
+    },
+    {
+      "id": "c7phen2m1",
+      "chapter": 7,
+      "kind": "mechanism",
+      "parent": "c7phen2",
+      "theme": "income",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä osaamista, infrastruktuuria ja paikallisia riippuvuuksia rakentui?"
+    },
+    {
+      "id": "c7phen3",
+      "chapter": 7,
+      "kind": "petal",
+      "parent": "c7anchor",
+      "theme": "community",
+      "order": 3,
+      "label": "Vastuiden yhteensovitus"
+    },
+    {
+      "id": "c7phen3m0",
+      "chapter": 7,
+      "kind": "mechanism",
+      "parent": "c7phen3",
+      "theme": "community",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten omistajan, rahoittajan ja palvelujärjestäjän vastuut jaettiin?"
+    },
+    {
+      "id": "c7phen3m1",
+      "chapter": 7,
+      "kind": "mechanism",
+      "parent": "c7phen3",
+      "theme": "community",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä osaamista, infrastruktuuria ja paikallisia riippuvuuksia rakentui?"
+    },
+    {
+      "id": "c8anchor",
+      "chapter": 8,
+      "kind": "anchor",
+      "label": "Tuotannon menestymisen ehdot",
+      "year": 1975,
+      "case_id": "a3455f9f-b057-42ac-8943-244552048b7c",
+      "summary": "Valtion omistus, ohjausvalta ja rakennemuutoksen vastuut. Seuranta voi jatkua lukurajan yli.",
+      "rank": 5
+    },
+    {
+      "id": "c8phen0",
+      "chapter": 8,
+      "kind": "petal",
+      "parent": "c8anchor",
+      "theme": "work",
+      "order": 0,
+      "label": "Omistuksen muutos"
+    },
+    {
+      "id": "c8phen0m0",
+      "chapter": 8,
+      "kind": "mechanism",
+      "parent": "c8phen0",
+      "theme": "work",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten työn vaatimukset ja turva muuttuivat?"
+    },
+    {
+      "id": "c8phen0m1",
+      "chapter": 8,
+      "kind": "mechanism",
+      "parent": "c8phen0",
+      "theme": "work",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä investointikykyä, riippuvuuksia ja julkisia vastuita jäi?"
+    },
+    {
+      "id": "c8phen1",
+      "chapter": 8,
+      "kind": "petal",
+      "parent": "c8anchor",
+      "theme": "services",
+      "order": 1,
+      "label": "Investointikyky"
+    },
+    {
+      "id": "c8phen1m0",
+      "chapter": 8,
+      "kind": "mechanism",
+      "parent": "c8phen1",
+      "theme": "services",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten omistus, teknologia ja kansainvälistyminen muuttivat investointeja?"
+    },
+    {
+      "id": "c8phen1m1",
+      "chapter": 8,
+      "kind": "mechanism",
+      "parent": "c8phen1",
+      "theme": "services",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä investointikykyä, riippuvuuksia ja julkisia vastuita jäi?"
+    },
+    {
+      "id": "c8phen2",
+      "chapter": 8,
+      "kind": "petal",
+      "parent": "c8anchor",
+      "theme": "income",
+      "order": 2,
+      "label": "Paikalliset riippuvuudet"
+    },
+    {
+      "id": "c8phen2m0",
+      "chapter": 8,
+      "kind": "mechanism",
+      "parent": "c8phen2",
+      "theme": "income",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten tuotannon sijainti ja paikalliset riippuvuudet muuttuivat?"
+    },
+    {
+      "id": "c8phen2m1",
+      "chapter": 8,
+      "kind": "mechanism",
+      "parent": "c8phen2",
+      "theme": "income",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä investointikykyä, riippuvuuksia ja julkisia vastuita jäi?"
+    },
+    {
+      "id": "c8phen3",
+      "chapter": 8,
+      "kind": "petal",
+      "parent": "c8anchor",
+      "theme": "community",
+      "order": 3,
+      "label": "Sopeutumisvastuu"
+    },
+    {
+      "id": "c8phen3m0",
+      "chapter": 8,
+      "kind": "mechanism",
+      "parent": "c8phen3",
+      "theme": "community",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten ohjausvalta ja sopeutumisvastuu jakautuivat?"
+    },
+    {
+      "id": "c8phen3m1",
+      "chapter": 8,
+      "kind": "mechanism",
+      "parent": "c8phen3",
+      "theme": "community",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä investointikykyä, riippuvuuksia ja julkisia vastuita jäi?"
+    },
+    {
+      "id": "c9anchor",
+      "chapter": 9,
+      "kind": "anchor",
+      "label": "Sama kasvu, erilaiset paluut",
+      "year": 1995,
+      "case_id": "ec085864-d6f1-40fe-975b-d783ade46fef",
+      "summary": "Tuotannon, työpaikkojen ja työllisyyden eritahtisuus. Nykyisen tutkimusankkurin empiirinen ydin: 1989–2000.",
+      "rank": 7
+    },
+    {
+      "id": "c9phen0",
+      "chapter": 9,
+      "kind": "petal",
+      "parent": "c9anchor",
+      "theme": "work",
+      "order": 0,
+      "label": "Viennin elpyminen"
+    },
+    {
+      "id": "c9phen0m0",
+      "chapter": 9,
+      "kind": "mechanism",
+      "parent": "c9phen0",
+      "theme": "work",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Kenelle kasvun paluu tarjosi paluun työhön?"
+    },
+    {
+      "id": "c9phen0m1",
+      "chapter": 9,
+      "kind": "mechanism",
+      "parent": "c9phen0",
+      "theme": "work",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Kenelle kasvu palautti mahdollisuudet ja mikä osallistumisen este jäi?"
+    },
+    {
+      "id": "c9phen1",
+      "chapter": 9,
+      "kind": "petal",
+      "parent": "c9anchor",
+      "theme": "services",
+      "order": 1,
+      "label": "Työpaikkojen synty"
+    },
+    {
+      "id": "c9phen1m0",
+      "chapter": 9,
+      "kind": "mechanism",
+      "parent": "c9phen1",
+      "theme": "services",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten vienti ja yritysten menestys liittyivät kotimaisiin investointeihin?"
+    },
+    {
+      "id": "c9phen1m1",
+      "chapter": 9,
+      "kind": "mechanism",
+      "parent": "c9phen1",
+      "theme": "services",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Kenelle kasvu palautti mahdollisuudet ja mikä osallistumisen este jäi?"
+    },
+    {
+      "id": "c9phen2",
+      "chapter": 9,
+      "kind": "petal",
+      "parent": "c9anchor",
+      "theme": "income",
+      "order": 2,
+      "label": "Paluu työhön"
+    },
+    {
+      "id": "c9phen2m0",
+      "chapter": 9,
+      "kind": "mechanism",
+      "parent": "c9phen2",
+      "theme": "income",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten kasvu ja osallistuminen erosivat alueittain?"
+    },
+    {
+      "id": "c9phen2m1",
+      "chapter": 9,
+      "kind": "mechanism",
+      "parent": "c9phen2",
+      "theme": "income",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Kenelle kasvu palautti mahdollisuudet ja mikä osallistumisen este jäi?"
+    },
+    {
+      "id": "c9phen3",
+      "chapter": 9,
+      "kind": "petal",
+      "parent": "c9anchor",
+      "theme": "community",
+      "order": 3,
+      "label": "Alueiden eriytyminen"
+    },
+    {
+      "id": "c9phen3m0",
+      "chapter": 9,
+      "kind": "mechanism",
+      "parent": "c9phen3",
+      "theme": "community",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten politiikka vastasi eriytymiseen?"
+    },
+    {
+      "id": "c9phen3m1",
+      "chapter": 9,
+      "kind": "mechanism",
+      "parent": "c9phen3",
+      "theme": "community",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Kenelle kasvu palautti mahdollisuudet ja mikä osallistumisen este jäi?"
+    },
+    {
+      "id": "c10anchor",
+      "chapter": 10,
+      "kind": "anchor",
+      "label": "Pitkittyneen taantuman sopeutuminen",
+      "year": 2008,
+      "case_id": "8aba1153-71e1-4c0a-b9b5-0b1ccce6cf50",
+      "summary": "Kaksi erillistä päätösketjua: kilpailukykysopimus ja rajattu ammatillisen koulutuksen leikkaus. Syntyvyys ja alustatyö rinnakkaisteemoina.",
+      "rank": 8
+    },
+    {
+      "id": "c10phen0",
+      "chapter": 10,
+      "kind": "petal",
+      "parent": "c10anchor",
+      "theme": "work",
+      "order": 0,
+      "label": "Kilpailukykysopimus"
+    },
+    {
+      "id": "c10phen0m0",
+      "chapter": 10,
+      "kind": "mechanism",
+      "parent": "c10phen0",
+      "theme": "work",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten työehdot, koulutus ja toimeentulon ennakoitavuus muuttuivat?"
+    },
+    {
+      "id": "c10phen0m1",
+      "chapter": 10,
+      "kind": "mechanism",
+      "parent": "c10phen0",
+      "theme": "work",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Miten osaamisen, työkyvyn ja varautumisen varannot muuttuivat?"
+    },
+    {
+      "id": "c10phen1",
+      "chapter": 10,
+      "kind": "petal",
+      "parent": "c10anchor",
+      "theme": "services",
+      "order": 1,
+      "label": "Koulutuksen rahoitus"
+    },
+    {
+      "id": "c10phen1m0",
+      "chapter": 10,
+      "kind": "mechanism",
+      "parent": "c10phen1",
+      "theme": "services",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten kustannukset, investoinnit ja työn organisointi muuttuivat?"
+    },
+    {
+      "id": "c10phen1m1",
+      "chapter": 10,
+      "kind": "mechanism",
+      "parent": "c10phen1",
+      "theme": "services",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Miten osaamisen, työkyvyn ja varautumisen varannot muuttuivat?"
+    },
+    {
+      "id": "c10phen2",
+      "chapter": 10,
+      "kind": "petal",
+      "parent": "c10anchor",
+      "theme": "income",
+      "order": 2,
+      "label": "Osaamisen varannot"
+    },
+    {
+      "id": "c10phen2m0",
+      "chapter": 10,
+      "kind": "mechanism",
+      "parent": "c10phen2",
+      "theme": "income",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten työmahdollisuudet ja palvelukyky eriytyivät?"
+    },
+    {
+      "id": "c10phen2m1",
+      "chapter": 10,
+      "kind": "mechanism",
+      "parent": "c10phen2",
+      "theme": "income",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Miten osaamisen, työkyvyn ja varautumisen varannot muuttuivat?"
+    },
+    {
+      "id": "c10phen3",
+      "chapter": 10,
+      "kind": "petal",
+      "parent": "c10anchor",
+      "theme": "community",
+      "order": 3,
+      "label": "Myöhemmät vastuut"
+    },
+    {
+      "id": "c10phen3m0",
+      "chapter": 10,
+      "kind": "mechanism",
+      "parent": "c10phen3",
+      "theme": "community",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten välittömät säästöt ja myöhemmät vastuut jakautuivat?"
+    },
+    {
+      "id": "c10phen3m1",
+      "chapter": 10,
+      "kind": "mechanism",
+      "parent": "c10phen3",
+      "theme": "community",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Miten osaamisen, työkyvyn ja varautumisen varannot muuttuivat?"
+    },
+    {
+      "id": "c11anchor",
+      "chapter": 11,
+      "kind": "anchor",
+      "label": "Tuottavuuskasvun välittyminen",
+      "year": 2025,
+      "case_id": "f543783b-c05e-4e82-ac59-44a70ca4ab66",
+      "summary": "Ehdollinen päätöstesti. Polku ei ole ennuste eikä historiallisesti osoitettu vaikutus.",
+      "rank": 11
+    },
+    {
+      "id": "c11phen0",
+      "chapter": 11,
+      "kind": "petal",
+      "parent": "c11anchor",
+      "theme": "work",
+      "order": 0,
+      "label": "Tuottavuushyöty"
+    },
+    {
+      "id": "c11phen0m0",
+      "chapter": 11,
+      "kind": "mechanism",
+      "parent": "c11phen0",
+      "theme": "work",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten työn, toimeentulon ja perhe-elämän mahdollisuudet muuttuisivat?"
+    },
+    {
+      "id": "c11phen0m1",
+      "chapter": 11,
+      "kind": "mechanism",
+      "parent": "c11phen0",
+      "theme": "work",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä kasvava tuotanto rakentaa osallistumisessa, osaamisessa ja yhteisessä rahoituksessa?"
+    },
+    {
+      "id": "c11phen1",
+      "chapter": 11,
+      "kind": "petal",
+      "parent": "c11anchor",
+      "theme": "services",
+      "order": 1,
+      "label": "Työn mahdollisuudet"
+    },
+    {
+      "id": "c11phen1m0",
+      "chapter": 11,
+      "kind": "mechanism",
+      "parent": "c11phen1",
+      "theme": "services",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten investoinnit, tuottavuus ja vastuut muuttuisivat?"
+    },
+    {
+      "id": "c11phen1m1",
+      "chapter": 11,
+      "kind": "mechanism",
+      "parent": "c11phen1",
+      "theme": "services",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä kasvava tuotanto rakentaa osallistumisessa, osaamisessa ja yhteisessä rahoituksessa?"
+    },
+    {
+      "id": "c11phen2",
+      "chapter": 11,
+      "kind": "petal",
+      "parent": "c11anchor",
+      "theme": "income",
+      "order": 2,
+      "label": "Veropohja"
+    },
+    {
+      "id": "c11phen2m0",
+      "chapter": 11,
+      "kind": "mechanism",
+      "parent": "c11phen2",
+      "theme": "income",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten vaikutukset eroaisivat lähtö- ja vastaanottoalueilla?"
+    },
+    {
+      "id": "c11phen2m1",
+      "chapter": 11,
+      "kind": "mechanism",
+      "parent": "c11phen2",
+      "theme": "income",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä kasvava tuotanto rakentaa osallistumisessa, osaamisessa ja yhteisessä rahoituksessa?"
+    },
+    {
+      "id": "c11phen3",
+      "chapter": 11,
+      "kind": "petal",
+      "parent": "c11anchor",
+      "theme": "community",
+      "order": 3,
+      "label": "Hyödyn jakautuminen"
+    },
+    {
+      "id": "c11phen3m0",
+      "chapter": 11,
+      "kind": "mechanism",
+      "parent": "c11phen3",
+      "theme": "community",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten veropohja, rahoitus ja palvelukyky muuttuisivat?"
+    },
+    {
+      "id": "c11phen3m1",
+      "chapter": 11,
+      "kind": "mechanism",
+      "parent": "c11phen3",
+      "theme": "community",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Mitä kasvava tuotanto rakentaa osallistumisessa, osaamisessa ja yhteisessä rahoituksessa?"
+    },
+    {
+      "id": "c12anchor",
+      "chapter": 12,
+      "kind": "anchor",
+      "label": "Julkisen talouden sopeutus",
+      "year": 2025,
+      "case_id": "238146ea-9791-454d-a73b-22503b4b0ad4",
+      "summary": "Ehdollinen päätöstesti. Polku ei ole ennuste eikä historiallisesti osoitettu vaikutus.",
+      "rank": 12
+    },
+    {
+      "id": "c12phen0",
+      "chapter": 12,
+      "kind": "petal",
+      "parent": "c12anchor",
+      "theme": "work",
+      "order": 0,
+      "label": "Menojen muutos"
+    },
+    {
+      "id": "c12phen0m0",
+      "chapter": 12,
+      "kind": "mechanism",
+      "parent": "c12phen0",
+      "theme": "work",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten työn, toimeentulon ja perhe-elämän mahdollisuudet muuttuisivat?"
+    },
+    {
+      "id": "c12phen0m1",
+      "chapter": 12,
+      "kind": "mechanism",
+      "parent": "c12phen0",
+      "theme": "work",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Väheneekö kokonaiskustannus, vai siirtyykö se kotitalouksille, toiselle sektorille tai tulevaan aikaan?"
+    },
+    {
+      "id": "c12phen1",
+      "chapter": 12,
+      "kind": "petal",
+      "parent": "c12anchor",
+      "theme": "services",
+      "order": 1,
+      "label": "Palvelukyky"
+    },
+    {
+      "id": "c12phen1m0",
+      "chapter": 12,
+      "kind": "mechanism",
+      "parent": "c12phen1",
+      "theme": "services",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten investoinnit, tuottavuus ja vastuut muuttuisivat?"
+    },
+    {
+      "id": "c12phen1m1",
+      "chapter": 12,
+      "kind": "mechanism",
+      "parent": "c12phen1",
+      "theme": "services",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Väheneekö kokonaiskustannus, vai siirtyykö se kotitalouksille, toiselle sektorille tai tulevaan aikaan?"
+    },
+    {
+      "id": "c12phen2",
+      "chapter": 12,
+      "kind": "petal",
+      "parent": "c12anchor",
+      "theme": "income",
+      "order": 2,
+      "label": "Kotitalouksien vastuu"
+    },
+    {
+      "id": "c12phen2m0",
+      "chapter": 12,
+      "kind": "mechanism",
+      "parent": "c12phen2",
+      "theme": "income",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten vaikutukset eroaisivat lähtö- ja vastaanottoalueilla?"
+    },
+    {
+      "id": "c12phen2m1",
+      "chapter": 12,
+      "kind": "mechanism",
+      "parent": "c12phen2",
+      "theme": "income",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Väheneekö kokonaiskustannus, vai siirtyykö se kotitalouksille, toiselle sektorille tai tulevaan aikaan?"
+    },
+    {
+      "id": "c12phen3",
+      "chapter": 12,
+      "kind": "petal",
+      "parent": "c12anchor",
+      "theme": "community",
+      "order": 3,
+      "label": "Kokonaiskustannus"
+    },
+    {
+      "id": "c12phen3m0",
+      "chapter": 12,
+      "kind": "mechanism",
+      "parent": "c12phen3",
+      "theme": "community",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten veropohja, rahoitus ja palvelukyky muuttuisivat?"
+    },
+    {
+      "id": "c12phen3m1",
+      "chapter": 12,
+      "kind": "mechanism",
+      "parent": "c12phen3",
+      "theme": "community",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Väheneekö kokonaiskustannus, vai siirtyykö se kotitalouksille, toiselle sektorille tai tulevaan aikaan?"
+    },
+    {
+      "id": "c13anchor",
+      "chapter": 13,
+      "kind": "anchor",
+      "label": "Tekoäly ja työn tehtävärakenne",
+      "year": 2025,
+      "case_id": "8719ade3-e005-4dd5-8cc2-16f24f7fbcd0",
+      "summary": "Ehdollinen päätöstesti. Polku ei ole ennuste eikä historiallisesti osoitettu vaikutus.",
+      "rank": 13
+    },
+    {
+      "id": "c13phen0",
+      "chapter": 13,
+      "kind": "petal",
+      "parent": "c13anchor",
+      "theme": "work",
+      "order": 0,
+      "label": "Tehtävien siirtymä"
+    },
+    {
+      "id": "c13phen0m0",
+      "chapter": 13,
+      "kind": "mechanism",
+      "parent": "c13phen0",
+      "theme": "work",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten työn, toimeentulon ja perhe-elämän mahdollisuudet muuttuisivat?"
+    },
+    {
+      "id": "c13phen0m1",
+      "chapter": 13,
+      "kind": "mechanism",
+      "parent": "c13phen0",
+      "theme": "work",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Muuttuuko tehtävien siirtymä uudeksi osaamiseksi vai pitkittyväksi ulkopuolisuudeksi?"
+    },
+    {
+      "id": "c13phen1",
+      "chapter": 13,
+      "kind": "petal",
+      "parent": "c13anchor",
+      "theme": "services",
+      "order": 1,
+      "label": "Uusi osaamistarve"
+    },
+    {
+      "id": "c13phen1m0",
+      "chapter": 13,
+      "kind": "mechanism",
+      "parent": "c13phen1",
+      "theme": "services",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten investoinnit, tuottavuus ja vastuut muuttuisivat?"
+    },
+    {
+      "id": "c13phen1m1",
+      "chapter": 13,
+      "kind": "mechanism",
+      "parent": "c13phen1",
+      "theme": "services",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Muuttuuko tehtävien siirtymä uudeksi osaamiseksi vai pitkittyväksi ulkopuolisuudeksi?"
+    },
+    {
+      "id": "c13phen2",
+      "chapter": 13,
+      "kind": "petal",
+      "parent": "c13anchor",
+      "theme": "income",
+      "order": 2,
+      "label": "Ulkopuolisuuden riski"
+    },
+    {
+      "id": "c13phen2m0",
+      "chapter": 13,
+      "kind": "mechanism",
+      "parent": "c13phen2",
+      "theme": "income",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten vaikutukset eroaisivat lähtö- ja vastaanottoalueilla?"
+    },
+    {
+      "id": "c13phen2m1",
+      "chapter": 13,
+      "kind": "mechanism",
+      "parent": "c13phen2",
+      "theme": "income",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Muuttuuko tehtävien siirtymä uudeksi osaamiseksi vai pitkittyväksi ulkopuolisuudeksi?"
+    },
+    {
+      "id": "c13phen3",
+      "chapter": 13,
+      "kind": "petal",
+      "parent": "c13anchor",
+      "theme": "community",
+      "order": 3,
+      "label": "Työn uudelleenjärjestely"
+    },
+    {
+      "id": "c13phen3m0",
+      "chapter": 13,
+      "kind": "mechanism",
+      "parent": "c13phen3",
+      "theme": "community",
+      "order": 0,
+      "label": "Välittymisen ehdot",
+      "question": "Miten veropohja, rahoitus ja palvelukyky muuttuisivat?"
+    },
+    {
+      "id": "c13phen3m1",
+      "chapter": 13,
+      "kind": "mechanism",
+      "parent": "c13phen3",
+      "theme": "community",
+      "order": 1,
+      "label": "Myöhempi jälki?",
+      "question": "Muuttuuko tehtävien siirtymä uudeksi osaamiseksi vai pitkittyväksi ulkopuolisuudeksi?"
     }
   ],
   "edges": [
@@ -2797,7 +4083,8 @@
         }
       ],
       "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Muutto lisäsi asumisen ja palvelujen tarvetta."
     },
     {
       "id": "c0e1",
@@ -2820,7 +4107,8 @@
         }
       ],
       "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Työpaikan rinnalle tarvittiin toimiva arki."
     },
     {
       "id": "c0e2",
@@ -2842,7 +4130,8 @@
         }
       ],
       "delay": "Myöhemmät vuosikymmenet",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Rakennettu ympäristö säilyi myöhempien sukupolvien käytössä."
     },
     {
       "id": "c0group0",
@@ -2864,7 +4153,8 @@
         }
       ],
       "delay": "Ryhmien eroa on seurattava ajassa",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Haarat nimeävät vertailtavat ryhmät. Niiden samanlainen leveys ei kuvaa ryhmien kokoa tai kohtaloiden suuruuseroa."
     },
     {
       "id": "c0group1",
@@ -2886,7 +4176,8 @@
         }
       ],
       "delay": "Ryhmien eroa on seurattava ajassa",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Haarat nimeävät vertailtavat ryhmät. Niiden samanlainen leveys ei kuvaa ryhmien kokoa tai kohtaloiden suuruuseroa."
     },
     {
       "id": "c1e0",
@@ -2910,7 +4201,8 @@
         }
       ],
       "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Työhön pääsyn mahdollisuudet kapenivat."
     },
     {
       "id": "c1e1",
@@ -2933,7 +4225,8 @@
         }
       ],
       "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Elpyminen ei yksin kerro jokaisen ryhmän paluusta työhön."
     },
     {
       "id": "c1e2",
@@ -2955,7 +4248,8 @@
         }
       ],
       "delay": "Myöhemmät vuosikymmenet",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Valmistumiskohorttien myöhemmät työurat erosivat."
     },
     {
       "id": "c1group0",
@@ -2977,7 +4271,8 @@
         }
       ],
       "delay": "Ryhmien eroa on seurattava ajassa",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Vertaa ryhmien myöhempää kehitystä ja huomioi koulutusala, alue ja myöhemmät työmarkkinamuutokset."
     },
     {
       "id": "c1group1",
@@ -2999,7 +4294,8 @@
         }
       ],
       "delay": "Ryhmien eroa on seurattava ajassa",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Vertaa ryhmien myöhempää kehitystä ja huomioi koulutusala, alue ja myöhemmät työmarkkinamuutokset."
     },
     {
       "id": "c2e0",
@@ -3023,7 +4319,8 @@
         }
       ],
       "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Turva ja puskurit välittivät häiriöiden vaikutuksia."
     },
     {
       "id": "c2e1",
@@ -3046,7 +4343,8 @@
         }
       ],
       "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Välttämättömät menot rajasivat sopeutumista."
     },
     {
       "id": "c2e2",
@@ -3068,7 +4366,8 @@
         }
       ],
       "delay": "Myöhemmät vuosikymmenet",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Pysyvyyden osoittaminen vaatii ryhmien seurantaa."
     },
     {
       "id": "c2group0",
@@ -3090,7 +4389,8 @@
         }
       ],
       "delay": "Ryhmien eroa on seurattava ajassa",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Haarat auttavat kysymään, miten sama häiriö kohtasi erilaiset lähtökohdat. Ryhmäkohtaisia vaikutuskokoja ei esitetä."
     },
     {
       "id": "c2group1",
@@ -3112,7 +4412,8 @@
         }
       ],
       "delay": "Ryhmien eroa on seurattava ajassa",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Haarat auttavat kysymään, miten sama häiriö kohtasi erilaiset lähtökohdat. Ryhmäkohtaisia vaikutuskokoja ei esitetä."
     },
     {
       "id": "c3e0",
@@ -3136,7 +4437,8 @@
         }
       ],
       "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Tehtäviä, aikaa ja tukea voitaisiin muokata."
     },
     {
       "id": "c3e1",
@@ -3159,7 +4461,8 @@
         }
       ],
       "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Sopiva järjestely voisi mahdollistaa osallistumisen."
     },
     {
       "id": "c3e2",
@@ -3181,7 +4484,8 @@
         }
       ],
       "delay": "Myöhemmät vuosikymmenet",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Hyvä alku ei osoita osallistumisen jatkuvuutta."
     },
     {
       "id": "c3group0",
@@ -3203,7 +4507,8 @@
         }
       ],
       "delay": "Ryhmien eroa on seurattava ajassa",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Ryhmät kuvaavat skenaarion vertailukysymystä. Osallistuminen riippuu myös kysynnästä, mielekkyydestä ja tuen jatkuvuudesta."
     },
     {
       "id": "c3group1",
@@ -3225,7 +4530,8 @@
         }
       ],
       "delay": "Ryhmien eroa on seurattava ajassa",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Ryhmät kuvaavat skenaarion vertailukysymystä. Osallistuminen riippuu myös kysynnästä, mielekkyydestä ja tuen jatkuvuudesta."
     },
     {
       "id": "carry20",
@@ -3242,7 +4548,8 @@
       "alternative": "Sama myöhempi ilmiö voi syntyä myös uusista päätöksistä, väestörakenteesta tai muista häiriöistä.",
       "sources": [],
       "delay": "Pitkä aikaväli; viivettä ei mitattu",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Voisiko aiemmin rakentunut asuin- ja palveluympäristö selittää osan myöhemmästä liikkumavarasta?"
     },
     {
       "id": "carry21",
@@ -3259,7 +4566,8 @@
       "alternative": "Sama myöhempi ilmiö voi syntyä myös uusista päätöksistä, väestörakenteesta tai muista häiriöistä.",
       "sources": [],
       "delay": "Pitkä aikaväli; viivettä ei mitattu",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Voisiko aiemman työuran katkos vaikuttaa myöhempään taloudelliseen puskuriin?"
     },
     {
       "id": "carry22",
@@ -3276,7 +4584,8 @@
       "alternative": "Sama myöhempi ilmiö voi syntyä myös uusista päätöksistä, väestörakenteesta tai muista häiriöistä.",
       "sources": [],
       "delay": "Pitkä aikaväli; viivettä ei mitattu",
-      "kind": "influence"
+      "kind": "influence",
+      "question": "Mitä aiempien häiriöiden kokemuksista pitäisi huomioida työn ja tuen järjestämisessä?"
     },
     {
       "id": "mechanism-link-0",
@@ -3295,7 +4604,8 @@
       "delay": "Ei mitattua viivettä",
       "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
       "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
-      "sources": []
+      "sources": [],
+      "question": "Työpaikkojen sijainti saattoi lisätä asuntojen tarvetta."
     },
     {
       "id": "mechanism-link-1",
@@ -3314,7 +4624,8 @@
       "delay": "Ei mitattua viivettä",
       "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
       "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
-      "sources": []
+      "sources": [],
+      "question": "Voisiko aiemmin rakentunut sijaintirakenne välittää myöhempiä asumisen ehtoja?"
     },
     {
       "id": "mechanism-link-2",
@@ -3333,7 +4644,8 @@
       "delay": "Ei mitattua viivettä",
       "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
       "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
-      "sources": []
+      "sources": [],
+      "question": "Valmistumisajankohta kytkeytyi työhön pääsyn tilanteeseen."
     },
     {
       "id": "mechanism-link-3",
@@ -3352,7 +4664,8 @@
       "delay": "Ei mitattua viivettä",
       "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
       "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
-      "sources": []
+      "sources": [],
+      "question": "Voisiko aiempi työuran katkos liittyä myöhempään säästöpuskuriin?"
     },
     {
       "id": "mechanism-link-4",
@@ -3371,7 +4684,8 @@
       "delay": "Ei mitattua viivettä",
       "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
       "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
-      "sources": []
+      "sources": [],
+      "question": "Hintojen nousu saattoi kaventaa välttämättömään kulutukseen jäävää liikkumavaraa."
     },
     {
       "id": "mechanism-link-5",
@@ -3390,7 +4704,8 @@
       "delay": "Ei mitattua viivettä",
       "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
       "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
-      "sources": []
+      "sources": [],
+      "question": "Miten toimeentuloturva vaikutti puskurin riittävyyteen?"
     },
     {
       "id": "mechanism-link-6",
@@ -3409,7 +4724,8 @@
       "delay": "Ei mitattua viivettä",
       "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
       "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
-      "sources": []
+      "sources": [],
+      "question": "Tehtävien muokkaus voisi auttaa oman paikan syntymistä."
     },
     {
       "id": "mechanism-link-7",
@@ -3428,7 +4744,2600 @@
       "delay": "Ei mitattua viivettä",
       "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
       "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
+      "sources": [],
+      "question": "Tuen jatkuvuus voisi auttaa osallistumisen kestävyyttä."
+    },
+    {
+      "id": "member-c4phen0",
+      "source": "c4anchor",
+      "target": "c4phen0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
       "sources": []
+    },
+    {
+      "id": "member-c4phen0m0",
+      "source": "c4phen0",
+      "target": "c4phen0m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c4phen0m1",
+      "source": "c4phen0",
+      "target": "c4phen0m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c4phen1",
+      "source": "c4anchor",
+      "target": "c4phen1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c4phen1m0",
+      "source": "c4phen1",
+      "target": "c4phen1m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c4phen1m1",
+      "source": "c4phen1",
+      "target": "c4phen1m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c4phen2",
+      "source": "c4anchor",
+      "target": "c4phen2",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c4phen2m0",
+      "source": "c4phen2",
+      "target": "c4phen2m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c4phen2m1",
+      "source": "c4phen2",
+      "target": "c4phen2m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c4phen3",
+      "source": "c4anchor",
+      "target": "c4phen3",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c4phen3m0",
+      "source": "c4phen3",
+      "target": "c4phen3m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c4phen3m1",
+      "source": "c4phen3",
+      "target": "c4phen3m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c5phen0",
+      "source": "c5anchor",
+      "target": "c5phen0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c5phen0m0",
+      "source": "c5phen0",
+      "target": "c5phen0m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c5phen0m1",
+      "source": "c5phen0",
+      "target": "c5phen0m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c5phen1",
+      "source": "c5anchor",
+      "target": "c5phen1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c5phen1m0",
+      "source": "c5phen1",
+      "target": "c5phen1m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c5phen1m1",
+      "source": "c5phen1",
+      "target": "c5phen1m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c5phen2",
+      "source": "c5anchor",
+      "target": "c5phen2",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c5phen2m0",
+      "source": "c5phen2",
+      "target": "c5phen2m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c5phen2m1",
+      "source": "c5phen2",
+      "target": "c5phen2m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c5phen3",
+      "source": "c5anchor",
+      "target": "c5phen3",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c5phen3m0",
+      "source": "c5phen3",
+      "target": "c5phen3m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c5phen3m1",
+      "source": "c5phen3",
+      "target": "c5phen3m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c6phen0",
+      "source": "c6anchor",
+      "target": "c6phen0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c6phen0m0",
+      "source": "c6phen0",
+      "target": "c6phen0m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c6phen0m1",
+      "source": "c6phen0",
+      "target": "c6phen0m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c6phen1",
+      "source": "c6anchor",
+      "target": "c6phen1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c6phen1m0",
+      "source": "c6phen1",
+      "target": "c6phen1m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c6phen1m1",
+      "source": "c6phen1",
+      "target": "c6phen1m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c6phen2",
+      "source": "c6anchor",
+      "target": "c6phen2",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c6phen2m0",
+      "source": "c6phen2",
+      "target": "c6phen2m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c6phen2m1",
+      "source": "c6phen2",
+      "target": "c6phen2m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c6phen3",
+      "source": "c6anchor",
+      "target": "c6phen3",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c6phen3m0",
+      "source": "c6phen3",
+      "target": "c6phen3m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c6phen3m1",
+      "source": "c6phen3",
+      "target": "c6phen3m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c7phen0",
+      "source": "c7anchor",
+      "target": "c7phen0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c7phen0m0",
+      "source": "c7phen0",
+      "target": "c7phen0m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c7phen0m1",
+      "source": "c7phen0",
+      "target": "c7phen0m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c7phen1",
+      "source": "c7anchor",
+      "target": "c7phen1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c7phen1m0",
+      "source": "c7phen1",
+      "target": "c7phen1m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c7phen1m1",
+      "source": "c7phen1",
+      "target": "c7phen1m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c7phen2",
+      "source": "c7anchor",
+      "target": "c7phen2",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c7phen2m0",
+      "source": "c7phen2",
+      "target": "c7phen2m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c7phen2m1",
+      "source": "c7phen2",
+      "target": "c7phen2m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c7phen3",
+      "source": "c7anchor",
+      "target": "c7phen3",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c7phen3m0",
+      "source": "c7phen3",
+      "target": "c7phen3m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c7phen3m1",
+      "source": "c7phen3",
+      "target": "c7phen3m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c8phen0",
+      "source": "c8anchor",
+      "target": "c8phen0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c8phen0m0",
+      "source": "c8phen0",
+      "target": "c8phen0m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c8phen0m1",
+      "source": "c8phen0",
+      "target": "c8phen0m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c8phen1",
+      "source": "c8anchor",
+      "target": "c8phen1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c8phen1m0",
+      "source": "c8phen1",
+      "target": "c8phen1m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c8phen1m1",
+      "source": "c8phen1",
+      "target": "c8phen1m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c8phen2",
+      "source": "c8anchor",
+      "target": "c8phen2",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c8phen2m0",
+      "source": "c8phen2",
+      "target": "c8phen2m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c8phen2m1",
+      "source": "c8phen2",
+      "target": "c8phen2m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c8phen3",
+      "source": "c8anchor",
+      "target": "c8phen3",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c8phen3m0",
+      "source": "c8phen3",
+      "target": "c8phen3m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c8phen3m1",
+      "source": "c8phen3",
+      "target": "c8phen3m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c9phen0",
+      "source": "c9anchor",
+      "target": "c9phen0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c9phen0m0",
+      "source": "c9phen0",
+      "target": "c9phen0m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c9phen0m1",
+      "source": "c9phen0",
+      "target": "c9phen0m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c9phen1",
+      "source": "c9anchor",
+      "target": "c9phen1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c9phen1m0",
+      "source": "c9phen1",
+      "target": "c9phen1m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c9phen1m1",
+      "source": "c9phen1",
+      "target": "c9phen1m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c9phen2",
+      "source": "c9anchor",
+      "target": "c9phen2",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c9phen2m0",
+      "source": "c9phen2",
+      "target": "c9phen2m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c9phen2m1",
+      "source": "c9phen2",
+      "target": "c9phen2m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c9phen3",
+      "source": "c9anchor",
+      "target": "c9phen3",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c9phen3m0",
+      "source": "c9phen3",
+      "target": "c9phen3m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c9phen3m1",
+      "source": "c9phen3",
+      "target": "c9phen3m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c10phen0",
+      "source": "c10anchor",
+      "target": "c10phen0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c10phen0m0",
+      "source": "c10phen0",
+      "target": "c10phen0m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c10phen0m1",
+      "source": "c10phen0",
+      "target": "c10phen0m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c10phen1",
+      "source": "c10anchor",
+      "target": "c10phen1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c10phen1m0",
+      "source": "c10phen1",
+      "target": "c10phen1m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c10phen1m1",
+      "source": "c10phen1",
+      "target": "c10phen1m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c10phen2",
+      "source": "c10anchor",
+      "target": "c10phen2",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c10phen2m0",
+      "source": "c10phen2",
+      "target": "c10phen2m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c10phen2m1",
+      "source": "c10phen2",
+      "target": "c10phen2m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c10phen3",
+      "source": "c10anchor",
+      "target": "c10phen3",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c10phen3m0",
+      "source": "c10phen3",
+      "target": "c10phen3m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c10phen3m1",
+      "source": "c10phen3",
+      "target": "c10phen3m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c11phen0",
+      "source": "c11anchor",
+      "target": "c11phen0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c11phen0m0",
+      "source": "c11phen0",
+      "target": "c11phen0m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c11phen0m1",
+      "source": "c11phen0",
+      "target": "c11phen0m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c11phen1",
+      "source": "c11anchor",
+      "target": "c11phen1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c11phen1m0",
+      "source": "c11phen1",
+      "target": "c11phen1m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c11phen1m1",
+      "source": "c11phen1",
+      "target": "c11phen1m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c11phen2",
+      "source": "c11anchor",
+      "target": "c11phen2",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c11phen2m0",
+      "source": "c11phen2",
+      "target": "c11phen2m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c11phen2m1",
+      "source": "c11phen2",
+      "target": "c11phen2m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c11phen3",
+      "source": "c11anchor",
+      "target": "c11phen3",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c11phen3m0",
+      "source": "c11phen3",
+      "target": "c11phen3m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c11phen3m1",
+      "source": "c11phen3",
+      "target": "c11phen3m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c12phen0",
+      "source": "c12anchor",
+      "target": "c12phen0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c12phen0m0",
+      "source": "c12phen0",
+      "target": "c12phen0m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c12phen0m1",
+      "source": "c12phen0",
+      "target": "c12phen0m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c12phen1",
+      "source": "c12anchor",
+      "target": "c12phen1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c12phen1m0",
+      "source": "c12phen1",
+      "target": "c12phen1m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c12phen1m1",
+      "source": "c12phen1",
+      "target": "c12phen1m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c12phen2",
+      "source": "c12anchor",
+      "target": "c12phen2",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c12phen2m0",
+      "source": "c12phen2",
+      "target": "c12phen2m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c12phen2m1",
+      "source": "c12phen2",
+      "target": "c12phen2m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c12phen3",
+      "source": "c12anchor",
+      "target": "c12phen3",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c12phen3m0",
+      "source": "c12phen3",
+      "target": "c12phen3m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c12phen3m1",
+      "source": "c12phen3",
+      "target": "c12phen3m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c13phen0",
+      "source": "c13anchor",
+      "target": "c13phen0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c13phen0m0",
+      "source": "c13phen0",
+      "target": "c13phen0m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c13phen0m1",
+      "source": "c13phen0",
+      "target": "c13phen0m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c13phen1",
+      "source": "c13anchor",
+      "target": "c13phen1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c13phen1m0",
+      "source": "c13phen1",
+      "target": "c13phen1m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c13phen1m1",
+      "source": "c13phen1",
+      "target": "c13phen1m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c13phen2",
+      "source": "c13anchor",
+      "target": "c13phen2",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c13phen2m0",
+      "source": "c13phen2",
+      "target": "c13phen2m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c13phen2m1",
+      "source": "c13phen2",
+      "target": "c13phen2m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c13phen3",
+      "source": "c13anchor",
+      "target": "c13phen3",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c13phen3m0",
+      "source": "c13phen3",
+      "target": "c13phen3m0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c13phen3m1",
+      "source": "c13phen3",
+      "target": "c13phen3m1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Ankkurin ilmiön jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Sisältöhierarkia.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "anchor-pair-0",
+      "kind": "influence",
+      "source": "c4phen3",
+      "target": "c5phen2",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "question": "Miten varautuminen liittyy ilmiöön vaatimusten kuuleminen?",
+      "mechanism": "Tutkittava vastinpari: Varautuminen ↔ Vaatimusten kuuleminen.",
+      "transmission": "vastinpari · välittyminen tai saman mekanismin toistuminen on selvitettävä",
+      "period": "1850 → 1880",
+      "delay": "Ankkurien välinen yhteys; vaikutuksen viivettä ei mitattu.",
+      "evidence": "Pari on muodostettu atlas-aineiston tutkimuskysymyksistä. Yhteyttä tai periytymistä ei ole osoitettu tällä aineistolla.",
+      "alternative": "Yhtäläinen ilmiö voi syntyä eri mekanismista. Myöhemmät ratkaisut ja uudet häiriöt on erotettava aiemman vaikutuksen jatkumisesta.",
+      "sources": [],
+      "provenance": [
+        "6834ad0b-b102-4fbe-b950-54f491fdb03f",
+        "d61033b0-5750-41d9-9406-988a05b59bea"
+      ]
+    },
+    {
+      "id": "anchor-pair-1",
+      "kind": "influence",
+      "source": "c5phen3",
+      "target": "c6phen0",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "question": "Miten oikeuksien laajeneminen liittyy ilmiöön maan hallinta?",
+      "mechanism": "Tutkittava vastinpari: Oikeuksien laajeneminen ↔ Maan hallinta.",
+      "transmission": "vastinpari · välittyminen tai saman mekanismin toistuminen on selvitettävä",
+      "period": "1880 → 1917",
+      "delay": "Ankkurien välinen yhteys; vaikutuksen viivettä ei mitattu.",
+      "evidence": "Pari on muodostettu atlas-aineiston tutkimuskysymyksistä. Yhteyttä tai periytymistä ei ole osoitettu tällä aineistolla.",
+      "alternative": "Yhtäläinen ilmiö voi syntyä eri mekanismista. Myöhemmät ratkaisut ja uudet häiriöt on erotettava aiemman vaikutuksen jatkumisesta.",
+      "sources": [],
+      "provenance": [
+        "d61033b0-5750-41d9-9406-988a05b59bea",
+        "0d1df2fc-938f-4fb6-8320-e4ba63a45038"
+      ]
+    },
+    {
+      "id": "anchor-pair-2",
+      "kind": "influence",
+      "source": "c6phen3",
+      "target": "c7phen0",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "question": "Miten omistuksen mahdollisuudet liittyy ilmiöön asuttaminen?",
+      "mechanism": "Tutkittava vastinpari: Omistuksen mahdollisuudet ↔ Asuttaminen.",
+      "transmission": "vastinpari · välittyminen tai saman mekanismin toistuminen on selvitettävä",
+      "period": "1917 → 1945",
+      "delay": "Ankkurien välinen yhteys; vaikutuksen viivettä ei mitattu.",
+      "evidence": "Pari on muodostettu atlas-aineiston tutkimuskysymyksistä. Yhteyttä tai periytymistä ei ole osoitettu tällä aineistolla.",
+      "alternative": "Yhtäläinen ilmiö voi syntyä eri mekanismista. Myöhemmät ratkaisut ja uudet häiriöt on erotettava aiemman vaikutuksen jatkumisesta.",
+      "sources": [],
+      "provenance": [
+        "0d1df2fc-938f-4fb6-8320-e4ba63a45038",
+        "556e1396-e1ff-4522-8710-27cc253854ce"
+      ]
+    },
+    {
+      "id": "anchor-pair-3",
+      "kind": "influence",
+      "source": "c7phen0",
+      "target": "c0phousing",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "question": "Miten asuttaminen liittyy ilmiöön lähiörakentaminen?",
+      "mechanism": "Tutkittava vastinpari: Asuttaminen ↔ Lähiörakentaminen.",
+      "transmission": "vastinpari · välittyminen tai saman mekanismin toistuminen on selvitettävä",
+      "period": "1945 → 1960",
+      "delay": "Ankkurien välinen yhteys; vaikutuksen viivettä ei mitattu.",
+      "evidence": "Pari on muodostettu atlas-aineiston tutkimuskysymyksistä. Yhteyttä tai periytymistä ei ole osoitettu tällä aineistolla.",
+      "alternative": "Yhtäläinen ilmiö voi syntyä eri mekanismista. Myöhemmät ratkaisut ja uudet häiriöt on erotettava aiemman vaikutuksen jatkumisesta.",
+      "sources": [],
+      "provenance": [
+        "556e1396-e1ff-4522-8710-27cc253854ce",
+        "e59b2bc6-bae0-4ba5-a321-3b24c881da10"
+      ]
+    },
+    {
+      "id": "anchor-pair-4",
+      "kind": "influence",
+      "source": "c7phen2",
+      "target": "c8phen1",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "question": "Miten tuotannon investoinnit liittyy ilmiöön investointikyky?",
+      "mechanism": "Tutkittava vastinpari: Tuotannon investoinnit ↔ Investointikyky.",
+      "transmission": "vastinpari · välittyminen tai saman mekanismin toistuminen on selvitettävä",
+      "period": "1945 → 1975",
+      "delay": "Ankkurien välinen yhteys; vaikutuksen viivettä ei mitattu.",
+      "evidence": "Pari on muodostettu atlas-aineiston tutkimuskysymyksistä. Yhteyttä tai periytymistä ei ole osoitettu tällä aineistolla.",
+      "alternative": "Yhtäläinen ilmiö voi syntyä eri mekanismista. Myöhemmät ratkaisut ja uudet häiriöt on erotettava aiemman vaikutuksen jatkumisesta.",
+      "sources": [],
+      "provenance": [
+        "556e1396-e1ff-4522-8710-27cc253854ce",
+        "a3455f9f-b057-42ac-8943-244552048b7c"
+      ]
+    },
+    {
+      "id": "anchor-pair-5",
+      "kind": "influence",
+      "source": "c8phen3",
+      "target": "c1pwork",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "question": "Miten sopeutumisvastuu liittyy ilmiöön työhön pääsyn vaikeus?",
+      "mechanism": "Tutkittava vastinpari: Sopeutumisvastuu ↔ Työhön pääsyn vaikeus.",
+      "transmission": "vastinpari · välittyminen tai saman mekanismin toistuminen on selvitettävä",
+      "period": "1975 → 1990",
+      "delay": "Ankkurien välinen yhteys; vaikutuksen viivettä ei mitattu.",
+      "evidence": "Pari on muodostettu atlas-aineiston tutkimuskysymyksistä. Yhteyttä tai periytymistä ei ole osoitettu tällä aineistolla.",
+      "alternative": "Yhtäläinen ilmiö voi syntyä eri mekanismista. Myöhemmät ratkaisut ja uudet häiriöt on erotettava aiemman vaikutuksen jatkumisesta.",
+      "sources": [],
+      "provenance": [
+        "a3455f9f-b057-42ac-8943-244552048b7c",
+        "b2fed371-e969-4612-b865-1287bfba06bd"
+      ]
+    },
+    {
+      "id": "anchor-pair-6",
+      "kind": "influence",
+      "source": "c1pwork",
+      "target": "c9phen2",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "question": "Miten työhön pääsyn vaikeus liittyy ilmiöön paluu työhön?",
+      "mechanism": "Tutkittava vastinpari: Työhön pääsyn vaikeus ↔ Paluu työhön.",
+      "transmission": "vastinpari · välittyminen tai saman mekanismin toistuminen on selvitettävä",
+      "period": "1990 → 1995",
+      "delay": "Ankkurien välinen yhteys; vaikutuksen viivettä ei mitattu.",
+      "evidence": "Pari on muodostettu atlas-aineiston tutkimuskysymyksistä. Yhteyttä tai periytymistä ei ole osoitettu tällä aineistolla.",
+      "alternative": "Yhtäläinen ilmiö voi syntyä eri mekanismista. Myöhemmät ratkaisut ja uudet häiriöt on erotettava aiemman vaikutuksen jatkumisesta.",
+      "sources": [],
+      "provenance": [
+        "b2fed371-e969-4612-b865-1287bfba06bd",
+        "ec085864-d6f1-40fe-975b-d783ade46fef"
+      ]
+    },
+    {
+      "id": "anchor-pair-7",
+      "kind": "influence",
+      "source": "c9phen2",
+      "target": "c10phen2",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "question": "Miten paluu työhön liittyy ilmiöön osaamisen varannot?",
+      "mechanism": "Tutkittava vastinpari: Paluu työhön ↔ Osaamisen varannot.",
+      "transmission": "vastinpari · välittyminen tai saman mekanismin toistuminen on selvitettävä",
+      "period": "1995 → 2008",
+      "delay": "Ankkurien välinen yhteys; vaikutuksen viivettä ei mitattu.",
+      "evidence": "Pari on muodostettu atlas-aineiston tutkimuskysymyksistä. Yhteyttä tai periytymistä ei ole osoitettu tällä aineistolla.",
+      "alternative": "Yhtäläinen ilmiö voi syntyä eri mekanismista. Myöhemmät ratkaisut ja uudet häiriöt on erotettava aiemman vaikutuksen jatkumisesta.",
+      "sources": [],
+      "provenance": [
+        "ec085864-d6f1-40fe-975b-d783ade46fef",
+        "8aba1153-71e1-4c0a-b9b5-0b1ccce6cf50"
+      ]
+    },
+    {
+      "id": "anchor-pair-8",
+      "kind": "influence",
+      "source": "c10phen2",
+      "target": "c13phen1",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "scenario",
+      "question": "Miten osaamisen varannot liittyy ilmiöön uusi osaamistarve?",
+      "mechanism": "Tutkittava vastinpari: Osaamisen varannot ↔ Uusi osaamistarve.",
+      "transmission": "vastinpari · välittyminen tai saman mekanismin toistuminen on selvitettävä",
+      "period": "2008 → 2025",
+      "delay": "Ankkurien välinen yhteys; vaikutuksen viivettä ei mitattu.",
+      "evidence": "Pari on muodostettu atlas-aineiston tutkimuskysymyksistä. Yhteyttä tai periytymistä ei ole osoitettu tällä aineistolla.",
+      "alternative": "Yhtäläinen ilmiö voi syntyä eri mekanismista. Myöhemmät ratkaisut ja uudet häiriöt on erotettava aiemman vaikutuksen jatkumisesta.",
+      "sources": [],
+      "provenance": [
+        "8aba1153-71e1-4c0a-b9b5-0b1ccce6cf50",
+        "8719ade3-e005-4dd5-8cc2-16f24f7fbcd0"
+      ]
+    },
+    {
+      "id": "anchor-pair-9",
+      "kind": "influence",
+      "source": "c10phen3",
+      "target": "c12phen2",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "scenario",
+      "question": "Miten myöhemmät vastuut liittyy ilmiöön kotitalouksien vastuu?",
+      "mechanism": "Tutkittava vastinpari: Myöhemmät vastuut ↔ Kotitalouksien vastuu.",
+      "transmission": "vastinpari · välittyminen tai saman mekanismin toistuminen on selvitettävä",
+      "period": "2008 → 2025",
+      "delay": "Ankkurien välinen yhteys; vaikutuksen viivettä ei mitattu.",
+      "evidence": "Pari on muodostettu atlas-aineiston tutkimuskysymyksistä. Yhteyttä tai periytymistä ei ole osoitettu tällä aineistolla.",
+      "alternative": "Yhtäläinen ilmiö voi syntyä eri mekanismista. Myöhemmät ratkaisut ja uudet häiriöt on erotettava aiemman vaikutuksen jatkumisesta.",
+      "sources": [],
+      "provenance": [
+        "8aba1153-71e1-4c0a-b9b5-0b1ccce6cf50",
+        "238146ea-9791-454d-a73b-22503b4b0ad4"
+      ]
+    },
+    {
+      "id": "anchor-pair-10",
+      "kind": "influence",
+      "source": "c2pincome",
+      "target": "c12phen2",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "scenario",
+      "question": "Miten puskurien riittävyys liittyy ilmiöön kotitalouksien vastuu?",
+      "mechanism": "Tutkittava vastinpari: Puskurien riittävyys ↔ Kotitalouksien vastuu.",
+      "transmission": "vastinpari · välittyminen tai saman mekanismin toistuminen on selvitettävä",
+      "period": "2020 → 2025",
+      "delay": "Ankkurien välinen yhteys; vaikutuksen viivettä ei mitattu.",
+      "evidence": "Pari on muodostettu atlas-aineiston tutkimuskysymyksistä. Yhteyttä tai periytymistä ei ole osoitettu tällä aineistolla.",
+      "alternative": "Yhtäläinen ilmiö voi syntyä eri mekanismista. Myöhemmät ratkaisut ja uudet häiriöt on erotettava aiemman vaikutuksen jatkumisesta.",
+      "sources": [],
+      "provenance": [
+        "974ad739-b3ed-4537-b54f-a526e5538af2",
+        "238146ea-9791-454d-a73b-22503b4b0ad4"
+      ]
+    },
+    {
+      "id": "anchor-pair-11",
+      "kind": "influence",
+      "source": "c11phen0",
+      "target": "c12phen3",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "scenario",
+      "question": "Miten tuottavuushyöty liittyy ilmiöön kokonaiskustannus?",
+      "mechanism": "Tutkittava vastinpari: Tuottavuushyöty ↔ Kokonaiskustannus.",
+      "transmission": "vastinpari · välittyminen tai saman mekanismin toistuminen on selvitettävä",
+      "period": "2025 → 2025",
+      "delay": "Ankkurien välinen yhteys; vaikutuksen viivettä ei mitattu.",
+      "evidence": "Pari on muodostettu atlas-aineiston tutkimuskysymyksistä. Yhteyttä tai periytymistä ei ole osoitettu tällä aineistolla.",
+      "alternative": "Yhtäläinen ilmiö voi syntyä eri mekanismista. Myöhemmät ratkaisut ja uudet häiriöt on erotettava aiemman vaikutuksen jatkumisesta.",
+      "sources": [],
+      "provenance": [
+        "f543783b-c05e-4e82-ac59-44a70ca4ab66",
+        "238146ea-9791-454d-a73b-22503b4b0ad4"
+      ]
+    },
+    {
+      "id": "anchor-pair-12",
+      "kind": "influence",
+      "source": "c13phen3",
+      "target": "c3pwork",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "scenario",
+      "question": "Miten työn uudelleenjärjestely liittyy ilmiöön tehtävien mukautus?",
+      "mechanism": "Tutkittava vastinpari: Työn uudelleenjärjestely ↔ Tehtävien mukautus.",
+      "transmission": "vastinpari · välittyminen tai saman mekanismin toistuminen on selvitettävä",
+      "period": "2025 → 2025",
+      "delay": "Ankkurien välinen yhteys; vaikutuksen viivettä ei mitattu.",
+      "evidence": "Pari on muodostettu atlas-aineiston tutkimuskysymyksistä. Yhteyttä tai periytymistä ei ole osoitettu tällä aineistolla.",
+      "alternative": "Yhtäläinen ilmiö voi syntyä eri mekanismista. Myöhemmät ratkaisut ja uudet häiriöt on erotettava aiemman vaikutuksen jatkumisesta.",
+      "sources": [],
+      "provenance": [
+        "8719ade3-e005-4dd5-8cc2-16f24f7fbcd0",
+        "5d71941a-20f2-42c2-95ca-ea7f8f41084a"
+      ]
     }
   ],
   "themes": [

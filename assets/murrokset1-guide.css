@@ -90,3 +90,9 @@
 .flower-petal text,.flower-anchor text{stroke:none!important;font-size:11px}.flower-anchor text{font-weight:600}
 .flower-mechanism.route-start circle{r:8}.flower-anchor.route-start circle{stroke-width:3}
 .flower-petal:focus ellipse{stroke:#387abd;stroke-width:3}.flower-related button{font:inherit;font-size:12px;text-align:left;background:none;border:0;color:var(--primary,#215638);text-decoration:underline;cursor:pointer}
+
+.matrix-footer{max-height:170px;overflow:auto;background:var(--background,#fffef7);padding:8px 0;align-items:flex-start}
+.matrix-canvas{bottom:190px}.flower-partners{flex-basis:100%;display:flex;gap:8px 14px;flex-wrap:wrap}.flower-partners>span{flex-basis:100%}.flower-partners button[aria-pressed=true]{font-weight:700;text-decoration-thickness:2px}
+.flower-jump{font:inherit;font-size:12px;max-width:min(480px,100%);display:block;padding:4px 8px;margin:8px 0;background:var(--background,#fffef7);border:1px solid var(--border,#b5c9b9);color:inherit;border-radius:5px}
+.flower-node-question{flex-basis:100%;margin:0}.matrix-footer button{white-space:normal;text-align:left}
+@media(max-width:650px){.matrix-canvas{top:175px;bottom:195px}.matrix-heading small{display:none}}
