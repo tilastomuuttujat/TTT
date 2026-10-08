@@ -23,3 +23,6 @@ Julkaise JSONit, muodostetut HTML-artikkelit, `stories/stories.css` ja `assets/m
 Luettava esittelykomponentti on `scripts/murrokset1-tour.txt`. Selite etsii tyhjää aluetta, väistää painikkeet, niiden tekstit, käyrän ja mekanismin sekä huomioi näkyvän alueen korkeuden. Sijoittelu ei siirrä kuviota. Selite häipyy ja seuraava piirtyy tilalle; vähennetyn liikkeen asetuksella vaihto tapahtuu ilman animaatiota.
 
 Alkuperäinen `assets/index--gBIk-ew.js` ja erillinen `murrokset.html` säilyvät. Käyrän pisteytys on havainnollistava tulkinta, ei historiallinen mittaus.
+
+### Artikkeli ruudulla
+Lue kertomus avaa natiivin dialogin saman näkymän päälle ja pysäyttää opastuksen. X ja Esc sulkevat dialogin; etenemispiste säilyy ja kohdistus palautuu lukupainikkeeseen. Artikkelien ylläpitolähde on edelleen `stories/stories.json`. Rakentaja sisällyttää sisällön JavaScriptiin, joten avaaminen ei tarvitse uutta verkkopyyntöä. Päivitä JSON ja aja molemmat rakentajat, jotta erilliset artikkelisivut ja dialogit vastaavat toisiaan.
