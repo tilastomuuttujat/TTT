@@ -20,3 +20,5 @@ Tarinankertojan seitsemän pistettä vastaavat kahta käyrän kohtaa, neljää m
 Selitteen paikka etsitään koko kuviosta 24 pikselin välein. Painikkeet, erilliset otsikkotekstit, käyrän näytteistetty viiva ja mekanismin kehä varataan suojaetäisyydellä. Vapaista paikoista valitaan kohdetta lähin. Jos vapaata suorakulmiota ei mahdu, kuvion alle varataan lisätilaa. Teksti ei liu’u kuvion yli; sen vaihto tapahtuu häipymällä ja piirtymällä.
 
 Tarinan yhteinen runko on A: mitä ihminen kohtaa, B: miten mahdollisuudet muuttuvat, C: mikä jälki jää. Kirjain toistuu selitteessä ja kohteen osoittimessa. Näkyvän selainalueen korkeus ja etenemispisteiden tila rajaavat selitteen sijoittelua. Tarvittaessa vapaata tilaa varataan kuvion edelle, ei alareunan ulkopuolelle.
+
+Uusin kertoja etenee lyhyin `story_lines`-lausein, yksi seitsemässä pisteessä. Kukin lause viipyy 5,5 sekuntia. A–B–C-otsikot on poistettu; tapahtumien järjestys kantaa kertomusta. Sijoittelu ei muuta kuvion marginaaleja tai siirrä kuviota.

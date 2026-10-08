@@ -5,3 +5,5 @@
 .opening-map:has(.narrator-guide){height:auto}.opening-map:has(.narrator-guide)>.atlas-network{height:650px;min-height:650px}.narrator-speech{transition:none}.narrator-controls{bottom:8px}
 
 .narrator-frame{display:block;font-size:17px;line-height:1.3;margin:8px 0;color:#244b33}.narrator-subject{font-size:13px;font-weight:600;margin:7px 0}.narrator-background-copy{overflow-y:auto;overscroll-behavior:contain;pointer-events:auto}.narrator-story-key{display:flex;gap:14px;flex-basis:100%;font-size:11px;color:#677567}.narrator-story-key span{max-width:160px;line-height:1.3}.narrator-story-key b{display:inline-block;margin-right:5px}.narrator-story-key span.active{color:#225b37;font-weight:700}.narrator-pointer circle{fill:#fffef3}.narrator-letter{font-size:11px;font-weight:750;fill:#24533a}.narrator-controls{max-width:100%;padding:5px;background:#ffffffda;border-radius:8px}
+
+.narrator-story-line{font-size:20px!important;line-height:1.4!important;font-weight:550;margin:6px 0!important}.narrator-speech{max-width:300px}.narrator-status{font-size:10px!important;opacity:.65}@media(max-width:650px){.narrator-story-line{font-size:17px!important}}

@@ -34,6 +34,15 @@
       "curve_notes": [
         "Kun toimeentulo on sidoksissa maahan, satoon ja perheen asemaan, yhden huonon vuoden jälki voi ulottua pitkälle. Ihmisen ahkeruus ei yksin ratkaise, millaiset mahdollisuudet hänellä on.",
         "Vähitellen yksittäisen perheen selviytymisestä tulee myös yhteinen kysymys: kuka saa oikeuksia, turvaa ja mahdollisuuden muuttaa omaa asemaansa? Päätös avaa oven vasta, kun se toteutuu arjessa."
+      ],
+      "story_lines": [
+        "Toimeentulo riippui maasta ja sadosta.",
+        "Oikeuksien muutos saattoi avata uuden tien.",
+        "Työ siirtyi uusiin paikkoihin.",
+        "Ihmisten oli rakennettava arki uudelleen.",
+        "Asunto ja koulutus saattoivat auttaa alkuun.",
+        "Ilman niitä uusi työ saattoi jäädä ulottumattomiin.",
+        "Sama muutos saattoi avata yhden oven ja sulkea toisen."
       ]
     },
     {
@@ -69,6 +78,15 @@
       "curve_notes": [
         "Kun työ katoaa, katoaa muutakin kuin palkka. Velkojen maksaminen vaikeutuu, arjen suunnitelmat horjuvat ja tulevaisuuden vaihtoehdot voivat kaventua.",
         "Myöhemmin talous voi näyttää paremmalta. Ihmiselle ratkaisevaa on kuitenkin se, löytyykö hänelle paikka muuttuneessa työssä — vai jatkuuko poissaolo, vaikka muu yhteiskunta menee eteenpäin."
+      ],
+      "story_lines": [
+        "Lama vei työn ja toimeentulon.",
+        "Talous alkoi myöhemmin elpyä.",
+        "Uusi työ ei ollut aina vanhan kaltainen.",
+        "Paluu saattoi vaatia muuttoa tai uusia taitoja.",
+        "Kaikilla ei ollut samoja mahdollisuuksia palata.",
+        "Velka ja katkennut työura saattoivat seurata mukana.",
+        "Kasvu palasi, mutta kaikki eivät päässeet takaisin jaloilleen."
       ]
     },
     {
@@ -104,6 +122,15 @@
       "curve_notes": [
         "Pandemia, sota, kallistuvat hinnat ja korot järkyttävät arkea eri tavoin. Samakin noussut meno voi olla yhdelle harmi ja toiselle raja, jonka jälkeen arki ei enää pysy koossa.",
         "Kun yhteisiä menoja sovitetaan uuteen tilanteeseen, myös ihmisten mahdollisuudet voivat muuttua. Missä säästö syntyy, ja missä sen seuraukset alkavat näkyä?"
+      ],
+      "story_lines": [
+        "Kriisi järkytti arkea.",
+        "Yhteisiä menoja alettiin sopeuttaa.",
+        "Päätös muutti sitä, millaista tukea sai.",
+        "Vastuu saattoi siirtyä ihmiselle ja läheisille.",
+        "Kaikilla ei ollut voimia kantaa sitä.",
+        "Säästö saattoi palata myöhemmin uutena avuntarpeena.",
+        "Ratkaisevaa oli, helpottiko vaikeus vai siirtyikö se eteenpäin."
       ]
     },
     {
@@ -139,6 +166,15 @@
       "curve_notes": [
         "Työn tehtävät muuttuvat jälleen. Muutos voi sulkea vanhoja ovia, mutta se voi myös antaa tilaisuuden järjestää tekeminen toisin.",
         "Oma paikka voisi rakentua siitä, mitä ihminen pystyy tekemään, eikä vain siitä, mihin valmiiseen työrooliin hänen pitäisi sopia. Tämä on mahdollinen suunta, ei lupaus."
+      ],
+      "story_lines": [
+        "Työn vanhat ehdot eivät sopineet kaikille.",
+        "Tehtävät voitaisiin järjestää toisin.",
+        "Sopiva tehtävä voisi avata oman paikan.",
+        "Sopiva työaika voisi tehdä osallistumisesta mahdollista.",
+        "Tuki voisi auttaa arkea kantamaan.",
+        "Osallistuminen voisi jatkua ilman kohtuutonta kuormaa.",
+        "Mahdollisuus syntyisi, jos työ joustaisi ihmisen mukana."
       ]
     }
   ]
