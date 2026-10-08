@@ -37,7 +37,7 @@ replaceOnce('async function k(live=false,authSession=w)', 'async function k(live
 // Separate published load from optional maintenance authentication.
 replaceOnce('(0,S.useEffect)(()=>{if(!ne&&!w)return;', '(0,S.useEffect)(()=>{void k();},[]),(0,S.useEffect)(()=>{if(!ne&&!w)return;');
 // Tour is explicit: do not interrupt reading after seven seconds of inactivity.
-replaceBlock('(0,S.useEffect)(()=>{if(u||b||g||f!==void 0||n)return;', 'function A(e,t)', '');
+replaceBlock('(0,S.useEffect)(()=>{if(u||b||g||f!==void 0||n)return;', 'function A(e,t)', 'void 0;');
 // Source of insight remains a hypothesis, not fixed numeric radar scores.
 replaceOnce('(0,L.jsx)(Dn,{values:a.radar})','(0,L.jsx)(`p`,{children:`Tutkittava tulkinta · kuvitteellisen mittaprofiilin sijaan tarkista ankkurien havaintoaineisto.`})');
 replaceOnce('children:`Katkoviiva = tasapaino`','children:`Mekanismi tarvitsee rinnakkaista näyttöä.`');
@@ -47,6 +47,7 @@ replaceOnce('text:`Teollistuminen nostaa tuottavuutta, ja lähes koko työikäin
 replaceOnce('text:`Automaatio ja osaamisvaatimukset tehostavat tuotantoa, mutta osallistumiskynnys nousee. Osa työpanoksesta jää käyttämättä, ja korjauskustannukset alkavat syödä tuottavuuden hyötyjä.`','text:`Tutkittava tulkinta: tuotannon tehostuminen ja ihmisten osallistumismahdollisuudet voivat eriytyä. Suhdanteet, koulutus, työn sijainti ja tulonjako ovat vaihtoehtoisia selityksiä, joita verrataan ankkurien aineistoon.`');
 replaceOnce('text:`Menoja leikataan tasapainon palauttamiseksi. Jos käyttämätöntä toimintakykyä ei saada takaisin käyttöön, leikkaukset vain siirtävät kustannuksia eteenpäin.`','text:`Tutkittava kysymys: vahvistiko sopeutus toimintakykyä vai siirtyikö kustannuksia eteenpäin? Tarkastelu tarvitsee päätöksen tavoitteen, toteutuksen, ryhmittäiset vaikutukset ja vaihtoehtoiset selitykset.`');
 replaceOnce('text:`Kestävä yhteiskunta ei maksimoi pelkkää tuottavuutta eikä pelkkää työllisyyttä. Se minimoi käyttämättömän toimintakyvyn menettämättä tuottavuushyötyjä – työtä räätälöidään ja kynnystä madalletaan.`','text:`Ehdollinen tulevaisuuspolku: työn räätälöinti ja osallistumisen kynnyksen madaltaminen voivat vahvistaa toimintakykyä. Vaikutukset, kustannukset ja toteutusedellytykset ovat tutkittavia; tämä ei ole ennuste.`');
+source=source.replaceAll('children:`Päättele automaattisesti`','children:`Ei arvioitu`');
 fs.writeFileSync('assets/murrokset-reader.js',core+source);
 const html=fs.readFileSync('murrokset.html','utf8').replace('<link rel="stylesheet" href="./assets/murrokset-reader.css">\n','').replace('./assets/index--gBIk-ew.js','./assets/murrokset-reader.js').replace('</head>','<link rel="stylesheet" href="./assets/murrokset-reader.css">\n</head>');fs.writeFileSync('murrokset.html',html);
 console.log('Patched reader bundle built.');
