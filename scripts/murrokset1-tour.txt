@@ -1,3 +1,18 @@
+function articlePanelLayout(origin,viewportWidth,viewportHeight){
+ const edge=18,gap=14,width=Math.min(620,viewportWidth-edge*2),height=Math.min(640,viewportHeight*.72,viewportHeight-edge*2);
+ const clamp=(value,size,total)=>Math.max(edge,Math.min(value,total-edge-size));
+ const candidates=[
+ {x:origin.right+gap,y:origin.top,w:Math.min(width,viewportWidth-edge-origin.right-gap),h:height},
+ {side:'left',x:edge,y:origin.top,w:Math.min(width,origin.left-gap-edge),h:height},
+ {x:origin.left,y:origin.bottom+gap,w:width,h:Math.min(height,viewportHeight-edge-origin.bottom-gap)},
+ {side:'above',x:origin.left,y:edge,w:width,h:Math.min(height,origin.top-gap-edge)}
+ ].filter(p=>p.w>=Math.min(340,width)&&p.h>=Math.min(300,height));
+ candidates.forEach(p=>{if(p.side==='left')p.x=origin.left-gap-p.w;if(p.side==='above')p.y=origin.top-gap-p.h;p.x=clamp(p.x,p.w,viewportWidth);p.y=clamp(p.y,p.h,viewportHeight);});
+ candidates.sort((a,b)=>b.w*b.h-a.w*a.h);
+ const panel=candidates[0]||{x:clamp(origin.right+gap,width,viewportWidth),y:clamp(origin.top,height,viewportHeight),w:width,h:height};
+ const cx=(origin.left+origin.right)/2,cy=(origin.top+origin.bottom)/2;
+ return {...panel,ox:Math.max(0,Math.min(panel.w,cx-panel.x)),oy:Math.max(0,Math.min(panel.h,cy-panel.y))};
+}
 function kn({index,playing,onIndex,onToggle,onClose}){
  const chapter=Tn[index],phases=chapter.phases||[{title:'Katso ajanjakson asetelmaa',text:chapter.text},{title:'Tutki yhteyksiä',text:'Virtaus esittää tutkittavaa mekanismia.'},{title:'Koettele tulkintaa',text:'Vertaa havaintoja ja vaihtoehtoisia selityksiä.'}];
  const [phase,setPhase]=S.useState(0),[step,setStep]=S.useState(0),[place,setPlace]=S.useState(null),[loopPlace,setLoopPlace]=S.useState({left:30,top:30});
@@ -5,9 +20,13 @@ function kn({index,playing,onIndex,onToggle,onClose}){
  const [articleOpen,setArticleOpen]=S.useState(false);
  const article=storyContent.find(s=>chapter.article_url.endsWith('/'+s.slug+'.html'))||storyContent[index];
  const openArticle=event=>{readTrigger.current=event.currentTarget;articleOrigin.current=event.currentTarget.getBoundingClientRect();articleClosing.current=false;if(playing)onToggle();setArticleOpen(true);};
- const collapsedFrame=node=>{const origin=articleOrigin.current,box=node.getBoundingClientRect();if(!origin||!box.width||!box.height)return {transform:'scale(.92)',opacity:0};return {transform:`translate(${origin.left+origin.width/2-box.left-box.width/2}px,${origin.top+origin.height/2-box.top-box.height/2}px) scale(${Math.max(.04,origin.width/box.width)},${Math.max(.04,origin.height/box.height)})`,opacity:0};};
+ const collapsedFrame=()=>({transform:'scale(0)',opacity:0});
  const closeArticle=()=>{if(articleClosing.current)return;articleClosing.current=true;const finish=()=>{setArticleOpen(false);readTrigger.current?.focus();};const node=dialog.current;articleMotion.current?.cancel();if(node?.animate&&!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){articleMotion.current=node.animate([{transform:'none',opacity:1},collapsedFrame(node)],{duration:220,easing:'ease-in',fill:'forwards'});articleMotion.current.finished.then(finish,finish);}else finish();};
- S.useLayoutEffect(()=>{if(!articleOpen)return;const node=dialog.current;node.showModal();const previous=document.body.style.overflow;document.body.style.overflow='hidden';if(node.animate&&!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)articleMotion.current=node.animate([collapsedFrame(node),{transform:'none',opacity:1}],{duration:380,easing:'cubic-bezier(.2,.8,.2,1)'});return()=>{articleMotion.current?.cancel();node.close();document.body.style.overflow=previous;};},[articleOpen]);
+ S.useLayoutEffect(()=>{if(!articleOpen)return;const node=dialog.current;node.showModal();
+ const position=()=>{const origin=readTrigger.current?.getBoundingClientRect()||articleOrigin.current;const viewport=window.visualViewport;const p=articlePanelLayout(origin,viewport?.width||window.innerWidth,viewport?.height||window.innerHeight);const offsetX=viewport?.offsetLeft||0,offsetY=viewport?.offsetTop||0;Object.assign(node.style,{left:`${p.x+offsetX}px`,top:`${p.y+offsetY}px`,width:`${p.w}px`,height:`${p.h}px`,transformOrigin:`${p.ox}px ${p.oy}px`});};
+ position();const previous=document.body.style.overflow;document.body.style.overflow='hidden';if(node.animate&&!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)articleMotion.current=node.animate([collapsedFrame(),{transform:'scale(1)',opacity:1}],{duration:420,easing:'cubic-bezier(.16,1,.3,1)'});
+ window.addEventListener('resize',position);window.visualViewport?.addEventListener('resize',position);window.visualViewport?.addEventListener('scroll',position);
+ return()=>{window.removeEventListener('resize',position);window.visualViewport?.removeEventListener('resize',position);window.visualViewport?.removeEventListener('scroll',position);articleMotion.current?.cancel();node.close();document.body.style.overflow=previous;};},[articleOpen]);
  const stops=[{phase:0,step:0},{phase:1,step:0},{phase:2,step:0}];
  const storyFrames=[['A','Mitä ihminen kohtaa?'],['B','Miten mahdollisuudet muuttuvat?'],['C','Mikä jälki jää?']];
  const currentStop=stops.findIndex(s=>s.phase===phase&&s.step===step);
