@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Murrosatlas — Suomen muutoksen mekanismit 1850–2050</title>
+<meta name="description" content="Vuorovaikutteinen atlas Suomen yhteiskunnallisista murroksista: miten päätökset välittyvät toimintakykyyn ja mitä menneisyys opettaa tulevaisuudelle.">
+<meta property="og:title" content="Murrosatlas">
+<meta property="og:description" content="Suomen muutoksen mekanismit 1850–2050.">
+<meta property="og:type" content="website">
+<style>
+:root{
+  --bg:#faf9f6; --ink:#1c1a17; --muted:#6b675f; --line:#d8d4cc;
+  --accent:#2f5d8a; --down:#a4442c; --up:#3a7d5c; --card:#ffffff;
+  --serif:Georgia,'Times New Roman',serif; --sans:system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
+header{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:14px 24px;pointer-events:none}
+.brand{font-family:var(--serif);font-size:20px;letter-spacing:.14em;pointer-events:auto;cursor:pointer}
+.brand span{color:var(--accent)}
+.brand small{display:block;font-family:var(--sans);font-size:10px;letter-spacing:.22em;color:var(--muted);margin-top:2px}
+#status{font-size:12px;color:var(--muted)}
+/* intro */
+#intro{position:fixed;inset:0;z-index:60;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:transform 1s cubic-bezier(.7,0,.2,1),opacity 1s}
+#intro.departed{transform:translateX(-104%);opacity:0;pointer-events:none}
+.intro-inner{max-width:560px;padding:24px;text-align:center}
+.intro-inner h1{font-family:var(--serif);font-size:clamp(28px,5vw,44px);font-weight:400;letter-spacing:.1em}
+.intro-inner h1 span{color:var(--accent)}
+.intro-inner p{margin-top:18px;font-size:15px;line-height:1.7;color:var(--muted)}
+#intro-status{margin-top:26px;font-size:12px;letter-spacing:.18em;color:var(--accent)}
+/* network */
+#stage{position:fixed;inset:0;padding:70px 40px 30px}
+#network{position:relative;width:100%;height:100%}
+#network svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.seg{fill:none;stroke-width:1.2;stroke-opacity:.45;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.seg.up{stroke:var(--up)}
+.seg.down{stroke:var(--down);stroke-dasharray:4 6}
+.seg.flat{stroke:var(--line);stroke-dasharray:1 5}
+.leader{stroke:var(--line);stroke-width:1;vector-effect:non-scaling-stroke}
+.node{position:absolute;width:19px;height:19px;transform:translate(-50%,-50%);background:none;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center}
+.node i{width:11px;height:11px;border-radius:50%;background:var(--accent);border:2px solid var(--bg);box-shadow:0 0 0 1px var(--accent);transition:transform .2s}
+.node.future i{background:var(--bg);border-style:dashed}
+.node:hover i,.node:focus-visible i{transform:scale(1.5)}
+.node .lbl{position:absolute;left:50%;transform:translateX(-50%);text-align:center;width:max-content;max-width:220px;pointer-events:none}
+.node .lbl .t{display:block;font-size:12.5px;line-height:1.3;color:var(--ink)}
+.node .lbl small{display:block;font-size:10.5px;color:var(--muted);letter-spacing:.08em;margin-top:1px}
+.node .lbl.above{bottom:26px}.node .lbl.below{top:26px}
+.node .lbl.far-above{bottom:62px}.node .lbl.far-below{top:62px}
+.node .lbl.far2-above{bottom:98px}.node .lbl.far2-below{top:98px}
+.node .lbl.right{left:16px;top:50%;transform:translateY(-50%);text-align:left}
+/* detail doors */
+#doors{position:fixed;inset:0;z-index:50;pointer-events:none}
+#doors .door{position:absolute;top:0;bottom:0;width:51%;background:var(--card);transition:transform .55s cubic-bezier(.7,0,.2,1)}
+#doors .door.l{left:0;transform:translateX(-101%)}
+#doors .door.r{right:0;transform:translateX(101%)}
+#doors.open .door{transform:translateX(0)}
+#detail{position:fixed;inset:0;z-index:55;background:var(--card);opacity:0;pointer-events:none;transition:opacity .35s .25s;overflow:hidden;display:flex}
+#detail.open{opacity:1;pointer-events:auto}
+#rail{flex:0 0 48px;border-right:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+#rail button{transform:rotate(-90deg);white-space:nowrap;background:none;border:0;font-size:12px;letter-spacing:.2em;color:var(--muted);cursor:pointer;padding:12px}
+#rail button:hover{color:var(--ink)}
+#detail-body{flex:1;overflow-y:auto;padding:48px clamp(20px,6vw,80px)}
+#detail-body h2{font-family:var(--serif);font-size:clamp(24px,3.4vw,36px);font-weight:400;line-height:1.2}
+.meta{margin-top:8px;font-size:12px;letter-spacing:.14em;color:var(--muted)}
+.tabs{display:flex;gap:4px;margin-top:26px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tabs button{background:none;border:0;padding:9px 13px;font-size:13px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.pane{padding:26px 0 60px;max-width:760px}
+.pane h3{font-size:12px;letter-spacing:.18em;color:var(--accent);margin:22px 0 6px}
+.pane p,.pane li{font-size:14.5px;line-height:1.75;color:#33302b}
+.pane ul{padding-left:20px}
+.steps{counter-reset:s;list-style:none;padding:0}
+.steps li{position:relative;padding:0 0 18px 44px;counter-increment:s}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:26px;height:26px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--accent)}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:13px;top:28px;bottom:0;width:1px;background:var(--line)}
+/* tour */
+#tour{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(140%);z-index:45;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 40px rgba(28,26,23,.12);max-width:min(620px,92vw);padding:16px 20px;transition:transform .6s cubic-bezier(.7,0,.2,1)}
+#tour.on{transform:translateX(-50%) translateY(0)}
+#tour h4{font-family:var(--serif);font-size:16px;font-weight:400}
+#tour p{margin-top:6px;font-size:13.5px;line-height:1.65;color:#4a463f}
+.tour-nav{display:flex;align-items:center;gap:8px;margin-top:12px}
+.tour-nav button{background:none;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:12px;cursor:pointer;color:var(--muted)}
+.tour-nav button:hover{color:var(--ink);border-color:var(--muted)}
+.tour-dots{display:flex;gap:5px;margin-left:auto}
+.tour-dots i{width:6px;height:6px;border-radius:50%;background:var(--line)}
+.tour-dots i.on{background:var(--accent)}
+#tour-start{position:fixed;right:22px;bottom:22px;z-index:44;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:12.5px;cursor:pointer;color:var(--muted);display:none}
+#tour-start:hover{color:var(--ink)}
+.hl{stroke:var(--accent);stroke-width:2;fill:none;opacity:0;transition:opacity .5s}
+.hl.on{opacity:.8;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:.8}50%{opacity:.25}}
+.dim .node{opacity:.25;transition:opacity .5s}
+.dim .node.focus{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:800px){
+  #stage{padding:64px 12px 20px}
+  .node .lbl{max-width:130px}
+  .node .lbl .t{font-size:11px}
+  #rail{flex-basis:38px}
+  #detail-body{padding:32px 18px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand" id="brand">MURROS<span>ATLAS</span><small>SUOMEN MUUTOKSEN MEKANISMIT · 1850–2050</small></div>
+  <div id="status"></div>
+</header>
+
+<div id="stage"><div id="network"></div></div>
+
+<div id="doors"><div class="door l"></div><div class="door r"></div></div>
+<div id="detail">
+  <div id="rail"><button id="back" aria-label="Takaisin kuvioon">← TAKAISIN KUVIOON</button></div>
+  <div id="detail-body"></div>
+</div>
+
+<div id="tour" role="dialog" aria-label="Opastettu esittely">
+  <h4 id="tour-title"></h4><p id="tour-text"></p>
+  <div class="tour-nav">
+    <button id="tour-prev">← Edellinen</button>
+    <button id="tour-next">Seuraava →</button>
+    <button id="tour-close">Sulje</button>
+    <div class="tour-dots" id="tour-dots"></div>
+  </div>
+</div>
+<button id="tour-start">Katso tarina</button>
+
+<div id="intro"><div class="intro-inner">
+  <h1>MURROS<span>ATLAS</span></h1>
+  <p>Miten yhteiskunnalliset päätökset välittyvät ihmisten toimintakykyyn? Atlas jäljittää Suomen murroksia 1850-luvulta tulevaisuuden päätöstesteihin — ja kertoo, mitä menneisyydestä voi oppia.</p>
+  <div id="intro-status">LADATAAN AINEISTOA…</div>
+</div></div>
+
+<script>
+"use strict";
+const $=s=>document.querySelector(s);
+const stageKeys=["trigger","change","transmission","capacity","legacy"];
+const stageLabels=["Lähtötilanne ja liipaisin","Muutos","Välitysmekanismi","Toimintakyvyn muutos","Jälki ja seuraukset"];
+const dirLabels={advance:"Eteenpäin",setback:"Taka-askel",adapt:"Sopeutus",branch:"Tulevaisuushaara"};
+const evLabels={measured:"Mitattu data",sourced:"Lähteillä tuettu",logic:"Päättelyketju",hypothesis:"Hypoteesi"};
+const setbackRe=/(sota|kriisi|lama|romah|nälkä|shokki|taantu|pula|konflikt|pandem)/i;
+const advanceRe=/(uudist|kasvu|perust|vakiint|laajen|nousu|demokrat|hyvinvointi|koulut|vauraus)/i;
+
+let bundle=null,cases=[],selected=null,tourTimer=null,tourIdx=-1,tourActive=false;
+
+function direction(c){
+  if(c.data.direction&&typeof c.data.impact==="number")return{direction:c.data.direction,impact:Math.max(-3,Math.min(3,c.data.impact))};
+  if(c.kind==="future")return{direction:c.data.direction||"branch",impact:c.data.impact??0.5};
+  const t=`${c.title} ${c.data.summary||""} ${c.data.change||""}`;
+  const neg=setbackRe.test(t),pos=advanceRe.test(t);
+  const d=c.data.direction||(neg&&!pos?"setback":pos&&!neg?"advance":"adapt");
+  return{direction:d,impact:c.data.impact??(d==="setback"?-2:d==="advance"?2:0.5)};
+}
+function evidence(c){
+  const data=(c.data.series_keys||[]).length,src=(c.data.sources||[]).length;
+  const logic=stageKeys.filter(k=>(c.data[k]||"").trim()).length;
+  const level=c.data.evidence_level||(data>0?"measured":src>0||c.status==="supported"?"sourced":logic>=3?"logic":"hypothesis");
+  return{level,data,sources:src,logic};
+}
+
+async function boot(){
+  try{
+    const res=await fetch("murrosatlas-data.json",{cache:"no-store"});
+    if(!res.ok)throw new Error("HTTP "+res.status);
+    const data=await res.json();
+    if(!data||data.schema_version!==1||!Array.isArray(data.cases))throw new Error("Tuntematon tiedostomuoto");
+    bundle=data;
+    cases=data.cases.filter(c=>c.published).sort((a,b)=>a.year_start-b.year_start);
+    $("#status").textContent=`${cases.length} tapausta · päivitetty ${new Date(data.generated_at).toLocaleDateString("fi-FI")}`;
+    renderNetwork();
+    $("#intro-status").textContent="";
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      setTimeout(()=>{$("#intro").classList.add("departed");armTour();},900);
+    }));
+  }catch(e){
+    $("#intro-status").textContent="AINEISTOA EI VOITU LADATA";
+    $("#intro").querySelector("p").textContent="Tiedostoa murrosatlas-data.json ei löytynyt tai se on virheellinen. Varmista, että JSON-tiedosto on samassa hakemistossa tämän HTML-tiedoston kanssa. ("+e.message+")";
+  }
+}
+
+function layout(){
+  const W=1850,H=2050,minY=1840,maxY=2055;
+  const pts=cases.map(c=>{
+    const d=direction(c);
+    const x=4+((c.year_start-minY)/(maxY-minY))*92;
+    const y=50-d.impact*11+(c.kind==="future"?8:0);
+    return{c,x:Math.max(4,Math.min(96,x)),y:Math.max(8,Math.min(92,y)),d};
+  });
+  // label placement with collision avoidance
+  const boxes=[];
+  const GAP=3.2,FAR=5.2;
+  for(const p of pts){
+    const lines=1+Math.ceil(p.c.title.length/26);
+    const h=lines*2.1+1.6,w=Math.min(20,Math.max(8,p.c.title.length*0.62));
+    const cands=[
+      {cls:"above",x:p.x,y:p.y-GAP-h/2},
+      {cls:"right",x:p.x+2.4+w/2,y:p.y},
+      {cls:"below",x:p.x,y:p.y+GAP+h/2},
+      {cls:"far-above",x:p.x,y:p.y-GAP-FAR-h/2},
+      {cls:"far-below",x:p.x,y:p.y+GAP+FAR+h/2},
+      {cls:"far2-above",x:p.x,y:p.y-GAP-FAR*2-h/2},
+      {cls:"far2-below",x:p.x,y:p.y+GAP+FAR*2-h/2},
+    ];
+    let pick=cands[0];
+    for(const cd of cands){
+      const b={x1:cd.x-w/2,y1:cd.y-h/2,x2:cd.x+w/2,y2:cd.y+h/2};
+      if(b.x1<1||b.x2>99||b.y1<1||b.y2>97)continue;
+      if(!boxes.some(o=>b.x1<o.x2&&b.x2>o.x1&&b.y1<o.y2&&b.y2>o.y1)){pick=cd;boxes.push(b);break;}
+    }
+    p.label=pick;
+  }
+  return pts;
+}
+
+function renderNetwork(){
+  const net=$("#network");net.innerHTML="";
+  const pts=layout();
+  const svg=document.createElementNS("http://www.w3.org/2000/svg","svg");
+  svg.setAttribute("viewBox","0 0 100 100");svg.setAttribute("preserveAspectRatio","none");
+  // segments
+  for(let i=0;i<pts.length-1;i++){
+    const a=pts[i],b=pts[i+1];
+    const p=document.createElementNS("http://www.w3.org/2000/svg","path");
+    const mx=(a.x+b.x)/2;
+    p.setAttribute("d",`M ${a.x} ${a.y} C ${mx} ${a.y}, ${mx} ${b.y}, ${b.x} ${b.y}`);
+    p.setAttribute("class","seg "+(b.y<a.y-1?"up":b.y>a.y+1?"down":"flat"));
+    svg.appendChild(p);
+  }
+  // leaders + highlight rings
+  for(const p of pts){
+    const l=document.createElementNS("http://www.w3.org/2000/svg","line");
+    const ly=p.label.cls.includes("above")?p.label.y+2.4:p.label.cls.includes("below")?p.label.y-2.4:p.label.y;
+    const lx=p.label.cls==="right"?p.label.x-Math.min(20,Math.max(8,p.c.title.length*0.62))/2-1:p.label.x;
+    l.setAttribute("x1",p.x);l.setAttribute("y1",p.y);l.setAttribute("x2",lx);l.setAttribute("y2",ly);
+    l.setAttribute("class","leader");svg.appendChild(l);
+    const ring=document.createElementNS("http://www.w3.org/2000/svg","circle");
+    ring.setAttribute("cx",p.x);ring.setAttribute("cy",p.y);ring.setAttribute("r",1.6);
+    ring.setAttribute("class","hl");ring.dataset.id=p.c.id;svg.appendChild(ring);
+  }
+  net.appendChild(svg);
+  for(const p of pts){
+    const b=document.createElement("button");
+    b.className="node"+(p.c.kind==="future"?" future":"");
+    b.style.left=p.x+"%";b.style.top=p.y+"%";b.dataset.id=p.c.id;
+    b.setAttribute("aria-label",`${p.c.title}, ${p.c.year_start}`);
+    b.innerHTML=`<i></i><span class="lbl ${p.label.cls}"><span class="t">${esc(p.c.title)}</span><small>${p.c.year_start}${p.c.year_end&&p.c.year_end!==p.c.year_start?"–"+p.c.year_end:""}</small></span>`;
+    b.addEventListener("click",()=>openDetail(p.c.id));
+    net.appendChild(b);
+  }
+}
+
+function esc(s){return String(s??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));}
+
+function openDetail(id){
+  stopTour();
+  selected=cases.find(c=>c.id===id);if(!selected)return;
+  $("#doors").classList.add("open");
+  const d=direction(selected),ev=evidence(selected);
+  const body=$("#detail-body");
+  body.innerHTML=`
+    <h2>${esc(selected.title)}</h2>
+    <div class="meta">${selected.year_start}${selected.year_end&&selected.year_end!==selected.year_start?"–"+selected.year_end:""} · ${selected.kind==="future"?"Tulevaisuus":"Historia"} · ${dirLabels[d.direction]||d.direction} · ${evLabels[ev.level]||ev.level}</div>
+    <div class="tabs" role="tablist">
+      ${["Mekanismi","Data","Lähteet","Toimijat","Epävarmuudet"].map((t,i)=>`<button role="tab" aria-selected="${i===0}" data-tab="${i}">${t}</button>`).join("")}
+    </div>
+    <div class="pane" id="pane"></div>`;
+  const panes=[
+    ()=>`<ol class="steps">${stageKeys.map((k,i)=>`<li><h3>${stageLabels[i]}</h3><p>${esc(selected.data[k])||"<em>Ei vielä kuvattu.</em>"}</p></li>`).join("")}</ol>`,
+    ()=>{
+      const keys=selected.data.series_keys||[];
+      const series=keys.map(k=>bundle.series.find(s=>s.series_key===k)).filter(Boolean);
+      if(!series.length)return"<p>Tähän tapaukseen ei ole liitetty indikaattorisarjoja.</p>";
+      return series.map(s=>{
+        const vals=bundle.values.filter(v=>v.series_key===s.series_key&&v.value!=null).sort((a,b)=>a.year-b.year);
+        const max=Math.max(...vals.map(v=>Math.abs(v.value)),1);
+        return`<h3>${esc(s.title)}${s.unit?" ("+esc(s.unit)+")":""}</h3>
+        <svg viewBox="0 0 100 26" style="width:100%;height:90px" preserveAspectRatio="none">
+          <polyline fill="none" stroke="var(--accent)" stroke-width="1.4" vector-effect="non-scaling-stroke"
+            points="${vals.map((v,i)=>`${(i/Math.max(1,vals.length-1))*100},${24-(v.value/max)*20}`).join(" ")}"/>
+        </svg>
+        <p><small>${vals[0]?.year??""}–${vals[vals.length-1]?.year??""} · ${esc(s.source||"")}</small></p>
+        ${s.interpretation?`<p>${esc(s.interpretation)}</p>`:""}`;
+      }).join("");
+    },
+    ()=>`<h3>Lähteet</h3>${(selected.data.sources||[]).length?`<ul>${selected.data.sources.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>`:"<p>Ei lähteitä.</p>"}
+         <h3>Todisteiden taso</h3><p>${evLabels[ev.level]} — data: ${ev.data} sarjaa, lähteitä: ${ev.sources}, mekanismikuvauksia: ${ev.logic}/5.</p>`,
+    ()=>(selected.data.actors||[]).length?`<ul>${selected.data.actors.map(a=>`<li>${esc(a)}</li>`).join("")}</ul>`:"<p>Toimijoita ei ole kuvattu.</p>",
+    ()=>`<h3>Vastanäyttö</h3><p>${esc(selected.data.counterevidence)||"Ei kirjattu."}</p>
+         <h3>Vaihtoehtoiset selitykset</h3><p>${esc(selected.data.alternatives)||"Ei kirjattu."}</p>
+         <h3>Analogian rajat</h3><p>${esc(selected.data.limits)||"Ei kirjattu."}</p>`,
+  ];
+  const pane=body.querySelector("#pane");
+  const show=i=>{pane.innerHTML=panes[i]();body.querySelectorAll(".tabs button").forEach((b,j)=>b.setAttribute("aria-selected",j===i));};
+  body.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>show(+b.dataset.tab)));
+  show(0);
+  body.scrollTop=0;
+  setTimeout(()=>$("#detail").classList.add("open"),60);
+}
+function closeDetail(){
+  selected=null;
+  $("#detail").classList.remove("open");
+  $("#doors").classList.remove("open");
+}
+$("#back").addEventListener("click",closeDetail);
+$("#brand").addEventListener("click",closeDetail);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDetail();});
+
+/* ---- guided tour ---- */
+const tourSteps=[
+  {title:"Mihin tehokkuus johti?",text:"Teollistumisen ja työnjaon aikana tuottavuus nousi voimakkaasti. Mutta optimointi jätti osan työpanoksesta käyttämättä — hyöty ei jakaantunut tasaisesti.",match:/teollis|työnjako|tuottav/i},
+  {title:"Kriisit testasivat kestävyyden",text:"Lamat, sodat ja pula-ajat paljastivat, miten haavoittuvainen tehokkuuteen optimoitu järjestelmä on. Taka-askeleet näkyvät kuviossa alaspäin laskevina kaarina.",dir:"setback"},
+  {title:"Korjausliike: instituutiot vastasivat",text:"Koulutus, sosiaaliturva ja hyvinvointivaltio rakensivat toimintakykyä takaisin. Nämä nousut ovat atlaksen vahvimpia empiirisiä kokonaisuuksia.",dir:"advance"},
+  {title:"Tulevaisuuden päätöstestit",text:"Nykyiset haarat — ilmasto, tekoäly, huoltovarmuus — ovat avoimia. Kestävä yhteiskunta ei maksimoi vain tuottavuutta tai vain työllisyyttä: se minimoi käyttämättömän toimintakyvyn menettämättä tuottavuushyötyjä.",kind:"future"},
+];
+function armTour(){
+  clearTimeout(tourTimer);
+  tourTimer=setTimeout(startTour,8000);
+}
+function startTour(){
+  if(selected)return;
+  tourActive=true;tourIdx=0;showTourStep();
+}
+function showTourStep(){
+  const s=tourSteps[tourIdx];if(!s)return stopTour();
+  $("#tour-title").textContent=s.title;
+  $("#tour-text").textContent=s.text;
+  $("#tour-dots").innerHTML=tourSteps.map((_,i)=>`<i class="${i===tourIdx?"on":""}"></i>`).join("");
+  $("#tour").classList.add("on");
+  // highlight matching node
+  document.querySelectorAll(".hl").forEach(r=>r.classList.remove("on"));
+  document.querySelectorAll(".node").forEach(n=>n.classList.remove("focus"));
+  $("#network").classList.add("dim");
+  let target=null;
+  if(s.match)target=cases.find(c=>s.match.test(c.title+" "+(c.data.summary||"")));
+  if(!target&&s.dir)target=cases.find(c=>direction(c).direction===s.dir);
+  if(!target&&s.kind)target=cases.find(c=>c.kind===s.kind);
+  if(target){
+    const ring=document.querySelector(`.hl[data-id="${target.id}"]`);
+    const node=document.querySelector(`.node[data-id="${target.id}"]`);
+    if(ring)ring.classList.add("on");
+    if(node)node.classList.add("focus");
+  }
+  clearTimeout(tourTimer);
+  tourTimer=setTimeout(()=>{tourIdx++;tourIdx>=tourSteps.length?stopTour():showTourStep();},9000);
+}
+function stopTour(){
+  tourActive=false;clearTimeout(tourTimer);
+  $("#tour").classList.remove("on");
+  $("#network").classList.remove("dim");
+  document.querySelectorAll(".hl").forEach(r=>r.classList.remove("on"));
+  $("#tour-start").style.display="block";
+}
+$("#tour-next").addEventListener("click",()=>{tourIdx++;tourIdx>=tourSteps.length?stopTour():showTourStep();});
+$("#tour-prev").addEventListener("click",()=>{tourIdx=Math.max(0,tourIdx-1);showTourStep();});
+$("#tour-close").addEventListener("click",stopTour);
+$("#tour-start").addEventListener("click",()=>{$("#tour-start").style.display="none";tourIdx=0;startTour();});
+["pointerdown","keydown"].forEach(ev=>document.addEventListener(ev,()=>{if(tourActive)stopTour();else armTour();},{passive:true}));
+
+boot();
+</script>
+</body>
+</html>
