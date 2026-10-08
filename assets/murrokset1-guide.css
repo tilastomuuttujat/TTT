@@ -13,7 +13,7 @@
 /* Reading is a continuation of the atlas, using its typography and palette. */
 .narrator-read {border:0;background:transparent;text-align:left;font:inherit;cursor:pointer;padding:6px 0}
 .narrator-read-always {font-weight:600}
-.murros-story-dialog {position:fixed;inset:auto;margin:0;pointer-events:auto;box-sizing:border-box;width:min(620px,calc(100vw - 36px));height:min(640px,72dvh);max-height:calc(100dvh - 36px);border:1px solid var(--border,#b5c9b9);border-radius:12px;padding:0;background:var(--background,#fffef7);color:var(--foreground,#263e30);font-family:var(--font-sans,"Avenir Next",Avenir,"Segoe UI",sans-serif);font-size:14px;overflow:hidden;box-shadow:0 8px 32px #284b2926}
+.murros-story-dialog {position:fixed;inset:auto;margin:0;pointer-events:auto;box-sizing:border-box;width:min(620px,calc(100vw - 36px));height:min(640px,72dvh);max-height:none;border:1px solid var(--border,#b5c9b9);border-radius:0;padding:0;background:var(--background,#fffef7);color:var(--foreground,#263e30);font-family:var(--font-sans,"Avenir Next",Avenir,"Segoe UI",sans-serif);font-size:14px;overflow:visible;box-shadow:0 8px 32px #284b2926}
 .murros-story-dialog::backdrop {background:transparent}
 .murros-story-close {position:absolute;top:10px;right:12px;margin:0;z-index:2;width:32px;height:32px;border:1px solid var(--border,#b5c9b9);border-radius:8px;background:var(--background,#fffef7);color:var(--primary,#294936);font-family:inherit;font-size:22px;line-height:1;cursor:pointer}
 .murros-story-close:hover {background:var(--secondary,#edf3ec)}
@@ -26,3 +26,8 @@
 .murros-story-place,.murros-story-body small {font-family:inherit;font-size:11px;line-height:1.5;color:var(--muted-foreground,#61705e)}
 .murros-story-lead {font-size:14px;font-weight:550}.murros-story-body li {font-size:12px;margin-bottom:10px;overflow-wrap:anywhere}
 @media(max-width:650px){.murros-story-body{padding:46px 20px 24px;font-size:13px}.murros-story-body h1{font-size:17px}.murros-story-lead{font-size:13px}.narrator-controls{flex-wrap:wrap}}
+
+.murros-story-tab{position:absolute;left:-38px;top:50%;transform:translateY(-50%);width:38px;height:152px;display:grid;place-items:center;border:1px solid var(--border,#b5c9b9);border-right:0;border-radius:9px 0 0 9px;background:var(--background,#fffef7);color:var(--primary,#294936);cursor:pointer;font:inherit;font-size:12px;box-shadow:-5px 2px 14px #284b2912}
+.murros-story-tab span{white-space:nowrap;transform:rotate(-90deg)}
+.murros-story-tab:hover{background:var(--secondary,#edf3ec)}
+.murros-story-tab:focus-visible{outline:2px solid var(--primary,#294936);outline-offset:3px}

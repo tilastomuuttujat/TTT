@@ -1,32 +1,21 @@
-function articlePanelLayout(origin,viewportWidth,viewportHeight){
- const edge=18,gap=14,width=Math.min(620,viewportWidth-edge*2),height=Math.min(640,viewportHeight*.72,viewportHeight-edge*2);
- const clamp=(value,size,total)=>Math.max(edge,Math.min(value,total-edge-size));
- const candidates=[
- {x:origin.right+gap,y:origin.top,w:Math.min(width,viewportWidth-edge-origin.right-gap),h:height},
- {side:'left',x:edge,y:origin.top,w:Math.min(width,origin.left-gap-edge),h:height},
- {x:origin.left,y:origin.bottom+gap,w:width,h:Math.min(height,viewportHeight-edge-origin.bottom-gap)},
- {side:'above',x:origin.left,y:edge,w:width,h:Math.min(height,origin.top-gap-edge)}
- ].filter(p=>p.w>=Math.min(340,width)&&p.h>=Math.min(300,height));
- candidates.forEach(p=>{if(p.side==='left')p.x=origin.left-gap-p.w;if(p.side==='above')p.y=origin.top-gap-p.h;p.x=clamp(p.x,p.w,viewportWidth);p.y=clamp(p.y,p.h,viewportHeight);});
- candidates.sort((a,b)=>b.w*b.h-a.w*a.h);
- const panel=candidates[0]||{x:clamp(origin.right+gap,width,viewportWidth),y:clamp(origin.top,height,viewportHeight),w:width,h:height};
- const cx=(origin.left+origin.right)/2,cy=(origin.top+origin.bottom)/2;
- return {...panel,ox:Math.max(0,Math.min(panel.w,cx-panel.x)),oy:Math.max(0,Math.min(panel.h,cy-panel.y))};
+function articlePanelLayout(viewportWidth,viewportHeight){
+ const tab=38,width=Math.min(560,viewportWidth-tab-12);
+ return {x:viewportWidth-width,y:0,w:width,h:viewportHeight};
 }
 function kn({index,playing,onIndex,onToggle,onClose}){
  const chapter=Tn[index],phases=chapter.phases||[{title:'Katso ajanjakson asetelmaa',text:chapter.text},{title:'Tutki yhteyksiä',text:'Virtaus esittää tutkittavaa mekanismia.'},{title:'Koettele tulkintaa',text:'Vertaa havaintoja ja vaihtoehtoisia selityksiä.'}];
  const [phase,setPhase]=S.useState(0),[step,setStep]=S.useState(0),[place,setPlace]=S.useState(null),[loopPlace,setLoopPlace]=S.useState({left:30,top:30});
- const guide=S.useRef(null),bubble=S.useRef(null),dialog=S.useRef(null),readTrigger=S.useRef(null),articleOrigin=S.useRef(null),articleMotion=S.useRef(null),articleClosing=S.useRef(false);
+ const guide=S.useRef(null),bubble=S.useRef(null),dialog=S.useRef(null),readTrigger=S.useRef(null),articleMotion=S.useRef(null),articleClosing=S.useRef(false);
  const [articleOpen,setArticleOpen]=S.useState(false);
  const article=storyContent.find(s=>chapter.article_url.endsWith('/'+s.slug+'.html'))||storyContent[index];
- const openArticle=event=>{readTrigger.current=event.currentTarget;articleOrigin.current=event.currentTarget.getBoundingClientRect();articleClosing.current=false;if(playing)onToggle();setArticleOpen(true);};
- const collapsedFrame=()=>{const box=readTrigger.current?.getBoundingClientRect()||articleOrigin.current;return {left:`${box.left}px`,top:`${box.top}px`,width:`${Math.max(48,box.width)}px`,height:`${Math.max(44,box.height)}px`,borderRadius:'24px'};};
- const expandedFrame=node=>({left:node.style.left,top:node.style.top,width:node.style.width,height:node.style.height,borderRadius:'12px'});
+ const openArticle=event=>{readTrigger.current=event.currentTarget;articleClosing.current=false;if(playing)onToggle();setArticleOpen(true);};
+ const collapsedFrame=()=>({transform:'translateX(calc(100% + 40px))'});
+ const expandedFrame=()=>({transform:'translateX(0)'});
  const cancelArticleMotion=()=>{for(const motion of articleMotion.current||[])motion.cancel();articleMotion.current=[];};
- const closeArticle=()=>{if(articleClosing.current)return;articleClosing.current=true;const finish=()=>{setArticleOpen(false);readTrigger.current?.focus();};const node=dialog.current;cancelArticleMotion();if(node?.animate&&!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){const motion=node.animate([expandedFrame(node),collapsedFrame()],{duration:380,easing:'cubic-bezier(.4,0,.6,1)',fill:'forwards'});const fade=node.querySelector('.murros-story-body').animate([{opacity:1},{opacity:0}],{duration:120,fill:'forwards'});articleMotion.current=[motion,fade];motion.finished.then(finish,finish);}else finish();};
+ const closeArticle=()=>{if(articleClosing.current)return;articleClosing.current=true;const finish=()=>{setArticleOpen(false);readTrigger.current?.focus();};const node=dialog.current;cancelArticleMotion();if(node?.animate&&!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){const motion=node.animate([expandedFrame(node),collapsedFrame()],{duration:380,easing:'cubic-bezier(.4,0,.6,1)',fill:'forwards'});articleMotion.current=[motion];motion.finished.then(finish,finish);}else finish();};
  S.useLayoutEffect(()=>{if(!articleOpen)return;const node=dialog.current;node.showModal();
- const position=()=>{const origin=readTrigger.current?.getBoundingClientRect()||articleOrigin.current;const viewport=window.visualViewport;const p=articlePanelLayout(origin,viewport?.width||window.innerWidth,viewport?.height||window.innerHeight);const offsetX=viewport?.offsetLeft||0,offsetY=viewport?.offsetTop||0;Object.assign(node.style,{left:`${p.x+offsetX}px`,top:`${p.y+offsetY}px`,width:`${p.w}px`,height:`${p.h}px`,transformOrigin:`${p.ox}px ${p.oy}px`});};
- position();const previous=document.body.style.overflow;document.body.style.overflow='hidden';if(node.animate&&!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){const grow=node.animate([collapsedFrame(),expandedFrame(node)],{duration:950,easing:'cubic-bezier(.45,0,.2,1)'});const reveal=node.querySelector('.murros-story-body').animate([{opacity:0},{opacity:1}],{duration:260,delay:650,fill:'backwards'});articleMotion.current=[grow,reveal];}
+ const position=()=>{const viewport=window.visualViewport;const p=articlePanelLayout(viewport?.width||window.innerWidth,viewport?.height||window.innerHeight);const offsetX=viewport?.offsetLeft||0,offsetY=viewport?.offsetTop||0;Object.assign(node.style,{left:`${p.x+offsetX}px`,top:`${p.y+offsetY}px`,width:`${p.w}px`,height:`${p.h}px`});};
+ position();const previous=document.body.style.overflow;document.body.style.overflow='hidden';if(node.animate&&!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){const grow=node.animate([collapsedFrame(),expandedFrame(node)],{duration:650,easing:'cubic-bezier(.22,.75,.2,1)'});articleMotion.current=[grow];}
  window.addEventListener('resize',position);window.visualViewport?.addEventListener('resize',position);window.visualViewport?.addEventListener('scroll',position);
  return()=>{window.removeEventListener('resize',position);window.visualViewport?.removeEventListener('resize',position);window.visualViewport?.removeEventListener('scroll',position);cancelArticleMotion();node.close();document.body.style.overflow=previous;};},[articleOpen]);
  const stops=[{phase:0,step:0},{phase:1,step:0},{phase:2,step:0}];
@@ -87,6 +76,7 @@ function kn({index,playing,onIndex,onToggle,onClose}){
   L.jsxs('section',{ref:bubble,key:`${index}-${phase}-${step}`,className:'narrator-speech narrator-background-copy',style:place?{left:place.x,top:place.y,width:place.w}: {visibility:'hidden'},'aria-live':playing?'off':'polite',children:[L.jsx('small',{children:chapter.era}),L.jsx('p',{className:'narrator-story-line',children:text}),L.jsx('button',{type:'button',className:'narrator-read',onClick:openArticle,children:'Lue kertomus →'}),L.jsx('small',{className:'narrator-status',children:index===3?'Ehdollinen tulevaisuuspolku':'Historiallinen kertomus · tutkittava tulkinta'})]}),
   L.jsxs('footer',{className:'narrator-controls',children:[L.jsx('button',{type:'button',className:'narrator-read-always',onClick:openArticle,children:'Lue kertomus'}),L.jsx('nav',{className:'narrator-dots','aria-label':'Tarinan etenemispisteet',children:stops.map((stop,i)=>L.jsx('button',{type:'button',className:`narrator-dot ${i===currentStop?'active':i<currentStop?'visited':''}`,'aria-label':`${storyFrames[stop.phase][0]}. ${storyFrames[stop.phase][1]} · ${chapter.era}: ${stop.phase===1?chapter.loop?.[stop.step]:stop.phase===0?'Lähtökohta '+(stop.step+1):phases[2].title}`,'aria-current':i===currentStop?'step':undefined,onClick:()=>jump(i),onKeyDown:event=>{if(['ArrowRight','ArrowLeft','Home','End'].includes(event.key)){event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?stops.length-1:(i+(event.key==='ArrowRight'?1:-1)+stops.length)%stops.length;jump(next);event.currentTarget.parentElement.children[next]?.focus();}},children:L.jsx('span',{})},i))}),L.jsx('button',{type:'button',onClick:onToggle,'aria-label':playing?'Pysäytä opastus':'Jatka opastusta',children:playing?'Pysäytä':'Jatka'}),L.jsx('button',{type:'button',onClick:onClose,'aria-label':'Sulje opastus ja tutki itse',children:'Sulje opastus'})]})
  ,articleOpen&&L.jsxs('dialog',{ref:dialog,className:'murros-story-dialog','aria-labelledby':'murros-story-title',onCancel:event=>{event.preventDefault();closeArticle();},children:[
+ L.jsx('button',{type:'button',className:'murros-story-tab','aria-label':'Sulje kertomus',onClick:closeArticle,children:L.jsx('span',{children:'Sulje kertomus'})}),
  L.jsx('button',{type:'button',className:'murros-story-close','aria-label':'Sulje artikkeli',onClick:closeArticle,autoFocus:true,children:'×'}),
  L.jsxs('article',{className:'murros-story-body',children:[L.jsx('small',{children:article.kind}),L.jsx('h1',{id:'murros-story-title',children:article.title}),L.jsx('p',{className:'murros-story-place',children:article.place}),L.jsx('p',{className:'murros-story-lead',children:article.lead}),...article.sections.map(([heading,paragraphs],i)=>L.jsxs('section',{children:[L.jsx('h2',{children:heading}),...paragraphs.map(([text,refs],j)=>L.jsxs('p',{children:[text,' ',...refs.map(ref=>L.jsx('sup',{children:L.jsx('a',{href:'#murros-source-'+ref,children:'['+ref+']'})},ref))]},j))]},i)),L.jsx('h2',{children:'Lähteet ja tulkinnan rajat'}),L.jsx('ol',{children:article.sources.map(([title,url],i)=>L.jsx('li',{id:'murros-source-'+(i+1),children:L.jsx('a',{href:url,target:'_blank',rel:'noopener noreferrer',children:title})},i))})]})]})
  ]});
