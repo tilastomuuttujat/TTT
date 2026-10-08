@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "levels": [
     "Tuotanto ja työ",
     "Yhteiskunnan ratkaisut",
@@ -14,175 +14,2767 @@
   ],
   "nodes": [
     {
+      "id": "c0anchor",
+      "chapter": 0,
+      "kind": "anchor",
+      "label": "Suuri muutto"
+    },
+    {
+      "id": "c0pwork",
+      "chapter": 0,
+      "kind": "petal",
+      "theme": "work",
+      "label": "Työ",
+      "parent": "c0anchor",
+      "order": 0
+    },
+    {
+      "id": "c0mwork0",
+      "chapter": 0,
+      "kind": "mechanism",
+      "theme": "work",
+      "label": "Työpaikan sijainti",
+      "parent": "c0pwork",
+      "order": 0
+    },
+    {
+      "id": "c0mwork1",
+      "chapter": 0,
+      "kind": "mechanism",
+      "theme": "work",
+      "label": "Uusi osaamistarve",
+      "parent": "c0pwork",
+      "order": 1
+    },
+    {
+      "id": "c0phousing",
+      "chapter": 0,
+      "kind": "petal",
+      "theme": "housing",
+      "label": "Asuminen",
+      "parent": "c0anchor",
+      "order": 1
+    },
+    {
+      "id": "c0mhousing0",
+      "chapter": 0,
+      "kind": "mechanism",
+      "theme": "housing",
+      "label": "Asuntotuotanto",
+      "parent": "c0phousing",
+      "order": 0
+    },
+    {
+      "id": "c0mhousing1",
+      "chapter": 0,
+      "kind": "mechanism",
+      "theme": "housing",
+      "label": "Asunnon sijainti",
+      "parent": "c0phousing",
+      "order": 1
+    },
+    {
+      "id": "c0peducation",
+      "chapter": 0,
+      "kind": "petal",
+      "theme": "education",
+      "label": "Koulutus",
+      "parent": "c0anchor",
+      "order": 2
+    },
+    {
+      "id": "c0meducation0",
+      "chapter": 0,
+      "kind": "mechanism",
+      "theme": "education",
+      "label": "Koulutukseen pääsy",
+      "parent": "c0peducation",
+      "order": 0
+    },
+    {
+      "id": "c0meducation1",
+      "chapter": 0,
+      "kind": "mechanism",
+      "theme": "education",
+      "label": "Osaamisen siirtyminen",
+      "parent": "c0peducation",
+      "order": 1
+    },
+    {
+      "id": "c0pincome",
+      "chapter": 0,
+      "kind": "petal",
+      "theme": "income",
+      "label": "Toimeentulo",
+      "parent": "c0anchor",
+      "order": 3
+    },
+    {
+      "id": "c0mincome0",
+      "chapter": 0,
+      "kind": "mechanism",
+      "theme": "income",
+      "label": "Palkkatulo",
+      "parent": "c0pincome",
+      "order": 0
+    },
+    {
+      "id": "c0mincome1",
+      "chapter": 0,
+      "kind": "mechanism",
+      "theme": "income",
+      "label": "Arjen menot",
+      "parent": "c0pincome",
+      "order": 1
+    },
+    {
+      "id": "c0pservices",
+      "chapter": 0,
+      "kind": "petal",
+      "theme": "services",
+      "label": "Palvelut",
+      "parent": "c0anchor",
+      "order": 4
+    },
+    {
+      "id": "c0mservices0",
+      "chapter": 0,
+      "kind": "mechanism",
+      "theme": "services",
+      "label": "Palvelujen rakentaminen",
+      "parent": "c0pservices",
+      "order": 0
+    },
+    {
+      "id": "c0mservices1",
+      "chapter": 0,
+      "kind": "mechanism",
+      "theme": "services",
+      "label": "Saavutettavuus",
+      "parent": "c0pservices",
+      "order": 1
+    },
+    {
+      "id": "c0pcommunity",
+      "chapter": 0,
+      "kind": "petal",
+      "theme": "community",
+      "label": "Yhteisöt",
+      "parent": "c0anchor",
+      "order": 5
+    },
+    {
+      "id": "c0mcommunity0",
+      "chapter": 0,
+      "kind": "mechanism",
+      "theme": "community",
+      "label": "Lähtöalueen verkostot",
+      "parent": "c0pcommunity",
+      "order": 0
+    },
+    {
+      "id": "c0mcommunity1",
+      "chapter": 0,
+      "kind": "mechanism",
+      "theme": "community",
+      "label": "Uuden paikan yhteisöt",
+      "parent": "c0pcommunity",
+      "order": 1
+    },
+    {
+      "id": "c1anchor",
+      "chapter": 1,
+      "kind": "anchor",
+      "label": "Laman työurat"
+    },
+    {
+      "id": "c1pwork",
+      "chapter": 1,
+      "kind": "petal",
+      "theme": "work",
+      "label": "Työ",
+      "parent": "c1anchor",
+      "order": 0
+    },
+    {
+      "id": "c1mwork0",
+      "chapter": 1,
+      "kind": "mechanism",
+      "theme": "work",
+      "label": "Työhön pääsy",
+      "parent": "c1pwork",
+      "order": 0
+    },
+    {
+      "id": "c1mwork1",
+      "chapter": 1,
+      "kind": "mechanism",
+      "theme": "work",
+      "label": "Työuran katkos",
+      "parent": "c1pwork",
+      "order": 1
+    },
+    {
+      "id": "c1phousing",
+      "chapter": 1,
+      "kind": "petal",
+      "theme": "housing",
+      "label": "Asuminen",
+      "parent": "c1anchor",
+      "order": 1
+    },
+    {
+      "id": "c1mhousing0",
+      "chapter": 1,
+      "kind": "mechanism",
+      "theme": "housing",
+      "label": "Asumismenot",
+      "parent": "c1phousing",
+      "order": 0
+    },
+    {
+      "id": "c1mhousing1",
+      "chapter": 1,
+      "kind": "mechanism",
+      "theme": "housing",
+      "label": "Paikka työmarkkinoilla",
+      "parent": "c1phousing",
+      "order": 1
+    },
+    {
+      "id": "c1peducation",
+      "chapter": 1,
+      "kind": "petal",
+      "theme": "education",
+      "label": "Koulutus",
+      "parent": "c1anchor",
+      "order": 2
+    },
+    {
+      "id": "c1meducation0",
+      "chapter": 1,
+      "kind": "mechanism",
+      "theme": "education",
+      "label": "Valmistumisajankohta",
+      "parent": "c1peducation",
+      "order": 0
+    },
+    {
+      "id": "c1meducation1",
+      "chapter": 1,
+      "kind": "mechanism",
+      "theme": "education",
+      "label": "Koulutusala",
+      "parent": "c1peducation",
+      "order": 1
+    },
+    {
+      "id": "c1pincome",
+      "chapter": 1,
+      "kind": "petal",
+      "theme": "income",
+      "label": "Toimeentulo",
+      "parent": "c1anchor",
+      "order": 3
+    },
+    {
+      "id": "c1mincome0",
+      "chapter": 1,
+      "kind": "mechanism",
+      "theme": "income",
+      "label": "Ansioiden kehitys",
+      "parent": "c1pincome",
+      "order": 0
+    },
+    {
+      "id": "c1mincome1",
+      "chapter": 1,
+      "kind": "mechanism",
+      "theme": "income",
+      "label": "Taloudellinen puskuri",
+      "parent": "c1pincome",
+      "order": 1
+    },
+    {
+      "id": "c1pservices",
+      "chapter": 1,
+      "kind": "petal",
+      "theme": "services",
+      "label": "Palvelut",
+      "parent": "c1anchor",
+      "order": 4
+    },
+    {
+      "id": "c1mservices0",
+      "chapter": 1,
+      "kind": "mechanism",
+      "theme": "services",
+      "label": "Paluu työhön",
+      "parent": "c1pservices",
+      "order": 0
+    },
+    {
+      "id": "c1mservices1",
+      "chapter": 1,
+      "kind": "mechanism",
+      "theme": "services",
+      "label": "Tuen jatkuvuus",
+      "parent": "c1pservices",
+      "order": 1
+    },
+    {
+      "id": "c1pcommunity",
+      "chapter": 1,
+      "kind": "petal",
+      "theme": "community",
+      "label": "Yhteisöt",
+      "parent": "c1anchor",
+      "order": 5
+    },
+    {
+      "id": "c1mcommunity0",
+      "chapter": 1,
+      "kind": "mechanism",
+      "theme": "community",
+      "label": "Työelämän verkostot",
+      "parent": "c1pcommunity",
+      "order": 0
+    },
+    {
+      "id": "c1mcommunity1",
+      "chapter": 1,
+      "kind": "mechanism",
+      "theme": "community",
+      "label": "Osallistumisen mahdollisuus",
+      "parent": "c1pcommunity",
+      "order": 1
+    },
+    {
+      "id": "c2anchor",
+      "chapter": 2,
+      "kind": "anchor",
+      "label": "Pandemia ja hinnat"
+    },
+    {
+      "id": "c2pwork",
+      "chapter": 2,
+      "kind": "petal",
+      "theme": "work",
+      "label": "Työ",
+      "parent": "c2anchor",
+      "order": 0
+    },
+    {
+      "id": "c2mwork0",
+      "chapter": 2,
+      "kind": "mechanism",
+      "theme": "work",
+      "label": "Toimialan häiriö",
+      "parent": "c2pwork",
+      "order": 0
+    },
+    {
+      "id": "c2mwork1",
+      "chapter": 2,
+      "kind": "mechanism",
+      "theme": "work",
+      "label": "Tulojen horjuminen",
+      "parent": "c2pwork",
+      "order": 1
+    },
+    {
+      "id": "c2phousing",
+      "chapter": 2,
+      "kind": "petal",
+      "theme": "housing",
+      "label": "Asuminen",
+      "parent": "c2anchor",
+      "order": 1
+    },
+    {
+      "id": "c2mhousing0",
+      "chapter": 2,
+      "kind": "mechanism",
+      "theme": "housing",
+      "label": "Asumiskustannukset",
+      "parent": "c2phousing",
+      "order": 0
+    },
+    {
+      "id": "c2mhousing1",
+      "chapter": 2,
+      "kind": "mechanism",
+      "theme": "housing",
+      "label": "Välttämättömät menot",
+      "parent": "c2phousing",
+      "order": 1
+    },
+    {
+      "id": "c2peducation",
+      "chapter": 2,
+      "kind": "petal",
+      "theme": "education",
+      "label": "Koulutus",
+      "parent": "c2anchor",
+      "order": 2
+    },
+    {
+      "id": "c2meducation0",
+      "chapter": 2,
+      "kind": "mechanism",
+      "theme": "education",
+      "label": "Osaamisen päivittäminen",
+      "parent": "c2peducation",
+      "order": 0
+    },
+    {
+      "id": "c2meducation1",
+      "chapter": 2,
+      "kind": "mechanism",
+      "theme": "education",
+      "label": "Mahdollisuus vaihtaa työtä",
+      "parent": "c2peducation",
+      "order": 1
+    },
+    {
+      "id": "c2pincome",
+      "chapter": 2,
+      "kind": "petal",
+      "theme": "income",
+      "label": "Toimeentulo",
+      "parent": "c2anchor",
+      "order": 3
+    },
+    {
+      "id": "c2mincome0",
+      "chapter": 2,
+      "kind": "mechanism",
+      "theme": "income",
+      "label": "Säästöpuskuri",
+      "parent": "c2pincome",
+      "order": 0
+    },
+    {
+      "id": "c2mincome1",
+      "chapter": 2,
+      "kind": "mechanism",
+      "theme": "income",
+      "label": "Hintojen nousu",
+      "parent": "c2pincome",
+      "order": 1
+    },
+    {
+      "id": "c2pservices",
+      "chapter": 2,
+      "kind": "petal",
+      "theme": "services",
+      "label": "Palvelut",
+      "parent": "c2anchor",
+      "order": 4
+    },
+    {
+      "id": "c2mservices0",
+      "chapter": 2,
+      "kind": "mechanism",
+      "theme": "services",
+      "label": "Toimeentuloturva",
+      "parent": "c2pservices",
+      "order": 0
+    },
+    {
+      "id": "c2mservices1",
+      "chapter": 2,
+      "kind": "mechanism",
+      "theme": "services",
+      "label": "Palveluihin pääsy",
+      "parent": "c2pservices",
+      "order": 1
+    },
+    {
+      "id": "c2pcommunity",
+      "chapter": 2,
+      "kind": "petal",
+      "theme": "community",
+      "label": "Yhteisöt",
+      "parent": "c2anchor",
+      "order": 5
+    },
+    {
+      "id": "c2mcommunity0",
+      "chapter": 2,
+      "kind": "mechanism",
+      "theme": "community",
+      "label": "Läheisten tuki",
+      "parent": "c2pcommunity",
+      "order": 0
+    },
+    {
+      "id": "c2mcommunity1",
+      "chapter": 2,
+      "kind": "mechanism",
+      "theme": "community",
+      "label": "Arjen osallistuminen",
+      "parent": "c2pcommunity",
+      "order": 1
+    },
+    {
+      "id": "c3anchor",
+      "chapter": 3,
+      "kind": "anchor",
+      "label": "Joustava työ"
+    },
+    {
+      "id": "c3pwork",
+      "chapter": 3,
+      "kind": "petal",
+      "theme": "work",
+      "label": "Työ",
+      "parent": "c3anchor",
+      "order": 0
+    },
+    {
+      "id": "c3mwork0",
+      "chapter": 3,
+      "kind": "mechanism",
+      "theme": "work",
+      "label": "Tehtävien muokkaus",
+      "parent": "c3pwork",
+      "order": 0
+    },
+    {
+      "id": "c3mwork1",
+      "chapter": 3,
+      "kind": "mechanism",
+      "theme": "work",
+      "label": "Työajan jousto",
+      "parent": "c3pwork",
+      "order": 1
+    },
+    {
+      "id": "c3phousing",
+      "chapter": 3,
+      "kind": "petal",
+      "theme": "housing",
+      "label": "Asuminen",
+      "parent": "c3anchor",
+      "order": 1
+    },
+    {
+      "id": "c3mhousing0",
+      "chapter": 3,
+      "kind": "mechanism",
+      "theme": "housing",
+      "label": "Työn saavutettavuus",
+      "parent": "c3phousing",
+      "order": 0
+    },
+    {
+      "id": "c3mhousing1",
+      "chapter": 3,
+      "kind": "mechanism",
+      "theme": "housing",
+      "label": "Arjen järjestäminen",
+      "parent": "c3phousing",
+      "order": 1
+    },
+    {
+      "id": "c3peducation",
+      "chapter": 3,
+      "kind": "petal",
+      "theme": "education",
+      "label": "Koulutus",
+      "parent": "c3anchor",
+      "order": 2
+    },
+    {
+      "id": "c3meducation0",
+      "chapter": 3,
+      "kind": "mechanism",
+      "theme": "education",
+      "label": "Täydennysosaaminen",
+      "parent": "c3peducation",
+      "order": 0
+    },
+    {
+      "id": "c3meducation1",
+      "chapter": 3,
+      "kind": "mechanism",
+      "theme": "education",
+      "label": "Oppimisen tuki",
+      "parent": "c3peducation",
+      "order": 1
+    },
+    {
+      "id": "c3pincome",
+      "chapter": 3,
+      "kind": "petal",
+      "theme": "income",
+      "label": "Toimeentulo",
+      "parent": "c3anchor",
+      "order": 3
+    },
+    {
+      "id": "c3mincome0",
+      "chapter": 3,
+      "kind": "mechanism",
+      "theme": "income",
+      "label": "Työ ja toimeentulo",
+      "parent": "c3pincome",
+      "order": 0
+    },
+    {
+      "id": "c3mincome1",
+      "chapter": 3,
+      "kind": "mechanism",
+      "theme": "income",
+      "label": "Ennakoitavuus",
+      "parent": "c3pincome",
+      "order": 1
+    },
+    {
+      "id": "c3pservices",
+      "chapter": 3,
+      "kind": "petal",
+      "theme": "services",
+      "label": "Palvelut",
+      "parent": "c3anchor",
+      "order": 4
+    },
+    {
+      "id": "c3mservices0",
+      "chapter": 3,
+      "kind": "mechanism",
+      "theme": "services",
+      "label": "Työhön annettava tuki",
+      "parent": "c3pservices",
+      "order": 0
+    },
+    {
+      "id": "c3mservices1",
+      "chapter": 3,
+      "kind": "mechanism",
+      "theme": "services",
+      "label": "Järjestelyn jatkuvuus",
+      "parent": "c3pservices",
+      "order": 1
+    },
+    {
+      "id": "c3pcommunity",
+      "chapter": 3,
+      "kind": "petal",
+      "theme": "community",
+      "label": "Yhteisöt",
+      "parent": "c3anchor",
+      "order": 5
+    },
+    {
+      "id": "c3mcommunity0",
+      "chapter": 3,
+      "kind": "mechanism",
+      "theme": "community",
+      "label": "Oma paikka",
+      "parent": "c3pcommunity",
+      "order": 0
+    },
+    {
+      "id": "c3mcommunity1",
+      "chapter": 3,
+      "kind": "mechanism",
+      "theme": "community",
+      "label": "Työn mielekkyys",
+      "parent": "c3pcommunity",
+      "order": 1
+    },
+    {
       "id": "c0n0",
       "chapter": 0,
       "level": 0,
       "label": "Työ kaupungissa",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "work",
+      "parent": "c0pwork",
+      "order": 2
     },
     {
       "id": "c0n1",
       "chapter": 0,
       "level": 1,
       "label": "Asunnot ja palvelut",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "housing",
+      "parent": "c0phousing",
+      "order": 2
     },
     {
       "id": "c0n2",
       "chapter": 0,
       "level": 2,
       "label": "Uusi arki",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "income",
+      "parent": "c0pincome",
+      "order": 2
     },
     {
       "id": "c0n3",
       "chapter": 0,
       "level": 3,
       "label": "Rakennettu ympäristö",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "housing",
+      "parent": "c0phousing",
+      "order": 2
     },
     {
       "id": "c0g0",
       "chapter": 0,
       "level": 2,
       "label": "Muuttajat",
-      "offset": -1
+      "offset": -1,
+      "kind": "mechanism",
+      "theme": "income",
+      "parent": "c0pincome",
+      "order": 2
     },
     {
       "id": "c0g1",
       "chapter": 0,
       "level": 2,
       "label": "Lähtöalueille jääneet",
-      "offset": 1
+      "offset": 1,
+      "kind": "mechanism",
+      "theme": "income",
+      "parent": "c0pincome",
+      "order": 3
     },
     {
       "id": "c1n0",
       "chapter": 1,
       "level": 0,
       "label": "Työmarkkinoiden lama",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "work",
+      "parent": "c1pwork",
+      "order": 2
     },
     {
       "id": "c1n1",
       "chapter": 1,
       "level": 1,
       "label": "Työhön paluun ehdot",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "services",
+      "parent": "c1pservices",
+      "order": 2
     },
     {
       "id": "c1n2",
       "chapter": 1,
       "level": 2,
       "label": "Työuran alku",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "income",
+      "parent": "c1pincome",
+      "order": 2
     },
     {
       "id": "c1n3",
       "chapter": 1,
       "level": 3,
       "label": "Myöhemmät työuraerot",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "community",
+      "parent": "c1pcommunity",
+      "order": 2
     },
     {
       "id": "c1g0",
       "chapter": 1,
       "level": 2,
       "label": "1992 valmistuneet",
-      "offset": -1
+      "offset": -1,
+      "kind": "mechanism",
+      "theme": "income",
+      "parent": "c1pincome",
+      "order": 2
     },
     {
       "id": "c1g1",
       "chapter": 1,
       "level": 2,
       "label": "Myöhemmin valmistuneet",
-      "offset": 1
+      "offset": 1,
+      "kind": "mechanism",
+      "theme": "income",
+      "parent": "c1pincome",
+      "order": 3
     },
     {
       "id": "c2n0",
       "chapter": 2,
       "level": 0,
       "label": "Tulo- ja hintahäiriöt",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "work",
+      "parent": "c2pwork",
+      "order": 2
     },
     {
       "id": "c2n1",
       "chapter": 2,
       "level": 1,
       "label": "Turva ja puskurit",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "services",
+      "parent": "c2pservices",
+      "order": 2
     },
     {
       "id": "c2n2",
       "chapter": 2,
       "level": 2,
       "label": "Liikkumavara",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "income",
+      "parent": "c2pincome",
+      "order": 2
     },
     {
       "id": "c2n3",
       "chapter": 2,
       "level": 3,
       "label": "Pysyvä jälki?",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "community",
+      "parent": "c2pcommunity",
+      "order": 2
     },
     {
       "id": "c2g0",
       "chapter": 2,
       "level": 2,
       "label": "Pienet puskurit",
-      "offset": -1
+      "offset": -1,
+      "kind": "mechanism",
+      "theme": "income",
+      "parent": "c2pincome",
+      "order": 2
     },
     {
       "id": "c2g1",
       "chapter": 2,
       "level": 2,
       "label": "Suuremmat puskurit",
-      "offset": 1
+      "offset": 1,
+      "kind": "mechanism",
+      "theme": "income",
+      "parent": "c2pincome",
+      "order": 3
     },
     {
       "id": "c3n0",
       "chapter": 3,
       "level": 0,
       "label": "Työn vaatimukset",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "work",
+      "parent": "c3pwork",
+      "order": 2
     },
     {
       "id": "c3n1",
       "chapter": 3,
       "level": 1,
       "label": "Työn mukautus",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "services",
+      "parent": "c3pservices",
+      "order": 2
     },
     {
       "id": "c3n2",
       "chapter": 3,
       "level": 2,
       "label": "Osallistuminen",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "income",
+      "parent": "c3pincome",
+      "order": 2
     },
     {
       "id": "c3n3",
       "chapter": 3,
       "level": 3,
       "label": "Jatkuvuus?",
-      "offset": 0
+      "offset": 0,
+      "kind": "mechanism",
+      "theme": "community",
+      "parent": "c3pcommunity",
+      "order": 2
     },
     {
       "id": "c3g0",
       "chapter": 3,
       "level": 2,
       "label": "Sopiva järjestely",
-      "offset": -1
+      "offset": -1,
+      "kind": "mechanism",
+      "theme": "income",
+      "parent": "c3pincome",
+      "order": 2
     },
     {
       "id": "c3g1",
       "chapter": 3,
       "level": 2,
       "label": "Ilman sopivaa järjestelyä",
-      "offset": 1
+      "offset": 1,
+      "kind": "mechanism",
+      "theme": "income",
+      "parent": "c3pincome",
+      "order": 3
     }
   ],
   "edges": [
+    {
+      "id": "member-c0pwork",
+      "source": "c0anchor",
+      "target": "c0pwork",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0mwork0",
+      "source": "c0pwork",
+      "target": "c0mwork0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0mwork1",
+      "source": "c0pwork",
+      "target": "c0mwork1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0phousing",
+      "source": "c0anchor",
+      "target": "c0phousing",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0mhousing0",
+      "source": "c0phousing",
+      "target": "c0mhousing0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0mhousing1",
+      "source": "c0phousing",
+      "target": "c0mhousing1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0peducation",
+      "source": "c0anchor",
+      "target": "c0peducation",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0meducation0",
+      "source": "c0peducation",
+      "target": "c0meducation0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0meducation1",
+      "source": "c0peducation",
+      "target": "c0meducation1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0pincome",
+      "source": "c0anchor",
+      "target": "c0pincome",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0mincome0",
+      "source": "c0pincome",
+      "target": "c0mincome0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0mincome1",
+      "source": "c0pincome",
+      "target": "c0mincome1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0pservices",
+      "source": "c0anchor",
+      "target": "c0pservices",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0mservices0",
+      "source": "c0pservices",
+      "target": "c0mservices0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0mservices1",
+      "source": "c0pservices",
+      "target": "c0mservices1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0pcommunity",
+      "source": "c0anchor",
+      "target": "c0pcommunity",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0mcommunity0",
+      "source": "c0pcommunity",
+      "target": "c0mcommunity0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0mcommunity1",
+      "source": "c0pcommunity",
+      "target": "c0mcommunity1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1pwork",
+      "source": "c1anchor",
+      "target": "c1pwork",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1mwork0",
+      "source": "c1pwork",
+      "target": "c1mwork0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1mwork1",
+      "source": "c1pwork",
+      "target": "c1mwork1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1phousing",
+      "source": "c1anchor",
+      "target": "c1phousing",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1mhousing0",
+      "source": "c1phousing",
+      "target": "c1mhousing0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1mhousing1",
+      "source": "c1phousing",
+      "target": "c1mhousing1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1peducation",
+      "source": "c1anchor",
+      "target": "c1peducation",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1meducation0",
+      "source": "c1peducation",
+      "target": "c1meducation0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1meducation1",
+      "source": "c1peducation",
+      "target": "c1meducation1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1pincome",
+      "source": "c1anchor",
+      "target": "c1pincome",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1mincome0",
+      "source": "c1pincome",
+      "target": "c1mincome0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1mincome1",
+      "source": "c1pincome",
+      "target": "c1mincome1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1pservices",
+      "source": "c1anchor",
+      "target": "c1pservices",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1mservices0",
+      "source": "c1pservices",
+      "target": "c1mservices0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1mservices1",
+      "source": "c1pservices",
+      "target": "c1mservices1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1pcommunity",
+      "source": "c1anchor",
+      "target": "c1pcommunity",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1mcommunity0",
+      "source": "c1pcommunity",
+      "target": "c1mcommunity0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1mcommunity1",
+      "source": "c1pcommunity",
+      "target": "c1mcommunity1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2pwork",
+      "source": "c2anchor",
+      "target": "c2pwork",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2mwork0",
+      "source": "c2pwork",
+      "target": "c2mwork0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2mwork1",
+      "source": "c2pwork",
+      "target": "c2mwork1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2phousing",
+      "source": "c2anchor",
+      "target": "c2phousing",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2mhousing0",
+      "source": "c2phousing",
+      "target": "c2mhousing0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2mhousing1",
+      "source": "c2phousing",
+      "target": "c2mhousing1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2peducation",
+      "source": "c2anchor",
+      "target": "c2peducation",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2meducation0",
+      "source": "c2peducation",
+      "target": "c2meducation0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2meducation1",
+      "source": "c2peducation",
+      "target": "c2meducation1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2pincome",
+      "source": "c2anchor",
+      "target": "c2pincome",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2mincome0",
+      "source": "c2pincome",
+      "target": "c2mincome0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2mincome1",
+      "source": "c2pincome",
+      "target": "c2mincome1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2pservices",
+      "source": "c2anchor",
+      "target": "c2pservices",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2mservices0",
+      "source": "c2pservices",
+      "target": "c2mservices0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2mservices1",
+      "source": "c2pservices",
+      "target": "c2mservices1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2pcommunity",
+      "source": "c2anchor",
+      "target": "c2pcommunity",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2mcommunity0",
+      "source": "c2pcommunity",
+      "target": "c2mcommunity0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2mcommunity1",
+      "source": "c2pcommunity",
+      "target": "c2mcommunity1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3pwork",
+      "source": "c3anchor",
+      "target": "c3pwork",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3mwork0",
+      "source": "c3pwork",
+      "target": "c3mwork0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3mwork1",
+      "source": "c3pwork",
+      "target": "c3mwork1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3phousing",
+      "source": "c3anchor",
+      "target": "c3phousing",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3mhousing0",
+      "source": "c3phousing",
+      "target": "c3mhousing0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3mhousing1",
+      "source": "c3phousing",
+      "target": "c3mhousing1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3peducation",
+      "source": "c3anchor",
+      "target": "c3peducation",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3meducation0",
+      "source": "c3peducation",
+      "target": "c3meducation0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3meducation1",
+      "source": "c3peducation",
+      "target": "c3meducation1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3pincome",
+      "source": "c3anchor",
+      "target": "c3pincome",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3mincome0",
+      "source": "c3pincome",
+      "target": "c3mincome0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3mincome1",
+      "source": "c3pincome",
+      "target": "c3mincome1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3pservices",
+      "source": "c3anchor",
+      "target": "c3pservices",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3mservices0",
+      "source": "c3pservices",
+      "target": "c3mservices0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3mservices1",
+      "source": "c3pservices",
+      "target": "c3mservices1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3pcommunity",
+      "source": "c3anchor",
+      "target": "c3pcommunity",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3mcommunity0",
+      "source": "c3pcommunity",
+      "target": "c3mcommunity0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3mcommunity1",
+      "source": "c3pcommunity",
+      "target": "c3mcommunity1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0n0",
+      "source": "c0pwork",
+      "target": "c0n0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0n1",
+      "source": "c0phousing",
+      "target": "c0n1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0n2",
+      "source": "c0pincome",
+      "target": "c0n2",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0n3",
+      "source": "c0phousing",
+      "target": "c0n3",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0g0",
+      "source": "c0pincome",
+      "target": "c0g0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c0g1",
+      "source": "c0pincome",
+      "target": "c0g1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1n0",
+      "source": "c1pwork",
+      "target": "c1n0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1n1",
+      "source": "c1pservices",
+      "target": "c1n1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1n2",
+      "source": "c1pincome",
+      "target": "c1n2",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1n3",
+      "source": "c1pcommunity",
+      "target": "c1n3",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1g0",
+      "source": "c1pincome",
+      "target": "c1g0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c1g1",
+      "source": "c1pincome",
+      "target": "c1g1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2n0",
+      "source": "c2pwork",
+      "target": "c2n0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2n1",
+      "source": "c2pservices",
+      "target": "c2n1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2n2",
+      "source": "c2pincome",
+      "target": "c2n2",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2n3",
+      "source": "c2pcommunity",
+      "target": "c2n3",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2g0",
+      "source": "c2pincome",
+      "target": "c2g0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c2g1",
+      "source": "c2pincome",
+      "target": "c2g1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3n0",
+      "source": "c3pwork",
+      "target": "c3n0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3n1",
+      "source": "c3pservices",
+      "target": "c3n1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3n2",
+      "source": "c3pincome",
+      "target": "c3n2",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3n3",
+      "source": "c3pcommunity",
+      "target": "c3n3",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3g0",
+      "source": "c3pincome",
+      "target": "c3g0",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
+    {
+      "id": "member-c3g1",
+      "source": "c3pincome",
+      "target": "c3g1",
+      "kind": "membership",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Klusterin jäsennys; ei väitetty syy-yhteys.",
+      "transmission": "jäsennys",
+      "period": "",
+      "delay": "",
+      "evidence": "Tämä viiva osoittaa sisältöhierarkian.",
+      "alternative": "",
+      "sources": []
+    },
     {
       "id": "c0e0",
       "source": "c0n0",
@@ -204,7 +2796,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
+      "kind": "influence"
     },
     {
       "id": "c0e1",
@@ -226,7 +2819,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
+      "kind": "influence"
     },
     {
       "id": "c0e2",
@@ -247,7 +2841,8 @@
           "ref": 1
         }
       ],
-      "delay": "Myöhemmät vuosikymmenet"
+      "delay": "Myöhemmät vuosikymmenet",
+      "kind": "influence"
     },
     {
       "id": "c0group0",
@@ -268,7 +2863,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ryhmien eroa on seurattava ajassa"
+      "delay": "Ryhmien eroa on seurattava ajassa",
+      "kind": "influence"
     },
     {
       "id": "c0group1",
@@ -289,7 +2885,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ryhmien eroa on seurattava ajassa"
+      "delay": "Ryhmien eroa on seurattava ajassa",
+      "kind": "influence"
     },
     {
       "id": "c1e0",
@@ -312,7 +2909,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
+      "kind": "influence"
     },
     {
       "id": "c1e1",
@@ -334,7 +2932,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
+      "kind": "influence"
     },
     {
       "id": "c1e2",
@@ -355,7 +2954,8 @@
           "ref": 1
         }
       ],
-      "delay": "Myöhemmät vuosikymmenet"
+      "delay": "Myöhemmät vuosikymmenet",
+      "kind": "influence"
     },
     {
       "id": "c1group0",
@@ -376,7 +2976,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ryhmien eroa on seurattava ajassa"
+      "delay": "Ryhmien eroa on seurattava ajassa",
+      "kind": "influence"
     },
     {
       "id": "c1group1",
@@ -397,7 +2998,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ryhmien eroa on seurattava ajassa"
+      "delay": "Ryhmien eroa on seurattava ajassa",
+      "kind": "influence"
     },
     {
       "id": "c2e0",
@@ -420,7 +3022,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
+      "kind": "influence"
     },
     {
       "id": "c2e1",
@@ -442,7 +3045,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
+      "kind": "influence"
     },
     {
       "id": "c2e2",
@@ -463,7 +3067,8 @@
           "ref": 1
         }
       ],
-      "delay": "Myöhemmät vuosikymmenet"
+      "delay": "Myöhemmät vuosikymmenet",
+      "kind": "influence"
     },
     {
       "id": "c2group0",
@@ -484,7 +3089,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ryhmien eroa on seurattava ajassa"
+      "delay": "Ryhmien eroa on seurattava ajassa",
+      "kind": "influence"
     },
     {
       "id": "c2group1",
@@ -505,7 +3111,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ryhmien eroa on seurattava ajassa"
+      "delay": "Ryhmien eroa on seurattava ajassa",
+      "kind": "influence"
     },
     {
       "id": "c3e0",
@@ -528,7 +3135,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
+      "kind": "influence"
     },
     {
       "id": "c3e1",
@@ -550,7 +3158,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu"
+      "delay": "Ajallinen järjestys; tarkkaa viivettä ei arvioitu",
+      "kind": "influence"
     },
     {
       "id": "c3e2",
@@ -571,7 +3180,8 @@
           "ref": 1
         }
       ],
-      "delay": "Myöhemmät vuosikymmenet"
+      "delay": "Myöhemmät vuosikymmenet",
+      "kind": "influence"
     },
     {
       "id": "c3group0",
@@ -592,7 +3202,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ryhmien eroa on seurattava ajassa"
+      "delay": "Ryhmien eroa on seurattava ajassa",
+      "kind": "influence"
     },
     {
       "id": "c3group1",
@@ -613,7 +3224,8 @@
           "ref": 1
         }
       ],
-      "delay": "Ryhmien eroa on seurattava ajassa"
+      "delay": "Ryhmien eroa on seurattava ajassa",
+      "kind": "influence"
     },
     {
       "id": "carry20",
@@ -629,7 +3241,8 @@
       "evidence": "Tämä yhteys on tutkimuskysymys. Artikkelien lähteet kuvaavat lähtökohtia; ne eivät todista tätä ajanjaksojen välistä syy-yhteyttä.",
       "alternative": "Sama myöhempi ilmiö voi syntyä myös uusista päätöksistä, väestörakenteesta tai muista häiriöistä.",
       "sources": [],
-      "delay": "Pitkä aikaväli; viivettä ei mitattu"
+      "delay": "Pitkä aikaväli; viivettä ei mitattu",
+      "kind": "influence"
     },
     {
       "id": "carry21",
@@ -645,7 +3258,8 @@
       "evidence": "Tämä yhteys on tutkimuskysymys. Artikkelien lähteet kuvaavat lähtökohtia; ne eivät todista tätä ajanjaksojen välistä syy-yhteyttä.",
       "alternative": "Sama myöhempi ilmiö voi syntyä myös uusista päätöksistä, väestörakenteesta tai muista häiriöistä.",
       "sources": [],
-      "delay": "Pitkä aikaväli; viivettä ei mitattu"
+      "delay": "Pitkä aikaväli; viivettä ei mitattu",
+      "kind": "influence"
     },
     {
       "id": "carry22",
@@ -661,7 +3275,186 @@
       "evidence": "Tämä yhteys on tutkimuskysymys. Artikkelien lähteet kuvaavat lähtökohtia; ne eivät todista tätä ajanjaksojen välistä syy-yhteyttä.",
       "alternative": "Sama myöhempi ilmiö voi syntyä myös uusista päätöksistä, väestörakenteesta tai muista häiriöistä.",
       "sources": [],
-      "delay": "Pitkä aikaväli; viivettä ei mitattu"
+      "delay": "Pitkä aikaväli; viivettä ei mitattu",
+      "kind": "influence"
+    },
+    {
+      "id": "mechanism-link-0",
+      "source": "c0mwork0",
+      "target": "c0mhousing0",
+      "kind": "influence",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Työpaikkojen sijainti saattoi lisätä asuntojen tarvetta.",
+      "transmission": "tutkittava välittyminen",
+      "period": "Ankkurin sisäinen tai ankkurien välinen reitti",
+      "delay": "Ei mitattua viivettä",
+      "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
+      "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
+      "sources": []
+    },
+    {
+      "id": "mechanism-link-1",
+      "source": "c0mhousing1",
+      "target": "c2mhousing0",
+      "kind": "influence",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Voisiko aiemmin rakentunut sijaintirakenne välittää myöhempiä asumisen ehtoja?",
+      "transmission": "tutkittava välittyminen",
+      "period": "Ankkurin sisäinen tai ankkurien välinen reitti",
+      "delay": "Ei mitattua viivettä",
+      "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
+      "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
+      "sources": []
+    },
+    {
+      "id": "mechanism-link-2",
+      "source": "c1meducation0",
+      "target": "c1mwork0",
+      "kind": "influence",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Valmistumisajankohta kytkeytyi työhön pääsyn tilanteeseen.",
+      "transmission": "tutkittava välittyminen",
+      "period": "Ankkurin sisäinen tai ankkurien välinen reitti",
+      "delay": "Ei mitattua viivettä",
+      "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
+      "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
+      "sources": []
+    },
+    {
+      "id": "mechanism-link-3",
+      "source": "c1mwork1",
+      "target": "c2mincome0",
+      "kind": "influence",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Voisiko aiempi työuran katkos liittyä myöhempään säästöpuskuriin?",
+      "transmission": "tutkittava välittyminen",
+      "period": "Ankkurin sisäinen tai ankkurien välinen reitti",
+      "delay": "Ei mitattua viivettä",
+      "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
+      "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
+      "sources": []
+    },
+    {
+      "id": "mechanism-link-4",
+      "source": "c2mincome1",
+      "target": "c2mhousing1",
+      "kind": "influence",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Hintojen nousu saattoi kaventaa välttämättömään kulutukseen jäävää liikkumavaraa.",
+      "transmission": "tutkittava välittyminen",
+      "period": "Ankkurin sisäinen tai ankkurien välinen reitti",
+      "delay": "Ei mitattua viivettä",
+      "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
+      "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
+      "sources": []
+    },
+    {
+      "id": "mechanism-link-5",
+      "source": "c2mservices0",
+      "target": "c2mincome0",
+      "kind": "influence",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "question",
+      "mechanism": "Miten toimeentuloturva vaikutti puskurin riittävyyteen?",
+      "transmission": "tutkittava välittyminen",
+      "period": "Ankkurin sisäinen tai ankkurien välinen reitti",
+      "delay": "Ei mitattua viivettä",
+      "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
+      "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
+      "sources": []
+    },
+    {
+      "id": "mechanism-link-6",
+      "source": "c3mwork0",
+      "target": "c3mcommunity0",
+      "kind": "influence",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "scenario",
+      "mechanism": "Tehtävien muokkaus voisi auttaa oman paikan syntymistä.",
+      "transmission": "tutkittava välittyminen",
+      "period": "Ankkurin sisäinen tai ankkurien välinen reitti",
+      "delay": "Ei mitattua viivettä",
+      "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
+      "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
+      "sources": []
+    },
+    {
+      "id": "mechanism-link-7",
+      "source": "c3mservices1",
+      "target": "c3mcommunity0",
+      "kind": "influence",
+      "modes": [
+        "response",
+        "trace",
+        "groups"
+      ],
+      "status": "scenario",
+      "mechanism": "Tuen jatkuvuus voisi auttaa osallistumisen kestävyyttä.",
+      "transmission": "tutkittava välittyminen",
+      "period": "Ankkurin sisäinen tai ankkurien välinen reitti",
+      "delay": "Ei mitattua viivettä",
+      "evidence": "Tämä on täsmennettävä mekanismikysymys. Yhteyttä ei ole osoitettu suoraan tämän näkymän aineistolla.",
+      "alternative": "Myös muut päätökset, lähtökohdat ja myöhemmät häiriöt voivat selittää kehitystä.",
+      "sources": []
+    }
+  ],
+  "themes": [
+    {
+      "id": "work",
+      "label": "Työ"
+    },
+    {
+      "id": "housing",
+      "label": "Asuminen"
+    },
+    {
+      "id": "education",
+      "label": "Koulutus"
+    },
+    {
+      "id": "income",
+      "label": "Toimeentulo"
+    },
+    {
+      "id": "services",
+      "label": "Palvelut"
+    },
+    {
+      "id": "community",
+      "label": "Yhteisöt"
     }
   ]
 }
