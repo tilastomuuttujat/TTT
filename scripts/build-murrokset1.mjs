@@ -4,7 +4,7 @@ const defaults=JSON.parse(fs.readFileSync('assets/murrokset1-guide.json','utf8')
 function replaceOnce(before,after){if(source.indexOf(before)<0||source.indexOf(before)!==source.lastIndexOf(before))throw Error('Patch mismatch: '+before.slice(0,60));source=source.replace(before,after);}
 const start=source.lastIndexOf('function kn({index:'),end=source.indexOf('var An=Object.defineProperty',start);
 if(start<0||end<0)throw Error('Original tour boundaries missing');
-source=source.slice(0,start)+fs.readFileSync('scripts/murrokset1-tour.txt','utf8')+source.slice(end);
+source=source.slice(0,start)+fs.readFileSync('scripts/murrokset1-tour.txt','utf8')+fs.readFileSync('scripts/murrokset1-explorer.txt','utf8')+source.slice(end);
 replaceOnce('],En=11e3;function Dn',`],En=27e3;Tn=Tn.map((chapter,i)=>({...chapter,...guideContent.chapters[i]}));function Dn`);
 replaceOnce('if(u||b||g||f!==void 0||n)return;',`if(u||b||g||f!==void 0||n||ne||ie||window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)return;`);
 replaceOnce('},[u,b,g,f,n]);function A', '},[u,b,g,f,n,ne,ie]);function A');
@@ -14,6 +14,8 @@ replaceOnce('↓ Taka-askel','↓ Oletus: mahdollisuudet heikkenevät');
 replaceOnce('"aria-label":`Syy–seuraus-kehä`','"aria-label":`Tutkittava yhteysketju`');
 replaceOnce('return(0,L.jsxs)(`main`,{className:`atlas-shell`', '(0,S.useEffect)(()=>{if(b||u)return;const requested=new URLSearchParams(window.location.search).get("story");if(requested!==null&&/^[0-3]$/.test(requested)){p(Number(requested));h(false);}},[b,u]);return(0,L.jsxs)(`main`,{className:`atlas-shell`');
 replaceOnce('children:[(0,L.jsx)(`section`,{id:`top`', 'children:[!b&&!u&&!M&&(0,L.jsx)(MurrosAnalysis,{index:f,onPause:()=>h(false),onIndex:i=>{p(i);h(false);}}),(0,L.jsx)(`section`,{id:`top`');
+replaceOnce('className:`opening-map`,children:[', 'className:`opening-map`,children:[!b&&!u&&!M&&(0,L.jsx)(MurrosExplorer,{index:f,onIndex:i=>{p(i);h(false);},onPause:()=>h(false)}),');
+replaceOnce('style:{left:`${e.x}%`,top:`${e.y}%`,zIndex:10+r}', '"data-year":e.item.year_start,style:{left:`${e.x}%`,top:`${e.y}%`,zIndex:10+r}');
 const articles=JSON.parse(fs.readFileSync('stories/stories.json','utf8')).stories;
 source='const storyContent='+JSON.stringify(articles)+';\n'+source;
 const header=`let guideContent=${JSON.stringify(defaults)};\ntry{const response=await fetch(new URL('./murrokset1-guide.json',import.meta.url),{cache:'no-cache'});if(response.ok){const data=await response.json();if(data.schema_version===1&&Array.isArray(data.chapters)&&data.chapters.length===4&&data.chapters.every(c=>typeof c.title==='string'&&typeof c.text==='string'&&typeof c.article_url==='string'&&c.article_url.startsWith('./stories/')&&Array.isArray(c.preview_lines)&&c.preview_lines.length===3&&c.preview_lines.every(line=>typeof line==='string')&&Array.isArray(c.phases)&&c.phases.length===3&&c.phases.every(p=>typeof p.title==='string'&&typeof p.text==='string')))guideContent=data;}}catch{}\n// END GUIDE LOADER\n`;

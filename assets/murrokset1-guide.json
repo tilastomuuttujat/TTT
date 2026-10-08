@@ -64,6 +64,30 @@
         "today": "Työpaikan synty ei vielä kerro, voiko ihminen asua sen lähellä ja järjestää arkensa.",
         "question": "Muuttuvatko työ, asuminen ja palvelut samaan tahtiin?",
         "alternative": "Myös ikärakenne ja ihmisten omat muuttovalinnat vaikuttivat alueiden eroihin."
+      },
+      "flows": {
+        "response": {
+          "labels": [
+            "Asunto, koulutus, palvelut",
+            "Uuden arjen rakentuminen"
+          ],
+          "note": "Työn perässä muuttaminen tarvitsi arjen edellytyksiä. Tutki, milloin ne syntyivät ja ketkä pääsivät niiden piiriin."
+        },
+        "trace": {
+          "labels": [
+            "Muutto ja rakentaminen",
+            "Alueiden erilaiset kehityspolut"
+          ],
+          "note": "Muuttoliike ja rakennettu ympäristö jatkuivat yksittäistä muuttopäätöstä pidempään. Virta ei mittaa hyvinvointieroa."
+        },
+        "groups": {
+          "labels": [
+            "Mahdollisuus muuttaa",
+            "Muuttajat",
+            "Lähtöalueille jääneet"
+          ],
+          "note": "Haarat nimeävät vertailtavat ryhmät. Niiden samanlainen leveys ei kuvaa ryhmien kokoa tai kohtaloiden suuruuseroa."
+        }
       }
     },
     {
@@ -129,6 +153,30 @@
         "today": "Talouden elpyminen ja ihmisen työuran toipuminen voivat olla eri asioita.",
         "question": "Pääsevätkö heikossa tilanteessa aloittaneet mukaan myös elpymiseen?",
         "alternative": "Koulutusala, alue ja myöhemmät työmarkkinamuutokset voivat selittää osan eroista."
+      },
+      "flows": {
+        "response": {
+          "labels": [
+            "Työhön pääsy ja elpyminen",
+            "Työuran toipuminen?"
+          ],
+          "note": "Uusien työpaikkojen synty ei vielä osoita, että lamassa aloittaneet pääsivät mukaan. Paluun mekanismi on tutkittava erikseen."
+        },
+        "trace": {
+          "labels": [
+            "Vaikea työuran alku",
+            "Myöhemmät työuraerot"
+          ],
+          "note": "Kohorttivertailut kuvaavat myöhempiä eroja. Katkoviiva osoittaa tutkittavan yhteyden; se ei eristä laman syyvaikutusta."
+        },
+        "groups": {
+          "labels": [
+            "Valmistumisajankohta",
+            "Vuonna 1992 valmistuneet",
+            "Myöhemmin valmistuneet"
+          ],
+          "note": "Vertaa ryhmien myöhempää kehitystä ja huomioi koulutusala, alue ja myöhemmät työmarkkinamuutokset."
+        }
       }
     },
     {
@@ -194,6 +242,30 @@
         "today": "Sama hinnannousu voi viedä yhden kotitalouden säästöjä ja toisen välttämätöntä kulutusta.",
         "question": "Kenelle jää liikkumavaraa seuraavan häiriön varalle?",
         "alternative": "Kulutusrakenne ja kriisien erilainen osuminen toimialoihin vaikuttivat tilanteeseen."
+      },
+      "flows": {
+        "response": {
+          "labels": [
+            "Toimeentuloturva ja puskurit",
+            "Arjen kantaminen"
+          ],
+          "note": "Turva, säästöt ja välttämättömät menot välittivät kriisien vaikutuksia. Niiden merkitys erosi kotitalouksittain."
+        },
+        "trace": {
+          "labels": [
+            "Tulojen ja hintojen häiriöt",
+            "Jäikö liikkumavara pienemmäksi?"
+          ],
+          "note": "Pysyvä jälki on avoin kysymys: se pitää osoittaa samojen ryhmien seurannalla. Kuvio ei väitä jälkeä todistetuksi."
+        },
+        "groups": {
+          "labels": [
+            "Tulot, menot ja puskurit",
+            "Vähän liikkumavaraa",
+            "Enemmän liikkumavaraa"
+          ],
+          "note": "Haarat auttavat kysymään, miten sama häiriö kohtasi erilaiset lähtökohdat. Ryhmäkohtaisia vaikutuskokoja ei esitetä."
+        }
       }
     },
     {
@@ -259,6 +331,30 @@
         "today": "Osallistumisen este voi liittyä myös työn järjestämiseen.",
         "question": "Lisääkö työn mukautus kestävää osallistumista ilman kohtuutonta kuormitusta?",
         "alternative": "Työvoiman kysyntä, työn mielekkyys ja tuen jatkuvuus voivat ratkaista tuloksen."
+      },
+      "flows": {
+        "response": {
+          "labels": [
+            "Tehtävien, ajan ja tuen muokkaus",
+            "Kestävä osallistuminen?"
+          ],
+          "note": "Ehdollinen tulevaisuuspolku: työn mukautus voisi auttaa, jos työ on mielekästä ja tuki jatkuu. Tulos ei ole ennuste."
+        },
+        "trace": {
+          "labels": [
+            "Osallistumisen jatkuvuus",
+            "Oma paikka myös myöhemmin?"
+          ],
+          "note": "Seurattava tavoite on osallistumisen kestävyys ja kuormitus. Tämän polun yhteiskunnallista vaikutusta ei ole mitattu."
+        },
+        "groups": {
+          "labels": [
+            "Työn järjestäminen",
+            "Mukautuksesta hyötyvät",
+            "Ilman sopivaa järjestelyä jäävät"
+          ],
+          "note": "Ryhmät kuvaavat skenaarion vertailukysymystä. Osallistuminen riippuu myös kysynnästä, mielekkyydestä ja tuen jatkuvuudesta."
+        }
       }
     }
   ]

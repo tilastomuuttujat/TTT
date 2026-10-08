@@ -1,0 +1,47 @@
+const murrosQuestions=[
+ {key:'response',title:'Seuraa yhteiskunnan vastausta',prompt:'Seurasivatko arjen edellytykset muutosta?'},
+ {key:'trace',title:'Etsi pitkä jälki',prompt:'Mikä jatkui muutoksen jälkeen?'},
+ {key:'groups',title:'Seuraa ryhmien eriytymistä',prompt:'Kenen mahdollisuudet muuttuivat?'}
+];
+function murrosFlowGeometry(width,height,origin,mode){
+ const clamp=(v,min,max)=>Math.max(min,Math.min(v,max));
+ const sx=clamp(origin.x,40,width-40),sy=clamp(origin.y,70,height-100);
+ const direction=sx>width*.55?-1:1;
+ const endX=clamp(sx+direction*width*.32,65,width-65),middleX=(sx+endX)/2;
+ const baseline=clamp(sy+(sy<height*.45?140:-140),90,height-100);
+ const points=mode==='groups'?[{x:sx,y:sy},{x:middleX,y:baseline},{x:endX,y:baseline-55},{x:endX,y:baseline+55}]:[{x:sx,y:sy},{x:middleX,y:baseline},{x:endX,y:baseline}];
+ const edges=mode==='groups'?[[0,1],[1,2],[1,3]]:[[0,1],[1,2]];
+ return {points,paths:edges.map(([a,b])=>{const p=points[a],q=points[b],bend=(p.x+q.x)/2;return `M${p.x},${p.y} C${bend},${p.y} ${bend},${q.y} ${q.x},${q.y}`;})};
+}
+function MurrosExplorer({index,onIndex,onPause}){
+ const [open,setOpen]=S.useState(false),[question,setQuestion]=S.useState(null),[running,setRunning]=S.useState(true),[expanded,setExpanded]=S.useState(false),[geometry,setGeometry]=S.useState(null);
+ const root=S.useRef(null),drawer=S.useRef(null),trigger=S.useRef(null),motion=S.useRef(null);
+ const active=Number.isInteger(index)?index:0,chapter=Tn[active],flow=chapter.flows?.[question];
+ const close=()=>{setOpen(false);window.requestAnimationFrame(()=>trigger.current?.focus());};
+ S.useLayoutEffect(()=>{if(!open)return;const node=drawer.current;node.showModal();if(node.animate&&!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)motion.current=node.animate([{transform:'translateX(-100%)'},{transform:'translateX(0)'}],{duration:550,easing:'cubic-bezier(.22,.75,.2,1)'});return()=>{motion.current?.cancel();node.close();};},[open]);
+ S.useLayoutEffect(()=>{
+  const parent=root.current?.parentElement,network=parent?.querySelector('.atlas-network');if(!network)return;
+  parent.classList.toggle('explorer-expanded',expanded);network.classList.toggle('explorer-filtered',!!question);
+  const measure=()=>{const bounds=parent.getBoundingClientRect(),nodes=[...network.querySelectorAll('.atlas-node')];let source;
+   nodes.forEach(node=>{const year=Number(node.dataset.year),match=year>=chapter.range[0]&&year<=chapter.range[1];node.classList.toggle('explorer-included',!!question&&match);if(match&&!source)source=node;});
+   if(!question){setGeometry(null);return;}if(!source){setGeometry(null);return;}
+   const b=source.querySelector('i')?.getBoundingClientRect()||source.getBoundingClientRect();setGeometry(murrosFlowGeometry(bounds.width,bounds.height,{x:b.left+b.width/2-bounds.left,y:b.top+b.height/2-bounds.top},question));
+  };measure();const observer=typeof ResizeObserver==='function'?new ResizeObserver(measure):null;observer?.observe(parent);window.addEventListener('resize',measure);
+  return()=>{observer?.disconnect();window.removeEventListener('resize',measure);parent.classList.remove('explorer-expanded');network.classList.remove('explorer-filtered');network.querySelectorAll('.explorer-included').forEach(n=>n.classList.remove('explorer-included'));};
+ },[question,active,expanded]);
+ const choose=key=>{onPause?.();onIndex(active);setQuestion(key);setRunning(true);close();};
+ const questionMeta=murrosQuestions.find(q=>q.key===question);
+ return L.jsxs('div',{ref:root,className:'murros-explorer',children:[
+ L.jsx('button',{ref:trigger,type:'button',className:'murros-story-tab explorer-handle',hidden:open,'aria-expanded':open,'aria-label':'Avaa ohjaamo',onClick:()=>{onPause?.();onIndex(active);setOpen(true);},children:L.jsx('span',{children:'Ohjaamo'})}),
+ open&&L.jsxs('dialog',{ref:drawer,className:'murros-story-dialog explorer-drawer','aria-labelledby':'explorer-title',onCancel:event=>{event.preventDefault();close();},children:[
+ L.jsx('button',{type:'button',className:'murros-story-tab explorer-close-handle',onClick:close,children:L.jsx('span',{children:'Sulje ohjaamo'})}),L.jsx('button',{type:'button',className:'murros-story-close','aria-label':'Sulje ohjaamo',onClick:close,autoFocus:true,children:'×'}),
+ L.jsxs('div',{className:'murros-story-body',children:[L.jsx('h2',{id:'explorer-title',children:'Mitä haluat seurata?'}),L.jsx('p',{children:'Kysymys nostaa samasta kartasta esiin tutkittavan yhteysketjun. Virtausten leveys ei kuvaa määriä.'}),
+ L.jsxs('fieldset',{children:[L.jsx('legend',{children:'Ajanjakso'}),L.jsx('select',{'aria-label':'Tutkittava ajanjakso',value:active,onChange:event=>onIndex(Number(event.target.value)),children:Tn.map((c,i)=>L.jsx('option',{value:i,children:c.analysis?.label+' · '+c.title},i))})]}),
+ L.jsx('div',{className:'explorer-questions',children:murrosQuestions.map(q=>L.jsxs('button',{type:'button','aria-pressed':q.key===question,onClick:()=>choose(q.key),children:[L.jsx('strong',{children:q.title}),L.jsx('span',{children:q.prompt})]},q.key))}),
+ L.jsxs('label',{className:'explorer-expand-option',children:[L.jsx('input',{type:'checkbox',checked:expanded,onChange:event=>setExpanded(event.target.checked)}),' Laajenna kartan työskentelytilaa']}),
+ L.jsx('button',{type:'button',className:'explorer-reset',onClick:()=>{setQuestion(null);setExpanded(false);close();},children:'Palauta ajanjaksojen kartta'})]})]}),
+ question&&flow&&L.jsxs('section',{className:`explorer-flow-layer ${running?'':'flow-stopped'}`,'aria-label':questionMeta.prompt,children:[
+ geometry&&L.jsxs('svg',{className:'explorer-streams','aria-hidden':true,children:[L.jsx('defs',{children:L.jsx('marker',{id:'murros-flow-arrow',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:5,markerHeight:5,orient:'auto-start-reverse',children:L.jsx('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:'currentColor'})})}),...geometry.paths.map((d,i)=>L.jsxs('g',{children:[L.jsx('path',{d,className:'explorer-stream-base',markerEnd:'url(#murros-flow-arrow)'}),L.jsx('path',{d,pathLength:100,className:'explorer-stream-motion',style:{animationDelay:`${i*.65}s`}})]},i))]}),
+ geometry&&geometry.points.slice(1).map((point,i)=>L.jsxs('div',{className:'explorer-flow-label',style:{left:point.x,top:point.y},children:[L.jsx('small',{children:question==='groups'&&i>0?'Tarkasteltava ryhmä':i===0?'Välittävä tekijä':'Jälki / avoin tulos'}),L.jsx('span',{children:flow.labels[i]})]},i)),
+ L.jsxs('div',{className:'explorer-flow-caption','aria-live':'polite',children:[L.jsx('strong',{children:questionMeta.prompt}),L.jsx('p',{children:flow.note}),!geometry&&L.jsx('p',{children:'Rajauksessa ei ole ankkuria. Valitse toinen ajanjakso ohjaamosta.'}),L.jsx('small',{children:'Tutkittava yhteys · tasapaksut virtaukset · ei mitattu vaikutus tai ennuste'}),L.jsx('button',{type:'button',onClick:()=>setRunning(v=>!v),children:running?'Pysäytä virtaus':'Jatka virtausta'}),L.jsx('button',{type:'button',onClick:()=>setQuestion(null),children:'Palaa karttaan'})]})]})]});
+}

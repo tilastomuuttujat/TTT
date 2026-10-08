@@ -47,3 +47,21 @@ test('interpretation stays behind its edge handle until opened and pauses playba
  let tree=render({index:2,onIndex(){},onPause(){paused=true;}});const children=tree.props.children;assert.equal(children[1],false);assert.equal(children[0].props.children.props.children,'Lue tulkinta');children[0].props.onClick();assert.equal(paused,true);
  tree=render({index:2,onIndex(){},onPause(){}});assert.equal(tree.props.children[0].props.hidden,true);assert.equal(tree.props.children[1].type,'dialog');const content=tree.props.children[1].props.children.at(-1).props.children;assert.equal(content.props.index,2);
 });
+
+test('flow geometry stays finite and branches for group comparison',async()=>{
+ const source=await readFile(new URL('scripts/murrokset1-explorer.txt',root),'utf8');const geometry=new Function(source+';return murrosFlowGeometry;')();
+ for(const [w,h] of [[320,650],[1100,650],[1400,900]])for(const mode of ['response','trace','groups']){const g=geometry(w,h,{x:w*.8,y:h*.6},mode);assert.equal(g.paths.length,mode==='groups'?3:2);assert.equal(g.points.length,mode==='groups'?4:3);for(const p of g.points){assert.ok(Number.isFinite(p.x)&&Number.isFinite(p.y));assert.ok(p.x>=0&&p.x<=w&&p.y>=0&&p.y<=h);}assert.ok(g.paths.every(p=>!p.includes('NaN')));}
+});
+
+test('cockpit applies a question to the current period and returns to the canvas',async()=>{
+ const source=await readFile(new URL('scripts/murrokset1-explorer.txt',root),'utf8');const states=[];let cursor=0,selected,paused=false;
+ const S={useState(initial){const i=cursor++;if(!(i in states))states[i]=initial;return [states[i],value=>states[i]=typeof value==='function'?value(states[i]):value];},useRef(){return {current:null};},useLayoutEffect(){}};
+ const L={jsx:(type,props)=>({type,props}),jsxs:(type,props)=>({type,props})};const render=new Function('S','L','Tn','window',source+';return MurrosExplorer;')(S,L,guide.chapters,{requestAnimationFrame(fn){fn();}});
+ const walk=n=>!n||typeof n!=='object'?[]:[n,...[n.props?.children].flat(Infinity).flatMap(walk)];const props={index:1,onIndex(value){selected=value;},onPause(){paused=true;}};
+ let nodes=walk(render(props));nodes.find(n=>n.props?.className==='murros-story-tab explorer-handle').props.onClick();cursor=0;nodes=walk(render(props));assert.ok(nodes.some(n=>n.type==='dialog'));
+ nodes.find(n=>n.type==='button'&&n.props.children?.[0]?.props?.children==='Etsi pitkä jälki').props.onClick();assert.equal(selected,1);assert.equal(paused,true);cursor=0;nodes=walk(render(props));assert.ok(!nodes.some(n=>n.type==='dialog'));assert.ok(nodes.some(n=>n.props?.className?.startsWith('explorer-flow-layer')));assert.ok(nodes.some(n=>n.type==='p'&&n.props.children===guide.chapters[1].flows.trace.note));
+});
+
+test('each chapter provides maintained labels and limits for all flow questions',()=>{
+ for(const chapter of guide.chapters)for(const key of ['response','trace','groups']){const f=chapter.flows[key];assert.equal(f.labels.length,key==='groups'?3:2);assert.ok(f.labels.every(label=>typeof label==='string'&&label.length<55));assert.ok(f.note.length>40);}
+});

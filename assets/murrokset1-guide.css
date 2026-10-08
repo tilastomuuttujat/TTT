@@ -48,3 +48,22 @@
 .murros-interpretation-dialog .analysis-chain{grid-template-columns:1fr;gap:10px}
 .murros-interpretation-dialog .analysis-evidence{grid-template-columns:1fr;gap:4px}
 .murros-interpretation-dialog .analysis-evidence dd{margin-bottom:10px}
+
+/* The cockpit changes the same canvas; flow width carries no quantitative meaning. */
+.murros-explorer{position:absolute;inset:0;pointer-events:none;z-index:32}
+.explorer-handle{position:fixed;left:0;top:50dvh;border-left:0;border-right:1px solid var(--border,#b5c9b9);border-radius:0 9px 9px 0;z-index:45}
+.explorer-handle[hidden]{display:none}
+.explorer-drawer{left:0!important;top:0!important;width:min(360px,calc(100vw - 42px));height:100dvh;max-height:100dvh;pointer-events:auto}
+.explorer-close-handle{left:auto;right:-28px;border-radius:0 9px 9px 0;border-right:1px solid var(--border,#b5c9b9);border-left:0}
+.explorer-drawer fieldset{border:0;padding:0;margin:18px 0}.explorer-drawer legend{font-size:12px;margin-bottom:6px}.explorer-drawer select{width:100%;font:inherit;padding:8px;border:1px solid var(--border,#b5c9b9);border-radius:6px;background:var(--background,#fffef7);color:inherit}
+.explorer-questions{display:flex;flex-direction:column}.explorer-questions button{border:0;border-bottom:1px solid var(--border,#b5c9b9);background:none;text-align:left;color:inherit;padding:14px 0;font:inherit;cursor:pointer}.explorer-questions strong{display:block;font-size:14px;font-weight:550;color:var(--primary,#215638)}.explorer-questions span{display:block;font-size:12px;margin-top:4px}.explorer-questions button[aria-pressed=true]{border-bottom:2px solid var(--primary,#215638)}
+.explorer-expand-option{display:flex;gap:8px;margin:22px 0;font-size:12px}.explorer-reset{border:0;background:none;color:var(--primary,#215638);text-decoration:underline;font:inherit;font-size:12px;cursor:pointer}
+.opening-map.explorer-expanded>.atlas-network{height:max(700px,85dvh)!important;min-height:700px!important}
+.atlas-network.explorer-filtered .atlas-node:not(.explorer-included){opacity:.22}.atlas-network.explorer-filtered .atlas-node.explorer-included{opacity:1!important}.atlas-network.explorer-filtered .segment{opacity:.16;animation:none!important}.atlas-network.explorer-filtered .explorer-included i{outline:2px solid #477b53;outline-offset:4px}
+.explorer-flow-layer{position:absolute;inset:0;pointer-events:none;color:var(--primary,#215638)}.explorer-streams{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}.explorer-stream-base{fill:none;stroke:currentColor;stroke-width:1.8;stroke-dasharray:5 6;opacity:.5}.explorer-stream-motion{fill:none;stroke:currentColor;stroke-width:2.4;stroke-dasharray:5 95;stroke-linecap:round;animation:explorer-flow 4s linear infinite}
+.explorer-flow-label{position:absolute;transform:translate(-50%,-50%);max-width:170px;text-align:center;padding:7px;text-shadow:0 1px 3px #fff,0 0 10px #fff;background:#ffffffe8;border-radius:50%;font:13px/1.4 var(--font-sans,"Avenir Next",Avenir,"Segoe UI",sans-serif)}.explorer-flow-label small{display:block;font-size:10px;color:var(--muted-foreground,#61705e)}.explorer-flow-label span{display:block;margin-top:3px}
+.explorer-flow-caption{position:absolute;left:50%;bottom:65px;transform:translateX(-50%);width:min(620px,calc(100% - 80px));font:13px/1.5 var(--font-sans,"Avenir Next",Avenir,"Segoe UI",sans-serif);text-align:center;background:#fffffff0;padding:8px;pointer-events:auto}.explorer-flow-caption strong{font-weight:550}.explorer-flow-caption p{margin:6px 0}.explorer-flow-caption small{display:block;font-size:10px;color:var(--muted-foreground,#61705e)}.explorer-flow-caption button{font:inherit;font-size:11px;background:none;color:inherit;border:0;text-decoration:underline;cursor:pointer;margin:8px 8px 0}
+.opening-map:has(.explorer-flow-layer) .narrator-speech,.opening-map:has(.explorer-flow-layer) .narrator-pointer,.opening-map:has(.explorer-flow-layer) .narrator-mechanism{visibility:hidden!important}
+.flow-stopped .explorer-stream-motion{animation-play-state:paused}@keyframes explorer-flow{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){.explorer-stream-motion{animation:none;stroke-dasharray:none;opacity:.35}}
+@media(max-width:650px){.explorer-flow-caption{bottom:90px;font-size:12px}.explorer-flow-label{max-width:120px;font-size:11px}}
