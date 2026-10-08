@@ -10,17 +10,19 @@
 
 .narrator-read{display:inline-block;color:#215638;font-size:14px;font-weight:650;margin:8px 0 6px;text-decoration:underline;text-underline-offset:3px;pointer-events:auto}.narrator-read:focus-visible{outline:3px solid #387abd;outline-offset:4px}.preview-guide .loop-runner{animation:loop-run 5.5s linear infinite}.preview-guide.guide-paused .loop-runner{animation-play-state:paused}.preview-guide .tour-loop span{opacity:.8}.narrator-read:hover{color:#102f1d}
 
-/* Explicit reading opens above the canvas without moving it. */
+/* Reading is a continuation of the atlas, using its typography and palette. */
 .narrator-read {border:0;background:transparent;text-align:left;font:inherit;cursor:pointer;padding:6px 0}
-.narrator-read-always {font-weight:700}
-.murros-story-dialog {position:fixed;inset:auto;margin:0;pointer-events:auto;box-sizing:border-box;width:min(720px,calc(100vw - 48px));height:min(720px,78dvh);max-height:78dvh;border:0;border-radius:12px;padding:0;background:#fcfaf5;color:#252b29;overflow:hidden;box-shadow:0 12px 48px #0004;transform-origin:center}
+.narrator-read-always {font-weight:600}
+.murros-story-dialog {position:fixed;inset:auto;margin:0;pointer-events:auto;box-sizing:border-box;width:min(620px,calc(100vw - 36px));height:min(640px,72dvh);max-height:calc(100dvh - 36px);border:1px solid var(--border,#b5c9b9);border-radius:12px;padding:0;background:var(--background,#fffef7);color:var(--foreground,#263e30);font-family:var(--font-sans,"Avenir Next",Avenir,"Segoe UI",sans-serif);font-size:14px;overflow:hidden;box-shadow:0 8px 32px #284b2926}
 .murros-story-dialog::backdrop {background:transparent}
-.murros-story-close {position:absolute;top:12px;right:16px;margin:0;z-index:2;width:44px;height:44px;border:1px solid #ccc;border-radius:50%;background:#fcfaf5;color:#252b29;font-size:32px;line-height:1;cursor:pointer}
-.murros-story-body {box-sizing:border-box;max-width:700px;height:100%;overflow-y:auto;overscroll-behavior:contain;margin:auto;padding:64px 40px 48px;font:19px/1.8 Georgia,serif;scrollbar-gutter:stable}
-.murros-story-body h1 {font-size:clamp(26px,4vw,38px);line-height:1.2;margin:12px 0 20px}
-.murros-story-body h2 {font-size:25px;line-height:1.3;margin:38px 0 16px}
-.murros-story-body p {margin:0 0 22px}
-.murros-story-body a {color:#186258;text-decoration:underline}
-.murros-story-place,.murros-story-body small {font:14px/1.5 system-ui,sans-serif;color:#526159}
-.murros-story-lead {font-size:22px}.murros-story-body li {margin-bottom:14px;overflow-wrap:anywhere}
-@media(max-width:600px){.murros-story-body{padding:64px 22px 30px;font-size:17px}.narrator-controls{flex-wrap:wrap}}
+.murros-story-close {position:absolute;top:10px;right:12px;margin:0;z-index:2;width:32px;height:32px;border:1px solid var(--border,#b5c9b9);border-radius:8px;background:var(--background,#fffef7);color:var(--primary,#294936);font-family:inherit;font-size:22px;line-height:1;cursor:pointer}
+.murros-story-close:hover {background:var(--secondary,#edf3ec)}
+.murros-story-close:focus-visible {outline:2px solid var(--primary,#294936);outline-offset:3px}
+.murros-story-body {box-sizing:border-box;max-width:620px;height:100%;overflow-y:auto;overscroll-behavior:contain;margin:auto;padding:48px 28px 30px;font-family:inherit;font-size:14px;line-height:1.65;scrollbar-gutter:stable}
+.murros-story-body h1 {font-family:inherit;font-size:20px;font-weight:550;line-height:1.4;margin:8px 0 14px;color:var(--primary,#215638)}
+.murros-story-body h2 {font-family:inherit;font-size:15px;font-weight:600;line-height:1.45;margin:26px 0 10px;color:var(--primary,#215638)}
+.murros-story-body p {margin:0 0 16px}
+.murros-story-body a {color:var(--primary,#215638);text-decoration:underline;text-underline-offset:3px}
+.murros-story-place,.murros-story-body small {font-family:inherit;font-size:11px;line-height:1.5;color:var(--muted-foreground,#61705e)}
+.murros-story-lead {font-size:14px;font-weight:550}.murros-story-body li {font-size:12px;margin-bottom:10px;overflow-wrap:anywhere}
+@media(max-width:650px){.murros-story-body{padding:46px 20px 24px;font-size:13px}.murros-story-body h1{font-size:17px}.murros-story-lead{font-size:13px}.narrator-controls{flex-wrap:wrap}}
