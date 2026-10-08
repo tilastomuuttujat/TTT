@@ -96,3 +96,8 @@
 .flower-jump{font:inherit;font-size:12px;max-width:min(480px,100%);display:block;padding:4px 8px;margin:8px 0;background:var(--background,#fffef7);border:1px solid var(--border,#b5c9b9);color:inherit;border-radius:5px}
 .flower-node-question{flex-basis:100%;margin:0}.matrix-footer button{white-space:normal;text-align:left}
 @media(max-width:650px){.matrix-canvas{top:175px;bottom:195px}.matrix-heading small{display:none}}
+
+.matrix-navigation{position:absolute;top:120px;right:42px;z-index:6;display:flex;align-items:center;gap:3px;background:var(--background,#fffef7);border:1px solid var(--border,#b5c9b9);border-radius:7px;padding:3px;box-shadow:0 2px 8px #284b2912}
+.matrix-navigation button{border:0;background:none;color:var(--primary,#215638);font:inherit;font-size:16px;min-width:34px;height:32px;cursor:pointer}.matrix-navigation button:nth-child(2){font-size:11px;min-width:52px}.matrix-navigation button:disabled{opacity:.35;cursor:default}.matrix-navigation button:focus-visible{outline:2px solid #387abd;outline-offset:-1px;border-radius:4px}
+.matrix-canvas{cursor:grab;user-select:none;-webkit-user-select:none;touch-action:pan-x pan-y}.matrix-canvas.is-panning,.matrix-canvas.is-panning *{cursor:grabbing!important}.matrix-canvas svg{flex-shrink:0}
+@media(max-width:650px){.matrix-navigation{top:178px;right:34px}}

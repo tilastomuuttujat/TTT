@@ -53,3 +53,6 @@ Uusilla ankkuripareilla on `question` sekä `provenance` (atlas-tapausten tunnis
 
 ### Tiivis sijoittelu ja aktiiviset linkit
 Kukinnot sijoitetaan neljän sarakkeen riveihin aikajärjestyksessä. Terälehtien ja mekanismien säteet on pienennetty; piirtoalueen korkeus määräytyy kukintomäärästä. Vaikutuslinkeistä renderöidään vain valitusta lähtökohdasta jatkuvat reitit ja suorat vastinparit. Vastinparin valinta rajaa linkit kyseiseen pariin. Piilotettuja vaikutuslinkkejä ei jätetä napsautettaviksi tai näppäimistökohteiksi. Klusterin ohuet jäsennysvarret säilyvät. Kukintoon ja vastinpariin siirtyminen vierittää sekä vaaka- että pystysuunnassa.
+
+### Pan ja zoom
+Matriisin − / + -painikkeet zoomaavat 45–250 % välillä. Prosenttipainike palauttaa 100 %. Zoom säilyttää näkymän keskipisteen kohdalla olevan kuvion pisteen mahdollisuuksien mukaan vieritysrajojen sisällä. Ankkuri- ja vastinparihypyt huomioivat zoomin. Hiiren veto siirtää näkymää; kuuden pikselin kynnys erottaa vedon klikkauksesta ja vedon jälkeinen klikkaus estetään. Kosketuksella käytetään selaimen normaalia vieritystä. Näkymään kohdistettuna +, − ja 0 toimivat myös näppäimistöllä.

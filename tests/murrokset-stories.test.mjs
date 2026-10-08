@@ -103,3 +103,13 @@ test('compact flower rows keep all positions inside a bounded canvas',async()=>{
  for(const p of layout.positions.values())assert.ok(p.x>=0&&p.x<layout.width&&p.y>=0&&p.y<layout.height);
  const anchors=data.nodes.filter(n=>n.kind==='anchor').sort((a,b)=>a.rank-b.rank);assert.equal(layout.positions.get(anchors[0].id).y,layout.positions.get(anchors[3].id).y);assert.ok(layout.positions.get(anchors[4].id).y>layout.positions.get(anchors[3].id).y);
 });
+
+test('zoom preserves the diagram point at the viewport center',async()=>{
+ const source=await readFile(new URL('scripts/murrokset1-matrix.txt',root),'utf8'),offset=new Function(source+';return murrosZoomOffset;')();
+ const next=offset(300,600,1,1.2);assert.equal(next,420);assert.equal(offset(next,600,1.2,1),300);assert.equal(offset(0,600,1,.45),0);
+});
+
+test('mouse drag pans after a threshold and suppresses the resulting click',async()=>{
+ const source=await readFile(new URL('scripts/murrokset1-matrix.txt',root),'utf8'),data=JSON.parse(await readFile(new URL('assets/murrokset1-matrix.json',root),'utf8'));const S={useState(initial){return [initial,()=>{}];},useRef(){return {current:null};},useEffect(){},useLayoutEffect(){}};const L={jsx:(type,props)=>({type,props}),jsxs:(type,props)=>({type,props})};const render=new Function('S','L','matrixContent','murrosQuestions','storyContent',source+';return MurrosMatrix;')(S,L,data,[{key:'trace',prompt:'Mikä jatkui?'}],content.stories);const walk=n=>!n||typeof n!=='object'?[]:[n,...[n.props?.children].flat(Infinity).flatMap(walk)];const nodes=walk(render({active:0,question:'trace',running:true,onRunning(){},onReset(){}})),props=nodes.find(n=>n.props?.className==='matrix-canvas').props;let captured=false,prevented=false,stopped=false;const target={scrollLeft:200,scrollTop:100,classList:{add(){},remove(){}},setPointerCapture(){captured=true;},hasPointerCapture(){return true;},releasePointerCapture(){}};
+ props.onPointerDown({pointerType:'mouse',button:0,pointerId:1,clientX:100,clientY:100,currentTarget:target});props.onPointerMove({pointerId:1,clientX:103,clientY:100,currentTarget:target,preventDefault(){}});assert.equal(target.scrollLeft,200);props.onPointerMove({pointerId:1,clientX:130,clientY:120,currentTarget:target,preventDefault(){}});assert.equal(target.scrollLeft,170);assert.equal(target.scrollTop,80);assert.equal(captured,true);props.onPointerUp({pointerId:1,currentTarget:target});props.onClickCapture({detail:1,preventDefault(){prevented=true;},stopPropagation(){stopped=true;}});assert.ok(prevented&&stopped);assert.equal(nodes.filter(n=>n.type==='button'&&['Loitonna näkymää','Lähennä näkymää'].includes(n.props?.['aria-label'])).length,2);
+});
