@@ -14,8 +14,14 @@ Suorita repositorion juuresta:
 
 ```sh
 node scripts/patch-murrokset.mjs
-node --check assets/murrokset-reader.js
+node --input-type=module --check < assets/murrokset-reader.js
 node --test tests/murrokset.test.mjs
 ```
 
 Julkaise myös muodostettu `assets/murrokset-reader.js`. Kuvaajan viiva katkeaa puuttuviin vuosiin, saman vuoden useisiin arvoihin ja havainto/arvio-statuksen vaihtumiseen. Näin viiva ei väitä aineistoa yhtenäiseksi.
+
+Etunäkymän pystysuuntainen asetelma tallentuu ankkurin `data.overview`-kenttään. Sitä voi muokata ylläpitolomakkeen kohdassa **Etunäkymän tutkittava asetelma**. Avauspainikkeet valitaan numerolla `featured_order`; tyhjä arvo jättää ankkurin syventävään luetteloon. Muokkaa `hypothesis`, `production`, `livelihood`, `responsibility`, `support`, `counter`, `alternative`, `question` ja `reviewed` tutkimuksen edetessä. `pattern` (`converging`, `diverging`, `unclear`) muuttaa käsitteellistä viivaluonnosta. Viivojen sijainti ei ole mittaustulos.
+
+Tutkimustila (`hypothesis`, `supported`, `contested`) on ankkurin ylläpitolomakkeessa erikseen. Lisääntyvä lähde- tai tilastosarjamäärä ei muuta tilaa automaattisesti. Julkaise päivitetty asetelma JSON-viennillä kuten muutkin ankkurimuutokset. Opastus etenee kolmessa vaiheessa ja pysähtyy; lukija voi pysäyttää tai käynnistää sen. Vähennetyn liikkeen asetus estää automaattisen opastuksen ja virtausanimaation.
+
+Avauksen luettava komponentti on `scripts/murrokset-opening.txt`; tyylit ovat `assets/murrokset-opening.css`. Arc-kytkentäkartta on syventävä lisänäkymä.

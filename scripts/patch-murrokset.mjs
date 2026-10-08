@@ -2,10 +2,10 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 let source=fs.readFileSync('assets/index--gBIk-ew.js','utf8');
-const core="import {loadPublication,caseEvidence,chartModel,validRelations,allRows} from './murrokset-core.mjs';\nlet publicationMeta={};\n";
+const core="import {loadPublication,caseEvidence,chartModel,validRelations,allRows,openingModel} from './murrokset-core.mjs';\nlet publicationMeta={};\n";
 function replaceOnce(before,after){if(!source.includes(before)||source.indexOf(before)!==source.lastIndexOf(before))throw Error('Expected unique patch: '+before.slice(0,80));source=source.replace(before,after);}
 function replaceBlock(start,end,replacement){const a=source.lastIndexOf(start),b=source.indexOf(end,a+start.length);if(a<0||b<0)throw Error('Patch boundary missing: '+start);source=source.slice(0,a)+replacement+source.slice(b);}
-const components=fs.readFileSync('scripts/murrokset-components.txt','utf8');
+const components=fs.readFileSync('scripts/murrokset-components.txt','utf8')+'\n'+fs.readFileSync('scripts/murrokset-opening.txt','utf8');
 replaceBlock('function Sf(', 'function wf()',components+'\n');
 replaceBlock('function _n(e){','function vn(e)',`function _n(e){return {direction:e.data.direction??(e.kind==='future'?'branch':'adapt'),impact:typeof e.data.impact==='number'?Math.max(-3,Math.min(3,e.data.impact)):0};}`);
 replaceBlock('function yn(e){','var bn=',`function yn(e){return caseEvidence(e);}`);
@@ -36,6 +36,8 @@ replaceOnce('return k(),()=>e.subscription.unsubscribe()},[])', 'return()=>e.sub
 replaceOnce('async function k(live=false,authSession=w)', 'async function k(live=false,authSession=w)');
 // Separate published load from optional maintenance authentication.
 replaceOnce('(0,S.useEffect)(()=>{if(!ne&&!w)return;', '(0,S.useEffect)(()=>{void k();},[]),(0,S.useEffect)(()=>{if(!ne&&!w)return;');
+const overviewFields=[['featured_order','Avauspainikkeen järjestys (tyhjä = muu ankkuri)'],['period','Avauspainikkeen ajanjakso'],['title','Avauspainikkeen otsikko'],['hypothesis','Tutkittava tulkinta'],['production','Tuotannon asetelma'],['livelihood','Toimeentulon asetelma'],['responsibility','Yhteisen vastuun asetelma'],['support','Tulkintaa tukeva näyttö'],['counter','Tulkinnan vastanäyttö'],['alternative','Vaihtoehtoinen selitys'],['question','Seuraava tutkimuskysymys'],['reviewed','Tulkinta tarkistettu (päivämäärä / versio)']];
+replaceOnce('vf.map((e,t)=>',`L.jsxs('fieldset',{className:'opening-editor',children:[L.jsx('legend',{children:'Etunäkymän tutkittava asetelma'}),...${JSON.stringify(overviewFields)}.map(([key,label])=>L.jsxs(z,{children:[label,L.jsx(B,{value:D.data.overview?.[key]??'',onChange:event=>O({...D,data:{...D.data,overview:{...D.data.overview,[key]:key==='featured_order'?(event.target.value.trim()===''?undefined:Number(event.target.value)):event.target.value}}})})]},key)),L.jsxs(z,{children:['Asetelman käsitteellinen muoto',L.jsxs('select',{value:D.data.overview?.pattern??'unclear',onChange:event=>O({...D,data:{...D.data,overview:{...D.data.overview,pattern:event.target.value}}}),children:[L.jsx('option',{value:'unclear',children:'Suhde avoin'}),L.jsx('option',{value:'converging',children:'Tutkitaan yhteensovittumista'}),L.jsx('option',{value:'diverging',children:'Tutkitaan eriytymistä'})]})]})]}),vf.map((e,t)=>`);
 // Tour is explicit: do not interrupt reading after seven seconds of inactivity.
 replaceBlock('(0,S.useEffect)(()=>{if(u||b||g||f!==void 0||n)return;', 'function A(e,t)', 'void 0;');
 // Source of insight remains a hypothesis, not fixed numeric radar scores.
@@ -48,6 +50,10 @@ replaceOnce('text:`Automaatio ja osaamisvaatimukset tehostavat tuotantoa, mutta 
 replaceOnce('text:`Menoja leikataan tasapainon palauttamiseksi. Jos käyttämätöntä toimintakykyä ei saada takaisin käyttöön, leikkaukset vain siirtävät kustannuksia eteenpäin.`','text:`Tutkittava kysymys: vahvistiko sopeutus toimintakykyä vai siirtyikö kustannuksia eteenpäin? Tarkastelu tarvitsee päätöksen tavoitteen, toteutuksen, ryhmittäiset vaikutukset ja vaihtoehtoiset selitykset.`');
 replaceOnce('text:`Kestävä yhteiskunta ei maksimoi pelkkää tuottavuutta eikä pelkkää työllisyyttä. Se minimoi käyttämättömän toimintakyvyn menettämättä tuottavuushyötyjä – työtä räätälöidään ja kynnystä madalletaan.`','text:`Ehdollinen tulevaisuuspolku: työn räätälöinti ja osallistumisen kynnyksen madaltaminen voivat vahvistaa toimintakykyä. Vaikutukset, kustannukset ja toteutusedellytykset ovat tutkittavia; tämä ei ole ennuste.`');
 source=source.replaceAll('children:`Päättele automaattisesti`','children:`Ei arvioitu`');
+replaceOnce('[m,h]=(0,S.useState)(!0)',"[m,h]=(0,S.useState)(!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)");
+// The optional full-screen tour uses the same maintained interpretation as the opening.
+replaceOnce('let a=Tn[e],[o,s]', `let base=Tn[e],anchor=publicationMeta.cases?.find(c=>c.data?.overview?.featured_order===e+1),model=anchor?openingModel(anchor):null,a=model?{...base,era:model.period,title:model.hypothesis,text:model.question,loop:[model.production,model.livelihood,model.responsibility]}:base,[o,s]`);
+replaceOnce('children:`Tutkittava tulkinta · kuvitteellisen mittaprofiilin sijaan tarkista ankkurien havaintoaineisto.`', `children:model?L.jsxs('span',{className:'era-vertical',children:[L.jsx('strong',{children:model.stateLabel}),...['production','livelihood','responsibility'].map(key=>L.jsx('span',{className:'arrangement-row row-'+key,children:model[key]},key))]}):'Asetelmaa ei ole vielä ylläpidetty.'`);
 fs.writeFileSync('assets/murrokset-reader.js',core+source);
-const html=fs.readFileSync('murrokset.html','utf8').replace('<link rel="stylesheet" href="./assets/murrokset-reader.css">\n','').replace('./assets/index--gBIk-ew.js','./assets/murrokset-reader.js').replace('</head>','<link rel="stylesheet" href="./assets/murrokset-reader.css">\n</head>');fs.writeFileSync('murrokset.html',html);
+const html=fs.readFileSync('murrokset.html','utf8').replace('<link rel="stylesheet" href="./assets/murrokset-reader.css">\n','').replace('./assets/index--gBIk-ew.js','./assets/murrokset-reader.js').replace('<link rel="stylesheet" href="./assets/murrokset-opening.css">\n','').replace('</head>','<link rel="stylesheet" href="./assets/murrokset-reader.css">\n<link rel="stylesheet" href="./assets/murrokset-opening.css">\n</head>');fs.writeFileSync('murrokset.html',html);
 console.log('Patched reader bundle built.');

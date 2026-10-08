@@ -168,7 +168,19 @@
         "alternatives": "Erota toteutunut ratkaisu, aikalaisten käsittelemät vaihtoehdot ja jälkikäteen muodostettu vaihtoehto.",
         "distribution": "Toimijakohtaiset vaikutukset ovat alla avoimina tutkimuskysymyksinä.",
         "transmission": "Tutkitaan työn, maan, asumisen, rahoituksen ja infrastruktuurin yhteensovittamista.",
-        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?"
+        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?",
+        "overview": {
+          "featured_order": 1,
+          "period": "1850–1980 · laajenemisen kysymys",
+          "title": "Voivatko mahdollisuudet laajentua yhdessä?",
+          "pattern": "converging",
+          "production": "Tuotannon ja työn järjestys muuttuu.",
+          "livelihood": "Mukaan pääsemisen mahdollisuudet voivat laajentua.",
+          "responsibility": "Asuminen, koulutus ja yhteiset järjestelyt sovitetaan muutokseen.",
+          "hypothesis": "Yhteiset järjestelyt voivat auttaa tuotannon kasvua välittymään toimeentuloksi.",
+          "question": "Keille jälleenrakennuksen ratkaisut avasivat mahdollisuuksia, ja ketkä jäivät niiden ulkopuolelle?",
+          "alternative": "Toimeentulon paraneminen voi liittyä myös suhdanteisiin, väestörakenteeseen tai ryhmien valikoitumiseen."
+        }
       },
       "revision": 1,
       "created_at": "2026-10-07T16:41:23.535449+00:00",
@@ -302,7 +314,19 @@
         "alternatives": "Erota toteutunut ratkaisu, aikalaisten käsittelemät vaihtoehdot ja jälkikäteen muodostettu vaihtoehto.",
         "distribution": "Toimijakohtaiset vaikutukset ovat alla avoimina tutkimuskysymyksinä.",
         "transmission": "Tutkitaan luottoehtojen, työttömyyden, velanhoidon ja julkisen sopeutuksen erillisiä ketjuja.",
-        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?"
+        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?",
+        "overview": {
+          "featured_order": 2,
+          "period": "1990–2015 · eritahtisuuden kysymys",
+          "title": "Palautuvatko tuotanto ja toimeentulo yhdessä?",
+          "pattern": "diverging",
+          "production": "Tuotanto voi elpyä ennen työllisyyttä.",
+          "livelihood": "Työn ja toimeentulon palautuminen voi eriytyä ryhmittäin.",
+          "responsibility": "Työttömyyden ja velkaongelmien jäljet voivat jatkua.",
+          "hypothesis": "Sama talouskasvu voi palauttaa eri ryhmien mahdollisuuksia eri tavalla.",
+          "question": "Näkyykö laman jälki työllisyydessä, veloissa tai osallistumisessa vielä tuotannon elvyttyä?",
+          "alternative": "Erot voivat johtua toimialoista, iästä, koulutuksesta tai aiemmasta työmarkkina-asemasta."
+        }
       },
       "revision": 2,
       "created_at": "2026-10-07T16:41:23.535449+00:00",
@@ -434,7 +458,19 @@
         "alternatives": "Erota toteutunut ratkaisu, aikalaisten käsittelemät vaihtoehdot ja jälkikäteen muodostettu vaihtoehto.",
         "distribution": "Toimijakohtaiset vaikutukset ovat alla avoimina tutkimuskysymyksinä.",
         "transmission": "Tutkitaan kunkin shokin yhteyttä puskureihin, tukiin, luottoehtoihin ja palvelukykyyn.",
-        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?"
+        "counterevidence": "Mikä vaihtoehtoinen selitys tuottaisi saman havaitun kehityksen?",
+        "overview": {
+          "featured_order": 3,
+          "period": "2020–2025 · vastuun kysymys",
+          "title": "Korjataanko kuilua vai siirretäänkö sitä?",
+          "pattern": "unclear",
+          "production": "Pandemia, sota, hinnat ja korot vaikuttavat eri tavoin.",
+          "livelihood": "Ryhmien altistuminen ja sopeutumismahdollisuudet eroavat.",
+          "responsibility": "Rahoituksen ja palvelujen ratkaisut jakavat vastuuta.",
+          "hypothesis": "Sopeutuksen vaikutus riippuu siitä, vahvistaako se ihmisten mahdollisuuksia vai siirtääkö se kustannuksia.",
+          "question": "Mitkä kustannukset vähenivät, mitkä siirtyivät ja kenelle — kussakin erillisessä shokissa?",
+          "alternative": "Muutos voi selittyä shokin suoralla vaikutuksella eikä sitä seuranneella päätöksellä."
+        }
       },
       "revision": 1,
       "created_at": "2026-10-07T16:41:23.535449+00:00",
@@ -627,7 +663,19 @@
         "alternatives": "Vertaa nykyistä toimintatapaa, ehdotettua ratkaisua ja vähintään yhtä vaihtoehtoista toteutusta.",
         "distribution": "Arvioi hyötyjen ja kustannusten jakautuminen erikseen kullekin toimijalle.",
         "transmission": "Toimintakyvyn mahdollinen vahvistuminen välittyy osallistumiseen vain, jos myös työn, asumisen ja palvelujen esteet huomioidaan.",
-        "counterevidence": "Missä oloissa oletettu haitta ei syntyisi tai ratkaisu vahvistaisi toimintakykyä?"
+        "counterevidence": "Missä oloissa oletettu haitta ei syntyisi tai ratkaisu vahvistaisi toimintakykyä?",
+        "overview": {
+          "featured_order": 4,
+          "period": "2025 → · ehdollinen tulevaisuuspolku",
+          "title": "Voidaanko yhteensovittamista vahvistaa?",
+          "pattern": "converging",
+          "production": "Tehtäviä ja työtä voidaan järjestää uudelleen.",
+          "livelihood": "Osallistumisen kynnystä voidaan madaltaa.",
+          "responsibility": "Tuki voi kohdistua toimintakyvyn säilymiseen.",
+          "hypothesis": "Työn ja tuen yhteensovittaminen voi avata osallistumista ihmisille, joita nykyinen työnjako jättää ulkopuolelle.",
+          "question": "Millä ehdoilla osallistuminen lisääntyy, ja miten vaikutukset ja kustannukset jakautuvat?",
+          "alternative": "Osallistuminen voi lisääntyä myös suhdanteen tai muiden palvelumuutosten ansiosta."
+        }
       },
       "revision": 2,
       "created_at": "2026-10-07T16:41:23.535449+00:00",
