@@ -88,7 +88,7 @@ test('petal activation reveals mechanism controls while other petals remain comp
  const source=await readFile(new URL('scripts/murrokset1-matrix.txt',root),'utf8'),data=JSON.parse(await readFile(new URL('assets/murrokset1-matrix.json',root),'utf8'));const states=[];let cursor=0;
  const S={useState(initial){const i=cursor++;if(!(i in states))states[i]=initial;return [states[i],value=>states[i]=typeof value==='function'?value(states[i]):value];},useRef(){return {current:null};},useEffect(){},useLayoutEffect(){}};
  const L={jsx:(type,props)=>({type,props}),jsxs:(type,props)=>({type,props})};const render=new Function('S','L','matrixContent','murrosQuestions','storyContent',source+';return MurrosMatrix;')(S,L,data,[{key:'trace',prompt:'Mikä jatkui?'}],content.stories);const walk=n=>!n||typeof n!=='object'?[]:[n,...[n.props?.children].flat(Infinity).flatMap(walk)];const props={active:0,question:'trace',running:true,onRunning(){},onReset(){}};
- let nodes=walk(render(props));assert.equal(nodes.filter(n=>n.props?.className?.includes('flower-mechanism')).length,0);nodes.find(n=>n.props?.['aria-label']==='Avaa mekanismit: Lähiörakentaminen').props.onClick();cursor=0;nodes=walk(render(props));assert.ok(nodes.some(n=>n.props?.['aria-label']==='Seuraa reittiä: Asunnon sijainti'));assert.ok(!nodes.some(n=>n.props?.['aria-label']==='Seuraa reittiä: Valmistumisajankohta'));assert.ok(nodes.some(n=>n.props?.['aria-label']==='Sulje mekanismit: Lähiörakentaminen'));
+ let nodes=walk(render(props));assert.equal(nodes.filter(n=>n.props?.className?.includes('flower-mechanism')).length,0);nodes.find(n=>n.props?.['aria-label']==='Avaa mekanismit: Lähiörakentaminen').props.onClick();cursor=0;nodes=walk(render(props));assert.ok(nodes.some(n=>n.props?.['aria-label']==='Seuraa reittiä: Asunnon sijainti'));assert.ok(!nodes.some(n=>n.props?.['aria-label']==='Seuraa reittiä: Valmistumisajankohta'));assert.ok(nodes.some(n=>n.props?.['aria-label']==='Sulje mekanismit: Lähiörakentaminen'));assert.ok(nodes.filter(n=>n.props?.className?.startsWith('matrix-edge ')).every(n=>n.props.className.includes('route-active')));
 });
 
 test('phenomenon partners are found from both ends and preserve anchor provenance',async()=>{
@@ -96,4 +96,10 @@ test('phenomenon partners are found from both ends and preserve anchor provenanc
  const e=data.edges.find(e=>e.id==='anchor-pair-3');assert.ok(partners(data,e.source,'trace').some(p=>p.node.id===e.target));assert.ok(partners(data,e.target,'trace').some(p=>p.node.id===e.source));assert.equal(e.provenance.length,2);assert.equal(e.status,'question');
  const atlas=JSON.parse(await readFile(new URL('murrosatlas-data.json',root),'utf8')),ids=new Set(atlas.cases.map(c=>c.id));assert.ok(data.nodes.filter(n=>n.kind==='anchor').every(n=>ids.has(n.case_id)));const positions=layout(data);for(const p of positions.positions.values())assert.ok(p.x>=0&&p.x<positions.width&&Number.isFinite(p.y));
  const labels=data.nodes.filter(n=>n.kind==='petal').map(n=>n.label);assert.ok(!labels.includes('Työ')&&!labels.includes('Asuminen'));
+});
+
+test('compact flower rows keep all positions inside a bounded canvas',async()=>{
+ const data=JSON.parse(await readFile(new URL('assets/murrokset1-matrix.json',root),'utf8')),source=await readFile(new URL('scripts/murrokset1-matrix.txt',root),'utf8'),layout=new Function(source+';return murrosMatrixLayout;')()(data);assert.ok(layout.width<=1800);
+ for(const p of layout.positions.values())assert.ok(p.x>=0&&p.x<layout.width&&p.y>=0&&p.y<layout.height);
+ const anchors=data.nodes.filter(n=>n.kind==='anchor').sort((a,b)=>a.rank-b.rank);assert.equal(layout.positions.get(anchors[0].id).y,layout.positions.get(anchors[3].id).y);assert.ok(layout.positions.get(anchors[4].id).y>layout.positions.get(anchors[3].id).y);
 });
