@@ -1,24 +1,25 @@
-# Alkuperäisen käyrän opastus
+# Visuaalinen sisällysluettelo ja kertomukset
 
-`murrokset1.html` säilyttää alkuperäisen käyrämäisen etusivun ja ankkuripainikkeet. Seitsemän sekunnin toimettomuus käynnistää opastuksen. Ylläpitolomakkeen tai kirjautumisikkunan ollessa avoinna opastus ei käynnisty. Vähennetyn liikkeen asetus estää automaattisen käynnistyksen.
+`murrokset1.html` säilyttää alkuperäisen käyrän ja ankkuripainikkeet. Seitsemän sekunnin toimettomuus käynnistää lyhyen esittelyn. Kussakin neljässä aiheessa on kolme 5,5 sekunnin lausetta. Ilman käyttäjän reaktiota esittely vaihtaa seuraavaan aiheeseen ja kiertää aiheet. Pisteillä voi siirtyä vaiheeseen; valinta pysäyttää etenemisen. Jatka jatkaa samasta kohdasta.
 
-Jokaisessa ajanjaksossa on kolme vaihetta: katso kuvion asetelmaa, ymmärrä mahdollinen mekanismi ja koettele tulkintaa havainnoilla. Käyrävaihe seuraa kahta ankkuripistettä, 7,5 sekuntia kussakin. Koetteluvaihe kestää 12 sekuntia. Mekanismivaihe etenee kehän neljän kohdan kautta, 6,5 sekuntia kohdassa. Vaiheita tai ajanjaksoja ei valita valikosta; opastaja etenee itse. Lukija voi pysäyttää tai sulkea opastuksen. Viimeisen ajanjakson jälkeen opastus pysähtyy; lukija voi myös sulkea sen heti.
+**Lue kertomus** pysäyttää esittelyn ja avaa itsenäisen artikkelisivun. Paluulinkki käyttää `murrokset1.html?story=0…3`-osoitetta ja palauttaa valittuun aiheeseen pysäytettynä. Artikkelit toimivat ilman JavaScriptiä ja tietokantayhteyttä. Vähennetyn liikkeen asetus estää automaattisen esittelyn.
 
-Tekstejä ylläpidetään tiedostossa `assets/murrokset1-guide.json`. Säilytä neljä ajanjaksoa ja kussakin kolme vaihetta. `title` on tutkittava kysymys, `text` sen tulkinta, `loop` käsitteellisen kehän tekstit ja `phases` vaiheiden otsikot sekä selitykset. `loop_notes` sisältää neljä korostuksen mukana vaihtuvaa mekanismin selitystä. JSON luetaan sivun avautuessa. Kooste sisältää viimeksi muodostetun version varalla, jos tiedostohaku epäonnistuu. Päivitä kooste myös tekstimuutosten jälkeen, jotta varaversio vastaa julkaisua.
+## Ylläpito
+
+`assets/murrokset1-guide.json` sisältää neljä `chapters`-aihetta. Muokkaa otsikkoa, paikkaa ja aikaa (`era`), kolmea `preview_lines`-lausetta, artikkelin suhteellista `article_url`-osoitetta sekä `range`-korostusväliä. `loop` on mekanismin neljän osan teksti. `phases`, `story_lines`, `curve_notes` ja `loop_notes` ovat yhteensopivuus- ja varatekstejä. Pidä uudet esittelylauseet ytimekkäinä ja tapahtumajärjestys selkeänä.
+
+Artikkelit ovat `stories/stories.json`-tiedostossa: `slug`, otsikko, paikka ja aika, tekstin luonne, johdanto, osiot ja lähteet. Kappaleen lähdeviitteen numero vastaa oman artikkelin `sources`-listaa. Historialliset havainnot viitataan lähteisiin, toimituksellinen tulkinta erotetaan havainnoista. Tulevaisuuspolku nimetään ehdolliseksi. Keksittyä perhettä ei esitetä dokumentoituna tapauksena.
+
+Muodosta ja tarkista repositorion juuresta:
 
 ```sh
+python scripts/build-murrokset-stories.py
 node scripts/build-murrokset1.mjs
-node --input-type=module --check < assets/murrokset1-guided.js
+node --test tests/murrokset-stories.test.mjs
 ```
 
-Alkuperäistä `assets/index--gBIk-ew.js`-koostetta ja `murrokset.html`-sivua ei muuteta. Uusi opastuksen komponentti on luettavana tiedostossa `scripts/murrokset1-tour.txt`. Käyrän pisteytys ja profiilit ovat havainnollistavia tulkintoja, eivät historiallisia mittaustuloksia. Opastustekstin vahvistaminen edellyttää lähteiden ja ryhmittäisten havaintojen arviointia.
+Julkaise JSONit, muodostetut HTML-artikkelit, `stories/stories.css` ja `assets/murrokset1-guided.js`. Kooste sisältää viimeksi muodostetun opastuksen varalla, joten se kannattaa muodostaa myös tekstimuutosten jälkeen. Opastustekstit luetaan normaalisti erillisestä JSONista.
 
-Opastaja liikkuu kuvion sisällä. Käyrävaiheessa selitys ja osoitin seuraavat korostettujen ankkurien sijaintia. Mekanismivaiheessa selitys seuraa kehän neljää kohtaa ja niiden vaihtuvaa tekstiä. Kohde mitataan DOMista; sijoittelu huomioi ankkuripainikkeet ja päivittyy vierityksessä sekä koon muuttuessa. Selitys ei ota vastaan klikkauksia, joten alla oleva kuvio pysyy käytettävissä. Vain pysäytys ja sulkeminen ovat painikkeita. Liikettä vähentävä asetus estää automaattisen käynnistyksen ja siirtymäanimaatiot.
+Luettava esittelykomponentti on `scripts/murrokset1-tour.txt`. Selite etsii tyhjää aluetta, väistää painikkeet, niiden tekstit, käyrän ja mekanismin sekä huomioi näkyvän alueen korkeuden. Sijoittelu ei siirrä kuviota. Selite häipyy ja seuraava piirtyy tilalle; vähennetyn liikkeen asetuksella vaihto tapahtuu ilman animaatiota.
 
-Tarinankertojan seitsemän pistettä vastaavat kahta käyrän kohtaa, neljää mekanismin kohtaa ja jälkeä käsittelevää päätösvaihetta. Pisteen valinta siirtyy suoraan kohtaan ja pysäyttää automaattisen etenemisen; Jatka käynnistää sen uudelleen. Nuolinäppäimet, Home ja End toimivat pisteissä. Selite piirtyy suoraan kuvion taustalle ilman puhekuplaa. Vanha teksti häipyy uuden ilmestyessä. Vähennetyn liikkeen asetuksella vaihto tapahtuu ilman animaatiota.
-
-Selitteen paikka etsitään koko kuviosta 24 pikselin välein. Painikkeet, erilliset otsikkotekstit, käyrän näytteistetty viiva ja mekanismin kehä varataan suojaetäisyydellä. Vapaista paikoista valitaan kohdetta lähin. Jos vapaata suorakulmiota ei mahdu, kuvion alle varataan lisätilaa. Teksti ei liu’u kuvion yli; sen vaihto tapahtuu häipymällä ja piirtymällä.
-
-Tarinan yhteinen runko on A: mitä ihminen kohtaa, B: miten mahdollisuudet muuttuvat, C: mikä jälki jää. Kirjain toistuu selitteessä ja kohteen osoittimessa. Näkyvän selainalueen korkeus ja etenemispisteiden tila rajaavat selitteen sijoittelua. Tarvittaessa vapaata tilaa varataan kuvion edelle, ei alareunan ulkopuolelle.
-
-Uusin kertoja etenee lyhyin `story_lines`-lausein, yksi seitsemässä pisteessä. Kukin lause viipyy 5,5 sekuntia. A–B–C-otsikot on poistettu; tapahtumien järjestys kantaa kertomusta. Sijoittelu ei muuta kuvion marginaaleja tai siirrä kuviota.
+Alkuperäinen `assets/index--gBIk-ew.js` ja erillinen `murrokset.html` säilyvät. Käyrän pisteytys on havainnollistava tulkinta, ei historiallinen mittaus.

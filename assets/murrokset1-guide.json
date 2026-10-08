@@ -2,8 +2,8 @@
   "schema_version": 1,
   "chapters": [
     {
-      "era": "1850–1980",
-      "title": "Kun toimeentulo ei enää riipu vain siitä, mihin syntyy",
+      "era": "Itä- ja Pohjois-Suomesta kaupunkiseuduille · Vuosaari 1966",
+      "title": "Työ löytyi kaupungista. Sinne piti rakentaa myös elämä.",
       "text": "Suomen muutos on myös kertomus siitä, millaisista lähtökohdista ihminen voi rakentaa elämäänsä.",
       "loop": [
         "Työ muuttuu",
@@ -43,11 +43,21 @@
         "Asunto ja koulutus saattoivat auttaa alkuun.",
         "Ilman niitä uusi työ saattoi jäädä ulottumattomiin.",
         "Sama muutos saattoi avata yhden oven ja sulkea toisen."
+      ],
+      "article_url": "./stories/suuri-muutto.html",
+      "preview_lines": [
+        "Työ löytyi yhä useammin kaupungista.",
+        "Työn perässä oli rakennettava myös uusi arki.",
+        "Lähtijöiden ja jääneiden tulevaisuudet erkanivat."
+      ],
+      "range": [
+        1960,
+        1975
       ]
     },
     {
-      "era": "1990–2015",
-      "title": "Talous voi palata kasvuun ennen kuin ihminen pääsee takaisin jaloilleen",
+      "era": "Suomi · vuonna 1992 valmistuneet ja laman jälkeiset vuodet",
+      "title": "Tutkinto valmistui vuonna 1992. Työura ei alkanut samalla tavalla.",
       "text": "Laman jälki ei välttämättä katoa silloin, kun tuotanto alkaa elpyä.",
       "loop": [
         "Talous elpyy",
@@ -87,11 +97,21 @@
         "Kaikilla ei ollut samoja mahdollisuuksia palata.",
         "Velka ja katkennut työura saattoivat seurata mukana.",
         "Kasvu palasi, mutta kaikki eivät päässeet takaisin jaloilleen."
+      ],
+      "article_url": "./stories/laman-pitka-jalki.html",
+      "preview_lines": [
+        "Tutkinto valmistui keskellä lamaa.",
+        "Työuran alku jäi monella vaikeaksi.",
+        "Vaikea alku saattoi seurata pitkälle tulevaisuuteen."
+      ],
+      "range": [
+        1990,
+        2008
       ]
     },
     {
-      "era": "2020–2025",
-      "title": "Kun kriisi loppuu, sen lasku voi vielä kiertää",
+      "era": "Suomi ja Uusimaa · 2020–2022",
+      "title": "Ensin tulot horjuivat. Sitten arki kallistui.",
       "text": "Kriisistä selviytyminen ja sen seurausten korjaaminen eivät ole sama asia.",
       "loop": [
         "Arki järkkyy",
@@ -131,11 +151,21 @@
         "Kaikilla ei ollut voimia kantaa sitä.",
         "Säästö saattoi palata myöhemmin uutena avuntarpeena.",
         "Ratkaisevaa oli, helpottiko vaikeus vai siirtyikö se eteenpäin."
+      ],
+      "article_url": "./stories/kriisin-lasku.html",
+      "preview_lines": [
+        "Vuonna 2020 toimeentulo horjui.",
+        "Vuonna 2022 arki kallistui.",
+        "Turvan merkitys näkyi siinä, miten arki kantoi."
+      ],
+      "range": [
+        2020,
+        2025
       ]
     },
     {
-      "era": "2025 →",
-      "title": "Entä jos työn pitäisi joustaa ihmisen mahdollisuuksien mukana?",
+      "era": "Suomi · ehdollinen tulevaisuuspolku vuodesta 2025 eteenpäin",
+      "title": "Entä jos työ joustaisi ennen kuin ihminen putosi sen ulkopuolelle?",
       "text": "Muuttuva työnjako voisi avata osallistumista myös niille, joille nykyiset ehdot ovat liian ahtaat.",
       "loop": [
         "Tehtäville uusi muoto",
@@ -175,6 +205,16 @@
         "Tuki voisi auttaa arkea kantamaan.",
         "Osallistuminen voisi jatkua ilman kohtuutonta kuormaa.",
         "Mahdollisuus syntyisi, jos työ joustaisi ihmisen mukana."
+      ],
+      "article_url": "./stories/tyo-joustaa.html",
+      "preview_lines": [
+        "Kaikki eivät mahtuneet samoihin työn ehtoihin.",
+        "Tehtäviä ja tukea voitaisiin järjestää toisin.",
+        "Oma paikka voisi syntyä, jos työ joustaisi ihmisen mukana."
+      ],
+      "range": [
+        2025,
+        2060
       ]
     }
   ]

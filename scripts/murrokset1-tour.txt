@@ -2,12 +2,12 @@ function kn({index,playing,onIndex,onToggle,onClose}){
  const chapter=Tn[index],phases=chapter.phases||[{title:'Katso ajanjakson asetelmaa',text:chapter.text},{title:'Tutki yhteyksiä',text:'Virtaus esittää tutkittavaa mekanismia.'},{title:'Koettele tulkintaa',text:'Vertaa havaintoja ja vaihtoehtoisia selityksiä.'}];
  const [phase,setPhase]=S.useState(0),[step,setStep]=S.useState(0),[place,setPlace]=S.useState(null),[loopPlace,setLoopPlace]=S.useState({left:30,top:30});
  const guide=S.useRef(null),bubble=S.useRef(null);
- const stops=[{phase:0,step:0},{phase:0,step:1},...Array.from({length:4},(_,step)=>({phase:1,step})),{phase:2,step:0}];
+ const stops=[{phase:0,step:0},{phase:1,step:0},{phase:2,step:0}];
  const storyFrames=[['A','Mitä ihminen kohtaa?'],['B','Miten mahdollisuudet muuttuvat?'],['C','Mikä jälki jää?']];
  const currentStop=stops.findIndex(s=>s.phase===phase&&s.step===step);
  const jump=i=>{setPhase(stops[i].phase);setStep(stops[i].step);if(playing)onToggle();};
  S.useEffect(()=>{setPhase(0);setStep(0);},[index]);
- S.useEffect(()=>{if(!playing||document.hidden)return;const timer=window.setTimeout(()=>{if((phase===1&&step<3)||(phase===0&&step<1))setStep(s=>s+1);else if(phase<2){setStep(0);setPhase(p=>p+1);}else if(index<Tn.length-1)onIndex(index+1);else onToggle();},5500);return()=>window.clearTimeout(timer);},[playing,index,phase,step]);
+ S.useEffect(()=>{if(!playing||document.hidden)return;const timer=window.setTimeout(()=>{if(phase<2)setPhase(p=>p+1);else onIndex((index+1)%Tn.length);},5500);return()=>window.clearTimeout(timer);},[playing,index,phase]);
  S.useEffect(()=>{const media=window.matchMedia?.('(prefers-reduced-motion: reduce)');const stop=()=>{if(media?.matches&&playing)onToggle();};media?.addEventListener?.('change',stop);return()=>media?.removeEventListener?.('change',stop);},[playing]);
  S.useLayoutEffect(()=>{
   const parent=guide.current?.parentElement;if(!parent)return;
@@ -53,11 +53,11 @@ function kn({index,playing,onIndex,onToggle,onClose}){
  S.useLayoutEffect(()=>{const node=bubble.current;if(!node)return;return()=>{const copy=node.cloneNode(true);copy.removeAttribute('id');copy.setAttribute('aria-hidden','true');copy.classList.add('narrator-outgoing');copy.querySelectorAll('[id]').forEach(n=>n.removeAttribute('id'));const parent=guide.current;if(parent){parent.appendChild(copy);const timer=window.setTimeout(()=>copy.remove(),650);outgoing.current={copy,timer};}};},[index,phase,step]);
  S.useEffect(()=>()=>{if(outgoing.current){window.clearTimeout(outgoing.current.timer);outgoing.current.copy.remove();}},[]);
  const fallbackText=phase===1?(chapter.loop_notes?.[step]||phases[1].text):phase===0?(chapter.curve_notes?.[step]||phases[0].text):phases[phase].text;
- const text=chapter.story_lines?.[currentStop]||fallbackText;
- return L.jsxs('aside',{ref:guide,className:`atlas-tour narrator-guide flow-${chapter.flow} explanation-phase-${phase} loop-step-${step} ${playing?'guide-playing':'guide-paused'}`,'aria-label':'Animaatiota seuraava tarinankertoja',children:[
+ const text=chapter.preview_lines?.[phase]||chapter.story_lines?.[currentStop]||fallbackText;
+ return L.jsxs('aside',{ref:guide,className:`atlas-tour narrator-guide preview-guide flow-${chapter.flow} explanation-phase-${phase} loop-step-${step} ${playing?'guide-playing':'guide-paused'}`,'aria-label':'Animaatiota seuraava tarinankertoja',children:[
   phase===1&&chapter.loop&&L.jsx('div',{className:'narrator-mechanism',style:loopPlace,children:L.jsx(On,{steps:chapter.loop,kind:chapter.flow})}),
   place&&L.jsxs('svg',{className:'narrator-pointer','aria-hidden':true,children:[L.jsx('line',{x1:place.ax,y1:place.ay,x2:place.tx,y2:place.ty}),L.jsx('circle',{cx:place.tx,cy:place.ty,r:12})]}),
-  L.jsxs('section',{ref:bubble,key:`${index}-${phase}-${step}`,className:'narrator-speech narrator-background-copy',style:place?{left:place.x,top:place.y,width:place.w}: {visibility:'hidden'},'aria-live':playing?'off':'polite',children:[L.jsx('small',{children:chapter.era}),L.jsx('p',{className:'narrator-story-line',children:text}),L.jsx('small',{className:'narrator-status',children:'Tutkittava tulkinta'})]}),
+  L.jsxs('section',{ref:bubble,key:`${index}-${phase}-${step}`,className:'narrator-speech narrator-background-copy',style:place?{left:place.x,top:place.y,width:place.w}: {visibility:'hidden'},'aria-live':playing?'off':'polite',children:[L.jsx('small',{children:chapter.era}),L.jsx('p',{className:'narrator-story-line',children:text}),L.jsx('a',{className:'narrator-read',href:chapter.article_url,onClick:()=>{if(playing)onToggle();},children:'Lue kertomus →'}),L.jsx('small',{className:'narrator-status',children:index===3?'Ehdollinen tulevaisuuspolku':'Historiallinen kertomus · tutkittava tulkinta'})]}),
   L.jsxs('footer',{className:'narrator-controls',children:[L.jsx('nav',{className:'narrator-dots','aria-label':'Tarinan etenemispisteet',children:stops.map((stop,i)=>L.jsx('button',{type:'button',className:`narrator-dot ${i===currentStop?'active':i<currentStop?'visited':''}`,'aria-label':`${storyFrames[stop.phase][0]}. ${storyFrames[stop.phase][1]} · ${chapter.era}: ${stop.phase===1?chapter.loop?.[stop.step]:stop.phase===0?'Lähtökohta '+(stop.step+1):phases[2].title}`,'aria-current':i===currentStop?'step':undefined,onClick:()=>jump(i),onKeyDown:event=>{if(['ArrowRight','ArrowLeft','Home','End'].includes(event.key)){event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?stops.length-1:(i+(event.key==='ArrowRight'?1:-1)+stops.length)%stops.length;jump(next);event.currentTarget.parentElement.children[next]?.focus();}},children:L.jsx('span',{})},i))}),L.jsx('button',{type:'button',onClick:onToggle,'aria-label':playing?'Pysäytä opastus':'Jatka opastusta',children:playing?'Pysäytä':'Jatka'}),L.jsx('button',{type:'button',onClick:onClose,'aria-label':'Sulje opastus ja tutki itse',children:'Sulje opastus'})]})
  ]});
 }
