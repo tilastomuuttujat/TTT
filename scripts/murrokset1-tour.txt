@@ -3,6 +3,7 @@ function kn({index,playing,onIndex,onToggle,onClose}){
  const [phase,setPhase]=S.useState(0),[step,setStep]=S.useState(0),[place,setPlace]=S.useState(null),[loopPlace,setLoopPlace]=S.useState({left:30,top:30});
  const guide=S.useRef(null),bubble=S.useRef(null);
  const stops=[{phase:0,step:0},{phase:0,step:1},...Array.from({length:4},(_,step)=>({phase:1,step})),{phase:2,step:0}];
+ const storyFrames=[['A','Mitä ihminen kohtaa?'],['B','Miten mahdollisuudet muuttuvat?'],['C','Mikä jälki jää?']];
  const currentStop=stops.findIndex(s=>s.phase===phase&&s.step===step);
  const jump=i=>{setPhase(stops[i].phase);setStep(stops[i].step);if(playing)onToggle();};
  S.useEffect(()=>{setPhase(0);setStep(0);},[index]);
@@ -13,7 +14,7 @@ function kn({index,playing,onIndex,onToggle,onClose}){
   let marked;
   const measure=()=>{
    const bounds=parent.getBoundingClientRect(),network=parent.querySelector('.atlas-network');if(!network)return;
-   const width=bounds.width||network.clientWidth||1000,height=Math.max(network.getBoundingClientRect().height||650,600);
+   const width=bounds.width||network.clientWidth||1000,height=Math.min(bounds.height||650,Math.max(260,window.innerHeight-bounds.top-24));
    const nodes=[...network.querySelectorAll('.atlas-node')];
    const boxOf=(element,pad=16)=>{const b=element.getBoundingClientRect();return {x:b.left-bounds.left-pad,y:b.top-bounds.top-pad,w:b.width+pad*2,h:b.height+pad*2};};
    const obstacles=[...nodes,...network.querySelectorAll('.node-label,.network-axis,.network-years,.network-now')].map(e=>boxOf(e));
@@ -28,17 +29,18 @@ function kn({index,playing,onIndex,onToggle,onClose}){
    if(!target)return;
    if(marked)marked.classList.remove('narrator-target');marked=phase===1?target:target.closest('.atlas-node');marked?.classList.add('narrator-target');
    const rect=target.getBoundingClientRect(),tx=rect.left-bounds.left+rect.width/2,ty=rect.top-bounds.top+rect.height/2;
-   const bw=Math.min(300,Math.max(220,width-24)),bh=bubble.current?.getBoundingClientRect().height||200;
+   const bottomReserve=Math.max(65,(guide.current.querySelector('.narrator-controls')?.getBoundingClientRect().height||65)+24);
+   const bw=Math.min(300,Math.max(160,width-24)),maxTextHeight=Math.max(120,height-bottomReserve);if(bubble.current)bubble.current.style.maxHeight=`${maxTextHeight}px`;const bh=Math.min(bubble.current?.getBoundingClientRect().height||200,maxTextHeight);
    const reserved=phase===1?[...guide.current.querySelectorAll('.tour-loop svg,.tour-loop span')].map(e=>boxOf(e,18)):[];
    const area=(p,b)=>Math.max(0,Math.min(p.x+bw,b.x+b.w)-Math.max(p.x,b.x))*Math.max(0,Math.min(p.y+bh,b.y+b.h)-Math.max(p.y,b.y));
    const collision=p=>obstacles.concat(reserved).reduce((sum,b)=>sum+area(p,b),0);
    const boxes=[];
-   for(let y=12;y<=height-bh-65;y+=24)for(let x=12;x<=width-bw-12;x+=24)boxes.push({x,y});
+   for(let y=12;y<=height-bh-bottomReserve;y+=24)for(let x=12;x<=width-bw-12;x+=24)boxes.push({x,y});
    boxes.push({x:clamp(width-bw-12,width-bw-12),y:12});
    const free=boxes.filter(p=>collision(p)===0);
    free.sort((a,b)=>Math.hypot(a.x+bw/2-tx,a.y+bh/2-ty)-Math.hypot(b.x+bw/2-tx,b.y+bh/2-ty));
    // When a small viewport has no clear rectangle, make room below instead of covering the plot.
-   const box=free[0]||{x:12,y:height+18};parent.style.paddingBottom=free.length?'0px':`${bh+85}px`;
+   const box=free[0]||{x:12,y:12};parent.style.paddingBottom='';if(!free.length&&!network.style.marginTop){network.style.marginTop=`${bh+32}px`;if(phase===1)setLoopPlace(old=>({...old,top:Math.max(old.top,bh+40)}));window.requestAnimationFrame(measure);}
    const label=phase===1?chapter.loop?.[step]:target.closest('.atlas-node')?.querySelector('.node-title')?.textContent;
    setPlace({x:box.x,y:box.y,w:bw,tx,ty,ax:Math.max(box.x,Math.min(tx,box.x+bw)),ay:Math.max(box.y,Math.min(ty,box.y+bh)),label});
   };
@@ -46,15 +48,15 @@ function kn({index,playing,onIndex,onToggle,onClose}){
   window.addEventListener('resize',measure);window.addEventListener('scroll',measure,true);
   return()=>{window.cancelAnimationFrame(frame);observer?.disconnect();marked?.classList.remove('narrator-target');window.removeEventListener('resize',measure);window.removeEventListener('scroll',measure,true);};
  },[phase,step,index,loopPlace.left,loopPlace.top]);
- S.useEffect(()=>{const parent=guide.current?.parentElement;return()=>{if(parent)parent.style.paddingBottom='';};},[]);
+ S.useEffect(()=>{const parent=guide.current?.parentElement;return()=>{if(parent){parent.style.paddingBottom='';const network=parent.querySelector('.atlas-network');if(network)network.style.marginTop='';}};},[]);
  const outgoing=S.useRef(null);
  S.useLayoutEffect(()=>{const node=bubble.current;if(!node)return;return()=>{const copy=node.cloneNode(true);copy.removeAttribute('id');copy.setAttribute('aria-hidden','true');copy.classList.add('narrator-outgoing');copy.querySelectorAll('[id]').forEach(n=>n.removeAttribute('id'));const parent=guide.current;if(parent){parent.appendChild(copy);const timer=window.setTimeout(()=>copy.remove(),650);outgoing.current={copy,timer};}};},[index,phase,step]);
  S.useEffect(()=>()=>{if(outgoing.current){window.clearTimeout(outgoing.current.timer);outgoing.current.copy.remove();}},[]);
  const text=phase===1?(chapter.loop_notes?.[step]||phases[1].text):phase===0?(chapter.curve_notes?.[step]||phases[0].text):phases[phase].text;
  return L.jsxs('aside',{ref:guide,className:`atlas-tour narrator-guide flow-${chapter.flow} explanation-phase-${phase} loop-step-${step} ${playing?'guide-playing':'guide-paused'}`,'aria-label':'Animaatiota seuraava tarinankertoja',children:[
   phase===1&&chapter.loop&&L.jsx('div',{className:'narrator-mechanism',style:loopPlace,children:L.jsx(On,{steps:chapter.loop,kind:chapter.flow})}),
-  place&&L.jsxs('svg',{className:'narrator-pointer','aria-hidden':true,children:[L.jsx('line',{x1:place.ax,y1:place.ay,x2:place.tx,y2:place.ty}),L.jsx('circle',{cx:place.tx,cy:place.ty,r:9})]}),
-  L.jsxs('section',{ref:bubble,key:`${index}-${phase}-${step}`,className:'narrator-speech narrator-background-copy',style:place?{left:place.x,top:place.y,width:place.w}: {visibility:'hidden'},'aria-live':playing?'off':'polite',children:[L.jsx('small',{children:`Opastaja · ${chapter.era} · ${phase+1}/3`}),L.jsx('strong',{className:'narrator-subject',children:place?.label||phases[phase].title}),L.jsx('h3',{children:phases[phase].title}),L.jsx('p',{children:text}),L.jsx('small',{className:'narrator-status',children:'Tutkittava tulkinta'})]}),
-  L.jsxs('footer',{className:'narrator-controls',children:[L.jsx('nav',{className:'narrator-dots','aria-label':'Tarinan etenemispisteet',children:stops.map((stop,i)=>L.jsx('button',{type:'button',className:`narrator-dot ${i===currentStop?'active':i<currentStop?'visited':''}`,'aria-label':`${chapter.era}: ${stop.phase===1?chapter.loop?.[stop.step]:stop.phase===0?'Lähtökohta '+(stop.step+1):phases[2].title}`,'aria-current':i===currentStop?'step':undefined,onClick:()=>jump(i),onKeyDown:event=>{if(['ArrowRight','ArrowLeft','Home','End'].includes(event.key)){event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?stops.length-1:(i+(event.key==='ArrowRight'?1:-1)+stops.length)%stops.length;jump(next);event.currentTarget.parentElement.children[next]?.focus();}},children:L.jsx('span',{})},i))}),L.jsx('button',{type:'button',onClick:onToggle,'aria-label':playing?'Pysäytä opastus':'Jatka opastusta',children:playing?'Pysäytä':'Jatka'}),L.jsx('button',{type:'button',onClick:onClose,'aria-label':'Sulje opastus ja tutki itse',children:'Sulje opastus'})]})
+  place&&L.jsxs('svg',{className:'narrator-pointer','aria-hidden':true,children:[L.jsx('line',{x1:place.ax,y1:place.ay,x2:place.tx,y2:place.ty}),L.jsx('circle',{cx:place.tx,cy:place.ty,r:12}),L.jsx('text',{x:place.tx,y:place.ty+4,textAnchor:'middle',className:'narrator-letter',children:storyFrames[phase][0]})]}),
+  L.jsxs('section',{ref:bubble,key:`${index}-${phase}-${step}`,className:'narrator-speech narrator-background-copy',style:place?{left:place.x,top:place.y,width:place.w}: {visibility:'hidden'},'aria-live':playing?'off':'polite',children:[L.jsx('small',{children:chapter.era}),L.jsx('strong',{className:'narrator-frame',children:`${storyFrames[phase][0]}. ${storyFrames[phase][1]}`}),L.jsx('strong',{className:'narrator-subject',children:place?.label||phases[phase].title}),L.jsx('p',{children:text}),L.jsx('small',{className:'narrator-status',children:'Tutkittava tulkinta'})]}),
+  L.jsxs('footer',{className:'narrator-controls',children:[L.jsx('div',{className:'narrator-story-key',children:storyFrames.map(([letter,label],i)=>L.jsxs('span',{className:i===phase?'active':'',children:[L.jsx('b',{children:letter}),label]},letter))}),L.jsx('nav',{className:'narrator-dots','aria-label':'Tarinan etenemispisteet',children:stops.map((stop,i)=>L.jsx('button',{type:'button',className:`narrator-dot ${i===currentStop?'active':i<currentStop?'visited':''}`,'aria-label':`${storyFrames[stop.phase][0]}. ${storyFrames[stop.phase][1]} · ${chapter.era}: ${stop.phase===1?chapter.loop?.[stop.step]:stop.phase===0?'Lähtökohta '+(stop.step+1):phases[2].title}`,'aria-current':i===currentStop?'step':undefined,onClick:()=>jump(i),onKeyDown:event=>{if(['ArrowRight','ArrowLeft','Home','End'].includes(event.key)){event.preventDefault();const next=event.key==='Home'?0:event.key==='End'?stops.length-1:(i+(event.key==='ArrowRight'?1:-1)+stops.length)%stops.length;jump(next);event.currentTarget.parentElement.children[next]?.focus();}},children:L.jsx('span',{})},i))}),L.jsx('button',{type:'button',onClick:onToggle,'aria-label':playing?'Pysäytä opastus':'Jatka opastusta',children:playing?'Pysäytä':'Jatka'}),L.jsx('button',{type:'button',onClick:onClose,'aria-label':'Sulje opastus ja tutki itse',children:'Sulje opastus'})]})
  ]});
 }
