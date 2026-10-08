@@ -34,8 +34,16 @@ test('one edge handle opens the current animation article and changes to close',
 
 test('analysis compares all periods and separates evidence from future assumptions',async()=>{
  const source=await readFile(new URL('scripts/murrokset1-tour.txt',root),'utf8');const L={jsx:(type,props)=>({type,props}),jsxs:(type,props)=>({type,props})};
- const render=new Function('L','Tn',source+';return MurrosAnalysis;')(L,guide.chapters);
+ const render=new Function('L','Tn',source+';return MurrosAnalysisContent;')(L,guide.chapters);
  const walk=n=>!n||typeof n!=='object'?[]:[n,...[n.props?.children].flat(Infinity).flatMap(walk)];
  for(let i=0;i<4;i++){let selected;const nodes=walk(render({index:i,onIndex:value=>selected=value}));const cells=nodes.filter(n=>n.type==='td');assert.equal(cells.length,12);assert.ok(nodes.some(n=>n.type==='dd'&&n.props.children===guide.chapters[i].analysis.alternative));assert.ok(nodes.some(n=>n.type==='dd'&&n.props.children===guide.chapters[i].analysis.evidence));const buttons=nodes.filter(n=>n.type==='button');assert.equal(buttons.length,4);buttons[3].props.onClick();assert.equal(selected,3);assert.ok(nodes.some(n=>n.props?.className==='analysis-limit'));}
  assert.ok(guide.chapters[3].analysis.evidence.includes('eivät todista'));
+});
+
+test('interpretation stays behind its edge handle until opened and pauses playback',async()=>{
+ const source=await readFile(new URL('scripts/murrokset1-tour.txt',root),'utf8');let state=false,paused=false;
+ const S={useState(){return [state,value=>state=value];},useRef(){return {current:null};},useLayoutEffect(){}};
+ const L={jsx:(type,props)=>({type,props}),jsxs:(type,props)=>({type,props})};const render=new Function('S','L',source+';return MurrosAnalysis;')(S,L);
+ let tree=render({index:2,onIndex(){},onPause(){paused=true;}});const children=tree.props.children;assert.equal(children[1],false);assert.equal(children[0].props.children.props.children,'Lue tulkinta');children[0].props.onClick();assert.equal(paused,true);
+ tree=render({index:2,onIndex(){},onPause(){}});assert.equal(tree.props.children[0].props.hidden,true);assert.equal(tree.props.children[1].type,'dialog');const content=tree.props.children[1].props.children.at(-1).props.children;assert.equal(content.props.index,2);
 });

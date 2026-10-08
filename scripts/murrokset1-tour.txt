@@ -82,12 +82,12 @@ function kn({index,playing,onIndex,onToggle,onClose}){
  ]});
 }
 
-function MurrosAnalysis({index,onIndex}){
+function MurrosAnalysisContent({index,onIndex}){
  const active=Number.isInteger(index)?index:0,chapter=Tn[active],a=chapter.analysis;
  if(!a)return null;
  const labels=['Muutos','Yhteiskunnan vastaus','Jälki'];
  return L.jsxs('section',{className:'murros-analysis','aria-label':'Murrosten tulkinta ja vertailu',children:[
- L.jsx('small',{children:'Tutkittava tulkinta'}),L.jsx('h1',{children:'Muutos avasi mahdollisuuksia. Pääsivätkö kaikki mukaan?'}),
+ L.jsx('small',{children:'Tutkittava tulkinta'}),L.jsx('h1',{id:'murros-interpretation-title',children:'Muutos avasi mahdollisuuksia. Pääsivätkö kaikki mukaan?'}),
  L.jsx('p',{className:'analysis-premise',children:'Työn, arjen edellytysten ja yhteisen turvan erilainen muutosvauhti saattoi jättää pitkän jäljen. Vertaa tapauksia: milloin yhteiset ratkaisut auttoivat, milloin niiden vaikutus jäi puutteelliseksi?'}),
  L.jsx('p',{className:'analysis-era',children:chapter.era}),
  L.jsx('ol',{className:'analysis-chain',children:[a.change,a.response,a.trace].map((text,i)=>L.jsxs('li',{children:[L.jsx('small',{children:labels[i]}),L.jsx('p',{children:text})]},i))}),
@@ -97,4 +97,14 @@ function MurrosAnalysis({index,onIndex}){
  L.jsx('div',{className:'analysis-table-scroll',children:L.jsxs('table',{children:[L.jsx('caption',{children:'Sama kysymys neljälle ajanjaksolle'}),L.jsx('thead',{children:L.jsx('tr',{children:['Ajanjakso','Muutos','Vastaus','Jälki / tavoite'].map(t=>L.jsx('th',{scope:'col',children:t},t))})}),L.jsx('tbody',{children:Tn.map((c,i)=>c.analysis&&L.jsxs('tr',{className:i===active?'analysis-active':'',children:[L.jsx('th',{scope:'row',children:L.jsx('button',{type:'button','aria-pressed':i===active,onClick:()=>onIndex(i),children:c.analysis.label})}),L.jsx('td',{children:c.analysis.change}),L.jsx('td',{children:c.analysis.response}),L.jsx('td',{children:c.analysis.trace})]},i))})]})}),
  L.jsxs('dl',{className:'analysis-evidence',children:[L.jsx('dt',{children:'Keitä tarkastellaan?'}),L.jsx('dd',{children:a.groups}),L.jsx('dt',{children:'Mitä näyttö kertoo?'}),L.jsx('dd',{children:a.evidence}),L.jsx('dt',{children:'Mikä muu voisi selittää eroa?'}),L.jsx('dd',{children:a.alternative}),L.jsx('dt',{children:active===3?'Mitä pitäisi seurata?':'Mitä pitäisi selvittää seuraavaksi?'}),L.jsx('dd',{children:a.question})]}),
  L.jsx('p',{className:'analysis-limit',children:'Käyrä on tulkinnallinen kartta: sen korkeus ei mittaa hyvinvointia eikä todista syy-yhteyttä. Historialliset havainnot auttavat muodostamaan kysymyksiä; tulevaisuuspolku on ehdollinen. Artikkelista löydät lähteet ja perustelut.'})]})]});
+}
+
+function MurrosAnalysis({index,onIndex,onPause}){
+ const [open,setOpen]=S.useState(false),panel=S.useRef(null),trigger=S.useRef(null),motion=S.useRef(null),closing=S.useRef(false);
+ const close=()=>{if(closing.current)return;closing.current=true;motion.current?.cancel();const finish=()=>{setOpen(false);window.requestAnimationFrame(()=>trigger.current?.focus());};if(panel.current?.animate&&!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){motion.current=panel.current.animate([{transform:'translateX(0)'},{transform:'translateX(100%)'}],{duration:380,easing:'ease-in',fill:'forwards'});motion.current.finished.then(finish,finish);}else finish();};
+ S.useLayoutEffect(()=>{if(!open)return;const node=panel.current;node.showModal();const position=()=>{const v=window.visualViewport,p=articlePanelLayout(v?.width||window.innerWidth,v?.height||window.innerHeight);Object.assign(node.style,{left:`${p.x+(v?.offsetLeft||0)}px`,top:`${v?.offsetTop||0}px`,width:`${p.w}px`,height:`${p.h}px`});};position();const previous=document.body.style.overflow;document.body.style.overflow='hidden';if(node.animate&&!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)motion.current=node.animate([{transform:'translateX(100%)'},{transform:'translateX(0)'}],{duration:650,easing:'cubic-bezier(.22,.75,.2,1)'});window.addEventListener('resize',position);window.visualViewport?.addEventListener('resize',position);window.visualViewport?.addEventListener('scroll',position);return()=>{motion.current?.cancel();node.close();document.body.style.overflow=previous;window.removeEventListener('resize',position);window.visualViewport?.removeEventListener('resize',position);window.visualViewport?.removeEventListener('scroll',position);};},[open]);
+ return L.jsxs('div',{className:'murros-interpretation-entry',children:[
+ L.jsx('button',{ref:trigger,type:'button',className:'murros-story-tab murros-story-tab-closed murros-interpretation-tab',hidden:open,'aria-expanded':open,'aria-label':'Lue tulkinta',onClick:()=>{closing.current=false;onPause?.();setOpen(true);},children:L.jsx('span',{children:'Lue tulkinta'})}),
+ open&&L.jsxs('dialog',{ref:panel,className:'murros-story-dialog murros-interpretation-dialog','aria-labelledby':'murros-interpretation-title',onCancel:event=>{event.preventDefault();close();},children:[
+ L.jsx('button',{type:'button',className:'murros-story-tab','aria-label':'Sulje tulkinta',onClick:close,children:L.jsx('span',{children:'Sulje tulkinta'})}),L.jsx('button',{type:'button',className:'murros-story-close','aria-label':'Sulje tulkinta',onClick:close,autoFocus:true,children:'×'}),L.jsx('div',{className:'murros-story-body',children:L.jsx(MurrosAnalysisContent,{index,onIndex})})]})]});
 }
