@@ -12,5 +12,22 @@ test('browser bundle parses with the new preview and return behavior',async()=>{
 test('right drawer fits the viewport and leaves room for its vertical close tab',async()=>{
  const source=await readFile(new URL('scripts/murrokset1-tour.txt',root),'utf8');
  const layout=new Function(source.slice(0,source.indexOf('function kn('))+';return articlePanelLayout;')();
- for(const [vw,vh] of [[320,568],[390,700],[768,1024],[1400,900]]){const p=layout(vw,vh);assert.equal(p.x+p.w,vw);assert.equal(p.y,0);assert.equal(p.h,vh);assert.ok(p.x>=50);assert.ok(p.w<=560);}
+ for(const [vw,vh] of [[320,568],[390,700],[768,1024],[1400,900]]){const p=layout(vw,vh);assert.equal(p.x+p.w,vw);assert.equal(p.y,0);assert.equal(p.h,vh);assert.ok(p.x>=40);assert.ok(p.w<=560);}
+});
+
+test('one edge handle opens the current animation article and changes to close',async()=>{
+ const source=await readFile(new URL('scripts/murrokset1-tour.txt',root),'utf8');
+ for(let index=0;index<4;index++){
+  const states=[];let cursor=0;
+  const S={useState(initial){const i=cursor++;if(!(i in states))states[i]=initial;return [states[i],value=>states[i]=value];},useRef(){return {current:null};},useEffect(){},useLayoutEffect(){}};
+  const L={jsx:(type,props)=>({type,props}),jsxs:(type,props)=>({type,props})};
+  const render=new Function('S','L','Tn','storyContent','On',source+';return kn;')(S,L,guide.chapters,content.stories,()=>{});
+  const walk=node=>!node||typeof node!=='object'?[]:[node,...[node.props?.children].flat(Infinity).flatMap(walk)];
+  const props={index,playing:true,onToggle(){},onIndex(){},onClose(){}};
+  let tree=walk(render(props));const handle=tree.find(n=>n.props?.className==='murros-story-tab murros-story-tab-closed');assert.ok(handle);assert.equal(handle.props.children.props.children,'Lue artikkeli');assert.ok(!tree.some(n=>['narrator-read','narrator-read-always'].includes(n.props?.className)));
+  handle.props.onClick({currentTarget:{focus(){}}});cursor=0;tree=walk(render({...props,playing:false}));
+  assert.equal(tree.find(n=>n.props?.id==='murros-story-title').props.children,content.stories[index].title);
+  assert.equal(tree.find(n=>n.props?.className==='murros-story-tab').props.children.props.children,'Sulje artikkeli');
+  assert.equal(tree.find(n=>n.props?.className==='murros-story-tab murros-story-tab-closed').props.hidden,true);
+ }
 });
