@@ -15,7 +15,11 @@ function kn({index,playing,onIndex,onToggle,onClose}){
    const bounds=parent.getBoundingClientRect(),network=parent.querySelector('.atlas-network');if(!network)return;
    const width=bounds.width||network.clientWidth||1000,height=Math.max(network.getBoundingClientRect().height||650,600);
    const nodes=[...network.querySelectorAll('.atlas-node')];
-   const obstacles=nodes.map(node=>{const b=node.getBoundingClientRect();return {x:b.left-bounds.left,y:b.top-bounds.top,w:b.width,h:b.height};});
+   const boxOf=(element,pad=16)=>{const b=element.getBoundingClientRect();return {x:b.left-bounds.left-pad,y:b.top-bounds.top-pad,w:b.width+pad*2,h:b.height+pad*2};};
+   const obstacles=[...nodes,...network.querySelectorAll('.node-label,.network-axis,.network-years,.network-now')].map(e=>boxOf(e));
+   // A curve's bounding box is mostly empty: reserve its sampled stroke, not the whole rectangle.
+   for(const path of network.querySelectorAll('path.segment')){try{const matrix=path.getScreenCTM(),length=path.getTotalLength();if(!matrix)continue;for(let distance=0;distance<=length;distance+=8){const point=path.getPointAtLength(distance);const x=matrix.a*point.x+matrix.c*point.y+matrix.e-bounds.left,y=matrix.b*point.x+matrix.d*point.y+matrix.f-bounds.top;obstacles.push({x:x-16,y:y-16,w:32,h:32});}}catch{obstacles.push(boxOf(path));}}
+
    const overlap=(x,y,w,h)=>obstacles.reduce((sum,b)=>sum+Math.max(0,Math.min(x+w,b.x+b.w)-Math.max(x,b.x))*Math.max(0,Math.min(y+h,b.y+b.h)-Math.max(y,b.y)),0);
    const clamp=(n,max)=>Math.max(10,Math.min(n,Math.max(10,max)));
    if(phase===1){const size=220;const candidates=[[20,30],[width-size-20,30],[20,height-size-60],[width-size-20,height-size-60],[width/2-size/2,height/2-size/2]];const ranked=candidates.map(([x,y])=>({left:clamp(x,width-size-10),top:clamp(y,height-size-60)})).sort((a,b)=>overlap(a.left,a.top,size,size)-overlap(b.left,b.top,size,size));const next=ranked[0];setLoopPlace(old=>old.left===next.left&&old.top===next.top?old:next);}
@@ -25,16 +29,24 @@ function kn({index,playing,onIndex,onToggle,onClose}){
    if(marked)marked.classList.remove('narrator-target');marked=phase===1?target:target.closest('.atlas-node');marked?.classList.add('narrator-target');
    const rect=target.getBoundingClientRect(),tx=rect.left-bounds.left+rect.width/2,ty=rect.top-bounds.top+rect.height/2;
    const bw=Math.min(300,Math.max(220,width-24)),bh=bubble.current?.getBoundingClientRect().height||200;
-   const candidates=[[tx+28,ty-bh/2],[tx-bw-28,ty-bh/2],[tx-bw/2,ty+35],[tx-bw/2,ty-bh-35],[width-bw-12,12],[12,height-bh-60]];
-   const boxes=candidates.map(([x,y])=>({x:clamp(x,width-bw-10),y:clamp(y,height-bh-55)}));
-   const score=p=>overlap(p.x,p.y,bw,bh)*10+Math.hypot(p.x+bw/2-tx,p.y+bh/2-ty)+(tx>=p.x&&tx<=p.x+bw&&ty>=p.y&&ty<=p.y+bh?100000:0)+(phase===1?Math.max(0,Math.min(p.x+bw,loopPlace.left+220)-Math.max(p.x,loopPlace.left))*Math.max(0,Math.min(p.y+bh,loopPlace.top+220)-Math.max(p.y,loopPlace.top))*10:0);
-   boxes.sort((a,b)=>score(a)-score(b));const box=boxes[0],label=phase===1?chapter.loop?.[step]:target.closest('.atlas-node')?.querySelector('.node-title')?.textContent;
+   const reserved=phase===1?[...guide.current.querySelectorAll('.tour-loop svg,.tour-loop span')].map(e=>boxOf(e,18)):[];
+   const area=(p,b)=>Math.max(0,Math.min(p.x+bw,b.x+b.w)-Math.max(p.x,b.x))*Math.max(0,Math.min(p.y+bh,b.y+b.h)-Math.max(p.y,b.y));
+   const collision=p=>obstacles.concat(reserved).reduce((sum,b)=>sum+area(p,b),0);
+   const boxes=[];
+   for(let y=12;y<=height-bh-65;y+=24)for(let x=12;x<=width-bw-12;x+=24)boxes.push({x,y});
+   boxes.push({x:clamp(width-bw-12,width-bw-12),y:12});
+   const free=boxes.filter(p=>collision(p)===0);
+   free.sort((a,b)=>Math.hypot(a.x+bw/2-tx,a.y+bh/2-ty)-Math.hypot(b.x+bw/2-tx,b.y+bh/2-ty));
+   // When a small viewport has no clear rectangle, make room below instead of covering the plot.
+   const box=free[0]||{x:12,y:height+18};parent.style.paddingBottom=free.length?'0px':`${bh+85}px`;
+   const label=phase===1?chapter.loop?.[step]:target.closest('.atlas-node')?.querySelector('.node-title')?.textContent;
    setPlace({x:box.x,y:box.y,w:bw,tx,ty,ax:Math.max(box.x,Math.min(tx,box.x+bw)),ay:Math.max(box.y,Math.min(ty,box.y+bh)),label});
   };
   let frame=window.requestAnimationFrame(measure);const observer=typeof ResizeObserver==='function'?new ResizeObserver(()=>{window.cancelAnimationFrame(frame);frame=window.requestAnimationFrame(measure);}):null;observer?.observe(parent);if(bubble.current)observer?.observe(bubble.current);
   window.addEventListener('resize',measure);window.addEventListener('scroll',measure,true);
   return()=>{window.cancelAnimationFrame(frame);observer?.disconnect();marked?.classList.remove('narrator-target');window.removeEventListener('resize',measure);window.removeEventListener('scroll',measure,true);};
  },[phase,step,index,loopPlace.left,loopPlace.top]);
+ S.useEffect(()=>{const parent=guide.current?.parentElement;return()=>{if(parent)parent.style.paddingBottom='';};},[]);
  const outgoing=S.useRef(null);
  S.useLayoutEffect(()=>{const node=bubble.current;if(!node)return;return()=>{const copy=node.cloneNode(true);copy.removeAttribute('id');copy.setAttribute('aria-hidden','true');copy.classList.add('narrator-outgoing');copy.querySelectorAll('[id]').forEach(n=>n.removeAttribute('id'));const parent=guide.current;if(parent){parent.appendChild(copy);const timer=window.setTimeout(()=>copy.remove(),650);outgoing.current={copy,timer};}};},[index,phase,step]);
  S.useEffect(()=>()=>{if(outgoing.current){window.clearTimeout(outgoing.current.timer);outgoing.current.copy.remove();}},[]);
