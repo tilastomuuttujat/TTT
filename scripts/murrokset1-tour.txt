@@ -1,12 +1,13 @@
 function kn({index,playing,onIndex,onToggle,onClose}){
  const chapter=Tn[index],phases=chapter.phases||[{title:'Katso ajanjakson asetelmaa',text:chapter.text},{title:'Tutki yhteyksiä',text:'Virtaus esittää tutkittavaa mekanismia.'},{title:'Koettele tulkintaa',text:'Vertaa havaintoja ja vaihtoehtoisia selityksiä.'}];
  const [phase,setPhase]=S.useState(0),[step,setStep]=S.useState(0),[place,setPlace]=S.useState(null),[loopPlace,setLoopPlace]=S.useState({left:30,top:30});
- const guide=S.useRef(null),bubble=S.useRef(null),dialog=S.useRef(null),readTrigger=S.useRef(null);
+ const guide=S.useRef(null),bubble=S.useRef(null),dialog=S.useRef(null),readTrigger=S.useRef(null),articleOrigin=S.useRef(null),articleMotion=S.useRef(null),articleClosing=S.useRef(false);
  const [articleOpen,setArticleOpen]=S.useState(false);
  const article=storyContent.find(s=>chapter.article_url.endsWith('/'+s.slug+'.html'))||storyContent[index];
- const openArticle=event=>{readTrigger.current=event.currentTarget;if(playing)onToggle();setArticleOpen(true);};
- const closeArticle=()=>{setArticleOpen(false);readTrigger.current?.focus();};
- S.useEffect(()=>{if(!articleOpen)return;const node=dialog.current;node.showModal();const previous=document.body.style.overflow;document.body.style.overflow='hidden';return()=>{node.close();document.body.style.overflow=previous;};},[articleOpen]);
+ const openArticle=event=>{readTrigger.current=event.currentTarget;articleOrigin.current=event.currentTarget.getBoundingClientRect();articleClosing.current=false;if(playing)onToggle();setArticleOpen(true);};
+ const collapsedFrame=node=>{const origin=articleOrigin.current,box=node.getBoundingClientRect();if(!origin||!box.width||!box.height)return {transform:'scale(.92)',opacity:0};return {transform:`translate(${origin.left+origin.width/2-box.left-box.width/2}px,${origin.top+origin.height/2-box.top-box.height/2}px) scale(${Math.max(.04,origin.width/box.width)},${Math.max(.04,origin.height/box.height)})`,opacity:0};};
+ const closeArticle=()=>{if(articleClosing.current)return;articleClosing.current=true;const finish=()=>{setArticleOpen(false);readTrigger.current?.focus();};const node=dialog.current;articleMotion.current?.cancel();if(node?.animate&&!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches){articleMotion.current=node.animate([{transform:'none',opacity:1},collapsedFrame(node)],{duration:220,easing:'ease-in',fill:'forwards'});articleMotion.current.finished.then(finish,finish);}else finish();};
+ S.useLayoutEffect(()=>{if(!articleOpen)return;const node=dialog.current;node.showModal();const previous=document.body.style.overflow;document.body.style.overflow='hidden';if(node.animate&&!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)articleMotion.current=node.animate([collapsedFrame(node),{transform:'none',opacity:1}],{duration:380,easing:'cubic-bezier(.2,.8,.2,1)'});return()=>{articleMotion.current?.cancel();node.close();document.body.style.overflow=previous;};},[articleOpen]);
  const stops=[{phase:0,step:0},{phase:1,step:0},{phase:2,step:0}];
  const storyFrames=[['A','Mitä ihminen kohtaa?'],['B','Miten mahdollisuudet muuttuvat?'],['C','Mikä jälki jää?']];
  const currentStop=stops.findIndex(s=>s.phase===phase&&s.step===step);

@@ -13,10 +13,10 @@
 /* Explicit reading opens above the canvas without moving it. */
 .narrator-read {border:0;background:transparent;text-align:left;font:inherit;cursor:pointer;padding:6px 0}
 .narrator-read-always {font-weight:700}
-.murros-story-dialog {pointer-events:auto;box-sizing:border-box;width:min(880px,calc(100vw - 24px));max-height:calc(100dvh - 24px);border:0;border-radius:12px;padding:0;background:#fcfaf5;color:#252b29;overflow:auto;box-shadow:0 20px 90px #0006}
-.murros-story-dialog::backdrop {background:rgb(20 30 28 / .65)}
-.murros-story-close {position:sticky;top:12px;float:right;margin:12px 16px 0 0;z-index:2;width:44px;height:44px;border:1px solid #ccc;border-radius:50%;background:#fcfaf5;color:#252b29;font-size:32px;line-height:1;cursor:pointer}
-.murros-story-body {max-width:700px;margin:auto;padding:64px 40px 48px;font:19px/1.8 Georgia,serif}
+.murros-story-dialog {pointer-events:auto;box-sizing:border-box;width:min(720px,calc(100vw - 48px));height:min(720px,78dvh);max-height:78dvh;border:0;border-radius:12px;padding:0;background:#fcfaf5;color:#252b29;overflow:hidden;box-shadow:0 12px 48px #0004;transform-origin:center}
+.murros-story-dialog::backdrop {background:transparent}
+.murros-story-close {position:absolute;top:12px;right:16px;margin:0;z-index:2;width:44px;height:44px;border:1px solid #ccc;border-radius:50%;background:#fcfaf5;color:#252b29;font-size:32px;line-height:1;cursor:pointer}
+.murros-story-body {box-sizing:border-box;max-width:700px;height:100%;overflow-y:auto;overscroll-behavior:contain;margin:auto;padding:64px 40px 48px;font:19px/1.8 Georgia,serif;scrollbar-gutter:stable}
 .murros-story-body h1 {font-size:clamp(26px,4vw,38px);line-height:1.2;margin:12px 0 20px}
 .murros-story-body h2 {font-size:25px;line-height:1.3;margin:38px 0 16px}
 .murros-story-body p {margin:0 0 22px}
