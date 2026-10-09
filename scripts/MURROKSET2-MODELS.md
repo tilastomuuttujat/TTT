@@ -27,3 +27,9 @@ Rakentaja lukee alkuperäisen `assets/index-yRr8yEkP.js`-bundlen, korvaa muutoks
 ## Lukeminen
 
 Teeman vaihtaminen pysäyttää kerronnan ja aloittaa mallin ensimmäisestä vaiheesta. Kaaren piste tai nykyiset edellinen/seuraava-painikkeet siirtävät vaihetta. Koettele hypoteesia avaa tutkimuskehyksen oikeaan paneeliin ja pysäyttää animaation. X ja Esc sulkevat paneelin. Vähennetyn liikkeen asetus poistaa kaaren virtauksen animaation. Historiallisten ankkurien lähdepohja säilyy erillisenä; se ei automaattisesti validoi laajempaa teemamallia.
+
+## Teemakohtainen aika ja reitit
+
+`visualization` määrittää teeman nimettyjen reittien rivit (`lanes`), neljä vuosirajaa (`years`) ja kunkin kolmen vaiheen yhteydet (`stage_routes`, rivinumeroiden pareja 0–2). Vaakakoordinaatti lasketaan kalenterivuodesta; leveys, korkeus ja väri eivät mittaa vaikutuksen määrää. Teemojen jaksotus on toimituksellinen tutkimusehdotus, ei havaittu murrosvuosi. Kolmas vaihe alkaa vuodesta 2026 ja esitetään katkoviivalla ehdollisena tulevaisuutena.
+
+Jokaisen `steps`-vaiheen `period` vastaa samoja vuosirajoja. Päivitä jaksotus ja seliteteksti yhdessä. Reitit voivat muuttua vaiheesta toiseen: esimerkiksi omistus haarautuu, asumisen reitit kohtaavat ja hoivavastuu punoutuu. Tutkimusnäyttöä ei saa päätellä näistä muodoista.
