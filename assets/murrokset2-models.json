@@ -19,7 +19,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos yhteensovittaminen paranisi mutta osallistuminen ei suhteessa vertailuryhmään muuttuisi.",
       "evidence": [],
-      "revision": 2,
+      "revision": 3,
       "geometry": "conceptual",
       "features": [
         {
@@ -42,7 +42,7 @@
       "steps": [
         {
           "label": "1850–1950 · Tutkittava historiallinen jakso",
-          "title": "Työn järjestymisen ehdot",
+          "title": "Tuottavuuden hyöty tarvitsee reitin ihmisten arkeen.",
           "text": "1850–1950: Työn muutos laajentaisi osallistumista, jos osaaminen, tehtävät ja tuki muuttuisivat sen mukana.",
           "period": {
             "start": 1850,
@@ -52,7 +52,7 @@
         },
         {
           "label": "1950–2026 · Tutkittava historiallinen jakso",
-          "title": "Osaamisen ja työn kohtaanto",
+          "title": "Jos ihmisiä jää sivuun, sama muutos voi kasvattaa kustannuksia.",
           "text": "1950–2026: Työvoiman kysyntä tai teknologia voi ratkaista osallistumisen enemmän kuin yhteensovittaminen.",
           "period": {
             "start": 1950,
@@ -62,7 +62,7 @@
         },
         {
           "label": "2026–2050 · Ehdollinen tulevaisuus",
-          "title": "Työn mukautuksen vaihtoehdot",
+          "title": "Tuleva suunta riippuu siitä, pääsevätkö ihmiset mukaan.",
           "text": "2026–2050: Tulevaisuuspolku on ehdollinen. Mallia heikentäisi, jos yhteensovittaminen paranisi mutta osallistuminen ei suhteessa vertailuryhmään muuttuisi.",
           "period": {
             "start": 2026,
@@ -77,7 +77,7 @@
         "future": "Ehdollinen korjausreitti"
       },
       "visualization": {
-        "title": "Tehtävien ja osallistumisen reitit",
+        "title": "Työnjaon muutoksen kaari",
         "kind": "work",
         "years": [
           1850,
@@ -168,7 +168,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos arjen edellytykset eivät selittäisi muuttajien tuloksia lähtökohtien ja työmarkkinoiden huomioimisen jälkeen.",
       "evidence": [],
-      "revision": 2,
+      "revision": 3,
       "geometry": "conceptual",
       "features": [
         {
@@ -226,7 +226,7 @@
         "future": "Ehdollinen korjausreitti"
       },
       "visualization": {
-        "title": "Lähtö- ja tulopaikan virtaukset",
+        "title": "Kaksi paikkaa, yksi muutto",
         "kind": "migration",
         "years": [
           1850,
@@ -325,7 +325,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos omistusrakenne ei liittyisi hyödyn välittymiseen vertailukelpoisissa tapauksissa.",
       "evidence": [],
-      "revision": 2,
+      "revision": 3,
       "geometry": "conceptual",
       "features": [
         {
@@ -383,7 +383,7 @@
         "future": "Ehdollinen korjausreitti"
       },
       "visualization": {
-        "title": "Hyödyn jakautumisen haarat",
+        "title": "Hyöty haarautuu omistuksen mukaan",
         "kind": "ownership",
         "years": [
           1850,
@@ -474,7 +474,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos asumisen saavutettavuuden paraneminen ei lisäisi mahdollisuuksien käyttöä vertailuryhmään nähden.",
       "evidence": [],
-      "revision": 2,
+      "revision": 3,
       "geometry": "conceptual",
       "features": [
         {
@@ -532,7 +532,7 @@
         "future": "Ehdollinen korjausreitti"
       },
       "visualization": {
-        "title": "Asumisen ja mahdollisuuksien kohtaanto",
+        "title": "Silta mahdollisuuteen",
         "kind": "housing",
         "years": [
           1850,
@@ -619,7 +619,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos koulutuksen saavutettavuus ei liittyisi myöhempiin mahdollisuuksiin valikoitumisen huomioimisen jälkeen.",
       "evidence": [],
-      "revision": 2,
+      "revision": 3,
       "geometry": "conceptual",
       "features": [
         {
@@ -677,7 +677,7 @@
         "future": "Ehdollinen korjausreitti"
       },
       "visualization": {
-        "title": "Oppimisen reitit ja portit",
+        "title": "Oppimisen portaat ja paluureitti",
         "kind": "education",
         "years": [
           1850,
@@ -764,7 +764,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos turvan ajoituksella tai kattavuudella ei olisi yhteyttä myöhempään toipumiseen vertailukelpoisissa tilanteissa.",
       "evidence": [],
-      "revision": 2,
+      "revision": 3,
       "geometry": "conceptual",
       "features": [
         {
@@ -822,7 +822,7 @@
         "future": "Ehdollinen korjausreitti"
       },
       "visualization": {
-        "title": "Häiriön ja toipumisen polut",
+        "title": "Turva katkaisee pitkittyvän jäljen",
         "kind": "risk",
         "years": [
           1850,
@@ -909,7 +909,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos hoivan järjestelyjen muutos ei liittyisi osallistumisen tai kuormituksen muutokseen tarpeen huomioimisen jälkeen.",
       "evidence": [],
-      "revision": 2,
+      "revision": 3,
       "geometry": "conceptual",
       "features": [
         {
@@ -967,7 +967,7 @@
         "future": "Ehdollinen korjausreitti"
       },
       "visualization": {
-        "title": "Hoivavastuun punoutuminen",
+        "title": "Hoivan ja osallistumisen punos",
         "kind": "care",
         "years": [
           1850,
@@ -1066,7 +1066,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos edustuksen tai palautereitin vahvistuminen ei liittyisi ongelmien korjaantumiseen vertailukelpoisissa tapauksissa.",
       "evidence": [],
-      "revision": 2,
+      "revision": 3,
       "geometry": "conceptual",
       "features": [
         {
@@ -1124,7 +1124,7 @@
         "future": "Ehdollinen korjausreitti"
       },
       "visualization": {
-        "title": "Päätöksen ja palautteen kierto",
+        "title": "Ratkaisu tarvitsee palautteen",
         "kind": "power",
         "years": [
           1850,
@@ -1203,7 +1203,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos oletettu haittareitti ei näkyisi seurannassa tai korvautuminen poistaisi sen vaikutuksen.",
       "evidence": [],
-      "revision": 2,
+      "revision": 3,
       "geometry": "conceptual",
       "features": [
         {
@@ -1261,7 +1261,7 @@
         "future": "Ehdollinen korjausreitti"
       },
       "visualization": {
-        "title": "Hyödyn ja periytyvän haitan reitit",
+        "title": "Uusiutumisen kierto ja haitan jälki",
         "kind": "ecology",
         "years": [
           1850,

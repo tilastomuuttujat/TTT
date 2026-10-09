@@ -33,3 +33,9 @@ Teeman vaihtaminen pysäyttää kerronnan ja aloittaa mallin ensimmäisestä vai
 `visualization` määrittää teeman nimettyjen reittien rivit (`lanes`), neljä vuosirajaa (`years`) ja kunkin kolmen vaiheen yhteydet (`stage_routes`, rivinumeroiden pareja 0–2). Vaakakoordinaatti lasketaan kalenterivuodesta; leveys, korkeus ja väri eivät mittaa vaikutuksen määrää. Teemojen jaksotus on toimituksellinen tutkimusehdotus, ei havaittu murrosvuosi. Kolmas vaihe alkaa vuodesta 2026 ja esitetään katkoviivalla ehdollisena tulevaisuutena.
 
 Jokaisen `steps`-vaiheen `period` vastaa samoja vuosirajoja. Päivitä jaksotus ja seliteteksti yhdessä. Reitit voivat muuttua vaiheesta toiseen: esimerkiksi omistus haarautuu, asumisen reitit kohtaavat ja hoivavastuu punoutuu. Tutkimusnäyttöä ei saa päätellä näistä muodoista.
+
+## Teemojen visuaalinen identiteetti
+
+Työnjaossa `WorkChangeArc` palauttaa alkuperäisen kaaren täsmälleen samoilla poluilla, ankkuripainikkeilla ja täyttöväreillä. Kalenteriaika on erillinen asteikko kuvan alla: kaaren geometriaa ei pidä tulkita mitatuksi aikasarjaksi.
+
+`ThemeScene` toteuttaa muille teemoille omat kuvat: kaksi paikkaa (muutto), haarautuva puu (omistus), silta (asuminen), portaat (koulutus), suoja ja toipumispolku (turva), punos (hoiva), palauterengas (valta) ja uusiutumisen kierto (ympäristö). Ne eivät käytä yhteistä kolmen rivin reititystä. `stage_routes` säilyy mallin koneellisesti luettavana mekanismikuvauksena; kohtauksen oma geometria on luettavassa JS-lähteessä.

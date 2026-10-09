@@ -7,7 +7,7 @@ function replaceOnce(before,after){if(source.indexOf(before)<0||source.indexOf(b
 const start=source.indexOf('function Ln({step:'),end=source.indexOf('function Rn(',start);if(start<0||end<0)throw Error('Change arc boundaries missing');source=source.slice(0,start)+fs.readFileSync('scripts/murrokset2-arc.txt','utf8')+source.slice(end);
 replaceOnce('g=On[e],_=e<0;', 'g=On[e],_=e<0,[theme,setTheme]=(0,C.useState)(`work`),[replay,setReplay]=(0,C.useState)(0);');
 replaceOnce('let v=Pn(e,c),y=Mn[c];','let v=Pn(e,c),y=(themeModels.models.find(model=>model.id===theme)||themeModels.models[0]).steps[c];');
-replaceOnce('_&&(0,I.jsx)(Ln,{step:c,onAnchor:n})', '_&&(0,I.jsx)(Ln,{step:c,modelId:theme,onStep:step=>{if(t)r();l(step);d(false);},onPause:()=>{if(t)r();}})');
+replaceOnce('_&&(0,I.jsx)(Ln,{step:c,onAnchor:n})', '_&&(0,I.jsx)(Ln,{step:c,modelId:theme,onAnchor:n,onStep:step=>{if(t)r();l(step);d(false);},onPause:()=>{if(t)r();}})');
 replaceOnce('(0,I.jsxs)(`header`,{className:`anchor-tour-heading`', '_&&(0,I.jsx)(`nav`,{className:`theme-model-picker`,"aria-label":`Isojen teemojen hypoteesimallit`,children:themeModels.models.map(model=>(0,I.jsx)(`button`,{type:`button`,"aria-pressed":theme===model.id,onClick:()=>{if(t)r();setTheme(model.id);l(0);d(false);},children:model.title},model.id))}),(0,I.jsxs)(`header`,{className:`anchor-tour-heading`');
 replaceOnce('let t=Fn(e,c);t.finished?', 'if(_&&c===2){let next=themeModels.models.findIndex(model=>model.id===theme)+1;if(next<themeModels.models.length){setTheme(themeModels.models[next].id);l(0);d(false);return}}let t=Fn(e,c);t.finished?');
 replaceOnce('[t,e,c,u,n,r]);','[t,e,c,u,n,r,theme,replay]);');

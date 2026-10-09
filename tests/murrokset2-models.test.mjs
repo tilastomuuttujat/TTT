@@ -33,12 +33,29 @@ test('every theme has dated stages and calendar-proportional routes with a separ
    const nodes=walk(render({model,step,onStep(){}}));
    const years=nodes.filter(n=>n.type==='text'&&n.props.className==='time-year');
    assert.deepEqual(years.map(n=>n.props.children),model.visualization.years);
-   const scale=775/(model.visualization.years[3]-model.visualization.years[0]);
+   const scale=900/(model.visualization.years[3]-model.visualization.years[0]);
    for(let i=1;i<4;i++)assert.ok(Math.abs((years[i].props.x-years[i-1].props.x)-(model.visualization.years[i]-model.visualization.years[i-1])*scale)<1e-8);
-   assert.ok(nodes.some(n=>n.props?.className?.includes('time-route')&&n.props?.['data-stage']===step&&n.props.className.includes('is-current')));
+   assert.ok(nodes.some(n=>n.props?.className?.includes('time-period')&&n.props?.['data-stage']===step&&n.props.className.includes('is-current')));
    assert.ok(nodes.filter(n=>n.props?.['data-stage']===2).every(n=>n.props.className.includes('is-scenario')));
    let selected;walk(render({model,step,onStep(value){selected=value;}})).find(n=>n.props?.['aria-label']===`Toista ${model.visualization.years[1]}–${model.visualization.years[2]}`).props.onClick();assert.equal(selected,1);
   }
  }
  assert.equal(signatures.size,9);
+});
+
+test('the work arc preserves the original paths and other themes have distinct scene geometry',()=>{
+ const original=fs.readFileSync('assets/index-yRr8yEkP.js','utf8');
+ const start=original.indexOf('function Ln({step:'),end=original.indexOf('function Rn({index:',start);
+ const restored=original.slice(start,end).replace('function Ln({','function WorkChangeArc({').replace('impact-arc impact-step-${e}','impact-arc restored-work-arc impact-step-${e}');
+ assert.ok(arc.startsWith(restored));
+ const render=new Function('I',arc+';return ThemeScene;')(jsx),signatures=new Set();
+ for(const model of data.models.filter(m=>m.id!=='work')){
+  const nodes=walk(render({model,step:2}));
+  assert.ok(nodes.some(n=>n.props?.['data-scene']===model.id));
+  assert.ok(nodes.some(n=>n.props?.className?.includes('scene-motion')));
+  signatures.add(JSON.stringify(nodes.filter(n=>['path','circle','ellipse'].includes(n.type)).map(n=>n.props.d||[n.props.cx,n.props.cy,n.props.r,n.props.rx])));
+ }
+ assert.equal(signatures.size,8);
+ const temporal=new Function('C','I',arc+';return TemporalTheme;')(hooks().C,jsx);
+ assert.ok(walk(temporal({model:data.models[0],step:0,onStep(){}})).some(n=>typeof n.type==='function'&&n.type.name==='WorkChangeArc'));
 });
