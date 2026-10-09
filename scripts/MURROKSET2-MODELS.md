@@ -43,3 +43,9 @@ Työnjaossa `WorkChangeArc` palauttaa alkuperäisen kaaren täsmälleen samoilla
 ## Aikajakson korostus isossa kuvassa
 
 Erillinen aikapalkki on poistettu. `Rn` välittää aktiivisen vaiheen `period`-arvon pääkomponentille, joka antaa sen ison kuvan `Nf`-komponentille vain teemojen esityksen aikana. `AtlasPeriodShade` piirtää taustavarjostuksen atlas-SVG:n sisään ennen käyriä. Vuodet skaalautuvat samalla kaavalla kuin ankkurit (1850 = x60, 2050 = x940). Skenaarion rajat ovat katkoviivoja. Esittelyn sulkeminen tai siirtyminen ankkurikertomukseen poistaa korostuksen. Teemojen oma visuaalinen geometria säilyy.
+
+## Kiinnekohdat ja kuvaajan väistö
+
+Vaiheen `context` sisältää `year`, `era`, `title`, `bridge`, `kind` ja historiallisissa viittauksissa `source` (`title`, `url`). `bridge` kertoo, mitä kysymystä kuvio auttaa tutkimaan. Historiallinen lähde varmistaa kiinnekohdan, ei laajempaa syy-yhteyttä: `evidence` pysyy erillisenä ja mallien status arvioimattomana. Tulevaisuusvaiheen context on `scenario`, ei historiallinen viittaus. Lähdelinkin valinta pysäyttää esityksen.
+
+Teemakuvan yläpuolinen tila mitataan ison kuvan alareunasta. `ResizeObserver` ja ikkunan koon muutos päivittävät välin. Laskenta vähentää nykyisen marginaalin ennen uuden välin laskemista, joten välit eivät kasva mittauskierroksittain. Lyhyt näyttö voi vierittää esitystä; kiinnekohdat eivät peitä kuvaa.

@@ -19,7 +19,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos yhteensovittaminen paranisi mutta osallistuminen ei suhteessa vertailuryhmään muuttuisi.",
       "evidence": [],
-      "revision": 3,
+      "revision": 4,
       "geometry": "conceptual",
       "features": [
         {
@@ -48,6 +48,17 @@
             "start": 1850,
             "end": 1950,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1900,
+            "era": "Teollisuuden kasvun aika",
+            "title": "Teollisuustuotannon pitkä kasvujakso",
+            "bridge": "Kaaren nousu auttaa kysymään, miten tuotannon hyöty välittyi toimeentuloon.",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://stat.fi/tietotrendit/blogit/2019/paaseeko-suomen-teollisuustuotanto-pitkan-aikavalin-kasvu-uralle",
+              "title": "Tilastokeskus"
+            }
           }
         },
         {
@@ -58,6 +69,17 @@
             "start": 1950,
             "end": 2026,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1994,
+            "era": "1990-luvun lama",
+            "title": "Työttömyyden jälki työurissa",
+            "bridge": "Kaaren lasku kuvaa tutkittavaa riskiä: elpyikö osallistuminen tuotannon mukana?",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://stat.fi/til/tyti/2018/16/tyti_2018_16_2019-12-03_tie_001_fi.html",
+              "title": "Tilastokeskus"
+            }
           }
         },
         {
@@ -68,6 +90,13 @@
             "start": 2026,
             "end": 2050,
             "mode": "scenario"
+          },
+          "context": {
+            "year": 2035,
+            "era": "Ehdollinen tulevaisuus — ei ennuste",
+            "title": "Työn mukautus ja osallistuminen",
+            "bridge": "Tämä on koeteltava vaihtoehto: millä ehdoilla aiemmista katkoksista voisi oppia?",
+            "kind": "scenario"
           }
         }
       ],
@@ -168,7 +197,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos arjen edellytykset eivät selittäisi muuttajien tuloksia lähtökohtien ja työmarkkinoiden huomioimisen jälkeen.",
       "evidence": [],
-      "revision": 3,
+      "revision": 4,
       "geometry": "conceptual",
       "features": [
         {
@@ -197,6 +226,17 @@
             "start": 1850,
             "end": 1970,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1960,
+            "era": "Suuri muutto",
+            "title": "Maaseudulta kaupunkeihin ja Ruotsiin",
+            "bridge": "Virtaus yhdistää muuttajan lähtöpaikan, työn ja uuden arjen.",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://stat.fi/tietotrendit/artikkelit/2018/suomi-paasi-lansimaisen-kulutuksen-makuun-1960-luvulla",
+              "title": "Tilastokeskus"
+            }
           }
         },
         {
@@ -207,6 +247,17 @@
             "start": 1970,
             "end": 2026,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1980,
+            "era": "Teollisuuden rakennemuutos",
+            "title": "Muuttovoittoisen alueen suunta voi vaihtua",
+            "bridge": "Paluusuuntainen virtaus auttaa kysymään, mitä lähtö- ja tulopaikkoihin jäi.",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://stat.fi/artikkelit/2007/art_2007-07-13_001.html?s=0",
+              "title": "Tilastokeskus"
+            }
           }
         },
         {
@@ -217,6 +268,13 @@
             "start": 2026,
             "end": 2050,
             "mode": "scenario"
+          },
+          "context": {
+            "year": 2035,
+            "era": "Ehdollinen tulevaisuus — ei ennuste",
+            "title": "Lähtö- ja tulopaikan kantava arki",
+            "bridge": "Tämä on koeteltava vaihtoehto: millä ehdoilla aiemmista katkoksista voisi oppia?",
+            "kind": "scenario"
           }
         }
       ],
@@ -325,7 +383,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos omistusrakenne ei liittyisi hyödyn välittymiseen vertailukelpoisissa tapauksissa.",
       "evidence": [],
-      "revision": 3,
+      "revision": 4,
       "geometry": "conceptual",
       "features": [
         {
@@ -354,6 +412,17 @@
             "start": 1850,
             "end": 1918,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1900,
+            "era": "Teollisuuden kasvun aika",
+            "title": "Tuotannon kasvu ja hyödyn saajat",
+            "bridge": "Haarautuminen kysyy, kenelle kasvun tuotto ja päätösvalta kuuluivat.",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://stat.fi/tietotrendit/blogit/2019/paaseeko-suomen-teollisuustuotanto-pitkan-aikavalin-kasvu-uralle",
+              "title": "Tilastokeskus"
+            }
           }
         },
         {
@@ -364,6 +433,17 @@
             "start": 1918,
             "end": 2026,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1918,
+            "era": "Torpparikysymys",
+            "title": "Laki vuokra-alueiden lunastamisesta",
+            "bridge": "Haaroista voi kysyä: muuttuiko myös ihmisen mahdollisuus päättää työnsä tuotosta?",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://www.finlex.fi/fi/lainsaadanto/1918/135-001",
+              "title": "Finlex"
+            }
           }
         },
         {
@@ -374,6 +454,13 @@
             "start": 2026,
             "end": 2050,
             "mode": "scenario"
+          },
+          "context": {
+            "year": 2035,
+            "era": "Ehdollinen tulevaisuus — ei ennuste",
+            "title": "Tuoton välittyminen uusiin mahdollisuuksiin",
+            "bridge": "Tämä on koeteltava vaihtoehto: millä ehdoilla aiemmista katkoksista voisi oppia?",
+            "kind": "scenario"
           }
         }
       ],
@@ -474,7 +561,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos asumisen saavutettavuuden paraneminen ei lisäisi mahdollisuuksien käyttöä vertailuryhmään nähden.",
       "evidence": [],
-      "revision": 3,
+      "revision": 4,
       "geometry": "conceptual",
       "features": [
         {
@@ -503,6 +590,17 @@
             "start": 1850,
             "end": 1960,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1949,
+            "era": "Sodanjälkeinen rakentaminen",
+            "title": "Aravalainoitus alkoi",
+            "bridge": "Silta auttaa kysymään, mitä asunto teki työn ja arjen saavutettavuudelle.",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://www.valtiokonttori.fi/palvelu/yhteisojen-aravalainat/",
+              "title": "Valtiokonttori"
+            }
           }
         },
         {
@@ -513,6 +611,17 @@
             "start": 1960,
             "end": 2026,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1960,
+            "era": "Kaupungistuminen",
+            "title": "Työn perässä uuteen kaupunkiin",
+            "bridge": "Sillan katkos nostaa kysymyksen: löytyikö työn lisäksi paikka elää?",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://stat.fi/tietotrendit/artikkelit/2018/suomi-paasi-lansimaisen-kulutuksen-makuun-1960-luvulla",
+              "title": "Tilastokeskus"
+            }
           }
         },
         {
@@ -523,6 +632,13 @@
             "start": 2026,
             "end": 2050,
             "mode": "scenario"
+          },
+          "context": {
+            "year": 2035,
+            "era": "Ehdollinen tulevaisuus — ei ennuste",
+            "title": "Asunto, työ ja palvelut saavutettaviksi",
+            "bridge": "Tämä on koeteltava vaihtoehto: millä ehdoilla aiemmista katkoksista voisi oppia?",
+            "kind": "scenario"
           }
         }
       ],
@@ -619,7 +735,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos koulutuksen saavutettavuus ei liittyisi myöhempiin mahdollisuuksiin valikoitumisen huomioimisen jälkeen.",
       "evidence": [],
-      "revision": 3,
+      "revision": 4,
       "geometry": "conceptual",
       "features": [
         {
@@ -648,6 +764,17 @@
             "start": 1850,
             "end": 1970,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1921,
+            "era": "Oppivelvollisuuden alku",
+            "title": "Laki oppivelvollisuudesta",
+            "bridge": "Ensimmäinen porras avaa kysymyksen siitä, kuka pääsi oppimaan.",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://www.finlex.fi/fi/lainsaadanto/1921/101",
+              "title": "Finlex"
+            }
           }
         },
         {
@@ -658,6 +785,17 @@
             "start": 1970,
             "end": 2026,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1972,
+            "era": "Peruskoulu-uudistus 1972–1977",
+            "title": "Yhteisen koulureitin rakentaminen",
+            "bridge": "Portaat erottavat koulutukseen pääsyn ja osaamisen myöhemmän käytön.",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://www.mfa.fi/kokoelmat/tietopaketit/koulurakentamisen-historiaa/1970-luku/",
+              "title": "Arkkitehtuurimuseo"
+            }
           }
         },
         {
@@ -668,6 +806,13 @@
             "start": 2026,
             "end": 2050,
             "mode": "scenario"
+          },
+          "context": {
+            "year": 2035,
+            "era": "Ehdollinen tulevaisuus — ei ennuste",
+            "title": "Uusi oppimisreitti arjen rinnalle",
+            "bridge": "Tämä on koeteltava vaihtoehto: millä ehdoilla aiemmista katkoksista voisi oppia?",
+            "kind": "scenario"
           }
         }
       ],
@@ -764,7 +909,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos turvan ajoituksella tai kattavuudella ei olisi yhteyttä myöhempään toipumiseen vertailukelpoisissa tilanteissa.",
       "evidence": [],
-      "revision": 3,
+      "revision": 4,
       "geometry": "conceptual",
       "features": [
         {
@@ -793,6 +938,17 @@
             "start": 1850,
             "end": 1990,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1937,
+            "era": "Kansaneläkejärjestelmän alku",
+            "title": "Kela aloitti toimintansa",
+            "bridge": "Suoja auttaa kysymään, millaisia häiriöitä yhteinen turva alkoi kantaa.",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://www.kela.fi/historia",
+              "title": "Kela"
+            }
           }
         },
         {
@@ -803,6 +959,17 @@
             "start": 1990,
             "end": 2026,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1994,
+            "era": "1990-luvun lama",
+            "title": "Tulonsiirrot ja työttömyys",
+            "bridge": "Eri polut avaavat kysymyksen: mikä esti tilapäistä häiriötä pitkittymästä?",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://stat.fi/artikkelit/2005/art_2005-03-16_001.html?s=10&tulosta=",
+              "title": "Tilastokeskus"
+            }
           }
         },
         {
@@ -813,6 +980,13 @@
             "start": 2026,
             "end": 2050,
             "mode": "scenario"
+          },
+          "context": {
+            "year": 2035,
+            "era": "Ehdollinen tulevaisuus — ei ennuste",
+            "title": "Turva ennen katkoksen pitkittymistä",
+            "bridge": "Tämä on koeteltava vaihtoehto: millä ehdoilla aiemmista katkoksista voisi oppia?",
+            "kind": "scenario"
           }
         }
       ],
@@ -909,7 +1083,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos hoivan järjestelyjen muutos ei liittyisi osallistumisen tai kuormituksen muutokseen tarpeen huomioimisen jälkeen.",
       "evidence": [],
-      "revision": 3,
+      "revision": 4,
       "geometry": "conceptual",
       "features": [
         {
@@ -938,6 +1112,17 @@
             "start": 1850,
             "end": 1970,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1927,
+            "era": "Lastentarhojen tukeminen",
+            "title": "Laki lastentarhain valtionavusta",
+            "bridge": "Ensimmäinen säie kysyy, miten läheisten aika ja yhteinen tuki liittyivät yhteen.",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://www.finlex.fi/fi/lainsaadanto/saadoskokoelma/1973/36",
+              "title": "Finlex: vuoden 1973 lain viittaus"
+            }
           }
         },
         {
@@ -948,6 +1133,17 @@
             "start": 1970,
             "end": 2026,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1973,
+            "era": "Päivähoidon järjestäminen",
+            "title": "Laki lasten päivähoidosta",
+            "bridge": "Punos avaa kysymyksen siitä, miten hoivavastuu liittyi työssäkäynnin mahdollisuuteen.",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://www.finlex.fi/fi/lainsaadanto/saadoskokoelma/1973/36",
+              "title": "Finlex"
+            }
           }
         },
         {
@@ -958,6 +1154,13 @@
             "start": 2026,
             "end": 2050,
             "mode": "scenario"
+          },
+          "context": {
+            "year": 2035,
+            "era": "Ehdollinen tulevaisuus — ei ennuste",
+            "title": "Kestävä vastuunjako",
+            "bridge": "Tämä on koeteltava vaihtoehto: millä ehdoilla aiemmista katkoksista voisi oppia?",
+            "kind": "scenario"
           }
         }
       ],
@@ -1066,7 +1269,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos edustuksen tai palautereitin vahvistuminen ei liittyisi ongelmien korjaantumiseen vertailukelpoisissa tapauksissa.",
       "evidence": [],
-      "revision": 3,
+      "revision": 4,
       "geometry": "conceptual",
       "features": [
         {
@@ -1095,6 +1298,17 @@
             "start": 1850,
             "end": 1910,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1906,
+            "era": "Eduskuntauudistus",
+            "title": "Yleinen ja yhtäläinen äänioikeus",
+            "bridge": "Kierto alkaa kysymyksestä: keiden tarpeet pääsivät päätöksentekoon?",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://verkkolahetys.eduskunta.fi/fi/seminaarit/2026-06-01-imbdfyk1b",
+              "title": "Eduskunta"
+            }
           }
         },
         {
@@ -1105,6 +1319,17 @@
             "start": 1910,
             "end": 2026,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 2020,
+            "era": "Oppivelvollisuuden uudistaminen",
+            "title": "Uusi oppivelvollisuuslaki",
+            "bridge": "Palautekierto kysyy, miten päätöksen vaikutukset voisivat muuttaa seuraavaa ratkaisua.",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://www.finlex.fi/fi/lainsaadanto/saadoskokoelma/2020/1214",
+              "title": "Finlex"
+            }
           }
         },
         {
@@ -1115,6 +1340,13 @@
             "start": 2026,
             "end": 2050,
             "mode": "scenario"
+          },
+          "context": {
+            "year": 2035,
+            "era": "Ehdollinen tulevaisuus — ei ennuste",
+            "title": "Toteutuksesta oppiva päätöksenteko",
+            "bridge": "Tämä on koeteltava vaihtoehto: millä ehdoilla aiemmista katkoksista voisi oppia?",
+            "kind": "scenario"
           }
         }
       ],
@@ -1203,7 +1435,7 @@
       ],
       "refutation": "Mallia heikentäisi, jos oletettu haittareitti ei näkyisi seurannassa tai korvautuminen poistaisi sen vaikutuksen.",
       "evidence": [],
-      "revision": 3,
+      "revision": 4,
       "geometry": "conceptual",
       "features": [
         {
@@ -1232,6 +1464,17 @@
             "start": 1850,
             "end": 1970,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1900,
+            "era": "Teollisuuden kasvun aika",
+            "title": "Tuotanto tarvitsee aineellisia resursseja",
+            "bridge": "Kierto auttaa erottamaan tämänhetkisen hyödyn ja myöhemmän toimintakyvyn.",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://stat.fi/tietotrendit/blogit/2019/paaseeko-suomen-teollisuustuotanto-pitkan-aikavalin-kasvu-uralle",
+              "title": "Tilastokeskus"
+            }
           }
         },
         {
@@ -1242,6 +1485,17 @@
             "start": 1970,
             "end": 2026,
             "mode": "historical-hypothesis"
+          },
+          "context": {
+            "year": 1973,
+            "era": "Öljykriisi",
+            "title": "Energiariippuvuus tuli näkyväksi",
+            "bridge": "Haitan jälki nostaa kysymyksen: miten tuotannon edellytykset kestivät häiriön?",
+            "kind": "historical-reference",
+            "source": {
+              "url": "https://www.sitra.fi/julkaisut/energiakriisin-kynnyksella-mita-voimme-oppia-menneesta/",
+              "title": "Sitra"
+            }
           }
         },
         {
@@ -1252,6 +1506,13 @@
             "start": 2026,
             "end": 2050,
             "mode": "scenario"
+          },
+          "context": {
+            "year": 2035,
+            "era": "Ehdollinen tulevaisuus — ei ennuste",
+            "title": "Uusiutuvat tuotannon edellytykset",
+            "bridge": "Tämä on koeteltava vaihtoehto: millä ehdoilla aiemmista katkoksista voisi oppia?",
+            "kind": "scenario"
           }
         }
       ],

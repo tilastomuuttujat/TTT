@@ -34,23 +34,27 @@ function ThemeScene({model,step}){
  }
  return I.jsxs('svg',{viewBox:'0 0 1000 280',role:'img','data-scene':model.id,'aria-label':`${model.title}: ${model.visualization.title}. Kuvio jäsentää hypoteesia; sijainti ja koko eivät mittaa vaikutusta.`,children});
 }
-function TemporalTheme({model,step,onStep,onAnchor}){
+function TemporalTheme({model,step,onStep,onAnchor,onPause}){
  const v=model.visualization,years=v.years,x=year=>50+(year-years[0])/(years[3]-years[0])*900,stage=model.steps[step].period;
  return I.jsxs('div',{className:`time-model personal-model personal-${model.id}`,'data-time-model':model.id,children:[
  I.jsxs('div',{className:'time-model-heading',children:[I.jsx('strong',{children:v.title}),I.jsx('span',{children:`${stage.start}–${stage.end} · ${step===2?'ehdollinen tulevaisuus':'tutkittava jakso'}`})]}),
  I.jsx('div',{className:'personal-scene',children:model.id==='work'?I.jsx(WorkChangeArc,{step,onAnchor:onAnchor||onStep}):I.jsx(ThemeScene,{model,step})}),
+ I.jsxs('div',{className:'scene-context',key:`context-${model.id}-${step}`,children:[I.jsxs('p',{className:'scene-context-title',children:[I.jsx('strong',{children:model.steps[step].context.year}),` · ${model.steps[step].context.era} — ${model.steps[step].context.title}`]}),I.jsx('p',{className:'scene-context-bridge',children:model.steps[step].context.bridge}),model.steps[step].context.source&&I.jsxs('small',{children:[I.jsx('a',{href:model.steps[step].context.source.url,target:'_blank',rel:'noopener noreferrer',onClick:()=>onPause?.(),children:`Kiinnekohdan lähde: ${model.steps[step].context.source.title}`}),` · Mallin yhteys on tutkittava tulkinta.`]})]}),
  I.jsx('p',{className:'time-model-legend',children:'Ajanjakso on korostettu isossa kuvassa · Tämä kuvio avaa vaikutusmekanismia, ei mittaa sen voimakkuutta'}),I.jsx('p',{className:'time-period-basis',children:v.period_basis})]});
 }
 function Ln({step,onStep,modelId,onPause,onAnchor}){
  const model=themeModels.models.find(m=>m.id===modelId)||themeModels.models[0];
  const statusLabel={untested:'Validius arvioimatta',provisional:'Alustavaa näyttöä liitetty',supported:'Näyttöä määritellyille yhteyksille',challenged:'Näyttö haastaa mallin'}[model.status];
- const [open,setOpen]=C.useState(false),dialog=C.useRef(null),trigger=C.useRef(null);
+ const [open,setOpen]=C.useState(false),dialog=C.useRef(null),trigger=C.useRef(null),layout=C.useRef(null),[clearance,setClearance]=C.useState(32);
+ C.useLayoutEffect(()=>{const node=layout.current,atlas=node?.closest('.opening-map')?.querySelector('.atlas-network');if(!node||!atlas)return;
+ const measure=()=>{const top=node.getBoundingClientRect().top-parseFloat(window.getComputedStyle(node).marginTop||'0');const gap=Math.max(32,Math.ceil(atlas.getBoundingClientRect().bottom+38-top));setClearance(previous=>Math.abs(previous-gap)>1?gap:previous);};
+ measure();const observer=new ResizeObserver(measure);observer.observe(atlas);observer.observe(node.parentElement);window.addEventListener('resize',measure);return()=>{observer.disconnect();window.removeEventListener('resize',measure);};},[modelId]);
  const close=()=>{setOpen(false);window.requestAnimationFrame(()=>trigger.current?.focus());};
  C.useLayoutEffect(()=>{if(!open)return;const node=dialog.current;node.showModal();const previous=document.body.style.overflow;document.body.style.overflow='hidden';return()=>{node.close();document.body.style.overflow=previous;};},[open]);
- return I.jsxs('div',{className:`impact-arc thematic-arc temporal-arc impact-step-${step}`,'aria-label':`${model.title}. Tutkittava hypoteesi: ${model.hypothesis}`,children:[
+ return I.jsxs('div',{ref:layout,style:{marginTop:clearance},className:`impact-arc thematic-arc temporal-arc impact-step-${step}`,'aria-label':`${model.title}. Tutkittava hypoteesi: ${model.hypothesis}`,children:[
  I.jsx('p',{className:'impact-note',children:`Hypoteesimalli · ${statusLabel.toLowerCase()} · reitit eivät ole mittauksia; ajanjaksot ovat tutkittavia rajauksia`}),
  I.jsx('button',{ref:trigger,type:'button',className:'theme-probe',onClick:()=>{onPause();setOpen(true);},children:'Koettele hypoteesia'}),
- I.jsx(TemporalTheme,{model,step,onStep,onAnchor}),
+ I.jsx(TemporalTheme,{model,step,onStep,onAnchor,onPause}),
  open&&I.jsxs('dialog',{ref:dialog,className:'theme-research-dialog','aria-labelledby':'theme-research-title',onCancel:event=>{event.preventDefault();close();},children:[
  I.jsx('button',{type:'button',className:'theme-research-close','aria-label':'Sulje hypoteesin tarkastelu',onClick:close,autoFocus:true,children:'×'}),
  I.jsxs('article',{children:[I.jsx('small',{children:statusLabel+' · versio '+model.revision}),I.jsx('h1',{id:'theme-research-title',children:model.title+' — '+model.angle}),I.jsx('h2',{children:'Hypoteesi'}),I.jsx('p',{children:model.hypothesis}),I.jsx('h2',{children:'Kilpaileva selitys'}),I.jsx('p',{children:model.alternative}),I.jsx('h2',{children:'Mallin oletukset'}),I.jsx('ul',{children:model.assumptions.map((x,i)=>I.jsx('li',{children:x},i))}),I.jsx('h2',{children:'Mitä pitäisi havainnoida?'}),I.jsx('ul',{children:model.observe.map((x,i)=>I.jsx('li',{children:x},i))}),I.jsx('h2',{children:'Mikä heikentäisi tai kumoaisi tulkintaa?'}),I.jsx('p',{children:model.refutation}),I.jsx('h2',{children:'Tutkimusnäytön tila'}),I.jsx('p',{children:(model.status==='untested'?'Tämän mallin validiutta ei ole arvioitu. ':'Liitetty näyttö koskee nimettyjä yhteyksiä ja rajattuja olosuhteita. ')+ 'Visualisoinnin reitit ja värit jäsentävät mahdollista mekanismia; ne eivät ole historiallisia havaintoja, mitattuja vaikutuksia tai ennusteita. Tuleva näyttö voi vahvistaa osan yhteyksistä, rajata soveltamisalaa tai kumota mallin.'}),...model.evidence.map((e,i)=>I.jsxs('section',{className:'theme-evidence-entry',children:[I.jsx('a',{href:e.url,target:'_blank',rel:'noopener noreferrer',children:e.title}),I.jsx('p',{children:e.claim})]},i)),I.jsx('p',{children:'Ankkuritapauksilla ja niiden kertomuksilla on oma lähdepohjansa. Se ei automaattisesti validoi tätä laajempaa teemamallia.'})]})]})]});

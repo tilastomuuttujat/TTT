@@ -64,3 +64,26 @@ test('the work arc preserves the original paths and other themes have distinct s
  const temporal=new Function('C','I',arc+';return TemporalTheme;')(hooks().C,jsx);
  assert.ok(walk(temporal({model:data.models[0],step:0,onStep(){}})).some(n=>typeof n.type==='function'&&n.type.name==='WorkChangeArc'));
 });
+test('dated context changes with the scene, links pause narration and scenarios are explicit',()=>{
+ const render=new Function('C','I',arc+';return TemporalTheme;')(hooks().C,jsx);
+ for(const model of data.models){for(let step=0;step<3;step++){
+  let paused=false;const context=model.steps[step].context,nodes=walk(render({model,step,onPause(){paused=true;}}));
+  assert.ok(nodes.some(n=>n.type==='strong'&&n.props.children===context.year));
+  assert.ok(nodes.some(n=>n.props?.children===context.bridge));
+  if(step<2){const link=nodes.find(n=>n.type==='a'&&n.props.href===context.source.url);assert.ok(link);link.props.onClick();assert.equal(paused,true);}else{assert.equal(context.kind,'scenario');assert.ok(context.era.includes('ei ennuste'));}
+ }}
+});
+test('the scene reserves clearance below the atlas and measurement does not accumulate margins',()=>{
+ const h=hooks(),effects=[];h.C.useLayoutEffect=effect=>effects.push(effect);let measure,margin=32;
+ const atlas={getBoundingClientRect:()=>({bottom:280})},parent={};
+ const node={closest:()=>({querySelector:()=>atlas}),parentElement:parent,getBoundingClientRect:()=>({top:180+margin})};
+ const ctx={C:h.C,I:jsx,themeModels:data,window:{getComputedStyle:()=>({marginTop:String(margin)}),addEventListener(){},removeEventListener(){}},ResizeObserver:class{constructor(callback){measure=callback;}observe(){}disconnect(){}}};
+ const render=new Function('ctx',`with(ctx){${arc};return Ln;}`)(ctx),props={modelId:'work',step:0,onPause(){}};
+ let tree=render(props);tree.props.ref.current=node;const cleanup=effects[0]();h.reset();tree=render(props);margin=tree.props.style.marginTop;
+ assert.equal(margin,138);assert.ok(180+margin>=280+38);
+ measure();h.reset();tree=render(props);assert.equal(tree.props.style.marginTop,138);cleanup();
+});
+test('context validation rejects references outside the active historical period',()=>{
+ const validate=new Function(bundle.slice(0,bundle.indexOf('let themeModels='))+';return validateThemeModels;')();
+ const changed=structuredClone(data);changed.models[0].steps[0].context.year=2025;assert.equal(validate(changed),false);
+});
