@@ -1,0 +1,546 @@
+{
+  "schema_version": 1,
+  "scope": "1850–2050: historialliset tutkimuskysymykset ja ehdolliset tulevaisuuspolut",
+  "models": [
+    {
+      "id": "work",
+      "title": "Työnjako",
+      "angle": "Työn muutos",
+      "status": "untested",
+      "hypothesis": "Työn muutos laajentaisi osallistumista, jos osaaminen, tehtävät ja tuki muuttuisivat sen mukana.",
+      "alternative": "Työvoiman kysyntä tai teknologia voi ratkaista osallistumisen enemmän kuin yhteensovittaminen.",
+      "assumptions": [
+        "Esitetty välittävä mekanismi on mahdollista tunnistaa aineistosta.",
+        "Ryhmien lähtökohdat, muut samanaikaiset muutokset ja aikajänne erotetaan toisistaan."
+      ],
+      "observe": [
+        "Tehtävien, osaamisen ja työpaikkojen muutos samoissa ryhmissä.",
+        "Työhön pääsy ja työssä pysyminen; myös kuormitus ja toimeentulo."
+      ],
+      "refutation": "Mallia heikentäisi, jos yhteensovittaminen paranisi mutta osallistuminen ei suhteessa vertailuryhmään muuttuisi.",
+      "evidence": [],
+      "revision": 1,
+      "geometry": "conceptual",
+      "features": [
+        {
+          "label": "Uusi tehtävärakenne",
+          "detail": "Muutos"
+        },
+        {
+          "label": "Osaaminen ja työn ehdot",
+          "detail": "Välittymisen ehdot"
+        },
+        {
+          "label": "Osallistuminen",
+          "detail": "Seurausten jakautuminen"
+        },
+        {
+          "label": "Työn mukautus",
+          "detail": "Ehdollinen tulevaisuus"
+        }
+      ],
+      "steps": [
+        {
+          "label": "Hypoteesi · mahdollisuus",
+          "title": "Tuotannon muutos avaa mahdollisuuden, mutta ei vielä paikkaa ihmiselle.",
+          "text": "Työn muutos laajentaisi osallistumista, jos osaaminen, tehtävät ja tuki muuttuisivat sen mukana."
+        },
+        {
+          "label": "Hypoteesi · katkos tai eriytyminen",
+          "title": "Jos osaaminen ja työn ehdot eivät kohtaa, hyöty ja ulkopuolisuus voivat kasvaa rinnakkain.",
+          "text": "Työvoiman kysyntä tai teknologia voi ratkaista osallistumisen enemmän kuin yhteensovittaminen."
+        },
+        {
+          "label": "Skenaario · koeteltava korjaus",
+          "title": "Tehtävien mukautus voisi avata uuden reitin, jos työ on mielekästä ja tuki kantaa.",
+          "text": "Tulevaisuuspolku on ehdollinen. Mallia heikentäisi, jos yhteensovittaminen paranisi mutta osallistuminen ei suhteessa vertailuryhmään muuttuisi."
+        }
+      ],
+      "labels": {
+        "benefit": "Mahdollisuus avautuu",
+        "pressure": "Mahdollisuus voi kaventua",
+        "future": "Ehdollinen korjausreitti"
+      }
+    },
+    {
+      "id": "migration",
+      "title": "Muuttoliike",
+      "angle": "Mahdollisuuksien sijainti",
+      "status": "untested",
+      "hypothesis": "Muutto avaisi mahdollisuuksia kestävämmin, jos työn rinnalla olisi asunto, palvelut ja yhteisö, eikä lähtöpaikan sopeutuminen jäisi huomiotta.",
+      "alternative": "Muuttajien valikoituminen, ikärakenne ja alueiden erilainen työvoiman kysyntä voivat selittää eroja.",
+      "assumptions": [
+        "Esitetty välittävä mekanismi on mahdollista tunnistaa aineistosta.",
+        "Ryhmien lähtökohdat, muut samanaikaiset muutokset ja aikajänne erotetaan toisistaan."
+      ],
+      "observe": [
+        "Muuttajien ja jääneiden kehitys erikseen sekä vertailu ennen muuttoa.",
+        "Työ, asumismenot, palvelujen saavutettavuus ja alueiden ikärakenne."
+      ],
+      "refutation": "Mallia heikentäisi, jos arjen edellytykset eivät selittäisi muuttajien tuloksia lähtökohtien ja työmarkkinoiden huomioimisen jälkeen.",
+      "evidence": [],
+      "revision": 1,
+      "geometry": "conceptual",
+      "features": [
+        {
+          "label": "Ihmiset liikkuvat",
+          "detail": "Muutos"
+        },
+        {
+          "label": "Työ, asunto ja palvelut",
+          "detail": "Välittymisen ehdot"
+        },
+        {
+          "label": "Lähtö- ja tulopaikan jälki",
+          "detail": "Seurausten jakautuminen"
+        },
+        {
+          "label": "Elämisen edellytykset",
+          "detail": "Ehdollinen tulevaisuus"
+        }
+      ],
+      "steps": [
+        {
+          "label": "Hypoteesi · mahdollisuus",
+          "title": "Muutto voi avata työn tai koulutuksen reitin. Mahdollisuus riippuu myös siitä, voiko paikassa elää.",
+          "text": "Muutto avaisi mahdollisuuksia kestävämmin, jos työn rinnalla olisi asunto, palvelut ja yhteisö, eikä lähtöpaikan sopeutuminen jäisi huomiotta."
+        },
+        {
+          "label": "Hypoteesi · katkos tai eriytyminen",
+          "title": "Asumisen tai palvelujen viive voisi rajata muuton hyötyä ja siirtää kustannuksia ihmiselle tai alueelle.",
+          "text": "Muuttajien valikoituminen, ikärakenne ja alueiden erilainen työvoiman kysyntä voivat selittää eroja."
+        },
+        {
+          "label": "Skenaario · koeteltava korjaus",
+          "title": "Vastaanottopaikan rakentuminen ja lähtöpaikan sopeutuminen voisivat muuttaa seuraavien muuttajien lähtökohtia.",
+          "text": "Tulevaisuuspolku on ehdollinen. Mallia heikentäisi, jos arjen edellytykset eivät selittäisi muuttajien tuloksia lähtökohtien ja työmarkkinoiden huomioimisen jälkeen."
+        }
+      ],
+      "labels": {
+        "benefit": "Mahdollisuus avautuu",
+        "pressure": "Mahdollisuus voi kaventua",
+        "future": "Ehdollinen korjausreitti"
+      }
+    },
+    {
+      "id": "ownership",
+      "title": "Omistus",
+      "angle": "Hyödyn ja vallan jakautuminen",
+      "status": "untested",
+      "hypothesis": "Kasvu voisi vahvistaa yhteistä toimintakykyä eri tavoin riippuen siitä, miten omistus, tuotot ja investointipäätökset jakautuvat.",
+      "alternative": "Erot voivat johtua toimialoista, riskinotosta tai yritysten tuottavuudesta omistusrakenteen sijaan.",
+      "assumptions": [
+        "Esitetty välittävä mekanismi on mahdollista tunnistaa aineistosta.",
+        "Ryhmien lähtökohdat, muut samanaikaiset muutokset ja aikajänne erotetaan toisistaan."
+      ],
+      "observe": [
+        "Tuottojen, palkkojen ja investointien jakautuminen omistajatyypeittäin.",
+        "Varallisuus ja taloudelliset puskurit väestöryhmittäin."
+      ],
+      "refutation": "Mallia heikentäisi, jos omistusrakenne ei liittyisi hyödyn välittymiseen vertailukelpoisissa tapauksissa.",
+      "evidence": [],
+      "revision": 1,
+      "geometry": "conceptual",
+      "features": [
+        {
+          "label": "Tuotettu hyöty",
+          "detail": "Muutos"
+        },
+        {
+          "label": "Omistus ja päätösvalta",
+          "detail": "Välittymisen ehdot"
+        },
+        {
+          "label": "Tulojen ja puskurien erot",
+          "detail": "Seurausten jakautuminen"
+        },
+        {
+          "label": "Hyödyn välittyminen",
+          "detail": "Ehdollinen tulevaisuus"
+        }
+      ],
+      "steps": [
+        {
+          "label": "Hypoteesi · mahdollisuus",
+          "title": "Tuotanto voi kasvaa. Omistus määrittää osan siitä, kuka saa tuoton ja voi päättää sen käytöstä.",
+          "text": "Kasvu voisi vahvistaa yhteistä toimintakykyä eri tavoin riippuen siitä, miten omistus, tuotot ja investointipäätökset jakautuvat."
+        },
+        {
+          "label": "Hypoteesi · katkos tai eriytyminen",
+          "title": "Jos hyöty ei välity toimeentuloon tai uusiin mahdollisuuksiin, tuotannon ja arjen kehitys voisi eriytyä.",
+          "text": "Erot voivat johtua toimialoista, riskinotosta tai yritysten tuottavuudesta omistusrakenteen sijaan."
+        },
+        {
+          "label": "Skenaario · koeteltava korjaus",
+          "title": "Investoinnit, verotus ja tulon muodostuminen voisivat avata eri reittejä hyödyn välittymiselle.",
+          "text": "Tulevaisuuspolku on ehdollinen. Mallia heikentäisi, jos omistusrakenne ei liittyisi hyödyn välittymiseen vertailukelpoisissa tapauksissa."
+        }
+      ],
+      "labels": {
+        "benefit": "Mahdollisuus avautuu",
+        "pressure": "Mahdollisuus voi kaventua",
+        "future": "Ehdollinen korjausreitti"
+      }
+    },
+    {
+      "id": "housing",
+      "title": "Asuminen",
+      "angle": "Työn ja elämän kohtaaminen",
+      "status": "untested",
+      "hypothesis": "Työn tai palvelun mahdollisuus voisi jäädä käyttämättä, jos sopivaa asuntoa ei ole saavutettavissa kohtuullisin kustannuksin.",
+      "alternative": "Työn ehdot, perhesiteet tai omat asuinvalinnat voivat olla tärkeämpiä kuin asumisen tarjonta.",
+      "assumptions": [
+        "Esitetty välittävä mekanismi on mahdollista tunnistaa aineistosta.",
+        "Ryhmien lähtökohdat, muut samanaikaiset muutokset ja aikajänne erotetaan toisistaan."
+      ],
+      "observe": [
+        "Asuntojen tarjonta ja kustannukset suhteessa työpaikkoihin ja tuloihin.",
+        "Työstä kieltäytymisen, muuttamisen ja matka-aikojen syyt."
+      ],
+      "refutation": "Mallia heikentäisi, jos asumisen saavutettavuuden paraneminen ei lisäisi mahdollisuuksien käyttöä vertailuryhmään nähden.",
+      "evidence": [],
+      "revision": 1,
+      "geometry": "conceptual",
+      "features": [
+        {
+          "label": "Mahdollisuuksien sijainti",
+          "detail": "Muutos"
+        },
+        {
+          "label": "Asunto ja asumismenot",
+          "detail": "Välittymisen ehdot"
+        },
+        {
+          "label": "Käytettävissä oleva tulo",
+          "detail": "Seurausten jakautuminen"
+        },
+        {
+          "label": "Saavutettava arki",
+          "detail": "Ehdollinen tulevaisuus"
+        }
+      ],
+      "steps": [
+        {
+          "label": "Hypoteesi · mahdollisuus",
+          "title": "Työpaikka tai koulutus voi syntyä paikkaan, jossa asuminen rajaa mahdollisuutta tarttua siihen.",
+          "text": "Työn tai palvelun mahdollisuus voisi jäädä käyttämättä, jos sopivaa asuntoa ei ole saavutettavissa kohtuullisin kustannuksin."
+        },
+        {
+          "label": "Hypoteesi · katkos tai eriytyminen",
+          "title": "Korkeat menot tai pitkä matka voisivat syödä työstä saatavaa hyötyä ja arjen liikkumavaraa.",
+          "text": "Työn ehdot, perhesiteet tai omat asuinvalinnat voivat olla tärkeämpiä kuin asumisen tarjonta."
+        },
+        {
+          "label": "Skenaario · koeteltava korjaus",
+          "title": "Asuntojen, liikkumisen ja palvelujen yhteensovittaminen voisi muuttaa mahdollisuuden käytännössä saavutettavaksi.",
+          "text": "Tulevaisuuspolku on ehdollinen. Mallia heikentäisi, jos asumisen saavutettavuuden paraneminen ei lisäisi mahdollisuuksien käyttöä vertailuryhmään nähden."
+        }
+      ],
+      "labels": {
+        "benefit": "Mahdollisuus avautuu",
+        "pressure": "Mahdollisuus voi kaventua",
+        "future": "Ehdollinen korjausreitti"
+      }
+    },
+    {
+      "id": "education",
+      "title": "Koulutus",
+      "angle": "Valmiuksista mahdollisuuksiin",
+      "status": "untested",
+      "hypothesis": "Koulutus voisi laajentaa mahdollisuuksia, jos siihen pääsy ja opitun osaamisen käyttö työssä toteutuisivat myös heikommista lähtökohdista.",
+      "alternative": "Työvoiman kysyntä tai koulutukseen valikoituminen voi selittää myöhempää kehitystä.",
+      "assumptions": [
+        "Esitetty välittävä mekanismi on mahdollista tunnistaa aineistosta.",
+        "Ryhmien lähtökohdat, muut samanaikaiset muutokset ja aikajänne erotetaan toisistaan."
+      ],
+      "observe": [
+        "Koulutukseen pääsy, valmistuminen ja osaamista vastaava työ ryhmittäin.",
+        "Työmarkkinatilanne, lähtöosaaminen ja perhetausta."
+      ],
+      "refutation": "Mallia heikentäisi, jos koulutuksen saavutettavuus ei liittyisi myöhempiin mahdollisuuksiin valikoitumisen huomioimisen jälkeen.",
+      "evidence": [],
+      "revision": 1,
+      "geometry": "conceptual",
+      "features": [
+        {
+          "label": "Muuttuva osaamistarve",
+          "detail": "Muutos"
+        },
+        {
+          "label": "Koulutukseen pääsy",
+          "detail": "Välittymisen ehdot"
+        },
+        {
+          "label": "Osaamisen käyttö työssä",
+          "detail": "Seurausten jakautuminen"
+        },
+        {
+          "label": "Uusi oppimisreitti",
+          "detail": "Ehdollinen tulevaisuus"
+        }
+      ],
+      "steps": [
+        {
+          "label": "Hypoteesi · mahdollisuus",
+          "title": "Koulutus voi kasvattaa valmiuksia. Tutkinto ei yksin osoita, että osaamiselle on käyttöä.",
+          "text": "Koulutus voisi laajentaa mahdollisuuksia, jos siihen pääsy ja opitun osaamisen käyttö työssä toteutuisivat myös heikommista lähtökohdista."
+        },
+        {
+          "label": "Hypoteesi · katkos tai eriytyminen",
+          "title": "Pääsyn este tai työn ja osaamisen ero voisi jättää osan ihmisistä sivuun koulutuksen laajenemisesta huolimatta.",
+          "text": "Työvoiman kysyntä tai koulutukseen valikoituminen voi selittää myöhempää kehitystä."
+        },
+        {
+          "label": "Skenaario · koeteltava korjaus",
+          "title": "Oppimisen ja työn uudet reitit voisivat auttaa, jos koulutusta voi jatkaa arjen ja toimeentulon rinnalla.",
+          "text": "Tulevaisuuspolku on ehdollinen. Mallia heikentäisi, jos koulutuksen saavutettavuus ei liittyisi myöhempiin mahdollisuuksiin valikoitumisen huomioimisen jälkeen."
+        }
+      ],
+      "labels": {
+        "benefit": "Mahdollisuus avautuu",
+        "pressure": "Mahdollisuus voi kaventua",
+        "future": "Ehdollinen korjausreitti"
+      }
+    },
+    {
+      "id": "risk",
+      "title": "Turva ja riskit",
+      "angle": "Kriisin vastuun jakaminen",
+      "status": "untested",
+      "hypothesis": "Oikea-aikainen turva voisi ehkäistä tilapäisen häiriön muuttumista pitkäksi työuran, terveyden tai osallistumisen katkokseksi.",
+      "alternative": "Kriisin vakavuus, kotitalouden puskurit ja työmarkkinat voivat selittää toipumista turvan sijaan.",
+      "assumptions": [
+        "Esitetty välittävä mekanismi on mahdollista tunnistaa aineistosta.",
+        "Ryhmien lähtökohdat, muut samanaikaiset muutokset ja aikajänne erotetaan toisistaan."
+      ],
+      "observe": [
+        "Tuessa tapahtuvien muutosten ajoitus ja kotitalouksien tilanne ennen häiriötä.",
+        "Velka, terveys, työhön paluu ja osallistuminen pitkällä seurannalla."
+      ],
+      "refutation": "Mallia heikentäisi, jos turvan ajoituksella tai kattavuudella ei olisi yhteyttä myöhempään toipumiseen vertailukelpoisissa tilanteissa.",
+      "evidence": [],
+      "revision": 1,
+      "geometry": "conceptual",
+      "features": [
+        {
+          "label": "Häiriö toimeentulossa",
+          "detail": "Muutos"
+        },
+        {
+          "label": "Turvan kattavuus ja ajoitus",
+          "detail": "Välittymisen ehdot"
+        },
+        {
+          "label": "Arjen kantaminen",
+          "detail": "Seurausten jakautuminen"
+        },
+        {
+          "label": "Toipumisen mahdollisuus",
+          "detail": "Ehdollinen tulevaisuus"
+        }
+      ],
+      "steps": [
+        {
+          "label": "Hypoteesi · mahdollisuus",
+          "title": "Sama häiriö voi kohdata erilaiset puskurit. Turvan merkitys alkaa siitä, mitä ihmiselle jää mahdolliseksi.",
+          "text": "Oikea-aikainen turva voisi ehkäistä tilapäisen häiriön muuttumista pitkäksi työuran, terveyden tai osallistumisen katkokseksi."
+        },
+        {
+          "label": "Hypoteesi · katkos tai eriytyminen",
+          "title": "Katkos tai viive tuessa voisi siirtää kustannuksia kotitaloudelle ja kasvattaa myöhempää korjaustarvetta.",
+          "text": "Kriisin vakavuus, kotitalouden puskurit ja työmarkkinat voivat selittää toipumista turvan sijaan."
+        },
+        {
+          "label": "Skenaario · koeteltava korjaus",
+          "title": "Kantava turva voisi tukea toipumista, mutta sen vaikutus on erotettava kriisin muista muutoksista.",
+          "text": "Tulevaisuuspolku on ehdollinen. Mallia heikentäisi, jos turvan ajoituksella tai kattavuudella ei olisi yhteyttä myöhempään toipumiseen vertailukelpoisissa tilanteissa."
+        }
+      ],
+      "labels": {
+        "benefit": "Mahdollisuus avautuu",
+        "pressure": "Mahdollisuus voi kaventua",
+        "future": "Ehdollinen korjausreitti"
+      }
+    },
+    {
+      "id": "care",
+      "title": "Hoiva",
+      "angle": "Osallistumisen taustalla oleva työ",
+      "status": "untested",
+      "hypothesis": "Hoivan järjestäminen voisi vaikuttaa työssäkäynnin ja osallistumisen mahdollisuuksiin sekä hoivaa tarvitsevalle että antavalle.",
+      "alternative": "Terveys, työn ehdot ja perheen omat valinnat voivat selittää osallistumista enemmän kuin palvelujärjestely.",
+      "assumptions": [
+        "Esitetty välittävä mekanismi on mahdollista tunnistaa aineistosta.",
+        "Ryhmien lähtökohdat, muut samanaikaiset muutokset ja aikajänne erotetaan toisistaan."
+      ],
+      "observe": [
+        "Hoivan tarve, palvelujen saatavuus ja läheisten käyttämä aika.",
+        "Hoivaa antavien työurat, kuormitus ja toimeentulo."
+      ],
+      "refutation": "Mallia heikentäisi, jos hoivan järjestelyjen muutos ei liittyisi osallistumisen tai kuormituksen muutokseen tarpeen huomioimisen jälkeen.",
+      "evidence": [],
+      "revision": 1,
+      "geometry": "conceptual",
+      "features": [
+        {
+          "label": "Hoivan tarve",
+          "detail": "Muutos"
+        },
+        {
+          "label": "Aika, läheiset ja palvelut",
+          "detail": "Välittymisen ehdot"
+        },
+        {
+          "label": "Mahdollisuus osallistua",
+          "detail": "Seurausten jakautuminen"
+        },
+        {
+          "label": "Kestävä vastuunjako",
+          "detail": "Ehdollinen tulevaisuus"
+        }
+      ],
+      "steps": [
+        {
+          "label": "Hypoteesi · mahdollisuus",
+          "title": "Työ ja osallistuminen tarvitsevat usein taustalleen jonkun tekemää hoivaa. Sen aika ja vastuu eivät ole rajattomia.",
+          "text": "Hoivan järjestäminen voisi vaikuttaa työssäkäynnin ja osallistumisen mahdollisuuksiin sekä hoivaa tarvitsevalle että antavalle."
+        },
+        {
+          "label": "Hypoteesi · katkos tai eriytyminen",
+          "title": "Jos hoivan tarve ja tuki eivät kohtaa, vastuu voisi kaventaa useamman ihmisen mahdollisuuksia samanaikaisesti.",
+          "text": "Terveys, työn ehdot ja perheen omat valinnat voivat selittää osallistumista enemmän kuin palvelujärjestely."
+        },
+        {
+          "label": "Skenaario · koeteltava korjaus",
+          "title": "Palvelujen, läheisten tuen ja työn jouston yhdistelmä voisi auttaa, jos järjestely on kestävä kaikille osapuolille.",
+          "text": "Tulevaisuuspolku on ehdollinen. Mallia heikentäisi, jos hoivan järjestelyjen muutos ei liittyisi osallistumisen tai kuormituksen muutokseen tarpeen huomioimisen jälkeen."
+        }
+      ],
+      "labels": {
+        "benefit": "Mahdollisuus avautuu",
+        "pressure": "Mahdollisuus voi kaventua",
+        "future": "Ehdollinen korjausreitti"
+      }
+    },
+    {
+      "id": "power",
+      "title": "Valta ja päätökset",
+      "angle": "Tarpeesta toteutukseen",
+      "status": "untested",
+      "hypothesis": "Ongelmien korjaaminen voisi riippua siitä, pääsevätkö niitä kokevat ryhmät päätöksentekoon ja palaako toteutuksen palaute sinne.",
+      "alternative": "Resurssipula, toimeenpanon vaikeus tai ongelman epäselvyys voi ratkaista enemmän kuin edustuksen laajuus.",
+      "assumptions": [
+        "Esitetty välittävä mekanismi on mahdollista tunnistaa aineistosta.",
+        "Ryhmien lähtökohdat, muut samanaikaiset muutokset ja aikajänne erotetaan toisistaan."
+      ],
+      "observe": [
+        "Kenen tarpeet päätyvät valmisteluun ja päätöksiin.",
+        "Päätösten toteutus, tavoitteiden saavuttaminen ja palaute."
+      ],
+      "refutation": "Mallia heikentäisi, jos edustuksen tai palautereitin vahvistuminen ei liittyisi ongelmien korjaantumiseen vertailukelpoisissa tapauksissa.",
+      "evidence": [],
+      "revision": 1,
+      "geometry": "conceptual",
+      "features": [
+        {
+          "label": "Koettu ongelma",
+          "detail": "Muutos"
+        },
+        {
+          "label": "Kuulluksi tuleminen",
+          "detail": "Välittymisen ehdot"
+        },
+        {
+          "label": "Päätös ja toimeenpano",
+          "detail": "Seurausten jakautuminen"
+        },
+        {
+          "label": "Korjaava palaute",
+          "detail": "Ehdollinen tulevaisuus"
+        }
+      ],
+      "steps": [
+        {
+          "label": "Hypoteesi · mahdollisuus",
+          "title": "Koettu tarve ei vielä muutu yhteiseksi ratkaisuksi. Sen on tultava kuulluksi ja päätettäväksi.",
+          "text": "Ongelmien korjaaminen voisi riippua siitä, pääsevätkö niitä kokevat ryhmät päätöksentekoon ja palaako toteutuksen palaute sinne."
+        },
+        {
+          "label": "Hypoteesi · katkos tai eriytyminen",
+          "title": "Jos vaatimus, päätös ja toteutus irtoavat toisistaan, ratkaisu voisi jäädä nimelliseksi tai osua eri ongelmaan.",
+          "text": "Resurssipula, toimeenpanon vaikeus tai ongelman epäselvyys voi ratkaista enemmän kuin edustuksen laajuus."
+        },
+        {
+          "label": "Skenaario · koeteltava korjaus",
+          "title": "Toteutuksen palautteen pitäisi voida muuttaa ratkaisua. Tätä korjaavaa reittiä voidaan etsiä eri ankkureista.",
+          "text": "Tulevaisuuspolku on ehdollinen. Mallia heikentäisi, jos edustuksen tai palautereitin vahvistuminen ei liittyisi ongelmien korjaantumiseen vertailukelpoisissa tapauksissa."
+        }
+      ],
+      "labels": {
+        "benefit": "Mahdollisuus avautuu",
+        "pressure": "Mahdollisuus voi kaventua",
+        "future": "Ehdollinen korjausreitti"
+      }
+    },
+    {
+      "id": "ecology",
+      "title": "Energia ja ympäristö",
+      "angle": "Hyötyjen aineellinen perusta",
+      "status": "untested",
+      "hypothesis": "Tuotannon hyöty voisi jäädä lyhytaikaiseksi, jos resurssien käyttö heikentäisi tulevaa toimintakykyä tai siirtäisi haitat muille.",
+      "alternative": "Teknologian muutos, korvaavat resurssit tai sopeutuminen voivat vähentää oletettuja pitkäaikaisia haittoja.",
+      "assumptions": [
+        "Esitetty välittävä mekanismi on mahdollista tunnistaa aineistosta.",
+        "Ryhmien lähtökohdat, muut samanaikaiset muutokset ja aikajänne erotetaan toisistaan."
+      ],
+      "observe": [
+        "Resurssien käyttö ja tuotannon hyödyt sekä haittojen sijainti.",
+        "Pitkän aikavälin riippuvuudet, palautuminen ja siirtymän kustannukset."
+      ],
+      "refutation": "Mallia heikentäisi, jos oletettu haittareitti ei näkyisi seurannassa tai korvautuminen poistaisi sen vaikutuksen.",
+      "evidence": [],
+      "revision": 1,
+      "geometry": "conceptual",
+      "features": [
+        {
+          "label": "Resurssien käyttö",
+          "detail": "Muutos"
+        },
+        {
+          "label": "Tuotanto ja hyödynjako",
+          "detail": "Välittymisen ehdot"
+        },
+        {
+          "label": "Haitat ja riippuvuudet",
+          "detail": "Seurausten jakautuminen"
+        },
+        {
+          "label": "Uusiutuvat edellytykset",
+          "detail": "Ehdollinen tulevaisuus"
+        }
+      ],
+      "steps": [
+        {
+          "label": "Hypoteesi · mahdollisuus",
+          "title": "Tuotanto tarvitsee energiaa ja aineellisia resursseja. Hyöty ja haitta voivat syntyä eri paikoissa.",
+          "text": "Tuotannon hyöty voisi jäädä lyhytaikaiseksi, jos resurssien käyttö heikentäisi tulevaa toimintakykyä tai siirtäisi haitat muille."
+        },
+        {
+          "label": "Hypoteesi · katkos tai eriytyminen",
+          "title": "Kustannuksen siirtyminen ympäristöön tai myöhempään aikaan voisi tehdä tämänhetkisestä hyödystä harhaanjohtavan.",
+          "text": "Teknologian muutos, korvaavat resurssit tai sopeutuminen voivat vähentää oletettuja pitkäaikaisia haittoja."
+        },
+        {
+          "label": "Skenaario · koeteltava korjaus",
+          "title": "Uusiutuminen ja haittojen vähentäminen voisivat vahvistaa tulevaa toimintakykyä, mutta myös siirtymän kustannukset on huomioitava.",
+          "text": "Tulevaisuuspolku on ehdollinen. Mallia heikentäisi, jos oletettu haittareitti ei näkyisi seurannassa tai korvautuminen poistaisi sen vaikutuksen."
+        }
+      ],
+      "labels": {
+        "benefit": "Mahdollisuus avautuu",
+        "pressure": "Mahdollisuus voi kaventua",
+        "future": "Ehdollinen korjausreitti"
+      }
+    }
+  ]
+}
