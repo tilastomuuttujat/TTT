@@ -5,10 +5,20 @@ function validateThemeModels(data){return data?.schema_version===1&&Array.isArra
 if(!validateThemeModels(defaults))throw Error('Invalid hypothesis models');
 function replaceOnce(before,after){if(source.indexOf(before)<0||source.indexOf(before)!==source.lastIndexOf(before))throw Error('Patch mismatch: '+before.slice(0,80));source=source.replace(before,after);}
 const start=source.indexOf('function Ln({step:'),end=source.indexOf('function Rn(',start);if(start<0||end<0)throw Error('Change arc boundaries missing');source=source.slice(0,start)+fs.readFileSync('scripts/murrokset2-arc.txt','utf8')+source.slice(end);
-replaceOnce('g=On[e],_=e<0;', 'g=On[e],_=e<0,[theme,setTheme]=(0,C.useState)(`work`);');
+replaceOnce('g=On[e],_=e<0;', 'g=On[e],_=e<0,[theme,setTheme]=(0,C.useState)(`work`),[replay,setReplay]=(0,C.useState)(0);');
 replaceOnce('let v=Pn(e,c),y=Mn[c];','let v=Pn(e,c),y=(themeModels.models.find(model=>model.id===theme)||themeModels.models[0]).steps[c];');
 replaceOnce('_&&(0,I.jsx)(Ln,{step:c,onAnchor:n})', '_&&(0,I.jsx)(Ln,{step:c,modelId:theme,onStep:step=>{if(t)r();l(step);d(false);},onPause:()=>{if(t)r();}})');
 replaceOnce('(0,I.jsxs)(`header`,{className:`anchor-tour-heading`', '_&&(0,I.jsx)(`nav`,{className:`theme-model-picker`,"aria-label":`Isojen teemojen hypoteesimallit`,children:themeModels.models.map(model=>(0,I.jsx)(`button`,{type:`button`,"aria-pressed":theme===model.id,onClick:()=>{if(t)r();setTheme(model.id);l(0);d(false);},children:model.title},model.id))}),(0,I.jsxs)(`header`,{className:`anchor-tour-heading`');
+replaceOnce('let t=Fn(e,c);t.finished?', 'if(_&&c===2){let next=themeModels.models.findIndex(model=>model.id===theme)+1;if(next<themeModels.models.length){setTheme(themeModels.models[next].id);l(0);d(false);return}}let t=Fn(e,c);t.finished?');
+replaceOnce('[t,e,c,u,n,r]);','[t,e,c,u,n,r,theme,replay]);');
+replaceOnce('function x(t){let r=t?Fn(e,c):In(e,c);', 'function x(t){if(_){let model=themeModels.models.findIndex(model=>model.id===theme);if(t&&c===2&&model<themeModels.models.length-1){setTheme(themeModels.models[model+1].id);l(0);d(false);return}if(!t&&c===0&&model>0){setTheme(themeModels.models[model-1].id);l(2);d(false);return}}let r=t?Fn(e,c):In(e,c);');
+replaceOnce('disabled:_&&c===0,title:', 'disabled:_&&c===0&&theme===themeModels.models[0].id,title:');
+replaceOnce('step:c,modelId:theme,','key:`arc-${theme}-${replay}`,step:c,modelId:theme,');
+replaceOnce('`heading-${e}-${c}`','`heading-${e}-${theme}-${c}-${replay}`');
+replaceOnce('`visual-${e}`','`visual-${e}-${replay}`');
+replaceOnce('`caption-${e}-${c}`','`caption-${e}-${theme}-${c}-${replay}`');
+replaceOnce('`${c+1} / 3 · Iso kuva`','`${c+1} / 3 · ${themeModels.models.find(model=>model.id===theme)?.title} · ${themeModels.models.findIndex(model=>model.id===theme)+1} / ${themeModels.models.length} teemaa`');
+replaceOnce('(0,I.jsx)(O,{})}),(0,I.jsx)(L,{variant:`ghost`,size:`icon`,disabled:b&&c===3', '(0,I.jsx)(O,{})}),(0,I.jsx)(`nav`,{className:`animation-step-dots`,"aria-label":`Toista animaation osa`,children:Array.from({length:_?3:4},(_,step)=>(0,I.jsx)(`button`,{type:`button`,"aria-label":`Toista osa ${step+1}: ${_?(themeModels.models.find(model=>model.id===theme)||themeModels.models[0]).steps[step].title:Pn(e,step)?.title}`,"aria-current":c===step?`step`:undefined,title:`Toista osa ${step+1}`,onClick:()=>{l(step);d(false);setReplay(value=>value+1);if(!t)r();},children:(0,I.jsx)(`span`,{"aria-hidden":true})},step))}),(0,I.jsx)(L,{variant:`ghost`,size:`icon`,disabled:b&&c===3');
 replaceOnce('children:`Katso tarina`','children:`Katso muutoksen kaari`');
 const header=`${validateThemeModels.toString()}\nlet themeModels=${JSON.stringify(defaults)};\ntry{const response=await fetch(new URL('./murrokset2-models.json',import.meta.url),{cache:'no-cache'});if(response.ok){const data=await response.json();if(validateThemeModels(data))themeModels=data;}}catch{}\n// END THEME LOADER\n`;
 fs.writeFileSync('assets/murrokset2-models.js',header+source);
