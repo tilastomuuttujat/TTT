@@ -24,30 +24,35 @@ test('replay dots restart a selected part and autoplay visits every theme before
  assert.equal(chapter,0);
 });
 
-test('every theme has dated stages and calendar-proportional routes with a separate scenario',()=>{
- const render=new Function('C','I',arc+';return TemporalTheme;')(hooks().C,jsx);
- const signatures=new Set();
- for(const model of data.models){
-  signatures.add(JSON.stringify(model.visualization.stage_routes));
-  for(let step=0;step<3;step++){
-   const nodes=walk(render({model,step,onStep(){}}));
-   const years=nodes.filter(n=>n.type==='text'&&n.props.className==='time-year');
-   assert.deepEqual(years.map(n=>n.props.children),model.visualization.years);
-   const scale=900/(model.visualization.years[3]-model.visualization.years[0]);
-   for(let i=1;i<4;i++)assert.ok(Math.abs((years[i].props.x-years[i-1].props.x)-(model.visualization.years[i]-model.visualization.years[i-1])*scale)<1e-8);
-   assert.ok(nodes.some(n=>n.props?.className?.includes('time-period')&&n.props?.['data-stage']===step&&n.props.className.includes('is-current')));
-   assert.ok(nodes.filter(n=>n.props?.['data-stage']===2).every(n=>n.props.className.includes('is-scenario')));
-   let selected;walk(render({model,step,onStep(value){selected=value;}})).find(n=>n.props?.['aria-label']===`Toista ${model.visualization.years[1]}–${model.visualization.years[2]}`).props.onClick();assert.equal(selected,1);
-  }
- }
- assert.equal(signatures.size,9);
+test('the big picture shades calendar-proportional periods and the separate time bar is removed',()=>{
+ const shade=new Function('I',arc+';return AtlasPeriodShade;')(jsx);
+ assert.equal(shade({period:null}),null);
+ for(const model of data.models){for(const stage of model.steps){
+  const nodes=walk(shade({period:stage.period})),rect=nodes.find(n=>n.type==='rect');
+  assert.equal(rect.props.x,60+(stage.period.start-1850)/200*880);
+  assert.ok(Math.abs(rect.props.width-(stage.period.end-stage.period.start)/200*880)<1e-8);
+  assert.equal(rect.props.height,520);
+  assert.equal(nodes[0].props.className.includes('is-scenario'),stage.period.mode==='scenario');
+ }}
+ assert.ok(!arc.includes('personal-time-axis'));
+ assert.ok(bundle.includes('period:f===-1?activePeriod:null'));
+ assert.ok(bundle.includes('AtlasPeriodShade,{period:timePeriod}'));
 });
-
+test('theme and animation changes report the current interval to the big picture',()=>{
+ const fn=bundle.slice(bundle.indexOf('function Rn({index:'),bundle.indexOf('function zn(',bundle.indexOf('function Rn({index:'))),h=hooks(),effects=[];h.C.useEffect=f=>effects.push(f);let period;
+ const ctx={C:h.C,I:jsx,On:[],Pn(){},Fn(){},In(){},jn:10000,themeModels:data,L:'Button',Ln:'Arc',ie:'Previous',de:'Restart',E:'Pause',O:'Play',ae:'Next',k:'Close'};
+ const render=new Function('ctx',`with(ctx){${fn};return Rn;}`)(ctx);
+ const props={index:-1,playing:false,onIndex(){},onToggle(){},onClose(){},onRead(){},onCase(){},availableIds:[],onPeriod:p=>period=p};
+ function view(){h.reset();effects.length=0;const nodes=walk(render(props));effects.find(f=>f.toString().includes('reportPeriod'))();return nodes;}
+ let nodes=view();assert.deepEqual(period,data.models[0].steps[0].period);
+ nodes.find(n=>n.type==='button'&&n.props.children==='Muuttoliike').props.onClick();nodes=view();assert.deepEqual(period,data.models[1].steps[0].period);
+ nodes.filter(n=>n.type==='button'&&n.props['aria-label']?.startsWith('Toista osa'))[2].props.onClick();view();assert.deepEqual(period,data.models[1].steps[2].period);
+});
 test('the work arc preserves the original paths and other themes have distinct scene geometry',()=>{
  const original=fs.readFileSync('assets/index-yRr8yEkP.js','utf8');
  const start=original.indexOf('function Ln({step:'),end=original.indexOf('function Rn({index:',start);
  const restored=original.slice(start,end).replace('function Ln({','function WorkChangeArc({').replace('impact-arc impact-step-${e}','impact-arc restored-work-arc impact-step-${e}');
- assert.ok(arc.startsWith(restored));
+ assert.ok(arc.includes(restored));
  const render=new Function('I',arc+';return ThemeScene;')(jsx),signatures=new Set();
  for(const model of data.models.filter(m=>m.id!=='work')){
   const nodes=walk(render({model,step:2}));

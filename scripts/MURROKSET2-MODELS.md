@@ -39,3 +39,7 @@ Jokaisen `steps`-vaiheen `period` vastaa samoja vuosirajoja. Päivitä jaksotus 
 Työnjaossa `WorkChangeArc` palauttaa alkuperäisen kaaren täsmälleen samoilla poluilla, ankkuripainikkeilla ja täyttöväreillä. Kalenteriaika on erillinen asteikko kuvan alla: kaaren geometriaa ei pidä tulkita mitatuksi aikasarjaksi.
 
 `ThemeScene` toteuttaa muille teemoille omat kuvat: kaksi paikkaa (muutto), haarautuva puu (omistus), silta (asuminen), portaat (koulutus), suoja ja toipumispolku (turva), punos (hoiva), palauterengas (valta) ja uusiutumisen kierto (ympäristö). Ne eivät käytä yhteistä kolmen rivin reititystä. `stage_routes` säilyy mallin koneellisesti luettavana mekanismikuvauksena; kohtauksen oma geometria on luettavassa JS-lähteessä.
+
+## Aikajakson korostus isossa kuvassa
+
+Erillinen aikapalkki on poistettu. `Rn` välittää aktiivisen vaiheen `period`-arvon pääkomponentille, joka antaa sen ison kuvan `Nf`-komponentille vain teemojen esityksen aikana. `AtlasPeriodShade` piirtää taustavarjostuksen atlas-SVG:n sisään ennen käyriä. Vuodet skaalautuvat samalla kaavalla kuin ankkurit (1850 = x60, 2050 = x940). Skenaarion rajat ovat katkoviivoja. Esittelyn sulkeminen tai siirtyminen ankkurikertomukseen poistaa korostuksen. Teemojen oma visuaalinen geometria säilyy.
