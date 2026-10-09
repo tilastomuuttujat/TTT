@@ -426,6 +426,9 @@ body.chain-focus #stage .cell.sel{opacity:1!important;filter:saturate(1.25);tran
    12×12-kvadrantissa käytetään annulusalueen 57 ruutua.
    Sisä- ja ulkoreuna syntyvät molemmat sijoittamatta jätetyistä kokonaisista ruuduista. */
 </style>
+<link rel="stylesheet" href="assets/theme.css">
+<link rel="stylesheet" href="assets/skin-rengas.css">
+<script src="assets/view-bridge.js"></script>
 </head>
 <body>
 
@@ -438,7 +441,7 @@ body.chain-focus #stage .cell.sel{opacity:1!important;filter:saturate(1.25);tran
 <header class="top">
   <div class="brand">
     <h1>Suomen murrosvaiheet</h1>
-    <p>Murrosrengas: neljä toisiinsa liittyvää lämpökarttaa. Vaaleampi = vähän, syvempi punainen = paljon murroksia.</p>
+    <p>Murrosrengas: neljä toisiinsa liittyvää lämpökarttaa. Vaaleampi = vähän, syvempi kupari = paljon murroksia.</p>
   </div>
   <div class="search">
     <input id="q" type="search" placeholder="Etsi murros tai vuosi… ( / )" autocomplete="off" aria-label="Etsi murros">
@@ -456,19 +459,19 @@ body.chain-focus #stage .cell.sel{opacity:1!important;filter:saturate(1.25);tran
          aria-label="Aika- ja korttityyppinavigaatio" tabindex="0">
       <defs>
         <radialGradient id="gl" cx="38%" cy="32%">
-          <stop offset="0%" stop-color="#2A3A46"/><stop offset="62%" stop-color="#151E26"/>
-          <stop offset="100%" stop-color="#0B1015"/>
+          <stop offset="0%" stop-color="#3E8A7C"/><stop offset="62%" stop-color="#1D4B45"/>
+          <stop offset="100%" stop-color="#12332F"/>
         </radialGradient>
       </defs>
       <circle cx="106" cy="106" r="96" fill="url(#gl)"/>
-      <circle cx="106" cy="106" r="96" fill="none" stroke="rgba(91,159,192,.25)" stroke-width="1.5"/>
+      <circle cx="106" cy="106" r="96" fill="none" stroke="rgba(201,147,52,.45)" stroke-width="1.5"/>
       <g id="mer"></g>
       <g id="par"></g>
       <text id="sphereYear" x="106" y="90">--</text>
       <text id="sphereSpan" x="106" y="109"></text>
       <text id="sphereZone" x="106" y="125"></text>
       <text id="sphereHint" x="106" y="145">↔ aika</text>
-      <text id="sphereHint2" x="106" y="158" style="font-family:var(--ui);font-size:8px;fill:#72838E;text-anchor:middle">↕ korttityyppi</text>
+      <text id="sphereHint2" x="106" y="158" style="font-family:var(--ui);font-size:8px;text-anchor:middle">↕ korttityyppi</text>
     </svg>
   </div>
 </div>
@@ -478,7 +481,7 @@ body.chain-focus #stage .cell.sel{opacity:1!important;filter:saturate(1.25);tran
 <div class="info-card" id="card-title" aria-hidden="true">
   <h3>Suomen murrosvaiheet</h3>
   <p>Murrosrengas: neljä toisiinsa liittyvää lämpökarttaa.</p>
-  <p>Vaaleampi = vähän, syvempi punainen = paljon murroksia.</p>
+  <p>Vaaleampi = vähän, syvempi kupari = paljon murroksia.</p>
   <div class="scale" id="titleScale"></div>
   <div class="scale-lab"><span>Vähän</span><span>Paljon</span></div>
 </div>
@@ -487,7 +490,7 @@ body.chain-focus #stage .cell.sel{opacity:1!important;filter:saturate(1.25);tran
   <h3>Näin luet rengasta</h3>
   <ul>
     <li><span class="sw light"></span><span>Vaalea = vähän murroksia</span></li>
-    <li><span class="sw deep"></span><span>Syvempi punainen = paljon murroksia</span></li>
+    <li><span class="sw deep"></span><span>Syvempi kupari = paljon murroksia</span></li>
     <li><span class="sw outline"></span><span>Klikkaa solua nähdäksesi yhteydet ja tiedot</span></li>
     <li><span class="sw dash"></span><span>Täsmälleen samat keskilinjat</span></li>
   </ul>
@@ -680,15 +683,15 @@ function ingest(d,a){
 
 /* Solun väri: hallitseva rooli + kirkkaus määrästä */
 function cellStyle(items){
-  /* Kuvan kaltainen yhden muuttujan lämpöasteikko: määrä -> vaaleanpunaisesta syvänpunaiseen. */
+  /* Yhden muuttujan lämpöasteikko: määrä -> vaaleasta okrasta syvään kupariin. */
   const n=items.length;
   const t=Math.min(1, Math.log1p(n) / Math.log1p(Math.max(2,MAXN)));
   const stops=[
-    [255,235,229],
-    [255,190,169],
-    [255,111,76],
-    [235,55,30],
-    [205,24,12]
+    [247,238,225],
+    [240,206,160],
+    [224,150,86],
+    [190,90,52],
+    [140,48,40]
   ];
   const x=t*(stops.length-1), i=Math.min(stops.length-2,Math.floor(x)), f=x-i;
   const a=stops[i], b=stops[i+1];
