@@ -123,12 +123,33 @@ function drawMechanismGraph(x,y,svg){
  const a=atlasAnalysis;if(!a.loaded)return;
  const q=mapEdit('graphFilterSearch').value.trim().toLocaleLowerCase('fi'),mid=Number(mapEdit('graphFilterMechanism').value),stageFilter=Number(mapEdit('graphFilterStage').value),onlyLinked=mapEdit('graphOnlyLinked').checked;
  const matchesTheme=t=>!q||t.name.toLocaleLowerCase('fi').includes(q);
- const visibleLinks=a.stageMechanisms.filter(l=>(!mid||l.mechanism_id===mid)&&(!stageFilter||l.stage===stageFilter)&&(!q||a.mechanisms.find(m=>m.id===l.mechanism_id)?.title.toLocaleLowerCase('fi').includes(q)||matchesTheme(DATA.themes.find(t=>t.id===l.theme_id)||{name:''})));
- const mechanisms=a.mechanisms.filter(m=>(!mid||m.id===mid)&&(!onlyLinked||visibleLinks.some(l=>l.mechanism_id===m.id))&&(!q||m.title.toLocaleLowerCase('fi').includes(q)||visibleLinks.some(l=>l.mechanism_id===m.id))),links=visibleLinks;
- const group=elem('g',{'aria-label':'Mekanismien visuaaliset kytkennät'},svg);
+ // Kontekstisidonnainen näkymä: valitun teeman ja vaiheen tärkeimmät mekanismit.
+ const focusStage=stageFilter||((activeStage&&stages.has(activeStage))?activeStage:0);
+ const eligible=a.stageMechanisms.filter(l=>{
+   if(l.theme_id!==active||!stages.has(l.stage)||(focusStage&&l.stage!==focusStage))return false;
+   const theme=DATA.themes.find(t=>t.id===l.theme_id),step=theme?.steps.find(st=>st.stage===l.stage);
+   return !!step&&step.year<=showYear&&(!mid||l.mechanism_id===mid)&&
+     (!q||a.mechanisms.find(m=>m.id===l.mechanism_id)?.title.toLocaleLowerCase('fi').includes(q)||matchesTheme(theme));
+ });
+ const rank=new Map();
+ for(const l of eligible){
+   const score=(l.stage===activeStage?100:0)+(l.role==='amplifies'?8:l.role==='mediates'?6:3)+l.stage/10;
+   rank.set(l.mechanism_id,Math.max(score,rank.get(l.mechanism_id)||0));
+ }
+ if(graphSelectedMechanism&&eligible.some(l=>l.mechanism_id===graphSelectedMechanism))rank.set(graphSelectedMechanism,1000);
+ const visibleIds=new Set([...rank.entries()].sort((a,b)=>b[1]-a[1]||a[0]-b[0]).slice(0,8).map(([id])=>id));
+ const mechanisms=a.mechanisms.filter(m=>visibleIds.has(m.id)).sort((a,b)=>(rank.get(b.id)||0)-(rank.get(a.id)||0)||a.id-b.id);
+ const links=eligible.filter(l=>visibleIds.has(l.mechanism_id));
+ const summary=mapEdit('graphSummary');
+ if(summary)summary.textContent=(DATA.themes.find(t=>t.id===active)?.name||'Teema')+
+   ' · '+mechanisms.length+' olennaista mekanismia'+(focusStage?' · vaihe '+focusStage:' · näkyvät vaiheet')+
+   (rank.size>8?' · '+(rank.size-8)+' muuta piilotettu':'')+
+   (graphSelectedMechanism?' · valitse kohdevaihe':'');
+ if(!mechanisms.length)return;
+ const group=elem('g',{'aria-label':'Valitun teeman ja vaiheen olennaiset mekanismit'},svg);
  const railX=1135,railY=78,railW=247,stepH=43;
  elem('rect',{x:railX-12,y:railY-29,width:railW+14,height:Math.max(92,mechanisms.length*stepH+38),rx:10,fill:'#fff',stroke:'#b7cfc4','stroke-width':1.5,opacity:.96},group);
- const heading=elem('text',{x:railX,y:railY-10,fill:'#28574b','font-size':13,'font-weight':700},group);heading.textContent='MEKANISMIT · VEDÄ VAIHEESEEN';
+ const heading=elem('text',{x:railX,y:railY-10,fill:'#28574b','font-size':13,'font-weight':700},group);heading.textContent='VAIHEEN KESKEISET MEKANISMIT';
  const stagePoint=(themeId,stage)=>{
   const t=DATA.themes.find(t=>t.id===themeId);if(!t||!stages.has(stage)|| (stageFilter&&stage!==stageFilter))return null;
   const st=t.steps.find(s=>s.stage===stage);if(!st||st.year>showYear)return null;
