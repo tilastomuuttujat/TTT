@@ -45,7 +45,7 @@ function selectMapStage(themeId,stage){
  if(openedPanel==='detail'&&active===themeId&&activeStage===stage){closePanels();return}
  active=themeId;activeStage=stage;detail();draw();updateVisualEditor();
  if(typeof graphConnectToStage==='function')graphConnectToStage(themeId,stage);
- if(typeof togglePanel==='function'&&openedPanel!=='detail')togglePanel('details');
+ if(typeof togglePanel==='function'&&openedPanel!=='detail')togglePanel('details');draw();
 }
 function draw(){const W=1400,H=760, pad={l:84,r:35,t:55,b:75};svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML='';const x=y=>pad.l+(y-1850)/(2050-1850)*(W-pad.l-pad.r),y=v=>pad.t+(1-(v+1)/2)*(H-pad.t-pad.b);let g=elem('g');for(let yr=1850;yr<=2050;yr+=25){let xx=x(yr);elem('line',{x1:xx,y1:pad.t,x2:xx,y2:H-pad.b,class:'gridline'},g);let txt=elem('text',{x:xx,y:35,'text-anchor':'middle',class:'axistext'},g);txt.textContent=yr}for(let v of [-1,-.5,0,.5,1]){let yy=y(v);elem('line',{x1:pad.l,y1:yy,x2:W-pad.r,y2:yy,stroke:v===0?'#9ca9a7':'#e9ebe8','stroke-width':v===0?2:1,'stroke-dasharray':v===0?'':'3 7'},g)}for(let [v,txt] of [[.87,'MYÖNTEISEEN SUUNTAAN'],[0,'VERTAILUTASO'],[-.87,'HEIKENTÄVÄÄN SUUNTAAN']]){let t=elem('text',{x:12,y:y(v),class:'axistext'},g);t.textContent=txt}let defs=elem('defs');let clip=elem('clipPath',{id:'plotclip'},defs);elem('rect',{x:pad.l,y:pad.t,width:W-pad.l-pad.r,height:H-pad.t-pad.b},clip);let lines=elem('g',{'clip-path':'url(#plotclip)'}),markers=elem('g',{'clip-path':'url(#plotclip)'});elem('rect',{x:x(2025),y:pad.t,width:x(2050)-x(2025),height:H-pad.t-pad.b,fill:'#f4f0f9',opacity:.65},lines);elem('line',{x1:x(2025),y1:pad.t,x2:x(2025),y2:H-pad.b,stroke:'#8d759d','stroke-width':2,'stroke-dasharray':'6 5'},svg);let fut=elem('text',{x:x(2025)+12,y:pad.t+18,fill:'#7562aa','font-size':12,'font-weight':700},svg);fut.textContent='SKENAARIOT 2025–2050';let display=DATA.themes.filter(t=>selected.has(t.id)||$('showUnselected').checked);for(let t of display){let isSel=selected.has(t.id),isActive=t.id===active,pts=curvePoints(t).filter(p=>p.year<=showYear);if(!pts.length)continue;let curve=[];let nodes=pts.filter(p=>p.stage>0&&stages.has(p.stage));let minStage=stages.size?Math.min(...stages):7,maxStage=stages.size?Math.max(...stages):0; // filter segment by stage of destination
 let full=curvePoints(t);for(let i=1;i<full.length;i++){let a=full[i-1],b=full[i];if(!$('showCurves').checked||!stages.has(b.stage)||a.year>showYear)continue;let end=Math.min(showYear,2025,b.year);if(end<a.year)continue;let startScore=a.score,endScore=a.year===b.year?b.score:a.score+(b.score-a.score)*(end-a.year)/(b.year-a.year);let d=`M ${x(a.year)} ${y(startScore===undefined?a.score:a.score)} C ${x(a.year+(end-a.year)*.4)} ${y(a.score)} ${x(a.year+(end-a.year)*.6)} ${y(endScore)} ${x(end)} ${y(endScore)}`;let path=elem('path',{d,class:'curve'+(isSel?'':' faded'),stroke:colors(t),'stroke-width':isActive?4.5:2.6,opacity:isSel?(.8+(isActive?.2:0)):.14},lines);path.onclick=ev=>{ev.stopPropagation();selectMapStage(t.id,b.stage)};let hit=elem('path',{d,fill:'none',stroke:'transparent','stroke-width':16},lines);hit.style.cursor='pointer';hit.onclick=ev=>{ev.stopPropagation();selectMapStage(t.id,b.stage)};hit.onmousemove=e=>tip(e,t,b);hit.onmouseleave=hideTip}
@@ -80,12 +80,12 @@ $('search').oninput=prepare;$('year').oninput=e=>{showYear=+e.target.value;$('ye
 let openedPanel=null;
 function closePanels(){openedPanel=null;document.getElementById('filtersPanel').classList.remove('panel-open');document.getElementById('detail').classList.remove('panel-open');document.getElementById('panelBackdrop').classList.remove('visible');for(const id of ['openFilters','openDetails'])document.getElementById(id).setAttribute('aria-expanded','false')}
 function togglePanel(which){const target=which==='filters'?'filtersPanel':'detail';if(openedPanel===target){closePanels();return}closePanels();openedPanel=target;document.getElementById(target).classList.add('panel-open');document.getElementById('panelBackdrop').classList.add('visible');document.getElementById(which==='filters'?'openFilters':'openDetails').setAttribute('aria-expanded','true')}
-document.getElementById('openFilters').addEventListener('click',()=>togglePanel('filters'));
-document.getElementById('openDetails').addEventListener('click',()=>togglePanel('details'));
-document.getElementById('panelBackdrop').addEventListener('click',closePanels);
+document.getElementById('openFilters').addEventListener('click',()=>{togglePanel('filters');draw()});
+document.getElementById('openDetails').addEventListener('click',()=>{togglePanel('details');draw()});
+document.getElementById('panelBackdrop').addEventListener('click',()=>{closePanels();draw()});
 document.getElementById('chart').addEventListener('click',e=>{
  if(e.target.closest('.reader-mechanism'))return;
- if(openedPanel==='detail')closePanels();
+ if(openedPanel==='detail'){closePanels();draw();}
 });
 document.querySelector('.chartbox').addEventListener('click',e=>{
  if(e.target.closest('svg'))return;
@@ -167,7 +167,7 @@ function drawReaderMechanisms(x,y,svg){
    sub.textContent='Vaihe '+activeStage+' · '+(e.link.role||'vaikutus');
    const tooltip=elem('title',{},node);tooltip.textContent=name+' — '+(e.mechanism.hypothesis||'');
    node.style.cursor='pointer';
-   node.onclick=ev=>{ev.stopPropagation();togglePanel('details');};
+   node.onclick=ev=>{ev.stopPropagation();if(openedPanel!=='detail')togglePanel('details');const panel=document.getElementById('detail');const match=[...panel.querySelectorAll('.stage strong')].find(el=>el.textContent.trim()===name);if(match)match.scrollIntoView({behavior:'smooth',block:'center'});};
  });
 }
 function drawMechanismGraph(x,y,svg){
