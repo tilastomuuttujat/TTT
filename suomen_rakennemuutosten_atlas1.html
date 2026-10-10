@@ -135,56 +135,73 @@ mapEdit('graphFilterClear').onclick=()=>{mapEdit('graphFilterSearch').value='';m
 let graphDrag=null,graphSelectedMechanism=null;
 function drawReaderMechanisms(x,y,svg){
  if(!document.getElementById('visualEditor')?.hidden||!atlasAnalysis.loaded)return;
- const a=atlasAnalysis, candidates=[];
- // Näytä jo lähtötilassa valittujen teemojen näkyvistä vaiheista relevantit mekanismit.
- for(const t of DATA.themes.filter(t=>selected.has(t.id))){
-   const eligible=t.steps.filter(st=>st.stage<=6&&stages.has(st.stage)&&st.year<=showYear)
-     .sort((u,v)=>Math.abs(u.year-showYear)-Math.abs(v.year-showYear));
-   const chosen=eligible.slice(0,2);
-   for(const st of chosen){
-     const links=a.stageMechanisms.filter(l=>l.theme_id===t.id&&l.stage===st.stage);
-     if(!links.length)continue;
-     const scored=links.map(l=>{
-       const m=a.mechanisms.find(m=>m.id===l.mechanism_id);
-       if(!m)return null;
-       const connections=a.relations.filter(rel=>rel.source_mechanism_id===m.id||rel.target_mechanism_id===m.id).length;
-       return {t,st,m,link:l,score:connections+(st.stage===activeStage&&t.id===active?8:0)};
-     }).filter(Boolean).sort((u,v)=>v.score-u.score||u.m.id-v.m.id);
-     if(scored.length)candidates.push(scored[0]);
+ const a=atlasAnalysis,byId=new Map(),W=1400,H=760;
+ const visible=DATA.themes.filter(t=>selected.has(t.id));
+ for(const t of visible)for(const st of t.steps){
+   if(!stages.has(st.stage)||st.year>showYear)continue;
+   const anchor={x:x(st.stage===6?2025:st.year),y:y(t.scores[st.stage-1]),theme:t.id,stage:st.stage,year:st.year};
+   for(const l of a.stageMechanisms){
+     if(l.theme_id!==t.id||l.stage!==st.stage)continue;
+     if(!byId.has(l.mechanism_id))byId.set(l.mechanism_id,{id:l.mechanism_id,anchors:[]});
+     byId.get(l.mechanism_id).anchors.push(anchor);
    }
  }
- const limit=Math.min(12,Math.max(4,selected.size*2));
- candidates.sort((u,v)=>(u.t.id===active?-4:0)-(v.t.id===active?-4:0)||v.score-u.score);
- const placed=[],width=190,height=40;
+ const degrees=new Map();
+ for(const r of a.relations){
+   degrees.set(r.source_mechanism_id,(degrees.get(r.source_mechanism_id)||0)+1);
+   degrees.set(r.target_mechanism_id,(degrees.get(r.target_mechanism_id)||0)+1);
+ }
+ const width=178,height=38;
+ const candidates=[...byId.values()].map(o=>{
+   const m=a.mechanisms.find(m=>m.id===o.id);
+   if(!m)return null;
+   const unique=[...new Map(o.anchors.map(a=>[a.theme+':'+a.stage,a])).values()];
+   const mx=unique.reduce((s,a)=>s+a.x,0)/unique.length,my=unique.reduce((s,a)=>s+a.y,0)/unique.length;
+   return {...o,m,anchors:unique,mx,my,score:unique.length*12+(degrees.get(o.id)||0)+
+     (unique.some(a=>a.theme===active)?4:0)};
+ }).filter(Boolean).sort((a,b)=>b.score-a.score||a.id-b.id);
+ // Ei keinotekoista sivupalkkia: jokaiselle solmulle haetaan oma vapaa sijainti koko kuva-alalta.
+ const nodes=[],limit=selected.size>12?18:Math.max(8,selected.size*3);
+ const clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v));
  for(const item of candidates.slice(0,limit)){
-   const px=x(item.st.stage===6?2025:item.st.year),py=y(item.t.scores[item.st.stage-1]);
    let best=null;
-   for(const side of [1,-1])for(const offset of [0,-52,52,-104,104,-156,156]){
-     const bx=Math.max(90,Math.min(1390-width,px+(side>0?24:-width-24)));
-     const by=Math.max(60,Math.min(660,py+offset-height/2));
-     const overlaps=placed.reduce((sum,p)=>sum+(Math.abs(bx-p.bx)<width+8&&Math.abs(by-p.by)<height+8?1:0),0);
-     const cost=overlaps*1000+Math.abs(offset)+(side<0?15:0);
-     if(!best||cost<best.cost)best={bx,by,cost,overlaps};
+   const offsets=[[0,0],[0,-65],[0,65],[-105,-60],[105,-60],[-105,60],[105,60],
+     [-205,0],[205,0],[-210,-125],[210,-125],[-210,125],[210,125],
+     [0,-145],[0,145],[-310,-60],[310,-60],[-310,60],[310,60]];
+   for(const [dx,dy] of offsets){
+     const bx=clamp(item.mx-width/2+dx,90,W-width-20);
+     const by=clamp(item.my-height/2+dy,60,H-90-height);
+     const overlap=nodes.reduce((n,p)=>n+(bx<p.bx+width+9&&bx+width+9>p.bx&&by<p.by+height+8&&by+height+8>p.by?1:0),0);
+     const anchorCollision=item.anchors.reduce((n,p)=>n+(p.x>bx-10&&p.x<bx+width+10&&p.y>by-9&&p.y<by+height+9?1:0),0);
+     const displacement=Math.hypot(bx+width/2-item.mx,by+height/2-item.my);
+     const cost=overlap*10000+anchorCollision*1200+displacement+
+       (bx>1150&&item.mx<1150?100:0);
+     if(!best||cost<best.cost)best={bx,by,cost,overlap};
    }
-   if(!best||best.overlaps>0)continue;
-   placed.push({...item,...best,px,py});
+   if(best&&best.overlap===0)nodes.push({...item,...best});
  }
- const group=elem('g',{class:'reader-mechanism-layer','aria-label':'Kartalla näkyvien kehitysvaiheiden keskeiset mekanismit'},svg);
- for(const p of placed){
-   const highlighted=p.t.id===active&&p.st.stage===activeStage;
-   const anchorX=p.bx>p.px?p.bx:p.bx+width;
-   elem('path',{d:'M '+p.px+' '+p.py+' Q '+(p.px+anchorX)/2+' '+p.py+' '+anchorX+' '+(p.by+height/2),
-     fill:'none',stroke:colors(p.t),'stroke-width':highlighted?2.2:1.1,opacity:highlighted?.8:.38,'stroke-dasharray':'3 4','pointer-events':'none'},group);
-   const node=elem('g',{class:'reader-mechanism',tabindex:'0',role:'button','aria-label':p.m.title},group);
-   elem('rect',{x:p.bx,y:p.by,width,height,rx:7,fill:highlighted?'#e3f3e9':'#fff',stroke:colors(p.t),
-     'stroke-width':highlighted?1.8:1,opacity:.96},node);
-   const title=elem('text',{x:p.bx+8,y:p.by+16,'font-size':11,'font-weight':highlighted?700:550,fill:'#24443e'},node);
-   title.textContent=p.m.title.length>28?p.m.title.slice(0,27)+'…':p.m.title;
-   const sub=elem('text',{x:p.bx+8,y:p.by+31,'font-size':10,fill:'#667c73'},node);
-   sub.textContent=p.t.name.slice(0,17)+' · '+p.st.year;
-   const tt=elem('title',{},node);tt.textContent=p.m.title+' — '+(p.m.hypothesis||'');
+ const group=elem('g',{class:'reader-mechanism-layer','aria-label':'Kehitysvaiheisiin kytkeytyvät mekanismit'},svg);
+ const edges=elem('g',{'pointer-events':'none'},group),labels=elem('g',{},group);
+ for(const p of nodes){
+   const focused=p.anchors.some(a=>a.theme===active&&a.stage===activeStage);
+   const cx=p.bx+width/2,cy=p.by+height/2;
+   for(const a of p.anchors){
+     const ex=clamp(a.x,p.bx,p.bx+width),ey=clamp(a.y,p.by,p.by+height);
+     elem('path',{d:'M '+a.x+' '+a.y+' Q '+((a.x+ex)/2)+' '+((a.y+ey)/2-10)+' '+ex+' '+ey,
+       fill:'none',stroke:colors(DATA.themes.find(t=>t.id===a.theme)),
+       'stroke-width':focused?1.8:1.1,opacity:focused?.75:.32,'stroke-dasharray':'3 4'},edges);
+   }
+   const node=elem('g',{class:'reader-mechanism',tabindex:'0',role:'button','aria-label':p.m.title},labels);
+   elem('rect',{x:p.bx,y:p.by,width,height,rx:7,fill:focused?'#e8f4ec':'#ffffff',
+     stroke:focused?'#1f796b':'#a7bdb5','stroke-width':focused?1.8:1,opacity:.95},node);
+   const title=elem('text',{x:p.bx+7,y:p.by+16,'font-size':10.8,'font-weight':focused?700:550,fill:'#24443e'},node);
+   title.textContent=p.m.title.length>26?p.m.title.slice(0,25)+'…':p.m.title;
+   const sub=elem('text',{x:p.bx+7,y:p.by+30,'font-size':9.5,fill:'#657b73'},node);
+   sub.textContent=p.anchors.length+' vaihekytkentää · '+p.m.id;
+   const tooltip=elem('title',{},node);tooltip.textContent=p.m.title+' — '+(p.m.hypothesis||'');
    node.style.cursor='pointer';
-   const select=ev=>{ev.stopPropagation();hideTip();active=p.t.id;activeStage=p.st.stage;detail();draw();suppressMapTip=true;updateVisualEditor();};
+   const select=ev=>{ev.stopPropagation();hideTip();const nearest=[...p.anchors].sort((a,b)=>Math.hypot(a.x-cx,a.y-cy)-Math.hypot(b.x-cx,b.y-cy))[0];
+     active=nearest.theme;activeStage=nearest.stage;detail();draw();suppressMapTip=true;updateVisualEditor();};
    node.onclick=select;
    node.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();select(ev)}};
  }
