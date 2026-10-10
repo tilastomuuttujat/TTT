@@ -1,0 +1,333 @@
+<!doctype html><html lang="fi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Suomen rakennemuutosten atlas — kehityssuuntien kartta</title>
+<style>
+:root{--paper:#f8f7f3;--white:#fff;--ink:#24333b;--muted:#65737a;--line:#e2e4df;--green:#1f796b;--orange:#b46d3e;--violet:#7562aa;--blue:#3b7fa0}*{box-sizing:border-box}body{margin:0;font:14px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--paper)}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid var(--green);outline-offset:2px}header{background:white;padding:18px 27px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}h1{font-family:Georgia,serif;font-weight:500;font-size:28px;margin:0}header p{margin:3px 0 0;color:var(--muted);font-size:12px}.tag{font-size:11px;letter-spacing:.12em;color:var(--green);font-weight:750;text-transform:uppercase}.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.btn{border:1px solid #d5dcd8;border-radius:7px;background:#fff;padding:8px 12px;color:var(--ink);font-size:12px}.btn:hover,.btn.on{background:#e6f3ee;border-color:var(--green)}.layout{display:grid;grid-template-columns:252px minmax(0,1fr) 318px;min-height:calc(100vh - 84px)}aside{background:white;padding:18px 15px;overflow:auto;max-height:calc(100vh - 84px)}.left{border-right:1px solid var(--line)}.right{border-left:1px solid var(--line)}.label{font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);font-weight:750;margin:14px 0 9px}.mini{font-size:11px;color:var(--muted)}.search{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:7px}.theme{display:flex;align-items:center;gap:8px;padding:7px 5px;font-size:12px;border-radius:5px;cursor:pointer}.theme:hover{background:#f1f6f3}.theme input{accent-color:var(--green)}.theme span{flex:1}.theme em{font-size:10px;color:#8a9599;font-style:normal}.stage{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:12px}.stage input{accent-color:var(--green)}.stage i{width:15px;height:15px;border-radius:50%;font-style:normal;text-align:center;color:white;font-size:10px;line-height:15px}.center{min-width:0;padding:20px 22px 30px}.charthead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}.charthead h2{font:normal 22px Georgia,serif;margin:0}.charthead p{margin:4px 0 0;color:var(--muted);font-size:12px}.chartbox{background:white;border:1px solid var(--line);border-radius:12px;margin-top:14px;overflow:hidden;position:relative}.chartbox svg{width:100%;height:clamp(530px,70vh,850px);display:block;touch-action:pan-y}.chartfoot{display:flex;gap:18px;flex-wrap:wrap;padding:10px 18px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.hint{font-size:12px;color:var(--muted);line-height:1.65}.right h2{font:normal 24px Georgia,serif;margin:10px 0}.right h3{font-size:13px;margin:14px 0 7px}.right p{font-size:12px;line-height:1.75}.stepcard{background:#f6f7f3;border-left:3px solid var(--green);padding:12px;border-radius:4px;margin-top:13px}.stepcard strong{font-size:12px}.detailbtn{display:block;width:100%;text-align:left;padding:8px 9px;margin:5px 0;border:1px solid var(--line);border-radius:6px;background:white;font-size:11px}.detailbtn.on{border-color:var(--green);background:#eaf4f0}.note{border-top:1px solid var(--line);padding-top:12px;margin-top:16px}.key{padding:12px 14px;background:#f1f5f3;border-radius:7px;font-size:11px;line-height:1.65}.range{display:flex;gap:8px;align-items:center}.range input{width:100%;accent-color:var(--green)}.tooltip{position:absolute;pointer-events:none;background:#24333b;color:white;padding:8px 10px;border-radius:6px;font-size:11px;max-width:230px;display:none;z-index:5}.axistext{fill:#6e7a80;font-size:12px}.gridline{stroke:#e7e9e5;stroke-width:1}.curve{fill:none;stroke-width:2.7;stroke-linejoin:round;stroke-linecap:round;cursor:pointer}.curve.faded{opacity:.13}.event{cursor:pointer}.event circle{stroke:#fff;stroke-width:2}.event text{fill:#2b363c;font-size:10px;font-weight:600;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;color:var(--muted)}.legend b{font-weight:500}.help{font-size:11px;color:var(--muted)}@media(max-width:1050px){.layout{grid-template-columns:220px minmax(0,1fr)}.right{grid-column:1/-1;max-height:none;border-top:1px solid var(--line)}.center{padding:14px}.left{max-height:calc(100vh - 84px)}}@media(max-width:680px){header{padding:15px}h1{font-size:23px}.layout{display:flex;flex-direction:column}.left{max-height:none;padding:12px}.theme-list{display:grid;grid-template-columns:1fr 1fr;max-height:170px;overflow:auto}.center{padding:10px}.chartbox svg{height:540px}.right{max-height:none}.charthead h2{font-size:20px}}
+.swatch{width:13px;height:4px;border-radius:2px;display:inline-block}.right{scrollbar-gutter:stable}#scenarioDetail .detailbtn{font-size:12px}#scenarioDetail p{margin:9px 0 13px}
+/* V10: vasemmalta liukuvat, koko kartan vapauttavat paneelit */
+.layout{display:block;min-height:calc(100vh - 84px)}
+.center{width:100%;padding:18px 28px 30px 70px}
+.layout>aside{position:fixed;top:0;left:0;bottom:0;width:min(380px,calc(100vw - 54px));max-height:none;height:100dvh;overflow-y:auto;z-index:110;padding:25px 22px 35px;box-shadow:12px 0 35px rgba(24,41,46,.13);border:0;transform:translateX(-105%);transition:transform .32s cubic-bezier(.22,.8,.22,1);visibility:hidden}
+.layout>aside.panel-open{transform:translateX(0);visibility:visible}
+.layout>aside.right{width:min(430px,calc(100vw - 54px));border-left:0}
+.panel-rail{position:fixed;top:50%;left:0;transform:translateY(-50%);display:flex;flex-direction:column;gap:9px;z-index:90}
+.panel-tab{writing-mode:vertical-rl;transform:none;min-height:145px;padding:15px 10px;border-radius:0 10px 10px 0;border:1px solid #d5dcd8;border-left:0;background:white;box-shadow:3px 3px 12px #24333b16;font-weight:700;letter-spacing:.06em;font-size:12px;color:var(--ink)}
+.panel-tab:hover,.panel-tab[aria-expanded=true]{background:#e6f3ee;color:var(--green);border-color:var(--green)}
+.panel-backdrop{position:fixed;inset:0;background:rgba(23,39,42,.22);z-index:100;opacity:0;visibility:hidden;transition:opacity .28s,visibility .28s}
+.panel-backdrop.visible{opacity:1;visibility:visible}
+.panel-top{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:12px}
+.panel-top strong{font-size:14px}
+.panel-close{background:#f1f5f3;border:1px solid var(--line);border-radius:6px;padding:5px 11px;font-size:16px}
+@media(max-width:1050px){.layout{display:block}.layout>aside.right{grid-column:auto;max-height:none;border-top:0}.layout>aside.left{max-height:none}.center{padding:15px 16px 24px 60px}}
+@media(max-width:680px){.layout{display:block}.layout>aside.left,.layout>aside.right{max-height:none;padding:20px 16px}.center{padding:12px 8px 20px 48px}.panel-tab{min-height:112px;padding:12px 7px;font-size:11px}.panel-rail{gap:6px}.theme-list{display:block;max-height:none}.chartbox svg{height:540px}}
+@media(prefers-reduced-motion:reduce){.layout>aside,.panel-backdrop{transition:none}}
+.analysis-info{margin:12px 0;padding:13px;border:1px solid #dce5df;border-radius:9px;background:#f5faf7}.analysis-info h3{font-size:14px;margin:10px 0 5px}.analysis-info p{font-size:12px;margin:4px 0 8px}.analysis-info .chip{display:inline-block;border:1px solid #d0ddd5;padding:3px 7px;margin:3px;border-radius:20px;font-size:11px}.analysis-status{font-size:11px;color:#65737a;margin-top:6px}.map-edit-panel{position:sticky;top:0;z-index:75;left:auto;right:auto;bottom:auto;width:100%;max-height:none;overflow:visible;border:0;border-bottom:1px solid #cbded5;border-radius:0;box-shadow:none;padding:8px 14px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;background:#eaf3ef}.map-edit-panel[hidden]{display:none}.map-edit-panel button{padding:6px 10px;border:1px solid #a9bfb7;border-radius:6px;background:white;color:#24433a;font-size:12px}.map-edit-panel button.primary{background:#1f796b;color:white}.map-edit-panel .map-edit-hint{font-size:11px;color:#526e62}.map-edit-panel #graphSummary{margin-left:auto}#graphAuthDialog{border:1px solid #b7cfc4;border-radius:12px;padding:20px;width:min(360px,90vw);box-shadow:0 16px 60px #0004}#graphAuthDialog::backdrop{background:#10251b80}#graphAuthDialog label{display:block;margin:12px 0;font-size:12px}#graphAuthDialog input{display:block;width:100%;padding:9px;border:1px solid #b7cfc4;border-radius:6px}#graphAuthDialog button{padding:8px 12px;border-radius:6px;border:1px solid #b7cfc4}#graphAuthDialog button.primary{background:#1f796b;color:white}#graphAuthDialog .map-edit-row{display:flex;gap:8px}</style></head><body>
+<header><div><div class="tag">Suomen rakennemuutosten atlas · karttaluonnos V9</div><h1>Kehityssuuntien historiallinen maisema</h1><p>1850–2050 · teemat, kuusi vaihetta ja niiden mahdolliset vaikutussuunnat samassa kuvassa</p></div><div class="toolbar"><button class="btn" id="core">Ydinteemat</button><button class="btn" id="all">Kaikki teemat</button><button class="btn" id="none">Tyhjennä</button><button class="btn" id="reset">Palauta näkymä</button><button class="btn" id="visualEditorButton" aria-expanded="false">Muokkaa kytkentöjä</button></div></header>
+<div class="panel-rail" aria-label="Avaa sivupaneeli"><button class="panel-tab" id="openFilters" aria-controls="filtersPanel" aria-expanded="false">Teemat ja suodattimet</button><button class="panel-tab" id="openDetails" aria-controls="detail" aria-expanded="false">Kehityskaaren tiedot</button></div><div class="panel-backdrop" id="panelBackdrop"></div><div class="layout"><aside class="left" id="filtersPanel" aria-label="Teemat ja suodattimet"><div class="panel-top"><strong>Teemat ja suodattimet</strong><button class="panel-close" data-close-panel aria-label="Sulje suodattimet">×</button></div><div class="label">Rajaa teemoja</div><input id="search" class="search" type="search" placeholder="Hae teemoista…"><div id="themes" class="theme-list"></div><div class="label">Näytä kehitysvaiheet</div><div id="stages"></div><div class="label">Karttakerrokset</div><label class="stage"><input type="checkbox" id="showLabels" checked> Ankkuripisteiden nimet</label><label class="stage"><input type="checkbox" id="showCurves" checked> Kehityskäyrät</label><label class="stage"><input type="checkbox" id="showUnselected"> Muut teemat himmennettyinä</label><div class="label">Skenaariot 2025–2050</div><label class="stage"><input type="checkbox" id="scenarioNo" checked> Ei olennaisia muutoksia</label><label class="stage"><input type="checkbox" id="scenarioLearn" checked> Opitaan menneistä</label><label class="stage"><input type="checkbox" id="scenarioOptimize" checked> Optimoidaan nykyistä</label><div class="label">Aikaväli</div><div class="range"><span class="mini">1850</span><input id="year" type="range" min="1900" max="2050" step="5" value="2050"><strong id="yearValue">2050</strong></div><p class="hint">Rajaa käyrien näkyvää loppuvuotta. Valitse käyrä tai vaihemerkki nähdäksesi sen perustelut.</p><div class="note"><div class="label">Tulkinnan läpinäkyvyys</div><p class="hint">Pystyakseli kuvaa <b>toimituksellista suunta-arviota</b>, ei mitattua hyvinvointi-indeksiä. Vaiheiden ajoitukset ovat lähdeaineiston arvioita. Korjausliike (6) on ehdotus, ei toteutunut historiallinen vaikutus.</p></div></aside>
+<main class="center"><div class="charthead"><div><h2>Yhteiskunnan muutosten suuri kuva</h2><p>Vaaka = vuosi · pysty = tulkittu vaikutussuunta · väri = teema · ympyrä = vaihe</p></div><div class="legend"><span><i class="dot" style="background:#1f796b"></i>Myönteinen</span><span><i class="dot" style="background:#b46d3e"></i>Heikentävä</span><span><i class="dot" style="background:#7562aa"></i>Ehdotettu</span></div></div><div class="chartbox"><svg id="chart" role="img" aria-label="Teemojen historialliset kehityskäyrät ja kuusi vaihetta"></svg><div class="tooltip" id="tip"></div><div class="chartfoot"><span>● Vaihe 1–5: historiallinen tulkinta</span><span>◇ Vaihe 6: mahdollinen korjaus</span><span>Katkoviivat 2025–2050: vaihtoehtoiset skenaariot</span></div></div><p class="help">Tärkeää: käyrien pystysijaintia ja keskinäisiä etäisyyksiä ei saa tulkita vertailukelpoisina tilastolukuina. Historialliset arvot ovat toimituksellisia oletuksia. Vuodet 2025–2050 ovat erillisiä, näkyvällä laskentasäännöllä muodostettuja skenaarioita, eivät ennusteita. Skenaariot eivät kuvaa automaattisesti todellista politiikkavaikutusta.</p></main>
+<aside class="right" id="detail" aria-label="Kehityskaaren tiedot"><div class="panel-top"><strong>Kehityskaaren tiedot</strong><button class="panel-close" data-close-panel aria-label="Sulje tiedot">×</button></div><div class="tag">Valittu kehityskaari</div><h2>Valitse kartalta teema</h2><p class="hint">Avaa käyrä tai ankkuripiste. Näet vaiheen alkuperäisen tekstin, ajoituksen sekä käytetyn suunta-arvion.</p></aside></div>
+<nav id="visualEditor" class="map-edit-panel" hidden aria-label="Verkoston työkalurivi"><button id="visualEditorClose" title="Sulje muokkaustila">✕</button><button id="graphFilterAll" class="primary">Kaikki yhteydet</button><button id="graphFilterLinked">Kytketyt</button><button id="graphFilterSelected">Valittu teema</button><button id="graphFilterClear">Nollaa rajaus</button><span id="graphSummary" class="map-edit-hint"></span><button id="mapEditSignIn" title="Kirjaudu ylläpitäjänä">Kirjaudu</button><button id="mapEditSignOut" hidden>Kirjaudu ulos</button><span id="mapEditStatus" role="status" class="map-edit-hint"></span><input id="graphFilterSearch" type="hidden" value=""><select id="graphFilterMechanism" hidden><option value="">Kaikki</option></select><select id="graphFilterStage" hidden><option value="">Kaikki</option></select><input id="graphOnlyLinked" type="checkbox" hidden><div id="mapEditLogin" hidden><input id="mapEditEmail" type="email"><input id="mapEditPassword" type="password"></div><div id="mapEditLogged" hidden><span id="mapEditIdentity"></span></div></nav><dialog id="graphAuthDialog" aria-label="Ylläpitäjän kirjautuminen"><form method="dialog"><h3>Ylläpitäjän kirjautuminen</h3><label>Sähköposti<input id="graphAuthEmail" type="email" autocomplete="username"></label><label>Salasana<input id="graphAuthPassword" type="password" autocomplete="current-password"></label><div class="map-edit-row"><button type="button" id="graphAuthSubmit" class="primary">Kirjaudu</button><button type="submit">Peruuta</button></div><p id="graphAuthError" role="status"></p></form></dialog><div id="atlasPublishBar" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:8px 14px;background:#f3f5f2;border-top:1px solid #ddd"><span id="atlasPublishStatus" role="status">Ladataan julkaistua JSON-aineistoa…</span><button type="button" id="atlasLoadAdmin">Lataa Supabasesta (ylläpito)</button><button type="button" id="atlasExportJson">Vie JSON</button><button type="button" id="atlasLoadSeries">Lataa tilastosarjat</button></div><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script><script>let DATA={themes:[],links:[]};
+const STAGE_NAMES=['Alkuperäinen ongelma','Onnistunut ratkaisu','Vakiintuminen','Olosuhteiden muutos','Uusi ristiriita','Mahdollinen korjausliike'];
+const STAGE_COLORS=['#82909a','#1f796b','#338a74','#bd9854','#b46d3e','#7562aa'];
+const PALETTE=['#237b73','#527fb2','#ae8750','#8365a9','#c36e60','#52948e','#ad7393','#607d9c','#a28a43','#9b6863','#567c72','#7a70b1','#bf7d46','#688eaa','#a75e8e','#4f9988','#997b48','#627db1','#ba7765','#648f70','#9069a3','#385f76'];
+let selected=new Set([4,8,15,17,19,22]), stages=new Set([1,2,3,4,5,6]), active=22,activeStage=5, showYear=2050, hover=null, activeScenario="learn";
+const $=id=>document.getElementById(id), svg=$('chart'),NS='http://www.w3.org/2000/svg';
+const elem=(tag,attrs={},parent=svg)=>{let e=document.createElementNS(NS,tag);for(let [k,v] of Object.entries(attrs))e.setAttribute(k,v);parent.appendChild(e);return e};
+const colors=t=>PALETTE[(t.id-1)%PALETTE.length];
+function prepare(){let q=$('search').value.toLowerCase();$('themes').innerHTML='';for(let t of DATA.themes){if(!t.name.toLowerCase().includes(q))continue;let l=document.createElement('label');l.className='theme';l.innerHTML=`<input type="checkbox" ${selected.has(t.id)?'checked':''}><span>${t.name}</span><em>${t.id}</em>`;l.querySelector('input').onchange=e=>{e.target.checked?selected.add(t.id):selected.delete(t.id);active=t.id;draw();detail()};$('themes').append(l)}$('stages').innerHTML='';STAGE_NAMES.forEach((name,i)=>{let l=document.createElement('label');l.className='stage';l.innerHTML=`<input type="checkbox" ${stages.has(i+1)?'checked':''}><i style="background:${STAGE_COLORS[i]}">${i+1}</i>${name}`;l.querySelector('input').onchange=e=>{e.target.checked?stages.add(i+1):stages.delete(i+1);draw()};$('stages').append(l)})}
+const SCENARIOS=[{id:'no',input:'scenarioNo',label:'Ei muutoksia',color:'#b46d3e',dash:'8 6'},{id:'learn',input:'scenarioLearn',label:'Opitaan menneestä',color:'#1f796b',dash:'5 4'},{id:'optimize',input:'scenarioOptimize',label:'Optimoidaan',color:'#7562aa',dash:'2 4'}];
+// Laskennan kaikki oletukset näkyvät tässä ja selityspaneelissa.
+// Pisteet ovat laadullisia esimerkkejä, eivät kalibroituja ennusteita.
+function projection(t,kind,year){let start=t.scores[4];let prev=t.scores[3];let drift=Math.max(-.5,Math.min(.5,start-prev));let progress=Math.max(0,Math.min(1,(year-2025)/25));let vulnerability=Math.max(0,-start);let benefit=Math.max(0,start);
+ let delta=kind==='no'? .48*drift-.13-.10*vulnerability :kind==='learn'? .16*drift+.28+.14*vulnerability : .28+.16*benefit-.10*vulnerability;
+ return Math.max(-1,Math.min(1,start+delta*progress));}
+const sortedSteps=t=>t.steps.filter(s=>s.stage<=5).slice().sort((a,b)=>a.year-b.year||a.stage-b.stage);
+function curvePoints(t){let pts=[{year:1850,score:0,stage:0}];for(let s of sortedSteps(t)){pts.push({year:s.year,score:t.scores[s.stage-1],stage:s.stage})}return pts}
+function selectMapStage(themeId,stage){
+ hideTip(); // Musta hover-vihje ei saa jäädä ruudulle klikkauksen jälkeen.
+ active=themeId;activeStage=stage;detail();draw();suppressMapTip=true;updateVisualEditor();
+ // Kartan valinnat eivät avaa tai sulje vasenta tietopaneelia.
+ if(typeof graphConnectToStage==='function')graphConnectToStage(themeId,stage);
+}
+function draw(){const W=1400,H=760, pad={l:84,r:35,t:55,b:75};svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML='';suppressMapTip=false;const x=y=>pad.l+(y-1850)/(2050-1850)*(W-pad.l-pad.r),y=v=>pad.t+(1-(v+1)/2)*(H-pad.t-pad.b);let g=elem('g');for(let yr=1850;yr<=2050;yr+=25){let xx=x(yr);elem('line',{x1:xx,y1:pad.t,x2:xx,y2:H-pad.b,class:'gridline'},g);let txt=elem('text',{x:xx,y:35,'text-anchor':'middle',class:'axistext'},g);txt.textContent=yr}for(let v of [-1,-.5,0,.5,1]){let yy=y(v);elem('line',{x1:pad.l,y1:yy,x2:W-pad.r,y2:yy,stroke:v===0?'#9ca9a7':'#e9ebe8','stroke-width':v===0?2:1,'stroke-dasharray':v===0?'':'3 7'},g)}for(let [v,txt] of [[.87,'MYÖNTEISEEN SUUNTAAN'],[0,'VERTAILUTASO'],[-.87,'HEIKENTÄVÄÄN SUUNTAAN']]){let t=elem('text',{x:12,y:y(v),class:'axistext'},g);t.textContent=txt}let defs=elem('defs');let clip=elem('clipPath',{id:'plotclip'},defs);elem('rect',{x:pad.l,y:pad.t,width:W-pad.l-pad.r,height:H-pad.t-pad.b},clip);let lines=elem('g',{'clip-path':'url(#plotclip)'}),markers=elem('g',{'clip-path':'url(#plotclip)'});elem('rect',{x:x(2025),y:pad.t,width:x(2050)-x(2025),height:H-pad.t-pad.b,fill:'#f4f0f9',opacity:.65},lines);elem('line',{x1:x(2025),y1:pad.t,x2:x(2025),y2:H-pad.b,stroke:'#8d759d','stroke-width':2,'stroke-dasharray':'6 5'},svg);let fut=elem('text',{x:x(2025)+12,y:pad.t+18,fill:'#7562aa','font-size':12,'font-weight':700},svg);fut.textContent='SKENAARIOT 2025–2050';let display=DATA.themes.filter(t=>selected.has(t.id)||$('showUnselected').checked);for(let t of display){let isSel=selected.has(t.id),isActive=t.id===active,pts=curvePoints(t).filter(p=>p.year<=showYear);if(!pts.length)continue;let curve=[];let nodes=pts.filter(p=>p.stage>0&&stages.has(p.stage));let minStage=stages.size?Math.min(...stages):7,maxStage=stages.size?Math.max(...stages):0; // filter segment by stage of destination
+let full=curvePoints(t);for(let i=1;i<full.length;i++){let a=full[i-1],b=full[i];if(!$('showCurves').checked||!stages.has(b.stage)||a.year>showYear)continue;let end=Math.min(showYear,2025,b.year);if(end<a.year)continue;let startScore=a.score,endScore=a.year===b.year?b.score:a.score+(b.score-a.score)*(end-a.year)/(b.year-a.year);let d=`M ${x(a.year)} ${y(startScore===undefined?a.score:a.score)} C ${x(a.year+(end-a.year)*.4)} ${y(a.score)} ${x(a.year+(end-a.year)*.6)} ${y(endScore)} ${x(end)} ${y(endScore)}`;let path=elem('path',{d,class:'curve'+(isSel?'':' faded'),stroke:colors(t),'stroke-width':isActive?4.5:2.6,opacity:isSel?(.8+(isActive?.2:0)):.14},lines);path.onclick=ev=>{ev.stopPropagation();selectMapStage(t.id,b.stage)};let hit=elem('path',{d,fill:'none',stroke:'transparent','stroke-width':16},lines);hit.style.cursor='pointer';hit.onclick=ev=>{ev.stopPropagation();selectMapStage(t.id,b.stage)};hit.onmousemove=e=>tip(e,t,b);hit.onmouseleave=hideTip}
+if(isSel){for(let p of nodes){let e=elem('g',{class:'event'},markers),yy=y(p.score),xx=x(p.year);if(p.stage===6)continue;elem('circle',{cx:xx,cy:yy,r:isActive?8:6,fill:STAGE_COLORS[p.stage-1],stroke:colors(t),'stroke-width':2},e);if(atlasAnalysis.loaded&&atlasAnalysis.stageMechanisms.some(a=>a.theme_id===t.id&&a.stage===p.stage)){elem('circle',{cx:xx+8,cy:yy-8,r:4,fill:'#1f796b',stroke:'#fff','stroke-width':1.5},e)}e.onclick=ev=>{ev.stopPropagation();selectMapStage(t.id,p.stage)};e.onmousemove=ev=>tip(ev,t,t.steps[p.stage-1]);e.onmouseleave=hideTip;if(isActive&&$('showLabels').checked){let text=elem('text',{x:xx+11,y:yy-12},e);text.textContent=`${p.stage}. ${STAGE_NAMES[p.stage-1]} · ${p.year}`}}let last=full.filter(p=>p.stage>0&&p.year<=showYear).at(-1);if(last&&$('showLabels').checked&&!isActive){let text=elem('text',{x:x(last.year)+9,y:y(last.score)-9,fill:colors(t),'font-size':11,'font-weight':600},markers);text.textContent=t.name.length>24?t.name.slice(0,23)+'…':t.name}if(stages.has(6)&&showYear>=2025){let s=t.steps.find(a=>a.stage===6);let cx=x(2025),cy=y(t.scores[5]);elem('path',{d:`M ${cx-6} ${cy} L ${cx} ${cy-7} L ${cx+6} ${cy} L ${cx} ${cy+7} Z`,fill:'#fff',stroke:'#7562aa','stroke-width':2},markers).onclick=()=>{active=t.id;activeStage=6;detail();draw();updateVisualEditor();graphConnectToStage(t.id,6)}}}
+// Ennustehaarat alkavat samasta 2025-tilasta. Ei kuudennen vaiheen oletettua toteutumista.
+if(isSel&&showYear>2025&&$('showCurves').checked){for(let sc of SCENARIOS){if(!$(sc.input).checked)continue;let finish=Math.min(showYear,2050),start=t.scores[4],end=projection(t,sc.id,finish),xx=x(2025),xe=x(finish),yy0=y(start),ye=y(end);let path=elem('path',{d:`M ${xx} ${yy0} C ${xx+(xe-xx)*.35} ${yy0} ${xx+(xe-xx)*.7} ${ye} ${xe} ${ye}`,fill:'none',stroke:sc.color,'stroke-width':isActive?3.8:2.2,'stroke-dasharray':sc.dash,opacity:isActive?1:.56},lines);path.style.cursor='pointer';path.onclick=()=>{active=t.id;activeScenario=sc.id;detail();draw()};let dot=elem('circle',{cx:xe,cy:ye,r:isActive?6:4,fill:'#fff',stroke:sc.color,'stroke-width':2.5},markers);dot.style.cursor='pointer';dot.onclick=()=>{active=t.id;activeScenario=sc.id;detail();draw()};if(isActive&&$('showLabels').checked&&finish===2050){let tx=elem('text',{x:xe-8,y:ye+(sc.id==='no'?16:sc.id==='learn'?-12:3),'text-anchor':'end',fill:sc.color,'font-size':12,'font-weight':700},markers);tx.textContent=sc.label}}
+}}
+let yy=x(showYear);elem('line',{x1:yy,y1:pad.t,x2:yy,y2:H-pad.b,stroke:'#a56a57','stroke-width':1.5,'stroke-dasharray':'6 5'},svg);let lab=elem('text',{x:yy-4,y:H-34,'text-anchor':'end',fill:'#a56a57','font-size':12,'font-weight':700},svg);lab.textContent=`Tarkasteluvuosi ${showYear}`;drawMechanismGraph(x,y,svg);drawReaderMechanisms(x,y,svg);}
+let suppressMapTip=false;
+function tip(ev,t,s){if(suppressMapTip)return;let box=$('tip'),parent=$('chart').getBoundingClientRect(),outer=$('chart').parentElement.getBoundingClientRect();box.innerHTML=`<b>${t.name}</b><br>${s.year} · ${STAGE_NAMES[s.stage-1]||'Lähtötaso'}<br>Valitse nähdäksesi perustelut`;box.style.display='block';box.style.left=Math.min(ev.clientX-outer.left+12,outer.width-240)+'px';box.style.top=Math.max(10,ev.clientY-outer.top-60)+'px'}function hideTip(){suppressMapTip=true;$('tip').style.display='none'}
+function detail(){let t=DATA.themes.find(t=>t.id===active);if(!t)return;let s=t.steps.find(s=>s.stage===activeStage)||t.steps[0],v=t.scores[activeStage-1];let direction=v>0?'myönteiseen':v<0?'heikentävään':'neutraaliin';$('detail').innerHTML=`<div class="panel-top"><strong>Kehityskaaren tiedot</strong><button class="panel-close" data-close-panel aria-label="Sulje tiedot">×</button></div><div class="tag">Teema ${t.id}/${DATA.themes.length}</div><h2>${t.name}</h2><p><b>${t.thesis}</b></p><div id="analyticalLayer"></div><div class="label">Kuusi kehitysvaihetta</div><div id="phaseButtons"></div><div class="stepcard"><strong>${activeStage}. ${STAGE_NAMES[activeStage-1]} · ${s.year}</strong><p>${s.text}</p></div>${t.id===22?`<div class="key"><b>Uusi tutkimushypoteesi:</b> käyrä ei mittaa eliitin sulkeutuneisuutta. Se havainnollistaa vallan oikeutuksen ja pääsykynnysten historiallista muutosta. Vuodet 1863 ja 1906 ovat historiallisia ankkureita; muut vaiheet ovat tulkinnallisia ajanjaksoja. Pystyarvot ja skenaariot ovat muokattavia oletuksia.</div>`:``}<div class="label">Miksi piste on tässä?</div><p>Vaakasijainti: aineiston vaiheelle annettu vuosi <b>${s.year}</b>. Pystysijainti: <b>${v.toFixed(2)}</b> (tulkinnallinen suunta ${direction}). Tämä ei ole tilastollinen mittaus.</p><div class="label">Muuta suunta-arviota</div><div class="range"><span>−1</span><input id="score" type="range" min="-1" max="1" step="0.05" value="${v}"><span>+1</span></div><p class="mini">Arvio nyt: <b id="scoreValue">${v.toFixed(2)}</b>. Muutos päivittyy suoraan karttaan eikä muuta alkuperäistä tekstiä.</p><div class="note"><div class="label">Skenaariot 2025–2050 · avoin laskentamalli</div><div id="scenarioDetail"></div><div class="label">Mahdollinen korjausikkuna</div><p>${t.window}</p><div class="label">Tutkittava kysymys</div><p>${t.test}</p><div class="label">Kytkeytyvät teemat</div><p>${t.connections}</p></div><div class="key"><b>Tiedon luonne:</b> vaihetekstit ja vuosiluvut tulevat alkuperäisestä 21 alkuperäisen teeman aineistosta; teema 22 on uusi tulkinnallinen lisäys. Pystysuunnan arvot ovat tässä versiossa näkyvästi muokattavia toimituksellisia lähtöoletuksia. Kuudes vaihe kuvaa ehdotusta eikä jo toteutunutta muutosta.</div>`;renderAnalyticalLayer(t.id);let current=t.scores[4],drift=Math.max(-.5,Math.min(.5,current-t.scores[3]));let sd=$('scenarioDetail');sd.innerHTML=`<p>Kaikkien haarojen lähtöarvo vuonna 2025 on <b>${current.toFixed(2)}</b> (vaihe 5). Vuosien 2025–2050 muutos etenee lineaarisesti skenaariokohtaisen kokonaismuutoksen mukaan. Arvot rajataan välille −1…+1.</p>`+SCENARIOS.map(sc=>{let delta=projection(t,sc.id,2050)-current;return `<button class="detailbtn ${activeScenario===sc.id?'on':''}" data-scenario="${sc.id}"><span style="color:${sc.color}">●</span> ${sc.label}: <b>${projection(t,sc.id,2050).toFixed(2)}</b> (${delta>=0?'+':''}${delta.toFixed(2)})</button>`}).join('')+`<p class="mini"><b>Ei muutoksia:</b> 0,48 × viimeisen muutosvaiheen suunta − 0,13 − 0,10 × nykyinen haavoittuvuus.<br><b>Opitaan menneestä:</b> 0,16 × muutosvaiheen suunta + 0,28 + 0,14 × haavoittuvuus.<br><b>Optimoidaan:</b> +0,28 + 0,16 × nykyinen myönteinen taso − 0,10 × haavoittuvuus.<br>Haavoittuvuus = max(0, −vuoden 2025 arvo); myönteinen taso = max(0, vuoden 2025 arvo); muutosvaiheen suunta = rajattu erotus (vaihe 5 − vaihe 4).</p><p class="mini">Optimointi tarkoittaa tässä tehokkuuden ja nykyisten vahvuuksien kasvattamista; oppiminen tarkoittaa haittojen tunnistamista ja korjaamista. Malli ei vielä sisällä teemojen välisiä riippuvuuksia eikä kustannuksia.</p>`;sd.querySelectorAll('[data-scenario]').forEach(b=>b.onclick=()=>{activeScenario=b.dataset.scenario;detail();draw()});t.steps.forEach((ss,i)=>{let b=document.createElement('button');b.className='detailbtn'+(activeStage===i+1?' on':'');b.textContent=`${i+1} · ${ss.year} · ${STAGE_NAMES[i]}`;b.onclick=()=>{activeStage=i+1;detail();draw()};$('phaseButtons').append(b)});$('score').oninput=e=>{t.scores[activeStage-1]=Number(e.target.value);$('scoreValue').textContent=Number(e.target.value).toFixed(2);draw()}}
+const ATLAS_SUPABASE_URL='https://zzbubbrsgiqsvsovkkmf.supabase.co';
+const ATLAS_PUBLIC_KEY='sb_publishable_YNqxZI4Oj-DSjVBoTKhQ2Q_4DchUIBb';
+let atlasAnalysis={variables:[],links:[],indicators:[],series:[],mechanisms:[],stageMechanisms:[],stageVariables:[],relations:[],loaded:false,error:''};
+function analysisSafe(x){return String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderAnalyticalLayer(themeId){
+ const el=document.getElementById('analyticalLayer');if(!el)return;
+ const a=atlasAnalysis;if(!a.loaded){el.innerHTML='<div class="analysis-info"><strong>Analyyttinen kerros</strong><p class="analysis-status">'+analysisSafe(a.error||'Ladataan julkaistua JSON-aineistoa…')+'</p></div>';return}
+ const links=a.links.filter(x=>x.theme_id===themeId),outcomes=links.filter(x=>x.role==='outcome'),others=links.filter(x=>x.role!=='outcome'),stageLinks=a.stageMechanisms.filter(x=>x.theme_id===themeId),mechanisms=[...new Map(stageLinks.map(x=>[x.mechanism_id,a.mechanisms.find(m=>m.id===x.mechanism_id)]).filter(x=>x[1])).values()],stageVars=a.stageVariables.filter(x=>x.theme_id===themeId);
+ const renderVariable=(link)=>{const v=a.variables.find(v=>v.id===link.variable_id);if(!v)return '';const ids=a.indicators.filter(i=>i.variable_id===v.id);return '<div class="stage"><strong>'+analysisSafe(v.name)+'</strong><p>'+analysisSafe(v.definition)+'</p><p class="mini">Mittauksen tila: '+analysisSafe(v.measurement_status)+' · Suunta: '+analysisSafe(v.favorable_direction)+'</p>'+(ids.length?'<div class="label">Liitetyt tilastosarjat</div>'+ids.map(i=>{const series=a.series.find(s=>s.series_key===i.series_key);return '<span class="chip">'+analysisSafe(series?.title||i.series_key)+(series?.unit?' ('+analysisSafe(series.unit)+')':'')+' · '+analysisSafe(i.relation_type)+'</span>'}).join(''):'<p class="mini">Tilastosarjaa ei ole vielä kytketty. Tämä on käsitteellinen muuttuja, ei mitattu aikasarja.</p>')+'</div>'};
+ el.innerHTML='<div class="analysis-info"><strong>Analyyttinen kerros</strong><p class="mini">Muuttujat ja hypoteesit luetaan ladatusta aineistosta. Kartan −1…+1-käyrä on edelleen toimituksellinen tulkinta, ei muuttujien mitattu aikasarja.</p><h3>Selitettävä päämuuttuja</h3>'+(outcomes.map(renderVariable).join('')||'<p>Ei määriteltyä päämuuttujaa.</p>')+(others.length?'<h3>Muut muuttujat</h3>'+others.map(renderVariable).join(''):'')+'<h3>Vaihekohtaiset muuttujat</h3>'+(stageVars.filter(x=>x.stage===activeStage).map(x=>'<span class="chip">'+analysisSafe(a.variables.find(v=>v.id===x.variable_id)?.name||x.variable_id)+' · '+analysisSafe(x.role)+'</span>').join('')||'<p class="mini">Tälle vaiheelle ei ole muuttujia.</p>')+'<h3>Yhteiset vaikutusmekanismit</h3>'+(stageLinks.filter(x=>x.stage===activeStage).map(x=>{const m=a.mechanisms.find(m=>m.id===x.mechanism_id);if(!m)return '';const other=a.stageMechanisms.filter(y=>y.mechanism_id===m.id&&y.theme_id!==themeId);return '<div class="stage"><strong>'+analysisSafe(m.title)+'</strong><p>'+analysisSafe(m.hypothesis)+'</p><p class="mini">Rooli: '+analysisSafe(x.role)+' · Suunta: '+analysisSafe(x.direction)+' · Näyttö: '+analysisSafe(x.evidence_status)+'</p><p>'+analysisSafe(x.rationale)+'</p>'+(other.length?'<p class="mini">Kytkeytyy myös: '+other.map(o=>analysisSafe(DATA.themes.find(t=>t.id===o.theme_id)?.name||o.theme_id)+' (vaihe '+o.stage+')').join(', ')+'</p>':'')+'</div>'}).join('')||'<p class="mini">Tähän vaiheeseen ei ole vielä liitetty mekanismia.</p>')+'<h3>Mekanismiverkoston yhteydet</h3>'+(a.relations.filter(r=>mechanisms.some(m=>m.id===r.source_mechanism_id||m.id===r.target_mechanism_id)).map(r=>'<p class="mini">'+analysisSafe(a.mechanisms.find(m=>m.id===r.source_mechanism_id)?.title)+' → '+analysisSafe(a.mechanisms.find(m=>m.id===r.target_mechanism_id)?.title)+' · '+analysisSafe(r.relation)+' (hypoteesi / arvio)</p>').join('')||'<p class="mini">Ei vielä mekanismien välisiä yhteyksiä.</p>')+'</div>';
+}
+async function fetchAtlasTable(name,order){
+ const out=[];
+ for(let from=0;;from+=500){
+  const params=new URLSearchParams({select:'*',order:order.split(',').map(key=>key+'.asc').join(','),offset:String(from),limit:'500'});
+  const response=await fetch(ATLAS_SUPABASE_URL+'/rest/v1/'+name+'?'+params,{headers:{apikey:ATLAS_PUBLIC_KEY},cache:'no-store'});
+  if(!response.ok)throw Error(name+': HTTP '+response.status);
+  const rows=await response.json();if(!Array.isArray(rows))throw Error(name+': virheellinen vastaus');
+  out.push(...rows);if(rows.length<500)return out;
+ }
+}
+const ATLAS_JSON_FILE='suomen_rakennemuutosten_atlas.json';
+const ATLAS_SERIES_FILES=[1,2,3,4].map(i=>'suomen_rakennemuutosten_atlas-sarjat-'+i+'.json');
+async function loadAtlasSeries(){if(atlasAnalysis.series?.length)return atlasAnalysis.series;const files=atlasSeriesFiles.length?atlasSeriesFiles:ATLAS_SERIES_FILES;const parts=await Promise.all(files.map(async file=>{const response=await fetch(file);if(!response.ok)throw Error(file+': HTTP '+response.status);return (await response.json()).series||[]}));atlasAnalysis.series=parts.flat();renderAnalyticalLayer(active);return atlasAnalysis.series}
+
+const ATLAS_TABLES={variables:['atlas_variables','id'],links:['atlas_theme_variables','theme_id,variable_id,role'],indicators:['atlas_variable_indicators','variable_id,series_key'],series:['indicator_series','series_key'],mechanisms:['atlas_mechanisms','id'],stageMechanisms:['atlas_stage_mechanisms','theme_id,stage,mechanism_id'],stageVariables:['atlas_stage_variables','theme_id,stage,variable_id,role'],relations:['atlas_mechanism_relations','source_mechanism_id,target_mechanism_id,relation']};
+let atlasMode='reader';let atlasSeriesFiles=[];
+function normalizeTheme(p){
+ const steps=(p.steps||[]).map((s,i)=>({...s,stage:Number(s.stage||i+1),year:Number(s.year||1850)}));
+ return {...p,id:Number(p.id),steps,scores:p.scores.map(Number),thesis:p.thesis||p.test||'',window:p.window||'',connections:p.connections||''};
+}
+function applyAtlasSnapshot(snapshot){
+ if(!snapshot||!Array.isArray(snapshot.themes)||!snapshot.themes.length)throw Error('JSON-aineistosta puuttuvat teemat.');
+ for(const t of snapshot.themes){if(!Array.isArray(t.steps)||!t.steps.length||!Array.isArray(t.scores)||t.scores.length!==6||t.scores.some(v=>!Number.isFinite(Number(v))))throw Error('Teeman '+t.id+' vaiheet tai suunta-arviot puuttuvat tai ovat virheelliset.');}
+ DATA={...snapshot,links:snapshot.links||[],themes:snapshot.themes.map(t=>normalizeTheme(t))};
+ $('all').textContent='Kaikki '+DATA.themes.length;
+ const a=snapshot.analysis||{};atlasSeriesFiles=snapshot.datasets?.series||[];atlasAnalysis={variables:a.variables||[],links:a.links||[],indicators:a.indicators||[],series:a.series||[],mechanisms:a.mechanisms||[],stageMechanisms:a.stageMechanisms||[],stageVariables:a.stageVariables||[],relations:a.relations||[],loaded:true,error:''};
+ selected=new Set([...selected].filter(id=>DATA.themes.some(t=>t.id===id)));
+ if(!DATA.themes.some(t=>t.id===active))active=DATA.themes[0].id;
+ prepare();draw();detail();updateVisualEditor();
+}
+async function loadPublishedAtlas(){
+ try{const response=await fetch(ATLAS_JSON_FILE,{cache:'no-cache'});if(!response.ok)throw Error('HTTP '+response.status);applyAtlasSnapshot(await response.json());setAtlasPublishStatus('Lukutila · julkaistu JSON ('+DATA.themes.length+' teemaa)');}
+ catch(e){atlasAnalysis.error='Julkaistua JSON-tiedostoa ei voitu ladata: '+e.message;setAtlasPublishStatus(atlasAnalysis.error,true);if(!DATA.themes.length){$('detail').innerHTML='<h2>Aineistoa ei voitu ladata</h2><p>'+analysisSafe(atlasAnalysis.error)+'</p><p>Julkaise HTML ja '+ATLAS_JSON_FILE+' samaan hakemistoon ja avaa sivu verkkopalvelimen kautta.</p>';svg.innerHTML='';const message=elem('text',{x:30,y:60,fill:'#a33'});message.textContent='Aineistoa ei voitu ladata. Katso sivun latausilmoitus.';}else renderAnalyticalLayer(active)}
+}
+async function loadAtlasAnalysis(includeSeries=false){
+ const entries=await Promise.all(Object.entries(ATLAS_TABLES).filter(([key])=>includeSeries||key!=='series').map(async ([key,[table,order]])=>[key,await fetchAtlasTable(table,order)]));
+ atlasAnalysis={...atlasAnalysis,...Object.fromEntries(entries),loaded:true,error:''};draw();renderAnalyticalLayer(active);updateVisualEditor();
+}
+function setAtlasPublishStatus(message,error=false){const el=document.getElementById('atlasPublishStatus');if(el){el.textContent=message;el.style.color=error?'#a33':'inherit'}}
+async function loadAdminAtlas(includeSeries=false){
+ if(!mapEditAuthenticated)throw Error('Kirjaudu ylläpitäjänä ennen Supabase-latausta.');
+ setAtlasPublishStatus('Ladataan Supabasen ajantasaista aineistoa…');
+ const rows=await fetchAtlasTable('atlas_themes','id');
+ await loadAtlasAnalysis(includeSeries);
+ const snapshot={themes:rows.map(r=>r.payload),links:DATA.links,analysis:Object.fromEntries(Object.keys(ATLAS_TABLES).map(k=>[k,atlasAnalysis[k]]))};
+ applyAtlasSnapshot(snapshot);atlasMode='admin';setAtlasPublishStatus('Ylläpitotila · Supabase ('+DATA.themes.length+' teemaa)');
+}
+async function exportAtlasJson(){
+ if(!mapEditAuthenticated){setAtlasPublishStatus('Kirjaudu ylläpitäjänä ennen JSON-vientiä.',true);return}
+ const button=document.getElementById('atlasExportJson');button.disabled=true;
+ try{
+  await loadAdminAtlas(true);
+  const series=atlasAnalysis.series||[],seriesFiles=Array.from({length:Math.max(1,Math.ceil(series.length/270))},(_,i)=>'suomen_rakennemuutosten_atlas-sarjat-'+(i+1)+'.json');
+  const snapshot={schema_version:3,exported_at:new Date().toISOString(),source:'supabase',themes:DATA.themes,links:DATA.links,analysis:Object.fromEntries(Object.keys(ATLAS_TABLES).filter(k=>k!=='series').map(k=>[k,atlasAnalysis[k]])),datasets:{series:seriesFiles},counts:{themes:DATA.themes.length,series:series.length}};
+  const ids=new Set(snapshot.analysis.mechanisms.map(m=>m.id));
+  const missing=snapshot.analysis.stageMechanisms.filter(x=>!ids.has(x.mechanism_id)).length+snapshot.analysis.relations.filter(x=>!ids.has(x.source_mechanism_id)||!ids.has(x.target_mechanism_id)).length;
+  if(missing)throw Error('Mekanismiviittauksia puuttuu: '+missing);
+  const variableIds=new Set(snapshot.analysis.variables.map(v=>v.id)),themeIds=new Set(snapshot.themes.map(t=>t.id));
+  if(snapshot.analysis.stageVariables.some(l=>!variableIds.has(l.variable_id)||!themeIds.has(l.theme_id))||snapshot.analysis.links.some(l=>!variableIds.has(l.variable_id)||!themeIds.has(l.theme_id)))throw Error('Muuttujakytkennän kohde puuttuu.');
+  const files=[{name:ATLAS_JSON_FILE,data:snapshot},...seriesFiles.map((name,i)=>({name,data:{series:series.slice(i*270,(i+1)*270)}}))];
+  let downloads=document.getElementById('atlasExportDownloads');
+  if(!downloads){downloads=document.createElement('div');downloads.id='atlasExportDownloads';document.getElementById('atlasPublishBar').appendChild(downloads)}
+  for(const link of downloads.querySelectorAll('a'))URL.revokeObjectURL(link.href);
+  downloads.replaceChildren();
+  for(const file of files){const link=document.createElement('a');link.href=URL.createObjectURL(new Blob([JSON.stringify(file.data)],{type:'application/json;charset=utf-8'}));link.download=file.name;link.textContent='Lataa '+file.name;link.style.marginRight='12px';downloads.appendChild(link);link.click()}
+  setAtlasPublishStatus('Valmistettu perustiedosto ja '+seriesFiles.length+' tilastosarjatiedostoa ('+series.length+' sarjaa). Jos selain estää automaattiset lataukset, käytä latauslinkkejä. Julkaise kaikki tiedostot yhdessä.');
+ }catch(e){setAtlasPublishStatus('Vienti epäonnistui: '+e.message,true)}finally{button.disabled=false}
+}
+document.getElementById('atlasExportJson').onclick=exportAtlasJson;
+document.getElementById('atlasLoadSeries').onclick=async()=>{try{await loadAtlasSeries();setAtlasPublishStatus('Tilastosarjat ladattu: '+atlasAnalysis.series.length)}catch(e){setAtlasPublishStatus(e.message,true)}};
+document.getElementById('atlasLoadAdmin').onclick=async()=>{try{await loadAdminAtlas()}catch(e){setAtlasPublishStatus(e.message,true)}};
+
+$('search').oninput=prepare;$('year').oninput=e=>{showYear=+e.target.value;$('yearValue').textContent=showYear;draw()};for(let id of ['showLabels','showCurves','showUnselected','scenarioNo','scenarioLearn','scenarioOptimize'])$(id).onchange=draw;$('core').onclick=()=>{selected=new Set([4,8,15,17,19,22]);prepare();draw()};$('all').onclick=()=>{selected=new Set(DATA.themes.map(t=>t.id));prepare();draw()};$('none').onclick=()=>{selected.clear();prepare();draw()};$('reset').onclick=()=>{selected=new Set([4,8,15,17,19,22]);stages=new Set([1,2,3,4,5,6]);showYear=2050;$('year').value=2050;$('yearValue').textContent=2050;active=22;activeStage=5;prepare();draw();detail()};
+
+// Paneelit toimivat vasemmalta liukuvina laatikoina; kartan koko ei muutu.
+let openedPanel=null;
+function closePanels(){openedPanel=null;document.getElementById('filtersPanel').classList.remove('panel-open');document.getElementById('detail').classList.remove('panel-open');document.getElementById('panelBackdrop').classList.remove('visible');for(const id of ['openFilters','openDetails'])document.getElementById(id).setAttribute('aria-expanded','false')}
+function togglePanel(which){const target=which==='filters'?'filtersPanel':'detail';if(openedPanel===target){closePanels();return}closePanels();openedPanel=target;document.getElementById(target).classList.add('panel-open');document.getElementById('panelBackdrop').classList.add('visible');document.getElementById(which==='filters'?'openFilters':'openDetails').setAttribute('aria-expanded','true')}
+document.getElementById('openFilters').addEventListener('click',()=>{togglePanel('filters');draw()});
+document.getElementById('openDetails').addEventListener('click',()=>{togglePanel('details');draw()});
+document.getElementById('panelBackdrop').addEventListener('click',()=>{closePanels();draw()});
+document.getElementById('chart').addEventListener('click',e=>{hideTip();
+ if(e.target.closest('.reader-mechanism, .admin-mechanism'))return;
+ if(openedPanel==='detail'){closePanels();draw();}
+});
+document.querySelector('.chartbox').addEventListener('click',e=>{
+ if(e.target.closest('svg'))return;
+ if(openedPanel==='detail')closePanels();
+});
+document.addEventListener('click',e=>{if(e.target.closest('[data-close-panel]'))closePanels()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePanels()});
+
+
+
+let mapEditClient=null,mapEditAuthenticated=false;
+const mapEdit=id=>document.getElementById(id);
+function mapEditStatus(text,error=false){const e=mapEdit('mapEditStatus');e.textContent=text;e.className=error?'map-edit-error':'map-edit-hint'}
+function updateVisualEditor(){
+ const panel=mapEdit('visualEditor');if(!panel||panel.hidden)return;
+ const mechanisms=atlasAnalysis.mechanisms, links=atlasAnalysis.stageMechanisms;
+ const filter=mapEdit('graphFilterMechanism'),old=filter.value;
+ filter.innerHTML='<option value="">Kaikki mekanismit</option>'+mechanisms.map(m=>'<option value="'+m.id+'">'+analysisSafe(m.title)+'</option>').join('');
+ filter.value=old;
+ mapEdit('graphSummary').textContent=mechanisms.length+' mekanismia · '+links.length+' tallennettua vaihelinkkiä. '+(graphSelectedMechanism?'Valitse kohdevaihe kartalta.':'');
+}
+async function mapEditInitialize(){
+ if(!window.supabase)return mapEditStatus('Supabase-kirjasto ei latautunut.',true);
+ if(!mapEditClient)mapEditClient=window.supabase.createClient(ATLAS_SUPABASE_URL,ATLAS_PUBLIC_KEY,{auth:{persistSession:true,storageKey:'atlas-visual-editor-auth'}});
+ const {data:{session},error}=await mapEditClient.auth.getSession();if(error)return mapEditStatus(error.message,true);
+ mapEditAuthenticated=!!session;
+ mapEdit('mapEditLogin').hidden=true;mapEdit('mapEditLogged').hidden=true;mapEdit('mapEditSignIn').hidden=mapEditAuthenticated;mapEdit('mapEditSignOut').hidden=!mapEditAuthenticated;
+ mapEdit('mapEditIdentity').textContent=session?.user?.email||'';
+ updateVisualEditor();draw();
+}
+mapEdit('visualEditorButton').onclick=async()=>{const box=mapEdit('visualEditor');box.hidden=!box.hidden;mapEdit('visualEditorButton').setAttribute('aria-expanded',String(!box.hidden));if(!box.hidden){await mapEditInitialize();if(mapEditAuthenticated)await loadAdminAtlas()}draw()};
+mapEdit('visualEditorClose').onclick=()=>{mapEdit('visualEditor').hidden=true;mapEdit('visualEditorButton').setAttribute('aria-expanded','false');draw()};
+mapEdit('mapEditSignIn').onclick=()=>mapEdit('graphAuthDialog').showModal();
+mapEdit('graphAuthSubmit').onclick=async()=>{
+ await mapEditInitialize();if(!mapEditClient)return;
+ const {error}=await mapEditClient.auth.signInWithPassword({email:mapEdit('graphAuthEmail').value.trim(),password:mapEdit('graphAuthPassword').value});
+ mapEdit('graphAuthPassword').value='';
+ if(error){mapEdit('graphAuthError').textContent=error.message;return}
+ mapEdit('graphAuthDialog').close();await mapEditInitialize();if(mapEditAuthenticated)await loadAdminAtlas();mapEditStatus('Muokkausoikeus tarkistetaan tallennettaessa.');
+};
+mapEdit('mapEditSignOut').onclick=async()=>{if(mapEditClient)await mapEditClient.auth.signOut();await mapEditInitialize();atlasMode='reader';await loadPublishedAtlas();mapEditStatus('Kirjauduttu ulos.')};
+mapEdit('graphFilterAll').onclick=()=>{mapEdit('graphOnlyLinked').checked=false;mapEdit('graphFilterSearch').value='';mapEdit('graphFilterMechanism').value='';mapEdit('graphFilterStage').value='';draw()};
+mapEdit('graphFilterLinked').onclick=()=>{mapEdit('graphOnlyLinked').checked=!mapEdit('graphOnlyLinked').checked;draw()};
+mapEdit('graphFilterSelected').onclick=()=>{mapEdit('graphFilterSearch').value=DATA.themes.find(t=>t.id===active)?.name||'';draw()};
+mapEdit('graphFilterClear').onclick=()=>{mapEdit('graphFilterSearch').value='';mapEdit('graphFilterMechanism').value='';mapEdit('graphFilterStage').value='';mapEdit('graphOnlyLinked').checked=false;graphSelectedMechanism=null;draw()};
+let graphDrag=null,graphSelectedMechanism=null;
+function drawReaderMechanisms(x,y,svg){
+ if(!document.getElementById('visualEditor')?.hidden)return;
+ drawDistributedMechanisms(x,y,svg,false);
+}
+function drawDistributedMechanisms(x,y,svg,editing=false){
+ if(!atlasAnalysis.loaded)return;
+ const q=editing?mapEdit('graphFilterSearch').value.trim().toLocaleLowerCase('fi'):'',mid=editing?Number(mapEdit('graphFilterMechanism').value):0,stageFilter=editing?Number(mapEdit('graphFilterStage').value):0;
+ const a=atlasAnalysis,byId=new Map(),W=1400,H=760;
+ const visible=DATA.themes.filter(t=>selected.has(t.id));
+ for(const t of visible)for(const st of t.steps){
+   if(!stages.has(st.stage)||st.year>showYear||(stageFilter&&st.stage!==stageFilter))continue;
+   const anchor={x:x(st.stage===6?2025:st.year),y:y(t.scores[st.stage-1]),theme:t.id,stage:st.stage,year:st.year};
+   for(const l of a.stageMechanisms){
+     if(l.theme_id!==t.id||l.stage!==st.stage||(mid&&l.mechanism_id!==mid))continue;
+     const mechanism=a.mechanisms.find(m=>m.id===l.mechanism_id);
+     if(q&&!t.name.toLocaleLowerCase('fi').includes(q)&&!mechanism?.title.toLocaleLowerCase('fi').includes(q))continue;
+     if(!byId.has(l.mechanism_id))byId.set(l.mechanism_id,{id:l.mechanism_id,anchors:[]});
+     byId.get(l.mechanism_id).anchors.push(anchor);
+   }
+ }
+ const degrees=new Map();
+ for(const r of a.relations){
+   degrees.set(r.source_mechanism_id,(degrees.get(r.source_mechanism_id)||0)+1);
+   degrees.set(r.target_mechanism_id,(degrees.get(r.target_mechanism_id)||0)+1);
+ }
+ const width=178,height=38;
+ const candidates=[...byId.values()].map(o=>{
+   const m=a.mechanisms.find(m=>m.id===o.id);
+   if(!m)return null;
+   const unique=[...new Map(o.anchors.map(a=>[a.theme+':'+a.stage,a])).values()];
+   const mx=unique.reduce((s,a)=>s+a.x,0)/unique.length,my=unique.reduce((s,a)=>s+a.y,0)/unique.length;
+   return {...o,m,anchors:unique,mx,my,score:unique.length*12+(degrees.get(o.id)||0)+
+     (unique.some(a=>a.theme===active)?4:0)};
+ }).filter(Boolean).sort((a,b)=>b.score-a.score||a.id-b.id);
+ // Ei keinotekoista sivupalkkia: jokaiselle solmulle haetaan oma vapaa sijainti koko kuva-alalta.
+ const nodes=[],limit=selected.size>12?18:Math.max(8,selected.size*3);
+ const clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v));
+ for(const item of candidates.slice(0,limit)){
+   let best=null;
+   const offsets=[[0,0],[0,-65],[0,65],[-105,-60],[105,-60],[-105,60],[105,60],
+     [-205,0],[205,0],[-210,-125],[210,-125],[-210,125],[210,125],
+     [0,-145],[0,145],[-310,-60],[310,-60],[-310,60],[310,60]];
+   for(const [dx,dy] of offsets){
+     const bx=clamp(item.mx-width/2+dx,90,W-width-20);
+     const by=clamp(item.my-height/2+dy,60,H-90-height);
+     const overlap=nodes.reduce((n,p)=>n+(bx<p.bx+width+9&&bx+width+9>p.bx&&by<p.by+height+8&&by+height+8>p.by?1:0),0);
+     const anchorCollision=item.anchors.reduce((n,p)=>n+(p.x>bx-10&&p.x<bx+width+10&&p.y>by-9&&p.y<by+height+9?1:0),0);
+     const displacement=Math.hypot(bx+width/2-item.mx,by+height/2-item.my);
+     const cost=overlap*10000+anchorCollision*1200+displacement+
+       (bx>1150&&item.mx<1150?100:0);
+     if(!best||cost<best.cost)best={bx,by,cost,overlap};
+   }
+   if(best&&best.overlap===0)nodes.push({...item,...best});
+ }
+ if(editing)mapEdit('graphSummary').textContent=nodes.length+' mekanismia · '+nodes.reduce((n,p)=>n+p.anchors.length,0)+' vaihekytkentää'+(graphSelectedMechanism?' · valitse kohdevaihe':'');
+ const group=elem('g',{class:editing?'admin-mechanism-layer':'reader-mechanism-layer','aria-label':'Kehitysvaiheisiin kytkeytyvät mekanismit'},svg);
+ const edges=elem('g',{'pointer-events':editing?'auto':'none'},group),labels=elem('g',{},group);
+ for(const p of nodes){
+   const focused=p.anchors.some(a=>a.theme===active&&a.stage===activeStage);
+   const cx=p.bx+width/2,cy=p.by+height/2;
+   for(const a of p.anchors){
+     const ex=clamp(a.x,p.bx,p.bx+width),ey=clamp(a.y,p.by,p.by+height);
+     const path='M '+a.x+' '+a.y+' Q '+((a.x+ex)/2)+' '+((a.y+ey)/2-10)+' '+ex+' '+ey;
+     elem('path',{d:path,
+       fill:'none',stroke:colors(DATA.themes.find(t=>t.id===a.theme)),
+       'stroke-width':focused?1.8:1.1,opacity:focused?.75:.32,'stroke-dasharray':'3 4'},edges);
+     if(editing){
+       const hit=elem('path',{d:path,fill:'none',stroke:'transparent','stroke-width':15,'pointer-events':'stroke'},edges);
+       hit.style.cursor='pointer';elem('title',{},hit).textContent=p.m.title+' → vaihe '+a.stage+' · Klikkaa irrottaaksesi';
+       hit.onclick=async ev=>{ev.stopPropagation();if(!mapEditAuthenticated)return mapEditStatus('Kirjaudu ylläpitäjänä ennen irrottamista.',true);if(!confirm('Irrotetaanko kytkentä '+p.m.title+' → vaihe '+a.stage+'?'))return;const {error}=await mapEditClient.from('atlas_stage_mechanisms').delete().eq('theme_id',a.theme).eq('stage',a.stage).eq('mechanism_id',p.id);if(error)return mapEditStatus(error.message,true);await loadAtlasAnalysis();draw();updateVisualEditor();mapEditStatus('Viivakytkentä irrotettu.')};
+     }
+
+   }
+   const node=elem('g',{class:editing?'admin-mechanism':'reader-mechanism','data-mechanism-id':p.id,tabindex:'0',role:'button','aria-label':p.m.title},labels);
+   elem('rect',{x:p.bx,y:p.by,width,height,rx:7,fill:editing&&graphSelectedMechanism===p.id?'#d0ece1':focused?'#e8f4ec':'#ffffff',
+     stroke:focused?'#1f796b':'#a7bdb5','stroke-width':focused?1.8:1,opacity:.95},node);
+   const title=elem('text',{x:p.bx+7,y:p.by+16,'font-size':10.8,'font-weight':focused?700:550,fill:'#24443e'},node);
+   title.textContent=p.m.title.length>26?p.m.title.slice(0,25)+'…':p.m.title;
+   const sub=elem('text',{x:p.bx+7,y:p.by+30,'font-size':9.5,fill:'#657b73'},node);
+   sub.textContent=p.anchors.length+' vaihekytkentää · '+p.m.id;
+   const tooltip=elem('title',{},node);tooltip.textContent=p.m.title+' — '+(p.m.hypothesis||'');
+   node.style.cursor=editing?'grab':'pointer';
+   if(editing)node.addEventListener('pointerdown',ev=>{if(!mapEditAuthenticated){mapEditStatus('Kirjaudu ylläpitäjänä ennen kytkemistä.',true);return}ev.preventDefault();ev.stopPropagation();graphSelectedMechanism=p.id;graphDrag={id:p.id,startX:ev.clientX,startY:ev.clientY};mapEditStatus('Vedä mekanismista kartan vaihemerkkiin ja vapauta.')});
+   const select=ev=>{ev.stopPropagation();hideTip();if(editing){if(!mapEditAuthenticated)return mapEditStatus('Kirjaudu ylläpitäjänä ennen kytkemistä.',true);graphSelectedMechanism=p.id;mapEditStatus('Mekanismi valittu: '+p.m.title+'. Klikkaa kartalta vaihemerkkiä tai vedä siihen.');draw();return}const nearest=[...p.anchors].sort((a,b)=>Math.hypot(a.x-cx,a.y-cy)-Math.hypot(b.x-cx,b.y-cy))[0];
+     active=nearest.theme;activeStage=nearest.stage;detail();draw();suppressMapTip=true;updateVisualEditor();};
+   node.onclick=select;
+   node.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();select(ev)}};
+ }
+}
+function drawMechanismGraph(x,y,svg){
+ if(document.getElementById('visualEditor')?.hidden)return;
+ drawDistributedMechanisms(x,y,svg,true);
+}
+async function graphConnectToStage(themeId,stage){
+ const id=graphDrag?.id||graphSelectedMechanism;
+ if(!id||document.getElementById('visualEditor').hidden)return false;
+ if(!mapEditAuthenticated){mapEditStatus('Kirjaudu ylläpitäjänä.',true);return true}
+ const existing=atlasAnalysis.stageMechanisms.some(x=>x.theme_id===themeId&&x.stage===stage&&x.mechanism_id===id);
+ if(existing){mapEditStatus('Kytkentä on jo olemassa. Klikkaa viivaa irrottaaksesi.');graphDrag=null;return true}
+ const {error}=await mapEditClient.from('atlas_stage_mechanisms').upsert({theme_id:themeId,stage,mechanism_id:id,role:'contributes',direction:'unknown',rationale:'Visuaalisesti kartalta kytketty; vaikutuksen perustelu tarkennettava.',evidence_status:'hypothesis'},{onConflict:'theme_id,stage,mechanism_id'});
+ if(error){mapEditStatus(error.message,true);return true}
+ graphDrag=null;graphSelectedMechanism=null;await loadAtlasAnalysis();draw();updateVisualEditor();mapEditStatus('Viiva kytketty ja tallennettu.');return true;
+}
+
+document.addEventListener('pointerup',async ev=>{
+ if(!graphDrag)return;
+ const drag=graphDrag;graphDrag=null;
+ if(Math.hypot(ev.clientX-drag.startX,ev.clientY-drag.startY)<7)return;
+ const chartSvg=document.getElementById('chart');
+ if(!chartSvg||!chartSvg.getScreenCTM())return;
+ const pt=chartSvg.createSVGPoint();pt.x=ev.clientX;pt.y=ev.clientY;
+ const p=pt.matrixTransform(chartSvg.getScreenCTM().inverse());
+ const xx=year=>84+(year-1850)/200*(1400-84-35), yy=score=>55+(1-(score+1)/2)*(760-55-75);
+ let best=null;
+ for(const t of DATA.themes){
+  if(!selected.has(t.id))continue;
+  for(const st of t.steps){
+   if(!stages.has(st.stage)||st.year>showYear||(Number(mapEdit('graphFilterStage').value)&&st.stage!==Number(mapEdit('graphFilterStage').value)))continue;
+   const sx=xx(st.stage===6?2025:st.year),sy=yy(t.scores[st.stage-1]);
+   const d=Math.hypot(p.x-sx,p.y-sy);
+   if(!best||d<best.distance)best={themeId:t.id,stage:st.stage,distance:d};
+  }
+ }
+ if(best&&best.distance<=22){
+  graphSelectedMechanism=drag.id;
+  active=best.themeId;activeStage=best.stage;
+  await graphConnectToStage(best.themeId,best.stage);
+  detail();draw();updateVisualEditor();
+ }else mapEditStatus('Pudota mekanismi vaiheympyrän päälle. Vaihtoehtoisesti klikkaa mekanismia ja sitten vaihetta.');
+});
+// Käynnistetään vasta, kun kaikki kartan toiminnot on alustettu.
+loadPublishedAtlas();
+</script></body></html>
