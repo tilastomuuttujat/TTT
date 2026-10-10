@@ -43,7 +43,7 @@ const sortedSteps=t=>t.steps.filter(s=>s.stage<=5).slice().sort((a,b)=>a.year-b.
 function curvePoints(t){let pts=[{year:1850,score:0,stage:0}];for(let s of sortedSteps(t)){pts.push({year:s.year,score:t.scores[s.stage-1],stage:s.stage})}return pts}
 function selectMapStage(themeId,stage){
  hideTip(); // Musta hover-vihje ei saa jäädä ruudulle klikkauksen jälkeen.
- active=themeId;activeStage=stage;detail();draw();updateVisualEditor();
+ active=themeId;activeStage=stage;detail();draw();suppressMapTip=true;updateVisualEditor();
  // Kartan valinnat eivät avaa tai sulje vasenta tietopaneelia.
  if(typeof graphConnectToStage==='function')graphConnectToStage(themeId,stage);
 }
@@ -160,7 +160,7 @@ function drawReaderMechanisms(x,y,svg){
    const px=x(item.st.stage===6?2025:item.st.year),py=y(item.t.scores[item.st.stage-1]);
    let best=null;
    for(const side of [1,-1])for(const offset of [0,-52,52,-104,104,-156,156]){
-     const bx=Math.max(90,Math.min(1390-width,px+side*(width+24)-(side<0?0:width-190)));
+     const bx=Math.max(90,Math.min(1390-width,px+(side>0?24:-width-24)));
      const by=Math.max(60,Math.min(660,py+offset-height/2));
      const overlaps=placed.reduce((sum,p)=>sum+(Math.abs(bx-p.bx)<width+8&&Math.abs(by-p.by)<height+8?1:0),0);
      const cost=overlaps*1000+Math.abs(offset)+(side<0?15:0);
@@ -184,7 +184,7 @@ function drawReaderMechanisms(x,y,svg){
    sub.textContent=p.t.name.slice(0,17)+' · '+p.st.year;
    const tt=elem('title',{},node);tt.textContent=p.m.title+' — '+(p.m.hypothesis||'');
    node.style.cursor='pointer';
-   const select=ev=>{ev.stopPropagation();hideTip();active=p.t.id;activeStage=p.st.stage;detail();draw();updateVisualEditor();};
+   const select=ev=>{ev.stopPropagation();hideTip();active=p.t.id;activeStage=p.st.stage;detail();draw();suppressMapTip=true;updateVisualEditor();};
    node.onclick=select;
    node.onkeydown=ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();select(ev)}};
  }
