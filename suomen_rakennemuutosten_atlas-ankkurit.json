@@ -6228,6 +6228,294 @@
           "question": "Milloin apu tuli käytettäväksi ja miten odotusajan toimeentulo järjestyi?"
         }
       ]
+    },
+    {
+      "id": "asuttaminen-ja-jalleenrakennus-1945-1955",
+      "entry_theme_id": 2,
+      "short_title": "Asuttaminen ja jälleenrakennus 1945–1955",
+      "title": "Asuttaminen ja jälleenrakennus – maasta ja kodista toimeentulon edellytyksiin",
+      "period": "1945–1955",
+      "question": "Miten maan ja rakentamisen järjestelyt muuttuivat käytännön mahdollisuuksiksi?",
+      "sources": [
+        {
+          "id": "survey1950",
+          "title": "Maanmittaushallitus: kertomus vuosilta 1944–1948 (1950), s. 29",
+          "url": "https://otos.stat.fi/bitstreams/2bd1302e-29c5-43d0-9536-e978ad039ce8/download"
+        },
+        {
+          "id": "yearbook1956",
+          "title": "Suomen tilastollinen vuosikirja 1956: taulukko 71, erityisesti 71f ja 71j–k",
+          "url": "https://otos.stat.fi/bitstreams/aa94b25f-ec2e-4dfb-8722-d15f71bb3c8b/download"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Maa, koti ja tuotanto",
+          "title": "Asuttaminen koostuu erillisistä toteutusvaiheista",
+          "period": "1945–1955",
+          "years": [
+            1945,
+            1955
+          ],
+          "event_year": 1945,
+          "event_label": "Asutustoiminnan tarkastelujakso alkaa",
+          "theme_ids": [
+            2,
+            3,
+            8
+          ],
+          "focus": {
+            "theme_id": 2,
+            "stage": 2
+          },
+          "map_points": [],
+          "explanation": "Käsikirjoituksen rajattu tutkimus tarkastelee asuttamisen toimeenpanoa ja rakentamista vuosina 1945–1955. Vuosikirjan taulukko erottaa maan hankinnan, tilojen muodostamisen, hallintasopimukset, raivauksen, rakentamisen ja lainoituksen. Lain yksityiskohtia ei tässä esitetä itsenäisesti varmennettuina.",
+          "mechanism": "Maan järjestäminen → käytön edellytykset → mahdollinen koti ja tuotanto.",
+          "benefit": "Vaiheiden erottelu auttaa seuraamaan päätöksestä käytäntöön johtavaa reittiä.",
+          "tradeoff": "Hallinnollinen merkintä ei yksin tarkoita käyttövalmista tilaa tai turvattua toimeentuloa.",
+          "affected": "Siirtoväki sekä taulukon muut saajaryhmät: sotainvalidit, sotalesket ja sotaorvot sekä perheelliset rintamasotilaat.",
+          "lag": "Päätös, hallinta ja rakennuksen valmistuminen voivat ajoittua eri vuosiin.",
+          "evidence_note": "Vuosi 1945 on tarkastelujakson alku. Taulukon eri vaiheiden määriä ei summata ihmisiksi. Lähdetulkinta pohjautuu käyttäjän toimittamaan asuttamisen tutkimusversioon 0.1; alkuperäisten sivukuvien tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Lähtövarallisuus, maan laatu ja sijainti voivat muuttaa mahdollisuuksia.",
+          "source_ids": [
+            "yearbook1956"
+          ],
+          "mechanism_id": "paatoksesta-kayttoon"
+        },
+        {
+          "short_title": "Tekijät toimeenpanoon",
+          "title": "Vuoden 1946 henkilöstöratkaisu kohdentaa asiantuntijatyötä",
+          "period": "1946–1946",
+          "years": [
+            1946,
+            1946
+          ],
+          "event_year": 1946,
+          "event_label": "Maanmittaushenkilöstöä maanlunastuslautakuntiin",
+          "theme_ids": [
+            8,
+            15,
+            2
+          ],
+          "focus": {
+            "theme_id": 8,
+            "stage": 2
+          },
+          "map_points": [],
+          "explanation": "Käsikirjoituksen lähdepoiminnan mukaan valtioneuvosto määräsi kesällä 1946 lisää maanmittausalan henkilöstöä maanlunastuslautakuntiin. Viranomaiskertomus kuvaa tavallisten maanmittaustoimitusten lähes pysähtyneen paikoin.",
+          "mechanism": "Asiantuntijatyön priorisointi → toimeenpanon kapasiteetti → mahdollisuus muodostaa tiloja.",
+          "benefit": "Henkilöstön kohdentaminen voi auttaa kiireellisen tehtävän toteuttamisessa.",
+          "tradeoff": "Sama asiantuntijatyö on pois muista tehtävistä.",
+          "affected": "Asutustoiminnan hakijat, maanmittaushenkilöstö ja muiden toimitusten asiakkaat.",
+          "lag": "Resurssipäätöksen ja valmiiden toimitusten väliä ei ole mitattu.",
+          "evidence_note": "Viranomaiskertomus dokumentoi priorisoinnin; se ei osoita lisähenkilöstön erillistä vaikutusta rakentamiseen. Lähdetulkinta pohjautuu käyttäjän toimittamaan asuttamisen tutkimusversioon 0.1; alkuperäisten sivukuvien tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Työmenetelmät, paikalliset olosuhteet ja muu henkilöstö vaikuttavat etenemiseen.",
+          "source_ids": [
+            "survey1950"
+          ],
+          "mechanism_id": "paatoksesta-kayttoon"
+        },
+        {
+          "short_title": "Tilojen muodostaminen",
+          "title": "Vuoden 1948 eteneminen ei vielä osoita valmiita koteja",
+          "period": "1948–1948",
+          "years": [
+            1948,
+            1948
+          ],
+          "event_year": 1948,
+          "event_label": "Osa siirretyistä insinööreistä vapautetaan tehtävistä",
+          "theme_ids": [
+            2,
+            8,
+            3
+          ],
+          "focus": {
+            "theme_id": 2,
+            "stage": 2
+          },
+          "map_points": [],
+          "explanation": "Viranomaiskertomuksen mukaan vuonna 1948 osa lautakuntiin siirretyistä maanmittausinsinööreistä voitiin vapauttaa näistä tehtävistä. Tilojen muodostamisen eteneminen on eri asia kuin kodin valmistuminen. Muodostettu alue voi tarkoittaa myös lisäaluetta tai yhteismetsää.",
+          "mechanism": "Hallinnollinen muodostaminen → järjestetty maankäytön mahdollisuus → myöhemmät rakentamis- ja käyttötehtävät.",
+          "benefit": "Muodostaminen voi luoda perustan tilan käytölle.",
+          "tradeoff": "Hallintasopimukset, rakennukset ja kotitaloudet ovat eri laskentayksiköitä.",
+          "affected": "Asutustoiminnan saajat ja toimeenpanevat viranomaiset.",
+          "lag": "Muodostamisesta käyttöön johtava kotitalouskohtainen aika jää avoimeksi.",
+          "evidence_note": "Kertomus osoittaa henkilöstöjärjestelyn ja etenemisen kuvauksen. Hallintasopimustaulukosta pois jätetyt luovutut ja lakkautetut sopimukset on huomioitava. Lähdetulkinta pohjautuu käyttäjän toimittamaan asuttamisen tutkimusversioon 0.1; alkuperäisten sivukuvien tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Maaperä, rakentamisen resurssit ja perheen työvoima voivat vaikuttaa.",
+          "source_ids": [
+            "survey1950",
+            "yearbook1956"
+          ],
+          "mechanism_id": "paatoksesta-kayttoon",
+          "related_anchor_id": "torpparikysymys"
+        },
+        {
+          "short_title": "Rakentamisen edellytykset",
+          "title": "Kodin rinnalle tarvitaan tuotannon rakennuksia",
+          "period": "1945–1955",
+          "years": [
+            1945,
+            1955
+          ],
+          "event_year": 1949,
+          "event_label": "Vuosi 1949 rakentamisen julkaistussa vuosierittelyssä",
+          "theme_ids": [
+            3,
+            15,
+            10
+          ],
+          "focus": {
+            "theme_id": 3,
+            "stage": 2
+          },
+          "map_points": [],
+          "explanation": "Vuosikirjan rakentamistilasto erottaa asuinrakennukset, kotieläinrakennukset ja muut talousrakennukset. Kyse on rakennuksista, ei kotitalouksien määrästä. Vuosi 1949 on suurin julkaistu asuinrakennusten vuosimäärä jaksolla 1948–1955; vuodet 1945–1947 on esitetty yhtenä kertymänä.",
+          "mechanism": "Asuminen ja tuotannon aineellinen perusta → mahdollisuus käyttää tilaa ja harjoittaa elinkeinoa.",
+          "benefit": "Erilaiset rakennukset voivat täydentää toisiaan.",
+          "tradeoff": "Valmistuminen ei osoita käyttöä, kuntoa, kannattavuutta tai asukkaiden tuloja.",
+          "affected": "Taulukon koko saajajoukko; siirtoväen erillinen osuus on erotettava kokonaisuudesta.",
+          "lag": "Rakentaminen voi jatkua useita vuosia maan järjestämisen jälkeen.",
+          "evidence_note": "Koko jakson vuosihuippua ei nimetä, koska ensimmäisiä vuosia ei ole eritelty. Rakentamisen lasku ei yksin osoita epäonnistumista. Lähdetulkinta pohjautuu käyttäjän toimittamaan asuttamisen tutkimusversioon 0.1; alkuperäisten sivukuvien tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Rakentamistarpeen väheneminen tai toteutuksen rajoitteet voivat muuttaa vuosimääriä.",
+          "source_ids": [
+            "yearbook1956"
+          ],
+          "mechanism_id": "rakentamisesta-toimeentuloon"
+        },
+        {
+          "short_title": "Kirjaamisen viive",
+          "title": "Vuoden 1952 tarkistus tuo aiempaa toimintaa tilastoon",
+          "period": "1946–1952",
+          "years": [
+            1946,
+            1952
+          ],
+          "event_year": 1952,
+          "event_label": "Aiemmin käytettyä maata kirjataan vuoden 1952 tarkistuksessa",
+          "theme_ids": [
+            2,
+            10,
+            29
+          ],
+          "focus": {
+            "theme_id": 2,
+            "stage": 2
+          },
+          "map_points": [],
+          "explanation": "Käsikirjoituksen lähdepoiminnan mukaan vuoden 1952 maatalouskelpoisen maan luku sisälsi vuosina 1946–1951 käytettyä maata, joka tuli tilastoon tarkistuksessa. Kirjaamisvuosi ja toiminnan vuosi on erotettava.",
+          "mechanism": "Tilaston tarkistus → muuttunut julkaistu luku → tarve tarkistaa tapahtuman ajoitus.",
+          "benefit": "Alaviitteen huomiointi parantaa ajallista tulkintaa.",
+          "tradeoff": "Kirjaamismuutos voi näyttää todelliselta toiminnan kasvulta.",
+          "affected": "Tilaston käyttäjät ja asutustoiminnan arvioijat.",
+          "lag": "Toiminnan ja tilastoon päätymisen välillä voi olla vuosia.",
+          "evidence_note": "Kertynyttä määrää ei jaeta arvauksena yksittäisille vuosille eikä kirjata kokonaan vuonna 1952 tapahtuneeksi raivaukseksi. Lähdetulkinta pohjautuu käyttäjän toimittamaan asuttamisen tutkimusversioon 0.1; alkuperäisten sivukuvien tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Todellinen toiminta ja tilastollinen tarkistus voivat muuttua samanaikaisesti.",
+          "source_ids": [
+            "yearbook1956"
+          ],
+          "mechanism_id": "paatoksesta-kayttoon"
+        },
+        {
+          "short_title": "Toimeentulo jää avoimeksi",
+          "title": "Vuoden 1955 tilanteesta ei päätellä kotitalouden lopputulosta",
+          "period": "1955–1955",
+          "years": [
+            1955,
+            1955
+          ],
+          "event_year": 1955,
+          "event_label": "Asutustoiminnan vuoden lopun tilanne",
+          "theme_ids": [
+            5,
+            3,
+            15,
+            1
+          ],
+          "focus": {
+            "theme_id": 5,
+            "stage": 2
+          },
+          "map_points": [],
+          "explanation": "Vuoden 1956 vuosikirja kokoaa asutustoiminnan tilanteen vuoden 1955 lopussa. Käsikirjoitus ei osoita tilojen kannattavuutta, kotitalouksien tuloja tai myöhemmän muuton syitä. Rakennettu perusta ja kestävä toimeentulo ovat eri havaintoja.",
+          "mechanism": "Maa ja rakennukset → käyttö, työ ja muut voimavarat → mahdollinen toimeentulo.",
+          "benefit": "Toteutuksen ja käytön seuranta voi täsmentää ratkaisun merkitystä ihmisille.",
+          "tradeoff": "Myöhempi lähteminen ei yksin osoita epäonnistumista eikä jääminen kestävää toimeentuloa.",
+          "affected": "Tilojen kotitaloudet ja myöhemmin muuttaneet; henkilökohtaisia polkuja ei seurata tässä.",
+          "lag": "Toimeentulon arviointi tarvitsee rakentamisen jälkeistä seurantaa.",
+          "evidence_note": "Asuttamisen tutkimusversio 0.1 on rajattu toimeenpanoon ja rakentamiseen. Paikallinen vaikutusketju ja kotitalousseuranta ovat avoimia. Lähdetulkinta pohjautuu käyttäjän toimittamaan asuttamisen tutkimusversioon 0.1; alkuperäisten sivukuvien tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Lähtövarallisuus, työvoima, maan laatu, sijainti ja muu työ voivat selittää tuloksia.",
+          "source_ids": [
+            "yearbook1956"
+          ],
+          "mechanism_id": "rakentamisesta-toimeentuloon",
+          "related_anchor_id": "maaltamuutto"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "paatoksesta-kayttoon",
+          "title": "Päätöksestä käytön edellytyksiin",
+          "intro": "Maan järjestäminen tarvitsee asiantuntijatyötä, hallintaa ja toteutusta.",
+          "links": [
+            {
+              "title": "Toimeenpanon kapasiteetti",
+              "text": "Henkilöstön kohdentaminen voi mahdollistaa kiireellisten toimitusten etenemisen.",
+              "lag": "Resurssipäätöksestä toteutukseen: tarkka viive avoin."
+            },
+            {
+              "title": "Hallinta ja käyttö",
+              "text": "Muodostettu tila tai hallintasopimus ei yksin osoita käyttövalmiutta.",
+              "lag": "Vaiheiden väli voi ulottua useisiin vuosiin."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Käsikirjoituksen viranomaiskertomuspoiminta kuvaa vuosien 1946 ja 1948 henkilöstöjärjestelyjä.",
+              "source_ids": [
+                "survey1950"
+              ]
+            },
+            {
+              "text": "Vuosikirja erottaa asutustoiminnan vaiheet; raivaustilaston alaviite osoittaa kirjaamisen viiveen.",
+              "source_ids": [
+                "yearbook1956"
+              ]
+            }
+          ],
+          "interpretation": "Dokumentoidut järjestelyt eivät osoita henkilöstöpäätöksen kausaalista vaikutusta valmiisiin koteihin.",
+          "alternative": "Paikalliset resurssit ja lähtöehdot voivat vaikuttaa etenemiseen.",
+          "question": "Mitä päätöksen jälkeen oli järjestettävä, jotta tilaa voitiin käyttää?"
+        },
+        {
+          "id": "rakentamisesta-toimeentuloon",
+          "title": "Rakentamisesta toimeentuloon",
+          "intro": "Asuin- ja tuotantorakennukset voivat täydentää toisiaan, mutta niiden käyttö on tutkittava.",
+          "links": [
+            {
+              "title": "Aineellinen perusta",
+              "text": "Koti ja tuotannon rakennukset vastaavat eri tarpeisiin.",
+              "lag": "Rakentaminen vaiheittain."
+            },
+            {
+              "title": "Käyttö ja toimeentulo",
+              "text": "Työ, voimavarat ja toimintaympäristö vaikuttavat siihen, mitä perustan varassa syntyy.",
+              "lag": "Tarvitsee pidempää kotitalousseurantaa."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Vuosikirjan rakentamistilasto kuvaa rakennusluokkia ja koko saajajoukkoa, ei pelkästään siirtoväkeä.",
+              "source_ids": [
+                "yearbook1956"
+              ]
+            }
+          ],
+          "interpretation": "Rakennusten valmistumista ei muuteta todisteeksi turvatusta toimeentulosta tai politiikan nettovaikutuksesta.",
+          "alternative": "Maan laatu, sijainti, muu työ ja kotitalouden lähtövarallisuus voivat vaikuttaa.",
+          "question": "Millaiseksi toimeentulo muodostui ja mikä auttoi käyttämään rakennettua perustaa?"
+        }
+      ]
     }
   ]
 }
