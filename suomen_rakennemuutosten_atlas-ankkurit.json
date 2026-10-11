@@ -1272,6 +1272,478 @@
               ]
             }
           ]
+        },
+        {
+          "id": "uusimaa-kainuu-1990-2025",
+          "kind": "regional",
+          "title": "Alueellinen vertailu: Uusimaa ja Kainuu",
+          "source_title": "Tilastokeskus · StatFin 12dy: Väestönmuutokset ja väkiluku",
+          "source_url": "https://pxdata.stat.fi/PxWeb/pxweb/fi/StatFin/StatFin__muutl/12dy.px/",
+          "source_file": "12dy_20260920-102729.xlsx",
+          "source_file_sha256": "dcf114cc87455d927fc0b9f2223968f20d42bbd9fe66aec09d4122822afa8fec",
+          "source_library_file_id": "libfile_6803bf9e3ba88191884562eeada45834",
+          "source_updated": "2026-05-27",
+          "retrieved_at": "2026-10-11",
+          "source_columns": {
+            "population": 23,
+            "domestic_net_migration": 8
+          },
+          "source_series_keys": [
+            "fi.regional.statfin12dy_m21_a2026",
+            "fi.regional.statfin12dy_m06_a2026"
+          ],
+          "definition": "Väestöindeksi = 100 × vuoden lopun väkiluku / vuoden 1990 väkiluku. Kotimaan nettomuutto = kuntien välinen tulomuutto − lähtömuutto; maakunnan sisäiset muutot kumoutuvat nettoluvussa. Nettomuutto näytetään henkilöinä, eri asteikolla kuin väestöindeksi.",
+          "selection_reason": "Uusimaa ja Kainuu havainnollistavat samassa tilastossa erilaista aluekehitystä: Uudenmaan väkiluku kasvaa, Kainuun vähenee vuosien 1990 ja 2025 välillä. Pari on havainnollistava, ei kaikkien kasvavien ja vähenevien alueiden edustava otos.",
+          "comparability": "Aineisto kattaa 1990–2025. Aiempiin polun vaiheisiin ei täytetä havaintoja. Lähteen yleishuomautus ilmoittaa vuoden 2026 aluejaon, kuntien välisen muuton huomautus vuoden 2025 aluejaon. Ristiriita säilytetään näkyvissä; aineistoa ei yhdistetä tässä muiden aluejakojen sarjoihin.",
+          "limits": "Maakunnat sisältävät kaupunkeja ja maaseutua. Vertailu ei mittaa yksin maaltamuuttoa eikä suoraa muuttovirtaa Uusimaan ja Kainuun välillä. Väkilukuun vaikuttavat myös syntyvyys, kuolleisuus, kansainvälinen muuttoliike ja väkiluvun korjaukset. Lukumääräinen nettomuutto ei huomioi alueiden kokoeroa.",
+          "regions": [
+            {
+              "id": "MK01",
+              "title": "Uusimaa",
+              "color": "#365fa0",
+              "points": [
+                {
+                  "year": 1990,
+                  "population": 1232236,
+                  "domestic_net_migration": 2132,
+                  "population_index": 100.0
+                },
+                {
+                  "year": 1991,
+                  "population": 1248072,
+                  "domestic_net_migration": 2319,
+                  "population_index": 101.28514343031692
+                },
+                {
+                  "year": 1992,
+                  "population": 1261807,
+                  "domestic_net_migration": 1676,
+                  "population_index": 102.39978380764724
+                },
+                {
+                  "year": 1993,
+                  "population": 1277609,
+                  "domestic_net_migration": 4143,
+                  "population_index": 103.68216802625471
+                },
+                {
+                  "year": 1994,
+                  "population": 1293573,
+                  "domestic_net_migration": 6318,
+                  "population_index": 104.97769907712484
+                },
+                {
+                  "year": 1995,
+                  "population": 1310680,
+                  "domestic_net_migration": 7986,
+                  "population_index": 106.36598833340366
+                },
+                {
+                  "year": 1996,
+                  "population": 1327243,
+                  "domestic_net_migration": 8984,
+                  "population_index": 107.71013020233137
+                },
+                {
+                  "year": 1997,
+                  "population": 1344989,
+                  "domestic_net_migration": 9294,
+                  "population_index": 109.15027640809066
+                },
+                {
+                  "year": 1998,
+                  "population": 1362634,
+                  "domestic_net_migration": 10222,
+                  "population_index": 110.58222613200718
+                },
+                {
+                  "year": 1999,
+                  "population": 1379712,
+                  "domestic_net_migration": 9942,
+                  "population_index": 111.96816194300442
+                },
+                {
+                  "year": 2000,
+                  "population": 1394199,
+                  "domestic_net_migration": 7899,
+                  "population_index": 113.14382959108482
+                },
+                {
+                  "year": 2001,
+                  "population": 1408525,
+                  "domestic_net_migration": 5981,
+                  "population_index": 114.30643156018814
+                },
+                {
+                  "year": 2002,
+                  "population": 1419938,
+                  "domestic_net_migration": 2986,
+                  "population_index": 115.23263400842046
+                },
+                {
+                  "year": 2003,
+                  "population": 1429869,
+                  "domestic_net_migration": 731,
+                  "population_index": 116.0385672874352
+                },
+                {
+                  "year": 2004,
+                  "population": 1439400,
+                  "domestic_net_migration": 947,
+                  "population_index": 116.81203925222117
+                },
+                {
+                  "year": 2005,
+                  "population": 1452083,
+                  "domestic_net_migration": 1957,
+                  "population_index": 117.84130637312983
+                },
+                {
+                  "year": 2006,
+                  "population": 1467453,
+                  "domestic_net_migration": 3112,
+                  "population_index": 119.08863237237023
+                },
+                {
+                  "year": 2007,
+                  "population": 1483719,
+                  "domestic_net_migration": 2828,
+                  "population_index": 120.40867171548307
+                },
+                {
+                  "year": 2008,
+                  "population": 1501511,
+                  "domestic_net_migration": 3130,
+                  "population_index": 121.85255097237867
+                },
+                {
+                  "year": 2009,
+                  "population": 1517542,
+                  "domestic_net_migration": 2412,
+                  "population_index": 123.15351929338212
+                },
+                {
+                  "year": 2010,
+                  "population": 1532309,
+                  "domestic_net_migration": 1887,
+                  "population_index": 124.35190986142266
+                },
+                {
+                  "year": 2011,
+                  "population": 1549058,
+                  "domestic_net_migration": 2178,
+                  "population_index": 125.71114624146674
+                },
+                {
+                  "year": 2012,
+                  "population": 1566835,
+                  "domestic_net_migration": 3123,
+                  "population_index": 127.15380819907875
+                },
+                {
+                  "year": 2013,
+                  "population": 1585473,
+                  "domestic_net_migration": 4254,
+                  "population_index": 128.66634313556818
+                },
+                {
+                  "year": 2014,
+                  "population": 1603388,
+                  "domestic_net_migration": 4802,
+                  "population_index": 130.12020424658914
+                },
+                {
+                  "year": 2015,
+                  "population": 1620261,
+                  "domestic_net_migration": 5949,
+                  "population_index": 131.48950363404413
+                },
+                {
+                  "year": 2016,
+                  "population": 1638293,
+                  "domestic_net_migration": 6700,
+                  "population_index": 132.95285967947697
+                },
+                {
+                  "year": 2017,
+                  "population": 1655624,
+                  "domestic_net_migration": 7804,
+                  "population_index": 134.3593272717239
+                },
+                {
+                  "year": 2018,
+                  "population": 1671024,
+                  "domestic_net_migration": 6896,
+                  "population_index": 135.6090878695315
+                },
+                {
+                  "year": 2019,
+                  "population": 1689725,
+                  "domestic_net_migration": 8144,
+                  "population_index": 137.12673546301195
+                },
+                {
+                  "year": 2020,
+                  "population": 1702678,
+                  "domestic_net_migration": 1950,
+                  "population_index": 138.17791397102502
+                },
+                {
+                  "year": 2021,
+                  "population": 1714741,
+                  "domestic_net_migration": -2461,
+                  "population_index": 139.1568660548791
+                },
+                {
+                  "year": 2022,
+                  "population": 1733033,
+                  "domestic_net_migration": 1074,
+                  "population_index": 140.64132195456065
+                },
+                {
+                  "year": 2023,
+                  "population": 1759537,
+                  "domestic_net_migration": 3591,
+                  "population_index": 142.7922086353588
+                },
+                {
+                  "year": 2024,
+                  "population": 1782300,
+                  "domestic_net_migration": 5636,
+                  "population_index": 144.6395008748324
+                },
+                {
+                  "year": 2025,
+                  "population": 1799629,
+                  "domestic_net_migration": 7194,
+                  "population_index": 146.04580616050822
+                }
+              ]
+            },
+            {
+              "id": "MK18",
+              "title": "Kainuu",
+              "color": "#a85b22",
+              "points": [
+                {
+                  "year": 1990,
+                  "population": 92459,
+                  "domestic_net_migration": -348,
+                  "population_index": 100.0
+                },
+                {
+                  "year": 1991,
+                  "population": 92190,
+                  "domestic_net_migration": -535,
+                  "population_index": 99.70906023210287
+                },
+                {
+                  "year": 1992,
+                  "population": 92010,
+                  "domestic_net_migration": -473,
+                  "population_index": 99.51437934652117
+                },
+                {
+                  "year": 1993,
+                  "population": 91794,
+                  "domestic_net_migration": -482,
+                  "population_index": 99.2807622838231
+                },
+                {
+                  "year": 1994,
+                  "population": 91350,
+                  "domestic_net_migration": -723,
+                  "population_index": 98.80054943272152
+                },
+                {
+                  "year": 1995,
+                  "population": 90781,
+                  "domestic_net_migration": -811,
+                  "population_index": 98.18514152218822
+                },
+                {
+                  "year": 1996,
+                  "population": 90035,
+                  "domestic_net_migration": -911,
+                  "population_index": 97.37829740749955
+                },
+                {
+                  "year": 1997,
+                  "population": 88896,
+                  "domestic_net_migration": -1209,
+                  "population_index": 96.14640002595745
+                },
+                {
+                  "year": 1998,
+                  "population": 87843,
+                  "domestic_net_migration": -1073,
+                  "population_index": 95.00751684530441
+                },
+                {
+                  "year": 1999,
+                  "population": 86943,
+                  "domestic_net_migration": -950,
+                  "population_index": 94.03411241739582
+                },
+                {
+                  "year": 2000,
+                  "population": 85736,
+                  "domestic_net_migration": -1159,
+                  "population_index": 92.72866892352286
+                },
+                {
+                  "year": 2001,
+                  "population": 84497,
+                  "domestic_net_migration": -1187,
+                  "population_index": 91.38861549443537
+                },
+                {
+                  "year": 2002,
+                  "population": 83477,
+                  "domestic_net_migration": -993,
+                  "population_index": 90.2854238094723
+                },
+                {
+                  "year": 2003,
+                  "population": 82744,
+                  "domestic_net_migration": -656,
+                  "population_index": 89.49263998096454
+                },
+                {
+                  "year": 2004,
+                  "population": 82214,
+                  "domestic_net_migration": -641,
+                  "population_index": 88.91941292897393
+                },
+                {
+                  "year": 2005,
+                  "population": 81585,
+                  "domestic_net_migration": -750,
+                  "population_index": 88.23911138991336
+                },
+                {
+                  "year": 2006,
+                  "population": 80738,
+                  "domestic_net_migration": -738,
+                  "population_index": 87.32302966720384
+                },
+                {
+                  "year": 2007,
+                  "population": 80218,
+                  "domestic_net_migration": -644,
+                  "population_index": 86.76061821996777
+                },
+                {
+                  "year": 2008,
+                  "population": 79690,
+                  "domestic_net_migration": -536,
+                  "population_index": 86.18955428892806
+                },
+                {
+                  "year": 2009,
+                  "population": 79234,
+                  "domestic_net_migration": -475,
+                  "population_index": 85.69636271212104
+                },
+                {
+                  "year": 2010,
+                  "population": 78703,
+                  "domestic_net_migration": -601,
+                  "population_index": 85.12205409965499
+                },
+                {
+                  "year": 2011,
+                  "population": 77984,
+                  "domestic_net_migration": -660,
+                  "population_index": 84.34441211780357
+                },
+                {
+                  "year": 2012,
+                  "population": 77435,
+                  "domestic_net_migration": -504,
+                  "population_index": 83.75063541677933
+                },
+                {
+                  "year": 2013,
+                  "population": 76782,
+                  "domestic_net_migration": -688,
+                  "population_index": 83.04437642630788
+                },
+                {
+                  "year": 2014,
+                  "population": 76119,
+                  "domestic_net_migration": -641,
+                  "population_index": 82.32730183108188
+                },
+                {
+                  "year": 2015,
+                  "population": 75324,
+                  "domestic_net_migration": -606,
+                  "population_index": 81.46746125309596
+                },
+                {
+                  "year": 2016,
+                  "population": 74803,
+                  "domestic_net_migration": -463,
+                  "population_index": 80.90396824538445
+                },
+                {
+                  "year": 2017,
+                  "population": 73959,
+                  "domestic_net_migration": -516,
+                  "population_index": 79.99113120410128
+                },
+                {
+                  "year": 2018,
+                  "population": 73061,
+                  "domestic_net_migration": -563,
+                  "population_index": 79.0198898971436
+                },
+                {
+                  "year": 2019,
+                  "population": 72306,
+                  "domestic_net_migration": -462,
+                  "population_index": 78.20331173817584
+                },
+                {
+                  "year": 2020,
+                  "population": 71664,
+                  "domestic_net_migration": -237,
+                  "population_index": 77.50894991293438
+                },
+                {
+                  "year": 2021,
+                  "population": 71255,
+                  "domestic_net_migration": -277,
+                  "population_index": 77.0665916784737
+                },
+                {
+                  "year": 2022,
+                  "population": 70521,
+                  "domestic_net_migration": -550,
+                  "population_index": 76.27272628949048
+                },
+                {
+                  "year": 2023,
+                  "population": 70164,
+                  "domestic_net_migration": -582,
+                  "population_index": 75.88660919975341
+                },
+                {
+                  "year": 2024,
+                  "population": 69639,
+                  "domestic_net_migration": -640,
+                  "population_index": 75.31878995014006
+                },
+                {
+                  "year": 2025,
+                  "population": 69193,
+                  "domestic_net_migration": -450,
+                  "population_index": 74.83641397808759
+                }
+              ]
+            }
+          ]
         }
       ]
     },
