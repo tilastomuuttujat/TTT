@@ -94,3 +94,15 @@ test('famine path preserves population coverage, annual timing and aid evidence 
  assert.ok(a.steps.every(s=>s.evidence_note.includes('alkuperäisten sivukuvien tarkistusta ei uusittu')));
  assert.equal(a.mechanisms.length,2);assert.ok(!a.statistics?.length);
 });
+
+test('settlement path separates formation, buildings, recording dates and household outcomes',()=>{
+ const a=data.anchors.find(a=>a.id==='asuttaminen-ja-jalleenrakennus-1945-1955');assert.ok(a);assert.equal(a.entry_theme_id,2);assert.equal(a.steps.length,6);
+ assert.deepEqual(a.steps[0].years,[1945,1955]);assert.ok(a.steps[0].affected.includes('sotainvalidit'));
+ assert.equal(a.steps[1].event_year,1946);assert.equal(a.steps[2].event_year,1948);assert.ok(a.steps[2].explanation.includes('lisäaluetta tai yhteismetsää'));
+ assert.ok(a.steps[3].explanation.includes('rakennuksista, ei kotitalouksien määrästä'));
+ assert.ok(a.steps[3].explanation.includes('1945–1947'));assert.ok(a.steps[3].evidence_note.includes('Koko jakson vuosihuippua ei nimetä'));
+ assert.equal(a.steps[4].event_year,1952);assert.ok(a.steps[4].explanation.includes('Kirjaamisvuosi ja toiminnan vuosi'));
+ assert.ok(a.steps[5].evidence_note.includes('kotitalousseuranta ovat avoimia'));assert.equal(a.steps[5].related_anchor_id,'maaltamuutto');
+ assert.ok(a.steps.every(s=>s.evidence_note.includes('alkuperäisten sivukuvien tarkistusta ei uusittu')));
+ assert.equal(a.mechanisms.length,2);assert.ok(!a.statistics?.length);
+});
