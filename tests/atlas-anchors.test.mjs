@@ -36,3 +36,15 @@ test('daycare path separates the 1973 law, staged rights and later research scop
 test('EU accession separates EEA, referendum, membership and later euro changeover',()=>{
  const a=data.anchors.find(a=>a.id==='suomen-eu-jasenyys-1995');assert.ok(a);assert.equal(a.entry_theme_id,13);assert.equal(a.steps.length,6);assert.equal(a.steps[0].event_year,1994);assert.ok(a.steps[0].explanation.includes('Euroopan talousalueessa'));assert.ok(a.steps[1].explanation.includes('neuvoa-antava'));assert.equal(a.steps[2].event_year,1995);assert.ok(a.steps[2].explanation.includes('1. tammikuuta 1995'));assert.ok(a.steps[3].source_ids.includes('regions'));assert.equal(a.steps[4].event_year,1999);assert.ok(a.steps[4].explanation.includes('2002'));assert.ok(a.steps[4].source_ids.includes('cash'));assert.equal(a.steps.at(-1).event_year,2025);assert.ok(a.steps.at(-1).evidence_note.includes('ei tuoteta kausaalista'));assert.ok(!a.statistics?.length);
 });
+
+test('immigration path separates population definitions, laws, labour-market evidence and reform goals',()=>{
+ const a=data.anchors.find(a=>a.id==='maahanmuutto-ja-kotoutuminen');assert.ok(a);assert.equal(a.entry_theme_id,1);assert.equal(a.steps.length,6);
+ assert.ok(a.steps[0].explanation.includes('Kansalaisuus, kieli ja syntyperä'));
+ assert.equal(a.steps[1].event_year,1999);assert.equal(a.steps[2].event_year,2011);
+ assert.ok(a.steps[3].evidence_note.includes('ei kaikkien havaintojen vuosi'));
+ assert.equal(a.steps[4].event_year,2024);assert.ok(a.steps[4].explanation.includes('vaikka työllisten määrä kasvoi'));
+ assert.equal(a.steps[5].event_year,2025);assert.ok(a.steps[5].evidence_note.includes('vaikutuksia ei ole osoitettu'));
+ assert.ok(a.steps[5].evidence_note.includes('myöhempiä lakimuutoksia'));
+ assert.ok(a.steps.every(s=>s.evidence_note.includes('eivät tämän tapauksen mittaustuloksia')));
+ assert.equal(a.mechanisms.length,2);assert.ok(!a.statistics?.length);
+});
