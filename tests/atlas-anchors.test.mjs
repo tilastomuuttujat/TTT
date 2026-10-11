@@ -48,3 +48,16 @@ test('energy crisis separates import routes, prices, pre-existing investments an
  assert.ok(a.steps.every(s=>s.evidence_note.includes('eivät tämän tapauksen mittaustuloksia')));
  assert.equal(a.mechanisms.length,2);assert.ok(!a.statistics?.length);
 });
+
+test('coronavirus path separates emergency periods, unequal remote access and evidence limits',()=>{
+ const a=data.anchors.find(a=>a.id==='koronapandemia');assert.ok(a);assert.equal(a.entry_theme_id,7);assert.equal(a.steps.length,6);
+ assert.ok(a.steps[0].explanation.includes('16.3.2020'));assert.ok(a.steps[0].explanation.includes('16.6.2020'));
+ assert.ok(a.steps[1].explanation.includes('Kaikkia töitä ei voinut'));
+ assert.equal(a.steps[2].related_anchor_id,'peruskoulu-uudistus');
+ assert.ok(a.steps[3].source_ids.includes('emergency2021'));assert.ok(a.steps[3].evidence_note.includes('ei nykyisestä rokotusohjeesta'));
+ assert.ok(a.steps[4].evidence_note.includes('ei mitata'));
+ assert.equal(a.steps[5].event_year,2023);assert.ok(a.steps[5].explanation.includes('ei tarkoittanut pandemian tai taudin päättymistä'));
+ assert.ok(a.steps[5].evidence_note.includes('ei osoitettu pandemian päättymisvuosi'));
+ assert.ok(a.steps.every(s=>s.evidence_note.includes('eivät tämän tapauksen mittaustuloksia')));
+ assert.equal(a.mechanisms.length,2);assert.ok(!a.statistics?.length);
+});

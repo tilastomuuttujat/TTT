@@ -4558,6 +4558,336 @@
           "question": "Ketkä pystyvät sopeutumaan ja ketkä tarvitsevat tukea?"
         }
       ]
+    },
+    {
+      "id": "koronapandemia",
+      "entry_theme_id": 7,
+      "short_title": "Koronapandemia",
+      "title": "Koronapandemia – terveyskriisistä työn, koulutuksen ja palvelujen muutokseen",
+      "period": "2020–2025",
+      "question": "Miten terveyskriisi muutti päätöksentekoa, arkea ja yhdenvertaisuuden edellytyksiä Suomessa?",
+      "sources": [
+        {
+          "id": "emergency",
+          "title": "Valtioneuvosto: poikkeusolot ja linjaukset 16.3.2020",
+          "url": "https://valtioneuvosto.fi/-/10616/hallitus-totesi-suomen-olevan-poikkeusoloissa-koronavirustilanteen-vuoksi"
+        },
+        {
+          "id": "end2020",
+          "title": "Valtioneuvosto: poikkeusolot päättyvät 16.6.2020",
+          "url": "https://valtioneuvosto.fi/-/10616/valmiuslain-mukaisten-toimivaltuuksien-kaytosta-luovutaan-poikkeusolot-paattyvat-tiistaina-16-kesakuuta"
+        },
+        {
+          "id": "remote",
+          "title": "Tilastokeskus: Etätyön yleistyminen vuonna 2020",
+          "url": "https://stat.fi/tietotrendit/artikkelit/2021/etatyo-yleistyi-eniten-aloilla-ja-alueilla-joilla-sita-ennen-tehtiin-vahiten"
+        },
+        {
+          "id": "education",
+          "title": "Karvi: Poikkeuksellisten opetusjärjestelyjen vaikutukset, osa III (2021)",
+          "url": "https://www.karvi.fi/fi/julkaisut/poikkeuksellisten-opetusjarjestelyjen-vaikutukset-tasa-arvon-ja-yhdenvertaisuuden-toteutumiseen-eri-koulutusasteilla"
+        },
+        {
+          "id": "vaccination",
+          "title": "THL: Koronarokotusten rekisteritutkimus, tiedote 2021",
+          "url": "https://www.sttinfo.fi/tiedote/69914018/thln-tutkimus-koronarokotus-suojaa-ikaantyneita-ja-riskiryhmiin-kuuluvia-selvasti-paremmin-toisen-rokotuskerran-jalkeen?publisherId=69817778"
+        },
+        {
+          "id": "services",
+          "title": "THL: Palvelujärjestelmän mukautuminen, asiantuntijateksti 2020",
+          "url": "https://blogi.thl.fi/palvelujarjestelman-kriisinsietokyky-ja-mukautumisvalmius-osoittautuivat-koronaepidemian-aikana-hyviksi/"
+        },
+        {
+          "id": "emergency2021",
+          "title": "Valtioneuvosto: poikkeusolot 1.3.2021",
+          "url": "https://valtioneuvosto.fi/-/suomessa-vallitsevat-poikkeusolot-1"
+        },
+        {
+          "id": "who",
+          "title": "WHO: COVID-19-pandemia ja kansainvälisen hätätilan päättyminen 2023",
+          "url": "https://www.who.int/europe/emergencies/situations/covid-19"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Poikkeusolot",
+          "title": "Terveyskriisi muuttaa päätöksentekoa ja arkea",
+          "period": "2020–2020",
+          "years": [
+            2020,
+            2020
+          ],
+          "event_year": 2020,
+          "event_label": "Poikkeusolot todetaan 16.3.2020",
+          "theme_ids": [
+            7,
+            8,
+            19
+          ],
+          "focus": {
+            "theme_id": 8,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "Hallitus totesi 16.3.2020 yhdessä tasavallan presidentin kanssa poikkeusolot. Linjaukset koskivat muun muassa opetusta, kokoontumista ja julkisia tiloja. Päätökset, suositukset ja niiden toimeenpano olivat eri asioita. Ensimmäiset poikkeusolot päättyivät 16.6.2020.",
+          "mechanism": "Epidemiariski → kiireelliset päätökset ja kontaktien vähentäminen → arjen toimintojen muutos.",
+          "benefit": "Tavoitteena oli hidastaa tartuntoja ja suojata riskiryhmiä.",
+          "tradeoff": "Rajoitukset ja sairastumisen pelko voivat heikentää toimeentuloa, yhteyksiä ja palvelujen käyttöä.",
+          "affected": "Koko väestö, erityisesti riskiryhmät ja lähityötä tekevät.",
+          "lag": "Arki muuttui nopeasti; eri seuraukset voivat näkyä myöhemmin.",
+          "evidence_note": "Päätösaikajana on lähteistetty. Se ei mittaa yksittäisen rajoituksen vaikuttavuutta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Vapaaehtoinen varovaisuus ja kansainvälinen tilanne muuttivat käyttäytymistä myös ilman määräyksiä.",
+          "source_ids": [
+            "emergency",
+            "end2020"
+          ],
+          "mechanism_id": "terveys-ja-palvelut"
+        },
+        {
+          "short_title": "Etätyön harppaus",
+          "title": "Työn tekemisen paikka muuttuu epätasaisesti",
+          "period": "2020–2021",
+          "years": [
+            2020,
+            2021
+          ],
+          "event_year": 2020,
+          "event_label": "Etätyö yleistyy vuonna 2020",
+          "theme_ids": [
+            15,
+            26,
+            6
+          ],
+          "focus": {
+            "theme_id": 15,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "Tilastokeskuksen mukaan säännöllisesti kotona työskentely yleistyi vuonna 2020, mutta aloilla ja sektoreilla oli suuria eroja. Kaikkia töitä ei voinut siirtää etätyöksi.",
+          "mechanism": "Digitaaliset välineet ja kontaktien välttäminen → etätyö → työmatkojen ja kodin työnjaon muutos.",
+          "benefit": "Etätyö voi tukea toiminnan jatkuvuutta ja vähentää työmatkoja.",
+          "tradeoff": "Työn ja vapaa-ajan raja voi hämärtyä; lähityöntekijöiden tilanne on erilainen.",
+          "affected": "Etätyötä tekevät, lähityöntekijät, esihenkilöt ja perheet.",
+          "lag": "Siirtymä oli nopea; pysyvien käytäntöjen arviointi tarvitsee seurantaa.",
+          "evidence_note": "Mittari koskee kotona työskentelyä, ei kaikkia etätyön muotoja tai sen tuottavuutta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Ammattirakenne ja aiempi digitalisaatio selittävät osan eroista.",
+          "source_ids": [
+            "remote"
+          ],
+          "mechanism_id": "arki-ja-eriarvoisuus"
+        },
+        {
+          "short_title": "Etäopetus ja tuki",
+          "title": "Oppimisen jatkuvuus ja yhdenvertaisuus joutuvat koetukselle",
+          "period": "2020–2021",
+          "years": [
+            2020,
+            2021
+          ],
+          "event_year": 2021,
+          "event_label": "Karvin arvioinnin yhteenveto julkaistaan",
+          "theme_ids": [
+            4,
+            19,
+            26
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "Karvi arvioi poikkeuksellisten opetusjärjestelyjen vaikutuksia tasa-arvoon ja yhdenvertaisuuteen eri koulutusasteilla. Arviointi käsittelee sekä tunnistettuja käytäntöjä että tuen tarpeita. Koulutuksen järjestäminen etänä ei tarkoita, että oppijoiden olosuhteet olisivat samat.",
+          "mechanism": "Etäopetus → kodin välineiden, ohjauksen ja tuen korostuminen → eriytyvät opiskelun mahdollisuudet.",
+          "benefit": "Etäjärjestelyt voivat ylläpitää opetusta ja kehittää uusia käytäntöjä.",
+          "tradeoff": "Tuen saatavuus, työrauha ja digitaaliset valmiudet voivat vaihdella.",
+          "affected": "Oppijat, huoltajat, opettajat ja opiskeluhuollon toimijat.",
+          "lag": "Arjen vaikeudet näkyvät nopeasti, oppimisen pidemmät vaikutukset myöhemmin.",
+          "evidence_note": "Kansallinen arviointi ei ole kokeellinen arvio kaikkien oppimistulosten muutoksesta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Aiemmat oppimisen erot ja perheiden voimavarat vaikuttavat tulkintaan.",
+          "source_ids": [
+            "education"
+          ],
+          "mechanism_id": "arki-ja-eriarvoisuus",
+          "related_anchor_id": "peruskoulu-uudistus"
+        },
+        {
+          "short_title": "Rokotukset ja tautiaallot",
+          "title": "Uusi suojakeino muuttaa kriisin hallintaa",
+          "period": "2020–2022",
+          "years": [
+            2020,
+            2022
+          ],
+          "event_year": 2021,
+          "event_label": "THL julkaisee rokotusten rekisteritutkimuksen",
+          "theme_ids": [
+            7,
+            8,
+            30
+          ],
+          "focus": {
+            "theme_id": 7,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "THL tutki ikääntyneiden ja riskiryhmiin kuuluvien rokotussuojaa rekisteriaineistolla ajalta 27.12.2020–24.5.2021. Tulokset tukivat suojaa vakavaa tautia vastaan. Rokotukset eivät tarkoittaneet välitöntä kriisin päättymistä: Suomessa todettiin uudet poikkeusolot 1.3.2021.",
+          "mechanism": "Rokotussuoja ja muut torjuntakeinot → muuttuva vakavan taudin riski → muuttuvat palvelu- ja päätöksentekotarpeet.",
+          "benefit": "Vakavan taudin ehkäisy tukee terveyttä ja palvelujen toimintaa.",
+          "tradeoff": "Suoja, altistuminen ja palvelujen kuormitus muuttuvat ajan ja ryhmän mukaan.",
+          "affected": "Ikääntyneet, riskiryhmät, terveydenhuollon henkilöstö ja rokotuspalvelut.",
+          "lag": "Suoja kehittyy rokotusten jälkeen; epidemiatilanne voi muuttua nopeasti.",
+          "evidence_note": "Tiedotteen tulokset olivat alustavia ja vielä vertaisarvioimattomia. Kyse on historiallisen rekisteritutkimuksen ryhmistä ja ajasta, ei nykyisestä rokotusohjeesta tai kaikkien varianttien vaikutusarviosta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Ikä, terveydentila, variantit ja muu käyttäytyminen vaikuttavat havaintoihin.",
+          "source_ids": [
+            "vaccination",
+            "emergency2021"
+          ],
+          "mechanism_id": "terveys-ja-palvelut"
+        },
+        {
+          "short_title": "Palvelujen muutos",
+          "title": "Vähentynyt asiointi ei yksin kerro vähentyneestä tarpeesta",
+          "period": "2020–2022",
+          "years": [
+            2020,
+            2022
+          ],
+          "event_year": 2020,
+          "event_label": "THL tarkastelee palvelutapahtumia ja etäasiointia",
+          "theme_ids": [
+            7,
+            19,
+            26
+          ],
+          "focus": {
+            "theme_id": 7,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "THL:n kesän 2020 asiantuntijateksti kuvasi palvelutapahtumien vähentymistä ja myöhempää palautumista sekä etäasioinnin kasvua. Asioinnin määrä ei yksin osoita hoidon tarvetta, laatua tai myöhemmin syntyvää hoitovelkaa.",
+          "mechanism": "Epidemia, varovaisuus ja palvelujen järjestelyt → muuttunut asiointi → mahdollinen viivästynyt avun saanti.",
+          "benefit": "Etäpalvelut voivat ylläpitää yhteyttä ja helpottaa osaa asioinnista.",
+          "tradeoff": "Kaikki tutkimukset tai asiakkaiden tilanteet eivät sovellu etäpalveluun.",
+          "affected": "Palveluja tarvitsevat, digipalvelujen ulkopuolelle jäävät ja henkilöstö.",
+          "lag": "Asioinnin muutos on välitön; viivästyneen hoidon seuraukset voivat näkyä myöhemmin.",
+          "evidence_note": "Lähde kuvaa alkukesän 2020 tilannetta. Vuosien 2021–2022 valtakunnallista hoitovelkaa ei mitata tällä lähteellä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Palvelurakenteen aiemmat ongelmat ja henkilöstön saatavuus voivat vaikuttaa.",
+          "source_ids": [
+            "services"
+          ],
+          "mechanism_id": "terveys-ja-palvelut"
+        },
+        {
+          "short_title": "Hätätilasta seurantaan",
+          "title": "Hätätilan päättyminen ei poista taudin ja arjen jälkiä",
+          "period": "2023–2025",
+          "years": [
+            2023,
+            2025
+          ],
+          "event_year": 2023,
+          "event_label": "WHO päättää kansainvälisen hätätilan 5.5.2023",
+          "theme_ids": [
+            7,
+            15,
+            4,
+            27
+          ],
+          "focus": {
+            "theme_id": 7,
+            "stage": 4
+          },
+          "map_points": [],
+          "explanation": "WHO totesi 5.5.2023, ettei COVID-19 enää muodostanut kansainvälistä kansanterveydellistä hätätilaa. Tämä ei tarkoittanut pandemian tai taudin päättymistä. Atlaksen tarkastelu jatkuu vuoteen 2025 kysymyksinä palveluista, työn käytännöistä ja koulutuksen tuesta.",
+          "mechanism": "Akuutista kriisistä pidempään seurantaan → tarve erottaa pysyvät käytännöt, palautuminen ja jatkuvat terveysriskit.",
+          "benefit": "Seuranta voi auttaa säilyttämään toimivia käytäntöjä ja tunnistamaan tuen tarpeita.",
+          "tradeoff": "Kaikkia myöhempiä muutoksia ei voida selittää pandemialla.",
+          "affected": "Sairastuneet, läheiset, oppijat, työntekijät ja palvelujen järjestäjät.",
+          "lag": "Seuraukset ja toimintatapojen vakiintuminen voivat ulottua useisiin vuosiin.",
+          "evidence_note": "WHO:n päätös koskee hätätilan luokitusta. Vuosi 2025 on tarkasteluraja, ei osoitettu pandemian päättymisvuosi; tässä ei tuoteta kausaalista jälkiarviota. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Sote-uudistus, taloussuhdanne ja aiempi digitalisaatio vaikuttavat samanaikaisesti.",
+          "source_ids": [
+            "who",
+            "remote",
+            "education"
+          ],
+          "mechanism_id": "arki-ja-eriarvoisuus",
+          "related_anchor_id": "hyvinvointialueuudistus"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "terveys-ja-palvelut",
+          "title": "Terveyskriisistä palvelujen muutokseen",
+          "intro": "Tautiriski, torjuntakeinot ja palvelujen järjestäminen vaikuttavat yhdessä.",
+          "links": [
+            {
+              "title": "Riskin hallinta",
+              "text": "Päätökset, varovaisuus ja rokotussuoja muuttavat altistumista ja vakavan taudin riskiä.",
+              "lag": "Päivistä kuukausiin."
+            },
+            {
+              "title": "Palvelujen jatkuvuus",
+              "text": "Asioinnin muutos ja etäpalvelut voivat muuttaa avun saantia.",
+              "lag": "Välittömästä muutoksesta pidempiin seurauksiin."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Valtioneuvoston päätökset osoittavat poikkeusolojen aikajanan.",
+              "source_ids": [
+                "emergency",
+                "end2020",
+                "emergency2021"
+              ]
+            },
+            {
+              "text": "THL:n rekisteritutkimus käsittelee rokotussuojaa rajatussa ryhmässä; palveluteksti kuvaa kevättä 2020.",
+              "source_ids": [
+                "vaccination",
+                "services"
+              ]
+            }
+          ],
+          "interpretation": "Kokonaisuus kuvaa mahdollisia mekanismeja. Yksittäisen rajoituksen vaikutusta tai valtakunnallista hoitovelkaa ei lasketa.",
+          "alternative": "Myös väestön oma varovaisuus ja aiemmat palveluongelmat vaikuttavat.",
+          "question": "Miten terveydensuojelu ja muiden palvelujen jatkuvuus sovitetaan yhteen?"
+        },
+        {
+          "id": "arki-ja-eriarvoisuus",
+          "title": "Arjen siirtymistä eriytyviin mahdollisuuksiin",
+          "intro": "Sama kriisi kohtaa erilaiset ammatit, kodit ja oppijat eri tavoin.",
+          "links": [
+            {
+              "title": "Etäjärjestelyt",
+              "text": "Työ ja opetus voivat jatkua digitaalisilla välineillä.",
+              "lag": "Nopea siirtymä."
+            },
+            {
+              "title": "Voimavarat ja tuki",
+              "text": "Työtehtävät, välineet, ohjaus ja työrauha vaikuttavat mahdollisuuksiin.",
+              "lag": "Erot voivat kertyä pidemmällä aikavälillä."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Tilastokeskus kuvaa etätyön kasvua ja sektorieroja vuonna 2020.",
+              "source_ids": [
+                "remote"
+              ]
+            },
+            {
+              "text": "Karvi arvioi poikkeuksellisten opetusjärjestelyjen yhdenvertaisuutta.",
+              "source_ids": [
+                "education"
+              ]
+            }
+          ],
+          "interpretation": "Etäjärjestelyjen mahdolliset hyödyt ja haitat jakautuvat eri tavoin; kaikkia myöhempiä eroja ei voida lukea pandemian seurauksiksi.",
+          "alternative": "Aiempi eriarvoisuus, ammattirakenne ja digitalisaatio vaikuttavat.",
+          "question": "Kenelle muuttuneet käytännöt avaavat mahdollisuuksia ja kenelle tarvitaan muuta tukea?"
+        }
+      ]
     }
   ]
 }
