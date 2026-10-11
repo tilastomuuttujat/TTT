@@ -81,3 +81,16 @@ test('Nokia path separates growth, platform decision, sale and later worker outc
 test('extended compulsory education separates 2021 rollout, TUVA and later evidence',()=>{
  const a=data.anchors.find(a=>a.id==='oppivelvollisuuden-laajentaminen-2021');assert.ok(a);assert.equal(a.entry_theme_id,4);assert.equal(a.steps.length,6);assert.equal(a.steps[0].event_year,2020);assert.ok(a.steps[1].event_label.includes('1.1.2021'));assert.ok(a.steps[2].event_label.includes('1.8.2021'));assert.ok(a.steps[1].explanation.includes('vuonna 2005'));assert.ok(a.steps[2].evidence_note.includes('eri asioita'));assert.equal(a.steps[3].event_year,2022);assert.ok(a.steps[3].source_ids.includes('tuva'));assert.equal(a.steps[4].event_year,2024);assert.equal(a.steps[5].event_year,2025);assert.ok(a.steps[5].source_ids.includes('effects2025'));assert.ok(a.steps[5].evidence_note.includes('kuvailevasta'));assert.equal(a.steps[0].related_anchor_id,'peruskoulu-uudistus');assert.ok(!a.statistics?.length);
 });
+
+test('famine path preserves population coverage, annual timing and aid evidence limits',()=>{
+ const a=data.anchors.find(a=>a.id==='nalkavuodet-1866-1868');assert.ok(a);assert.equal(a.entry_theme_id,10);assert.equal(a.steps.length,6);
+ assert.deepEqual(a.steps[0].years,[1866,1866]);assert.ok(a.steps[0].explanation.includes('ei ole varmennettu normaaliksi'));
+ assert.equal(a.steps[1].event_year,1867);assert.ok(a.steps[1].explanation.includes('Viljalajit pidetään erillään'));
+ assert.ok(a.steps[2].evidence_note.includes('ei todettu'));
+ assert.equal(a.steps[3].event_year,1868);assert.ok(a.steps[3].explanation.includes('luterilaista seurakuntaväestöä'));assert.ok(a.steps[3].explanation.includes('ei ole nälkään kuolleiden osuus'));
+ assert.ok(a.steps[3].evidence_note.includes('oikaistua lukua'));
+ assert.ok(a.steps[4].explanation.includes('kauran alkuperää'));assert.ok(a.steps[4].evidence_note.includes('Paikallista vastaanottoa'));
+ assert.ok(a.steps[5].explanation.includes('eikä siemenavun osoitetuksi vaikutukseksi'));
+ assert.ok(a.steps.every(s=>s.evidence_note.includes('alkuperäisten sivukuvien tarkistusta ei uusittu')));
+ assert.equal(a.mechanisms.length,2);assert.ok(!a.statistics?.length);
+});

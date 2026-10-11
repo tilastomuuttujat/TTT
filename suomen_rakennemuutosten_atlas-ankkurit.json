@@ -5947,6 +5947,287 @@
           "question": "Erottele ohjauksen toteutuminen, koulutuksen laatu, valmistuminen ja myöhempi sijoittuminen. Tarkista eri ryhmien tulokset."
         }
       ]
+    },
+    {
+      "id": "nalkavuodet-1866-1868",
+      "entry_theme_id": 10,
+      "short_title": "Nälkävuodet 1866–1868",
+      "title": "Nälkävuodet 1866–1868 – sadosta selviytymiseen ja avun ajoitukseen",
+      "period": "1866–1868",
+      "question": "Miten tuotannon häiriö välittyi selviytymiseen ja mitä siemenavun toteutuksesta voidaan osoittaa?",
+      "sources": [
+        {
+          "id": "economic1875",
+          "title": "SVT II:2 (1875): Katsaus Suomen taloudelliseen tilaan 1866–1870, s. 42 ja 50–51",
+          "url": "https://urn.fi/URN:NBN:fi-fe2023013116606"
+        },
+        {
+          "id": "population1871",
+          "title": "SVT VI:2 (1871): Syntyneet, vihityt ja kuolleet 1865–1868, s. 2, 31 ja 34",
+          "url": "https://urn.fi/URN:NBN:fi-fe2023013112316"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Vertailuvuosi 1866",
+          "title": "Tuotannon lähtökohta ei ole sama kuin turvattu toimeentulo",
+          "period": "1866–1866",
+          "years": [
+            1866,
+            1866
+          ],
+          "event_year": 1866,
+          "event_label": "Edeltävän vuoden satohavainnot",
+          "theme_ids": [
+            10,
+            15,
+            5
+          ],
+          "focus": {
+            "theme_id": 10,
+            "stage": 1
+          },
+          "map_points": [],
+          "explanation": "Käsikirjoituksen H1867-01-tutkimus käyttää vuotta 1866 sadon ja kuolleisuuden vertailuvuotena. Vuotta ei ole varmennettu normaaliksi tai kriisittömäksi. Satomäärä ei yksin osoita kotitalouden käytettävissä olevaa ravintoa.",
+          "mechanism": "Tuotanto → varastot, omistus ja hankkimismahdollisuudet → kotitalouden käyttöön päätyvä vilja.",
+          "benefit": "Edeltävä havainto mahdollistaa vuosien muutosten kuvaamisen.",
+          "tradeoff": "Kolme vuotta eivät määritä pitkän aikavälin normaalitasoa.",
+          "affected": "Maataloudesta riippuvat kotitaloudet ja viljaa hankkiva väestö.",
+          "lag": "Korjattu sato käytetään eri aikaan kuin se tuotetaan.",
+          "evidence_note": "Kuvaileva kehys perustuu käyttäjän käsikirjoituksen tutkimusversioon 1.0. Satolähde sisältää likimääräisiä arvioita tynnyreinä. Lähdetulkinta pohjautuu käyttäjän toimittamaan H1867-01-tutkimusversioon; alkuperäisten sivukuvien tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Varastot, tuonti ja ostovoima voivat muuttaa toimeentuloa samallakin tuotannolla.",
+          "source_ids": [
+            "economic1875"
+          ],
+          "mechanism_id": "tuotannosta-selviytymiseen"
+        },
+        {
+          "short_title": "Satopudotus 1867",
+          "title": "Kolmen viljalajin ilmoitetut sadot supistuvat",
+          "period": "1867–1867",
+          "years": [
+            1867,
+            1867
+          ],
+          "event_year": 1867,
+          "event_label": "Rukiin, ohran ja kauran ilmoitetut sadot pienenevät",
+          "theme_ids": [
+            10,
+            15,
+            5
+          ],
+          "focus": {
+            "theme_id": 10,
+            "stage": 1
+          },
+          "map_points": [],
+          "explanation": "Käsikirjoituksen lähdepoiminnassa rukiin, ohran ja kauran ilmoitetut sadot olivat vuonna 1867 edellisvuotta pienempiä. Viljalajit pidetään erillään eikä tynnyreitä muuteta tässä ravintoenergiaksi.",
+          "mechanism": "Sadon menetys → pienemmät tuotannon mahdollisuudet → mahdollinen paine toimeentuloon.",
+          "benefit": "Havainnot auttavat paikantamaan tuotannon häiriön.",
+          "tradeoff": "Valtakunnallinen summa peittää alueiden ja kotitalouksien erot.",
+          "affected": "Viljelijät, palkkatyöläiset ja viljaa ostavat kotitaloudet.",
+          "lag": "Sadon niukkuuden seuraukset voivat ulottua seuraavaan vuoteen.",
+          "evidence_note": "Kyse on ilmoitetuista sadon arvioista, ei suoraan mitatusta ravinnonsaannista. Lähdetulkinta pohjautuu käyttäjän toimittamaan H1867-01-tutkimusversioon; alkuperäisten sivukuvien tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Viljan käyttökelpoisuus, jakautuminen ja hankintakanavat vaikuttavat.",
+          "source_ids": [
+            "economic1875"
+          ],
+          "mechanism_id": "tuotannosta-selviytymiseen"
+        },
+        {
+          "short_title": "Odotus seuraavaan satoon",
+          "title": "Toimeentulon välivaiheet jäävät tutkittaviksi",
+          "period": "1867–1868",
+          "years": [
+            1867,
+            1868
+          ],
+          "event_year": 1868,
+          "event_label": "Kriisin yli ulottuva selviytymisen kysymys",
+          "theme_ids": [
+            5,
+            7,
+            18
+          ],
+          "focus": {
+            "theme_id": 5,
+            "stage": 1
+          },
+          "map_points": [],
+          "explanation": "Sadon ja kuolleisuuden vuosihavaintojen väliin jää kysymys siitä, miten ihmiset tulivat toimeen ennen seuraavaa satoa. Käsikirjoitus ei osoita kotitalouskohtaisia hankintamahdollisuuksia eikä avun saapumisaikoja.",
+          "mechanism": "Niukkuus ja hankkimisen esteet → mahdollinen ravinnon ja terveyden heikkeneminen → selviytymisen riski.",
+          "benefit": "Välivaiheiden tutkiminen voi täsmentää, millaista tukea tarvittiin ja milloin.",
+          "tradeoff": "Vuosiluvut eivät yksilöi menetyksiin johtanutta reittiä.",
+          "affected": "Niukkuutta kokeneet kotitaloudet; ryhmäkohtaisia vaikutuksia ei ole tässä eroteltu.",
+          "lag": "Odotusaikaa ei voida mitata kuukausina näillä vuosihavainnoilla.",
+          "evidence_note": "Tämä on tutkittava mekanismikysymys, ei todettu kotitalouksien tapahtumaketju. Lähdetulkinta pohjautuu käyttäjän toimittamaan H1867-01-tutkimusversioon; alkuperäisten sivukuvien tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Epidemiat, terveydentila, liikkuminen ja ostovoima voivat täydentää tuotannon selitystä.",
+          "source_ids": [
+            "economic1875",
+            "population1871"
+          ],
+          "mechanism_id": "tuotannosta-selviytymiseen"
+        },
+        {
+          "short_title": "Kuolleisuus 1868",
+          "title": "Kuolleisuuden huippu ajoittuu satopudotusta seuraavaan vuoteen",
+          "period": "1868–1868",
+          "years": [
+            1868,
+            1868
+          ],
+          "event_year": 1868,
+          "event_label": "Julkaistu vuotuinen kuolleisuus on tarkastelun korkein",
+          "theme_ids": [
+            7,
+            5,
+            30
+          ],
+          "focus": {
+            "theme_id": 7,
+            "stage": 1
+          },
+          "map_points": [],
+          "explanation": "Käsikirjoituksen poiminnassa vuoden 1868 julkaistu kuolleisuus on vuosien 1866–1868 korkein. Luku koskee luterilaista seurakuntaväestöä. Mittari ei ole nälkään kuolleiden osuus eikä ylimääräisen kuolleisuuden arvio.",
+          "mechanism": "Eri vuosille sijoittuvat tuotanto- ja väestöhavainnot → tarve tutkia ajoitusta ja välivaiheita.",
+          "benefit": "Erilliset mittarit estävät samaistamasta tuotannon elpymistä ihmisten selviytymiseen.",
+          "tradeoff": "Vuositason yhteys ei tunnista syytä tai tarkkaa viivettä.",
+          "affected": "Lähteen luterilainen seurakuntaväestö; ikäryhmien vaikutuksia ei eritellä.",
+          "lag": "Vuotuinen kuolleisuus kokoaa vuoden eri vaiheiden kuolemat.",
+          "evidence_note": "Tutkimus käyttää lähteen oikaistua lukua. Tässä ei päätellä kuolleisuuden jatkuneen sadonkorjuun jälkeen. Lähdetulkinta pohjautuu käyttäjän toimittamaan H1867-01-tutkimusversioon; alkuperäisten sivukuvien tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Sairaudet, aiempi terveydentila ja liikkuvuus voivat vaikuttaa kuolleisuuteen.",
+          "source_ids": [
+            "population1871"
+          ],
+          "mechanism_id": "tuotannosta-selviytymiseen"
+        },
+        {
+          "short_title": "Kevään siemenapu",
+          "title": "Julkinen vaste tähtää tulevan tuotannon edellytyksiin",
+          "period": "1868–1868",
+          "years": [
+            1868,
+            1868
+          ],
+          "event_year": 1868,
+          "event_label": "Siemenviljan hankinta ja läänijako",
+          "theme_ids": [
+            8,
+            10,
+            13
+          ],
+          "focus": {
+            "theme_id": 8,
+            "stage": 1
+          },
+          "map_points": [],
+          "explanation": "Vuonna 1875 julkaistu virallinen selostus kuvaa kevään 1868 siemenviljan hankintaa ja jakoa kahdeksalle läänille. Ohran hankinta-alueiksi mainitaan Hollanti, Tanska ja Etelä-Ruotsi. Sama kohta ei yksilöi kauran alkuperää.",
+          "mechanism": "Siemenkelpoisen viljan hankinta → mahdollisuus kylvöön → tulevan tuotannon edellytykset.",
+          "benefit": "Siemenapu voi tukea tuotannon jatkamista.",
+          "tradeoff": "Kylvöapu ei yksin turvaa ravintoa ennen uutta satoa.",
+          "affected": "Läänit ja mahdolliset vastaanottavat viljelijät; paikallisia saajia ei ole varmennettu.",
+          "lag": "Kevät 1868 ajoittuu selostuksen asiayhteydestä; taulukolla ei ole omaa päiväystä.",
+          "evidence_note": "Jälkikäteinen selostus dokumentoi hankintaa ja läänijakoa. Paikallista vastaanottoa, käyttöä tai vaikutusta ei ole osoitettu. Lähdetulkinta pohjautuu käyttäjän toimittamaan H1867-01-tutkimusversioon; alkuperäisten sivukuvien tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Muu siemen, sää ja viljelyolosuhteet voivat vaikuttaa seuraavaan satoon.",
+          "source_ids": [
+            "economic1875"
+          ],
+          "mechanism_id": "avun-ajoitus-ja-toteutus"
+        },
+        {
+          "short_title": "Sato kasvaa, tulkinta rajataan",
+          "title": "Tuotannon muutos ei vielä osoita avun vaikuttavuutta",
+          "period": "1868–1868",
+          "years": [
+            1868,
+            1868
+          ],
+          "event_year": 1868,
+          "event_label": "Ilmoitetut sadot kasvavat vuodesta 1867",
+          "theme_ids": [
+            15,
+            5,
+            8
+          ],
+          "focus": {
+            "theme_id": 15,
+            "stage": 1
+          },
+          "map_points": [],
+          "explanation": "Kolmen viljalajin ilmoitetut sadot kasvoivat vuonna 1868 vuodesta 1867. Tätä ei tulkita koko tuotannon täydelliseksi palautumiseksi eikä siemenavun osoitetuksi vaikutukseksi. Vuosisato ja vuotuinen kuolleisuus eivät kuvaa yhtä hetkeä.",
+          "mechanism": "Tuotannon ja avun havainnot → paikallisen käytön ja ajoituksen lisänäyttö → mahdollisuus arvioida vaikutuksia.",
+          "benefit": "Rajattu tulkinta antaa jatkotutkimukselle täsmällisen kysymyksen.",
+          "tradeoff": "Hankinta tai läänijako ei yksin todista kylvöön ehtimistä tai pelastettuja ihmishenkiä.",
+          "affected": "Kotitaloudet, viljelijät ja apua järjestäneet toimijat.",
+          "lag": "Sadonkorjuu, avun vastaanotto ja selviytyminen tarvitsevat erillisen aikajanan.",
+          "evidence_note": "Kuvaileva tutkimusversio on rajatusti valmis; mekanismien ja avun vaikutusten tutkimus jää avoimeksi. Lähdetulkinta pohjautuu käyttäjän toimittamaan H1867-01-tutkimusversioon; alkuperäisten sivukuvien tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Sään muutos ja muut tuotannon edellytykset voivat selittää sadon kasvua.",
+          "source_ids": [
+            "economic1875",
+            "population1871"
+          ],
+          "mechanism_id": "avun-ajoitus-ja-toteutus"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "tuotannosta-selviytymiseen",
+          "title": "Tuotannosta selviytymiseen",
+          "intro": "Sato, kotitalouden käytettävissä olevat voimavarat ja kuolleisuus ovat eri havaintoja.",
+          "links": [
+            {
+              "title": "Tuotannon häiriö",
+              "text": "Ilmoitettu sato supistuu, mutta sen kotitalouskohtainen välittyminen tarvitsee lisänäyttöä.",
+              "lag": "Sadosta käyttöön: tarkka viive avoin."
+            },
+            {
+              "title": "Selviytyminen",
+              "text": "Ravinnon hankinta ja terveys voivat muodostaa täydentäviä vaikutuskanavia.",
+              "lag": "Vuosihavainnot eivät mittaa kuukausittaista viivettä."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Käsikirjoituksen lähdepoiminta paikantaa pienimmät sadot ja suurimman vuotuisen kuolleisuuden eri vuosille.",
+              "source_ids": [
+                "economic1875",
+                "population1871"
+              ]
+            }
+          ],
+          "interpretation": "Ajallinen rinnastus ohjaa tutkimusta mutta ei tunnista sadon, epidemioiden tai avun erillistä vaikutusta.",
+          "alternative": "Varastot, ostovoima, sairaudet ja liikkuvuus voivat vaikuttaa.",
+          "question": "Mitä voimavaroja ihmisillä oli käytössään ennen seuraavaa satoa?"
+        },
+        {
+          "id": "avun-ajoitus-ja-toteutus",
+          "title": "Avun ajoitus ja toteutus",
+          "intro": "Tulevan tuotannon tuki ja välitön selviytyminen tarvitsevat eri tarkastelut.",
+          "links": [
+            {
+              "title": "Hankinta ja läänijako",
+              "text": "Virallinen selostus dokumentoi siemenviljan hankintaa ja jaon määrät.",
+              "lag": "Kevään ajoitus perustuu asiayhteyteen."
+            },
+            {
+              "title": "Paikallinen käyttö",
+              "text": "Vastaanottajien, saapumisajan ja kylvön yhteys jää avoimeksi.",
+              "lag": "Toimituksen ja käyttöön ehtimisen väliä ei ole varmennettu."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "SVT II:2:n sivun 42 selostus on käsikirjoituksen avustusketjun lähde.",
+              "source_ids": [
+                "economic1875"
+              ]
+            }
+          ],
+          "interpretation": "Dokumentoitu jako ei yksin osoita kotitalouksien käyttöä, sadon kasvun syytä tai kuolleisuuden vähenemistä.",
+          "alternative": "Apua saatettiin kohdentaa vaikeimpiin oloihin; avun ja menetysten samanaikaisuus ei osoita avun haittaa.",
+          "question": "Milloin apu tuli käytettäväksi ja miten odotusajan toimeentulo järjestyi?"
+        }
+      ]
     }
   ]
 }
