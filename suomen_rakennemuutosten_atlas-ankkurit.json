@@ -4238,6 +4238,658 @@
       ]
     },
     {
+      "id": "energiakriisi-ja-venaja-riippuvuuden-purkaminen",
+      "entry_theme_id": 9,
+      "short_title": "Energiakriisi ja Venäjä-riippuvuuden purkaminen",
+      "title": "Energiakriisi ja Venäjä-riippuvuuden purkaminen – hinnoista huoltovarmuuteen",
+      "period": "2021–2025",
+      "question": "Miten Suomi muutti energian hankintaa ja millaisia riippuvuuksia jäi jäljelle?",
+      "sources": [
+        {
+          "id": "dependence",
+          "title": "Tilastokeskus: Venäjältä tuodun energian osuus vuosina 2021–2023 (ennakkotiedot, 2024)",
+          "url": "https://stat.fi/fi/julkaisu/clvozxw1vc3yi08vz6wagvlc3"
+        },
+        {
+          "id": "electricity",
+          "title": "Fingrid: Sähkökauppa Venäjältä keskeytyy 14.5.2022",
+          "url": "https://www.fingrid.fi/ajankohtaista/tiedotteet/2022/sahkokauppa-venajalta-keskeytyy---ei-uhkaa-sahkon-riittavyydesta-suomessa/"
+        },
+        {
+          "id": "gas",
+          "title": "Gasgrid: Kaasutoimitukset Imatran syöttöpisteen kautta keskeytyivät 21.5.2022",
+          "url": "https://gasgrid.fi/tiedotteet/kaasutoimitukset-imatran-syottopisteen-kautta-ovat-keskeytyneet/"
+        },
+        {
+          "id": "prices",
+          "title": "Tilastokeskus: Energian tuonnin arvo kasvoi 86 % vuonna 2022",
+          "url": "https://stat.fi/fi/julkaisu/cl8mvhqdc0rkf0dutmrjru95y"
+        },
+        {
+          "id": "saving",
+          "title": "Motiva: Astetta alemmas -kampanjan loppuraportti (2023)",
+          "url": "https://www.motiva.fi/tietopankki/astetta-alemmas-energiansaastokampanjan-loppuraportti/"
+        },
+        {
+          "id": "lng",
+          "title": "Gasgrid: Inkoon terminaalin käyttöönotto (2023)",
+          "url": "https://gasgrid.fi/en/bulletins/lng-terminal-vessel-in-inkoo-ensures-finlands-security-of-supply-the-project-was-implemented-in-record-time/"
+        },
+        {
+          "id": "ol3",
+          "title": "TVO: Olkiluoto 3:n säännöllinen sähköntuotanto alkaa 16.4.2023",
+          "url": "https://www.tvo.fi/ajankohtaista/tiedotteetporssitiedotteet/2023/olkiluoto3eprnsaannollinensahkontuotantoonalkanut.html"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Riippuvuuden lähtötilanne",
+          "title": "Energiariippuvuus koostuu eri tuotteista",
+          "period": "2021–2021",
+          "years": [
+            2021,
+            2021
+          ],
+          "event_year": 2021,
+          "event_label": "Vertailuvuosi ennen vuoden 2022 murrosta",
+          "theme_ids": [
+            9,
+            13,
+            12
+          ],
+          "focus": {
+            "theme_id": 9,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "Tilastokeskuksen vuoden 2024 katsauksessa Venäjältä tuodun energian osuus kokonaiskulutuksesta oli 34 % vuonna 2021. Mittari kuvaa energiaa, ei tuonnin euroarvoa. Sähkö, polttoaineet ja ydinpolttoaine muodostavat erilaisia riippuvuuksia.",
+          "mechanism": "Tuonnin keskittyminen → altistuminen toimittajan ja toimitusreittien häiriöille.",
+          "benefit": "Kauppa voi tarjota energiaa ja täydentää kotimaista tuotantoa.",
+          "tradeoff": "Keskittynyt hankinta voi vaikeuttaa nopeaa korvaamista.",
+          "affected": "Energiaa käyttävät yritykset, kotitaloudet ja energiantuottajat.",
+          "lag": "Riippuvuudet muodostuvat vuosien investoinneista ja sopimuksista.",
+          "evidence_note": "Luku on vuoden 2024 katsauksen historiallinen laskelma; eri energialähteiden käsittelyyn sisältyy oletuksia. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Kokonaiskulutus ja muiden energialähteiden käyttö vaikuttavat osuuteen.",
+          "source_ids": [
+            "dependence"
+          ],
+          "mechanism_id": "hankinta-ja-huoltovarmuus"
+        },
+        {
+          "short_title": "Tuonnin katkokset",
+          "title": "Sähkön ja putkikaasun suorat toimitukset katkeavat",
+          "period": "2022–2022",
+          "years": [
+            2022,
+            2022
+          ],
+          "event_year": 2022,
+          "event_label": "Sähkö 14.5. ja Imatran putkikaasu 21.5.2022",
+          "theme_ids": [
+            9,
+            13,
+            16
+          ],
+          "focus": {
+            "theme_id": 9,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "Fingrid ilmoitti sähkökaupan keskeytymisestä Venäjältä 14.5.2022. Gasgridin mukaan kaasutoimitukset Imatran kautta keskeytyivät 21.5.2022, ja kaasua tuotiin Balticconnectorin kautta. Nämä katkokset eivät tarkoita kaiken venäläisperäisen energian tuonnin loppumista.",
+          "mechanism": "Toimituskatkos → vaihtoehtoiset reitit ja tuotanto → järjestelmän sopeutuminen.",
+          "benefit": "Vaihtoehtojen käyttö voi turvata toimitusten jatkuvuutta.",
+          "tradeoff": "Korvaavan energian hinta, saatavuus ja reittien kapasiteetti voivat rajoittaa sopeutumista.",
+          "affected": "Kaasua käyttävä teollisuus, sähkömarkkinat ja verkko-operaattorit.",
+          "lag": "Toimitussuunnan muutos voi olla nopea; uudet investoinnit vievät pidempään.",
+          "evidence_note": "Operaattorien tiedotteet osoittavat tapahtumat ja silloisen tilannearvion, eivät kaikkien energialähteiden riippumattomuutta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Muut tuontiyhteydet, kulutuksen muutos ja kotimainen tuotanto vaikuttavat.",
+          "source_ids": [
+            "electricity",
+            "gas"
+          ],
+          "mechanism_id": "hankinta-ja-huoltovarmuus"
+        },
+        {
+          "short_title": "Hintakriisi ja säästö",
+          "title": "Saatavuus ja kohtuuhintaisuus ovat eri kysymyksiä",
+          "period": "2022–2023",
+          "years": [
+            2022,
+            2023
+          ],
+          "event_year": 2022,
+          "event_label": "Astetta alemmas -kampanja lämmityskaudelle 2022–2023",
+          "theme_ids": [
+            9,
+            18,
+            26,
+            17
+          ],
+          "focus": {
+            "theme_id": 9,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "Energian tuonnin euroarvo nousi vuonna 2022. Tilastokeskuksen mukaan esimerkiksi sähkön tuontimäärä laski samalla kun sen arvo nousi. Motivan Astetta alemmas -kampanja kannusti säästöön lämmityskaudella 2022–2023.",
+          "mechanism": "Hintapaine ja epävarmuus → kulutuksen vähentäminen ja ajoittaminen → muuttuvat kustannukset ja kuormitus.",
+          "benefit": "Säästö voi pienentää laskuja ja helpottaa järjestelmän kuormitusta.",
+          "tradeoff": "Säästömahdollisuudet riippuvat asumisesta, sopimuksista ja voimavaroista; välttämättömän kulutuksen vähentäminen voi kuormittaa.",
+          "affected": "Kotitaloudet, taloyhtiöt ja energiaintensiiviset yritykset.",
+          "lag": "Sopimusten uusiminen ja laskutus voivat viivästyttää hintojen välittymistä.",
+          "evidence_note": "Tuonnin arvo ei mittaa yksittäisen kotitalouden laskua. Kampanjaraportti ei yksin osoita kampanjan kausaalista säästövaikutusta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Sää, eurooppalaiset markkinat ja aiempi kulutus vaikuttavat.",
+          "source_ids": [
+            "prices",
+            "saving"
+          ],
+          "mechanism_id": "hinnat-ja-sopeutuminen"
+        },
+        {
+          "short_title": "Uudet kaasun reitit",
+          "title": "LNG-terminaali hajauttaa hankintamahdollisuuksia",
+          "period": "2023–2023",
+          "years": [
+            2023,
+            2023
+          ],
+          "event_year": 2023,
+          "event_label": "Inkoon terminaalin kaupallinen käyttö 16.1.2023",
+          "theme_ids": [
+            9,
+            16,
+            13
+          ],
+          "focus": {
+            "theme_id": 9,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "Gasgridin mukaan Inkoon kelluvan LNG-terminaalin kaupallinen käyttö alkoi 16.1.2023. Terminaali toi uuden väylän kaasun hankintaan. Uusi reitti ei yksin määritä jokaisen toimituksen alkuperää eikä poista kansainvälistä markkinariippuvuutta.",
+          "mechanism": "Uusi tuontireitti → useampia hankintamahdollisuuksia → parempi mahdollisuus korvata toimituskatkoksia.",
+          "benefit": "Hankinnan joustavuus voi vahvistaa huoltovarmuutta.",
+          "tradeoff": "LNG on fossiilista energiaa; terminaali, kuljetukset ja hankinta tuovat kustannuksia ja uusia riskejä.",
+          "affected": "Kaasua käyttävät yritykset, markkinaosapuolet ja siirtoverkon toimijat.",
+          "lag": "Terminaalihanke toteutetaan kuukausissa; sopimukset ja käyttötavat muuttuvat eri tahtiin.",
+          "evidence_note": "Käyttöönotto on operaattorin dokumentoima. Operaattorin huoltovarmuusarvio ei ole riippumaton vaikutustutkimus. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Kysynnän väheneminen ja muut reitit voivat myös vähentää haavoittuvuutta.",
+          "source_ids": [
+            "lng"
+          ],
+          "mechanism_id": "hankinta-ja-huoltovarmuus"
+        },
+        {
+          "short_title": "Kotimainen sähköntuotanto",
+          "title": "Olkiluoto 3 valmistuu osana pidempää muutosta",
+          "period": "2023–2023",
+          "years": [
+            2023,
+            2023
+          ],
+          "event_year": 2023,
+          "event_label": "Säännöllinen sähköntuotanto alkaa 16.4.2023",
+          "theme_ids": [
+            9,
+            16,
+            15
+          ],
+          "focus": {
+            "theme_id": 9,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "TVO:n mukaan Olkiluoto 3:n säännöllinen sähköntuotanto alkoi 16.4.2023. Hanke oli käynnissä jo kauan ennen energiakriisiä. Sen valmistumista ei siksi kuvata vuoden 2022 kriisin käynnistämäksi investoinniksi.",
+          "mechanism": "Uusi tuotantokapasiteetti → muuttuva sähkön hankintarakenne → mahdollisuus vähentää nettotuontia.",
+          "benefit": "Kotimainen tuotanto voi vahvistaa sähköjärjestelmän toimituskykyä.",
+          "tradeoff": "Huollot, käyttökatkot, polttoaine ja verkkoyhteydet on huomioitava; vuositason tuotanto ei takaa halpaa sähköä joka tunti.",
+          "affected": "Sähkön käyttäjät, tuottajat ja kantaverkko.",
+          "lag": "Suurten tuotantohankkeiden valmistelu kestää vuosia.",
+          "evidence_note": "Lähde osoittaa tuotannon aloituksen. Tässä ei arvioida laitoksen erillistä hintavaikutusta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Tuulivoima, sää, kulutus ja rajasiirrot vaikuttavat samanaikaisesti.",
+          "source_ids": [
+            "ol3"
+          ],
+          "mechanism_id": "hankinta-ja-huoltovarmuus"
+        },
+        {
+          "short_title": "Purkautumisen rajat",
+          "title": "Riippuvuus vähenee, mutta ei yhdellä mittarilla katoa",
+          "period": "2024–2025",
+          "years": [
+            2024,
+            2025
+          ],
+          "event_year": 2024,
+          "event_label": "Tilastokeskus julkaisee vuoden 2023 ennakkotiedot",
+          "theme_ids": [
+            9,
+            13,
+            12,
+            18
+          ],
+          "focus": {
+            "theme_id": 9,
+            "stage": 4
+          },
+          "map_points": [],
+          "explanation": "Vuoden 2024 katsauksen ennakkotiedoissa Venäjältä tuodun energian osuus oli 7 % kokonaiskulutuksesta vuonna 2023. Venäläisperäistä LNG:tä ja ydinpolttoainetta käytettiin edelleen. Sähkön omavaraisuus, energian alkuperä, hintariski ja ilmastovaikutukset on erotettava.",
+          "mechanism": "Hankinnan hajautus ja tuotannon muutos → vähenevä toimittajariski, mutta jatkuvat markkina- ja infrastruktuuririskit.",
+          "benefit": "Useiden riskien seuranta auttaa arvioimaan toimitusvarmuutta.",
+          "tradeoff": "Yksi pienentynyt osuus voi peittää jäljelle jääviä riippuvuuksia tai uusia riskejä.",
+          "affected": "Päättäjät, energiayhtiöt, yritykset ja kotitaloudet.",
+          "lag": "Rakenteellinen muutos ja sopimusten uudistaminen jatkuvat akuutin kriisin jälkeen.",
+          "evidence_note": "Havainnot koskevat vuotta 2023, eivät vuoden 2025 tuontitilannetta. Vuosi 2025 on tarkasteluraja; täydellistä irtautumista ei väitetä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Kulutuksen muutokset, muut investoinnit ja kansainväliset hinnat vaikuttavat tuloksiin.",
+          "source_ids": [
+            "dependence"
+          ],
+          "mechanism_id": "hinnat-ja-sopeutuminen",
+          "related_anchor_id": "suomen-eu-jasenyys-1995"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "hankinta-ja-huoltovarmuus",
+          "title": "Hankinnasta huoltovarmuuteen",
+          "intro": "Toimittajat, reitit ja kotimainen tuotanto muodostavat erilaisia riippuvuuksia.",
+          "links": [
+            {
+              "title": "Vaihtoehtoiset toimitukset",
+              "text": "Rajayhteydet ja LNG-terminaali mahdollistavat korvaavia toimituksia.",
+              "lag": "Päivistä kuukausiin."
+            },
+            {
+              "title": "Tuotannon rakenne",
+              "text": "Pitkän aikavälin investoinnit voivat muuttaa sähköntuotantoa.",
+              "lag": "Vuosista vuosikymmeniin."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Operaattorit dokumentoivat toukokuun 2022 katkokset ja Inkoon käyttöönoton.",
+              "source_ids": [
+                "electricity",
+                "gas",
+                "lng"
+              ]
+            },
+            {
+              "text": "TVO dokumentoi Olkiluoto 3:n säännöllisen tuotannon aloituksen.",
+              "source_ids": [
+                "ol3"
+              ]
+            }
+          ],
+          "interpretation": "Mahdolliset mekanismit eivät osoita täydellistä riippumattomuutta. Reitti ja energian alkuperä ovat eri asioita.",
+          "alternative": "Kulutuksen supistuminen ja muut tuotantohankkeet voivat vaikuttaa.",
+          "question": "Mitä tapahtuu, jos yksi toimittaja, reitti tai tuotantolaitos jää pois?"
+        },
+        {
+          "id": "hinnat-ja-sopeutuminen",
+          "title": "Hintapaineesta eriytyvään sopeutumiseen",
+          "intro": "Energian saatavuus ei yksin takaa kohtuuhintaista käyttöä.",
+          "links": [
+            {
+              "title": "Hintojen välittyminen",
+              "text": "Markkinahinnat, sopimukset ja kulutus vaikuttavat laskuihin.",
+              "lag": "Välittömästä muutoksesta sopimuskauden loppuun."
+            },
+            {
+              "title": "Säästömahdollisuudet",
+              "text": "Asuminen ja voimavarat vaikuttavat mahdollisuuteen säästää ja investoida.",
+              "lag": "Arjen muutoksista pidempiin remontteihin."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Tuontitilastossa määrä ja euroarvo voivat muuttua eri suuntiin.",
+              "source_ids": [
+                "prices"
+              ]
+            },
+            {
+              "text": "Motiva dokumentoi lämmityskauden 2022–2023 säästökampanjan.",
+              "source_ids": [
+                "saving"
+              ]
+            }
+          ],
+          "interpretation": "Polku kuvaa mahdollisia kustannus- ja sopeutumiskanavia, ei yksittäisen kotitalouden laskua tai kampanjan kausaalista tehoa.",
+          "alternative": "Sää, suhdanne ja sopimusrakenne vaikuttavat.",
+          "question": "Ketkä pystyvät sopeutumaan ja ketkä tarvitsevat tukea?"
+        }
+      ]
+    },
+    {
+      "id": "koronapandemia",
+      "entry_theme_id": 7,
+      "short_title": "Koronapandemia",
+      "title": "Koronapandemia – terveyskriisistä työn, koulutuksen ja palvelujen muutokseen",
+      "period": "2020–2025",
+      "question": "Miten terveyskriisi muutti päätöksentekoa, arkea ja yhdenvertaisuuden edellytyksiä Suomessa?",
+      "sources": [
+        {
+          "id": "emergency",
+          "title": "Valtioneuvosto: poikkeusolot ja linjaukset 16.3.2020",
+          "url": "https://valtioneuvosto.fi/-/10616/hallitus-totesi-suomen-olevan-poikkeusoloissa-koronavirustilanteen-vuoksi"
+        },
+        {
+          "id": "end2020",
+          "title": "Valtioneuvosto: poikkeusolot päättyvät 16.6.2020",
+          "url": "https://valtioneuvosto.fi/-/10616/valmiuslain-mukaisten-toimivaltuuksien-kaytosta-luovutaan-poikkeusolot-paattyvat-tiistaina-16-kesakuuta"
+        },
+        {
+          "id": "remote",
+          "title": "Tilastokeskus: Etätyön yleistyminen vuonna 2020",
+          "url": "https://stat.fi/tietotrendit/artikkelit/2021/etatyo-yleistyi-eniten-aloilla-ja-alueilla-joilla-sita-ennen-tehtiin-vahiten"
+        },
+        {
+          "id": "education",
+          "title": "Karvi: Poikkeuksellisten opetusjärjestelyjen vaikutukset, osa III (2021)",
+          "url": "https://www.karvi.fi/fi/julkaisut/poikkeuksellisten-opetusjarjestelyjen-vaikutukset-tasa-arvon-ja-yhdenvertaisuuden-toteutumiseen-eri-koulutusasteilla"
+        },
+        {
+          "id": "vaccination",
+          "title": "THL: Koronarokotusten rekisteritutkimus, tiedote 2021",
+          "url": "https://www.sttinfo.fi/tiedote/69914018/thln-tutkimus-koronarokotus-suojaa-ikaantyneita-ja-riskiryhmiin-kuuluvia-selvasti-paremmin-toisen-rokotuskerran-jalkeen?publisherId=69817778"
+        },
+        {
+          "id": "services",
+          "title": "THL: Palvelujärjestelmän mukautuminen, asiantuntijateksti 2020",
+          "url": "https://blogi.thl.fi/palvelujarjestelman-kriisinsietokyky-ja-mukautumisvalmius-osoittautuivat-koronaepidemian-aikana-hyviksi/"
+        },
+        {
+          "id": "emergency2021",
+          "title": "Valtioneuvosto: poikkeusolot 1.3.2021",
+          "url": "https://valtioneuvosto.fi/-/suomessa-vallitsevat-poikkeusolot-1"
+        },
+        {
+          "id": "who",
+          "title": "WHO: COVID-19-pandemia ja kansainvälisen hätätilan päättyminen 2023",
+          "url": "https://www.who.int/europe/emergencies/situations/covid-19"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Poikkeusolot",
+          "title": "Terveyskriisi muuttaa päätöksentekoa ja arkea",
+          "period": "2020–2020",
+          "years": [
+            2020,
+            2020
+          ],
+          "event_year": 2020,
+          "event_label": "Poikkeusolot todetaan 16.3.2020",
+          "theme_ids": [
+            7,
+            8,
+            19
+          ],
+          "focus": {
+            "theme_id": 8,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "Hallitus totesi 16.3.2020 yhdessä tasavallan presidentin kanssa poikkeusolot. Linjaukset koskivat muun muassa opetusta, kokoontumista ja julkisia tiloja. Päätökset, suositukset ja niiden toimeenpano olivat eri asioita. Ensimmäiset poikkeusolot päättyivät 16.6.2020.",
+          "mechanism": "Epidemiariski → kiireelliset päätökset ja kontaktien vähentäminen → arjen toimintojen muutos.",
+          "benefit": "Tavoitteena oli hidastaa tartuntoja ja suojata riskiryhmiä.",
+          "tradeoff": "Rajoitukset ja sairastumisen pelko voivat heikentää toimeentuloa, yhteyksiä ja palvelujen käyttöä.",
+          "affected": "Koko väestö, erityisesti riskiryhmät ja lähityötä tekevät.",
+          "lag": "Arki muuttui nopeasti; eri seuraukset voivat näkyä myöhemmin.",
+          "evidence_note": "Päätösaikajana on lähteistetty. Se ei mittaa yksittäisen rajoituksen vaikuttavuutta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Vapaaehtoinen varovaisuus ja kansainvälinen tilanne muuttivat käyttäytymistä myös ilman määräyksiä.",
+          "source_ids": [
+            "emergency",
+            "end2020"
+          ],
+          "mechanism_id": "terveys-ja-palvelut"
+        },
+        {
+          "short_title": "Etätyön harppaus",
+          "title": "Työn tekemisen paikka muuttuu epätasaisesti",
+          "period": "2020–2021",
+          "years": [
+            2020,
+            2021
+          ],
+          "event_year": 2020,
+          "event_label": "Etätyö yleistyy vuonna 2020",
+          "theme_ids": [
+            15,
+            26,
+            6
+          ],
+          "focus": {
+            "theme_id": 15,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "Tilastokeskuksen mukaan säännöllisesti kotona työskentely yleistyi vuonna 2020, mutta aloilla ja sektoreilla oli suuria eroja. Kaikkia töitä ei voinut siirtää etätyöksi.",
+          "mechanism": "Digitaaliset välineet ja kontaktien välttäminen → etätyö → työmatkojen ja kodin työnjaon muutos.",
+          "benefit": "Etätyö voi tukea toiminnan jatkuvuutta ja vähentää työmatkoja.",
+          "tradeoff": "Työn ja vapaa-ajan raja voi hämärtyä; lähityöntekijöiden tilanne on erilainen.",
+          "affected": "Etätyötä tekevät, lähityöntekijät, esihenkilöt ja perheet.",
+          "lag": "Siirtymä oli nopea; pysyvien käytäntöjen arviointi tarvitsee seurantaa.",
+          "evidence_note": "Mittari koskee kotona työskentelyä, ei kaikkia etätyön muotoja tai sen tuottavuutta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Ammattirakenne ja aiempi digitalisaatio selittävät osan eroista.",
+          "source_ids": [
+            "remote"
+          ],
+          "mechanism_id": "arki-ja-eriarvoisuus"
+        },
+        {
+          "short_title": "Etäopetus ja tuki",
+          "title": "Oppimisen jatkuvuus ja yhdenvertaisuus joutuvat koetukselle",
+          "period": "2020–2021",
+          "years": [
+            2020,
+            2021
+          ],
+          "event_year": 2021,
+          "event_label": "Karvin arvioinnin yhteenveto julkaistaan",
+          "theme_ids": [
+            4,
+            19,
+            26
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "Karvi arvioi poikkeuksellisten opetusjärjestelyjen vaikutuksia tasa-arvoon ja yhdenvertaisuuteen eri koulutusasteilla. Arviointi käsittelee sekä tunnistettuja käytäntöjä että tuen tarpeita. Koulutuksen järjestäminen etänä ei tarkoita, että oppijoiden olosuhteet olisivat samat.",
+          "mechanism": "Etäopetus → kodin välineiden, ohjauksen ja tuen korostuminen → eriytyvät opiskelun mahdollisuudet.",
+          "benefit": "Etäjärjestelyt voivat ylläpitää opetusta ja kehittää uusia käytäntöjä.",
+          "tradeoff": "Tuen saatavuus, työrauha ja digitaaliset valmiudet voivat vaihdella.",
+          "affected": "Oppijat, huoltajat, opettajat ja opiskeluhuollon toimijat.",
+          "lag": "Arjen vaikeudet näkyvät nopeasti, oppimisen pidemmät vaikutukset myöhemmin.",
+          "evidence_note": "Kansallinen arviointi ei ole kokeellinen arvio kaikkien oppimistulosten muutoksesta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Aiemmat oppimisen erot ja perheiden voimavarat vaikuttavat tulkintaan.",
+          "source_ids": [
+            "education"
+          ],
+          "mechanism_id": "arki-ja-eriarvoisuus",
+          "related_anchor_id": "peruskoulu-uudistus"
+        },
+        {
+          "short_title": "Rokotukset ja tautiaallot",
+          "title": "Uusi suojakeino muuttaa kriisin hallintaa",
+          "period": "2020–2022",
+          "years": [
+            2020,
+            2022
+          ],
+          "event_year": 2021,
+          "event_label": "THL julkaisee rokotusten rekisteritutkimuksen",
+          "theme_ids": [
+            7,
+            8,
+            30
+          ],
+          "focus": {
+            "theme_id": 7,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "THL tutki ikääntyneiden ja riskiryhmiin kuuluvien rokotussuojaa rekisteriaineistolla ajalta 27.12.2020–24.5.2021. Tulokset tukivat suojaa vakavaa tautia vastaan. Rokotukset eivät tarkoittaneet välitöntä kriisin päättymistä: Suomessa todettiin uudet poikkeusolot 1.3.2021.",
+          "mechanism": "Rokotussuoja ja muut torjuntakeinot → muuttuva vakavan taudin riski → muuttuvat palvelu- ja päätöksentekotarpeet.",
+          "benefit": "Vakavan taudin ehkäisy tukee terveyttä ja palvelujen toimintaa.",
+          "tradeoff": "Suoja, altistuminen ja palvelujen kuormitus muuttuvat ajan ja ryhmän mukaan.",
+          "affected": "Ikääntyneet, riskiryhmät, terveydenhuollon henkilöstö ja rokotuspalvelut.",
+          "lag": "Suoja kehittyy rokotusten jälkeen; epidemiatilanne voi muuttua nopeasti.",
+          "evidence_note": "Tiedotteen tulokset olivat alustavia ja vielä vertaisarvioimattomia. Kyse on historiallisen rekisteritutkimuksen ryhmistä ja ajasta, ei nykyisestä rokotusohjeesta tai kaikkien varianttien vaikutusarviosta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Ikä, terveydentila, variantit ja muu käyttäytyminen vaikuttavat havaintoihin.",
+          "source_ids": [
+            "vaccination",
+            "emergency2021"
+          ],
+          "mechanism_id": "terveys-ja-palvelut"
+        },
+        {
+          "short_title": "Palvelujen muutos",
+          "title": "Vähentynyt asiointi ei yksin kerro vähentyneestä tarpeesta",
+          "period": "2020–2022",
+          "years": [
+            2020,
+            2022
+          ],
+          "event_year": 2020,
+          "event_label": "THL tarkastelee palvelutapahtumia ja etäasiointia",
+          "theme_ids": [
+            7,
+            19,
+            26
+          ],
+          "focus": {
+            "theme_id": 7,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "THL:n kesän 2020 asiantuntijateksti kuvasi palvelutapahtumien vähentymistä ja myöhempää palautumista sekä etäasioinnin kasvua. Asioinnin määrä ei yksin osoita hoidon tarvetta, laatua tai myöhemmin syntyvää hoitovelkaa.",
+          "mechanism": "Epidemia, varovaisuus ja palvelujen järjestelyt → muuttunut asiointi → mahdollinen viivästynyt avun saanti.",
+          "benefit": "Etäpalvelut voivat ylläpitää yhteyttä ja helpottaa osaa asioinnista.",
+          "tradeoff": "Kaikki tutkimukset tai asiakkaiden tilanteet eivät sovellu etäpalveluun.",
+          "affected": "Palveluja tarvitsevat, digipalvelujen ulkopuolelle jäävät ja henkilöstö.",
+          "lag": "Asioinnin muutos on välitön; viivästyneen hoidon seuraukset voivat näkyä myöhemmin.",
+          "evidence_note": "Lähde kuvaa alkukesän 2020 tilannetta. Vuosien 2021–2022 valtakunnallista hoitovelkaa ei mitata tällä lähteellä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Palvelurakenteen aiemmat ongelmat ja henkilöstön saatavuus voivat vaikuttaa.",
+          "source_ids": [
+            "services"
+          ],
+          "mechanism_id": "terveys-ja-palvelut"
+        },
+        {
+          "short_title": "Hätätilasta seurantaan",
+          "title": "Hätätilan päättyminen ei poista taudin ja arjen jälkiä",
+          "period": "2023–2025",
+          "years": [
+            2023,
+            2025
+          ],
+          "event_year": 2023,
+          "event_label": "WHO päättää kansainvälisen hätätilan 5.5.2023",
+          "theme_ids": [
+            7,
+            15,
+            4,
+            27
+          ],
+          "focus": {
+            "theme_id": 7,
+            "stage": 4
+          },
+          "map_points": [],
+          "explanation": "WHO totesi 5.5.2023, ettei COVID-19 enää muodostanut kansainvälistä kansanterveydellistä hätätilaa. Tämä ei tarkoittanut pandemian tai taudin päättymistä. Atlaksen tarkastelu jatkuu vuoteen 2025 kysymyksinä palveluista, työn käytännöistä ja koulutuksen tuesta.",
+          "mechanism": "Akuutista kriisistä pidempään seurantaan → tarve erottaa pysyvät käytännöt, palautuminen ja jatkuvat terveysriskit.",
+          "benefit": "Seuranta voi auttaa säilyttämään toimivia käytäntöjä ja tunnistamaan tuen tarpeita.",
+          "tradeoff": "Kaikkia myöhempiä muutoksia ei voida selittää pandemialla.",
+          "affected": "Sairastuneet, läheiset, oppijat, työntekijät ja palvelujen järjestäjät.",
+          "lag": "Seuraukset ja toimintatapojen vakiintuminen voivat ulottua useisiin vuosiin.",
+          "evidence_note": "WHO:n päätös koskee hätätilan luokitusta. Vuosi 2025 on tarkasteluraja, ei osoitettu pandemian päättymisvuosi; tässä ei tuoteta kausaalista jälkiarviota. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Sote-uudistus, taloussuhdanne ja aiempi digitalisaatio vaikuttavat samanaikaisesti.",
+          "source_ids": [
+            "who",
+            "remote",
+            "education"
+          ],
+          "mechanism_id": "arki-ja-eriarvoisuus",
+          "related_anchor_id": "hyvinvointialueuudistus"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "terveys-ja-palvelut",
+          "title": "Terveyskriisistä palvelujen muutokseen",
+          "intro": "Tautiriski, torjuntakeinot ja palvelujen järjestäminen vaikuttavat yhdessä.",
+          "links": [
+            {
+              "title": "Riskin hallinta",
+              "text": "Päätökset, varovaisuus ja rokotussuoja muuttavat altistumista ja vakavan taudin riskiä.",
+              "lag": "Päivistä kuukausiin."
+            },
+            {
+              "title": "Palvelujen jatkuvuus",
+              "text": "Asioinnin muutos ja etäpalvelut voivat muuttaa avun saantia.",
+              "lag": "Välittömästä muutoksesta pidempiin seurauksiin."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Valtioneuvoston päätökset osoittavat poikkeusolojen aikajanan.",
+              "source_ids": [
+                "emergency",
+                "end2020",
+                "emergency2021"
+              ]
+            },
+            {
+              "text": "THL:n rekisteritutkimus käsittelee rokotussuojaa rajatussa ryhmässä; palveluteksti kuvaa kevättä 2020.",
+              "source_ids": [
+                "vaccination",
+                "services"
+              ]
+            }
+          ],
+          "interpretation": "Kokonaisuus kuvaa mahdollisia mekanismeja. Yksittäisen rajoituksen vaikutusta tai valtakunnallista hoitovelkaa ei lasketa.",
+          "alternative": "Myös väestön oma varovaisuus ja aiemmat palveluongelmat vaikuttavat.",
+          "question": "Miten terveydensuojelu ja muiden palvelujen jatkuvuus sovitetaan yhteen?"
+        },
+        {
+          "id": "arki-ja-eriarvoisuus",
+          "title": "Arjen siirtymistä eriytyviin mahdollisuuksiin",
+          "intro": "Sama kriisi kohtaa erilaiset ammatit, kodit ja oppijat eri tavoin.",
+          "links": [
+            {
+              "title": "Etäjärjestelyt",
+              "text": "Työ ja opetus voivat jatkua digitaalisilla välineillä.",
+              "lag": "Nopea siirtymä."
+            },
+            {
+              "title": "Voimavarat ja tuki",
+              "text": "Työtehtävät, välineet, ohjaus ja työrauha vaikuttavat mahdollisuuksiin.",
+              "lag": "Erot voivat kertyä pidemmällä aikavälillä."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Tilastokeskus kuvaa etätyön kasvua ja sektorieroja vuonna 2020.",
+              "source_ids": [
+                "remote"
+              ]
+            },
+            {
+              "text": "Karvi arvioi poikkeuksellisten opetusjärjestelyjen yhdenvertaisuutta.",
+              "source_ids": [
+                "education"
+              ]
+            }
+          ],
+          "interpretation": "Etäjärjestelyjen mahdolliset hyödyt ja haitat jakautuvat eri tavoin; kaikkia myöhempiä eroja ei voida lukea pandemian seurauksiksi.",
+          "alternative": "Aiempi eriarvoisuus, ammattirakenne ja digitalisaatio vaikuttavat.",
+          "question": "Kenelle muuttuneet käytännöt avaavat mahdollisuuksia ja kenelle tarvitaan muuta tukea?"
+        }
+      ]
+    },
+    {
       "id": "maahanmuutto-ja-kotoutuminen",
       "entry_theme_id": 1,
       "short_title": "Maahanmuutto ja kotoutuminen",

@@ -37,6 +37,31 @@ test('EU accession separates EEA, referendum, membership and later euro changeov
  const a=data.anchors.find(a=>a.id==='suomen-eu-jasenyys-1995');assert.ok(a);assert.equal(a.entry_theme_id,13);assert.equal(a.steps.length,6);assert.equal(a.steps[0].event_year,1994);assert.ok(a.steps[0].explanation.includes('Euroopan talousalueessa'));assert.ok(a.steps[1].explanation.includes('neuvoa-antava'));assert.equal(a.steps[2].event_year,1995);assert.ok(a.steps[2].explanation.includes('1. tammikuuta 1995'));assert.ok(a.steps[3].source_ids.includes('regions'));assert.equal(a.steps[4].event_year,1999);assert.ok(a.steps[4].explanation.includes('2002'));assert.ok(a.steps[4].source_ids.includes('cash'));assert.equal(a.steps.at(-1).event_year,2025);assert.ok(a.steps.at(-1).evidence_note.includes('ei tuoteta kausaalista'));assert.ok(!a.statistics?.length);
 });
 
+test('energy crisis separates import routes, prices, pre-existing investments and remaining dependence',()=>{
+ const a=data.anchors.find(a=>a.id==='energiakriisi-ja-venaja-riippuvuuden-purkaminen');assert.ok(a);assert.equal(a.entry_theme_id,9);assert.equal(a.steps.length,6);
+ assert.ok(a.steps[0].explanation.includes('ei tuonnin euroarvoa'));
+ assert.ok(a.steps[1].explanation.includes('14.5.2022'));assert.ok(a.steps[1].explanation.includes('21.5.2022'));
+ assert.ok(a.steps[2].evidence_note.includes('ei mittaa yksittäisen kotitalouden laskua'));
+ assert.ok(a.steps[3].explanation.includes('16.1.2023'));assert.ok(a.steps[3].explanation.includes('ei yksin määritä'));
+ assert.ok(a.steps[4].explanation.includes('16.4.2023'));assert.ok(a.steps[4].explanation.includes('kauan ennen'));
+ assert.ok(a.steps[5].explanation.includes('LNG:tä ja ydinpolttoainetta'));assert.ok(a.steps[5].evidence_note.includes('eivät vuoden 2025'));
+ assert.ok(a.steps.every(s=>s.evidence_note.includes('eivät tämän tapauksen mittaustuloksia')));
+ assert.equal(a.mechanisms.length,2);assert.ok(!a.statistics?.length);
+});
+
+test('coronavirus path separates emergency periods, unequal remote access and evidence limits',()=>{
+ const a=data.anchors.find(a=>a.id==='koronapandemia');assert.ok(a);assert.equal(a.entry_theme_id,7);assert.equal(a.steps.length,6);
+ assert.ok(a.steps[0].explanation.includes('16.3.2020'));assert.ok(a.steps[0].explanation.includes('16.6.2020'));
+ assert.ok(a.steps[1].explanation.includes('Kaikkia töitä ei voinut'));
+ assert.equal(a.steps[2].related_anchor_id,'peruskoulu-uudistus');
+ assert.ok(a.steps[3].source_ids.includes('emergency2021'));assert.ok(a.steps[3].evidence_note.includes('ei nykyisestä rokotusohjeesta'));
+ assert.ok(a.steps[4].evidence_note.includes('ei mitata'));
+ assert.equal(a.steps[5].event_year,2023);assert.ok(a.steps[5].explanation.includes('ei tarkoittanut pandemian tai taudin päättymistä'));
+ assert.ok(a.steps[5].evidence_note.includes('ei osoitettu pandemian päättymisvuosi'));
+ assert.ok(a.steps.every(s=>s.evidence_note.includes('eivät tämän tapauksen mittaustuloksia')));
+ assert.equal(a.mechanisms.length,2);assert.ok(!a.statistics?.length);
+});
+
 test('immigration path separates population definitions, laws, labour-market evidence and reform goals',()=>{
  const a=data.anchors.find(a=>a.id==='maahanmuutto-ja-kotoutuminen');assert.ok(a);assert.equal(a.entry_theme_id,1);assert.equal(a.steps.length,6);
  assert.ok(a.steps[0].explanation.includes('Kansalaisuus, kieli ja syntyperä'));
