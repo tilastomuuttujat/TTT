@@ -6516,6 +6516,305 @@
           "question": "Millaiseksi toimeentulo muodostui ja mikä auttoi käyttämään rakennettua perustaa?"
         }
       ]
+    },
+    {
+      "id": "ruotsiin-muutto-ja-perheiden-arki",
+      "entry_theme_id": 1,
+      "short_title": "Ruotsiin muutto ja perheiden arki",
+      "title": "Ruotsiin muutto ja perheiden arki – työ, koti, kieli ja lastenhoito",
+      "period": "1969–1991",
+      "question": "Mitä työmahdollisuuden ympärille tarvittiin, jotta koko perheen arki saattoi toimia?",
+      "sources": [
+        {
+          "id": "memoir",
+          "title": "Inkeri Lamér: Kotona Ruotsissa (2020), Meeri ja Kari Aro, s. 112–113; haastattelu 2016",
+          "url": "https://siirtolaisuusinstituutti.fi/wp-content/uploads/2020/02/si-j-32.pdf"
+        },
+        {
+          "id": "olofstrom",
+          "title": "Maunsbach & Mårtensson: Samhällsplanering – 6 fallstudier (1978), s. 53",
+          "url": "https://gupea.ub.gu.se/server/api/core/bitstreams/6bddbf56-3fee-45a7-98ef-da0d741027d8/content"
+        },
+        {
+          "id": "proposal",
+          "title": "Ruotsin hallituksen esitys 1975/76:118 (18.3.1976), s. 105–106",
+          "url": "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/proposition/om-hemspraksndervisning-for-invnndrarbarn_fz03118/html/"
+        },
+        {
+          "id": "return",
+          "title": "Lauri Vuorenkoski: Childhood between two countries (2000), s. 37–40 ja 61–64",
+          "url": "https://oulurepo.oulu.fi/bitstream/handle/10024/37048/isbn951-42-5601-8.pdf?isAllowed=y&sequence=1"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Työn ja verkostojen luo",
+          "title": "Vuoden 1969 muutto käynnistää useita arjen järjestelyjä",
+          "period": "1969–1969",
+          "years": [
+            1969,
+            1969
+          ],
+          "event_year": 1969,
+          "event_label": "Meeri Aro muuttaa Ruotsiin",
+          "theme_ids": [
+            1,
+            15,
+            6
+          ],
+          "focus": {
+            "theme_id": 1,
+            "stage": 3
+          },
+          "map_points": [],
+          "explanation": "Käsikirjoituksen käyttämässä muistelussa Meeri Aro muutti Ruotsiin vuonna 1969 kumppaninsa kanssa. Trollhättanissa kumppanilla oli sukulaisia ja työtä Saabilla. Meeri työskenteli aluksi perheessä ja asui sen luona.",
+          "mechanism": "Työ ja läheisten verkostot → muuttomahdollisuus → uuden arjen rakentaminen.",
+          "benefit": "Työ ja verkostot voivat avata toimeentulon mahdollisuuden.",
+          "tradeoff": "Yhden perheenjäsenen työpaikka ei ratkaise kaikkien asumista tai omaa työtä.",
+          "affected": "Muuttava pari ja vastaanottavat verkostot.",
+          "lag": "Työn, majoituksen ja yhteisen kodin järjestyminen voi tapahtua eri tahtiin.",
+          "evidence_note": "Kyse on vuonna 2016 kerätystä ja 2020 julkaistusta muistelusta, ei kaikkien muuttajien seurannasta. Lähdetulkinta pohjautuu käyttäjän toimittamaan kertomusluonnokseen 0.2; alkuperäislähteiden tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Perhesuhteet ja aiempi työ voivat vaikuttaa muuttoon työn tarjonnan rinnalla.",
+          "source_ids": [
+            "memoir"
+          ],
+          "mechanism_id": "tyopaikasta-arjen-paikaksi",
+          "related_anchor_id": "maaltamuutto"
+        },
+        {
+          "short_title": "Työpaikasta kotiin",
+          "title": "Työnantajan asunto on yksi vaihe perheen asumisessa",
+          "period": "1969–1974",
+          "years": [
+            1969,
+            1974
+          ],
+          "event_year": 1969,
+          "event_label": "Yhteisen kodin järjestämisen alkuvaihe",
+          "theme_ids": [
+            3,
+            6,
+            15
+          ],
+          "focus": {
+            "theme_id": 3,
+            "stage": 3
+          },
+          "map_points": [],
+          "explanation": "Muistelun mukaan yhteinen pieni asunto järjestyi myöhemmin Saabin kautta. Perheen kasvaessa tarvittiin suurempi koti, joka ei enää tullut työnantajan kautta. Vuosi 1969 paikantaa muuton; asuntojen vaihtojen tarkkoja vuosia ei ole varmennettu.",
+          "mechanism": "Työnantajan asumisjärjestely → yhteinen koti → muuttuvat tilan ja arjen tarpeet.",
+          "benefit": "Asunnon järjestyminen voi helpottaa asettumista.",
+          "tradeoff": "Alkuperäinen asunto ei välttämättä vastaa kasvavan perheen tarpeita.",
+          "affected": "Muuttoperhe ja asuntoja järjestävät toimijat.",
+          "lag": "Asumisen tarve muuttuu perhetilanteen mukana.",
+          "evidence_note": "Muisto kertoo tämän perheen järjestelyistä, ei Saabin kaikkien asuntojen saatavuudesta tai kuntien tarjonnasta. Lähdetulkinta pohjautuu käyttäjän toimittamaan kertomusluonnokseen 0.2; alkuperäislähteiden tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Asuntomarkkinat ja perheen tulot voivat vaikuttaa asumisratkaisuun.",
+          "source_ids": [
+            "memoir"
+          ],
+          "mechanism_id": "tyopaikasta-arjen-paikaksi"
+        },
+        {
+          "short_title": "Kieli julkisena kysymyksenä",
+          "title": "Olofströmin vaatimus on erillinen vertailutapaus",
+          "period": "1972–1973",
+          "years": [
+            1972,
+            1973
+          ],
+          "event_year": 1972,
+          "event_label": "Suomalaisen yhdistyksen kirje 15.11.1972",
+          "theme_ids": [
+            4,
+            19,
+            8
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 2
+          },
+          "map_points": [],
+          "explanation": "Vuoden 1978 raportin mukaan Olofströmin suomalainen yhdistys vaati suomenkielistä esiopetusta marraskuussa 1972. Raportti kertoo vaatimuksen hylkäämisestä ja asian viemisestä seuraavana helmikuuna Socialdepartementetille. Olofström on eri kunta kuin Aron perheen asuinpaikat.",
+          "mechanism": "Perheiden kielitarve → järjestön vaatimus → julkisen päätöksenteon kysymys.",
+          "benefit": "Yhteinen vaatimus voi tuoda tarpeen päätöksentekoon.",
+          "tradeoff": "Vaatimus ei yksin osoita palvelun toteutumista.",
+          "affected": "Yhdistys, paikalliset perheet ja viranomaiset.",
+          "lag": "Käsittely ja mahdollinen palvelun järjestäminen ovat eri vaiheita.",
+          "evidence_note": "Alkuperäisiä kirjeitä ja hylkäävää päätöstä ei käsikirjoituksen tarkistuksessa luettu. Raportista ei johdeta Trollhättanin tai Göteborgin ratkaisuja. Lähdetulkinta pohjautuu käyttäjän toimittamaan kertomusluonnokseen 0.2; alkuperäislähteiden tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Paikallinen henkilöstö, voimavarat ja hallinto voivat vaikuttaa.",
+          "source_ids": [
+            "olofstrom"
+          ],
+          "mechanism_id": "kielesta-osallistumiseen"
+        },
+        {
+          "short_title": "Hoiva muuttaa paikan",
+          "title": "Vuoden 1974 muutossa lastenhoito on keskeinen perustelu",
+          "period": "1974–1974",
+          "years": [
+            1974,
+            1974
+          ],
+          "event_year": 1974,
+          "event_label": "Meeri Aro muuttaa Göteborgiin",
+          "theme_ids": [
+            1,
+            6,
+            15,
+            3
+          ],
+          "focus": {
+            "theme_id": 1,
+            "stage": 3
+          },
+          "map_points": [],
+          "explanation": "Aron muistelussa vuoden 1974 muuton Göteborgiin tärkein syy oli suomenkielisen hoitajan löytyminen. Göteborgissa järjestyivät työ SKF:llä ja vuokra-asunto Bergsjöstä. Kertomus yhdistää työn, asumisen ja lastenhoidon.",
+          "mechanism": "Hoivan ja kielen tarpeet → uuden paikan etsiminen → työn ja perheen järjestelyjen yhteensovittaminen.",
+          "benefit": "Toimiva hoitojärjestely voi avata aikuiselle työssäkäynnin mahdollisuuden.",
+          "tradeoff": "Uusi muutto voi katkaista tuttuja yhteyksiä ja vaatia uusia järjestelyjä.",
+          "affected": "Perheen aikuiset ja lapset.",
+          "lag": "Työmahdollisuuden ja sopivan hoidon välisen viiveen tarkka kesto jää avoimeksi.",
+          "evidence_note": "Kokemus ei osoita kunnan kaikkien palvelujen puutetta. Hoidon järjestäjä ja silloinen kuntatarjonta ovat selvittämättä. Lähdetulkinta pohjautuu käyttäjän toimittamaan kertomusluonnokseen 0.2; alkuperäislähteiden tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Myös asunto, työ ja läheisten verkostot voivat vaikuttaa paikan valintaan.",
+          "source_ids": [
+            "memoir"
+          ],
+          "mechanism_id": "tyopaikasta-arjen-paikaksi",
+          "related_anchor_id": "paivahoito-ja-naisten-palkkatyo"
+        },
+        {
+          "short_title": "Henkilöstön ja palvelun viive",
+          "title": "Vuoden 1976 esitys tunnistaa kaksikielisen henkilöstön tarpeen",
+          "period": "1976–1977",
+          "years": [
+            1976,
+            1977
+          ],
+          "event_year": 1976,
+          "event_label": "Hallituksen esitys 18.3.1976",
+          "theme_ids": [
+            4,
+            8,
+            15
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 2
+          },
+          "map_points": [],
+          "explanation": "Ruotsin hallituksen vuoden 1976 esitys kuvasi kaksikielisen esikouluhenkilöstön puutetta ja ehdotti koulutusta keväästä 1977. Esitys tunnisti, että koulutuksen vaikutusten syntyminen veisi aikaa.",
+          "mechanism": "Tunnistettu henkilöstötarve → koulutusehdotus → mahdollinen myöhempi palvelukapasiteetti.",
+          "benefit": "Koulutus voi vahvistaa kielitarpeisiin vastaamista.",
+          "tradeoff": "Ehdotus ei vielä merkitse valmistunutta henkilöstöä tai perheen saamaa hoitopaikkaa.",
+          "affected": "Koulutettavat, palvelujen järjestäjät ja lapsiperheet.",
+          "lag": "Koulutuksen ja käytettävissä olevan palvelun väli vaatii seurantaa.",
+          "evidence_note": "Esitys on ongelmakuva ja ehdotettu vastaus, ei toteutuneen paikallisen palvelun näyttö. Lähdetulkinta pohjautuu käyttäjän toimittamaan kertomusluonnokseen 0.2; alkuperäislähteiden tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Paikallinen rekrytointi, rahoitus ja muu palvelutuotanto voivat vaikuttaa.",
+          "source_ids": [
+            "proposal"
+          ],
+          "mechanism_id": "kielesta-osallistumiseen"
+        },
+        {
+          "short_title": "Lapsen näkökulma paluuseen",
+          "title": "Myöhempi kohortti avaa erillisen seurantakysymyksen",
+          "period": "1984–1991",
+          "years": [
+            1984,
+            1991
+          ],
+          "event_year": 1984,
+          "event_label": "Tutkimuskohortin paluumuutot alkavat 1984–1985",
+          "theme_ids": [
+            1,
+            7,
+            27,
+            6
+          ],
+          "focus": {
+            "theme_id": 1,
+            "stage": 3
+          },
+          "map_points": [],
+          "explanation": "Vuorenkosken tutkimus seurasi Ruotsista Pohjois-Suomeen vuosina 1984–1985 muuttaneita lapsia. Palanneiden ryhmässä havaittiin vertailuryhmää enemmän masennusoireita myös kuuden vuoden seurannassa. Kyse ei ole Aron lasten seurannasta.",
+          "mechanism": "Uusi ympäristö ja aiemmat kokemukset → muuttuvat yhteydet ja kuuluminen → lapsen oma sopeutumisen polku.",
+          "benefit": "Lapsen näkökulma täydentää työn ja asumisen mittareita.",
+          "tradeoff": "Vanhemman kotiseudulle palaaminen voi merkitä lapselle lähtöä tutusta ympäristöstä.",
+          "affected": "Tutkimuksen myöhempi lapsikohortti, ei kaikki paluumuuttajat.",
+          "lag": "Kuuden vuoden seuranta kuvaa pidempää aikaa; yksilölliset polut voivat erota.",
+          "evidence_note": "Havainnoiva tutkimus ei eristä paluun vaikutusta aiemmista kokemuksista tai perheiden taustaeroista. Kato ja lähtömittauksen puute rajaavat tulkintaa. Lähdetulkinta pohjautuu käyttäjän toimittamaan kertomusluonnokseen 0.2; alkuperäislähteiden tarkistusta ei uusittu tässä lisäyksessä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Aiemmat oireet, perhetilanne ja muut kokemukset voivat selittää ryhmäeroja.",
+          "source_ids": [
+            "return"
+          ],
+          "mechanism_id": "kielesta-osallistumiseen"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "tyopaikasta-arjen-paikaksi",
+          "title": "Työpaikasta arjen paikaksi",
+          "intro": "Työ, koti ja hoiva voivat edellyttää eri ratkaisuja samassa perheessä.",
+          "links": [
+            {
+              "title": "Asettuminen",
+              "text": "Työ ja asuminen avaavat mahdollisuuden rakentaa arkea.",
+              "lag": "Vaiheet eivät välttämättä järjesty yhtä aikaa."
+            },
+            {
+              "title": "Hoivan yhteensovittaminen",
+              "text": "Lastenhoidon ja kielen tarpeet voivat muuttaa sopivaa asuinpaikkaa.",
+              "lag": "Tämän perheen järjestelyjen tarkkoja viiveitä ei tunneta."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Aron muistelussa asumisjärjestelyt muuttuivat ja hoitajan löytyminen liittyi vuoden 1974 muuttoon.",
+              "source_ids": [
+                "memoir"
+              ]
+            }
+          ],
+          "interpretation": "Kertomus avaa tutkittavan eritahtisuuden; se ei osoita kokemuksen yleisyyttä tai kunnallisten palvelujen kattavuutta.",
+          "alternative": "Myös työ, tulot, asunto ja verkostot voivat vaikuttaa.",
+          "question": "Mitä työpaikan ympärille tarvittiin, jotta koko perhe pystyi rakentamaan arkea?"
+        },
+        {
+          "id": "kielesta-osallistumiseen",
+          "title": "Kielestä osallistumisen edellytyksiin",
+          "intro": "Kieli ja kuuluminen yhdistävät hoidon, koulun ja lapsen oman kokemuksen.",
+          "links": [
+            {
+              "title": "Tarpeesta julkiseen vastaukseen",
+              "text": "Järjestön vaatimus ja koulutusehdotus ovat eri vaiheita kuin toteutunut palvelu.",
+              "lag": "Päätöksestä henkilöstöön ja palveluun jää avoin viive."
+            },
+            {
+              "title": "Lapsen muuttuva ympäristö",
+              "text": "Paluuta arvioidaan myös lapsen suhteiden ja kokemusten näkökulmasta.",
+              "lag": "Myöhempi tutkimus seuraa erillistä kohorttia kuusi vuotta."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Olofströmin raportti ja vuoden 1976 esitys kuvaavat eri paikkoja ja päätöksenteon tasoja.",
+              "source_ids": [
+                "olofstrom",
+                "proposal"
+              ]
+            },
+            {
+              "text": "Vuorenkosken kohorttitutkimus käsittelee myöhempiä paluumuuttajalapsia.",
+              "source_ids": [
+                "return"
+              ]
+            }
+          ],
+          "interpretation": "Lähteet täydentävät kysymyksiä; niitä ei yhdistetä saman perheen vaikutusketjuksi.",
+          "alternative": "Paikalliset voimavarat ja perheiden aiemmat kokemukset voivat vaikuttaa.",
+          "question": "Miten lapsen kieli, hoito ja läheiset suhteet huomioitiin muutossa?"
+        }
+      ]
     }
   ]
 }
