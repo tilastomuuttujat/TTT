@@ -3505,6 +3505,367 @@
           "question": "Vertaa kustannuksia palvelutarpeeseen ja saatavuuteen alueittain. Tarkista, siirtyykö kuormitus asiakkaalle, läheisille tai muille palveluille."
         }
       ]
+    },
+    {
+      "id": "paivahoito-ja-naisten-palkkatyo",
+      "entry_theme_id": 6,
+      "short_title": "Päivähoito ja naisten palkkatyö",
+      "title": "Päivähoidon laajeneminen ja naisten palkkatyö – perheen, työn ja kasvatuksen yhteensovittaminen",
+      "period": "1970–2025",
+      "question": "Miten päivähoidon saatavuus ja lastenhoidon tukien ehdot muuttavat työn ja perheen yhteensovittamista — ja miten lapsen oikeudet erotetaan vanhempien työllisyysvaikutuksista?",
+      "sources": [
+        {
+          "id": "law1973",
+          "title": "Finlex: Laki lasten päivähoidosta 36/1973, alkuperäinen säädös",
+          "url": "https://www.finlex.fi/fi/lainsaadanto/saadoskokoelma/1973/36"
+        },
+        {
+          "id": "history-rights",
+          "title": "Finlex: HE 80/2015, päivähoito-oikeuden historiallinen kehitys",
+          "url": "https://www.finlex.fi/fi/hallituksen-esitykset/2015/80"
+        },
+        {
+          "id": "work-history",
+          "title": "Tilastokeskus: 30 vuotta töissä, 50 vuotta muualla (2012)",
+          "url": "https://stat.fi/artikkelit/2012/art_2012-09-12_001.html?s=0"
+        },
+        {
+          "id": "homecare-law",
+          "title": "Finlex: Laki lasten kotihoidon tuesta 797/1992, alkuperäinen säädös",
+          "url": "https://finlex.fi/fi/lainsaadanto/saadoskokoelma/1992/797"
+        },
+        {
+          "id": "rights2020",
+          "title": "Opetus- ja kulttuuriministeriö: Muutoksia varhaiskasvatukseen 1. elokuuta alkaen (2020)",
+          "url": "https://valtioneuvosto.fi/-/1410845/muutoksia-varhaiskasvatukseen-1.-elokuuta-alkaen"
+        },
+        {
+          "id": "private-study",
+          "title": "Kela: Korkeampi lasten yksityisen hoidon tuki kasvatti yksityisen varhaiskasvatuksen kysyntää merkittävästi (2023)",
+          "url": "https://www.kela.fi/tyonantajat/5413966/tutkimus-korkeampi-lasten-yksityisen-hoidon-tuki-kasvatti-yksityisen-varhaiskasvatuksen-kysyntaa-merkittavasti"
+        },
+        {
+          "id": "support2024",
+          "title": "Opetus- ja kulttuuriministeriö: Selvitys varhaiskasvatuslain tuen uudistuksen toteutumisesta (2024:38)",
+          "url": "https://julkaisut.valtioneuvosto.fi/server/api/core/bitstreams/786f9747-43f4-4ebe-9c88-1372843d4b39/content"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Työ ja hoivan jako",
+          "title": "Naisten palkkatyö ja lastenhoidon järjestäminen kohtaavat",
+          "period": "1970–1972",
+          "years": [
+            1970,
+            1972
+          ],
+          "theme_ids": [
+            6,
+            15,
+            26
+          ],
+          "focus": {
+            "theme_id": 15,
+            "stage": 3
+          },
+          "map_points": [],
+          "event_year": 1970,
+          "event_label": "Työurien historiallisen vertailun lähtövuosi",
+          "explanation": "Tilastokeskuksen historiallinen tarkastelu kuvaa naisten ja miesten työurien muutoksia vuodesta 1970. Naisten palkkatyö ei alkanut päivähoitolaista: hoivan järjestäminen, koulutus ja työpaikkojen rakenne muuttuivat rinnakkain.",
+          "mechanism": "Työn mahdollisuudet ja perheen hoivavastuut → tarve sovittaa yhteen työajat ja lasten hoito. Päivähoidon kysyntä voi myös kasvaa palkkatyön lisääntyessä.",
+          "benefit": "Palkkatyö voi lisätä omaa toimeentuloa ja taloudellista itsenäisyyttä.",
+          "tradeoff": "Palkaton hoiva ja ansiotyö voivat kuormittaa samoja vanhempia, jos vastuut eivät jakaudu.",
+          "affected": "Lasten vanhemmat, erityisesti suuremman hoivavastuun kantavat, lapset ja työnantajat.",
+          "lag": "Työurat ja hoivan jako muuttuvat vuosien ja sukupolvien aikana.",
+          "evidence_note": "Työurien kehitys on kuvailevaa näyttöä. Vuosi 1970 on vertailukohta, ei yksittäinen uudistus. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Koulutus, kaupungistuminen, suhdanteet ja toimialojen muutos voivat selittää työllisyyttä päivähoidon rinnalla.",
+          "source_ids": [
+            "work-history"
+          ],
+          "mechanism_id": "hoiva-ja-tyoura"
+        },
+        {
+          "short_title": "Päivähoitolaki",
+          "title": "Vuoden 1973 laki vahvistaa julkisen päivähoidon perustaa",
+          "period": "1973–1984",
+          "years": [
+            1973,
+            1984
+          ],
+          "theme_ids": [
+            6,
+            4,
+            15,
+            28
+          ],
+          "focus": {
+            "theme_id": 6,
+            "stage": 2
+          },
+          "map_points": [
+            {
+              "theme_id": 6,
+              "stage": 2
+            }
+          ],
+          "event_year": 1973,
+          "event_label": "Päivähoitolaki voimaan 1.4.1973",
+          "explanation": "Vuoden 1973 laki määritteli päivähoitoa ja kunnan järjestämistehtävää. Alkuperäinen säädös kytki hoidon myös lapsen kehitykseen ja oppimismahdollisuuksiin. Se ei vielä tarkoittanut myöhemmin laajentunutta kaikille kuuluvaa subjektiivista päivähoito-oikeutta.",
+          "mechanism": "Kunnan järjestämistehtävä → palvelujen suunnittelu ja hoitopaikat → mahdollisuus järjestää hoito työn tai opiskelun ajaksi.",
+          "benefit": "Saatavilla oleva hoito voi helpottaa vanhempien työtä ja opiskelua sekä tukea lapsen arkea.",
+          "tradeoff": "Lakisääteinen tehtävä ei yksin takaa paikkojen riittävyyttä tai hoitoa sopivina aikoina.",
+          "affected": "Lapset, vanhemmat, päivähoidon henkilöstö ja kunnat.",
+          "lag": "Laki tuli voimaan vuonna 1973; palvelukapasiteetti kehittyi pidemmän ajan kuluessa.",
+          "evidence_note": "Alkuperäisen lain sisältö ja voimaantulo ovat lähteistettyjä. Työllisyysvaikutusta ei päätellä lain olemassaolosta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Perheen hoito voi järjestyä myös läheisten tai muiden hoitomuotojen avulla; työpaikan saatavuus vaikuttaa työn aloittamiseen.",
+          "source_ids": [
+            "law1973"
+          ],
+          "mechanism_id": "hoiva-ja-tyoura"
+        },
+        {
+          "short_title": "Valintaoikeus ja kotihoito",
+          "title": "Alle kolmivuotiaiden hoitovaihtoehdot laajenevat",
+          "period": "1985–1990",
+          "years": [
+            1985,
+            1990
+          ],
+          "theme_ids": [
+            6,
+            15,
+            17,
+            26
+          ],
+          "focus": {
+            "theme_id": 6,
+            "stage": 2
+          },
+          "map_points": [],
+          "event_year": 1990,
+          "event_label": "Alle kolmivuotiaiden valintaoikeus kattavasti voimaan",
+          "explanation": "Vuonna 1985 säädetty kokonaisuus toteutui asteittain. Vuoden 1990 alusta alle kolmivuotiaiden lasten perheillä oli vanhempainrahakauden jälkeen oikeus valita kotihoidon tuki tai kunnallinen päivähoitopaikka. Tukijärjestelmä ja palvelu muodostivat erilaisia hoidon järjestämisen vaihtoehtoja.",
+          "mechanism": "Hoitopaikka ja tuki vaihtoehtoina → perheen ajankäytön ja toimeentulon ratkaisut → mahdollisia vaikutuksia työstä poissaolon kestoon.",
+          "benefit": "Perhe voi sovittaa hoidon järjestämistä omaan tilanteeseensa.",
+          "tradeoff": "Pitkä poissaolo ansiotyöstä voi vaikuttaa tuloihin ja työuraan; vaikutus riippuu siitä, kuka hoitaa ja millaisia töitä on tarjolla.",
+          "affected": "Pienten lasten perheet, kotona hoitavat vanhemmat ja päivähoidon järjestäjät.",
+          "lag": "Vaiheittainen toteutus vuosina 1985–1990; työuraseuraukset voivat näkyä myöhemmin.",
+          "evidence_note": "Historiallinen valintaoikeus on kuvattu hallituksen esityksessä. Vuoden 1992 säädös varmistaa aiempien vuoden 1985 lakien taustan; sitä ei esitetä nykyisten etuusehtojen ohjeena. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Poissaolon kestoon voivat vaikuttaa työn kysyntä, vanhempien tulot ja perheen mieltymykset tukiehtojen lisäksi.",
+          "source_ids": [
+            "history-rights",
+            "homecare-law"
+          ],
+          "mechanism_id": "hoiva-ja-tyoura"
+        },
+        {
+          "short_title": "Oikeuden laajeneminen",
+          "title": "Päivähoito-oikeus ulottuu alle kouluikäisiin",
+          "period": "1991–1996",
+          "years": [
+            1991,
+            1996
+          ],
+          "theme_ids": [
+            6,
+            4,
+            26,
+            28
+          ],
+          "focus": {
+            "theme_id": 6,
+            "stage": 2
+          },
+          "map_points": [],
+          "event_year": 1996,
+          "event_label": "Subjektiivinen päivähoito-oikeus laajenee 1.1.1996",
+          "explanation": "Subjektiivinen päivähoito-oikeus laajeni vuoden 1996 alusta alle oppivelvollisuusikäisiin lapsiin. Päätösten valmistelu ja voimaantulo ajoittuivat eri vuosiin. Oikeus palveluun on erotettava sen tosiasiallisesta saatavuudesta ja perheen päätöksestä käyttää sitä.",
+          "mechanism": "Laajempi oikeus → mahdollisuus hakea hoitopaikkaa → vanhempien työn ja opiskelun sekä lapsen osallistumisen edellytykset.",
+          "benefit": "Palveluun pääsyn oikeudellinen perusta vahvistuu useammissa perheissä.",
+          "tradeoff": "Kapasiteetin, henkilöstön ja sijainnin on vastattava kysyntään; oikeus ei yksin takaa sujuvaa arkea.",
+          "affected": "Alle kouluikäiset lapset ja heidän perheensä sekä kunnat ja päivähoidon työntekijät.",
+          "lag": "Oikeus laajeni vuonna 1996; käytön ja työurien muutokset edellyttävät seurantaa.",
+          "evidence_note": "Toteutunut voimaantulo perustuu lainvalmistelun historiakatsaukseen. Tässä ei lasketa uudistuksen työllisyysvaikutusta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "1990-luvun lama ja elpyminen muuttivat työn mahdollisuuksia samaan aikaan; vaikutukset on erotettava hoito-oikeuden muutoksesta.",
+          "source_ids": [
+            "history-rights"
+          ],
+          "mechanism_id": "lapsen-oikeus-ja-laatu",
+          "related_anchor_id": "1990-luvun-lama"
+        },
+        {
+          "short_title": "Rajaus ja palautus",
+          "title": "Varhaiskasvatusoikeuden laajuus muuttuu",
+          "period": "2016–2020",
+          "years": [
+            2016,
+            2020
+          ],
+          "theme_ids": [
+            4,
+            6,
+            26,
+            28
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 5
+          },
+          "map_points": [
+            {
+              "theme_id": 4,
+              "stage": 5
+            }
+          ],
+          "event_year": 2020,
+          "event_label": "Kokoaikainen oikeus palautuu 1.8.2020",
+          "explanation": "Vuonna 2016 varhaiskasvatusoikeutta rajattiin lähtökohtaisesti 20 viikkotuntiin laissa määritellyin poikkeuksin. Kokoaikainen oikeus palautui elokuussa 2020 riippumatta vanhempien työssäkäynnistä tai muusta työmarkkina-asemasta. Lapsen osallistumista ei siten arvioida vain vanhemman työn kautta.",
+          "mechanism": "Oikeuden laajuus → lapsen mahdollisuus osallistua varhaiskasvatukseen → kasvatuksen ja perheen arjen järjestelyt.",
+          "benefit": "Lapsen mahdollisuus kokoaikaiseen osallistumiseen irtoaa vanhemman työmarkkina-asemasta.",
+          "tradeoff": "Oikeuden laajeneminen vaatii toimivaa toteutusta, henkilöstöä ja lapsen tarpeiden huomioimista.",
+          "affected": "Lapset eri perhetilanteissa, vanhemmat sekä varhaiskasvatuksen henkilöstö ja järjestäjät.",
+          "lag": "Lainmuutoksen voimaantulo ja arjen toteutus on erotettava toisistaan.",
+          "evidence_note": "Rajaus ja palautus ovat dokumentoituja. Tässä ei väitetä niiden aiheuttaneen tiettyä työllisyys- tai oppimistulosta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Pandemia muutti palvelujen käyttöä vuonna 2020; sen vaikutusta ei pidä tulkita oikeuden palautuksen seuraukseksi.",
+          "source_ids": [
+            "rights2020"
+          ],
+          "mechanism_id": "lapsen-oikeus-ja-laatu",
+          "related_anchor_id": "peruskoulu-uudistus"
+        },
+        {
+          "short_title": "Vaikutukset arvioidaan erikseen",
+          "title": "Hoitomuoto, työllisyys ja lapsen tuki ovat eri tuloksia",
+          "period": "2023–2025",
+          "years": [
+            2023,
+            2025
+          ],
+          "theme_ids": [
+            4,
+            6,
+            15,
+            26
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 4
+          },
+          "map_points": [
+            {
+              "theme_id": 4,
+              "stage": 4
+            }
+          ],
+          "event_year": 2023,
+          "event_label": "Kelan tutkimus yksityisen hoidon tuen vaikutuksista",
+          "explanation": "Kelan vuonna 2023 esittelemässä tutkimuksessa suurempi yksityisen hoidon tuki lisäsi yksityisen varhaiskasvatuksen kysyntää, mutta äitien työllisyysvaikutusta ei havaittu. Tämä rajattu tulos ei ratkaise koko päivähoitojärjestelmän vaikutusta. Lapsen tuen toteutuminen on lisäksi oma arviointikysymyksensä.",
+          "mechanism": "Tuen ehdot → hoitomuodon valinta; hoitomuodon muutos ei välttämättä tarkoita muutosta vanhemman työllisyydessä.",
+          "benefit": "Eri tulosten seuranta auttaa kohdentamaan kehittämistä ja välttämään liian laajoja johtopäätöksiä.",
+          "tradeoff": "Yksi käyttö- tai työllisyysmittari voi jättää lapsen hyvinvoinnin, tuen ja perheen kuormituksen näkymättömiin.",
+          "affected": "Lapset, vanhemmat, yksityiset ja kunnalliset järjestäjät sekä henkilöstö.",
+          "lag": "Tutkimus ja arviointi koskevat rajattuja aineistoja; pitkän työuran seuraukset vaativat pidempää seurantaa.",
+          "evidence_note": "Työllisyysvaikutuksen puuttuminen koskee esiteltyä yksityisen hoidon tuen tutkimusta. OKM:n vuoden 2024 selvitys käsittelee lapsen tuen uudistuksen toteutumista, ei vuoden 1973 lain kausaalista vaikutusta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Hoitomuodot voivat korvata toisiaan ilman työllisyyden muutosta; työn saatavuus ja perheen tulot voivat vaikuttaa rinnalla.",
+          "source_ids": [
+            "private-study",
+            "support2024"
+          ],
+          "mechanism_id": "lapsen-oikeus-ja-laatu"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "hoiva-ja-tyoura",
+          "title": "Miten lastenhoidon järjestäminen voi vaikuttaa työuraan?",
+          "intro": "Saatavilla oleva hoito ja hoivan jakautuminen voivat muuttaa työn edellytyksiä. Vaikutus ei ole kaikissa perheissä sama.",
+          "links": [
+            {
+              "title": "Hoito järjestyy",
+              "text": "Hoitopaikka, tukivaihtoehdot ja läheisten apu muuttavat perheen käytettävissä olevaa aikaa.",
+              "lag": "Lapsen hoitovaiheen aikana."
+            },
+            {
+              "title": "Työn mahdollisuus muuttuu",
+              "text": "Työaikaan sopiva hoito voi helpottaa työn aloittamista tai jatkamista.",
+              "lag": "Kuukausista vuosiin; mahdollinen kanava."
+            },
+            {
+              "title": "Työura kertyy",
+              "text": "Työn ja poissaolojen jakautuminen voi vaikuttaa ansioihin ja kokemuksen kertymiseen.",
+              "lag": "Pitkä seuranta; tutkittava."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Vuoden 1973 alkuperäinen laki määrittelee kunnan päivähoitotehtävää ja hoidon tavoitteita.",
+              "source_ids": [
+                "law1973"
+              ]
+            },
+            {
+              "text": "Tilastokeskus kuvaa naisten ja miesten työurien historiallista muutosta.",
+              "source_ids": [
+                "work-history"
+              ]
+            },
+            {
+              "text": "Alle kolmivuotiaiden päivähoitopaikan ja kotihoidon tuen valintaoikeus toteutui asteittain vuoteen 1990.",
+              "source_ids": [
+                "history-rights"
+              ]
+            }
+          ],
+          "interpretation": "Naisten palkkatyön kehitystä ei selitetä yhdellä päivähoitolailla. Hoivaa ja työstä poissaoloja on tarkasteltava kaikkien vanhempien osalta.",
+          "alternative": "Koulutus, työn kysyntä ja perheen tulot voivat muuttaa työllisyyttä palvelujen saatavuuden rinnalla.",
+          "question": "Vertaa palvelujen saatavuutta ja vanhempien työuria taustaryhmittäin. Huomioi työajat, koulutus ja vanhempien keskinäinen hoivanjako."
+        },
+        {
+          "id": "lapsen-oikeus-ja-laatu",
+          "title": "Miksi lapsen oikeutta ei arvioida vain vanhemman työllisyydellä?",
+          "intro": "Varhaiskasvatuksen käyttö, laatu, tuki ja vanhemman työ ovat erillisiä arvioitavia tuloksia.",
+          "links": [
+            {
+              "title": "Oikeus määritellään",
+              "text": "Oikeuden laajuus vaikuttaa osallistumisen edellytyksiin.",
+              "lag": "Lainmuutoksen voimaantulo."
+            },
+            {
+              "title": "Palvelu toteutetaan",
+              "text": "Henkilöstö, sijainti ja lapsen tarpeita vastaava tuki muuttavat arjen toteutusta.",
+              "lag": "Jatkuva toiminta."
+            },
+            {
+              "title": "Tulokset erotellaan",
+              "text": "Hoitomuodon vaihtuminen ei yksin osoita työllisyyden tai lapsen hyvinvoinnin muutosta.",
+              "lag": "Erillinen seuranta."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Kokoaikainen varhaiskasvatusoikeus palautui elokuussa 2020 vanhemman työmarkkina-asemasta riippumatta.",
+              "source_ids": [
+                "rights2020"
+              ]
+            },
+            {
+              "text": "Kelan esittelemässä tutkimuksessa yksityisen hoidon tuen lisäys muutti palvelujen kysyntää ilman havaittua äitien työllisyysvaikutusta.",
+              "source_ids": [
+                "private-study"
+              ]
+            },
+            {
+              "text": "OKM:n vuoden 2024 selvitys käsittelee varhaiskasvatuksen tuen uudistuksen toteutumista.",
+              "source_ids": [
+                "support2024"
+              ]
+            }
+          ],
+          "interpretation": "Rajattu tutkimustulos ei osoita, että koko päivähoidon laajeneminen olisi ollut työllisyydelle merkityksetöntä. Lapsen kokemusta ja tukea tarvitaan arviointiin rinnalle.",
+          "alternative": "Palvelun käyttö voi muuttua hinnan tai tarjonnan vuoksi ilman muutosta vanhemman työn määrässä.",
+          "question": "Seuraa osallistumista, tuen oikea-aikaisuutta, arjen jatkuvuutta ja vanhempien työtä erikseen. Älä oleta yhden mittarin kuvaavan koko vaikutusta."
+        }
+      ]
     }
   ]
 }
