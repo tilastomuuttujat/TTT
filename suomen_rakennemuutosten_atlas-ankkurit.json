@@ -5211,6 +5211,380 @@
           "question": "Voiko henkilö käyttää palveluja ja vaikuttaa oman elämänsä sekä yhteisönsä asioihin?"
         }
       ]
+    },
+    {
+      "id": "nokian-nousu-ja-matkapuhelinmurros",
+      "entry_theme_id": 16,
+      "short_title": "Nokian nousu ja matkapuhelinmurros",
+      "title": "Nokian nousu ja matkapuhelinliiketoiminnan murros – osaaminen, kasvu ja uudistuminen",
+      "period": "1982–2025",
+      "question": "Miten teknologiayrityksen kasvu välittyy kansantalouteen — ja mitä osaamiselle, työurille ja alueille tapahtuu liiketoiminnan murroksessa?",
+      "sources": [
+        {
+          "id": "history",
+          "title": "Nokia: Historiamme",
+          "url": "https://www.nokia.com/fi_fi/about-us/company/historiamme/"
+        },
+        {
+          "id": "gsm",
+          "title": "Nokia: Thirty years on from the call that transformed how we communicate (2021)",
+          "url": "https://www.nokia.com/blog/thirty-years-on-from-the-call-that-transformed-how-we-communicate/"
+        },
+        {
+          "id": "economy2002",
+          "title": "ETLA: NOKIA – A Big Company in a Small Country (2002)",
+          "url": "https://www.etla.fi/julkaisut/b162-fi/"
+        },
+        {
+          "id": "value2010",
+          "title": "ETLA: Nokia and Finland in a Sea of Change (2010)",
+          "url": "https://www.etla.fi/en/publications/b244-en/"
+        },
+        {
+          "id": "strategy2011",
+          "title": "Nokia: Uusi strategia ja Microsoft-kumppanuus, pörssitiedote 11.2.2011",
+          "url": "https://www.nokia.com/system/files/files/04-11022011-nokia-outlines-new-strategy-introduces-new-leadership-operational-structure-pdf.pdf"
+        },
+        {
+          "id": "sale2013",
+          "title": "Microsoft: Nokia Devices & Services -kaupan julkistus 3.9.2013",
+          "url": "https://news.microsoft.com/source/2013/09/03/microsoft-to-acquire-nokias-devices-services-business-license-nokias-patents-and-mapping-services/"
+        },
+        {
+          "id": "close2014",
+          "title": "Microsoft: Nokia Devices & Services -kaupan toteutuminen 25.4.2014",
+          "url": "https://blogs.microsoft.com/blog/2014/04/25/microsoft-acquisition-of-nokia-devices-and-services-business-finalized/"
+        },
+        {
+          "id": "careers2021",
+          "title": "ETLA Raportti 108: ICT-alan rakennemuutos – Mihin ex-nokialaiset päätyivät? (2021)",
+          "url": "https://www.etla.fi/julkaisut/ict-alan-rakennemuutos-mihin-ex-nokialaiset-paatyivat/"
+        },
+        {
+          "id": "startups2025",
+          "title": "ETLA Muistio 158: Nokiasta lähteneiden yrittäjyys ja bisnesenkelitoiminta (2025)",
+          "url": "https://www.etla.fi/julkaisut/muistiot/nokiasta-lahteneet-ryhtyivat-innolla-yrittajiksi-ja-bisnes-enkeleiksi-nokia-kokemus-siivitti-startupien-liikevaihtoja-rivakkaan-kasvuun/"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "GSM ja osaaminen",
+          "title": "Digitaalisen matkaviestinnän pohja rakentuu",
+          "period": "1982–1991",
+          "years": [
+            1982,
+            1991
+          ],
+          "theme_ids": [
+            16,
+            4,
+            15,
+            13
+          ],
+          "focus": {
+            "theme_id": 16,
+            "stage": 3
+          },
+          "map_points": [],
+          "event_year": 1991,
+          "event_label": "Ensimmäinen GSM-puhelu Nokian laitteilla",
+          "explanation": "1980-luvun NMT-kehitystä seurasi GSM-standardin rakentaminen. Ensimmäinen GSM-puhelu soitettiin vuonna 1991 Nokian laitteilla Radiolinjan verkossa. Taustalla oli pitkä kehitystyö ja useiden toimijoiden yhteistyö.",
+          "mechanism": "Standardointi ja tutkimus → yhteensopivat verkot ja laitteet → mahdollisuus laajalle markkinalle.",
+          "benefit": "Yhteensopiva teknologia voi tukea tuotteiden ja osaamisen kansainvälistä käyttöä.",
+          "tradeoff": "Kehitystyö vaatii resursseja ja valintoja ennen kuin kysynnästä on varmuutta.",
+          "affected": "Insinöörit, tutkijat, operaattorit, valmistajat ja viestintäpalvelujen käyttäjät.",
+          "lag": "Teknologian kehittäminen edeltää kaupallista kasvua vuosilla.",
+          "evidence_note": "GSM-tapahtuman ajoitus perustuu yhtiön historiakuvaukseen. Se ei yksin todista myöhemmän menestyksen syitä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät Nokian tai tämän tapauksen mittaustuloksia.",
+          "alternative": "Markkinoiden sääntely, operaattorien investoinnit ja muiden yritysten panos vaikuttavat rinnalla.",
+          "source_ids": [
+            "history",
+            "gsm"
+          ],
+          "mechanism_id": "kasvu-ja-riippuvuus"
+        },
+        {
+          "short_title": "Globaali nousu",
+          "title": "Matkapuhelinten kasvu kytkee Nokian Suomen talouteen",
+          "period": "1992–2000",
+          "years": [
+            1992,
+            2000
+          ],
+          "theme_ids": [
+            16,
+            15,
+            18,
+            31,
+            17
+          ],
+          "focus": {
+            "theme_id": 31,
+            "stage": 4
+          },
+          "map_points": [
+            {
+              "theme_id": 31,
+              "stage": 4
+            }
+          ],
+          "event_year": 1998,
+          "event_label": "Nokia nousee maailman johtavaksi matkapuhelinvalmistajaksi",
+          "explanation": "Nokia keskittyi televiestintään ja nousi vuoteen 1998 mennessä johtavaksi matkapuhelinvalmistajaksi. ETLAn tutkimus käsittelee yhtiön merkitystä Suomen taloudelle, tuotannolle ja tutkimus- ja kehitystoiminnalle. Yhtiön menestys ja koko kansantalouden elpyminen ovat eri tarkastelutasoja.",
+          "mechanism": "Kansainvälinen kysyntä → yhtiön kasvu ja hankinnat → työpaikat, vienti ja osaamisen kysyntä.",
+          "benefit": "Kasvu voi lisätä ansioita, tutkimusta ja toimittajien liiketoimintaa.",
+          "tradeoff": "Menestyvän toimijan suuri paino voi lisätä riippuvuutta yhdestä yrityksestä ja teknologiasta.",
+          "affected": "Nokian henkilöstö, alihankkijat, tutkimusyhteisöt ja toimipaikkojen alueet.",
+          "lag": "Kasvu välittyy eri tahtiin rekrytointeihin, investointeihin ja osaamiseen.",
+          "evidence_note": "Johtoasema on yhtiön historiatieto; talouskytkentöjä käsittelee ETLA. Tässä ei lasketa BKT- tai vientiosuuksia. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät Nokian tai tämän tapauksen mittaustuloksia.",
+          "alternative": "1990-luvun elpymistä selittävät myös muut toimialat, kansainvälinen kysyntä ja talouspolitiikka.",
+          "source_ids": [
+            "history",
+            "economy2002"
+          ],
+          "mechanism_id": "kasvu-ja-riippuvuus",
+          "related_anchor_id": "1990-luvun-lama"
+        },
+        {
+          "short_title": "Arvoketjun muutos",
+          "title": "Tuotannon sijainti ja arvon syntyminen eriytyvät",
+          "period": "2001–2010",
+          "years": [
+            2001,
+            2010
+          ],
+          "theme_ids": [
+            16,
+            13,
+            15,
+            20,
+            31
+          ],
+          "focus": {
+            "theme_id": 16,
+            "stage": 3
+          },
+          "map_points": [
+            {
+              "theme_id": 16,
+              "stage": 3
+            }
+          ],
+          "event_year": 2010,
+          "event_label": "ETLAn tutkimus Nokian globaaleista arvoketjuista",
+          "explanation": "ETLAn vuoden 2010 tutkimus tarkastelee elektroniikkatuotannon kansainvälistymistä, toimittajaverkostoja ja arvonlisän syntyä. Yrityksen globaali kasvu ei tarkoita, että kaikki valmistus, työpaikat tai arvonlisä syntyvät Suomessa.",
+          "mechanism": "Tuotanto- ja hankintaverkoston muutokset → tehtävien sijainti → paikalliset työ- ja tulovaikutukset.",
+          "benefit": "Kansainvälinen työnjako voi avata erikoistumisen ja markkinoille pääsyn mahdollisuuksia.",
+          "tradeoff": "Paikallisen tuotannon väheneminen voi kuormittaa henkilöstöä ja toimittajia, vaikka yhtiö toimisi globaalisti.",
+          "affected": "Tuotantotyöntekijät, tuotekehitys, alihankkijat ja elektroniikkateollisuuden alueet.",
+          "lag": "Arvoketjujen muutos tapahtuu vuosien aikana; paikalliset seuraukset voivat jatkua pidempään.",
+          "evidence_note": "Tutkimus erottaa tuotannon sijainnin ja arvon syntymisen. Vuosi 2010 on julkaisuvuosi, ei yksi muutospäätös. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät Nokian tai tämän tapauksen mittaustuloksia.",
+          "alternative": "Automaatio, kustannukset ja muiden asiakkaiden kysyntä voivat muuttaa alihankkijan tilannetta.",
+          "source_ids": [
+            "value2010"
+          ],
+          "mechanism_id": "kasvu-ja-riippuvuus"
+        },
+        {
+          "short_title": "Alustavalinta",
+          "title": "Microsoft-kumppanuus muuttaa älypuhelinstrategiaa",
+          "period": "2011–2012",
+          "years": [
+            2011,
+            2012
+          ],
+          "theme_ids": [
+            16,
+            31,
+            18,
+            15
+          ],
+          "focus": {
+            "theme_id": 16,
+            "stage": 3
+          },
+          "map_points": [],
+          "event_year": 2011,
+          "event_label": "Microsoft-kumppanuuden julkistus 11.2.2011",
+          "explanation": "Nokia julkisti vuonna 2011 uuden strategian ja Microsoft-kumppanuuden, jossa Windows Phone sai keskeisen aseman älypuhelimissa. Päätös on dokumentoitu; siitä ei yksin voi johtaa koko matkapuhelinliiketoiminnan murroksen syytä.",
+          "mechanism": "Ohjelmistoalustan valinta → tuotekehityksen ja kumppanien suunnat → tuotteiden kilpailuedellytykset.",
+          "benefit": "Kumppanuus voi yhdistää teknologiaa, palveluja ja kehitysresursseja.",
+          "tradeoff": "Alustan vaihto voi aiheuttaa siirtymäkustannuksia ja riippuvuutta kumppanista.",
+          "affected": "Tuotekehittäjät, sovelluskehittäjät, yhteistyökumppanit ja asiakkaat.",
+          "lag": "Strategiapäätös vaikuttaa tuotekehitys- ja julkaisukierrosten aikana.",
+          "evidence_note": "Pörssitiedote kuvaa päätöstä ja yhtiön tavoitteita, ei riippumatonta onnistumisarviota. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät Nokian tai tämän tapauksen mittaustuloksia.",
+          "alternative": "Kilpailijoiden tuotteet, sovellusten tarjonta ja toteutuksen ajoitus voivat vaikuttaa tuloksiin. Vastakkaista strategiavaihtoehtoa ei tässä arvioida.",
+          "source_ids": [
+            "strategy2011"
+          ],
+          "mechanism_id": "murros-ja-uudistuminen"
+        },
+        {
+          "short_title": "Liiketoiminnan myynti",
+          "title": "Kaupan julkistus ja toteutuminen ovat eri tapahtumia",
+          "period": "2013–2014",
+          "years": [
+            2013,
+            2014
+          ],
+          "theme_ids": [
+            31,
+            16,
+            15,
+            13
+          ],
+          "focus": {
+            "theme_id": 31,
+            "stage": 4
+          },
+          "map_points": [],
+          "event_year": 2014,
+          "event_label": "Devices & Services -kauppa toteutuu 25.4.2014",
+          "explanation": "Matkapuhelinliiketoiminnan kauppa Microsoftille julkistettiin syyskuussa 2013 ja toteutui huhtikuussa 2014. Kauppa koski olennaisilta osin Devices & Services -liiketoimintaa, ei koko Nokia-yhtiötä. Nokia jatkoi muun muassa verkkoliiketoiminnassa.",
+          "mechanism": "Liiketoimintakauppa → omistuksen ja organisaation muutos → henkilöstön ja toimintojen uudet järjestelyt.",
+          "benefit": "Järjestely voi avata yhtiölle mahdollisuuden suunnata resursseja muihin liiketoimintoihin.",
+          "tradeoff": "Henkilöstölle ja yhteistyökumppaneille muutos voi merkitä epävarmuutta ja uusia siirtymiä.",
+          "affected": "Siirtyvän liiketoiminnan henkilöstö, Nokiaan jäävät työntekijät, alihankkijat ja alueet.",
+          "lag": "Kaupan valmistelu ja toteutus ovat eri vaiheita; työuraseuraukset voivat jatkua vuosia.",
+          "evidence_note": "Julkistus ja toteutuminen perustuvat kaupan osapuolten tiedotteisiin. Kauppaa ei esitetä koko Nokian myyntinä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät Nokian tai tämän tapauksen mittaustuloksia.",
+          "alternative": "Työpaikkojen muutoksia tapahtui jo ennen kauppaa; kaikkia myöhempiä muutoksia ei voi lukea kaupan seuraukseksi.",
+          "source_ids": [
+            "sale2013",
+            "close2014",
+            "history"
+          ],
+          "mechanism_id": "murros-ja-uudistuminen"
+        },
+        {
+          "short_title": "Työurat ja uusi yritystoiminta",
+          "title": "Osaaminen voi siirtyä, mutta toipuminen eriytyy",
+          "period": "2015–2025",
+          "years": [
+            2015,
+            2025
+          ],
+          "theme_ids": [
+            15,
+            4,
+            20,
+            26,
+            31
+          ],
+          "focus": {
+            "theme_id": 15,
+            "stage": 4
+          },
+          "map_points": [
+            {
+              "theme_id": 15,
+              "stage": 4
+            }
+          ],
+          "event_year": 2025,
+          "event_label": "ETLAn tutkimus entisten nokialaisten yrittäjyydestä",
+          "explanation": "ETLAn vuoden 2021 tutkimus seuraa Nokiasta vuosina 2009–2014 lähteneiden työuria ja kuvaa koulutus- ja alue-eroja työllistymisessä. Vuoden 2025 tutkimus vertaa yrittäjyyttä muihin suuriin teknologiayrityksiin. Uusien yritysten kasvu ja selviytyminen ovat eri tuloksia.",
+          "mechanism": "Kertynyt osaaminen ja verkostot → uusi työ tai yrittäjyys → osaamisen käyttö muualla; siirtymä ei onnistu kaikille samalla tavalla.",
+          "benefit": "Osaaminen voi uudistaa muita yrityksiä ja uusia liiketoimintoja.",
+          "tradeoff": "Työttömyys, ansionmenetys ja yrityksen epäonnistuminen voivat jatkua onnistuneiden siirtymien rinnalla.",
+          "affected": "Entiset työntekijät eri koulutustaustoilla ja alueilla, uudet työnantajat ja yrittäjät.",
+          "lag": "Työuria seurataan vuosia lähtemisen jälkeen; 2021 ja 2025 ovat tutkimusten julkaisuvuosia.",
+          "evidence_note": "Rekisteripohjaiset tutkimukset koskevat rajattuja lähtijäryhmiä. Vuoden 2025 tutkimus erottaa yritysten kasvun ja selviytymisen; yrittäjyystulos ei kuvaa kaikkia työntekijöitä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät Nokian tai tämän tapauksen mittaustuloksia.",
+          "alternative": "Valikoituminen yrittäjyyteen, koulutus ja alueen työmarkkinat voivat selittää osan eroista. Kasvu ei yksin osoita koko murroksen nettovaikutusta.",
+          "source_ids": [
+            "careers2021",
+            "startups2025"
+          ],
+          "mechanism_id": "murros-ja-uudistuminen",
+          "related_anchor_id": "peruskoulu-uudistus"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "kasvu-ja-riippuvuus",
+          "title": "Miksi menestys voi kasvattaa myös riippuvuutta?",
+          "intro": "Yhtiön kasvu ja kansantalouden hyöty eivät ole sama mittari.",
+          "links": [
+            {
+              "title": "Kysyntä kasvaa",
+              "text": "Tuotteiden kysyntä voi lisätä kehitystyötä ja tuotantoa.",
+              "lag": "Tuote- ja investointikierrot."
+            },
+            {
+              "title": "Verkostot vahvistuvat",
+              "text": "Työntekijät, toimittajat ja tutkimustoimijat voivat kytkeytyä suureen asiakkaaseen.",
+              "lag": "Vuosien aikana."
+            },
+            {
+              "title": "Riski keskittyy",
+              "text": "Yhden asiakkaan suunnanmuutos voi välittyä moniin riippuvaisiin toimijoihin.",
+              "lag": "Tilauksista työmarkkinoille."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "ETLA käsittelee Nokian talous- ja tutkimuskytkentöjä sekä arvonlisän jakautumista.",
+              "source_ids": [
+                "economy2002",
+                "value2010"
+              ]
+            },
+            {
+              "text": "Nokian historia ajoittaa matkapuhelinten johtoaseman vuoteen 1998.",
+              "source_ids": [
+                "history"
+              ]
+            }
+          ],
+          "interpretation": "Menestys voi tuottaa osaamista ja tuloja samalla kun asiakasriippuvuus kasvaa. Ketjun osuuksia ei tässä mitata.",
+          "alternative": "Toimittajan muut asiakkaat ja osaamisen siirrettävyys voivat vaimentaa riippuvuutta.",
+          "question": "Erottele globaali liikevaihto, Suomessa syntyvä arvonlisä, työpaikat ja toimittajien asiakasjakauma."
+        },
+        {
+          "id": "murros-ja-uudistuminen",
+          "title": "Miten osaaminen siirtyy liiketoiminnan murroksessa?",
+          "intro": "Organisaation muutos, henkilön uusi työ ja yrityksen menestys ovat eri tuloksia.",
+          "links": [
+            {
+              "title": "Toiminta muuttuu",
+              "text": "Strategia ja liiketoimintakauppa muuttavat työn kysyntää ja organisaatioita.",
+              "lag": "Päätöksistä toimeenpanoon."
+            },
+            {
+              "title": "Ihmiset siirtyvät",
+              "text": "Osaaminen, koulutus ja verkostot vaikuttavat uuden työn tai yritystoiminnan mahdollisuuksiin.",
+              "lag": "Kuukausista vuosiin."
+            },
+            {
+              "title": "Tulokset eriytyvät",
+              "text": "Työllistyminen, ansiot, yrityksen selviytyminen ja kasvu vaativat omat mittarinsa.",
+              "lag": "Pitkä seuranta."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Microsoft-tiedotteet erottavat vuoden 2013 kauppajulkistuksen vuoden 2014 toteutumisesta.",
+              "source_ids": [
+                "sale2013",
+                "close2014"
+              ]
+            },
+            {
+              "text": "ETLA kuvaa lähtijöiden koulutus- ja alue-eroja uudelleentyöllistymisessä.",
+              "source_ids": [
+                "careers2021"
+              ]
+            },
+            {
+              "text": "ETLAn yrittäjyystutkimus vertaa lähtijöitä muihin teknologiayrityksiin ja erottaa yrityksen kasvun selviytymisestä.",
+              "source_ids": [
+                "startups2025"
+              ]
+            }
+          ],
+          "interpretation": "Uudet menestystarinat eivät yksin osoita kaikkien toipumista tai korvaa menetettyjä työuria. Yrityskaupan vaikutuksia ei päätellä kaikista myöhemmistä tapahtumista.",
+          "alternative": "Suhdanteet, valikoituminen ja paikalliset työmahdollisuudet voivat selittää siirtymiä.",
+          "question": "Seuraa työllisyyttä ja ansioita eri ryhmissä sekä yritysten kasvua ja selviytymistä erikseen."
+        }
+      ]
     }
   ]
 }

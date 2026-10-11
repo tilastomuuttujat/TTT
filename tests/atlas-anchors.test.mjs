@@ -73,3 +73,7 @@ test('immigration path separates population definitions, laws, labour-market evi
  assert.ok(a.steps.every(s=>s.evidence_note.includes('eivät tämän tapauksen mittaustuloksia')));
  assert.equal(a.mechanisms.length,2);assert.ok(!a.statistics?.length);
 });
+
+test('Nokia path separates growth, platform decision, sale and later worker outcomes',()=>{
+ const a=data.anchors.find(a=>a.id==='nokian-nousu-ja-matkapuhelinmurros');assert.ok(a);assert.equal(a.entry_theme_id,16);assert.equal(a.steps.length,6);assert.equal(a.steps[0].event_year,1991);assert.equal(a.steps[1].event_year,1998);assert.equal(a.steps[3].event_year,2011);assert.deepEqual(a.steps[4].years,[2013,2014]);assert.equal(a.steps[4].event_year,2014);assert.ok(a.steps[4].explanation.includes('ei koko Nokia-yhtiötä'));assert.ok(a.steps[4].source_ids.includes('sale2013'));assert.ok(a.steps[4].source_ids.includes('close2014'));assert.equal(a.steps.at(-1).event_year,2025);assert.ok(a.steps.at(-1).source_ids.includes('careers2021'));assert.ok(a.steps.at(-1).source_ids.includes('startups2025'));assert.ok(a.steps.at(-1).evidence_note.includes('kasvun ja selviytymisen'));assert.ok(!a.statistics?.length);
+});
