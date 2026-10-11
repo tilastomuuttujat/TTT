@@ -1278,7 +1278,7 @@
           "kind": "regional",
           "title": "Alueellinen vertailu: Uusimaa ja Kainuu",
           "source_title": "Tilastokeskus · StatFin 12dy: Väestönmuutokset ja väkiluku",
-          "source_url": "https://pxdata.stat.fi/PxWeb/pxweb/fi/StatFin/StatFin__muutl/12dy.px/",
+          "source_url": "https://statfin.stat.fi/PxWeb/pxweb/fi/StatFin/StatFin__synt/12dy.px/",
           "source_file": "12dy_20260920-102729.xlsx",
           "source_file_sha256": "dcf114cc87455d927fc0b9f2223968f20d42bbd9fe66aec09d4122822afa8fec",
           "source_library_file_id": "libfile_6803bf9e3ba88191884562eeada45834",
