@@ -65,7 +65,8 @@
             "work",
             "migration"
           ],
-          "mechanism_id": "tyon-ja-asuinpaikan-erkaantuminen"
+          "mechanism_id": "tyon-ja-asuinpaikan-erkaantuminen",
+          "statistic_id": "kuntien-valinen-muutto-1950-2000"
         },
         {
           "short_title": "Muutto ratkaisuna",
@@ -102,7 +103,8 @@
             "population",
             "migration"
           ],
-          "mechanism_id": "tyon-ja-asuinpaikan-erkaantuminen"
+          "mechanism_id": "tyon-ja-asuinpaikan-erkaantuminen",
+          "statistic_id": "kuntien-valinen-muutto-1950-2000"
         },
         {
           "short_title": "Arjen järjestäminen",
@@ -138,7 +140,8 @@
           "alternative": "Myös tulotaso, teknologia ja valtakunnalliset uudistukset muuttivat arkea muutosta riippumatta.",
           "source_ids": [
             "consumption"
-          ]
+          ],
+          "statistic_id": "kuntien-valinen-muutto-1950-2000"
         },
         {
           "short_title": "Pitkä seuraus",
@@ -174,7 +177,8 @@
           "source_ids": [
             "migration",
             "population"
-          ]
+          ],
+          "statistic_id": "kuntien-valinen-muutto-1950-2000"
         },
         {
           "short_title": "Korjausmahdollisuus",
@@ -338,6 +342,228 @@
                   "step": 4
                 }
               ]
+            }
+          ]
+        }
+      ],
+      "statistics": [
+        {
+          "id": "kuntien-valinen-muutto-1950-2000",
+          "title": "Kuntien välinen muutto 1950–2000",
+          "unit": "muuttoa vuodessa",
+          "geography": "Suomi",
+          "source_title": "Tilastokeskus · StatFin 121v: Väestönmuutokset ja väkiluku",
+          "source_url": "https://pxweb2.stat.fi/PxWeb/pxweb/fi/StatFin/StatFin__ssaaty/121v.px/",
+          "retrieved_at": "2026-10-11",
+          "definition": "Kuntien välisten muuttojen vuotuinen lukumäärä kunkin tilastovuoden kuntajaon mukaan. Saman henkilön useat muutot voivat tulla lasketuiksi. Luvut eivät kuvaa eri muuttajien lukumäärää.",
+          "interpretation": "Sarja näyttää kuntarajan ylittävän liikkuvuuden ajoitusta ja määrää koko maassa. Korostettu aikaikkuna vastaa selityspolun vaihetta; pystyakseli näyttää tässä havaittuja lukumääriä.",
+          "limits": "Sarja sisältää maaseudulta kaupunkiin muuttamisen lisäksi myös muita kuntien välisiä muuttoja. Se ei mittaa yksin maaltamuuttoa, nettomuuttoa, muuton syitä tai sen hyvinvointivaikutuksia. Väestön koko ja kuntajaon muutokset vaikuttavat lukumäärien vertailuun.",
+          "comparability": "1993: tilastoperiodi muuttui. 1994: kotikuntalaki muutti opiskelijoiden muuttojen kirjaamista. Vuoden 1994 kohdalla viiva katkaistaan vertailurajan muistuttamiseksi; havaintoja ei korjata laskennallisesti.",
+          "quality_url": "https://stat.fi/til/muutl/kas.html",
+          "points": [
+            {
+              "value": 173163,
+              "year": 1950
+            },
+            {
+              "value": 138350,
+              "year": 1951
+            },
+            {
+              "value": 158583,
+              "year": 1952
+            },
+            {
+              "value": 160019,
+              "year": 1953
+            },
+            {
+              "value": 164257,
+              "year": 1954
+            },
+            {
+              "value": 180764,
+              "year": 1955
+            },
+            {
+              "value": 179934,
+              "year": 1956
+            },
+            {
+              "value": 177204,
+              "year": 1957
+            },
+            {
+              "value": 163909,
+              "year": 1958
+            },
+            {
+              "value": 176783,
+              "year": 1959
+            },
+            {
+              "value": 221177,
+              "year": 1960
+            },
+            {
+              "value": 214919,
+              "year": 1961
+            },
+            {
+              "value": 214041,
+              "year": 1962
+            },
+            {
+              "value": 215137,
+              "year": 1963
+            },
+            {
+              "value": 219378,
+              "year": 1964
+            },
+            {
+              "value": 218320,
+              "year": 1965
+            },
+            {
+              "value": 212787,
+              "year": 1966
+            },
+            {
+              "value": 215596,
+              "year": 1967
+            },
+            {
+              "value": 204791,
+              "year": 1968
+            },
+            {
+              "value": 210580,
+              "year": 1969
+            },
+            {
+              "value": 218979,
+              "year": 1970
+            },
+            {
+              "value": 220199,
+              "year": 1971
+            },
+            {
+              "value": 234818,
+              "year": 1972
+            },
+            {
+              "value": 246168,
+              "year": 1973
+            },
+            {
+              "value": 276034,
+              "year": 1974
+            },
+            {
+              "value": 239599,
+              "year": 1975
+            },
+            {
+              "value": 208946,
+              "year": 1976
+            },
+            {
+              "value": 188687,
+              "year": 1977
+            },
+            {
+              "value": 180804,
+              "year": 1978
+            },
+            {
+              "value": 191774,
+              "year": 1979
+            },
+            {
+              "value": 197626,
+              "year": 1980
+            },
+            {
+              "value": 193847,
+              "year": 1981
+            },
+            {
+              "value": 190419,
+              "year": 1982
+            },
+            {
+              "value": 196070,
+              "year": 1983
+            },
+            {
+              "value": 189159,
+              "year": 1984
+            },
+            {
+              "value": 198910,
+              "year": 1985
+            },
+            {
+              "value": 186244,
+              "year": 1986
+            },
+            {
+              "value": 201306,
+              "year": 1987
+            },
+            {
+              "value": 213510,
+              "year": 1988
+            },
+            {
+              "value": 208639,
+              "year": 1989
+            },
+            {
+              "value": 193845,
+              "year": 1990
+            },
+            {
+              "value": 183479,
+              "year": 1991
+            },
+            {
+              "value": 177141,
+              "year": 1992
+            },
+            {
+              "value": 181333,
+              "year": 1993
+            },
+            {
+              "value": 217776,
+              "year": 1994
+            },
+            {
+              "value": 215971,
+              "year": 1995
+            },
+            {
+              "value": 236460,
+              "year": 1996
+            },
+            {
+              "value": 239115,
+              "year": 1997
+            },
+            {
+              "value": 256090,
+              "year": 1998
+            },
+            {
+              "value": 259652,
+              "year": 1999
+            },
+            {
+              "value": 260047,
+              "year": 2000
             }
           ]
         }
