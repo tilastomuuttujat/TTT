@@ -260,6 +260,250 @@
           "alternative": "Muuttamista voivat selittää myös opiskelu, perhesuhteet, asumistoiveet ja politiikan ratkaisut. Alueen työpaikkakasvu voi sekä houkutella muuttajia että seurata väestön kasvua.",
           "question": "Muuttuiko alueen työllisyys ennen muuttoa vai sen jälkeen? Vertaa työpaikkoja, muuttoliikettä, asuntoja ja ikärakennetta samoilla aluerajoilla."
         }
+      ],
+      "short_title": "Maaltamuutto"
+    },
+    {
+      "id": "torpparikysymys",
+      "entry_theme_id": 2,
+      "short_title": "Torpparikysymys",
+      "title": "Torpparikysymys – vuokraviljelystä omistukseen ja uuteen työnjakoon",
+      "period": "1900–1975",
+      "question": "Miten maan hallinnan ehtojen muuttaminen sovitti toimeentuloa ja tuotantoa yhteen — ja missä ratkaisun rajat tulivat vastaan?",
+      "sources": [
+        {
+          "id": "archive",
+          "title": "Kansallisarkisto: Asutustoiminta itsenäisyyden ajalla",
+          "url": "https://portti.kansallisarkisto.fi/arkistojen-portti/asutustoiminta-itsenaisyyden-ajalla"
+        },
+        {
+          "id": "law",
+          "title": "Finlex: Laki vuokra-alueiden lunastamisesta (1918)",
+          "url": "https://www.finlex.fi/fi/lainsaadanto/1918/135-001"
+        },
+        {
+          "id": "migration",
+          "title": "Tilastokeskus: Maassamuuton suuri linja 1880-luvulta lähtien (2007)",
+          "url": "https://stat.fi/artikkelit/2007/art_2007-07-13_001.html?s=0"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Vuokraviljelyn ehdot",
+          "title": "Toimeentulo sidoksissa maan hallinnan ehtoihin",
+          "period": "1900–1918",
+          "years": [
+            1900,
+            1918
+          ],
+          "theme_ids": [
+            2,
+            15,
+            17
+          ],
+          "focus": {
+            "theme_id": 2,
+            "stage": 1
+          },
+          "map_points": [],
+          "event_year": 1900,
+          "event_label": "Vuokraviljelyn lähtötilanne",
+          "explanation": "Vuokraviljelyssä maan käyttö ja toimeentulo perustuivat vuokrasuhteeseen. Ehtojen ja jatkuvuuden merkitys vaihteli tiloittain.",
+          "mechanism": "Hallinnan jatkuvuus ja vuokraehdot vaikuttavat siihen, mitä kotitalous voi suunnitella.",
+          "benefit": "Maan käyttö voi mahdollistaa viljelyn ilman maan ostamista.",
+          "tradeoff": "Vuokrasuhteen epävarmuus voi rajoittaa pitkäjänteistä suunnittelua.",
+          "affected": "Vuokraviljelijät, maanomistajat ja heidän kotitaloutensa.",
+          "lag": "Sopimuksen ehdot vaikuttavat arkeen heti; pidemmät seuraukset kertyvät vuosina.",
+          "evidence_note": "Lain ja asutuspolitiikan kehys on lähteistetty. Vaikutusketjut ovat toimituksellisia tulkintoja. Kartan vuosimerkki kuvaa tapausta; teemakäyrien vaiheet ovat yleisiä.",
+          "alternative": "Tilojen kehitykseen vaikuttivat myös markkinat, teknologia, rahoitus, muu asutuspolitiikka ja kotitalouden valinnat.",
+          "source_ids": [
+            "archive",
+            "law"
+          ],
+          "mechanism_id": "hallintaoikeus-ja-toimeentulo"
+        },
+        {
+          "short_title": "Lunastusoikeus",
+          "title": "Vuoden 1918 laki avaa reitin omistukseen",
+          "period": "1918–1922",
+          "years": [
+            1918,
+            1922
+          ],
+          "theme_ids": [
+            2,
+            17,
+            15
+          ],
+          "focus": {
+            "theme_id": 2,
+            "stage": 1
+          },
+          "map_points": [],
+          "event_year": 1918,
+          "event_label": "Vuokra-alueiden lunastamislaki 1918",
+          "explanation": "Vuoden 1918 laki antoi vuokraviljelijöille mahdollisuuden lunastaa alueita omikseen. Oikeus ja sen toimeenpano olivat eri vaiheita.",
+          "mechanism": "Lunastusoikeus → lunastusmenettely ja rahoitus → mahdollinen omistuksen muutos.",
+          "benefit": "Mahdollisuus vahvistaa hallinnan pysyvyyttä.",
+          "tradeoff": "Lunastus edellyttää menettelyä ja maksamista; oikeus ei yksin takaa riittävää toimeentuloa.",
+          "affected": "Lunastukseen oikeutetut vuokraviljelijät ja maanomistajat.",
+          "lag": "Lainsäädännön muutos 1918; toimeenpano seuraavina vuosina.",
+          "evidence_note": "Lain ja asutuspolitiikan kehys on lähteistetty. Vaikutusketjut ovat toimituksellisia tulkintoja. Kartan vuosimerkki kuvaa tapausta; teemakäyrien vaiheet ovat yleisiä.",
+          "alternative": "Tilojen kehitykseen vaikuttivat myös markkinat, teknologia, rahoitus, muu asutuspolitiikka ja kotitalouden valinnat.",
+          "source_ids": [
+            "archive",
+            "law"
+          ],
+          "mechanism_id": "hallintaoikeus-ja-toimeentulo"
+        },
+        {
+          "short_title": "Omistuksen vaikutus",
+          "title": "Hallinnan pysyvyys ja investointien mahdollisuus",
+          "period": "1920–1939",
+          "years": [
+            1920,
+            1939
+          ],
+          "theme_ids": [
+            2,
+            15,
+            17
+          ],
+          "focus": {
+            "theme_id": 2,
+            "stage": 1
+          },
+          "map_points": [],
+          "event_year": 1935,
+          "event_label": "Lunastusten toimeenpano",
+          "explanation": "Omistuksen muuttuminen saattoi vahvistaa kotitalouden mahdollisuutta suunnitella viljelyä. Investointivaikutus on tutkittava, ei lain olemassaolosta pääteltävä tulos.",
+          "mechanism": "Pysyvämpi hallinta voi pidentää suunnittelua; rahoitus ja kannattavuus ratkaisevat investointien toteutumista.",
+          "benefit": "Mahdollinen varmuus asumisen ja viljelyn jatkumisesta.",
+          "tradeoff": "Omistaja kantaa myös rahoituksen ja tuotannon riskejä.",
+          "affected": "Itsenäistyneet viljelijäkotitaloudet; vaikutukset vaihtelevat tilan edellytysten mukaan.",
+          "lag": "Hallinnan muutos voi olla nopea; investointien vaikutukset näkyvät vuosien kuluessa.",
+          "evidence_note": "Lain ja asutuspolitiikan kehys on lähteistetty. Vaikutusketjut ovat toimituksellisia tulkintoja. Kartan vuosimerkki kuvaa tapausta; teemakäyrien vaiheet ovat yleisiä.",
+          "alternative": "Tilojen kehitykseen vaikuttivat myös markkinat, teknologia, rahoitus, muu asutuspolitiikka ja kotitalouden valinnat.",
+          "source_ids": [
+            "archive",
+            "law"
+          ],
+          "mechanism_id": "hallintaoikeus-ja-toimeentulo"
+        },
+        {
+          "short_title": "Pientilatalouden rajat",
+          "title": "Omistus ei ratkaise kaikkia tuotannon muutoksia",
+          "period": "1950–1965",
+          "years": [
+            1950,
+            1965
+          ],
+          "theme_ids": [
+            2,
+            15,
+            20
+          ],
+          "focus": {
+            "theme_id": 15,
+            "stage": 2
+          },
+          "map_points": [],
+          "event_year": 1958,
+          "event_label": "Asutuspolitiikan painopiste muuttuu",
+          "explanation": "Asutuspolitiikan painopiste siirtyi uusien tilojen perustamisesta olemassa olevien tilojen elinkelpoisuuden parantamiseen. Omistus ja tilan toimeentulokyky ovat eri kysymyksiä.",
+          "mechanism": "Tuotannon muutos voi muuttaa tilan kannattavuutta, vaikka hallintaoikeus säilyy.",
+          "benefit": "Omistus tarjoaa jatkuvuutta ja mahdollisuuden sopeuttaa tilan toimintaa.",
+          "tradeoff": "Tilan koko, rahoitus ja työmahdollisuudet voivat rajata sopeutumista.",
+          "affected": "Viljelijät, seuraava sukupolvi ja maaseudun yhteisöt.",
+          "lag": "Tuotannon muutokset ja sukupolvenvaihdokset: vuosista vuosikymmeniin.",
+          "evidence_note": "Lain ja asutuspolitiikan kehys on lähteistetty. Vaikutusketjut ovat toimituksellisia tulkintoja. Kartan vuosimerkki kuvaa tapausta; teemakäyrien vaiheet ovat yleisiä.",
+          "alternative": "Tilojen kehitykseen vaikuttivat myös markkinat, teknologia, rahoitus, muu asutuspolitiikka ja kotitalouden valinnat.",
+          "source_ids": [
+            "archive",
+            "migration"
+          ]
+        },
+        {
+          "short_title": "Yhteys maaltamuuttoon",
+          "title": "Toimeentulon seuraava sovitus voi olla muutto",
+          "period": "1960–1975",
+          "years": [
+            1960,
+            1975
+          ],
+          "theme_ids": [
+            1,
+            2,
+            15,
+            20
+          ],
+          "focus": {
+            "theme_id": 1,
+            "stage": 2
+          },
+          "map_points": [],
+          "event_year": 1960,
+          "event_label": "Maaltamuuton aika",
+          "explanation": "Maan omistaminen ei sulje pois palkkatyötä tai muuttamista. Torpparivapautuksen ja myöhemmän maaltamuuton yhteys on vertailukysymys, ei yksisuuntainen syyketju.",
+          "mechanism": "Työmahdollisuuksien muutos → kotitalouden valinta viljelyn, muun työn ja muuttamisen välillä.",
+          "benefit": "Mahdollisuus yhdistää erilaisia toimeentulon lähteitä.",
+          "tradeoff": "Muutto voi katkaista paikallisia verkostoja ja siirtää arjen järjestämisen tarpeita.",
+          "affected": "Viljelijäperheiden jälkeläiset sekä lähtö- ja tuloalueet.",
+          "lag": "Kotitalouden päätös: vuosia; alueelliset seuraukset: vuosikymmeniä.",
+          "evidence_note": "Lain ja asutuspolitiikan kehys on lähteistetty. Vaikutusketjut ovat toimituksellisia tulkintoja. Kartan vuosimerkki kuvaa tapausta; teemakäyrien vaiheet ovat yleisiä.",
+          "alternative": "Tilojen kehitykseen vaikuttivat myös markkinat, teknologia, rahoitus, muu asutuspolitiikka ja kotitalouden valinnat.",
+          "source_ids": [
+            "archive",
+            "migration"
+          ],
+          "related_anchor_id": "maaltamuutto"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "hallintaoikeus-ja-toimeentulo",
+          "title": "Miten hallintaoikeuden muutos vaikutti toimeentuloon?",
+          "intro": "Hallinnan pysyvyys voi muuttaa suunnittelun ehtoja. Omistus, rahoitus ja tuotannon kannattavuus on tarkasteltava yhdessä.",
+          "links": [
+            {
+              "title": "Oikeus muuttuu",
+              "text": "Lunastusoikeus antaa mahdollisuuden muuttaa vuokrasuhteen omistukseksi.",
+              "lag": "Laki 1918; toimeenpano vuosien kuluessa."
+            },
+            {
+              "title": "Hallinta vahvistuu",
+              "text": "Toteutunut lunastus voi tehdä alueen hallinnasta pysyvämpää.",
+              "lag": "Vaikutus alkaa lunastuksen toteuduttua."
+            },
+            {
+              "title": "Suunnittelu voi pidentyä",
+              "text": "Kotitalous voi harkita pitkäaikaisia parannuksia; niiden toteutus riippuu myös rahoituksesta ja tuotosta.",
+              "lag": "Mahdolliset investoinnit: vuosia."
+            },
+            {
+              "title": "Toimeentulo kohtaa uudet ehdot",
+              "text": "Omistus voi tukea jatkuvuutta, mutta ei poista tuotannon muutoksia tai vaihtoehtoisen työn tarvetta.",
+              "lag": "Pitkä seuraus: vuosikymmeniä."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Kansallisarkiston opas kuvaa vuoden 1918 lunastusoikeutta, valtion lainatukea ja myöhempää asutuspolitiikkaa.",
+              "source_ids": [
+                "archive"
+              ]
+            },
+            {
+              "text": "Vuoden 1918 laki on lunastusuudistuksen oikeudellinen lähde.",
+              "source_ids": [
+                "law"
+              ]
+            }
+          ],
+          "interpretation": "Investointien, toimeentulon ja turvallisuuden vaikutukset ovat tässä selitysmallin hypoteeseja. Aikaviiveet havainnollistavat eri tahtiin tapahtuvia muutoksia, eivät mitattuja keskiarvoja.",
+          "alternative": "Tuotannon kasvu tai kotitalouden turva saattoi johtua myös hinnoista, teknologiasta, lisäansioista tai muista uudistuksista. Omistuksen vaikutus on erotettava näistä.",
+          "question": "Vertaa lunastaneiden ja vuokrasuhteessa jatkaneiden tilojen investointeja ja toimeentuloa, huomioiden tilakoko, alue ja rahoitus."
+        }
       ]
     }
   ]
