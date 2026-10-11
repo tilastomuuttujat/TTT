@@ -1989,6 +1989,408 @@
           "question": "Vertaa lunastaneiden ja vuokrasuhteessa jatkaneiden tilojen investointeja ja toimeentuloa, huomioiden tilakoko, alue ja rahoitus."
         }
       ]
+    },
+    {
+      "id": "peruskoulu-uudistus",
+      "entry_theme_id": 4,
+      "short_title": "Peruskoulu-uudistus",
+      "title": "Peruskoulu-uudistus – yhteinen opintie ja tasa-arvon muuttuvat ehdot",
+      "period": "1950–2025",
+      "question": "Miten yhteinen koulureitti muutti koulutuksen ehtoja, mitä vaikutuksista tiedetään ja miksi tasa-arvo tarvitsee jatkuvaa ylläpitoa?",
+      "sources": [
+        {
+          "id": "law1968",
+          "title": "Finlex: Laki koulujärjestelmän perusteista (467/1968)",
+          "url": "https://www.finlex.fi/fi/lainsaadanto/1968/467"
+        },
+        {
+          "id": "ifau-reform",
+          "title": "IFAU: Utjämnade möjligheter efter grundskolereform i Finland (2006)",
+          "url": "https://www.ifau.se/Press/Meddelanden/Utjamnade-mojligheter-efter-grundskolereform-i-Finland/"
+        },
+        {
+          "id": "ifau-paper",
+          "title": "Pekkala Kerr, Pekkarinen ja Uusitalo: Educational policy and intergenerational income mobility (IFAU 2006:13)",
+          "url": "https://www.ifau.se/en/Research/Publications/Working-papers/2006/Educational-policy-and-intergenerational-income-mobility-evidence-from-the-Finnish-comprehensive-school-reform/"
+        },
+        {
+          "id": "ifau-full",
+          "title": "IFAU 2006:13: tutkimuksen koko teksti, erityisesti toimeenpanon rajat ja tasokurssit",
+          "url": "https://www.ifau.se/globalassets/pdf/se/2006/wp06-13.pdf"
+        },
+        {
+          "id": "article2009",
+          "title": "Pekkarinen, Uusitalo ja Kerr (2009): School tracking and intergenerational income mobility, Journal of Public Economics",
+          "url": "https://research.aalto.fi/en/publications/school-tracking-and-intergenerational-income-mobility-evidence-fr/"
+        },
+        {
+          "id": "school-meals",
+          "title": "Opetushallitus: Kouluruokailun historiaa",
+          "url": "https://www.oph.fi/fi/koulutus-ja-tutkinnot/kouluruokailun-historiaa"
+        },
+        {
+          "id": "karvi2023",
+          "title": "Karvi (2023): Koulu ei voi yksin nostaa kansallista osaamistasoa",
+          "url": "https://www.karvi.fi/fi/ajankohtaista/uutiset/koulu-ei-voi-yksin-nostaa-kansallista-osaamistasoa"
+        },
+        {
+          "id": "karvi2024",
+          "title": "Karvi (2024): Oppilaiden tuen tarpeet ovat kasvaneet, mutta oppimisen ja koulunkäynnin tuki takkuaa",
+          "url": "https://www.karvi.fi/fi/ajankohtaista/uutiset/oppilaiden-tuen-tarpeet-ovat-kasvaneet-mutta-oppimisen-ja-koulunkaynnin-tuki-takkuaa"
+        },
+        {
+          "id": "school-network",
+          "title": "Opetushallitus (2025): Peruskoulut ja lukiot 2011–2040",
+          "url": "https://www.oph.fi/fi/tilastot-ja-julkaisut/julkaisut/peruskoulut-ja-lukiot-2011-2040"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Varhainen valikointi",
+          "title": "Rinnakkaiskoulu jakaa koulutuspolut varhain",
+          "period": "1950–1967",
+          "years": [
+            1950,
+            1967
+          ],
+          "theme_ids": [
+            4,
+            19,
+            26
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 1
+          },
+          "map_points": [],
+          "event_year": 1960,
+          "event_label": "Rinnakkaiskoulujärjestelmä ennen uudistusta",
+          "explanation": "Ennen uudistusta kansakoulu ja oppikoulu muodostivat erilaisia koulutusreittejä. Yhteiseen peruskouluun siirtyminen muutti varhaisen valikoinnin rakennetta.",
+          "mechanism": "Varhainen koulutusvalinta voi välittää kodin voimavaroja myöhempiin mahdollisuuksiin. Tämän ketjun voimakkuus on empiirinen kysymys.",
+          "benefit": "Eri reitit saattoivat tarjota erilaista opetusta oppilaiden tarpeisiin.",
+          "tradeoff": "Varhain tehty valinta voi sulkea vaihtoehtoja ennen kuin oppilaan osaaminen on ehtinyt kehittyä.",
+          "affected": "Lapset, huoltajat ja etenkin perheet, joiden mahdollisuudet tukea koulutusvalintoja ovat rajalliset.",
+          "lag": "Valinta vaikuttaa koulupolkuun heti; koulutuksen ja tulojen yhteydet näkyvät myöhemmin.",
+          "evidence_note": "Rinnakkaisjärjestelmän olemassaolo on dokumentoitu; perhetaustaa välittävä ketju on tässä tulkintamalli. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Polkujen eroja voivat selittää myös alueen koulutarjonta, oppilaan aiempi osaaminen ja huoltajien toiveet.",
+          "source_ids": [
+            "ifau-paper",
+            "ifau-full"
+          ],
+          "mechanism_id": "myohempi-valikointi"
+        },
+        {
+          "short_title": "Päätös yhteisestä koulusta",
+          "title": "Vuoden 1968 laki luo uudistuksen oikeudellisen perustan",
+          "period": "1968–1971",
+          "years": [
+            1968,
+            1971
+          ],
+          "theme_ids": [
+            4,
+            8,
+            19
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 2
+          },
+          "map_points": [
+            {
+              "theme_id": 4,
+              "stage": 2
+            },
+            {
+              "theme_id": 8,
+              "stage": 2
+            },
+            {
+              "theme_id": 19,
+              "stage": 2
+            }
+          ],
+          "event_year": 1968,
+          "event_label": "Laki koulujärjestelmän perusteista 467/1968",
+          "explanation": "Vuoden 1968 laki oli peruskoulu-uudistuksen oikeudellinen perusta. Päätös ja kunnissa toteutunut siirtyminen ovat eri tapahtumia; toimeenpano eteni myöhemmin alueittain.",
+          "mechanism": "Yhteinen oikeudellinen kehys → paikallinen valmistelu → opetuksen käytännön järjestäminen. Vaikutus riippuu toteutuksesta.",
+          "benefit": "Mahdollisuus rakentaa koko ikäluokalle yhteinen koulutusreitti.",
+          "tradeoff": "Yhteinen järjestelmä tarvitsee henkilöstön, opetuksen ja paikallisten järjestelyjen yhteensovittamista.",
+          "affected": "Kunnat, koulut, opettajat ja uudistukseen siirtyvät ikäluokat.",
+          "lag": "Päätös vuonna 1968; alueellinen toimeenpano seuraavalla vuosikymmenellä.",
+          "evidence_note": "Laki ja toimeenpanon aikajärjestys ovat lähteistettyjä. Resurssien vaikutusta ei tässä mitata. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Pelkkä laki ei kerro opetuksen laadusta: paikallinen valmistelu ja aiemmat koulukokeilut voivat vaikuttaa tuloksiin.",
+          "source_ids": [
+            "law1968",
+            "ifau-reform",
+            "ifau-full"
+          ],
+          "mechanism_id": "myohempi-valikointi"
+        },
+        {
+          "short_title": "Toimeenpano 1972–1977",
+          "title": "Yhdeksänvuotinen yhteinen koulureitti leviää pohjoisesta etelään",
+          "period": "1972–1977",
+          "years": [
+            1972,
+            1977
+          ],
+          "theme_ids": [
+            4,
+            8,
+            19,
+            20
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 2
+          },
+          "map_points": [],
+          "event_year": 1972,
+          "event_label": "Toimeenpano alkaa Lapista",
+          "explanation": "Siirtyminen alkoi Lapista vuonna 1972 ja päättyi pääkaupunkiseudulla vuonna 1977. Yhdeksänvuotinen yhteinen peruskoulu korvasi vanhan kaksijakoisen järjestelmän. Eri alueiden oppilaat kohtasivat uudistuksen eri vuosina.",
+          "mechanism": "Yhteinen koulureitti lykkää erillisiin koulutuslinjoihin valikoitumista. Alueittainen ajoitus mahdollistaa myös uudistusta ennen ja sen jälkeen opiskelleiden vertailun.",
+          "benefit": "Pidempi yhteinen opintie voi pitää jatkokoulutuksen vaihtoehtoja avoimina.",
+          "tradeoff": "Sama koulujärjestelmä ei yksin takaa samanlaista arkea tai riittävää yksilöllistä tukea.",
+          "affected": "Uudistukseen eri vuosina siirtyneiden alueiden lapset, huoltajat ja koulut.",
+          "lag": "Paikallinen siirtymä tapahtuu tiettynä lukuvuonna; aikuisuuden vaikutukset edellyttävät pitkää seurantaa.",
+          "evidence_note": "Alueellinen toimeenpano ja järjestelmän muutos on dokumentoitu. Mahdollinen hyöty on mekanismia koskeva tulkinta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Koulukokeilut ja muut samanaikaiset muutokset voivat heikentää virallisen siirtymävuoden käyttöä yksiselitteisenä vertailurajana.",
+          "source_ids": [
+            "ifau-reform",
+            "ifau-paper",
+            "ifau-full"
+          ],
+          "mechanism_id": "myohempi-valikointi"
+        },
+        {
+          "short_title": "Yhteisen koulun rajat",
+          "title": "Tasokurssit osoittavat, ettei valikointi poistunut kerralla",
+          "period": "1978–1985",
+          "years": [
+            1978,
+            1985
+          ],
+          "theme_ids": [
+            4,
+            19,
+            26
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 2
+          },
+          "map_points": [],
+          "event_year": 1985,
+          "event_label": "Tasokursseista luovutaan",
+          "explanation": "Peruskoulun alkuvaiheessa matematiikassa ja vieraissa kielissä säilyi tasoryhmittelyä. Siitä luovuttiin vuonna 1985. Yhteinen koulu ja koulun sisäiset erottelut on siksi erotettava toisistaan.",
+          "mechanism": "Koulun sisäiset ryhmittelyt voivat vaikuttaa siihen, millaiset oppimisen ja jatko-opintojen mahdollisuudet yhteinen koulu tarjoaa.",
+          "benefit": "Tarpeisiin mukautettu opetus voi tukea oppimista.",
+          "tradeoff": "Jos ryhmittely lukitsee odotuksia tai mahdollisuuksia, se voi samalla ylläpitää eroja.",
+          "affected": "Eri tasoryhmiin sijoittuneet oppilaat ja heidän opettajansa.",
+          "lag": "Ryhmän vaikutus alkaa kouluaikana; myöhemmät seuraukset on tutkittava erikseen.",
+          "evidence_note": "Tasoryhmittelyn historia ja vuoden 1985 muutos ovat tutkimuksessa dokumentoituja. Esitetyt vaikutusketjut ovat hypoteeseja. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Ryhmien väliset erot voivat heijastaa aiempaa osaamista; ryhmittelyn vaikutusta ei voi päätellä pelkästä erosta.",
+          "source_ids": [
+            "ifau-full"
+          ],
+          "mechanism_id": "myohempi-valikointi"
+        },
+        {
+          "short_title": "Pitkän aikavälin näyttö",
+          "title": "Tutkimus arvioi uudistuksen yhteyttä ylisukupolviseen tuloliikkuvuuteen",
+          "period": "1986–2009",
+          "years": [
+            1986,
+            2009
+          ],
+          "theme_ids": [
+            4,
+            15,
+            19,
+            26
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 3
+          },
+          "map_points": [
+            {
+              "theme_id": 4,
+              "stage": 3
+            },
+            {
+              "theme_id": 19,
+              "stage": 3
+            }
+          ],
+          "event_year": 2009,
+          "event_label": "Tuloliikkuvuustutkimus julkaistaan",
+          "explanation": "Pekkarisen, Uusitalon ja Kerrin tutkimus arvioi uudistuksen vaikutusta isien ja poikien väliseen tuloyhteyteen. Tulokset tukevat tuloliikkuvuuden lisääntymistä tutkitussa aineistossa. Tulos ei tarkoita, että kaikki koulutus- tai hyvinvointierot olisivat poistuneet.",
+          "mechanism": "Mahdollinen ketju kulkee yhteisen koulutuksen kautta myöhempiin koulutus- ja työmarkkinareitteihin; tutkimustulos ei yksin erota kaikkia välittäviä kanavia.",
+          "benefit": "Tutkimus antaa näyttöä siitä, että koulutusjärjestelmän rakenne voi vaikuttaa lähtökohtien periytymiseen.",
+          "tradeoff": "Yhden kohorttiaineiston tulos ei mittaa kaikkia ryhmiä, kaikkia vaikutuksia tai nykyistä koulua.",
+          "affected": "Tutkimuksessa vuosina 1960–1966 syntyneet miehet ja heidän vanhempansa; yleistäminen muihin ryhmiin vaatii näyttöä.",
+          "lag": "Kouluaikaisen uudistuksen ja aikuisuuden tulohavaintojen välillä on vuosikymmeniä.",
+          "evidence_note": "IFAU:n tutkimus käyttää alueiden vaiheittaiseen toimeenpanoon perustuvaa difference-in-differences-asetelmaa. Vertaisarvioitu artikkeli julkaistiin vuonna 2009. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Muut alue- ja ikäluokkakohtaiset muutokset voivat haastaa vertailuasetelman. Tuloksen tulkinta edellyttää tutkimuksen oletusten ja toimeenpanon poikkeusten tarkastelua.",
+          "source_ids": [
+            "ifau-paper",
+            "article2009",
+            "ifau-full"
+          ],
+          "mechanism_id": "myohempi-valikointi"
+        },
+        {
+          "short_title": "Tasa-arvon uudet ehdot",
+          "title": "Yhteinen rakenne tarvitsee tukea ja saavutettavaa kouluverkkoa",
+          "period": "2011–2025",
+          "years": [
+            2011,
+            2025
+          ],
+          "theme_ids": [
+            4,
+            19,
+            20,
+            26,
+            30
+          ],
+          "focus": {
+            "theme_id": 26,
+            "stage": 5
+          },
+          "map_points": [
+            {
+              "theme_id": 26,
+              "stage": 5
+            },
+            {
+              "theme_id": 30,
+              "stage": 5
+            }
+          ],
+          "event_year": 2025,
+          "event_label": "Kouluverkon ja ikäluokkien muutosten arviointi",
+          "explanation": "Karvin arvioinnit osoittavat kotitaustan yhteyksiä osaamiseen sekä oppimisen tuen toteuttamisen vaikeuksia. Opetushallituksen kouluverkkoraportti tarkastelee vuosien 2011–2024 kehitystä ja tulevia ikäluokkia. Nämä myöhemmät havainnot eivät yksin osoita 1970-luvun uudistuksen vaikutusta.",
+          "mechanism": "Tutkittava ketju: alueen ja kotitalouden voimavarat → tuen ja opetuksen saavutettavuus → oppimisen mahdollisuudet. Tarpeeseen kohdennettu tuki on mahdollinen vastaus, jonka vaikutukset on arvioitava.",
+          "benefit": "Mahdollisuus täydentää yhteistä koulua oikea-aikaisella tuella ja paikallisiin tarpeisiin vastaavilla järjestelyillä.",
+          "tradeoff": "Resurssit ja saavutettavuus voivat rajoittaa toteutusta; sama ratkaisu ei välttämättä sovi kaikille alueille.",
+          "affected": "Tukea tarvitsevat oppilaat, opettajat, perheet sekä kouluverkkoa järjestävät kunnat.",
+          "lag": "Tuen vaikutus voi alkaa kouluaikana; koulutuspolkujen ja kouluverkon seuraukset kertyvät pidemmällä aikavälillä.",
+          "evidence_note": "Arviointihavainnot ja kouluverkon tarkastelu ovat lähteistettyjä. Korjauskeinot ovat tässä tutkittavia ehdotuksia; raportin ennusteet eivät ole toteutuneita havaintoja. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Osaamisen muutoksia voivat selittää myös kodin oppimisympäristö, oppilaiden hyvinvointi ja väestörakenteen muutos. Rahoituksen tai kouluverkon yksittäistä vaikutusta ei tässä tunnisteta.",
+          "source_ids": [
+            "karvi2023",
+            "karvi2024",
+            "school-network"
+          ],
+          "mechanism_id": "tuki-ja-saavutettavuus"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "myohempi-valikointi",
+          "title": "Miten yhteinen koulureitti voi muuttaa lähtökohtien periytymistä?",
+          "intro": "Institutionaalinen muutos ja sen vaikutukset ovat eri asioita. Seuraava ketju on selitysmalli, ei valmis mittaustulos.",
+          "links": [
+            {
+              "title": "Reitti muuttuu",
+              "text": "Rinnakkaisjärjestelmä korvataan pidemmällä yhteisellä koulureitillä.",
+              "lag": "Toimeenpano alueittain 1972–1977."
+            },
+            {
+              "title": "Valinta siirtyy myöhemmäksi",
+              "text": "Oppilaalla voi olla enemmän aikaa kehittää osaamistaan ennen erillisiä jatkokoulutusreittejä.",
+              "lag": "Kouluvuosien kuluessa; mekanismihypoteesi."
+            },
+            {
+              "title": "Mahdollisuudet riippuvat myös toteutuksesta",
+              "text": "Opetuksen tuki, ryhmittely ja kodin voimavarat voivat vahvistaa tai rajoittaa yhteisen koulureitin vaikutusta.",
+              "lag": "Kouluajan aikana; kanavat erotettava tutkimuksessa."
+            },
+            {
+              "title": "Aikuisuuden seurauksia verrataan",
+              "text": "Tutkimus voi tarkastella vanhempien ja lasten tulojen yhteyttä, mutta yhteys ei kata kaikkea hyvinvointia.",
+              "lag": "Vasta aikuisiän seurannassa."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "IFAU:n yhteenveto kuvaa vaiheittaista siirtymää ja tutkimusta vuosina 1960–1966 syntyneillä miehillä. Tulokset tukevat tuloliikkuvuuden lisääntymistä.",
+              "source_ids": [
+                "ifau-paper"
+              ]
+            },
+            {
+              "text": "Tutkimuksen koko teksti käsittelee tasoryhmittelyä, vuoden 1985 muutosta ja virallisen siirtymäajoituksen poikkeuksia.",
+              "source_ids": [
+                "ifau-full"
+              ]
+            },
+            {
+              "text": "Aallon julkaisutietue varmistaa vuoden 2009 vertaisarvioidun artikkelin bibliografiset tiedot.",
+              "source_ids": [
+                "article2009"
+              ]
+            }
+          ],
+          "interpretation": "Ketjun välivaiheiden osuuksia ei tässä mitata. Tutkimuksen tuloliikkuvuustulos ei ole sama asia kuin kaikkien yksilöiden koulutusmahdollisuuksien yhtäläisyys.",
+          "alternative": "Alueiden muutokset, koulukokeilut ja muut samaan aikaan toteutuneet uudistukset voivat vaikuttaa vertailuun.",
+          "question": "Vertaa ikäluokkia eri toimeenpanovuosien alueilla ja tarkista samanaikaiset muutokset. Erottele koulutusvalinnat, osaaminen ja myöhemmät tulot."
+        },
+        {
+          "id": "tuki-ja-saavutettavuus",
+          "title": "Miksi yhteinen koulu tarvitsee myös saavutettavaa tukea?",
+          "intro": "Yhteinen koulumuoto ei yksin määritä oppilaan arkea. Oppimisen edellytyksiä on tarkasteltava myös paikallisesti.",
+          "links": [
+            {
+              "title": "Tarve vaihtelee",
+              "text": "Oppilaiden lähtökohdat ja tuen tarpeet voivat olla erilaisia.",
+              "lag": "Tunnistaminen koulupolun alusta lähtien."
+            },
+            {
+              "title": "Toteutus ratkaisee",
+              "text": "Tuen oikea-aikaisuus sekä opetuksen järjestelyt ovat mahdollisia vaikutuskanavia.",
+              "lag": "Koulupäivistä lukuvuosiin; vaikutus tutkittava."
+            },
+            {
+              "title": "Saavutettavuus muuttuu",
+              "text": "Kouluverkko ja ikäluokkien koko voivat muuttaa palvelujen järjestämisen ehtoja.",
+              "lag": "Kuntien ratkaisuissa vuosien aikana."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Karvi kuvaa vuonna 2023 kotitaustan ja sosioekonomisen tilanteen yhteyttä oppimistuloksiin. Yhteys ei yksin osoita syytä.",
+              "source_ids": [
+                "karvi2023"
+              ]
+            },
+            {
+              "text": "Karvin vuosien 2022–2024 arviointi raportoi vaikeuksista tarjota tukea oikeaan aikaan.",
+              "source_ids": [
+                "karvi2024"
+              ]
+            },
+            {
+              "text": "Opetushallituksen raportti erottaa kouluverkon menneen kehityksen tulevia ikäluokkia koskevista ennakoinneista.",
+              "source_ids": [
+                "school-network"
+              ]
+            },
+            {
+              "text": "Maksuton kouluruokailu alkoi ennen peruskoulu-uudistusta: sen historiaa ei pidä esittää kokonaan uudistuksen aikaansaannoksena.",
+              "source_ids": [
+                "school-meals"
+              ]
+            }
+          ],
+          "interpretation": "Tarveperusteinen tuki ja saavutettava kouluverkko ovat arvioitavia ratkaisusuuntia. Tässä ei lasketa niiden kustannuksia eikä vaikutuksia.",
+          "alternative": "Oppimisen erot voivat liittyä myös kodin voimavaroihin, hyvinvointiin tai muihin koulujen ulkopuolisiin tekijöihin.",
+          "question": "Seuraa tuen oikea-aikaisuutta, oppimisen kehitystä ja palvelujen saavutettavuutta taustaryhmittäin ennen muutosta ja sen jälkeen."
+        }
+      ]
     }
   ]
 }
