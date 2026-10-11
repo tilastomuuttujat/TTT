@@ -383,17 +383,38 @@ function renderEmploymentStatistics(series,step){
  }));chart+='</svg>';
  return '<h4>'+esc(series.title)+'</h4><p>'+esc(series.definition)+'</p>'+chart+'<p>'+series.groups.map(g=>'<span style="color:'+esc(g.color)+';font-weight:700">● '+esc(g.title)+'</span>').join(' · ')+'</p><p class="mini">Katkoviiva: historiallinen henkilömääräsarja 1960–1975. Yhtenäinen viiva: ESA2010 1975–2000. Vuoden 1975 molemmat havainnot säilyvät.</p><p>'+esc(series.interpretation)+'</p><p><b>Vertailtavuus:</b> '+esc(series.comparability)+'</p><p><b>Tulkinnan rajat:</b> '+esc(series.limits)+'</p><p class="mini"><a href="'+esc(series.source_url)+'" target="_blank" rel="noopener noreferrer">'+esc(series.source_title)+'</a> · Lähde päivitetty '+esc(series.source_updated)+'</p><details><summary>Näytä vuosihavainnot taulukkona (42)</summary><p class="mini">Soluissa osuus (%) / työlliset (tuhatta henkilöä).</p><div class="statistics-table-scroll"><table><caption>'+esc(series.title)+'</caption><thead><tr><th scope="col">Vuosi</th><th scope="col">Menetelmä</th>'+series.groups.map(g=>'<th scope="col">'+esc(g.title)+'</th>').join('')+'</tr></thead><tbody>'+series.segments.map(seg=>seg.points.map(p=>'<tr><th scope="row">'+p.year+'</th><td>'+esc(seg.method)+'</td>'+p.shares.map((v,i)=>'<td>'+format(v)+' % / '+format(p.counts[i])+'</td>').join('')+'</tr>').join('')).join('')+'</tbody></table></div></details>';
 }
+function renderRegionalStatistics(series,step){
+ const esc=analysisSafe,fmt=v=>v.toLocaleString('fi-FI',{maximumFractionDigits:1}),x=year=>70+(year-1950)/75*640;
+ const plot=(metric,title,unit,low,high,tick)=>{
+  const y=v=>270-(v-low)/(high-low)*220;
+  let svg='<svg class="statistics-chart" viewBox="0 0 760 325" role="img" aria-label="'+esc(title)+'"><title>'+esc(title)+'</title><desc>Uusimaa ja Kainuu 1990–2025. Vuosille 1950–1989 ei ole havaintoja. Valitun polun vaiheen vuodet on korostettu. Tarkat luvut ovat taulukossa.</desc>';
+  const left=x(Math.max(1950,step.years[0])),right=x(Math.min(2025,step.years[1]));if(right>left)svg+='<rect x="'+left+'" y="50" width="'+(right-left)+'" height="220" fill="#e6f3ee"/>';
+  for(let v=low;v<=high;v+=tick)svg+='<line x1="70" x2="710" y1="'+y(v)+'" y2="'+y(v)+'" stroke="'+(v===0?'#63736c':'#dfe5df')+'"/><text x="62" y="'+(y(v)+4)+'" text-anchor="end" font-size="12">'+fmt(v)+'</text>';
+  for(const year of [1950,1960,1970,1980,1990,2000,2010,2025])svg+='<text x="'+x(year)+'" y="292" text-anchor="middle" font-size="13">'+year+'</text>';
+  svg+='<text x="70" y="25" font-size="13">'+esc(unit)+'</text><text x="710" y="315" text-anchor="end" font-size="12">Vuosi</text>';
+  for(const region of series.regions){svg+='<polyline points="'+region.points.map(p=>x(p.year)+','+y(p[metric])).join(' ')+'" fill="none" stroke="'+esc(region.color)+'" stroke-width="2.5"/>';svg+=region.points.map(p=>'<circle cx="'+x(p.year)+'" cy="'+y(p[metric])+'" r="2.5" fill="'+esc(region.color)+'"><title>'+esc(region.title)+' '+p.year+': '+fmt(p[metric])+' '+esc(unit)+'</title></circle>').join('');}
+  return '<h5>'+esc(title)+'</h5>'+svg+'</svg>';
+ };
+ const nets=series.regions.flatMap(r=>r.points.map(p=>p.domestic_net_migration)),low=Math.min(-2000,Math.floor(Math.min(...nets)/2000)*2000),high=Math.max(2000,Math.ceil(Math.max(...nets)/2000)*2000);
+ const overlap=step.years[1]>=1990&&step.years[0]<=2025;
+ const summary=series.regions.map(region=>{const points=region.points.filter(p=>p.year>=step.years[0]&&p.year<=step.years[1]);if(points.length<2)return '';const first=points[0],last=points.at(-1),change=100*(last.population/first.population-1),net=points.reduce((sum,p)=>sum+p.domestic_net_migration,0);return '<p><b>'+esc(region.title)+' '+first.year+'–'+last.year+':</b> väkiluku '+fmt(first.population)+' → '+fmt(last.population)+' ('+(change>=0?'+':'')+fmt(change)+' %). Kotimaan nettomuuton vuosisumma '+(net>=0?'+':'')+fmt(net)+' henkilöä; summa sisältää myös alkuvuoden muutot.</p>';}).join('');
+ return '<h4>'+esc(series.title)+'</h4><p>'+esc(series.selection_reason)+'</p><p>'+esc(series.definition)+'</p><p class="mini">'+series.regions.map(r=>'<span style="color:'+esc(r.color)+';font-weight:700">● '+esc(r.title)+'</span>').join(' · ')+'</p><p><b>Valittu aikaikkuna:</b> '+step.years[0]+'–'+step.years[1]+'. '+(overlap?'Korostus näyttää polun vaiheen; havaintoja on vuodesta 1990 alkaen.':'Tähän vaiheeseen ei ole aluehavaintoja. Kuvaajat näyttävät myöhemmän kehityksen 1990–2025.')+'</p>'+summary+plot('population_index','Väestön kehitys','Indeksi (1990 = 100)',0,160,40)+plot('domestic_net_migration','Kotimaan nettomuutto','Henkilöä vuodessa',low,high,2000)+'<p><b>Vertailtavuus:</b> '+esc(series.comparability)+'</p><p><b>Tulkinnan rajat:</b> '+esc(series.limits)+'</p><p class="mini"><a href="'+esc(series.source_url)+'" target="_blank" rel="noopener noreferrer">'+esc(series.source_title)+'</a> · Lähde päivitetty '+esc(series.source_updated)+'</p><details><summary>Näytä aluehavainnot taulukkona (72)</summary><div class="statistics-table-scroll"><table><caption>'+esc(series.title)+'</caption><thead><tr><th scope="col">Vuosi</th><th scope="col">Maakunta</th><th scope="col">Väkiluku</th><th scope="col">Indeksi (1990 = 100)</th><th scope="col">Kotimaan nettomuutto, henkilöä</th></tr></thead><tbody>'+series.regions.flatMap(r=>r.points.map(p=>'<tr><th scope="row">'+p.year+'</th><td>'+esc(r.title)+'</td><td>'+fmt(p.population)+'</td><td>'+fmt(p.population_index)+'</td><td>'+fmt(p.domestic_net_migration)+'</td></tr>')).join('')+'</tbody></table></div></details>';
+}
+
 function renderStatisticContent(anchor,step){
+ const regional=anchor.statistics?.find(s=>s.kind==='regional');
+ if(regional&&(explanationStatisticView==='regional'||!step.statistic_id))return renderRegionalStatistics(regional,step);
  const employment=anchor.statistics?.find(s=>s.kind==='employment');
  if(explanationStatisticView==='employment'&&employment)return renderEmploymentStatistics(employment,step);
  return renderMigrationStatistics(anchor,step);
 }
 function renderStatisticalBackground(anchor,step){
- if(!anchor.statistics?.some(s=>s.id===step.statistic_id))return '';
- const hasEmployment=anchor.statistics.some(s=>s.kind==='employment');
- return '<details class="path-mechanism statistical-background"><summary>Näytä tilastollinen tausta</summary>'+(hasEmployment?'<div class="path-steps" role="group" aria-label="Tilastollisen taustan näkymä"><button class="btn" data-statistic-view="migration" aria-pressed="'+(explanationStatisticView==='migration')+'">Muuttoliike</button><button class="btn" data-statistic-view="employment" aria-pressed="'+(explanationStatisticView==='employment')+'">Työn rakenne</button></div>':'')+'<div data-statistic-content aria-live="polite">'+renderStatisticContent(anchor,step)+'</div></details>';
+ const hasBase=anchor.statistics?.some(s=>s.id===step.statistic_id),hasRegional=anchor.statistics?.some(s=>s.kind==='regional');
+ if(!hasBase&&!hasRegional)return '';
+ const selected=hasBase?explanationStatisticView:'regional',esc=analysisSafe;
+ const choices=[...(hasBase?[['migration','Muuttoliike'],...(anchor.statistics.some(s=>s.kind==='employment')?[['employment','Työn rakenne']]:[])]:[]),...(hasRegional?[['regional','Aluevertailu']]:[])];
+ return '<details class="path-mechanism statistical-background"><summary>Näytä tilastollinen tausta</summary><div class="path-steps" role="group" aria-label="Tilastollisen taustan näkymä">'+choices.map(([value,title])=>'<button class="btn" data-statistic-view="'+value+'" aria-pressed="'+(selected===value)+'">'+esc(title)+'</button>').join('')+'</div><div data-statistic-content aria-live="polite">'+renderStatisticContent(anchor,step)+'</div></details>';
 }
-
 function renderMigrationStatistics(anchor,step){
  const series=anchor.statistics?.find(s=>s.id===step.statistic_id);if(!series)return '';
  const esc=analysisSafe,points=series.points.filter(p=>Number.isFinite(p.year)&&Number.isFinite(p.value)).sort((a,b)=>a.year-b.year);if(points.length<2)return '';
