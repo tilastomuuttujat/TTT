@@ -1,0 +1,218 @@
+{
+  "schema_version": 1,
+  "anchors": [
+    {
+      "id": "maaltamuutto",
+      "entry_theme_id": 1,
+      "title": "Maaltamuutto – toimeentulon reitistä alueelliseksi muutokseksi",
+      "period": "1950–2000 · jatkokysymys 2035",
+      "question": "Miten työn muutos välittyi muuttamiseen, perheiden arkeen ja alueiden yhteiseen vastuuseen?",
+      "sources": [
+        {
+          "id": "migration",
+          "title": "Tilastokeskus: Maassamuuton suuri linja 1880-luvulta lähtien (2007)",
+          "url": "https://stat.fi/artikkelit/2007/art_2007-07-13_001.html?s=0"
+        },
+        {
+          "id": "work",
+          "title": "Tilastokeskus: Historiallisen tilastotiedon opas – Työssäkäynti",
+          "url": "https://guides.stat.fi/historiallisentilastotiedonopas/tyossakaynti"
+        },
+        {
+          "id": "population",
+          "title": "Tilastokeskus: Väestöilmiöt ja niiden mittaaminen",
+          "url": "https://guides.stat.fi/vaesto-tilastoina/vaestoilmioiden-mittaaminen"
+        },
+        {
+          "id": "consumption",
+          "title": "Tilastokeskus: Suomi pääsi länsimaisen kulutuksen makuun 1960-luvulla (2018)",
+          "url": "https://stat.fi/tietotrendit/artikkelit/2018/suomi-paasi-lansimaisen-kulutuksen-makuun-1960-luvulla"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Työn muutos",
+          "title": "Toimeentulo ja työpaikat vaihtavat paikkaa",
+          "period": "1950–1960",
+          "years": [
+            1950,
+            1960
+          ],
+          "theme_ids": [
+            1,
+            15,
+            20
+          ],
+          "focus": {
+            "theme_id": 15,
+            "stage": 2
+          },
+          "map_points": [
+            {
+              "theme_id": 15,
+              "stage": 2
+            }
+          ],
+          "explanation": "Teollistuminen ja maatalouden työn muutos muuttivat sitä, mistä toimeentuloa oli saatavissa. Maaltamuuttoa on siksi tarkasteltava yhdessä työpaikkojen sijainnin kanssa.",
+          "mechanism": "Työn kysyntä ja ihmisten asuinpaikat erkaantuvat → muutosta tulee yksi tapa sovittaa ne yhteen.",
+          "benefit": "Uusi työ voi avata vakaamman toimeentulon.",
+          "tradeoff": "Työpaikan löytyminen voi edellyttää kodin ja tuttujen verkostojen jättämistä.",
+          "affected": "Nuoret aikuiset, maaseudun kotitaloudet ja kasvavat työpaikkakunnat.",
+          "lag": "Työn muutoksesta muuttopäätökseen: vuosia; paikallinen tahti vaihtelee.",
+          "evidence_note": "Historiallinen kehys on lähteistetty. Yksittäisen muuton syy ja vaikutus ovat tutkittavia, eivät tästä johdettavia mittaustuloksia.",
+          "alternative": "Myös koulutus, perhesuhteet ja asuntojen saatavuus voivat selittää muuttoa.",
+          "source_ids": [
+            "work",
+            "migration"
+          ]
+        },
+        {
+          "short_title": "Muutto ratkaisuna",
+          "title": "Muutto avaa toimeentulon reitin",
+          "period": "1960–1975",
+          "years": [
+            1960,
+            1975
+          ],
+          "theme_ids": [
+            1,
+            15,
+            6
+          ],
+          "focus": {
+            "theme_id": 1,
+            "stage": 2
+          },
+          "map_points": [
+            {
+              "theme_id": 1,
+              "stage": 2
+            }
+          ],
+          "explanation": "Maassamuutto vilkastui suurten ikäluokkien tullessa aikuisiksi. Kaupunkeihin ja teollisuuspaikkakunnille muutto kytki ihmisiä uusiin työ- ja opiskelumahdollisuuksiin. Ulkomaille muutto on tähän liittyvä mutta erillinen ilmiö.",
+          "mechanism": "Ihmiset siirtyvät työn ja koulutuksen lähelle → työvoiman ja mahdollisuuksien kohtaanto voi parantua.",
+          "benefit": "Muuttajan valinnanmahdollisuudet voivat laajentua.",
+          "tradeoff": "Perheiden arki ja keskinäisen avun verkostot järjestyvät uudelleen.",
+          "affected": "Muuttajat, heidän läheisensä ja työvoimaa tarvitsevat paikkakunnat.",
+          "lag": "Toimeentulovaikutus voi näkyä nopeasti; perheen ja verkostojen muutos kestää pidempään.",
+          "evidence_note": "Muuttoaallon ajoitus on lähteistetty; muuttajien hyötyjen jakautuminen vaatii erillisen tarkastelun.",
+          "alternative": "Muuton määrä ei yksin todista vapaaehtoisuutta tai toimeentulon paranemista.",
+          "source_ids": [
+            "population",
+            "migration"
+          ]
+        },
+        {
+          "short_title": "Arjen järjestäminen",
+          "title": "Työpaikka tarvitsee ympärilleen toimivan arjen",
+          "period": "1965–1985",
+          "years": [
+            1965,
+            1985
+          ],
+          "theme_ids": [
+            1,
+            3,
+            6,
+            17
+          ],
+          "focus": {
+            "theme_id": 3,
+            "stage": 2
+          },
+          "map_points": [
+            {
+              "theme_id": 3,
+              "stage": 2
+            }
+          ],
+          "explanation": "Kasvava kaupunkiväestö tarvitsee asuntoja, liikkumista ja palveluja. Kaupungistuminen muutti myös kulutusta ja kotitalouksien arkea. Palvelujen ja asumisen järjestäminen on muuton vaikutuksia välittävä lenkki.",
+          "mechanism": "Väestön kasvu lisää paikallista kysyntää → investoinnit ja palvelut mahdollistavat arjen uusissa oloissa.",
+          "benefit": "Asumistaso ja palvelujen saavutettavuus voivat parantua.",
+          "tradeoff": "Rakentaminen sitoo rahaa; asumisen menot ja pitkät etäisyydet voivat kuormittaa kotitaloutta.",
+          "affected": "Kasvukuntien asukkaat, lapsiperheet ja palvelujen järjestäjät.",
+          "lag": "Asuntojen ja palvelujen rakentaminen: vuosia tai vuosikymmeniä.",
+          "evidence_note": "Kaupungistumisen ja kulutuksen yhteys on lähteistetty. Palveluketju on toimituksellinen mekanismitulkinta.",
+          "alternative": "Myös tulotaso, teknologia ja valtakunnalliset uudistukset muuttivat arkea muutosta riippumatta.",
+          "source_ids": [
+            "consumption"
+          ]
+        },
+        {
+          "short_title": "Pitkä seuraus",
+          "title": "Sama muutto voi hyödyttää muuttajaa ja koetella lähtöaluetta",
+          "period": "1970–2000",
+          "years": [
+            1970,
+            2000
+          ],
+          "theme_ids": [
+            1,
+            20,
+            17
+          ],
+          "focus": {
+            "theme_id": 20,
+            "stage": 4
+          },
+          "map_points": [
+            {
+              "theme_id": 20,
+              "stage": 4
+            }
+          ],
+          "explanation": "Väestön alueellinen keskittyminen jatkui suuren muuttoaallon jälkeen. Lähtöalueelle voi muodostua pitkä sopeutumistarve, jos työikäiset vähenevät ja palvelujen käyttäjät jakautuvat uudelleen.",
+          "mechanism": "Poismuutto muuttaa paikallista kysyntää ja tulopohjaa → palveluverkon sopeutus voi puolestaan vaikuttaa uuden muuton houkutuksiin.",
+          "benefit": "Työvoima ja tuotanto voivat kohdata paremmin kasvavilla alueilla.",
+          "tradeoff": "Lähtöalueen palvelujen etäisyydet ja rahoituspaine voivat kasvaa.",
+          "affected": "Lähtöalueelle jäävät asukkaat, paikalliset yritykset ja kunnat.",
+          "lag": "Väestörakenteen ja palveluverkon seuraukset: vuosikymmeniä.",
+          "evidence_note": "Keskittyminen on historiallinen havainto. Palveluja koskeva palautekehä on ehdollinen hypoteesi, ei kaikkia kuntia koskeva tulos.",
+          "alternative": "Työpaikkojen väheneminen voi aiheuttaa muuttoa; muutto ei yksin selitä alueen kehitystä.",
+          "source_ids": [
+            "migration",
+            "population"
+          ]
+        },
+        {
+          "short_title": "Korjausmahdollisuus",
+          "title": "Miten sovittaa liikkuvuus ja alueiden toimintakyky yhteen?",
+          "period": "Nykyhetki–2035",
+          "years": [
+            2000,
+            2025
+          ],
+          "theme_ids": [
+            1,
+            3,
+            15,
+            17,
+            20
+          ],
+          "focus": {
+            "theme_id": 1,
+            "stage": 5
+          },
+          "map_points": [
+            {
+              "theme_id": 1,
+              "stage": 5
+            }
+          ],
+          "explanation": "Historiallinen kysymys jatkuu: miten ihmisille avataan mahdollisuuksia samalla kun eri alueiden arki säilyy toimivana? Etätyö, saavutettavuus ja palvelujen järjestäminen ovat arvioitavia vaihtoehtoja.",
+          "mechanism": "Ratkaisua arvioidaan yhtä aikaa muuttajan, vastaanottavan alueen ja lähtöalueen näkökulmasta → haittojen korjaus voidaan kohdentaa paremmin.",
+          "benefit": "Työn ja palvelujen uusia yhteyksiä voi syntyä myös kasvukeskusten ulkopuolelle.",
+          "tradeoff": "Kaikki työ ei sovi etätyöksi eikä palvelua voi korvata digitaalisesti; kustannukset ja hyödyt voivat jakautua eri tahoille.",
+          "affected": "Työntekijät, työnantajat, asukkaat ja julkiset palvelujen järjestäjät.",
+          "lag": "Kokeiluista vaikutuksiin: vuosia; väestörakenteen muutos on hitaampi.",
+          "evidence_note": "Tämä on ehdotus tutkimus- ja arviointipoluksi, ei lähteistä todistettu ratkaisu tai ennuste. Kartta näyttää historiallisen taustan vuoteen 2025.",
+          "alternative": "Vertaa vaihtoehtoja: liikkuvuuden tukeminen, paikallisten työmahdollisuuksien vahvistaminen ja palveluverkon uudistaminen.",
+          "source_ids": [
+            "migration",
+            "work"
+          ]
+        }
+      ]
+    }
+  ]
+}
