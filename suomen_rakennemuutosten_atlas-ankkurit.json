@@ -5585,6 +5585,368 @@
           "question": "Seuraa työllisyyttä ja ansioita eri ryhmissä sekä yritysten kasvua ja selviytymistä erikseen."
         }
       ]
+    },
+    {
+      "id": "oppivelvollisuuden-laajentaminen-2021",
+      "entry_theme_id": 4,
+      "short_title": "Oppivelvollisuuden laajentaminen 2021",
+      "title": "Oppivelvollisuuden laajentaminen 2021 – velvoite, maksuttomuus ja yksilöllinen tuki",
+      "period": "2020–2025",
+      "question": "Miten laajempi oppivelvollisuus, maksuttomuus ja ohjaus vaikuttavat koulutuspolkuun — ja miten osallistuminen, valmistuminen ja myöhempi työura erotetaan toisistaan?",
+      "sources": [
+        {
+          "id": "law2020",
+          "title": "Finlex: Oppivelvollisuuslaki 1214/2020, alkuperäinen säädös",
+          "url": "https://www.finlex.fi/fi/lainsaadanto/saadoskokoelma/2020/1214"
+        },
+        {
+          "id": "enactment",
+          "title": "OKM: Laki vahvistettiin, hakeutumisvelvoite voimaan 1.1.2021 (30.12.2020)",
+          "url": "https://valtioneuvosto.fi/-/1410845/oppivelvollisuuden-laajentamista-koskeva-laki-vahvistettiin-hakeutumisvelvoite-voimaan-jo-1.1.2021"
+        },
+        {
+          "id": "implementation",
+          "title": "Opetushallitus: Kokemuksia oppivelvollisuuden laajentamisesta (2021)",
+          "url": "https://www.oph.fi/fi/uutiset/2021/kokemuksia-oppivelvollisuuden-laajentamisesta"
+        },
+        {
+          "id": "tuva",
+          "title": "Opetushallitus: Tutkintokoulutukseen valmentava koulutus",
+          "url": "https://www.oph.fi/fi/koulutus-ja-tutkinnot/tutkintokoulutukseen-valmentava-koulutus"
+        },
+        {
+          "id": "guidance2024",
+          "title": "Karvi: Oppivelvollisuusikäisten yksilöllisiä opintopolkuja yhä edistettävä (2024)",
+          "url": "https://www.karvi.fi/fi/ajankohtaista/uutiset/opinto-ohjauksen-arviointi-oppivelvollisuusikaisten-yksilollisia-opintopolkuja-yha-edistettava"
+        },
+        {
+          "id": "access2024",
+          "title": "Karvi: Koulutustarjonnan ja palvelujen puutteet haastavat nuorten opiskelupolkuja (2024)",
+          "url": "https://www.karvi.fi/fi/ajankohtaista/uutiset/arviointitulos-koulutustarjonnan-ja-palvelujen-puutteet-haastavat-ohjausta-ja-nuorten-yksilollisia-opiskelupolkuja"
+        },
+        {
+          "id": "followup2024",
+          "title": "Opetushallitus: Laajennetun oppivelvollisuuden piirissä aloittaneiden opintojen kulku (2024)",
+          "url": "https://www.oph.fi/fi/uutiset/2024/kuva-laajennetun-oppivelvollisuuden-piirissa-aloittaneiden-opintojen-kulusta-tarkentuu"
+        },
+        {
+          "id": "effects2025",
+          "title": "VATT Datahuone: Oppivelvollisuusiän korotuksen vaikutuksista, Juho Junttila (2025)",
+          "url": "https://vattdatahuone.fi/oppivelvollisuusian-korotuksen-vaikutuksista/"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Laki ja tavoitteet",
+          "title": "Vuoden 2020 päätös luo uuden oppivelvollisuuden",
+          "period": "2020–2020",
+          "years": [
+            2020,
+            2020
+          ],
+          "theme_ids": [
+            4,
+            28,
+            26,
+            15
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 5
+          },
+          "map_points": [],
+          "event_year": 2020,
+          "event_label": "Oppivelvollisuuslaki vahvistetaan 30.12.2020",
+          "explanation": "Oppivelvollisuuslaki vahvistettiin joulukuussa 2020. Uudistuksen tavoitteisiin kuuluivat osaamisen, yhdenvertaisuuden ja toisen asteen tutkinnon suorittamisen vahvistaminen. Tavoitteet on erotettava toimeenpanosta ja myöhemmin arvioiduista tuloksista.",
+          "mechanism": "Lainsäädäntö → laajempi velvoite ja järjestäjien vastuut → koulutuspolkujen uudet ehdot.",
+          "benefit": "Uudistus voi vahvistaa nuoren mahdollisuuksia jatkaa koulutuksessa.",
+          "tradeoff": "Velvoite tarvitsee rinnalle toimivan koulutustarjonnan ja yksilöllisen tuen.",
+          "affected": "Perusopetuksesta siirtyvät nuoret, huoltajat, kunnat ja koulutuksen järjestäjät.",
+          "lag": "Päätös vuonna 2020; vaiheittainen toimeenpano alkaa vuonna 2021.",
+          "evidence_note": "Alkuperäinen säädös ja vahvistamistiedote dokumentoivat päätöksen. Ne eivät osoita tavoitteiden toteutumista. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän uudistuksen mittaustuloksia.",
+          "alternative": "Koulutuspolkuja muuttavat myös aiempi osaaminen, perhetilanne ja muut koulutusuudistukset.",
+          "source_ids": [
+            "law2020",
+            "enactment"
+          ],
+          "mechanism_id": "velvoite-ja-mahdollisuudet",
+          "related_anchor_id": "peruskoulu-uudistus"
+        },
+        {
+          "short_title": "Hakeutuminen ja ensimmäinen ikäluokka",
+          "title": "Hakeutumisvelvoite alkaa ennen elokuun toimeenpanoa",
+          "period": "2021–2021",
+          "years": [
+            2021,
+            2021
+          ],
+          "theme_ids": [
+            4,
+            28,
+            6,
+            26
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 5
+          },
+          "map_points": [],
+          "event_year": 2021,
+          "event_label": "Hakeutumisvelvoite voimaan 1.1.2021",
+          "explanation": "Hakeutumisvelvoitetta koskevat säännökset tulivat voimaan tammikuussa 2021. Ensimmäinen kohderyhmä oli keväällä 2021 perusopetuksen päättävä ikäluokka, pääosin vuonna 2005 syntyneet. Laajennus ei tullut kerralla kaikkien vanhempien ikäluokkien velvollisuudeksi.",
+          "mechanism": "Hakeutuminen ja ohjaus → sopivan jatkopaikan etsiminen → siirtymän seuranta.",
+          "benefit": "Nuoren siirtymä voidaan tunnistaa ja ottaa ohjauksen piiriin.",
+          "tradeoff": "Hakeminen tai paikan saaminen ei yksin takaa sopivia opintoja tai niihin kiinnittymistä.",
+          "affected": "Ensimmäiset laajennuksen piiriin tulevat nuoret sekä perusopetuksen ja jatkokoulutusten ohjaajat.",
+          "lag": "Hakeutuminen keväällä; opintojen alku ja eteneminen myöhemmin.",
+          "evidence_note": "Ajankohta ja ensimmäinen kohderyhmä ovat dokumentoituja. Hakeutuminen erotetaan tutkinnon suorittamisesta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän uudistuksen mittaustuloksia.",
+          "alternative": "Koulutusvalintaan vaikuttavat myös sijainti, opetuskieli ja nuoren valmiudet.",
+          "source_ids": [
+            "enactment",
+            "implementation"
+          ],
+          "mechanism_id": "velvoite-ja-mahdollisuudet"
+        },
+        {
+          "short_title": "Laajennus ja maksuttomuus",
+          "title": "Oppivelvollisuus jatkuu perusopetuksen jälkeen",
+          "period": "2021–2022",
+          "years": [
+            2021,
+            2022
+          ],
+          "theme_ids": [
+            4,
+            5,
+            6,
+            17,
+            26
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 5
+          },
+          "map_points": [
+            {
+              "theme_id": 4,
+              "stage": 5
+            }
+          ],
+          "event_year": 2021,
+          "event_label": "Oppivelvollisuuslaki voimaan pääosin 1.8.2021",
+          "explanation": "Oppivelvollisuus jatkuu 18-vuotiaaksi tai päättyy aiemmin lain tarkoittaman tutkinnon suorittamiseen. Uudistuksen piiriin kuuluville toisen asteen opinnot ja opetuksessa tarvittavat materiaalit tulivat maksuttomiksi säädetyin ehdoin. Maksuttomuus ei tarkoita kaikkien elinkustannusten poistumista eikä samaa ikärajaa kuin oppivelvollisuus.",
+          "mechanism": "Opiskelukustannusten muutos ja pidempi velvoite → osallistumisen edellytykset → mahdollinen opintojen jatkuminen.",
+          "benefit": "Oppimateriaalien ja tarvittavien välineiden kustannukset eivät samalla tavalla jää perheen maksettaviksi.",
+          "tradeoff": "Ajan, asumisen, hyvinvoinnin ja arjen ongelmat voivat edelleen vaikeuttaa opiskelua.",
+          "affected": "Uudistuksen piiriin kuuluvat opiskelijat, perheet ja koulutuksen järjestäjät.",
+          "lag": "Oikeus ja velvoite alkavat säädetyssä vaiheessa; valmistuminen vaatii vuosien opiskelun.",
+          "evidence_note": "Sisältö kuvataan vuoden 2021 toimeenpanon näkökulmasta. Oppivelvollisuuden päättyminen ja maksuttomuuden kesto ovat eri asioita; tässä ei anneta nykyisten yksilökohtaisten etuusehtojen ohjetta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän uudistuksen mittaustuloksia.",
+          "alternative": "Maksuttomuuden vaikutusta ei voi erottaa pelkästä velvoitteen muutoksesta ilman erillistä tutkimusasetelmaa.",
+          "source_ids": [
+            "law2020",
+            "implementation"
+          ],
+          "mechanism_id": "velvoite-ja-mahdollisuudet"
+        },
+        {
+          "short_title": "Valmentava nivelvaihe",
+          "title": "TUVA yhdistää valmentavia koulutuspolkuja",
+          "period": "2022–2023",
+          "years": [
+            2022,
+            2023
+          ],
+          "theme_ids": [
+            4,
+            26,
+            20,
+            15
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 4
+          },
+          "map_points": [],
+          "event_year": 2022,
+          "event_label": "TUVA-koulutus alkaa 1.8.2022",
+          "explanation": "Tutkintokoulutukseen valmentava koulutus eli TUVA käynnistyi elokuussa 2022. Se yhdisti aiempia nivelvaiheen koulutuksia. Se on oppivelvollisuuden laajennukseen liittyvä myöhempi toimeenpanovaihe, ei vuoden 2021 päävoimaantulon kanssa sama tapahtuma.",
+          "mechanism": "Valmiuksien vahvistaminen ja koulutusvaihtoehtojen selvittäminen → sopivampi tutkintopolku → mahdollinen opintojen eteneminen.",
+          "benefit": "Nuori voi saada aikaa ja tukea tutkintokoulutukseen valmistautumiseen.",
+          "tradeoff": "Valmentava paikka ei yksin takaa myöhempää tutkintopaikkaa tai riittävää tukea.",
+          "affected": "Tutkintokoulutukseen valmistautuvat nuoret ja ohjausta sekä opetusta järjestävät.",
+          "lag": "Valmentava vaihe edeltää tutkintokoulutukseen siirtymistä.",
+          "evidence_note": "TUVA:n aloitus ja tarkoitus perustuvat Opetushallituksen kuvaukseen. Tässä ei mitata sen erillistä vaikuttavuutta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän uudistuksen mittaustuloksia.",
+          "alternative": "Nuoren etenemistä voivat selittää muu tuki, terveydentila ja tarjolla olevat tutkintopaikat.",
+          "source_ids": [
+            "tuva"
+          ],
+          "mechanism_id": "tuki-ja-tulokset"
+        },
+        {
+          "short_title": "Ohjauksen toteutus",
+          "title": "Yksilöllinen polku tarvitsee saatavilla olevaa tukea",
+          "period": "2023–2024",
+          "years": [
+            2023,
+            2024
+          ],
+          "theme_ids": [
+            4,
+            7,
+            20,
+            26,
+            28
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 4
+          },
+          "map_points": [],
+          "event_year": 2024,
+          "event_label": "Karvin OHJA-arviointi valmistuu",
+          "explanation": "Karvin vuosien 2022–2024 arviointi havaitsi kehittämistarpeita henkilökohtaisessa ja oikea-aikaisessa ohjauksessa. Koulutustarjonnan ja muiden palvelujen puutteet voivat vaikeuttaa sopivaa polkua. Kuntien ohjaus- ja valvontavastuu on yksi osa kokonaisuutta.",
+          "mechanism": "Tuen tarpeen tunnistaminen → ohjaus ja tarkoituksenmukaiset palvelut → mahdollisuus pysyä opinnoissa.",
+          "benefit": "Oikea-aikainen tuki voi auttaa löytämään nuoren tilanteeseen sopivan ratkaisun.",
+          "tradeoff": "Ohjaaja ei voi yksin korvata puuttuvaa koulutuspaikkaa tai muuta tarvittavaa palvelua.",
+          "affected": "Erityisesti yksilöllistä tukea tarvitsevat nuoret, ohjaajat, kunnat ja palvelujen järjestäjät.",
+          "lag": "Tuki tarvitaan siirtymissä ja opiskelun aikana; arviointi koskee pidempää toimeenpanojaksoa.",
+          "evidence_note": "Karvi arvioi käytäntöjä ja kokemuksia. Tästä ei päätellä yksittäisen ohjaustoimen kausaalista vaikutusta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän uudistuksen mittaustuloksia.",
+          "alternative": "Opintojen ongelmat voivat liittyä koulutuksen sopivuuteen, oppimisvaikeuksiin tai muihin elämäntilanteisiin.",
+          "source_ids": [
+            "guidance2024",
+            "access2024"
+          ],
+          "mechanism_id": "tuki-ja-tulokset"
+        },
+        {
+          "short_title": "Vaikutusten seuranta",
+          "title": "Vuoden 2025 tutkimus tarkentaa ensimmäisten ikäluokkien tuloksia",
+          "period": "2024–2025",
+          "years": [
+            2024,
+            2025
+          ],
+          "theme_ids": [
+            4,
+            15,
+            26,
+            5
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 4
+          },
+          "map_points": [
+            {
+              "theme_id": 4,
+              "stage": 4
+            }
+          ],
+          "event_year": 2025,
+          "event_label": "VATT Datahuoneen vaikutusarvio julkaistaan 3.12.2025",
+          "explanation": "Vuoden 2025 VATT Datahuoneen tutkimus arvioi opintojen etenemistä, valmistumista sekä työn ja koulutuksen ulkopuolisia jaksoja. Sen mukaan keskeyttäminen ennen 18 vuoden ikää väheni ja valmistuneiden osuus kasvoi suhteessa vanhempiin ikäluokkiin. Tulokset koskevat tutkimuksen alkuvaiheen seurantaa.",
+          "mechanism": "Ikäluokkien ja opintopolkujen seuranta → osallistumisen ja valmistumisen arvio → myöhempien työuravaikutusten erillinen tutkimus.",
+          "benefit": "Tutkimus antaa tietoa siitä, miten uudistus näkyy koulutuspolun tuloksissa.",
+          "tradeoff": "Varhainen valmistumistulos ei vielä ratkaise pitkän työuran ansioita, hyvinvointia tai kaikkien ryhmien hyötyä.",
+          "affected": "Ensimmäiset uudistuksen piiriin kuuluvat ikäluokat sekä koulutusta ja nuorten palveluja kehittävät.",
+          "lag": "Ensimmäisten ikäluokkien seuranta ulottuu nuoreen aikuisuuteen; pitkän aikavälin tulokset vaativat lisää aikaa.",
+          "evidence_note": "VATT:n vaikutusarvio erotetaan Opetushallituksen kuvailevasta seurannasta. Velvoitteen, maksuttomuuden ja muun tuen osuutta ei erotella tässä. Vuosi 2025 on tutkimuksen julkaisuvuosi. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän uudistuksen mittaustuloksia.",
+          "alternative": "Ikäluokkien erot ja samanaikaiset muutokset on käsiteltävä tutkimusasetelmassa; yksittäisestä osallistumisluvusta ei voi päätellä vaikutusta.",
+          "source_ids": [
+            "effects2025",
+            "followup2024"
+          ],
+          "mechanism_id": "tuki-ja-tulokset"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "velvoite-ja-mahdollisuudet",
+          "title": "Miten velvoite ja maksuttomuus voivat muuttaa koulutuspolkua?",
+          "intro": "Hakeutuminen, opintojen aloittaminen ja tutkinnon suorittaminen ovat eri vaiheita.",
+          "links": [
+            {
+              "title": "Velvoite laajenee",
+              "text": "Hakeutumisvelvoite ja pidempi oppivelvollisuus muuttavat koulutuksessa jatkamisen ehtoja.",
+              "lag": "Vaiheittain vuodesta 2021."
+            },
+            {
+              "title": "Kustannusehto muuttuu",
+              "text": "Maksuttomat materiaalit voivat vähentää osallistumisen taloudellisia esteitä.",
+              "lag": "Opintojen alkaessa."
+            },
+            {
+              "title": "Arki ratkaisee",
+              "text": "Sopiva paikka ja toimiva tuki vaikuttavat opintoihin kiinnittymiseen.",
+              "lag": "Kuukausista vuosiin."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Hakeutumisvelvoite alkoi tammikuussa ja lain päävoimaantulo elokuussa 2021.",
+              "source_ids": [
+                "enactment"
+              ]
+            },
+            {
+              "text": "Alkuperäinen säädös ja toimeenpanokuvaus erottavat oppivelvollisuuden ja maksuttomuuden.",
+              "source_ids": [
+                "law2020",
+                "implementation"
+              ]
+            }
+          ],
+          "interpretation": "Laki luo ehdot mutta ei takaa jokaiselle tutkintoa. Maksuttomuuden ja velvoitteen erillisiä vaikutuksia ei tässä lasketa.",
+          "alternative": "Työn kysyntä, perheen voimavarat ja nuoren aiempi osaaminen voivat vaikuttaa jatkamiseen.",
+          "question": "Seuraa hakeutumista, aloittamista ja etenemistä erikseen sekä vertaa eri taustoista tulevien nuorten polkuja."
+        },
+        {
+          "id": "tuki-ja-tulokset",
+          "title": "Miksi koulutukseen osallistuminen ei yksin kuvaa onnistumista?",
+          "intro": "Ohjaus, oppiminen, valmistuminen ja myöhempi työ ovat eri arviointikohteita.",
+          "links": [
+            {
+              "title": "Tarve tunnistetaan",
+              "text": "Ohjauksen ja palvelujen on vastattava nuoren tilanteeseen.",
+              "lag": "Siirtymissä ja opintojen aikana."
+            },
+            {
+              "title": "Opintopolku toteutuu",
+              "text": "Valmentava koulutus ja tutkintopaikka muodostavat eri vaiheita.",
+              "lag": "Vuosien koulutuspolku."
+            },
+            {
+              "title": "Tulokset seurataan",
+              "text": "Keskeyttämisen ja valmistumisen rinnalla tarvitaan pidempää työura- ja hyvinvointiseurantaa.",
+              "lag": "Nuoruudesta aikuisuuteen."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "TUVA käynnistyi elokuussa 2022.",
+              "source_ids": [
+                "tuva"
+              ]
+            },
+            {
+              "text": "Karvi raportoi yksilöllisen ohjauksen sekä tarjonnan ja palvelujen kehittämistarpeista.",
+              "source_ids": [
+                "guidance2024",
+                "access2024"
+              ]
+            },
+            {
+              "text": "VATT Datahuoneen vuoden 2025 arvio raportoi alkuvaiheen keskeyttämis- ja valmistumisvaikutuksia.",
+              "source_ids": [
+                "effects2025"
+              ]
+            }
+          ],
+          "interpretation": "Arvioidut varhaiset koulutustulokset eivät ole pitkän työuran tai kaikkien väestöryhmien lopullinen vaikutusarvio.",
+          "alternative": "Sopivan koulutuksen saatavuus ja nuoren muut palvelutarpeet voivat muuttaa tuloksia.",
+          "question": "Erottele ohjauksen toteutuminen, koulutuksen laatu, valmistuminen ja myöhempi sijoittuminen. Tarkista eri ryhmien tulokset."
+        }
+      ]
     }
   ]
 }
