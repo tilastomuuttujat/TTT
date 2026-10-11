@@ -106,3 +106,16 @@ test('settlement path separates formation, buildings, recording dates and househ
  assert.ok(a.steps.every(s=>s.evidence_note.includes('alkuperäisten sivukuvien tarkistusta ei uusittu')));
  assert.equal(a.mechanisms.length,2);assert.ok(!a.statistics?.length);
 });
+
+test('Sweden family path keeps memoir, municipal comparison, proposal and later cohort separate',()=>{
+ const a=data.anchors.find(a=>a.id==='ruotsiin-muutto-ja-perheiden-arki');assert.ok(a);assert.equal(a.entry_theme_id,1);assert.equal(a.steps.length,6);
+ assert.equal(a.steps[0].event_year,1969);assert.equal(a.steps[0].related_anchor_id,'maaltamuutto');
+ assert.ok(a.steps[1].explanation.includes('tarkkoja vuosia ei ole varmennettu'));
+ assert.ok(a.steps[2].explanation.includes('eri kunta'));assert.ok(a.steps[2].evidence_note.includes('Alkuperäisiä kirjeitä'));
+ assert.equal(a.steps[3].event_year,1974);assert.ok(a.steps[3].explanation.includes('hoitajan löytyminen'));
+ assert.equal(a.steps[4].event_year,1976);assert.ok(a.steps[4].evidence_note.includes('ei toteutuneen paikallisen palvelun'));
+ assert.ok(a.steps[5].explanation.includes('ei ole Aron lasten seurannasta'));
+ assert.ok(a.steps[5].evidence_note.includes('ei eristä paluun vaikutusta'));
+ assert.ok(a.steps.every(s=>s.evidence_note.includes('alkuperäislähteiden tarkistusta ei uusittu')));
+ assert.equal(a.mechanisms.length,2);assert.ok(!a.statistics?.length);
+});
