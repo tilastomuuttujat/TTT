@@ -16,3 +16,7 @@ test('anchor paths have valid source, theme, mechanism and map references',()=>{
 test('comprehensive school path covers decision, rollout, implementation limits and later evidence',()=>{
  const anchor=data.anchors.find(a=>a.id==='peruskoulu-uudistus');assert.ok(anchor);assert.equal(anchor.entry_theme_id,4);assert.equal(anchor.steps.length,6);assert.equal(anchor.steps[1].event_year,1968);assert.deepEqual(anchor.steps[2].years,[1972,1977]);assert.equal(anchor.steps[3].event_year,1985);assert.equal(anchor.steps[4].event_year,2009);assert.ok(anchor.steps[4].affected.includes('miehet'));assert.equal(anchor.steps.at(-1).years[1],2025);
 });
+
+test('1990s depression separates financial crisis, household responses and long-run evidence',()=>{
+ const anchor=data.anchors.find(a=>a.id==='1990-luvun-lama');assert.ok(anchor);assert.equal(anchor.entry_theme_id,17);assert.equal(anchor.steps.length,6);assert.equal(anchor.steps[2].event_year,1992);assert.equal(anchor.steps[3].event_year,1993);assert.equal(anchor.steps[4].event_year,1996);assert.equal(anchor.steps.at(-1).event_year,2012);assert.equal(anchor.steps.at(-1).related_anchor_id,'peruskoulu-uudistus');assert.ok(anchor.steps[4].source_ids.includes('poverty-measures'));assert.ok(anchor.steps.at(-1).evidence_note.includes('tilastollisesti'));assert.ok(!anchor.statistics?.length);
+});
