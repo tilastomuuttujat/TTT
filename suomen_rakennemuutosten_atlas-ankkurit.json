@@ -3135,6 +3135,376 @@
           "question": "Vertaa ennustetta toteutuneeseen väestöön ja seuraa toimintakykyä, palvelujen saatavuutta sekä läheisten kuormitusta alueittain."
         }
       ]
+    },
+    {
+      "id": "hyvinvointialueuudistus",
+      "entry_theme_id": 7,
+      "short_title": "Hyvinvointialueuudistus",
+      "title": "Hyvinvointialueuudistus – järjestämisvastuusta palvelujen arkeen",
+      "period": "2020–2026",
+      "question": "Miten järjestämisvastuun, päätöksenteon ja rahoituksen muutos välittyy palvelujen jatkuvuuteen ja saavutettavuuteen — ja miten tavoitteet erotetaan toteutuneista vaikutuksista?",
+      "sources": [
+        {
+          "id": "decision2021",
+          "title": "Valtioneuvosto: Sote-uudistuksen lainsäädäntö hyväksyttiin eduskunnassa (23.6.2021)",
+          "url": "https://valtioneuvosto.fi/-/1271139/hallituksen-esitys-sote-uudistuksesta-ja-sen-lainsaadanto-hyvaksyttiin-eduskunnassa"
+        },
+        {
+          "id": "elections2022",
+          "title": "Oikeusministeriö: Aluevaalit 23.1.2022",
+          "url": "https://valtioneuvosto.fi/-/1410853/aluevaalit-23.1.2022"
+        },
+        {
+          "id": "classification",
+          "title": "Tilastokeskus: Hyvinvointialueet sekä Helsingin kaupunki ja Ahvenanmaa 2021",
+          "url": "https://stat.fi/fi/luokitukset/hyvinvointialue/hyvinvointialue_1_20211013"
+        },
+        {
+          "id": "helsinki",
+          "title": "Helsingin kaupunki: Helsingin sote-palvelut uudistuvat",
+          "url": "https://www.hel.fi/fi/paatoksenteko-ja-hallinto/sote-uudistus"
+        },
+        {
+          "id": "funding-law",
+          "title": "Finlex: Laki hyvinvointialueiden rahoituksesta 617/2021",
+          "url": "https://www.finlex.fi/fi/lainsaadanto/2021/617"
+        },
+        {
+          "id": "integration",
+          "title": "THL-blogi: Sujuvilla tiedoilla sujuvat palvelut sosiaalihuollon asiakkaille",
+          "url": "https://blogi.thl.fi/sujuvilla-tiedoilla-sujuvat-palvelut-sosiaalihuollon-asiakkaille/"
+        },
+        {
+          "id": "assessment2025",
+          "title": "THL: Sosiaali- ja terveydenhuollon järjestäminen Suomessa, valtakunnallinen asiantuntija-arvio, syksy 2025",
+          "url": "https://www.julkari.fi/items/7e70f619-14e9-42ba-8193-576fb00ee796"
+        },
+        {
+          "id": "report2025",
+          "title": "STM: Selvitys hyvinvointialueiden sosiaali- ja terveydenhuollon järjestämisvastuun toteutumisesta 2025",
+          "url": "https://julkaisut.valtioneuvosto.fi/items/facf24d9-c45c-40e0-b2e6-c549ee34d215"
+        },
+        {
+          "id": "hyte",
+          "title": "THL-blogi: Laadukas hyvinvoinnin, terveyden ja turvallisuuden edistäminen vaatii selkeitä rakenteita ja yhteistyötä",
+          "url": "https://blogi.thl.fi/laadukas-hyvinvoinnin-terveyden-ja-turvallisuuden-edistaminen-vaatii-selkeita-rakenteita-ja-yhteistyota/"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Lainsäädäntö ja tavoitteet",
+          "title": "Uusi järjestämisrakenne päätetään",
+          "period": "2020–2021",
+          "years": [
+            2020,
+            2021
+          ],
+          "theme_ids": [
+            7,
+            28,
+            17,
+            20
+          ],
+          "focus": {
+            "theme_id": 28,
+            "stage": 5
+          },
+          "map_points": [],
+          "event_year": 2021,
+          "event_label": "Eduskunta hyväksyy uudistuksen 23.6.2021",
+          "explanation": "Vuoden 2020 hallituksen esitystä seurasi uudistuksen lainsäädännön hyväksyminen kesäkuussa 2021. Ratkaisussa perustettiin 21 hyvinvointialuetta. Palvelujen yhteensovittaminen ja yhdenvertaisuuden vahvistaminen ovat tavoitteita, joiden toteutuminen on arvioitava erikseen.",
+          "mechanism": "Lainsäädäntö → uusi järjestämisvastuu ja ohjausrakenne → mahdollisuus muuttaa palvelujen organisointia.",
+          "benefit": "Laajempi järjestäjä voi yhteensovittaa sosiaali- ja terveyspalveluja kuntarajojen yli.",
+          "tradeoff": "Hallinnon uudelleenjärjestely vaatii valmistelua; uusi organisaatio ei yksin takaa toimivia palveluketjuja.",
+          "affected": "Palvelujen käyttäjät, kunnat, kuntayhtymät, henkilöstö sekä uudet hyvinvointialueet.",
+          "lag": "Päätöksestä toimeenpanoon vuosia; palveluvaikutukset vaativat myöhempää seurantaa.",
+          "evidence_note": "Päätöksen ajoitus ja rakenne ovat dokumentoituja. Hyödyt esitetään mahdollisina vaikutuskanavina. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän uudistuksen mittaustuloksia.",
+          "alternative": "Palvelujen kehitykseen voivat vaikuttaa myös aiemmat kuntayhtymät ja samanaikaiset kehittämishankkeet.",
+          "source_ids": [
+            "decision2021"
+          ],
+          "mechanism_id": "vastuu-ja-palveluketju"
+        },
+        {
+          "short_title": "Alueellinen demokratia",
+          "title": "Ensimmäiset aluevaalit rakentavat päätöksenteon",
+          "period": "2022–2022",
+          "years": [
+            2022,
+            2022
+          ],
+          "theme_ids": [
+            28,
+            20,
+            7
+          ],
+          "focus": {
+            "theme_id": 28,
+            "stage": 5
+          },
+          "map_points": [],
+          "event_year": 2022,
+          "event_label": "Ensimmäiset aluevaalit 23.1.2022",
+          "explanation": "Ensimmäisissä aluevaaleissa valittiin valtuustot 21 hyvinvointialueelle. Ne aloittivat maaliskuussa 2022. Helsinki ei muodosta hyvinvointialuetta eikä osallistu aluevaaleihin. Ahvenanmaa jää tämän Manner-Suomen uudistuksen ulkopuolelle.",
+          "mechanism": "Aluevaalit → aluevaltuuston mandaatti → alueen strategiaa, taloutta ja palveluja koskevat päätökset.",
+          "benefit": "Asukkaat voivat vaikuttaa alueelliseen päätöksentekoon vaalien ja osallistumisen kautta.",
+          "tradeoff": "Laajempi päätöksentekoalue voi etäännyttää päätökset yksittäisen kunnan tai palvelupisteen arjesta.",
+          "affected": "Hyvinvointialueiden asukkaat ja päättäjät; Helsingin järjestämismalli poikkeaa niistä.",
+          "lag": "Vaalikauden päätökset voivat näkyä palveluissa eri aikoina.",
+          "evidence_note": "Vaalien aikataulu ja Helsingin poikkeus ovat lähteistettyjä. Päätöksenteon etäisyys on arvioitava kysymys. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän uudistuksen mittaustuloksia.",
+          "alternative": "Osallistumista voivat selittää myös puolueiden toiminta, viestintä ja alueen aiemmat yhteistyörakenteet.",
+          "source_ids": [
+            "elections2022",
+            "classification"
+          ],
+          "mechanism_id": "rahoitus-ja-saavutettavuus"
+        },
+        {
+          "short_title": "Vastuun siirto",
+          "title": "Järjestämisvastuu muuttuu vuoden 2023 alussa",
+          "period": "2023–2023",
+          "years": [
+            2023,
+            2023
+          ],
+          "theme_ids": [
+            7,
+            28,
+            15,
+            20
+          ],
+          "focus": {
+            "theme_id": 7,
+            "stage": 4
+          },
+          "map_points": [],
+          "event_year": 2023,
+          "event_label": "Järjestämisvastuun siirto 1.1.2023",
+          "explanation": "Sosiaali- ja terveydenhuollon sekä pelastustoimen järjestämisvastuu siirtyi kunnilta ja kuntayhtymiltä hyvinvointialueille vuoden 2023 alussa. Helsinki säilytti oman järjestämisvastuunsa. Uudellamaalla HUS-yhtymän ja muiden järjestäjien työnjako muodostaa erillisratkaisun.",
+          "mechanism": "Järjestäjän muutos → henkilöstön, sopimusten ja toimintatapojen yhteensovittaminen → palvelujen jatkuvuuden turvaaminen.",
+          "benefit": "Yhteinen järjestäjä voi vähentää organisaatioiden välisiä katkoksia.",
+          "tradeoff": "Siirtymä voi kuormittaa johtamista ja henkilöstöä; toimintojen yhdistäminen edellyttää käytännön ratkaisuja.",
+          "affected": "Asiakkaat, potilaat, sosiaali- ja terveydenhuollon sekä pelastustoimen henkilöstö ja yhteistyökumppanit.",
+          "lag": "Vastuu muuttui tiettynä päivänä; toimintatapojen yhteensovittaminen jatkuu pidempään.",
+          "evidence_note": "Vastuun siirto on dokumentoitu hallinnollinen tapahtuma. Palvelukatkosten tai hyötyjen määrää ei tässä mitata. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän uudistuksen mittaustuloksia.",
+          "alternative": "Jatkuvuus voi riippua paikallisesta valmistelusta ja henkilöstötilanteesta organisaatiomuutoksen lisäksi.",
+          "source_ids": [
+            "classification",
+            "helsinki",
+            "decision2021"
+          ],
+          "mechanism_id": "vastuu-ja-palveluketju"
+        },
+        {
+          "short_title": "Rahoitus ja palveluverkko",
+          "title": "Valtionrahoitus ja alueelliset valinnat kohtaavat",
+          "period": "2023–2025",
+          "years": [
+            2023,
+            2025
+          ],
+          "theme_ids": [
+            17,
+            7,
+            20,
+            30
+          ],
+          "focus": {
+            "theme_id": 17,
+            "stage": 4
+          },
+          "map_points": [
+            {
+              "theme_id": 17,
+              "stage": 4
+            }
+          ],
+          "event_year": 2023,
+          "event_label": "Valtionrahoitteinen järjestämismalli käynnistyy",
+          "explanation": "Hyvinvointialueiden valtionrahoitus perustuu rahoituslain mukaiseen malliin. Rahoituksen määräytyminen ja alueen palvelujen järjestäminen ovat eri päätöstasoja. Myös Helsingin sosiaali-, terveys- ja pelastustoimen rahoitus tulee valtiolta.",
+          "mechanism": "Rahoituksen ehdot ja palvelutarve → alueen resurssien kohdentaminen → palveluverkon ja henkilöstön ratkaisut.",
+          "benefit": "Laajempi rahoitus- ja järjestämiskokonaisuus voi tukea tarpeiden vertailua ja yhteisiä ratkaisuja.",
+          "tradeoff": "Talouden sopeuttaminen voi olla ristiriidassa matkojen, jatkuvuuden tai palvelujen saatavuuden kanssa; vaikutus tutkittava paikallisesti.",
+          "affected": "Alueiden asukkaat, palveluja usein tarvitsevat, työntekijät sekä taloudesta ja palveluverkosta päättävät.",
+          "lag": "Budjettipäätösten seuraukset voivat näkyä nopeasti; palvelutarve ja kustannukset muuttuvat eri tahtiin.",
+          "evidence_note": "Rahoituslaki kuvaa sääntöjä, ei yksittäisen palveluverkkopäätöksen vaikuttavuutta. Tässä ei lasketa rahoitusennustetta tai säästöä. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän uudistuksen mittaustuloksia.",
+          "alternative": "Kustannukset voivat muuttua palkkojen, hintojen, väestörakenteen ja hoidon tarpeen vuoksi ilman uudistuksen omaa vaikutusta.",
+          "source_ids": [
+            "funding-law",
+            "helsinki"
+          ],
+          "mechanism_id": "rahoitus-ja-saavutettavuus",
+          "related_anchor_id": "vaeston-ikaantyminen"
+        },
+        {
+          "short_title": "Integraatio asiakkaan arjessa",
+          "title": "Palveluketju vaatii yhteisiä toimintatapoja ja tietoa",
+          "period": "2023–2025",
+          "years": [
+            2023,
+            2025
+          ],
+          "theme_ids": [
+            7,
+            28,
+            20
+          ],
+          "focus": {
+            "theme_id": 7,
+            "stage": 4
+          },
+          "map_points": [
+            {
+              "theme_id": 7,
+              "stage": 4
+            }
+          ],
+          "event_year": 2025,
+          "event_label": "THL:n valtakunnallinen asiantuntija-arvio",
+          "explanation": "Yhteinen hallinto ei yksin yhdistä asiakkaan palveluja. THL:n asiantuntijakirjoitus käsittelee yhteisen tiedon ja palveluprosessien merkitystä. Syksyn 2025 valtakunnallinen arvio tarkastelee järjestämistä, palvelutarpeita, toimintaa ja taloutta.",
+          "mechanism": "Yhteiset prosessit ja tarpeellinen tiedonkulku → palvelujen yhteensovittaminen → mahdollisesti sujuvampi asiakkaan polku.",
+          "benefit": "Koordinointi voi vähentää tarpeetonta asiointia ja selkeyttää vastuuta asiakkaan kokonaisuudesta.",
+          "tradeoff": "Tietojärjestelmien ja kirjaamisen muutos vaatii työtä; tietojen käyttö edellyttää asianmukaisia oikeuksia ja tietosuojaa.",
+          "affected": "Useita palveluja tarvitsevat asiakkaat, läheiset sekä sosiaali- ja terveydenhuollon ammattilaiset.",
+          "lag": "Järjestelmien ja käytäntöjen muutos voi kestää vuosia.",
+          "evidence_note": "THL:n blogi on asiantuntijatulkinta ja arvio raportoi järjestämisen kehitystä. Niistä ei johdeta yhden organisaatiomuutoksen kausaalista vaikutusta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän uudistuksen mittaustuloksia.",
+          "alternative": "Sujuvuus voi parantua työmenetelmien tai henkilöstön yhteistyön ansiosta ilman hallinnon yhdistämistä.",
+          "source_ids": [
+            "integration",
+            "assessment2025"
+          ],
+          "mechanism_id": "vastuu-ja-palveluketju"
+        },
+        {
+          "short_title": "Seuranta ja korjaaminen",
+          "title": "Tuloksia arvioidaan palveluissa ja yhteistyössä",
+          "period": "2025–2026",
+          "years": [
+            2025,
+            2026
+          ],
+          "theme_ids": [
+            7,
+            17,
+            20,
+            28,
+            30
+          ],
+          "focus": {
+            "theme_id": 7,
+            "stage": 4
+          },
+          "map_points": [
+            {
+              "theme_id": 7,
+              "stage": 4
+            }
+          ],
+          "event_year": 2026,
+          "event_label": "STM:n selvitys vuoden 2025 järjestämisvastuusta",
+          "explanation": "Vuoden 2025 järjestämistä koskevassa selvityksessä STM arvioi kokonaisuuden toteutuneen aiempaa vuotta paremmin. Ministeriön arvio on erotettava yksittäisen alueen ja asiakkaan kokemuksesta. Kuntien ja hyvinvointialueiden yhteistyö hyvinvoinnin ja terveyden edistämisessä säilyy olennaisena.",
+          "mechanism": "Tieto saatavuudesta, jatkuvuudesta ja kustannuksista → ongelmien tunnistaminen → kohdennetut korjauspäätökset ja uusi seuranta.",
+          "benefit": "Seuranta voi auttaa kohdentamaan korjauksia palveluihin, joissa tarve jää täyttymättä.",
+          "tradeoff": "Kokonaistason tulos voi peittää alue- ja väestöryhmäkohtaisia eroja; lyhyt seuranta ei tunnista kaikkia pitkäaikaisia seurauksia.",
+          "affected": "Palvelujen käyttäjät eri alueilla, kunnat, järjestöt, työntekijät ja alueiden sekä valtion päättäjät.",
+          "lag": "Raportointi koskee aiempaa toimintavuotta; korjausten vaikutukset näkyvät myöhemmässä seurannassa.",
+          "evidence_note": "Raportin toimintavuosi 2025 erotetaan vuoden 2026 julkaisuajankohdasta. Arvio ei yksin todista uudistuksen syyvaikutusta tai pysyvää onnistumista. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän uudistuksen mittaustuloksia.",
+          "alternative": "Saatavuuden ja kustannusten kehitystä voivat selittää myös henkilöstötilanne, palvelutarpeen muutos ja muut lakimuutokset.",
+          "source_ids": [
+            "report2025",
+            "hyte"
+          ],
+          "mechanism_id": "rahoitus-ja-saavutettavuus"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "vastuu-ja-palveluketju",
+          "title": "Miksi hallinnollinen integraatio ei yksin takaa sujuvaa palvelua?",
+          "intro": "Järjestämisvastuu ja asiakkaan palvelupolku ovat eri tarkastelutasoja.",
+          "links": [
+            {
+              "title": "Vastuu yhdistyy",
+              "text": "Uusi järjestäjä voi suunnitella sosiaali- ja terveyspalvelujen kokonaisuutta.",
+              "lag": "Lakisääteinen siirtymä 2023."
+            },
+            {
+              "title": "Käytännöt muuttuvat",
+              "text": "Yhteiset prosessit, vastuut ja tiedonkulku on rakennettava käytännössä.",
+              "lag": "Vuosien toimeenpano."
+            },
+            {
+              "title": "Asiakkaan tulos arvioidaan",
+              "text": "Jatkuvuus, odotusajat ja kokemus kertovat palveluketjusta hallintokaaviota enemmän.",
+              "lag": "Toistuva seuranta; vaikutus tutkittava."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Järjestämisvastuun siirto ajoittuu vuoden 2023 alkuun; Helsinki ja Uudenmaan HUS-ratkaisu poikkeavat yleismallista.",
+              "source_ids": [
+                "classification",
+                "helsinki",
+                "decision2021"
+              ]
+            },
+            {
+              "text": "THL:n asiantuntijakirjoitus korostaa palveluprosessien ja tiedon yhteensovittamista.",
+              "source_ids": [
+                "integration"
+              ]
+            }
+          ],
+          "interpretation": "Mahdollista hyötyä ei päätellä pelkästä hallinnon yhdistämisestä. Pelastustoimi on mukana uudistuksessa mutta sen tuloksia on arvioitava omilla mittareillaan.",
+          "alternative": "Asiakkaan polku voi riippua henkilöstön saatavuudesta ja paikallisista työmenetelmistä.",
+          "question": "Seuraa ennen muutosta ja sen jälkeen palvelujen jatkuvuutta ja asiakkaan siirtymiä. Erottele hallinto, prosessit ja käyttäjän tulokset."
+        },
+        {
+          "id": "rahoitus-ja-saavutettavuus",
+          "title": "Miten talouden ohjaus välittyy palvelujen saavutettavuuteen?",
+          "intro": "Rahoitusmalli asettaa ehtoja; paikalliset ratkaisut ja palvelutarve muuttavat seurauksia.",
+          "links": [
+            {
+              "title": "Rahoituksen ehdot",
+              "text": "Valtionrahoitus ja alueen päätökset määrittävät resurssien kohdentamisen ympäristöä.",
+              "lag": "Vuosittainen suunnittelu."
+            },
+            {
+              "title": "Palveluverkko ja yhteistyö",
+              "text": "Palvelupisteet, henkilöstö sekä kuntien ja järjestöjen yhteistyö vaikuttavat arjen saavutettavuuteen.",
+              "lag": "Päätöksistä toteutukseen."
+            },
+            {
+              "title": "Eri ryhmien seuranta",
+              "text": "Matkat, odotusajat, jatkuvuus ja kustannukset on arvioitava rinnakkain.",
+              "lag": "Lyhyt ja pitkä seuranta."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Rahoituslaki määrittelee valtionrahoituksen perusteita; se ei osoita palveluverkon muutoksen hyötyä.",
+              "source_ids": [
+                "funding-law"
+              ]
+            },
+            {
+              "text": "THL:n asiantuntijakirjoitus käsittelee hyvinvoinnin, terveyden ja turvallisuuden edistämisen yhteistyörakenteita.",
+              "source_ids": [
+                "hyte"
+              ]
+            },
+            {
+              "text": "STM:n vuoden 2025 selvitys sisältää ministeriön kokonaisarvion; se ei kuvaa jokaisen asiakkaan tilannetta.",
+              "source_ids": [
+                "report2025"
+              ]
+            }
+          ],
+          "interpretation": "Taloudellinen sopeutus, saavutettavuus ja hyvinvointivaikutus ovat eri tuloksia. Tässä ei mitata niiden välisiä vaihtosuhteita.",
+          "alternative": "Ikääntyminen, hintakehitys ja työvoiman saatavuus voivat selittää palvelujen ja kustannusten muutoksia.",
+          "question": "Vertaa kustannuksia palvelutarpeeseen ja saatavuuteen alueittain. Tarkista, siirtyykö kuormitus asiakkaalle, läheisille tai muille palveluille."
+        }
+      ]
     }
   ]
 }
