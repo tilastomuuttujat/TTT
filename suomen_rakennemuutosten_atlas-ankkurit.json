@@ -261,7 +261,87 @@
           "question": "Muuttuiko alueen työllisyys ennen muuttoa vai sen jälkeen? Vertaa työpaikkoja, muuttoliikettä, asuntoja ja ikärakennetta samoilla aluerajoilla."
         }
       ],
-      "short_title": "Maaltamuutto"
+      "short_title": "Maaltamuutto",
+      "comparisons": [
+        {
+          "id": "omistus-ja-muutto",
+          "title": "Torpparikysymys ja maaltamuutto",
+          "anchor_ids": [
+            "torpparikysymys",
+            "maaltamuutto"
+          ],
+          "question": "Miten toimeentuloa sovitettiin tuotannon ehtoihin kahdessa erilaisessa muutoksessa?",
+          "selection_reason": "Tapaukset avaavat kaksi erilaista yhteensovittamisen tapaa: maan hallinnan ehtojen uudistamisen ja työn sekä asumisen sijainnin muuttamisen. Molemmissa kotitalouden ratkaisu kytkeytyy laajempiin rakenteisiin. Vertailu auttaa seuraamaan ratkaisun mahdollisuuksia, rajoja ja myöhempiä seurauksia.",
+          "limits": "Tapaukset ovat valittuja havainnollistavia esimerkkejä, eivät edustava otos Suomen historiasta. Vertailu ei osoita, että torpparivapautus aiheutti maaltamuuton, eikä mittaa ratkaisujen paremmuutta. Saman rivin vaiheet vastaavat samaan kysymykseen eri aikakausina; ne eivät ole samanaikaisia tai vaikutuksiltaan yhtä suuria.",
+          "rows": [
+            {
+              "question": "Mikä oli lähtötilanne?",
+              "cells": [
+                {
+                  "text": "Toimeentulo oli sidoksissa vuokraviljelyn ja maan hallinnan ehtoihin.",
+                  "step": 0
+                },
+                {
+                  "text": "Työn kysyntä ja ihmisten asuinpaikat muuttuivat eri tahtiin.",
+                  "step": 0
+                }
+              ]
+            },
+            {
+              "question": "Mitä muutettiin?",
+              "cells": [
+                {
+                  "text": "Lunastusoikeus avasi reitin maan omistukseen.",
+                  "step": 1
+                },
+                {
+                  "text": "Muuttaminen tarjosi keinon hakeutua työn lähelle.",
+                  "step": 1
+                }
+              ]
+            },
+            {
+              "question": "Miten arki ja toimeentulo sovitettiin?",
+              "cells": [
+                {
+                  "text": "Pysyvämpi hallinta saattoi vahvistaa suunnittelua; investointien toteutuminen riippui myös muista ehdoista.",
+                  "step": 2
+                },
+                {
+                  "text": "Asuminen, perheen arki ja palvelut oli järjestettävä uudessa paikassa.",
+                  "step": 2
+                }
+              ]
+            },
+            {
+              "question": "Missä ratkaisun rajat näkyivät?",
+              "cells": [
+                {
+                  "text": "Omistus ei yksin ratkaissut tilan toimeentulokykyä tuotannon muuttuessa.",
+                  "step": 3
+                },
+                {
+                  "text": "Muuttoliikkeen kertyvät vaikutukset koskivat myös lähtö- ja tuloalueita.",
+                  "step": 3
+                }
+              ]
+            },
+            {
+              "question": "Mikä jatkokysymys jäi?",
+              "cells": [
+                {
+                  "text": "Miten maanomistus suhteutui myöhempään palkkatyöhön ja muuttamiseen?",
+                  "step": 4
+                },
+                {
+                  "text": "Miten työ, asuminen ja palvelut voitaisiin sovittaa paremmin yhteen? Tämä vaihe sisältää korjausehdotuksia.",
+                  "step": 4
+                }
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "torpparikysymys",
