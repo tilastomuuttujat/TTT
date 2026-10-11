@@ -1306,7 +1306,7 @@
                   "year": 1990,
                   "population": 1232236,
                   "domestic_net_migration": 2132,
-                  "population_index": 100.0
+                  "population_index": 100
                 },
                 {
                   "year": 1991,
@@ -1529,7 +1529,7 @@
                   "year": 1990,
                   "population": 92459,
                   "domestic_net_migration": -348,
-                  "population_index": 100.0
+                  "population_index": 100
                 },
                 {
                   "year": 1991,
@@ -2771,6 +2771,368 @@
           "interpretation": "Korjauskeinojen vaikutuksia ei johdeta lain olemassaolosta tai kokonaistalouden kasvusta. Eri ryhmien toipuminen edellyttää erillisiä havaintoja.",
           "alternative": "Kohorttien erot voivat liittyä myös koulutukseen, ikään ja toimialoihin. Pienituloisuusasteen muutos voi heijastaa mittausrajan liikettä.",
           "question": "Seuraa työllisyyttä, velanhoitoa ja kiinteään vertailutasoon sidottua toimeentuloa. Erottele valmistumisvuosi, koulutusala ja velkatilanne."
+        }
+      ]
+    },
+    {
+      "id": "vaeston-ikaantyminen",
+      "entry_theme_id": 30,
+      "short_title": "Väestön ikääntyminen",
+      "title": "Väestön ikääntyminen – pitkät elinkaaret, työ ja hoiva",
+      "period": "1945–2045",
+      "question": "Miten muuttuva ikärakenne muuttaa työn, eläkkeiden ja hoivan ehtoja — ja miksi ikä ei yksin kerro palvelutarpeesta tai yhteiskunnallisesta panoksesta?",
+      "sources": [
+        {
+          "id": "cohorts",
+          "title": "Tilastokeskus: Suuret ikäluokat eläkeiässä (2012)",
+          "url": "https://stat.fi/artikkelit/2012/art_2012-03-12_001.html?s=0"
+        },
+        {
+          "id": "cohorts2016",
+          "title": "Tilastokeskus: Mitä kuuluu suurille ikäluokille? (2016)",
+          "url": "https://stat.fi/tietotrendit/artikkelit/2016/mita-kuuluu-suurille-ikaluokille"
+        },
+        {
+          "id": "ratios",
+          "title": "Tilastokeskus: Väestöllinen ja taloudellinen huoltosuhde, taulukko 11ra",
+          "url": "https://pxdata.stat.fi/PxWeb/pxweb/fi/StatFin/StatFin__vaerak/statfin_vaerak_pxt_11ra.px/"
+        },
+        {
+          "id": "pension2005",
+          "title": "Eläketurvakeskus: Eläkeuudistus 2005",
+          "url": "https://www.etk.fi/suomen-elakejarjestelma/elakeuudistukset/aiemmat-uudistukset/elakeuudistus-2005/"
+        },
+        {
+          "id": "pension2017",
+          "title": "Eläketurvakeskus: Eläkeuudistus 2017",
+          "url": "https://www.etk.fi/suomen-elakejarjestelma/elakeuudistukset/aiemmat-uudistukset/elakeuudistus-2017/"
+        },
+        {
+          "id": "pension-effects",
+          "title": "Eläketurvakeskus: Eläkeuudistusten 2017 ja 2005 vaikutuksia",
+          "url": "https://www.etk.fi/tutkimus-tilastot-ja-ennusteet/tutkimus/tutkittua-tietoa-tiiviisti/elakeuudistusten-2017-ja-2005-vaikutuksia/"
+        },
+        {
+          "id": "rai",
+          "title": "THL: RAI-välineistö iäkkään henkilön palvelutarpeen arvioinnissa",
+          "url": "https://www.julkari.fi/handle/10024/144208"
+        },
+        {
+          "id": "rai2024",
+          "title": "THL: RAI-välineistön käyttöönoton tuki 2021–2023, loppuraportti (2024)",
+          "url": "https://www.julkari.fi/items/7a83fcba-8ac7-4127-9b0c-1dc2e666807a"
+        },
+        {
+          "id": "forecast2024",
+          "title": "Tilastokeskus: Väestöennuste 2024, väestöllinen huoltosuhde alueittain 2024–2045 (14wz)",
+          "url": "https://pxdata.stat.fi/PxWeb/pxweb/fi/StatFin/StatFin__vaenn/14wz.px/"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Suuret ikäluokat",
+          "title": "Sodan jälkeiset syntymäkohortit muovaavat myöhempää ikärakennetta",
+          "period": "1945–1969",
+          "years": [
+            1945,
+            1969
+          ],
+          "theme_ids": [
+            30,
+            6,
+            4
+          ],
+          "focus": {
+            "theme_id": 30,
+            "stage": 3
+          },
+          "map_points": [],
+          "event_year": 1945,
+          "event_label": "Sodan jälkeiset suuret ikäluokat",
+          "explanation": "Suuriksi ikäluokiksi kutsutaan tavallisesti vuosina 1945–1949 syntyneitä. Ikäluokan koko vaikuttaa vuosikymmeniä myöhemmin koulutuksen, työelämän ja eläkkeiden järjestämiseen. Myös kuolleisuus ja muuttoliike muuttavat kohorttien kokoa.",
+          "mechanism": "Suuri syntymäkohortti → suuri joukko saman elämänvaiheen siirtymiä eri vuosikymmeninä. Palvelutarpeet eivät silti ole kaikilla samanlaisia.",
+          "benefit": "Suuret ikäluokat tuovat työpanosta, osaamista ja myöhemmin myös vapaaehtoista työtä sekä läheisten tukea.",
+          "tradeoff": "Samanikäisten suuri joukko voi edellyttää koulutuksen, työn ja palvelujen kapasiteetin muuttamista eri aikoina.",
+          "affected": "Sodan jälkeen syntyneet, heidän perheensä sekä koulutuksen ja työelämän järjestäjät.",
+          "lag": "Syntymäkohortin vaikutus ulottuu vuosikymmenten päähän.",
+          "evidence_note": "Kohorttien ajoitus perustuu Tilastokeskuksen historialliseen tarkasteluun. Palvelukapasiteetin ketju on tulkintamalli. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Kohortin koko ei yksin selitä palvelujen käyttöä; muuttoliike, elämäntilanne ja järjestelmien ehdot vaikuttavat.",
+          "source_ids": [
+            "cohorts"
+          ],
+          "mechanism_id": "ikarakenne-ja-tyo"
+        },
+        {
+          "short_title": "Ikä ja huoltosuhteet",
+          "title": "Eliniän ja ikärakenteen muutos vaatii useita mittareita",
+          "period": "1970–2004",
+          "years": [
+            1970,
+            2004
+          ],
+          "theme_ids": [
+            30,
+            7,
+            15,
+            17
+          ],
+          "focus": {
+            "theme_id": 30,
+            "stage": 4
+          },
+          "map_points": [
+            {
+              "theme_id": 30,
+              "stage": 4
+            }
+          ],
+          "event_year": 2000,
+          "event_label": "Ikärakenteen tarkastelukohta",
+          "explanation": "Ikärakenne muuttuu syntyvyyden, kuolleisuuden ja muuttoliikkeen yhteisvaikutuksesta. Väestöllinen huoltosuhde vertaa alle 15-vuotiaita ja 65 vuotta täyttäneitä 15–64-vuotiaisiin. Taloudellinen huoltosuhde vertaa työttömiä ja työvoiman ulkopuolella olevia työllisiin.",
+          "mechanism": "Ikärakenne muuttaa ikäryhmien suhteita; työllisyys ratkaisee erikseen, kuinka moni on työssä. Mittarit eivät laske yksilön toimintakykyä tai kaikkea palkatonta työtä.",
+          "benefit": "Pidempi elämä voi avata lisää aikaa osallistumiselle, läheissuhteille ja osaamisen käyttämiselle.",
+          "tradeoff": "Ikärajaan perustuva mittari voi johtaa harhaan, jos siitä päätellään suoraan hoivan tarve tai talouden rahoitus.",
+          "affected": "Eri ikäryhmät, työssä olevat ja työvoiman ulkopuolella olevat sekä julkisen talouden suunnittelijat.",
+          "lag": "Väestörakenne muuttuu hitaasti; työllisyys voi muuttua nopeasti suhdanteissa.",
+          "evidence_note": "Huoltosuhteiden määritelmät ovat tilastollisia. Vuosi 2000 on polun tarkastelukohta, ei yksittäinen uudistus. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Työllisyys, työkyky, tuottavuus ja muuttoliike voivat muuttaa taloudellisia seurauksia saman ikärakenteen oloissa.",
+          "source_ids": [
+            "ratios"
+          ],
+          "mechanism_id": "ikarakenne-ja-tyo"
+        },
+        {
+          "short_title": "Eläkejärjestelmän sopeutus",
+          "title": "Vuoden 2005 uudistus muuttaa eläkkeen ja työuran suhdetta",
+          "period": "2005–2016",
+          "years": [
+            2005,
+            2016
+          ],
+          "theme_ids": [
+            30,
+            15,
+            17
+          ],
+          "focus": {
+            "theme_id": 30,
+            "stage": 4
+          },
+          "map_points": [],
+          "event_year": 2005,
+          "event_label": "Eläkeuudistus 2005",
+          "explanation": "Vuoden 2005 eläkeuudistus muutti eläkejärjestelmän ehtoja ja toi elinaikakertoimen osaksi sopeutumista pitenevään elinikään. Samalla suuret ikäluokat siirtyivät eläkeikään. Uudistuksen vaikutuksia on arvioitava työurien ja toimeentulon kautta.",
+          "mechanism": "Eläkkeen ehdot → työn jatkamisen kannustimet ja eläkkeen määrä; toteutunut työura riippuu myös terveydestä ja työpaikoista.",
+          "benefit": "Eläkejärjestelmää voidaan sopeuttaa pidempiin elinkaariin.",
+          "tradeoff": "Työn jatkamisen mahdollisuudet eroavat työn kuormituksen, terveyden ja työmarkkina-aseman mukaan.",
+          "affected": "Eläkeikää lähestyvät työntekijät, työnantajat ja eläkkeensaajat.",
+          "lag": "Säännöt muuttuvat päätöksillä; työurat ja rahoitusvaikutukset näkyvät pidemmässä seurannassa.",
+          "evidence_note": "Uudistuksen sisältö ja kohorttien eläkeikään siirtyminen ovat lähteistettyjä. Tässä ei lasketa yksilön eläkettä tai uudistuksen rahoitusvaikutusta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Myöhempi eläkkeelle siirtyminen voi liittyä myös koulutukseen, terveydentilaan ja työn kysyntään.",
+          "source_ids": [
+            "pension2005",
+            "cohorts2016"
+          ],
+          "mechanism_id": "ikarakenne-ja-tyo"
+        },
+        {
+          "short_title": "Työurien mahdollisuudet",
+          "title": "Vuoden 2017 uudistus ja työurien eriytyvät vaikutukset",
+          "period": "2017–2025",
+          "years": [
+            2017,
+            2025
+          ],
+          "theme_ids": [
+            30,
+            15,
+            7,
+            17
+          ],
+          "focus": {
+            "theme_id": 15,
+            "stage": 4
+          },
+          "map_points": [],
+          "event_year": 2017,
+          "event_label": "Eläkeuudistus 2017",
+          "explanation": "Vuoden 2017 uudistus nosti eläkeikää vaiheittain. Eläketurvakeskuksen tutkimuskatsaus kuvaa eläkkeelle siirtymisen myöhentymistä ja työllisyysvaikutusten eroja. Kaikki eivät siirry pidempään työhön: myös muut työmarkkina-asemat on seurattava.",
+          "mechanism": "Eläkeiän muutos → myöhempi mahdollinen vanhuuseläkkeelle siirtyminen; työpaikan saatavuus ja työkyky vaikuttavat siihen, jatkuuko työ.",
+          "benefit": "Työn jatkuminen voi lisätä ansioita, osaamisen käyttöä ja rahoituksen edellytyksiä.",
+          "tradeoff": "Työttömyyteen tai työkyvyttömyyteen siirtyminen voi rajoittaa uudistuksen hyötyjä yksilölle.",
+          "affected": "Eläkeikää lähestyvät eri ammateissa ja työmarkkina-asemissa sekä työnantajat.",
+          "lag": "Vaiheittainen toimeenpano ja kohorttien seuranta kestävät vuosia.",
+          "evidence_note": "Tutkimuskatsaus käsittelee havaittuja uudistusvaikutuksia. Niitä ei yleistetä samanlaisiksi kaikille työntekijöille. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Suhdanteet, työn kuormitus ja terveydentila voivat selittää osan työurien eroista.",
+          "source_ids": [
+            "pension2017",
+            "pension-effects"
+          ],
+          "mechanism_id": "ikarakenne-ja-tyo",
+          "related_anchor_id": "1990-luvun-lama"
+        },
+        {
+          "short_title": "Toimintakyky ja hoiva",
+          "title": "Palvelutarve arvioidaan ihmisen tilanteesta",
+          "period": "2020–2025",
+          "years": [
+            2020,
+            2025
+          ],
+          "theme_ids": [
+            30,
+            7,
+            6,
+            20
+          ],
+          "focus": {
+            "theme_id": 7,
+            "stage": 4
+          },
+          "map_points": [
+            {
+              "theme_id": 7,
+              "stage": 4
+            }
+          ],
+          "event_year": 2024,
+          "event_label": "RAI-käyttöönoton loppuraportti",
+          "explanation": "Ikä ei yksin ratkaise hoivan tarvetta. THL:n RAI-ohjeistus käsittelee toimintakyvyn ja palvelutarpeen kokonaisarviointia. Vuoden 2024 loppuraportti kuvaa kansallista käyttöönoton tukea vuosina 2021–2023.",
+          "mechanism": "Toimintakyvyn ja arjen arviointi → yksilöllinen palvelusuunnittelu; vaikutus riippuu palvelujen saatavuudesta ja toteutuksesta.",
+          "benefit": "Arviointi voi auttaa tunnistamaan tuen tarpeita ja ihmisen omia voimavaroja.",
+          "tradeoff": "Arviointiväline ei yksin takaa hoivaa, henkilöstöä tai henkilön toiveiden toteutumista.",
+          "affected": "Tukea tarvitsevat ikääntyneet, läheiset ja palvelujen työntekijät; kaikki ikääntyneet eivät tarvitse hoivapalveluja.",
+          "lag": "Arviointi koskee nykyistä tilannetta; toimintakyky ja tuen tarve voivat muuttua.",
+          "evidence_note": "Lähteet kuvaavat arviointia ja käyttöönottoa. Tässä ei osoiteta RAI:n aiheuttamaa kustannussäästöä tai hoivan laadun parannusta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Asuminen, läheisten tuki ja palvelujen saavutettavuus voivat vaikuttaa arkeen arviointituloksen rinnalla.",
+          "source_ids": [
+            "rai",
+            "rai2024"
+          ],
+          "mechanism_id": "toimintakyky-ja-alueet"
+        },
+        {
+          "short_title": "Ehdollinen tulevaisuus",
+          "title": "Alueellinen ennuste tukee vaihtoehtojen arviointia",
+          "period": "2024–2045",
+          "years": [
+            2024,
+            2045
+          ],
+          "theme_ids": [
+            30,
+            20,
+            7,
+            15,
+            17
+          ],
+          "focus": {
+            "theme_id": 30,
+            "stage": 5
+          },
+          "map_points": [
+            {
+              "theme_id": 30,
+              "stage": 5
+            }
+          ],
+          "event_year": 2024,
+          "event_label": "Väestöennuste 2024",
+          "explanation": "Tilastokeskuksen vuoden 2024 ennuste sisältää alueittaisen väestöllisen huoltosuhteen vuoteen 2045. Tulevat luvut ovat ennusteita, eivät havaintoja. Väestökehityksen oletukset eivät yksin kerro tulevasta työllisyydestä, toimintakyvystä tai hoivan järjestämisestä.",
+          "mechanism": "Alueen ikärakenne ja muuttoliike → erilaiset palvelujen järjestämisen ehdot; toimintakyky, työllisyys ja paikalliset ratkaisut muuttavat seurauksia.",
+          "benefit": "Ennakointi voi auttaa arvioimaan esteetöntä asumista, palvelujen saavutettavuutta ja työvoiman tarvetta.",
+          "tradeoff": "Yhteen ennusteeseen sitoutuminen voi ohjata kapasiteettia väärin, jos väestö tai palvelutarve kehittyy toisin.",
+          "affected": "Eri alueiden asukkaat, palvelujen järjestäjät, työntekijät ja läheishoivaa antavat.",
+          "lag": "Tarkasteluhorisontti ulottuu vuoteen 2045; ratkaisuja tulee arvioida uudelleen havaintojen kertyessä.",
+          "evidence_note": "Vuoden 2024 ennustevuosikerta erotetaan toteutuneesta kehityksestä. Ratkaisusuunnat ovat arvioitavia mahdollisuuksia, eivät ennustettuja politiikkavaikutuksia. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Muuttoliike, syntyvyys, kuolleisuus, työllisyys ja toimintakyky voivat kehittyä oletuksista poikkeavasti.",
+          "source_ids": [
+            "forecast2024",
+            "ratios",
+            "rai"
+          ],
+          "mechanism_id": "toimintakyky-ja-alueet",
+          "related_anchor_id": "maaltamuutto"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "ikarakenne-ja-tyo",
+          "title": "Miksi ikärakenne ei yksin määrää taloudellista huoltosuhdetta?",
+          "intro": "Ikäryhmien suhde, työllisyys ja työn ulkopuolinen panos ovat eri asioita.",
+          "links": [
+            {
+              "title": "Ikäryhmät muuttuvat",
+              "text": "Syntymäkohortit, kuolleisuus ja muuttoliike muovaavat väestöä.",
+              "lag": "Vuosikymmenet."
+            },
+            {
+              "title": "Työurat vaihtelevat",
+              "text": "Työkyky, työpaikat ja eläkejärjestelmän ehdot vaikuttavat työssä jatkamiseen.",
+              "lag": "Vuosien kohorttiseuranta."
+            },
+            {
+              "title": "Rahoitus riippuu useista tekijöistä",
+              "text": "Työllisyys ja tuottavuus voivat muuttaa rahoituksen edellytyksiä saman ikärakenteen oloissa.",
+              "lag": "Suhdanteista pitkään aikaväliin; arvioitava erikseen."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Tilastokeskus määrittelee väestöllisen ja taloudellisen huoltosuhteen eri tavoin.",
+              "source_ids": [
+                "ratios"
+              ]
+            },
+            {
+              "text": "Eläketurvakeskus raportoi eläkeuudistusten vaikutuksia ja niiden eroja työmarkkina-asemien välillä.",
+              "source_ids": [
+                "pension-effects"
+              ]
+            }
+          ],
+          "interpretation": "Ikärajoihin perustuva suhdeluku ei mittaa hoivaa, vapaaehtoistyötä tai yksilön yhteiskunnallista arvoa. Tässä ei lasketa rahoitusennustetta.",
+          "alternative": "Taloudellisen huoltosuhteen muutos voi johtua suhdanteesta ilman vastaavaa ikärakenteen muutosta.",
+          "question": "Vertaa ikärakennetta, työllisyyttä ja työurien siirtymiä erikseen. Tarkastele myös työn kuormitusta ja palkatonta osallistumista."
+        },
+        {
+          "id": "toimintakyky-ja-alueet",
+          "title": "Miten ikääntyminen välittyy palvelutarpeeksi eri alueilla?",
+          "intro": "Väestöennuste ja yksilön toimintakyvyn arviointi vastaavat eri kysymyksiin.",
+          "links": [
+            {
+              "title": "Alueen väestö muuttuu",
+              "text": "Ikärakenne ja muuttoliike muuttavat palvelujen järjestämisen ympäristöä.",
+              "lag": "Vuosien ja vuosikymmenten aikana."
+            },
+            {
+              "title": "Tarve arvioidaan yksilöllisesti",
+              "text": "Toimintakyky, arki ja omat tavoitteet vaikuttavat tarvittavaan tukeen.",
+              "lag": "Nykytilanne ja toistuva seuranta."
+            },
+            {
+              "title": "Toteutus ratkaisee",
+              "text": "Saavutettavuus, henkilöstö ja asuminen voivat muuttaa tuen toteutumista.",
+              "lag": "Paikalliset ratkaisut; vaikutus tutkittava."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "THL kuvaa RAI-välineistön käyttöä toimintakyvyn ja palvelutarpeen arvioinnissa.",
+              "source_ids": [
+                "rai"
+              ]
+            },
+            {
+              "text": "Tilastokeskuksen vuoden 2024 ennustetaulukko esittää alueittaisen väestöllisen huoltosuhteen vuoteen 2045.",
+              "source_ids": [
+                "forecast2024"
+              ]
+            }
+          ],
+          "interpretation": "Ennuste ei ole hoivan tarpeen mittaus. Ikääntyneiden oma toimijuus ja läheisten tuen kestävyys kuuluvat vaihtoehtojen arviointiin.",
+          "alternative": "Samankokoisilla ikäryhmillä voi olla erilainen palvelutarve terveyden, asumisen ja saavutettavuuden vuoksi.",
+          "question": "Vertaa ennustetta toteutuneeseen väestöön ja seuraa toimintakykyä, palvelujen saatavuutta sekä läheisten kuormitusta alueittain."
         }
       ]
     }
