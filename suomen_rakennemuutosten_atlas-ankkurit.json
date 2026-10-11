@@ -4888,6 +4888,329 @@
           "question": "Kenelle muuttuneet käytännöt avaavat mahdollisuuksia ja kenelle tarvitaan muuta tukea?"
         }
       ]
+    },
+    {
+      "id": "maahanmuutto-ja-kotoutuminen",
+      "entry_theme_id": 1,
+      "short_title": "Maahanmuutto ja kotoutuminen",
+      "title": "Maahanmuutto ja kotoutuminen – muuttoliikkeestä työhön, palveluihin ja osallisuuteen",
+      "period": "1990–2025",
+      "question": "Miten muuttoliike, osaaminen, instituutiot ja yhteisöt muovaavat kotoutumisen mahdollisuuksia?",
+      "sources": [
+        {
+          "id": "statistics",
+          "title": "Tilastokeskus: Maahanmuuttajat ja kotoutuminen",
+          "url": "https://stat.fi/fi/tilastot/tietoa-teemoittain/maahanmuuttajat-ja-kotoutuminen"
+        },
+        {
+          "id": "law1999",
+          "title": "Finlex: kotouttamislaki 493/1999 (alkuperäinen)",
+          "url": "https://www.finlex.fi/fi/lainsaadanto/saadoskokoelma/1999/493"
+        },
+        {
+          "id": "law2011",
+          "title": "Finlex: kotoutumisen edistämisestä annettu laki 1386/2010 (historiallinen)",
+          "url": "https://finlex.fi/fi/lainsaadanto/2010/1386"
+        },
+        {
+          "id": "skills",
+          "title": "THL: Viisi myyttiä maahanmuuttajanaisesta (tutkimuksiin perustuva asiantuntijateksti)",
+          "url": "https://blogi.thl.fi/faktantarkistus-ennakkoluuloille-viisi-myyttia-maahanmuuttajanaisesta/"
+        },
+        {
+          "id": "employment",
+          "title": "Tilastokeskus: Ulkomaalaistaustaisten työllisyyden kasvu pysähtyi vuonna 2023",
+          "url": "https://stat.fi/tietotrendit/artikkelit/2024/ulkomaalaistaustaisten-tyollisyyden-kasvu-pysahtyi"
+        },
+        {
+          "id": "services",
+          "title": "THL: MoniSuomi 2022 ja yhdenvertaisuus palveluissa (asiantuntijateksti, 2025)",
+          "url": "https://blogi.thl.fi/mielenterveytta-voi-edistaa-jokaisessa-kohtaamisessa-yhdenvertaisuus-palveluissa-edellyttaa-sote-ammattilaisten-osaamista-moninaisuudesta/"
+        },
+        {
+          "id": "law2025",
+          "title": "Finlex: kotoutumislaki 681/2023 (alkuperäinen)",
+          "url": "https://finlex.fi/fi/lainsaadanto/saadoskokoelma/2023/681"
+        },
+        {
+          "id": "reform",
+          "title": "TEM: Vuodenvaihteen 2024–2025 muutoksia hallinnonalalla",
+          "url": "https://valtioneuvosto.fi/-/1410877/vuodenvaihteen-2024-2025-muutoksia-tem-n-hallinnonalalla"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Muuttoliikkeen lähtötilanne",
+          "title": "Muuttovirta ja väestö ovat eri asioita",
+          "period": "1990–1998",
+          "years": [
+            1990,
+            1998
+          ],
+          "event_year": 1990,
+          "event_label": "Tilastosarjan tarkastelu alkaa",
+          "theme_ids": [
+            1,
+            19
+          ],
+          "focus": {
+            "theme_id": 1,
+            "stage": 3
+          },
+          "map_points": [],
+          "explanation": "Maahanmuuttoa tarkastellaan muuttojen virtana ja Suomessa asuvaa väestöä erillisenä kokonaisuutena. Kansalaisuus, kieli ja syntyperä kuvaavat eri asioita; vieraskielisyys ei yksin määritä maahan muuttanutta.",
+          "mechanism": "Muuttoliike → erilaiset lähtötilanteet → koulutuksen, työn ja palvelujen tarpeet.",
+          "benefit": "Tilastojen erottelu auttaa kohdentamaan kysymykset oikein.",
+          "tradeoff": "Yksi luokitus voi peittää ryhmien sisäiset erot.",
+          "affected": "Työn, opiskelun, perheen tai suojelun vuoksi muuttavat sekä paluumuuttajat.",
+          "lag": "Väestörakenne muuttuu kumulatiivisesti, muuttojen virta vuosittain.",
+          "evidence_note": "Tilastolähde tarjoaa erillisiä tarkasteluja. Vuosi 1990 on tarkastelun alku, ei kotoutumisen alkamisvuosi. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Ikä, muuton syy ja Suomessa asumisen kesto vaikuttavat vertailuun.",
+          "source_ids": [
+            "statistics"
+          ],
+          "mechanism_id": "palvelut-ja-osallisuus"
+        },
+        {
+          "short_title": "Kotouttamislaki 1999",
+          "title": "Kotoutumisen tuki saa lakiperustan",
+          "period": "1999–2010",
+          "years": [
+            1999,
+            2010
+          ],
+          "event_year": 1999,
+          "event_label": "Kotouttamislaki voimaan 1.5.1999",
+          "theme_ids": [
+            8,
+            15,
+            4
+          ],
+          "focus": {
+            "theme_id": 8,
+            "stage": 3
+          },
+          "map_points": [],
+          "explanation": "Laki 493/1999 tuli voimaan 1.5.1999. Se säänteli kotouttamista ja turvapaikanhakijoiden vastaanottoa sekä määritteli kotouttamisohjelman ja henkilökohtaisen kotoutumissuunnitelman.",
+          "mechanism": "Suunnittelu ja viranomaisten yhteistyö → mahdollisuus johdonmukaisempaan tukeen.",
+          "benefit": "Palvelutarpeita voidaan käsitellä suunnitelmallisesti.",
+          "tradeoff": "Hallinnollinen suunnitelma ei yksin takaa sopivaa palvelua tai työpaikkaa.",
+          "affected": "Lain soveltamisalaan kuuluvat maahanmuuttajat, kunnat ja työvoimaviranomaiset.",
+          "lag": "Palvelujen rakentaminen ja yksilölliset polut vievät aikaa.",
+          "evidence_note": "Historiallinen säädös osoittaa rakenteet, ei niiden vaikuttavuutta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Paikalliset voimavarat ja työmarkkinat voivat vaikuttaa tuloksiin.",
+          "source_ids": [
+            "law1999"
+          ],
+          "mechanism_id": "palvelut-ja-osallisuus"
+        },
+        {
+          "short_title": "Vuorovaikutteinen kotoutuminen",
+          "title": "Vuoden 2011 laki korostaa yhteiskunnan ja yksilön vuorovaikutusta",
+          "period": "2011–2018",
+          "years": [
+            2011,
+            2018
+          ],
+          "event_year": 2011,
+          "event_label": "Laki 1386/2010 voimaan 1.9.2011",
+          "theme_ids": [
+            19,
+            4,
+            27
+          ],
+          "focus": {
+            "theme_id": 19,
+            "stage": 3
+          },
+          "map_points": [],
+          "explanation": "Vuonna 2011 voimaan tullut laki määritteli kotoutumisen vuorovaikutteiseksi kehitykseksi. Yhteiskunnassa ja työelämässä tarvittavien taitojen rinnalla se huomioi mahdollisuuden ylläpitää omaa kieltä ja kulttuuria.",
+          "mechanism": "Tiedot, taidot ja vastaanottavan yhteiskunnan käytännöt → mahdollisuus osallistua.",
+          "benefit": "Kotoutumista voidaan tarkastella työllisyyttä laajemmin.",
+          "tradeoff": "Yhden mittarin tavoittelu voi sivuuttaa kuulumisen ja yhdenvertaisuuden.",
+          "affected": "Maahan muuttaneet, oppilaitokset, työnantajat ja paikallisyhteisöt.",
+          "lag": "Kielitaidon ja verkostojen kehittyminen voi kestää vuosia.",
+          "evidence_note": "Kyse on historiallisen lain määritelmästä; se ei osoita toteutunutta yhdenvertaisuutta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Myös perhe, terveys ja yhteisöjen avoimuus vaikuttavat.",
+          "source_ids": [
+            "law2011"
+          ],
+          "mechanism_id": "palvelut-ja-osallisuus"
+        },
+        {
+          "short_title": "Kieli, osaaminen ja työ",
+          "title": "Tutkinto ja kielitaito tarvitsevat rinnalleen mahdollisuuksia",
+          "period": "2019–2022",
+          "years": [
+            2019,
+            2022
+          ],
+          "event_year": 2022,
+          "event_label": "THL:n tutkimuksia kokoava asiantuntijateksti",
+          "theme_ids": [
+            4,
+            15,
+            19
+          ],
+          "focus": {
+            "theme_id": 4,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "THL:n tutkimuksiin perustuva katsaus käsittelee koulutusta, kielitaitoa, ylikoulutusta ja syrjintäkokemuksia. Maahan muuttaneet naiset eivät ole yhtenäinen ryhmä. Tutkinto ja kielitaito eivät kaikille takaa osaamista vastaavaa työtä.",
+          "mechanism": "Kielen oppiminen ja osaamisen tunnistaminen → pääsy koulutukseen ja työhön, jos rekrytointi ja työpaikat mahdollistavat sen.",
+          "benefit": "Osaamisen käyttö voi vahvistaa toimeentuloa ja toimijuutta.",
+          "tradeoff": "Koulutuspolku voi viivästyttää toimeentuloa; syrjintä voi estää etenemistä.",
+          "affected": "Eri tavoin koulutetut työnhakijat, opiskelijat, perheelliset ja työnantajat.",
+          "lag": "Tutkinnon tunnustaminen, täydentävät opinnot ja uralla eteneminen voivat kestää.",
+          "evidence_note": "Asiantuntijateksti kokoaa aiempia tutkimuksia; vuosi 2022 on julkaisun ajankohta, ei kaikkien havaintojen vuosi. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Suhdanne, ammattiala ja hoivavastuut voivat selittää osan eroista.",
+          "source_ids": [
+            "skills"
+          ],
+          "mechanism_id": "osaamisesta-tyohon"
+        },
+        {
+          "short_title": "Tulosten tulkinta",
+          "title": "Työllisyysaste ei yksin kuvaa kotoutumista",
+          "period": "2023–2024",
+          "years": [
+            2023,
+            2024
+          ],
+          "event_year": 2024,
+          "event_label": "Tilastokeskuksen analyysi vuoden 2023 työllisyydestä",
+          "theme_ids": [
+            15,
+            19,
+            27
+          ],
+          "focus": {
+            "theme_id": 15,
+            "stage": 5
+          },
+          "map_points": [],
+          "explanation": "Tilastokeskuksen mukaan ulkomaalaistaustaisten työllisyysaste laski vuonna 2023, vaikka työllisten määrä kasvoi. Väestöryhmän koko ja rakenne sekä suhdanne on huomioitava. Työllisyys, palvelujen saatavuus ja osallisuus ovat erillisiä näkökulmia.",
+          "mechanism": "Työmarkkinoiden ja väestörakenteen muutos → muuttuvat tunnusluvut → tarve eritellä tuloksia.",
+          "benefit": "Eri mittareilla voidaan tunnistaa erilaisia tuen tarpeita.",
+          "tradeoff": "Keskimääräinen työllisyysaste voi peittää ryhmien erot ja työn laadun.",
+          "affected": "Työikäinen ulkomaalaistaustainen väestö; tulosta ei yleistetä kaikkiin maahan muuttaneisiin.",
+          "lag": "Vuoden havainto voi heijastaa sekä suhdannetta että pidempiä polkuja.",
+          "evidence_note": "Analyysi koskee vuoden 2023 havaintoja ja julkaistiin 2024; se ei arvioi vuoden 2025 uudistuksen vaikutuksia. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Ikä, sukupuoli, muuton syy ja asumisen kesto muuttavat vertailuja.",
+          "source_ids": [
+            "employment"
+          ],
+          "mechanism_id": "osaamisesta-tyohon"
+        },
+        {
+          "short_title": "Kuntien vastuu 2025",
+          "title": "Uudistus kokoaa palveluja, vaikutukset edellyttävät seurantaa",
+          "period": "2025–2025",
+          "years": [
+            2025,
+            2025
+          ],
+          "event_year": 2025,
+          "event_label": "KOTO24 ja TE-palvelu-uudistus 1.1.2025",
+          "theme_ids": [
+            8,
+            15,
+            7,
+            27
+          ],
+          "focus": {
+            "theme_id": 8,
+            "stage": 4
+          },
+          "map_points": [],
+          "explanation": "Kotoutumislaki 681/2023 tuli voimaan 1.1.2025 TE-palvelu-uudistuksen rinnalla. Kuntien kokonaisvastuu kotoutumisen edistämisestä vahvistui. TEM kuvaa tavoitteeksi kotoutumisen ja työllistymisen nopeuttamisen. THL:n MoniSuomi-aineistoon perustuva teksti nostaa esiin palvelujen riittämättömyyskokemuksia.",
+          "mechanism": "Palvelujen yhteensovittaminen ja saavutettavuus → mahdollisuus sujuvampiin polkuihin ja osallisuuteen.",
+          "benefit": "Paikallinen yhteistyö voi helpottaa koulutuksen, työn ja muiden palvelujen yhdistämistä.",
+          "tradeoff": "Kuntien voimavarat ja yhteistyön toimivuus voivat vaihdella.",
+          "affected": "Kuntien palvelujen asiakkaat, työnantajat, järjestöt ja hyvinvointialueiden kanssa yhteistyötä tekevät toimijat.",
+          "lag": "Toteutuksen ja vaikutusten arviointi tarvitsee usean vuoden seurantaa.",
+          "evidence_note": "Vuoden 2025 aloitus ja tavoitteet ovat lähteistettyjä; vaikutuksia ei ole osoitettu tässä. MoniSuomi 2022 kuvaa aiempia itse raportoituja kokemuksia. Tarkastelu päättyy vuoteen 2025 eikä kuvaa myöhempiä lakimuutoksia. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Rahoitus, suhdanne ja asiakasrakenteen muutokset voivat vaikuttaa tuloksiin.",
+          "source_ids": [
+            "law2025",
+            "reform",
+            "services"
+          ],
+          "mechanism_id": "palvelut-ja-osallisuus"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "osaamisesta-tyohon",
+          "title": "Osaamisesta työelämään",
+          "intro": "Kielitaito, koulutus ja osaamisen tunnistaminen toimivat yhdessä työmarkkinoiden mahdollisuuksien kanssa.",
+          "links": [
+            {
+              "title": "Osaamisen tunnistaminen",
+              "text": "Aiemmat taidot ja täydentävä koulutus voivat avata reittejä.",
+              "lag": "Kuukausista vuosiin."
+            },
+            {
+              "title": "Mahdollisuus työhön",
+              "text": "Rekrytointi, työpaikkojen tarjonta ja syrjimättömyys vaikuttavat osaamisen hyödyntämiseen.",
+              "lag": "Suhdanne ja työura muuttuvat eri tahtiin."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "THL:n tutkimuksia kokoava teksti käsittelee ylikoulutusta ja syrjintäkokemuksia.",
+              "source_ids": [
+                "skills"
+              ]
+            },
+            {
+              "text": "Tilastokeskuksen vuoden 2023 analyysi erottaa työllisyysasteen ja työllisten määrän muutoksen.",
+              "source_ids": [
+                "employment"
+              ]
+            }
+          ],
+          "interpretation": "Polku kuvaa mahdollisia mekanismeja, ei koulutuksen kausaalista työllisyysvaikutusta.",
+          "alternative": "Väestörakenne, muuton syy ja suhdanne voivat muuttaa tuloksia.",
+          "question": "Saavatko ihmiset osaamistaan vastaavaa työtä ja mahdollisuuden edetä?"
+        },
+        {
+          "id": "palvelut-ja-osallisuus",
+          "title": "Palveluista osallisuuteen",
+          "intro": "Kotoutumiseen osallistuvat maahan muuttanut itse, instituutiot ja yhteisöt.",
+          "links": [
+            {
+              "title": "Saavutettavat palvelut",
+              "text": "Ymmärrettävä tieto ja palvelujen yhteistyö voivat helpottaa asiointia.",
+              "lag": "Palveluketjun rakentaminen vie aikaa."
+            },
+            {
+              "title": "Kuuluminen ja toimijuus",
+              "text": "Yhdenvertaiset kohtaamiset ja osallistumismahdollisuudet voivat vahvistaa luottamusta.",
+              "lag": "Kokemukset ja verkostot kertyvät vähitellen."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Historiallinen vuoden 2011 laki määritteli kotoutumisen vuorovaikutteiseksi kehitykseksi.",
+              "source_ids": [
+                "law2011"
+              ]
+            },
+            {
+              "text": "TEM:n vuoden 2025 tiedote kuvaa uudistuksen tavoitteita; THL:n teksti käsittelee aiempia palvelukokemuksia.",
+              "source_ids": [
+                "reform",
+                "services"
+              ]
+            }
+          ],
+          "interpretation": "Palvelujen saatavuus ja osallisuus on arvioitava erikseen. Tavoitteet eivät osoita uudistuksen vaikutusta.",
+          "alternative": "Luottamukseen vaikuttavat myös terveys, perhetilanne ja syrjintä.",
+          "question": "Voiko henkilö käyttää palveluja ja vaikuttaa oman elämänsä sekä yhteisönsä asioihin?"
+        }
+      ]
     }
   ]
 }

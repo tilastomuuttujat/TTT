@@ -61,3 +61,15 @@ test('coronavirus path separates emergency periods, unequal remote access and ev
  assert.ok(a.steps.every(s=>s.evidence_note.includes('eivät tämän tapauksen mittaustuloksia')));
  assert.equal(a.mechanisms.length,2);assert.ok(!a.statistics?.length);
 });
+
+test('immigration path separates population definitions, laws, labour-market evidence and reform goals',()=>{
+ const a=data.anchors.find(a=>a.id==='maahanmuutto-ja-kotoutuminen');assert.ok(a);assert.equal(a.entry_theme_id,1);assert.equal(a.steps.length,6);
+ assert.ok(a.steps[0].explanation.includes('Kansalaisuus, kieli ja syntyperä'));
+ assert.equal(a.steps[1].event_year,1999);assert.equal(a.steps[2].event_year,2011);
+ assert.ok(a.steps[3].evidence_note.includes('ei kaikkien havaintojen vuosi'));
+ assert.equal(a.steps[4].event_year,2024);assert.ok(a.steps[4].explanation.includes('vaikka työllisten määrä kasvoi'));
+ assert.equal(a.steps[5].event_year,2025);assert.ok(a.steps[5].evidence_note.includes('vaikutuksia ei ole osoitettu'));
+ assert.ok(a.steps[5].evidence_note.includes('myöhempiä lakimuutoksia'));
+ assert.ok(a.steps.every(s=>s.evidence_note.includes('eivät tämän tapauksen mittaustuloksia')));
+ assert.equal(a.mechanisms.length,2);assert.ok(!a.statistics?.length);
+});
