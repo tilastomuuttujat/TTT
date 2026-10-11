@@ -2391,6 +2391,388 @@
           "question": "Seuraa tuen oikea-aikaisuutta, oppimisen kehitystä ja palvelujen saavutettavuutta taustaryhmittäin ennen muutosta ja sen jälkeen."
         }
       ]
+    },
+    {
+      "id": "1990-luvun-lama",
+      "entry_theme_id": 17,
+      "short_title": "1990-luvun lama",
+      "title": "1990-luvun lama – rahoituskriisistä toimeentulon pitkään jälkeen",
+      "period": "1985–2012",
+      "question": "Miten rahoituksen ja kysynnän häiriöt välittyivät työhön ja toimeentuloon — ja miksi toipuminen tapahtui eri tahtiin?",
+      "sources": [
+        {
+          "id": "bof-history",
+          "title": "Suomen Pankki: Talouskriisistä rahaliittoon (2010)",
+          "url": "https://publications.bof.fi/items/87ea7e04-cd5d-467e-a39b-f54de007f2a7"
+        },
+        {
+          "id": "bof-analysis",
+          "title": "Suomen Pankki: Money and the Monetary System – Case Finland, 1811–2030 (2025)",
+          "url": "https://www.suomenpankki.fi/fi/ajankohtaista/puheet-ja-haastattelut/2025/money-and-the-monetary-system--case-finland-18112030/"
+        },
+        {
+          "id": "bof-research2014",
+          "title": "Suomen Pankin vuosikertomus 2014: laman rahoitustekijöitä koskeva tutkimuskatsaus (s. 46)",
+          "url": "https://publications.bof.fi/bitstream/handle/10024/42412/VK_EN_2014.pdf?isAllowed=y&sequence=1"
+        },
+        {
+          "id": "bank-firms",
+          "title": "Kinnunen ja Vihriälä (1999): Bank relationships and small-business closures during the Finnish recession of the 1990s",
+          "url": "https://publications.bof.fi/items/212802f0-62f6-4d10-9ee2-0533a6605956"
+        },
+        {
+          "id": "stat-unemployment",
+          "title": "Tilastokeskus (2011): Teollisuuden toimialakatsaus, työttömyys ja rakenteellinen muutos",
+          "url": "https://stat.fi/artikkelit/2011/art_2011-06-23_001.html?s=6"
+        },
+        {
+          "id": "stat-workforce",
+          "title": "Tilastokeskus (2010): Työvoiman kasvu hiipui lamaan",
+          "url": "https://stat.fi/artikkelit/2010/art_2010-06-07_006.html?s=0"
+        },
+        {
+          "id": "stat-graduates",
+          "title": "Tilastokeskus (2012): Lamavuonna 1992 tutkinnon suorittaneet työllistyivät huonosti",
+          "url": "https://stat.fi/artikkelit/2012/art_2012-03-12_006.html"
+        },
+        {
+          "id": "debt-law",
+          "title": "Finlex: Laki yksityishenkilön velkajärjestelystä, alkuperäinen säädös 57/1993",
+          "url": "https://www.finlex.fi/fi/lainsaadanto/saadoskokoelma/1993/57"
+        },
+        {
+          "id": "poverty-measures",
+          "title": "Jussi Tervola, THL-blogi (2020): Lama ja köyhyysmittareiden paradoksi",
+          "url": "https://blogi.thl.fi/lama-ja-koyhyysmittareiden-paradoksi/"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Nousu ja riskien kasvu",
+          "title": "Rahoituksen vapautuminen muuttaa luotonannon ehtoja",
+          "period": "1985–1989",
+          "years": [
+            1985,
+            1989
+          ],
+          "theme_ids": [
+            17,
+            3,
+            18
+          ],
+          "focus": {
+            "theme_id": 17,
+            "stage": 3
+          },
+          "map_points": [],
+          "event_year": 1989,
+          "event_label": "Nousukauden käänne",
+          "explanation": "1980-luvun lopun nousukauteen liittyivät rahoitusmarkkinoiden vapautuminen ja velkaantuminen. Suomen Pankin jälkikäteisarvio korostaa rahoitus- ja rahataloudellisten tekijöiden merkitystä ylikuumenemisessa. Tämä on yksi selityslinja, ei kaikkien syiden lopullinen painotus.",
+          "mechanism": "Luoton saatavuus voi lisätä investointeja ja hankintoja; velka sekä vakuusarvot voivat samalla tehdä taloudesta herkemmän tulojen tai hintojen laskulle.",
+          "benefit": "Rahoitus voi mahdollistaa yrityksen investoinnin tai kotitalouden asunnon hankinnan.",
+          "tradeoff": "Kasvuun sidottu velanhoito ja vakuudet voivat altistaa tulonmenetykselle, korkoriskille ja hintojen laskulle.",
+          "affected": "Velalliset kotitaloudet ja yritykset, pankit sekä omaisuutta omistavat ja hankkivat.",
+          "lag": "Luotto vaikuttaa hankintoihin nopeasti; haavoittuvuus voi kasautua nousukauden aikana.",
+          "evidence_note": "Rahoitustekijöiden rooli perustuu Suomen Pankin tutkimuskatsaukseen ja jälkikäteisarvioon. Ketjun yksittäisiä osuuksia ei tässä lasketa. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Luotonanto voi seurata kasvua eikä vain aiheuttaa sitä. Verotus, odotukset ja kansainvälinen taloustilanne on erotettava luottokanavan vaikutuksesta.",
+          "source_ids": [
+            "bof-analysis",
+            "bof-research2014"
+          ],
+          "mechanism_id": "velka-ja-rahoitus"
+        },
+        {
+          "short_title": "Talouden supistuminen",
+          "title": "Kotimaiset haavoittuvuudet kohtaavat ulkoisia häiriöitä",
+          "period": "1990–1991",
+          "years": [
+            1990,
+            1991
+          ],
+          "theme_ids": [
+            17,
+            13,
+            15,
+            18
+          ],
+          "focus": {
+            "theme_id": 17,
+            "stage": 3
+          },
+          "map_points": [
+            {
+              "theme_id": 17,
+              "stage": 3
+            }
+          ],
+          "event_year": 1991,
+          "event_label": "Talouden kriisi syvenee",
+          "explanation": "Talouden heikkenemiseen liittyivät kotimaisen rahoituskehityksen lisäksi ulkoiset häiriöt, kuten Neuvostoliiton kaupan romahdus. Suomen Pankin tutkimuskatsaus varoittaa selittämästä koko lamaa pelkällä ulkoisella sokilla.",
+          "mechanism": "Kysynnän heikkeneminen voi pienentää kassavirtaa. Valmiiksi velkaantunut yritys tai kotitalous joutuu silloin sovittamaan menojaan aiempaa pienempiin tuloihin.",
+          "benefit": "Riskien tunnistaminen voi auttaa erottamaan tilapäisen maksuvaikeuden pysyvästä kannattavuusongelmasta; tämä on mahdollinen toimintatapa.",
+          "tradeoff": "Samanaikaiset sopeutukset voivat vähentää kysyntää edelleen ja vaikeuttaa yritysten sekä kotitalouksien selviytymistä.",
+          "affected": "Viennistä ja kotimaisesta kysynnästä riippuvat yritykset, työntekijät ja velalliset.",
+          "lag": "Kassavirta voi heiketä kuukausissa; työllisyysvaikutukset voivat jatkua pidempään.",
+          "evidence_note": "Ulkoisten häiriöiden ja rahoitustekijöiden yhteisesiintyminen on dokumentoitu. Niiden suhteellinen vaikutus on tutkimuskysymys. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Viennin, kotimaisen kysynnän ja rahapolitiikan painot voivat vaihdella toimialoittain. Yksi tapahtuma ei yksin selitä koko laskua.",
+          "source_ids": [
+            "bof-research2014",
+            "bof-history"
+          ],
+          "mechanism_id": "velka-ja-rahoitus"
+        },
+        {
+          "short_title": "Pankki- ja valuuttakriisi",
+          "title": "Valuuttakurssi ja pankkien tila välittävät kriisiä",
+          "period": "1991–1993",
+          "years": [
+            1991,
+            1993
+          ],
+          "theme_ids": [
+            17,
+            3,
+            13,
+            15
+          ],
+          "focus": {
+            "theme_id": 17,
+            "stage": 3
+          },
+          "map_points": [],
+          "event_year": 1992,
+          "event_label": "Markka siirtyy kellumaan",
+          "explanation": "Kiinteästä valuuttakurssista siirryttiin kelluntaan vuonna 1992 keskellä talous- ja pankkikriisiä. Valuuttakurssin muutos vaikutti eri tavoin valuuttavelalliseen ja vientituloja saavaan. Pankkisuhteita koskeva tutkimus tarkastelee myös rahoittajan ongelmien yhteyttä yrityksen sulkemiseen.",
+          "mechanism": "Valuuttakurssin muutos → valuuttavelan kotivaluuttainen arvo; pankin vaikeudet → asiakkaan rahoituksen ehdot. Näiden kanavien vaikutus riippuu sopimuksista ja yrityksen tilanteesta.",
+          "benefit": "Valuuttakurssin jousto voi helpottaa osan vientiyritysten sopeutumista; hyöty ei jakaudu automaattisesti kaikille.",
+          "tradeoff": "Suojaamattoman valuuttavelan kotivaluuttainen rasitus voi kasvaa, ja rahoituksen saatavuus voi vaikeutua.",
+          "affected": "Valuuttavelalliset, vientiyritykset, pankit sekä niiden yritysasiakkaat ja työntekijät.",
+          "lag": "Valuuttakurssi voi muuttua nopeasti; rahoituksen, konkurssien ja työpaikkojen seuraukset näkyvät myöhemmin.",
+          "evidence_note": "Kelluntaan siirtyminen on dokumentoitu. Pankkisuhteita koskeva tutkimus antaa rajattua näyttöä yritysten sulkemisen yhteydestä kriisipankkiin vuonna 1992. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Sulkemisriski voi riippua myös velkaisuudesta, kannattavuudesta ja kysynnästä. Pankin asiakkaiden erot on huomioitava.",
+          "source_ids": [
+            "bof-history",
+            "bank-firms"
+          ],
+          "mechanism_id": "velka-ja-rahoitus"
+        },
+        {
+          "short_title": "Työttömyys ja velkajärjestely",
+          "title": "Kriisi näkyy toimeentulossa ja korjauskeinojen tarpeessa",
+          "period": "1992–1994",
+          "years": [
+            1992,
+            1994
+          ],
+          "theme_ids": [
+            15,
+            5,
+            17,
+            26,
+            28
+          ],
+          "focus": {
+            "theme_id": 15,
+            "stage": 3
+          },
+          "map_points": [],
+          "event_year": 1993,
+          "event_label": "Laki yksityishenkilön velkajärjestelystä",
+          "explanation": "Työttömyys nousi laman aikana jyrkästi; Tilastokeskuksen historiallisessa tarkastelussa vuosikeskiarvon huippu ajoittuu vuoteen 1994. Vuoden 1993 velkajärjestelylaki loi oikeudellisen menettelyn yksityishenkilön maksukyvyttömyyden järjestämiseen. Lain olemassaolo ei kerro, kuinka moni sai apua tai toipui.",
+          "mechanism": "Työn menetys voi pienentää tuloja samaan aikaan, kun velanhoito jatkuu. Tulonsiirrot ja velkajärjestely voivat muuttaa sopeutumisen ehtoja; toteutuneet vaikutukset on arvioitava erikseen.",
+          "benefit": "Mahdollisuus ylläpitää toimeentuloa ja järjestellä maksukyvyttömän henkilön velkoja.",
+          "tradeoff": "Etuuksien ja järjestelyjen ehdot voivat rajata apua; menetettyä työtä tai varallisuutta ne eivät automaattisesti palauta.",
+          "affected": "Työttömät, velalliset kotitaloudet ja heidän perheensä sekä tukia ja velkajärjestelyjä toteuttavat toimijat.",
+          "lag": "Tulonmenetys on välitön; järjestelyt ja toipuminen voivat kestää vuosia.",
+          "evidence_note": "Työttömyyden ajoitus ja velkajärjestelylain synty ovat lähteistettyjä. Toimeentulon välittymisketju on tulkintamalli. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Maksuvaikeuksia voivat selittää työttömyyden ohella velan ehdot, korkotaso, yritystoiminnan tappiot tai perheen muu tilanne.",
+          "source_ids": [
+            "stat-unemployment",
+            "debt-law",
+            "poverty-measures"
+          ],
+          "mechanism_id": "toimeentulo-ja-toipuminen"
+        },
+        {
+          "short_title": "Epätasainen toipuminen",
+          "title": "Tuotannon kasvu ja kotitalouden toipuminen kulkevat eri tahtiin",
+          "period": "1994–1999",
+          "years": [
+            1994,
+            1999
+          ],
+          "theme_ids": [
+            17,
+            15,
+            5,
+            26
+          ],
+          "focus": {
+            "theme_id": 17,
+            "stage": 3
+          },
+          "map_points": [],
+          "event_year": 1996,
+          "event_label": "Markka liitetään ERM-järjestelmään",
+          "explanation": "Suomen Pankin historiakuvaus kertoo vahvasta kasvusta vuosikymmenen loppupuolella. Markka liitettiin ERM-järjestelmään vuonna 1996; ajoitus ei yksin osoita toimenpiteen kasvuvaikutusta. Työmarkkinoita koskevat tarkastelut osoittavat, ettei työllisyyden palautumista voi päätellä suoraan tuotannon kasvusta. THL:n asiantuntijakirjoitus muistuttaa myös suhteellisen pienituloisuuden mittausrajan muuttumisesta.",
+          "mechanism": "Tuotannon kasvu → mahdollisia työpaikkoja ja tuloja, mutta vaikutus riippuu toimialasta ja työntekijän asemasta. Mediaaniin sidottu pienituloisuusraja liikkuu koko väestön tulojen mukana.",
+          "benefit": "Kasvu voi avata työ- ja yritystoiminnan mahdollisuuksia.",
+          "tradeoff": "Pitkä työttömyys tai velkataakka voi jatkua nousukaudella. Suhteellinen tulomittari voi peittää velkoihin ja varallisuuteen liittyviä vaikeuksia.",
+          "affected": "Työllistyvät, pitkään työttömänä pysyvät, velalliset ja tulonsiirroista riippuvat kotitaloudet.",
+          "lag": "Tuotannon, työllisyyden ja velkojen muutokset etenevät eri tahtiin.",
+          "evidence_note": "Kasvun palautuminen ja mittareiden rajoitukset ovat lähteistettyjä. Yksittäisen politiikkatoimen vaikutusta ei tunnisteta tässä polussa. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Mittarin nousu tai lasku voi johtua tulorajan muutoksesta. Toipumista tulee verrata myös työllisyyteen, velanhoitoon ja kiinteään toimeentulorajaan.",
+          "source_ids": [
+            "bof-history",
+            "stat-workforce",
+            "poverty-measures"
+          ],
+          "mechanism_id": "toimeentulo-ja-toipuminen"
+        },
+        {
+          "short_title": "Pitkä jälki",
+          "title": "Työelämään tulon ajankohta voi näkyä myöhemmässä työurassa",
+          "period": "2000–2012",
+          "years": [
+            2000,
+            2012
+          ],
+          "theme_ids": [
+            4,
+            15,
+            5,
+            26
+          ],
+          "focus": {
+            "theme_id": 26,
+            "stage": 4
+          },
+          "map_points": [
+            {
+              "theme_id": 26,
+              "stage": 4
+            }
+          ],
+          "event_year": 2012,
+          "event_label": "Lama-aikana valmistuneiden seuranta",
+          "explanation": "Tilastokeskuksen vuoden 2012 artikkeli vertaa vuosina 1992 ja 2002 valmistuneiden työhön sijoittumista. Laman aikana valmistuneiden vaikeuksia näkyy myöhemmissäkin havainnoissa. Kuvaileva kohorttivertailu ei yksin erota laman vaikutusta koulutusrakenteen ja muiden olosuhteiden muutoksista.",
+          "mechanism": "Vaikea ensimmäinen siirtymä työelämään voi katkaista työkokemuksen kertymistä ja heikentää myöhempiä mahdollisuuksia. Ketju on tutkittava yksilö- ja kohorttiaineistolla.",
+          "benefit": "Pitkä seuranta auttaa tunnistamaan ryhmiä, joille toipumisen tukea voisi kohdentaa.",
+          "tradeoff": "Kansantalouden elpyminen ei välttämättä korjaa keskeytynyttä työuraa tai pitkittyneitä velkaongelmia.",
+          "affected": "Lama-aikana valmistuneet, työuransa menettäneet ja heidän perheensä; seuraukset vaihtelevat koulutuksen ja alan mukaan.",
+          "lag": "Työelämään tulon vaikeudet voivat näkyä vuosien seurannassa; kaikkien kohdalla pysyvää haittaa ei voi olettaa.",
+          "evidence_note": "Kohorttien työhön sijoittuminen on tilastollisesti kuvattu. Vaikutusmekanismi ja korjauskeinojen hyödyt jäävät tutkittaviksi. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät tämän tapauksen mittaustuloksia.",
+          "alternative": "Ikä, koulutusala, jatko-opinnot, muuttaminen ja myöhemmät suhdanteet voivat selittää osan kohorttien eroista.",
+          "source_ids": [
+            "stat-graduates",
+            "stat-workforce"
+          ],
+          "mechanism_id": "toimeentulo-ja-toipuminen",
+          "related_anchor_id": "peruskoulu-uudistus"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "velka-ja-rahoitus",
+          "title": "Miten velka ja rahoittajan vaikeudet voivat vahvistaa laskua?",
+          "intro": "Tämä selitysmalli erottaa kysynnän, velallisen taseen ja pankin toiminnan kanavat. Niiden painoja ei tässä arvioida.",
+          "links": [
+            {
+              "title": "Riski kasautuu",
+              "text": "Velalla rahoitettu toiminta voi olla herkkä tulojen tai vakuusarvojen muutokselle.",
+              "lag": "Nousukauden vuosien aikana."
+            },
+            {
+              "title": "Maksukyky heikkenee",
+              "text": "Kassavirran lasku voi vaikeuttaa velanhoitoa; valuuttavelassa myös kurssimuutos voi muuttaa rasitusta.",
+              "lag": "Kuukausista vuosiin; riippuu velan ehdoista."
+            },
+            {
+              "title": "Rahoittaja välittää häiriötä",
+              "text": "Pankin omat vaikeudet voivat heijastua asiakkaan rahoituksen ehtoihin.",
+              "lag": "Kriisin aikana; yrityskohtainen vaikutus tutkittava."
+            },
+            {
+              "title": "Reaalitalous reagoi",
+              "text": "Investointien ja toiminnan supistuminen voi vähentää työpaikkoja ja kysyntää.",
+              "lag": "Myöhemmät yritys- ja työmarkkinahavainnot."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Suomen Pankin tutkimuskatsaus käsittelee kotimaisten rahoitustekijöiden ja ulkoisten häiriöiden yhteyttä laman syvenemiseen.",
+              "source_ids": [
+                "bof-research2014"
+              ]
+            },
+            {
+              "text": "Kinnusen ja Vihriälän tutkimuksessa kriisipankin asiakkuus oli yhteydessä suurempaan sulkemisriskiin vuonna 1992 myös useita yrityksen ominaisuuksia huomioitaessa. Tulos koskee tutkittua yritysaineistoa.",
+              "source_ids": [
+                "bank-firms"
+              ]
+            },
+            {
+              "text": "Suomen Pankin historiakuvaus ajoittaa kiinteästä kurssista kelluntaan siirtymisen vuoteen 1992.",
+              "source_ids": [
+                "bof-history"
+              ]
+            }
+          ],
+          "interpretation": "Yhteys ei tarkoita, että jokainen yritys sulkeutui pankin takia. Tässä ei lasketa kanavien osuuksia eikä vastakkaisten politiikkavaihtoehtojen seurauksia.",
+          "alternative": "Kysynnän lasku, yrityksen kannattavuus ja valikoituminen pankin asiakkaaksi voivat selittää osan havaituista eroista.",
+          "question": "Vertaa erilaisten pankkien asiakasyrityksiä ennen kriisiä ja sen aikana; huomioi velkaisuus, kannattavuus, toimiala ja kysyntä."
+        },
+        {
+          "id": "toimeentulo-ja-toipuminen",
+          "title": "Miksi kokonaistalouden elpyminen ei kuvaa kaikkien toipumista?",
+          "intro": "Työ, velanhoito ja arjen toimeentulo ovat eri ulottuvuuksia. Niitä tulee seurata rinnakkain.",
+          "links": [
+            {
+              "title": "Tulot muuttuvat",
+              "text": "Työn menetys voi alentaa tuloja, vaikka kotitalouden velat ja välttämättömät menot eivät pienene samaa tahtia.",
+              "lag": "Välitön tulonmenetys; velkojen vaikutus voi pitkittyä."
+            },
+            {
+              "title": "Turva ja järjestelyt vaikuttavat",
+              "text": "Tulonsiirrot ja velkajärjestely tarjoavat erilaisia mahdollisia sopeutumiskeinoja; niiden saatavuus ja ehdot ratkaisevat.",
+              "lag": "Kuukausista vuosiin."
+            },
+            {
+              "title": "Toipuminen eriytyy",
+              "text": "Uusi työpaikka voi katkaista vaikeuksien ketjun, mutta pitkä työttömyys voi vaikeuttaa paluuta.",
+              "lag": "Vuosien työuraseuranta; hypoteesi."
+            },
+            {
+              "title": "Mittari valitaan oikein",
+              "text": "Suhteellinen pienituloisuus ei yksin havaitse velkataakkaa tai kaikkia elintason muutoksia.",
+              "lag": "Vuosihavaintoja tulkittaessa."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Vuoden 1993 laki loi yksityishenkilön velkajärjestelymenettelyn. Lähteenä on alkuperäinen säädös, ei nykyisten ehtojen ohjeistus.",
+              "source_ids": [
+                "debt-law"
+              ]
+            },
+            {
+              "text": "THL:n asiantuntijablogi selittää, miten mediaanin lasku voi alentaa suhteellista pienituloisuusrajaa ja miksi velka ja varallisuus on huomioitava erikseen.",
+              "source_ids": [
+                "poverty-measures"
+              ]
+            },
+            {
+              "text": "Tilastokeskus vertaa vuosina 1992 ja 2002 valmistuneiden työllistymistä ja kuvaa lama-ajan kohortin myöhempiä vaikeuksia. Vertailu on kuvaileva.",
+              "source_ids": [
+                "stat-graduates"
+              ]
+            }
+          ],
+          "interpretation": "Korjauskeinojen vaikutuksia ei johdeta lain olemassaolosta tai kokonaistalouden kasvusta. Eri ryhmien toipuminen edellyttää erillisiä havaintoja.",
+          "alternative": "Kohorttien erot voivat liittyä myös koulutukseen, ikään ja toimialoihin. Pienituloisuusasteen muutos voi heijastaa mittausrajan liikettä.",
+          "question": "Seuraa työllisyyttä, velanhoitoa ja kiinteään vertailutasoon sidottua toimeentuloa. Erottele valmistumisvuosi, koulutusala ja velkatilanne."
+        }
+      ]
     }
   ]
 }
