@@ -3866,6 +3866,376 @@
           "question": "Seuraa osallistumista, tuen oikea-aikaisuutta, arjen jatkuvuutta ja vanhempien työtä erikseen. Älä oleta yhden mittarin kuvaavan koko vaikutusta."
         }
       ]
+    },
+    {
+      "id": "suomen-eu-jasenyys-1995",
+      "entry_theme_id": 13,
+      "short_title": "Suomen EU-jäsenyys 1995",
+      "title": "Suomen EU-jäsenyys 1995 – yhteiset markkinat, päätösvalta ja alueiden muutokset",
+      "period": "1992–2025",
+      "question": "Miten jäsenyys muuttaa markkinoiden ja päätöksenteon ehtoja — ja miten jäsenyyden vaikutukset erotetaan ETA:sta, eurosta ja muista samanaikaisista muutoksista?",
+      "sources": [
+        {
+          "id": "history",
+          "title": "Euroopan komission Suomen-edustusto: Suomi EU:ssa",
+          "url": "https://finland.representation.ec.europa.eu/edustusto/suomi-eussa_fi"
+        },
+        {
+          "id": "referendum",
+          "title": "Finlex: Laki neuvoa-antavasta kansanäänestyksestä 578/1994",
+          "url": "https://www.finlex.fi/fi/lainsaadanto/saadoskokoelma/1994/578"
+        },
+        {
+          "id": "treaty",
+          "title": "Finlex: Liittymissopimuksen määräysten hyväksyminen, SopS 102/1994",
+          "url": "https://finlex.fi/fi/valtiosopimukset/sopimussarja/1994/102"
+        },
+        {
+          "id": "market",
+          "title": "EU:n neuvosto: EU:n sisämarkkinat",
+          "url": "https://www.consilium.europa.eu/fi/policies/deeper-single-market/"
+        },
+        {
+          "id": "agri2025",
+          "title": "Maa- ja metsätalousministeriö: Suomi 30 vuotta EU:ssa, maatalous- ja maaseuturahoitus (2025)",
+          "url": "https://valtioneuvosto.fi/-/1410837/suomi-30-vuotta-eu-ssa-eu-n-maatalous-ja-maaseuturahoitus-on-vaikuttanut-arkeen"
+        },
+        {
+          "id": "regions",
+          "title": "EU:n julkaisutoimisto: The Structural Funds in Finland 1995–1999",
+          "url": "https://op.europa.eu/en/publication-detail/-/publication/2f09a87c-7970-4c47-ba82-7f57987feb5b/language-en"
+        },
+        {
+          "id": "elections",
+          "title": "Tilastokeskus: Europarlamenttivaaleissa 1996 valitut suomalaiset jäsenet",
+          "url": "https://stat.fi/tk/he/vaalit/vaalit96euro/eued96.html"
+        },
+        {
+          "id": "euro",
+          "title": "Euroopan komissio: Finland and the euro",
+          "url": "https://economy-finance.ec.europa.eu/euro/eu-countries-and-euro/finland-and-euro_en"
+        },
+        {
+          "id": "cash",
+          "title": "Euroopan keskuspankki: Eurosetelien ja -kolikoiden käyttöönotto vuonna 2002",
+          "url": "https://www.ecb.europa.eu/euro/changeover/2002/html/index.fi.html"
+        }
+      ],
+      "steps": [
+        {
+          "short_title": "Hakemus ja ETA",
+          "title": "Jäsenyyttä edeltävä integraatio on osa lähtötilannetta",
+          "period": "1992–1994",
+          "years": [
+            1992,
+            1994
+          ],
+          "theme_ids": [
+            13,
+            11,
+            18
+          ],
+          "focus": {
+            "theme_id": 13,
+            "stage": 3
+          },
+          "map_points": [],
+          "event_year": 1994,
+          "event_label": "ETA-jäsenyys alkaa 1.1.1994",
+          "explanation": "Suomi haki Euroopan yhteisöjen jäsenyyttä vuonna 1992 ja oli Euroopan talousalueessa vuonna 1994. Sisämarkkinoihin liittyvää yhdentymistä tapahtui siten ennen EU-jäsenyyttä. Vuosi 1995 ei ole kaiken eurooppalaisen kauppayhteistyön alku.",
+          "mechanism": "Aiemmat sopimukset → markkinoiden ja sääntöjen lähentyminen → muuttuva lähtötilanne jäsenyydelle.",
+          "benefit": "Yhteistyö voi helpottaa rajat ylittävää toimintaa.",
+          "tradeoff": "Ennen jäsenyyttä tapahtunut muutos vaikeuttaa jäsenyyden oman vaikutuksen erottamista.",
+          "affected": "Yritykset, työntekijät, kuluttajat ja jäsenyyttä valmistelevat päättäjät.",
+          "lag": "Valmistelu ja aiemmat sopimukset vaikuttavat jo ennen vuotta 1995.",
+          "evidence_note": "Historiallinen aikajana on lähteistetty. Tässä ei arvioida ETA:n taloudellista vaikutusta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät jäsenyyden mittaustuloksia.",
+          "alternative": "Kansainvälisen kaupan ja kotimaisen talouden muutokset voivat edetä sopimuksista riippumatta.",
+          "source_ids": [
+            "history"
+          ],
+          "mechanism_id": "markkinat-ja-sopeutuminen"
+        },
+        {
+          "short_title": "Kansanäänestys ja sopimus",
+          "title": "Neuvoa-antava äänestys ja eduskunnan ratkaisu erotetaan",
+          "period": "1994–1994",
+          "years": [
+            1994,
+            1994
+          ],
+          "theme_ids": [
+            13,
+            8,
+            19,
+            28
+          ],
+          "focus": {
+            "theme_id": 8,
+            "stage": 3
+          },
+          "map_points": [],
+          "event_year": 1994,
+          "event_label": "Neuvoa-antava kansanäänestys 16.10.1994",
+          "explanation": "Lokakuussa 1994 järjestetty kansanäänestys oli neuvoa-antava. Jäsenyyttä kannatti 56,9 prosenttia äänestäneistä. Eduskunta teki lopullisen päätöksen marraskuussa. Äänestystulos ja sopimuksen hyväksyminen ovat eri päätösvaiheita.",
+          "mechanism": "Kansalaiskeskustelu ja äänestys → poliittinen tuki tai vastustus → parlamentaarinen sopimuspäätös.",
+          "benefit": "Äänestys tuo kansalaisten kannan näkyväksi merkittävässä valinnassa.",
+          "tradeoff": "Valtakunnallinen enemmistö ei kuvaa kaikkien alueiden tai ryhmien kantaa.",
+          "affected": "Äänestäjät, puolueet, eduskunta ja eri alueiden asukkaat.",
+          "lag": "Ratkaisu tehtiin vuonna 1994; jäsenyys alkoi myöhemmin.",
+          "evidence_note": "Äänestyksen luonne, ajankohta ja päätösvaiheet ovat dokumentoituja; tulos ei osoita jäsenyyden vaikutuksia. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät jäsenyyden mittaustuloksia.",
+          "alternative": "Mielipiteisiin voivat vaikuttaa talous, turvallisuus ja käsitykset päätösvallasta eri tavoin.",
+          "source_ids": [
+            "referendum",
+            "history",
+            "treaty"
+          ],
+          "mechanism_id": "paatokset-ja-vaikuttaminen"
+        },
+        {
+          "short_title": "Jäsenyys ja markkinat",
+          "title": "Suomi liittyy unioniin vuoden 1995 alussa",
+          "period": "1995–1995",
+          "years": [
+            1995,
+            1995
+          ],
+          "theme_ids": [
+            13,
+            18,
+            15,
+            28
+          ],
+          "focus": {
+            "theme_id": 13,
+            "stage": 3
+          },
+          "map_points": [],
+          "event_year": 1995,
+          "event_label": "EU-jäsenyys alkaa 1.1.1995",
+          "explanation": "Suomi liittyi EU:hun 1. tammikuuta 1995 yhdessä Ruotsin ja Itävallan kanssa. Sisämarkkinoiden perustana ovat tavaroiden, palvelujen, henkilöiden ja pääoman vapaa liikkuvuus. Niihin liittyvää yhdentymistä oli jo ETA-vaiheessa; jäsenyys toi lisäksi osallistumisen unionin päätöksentekoon.",
+          "mechanism": "Yhteiset säännöt ja markkinat → rajat ylittävän toiminnan ehdot → yritysten ja työntekijöiden mahdollisuudet sekä kilpailu.",
+          "benefit": "Laajemmat markkinat voivat avata kaupankäynti- ja työmahdollisuuksia.",
+          "tradeoff": "Kilpailu ja yhteiset säännöt voivat edellyttää sopeutumista; seuraukset vaihtelevat toimialoittain.",
+          "affected": "Vienti- ja tuontiyritykset, työntekijät, liikkuvat kansalaiset ja kuluttajat.",
+          "lag": "Oikeudellinen muutos on ajoitettu; yritysten ja työurien sopeutuminen voi kestää vuosia.",
+          "evidence_note": "Jäsenyyden alku ja sisämarkkinoiden perusperiaatteet ovat lähteistettyjä. Kasvu- tai työllisyysvaikutusta ei tässä lasketa. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät jäsenyyden mittaustuloksia.",
+          "alternative": "Laman jälkeinen elpyminen, teknologiamuutos ja maailmankauppa voivat selittää samanaikaista talouskehitystä.",
+          "source_ids": [
+            "history",
+            "market"
+          ],
+          "mechanism_id": "markkinat-ja-sopeutuminen",
+          "related_anchor_id": "1990-luvun-lama"
+        },
+        {
+          "short_title": "Maatalous ja alueet",
+          "title": "Yhteinen politiikka muuttaa rahoituksen ja kehittämisen ehtoja",
+          "period": "1995–1999",
+          "years": [
+            1995,
+            1999
+          ],
+          "theme_ids": [
+            13,
+            10,
+            17,
+            20,
+            15
+          ],
+          "focus": {
+            "theme_id": 20,
+            "stage": 3
+          },
+          "map_points": [],
+          "event_year": 1995,
+          "event_label": "Ensimmäinen jäsenyyden rakennerahastokausi 1995–1999",
+          "explanation": "Jäsenyys kytki Suomen yhteiseen maatalouspolitiikkaan ja EU:n aluekehittämisen rahoitukseen. Ensimmäistä rakennerahastokautta Suomessa käsittelee EU:n vuosien 1995–1999 julkaisu. Maatalous- ja maaseuturahoitus sekä rakennerahastot ovat erillisiä välineitä.",
+          "mechanism": "Yhteiset tukiehdot ja ohjelmat → tilojen ja alueiden investointi- ja kehittämisvalinnat → mahdollisia rakenteellisia muutoksia.",
+          "benefit": "Rahoitus voi tukea investointeja, osaamista ja paikallista kehittämistä.",
+          "tradeoff": "Tukiehdot, hakeminen ja yhteisrahoitus voivat rajata hankkeita; mahdollisuudet eivät jakaudu automaattisesti tasaisesti.",
+          "affected": "Viljelijät, maaseudun yritykset, alueiden kehittäjät ja paikalliset yhteisöt.",
+          "lag": "Ohjelmakausien päätökset ja investoinnit vaikuttavat vuosien aikana.",
+          "evidence_note": "Ohjelmakausi ja politiikkavälineet ovat lähteistettyjä. Rahoituksen määrä ei yksin osoita lisäistä hyvinvointi- tai työllisyysvaikutusta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät jäsenyyden mittaustuloksia.",
+          "alternative": "Teknologia, markkinahinnat, tilojen sukupolvenvaihdokset ja muuttoliike voivat muuttaa maaseutua ilman yksittäisen tuen vaikutusta.",
+          "source_ids": [
+            "regions",
+            "agri2025"
+          ],
+          "mechanism_id": "markkinat-ja-sopeutuminen",
+          "related_anchor_id": "maaltamuutto"
+        },
+        {
+          "short_title": "Vaikuttaminen ja euro",
+          "title": "Jäsenyys, eurovaalit ja yhteinen raha ovat eri vaiheita",
+          "period": "1996–2002",
+          "years": [
+            1996,
+            2002
+          ],
+          "theme_ids": [
+            8,
+            13,
+            17,
+            19,
+            11
+          ],
+          "focus": {
+            "theme_id": 8,
+            "stage": 4
+          },
+          "map_points": [],
+          "event_year": 1999,
+          "event_label": "Euro käyttöön 1.1.1999",
+          "explanation": "Suomessa järjestettiin europarlamenttivaalit vuonna 1996. Suomi otti euron käyttöön vuonna 1999; eurosetelit ja -kolikot tulivat vuonna 2002. EU-jäsenyys vuonna 1995 ja euroon siirtyminen ovat eri tapahtumia, joiden vaikutukset tulee erottaa.",
+          "mechanism": "Osallistuminen EU-päätöksiin → yhteisten sääntöjen muotoilu; euroon siirtyminen → erillinen yhteisen rahan ja rahapolitiikan muutos.",
+          "benefit": "Jäsenyys tarjoaa vaikutuskanavia yhteisiin päätöksiin. Yhteinen raha voi helpottaa euroalueen maksamista ja hintojen vertailua.",
+          "tradeoff": "Päätökset syntyvät monien toimijoiden yhteistyönä; oma rahapolitiikka korvautuu yhteisellä euroalueen rahapolitiikalla.",
+          "affected": "Äänestäjät, päättäjät, yritykset, kuluttajat ja rahapolitiikan toimijat.",
+          "lag": "Vaikuttaminen on jatkuvaa; euro ja käteismuutos ajoittuvat vuosiin 1999 ja 2002.",
+          "evidence_note": "Vaalit ja eurovaiheiden ajoitus ovat dokumentoituja. Niitä ei esitetä vuoden 1995 jäsenyyden välittöminä vaikutuksina. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät jäsenyyden mittaustuloksia.",
+          "alternative": "Valuuttakurssien, korkojen ja talouden kehitys riippuu myös kansainvälisestä tilanteesta.",
+          "source_ids": [
+            "elections",
+            "euro",
+            "cash"
+          ],
+          "mechanism_id": "paatokset-ja-vaikuttaminen"
+        },
+        {
+          "short_title": "Pitkän ajan arviointi",
+          "title": "Jäsenyyden kokonaisvaikutus vaatii vertailun",
+          "period": "2003–2025",
+          "years": [
+            2003,
+            2025
+          ],
+          "theme_ids": [
+            13,
+            20,
+            18,
+            8,
+            17
+          ],
+          "focus": {
+            "theme_id": 13,
+            "stage": 4
+          },
+          "map_points": [
+            {
+              "theme_id": 13,
+              "stage": 4
+            }
+          ],
+          "event_year": 2025,
+          "event_label": "Suomen EU-jäsenyyden 30-vuotistarkastelu",
+          "explanation": "Maa- ja metsätalousministeriön vuoden 2025 katsaus kuvaa maatalouden ja maaseuturahoituksen kehitystä jäsenyyden aikana. Ministeriön katsaus on yksi näkökulma. Jäsenyyden kokonaishyötyä ei voi päätellä yksittäisestä tukisummasta tai toteutuneesta talouskasvusta.",
+          "mechanism": "Pitkä seuranta ja vertailuasetelma → eri kanavien ja ryhmien tunnistaminen → harkittu vaikutusarvio.",
+          "benefit": "Arviointi voi auttaa kohdentamaan vaikuttamista ja kehittämistä havaittuihin tarpeisiin.",
+          "tradeoff": "Kokonaisluvut voivat peittää alueiden ja toimialojen eroja; vaihtoehtoinen kehityskulku ilman jäsenyyttä jää arvioitavaksi.",
+          "affected": "Eri alueiden asukkaat, maatalous, yritykset, työntekijät ja päätöksentekijät.",
+          "lag": "Kolmen vuosikymmenen tarkastelu yhdistää monta eri politiikka- ja talousvaihetta.",
+          "evidence_note": "Katsaus on ministeriön tulkinta; tässä ei tuoteta kausaalista kokonaisarviota tai ennustetta. Kartan teemakäyrät ovat yleisiä toimituksellisia arvioita, eivät jäsenyyden mittaustuloksia.",
+          "alternative": "ETA, euro, EU:n laajentumiset, teknologia ja talouskriisit vaikuttavat rinnakkain ja on erotettava toisistaan.",
+          "source_ids": [
+            "agri2025",
+            "history"
+          ],
+          "mechanism_id": "paatokset-ja-vaikuttaminen"
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "markkinat-ja-sopeutuminen",
+          "title": "Miten yhteiset markkinat ja rahoitus voivat muuttaa rakenteita?",
+          "intro": "Markkinasäännöt ja tukiohjelmat muodostavat eri vaikutuskanavia.",
+          "links": [
+            {
+              "title": "Ehdot muuttuvat",
+              "text": "Yhteiset säännöt ja rahoitusohjelmat muuttavat toiminnan ympäristöä.",
+              "lag": "Sopimuksista toimeenpanoon."
+            },
+            {
+              "title": "Toimijat sopeutuvat",
+              "text": "Yritykset, tilat ja alueet muuttavat valintojaan mahdollisuuksien ja kilpailun mukaan.",
+              "lag": "Vuosien aikana."
+            },
+            {
+              "title": "Tulokset eriytyvät",
+              "text": "Vaikutukset riippuvat alasta, sijainnista ja toimijan voimavaroista.",
+              "lag": "Pitkä seuranta."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "ETA-yhdentyminen edelsi vuoden 1995 jäsenyyttä.",
+              "source_ids": [
+                "history"
+              ]
+            },
+            {
+              "text": "Sisämarkkinoiden perustana ovat neljä vapautta.",
+              "source_ids": [
+                "market"
+              ]
+            },
+            {
+              "text": "Suomen ensimmäistä jäsenyyden rakennerahastokautta kuvataan vuosien 1995–1999 julkaisussa.",
+              "source_ids": [
+                "regions"
+              ]
+            }
+          ],
+          "interpretation": "Tässä ei lasketa kaupan, tukien tai kilpailun nettovaikutusta. Rahoitus ja havaittu kasvu eivät yksin todista syy-yhteyttä.",
+          "alternative": "Tuottavuus, suhdanteet ja aiemmat sopimukset voivat selittää muutoksia.",
+          "question": "Vertaa toimialoja ja alueita huomioiden aiempi ETA-vaihe, lähtötilanne ja muut samanaikaiset muutokset."
+        },
+        {
+          "id": "paatokset-ja-vaikuttaminen",
+          "title": "Miten kansallinen päätösvalta ja yhteinen vaikuttaminen muuttuvat?",
+          "intro": "Jäsenyys sitoo yhteisiin päätöksiin ja avaa osallistumisen niiden valmisteluun.",
+          "links": [
+            {
+              "title": "Jäsenyys hyväksytään",
+              "text": "Neuvoa-antava kansanäänestys ja eduskunnan sopimuspäätös ovat eri vaiheita.",
+              "lag": "Vuosi 1994."
+            },
+            {
+              "title": "Vaikuttamisen kanavat",
+              "text": "Suomi osallistuu jäsenenä yhteiseen päätöksentekoon; kansalaiset valitsevat parlamentin edustajia.",
+              "lag": "Jatkuva valmistelu ja vaalit."
+            },
+            {
+              "title": "Myöhemmät vaiheet erotetaan",
+              "text": "Euroon siirtyminen on erillinen rahapoliittinen muutos.",
+              "lag": "Euro 1999, käteinen 2002."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Kansanäänestys oli neuvoa-antava.",
+              "source_ids": [
+                "referendum"
+              ]
+            },
+            {
+              "text": "Liittymissopimuksen määräykset hyväksyttiin kansallisesti.",
+              "source_ids": [
+                "treaty"
+              ]
+            },
+            {
+              "text": "Euroon siirtymisen ja käteisen ajoitus eroaa jäsenyyden alusta.",
+              "source_ids": [
+                "euro",
+                "cash"
+              ]
+            }
+          ],
+          "interpretation": "Jaettu päätöksenteko sisältää sekä vaikutusmahdollisuuksia että kansallisen liikkumavaran ehtoja. Niiden painoa ei tässä pisteytetä.",
+          "alternative": "Vaikuttaminen riippuu myös valmistelusta, liittoumista ja käsiteltävästä politiikka-alasta.",
+          "question": "Tarkastele konkreettisen päätöksen valmistelua, Suomen tavoitteita ja lopputulosta. Erottele jäsenyys, yhteiset sopimukset ja euro."
+        }
+      ]
     }
   ]
 }
