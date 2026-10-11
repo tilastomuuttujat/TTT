@@ -64,7 +64,8 @@
           "source_ids": [
             "work",
             "migration"
-          ]
+          ],
+          "mechanism_id": "tyon-ja-asuinpaikan-erkaantuminen"
         },
         {
           "short_title": "Muutto ratkaisuna",
@@ -100,7 +101,8 @@
           "source_ids": [
             "population",
             "migration"
-          ]
+          ],
+          "mechanism_id": "tyon-ja-asuinpaikan-erkaantuminen"
         },
         {
           "short_title": "Arjen järjestäminen",
@@ -211,6 +213,52 @@
             "migration",
             "work"
           ]
+        }
+      ],
+      "mechanisms": [
+        {
+          "id": "tyon-ja-asuinpaikan-erkaantuminen",
+          "title": "Työpaikkojen ja asuinpaikkojen erkaantuminen",
+          "intro": "Kun työn tarjonta muuttuu eri paikoissa eri tahtiin, toimeentuloa voidaan sovittaa muuttamalla, pendelöimällä tai vaihtamalla ammattia. Muutto on yksi mahdollinen ratkaisu.",
+          "links": [
+            {
+              "title": "Työn sijainti muuttuu",
+              "text": "Maatalouden työn muutos ja teollisuuden sekä palvelujen kasvu muuttavat työmahdollisuuksien alueellista jakaumaa.",
+              "lag": "Lähtötilanne: vuosien kuluessa."
+            },
+            {
+              "title": "Kotitalous etsii ratkaisua",
+              "text": "Uusi työpaikka voi tehdä muutosta houkuttelevan. Asunto, koulutus, perhesiteet ja matkayhteydet voivat helpottaa tai estää sitä.",
+              "lag": "Päätös ja muutto: kuukausista vuosiin, tilanteesta riippuen."
+            },
+            {
+              "title": "Arki järjestyy uudelleen",
+              "text": "Muuton jälkeen asunto, läheisten tuki ja lasten arki on sovitettava uuteen paikkaan. Kasvavalla alueella asuntojen ja palvelujen tarve voi lisääntyä.",
+              "lag": "Sopeutuminen: heti muutosta alkaen, usein vuosien ajan."
+            },
+            {
+              "title": "Alueellinen vaikutus kertyy",
+              "text": "Toistuva muuttoliike voi muuttaa lähtö- ja tuloalueiden ikärakennetta, työvoiman saatavuutta ja palveluverkon tarpeita.",
+              "lag": "Kertyvä seuraus: vuosista vuosikymmeniin."
+            }
+          ],
+          "evidence": [
+            {
+              "text": "Tilastokeskuksen historiallinen katsaus yhdistää muuttoliikkeen alueelliseen työnjakoon ja kaupungistumiseen.",
+              "source_ids": [
+                "migration"
+              ]
+            },
+            {
+              "text": "Tilastokeskuksen oppaan mukaan kuntien välinen muutto vilkastui 1950-luvun lopulla ja suurten ikäluokkien aikuistuessa 1960–1970-lukujen taitteessa.",
+              "source_ids": [
+                "population"
+              ]
+            }
+          ],
+          "interpretation": "Yllä oleva ketju on toimituksellinen selitysmalli. Lähteet tukevat historiallista kehystä, mutta eivät todista jokaisen nuolen syy-yhteyttä. Aikaviiveet ovat havainnollistavia arvioita, eivät mitattuja keskiarvoja.",
+          "alternative": "Muuttamista voivat selittää myös opiskelu, perhesuhteet, asumistoiveet ja politiikan ratkaisut. Alueen työpaikkakasvu voi sekä houkutella muuttajia että seurata väestön kasvua.",
+          "question": "Muuttuiko alueen työllisyys ennen muuttoa vai sen jälkeen? Vertaa työpaikkoja, muuttoliikettä, asuntoja ja ikärakennetta samoilla aluerajoilla."
         }
       ]
     }
