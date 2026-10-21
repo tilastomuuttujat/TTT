@@ -114,6 +114,15 @@ class EvidenceValidation(unittest.TestCase):
         self.assertEqual(sql.count(tag), 2)
         self.assertEqual(replay.sql_literal("O'Brien"), "'O''Brien'")
 
+    def test_connection_uri_is_split_into_libpq_environment(self):
+        env = replay.psql_env("postgresql://test-user:p%40ss@localhost:5544/test_db?sslmode=require")
+        self.assertEqual(env["PGHOST"], "localhost")
+        self.assertEqual(env["PGPORT"], "5544")
+        self.assertEqual(env["PGUSER"], "test-user")
+        self.assertEqual(env["PGPASSWORD"], "p@ss")
+        self.assertEqual(env["PGDATABASE"], "test_db")
+        self.assertEqual(env["PGSSLMODE"], "require")
+
 
 @unittest.skipUnless(os.environ.get("TEST_DATABASE_URL"), "TEST_DATABASE_URL not set")
 class PostgreSQLReplay(unittest.TestCase):
@@ -127,8 +136,7 @@ class PostgreSQLReplay(unittest.TestCase):
             raise ValueError("Integration tests require a disposable localhost database")
 
     def psql(self, sql, ok=True):
-        env = os.environ.copy()
-        env["PGDATABASE"] = env["TEST_DATABASE_URL"]
+        env = replay.psql_env(os.environ["TEST_DATABASE_URL"])
         r = subprocess.run(["psql", "-X", "-At", "--no-password", "--set", "ON_ERROR_STOP=1"],
                            input=sql, text=True, capture_output=True, env=env)
         if ok:

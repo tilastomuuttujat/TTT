@@ -9,7 +9,7 @@ from pathlib import Path
 import re
 import subprocess
 import sys
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT = ROOT / "data/updates/20261021-evidence"
@@ -209,6 +209,23 @@ def sql_literal(value):
     return "'" + value.replace("'", "''") + "'"
 
 
+def psql_env(connection):
+    """libpq does not expand a URI supplied only through PGDATABASE defaults."""
+    parsed = urlparse(connection)
+    require(parsed.scheme in ("postgres", "postgresql"), "PostgreSQL URL required")
+    options = {"sslmode": "PGSSLMODE", "sslrootcert": "PGSSLROOTCERT", "sslcert": "PGSSLCERT",
+               "sslkey": "PGSSLKEY", "connect_timeout": "PGCONNECT_TIMEOUT",
+               "application_name": "PGAPPNAME", "channel_binding": "PGCHANNELBINDING"}
+    query = parse_qs(parsed.query, keep_blank_values=True)
+    require(set(query) <= set(options) and all(len(v) == 1 for v in query.values()), "Unsupported connection option")
+    env = {k: v for k, v in os.environ.items() if not k.startswith("PG")}
+    env.update(PGHOST=parsed.hostname or "", PGPORT=str(parsed.port or 5432),
+               PGUSER=unquote(parsed.username or ""), PGPASSWORD=unquote(parsed.password or ""),
+               PGDATABASE=unquote(parsed.path.removeprefix("/")))
+    env.update({options[k]: v[0] for k, v in query.items()})
+    return env
+
+
 def make_sql(bundle, commit=False):
     """Fixed table/column allowlists; JSON is passed as a quoted SQL literal, never SQL."""
     counts = validate(bundle)
@@ -323,8 +340,7 @@ def main():
             (parsed.hostname or "").endswith(".pooler.supabase.com") and parsed.username == f"postgres.{args.project_id}",
             "Connection is not bound to the expected Supabase project")
     require(parse_qs(parsed.query).get("sslmode", [""])[0] in ("require", "verify-ca", "verify-full"), "TLS sslmode required")
-    env = os.environ.copy()
-    env["PGDATABASE"] = connection
+    env = psql_env(connection)
     # Never put credentials on the command line or print server errors that might contain them.
     result = subprocess.run(["psql", "-X", "--no-password", "--set", "ON_ERROR_STOP=1"],
                             input=sql, text=True, capture_output=True, env=env)
