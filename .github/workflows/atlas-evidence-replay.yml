@@ -1,0 +1,91 @@
+name: Validate and replay Atlas evidence
+
+on:
+  pull_request:
+    paths:
+      - 'data/updates/**'
+      - 'scripts/replay-atlas-evidence.py'
+      - 'tests/*evidence*.py'
+      - '.github/workflows/atlas-evidence-replay.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'data/updates/**'
+      - 'scripts/replay-atlas-evidence.py'
+      - 'tests/*evidence*.py'
+      - '.github/workflows/atlas-evidence-replay.yml'
+  workflow_dispatch:
+    inputs:
+      operation:
+        description: 'validate, dry-run (rollback), or apply (commit)'
+        type: choice
+        default: validate
+        options: [validate, dry-run, apply]
+
+      batch_dir:
+        description: 'Reviewed batch directory (must exist on main)'
+        type: string
+        default: data/updates/20261021-evidence
+      project_id:
+        description: 'Target Supabase project ID, required for database replay'
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: atlas-evidence-${{ github.event_name == 'workflow_dispatch' && 'manual' || github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:17.6
+        env:
+          POSTGRES_PASSWORD: local-fixture-only
+          POSTGRES_DB: evidence_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate a fictional fixture (no exported database data)
+        run: |
+          python tests/evidence_fixture.py --output-dir "$RUNNER_TEMP/evidence-fixture"
+          python scripts/replay-atlas-evidence.py validate --batch-dir "$RUNNER_TEMP/evidence-fixture"
+      - name: Test rollback, conflicts, missing base rows, and second execution
+        env:
+          TEST_DATABASE_URL: postgresql://postgres:local-fixture-only@localhost:5432/evidence_test
+        run: |
+          psql --version
+          python -m unittest discover -s tests -p test_evidence_replay.py -v
+
+  replay:
+    needs: test
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.operation != 'validate' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Replay reviewed frozen batch
+        env:
+          ATLAS_DATABASE_URL: ${{ secrets.ATLAS_DATABASE_URL }}
+          OPERATION: ${{ inputs.operation }}
+          BATCH_DIR: ${{ inputs.batch_dir }}
+          PROJECT_ID: ${{ inputs.project_id }}
+        run: |
+          if [ "$OPERATION" = 'apply' ]; then
+            python scripts/replay-atlas-evidence.py apply --batch-dir "$BATCH_DIR" --project-id "$PROJECT_ID" --commit
+          else
+            python scripts/replay-atlas-evidence.py apply --batch-dir "$BATCH_DIR" --project-id "$PROJECT_ID"
+          fi
